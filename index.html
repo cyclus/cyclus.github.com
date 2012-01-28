@@ -1,0 +1,141 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Cyclus &mdash; Cyclus 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Cyclus 0.1 documentation" href="#" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="#">Cyclus 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="#">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Cyclus</a><ul>
+<li><a class="reference internal" href="#internal-code-development">Internal code development</a></li>
+<li><a class="reference internal" href="#external-code-development">External code development</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cyclus">
+<h1>Cyclus<a class="headerlink" href="#cyclus" title="Permalink to this headline">¶</a></h1>
+<p>As a successor to <em>GENIUS</em>, the next-generation fuel cycle systems analysis
+simulation tool, <em>Cyclus</em> will preserve many of its key features with a
+software architecture that provides a great deal of ﬂexibility, both in
+terms of modifying the underlying modeling algorithms and presenting
+different levels of complexity to different users.</p>
+<p>The Cyclus modeling paradigm will let users reconﬁgure the basic building
+blocks of a simulation without changing the software. The foundation of a
+simulation will be a commodity market that collects offers and requests and
+matches them according to some algorithm. The user will be able to select
+which type of algorithm is used for each market by selecting a MarketModel
+and conﬁguring it with a particular set of parameters defined by that
+MarketModel. Changing the parameters of a market will change its
+performance and selecting a different MarketModel will completely change
+its behavior.</p>
+<div class="section" id="internal-code-development">
+<h2>Internal code development<a class="headerlink" href="#internal-code-development" title="Permalink to this headline">¶</a></h2>
+<p>Most internal code development at this time will be led by Paul, Wilson,
+Katy Huff, Matthew Gidden, and Robert Carlsen, the CNERG fuel cycle group.
+Near term goals include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>replicating GENIUSv2 functionality</li>
+<li>developing a unit test suite</li>
+<li>deploying a library of basic data and a catalog of market</li>
+<li>and facility configurations.</li>
+</ul>
+</div></blockquote>
+<p>We will be moving our development efforts to <a class="reference external" href="http://github.com">github</a> soon.  A GitMigration
+wiki has been created to outline things that will need to been done for the
+move to be successful.</p>
+</div>
+<div class="section" id="external-code-development">
+<h2>External code development<a class="headerlink" href="#external-code-development" title="Permalink to this headline">¶</a></h2>
+<p>Interested developers are welcome and encouraged to contribute, but will
+experience significant code instability in the early experimental stages of
+the project.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="#">Cyclus 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
