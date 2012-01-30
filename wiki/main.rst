@@ -5,11 +5,16 @@ Wiki Contents:
   :maxdepth: 2
   
    CyclusIntroduction
-   GettingAndBuildingCyclus
-   ProgramFlowAndDataStructureOverview
-   OutputDatabase
-   UserDocumentation
-   DevelopersDocumentation
+   CyclusStyleGuide
+   Decay
+
+   .. stuff not converted yet
+
+      GettingAndBuildingCyclus
+      ProgramFlowAndDataStructureOverview
+      OutputDatabase
+      UserDocumentation
+      DevelopersDocumentation
  
    ..
     
