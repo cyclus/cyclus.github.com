@@ -2,13 +2,13 @@
 Wiki Contents:
 
 .. toctree::
-  :maxdepth: 2
+   :maxdepth: 2
   
    CyclusIntroduction
-   CyclusStyleGuide
+   CyclusStyleGuidelines
    Decay
 
-   .. stuff not converted yet
+.. stuff not converted yet
 
       GettingAndBuildingCyclus
       ProgramFlowAndDataStructureOverview
@@ -16,7 +16,6 @@ Wiki Contents:
       UserDocumentation
       DevelopersDocumentation
  
-   ..
     
       these are within developer doc
 
