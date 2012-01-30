@@ -38,6 +38,11 @@ We will be moving our development efforts to github_ soon.  A GitMigration
 wiki has been created to outline things that will need to been done for the
 move to be successful.
 
+.. toctree::
+   :maxdepth: 2
+
+   wiki/main
+
 .. _github: http://github.com
 
 External code development
