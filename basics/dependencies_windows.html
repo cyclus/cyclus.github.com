@@ -1,24 +1,30 @@
 
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Installing Dependencies on Windows &mdash; Cyclus Home</title>
+    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_MODINDEX: false,
+        COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Getting and Building Cyclus" href="get_and_build.html" />
@@ -50,37 +56,37 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="../index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href="#">Installing Dependencies on Windows</a><ul>
-<li><a class="reference external" href="#cygwin">Cygwin</a></li>
-<li><a class="reference external" href="#boost">Boost</a></li>
-<li><a class="reference external" href="#hdf5">HDF5</a></li>
-<li><a class="reference external" href="#teuchos">Teuchos</a></li>
-<li><a class="reference external" href="#now-what">Now What?</a></li>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installing Dependencies on Windows</a><ul>
+<li><a class="reference internal" href="#cygwin">Cygwin</a></li>
+<li><a class="reference internal" href="#boost">Boost</a></li>
+<li><a class="reference internal" href="#hdf5">HDF5</a></li>
+<li><a class="reference internal" href="#teuchos">Teuchos</a></li>
+<li><a class="reference internal" href="#now-what">Now What?</a></li>
 </ul>
 </li>
 </ul>
 
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="dependencies_unix.html"
-                                  title="previous chapter">Installing Dependencies on Unix</a></p>
-            <h4>Next topic</h4>
-            <p class="topless"><a href="decay.html"
-                                  title="next chapter">Radioactive Decay in Cyclus</a></p>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="../search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dependencies_unix.html"
+                        title="previous chapter">Installing Dependencies on Unix</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="decay.html"
+                        title="next chapter">Radioactive Decay in Cyclus</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -104,14 +110,14 @@ according to the instructions at the <a class="reference external" href="http://
 <p>Specifically, the Cygwin installation manager will walk through the
 installation process:</p>
 <blockquote>
-<ol class="arabic simple">
+<div><ol class="arabic simple">
 <li>Select Install From Internet.</li>
 <li>Choose a directory to install cygwin.</li>
 <li>Choose a download mirror near you.</li>
 <li>Choose packages to install</li>
 </ol>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>If you have two free gigabytes on your computer, the package
 configuration process can be simplified by choosing to download all
 packages. This will require clicking INSTALL the icon next to ALL.</li>
@@ -121,7 +127,7 @@ search for and select install for specific packages that cyclus and its
 dependencies rely on : svn, gcc, g++, g77, cmake, make, lapack, libxml2,
 libidn.</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <ol class="arabic simple">
 <li>This will take some time to install</li>
 <li>When installed, check that these were installed correctly by using the &#8216;which&#8217; command. A path will be returned if the package is found. If not, rerun Cygwin&#8217;s setup.exe and install just the packages that are not found.<ul>
@@ -131,7 +137,7 @@ libidn.</li>
 </ul>
 </li>
 </ol>
-</blockquote>
+</div></blockquote>
 </div>
 <div class="section" id="boost">
 <h2>Boost<a class="headerlink" href="#boost" title="Permalink to this headline">¶</a></h2>
@@ -143,13 +149,13 @@ So, download the installer.</p>
 <li>When the installer asks what packages to install, be certain to include</li>
 </ol>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>the program_options library</li>
 <li>the IOStream libraries</li>
 <li>and the date_time library</li>
 <li>in addition to the default header libraries.</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <ol class="arabic simple">
 <li>If you have surplus space on your computer, don&#8217;t hesitate to install all of the libraries available, but be prepared for the installation to take up to an hour for all packages.</li>
 <li>The installer will ask what variants of the boost libraries to install. Be certain to install a dynamic and a static library. Threading is up to you.</li>
@@ -160,7 +166,7 @@ So, download the installer.</p>
 <p>HDF5 is a hierarchical database library that Cyclus uses for record keeping. To
 install HDF5 on Windows :</p>
 <blockquote>
-<ol class="arabic simple">
+<div><ol class="arabic simple">
 <li>Go to the hdf5 website.</li>
 <li>Download the appropriate precompiled Windows binaries.</li>
 <li>Extract the full directory structure somewhere temporary.</li>
@@ -169,7 +175,7 @@ install HDF5 on Windows :</p>
 <li>So too with the contents of the include directory, move them to /usr/local/include (or elsewhere).</li>
 <li>This can optionally be repeated with the  share directory as well.</li>
 </ol>
-</blockquote>
+</div></blockquote>
 <p>Make sure the location you placed the binary files is in your $PATH environment
 variable. Finally, add an environment variable that states $HDF5_ROOT =
 /usr/local/lib (or your favorite other location).</p>
@@ -191,7 +197,7 @@ cmake-gui ../trilinos_source</pre>
 <p>From the gui (or via commandline flags, if you prefer), set the following
 advanced configuration flags for the Trilinos build:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>BUILD_SHARED_LIBS=ON</li>
 <li>CMAKE_INSTALL_PREFIX=/usr/local/ (or elsewhere)</li>
 <li>Trilinos_ENABLE_TEUCHOS=ON</li>
@@ -200,7 +206,7 @@ advanced configuration flags for the Trilinos build:</p>
 <li>BLAS_LIBRARY_NAMES=&#8221;blas&#8221;</li>
 <li>LAPACK_LIBRARY_NAMES=&#8221;lapack&#8221;</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>Finally, configure and generate the make file (in the gui, these are buttons).
 In the terminal type make, then type make install.</p>
 </div>
@@ -234,8 +240,8 @@ In the terminal type make, then type make install.</p>
       </ul>
     </div>
     <div class="footer">
-      &copy; Copyright 2012, Robert Carlsen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+        &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>

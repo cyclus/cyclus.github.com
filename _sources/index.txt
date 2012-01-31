@@ -39,4 +39,10 @@ Learn More
    usrdoc/main
    devdoc/main
 
+Contact Us
+----------
+
+* Project PI Paul Wilson: wilsonp@engr.wisc.edu
+* Developers' list: cyclus-dev@groups.google.com
+* Users' list: cyclus-users@groups.google.com
 

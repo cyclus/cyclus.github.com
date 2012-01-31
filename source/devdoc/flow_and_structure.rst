@@ -59,12 +59,15 @@ templates?
 The Tick
 --------
 
-  # cycle through Regions
-    # cycle through Institutions
-      # deploy new facilities as necessary
-      # cycle through facilities
-        # update facility state as appropriate
-        # prompt for requests/offers
+  #. cycle through Regions
+
+    #. cycle through Institutions
+
+      #. deploy new facilities as necessary
+      #. cycle through facilities
+
+        #. update facility state as appropriate
+        #. prompt for requests/offers
 
 Market Resolution
 -----------------
