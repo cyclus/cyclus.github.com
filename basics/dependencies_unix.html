@@ -1,0 +1,200 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installing Dependencies on Unix &mdash; Cyclus Home</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../index.html" />
+    <link rel="up" title="Getting and Building Cyclus" href="get_and_build.html" />
+    <link rel="next" title="Installing Dependencies on Windows" href="dependencies_windows.html" />
+    <link rel="prev" title="Getting and Building Cyclus" href="get_and_build.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <img src="../_static/header-image.png"/>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dependencies_windows.html" title="Installing Dependencies on Windows"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="get_and_build.html" title="Getting and Building Cyclus"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" >Cyclus Fundamentals</a> &raquo;</li>
+          <li><a href="get_and_build.html" accesskey="U">Getting and Building Cyclus</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installing Dependencies on Unix</a></li>
+<li><a class="reference internal" href="#some-quick-notes-of-great-import">Some Quick Notes of Great Import</a></li>
+<li><a class="reference internal" href="#lapack">Lapack</a></li>
+<li><a class="reference internal" href="#teuchos">Teuchos</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="get_and_build.html"
+                        title="previous chapter">Getting and Building Cyclus</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dependencies_windows.html"
+                        title="next chapter">Installing Dependencies on Windows</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installing-dependencies-on-unix">
+<h1>Installing Dependencies on Unix<a class="headerlink" href="#installing-dependencies-on-unix" title="Permalink to this headline">¶</a></h1>
+<p><em>Note that `unix` includes linux and darwin (mac) based systems</em></p>
+<p>This page will provide a short walk-through of some of the non-standard
+installation requirements for <em>Cyclus</em> dependencies. <em>Cyclus</em> strives to be a
+modularly designed code that allows dynamic loading of modules at run time;
+therefore, dependencies must be built as shared object libraries instead of
+static libraries. This is done through the use of the -fPIC (position
+independent code) flag when building the required dependencies. For your
+edification, <a class="reference external" href="http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html">this website</a>
+has a good review of shared libraries in general.</p>
+</div>
+<div class="section" id="some-quick-notes-of-great-import">
+<h1>Some Quick Notes of Great Import<a class="headerlink" href="#some-quick-notes-of-great-import" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><ol class="arabic simple">
+<li>The following procedures will NOT work correctly if you have already
+acquired Lapack, BLAS, or Trilinos via Ubuntu&#8217;s Synaptic Package Manager.<ul>
+<li>It is highly reccommended that you remove these libraries via Synaptic
+before reinstalling them in the following manner.</li>
+</ul>
+</li>
+<li>It is highly reccommended (specifically for novice users) that you install
+these libraries in /usr/local</li>
+<li>Be very careful when using Teuchos. They have made the design decision to
+include definitions in their header files (due to heavy use of templates).
+Such header files can only be included in one location in the <em>Cyclus</em> source
+code.</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="lapack">
+<h1>Lapack<a class="headerlink" href="#lapack" title="Permalink to this headline">¶</a></h1>
+<p>Lapack can be installed on your Unix machine using the following steps:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Download Lapack from its <a class="reference external" href="http://www.netlib.org/lapack/">website</a> and untar it in a preferred location</li>
+<li>Make a build directory (e.g. one can place the source code in ../lapack/lapack-xx.yy.zz-Source and make the directory .../lapack/build)</li>
+<li>Copy the configure_lapack script located in the <em>Cyclus</em> repository located in /trunk/dependencies/lapack and place it in your build folder</li>
+<li>Change the configure script so that the last line points to your lapack source (e.g. ../lapack/lapack-xx.yy.zz-Source)</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Note, by default the script will install the library at /usr/local.</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple">
+<li>Run the script (by typing ./configure_lapack.sh). Note that you may need to alter the script&#8217;s permissions. To do so you can type &#8220;chmod 775 configure_lapack.sh&#8221;.</li>
+<li>From the build directory, type &#8220;make&#8221; (or &#8220;make -jN&#8221; where N is the number of threads you want to use [this speeds up the process])</li>
+<li>From the build directory, type &#8220;make install&#8221;</li>
+</ol>
+</div></blockquote>
+<p>Note that the making process can take some time. It is suggested that you make
+with the <cite>-j</cite> flag.</p>
+</div>
+<div class="section" id="teuchos">
+<h1>Teuchos<a class="headerlink" href="#teuchos" title="Permalink to this headline">¶</a></h1>
+<p><em>Cyclus</em> uses the <a class="reference external" href="http://trilinos.sandia.gov/packages/teuchos/">Teuchos</a> package of <a class="reference external" href="http://trilinos.sandia.gov/">Trilinos</a>. Teuchos can be installed on your Unix machine using the following steps:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Download Trilinos from its <a class="reference external" href="http://trilinos.sandia.gov/">website</a> and untar it in a preferred location</li>
+<li>Make a build directory (e.g. one can place the source code in .../trilinos/trilinos-xx.yy.zz-Source and make the directory .../trilinos/build)</li>
+<li>Copy the configure_trilinos script located in the <em>Cyclus</em> repository located in /svn/dependencies/trilinos and place it in your build folder</li>
+<li>Change the configure script so that the last line points to your trilinos source (e.g. .../trilinos/trilinos-xx.yy.zz-Source)</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Note, by default the script will install the library at /usr/local.</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple">
+<li>Run the script (by typing ./configure_trilinos.sh). Note that you may need to alter the script&#8217;s permissions. To do so you can type &#8220;chmod 775 configure_trilinos.sh&#8221;.</li>
+<li>From the build directory, type &#8220;make&#8221; (or &#8220;make -jN&#8221; where N is the number of threads you want to use [this speeds up the process])</li>
+<li>From the build directory, type &#8220;make install&#8221;</li>
+</ol>
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dependencies_windows.html" title="Installing Dependencies on Windows"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="get_and_build.html" title="Getting and Building Cyclus"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" >Cyclus Fundamentals</a> &raquo;</li>
+          <li><a href="get_and_build.html" >Getting and Building Cyclus</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

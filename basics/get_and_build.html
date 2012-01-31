@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Getting and Building Cyclus &mdash; Cyclus</title>
+    <title>Getting and Building Cyclus &mdash; Cyclus Home</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,12 +26,17 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="Cyclus" href="../index.html" />
+    <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Fundamentals" href="main.html" />
-    <link rel="next" title="Radioactive Decay in Cyclus" href="decay.html" />
+    <link rel="next" title="Installing Dependencies on Unix" href="dependencies_unix.html" />
     <link rel="prev" title="Introduction to the Cyclus Fuel Cycle Simulator" href="introduction.html" /> 
   </head>
   <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <img src="../_static/header-image.png"/>
+</div>
+
+
     <div class="related">
       <h3>Navigation</h3>
       <ul>
@@ -38,24 +44,23 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="decay.html" title="Radioactive Decay in Cyclus"
+          <a href="dependencies_unix.html" title="Installing Dependencies on Unix"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="introduction.html" title="Introduction to the Cyclus Fuel Cycle Simulator"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Cyclus</a> &raquo;</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
           <li><a href="main.html" accesskey="U">Cyclus Fundamentals</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="../index.html">
-              <img class="logo" src="../_static/logo.png" alt="Logo"/>
-            </a></p>
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Getting and Building Cyclus</a><ul>
-<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#dependencies">Dependencies</a><ul>
+</ul>
+</li>
 <li><a class="reference internal" href="#project-repository">Project Repository</a></li>
 <li><a class="reference internal" href="#build-system">Build System</a></li>
 <li><a class="reference internal" href="#debugging-build">Debugging Build</a></li>
@@ -68,13 +73,8 @@
   <p class="topless"><a href="introduction.html"
                         title="previous chapter">Introduction to the <em>Cyclus</em> Fuel Cycle Simulator</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="decay.html"
-                        title="next chapter">Radioactive Decay in Cyclus</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/basics/get_and_build.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
+  <p class="topless"><a href="dependencies_unix.html"
+                        title="next chapter">Installing Dependencies on Unix</a></p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -133,8 +133,23 @@
 </tbody>
 </table>
 <p>An overview of some more complicated package builds and installations (e.g.
-lapack, teuchos, etc.) can be found on the InstallingDependenciesOnUnix or
-InstallingDependenciesOnWindows wiki pages.</p>
+lapack, teuchos, etc.) can be found on the following pages:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dependencies_unix.html">Installing Dependencies on Unix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies_unix.html#some-quick-notes-of-great-import">Some Quick Notes of Great Import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies_unix.html#lapack">Lapack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies_unix.html#teuchos">Teuchos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies_windows.html">Installing Dependencies on Windows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dependencies_windows.html#cygwin">Cygwin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies_windows.html#boost">Boost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies_windows.html#hdf5">HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies_windows.html#teuchos">Teuchos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependencies_windows.html#now-what">Now What?</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div class="section" id="project-repository">
 <h2>Project Repository<a class="headerlink" href="#project-repository" title="Permalink to this headline">¶</a></h2>
@@ -272,12 +287,12 @@ CYCLUS_SRC_DIR to the path to your src directory.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="decay.html" title="Radioactive Decay in Cyclus"
+          <a href="dependencies_unix.html" title="Installing Dependencies on Unix"
              >next</a> |</li>
         <li class="right" >
           <a href="introduction.html" title="Introduction to the Cyclus Fuel Cycle Simulator"
              >previous</a> |</li>
-        <li><a href="../index.html">Cyclus</a> &raquo;</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
           <li><a href="main.html" >Cyclus Fundamentals</a> &raquo;</li> 
       </ul>
     </div>

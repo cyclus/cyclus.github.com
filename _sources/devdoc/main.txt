@@ -11,14 +11,16 @@ in a variety of forms.  If you haven't already, check out
 Getting Started
 ---------------
 
+First things first - read :doc:`../basics/get_and_build`.  After
+successfully acquiring and building *Cyclus*, you can begin developing:
+
 .. toctree::
    :maxdepth: 2
   
-   ../basics/get_and_build
-   CyclusStyleGuidelines
+   style_guide
    make-models/main
-   ProgramFlowAndDataStructureOverview
-   OutputDatabase
+   flow_and_structure
+   output_dbase
 
 Doxygen Code Documentation
 --------------------------

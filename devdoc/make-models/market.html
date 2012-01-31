@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Developing Market Models &mdash; Cyclus</title>
+    <title>Developing Market Models &mdash; Cyclus Home</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -25,11 +26,17 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <link rel="top" title="Cyclus" href="../../index.html" />
+    <link rel="top" title="Cyclus Home" href="../../index.html" />
     <link rel="up" title="Developing Models For Cyclus" href="main.html" />
-    <link rel="prev" title="Developing Institution Models" href="institution.html" /> 
+    <link rel="next" title="Program Flow and Data Structures" href="../flow_and_structure.html" />
+    <link rel="prev" title="Developing Region Models" href="region.html" /> 
   </head>
   <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <img src="../../_static/header-image.png"/>
+</div>
+
+
     <div class="related">
       <h3>Navigation</h3>
       <ul>
@@ -37,26 +44,32 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="institution.html" title="Developing Institution Models"
+          <a href="../flow_and_structure.html" title="Program Flow and Data Structures"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="region.html" title="Developing Region Models"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">Cyclus</a> &raquo;</li>
+        <li><a href="../../index.html">Cyclus Home</a> &raquo;</li>
           <li><a href="../main.html" >Cyclus Developer Guide</a> &raquo;</li>
           <li><a href="main.html" accesskey="U">Developing Models For Cyclus</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="../../index.html">
-              <img class="logo" src="../../_static/logo.png" alt="Logo"/>
-            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Developing Market Models</a><ul>
+<li><a class="reference internal" href="#details">Details</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="institution.html"
-                        title="previous chapter">Developing Institution Models</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../../_sources/devdoc/make-models/market.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
+  <p class="topless"><a href="region.html"
+                        title="previous chapter">Developing Region Models</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../flow_and_structure.html"
+                        title="next chapter">Program Flow and Data Structures</a></p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
@@ -80,6 +93,31 @@
             
   <div class="section" id="developing-market-models">
 <h1>Developing Market Models<a class="headerlink" href="#developing-market-models" title="Permalink to this headline">¶</a></h1>
+<p>After reading GuidelinesForImplementingNewModels, this should provide
+additional information specific to implementing a new MarketModel.</p>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>In addition to inheriting from the main dynamic loading base class <cite>Model</cite>, all
+MarketModel models also inherit from <cite>Communicator</cite>.</p>
+<p>A MarketModel&#8217;s primary function is to</p>
+<blockquote>
+<div><ul class="simple">
+<li>receive offers and requests from facilities,</li>
+<li><em>resolve</em> the market by matching those offers and requests</li>
+<li>generate/execute a set of orders for shipments of material between
+facilities that results from resolving the market</li>
+</ul>
+</div></blockquote>
+<p>Therefore, all MarketModel models should implement their own version of
+<cite>receiveOfferRequest</cite> that registers incoming offers and requests in a way that
+is appropriate for this market implementation.  All MarketModel models must
+also implement their own version of <cite>resolve</cite>.</p>
+<p>All MarketModel models have an STL <cite>set</cite> of pointers to the <cite>OfferRequest</cite>
+messages that have arrived and an STL <cite>deque</cite> of pointers to the <cite>Shipment</cite>
+messages that it is generating.  MarketModel models are also free to have
+additional storage modes for <cite>OfferRequest</cite> messages or <cite>Shipment</cite> messages
+that facilitates the operation of that particular MarketModel paradigm.</p>
+</div>
 </div>
 
 
@@ -95,9 +133,12 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="institution.html" title="Developing Institution Models"
+          <a href="../flow_and_structure.html" title="Program Flow and Data Structures"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="region.html" title="Developing Region Models"
              >previous</a> |</li>
-        <li><a href="../../index.html">Cyclus</a> &raquo;</li>
+        <li><a href="../../index.html">Cyclus Home</a> &raquo;</li>
           <li><a href="../main.html" >Cyclus Developer Guide</a> &raquo;</li>
           <li><a href="main.html" >Developing Models For Cyclus</a> &raquo;</li> 
       </ul>

@@ -21,8 +21,13 @@ Package                Minimum Version
 ====================   ==================
 
 An overview of some more complicated package builds and installations (e.g.
-lapack, teuchos, etc.) can be found on the InstallingDependenciesOnUnix or
-InstallingDependenciesOnWindows wiki pages.
+lapack, teuchos, etc.) can be found on the following pages:
+
+.. toctree::
+  :maxdepth: 2
+
+  dependencies_unix
+  dependencies_windows
 
 Project Repository
 ------------------

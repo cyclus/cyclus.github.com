@@ -1,0 +1,181 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Style Guidelines for Developers &mdash; Cyclus Home</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../index.html" />
+    <link rel="up" title="Cyclus Developer Guide" href="main.html" />
+    <link rel="next" title="Developing Models For Cyclus" href="make-models/main.html" />
+    <link rel="prev" title="Cyclus Developer Guide" href="main.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <img src="../_static/header-image.png"/>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="make-models/main.html" title="Developing Models For Cyclus"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="main.html" title="Cyclus Developer Guide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" accesskey="U">Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Style Guidelines for Developers</a><ul>
+<li><a class="reference internal" href="#class-file-organization">Class File Organization</a></li>
+<li><a class="reference internal" href="#code-formatting">Code Formatting</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="main.html"
+                        title="previous chapter">Cyclus Developer Guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="make-models/main.html"
+                        title="next chapter">Developing Models For Cyclus</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="style-guidelines-for-developers">
+<h1>Style Guidelines for Developers<a class="headerlink" href="#style-guidelines-for-developers" title="Permalink to this headline">¶</a></h1>
+<p>The purpose of this page is to introduce some general style guidelines to help
+with readability, maintainability and extensibility of the cyclus code base.</p>
+<div class="section" id="class-file-organization">
+<h2>Class File Organization<a class="headerlink" href="#class-file-organization" title="Permalink to this headline">¶</a></h2>
+<p>Class header files should be organized in the following order:</p>
+<blockquote>
+<div><ul class="simple">
+<li>private<ul>
+<li>methods<ul>
+<li>virtual</li>
+<li>static</li>
+<li>non-static</li>
+</ul>
+</li>
+<li>data members<ul>
+<li>static</li>
+<li>non-static</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>protected (in same order as above)</li>
+<li>public (in same order as above)</li>
+</ul>
+</div></blockquote>
+<p>Within each section, methods should be grouped and ordered in logical
+categories in the following order:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8220;life-cycle&#8221; methods first (e.g. constructors, destructors, initializers)</li>
+<li>operators (e.g. equivalence, assignment)</li>
+<li>data access methods</li>
+<li>other base-class-specific categories</li>
+<li>other class-specific categories</li>
+</ul>
+</div></blockquote>
+<p>The order of method definition in the implementation file should be consistent
+with the order of declaration in the header file.</p>
+</div>
+<div class="section" id="code-formatting">
+<h2>Code Formatting<a class="headerlink" href="#code-formatting" title="Permalink to this headline">¶</a></h2>
+<p>Line lengths, tab spacing, and bracket placement will conform to the google c++
+style standard as much as possible. This requires that all tabs be replaced by
+spaces, and that an indentation is equal to two spaces. Further information on
+this style standard can be found in the <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml">Google Style Guide</a>.</p>
+<p>Notable items:</p>
+<blockquote>
+<div><ul class="simple">
+<li>no tabs - expand all tabs to 2 spaces.</li>
+<li>enum items should be all caps</li>
+<li>trailing underscores must be used with all class member variables</li>
+<li>opening braces should be placed on the same line as function args: <cite>ReturnType functionName(Arg1Type arg_name) {</cite></li>
+<li>loop and branching statements should use the opening and closing braces (i.e. not like this: <cite>if (true) long_statement;</cite>)</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="make-models/main.html" title="Developing Models For Cyclus"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="main.html" title="Cyclus Developer Guide"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" >Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

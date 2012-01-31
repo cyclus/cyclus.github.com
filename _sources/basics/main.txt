@@ -8,7 +8,6 @@ Cyclus Fundamentals
   
    introduction
    get_and_build
-   style_guide
    decay
 
 .. stuff not converted yet
