@@ -22,33 +22,21 @@ MarketModel. Changing the parameters of a market will change its
 performance and selecting a different MarketModel will completely change
 its behavior.
 
-For Cyclus Users
-----------------
+Most cyclus core code development at this time will be led by Paul Wilson,
+Katy Huff, Matthew Gidden, and Robert Carlsen, the CNERG fuel cycle group.
+
+Interested developers are welcome and encouraged to contribute but will
+experience significant code instability in the early experimental stages of
+the project.
+
+Learn More
+----------
 
 .. toctree::
    :maxdepth: 2
 
+   basics/main
    usrdoc/main
-
-
-For Cyclus Developers
----------------------
-
-Most cyclus core code development at this time will be led by Paul, Wilson,
-Katy Huff, Matthew Gidden, and Robert Carlsen, the CNERG fuel cycle group.
-Near term goals include:
-
-  * replicating GENIUSv2 functionality
-  * developing a unit test suite
-  * deploying a library of basic data and a catalog of market
-  * and facility configurations.
-
-Interested developers are welcome and encouraged to contribute, but will
-experience significant code instability in the early experimental stages of
-the project.
-
-.. toctree::
-   :maxdepth: 3
-
    devdoc/main
+
 

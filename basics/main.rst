@@ -6,10 +6,10 @@ Cyclus Fundamentals
 .. toctree::
    :maxdepth: 2
   
-   CyclusIntroduction
-   GettingAndBuildingCyclus
-   CyclusStyleGuidelines
-   Decay
+   introduction
+   get_and_build
+   style_guide
+   decay
 
 .. stuff not converted yet
 
