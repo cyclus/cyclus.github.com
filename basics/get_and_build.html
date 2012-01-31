@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting and Building Cyclus &mdash; Cyclus</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus" href="../index.html" />
+    <link rel="up" title="Cyclus Fundamentals" href="main.html" />
+    <link rel="next" title="Radioactive Decay in Cyclus" href="decay.html" />
+    <link rel="prev" title="Introduction to the Cyclus Fuel Cycle Simulator" href="introduction.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="decay.html" title="Radioactive Decay in Cyclus"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="Introduction to the Cyclus Fuel Cycle Simulator"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cyclus</a> &raquo;</li>
+          <li><a href="main.html" accesskey="U">Cyclus Fundamentals</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Getting and Building Cyclus</a><ul>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#project-repository">Project Repository</a></li>
+<li><a class="reference internal" href="#build-system">Build System</a></li>
+<li><a class="reference internal" href="#debugging-build">Debugging Build</a></li>
+<li><a class="reference internal" href="#environment">Environment</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="introduction.html"
+                        title="previous chapter">Introduction to the <em>Cyclus</em> Fuel Cycle Simulator</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="decay.html"
+                        title="next chapter">Radioactive Decay in Cyclus</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/basics/get_and_build.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="getting-and-building-cyclus">
+<h1>Getting and Building Cyclus<a class="headerlink" href="#getting-and-building-cyclus" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>The Cyclus code requires the following software and libraries.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="47%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Package</th>
+<th class="head">Minimum Version</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>CMake</cite></td>
+<td>2.8</td>
+</tr>
+<tr class="row-odd"><td><cite>HDF5</cite></td>
+<td>1.8.3</td>
+</tr>
+<tr class="row-even"><td><cite>libxml2</cite></td>
+<td>2</td>
+</tr>
+<tr class="row-odd"><td><cite>boost</cite></td>
+<td>1.34.1</td>
+</tr>
+<tr class="row-even"><td><cite>lapack</cite></td>
+<td>3.4.0</td>
+</tr>
+<tr class="row-odd"><td><cite>trilinos (teuchos)</cite></td>
+<td>10.8.4</td>
+</tr>
+</tbody>
+</table>
+<p>An overview of some more complicated package builds and installations (e.g.
+lapack, teuchos, etc.) can be found on the InstallingDependenciesOnUnix or
+InstallingDependenciesOnWindows wiki pages.</p>
+</div>
+<div class="section" id="project-repository">
+<h2>Project Repository<a class="headerlink" href="#project-repository" title="Permalink to this headline">¶</a></h2>
+<p>The Cyclus repository is version controlled using the subversion (SVN) version
+control system. It is hosted externally with googlecode and mirrored internally
+on the CNERG space.</p>
+<blockquote>
+<div><ul>
+<li><p class="first">The main repository is located at <a class="reference external" href="http://github.com/cyclus/core">http://github.com/cyclus/core</a></p>
+</li>
+<li><p class="first">Anyone may check out the code.</p>
+<ul class="simple">
+<li>You do not have to register with googlecode if you do not have a google
+id, but anonymous users may never commit.</li>
+<li>Note that the googlecode password for your google id is generated by
+google and you can find it at [<a class="reference external" href="https://code.google.com/hosting/settings">https://code.google.com/hosting/settings</a>]</li>
+<li>To check out the code follow the
+[<a class="reference external" href="https://code.google.com/p/cyclus/source/checkout">https://code.google.com/p/cyclus/source/checkout</a> googlecode checkout
+instructions] .</li>
+</ul>
+</li>
+<li><p class="first">Once you have checked out the code, you may commit a change to the google
+code repository if you are authorized as a committer .</p>
+<ul>
+<li><p class="first">To become a committer, you must ask for permission via email from one of
+the project owners ( currently [<a class="reference external" href="https://code.google.com/u/katyhuff/">https://code.google.com/u/katyhuff/</a> Katy]
+or [<a class="reference external" href="https://code.google.com/u/uwgonuke">https://code.google.com/u/uwgonuke</a> Paul] )</p>
+</li>
+<li><p class="first">Committing happens from your checked out copy of the repository.</p>
+<ul>
+<li><p class="first">For example, say you have the google username USERNAME and google
+password PASSWORD and are sitting in the cyclus/trunk/src directory of
+your checked out copy. You may want to commit your changes to a version
+controlled file called FILENAME. To do this you would type:</p>
+<div class="highlight-python"><pre>svn commit FILENAME --username USERNAME --password PASSWORD</pre>
+</div>
+</li>
+<li><p class="first">Google may prompt you for your password if you do not include the
+&#8211;username and &#8211;password flags.</p>
+</li>
+<li><p class="first">Alternatively, if you are sitting in a directory in which you want to
+commit all of your changes at once, you would type:</p>
+<div class="highlight-python"><pre>~ : svn commit</pre>
+</div>
+</li>
+<li><p class="first">If instead FILENAME is a brand new file, not yet under version control,
+you can use the svn command add:</p>
+<div class="highlight-python"><pre>~: svn add FILENAME
+~: svn commit</pre>
+</div>
+</li>
+<li><p class="first">For some users, svn commit and svn add will not work and you may need
+to use the import command:</p>
+<div class="highlight-python"><pre>~: svn import FILENAME https://cyclus.googlecode.com/trunk/src/FILENAME --username USERNAME --password PASSWORD</pre>
+</div>
+</li>
+</ul>
+</li>
+<li><p class="first">The two repositories (the trunk on the CNERG space and the trunk on
+googlecode) are synchronized using svnsync.</p>
+</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="build-system">
+<h2>Build System<a class="headerlink" href="#build-system" title="Permalink to this headline">¶</a></h2>
+<p>In order to facilitate future compatibility with multiple platforms, Cyclus is
+built using [link: <a class="reference external" href="http://www.cmake.org">http://www.cmake.org</a> Cmake]. This relies on CMake version
+2.6 or higher and the CMakeLists.txt file in /cyclus/trunk/src/. It is
+recommended that you use CMake to build the Cyclus executable external to the
+source code. To do this, execute the following steps:</p>
+<div class="highlight-python"><pre>/cyclus/trunk/$ mkdir build
+/cyclus/trunk/$ cd build
+cyclus/trunk/build$ cmake ../src</pre>
+</div>
+<p>You should see output like this:</p>
+<div class="highlight-python"><pre>...
+...
+&gt;&gt; -- Configuring done
+&gt;&gt; -- Generating done
+&gt;&gt; -- Build files have been written to: /cyclus/trunk/build
+/cyclus/trunk/build$ make cyclus
+&gt;&gt; Scanning dependencies of target cyclus
+...
+...
+&gt;&gt; [100%] Building CXX object CMakeFiles/cyclus.dir/SourceFac.cpp.o
+&gt;&gt; Linking CXX executable cyclus
+&gt;&gt; [100%] Built target cyclus</pre>
+</div>
+<p>Now, you can make cyclus, and run it with some input file, for this example, call it input.xml:</p>
+<div class="highlight-python"><pre>cyclus/trunk/build$ make
+cyclus/trunk/build$ ./cyclus input.xml</pre>
+</div>
+</div>
+<div class="section" id="debugging-build">
+<h2>Debugging Build<a class="headerlink" href="#debugging-build" title="Permalink to this headline">¶</a></h2>
+<p>If you are a developer, you may be interested in building Cyclus in such a was
+as to facilitate debugging. It is recommended that you create second build
+directory in which you&#8217;ll build a Cyclus executable for which optimizations are
+disabled and debug symbols are added. To do this, execute the following steps:</p>
+<div class="highlight-python"><pre>/cyclus/trunk$ mkdir debug
+/cyclus/trunk$ cd debug
+/cyclus/trunk/debug$ cmake -DCMAKE_BUILD_TYPE:STRING=Debug ../src</pre>
+</div>
+<p>As before, you should call make to actually build the cyclus executable:</p>
+<div class="highlight-python"><pre>/cyclus/trunk/debug$ make</pre>
+</div>
+<p>Now when you call gdb, ddd, or some other debugger within this debug directory
+it will recognize the target as a debuggable target. To debug a run for some
+input file input.xml, try the following:</p>
+<div class="highlight-python"><pre>/cyclus/trunk/debug$ ddd ./cyclus input.xml</pre>
+</div>
+</div>
+<div class="section" id="environment">
+<h2>Environment<a class="headerlink" href="#environment" title="Permalink to this headline">¶</a></h2>
+<p>In order to utlize the <cite>RelaxNG</cite> input schema, it is necessary to set an
+environment variable that directs our search algorithm to your cyclus.rng file.
+That is, before you run cyclus, you must set the environment variable
+CYCLUS_SRC_DIR to the path to your src directory.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="decay.html" title="Radioactive Decay in Cyclus"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="Introduction to the Cyclus Fuel Cycle Simulator"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cyclus</a> &raquo;</li>
+          <li><a href="main.html" >Cyclus Fundamentals</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

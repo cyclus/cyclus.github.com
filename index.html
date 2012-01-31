@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Cyclus &mdash; Cyclus 0.1 documentation</title>
+    <title>Cyclus &mdash; Cyclus</title>
     
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Cyclus 0.1 documentation" href="#" />
-    <link rel="next" title="Cyclus User Guide" href="usrdoc/main.html" /> 
+    <link rel="top" title="Cyclus" href="#" />
+    <link rel="next" title="Cyclus Fundamentals" href="basics/main.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,9 +36,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="usrdoc/main.html" title="Cyclus User Guide"
+          <a href="basics/main.html" title="Cyclus Fundamentals"
              accesskey="N">next</a> |</li>
-        <li><a href="#">Cyclus 0.1 documentation</a> &raquo;</li> 
+        <li><a href="#">Cyclus</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
@@ -49,10 +49,7 @@
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Cyclus</a><ul>
-<li><a class="reference internal" href="#for-cyclus-users">For Cyclus Users</a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#for-cyclus-developers">For Cyclus Developers</a><ul>
+<li><a class="reference internal" href="#learn-more">Learn More</a><ul>
 </ul>
 </li>
 </ul>
@@ -60,8 +57,8 @@
 </ul>
 
   <h4>Next topic</h4>
-  <p class="topless"><a href="usrdoc/main.html"
-                        title="next chapter">Cyclus User Guide</a></p>
+  <p class="topless"><a href="basics/main.html"
+                        title="next chapter">Cyclus Fundamentals</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/index.txt"
@@ -104,43 +101,30 @@ and conﬁguring it with a particular set of parameters defined by that
 MarketModel. Changing the parameters of a market will change its
 performance and selecting a different MarketModel will completely change
 its behavior.</p>
-<div class="section" id="for-cyclus-users">
-<h2>For Cyclus Users<a class="headerlink" href="#for-cyclus-users" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="usrdoc/main.html">Cyclus User Guide</a><ul class="simple">
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div class="section" id="for-cyclus-developers">
-<h2>For Cyclus Developers<a class="headerlink" href="#for-cyclus-developers" title="Permalink to this headline">¶</a></h2>
-<p>Most cyclus core code development at this time will be led by Paul, Wilson,
-Katy Huff, Matthew Gidden, and Robert Carlsen, the CNERG fuel cycle group.
-Near term goals include:</p>
-<blockquote>
-<div><ul class="simple">
-<li>replicating GENIUSv2 functionality</li>
-<li>developing a unit test suite</li>
-<li>deploying a library of basic data and a catalog of market</li>
-<li>and facility configurations.</li>
-</ul>
-</div></blockquote>
-<p>Interested developers are welcome and encouraged to contribute, but will
+<p>Most cyclus core code development at this time will be led by Paul Wilson,
+Katy Huff, Matthew Gidden, and Robert Carlsen, the CNERG fuel cycle group.</p>
+<p>Interested developers are welcome and encouraged to contribute but will
 experience significant code instability in the early experimental stages of
 the project.</p>
+<div class="section" id="learn-more">
+<h2>Learn More<a class="headerlink" href="#learn-more" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="devdoc/main.html">Cyclus Developer Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="devdoc/main.html#getting-started">Getting Started</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="devdoc/CyclusStyleGuidelines.html">Cyclus Style Guidelines</a></li>
-<li class="toctree-l3"><a class="reference internal" href="devdoc/make-models/main.html">Developing Models For Cyclus</a></li>
-<li class="toctree-l3"><a class="reference internal" href="devdoc/make-models/main.html#references">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics/main.html">Cyclus Fundamentals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basics/introduction.html">Introduction to the <em>Cyclus</em> Fuel Cycle Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics/get_and_build.html">Getting and Building Cyclus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics/decay.html">Radioactive Decay in Cyclus</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="usrdoc/main.html">Cyclus User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usrdoc/main.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usrdoc/main.html#model-definitions">Model Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usrdoc/main.html#doxygen-code-documentation">Doxygen Code Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devdoc/main.html">Cyclus Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="devdoc/main.html#getting-started">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="devdoc/main.html#doxygen-code-documentation">Doxygen Code Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="devdoc/main.html#milestone-definitions">Milestone Definitions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="devdoc/main.html#diversions">Diversions</a></li>
 </ul>
 </li>
@@ -162,9 +146,9 @@ the project.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="usrdoc/main.html" title="Cyclus User Guide"
+          <a href="basics/main.html" title="Cyclus Fundamentals"
              >next</a> |</li>
-        <li><a href="#">Cyclus 0.1 documentation</a> &raquo;</li> 
+        <li><a href="#">Cyclus</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

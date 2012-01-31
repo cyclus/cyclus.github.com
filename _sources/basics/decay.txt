@@ -10,7 +10,7 @@ following first order differential equation:
 
 .. math::
 
-  \frac{d}{dt}\mathbf{N(\mathit{t})}=\textrm{A}\: \mathbf{N(\mathit{t})}
+   \frac{d}{dt}\mathbf{N(\mathit{t})}=\textrm{A}\: \mathbf{N(\mathit{t})}
 
 where the vector `N(t)` contains the number density of all the
 isotopes being considered at time `t`, and A is called the decay
@@ -19,7 +19,7 @@ of a matrix exponential:
 
 .. math::
 
-  \mathbf{N(\mathit{to+\Delta t})}=e^{\Delta t \textrm{A}}\: \mathbf{N(\mathit{to})}
+   \mathbf{N(\mathit{to+\Delta t})}=e^{\Delta t \textrm{A}}\: \mathbf{N(\mathit{to})}
 
 The decay method currently implemented in *Cyclus* computes this matrix
 exponential solution at any given time using a series approximation known as
@@ -35,7 +35,7 @@ the following summation:
 
 .. math::
 
-  \mathbf{N(\mathit{to+\Delta t})}\approx \sum_{k=0}^{p}\frac{\left (\Delta t \right )^k}{k!}\: \textrm{A}^k\: \mathbf{N(\mathit{to})}
+   \mathbf{N(\mathit{to+\Delta t})}\approx \sum_{k=0}^{p}\frac{\left (\Delta t \right )^k}{k!}\: \textrm{A}^k\: \mathbf{N(\mathit{to})}
 
 The primary disadvantage of using this Taylor Series expansion to compute the
 matrix exponential solution is that it can be subject to cancellation error as
@@ -52,14 +52,14 @@ element of `A`:
 
 .. math::
   
-  \alpha=max_i\left | a_i_i \right |
+   \alpha=max_i\left | {a_i}_i \right |
 
 Then, given `alpha`, the next step is to redefine the matrix
 exponential solution using a different matrix `P`:
 
 .. math::
 
-  \textrm{P}=\frac{1}{\alpha}\textrm{A}+\textrm{I}
+   \textrm{P}=\frac{1}{\alpha}\textrm{A}+\textrm{I}
 
 where I is the identity matrix.  Note that `P` is completely non-negative, so a
 Taylor Series expansion of this matrix exponential is not subject to the same
@@ -69,14 +69,14 @@ summation:
 
 .. math::
 
-  \mathbf{N(\mathit{to+\Delta t})}=e^{-\alpha \Delta t}\: e^{\Delta t (\alpha \textrm{P})}\: \mathbf{N(\mathit{to})}\approx e^{-\alpha \Delta t}\sum_{k=0}^{p}\frac{\left (\Delta t \right )^k}{k!}\: (\alpha \textrm{P})^k\: \mathbf{N(\mathit{to})}
+   \mathbf{N(\mathit{to+\Delta t})}=e^{-\alpha \Delta t}\: e^{\Delta t (\alpha \textrm{P})}\: \mathbf{N(\mathit{to})}\approx e^{-\alpha \Delta t}\sum_{k=0}^{p}\frac{\left (\Delta t \right )^k}{k!}\: (\alpha \textrm{P})^k\: \mathbf{N(\mathit{to})}
 
 Note that this modified Taylor Series expansion can also be expressed in terms
 of the original matrix A by substituting the definition for `P`:
 
 .. math::
 
-  \mathbf{N(\mathit{to+\Delta t})}\approx e^{-\alpha\Delta t}\sum_{k=0}^{p}\frac{\left (\Delta t \right )^k}{k!}\: (\textrm{A}+\alpha \textrm{I})^k\: \mathbf{N(\mathit{to})}
+   \mathbf{N(\mathit{to+\Delta t})}\approx e^{-\alpha\Delta t}\sum_{k=0}^{p}\frac{\left (\Delta t \right )^k}{k!}\: (\textrm{A}+\alpha \textrm{I})^k\: \mathbf{N(\mathit{to})}
 
 
 Implementation in Cyclus
@@ -99,7 +99,7 @@ of isotopes, the following equation can be used:
 
 .. math::
 
-  {t_{max} = \frac{ln(\textrm{LDBL\_MAX})}{min(\lambda)}}
+   {t_{max} = \frac{ln(\textrm{LDBL\_MAX})}{min(\lambda)}}
 
 where `LDBL_MAX` is the size of a long double and :math:`\lambda` is the
 largest decay constant of the group of isotopes being considered.
@@ -115,14 +115,14 @@ References
 ----------
 
   #. Cleve Moler and Charles van Loan, "Nineteen Dubious Ways to Compute the
-  Exponential of a Matrix, Twenty-Five Years Later," *SIAM Review*, *45*,
-  3-49 (2003)
+     Exponential of a Matrix, Twenty-Five Years Later," *SIAM Review*, *45*,
+     3-49 (2003)
 
   #. Erwin Muller, Frederik Reitsma and Paulus P. Kruger, "A Stable Nuclide
-  Transmutation Procedure Free of Numerical Roundoff," *PHYSOR 2006*, September
-  10-14, Vancouver, Canada (2006)
+     Transmutation Procedure Free of Numerical Roundoff," *PHYSOR 2006*, September
+     10-14, Vancouver, Canada (2006)
 
   #. R. B. Sidje and W. J. Stewart, "A numerical study of large sparse matrix
-  exponentials arising in Markov chains," *Computational Statistics & Data
-  Analysis*, *29*, 345-368 (1999)
+     exponentials arising in Markov chains," *Computational Statistics & Data
+     Analysis*, *29*, 345-368 (1999)
   

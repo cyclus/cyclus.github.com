@@ -52,7 +52,7 @@ element of `A`:
 
 .. math::
   
-   \alpha=max_i\left | a_i_i \right |
+   \alpha=max_i\left | {a_i}_i \right |
 
 Then, given `alpha`, the next step is to redefine the matrix
 exponential solution using a different matrix `P`:
@@ -115,14 +115,14 @@ References
 ----------
 
   #. Cleve Moler and Charles van Loan, "Nineteen Dubious Ways to Compute the
-  Exponential of a Matrix, Twenty-Five Years Later," *SIAM Review*, *45*,
-  3-49 (2003)
+     Exponential of a Matrix, Twenty-Five Years Later," *SIAM Review*, *45*,
+     3-49 (2003)
 
   #. Erwin Muller, Frederik Reitsma and Paulus P. Kruger, "A Stable Nuclide
-  Transmutation Procedure Free of Numerical Roundoff," *PHYSOR 2006*, September
-  10-14, Vancouver, Canada (2006)
+     Transmutation Procedure Free of Numerical Roundoff," *PHYSOR 2006*, September
+     10-14, Vancouver, Canada (2006)
 
   #. R. B. Sidje and W. J. Stewart, "A numerical study of large sparse matrix
-  exponentials arising in Markov chains," *Computational Statistics & Data
-  Analysis*, *29*, 345-368 (1999)
+     exponentials arising in Markov chains," *Computational Statistics & Data
+     Analysis*, *29*, 345-368 (1999)
   
