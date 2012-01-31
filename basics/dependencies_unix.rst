@@ -2,7 +2,7 @@
 .. summary Information on how to install some of the Cyclus dependencies
 
 Installing Dependencies on Unix
--------------------------------
+===============================
 
 *Note that `unix` includes linux and darwin (mac) based systems*
 
