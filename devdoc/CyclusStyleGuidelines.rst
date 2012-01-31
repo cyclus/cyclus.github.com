@@ -1,14 +1,14 @@
 ﻿.. summary Style Guidelines for cyclus development
 
-Introduction
-============
+Cyclus Style Guidelines
+=======================
 
 The purpose of this page is to introduce some general style guidelines to help
 with readability, maintainability and extensibility of the cyclus code base.
 
 
 Class File Organization
-=======================
+-----------------------
 
 Class header files should be organized in the following order:
 
@@ -49,7 +49,7 @@ The order of method definition in the implementation file should be consistent
 with the order of declaration in the header file.
 
 Code Formatting
-===============
+---------------
 
 Line lengths, tab spacing, and bracket placement will conform to the google c++
 style standard as much as possible. This requires that all tabs be replaced by

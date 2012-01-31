@@ -22,10 +22,19 @@ MarketModel. Changing the parameters of a market will change its
 performance and selecting a different MarketModel will completely change
 its behavior.
 
-Internal code development
--------------------------
+For Cyclus Users
+----------------
 
-Most internal code development at this time will be led by Paul, Wilson,
+.. toctree::
+   :maxdepth: 2
+
+   usrdoc/main
+
+
+For Cyclus Developers
+---------------------
+
+Most cyclus core code development at this time will be led by Paul, Wilson,
 Katy Huff, Matthew Gidden, and Robert Carlsen, the CNERG fuel cycle group.
 Near term goals include:
 
@@ -34,21 +43,12 @@ Near term goals include:
   * deploying a library of basic data and a catalog of market
   * and facility configurations.
 
-We will be moving our development efforts to github_ soon.  A GitMigration
-wiki has been created to outline things that will need to been done for the
-move to be successful.
-
-.. toctree::
-   :maxdepth: 2
-
-   wiki/main
-
-.. _github: http://github.com
-
-External code development
--------------------------
-
 Interested developers are welcome and encouraged to contribute, but will
 experience significant code instability in the early experimental stages of
 the project.
+
+.. toctree::
+   :maxdepth: 3
+
+   devdoc/main
 

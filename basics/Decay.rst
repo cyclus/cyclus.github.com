@@ -115,14 +115,14 @@ References
 ----------
 
   #. Cleve Moler and Charles van Loan, "Nineteen Dubious Ways to Compute the
-  Exponential of a Matrix, Twenty-Five Years Later," _SIAM Review_, *45*,
+  Exponential of a Matrix, Twenty-Five Years Later," *SIAM Review*, *45*,
   3-49 (2003)
 
   #. Erwin Muller, Frederik Reitsma and Paulus P. Kruger, "A Stable Nuclide
-  Transmutation Procedure Free of Numerical Roundoff," _PHYSOR 2006_, September
+  Transmutation Procedure Free of Numerical Roundoff," *PHYSOR 2006*, September
   10-14, Vancouver, Canada (2006)
 
   #. R. B. Sidje and W. J. Stewart, "A numerical study of large sparse matrix
-  exponentials arising in Markov chains," _Computational Statistics & Data
-  Analysis_, *29*, 345-368 (1999)
+  exponentials arising in Markov chains," *Computational Statistics & Data
+  Analysis*, *29*, 345-368 (1999)
   
