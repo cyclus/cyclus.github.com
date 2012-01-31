@@ -1,0 +1,201 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Radioactive Decay in Cyclus &mdash; Cyclus 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus 0.1 documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html">Cyclus 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Radioactive Decay in Cyclus</a><ul>
+<li><a class="reference internal" href="#the-uniformization-method">The Uniformization Method</a></li>
+<li><a class="reference internal" href="#implementation-in-cyclus">Implementation in Cyclus</a></li>
+<li><a class="reference internal" href="#adding-new-isotopes">Adding New Isotopes</a><ul>
+<li><a class="reference internal" href="#limitations">Limitations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/basics/Decay.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <p><em>NOTE:</em> This wiki page is currently a work in progress.</p>
+<div class="section" id="radioactive-decay-in-cyclus">
+<h1>Radioactive Decay in Cyclus<a class="headerlink" href="#radioactive-decay-in-cyclus" title="Permalink to this headline">¶</a></h1>
+<p>Radioactive decay of a group of isotopes over time can be described by the
+following first order differential equation:</p>
+<div class="math">
+<p><span class="math">\frac{d}{dt}\mathbf{N(\mathit{t})}=\textrm{A}\: \mathbf{N(\mathit{t})}</span></p>
+</div><p>where the vector <cite>N(t)</cite> contains the number density of all the
+isotopes being considered at time <cite>t</cite>, and A is called the decay
+matrix.  The solution to this differential equation can be expressed in terms
+of a matrix exponential:</p>
+<div class="math">
+<p><span class="math">\mathbf{N(\mathit{to+\Delta t})}=e^{\Delta t \textrm{A}}\: \mathbf{N(\mathit{to})}</span></p>
+</div><p>The decay method currently implemented in <em>Cyclus</em> computes this matrix
+exponential solution at any given time using a series approximation known as
+the Uniformization Method.  This implementation was written by Kerry Dunn, and
+is explained in more detail below.</p>
+<div class="section" id="the-uniformization-method">
+<h2>The Uniformization Method<a class="headerlink" href="#the-uniformization-method" title="Permalink to this headline">¶</a></h2>
+<p>The Uniformization Method is essentially a modification of the truncated Taylor
+Series expansion of the matrix exponential solution, which can be described by
+the following summation:</p>
+<div class="math">
+<p><span class="math">\mathbf{N(\mathit{to+\Delta t})}\approx \sum_{k=0}^{p}\frac{\left (\Delta t \right )^k}{k!}\: \textrm{A}^k\: \mathbf{N(\mathit{to})}</span></p>
+</div><p>The primary disadvantage of using this Taylor Series expansion to compute the
+matrix exponential solution is that it can be subject to cancellation error as
+a result of summing terms with alternating signs.  These terms with alternating
+signs occur because the diagonal elements in the decay matrix that represent
+the decay constants are all negative.  Therefore, in order to eliminate the
+potential for cancellation error, the decay matrix must be modified so that it
+no longer contains these negative elements.  This modification process is known
+as the uniformization technique.</p>
+<p>The first step in applying the uniformization technique is to define
+<cite>alpha</cite> to be equal to the absolute value of the maximum diagonal
+element of <cite>A</cite>:</p>
+<div class="math">
+<p><span class="math">\alpha=max_i\left | a_i_i \right |</span></p>
+</div><p>Then, given <cite>alpha</cite>, the next step is to redefine the matrix
+exponential solution using a different matrix <cite>P</cite>:</p>
+<div class="math">
+<p><span class="math">\textrm{P}=\frac{1}{\alpha}\textrm{A}+\textrm{I}</span></p>
+</div><p>where I is the identity matrix.  Note that <cite>P</cite> is completely non-negative, so a
+Taylor Series expansion of this matrix exponential is not subject to the same
+cancellation error that occurs with the original decay matrix.  By replacing <cite>A</cite>
+with <cite>P</cite>, the matrix exponential solution can now be expressed by the following
+summation:</p>
+<div class="math">
+<p><span class="math">\mathbf{N(\mathit{to+\Delta t})}=e^{-\alpha \Delta t}\: e^{\Delta t (\alpha \textrm{P})}\: \mathbf{N(\mathit{to})}\approx e^{-\alpha \Delta t}\sum_{k=0}^{p}\frac{\left (\Delta t \right )^k}{k!}\: (\alpha \textrm{P})^k\: \mathbf{N(\mathit{to})}</span></p>
+</div><p>Note that this modified Taylor Series expansion can also be expressed in terms
+of the original matrix A by substituting the definition for <cite>P</cite>:</p>
+<div class="math">
+<p><span class="math">\mathbf{N(\mathit{to+\Delta t})}\approx e^{-\alpha\Delta t}\sum_{k=0}^{p}\frac{\left (\Delta t \right )^k}{k!}\: (\textrm{A}+\alpha \textrm{I})^k\: \mathbf{N(\mathit{to})}</span></p>
+</div></div>
+<div class="section" id="implementation-in-cyclus">
+<h2>Implementation in Cyclus<a class="headerlink" href="#implementation-in-cyclus" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="adding-new-isotopes">
+<h2>Adding New Isotopes<a class="headerlink" href="#adding-new-isotopes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="limitations">
+<h3>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h3>
+<p>When adding a new isotope, the most important thing to take into account is its
+half-life or decay constant.  The isotope with the smallest half-life, or
+largest decay constant, will be the limiting factor for the time scale over
+which <em>Cyclus</em> can decay _all_ materials in one step.  This occurs because the
+Uniformization Method requires the computation of an exponential term, which is
+limited by the size of a long double on the system being used to run <em>Cyclus</em>.
+To determine the maximum time scale that will be valid for a particular group
+of isotopes, the following equation can be used:</p>
+<div class="math">
+<p><span class="math">{t_{max} = \frac{ln(\textrm{LDBL\_MAX})}{min(\lambda)}}</span></p>
+</div><p>where <cite>LDBL_MAX</cite> is the size of a long double and <span class="math">\lambda</span> is the
+largest decay constant of the group of isotopes being considered.</p>
+<p>As an example, suppose that the isotope with the smallest half-life being
+considered is Cm-232.  This particular isotope has a decay constant of 1.5532
+nuclei per year.  If the size of a long double is limited to LDBL_MAX =
+1.18973e+4932, then all materials can only be decayed for a maximum of 7311
+years.  Adding any isotopes with a half-life smaller than Cm-232 would result
+in an even lower maximum time scale.</p>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>#. Cleve Moler and Charles van Loan, &#8220;Nineteen Dubious Ways to Compute the
+Exponential of a Matrix, Twenty-Five Years Later,&#8221; <em>SIAM Review</em>, <em>45</em>,
+3-49 (2003)</p>
+<p>#. Erwin Muller, Frederik Reitsma and Paulus P. Kruger, &#8220;A Stable Nuclide
+Transmutation Procedure Free of Numerical Roundoff,&#8221; <em>PHYSOR 2006</em>, September
+10-14, Vancouver, Canada (2006)</p>
+<p>#. R. B. Sidje and W. J. Stewart, &#8220;A numerical study of large sparse matrix
+exponentials arising in Markov chains,&#8221; <em>Computational Statistics &amp; Data
+Analysis</em>, <em>29</em>, 345-368 (1999)</p>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../index.html">Cyclus 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

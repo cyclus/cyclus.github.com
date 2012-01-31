@@ -1,0 +1,36 @@
+== wiki ==
+
+  * github supports many wiki syntax's - I recommend restructuredtext
+    * convert google wiki files to github wiki (rst, md, or other) files. 
+      * this could require conversion to html and then to the desired wiki format
+      * possible useful tool - pandoc
+    * load into cyclus.wiki github repo
+  * Transfer googlecode main/home page stuff to github pages.
+    * desired googlecode wiki pages will need to be converted to html
+    * links to desired wiki content will need to be created.
+  * consider having the github pages site contain an entire mirror of the wiki - this could easily be accomplished by using rst, markdown, etc. as our git wiki syntax.  We could then just render a checked out copy of the git wiki as html and upload it to the git pages periodically - a script to automate this could easily be created I expect.
+  * continue using wiki as before - except for possible mirroring to github pages as mentioned above.
+
+== issue tracking ==
+
+  * migrate issues from google code
+    * could use a script such as https://github.com/arthur-debert/google-code-issues-migrator
+    * or could move what we want by hand - this is quite feasible because we don't really have that many issues.
+  * come up with a standard set of labels for issues.
+    * Git issue tracking doesn't allow the creation of field-value labels as far as I know. Milestones are tracked separately from the issue label functionality on github. 
+  * github resolves some problems we've had with updating issue status by allowing issues to be closed/modified easily through commit messages.
+
+== repo migration ==
+
+  * svn sync a local repo copy of the googlecode repo.
+  * migrate Katy's generic repo branch back into trunk.
+    * I tried the following and it doesn't work because the gen repo directory was deleted from the trunk the same time the branch was created.  So a reintegrate doesn't reinstate the generic repo back into the trunk.
+      * check out a copy of katy's generic repo branch from local repo
+      * merge trunk changes into the branch
+      * commit merged changes to branch
+      * check out trunk from local repo
+      * reintegrate/merge katy's branch into trunk wc
+      * commit reintegrated changes.
+      * delete all branches from the local repo
+
+== workflow ==

@@ -1,0 +1,191 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Cyclus Developer Guide &mdash; Cyclus 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus 0.1 documentation" href="../index.html" />
+    <link rel="next" title="Cyclus Style Guidelines" href="CyclusStyleGuidelines.html" />
+    <link rel="prev" title="Cyclus User Guide" href="../usrdoc/main.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="CyclusStyleGuidelines.html" title="Cyclus Style Guidelines"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../usrdoc/main.html" title="Cyclus User Guide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cyclus 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Cyclus Developer Guide</a><ul>
+<li><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#doxygen-code-documentation">Doxygen Code Documentation</a></li>
+<li><a class="reference internal" href="#milestone-definitions">Milestone Definitions</a></li>
+<li><a class="reference internal" href="#diversions">Diversions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../usrdoc/main.html"
+                        title="previous chapter">Cyclus User Guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="CyclusStyleGuidelines.html"
+                        title="next chapter">Cyclus Style Guidelines</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/devdoc/main.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cyclus-developer-guide">
+<h1>Cyclus Developer Guide<a class="headerlink" href="#cyclus-developer-guide" title="Permalink to this headline">¶</a></h1>
+<p>Documentation to assist with the development of <em>Cyclus</em> will be maintained
+in a variety of forms.  If you haven&#8217;t already, check out
+<a class="reference internal" href="../basics/main.html"><em>Cyclus Fundamentals</em></a></p>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CyclusStyleGuidelines.html">Cyclus Style Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CyclusStyleGuidelines.html#class-file-organization">Class File Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CyclusStyleGuidelines.html#code-formatting">Code Formatting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="make-models/main.html">Developing Models For Cyclus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="make-models/main.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="make-models/main.html#creating-new-models-of-the-existing-types">Creating New Models of the Existing Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="make-models/main.html#creating-specific-model-types">Creating Specific Model Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="make-models/main.html#extending-loadable-modules-to-other-types-outdated">Extending Loadable Modules to Other Types (outdated)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="make-models/main.html#references">References</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="doxygen-code-documentation">
+<h2>Doxygen Code Documentation<a class="headerlink" href="#doxygen-code-documentation" title="Permalink to this headline">¶</a></h2>
+<p>The definitive documentation of any software is the source code itself.
+<em>Cyclus</em> will relies on Doxygen for automation of rich documentation from
+appropriately formatted comments in the source code. Current Doxygen
+documentation can be found at <a class="reference external" href="http://cnerg.engr.wisc.edu/cyclus/docs/">http://cnerg.engr.wisc.edu/cyclus/docs/</a> .
+This page will be updated weekly during active development.</p>
+<p>In addition to following Doxygen comment notation in the source code, this
+relies on a properly configured Doxygen file.</p>
+<blockquote>
+<div><ul class="simple">
+<li>cyclus/trunk/src/doc/doxy.conf.in is a cmake template file for doxygen settings.</li>
+<li>To add or change options, edit this file and cyclus/trunk/src/doc/CMakeLists.txt</li>
+</ul>
+</div></blockquote>
+<p>Documentation is a make target in the cmake build system. Documentation
+will automatically be built when you &#8220;make all&#8221;. You can build only the
+documentation by running &#8220;make cyclusdoc&#8221; instead of &#8220;make all&#8221; or &#8220;make&#8221;.
+To avoid building documentation, use &#8220;make cyclus&#8221;.</p>
+</div>
+<div class="section" id="milestone-definitions">
+<h2>Milestone Definitions<a class="headerlink" href="#milestone-definitions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>[MilestoneZero Basic Functionality]</li>
+<li>[MilestoneNullSimulation 0: Null Simulation]</li>
+<li>[MilestoneOneInpro 1: Inpro Simulation]</li>
+<li>[MilestoneTwoNWTRB 2: NWTRB Simulations]</li>
+<li>[MilestoneGenRepo 3: Generic Repository]</li>
+</ul>
+</div>
+<div class="section" id="diversions">
+<h2>Diversions<a class="headerlink" href="#diversions" title="Permalink to this headline">¶</a></h2>
+<p>Relevant xkcd comics:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://xkcd.com/927/">Standards</a></li>
+<li><a class="reference external" href="http://xkcd.com/974/">The General Solution</a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="CyclusStyleGuidelines.html" title="Cyclus Style Guidelines"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../usrdoc/main.html" title="Cyclus User Guide"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cyclus 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
