@@ -1,30 +1,24 @@
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Introduction to the Cyclus Fuel Cycle Simulator &mdash; Cyclus Home</title>
-    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Fundamentals" href="main.html" />
@@ -55,51 +49,51 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Introduction to the <em>Cyclus</em> Fuel Cycle Simulator</a><ul>
-<li><a class="reference internal" href="#mission">Mission</a></li>
-<li><a class="reference internal" href="#vision">Vision</a></li>
-<li><a class="reference internal" href="#current-status">Current Status</a><ul>
-<li><a class="reference internal" href="#software-process-architecture">Software Process &amp; Architecture</a><ul>
-<li><a class="reference internal" href="#open-source-development-process">Open Source Development Process</a></li>
-<li><a class="reference internal" href="#dynamically-loadable-modules">Dynamically-loadable Modules</a></li>
-<li><a class="reference internal" href="#use-cases-visualization">Use Cases &amp; Visualization</a></li>
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Introduction to the <em>Cyclus</em> Fuel Cycle Simulator</a><ul>
+<li><a class="reference external" href="#mission">Mission</a></li>
+<li><a class="reference external" href="#vision">Vision</a></li>
+<li><a class="reference external" href="#current-status">Current Status</a><ul>
+<li><a class="reference external" href="#software-process-architecture">Software Process &amp; Architecture</a><ul>
+<li><a class="reference external" href="#open-source-development-process">Open Source Development Process</a></li>
+<li><a class="reference external" href="#dynamically-loadable-modules">Dynamically-loadable Modules</a></li>
+<li><a class="reference external" href="#use-cases-visualization">Use Cases &amp; Visualization</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#modeling-paradigm">Modeling Paradigm</a><ul>
-<li><a class="reference internal" href="#discrete-facility-discrete-material-objects">Discrete Facility &amp; Discrete Material Objects</a></li>
-<li><a class="reference internal" href="#market-based-material-transactions">Market-based Material Transactions</a></li>
-<li><a class="reference internal" href="#region-institution-facility-hierarchy">Region-Institution-Facility Hierarchy</a></li>
-<li><a class="reference internal" href="#optimization-and-sensitivity">Optimization and Sensitivity</a></li>
+<li><a class="reference external" href="#modeling-paradigm">Modeling Paradigm</a><ul>
+<li><a class="reference external" href="#discrete-facility-discrete-material-objects">Discrete Facility &amp; Discrete Material Objects</a></li>
+<li><a class="reference external" href="#market-based-material-transactions">Market-based Material Transactions</a></li>
+<li><a class="reference external" href="#region-institution-facility-hierarchy">Region-Institution-Facility Hierarchy</a></li>
+<li><a class="reference external" href="#optimization-and-sensitivity">Optimization and Sensitivity</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#research-areas">Research Areas</a></li>
+<li><a class="reference external" href="#research-areas">Research Areas</a></li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="main.html"
-                        title="previous chapter">Cyclus Fundamentals</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="get_and_build.html"
-                        title="next chapter">Getting and Building Cyclus</a></p>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="main.html"
+                                  title="previous chapter">Cyclus Fundamentals</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="get_and_build.html"
+                                  title="next chapter">Getting and Building Cyclus</a></p>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -116,7 +110,7 @@ cycle simulation platform called <em>Cyclus</em> whose genesis was driven by a v
 of gaps seen in previous fuel cycle simulation efforts.  Three major design and
 development philosophies encompass the current fleet of fuel cycle simulators:</p>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>A desire for usability, thus developing a tool which begins with a simple
 model in a visual development environment that aims to provide an intuitive
 user interface (e.g. DYMOND, DANESS, VISION)</li>
@@ -126,7 +120,7 @@ problems (e.g.  CAFCA, GENIUS v1)</li>
 <li>A desire for detail/fidelity, thus developing a tool with an ad-hoc
 combination of existing complex analysis tools (e.g. COSI)</li>
 </ol>
-</div></blockquote>
+</blockquote>
 <p>Experience has demonstrated that each of these philosophies are hindered from
 simulating interesting problems due to complexity limits.  In most cases this
 complexity constrains first the usability of the tool followed by its
@@ -147,12 +141,12 @@ benchmarking.</p>
 software development that can deliver the stated desired attributes of the
 final software product:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>usability &#8211; accommodating a wide range of user sophistication</li>
 <li>performance &#8211; solving simple problems in interactive time scales</li>
 <li>fidelity &#8211; accommodating many levels of detail/fidelity, commensurate with a range of user sophistication</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <p>A complete nuclear fuel cycle simulator requires modeling efforts in a wide
 variety of physical and social science domains.  This places a premium on a
 software development process that will facilitate fluid collaboration among a
@@ -160,12 +154,12 @@ large group of geographically dispersed developers.  With this constraint in
 mind, a number of software development practices can be identified as highly
 valuable for this effort:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>openness &#8211; the process should have low institutional &amp; technical obstacles to collaboration</li>
 <li>modularity &#8211; a particular approach to modularity should be pursued to allow the core infrastructure to be independent of proprietary and/or sensitive data and/or models</li>
 <li>extensibility &#8211; attention to both robustness and flexibility allows for myriad potential developer extensions</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <div class="section" id="mission">
 <h2>Mission<a class="headerlink" href="#mission" title="Permalink to this headline">¶</a></h2>
 <p><em>Cyclus</em>  will be a nuclear fuel cycle systems analysis software platform that
@@ -301,7 +295,7 @@ that optimizes for the largest population of stakeholders.</p>
 In some cases, there is a lead institution already engaged in such research, or
 one or more institutions who have expressed interest:</p>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li><em>Cyclus</em> core infrastructure development    lead: UW-Madison</li>
 <li>Market model development    interest: UW-Madison, UT-Austin</li>
 <li>Region model development and deployment scenarios    interest: Idaho</li>
@@ -314,7 +308,7 @@ one or more institutions who have expressed interest:</p>
 <li>Transportation</li>
 <li>Non-proliferation analysis    interest: UW</li>
 </ol>
-</div></blockquote>
+</blockquote>
 </div>
 </div>
 
@@ -341,8 +335,8 @@ one or more institutions who have expressed interest:</p>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Robert Carlsen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
     </div>
   </body>
 </html>
