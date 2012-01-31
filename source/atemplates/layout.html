@@ -3,7 +3,10 @@
 
 {% block header %}
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
-  <img src="{{ pathto("_static/header-image.png", 1) }}"/>
+  <a href="https://github.com/cyclus/core"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+  <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+    <img src="{{ pathto("_static/header-image.png", 1) }}"/>
+  </div>
 </div>
 {{ super() }}
 {% endblock %}

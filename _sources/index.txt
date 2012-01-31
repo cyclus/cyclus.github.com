@@ -29,8 +29,12 @@ Interested developers are welcome and encouraged to contribute but will
 experience significant code instability in the early experimental stages of
 the project.
 
+
 Learn More
 ----------
+
+You can view and download the *Cyclus* project at
+http://github.com/cyclus/core.
 
 .. toctree::
    :maxdepth: 2
