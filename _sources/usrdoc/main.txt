@@ -13,9 +13,9 @@ variety of forms.
 Installation
 ------------
 
-An instruction manual for :doc:`../basics/get_and_build` is available on this wiki.
+An instruction manual for :doc:`../basics/get_and_build` is provided.
 Questions having to do with this process may be directed to
-`Katy Huff <https://code.google.com/u/katyhuff/`_.
+cyclus-dev@googlegroups.com .
 
 Model Definitions
 -----------------

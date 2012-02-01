@@ -37,15 +37,27 @@ Lapack
 
 Lapack can be installed on your Unix machine using the following steps:
 
- #.  Download Lapack from its `website <http://www.netlib.org/lapack/>`_ and untar it in a preferred location
- #.  Make a build directory (e.g. one can place the source code in ../lapack/lapack-xx.yy.zz-Source and make the directory .../lapack/build)
- #.  Copy the configure_lapack script located in the *Cyclus* repository located in /trunk/dependencies/lapack and place it in your build folder
- #.  Change the configure script so that the last line points to your lapack source (e.g. ../lapack/lapack-xx.yy.zz-Source)
+ #.  Download Lapack from its `website <http://www.netlib.org/lapack/>`_ and
+     untar it in a preferred location
+
+ #.  Make a build directory (e.g. one can place the source code in
+     ../lapack/lapack-xx.yy.zz-Source and make the directory .../lapack/build)
+
+ #.  Copy the configure_lapack script located in the *Cyclus* repository
+     located in /trunk/dependencies/lapack and place it in your build folder
+
+ #.  Change the configure script so that the last line points to your lapack
+     source (e.g. ../lapack/lapack-xx.yy.zz-Source)
 
    * Note, by default the script will install the library at /usr/local. 
 
- #.  Run the script (by typing ./configure_lapack.sh). Note that you may need to alter the script's permissions. To do so you can type "chmod 775 configure_lapack.sh".
- #.  From the build directory, type "make" (or "make -jN" where N is the number of threads you want to use [this speeds up the process])
+ #.  Run the script (by typing ./configure_lapack.sh). Note that you may need
+     to alter the script's permissions. To do so you can type "chmod 775
+     configure_lapack.sh".
+
+ #.  From the build directory, type "make" (or "make -jN" where N is the number
+     of threads you want to use [this speeds up the process])
+
  #.  From the build directory, type "make install"
 
 Note that the making process can take some time. It is suggested that you make
@@ -57,14 +69,26 @@ Teuchos
 *Cyclus* uses the Teuchos_ package of Trilinos_. Teuchos can be installed on your Unix machine using the following steps: 
 
  #. Download Trilinos from its website__ and untar it in a preferred location
- #. Make a build directory (e.g. one can place the source code in .../trilinos/trilinos-xx.yy.zz-Source and make the directory .../trilinos/build)
- #. Copy the configure_trilinos script located in the *Cyclus* repository located in /svn/dependencies/trilinos and place it in your build folder
- #. Change the configure script so that the last line points to your trilinos source (e.g. .../trilinos/trilinos-xx.yy.zz-Source)
+
+ #. Make a build directory (e.g. one can place the source code in
+    .../trilinos/trilinos-xx.yy.zz-Source and make the directory
+    .../trilinos/build)
+
+ #. Copy the configure_trilinos script located in the *Cyclus* repository
+    located in dependencies/trilinos and place it in your build folder
+
+ #. Change the configure script so that the last line points to your trilinos
+    source (e.g. .../trilinos/trilinos-xx.yy.zz-Source)
 
    * Note, by default the script will install the library at /usr/local. 
 
- #. Run the script (by typing ./configure_trilinos.sh). Note that you may need to alter the script's permissions. To do so you can type "chmod 775 configure_trilinos.sh".
- #. From the build directory, type "make" (or "make -jN" where N is the number of threads you want to use [this speeds up the process])
+ #. Run the script (by typing ./configure_trilinos.sh). Note that you may need
+    to alter the script's permissions. To do so you can type "chmod 775
+    configure_trilinos.sh".
+
+ #. From the build directory, type "make" (or "make -jN" where N is the number
+    of threads you want to use [this speeds up the process])
+
  #. From the build directory, type "make install"
 
 .. _Teuchos: http://trilinos.sandia.gov/packages/teuchos/
@@ -73,4 +97,8 @@ Teuchos
 
 __ Trilinos_
 
+Now What?
+---------
+
+You're now ready to build cyclus. Onward to :doc:`get_and_build`
 
