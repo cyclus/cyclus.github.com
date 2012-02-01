@@ -36,14 +36,17 @@ installation process:
     * If space is restricted, you may be more selective about packages. When
       selecting packages, choose the default action for ALL packages. Then,
       search for and select install for specific packages that cyclus and its
-      dependencies rely on : svn, gcc, g++, g77, cmake, make, lapack, libxml2,
+      dependencies rely on : gcc, g++, g77, cmake, make, lapack, libxml2,
       libidn. 
 
   #. This will take some time to install 
-  #. When installed, check that these were installed correctly by using the 'which' command. A path will be returned if the package is found. If not, rerun Cygwin's setup.exe and install just the packages that are not found.
 
-     * To check for svn, open a Cygwin terminal and type 'which svn'. 
-     * To check for gcc, open a Cygwin terminal and type 'which gcc'
+  #. When installed, check that these were installed correctly by using the
+     'which' command. A path will be returned if the package is found. If not,
+     rerun Cygwin's setup.exe and install just the packages that are not found.
+
+     * To check for gcc, open a Cygwin terminal and type `which gcc`
+     * To check for g++, open a Cygwin terminal and type `which g++`
      * etc.
 
 Boost
