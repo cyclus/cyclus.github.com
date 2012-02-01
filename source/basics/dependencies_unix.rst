@@ -97,4 +97,8 @@ Teuchos
 
 __ Trilinos_
 
+Now What?
+---------
+
+You're now ready to build cyclus. Onward to :doc:`get_and_build`
 

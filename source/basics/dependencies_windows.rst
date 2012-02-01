@@ -132,5 +132,5 @@ In the terminal type make, then type make install.
 Now What?
 ---------
 
-You're now ready to build cyclus. Onward to GettingAndBuildingCyclus.
+You're now ready to build cyclus. Onward to :doc:`get_and_build`
 

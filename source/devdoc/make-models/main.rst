@@ -28,7 +28,8 @@ To create a new model, e.g. a new MarketModel of type NewMarket:
 
   * add a new `add_library` line to the CMakeLists.txt file in that directory
 
-  * add the XML input grammar for that model to the appropriate place in the [https://code.google.com/p/cyclus/source/browse/branches/paul-branch/src/cyclus.rng cyclus.rng] XML schema
+  * add the XML input grammar for that model to the appropriate place in the
+    `/src/cyclus.rng` XML schema
 
 All models must provide the following:
 
@@ -106,24 +107,21 @@ Extending Loadable Modules to Other Types (outdated)
 
 The current code already has support for loadable modules for MarketModel,
 FacilityModel, InstModel, and RegionModel. These are all derived from base
-class Model defined in
-[https://code.google.com/p/cyclus/source/browse/branches/paul-branch/src/Models/Model.h
-Model.h].  To support extension of this capability to other types of models,
-the files
-[https://code.google.com/p/cyclus/source/browse/branches/paul-branch/src/Models/StubModel.h
-StubModel.h] &
-[https://code.google.com/p/cyclus/source/browse/branches/paul-branch/src/Models/StubModel.cpp
-StubModel.cpp] is provided.  (Stubs are also provided for new Models that are
-also Communicators:
-[https://code.google.com/p/cyclus/source/browse/branches/paul-branch/src/Models/StubCommModel.h
-StubCommModel.h] &
-[https://code.google.com/p/cyclus/source/browse/branches/paul-branch/src/Models/StubCommModel.cpp
-StubCommModel.cpp].)
+class Model defined in `src/Models/Model.h`.  To support extension of this
+capability to other types of models, the files `src/Models/StubModel.h` &
+`src/Models/StubModel.cpp` is provided.  (Stubs are also provided for new
+Models that are also Communicators: `src/Models/StubCommModel.h` &
+`src/Models/StubCommModel.cpp`.)
 
-To extend to a new model type, e.g. !NewTypeModel:
-  * copy !StubModel.h & !StubModel.cpp to a new location, !NewTypeModel.h & !NewTypeModel.cpp, respectively
-  * change the internal references to StubModel to !NewTypeModel
-  * add !NewTypeModel.cpp to the list of sources in the top level CMakeLists.txt file
+To extend to a new model type, e.g. NewTypeModel:
+
+  * copy StubModel.h & StubModel.cpp to a new location, NewTypeModel.h &
+    NewTypeModel.cpp, respectively
+
+  * change the internal references to StubModel to NewTypeModel
+
+  * add NewTypeModel.cpp to the list of sources in the top level CMakeLists.txt file
+
   * add a sub-directory (e.g. NewType) to the Models directory for your models
 
      * this directory name will become a keyword and should match the model name
@@ -195,6 +193,6 @@ Other notes on introducing new Model types:
 References
 ==========
 
-  #. [http://oss.sgi.com/LDP/HOWTO/C++-dlopen/index.html C++ dlopen mini HOWTO]
-  #. [http://www.yolinux.com/TUTORIALS/LibraryArchives-StaticAndDynamic.html Static, Shared Dynamic and Loadable Linux Libraries]
+  #. `C++ dlopen mini HOWTO <http://oss.sgi.com/LDP/HOWTO/C++-dlopen/index.html>`_
+  #. `Static, Shared Dynamic and Loadable Linux Libraries <http://www.yolinux.com/TUTORIALS/LibraryArchives-StaticAndDynamic.html>`_
 
