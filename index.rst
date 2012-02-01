@@ -3,9 +3,6 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Cyclus
-======
-
 As a successor to *GENIUS*, the next-generation fuel cycle systems analysis
 simulation tool, *Cyclus* will preserve many of its key features with a
 software architecture that provides a great deal of ﬂexibility, both in
