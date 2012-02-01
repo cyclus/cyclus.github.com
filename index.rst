@@ -30,11 +30,16 @@ the project.
 Learn More
 ----------
 
-You can view and download the *Cyclus* project at
+The *Cyclus* project repository is located at
 http://github.com/cyclus/core.
 
+Although you do not have to register with github to
+download and edit the code, if you desire your work to be integrated into the
+cyclus mainline of development *you must fork the cyclus core repository into
+your own github account and submit 'Pull Requests'*.
+
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    basics/main
    usrdoc/main
