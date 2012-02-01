@@ -8,6 +8,14 @@ Documentation to assist with the development of *Cyclus* will be maintained
 in a variety of forms.  If you haven't already, check out
 :doc:`../basics/main`
 
+The *Cyclus* project repository is located at
+http://github.com/cyclus/core.
+
+Although you do not have to register with github to
+download and edit the code, if you desire your work to be integrated into the
+cyclus mainline of development *you must fork the cyclus core repository into
+your own github account and submit 'Pull Requests'*.
+
 Getting Started
 ---------------
 

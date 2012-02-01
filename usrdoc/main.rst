@@ -14,8 +14,8 @@ Installation
 ------------
 
 An instruction manual for :doc:`../basics/get_and_build` is provided.
-Questions having to do with this process may be directed to the
-`Cyclus Developer's List <cyclus-dev.googlegroups.com>`_.
+Questions having to do with this process may be directed to
+cyclus-dev@googlegroups.com .
 
 Model Definitions
 -----------------
