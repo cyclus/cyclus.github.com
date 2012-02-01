@@ -19,11 +19,12 @@ For each type of model, a set of stub files are available as skeletons for the
 new models.  When creating a new model, it is important that all the
 functionality defined in these files remains in the final model definition.
 
-To create a new model, e.g. a new MarketModel of type !NewMarket:
+To create a new model, e.g. a new MarketModel of type NewMarket:
 
-  * copy !StubMarket.h and !StubMarket.cpp to a new location, e.g. !NewMarket.h & !NewMarket.cpp, respectively
+  * copy StubMarket.h and StubMarket.cpp to a new location, e.g. NewMarket.h &
+    NewMarket.cpp, respectively
 
-  * change the internal references to !StubMarket to !NewMarket
+  * change the internal references to StubMarket to NewMarket
 
   * add a new `add_library` line to the CMakeLists.txt file in that directory
 
@@ -31,27 +32,37 @@ To create a new model, e.g. a new MarketModel of type !NewMarket:
 
 All models must provide the following:
 
-  * a method named 'init' to initialize an instance of the model from an XML node pointer (xmlNodePtr)
+  * a method named 'init' to initialize an instance of the model from an XML
+    node pointer (xmlNodePtr)
 
-     * this method must call the parent class method of the same name (e.g. MarketModel::init(cur))
+     * this method must call the parent class method of the same name (e.g.
+       MarketModel::init(cur))
 
-     * this method should only initialize variables that are NOT members of the parent class
+     * this method should only initialize variables that are NOT members of the
+       parent class
 
-  * a method named 'copy' to initialize an instance of the model from another instance of the same model
+  * a method named 'copy' to initialize an instance of the model from another
+    instance of the same model
 
-     * this method must call the parent class method of the same name (e.g. MarketModel::copy(src))
+     * this method must call the parent class method of the same name (e.g.
+       MarketModel::copy(src))
 
-     * this method should only initialize variables that are NOT members of the parent class   
+     * this method should only initialize variables that are NOT members of the
+       parent class   
 
   * a method named 'print' to print a description of the model
 
-     * this method should call the parent class method of the same name (e.g. MarketModel::print())
+     * this method should call the parent class method of the same name (e.g.
+       MarketModel::print())
 
-     * this method should only print information that is NOT part of the parent class(es)
+     * this method should only print information that is NOT part of the parent
+       class(es)
 
-     * this method assumes that a dangling output line (no std::endl) is left from the parent class output
+     * this method assumes that a dangling output line (no std::endl) is left
+       from the parent class output
 
-  * two global functions `construct` and `destroy` that are used to instantiate objects of this model type.  They are defined, for example, as follows::
+  * two global functions `construct` and `destroy` that are used to instantiate
+    objects of this model type.  They are defined, for example, as follows::
 
       extern "C" Model* construct() {
           return new NewMarket();
@@ -85,7 +96,7 @@ improved/enhanced/developed, each of the model types will have to be updated to
 be consistent.  Treat the StubModel and the StubCommModel in the same way as
 others to ensure it remains up-to-date.
 
-Similarly if a single model type is updated, e.g. !MarketModel.h, with new
+Similarly if a single model type is updated, e.g. MarketModel.h, with new
 capability, each of the implemented models will need to be updated to be
 consistent.  Treat the Stub`*` Models in each sub-directory in the same way as
 the others to ensure it remains up-to-date.
@@ -114,26 +125,57 @@ To extend to a new model type, e.g. !NewTypeModel:
   * change the internal references to StubModel to !NewTypeModel
   * add !NewTypeModel.cpp to the list of sources in the top level CMakeLists.txt file
   * add a sub-directory (e.g. NewType) to the Models directory for your models
+
      * this directory name will become a keyword and should match the model name
-  * create a !StubNewType.h and !StubNewType.cpp file in that sub-directory that are stubs for new models of that type (you may want to copy the files Stub/StubStub.h and Stub/StubStub.cpp)
-     * follow the directions for creating a new model above to make a Stub for your !NewType model
+
+  * create a StubNewType.h and StubNewType.cpp file in that sub-directory that
+    are stubs for new models of that type (you may want to copy the files
+    Stub/StubStub.h and Stub/StubStub.cpp)
+
+     * follow the directions for creating a new model above to make a Stub for
+       your NewType model
 
 All new models types must include:
+
   * a default constructor that
-     * assigns the current value of nextID to the ID member variable and increments nextID
+
+     * assigns the current value of nextID to the ID member variable and
+       increments nextID
+
      * assigns a string that matches the model name to `model_type`
-     * (for Communicators, this should also assign the correct value to `commType`)
-  * a method named 'init' to initialize an instance of the model from an XML node pointer (xmlNodePtr)
+
+     * (for Communicators, this should also assign the correct value to
+       `commType`)
+
+  * a method named 'init' to initialize an instance of the model from an XML
+    node pointer (xmlNodePtr)
+
      * this method must call the parent class method Model::init(cur)
-     * this method should only initialize variables that are NOT members of the parent class
-  * a method named 'copy' to initialize an instance of the model from another instance of the same model
+
+     * this method should only initialize variables that are NOT members of the
+       parent class
+
+  * a method named 'copy' to initialize an instance of the model from another
+    instance of the same model
+
      * this method must call the parent class method Model::copy(src)
-     * (for Communicators, this method must call that parent class method Communicator::copy(src))
-     * this method should only initialize variables that are NOT members of the parent class   
+
+     * (for Communicators, this method must call that parent class method
+       Communicator::copy(src))
+
+     * this method should only initialize variables that are NOT members of the
+       parent class   
+
   * a method named 'print' to print a description of the model
-     * this method should call the parent class method of the same name (e.g. MarketModel::print())
-     * this method should only print information that is NOT part of the parent class(es)
-     * this method assumes that a dangling output line (no std::endl) is left from the parent class output
+
+     * this method should call the parent class method of the same name (e.g.
+       MarketModel::print())
+
+     * this method should only print information that is NOT part of the parent
+       class(es)
+
+     * this method assumes that a dangling output line (no std::endl) is left
+       from the parent class output
 
 Other notes on introducing new Model types:
 

@@ -63,8 +63,12 @@ So, download the installer.
   * and the date_time library 
   * in addition to the default header libraries.
 
-#. If you have surplus space on your computer, don't hesitate to install all of the libraries available, but be prepared for the installation to take up to an hour for all packages. 
-#. The installer will ask what variants of the boost libraries to install. Be certain to install a dynamic and a static library. Threading is up to you. 
+#. If you have surplus space on your computer, don't hesitate to install all of
+   the libraries available, but be prepared for the installation to take up to an
+   hour for all packages. 
+
+#. The installer will ask what variants of the boost libraries to install. Be
+   certain to install a dynamic and a static library. Threading is up to you. 
 
 HDF5
 ----
@@ -73,11 +77,20 @@ HDF5 is a hierarchical database library that Cyclus uses for record keeping. To
 install HDF5 on Windows :
 
   #. Go to the hdf5 website. 
+
   #. Download the appropriate precompiled Windows binaries. 
+
   #. Extract the full directory structure somewhere temporary. 
-  #. Move the contents of the resulting /bin directory to /usr/local/bin , or another preferred bin directory in your $PATH . 
-  #. Move the contents of the /lib directory to /usr/local/lib (or elsewhere in your $PATH). 
-  #. So too with the contents of the include directory, move them to /usr/local/include (or elsewhere). 
+
+  #. Move the contents of the resulting /bin directory to /usr/local/bin , or
+     another preferred bin directory in your $PATH . 
+
+  #. Move the contents of the /lib directory to /usr/local/lib (or elsewhere in
+     your $PATH). 
+
+  #. So too with the contents of the include directory, move them to
+     /usr/local/include (or elsewhere). 
+
   #. This can optionally be repeated with the  share directory as well.
 
 Make sure the location you placed the binary files is in your $PATH environment
