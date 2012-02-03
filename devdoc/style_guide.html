@@ -1,30 +1,24 @@
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Style Guidelines for Developers &mdash; Cyclus Home</title>
-    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="main.html" />
@@ -34,7 +28,7 @@
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
   <a href="http://cyclus.github.com">
-    <img src="../_static/header-image.png"/>
+    <img src="../_static/logo1.png"/>
   </a>
 </div>
 
@@ -57,34 +51,34 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Style Guidelines for Developers</a><ul>
-<li><a class="reference internal" href="#class-file-organization">Class File Organization</a></li>
-<li><a class="reference internal" href="#code-formatting">Code Formatting</a></li>
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Style Guidelines for Developers</a><ul>
+<li><a class="reference external" href="#class-file-organization">Class File Organization</a></li>
+<li><a class="reference external" href="#code-formatting">Code Formatting</a></li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="main.html"
-                        title="previous chapter">Cyclus Developer Guide</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="make-models/main.html"
-                        title="next chapter">Developing Models For Cyclus</a></p>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="main.html"
+                                  title="previous chapter">Cyclus Developer Guide</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="make-models/main.html"
+                                  title="next chapter">Developing Models For Cyclus</a></p>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -145,10 +139,12 @@ this style standard can be found in the <a class="reference external" href="http
 <li><p class="first">trailing underscores must be used with all class member variables</p>
 </li>
 <li><p class="first">opening braces should be placed on the same line as function args:</p>
-<p>ReturnType functionName(Arg1Type arg_name) {</p>
+<div class="highlight-python"><pre>ReturnType functionName(Arg1Type arg_name) {</pre>
+</div>
 </li>
 <li><p class="first">loop and branching statements should use the opening and closing braces. <strong>Not</strong> like this:</p>
-<p>if (true) long_statement;</p>
+<div class="highlight-python"><pre>if (true) long_statement;</pre>
+</div>
 </li>
 </ul>
 </div>
@@ -177,8 +173,8 @@ this style standard can be found in the <a class="reference external" href="http
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Robert Carlsen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
     </div>
   </body>
 </html>

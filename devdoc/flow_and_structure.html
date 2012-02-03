@@ -1,30 +1,24 @@
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Program Flow and Data Structures &mdash; Cyclus Home</title>
-    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="main.html" />
@@ -34,7 +28,7 @@
   <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
   <a href="http://cyclus.github.com">
-    <img src="../_static/header-image.png"/>
+    <img src="../_static/logo1.png"/>
   </a>
 </div>
 
@@ -57,23 +51,23 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Program Flow and Data Structures</a><ul>
-<li><a class="reference internal" href="#program-flow-overview">Program Flow Overview</a><ul>
-<li><a class="reference internal" href="#simulation-initialization">Simulation Initialization</a></li>
-<li><a class="reference internal" href="#facility-deployment">Facility Deployment</a></li>
-<li><a class="reference internal" href="#the-tick">The Tick</a></li>
-<li><a class="reference internal" href="#market-resolution">Market Resolution</a></li>
-<li><a class="reference internal" href="#the-tock">The Tock</a></li>
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Program Flow and Data Structures</a><ul>
+<li><a class="reference external" href="#program-flow-overview">Program Flow Overview</a><ul>
+<li><a class="reference external" href="#simulation-initialization">Simulation Initialization</a></li>
+<li><a class="reference external" href="#facility-deployment">Facility Deployment</a></li>
+<li><a class="reference external" href="#the-tick">The Tick</a></li>
+<li><a class="reference external" href="#market-resolution">Market Resolution</a></li>
+<li><a class="reference external" href="#the-tock">The Tock</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#data-structure-overview">Data Structure Overview</a><ul>
-<li><a class="reference internal" href="#abstract-base-classes">Abstract Base Classes</a><ul>
-<li><a class="reference internal" href="#communicator">Communicator</a></li>
-<li><a class="reference internal" href="#facility">Facility</a></li>
-<li><a class="reference internal" href="#market">Market</a></li>
-<li><a class="reference internal" href="#region">Region</a></li>
+<li><a class="reference external" href="#data-structure-overview">Data Structure Overview</a><ul>
+<li><a class="reference external" href="#abstract-base-classes">Abstract Base Classes</a><ul>
+<li><a class="reference external" href="#communicator">Communicator</a></li>
+<li><a class="reference external" href="#facility">Facility</a></li>
+<li><a class="reference external" href="#market">Market</a></li>
+<li><a class="reference external" href="#region">Region</a></li>
 </ul>
 </li>
 </ul>
@@ -82,25 +76,25 @@
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="make-models/market.html"
-                        title="previous chapter">Developing Market Models</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="output_dbase.html"
-                        title="next chapter">Output Database</a></p>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="make-models/market.html"
+                                  title="previous chapter">Developing Market Models</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="output_dbase.html"
+                                  title="next chapter">Output Database</a></p>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -115,50 +109,50 @@
 <h2>Program Flow Overview<a class="headerlink" href="#program-flow-overview" title="Permalink to this headline">¶</a></h2>
 <p>Execution flow outline:</p>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>Read input</li>
 <li>Setup model</li>
 <li>Start time steps</li>
 </ol>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><a class="reference internal" href="#the-tick">The Tick</a>: collect offers/requests</li>
 <li><a class="reference internal" href="#market-resolution">Market Resolution</a></li>
 <li><a class="reference internal" href="#the-tock">The Tock</a>: distribute material objects</li>
 </ul>
-</div></blockquote>
-</div></blockquote>
+</blockquote>
+</blockquote>
 <div class="section" id="simulation-initialization">
 <h3>Simulation Initialization<a class="headerlink" href="#simulation-initialization" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>Load markets based on market models</li>
 </ol>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>for each market</li>
 </ol>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>check whether the model for this market has been loaded already, and load if necessary</li>
 <li>instantiate new market and initialize parameters</li>
 </ol>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>Assign commodities to markets</li>
 </ol>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 <ol class="arabic simple">
 <li>Load facilities based on facility models</li>
 </ol>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>for each facility</li>
 </ol>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>check whether the model for this facility has been loaded already, and load if necessary</li>
 <li>instantiate a template for a new facility based on input parameters<ol class="arabic">
 <li>assign commodities to facilities and cross-reference with markets</li>
@@ -166,27 +160,27 @@
 </li>
 <li>add template to facility template map</li>
 </ol>
-</div></blockquote>
-</div></blockquote>
+</blockquote>
+</blockquote>
 <ol class="arabic simple">
 <li>Load regions based on region models</li>
 </ol>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>for each region</li>
 </ol>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>check whether the model for this region has been loaded already, and load if necessary</li>
 <li>instantiate new region and initialize parameters</li>
 <li>create list of available facility templates for that region</li>
 </ol>
-</div></blockquote>
-</div></blockquote>
+</blockquote>
+</blockquote>
 <ol class="arabic simple">
 <li>Load simulation parameters</li>
 </ol>
-</div></blockquote>
+</blockquote>
 </div>
 <div class="section" id="facility-deployment">
 <h3>Facility Deployment<a class="headerlink" href="#facility-deployment" title="Permalink to this headline">¶</a></h3>
@@ -196,54 +190,54 @@ templates?</p>
 <div class="section" id="the-tick">
 <h3>The Tick<a class="headerlink" href="#the-tick" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>cycle through Regions</li>
 </ol>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>cycle through Institutions</li>
 </ol>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>deploy new facilities as necessary</li>
 <li>cycle through facilities</li>
 </ol>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>update facility state as appropriate</li>
 <li>prompt for requests/offers</li>
 </ol>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 </div>
 <div class="section" id="market-resolution">
 <h3>Market Resolution<a class="headerlink" href="#market-resolution" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>convert sets of requests/offers into sets of material transactions</li>
 </ul>
-</div></blockquote>
+</blockquote>
 </div>
 <div class="section" id="the-tock">
 <h3>The Tock<a class="headerlink" href="#the-tock" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>cycle through Markets</li>
 </ol>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>cycle through transactions</li>
 </ol>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>preform material transactions</li>
 <li>update facility state as appropriate</li>
 </ol>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 </div>
 </div>
 <div class="section" id="data-structure-overview">
@@ -300,8 +294,8 @@ plug-in modules.</p>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Robert Carlsen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
     </div>
   </body>
 </html>
