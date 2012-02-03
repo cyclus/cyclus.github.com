@@ -59,11 +59,11 @@ Notable items:
 
 * opening braces should be placed on the same line as function args::
 
-  ReturnType functionName(Arg1Type arg_name) {
+    ReturnType functionName(Arg1Type arg_name) {
 
 * loop and branching statements should use the opening and closing braces. **Not** like this::
 
-  if (true) long_statement;
+    if (true) long_statement;
 
 .. _`Google Style Guide`: http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml
 
