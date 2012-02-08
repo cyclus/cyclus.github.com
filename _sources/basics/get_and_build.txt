@@ -73,8 +73,8 @@ Build System
 ------------
 
 In order to facilitate future compatibility with multiple platforms, Cyclus is
-built using [link: http://www.cmake.org Cmake]. This relies on CMake version
-2.6 or higher and the CMakeLists.txt file in /cyclus/trunk/src/. It is
+built using `Cmake <http://www.cmake.org Cmake>`_. This relies on CMake version
+2.6 or higher and the CMakeLists.txt file in `src/`. It is
 recommended that you use CMake to build the Cyclus executable external to the
 source code. To do this, execute the following steps::
 
