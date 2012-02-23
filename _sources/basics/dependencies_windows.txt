@@ -36,7 +36,7 @@ installation process:
     * If space is restricted, you may be more selective about packages. When
       selecting packages, choose the default action for ALL packages. Then,
       search for and select install for specific packages that cyclus and its
-      dependencies rely on : gcc, g++, g77, cmake, make, lapack, libxml2,
+      dependencies rely on : gcc, g++, g77, cmake, make, libxml2,
       libidn. 
 
   #. This will take some time to install 
@@ -99,38 +99,6 @@ install HDF5 on Windows :
 Make sure the location you placed the binary files is in your $PATH environment
 variable. Finally, add an environment variable that states $HDF5_ROOT =
 /usr/local/lib (or your favorite other location).
-
-Teuchos
--------
-
-Download the Trilinos source code to some location such as ~/trilinos_source . 
-
-If CMake fails to find your c, cxx, or fortran compilers, double check that
-these are in your path. You may also inform CMake of your default compilers
-with environment variables that CMake pays attention to. To set the C compiler,
-for example, you would set the $CC environmet variable to /usr/bin/gcc-3 .
-
-Running cmake::
-
-  cd ~/trilinos_source
-  cd ../
-  mkdir trilinos_build
-  cd trilinos_bild
-  cmake-gui ../trilinos_source
-
-From the gui (or via commandline flags, if you prefer), set the following
-advanced configuration flags for the Trilinos build:
-
-  * BUILD_SHARED_LIBS=ON
-  * CMAKE_INSTALL_PREFIX=/usr/local/ (or elsewhere)
-  * Trilinos_ENABLE_TEUCHOS=ON
-  * BLAS_LIBRARY_DIRS=/usr/lib
-  * LAPACK_LIBRARY_DIRS=/usr/lib
-  * BLAS_LIBRARY_NAMES="blas"
-  * LAPACK_LIBRARY_NAMES="lapack"
-
-Finally, configure and generate the make file (in the gui, these are buttons).
-In the terminal type make, then type make install. 
 
 Now What?
 ---------

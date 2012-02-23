@@ -77,8 +77,6 @@
   <ul>
 <li><a class="reference internal" href="#">Installing Dependencies on Unix</a><ul>
 <li><a class="reference internal" href="#some-quick-notes-of-great-import">Some Quick Notes of Great Import</a></li>
-<li><a class="reference internal" href="#lapack">Lapack</a></li>
-<li><a class="reference internal" href="#teuchos">Teuchos</a></li>
 <li><a class="reference internal" href="#now-what">Now What?</a></li>
 </ul>
 </li>
@@ -126,78 +124,8 @@ has a good review of shared libraries in general.</p>
 <h2>Some Quick Notes of Great Import<a class="headerlink" href="#some-quick-notes-of-great-import" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ol class="arabic simple">
-<li>The following procedures will NOT work correctly if you have already
-acquired Lapack, BLAS, or Trilinos via Ubuntu&#8217;s Synaptic Package Manager.<ul>
-<li>It is highly reccommended that you remove these libraries via Synaptic
-before reinstalling them in the following manner.</li>
-</ul>
-</li>
-<li>It is highly reccommended (specifically for novice users) that you install
-these libraries in /usr/local</li>
-<li>Be very careful when using Teuchos. They have made the design decision to
-include definitions in their header files (due to heavy use of templates).
-Such header files can only be included in one location in the <em>Cyclus</em> source
-code.</li>
-</ol>
-</div></blockquote>
-</div>
-<div class="section" id="lapack">
-<h2>Lapack<a class="headerlink" href="#lapack" title="Permalink to this headline">¶</a></h2>
-<p>Lapack can be installed on your Unix machine using the following steps:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li>Download Lapack from its <a class="reference external" href="http://www.netlib.org/lapack/">website</a> and
-untar it in a preferred location</li>
-<li>Make a build directory (e.g. one can place the source code in
-../lapack/lapack-xx.yy.zz-Source and make the directory .../lapack/build)</li>
-<li>Copy the configure_lapack script located in the <em>Cyclus</em> repository
-located in /trunk/dependencies/lapack and place it in your build folder</li>
-<li>Change the configure script so that the last line points to your lapack
-source (e.g. ../lapack/lapack-xx.yy.zz-Source)</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>Note, by default the script will install the library at /usr/local.</li>
-</ul>
-</div></blockquote>
-<ol class="arabic simple">
-<li>Run the script (by typing ./configure_lapack.sh). Note that you may need
-to alter the script&#8217;s permissions. To do so you can type &#8220;chmod 775
-configure_lapack.sh&#8221;.</li>
-<li>From the build directory, type &#8220;make&#8221; (or &#8220;make -jN&#8221; where N is the number
-of threads you want to use [this speeds up the process])</li>
-<li>From the build directory, type &#8220;make install&#8221;</li>
-</ol>
-</div></blockquote>
-<p>Note that the making process can take some time. It is suggested that you make
-with the <cite>-j</cite> flag.</p>
-</div>
-<div class="section" id="teuchos">
-<h2>Teuchos<a class="headerlink" href="#teuchos" title="Permalink to this headline">¶</a></h2>
-<p><em>Cyclus</em> uses the <a class="reference external" href="http://trilinos.sandia.gov/packages/teuchos/">Teuchos</a> package of <a class="reference external" href="http://trilinos.sandia.gov/">Trilinos</a>. Teuchos can be installed on your Unix machine using the following steps:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li>Download Trilinos from its <a class="reference external" href="http://trilinos.sandia.gov/">website</a> and untar it in a preferred location</li>
-<li>Make a build directory (e.g. one can place the source code in
-.../trilinos/trilinos-xx.yy.zz-Source and make the directory
-.../trilinos/build)</li>
-<li>Copy the configure_trilinos script located in the <em>Cyclus</em> repository
-located in dependencies/trilinos and place it in your build folder</li>
-<li>Change the configure script so that the last line points to your trilinos
-source (e.g. .../trilinos/trilinos-xx.yy.zz-Source)</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>Note, by default the script will install the library at /usr/local.</li>
-</ul>
-</div></blockquote>
-<ol class="arabic simple">
-<li>Run the script (by typing ./configure_trilinos.sh). Note that you may need
-to alter the script&#8217;s permissions. To do so you can type &#8220;chmod 775
-configure_trilinos.sh&#8221;.</li>
-<li>From the build directory, type &#8220;make&#8221; (or &#8220;make -jN&#8221; where N is the number
-of threads you want to use [this speeds up the process])</li>
-<li>From the build directory, type &#8220;make install&#8221;</li>
+<li>It is reccommended (specifically for novice users) that you install
+libraries in /usr/local</li>
 </ol>
 </div></blockquote>
 </div>

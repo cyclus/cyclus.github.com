@@ -79,7 +79,6 @@
 <li><a class="reference internal" href="#cygwin">Cygwin</a></li>
 <li><a class="reference internal" href="#boost">Boost</a></li>
 <li><a class="reference internal" href="#hdf5">HDF5</a></li>
-<li><a class="reference internal" href="#teuchos">Teuchos</a></li>
 <li><a class="reference internal" href="#now-what">Now What?</a></li>
 </ul>
 </li>
@@ -141,7 +140,7 @@ packages. This will require clicking INSTALL the icon next to ALL.</li>
 <li>If space is restricted, you may be more selective about packages. When
 selecting packages, choose the default action for ALL packages. Then,
 search for and select install for specific packages that cyclus and its
-dependencies rely on : gcc, g++, g77, cmake, make, lapack, libxml2,
+dependencies rely on : gcc, g++, g77, cmake, make, libxml2,
 libidn.</li>
 </ul>
 </div></blockquote>
@@ -204,36 +203,6 @@ your $PATH).</li>
 <p>Make sure the location you placed the binary files is in your $PATH environment
 variable. Finally, add an environment variable that states $HDF5_ROOT =
 /usr/local/lib (or your favorite other location).</p>
-</div>
-<div class="section" id="teuchos">
-<h2>Teuchos<a class="headerlink" href="#teuchos" title="Permalink to this headline">¶</a></h2>
-<p>Download the Trilinos source code to some location such as ~/trilinos_source .</p>
-<p>If CMake fails to find your c, cxx, or fortran compilers, double check that
-these are in your path. You may also inform CMake of your default compilers
-with environment variables that CMake pays attention to. To set the C compiler,
-for example, you would set the $CC environmet variable to /usr/bin/gcc-3 .</p>
-<p>Running cmake:</p>
-<div class="highlight-python"><pre>cd ~/trilinos_source
-cd ../
-mkdir trilinos_build
-cd trilinos_bild
-cmake-gui ../trilinos_source</pre>
-</div>
-<p>From the gui (or via commandline flags, if you prefer), set the following
-advanced configuration flags for the Trilinos build:</p>
-<blockquote>
-<div><ul class="simple">
-<li>BUILD_SHARED_LIBS=ON</li>
-<li>CMAKE_INSTALL_PREFIX=/usr/local/ (or elsewhere)</li>
-<li>Trilinos_ENABLE_TEUCHOS=ON</li>
-<li>BLAS_LIBRARY_DIRS=/usr/lib</li>
-<li>LAPACK_LIBRARY_DIRS=/usr/lib</li>
-<li>BLAS_LIBRARY_NAMES=&#8221;blas&#8221;</li>
-<li>LAPACK_LIBRARY_NAMES=&#8221;lapack&#8221;</li>
-</ul>
-</div></blockquote>
-<p>Finally, configure and generate the make file (in the gui, these are buttons).
-In the terminal type make, then type make install.</p>
 </div>
 <div class="section" id="now-what">
 <h2>Now What?<a class="headerlink" href="#now-what" title="Permalink to this headline">¶</a></h2>
