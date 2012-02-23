@@ -16,12 +16,10 @@ Package                Minimum Version
 `HDF5`                 1.8.3           
 `libxml2`              2                 
 `boost`                1.34.1            
-`lapack`               3.4.0             
-`trilinos (teuchos)`   10.8.4            
 ====================   ==================
 
-An overview of some more complicated package builds and installations (e.g.
-lapack, teuchos, etc.) can be found on the following pages:
+An overview of some of the dependency installations
+can be found on the following pages:
 
 .. toctree::
   :maxdepth: 1
