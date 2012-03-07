@@ -12,10 +12,10 @@ The Cyclus code requires the following software and libraries.
 ====================   ==================
 Package                Minimum Version   
 ====================   ==================
-`CMake`                2.8                 
-`HDF5`                 1.8.3           
+`CMake`                2.8            
+`boost`                1.34.1
 `libxml2`              2                 
-`boost`                1.34.1            
+`sqlite3`              3.7.10            
 ====================   ==================
 
 An overview of some of the dependency installations
@@ -24,7 +24,6 @@ can be found on the following pages:
 .. toctree::
   :maxdepth: 1
 
-  dependencies_unix
   dependencies_windows
 
 Project Repository
@@ -125,8 +124,6 @@ input file input.xml, try the following::
 Environment
 -----------
 
-In order to utlize the `RelaxNG` input schema, it is necessary to set an
-environment variable that directs our search algorithm to your cyclus.rng file.
-That is, before you run cyclus, you must set the environment variable
-CYCLUS_SRC_DIR to the path to your src directory. 
-
+The Cyclus output and testing framwork requires knowlege of where some files 
+exist and where to place files. Accordingly, the CYCLUS_OUT_DIR environment 
+variable must be set to the path to your build directory.
