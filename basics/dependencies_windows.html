@@ -4,16 +4,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Installing Dependencies on Windows &mdash; Cyclus Home</title>
-    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -29,7 +26,7 @@
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Getting and Building Cyclus" href="get_and_build.html" />
     <link rel="next" title="Radioactive Decay in Cyclus" href="decay.html" />
-    <link rel="prev" title="Installing Dependencies on Unix" href="dependencies_unix.html" />
+    <link rel="prev" title="Getting and Building Cyclus" href="get_and_build.html" />
    
 <script type="text/javascript">
 
@@ -64,7 +61,7 @@
           <a href="decay.html" title="Radioactive Decay in Cyclus"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="dependencies_unix.html" title="Installing Dependencies on Unix"
+          <a href="get_and_build.html" title="Getting and Building Cyclus"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
           <li><a href="main.html" >Cyclus Fundamentals</a> &raquo;</li>
@@ -78,22 +75,21 @@
 <li><a class="reference internal" href="#">Installing Dependencies on Windows</a><ul>
 <li><a class="reference internal" href="#cygwin">Cygwin</a></li>
 <li><a class="reference internal" href="#boost">Boost</a></li>
-<li><a class="reference internal" href="#hdf5">HDF5</a></li>
 <li><a class="reference internal" href="#now-what">Now What?</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="dependencies_unix.html"
-                        title="previous chapter">Installing Dependencies on Unix</a></p>
+  <p class="topless"><a href="get_and_build.html"
+                        title="previous chapter">Getting and Building Cyclus</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="decay.html"
                         title="next chapter">Radioactive Decay in Cyclus</a></p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" size="18" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -182,28 +178,6 @@ hour for all packages.</li>
 certain to install a dynamic and a static library. Threading is up to you.</li>
 </ol>
 </div>
-<div class="section" id="hdf5">
-<h2>HDF5<a class="headerlink" href="#hdf5" title="Permalink to this headline">¶</a></h2>
-<p>HDF5 is a hierarchical database library that Cyclus uses for record keeping. To
-install HDF5 on Windows :</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li>Go to the hdf5 website.</li>
-<li>Download the appropriate precompiled Windows binaries.</li>
-<li>Extract the full directory structure somewhere temporary.</li>
-<li>Move the contents of the resulting /bin directory to /usr/local/bin , or
-another preferred bin directory in your $PATH .</li>
-<li>Move the contents of the /lib directory to /usr/local/lib (or elsewhere in
-your $PATH).</li>
-<li>So too with the contents of the include directory, move them to
-/usr/local/include (or elsewhere).</li>
-<li>This can optionally be repeated with the  share directory as well.</li>
-</ol>
-</div></blockquote>
-<p>Make sure the location you placed the binary files is in your $PATH environment
-variable. Finally, add an environment variable that states $HDF5_ROOT =
-/usr/local/lib (or your favorite other location).</p>
-</div>
 <div class="section" id="now-what">
 <h2>Now What?<a class="headerlink" href="#now-what" title="Permalink to this headline">¶</a></h2>
 <p>You&#8217;re now ready to build cyclus. Onward to <a class="reference internal" href="get_and_build.html"><em>Getting and Building Cyclus</em></a></p>
@@ -226,7 +200,7 @@ variable. Finally, add an environment variable that states $HDF5_ROOT =
           <a href="decay.html" title="Radioactive Decay in Cyclus"
              >next</a> |</li>
         <li class="right" >
-          <a href="dependencies_unix.html" title="Installing Dependencies on Unix"
+          <a href="get_and_build.html" title="Getting and Building Cyclus"
              >previous</a> |</li>
         <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
           <li><a href="main.html" >Cyclus Fundamentals</a> &raquo;</li>
@@ -235,7 +209,7 @@ variable. Finally, add an environment variable that states $HDF5_ROOT =
     </div>
     <div class="footer">
         &copy; Copyright 2012, Robert Carlsen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
 </html>

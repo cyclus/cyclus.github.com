@@ -4,16 +4,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Getting and Building Cyclus &mdash; Cyclus Home</title>
-    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -28,7 +25,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Fundamentals" href="main.html" />
-    <link rel="next" title="Installing Dependencies on Unix" href="dependencies_unix.html" />
+    <link rel="next" title="Installing Dependencies on Windows" href="dependencies_windows.html" />
     <link rel="prev" title="Introduction to the Cyclus Fuel Cycle Simulator" href="introduction.html" />
    
 <script type="text/javascript">
@@ -61,7 +58,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="dependencies_unix.html" title="Installing Dependencies on Unix"
+          <a href="dependencies_windows.html" title="Installing Dependencies on Windows"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="introduction.html" title="Introduction to the Cyclus Fuel Cycle Simulator"
@@ -90,12 +87,12 @@
   <p class="topless"><a href="introduction.html"
                         title="previous chapter">Introduction to the <em>Cyclus</em> Fuel Cycle Simulator</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="dependencies_unix.html"
-                        title="next chapter">Installing Dependencies on Unix</a></p>
+  <p class="topless"><a href="dependencies_windows.html"
+                        title="next chapter">Installing Dependencies on Windows</a></p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" size="18" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -124,22 +121,22 @@
 <col width="47%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Package</th>
+<tr><th class="head">Package</th>
 <th class="head">Minimum Version</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><cite>CMake</cite></td>
+<tr><td><cite>CMake</cite></td>
 <td>2.8</td>
 </tr>
-<tr class="row-odd"><td><cite>HDF5</cite></td>
-<td>1.8.3</td>
+<tr><td><cite>boost</cite></td>
+<td>1.34.1</td>
 </tr>
-<tr class="row-even"><td><cite>libxml2</cite></td>
+<tr><td><cite>libxml2</cite></td>
 <td>2</td>
 </tr>
-<tr class="row-odd"><td><cite>boost</cite></td>
-<td>1.34.1</td>
+<tr><td><cite>sqlite3</cite></td>
+<td>3.7.10</td>
 </tr>
 </tbody>
 </table>
@@ -147,7 +144,6 @@
 can be found on the following pages:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dependencies_unix.html">Installing Dependencies on Unix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dependencies_windows.html">Installing Dependencies on Windows</a></li>
 </ul>
 </div>
@@ -233,10 +229,9 @@ input file input.xml, try the following:</p>
 </div>
 <div class="section" id="environment">
 <h2>Environment<a class="headerlink" href="#environment" title="Permalink to this headline">¶</a></h2>
-<p>In order to utlize the <cite>RelaxNG</cite> input schema, it is necessary to set an
-environment variable that directs our search algorithm to your cyclus.rng file.
-That is, before you run cyclus, you must set the environment variable
-CYCLUS_SRC_DIR to the path to your src directory.</p>
+<p>The Cyclus output and testing framwork requires knowlege of where some files
+exist and where to place files. Accordingly, the CYCLUS_OUT_DIR environment
+variable must be set to the path to your build directory.</p>
 </div>
 </div>
 
@@ -253,7 +248,7 @@ CYCLUS_SRC_DIR to the path to your src directory.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="dependencies_unix.html" title="Installing Dependencies on Unix"
+          <a href="dependencies_windows.html" title="Installing Dependencies on Windows"
              >next</a> |</li>
         <li class="right" >
           <a href="introduction.html" title="Introduction to the Cyclus Fuel Cycle Simulator"
@@ -264,7 +259,7 @@ CYCLUS_SRC_DIR to the path to your src directory.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2012, Robert Carlsen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
 </html>
