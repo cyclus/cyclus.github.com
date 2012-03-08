@@ -118,6 +118,5 @@ overview's body. An example is given below: ::
    * 
    * @param aParam description of aParam
    * @return description of what the function returns
-   *
    */ 
    returnType aFuction(paramType aParam);
