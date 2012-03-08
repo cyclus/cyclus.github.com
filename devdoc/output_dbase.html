@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -15,13 +13,12 @@
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="main.html" />
@@ -65,38 +62,38 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Output Database</a><ul>
-<li><a class="reference internal" href="#provenance">Provenance</a></li>
-<li><a class="reference internal" href="#database-structure">Database Structure</a></li>
-<li><a class="reference internal" href="#agent-description-table">Agent Description Table</a></li>
-<li><a class="reference internal" href="#agent-static-state-parameter-table">Agent Static State Parameter Table</a></li>
-<li><a class="reference internal" href="#agent-variable-state-parameter-table">Agent Variable State Parameter Table</a></li>
-<li><a class="reference internal" href="#resource-description-table">Resource Description Table</a></li>
-<li><a class="reference internal" href="#resource-static-state-parameter-table">Resource Static State Parameter Table</a></li>
-<li><a class="reference internal" href="#resource-variable-state-parameter-table">Resource Variable State Parameter Table</a></li>
-<li><a class="reference internal" href="#transaction-description-table">Transaction Description Table</a></li>
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Output Database</a><ul>
+<li><a class="reference external" href="#provenance">Provenance</a></li>
+<li><a class="reference external" href="#database-structure">Database Structure</a></li>
+<li><a class="reference external" href="#agent-description-table">Agent Description Table</a></li>
+<li><a class="reference external" href="#agent-static-state-parameter-table">Agent Static State Parameter Table</a></li>
+<li><a class="reference external" href="#agent-variable-state-parameter-table">Agent Variable State Parameter Table</a></li>
+<li><a class="reference external" href="#resource-description-table">Resource Description Table</a></li>
+<li><a class="reference external" href="#resource-static-state-parameter-table">Resource Static State Parameter Table</a></li>
+<li><a class="reference external" href="#resource-variable-state-parameter-table">Resource Variable State Parameter Table</a></li>
+<li><a class="reference external" href="#transaction-description-table">Transaction Description Table</a></li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="flow_and_structure.html"
-                        title="previous chapter">Program Flow and Data Structures</a></p>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="flow_and_structure.html"
+                                  title="previous chapter">Program Flow and Data Structures</a></p>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -147,7 +144,7 @@ As will be outlined in detail below, the output database structure of a
 <em>Cyclus</em> simulation will have, in general, the following heirarchichal
 structure:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>/output/agents</li>
 <li>/output/agents/implementation/staticParams</li>
 <li>/output/agents/implementation/variableParams</li>
@@ -156,11 +153,11 @@ structure:</p>
 <li>/output/resources/type/variableParams</li>
 <li>/output/transactions</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <p>Accordingly, there are currently seven primary tables in the <em>Cyclus</em> output
 database:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><a class="reference internal" href="#agent-description-table">Agent Description Table</a></li>
 <li><a class="reference internal" href="#agent-static-state-parameter-table">Agent Static State Parameter Table</a></li>
 <li><a class="reference internal" href="#agent-variable-state-parameter-table">Agent Variable State Parameter Table</a></li>
@@ -169,7 +166,7 @@ database:</p>
 <li><a class="reference internal" href="#resource-variable-state-parameter-table">Resource Variable State Parameter Table</a></li>
 <li><a class="reference internal" href="#transaction-description-table">Transaction Description Table</a></li>
 </ul>
-</div></blockquote>
+</blockquote>
 </div>
 <div class="section" id="agent-description-table">
 <h2>Agent Description Table<a class="headerlink" href="#agent-description-table" title="Permalink to this headline">¶</a></h2>
@@ -177,7 +174,7 @@ database:</p>
 regarding its time of creation and deletion. The table parameters are the
 following:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>the agent&#8217;s unique ID</li>
 <li>the agent&#8217;s parent&#8217;s unique ID</li>
 <li>the agent&#8217;s type (e.g., Region, Institution, Market, etc.)</li>
@@ -185,7 +182,7 @@ following:</p>
 <li>a timestamp of the agent&#8217;s birth</li>
 <li>a timestamp of the agent&#8217;s death</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <p>Note that there is one entry for each unique agent.</p>
 <p>As an example, let us assume that a agent X of type is owned by an agent Y and is created at time t1. Agent X has type T and implementation I and ends its service at time t2. The table entry is as follows:</p>
 <table border="1" class="docutils">
@@ -325,7 +322,7 @@ parameter did not change during the period between two timestamps.</p>
 regarding its time of creation and deletion. The table parameters are the
 following:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>the resource&#8217;s unique ID</li>
 <li>the resource&#8217;s creating agent&#8217;s unique ID</li>
 <li>the resource&#8217;s type (material, man-hours, etc.)</li>
@@ -333,7 +330,7 @@ following:</p>
 <li>a timestamp of the resource&#8217;s birth</li>
 <li>a timestamp of the resoruce&#8217;s death (i.e., when it is consumed, etc.)</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <p>For example, let us assume that facility with unique ID X, creates a resource
 of type T at time t1 whose unique ID is Y, in addition, let us assume that the
 base unit type is kilograms. Finally, let us assume that the resource is
@@ -419,11 +416,11 @@ corresponds to this hierarchical structure if it is to be included in a
 kilograms of Used UO,,2,, at time t1 /and/ that Used UO,,2,, has the ability to
 decay, i.e. it is radioactive. Consider the following two scenarios:</p>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>sufficient time has passed to take into account the decay of the Used UO,,2,,</li>
 <li>an amount, n, of the Used UO,,2,, is traded to another agent</li>
 </ol>
-</div></blockquote>
+</blockquote>
 <p>For simplicity, we assume that used UO,,2,, is comprised of only ^16^O and
 ^235^U. The decay isotopics are meaningless and only meant to be a qualitative
 example.</p>
@@ -476,7 +473,7 @@ example.</p>
 <p>This table contains the generic information of each transaction. The table
 parameters are the following:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>the transaction&#8217;s unique ID</li>
 <li>the sending agent&#8217;s unique ID</li>
 <li>the receiving agent&#8217;s unique ID</li>
@@ -484,7 +481,7 @@ parameters are the following:</p>
 <li>the price for the transaction (assumed going from receiver to sender)</li>
 <li>the timestamp of the transaction</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <p>For example, let us assume agent X sends resource R to agent Y at time t for
 price P, and the transactions unique ID is U. The table entry, at
 /output/transactions/, would be as follows:</p>
@@ -540,8 +537,8 @@ price P, and the transactions unique ID is U. The table entry, at
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Robert Carlsen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
     </div>
   </body>
 </html>

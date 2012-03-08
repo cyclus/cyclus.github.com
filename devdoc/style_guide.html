@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -15,13 +13,12 @@
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="main.html" />
@@ -69,34 +66,39 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Style Guidelines for Developers</a><ul>
-<li><a class="reference internal" href="#class-file-organization">Class File Organization</a></li>
-<li><a class="reference internal" href="#code-formatting">Code Formatting</a></li>
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Style Guidelines for Developers</a><ul>
+<li><a class="reference external" href="#class-file-organization">Class File Organization</a></li>
+<li><a class="reference external" href="#code-formatting">Code Formatting</a></li>
+<li><a class="reference external" href="#documenatation-formatting">Documenatation Formatting</a><ul>
+<li><a class="reference external" href="#class-overviews">Class Overviews</a></li>
+<li><a class="reference external" href="#function-overviews">Function Overviews</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="main.html"
-                        title="previous chapter">Cyclus Developer Guide</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="make-models/main.html"
-                        title="next chapter">Developing Models For Cyclus</a></p>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="main.html"
+                                  title="previous chapter">Cyclus Developer Guide</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="make-models/main.html"
+                                  title="next chapter">Developing Models For Cyclus</a></p>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -166,6 +168,57 @@ this style standard can be found in the <a class="reference external" href="http
 </li>
 </ul>
 </div>
+<div class="section" id="documenatation-formatting">
+<h2>Documenatation Formatting<a class="headerlink" href="#documenatation-formatting" title="Permalink to this headline">¶</a></h2>
+<p>Documentation in Cyclus is automated via Doxygen. All documentation occurs in header files.
+Additionally, there are two distinct instances of automated documentation: class overviews
+and function overviews. Class overviews occur once per class at the top of the header file
+while function overviews occur once per function above that function. All documentation
+segments begin with a slash-double-asterisk and end with an askerisk-slash:</p>
+<div class="highlight-python"><pre>/**
+  Some documenatation...
+ */</pre>
+</div>
+<div class="section" id="class-overviews">
+<h3>Class Overviews<a class="headerlink" href="#class-overviews" title="Permalink to this headline">¶</a></h3>
+<p>Class overviews should include a brief overview of the class and an introduction as well as
+sections corresponding to the key parameters used by the class and its detailed behavior, if
+the class in complex. Each portion must be preceded by the Doxygen keyword. An example is
+given below:</p>
+<div class="highlight-python"><pre>/**
+  @class SomeClass
+
+  @brief A brief overview of SomeClass
+
+  @section intro Introduction
+  Place an introduction to the class here.
+
+  @section classparams Class Parameters
+  Place a description of the key parameters used by the class.
+
+  @section detailed Detailed Behavior
+  If the class is complex, provided a detailed description of its behavior.
+ */</pre>
+</div>
+</div>
+<div class="section" id="function-overviews">
+<h3>Function Overviews<a class="headerlink" href="#function-overviews" title="Permalink to this headline">¶</a></h3>
+<p>Function overviews should fully describe the function&#8217;s behavior, the parameters
+required to call it, and the value it returns. Each portion must be preceded by
+the Doxygen keyword.</p>
+<p>Please note that class and function overviews differ in asterisk usage in the
+overview&#8217;s body. An example is given below:</p>
+<div class="highlight-python"><pre>/**
+ * @brief An explanation of the function's behavior
+ *
+ * @param aParam description of aParam
+ * @return description of what the function returns
+ *
+ */
+ returnType aFuction(paramType aParam);</pre>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -191,8 +244,8 @@ this style standard can be found in the <a class="reference external" href="http
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Robert Carlsen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
     </div>
   </body>
 </html>

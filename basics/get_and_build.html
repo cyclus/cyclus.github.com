@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -15,13 +13,12 @@
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Fundamentals" href="main.html" />
@@ -69,39 +66,39 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Getting and Building Cyclus</a><ul>
-<li><a class="reference internal" href="#dependencies">Dependencies</a><ul>
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Getting and Building Cyclus</a><ul>
+<li><a class="reference external" href="#dependencies">Dependencies</a><ul>
 </ul>
 </li>
-<li><a class="reference internal" href="#project-repository">Project Repository</a></li>
-<li><a class="reference internal" href="#build-system">Build System</a></li>
-<li><a class="reference internal" href="#debugging-build">Debugging Build</a></li>
-<li><a class="reference internal" href="#environment">Environment</a></li>
+<li><a class="reference external" href="#project-repository">Project Repository</a></li>
+<li><a class="reference external" href="#build-system">Build System</a></li>
+<li><a class="reference external" href="#debugging-build">Debugging Build</a></li>
+<li><a class="reference external" href="#environment">Environment</a></li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="introduction.html"
-                        title="previous chapter">Introduction to the <em>Cyclus</em> Fuel Cycle Simulator</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="dependencies_windows.html"
-                        title="next chapter">Installing Dependencies on Windows</a></p>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="introduction.html"
+                                  title="previous chapter">Introduction to the <em>Cyclus</em> Fuel Cycle Simulator</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="dependencies_windows.html"
+                                  title="next chapter">Installing Dependencies on Windows</a></p>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -142,11 +139,9 @@
 </table>
 <p>An overview of some of the dependency installations
 can be found on the following pages:</p>
-<div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dependencies_windows.html">Installing Dependencies on Windows</a></li>
+<li class="toctree-l1"><a class="reference external" href="dependencies_windows.html">Installing Dependencies on Windows</a></li>
 </ul>
-</div>
 </div>
 <div class="section" id="project-repository">
 <h2>Project Repository<a class="headerlink" href="#project-repository" title="Permalink to this headline">¶</a></h2>
@@ -154,13 +149,13 @@ can be found on the following pages:</p>
 control system. It is hosted externally with <em>Github</em>.</p>
 <p>If you are unfamiliar with Git, here are some resources:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><a class="reference external" href="http://progit.org/book/">http://progit.org/book/</a> - this is a fantastic guide, from beginner to expert</li>
 <li><a class="reference external" href="http://book.git-scm.com/">http://book.git-scm.com/</a></li>
 <li><a class="reference external" href="http://gitimmersion.com/">http://gitimmersion.com/</a> - A very hands-on tutorial.</li>
 <li><a class="reference external" href="http://www-cs-students.stanford.edu/~blynn/gitmagic/">http://www-cs-students.stanford.edu/~blynn/gitmagic/</a></li>
 </ul>
-</div></blockquote>
+</blockquote>
 <p>The main repository is located at <a class="reference external" href="http://github.com/cyclus/core">http://github.com/cyclus/core</a>. Anyone may
 check out the code. Although you do not have to register with github to
 download and edit the code, if you desire your work to be integrated into the
@@ -168,7 +163,7 @@ cyclus mainline of development <em>you must fork the cyclus core repository into
 your own github account and submit &#8216;Pull Requests&#8217;</em>.</p>
 <p>If you are unfamiliar with Github, here are some resources:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><a class="reference external" href="http://help.github.com">Github Help</a></li>
 <li>Visit <a class="reference external" href="http://help.github.com/linux-set-up-git/">Set Up Git</a> for basic git installation and setup instructions.</li>
 <li>Fork the cyclus repository.  Visit <a class="reference external" href="http://help.github.com/fork-a-repo/">Fork A Repo</a> for a step by step guide
@@ -176,7 +171,7 @@ to forking.</li>
 <li>To have your changes integrated into the cyclus core project, you must
 submit a github <em>Pull Request</em>.  Visit <a class="reference external" href="http://help.github.com/send-pull-requests/">Send pull requests</a> to learn more.</li>
 </ul>
-</div></blockquote>
+</blockquote>
 </div>
 <div class="section" id="build-system">
 <h2>Build System<a class="headerlink" href="#build-system" title="Permalink to this headline">¶</a></h2>
@@ -258,8 +253,8 @@ variable must be set to the path to your build directory.</p>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Robert Carlsen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
     </div>
   </body>
 </html>
