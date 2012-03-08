@@ -85,8 +85,8 @@ Class Overviews
 
 Class overviews should include a brief overview of the class and an introduction as well as 
 sections corresponding to the key parameters used by the class and its detailed behavior, if
-the class in complex. Each portion must be preceded by the Doxygen keyword. An example is 
-given below: ::
+the class is complex. Each portion must be preceded by the appropriate Doxygen keyword. 
+An example is given below: ::
 
    /**
      @class SomeClass
@@ -108,13 +108,13 @@ Function Overviews
 
 Function overviews should fully describe the function's behavior, the parameters
 required to call it, and the value it returns. Each portion must be preceded by 
-the Doxygen keyword. 
+the appropriate Doxygen keyword. 
 
 Please note that class and function overviews differ in asterisk usage in the 
 overview's body. An example is given below: ::
 
   /**
-   * @brief An explanation of the function's behavior
+   * @brief An explanation of aFunction's behavior
    * 
    * @param aParam description of aParam
    * @return description of what the function returns
