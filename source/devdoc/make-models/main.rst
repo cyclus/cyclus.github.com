@@ -20,63 +20,61 @@ functionality defined in these files remains in the final model definition.
 
 To create a new model, e.g. a new MarketModel of type NewMarket:
 
-  * copy the StubFacility directory to a new directory called ToasterFacility.
+#. copy the StubFacility directory to a new directory called ToasterFacility.
 
-  * rename the Stub* files within that directory to corresponding Toaster* files. 
-    (That is, rename StubFacility.cpp to ToasterFacility.cpp, etc.)
+#. rename the Stub* files within that directory to corresponding Toaster* files. 
+   (That is, rename StubFacility.cpp to ToasterFacility.cpp, etc.)
 
-  * search instances of StubFacility within those files and replace them with 
-    Toaster Facility.
+#. search instances of StubFacility within those files and replace them with 
+   Toaster Facility.
 
-  * add a new `add_library` line to the CMakeLists.txt file in the 
-    ToasterFacility directory
+#. add a new `add_library` line to the CMakeLists.txt file in the 
+   ToasterFacility directory
 
-  * add a new add_subdirectory line to the CMakeLists.txt file in the 
-    Facility directory.
+#. add a new add_subdirectory line to the CMakeLists.txt file in the 
+   Facility directory.
 
-  * add the XML input grammar for that model to the appropriate place in the
-    `/src/cyclus.rng` XML schema
+#. add the XML input grammar for that model to the appropriate place in the
+   `/src/cyclus.rng` XML schema
 
 All models must provide the following:
 
-  * a method named 'init' to initialize an instance of the model from an XML
-    node pointer (xmlNodePtr)
+* a method named 'init' to initialize an instance of the model from an XML
+  node pointer (xmlNodePtr)
 
-     * this method must call the parent class method of the same name (e.g.
-       MarketModel::init(cur))
+  * this method must call the parent class method of the same name (e.g.
+    FacilityModel::init(cur))
 
-     * this method should only initialize variables that are NOT members of the
-       parent class
+  * this method should only initialize variables that are NOT members of the
+    parent class
 
-  * a method named 'copy' to initialize an instance of the model from another
-    instance of the same model
+* a method named 'copy' to initialize an instance of the model from another
+  instance of the same model
 
-     * this method must call the parent class method of the same name (e.g.
-       MarketModel::copy(src))
+  * this method must call the parent class method of the same name (e.g.
+    FacilityModel::copy(src))
 
-     * this method should only initialize variables that are NOT members of the
-       parent class   
+  * this method should only initialize variables that are NOT members of the
+    parent class   
 
-  * a method named 'print' to print a description of the model
+* a method named 'print' to print a description of the model
 
-     * this method should call the parent class method of the same name (e.g.
-       MarketModel::print())
+  * this method should call the parent class method of the same name (e.g.
+    FacilityModel::print())
 
-     * this method should only print information that is NOT part of the parent
-       class(es)
+  * this method should only print information that is NOT part of the parent
+    class(es)
 
-     * this method assumes that a dangling output line (no std::endl) is left
-       from the parent class output
+  * this method assumes that a dangling output line (no std::endl) is left
+    from the parent class output
 
-  * two global functions `construct` and `destroy` that are used to instantiate
-    objects of this model type.  They are defined, for example, as follows::
+* a global construct function used to instantiate
+  objects of this model type. It is defined, for example, as follows
+  
+::
 
-      extern "C" Model* construct() {
-          return new NewMarket();
-      }
-
-      extern "C" void destruct(Model* p) {
-          delete p;
+      extern "C" Model* constructToasterFacility() {
+          return new ToasterFacility();
       }
 
 
