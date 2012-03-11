@@ -7,26 +7,32 @@ Developing Models For Cyclus
 Introduction
 ------------
 
-The current code in `branches/paul-branch` has support for Markets, Facilities
-and Regions and loadable modules.  The instructions here will describe both how
-to add specific modules within those types, as well as how to extend this to
-other types of loadable modules.
+The Cyclus core has support for Markets, Facilities, Institutions, and Regions.  
+The instructions here will describe both how to add specific modules of those types, 
+as well as how to extend Cyclus to other types of loadable modules.
 
 Creating New Models of the Existing Types
 -----------------------------------------
 
-For each type of model, a set of stub files are available as skeletons for the
-new models.  When creating a new model, it is important that all the
+For each type of model (i.e. Market, Facility, Institution, or Region), a set of stub 
+files are available as skeletons for the new models.  When creating a new model, it is important that all the
 functionality defined in these files remains in the final model definition.
 
 To create a new model, e.g. a new MarketModel of type NewMarket:
 
-  * copy StubMarket.h and StubMarket.cpp to a new location, e.g. NewMarket.h &
-    NewMarket.cpp, respectively
+  * copy the StubFacility directory to a new directory called ToasterFacility.
 
-  * change the internal references to StubMarket to NewMarket
+  * rename the Stub* files within that directory to corresponding Toaster* files. 
+    (That is, rename StubFacility.cpp to ToasterFacility.cpp, etc.)
 
-  * add a new `add_library` line to the CMakeLists.txt file in that directory
+  * search instances of StubFacility within those files and replace them with 
+    Toaster Facility.
+
+  * add a new `add_library` line to the CMakeLists.txt file in the 
+    ToasterFacility directory
+
+  * add a new add_subdirectory line to the CMakeLists.txt file in the 
+    Facility directory.
 
   * add the XML input grammar for that model to the appropriate place in the
     `/src/cyclus.rng` XML schema
