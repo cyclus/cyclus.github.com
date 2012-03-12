@@ -75,7 +75,6 @@
 <li><a class="reference external" href="#a-note-to-core-developers">A Note To Core Developers</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#extending-loadable-modules-to-other-types-outdated">Extending Loadable Modules to Other Types (outdated)</a></li>
 <li><a class="reference external" href="#references">References</a></li>
 </ul>
 </li>
@@ -112,9 +111,9 @@
 <h1>Developing Models For Cyclus<a class="headerlink" href="#developing-models-for-cyclus" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>The current code in <cite>branches/paul-branch</cite> has support for Markets, Facilities
-and Regions and loadable modules.  The instructions here will describe both how
-to add specific modules within those types, as well as how to extend this to
+<p><em>Cyclus</em> employs a Region-Institution-Facility hierarchy in simulations. Additionally,
+Resources are traded amonst the simulation agents via Markets. The instructions here will
+describe both how to add specific modules within those types, as well as how to extend this to
 other types of loadable modules.</p>
 </div>
 <div class="section" id="creating-new-models-of-the-existing-types">
@@ -183,6 +182,17 @@ extern "C" void destruct(Model* p) {
 </li>
 </ul>
 </blockquote>
+<p>Other notes on introducing new Model types:</p>
+<blockquote>
+<ul class="simple">
+<li>You will probably need to extend the input parsing for this new Model type.
+Since the primary input for <em>Cyclus</em> uses XML, you will certainly need to
+add code to recognize and process primitives for this Model type.  While
+you could, in theory, add a completely new input paradigm for Models of
+this type, you might need to extend the <em>Cyclus</em> grammar to include support
+for your Models.</li>
+</ul>
+</blockquote>
 </div>
 <div class="section" id="creating-specific-model-types">
 <h2>Creating Specific Model Types<a class="headerlink" href="#creating-specific-model-types" title="Permalink to this headline">¶</a></h2>
@@ -206,6 +216,10 @@ Model-specific reference:</p>
 <li class="toctree-l2"><a class="reference external" href="market.html#details">Details</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference external" href="tutorial.html">Tutorial on Developing a new Module</a><ul>
+<li class="toctree-l2"><a class="reference external" href="tutorial.html#details">Details</a></li>
+</ul>
+</li>
 </ul>
 <div class="section" id="a-note-to-core-developers">
 <h3>A Note To Core Developers<a class="headerlink" href="#a-note-to-core-developers" title="Permalink to this headline">¶</a></h3>
@@ -219,111 +233,6 @@ capability, each of the implemented models will need to be updated to be
 consistent.  Treat the Stub`*` Models in each sub-directory in the same way as
 the others to ensure it remains up-to-date.</p>
 </div>
-</div>
-<div class="section" id="extending-loadable-modules-to-other-types-outdated">
-<h2>Extending Loadable Modules to Other Types (outdated)<a class="headerlink" href="#extending-loadable-modules-to-other-types-outdated" title="Permalink to this headline">¶</a></h2>
-<p>The current code already has support for loadable modules for MarketModel,
-FacilityModel, InstModel, and RegionModel. These are all derived from base
-class Model defined in <cite>src/Models/Model.h</cite>.  To support extension of this
-capability to other types of models, the files <cite>src/Models/StubModel.h</cite> &amp;
-<cite>src/Models/StubModel.cpp</cite> is provided.  (Stubs are also provided for new
-Models that are also Communicators: <cite>src/Models/StubCommModel.h</cite> &amp;
-<cite>src/Models/StubCommModel.cpp</cite>.)</p>
-<p>To extend to a new model type, e.g. NewTypeModel:</p>
-<blockquote>
-<ul>
-<li><p class="first">copy StubModel.h &amp; StubModel.cpp to a new location, NewTypeModel.h &amp;
-NewTypeModel.cpp, respectively</p>
-</li>
-<li><p class="first">change the internal references to StubModel to NewTypeModel</p>
-</li>
-<li><p class="first">add NewTypeModel.cpp to the list of sources in the top level CMakeLists.txt file</p>
-</li>
-<li><p class="first">add a sub-directory (e.g. NewType) to the Models directory for your models</p>
-<blockquote>
-<ul class="simple">
-<li>this directory name will become a keyword and should match the model name</li>
-</ul>
-</blockquote>
-</li>
-<li><p class="first">create a StubNewType.h and StubNewType.cpp file in that sub-directory that
-are stubs for new models of that type (you may want to copy the files
-Stub/StubStub.h and Stub/StubStub.cpp)</p>
-<blockquote>
-<ul class="simple">
-<li>follow the directions for creating a new model above to make a Stub for
-your NewType model</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<p>All new models types must include:</p>
-<blockquote>
-<ul>
-<li><p class="first">a default constructor that</p>
-<blockquote>
-<ul class="simple">
-<li>assigns the current value of nextID to the ID member variable and
-increments nextID</li>
-<li>assigns a string that matches the model name to <cite>model_type</cite></li>
-<li>(for Communicators, this should also assign the correct value to
-<cite>commType</cite>)</li>
-</ul>
-</blockquote>
-</li>
-<li><p class="first">a method named &#8216;init&#8217; to initialize an instance of the model from an XML
-node pointer (xmlNodePtr)</p>
-<blockquote>
-<ul class="simple">
-<li>this method must call the parent class method Model::init(cur)</li>
-<li>this method should only initialize variables that are NOT members of the
-parent class</li>
-</ul>
-</blockquote>
-</li>
-<li><p class="first">a method named &#8216;copy&#8217; to initialize an instance of the model from another
-instance of the same model</p>
-<blockquote>
-<ul class="simple">
-<li>this method must call the parent class method Model::copy(src)</li>
-<li>(for Communicators, this method must call that parent class method
-Communicator::copy(src))</li>
-<li>this method should only initialize variables that are NOT members of the
-parent class</li>
-</ul>
-</blockquote>
-</li>
-<li><p class="first">a method named &#8216;print&#8217; to print a description of the model</p>
-<blockquote>
-<ul class="simple">
-<li>this method should call the parent class method of the same name (e.g.
-MarketModel::print())</li>
-<li>this method should only print information that is NOT part of the parent
-class(es)</li>
-<li>this method assumes that a dangling output line (no std::endl) is left
-from the parent class output</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<p>Other notes on introducing new Model types:</p>
-<blockquote>
-<ul class="simple">
-<li>You will probably need to extend the input parsing for this new Model type.
-Since the primary input for <em>Cyclus</em> uses XML, you will certainly need to
-add code to recognize and process primitives for this Model type.  While
-you could, in theory, add a completely new input paradigm for Models of
-this type, you might need to extend the <em>Cyclus</em> grammar to include support
-for your Models.</li>
-<li>You will probably need to create a primary storage location for your new
-models in <em>Cyclus</em>.  Currently, most models are somehow registered with the
-Logician (exception: InstModel are only registered with their containing
-Region). You will need to extend the code appropriately to give a home to
-your new models.</li>
-</ul>
-</blockquote>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>

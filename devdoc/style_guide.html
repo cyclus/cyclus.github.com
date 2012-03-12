@@ -73,7 +73,7 @@
 <li><a class="reference external" href="#code-formatting">Code Formatting</a></li>
 <li><a class="reference external" href="#documenatation-formatting">Documenatation Formatting</a><ul>
 <li><a class="reference external" href="#class-overviews">Class Overviews</a></li>
-<li><a class="reference external" href="#function-overviews">Function Overviews</a></li>
+<li><a class="reference external" href="#method-member-overviews">Method/Member Overviews</a></li>
 </ul>
 </li>
 </ul>
@@ -172,8 +172,8 @@ this style standard can be found in the <a class="reference external" href="http
 <h2>Documenatation Formatting<a class="headerlink" href="#documenatation-formatting" title="Permalink to this headline">¶</a></h2>
 <p>Documentation in Cyclus is automated via Doxygen. All documentation occurs in header files.
 Additionally, there are two distinct instances of automated documentation: class overviews
-and function overviews. Class overviews occur once per class at the top of the header file
-while function overviews occur once per function above that function. All documentation
+and method/member overviews. Class overviews occur once per class at the top of the header file
+while method/member overviews occur once per each method and member. All documentation
 segments begin with a slash-double-asterisk and end with an askerisk-slash:</p>
 <div class="highlight-python"><pre>/**
   Some documenatation...
@@ -181,10 +181,17 @@ segments begin with a slash-double-asterisk and end with an askerisk-slash:</p>
 </div>
 <div class="section" id="class-overviews">
 <h3>Class Overviews<a class="headerlink" href="#class-overviews" title="Permalink to this headline">¶</a></h3>
-<p>Class overviews should include a brief overview of the class and an introduction as well as
-sections corresponding to the key parameters used by the class and its detailed behavior, if
-the class is complex. Each portion must be preceded by the appropriate Doxygen keyword.
-An example is given below:</p>
+<dl class="docutils">
+<dt>Class overviews should include the following sections:</dt>
+<dd><ul class="first last simple">
+<li>a brief overview</li>
+<li>an introduction</li>
+<li>a discussion of key parameters</li>
+<li>a detailed discussion of class behavior (if the class is complex)</li>
+</ul>
+</dd>
+</dl>
+<p>An example is given below:</p>
 <div class="highlight-python"><pre>/**
   @class SomeClass
 
@@ -201,12 +208,12 @@ An example is given below:</p>
  */</pre>
 </div>
 </div>
-<div class="section" id="function-overviews">
-<h3>Function Overviews<a class="headerlink" href="#function-overviews" title="Permalink to this headline">¶</a></h3>
-<p>Function overviews should fully describe the function&#8217;s behavior, the parameters
-required to call it, and the value it returns. Each portion must be preceded by
-the appropriate Doxygen keyword.</p>
-<p>Please note that class and function overviews differ in asterisk usage in the
+<div class="section" id="method-member-overviews">
+<h3>Method/Member Overviews<a class="headerlink" href="#method-member-overviews" title="Permalink to this headline">¶</a></h3>
+<p>Method overviews should fully describe the method&#8217;s behavior, the parameters
+required to call it, and the value it returns. Member overviews should fully describe
+the member in question and its role in the workings of the class.</p>
+<p>Please note that class and method/member overviews differ in asterisk usage in the
 overview&#8217;s body. An example is given below:</p>
 <div class="highlight-python"><pre>/**
  * @brief An explanation of aFunction's behavior
