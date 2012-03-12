@@ -18,21 +18,38 @@ For each type of model (i.e. Market, Facility, Institution, or Region), a set of
 files are available as skeletons for the new models.  When creating a new model, it is important that all the
 functionality defined in these files remains in the final model definition.
 
-To create a new model, e.g. a new MarketModel of type NewMarket:
+Beginning With a Stub Template
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. copy the StubFacility directory to a new directory called ToasterFacility.
+To create a new model, e.g. a new FacilityModel of type ToasterFacility:
 
-#. rename the Stub* files within that directory to corresponding Toaster* files. 
+#. Copy the StubFacility directory and all of the files it contains to a new 
+   directory called ToasterFacility.
+
+#. Rename the Stub* files within that directory to corresponding Toaster* files. 
    (That is, rename StubFacility.cpp to ToasterFacility.cpp, etc.)
 
-#. search instances of StubFacility within those files and replace them with 
-   Toaster Facility.
-
-#. add a new `add_library` line to the CMakeLists.txt file in the 
-   ToasterFacility directory
+#. Search instances of Stub within those files and replace them with 
+   Toaster.
 
 #. add a new add_subdirectory line to the CMakeLists.txt file in the 
-   Facility directory.
+   Facility directory. That should look something like :
+
+::
+
+   # Build the cyclus executable from the CYCLUS_SRC source files
+   ADD_SUBDIRECTORY( ConditioningFacility )
+   ADD_SUBDIRECTORY( EnrichmentFacility )
+   ADD_SUBDIRECTORY( NullFacility )
+   ADD_SUBDIRECTORY( RecipeReactor )
+   ADD_SUBDIRECTORY( SeparationsMatrixFacility )
+   ADD_SUBDIRECTORY( SinkFacility )
+   ADD_SUBDIRECTORY( StubFacility )
+   ADD_SUBDIRECTORY( SourceFacility )
+   ADD_SUBDIRECTORY( ToasterFacility )
+
+   SET(ModelTestSource ${ModelTestSource} ${FacilityTestSource} PARENT_SCOPE)
+
 
 #. add the XML input grammar for that model to the appropriate place in the
    `/src/cyclus.rng` XML schema
