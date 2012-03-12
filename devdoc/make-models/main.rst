@@ -191,7 +191,7 @@ Other notes on introducing new Model types:
     your new models.
 
 References
-==========
+----------
 
   #. `C++ dlopen mini HOWTO <http://oss.sgi.com/LDP/HOWTO/C++-dlopen/index.html>`_
   #. `Static, Shared Dynamic and Loadable Linux Libraries <http://www.yolinux.com/TUTORIALS/LibraryArchives-StaticAndDynamic.html>`_
