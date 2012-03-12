@@ -7,70 +7,162 @@ Developing Models For Cyclus
 Introduction
 ------------
 
-The current code in `branches/paul-branch` has support for Markets, Facilities
-and Regions and loadable modules.  The instructions here will describe both how
-to add specific modules within those types, as well as how to extend this to
-other types of loadable modules.
+The Cyclus core has support for Markets, Facilities, Institutions, and Regions.  
+The instructions here will describe both how to add specific modules of those types, 
+as well as how to extend Cyclus to other types of loadable modules.
 
 Creating New Models of the Existing Types
 -----------------------------------------
 
-For each type of model, a set of stub files are available as skeletons for the
-new models.  When creating a new model, it is important that all the
+For each type of model (i.e. Market, Facility, Institution, or Region), a set of stub 
+files are available as skeletons for the new models.  When creating a new model, it is important that all the
 functionality defined in these files remains in the final model definition.
 
-To create a new model, e.g. a new MarketModel of type NewMarket:
+Beginning With a Stub Template
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  * copy StubMarket.h and StubMarket.cpp to a new location, e.g. NewMarket.h &
-    NewMarket.cpp, respectively
+To create a new model, e.g. a new FacilityModel of type ToasterFacility:
 
-  * change the internal references to StubMarket to NewMarket
+#. Copy the StubFacility directory and all of the files it contains to a new 
+   directory called ToasterFacility.
 
-  * add a new `add_library` line to the CMakeLists.txt file in that directory
+#. Rename the Stub* files within that directory to corresponding Toaster* files. 
+   (That is, rename StubFacility.cpp to ToasterFacility.cpp, etc.)
 
-  * add the XML input grammar for that model to the appropriate place in the
-    `/src/cyclus.rng` XML schema
+#. Search instances of Stub within those files and replace them with 
+   Toaster. That is, instances of :
+
+
+```cpp
+   // StubFacility.h
+   #if !defined(_STUBFACILITY_H)
+   #define _STUBFACILITY_H
+   
+   #include "Logger.h"
+   #include "FacilityModel.h"
+   
+   /**
+     @class StubFacility
+     
+     @brief This FacilityModel is intended 
+     as a skeleton to guide the implementation of new FacilityModel models. 
+     
+     The StubFacility class inherits from the FacilityModel class and is 
+     dynamically loaded by the Model class when requested.
+   
+     @section intro Introduction
+     Place an introduction to the model here. 
+   
+     @section modelparams Model Parameters
+     Place a description of the required input parameters which define the model 
+     implementation.
+   
+     @section optionalparams Optional Parameters
+     Place a description of the optional input parameters to define the model 
+     implementation.
+   
+     @section detailed Detailed Behavior
+     Place a description of the detailed behavior of the model. Consider describing 
+     the behavior at the tick and tock as well as the behavior upon sending and
+     receiving materials and messages. 
+   **/
+   class StubFacility : public FacilityModel  
+```
+
+   would become :
+
+```cpp
+   // ToasterFacility.h
+   #if !defined(_TOASTERFACILITY_H)
+   #define _TOASTERFACILITY_H
+   
+   #include "Logger.h"
+   #include "FacilityModel.h"
+   
+   /**
+     @class ToasterFacility
+     
+     @brief This FacilityModel is intended 
+     as a skeleton to guide the implementation of new FacilityModel models. 
+     
+     The ToasterFacility class inherits from the FacilityModel class and is 
+     dynamically loaded by the Model class when requested.
+   
+     @section intro Introduction
+     Place an introduction to the model here. 
+   
+     @section modelparams Model Parameters
+     Place a description of the required input parameters which define the model 
+     implementation.
+   
+     @section optionalparams Optional Parameters
+     Place a description of the optional input parameters to define the model 
+     implementation.
+   
+     @section detailed Detailed Behavior
+     Place a description of the detailed behavior of the model. Consider describing 
+     the behavior at the tick and tock as well as the behavior upon sending and
+     receiving materials and messages. 
+   */
+   class ToasterFacility : public FacilityModel  
+```
+
+#. add a new add_subdirectory line to the CMakeLists.txt file in the 
+   Facility directory. That should look something like :
+
+```cmake
+
+   # Build the cyclus executable from the CYCLUS_SRC source files
+   ADD_SUBDIRECTORY( ConditioningFacility )
+   ADD_SUBDIRECTORY( EnrichmentFacility )
+   ...
+   ADD_SUBDIRECTORY( ToasterFacility )
+
+   SET(ModelTestSource ${ModelTestSource} ${FacilityTestSource} PARENT_SCOPE)
+```
+
+
+#. add the XML input grammar for that model to the appropriate place in the
+   `/src/cyclus.rng` XML schema
 
 All models must provide the following:
 
-  * a method named 'init' to initialize an instance of the model from an XML
-    node pointer (xmlNodePtr)
+* a method named 'init' to initialize an instance of the model from an XML
+  node pointer (xmlNodePtr)
 
-     * this method must call the parent class method of the same name (e.g.
-       MarketModel::init(cur))
+  * this method must call the parent class method of the same name (e.g.
+    FacilityModel::init(cur))
 
-     * this method should only initialize variables that are NOT members of the
-       parent class
+  * this method should only initialize variables that are NOT members of the
+    parent class
 
-  * a method named 'copy' to initialize an instance of the model from another
-    instance of the same model
+* a method named 'copy' to initialize an instance of the model from another
+  instance of the same model
 
-     * this method must call the parent class method of the same name (e.g.
-       MarketModel::copy(src))
+  * this method must call the parent class method of the same name (e.g.
+    FacilityModel::copy(src))
 
-     * this method should only initialize variables that are NOT members of the
-       parent class   
+  * this method should only initialize variables that are NOT members of the
+    parent class   
 
-  * a method named 'print' to print a description of the model
+* a method named 'print' to print a description of the model
 
-     * this method should call the parent class method of the same name (e.g.
-       MarketModel::print())
+  * this method should call the parent class method of the same name (e.g.
+    FacilityModel::print())
 
-     * this method should only print information that is NOT part of the parent
-       class(es)
+  * this method should only print information that is NOT part of the parent
+    class(es)
 
-     * this method assumes that a dangling output line (no std::endl) is left
-       from the parent class output
+  * this method assumes that a dangling output line (no std::endl) is left
+    from the parent class output
 
-  * two global functions `construct` and `destroy` that are used to instantiate
-    objects of this model type.  They are defined, for example, as follows::
+* a global construct function used to instantiate
+  objects of this model type. It is defined, for example, as follows
+  
+::
 
-      extern "C" Model* construct() {
-          return new NewMarket();
-      }
-
-      extern "C" void destruct(Model* p) {
-          delete p;
+      extern "C" Model* constructToasterFacility() {
+          return new ToasterFacility();
       }
 
 
