@@ -30,7 +30,7 @@ To create a new model, e.g. a new FacilityModel of type ToasterFacility:
    (That is, rename StubFacility.cpp to ToasterFacility.cpp, etc.)
 
 #. Search instances of Stub within those files and replace them with 
-   Toaster. That is, instances of :
+   Toaster. That is, code such as:
 
 
 .. code-block:: cpp
@@ -42,8 +42,8 @@ To create a new model, e.g. a new FacilityModel of type ToasterFacility:
    #include "Logger.h"
    #include "FacilityModel.h"
 
-   // ...
    class StubFacility : public FacilityModel  
+   // ...
 
 would become :
 
@@ -56,8 +56,8 @@ would become :
    #include "Logger.h"
    #include "FacilityModel.h"
    
-   // ...
    class ToasterFacility : public FacilityModel  
+   // ...
 
 #. add a new add_subdirectory line to the CMakeLists.txt file in the 
    Facility directory. That should look something like :
