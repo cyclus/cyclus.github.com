@@ -78,6 +78,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#creating-specific-model-types">Creating Specific Model Types</a><ul>
+<li><a class="reference internal" href="#a-note-to-core-developers">A Note To Core Developers</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#extending-loadable-modules-to-other-types-outdated">Extending Loadable Modules to Other Types (outdated)</a></li>
@@ -137,88 +138,41 @@ directory called ToasterFacility.</li>
 <li>Search instances of Stub within those files and replace them with
 Toaster. That is, instances of :</li>
 </ol>
-<dl class="docutils">
-<dt><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>cpp</dt>
-<dd><p class="first">// StubFacility.h
-#if !defined(_STUBFACILITY_H)
-#define _STUBFACILITY_H</p>
-<p>#include &#8220;Logger.h&#8221;
-#include &#8220;FacilityModel.h&#8221;</p>
-<dl class="docutils">
-<dt>/**</dt>
-<dd><p class="first">&#64;class StubFacility</p>
-<p>&#64;brief This FacilityModel is intended
-as a skeleton to guide the implementation of new FacilityModel models.</p>
-<p>The StubFacility class inherits from the FacilityModel class and is
-dynamically loaded by the Model class when requested.</p>
-<p>&#64;section intro Introduction
-Place an introduction to the model here.</p>
-<p>&#64;section modelparams Model Parameters
-Place a description of the required input parameters which define the model
-implementation.</p>
-<p>&#64;section optionalparams Optional Parameters
-Place a description of the optional input parameters to define the model
-implementation.</p>
-<p class="last">&#64;section detailed Detailed Behavior
-Place a description of the detailed behavior of the model. Consider describing
-the behavior at the tick and tock as well as the behavior upon sending and
-receiving materials and messages.</p>
-</dd>
-</dl>
-<p class="last"><a href="#id5"><span class="problematic" id="id6">**</span></a>/
-class StubFacility : public FacilityModel</p>
-</dd>
-</dl>
-<p><a href="#id7"><span class="problematic" id="id8">``</span></a><a href="#id9"><span class="problematic" id="id10">`</span></a></p>
-<blockquote>
-<div>would become :</div></blockquote>
-<dl class="docutils">
-<dt><a href="#id11"><span class="problematic" id="id12">``</span></a><a href="#id13"><span class="problematic" id="id14">`</span></a>cpp</dt>
-<dd><p class="first">// ToasterFacility.h
-#if !defined(_TOASTERFACILITY_H)
-#define _TOASTERFACILITY_H</p>
-<p>#include &#8220;Logger.h&#8221;
-#include &#8220;FacilityModel.h&#8221;</p>
-<dl class="docutils">
-<dt>/**</dt>
-<dd><p class="first">&#64;class ToasterFacility</p>
-<p>&#64;brief This FacilityModel is intended
-as a skeleton to guide the implementation of new FacilityModel models.</p>
-<p>The ToasterFacility class inherits from the FacilityModel class and is
-dynamically loaded by the Model class when requested.</p>
-<p>&#64;section intro Introduction
-Place an introduction to the model here.</p>
-<p>&#64;section modelparams Model Parameters
-Place a description of the required input parameters which define the model
-implementation.</p>
-<p>&#64;section optionalparams Optional Parameters
-Place a description of the optional input parameters to define the model
-implementation.</p>
-<p class="last">&#64;section detailed Detailed Behavior
-Place a description of the detailed behavior of the model. Consider describing
-the behavior at the tick and tock as well as the behavior upon sending and
-receiving materials and messages.</p>
-</dd>
-</dl>
-<p class="last"><a href="#id15"><span class="problematic" id="id16">*</span></a>/
-class ToasterFacility : public FacilityModel</p>
-</dd>
-</dl>
-<p><a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// StubFacility.h</span>
+<span class="cp">#if !defined(_STUBFACILITY_H)</span>
+<span class="cp">#define _STUBFACILITY_H</span>
+
+<span class="cp">#include &quot;Logger.h&quot;</span>
+<span class="cp">#include &quot;FacilityModel.h&quot;</span>
+
+<span class="c1">// ...</span>
+<span class="k">class</span> <span class="nc">StubFacility</span> <span class="o">:</span> <span class="k">public</span> <span class="n">FacilityModel</span>
+</pre></div>
+</div>
+<p>would become :</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacility.h</span>
+<span class="cp">#if !defined(_TOASTERFACILITY_H)</span>
+<span class="cp">#define _TOASTERFACILITY_H</span>
+
+<span class="cp">#include &quot;Logger.h&quot;</span>
+<span class="cp">#include &quot;FacilityModel.h&quot;</span>
+
+<span class="c1">// ...</span>
+<span class="k">class</span> <span class="nc">ToasterFacility</span> <span class="o">:</span> <span class="k">public</span> <span class="n">FacilityModel</span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li>add a new add_subdirectory line to the CMakeLists.txt file in the
 Facility directory. That should look something like :</li>
 </ol>
-<p><a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a>cmake</p>
-<blockquote>
-<div><p># Build the cyclus executable from the CYCLUS_SRC source files
+<div class="highlight-cmake"><pre># Build the cyclus executable from the CYCLUS_SRC source files
 ADD_SUBDIRECTORY( ConditioningFacility )
 ADD_SUBDIRECTORY( EnrichmentFacility )
 ...
-ADD_SUBDIRECTORY( ToasterFacility )</p>
-<p>SET(ModelTestSource ${ModelTestSource} ${FacilityTestSource} PARENT_SCOPE)</p>
-</div></blockquote>
-<p><a href="#id25"><span class="problematic" id="id26">``</span></a><a href="#id27"><span class="problematic" id="id28">`</span></a></p>
+ADD_SUBDIRECTORY( ToasterFacility )
+
+SET(ModelTestSource ${ModelTestSource} ${FacilityTestSource} PARENT_SCOPE)</pre>
+</div>
 <ol class="arabic simple">
 <li>add the XML input grammar for that model to the appropriate place in the
 <cite>/src/cyclus.rng</cite> XML schema</li>
@@ -284,6 +238,8 @@ Model-specific reference:</p>
 </li>
 </ul>
 </div>
+<div class="section" id="a-note-to-core-developers">
+<h3>A Note To Core Developers<a class="headerlink" href="#a-note-to-core-developers" title="Permalink to this headline">¶</a></h3>
 <p>It is very important to keep the Stub files in the Models directory (or in each
 of the model sub-directories) current.  As the Model.h definition is
 improved/enhanced/developed, each of the model types will have to be updated to
@@ -293,6 +249,7 @@ others to ensure it remains up-to-date.</p>
 capability, each of the implemented models will need to be updated to be
 consistent.  Treat the Stub`*` Models in each sub-directory in the same way as
 the others to ensure it remains up-to-date.</p>
+</div>
 </div>
 <div class="section" id="extending-loadable-modules-to-other-types-outdated">
 <h2>Extending Loadable Modules to Other Types (outdated)<a class="headerlink" href="#extending-loadable-modules-to-other-types-outdated" title="Permalink to this headline">¶</a></h2>
