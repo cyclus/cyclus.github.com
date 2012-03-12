@@ -30,25 +30,96 @@ To create a new model, e.g. a new FacilityModel of type ToasterFacility:
    (That is, rename StubFacility.cpp to ToasterFacility.cpp, etc.)
 
 #. Search instances of Stub within those files and replace them with 
-   Toaster.
+   Toaster. That is, instances of :
+
+
+```cpp
+   // StubFacility.h
+   #if !defined(_STUBFACILITY_H)
+   #define _STUBFACILITY_H
+   
+   #include "Logger.h"
+   #include "FacilityModel.h"
+   
+   /**
+     @class StubFacility
+     
+     @brief This FacilityModel is intended 
+     as a skeleton to guide the implementation of new FacilityModel models. 
+     
+     The StubFacility class inherits from the FacilityModel class and is 
+     dynamically loaded by the Model class when requested.
+   
+     @section intro Introduction
+     Place an introduction to the model here. 
+   
+     @section modelparams Model Parameters
+     Place a description of the required input parameters which define the model 
+     implementation.
+   
+     @section optionalparams Optional Parameters
+     Place a description of the optional input parameters to define the model 
+     implementation.
+   
+     @section detailed Detailed Behavior
+     Place a description of the detailed behavior of the model. Consider describing 
+     the behavior at the tick and tock as well as the behavior upon sending and
+     receiving materials and messages. 
+   */
+   class StubFacility : public FacilityModel  
+```
+
+   would become :
+
+```cpp
+   // ToasterFacility.h
+   #if !defined(_TOASTERFACILITY_H)
+   #define _TOASTERFACILITY_H
+   
+   #include "Logger.h"
+   #include "FacilityModel.h"
+   
+   /**
+     @class ToasterFacility
+     
+     @brief This FacilityModel is intended 
+     as a skeleton to guide the implementation of new FacilityModel models. 
+     
+     The ToasterFacility class inherits from the FacilityModel class and is 
+     dynamically loaded by the Model class when requested.
+   
+     @section intro Introduction
+     Place an introduction to the model here. 
+   
+     @section modelparams Model Parameters
+     Place a description of the required input parameters which define the model 
+     implementation.
+   
+     @section optionalparams Optional Parameters
+     Place a description of the optional input parameters to define the model 
+     implementation.
+   
+     @section detailed Detailed Behavior
+     Place a description of the detailed behavior of the model. Consider describing 
+     the behavior at the tick and tock as well as the behavior upon sending and
+     receiving materials and messages. 
+   */
+   class ToasterFacility : public FacilityModel  
+```
 
 #. add a new add_subdirectory line to the CMakeLists.txt file in the 
    Facility directory. That should look something like :
 
-::
+```cmake
 
    # Build the cyclus executable from the CYCLUS_SRC source files
    ADD_SUBDIRECTORY( ConditioningFacility )
    ADD_SUBDIRECTORY( EnrichmentFacility )
-   ADD_SUBDIRECTORY( NullFacility )
-   ADD_SUBDIRECTORY( RecipeReactor )
-   ADD_SUBDIRECTORY( SeparationsMatrixFacility )
-   ADD_SUBDIRECTORY( SinkFacility )
-   ADD_SUBDIRECTORY( StubFacility )
-   ADD_SUBDIRECTORY( SourceFacility )
+   ...
    ADD_SUBDIRECTORY( ToasterFacility )
 
    SET(ModelTestSource ${ModelTestSource} ${FacilityTestSource} PARENT_SCOPE)
+```
 
 
 #. add the XML input grammar for that model to the appropriate place in the
