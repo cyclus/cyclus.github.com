@@ -19,7 +19,7 @@ files are available as skeletons for the new models.  When creating a new model,
 functionality defined in these files remains in the final model definition.
 
 Beginning With a Stub Template
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+++++++++++++++++++++++++++++++
 
 To create a new model, e.g. a new FacilityModel of type ToasterFacility:
 
