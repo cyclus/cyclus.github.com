@@ -73,10 +73,7 @@
   <ul>
 <li><a class="reference internal" href="#">Developing Models For Cyclus</a><ul>
 <li><a class="reference internal" href="#introduction">Introduction</a></li>
-<li><a class="reference internal" href="#creating-new-models-of-the-existing-types">Creating New Models of the Existing Types</a><ul>
-<li><a class="reference internal" href="#beginning-with-a-stub-template">Beginning With a Stub Template</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#creating-new-models-of-the-existing-types">Creating New Models of the Existing Types</a></li>
 <li><a class="reference internal" href="#creating-specific-model-types">Creating Specific Model Types</a><ul>
 <li><a class="reference internal" href="#a-note-to-core-developers">A Note To Core Developers</a></li>
 </ul>
@@ -126,92 +123,9 @@ as well as how to extend Cyclus to other types of loadable modules.</p>
 <h2>Creating New Models of the Existing Types<a class="headerlink" href="#creating-new-models-of-the-existing-types" title="Permalink to this headline">¶</a></h2>
 <p>For each type of model (i.e. Market, Facility, Institution, or Region), a set of stub
 files are available as skeletons for the new models.  When creating a new model, it is important that all the
-functionality defined in these files remains in the final model definition.</p>
-<div class="section" id="beginning-with-a-stub-template">
-<h3>Beginning With a Stub Template<a class="headerlink" href="#beginning-with-a-stub-template" title="Permalink to this headline">¶</a></h3>
-<p>To create a new model, e.g. a new FacilityModel of type ToasterFacility:</p>
-<ol class="arabic simple">
-<li>Copy the StubFacility directory and all of the files it contains to a new
-directory called ToasterFacility.</li>
-<li>Rename the Stub* files within that directory to corresponding Toaster* files.
-(That is, rename StubFacility.cpp to ToasterFacility.cpp, etc.)</li>
-<li>Search instances of Stub within those files and replace them with
-Toaster. That is, code such as:</li>
-</ol>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// StubFacility.h</span>
-<span class="cp">#if !defined(_STUBFACILITY_H)</span>
-<span class="cp">#define _STUBFACILITY_H</span>
-
-<span class="cp">#include &quot;Logger.h&quot;</span>
-<span class="cp">#include &quot;FacilityModel.h&quot;</span>
-
-<span class="k">class</span> <span class="nc">StubFacility</span> <span class="o">:</span> <span class="k">public</span> <span class="n">FacilityModel</span>
-<span class="c1">// ...</span>
-</pre></div>
-</div>
-<p>would become :</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacility.h</span>
-<span class="cp">#if !defined(_TOASTERFACILITY_H)</span>
-<span class="cp">#define _TOASTERFACILITY_H</span>
-
-<span class="cp">#include &quot;Logger.h&quot;</span>
-<span class="cp">#include &quot;FacilityModel.h&quot;</span>
-
-<span class="k">class</span> <span class="nc">ToasterFacility</span> <span class="o">:</span> <span class="k">public</span> <span class="n">FacilityModel</span>
-<span class="c1">// ...</span>
-</pre></div>
-</div>
-<ol class="arabic simple">
-<li>add a new add_subdirectory line to the CMakeLists.txt file in the
-Facility directory. That should look something like :</li>
-</ol>
-<div class="highlight-cmake"><pre># Build the cyclus executable from the CYCLUS_SRC source files
-ADD_SUBDIRECTORY( ConditioningFacility )
-ADD_SUBDIRECTORY( EnrichmentFacility )
-...
-ADD_SUBDIRECTORY( ToasterFacility )
-
-SET(ModelTestSource ${ModelTestSource} ${FacilityTestSource} PARENT_SCOPE)</pre>
-</div>
-<ol class="arabic simple">
-<li>add the XML input grammar for that model to the appropriate place in the
-<cite>/src/cyclus.rng</cite> XML schema</li>
-</ol>
-<p>All models must provide the following:</p>
-<ul class="simple">
-<li>a method named &#8216;init&#8217; to initialize an instance of the model from an XML
-node pointer (xmlNodePtr)<ul>
-<li>this method must call the parent class method of the same name (e.g.
-FacilityModel::init(cur))</li>
-<li>this method should only initialize variables that are NOT members of the
-parent class</li>
-</ul>
-</li>
-<li>a method named &#8216;copy&#8217; to initialize an instance of the model from another
-instance of the same model<ul>
-<li>this method must call the parent class method of the same name (e.g.
-FacilityModel::copy(src))</li>
-<li>this method should only initialize variables that are NOT members of the
-parent class</li>
-</ul>
-</li>
-<li>a method named &#8216;print&#8217; to print a description of the model<ul>
-<li>this method should call the parent class method of the same name (e.g.
-FacilityModel::print())</li>
-<li>this method should only print information that is NOT part of the parent
-class(es)</li>
-<li>this method assumes that a dangling output line (no std::endl) is left
-from the parent class output</li>
-</ul>
-</li>
-<li>a global construct function used to instantiate
-objects of this model type. It is defined, for example, as follows</li>
-</ul>
-<div class="highlight-python"><pre>extern "C" Model* constructToasterFacility() {
-    return new ToasterFacility();
-}</pre>
-</div>
-</div>
+functionality defined in these files remains in the final model definition. A
+step by step example of producing a new model from the existing stubs can be
+found in the Toaster Example <a class="reference internal" href="toaster.html"><em>Model Devlopment Example : ToasterFacility</em></a></p>
 </div>
 <div class="section" id="creating-specific-model-types">
 <h2>Creating Specific Model Types<a class="headerlink" href="#creating-specific-model-types" title="Permalink to this headline">¶</a></h2>
