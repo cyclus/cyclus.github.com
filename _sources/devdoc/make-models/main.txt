@@ -18,7 +18,7 @@ For each type of model (i.e. Market, Facility, Institution, or Region), a set of
 files are available as skeletons for the new models.  When creating a new model, it is important that all the
 functionality defined in these files remains in the final model definition. A 
 step by step example of producing a new model from the existing stubs can be 
-found in the Toaster Example :doc:`toaster`
+found in the :doc:`toaster`. 
 
 Creating Specific Model Types
 -----------------------------
