@@ -95,6 +95,7 @@ Model-specific reference:
    institution
    region
    market
+   tutorial
   
 A Note To Core Developers
 +++++++++++++++++++++++++
