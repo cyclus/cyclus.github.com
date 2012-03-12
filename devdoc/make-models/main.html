@@ -136,7 +136,7 @@ directory called ToasterFacility.</li>
 <li>Rename the Stub* files within that directory to corresponding Toaster* files.
 (That is, rename StubFacility.cpp to ToasterFacility.cpp, etc.)</li>
 <li>Search instances of Stub within those files and replace them with
-Toaster. That is, instances of :</li>
+Toaster. That is, code such as:</li>
 </ol>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// StubFacility.h</span>
 <span class="cp">#if !defined(_STUBFACILITY_H)</span>
@@ -145,8 +145,8 @@ Toaster. That is, instances of :</li>
 <span class="cp">#include &quot;Logger.h&quot;</span>
 <span class="cp">#include &quot;FacilityModel.h&quot;</span>
 
-<span class="c1">// ...</span>
 <span class="k">class</span> <span class="nc">StubFacility</span> <span class="o">:</span> <span class="k">public</span> <span class="n">FacilityModel</span>
+<span class="c1">// ...</span>
 </pre></div>
 </div>
 <p>would become :</p>
@@ -157,8 +157,8 @@ Toaster. That is, instances of :</li>
 <span class="cp">#include &quot;Logger.h&quot;</span>
 <span class="cp">#include &quot;FacilityModel.h&quot;</span>
 
-<span class="c1">// ...</span>
 <span class="k">class</span> <span class="nc">ToasterFacility</span> <span class="o">:</span> <span class="k">public</span> <span class="n">FacilityModel</span>
+<span class="c1">// ...</span>
 </pre></div>
 </div>
 <ol class="arabic simple">
