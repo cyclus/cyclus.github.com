@@ -4,9 +4,6 @@
 Developing Market Models
 ========================
 
-After reading GuidelinesForImplementingNewModels, this should provide
-additional information specific to implementing a new MarketModel.
-
 Details
 -------
 
