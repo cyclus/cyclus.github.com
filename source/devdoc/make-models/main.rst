@@ -37,6 +37,7 @@ Model-specific reference:
 
 .. toctree::
    :hidden:
+
    toaster
   
 A Note To Core Developers
