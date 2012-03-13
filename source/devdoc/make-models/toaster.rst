@@ -164,37 +164,36 @@ ToasterFacility.cpp file changes from :
 To :
 
 .. code-block:: cpp
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+void ToasterFacility::init(xmlNodePtr cur) {
+  FacilityModel::init(cur);
+  /// move XML pointer to current model
+  cur = XMLinput->get_xpath_element(cur,"model/ToasterFacility");
+  /// initialize any ToasterFacility-specific datamembers here
+  n_slices_ = strtol(XMLinput->get_xpath_content(cur, "rate"), NULL, 10);
+  toastiness_ = XMLinput->get_xpath_content(cur,"toastiness");
+  rate_ = strtod(XMLinput->get_xpath_content(cur, "rate"), NULL);
+  incommodity_ = XMLinput->get_xpath_content(cur, "incommodity");
+  outcommodity_ = XMLinput->get_xpath_content(cur, "outcommodity");
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
-  void ToasterFacility::init(xmlNodePtr cur) {
-    FacilityModel::init(cur);
-    /// move XML pointer to current model
-    cur = XMLinput->get_xpath_element(cur,"model/ToasterFacility");
-    /// initialize any ToasterFacility-specific datamembers here
-    n_slices_ = strtol(XMLinput->get_xpath_content(cur, "rate"), NULL, 10);
-    toastiness_ = XMLinput->get_xpath_content(cur,"toastiness");
-    rate_ = strtod(XMLinput->get_xpath_content(cur, "rate"), NULL);
-    incommodity_ = XMLinput->get_xpath_content(cur, "incommodity");
-    outcommodity_ = XMLinput->get_xpath_content(cur, "outcommodity");
-  
-    // check that toastiness_ is oneof the allowed levels :
-    // this gives an example of performing input checking in the module 
-    // in case the xml parser is not detailed enough
-    string levels_array = {"light", "golden", "dark", "burnt"};
-    set<string> allowed_levels(levels_array, levels_array+4);
-    if !allowed_levels.find(toastiness_){
-      string msg = "The value given for the darkenss parameter, ";
-      msg += toastiness_;
-      msg += ", is not within the allowed set. Allowed values are: ";
-      set<string>::iterator it;
-      for (it=allowed_levels.begin(); it != allowed_levels.end(); it++){
-        msg += " ";
-        msg += (*it);
-      }
-      msg+=".";
-      throw CycException(msg);
+  // check that toastiness_ is oneof the allowed levels :
+  // this gives an example of performing input checking in the module 
+  // in case the xml parser is not detailed enough
+  string levels_array = {"light", "golden", "dark", "burnt"};
+  set<string> allowed_levels(levels_array, levels_array+4);
+  if !allowed_levels.find(toastiness_){
+    string msg = "The value given for the darkenss parameter, ";
+    msg += toastiness_;
+    msg += ", is not within the allowed set. Allowed values are: ";
+    set<string>::iterator it;
+    for (it=allowed_levels.begin(); it != allowed_levels.end(); it++){
+      msg += " ";
+      msg += (*it);
     }
+    msg+=".";
+    throw CycException(msg);
   }
+}
 
 These member variables must be declared in the ToasterFacility.h header file. The header file originally has a section that looks like :
 
@@ -237,12 +236,12 @@ We change it to include :
     /**
      * The name of the commodity market for the incoming commodity.
      */
-    std::string incommodity;
+    std::string incommodity_;
   
     /**
      * The name of the commodity market for the outgoing commodity.
      */
-    std::string outcommodity;
+    std::string outcommodity_;
   
   
   /* ------------------- */ 
