@@ -78,11 +78,10 @@
 <li><a class="reference internal" href="#beginning-with-a-stub-template">Beginning With a Stub Template</a></li>
 <li><a class="reference internal" href="#customization-of-the-relax-ng-grammar">Customization of the Relax-NG Grammar</a></li>
 <li><a class="reference internal" href="#customization-of-the-init-function">Customization of the init function</a></li>
+<li><a class="reference internal" href="#customization-of-the-documentation-comments">Customization of the Documentation Comments</a></li>
+<li><a class="reference internal" href="#customization-of-the-template">Customization of The Template</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id3">}</a><ul>
 <li><a class="reference internal" href="#creating-specific-model-types">Creating Specific Model Types</a><ul>
 <li><a class="reference internal" href="#a-note-to-core-developers">A Note To Core Developers</a></li>
 </ul>
@@ -264,84 +263,38 @@ ToasterFacility.cpp file changes from :</p>
 </pre></div>
 </div>
 <p>To :</p>
-<div class="highlight-cpp"><div class="highlight"><pre>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">FacilityModel</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+  <span class="c1">/// move XML pointer to current model</span>
+  <span class="n">cur</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_element</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;model/ToasterFacility&quot;</span><span class="p">);</span>
+  <span class="c1">/// initialize any ToasterFacility-specific datamembers here</span>
+  <span class="n">n_slices_</span> <span class="o">=</span> <span class="n">strtol</span><span class="p">(</span><span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s">&quot;rate&quot;</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="n">toastiness_</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;toastiness&quot;</span><span class="p">);</span>
+  <span class="n">rate_</span> <span class="o">=</span> <span class="n">strtod</span><span class="p">(</span><span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s">&quot;rate&quot;</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">incommodity_</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s">&quot;incommodity&quot;</span><span class="p">);</span>
+  <span class="n">outcommodity_</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s">&quot;outcommodity&quot;</span><span class="p">);</span>
+
+  <span class="c1">// check that toastiness_ is oneof the allowed levels :</span>
+  <span class="c1">// this gives an example of performing input checking in the module</span>
+  <span class="c1">// in case the xml parser is not detailed enough</span>
+  <span class="n">string</span> <span class="n">levels_array</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;light&quot;</span><span class="p">,</span> <span class="s">&quot;golden&quot;</span><span class="p">,</span> <span class="s">&quot;dark&quot;</span><span class="p">,</span> <span class="s">&quot;burnt&quot;</span><span class="p">};</span>
+  <span class="n">set</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">allowed_levels</span><span class="p">(</span><span class="n">levels_array</span><span class="p">,</span> <span class="n">levels_array</span><span class="o">+</span><span class="mi">4</span><span class="p">);</span>
+  <span class="k">if</span> <span class="o">!</span><span class="n">allowed_levels</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">toastiness_</span><span class="p">){</span>
+    <span class="n">string</span> <span class="n">msg</span> <span class="o">=</span> <span class="s">&quot;The value given for the darkenss parameter, &quot;</span><span class="p">;</span>
+    <span class="n">msg</span> <span class="o">+=</span> <span class="n">toastiness_</span><span class="p">;</span>
+    <span class="n">msg</span> <span class="o">+=</span> <span class="s">&quot;, is not within the allowed set. Allowed values are: &quot;</span><span class="p">;</span>
+    <span class="n">set</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">it</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">it</span><span class="o">=</span><span class="n">allowed_levels</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">allowed_levels</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="n">it</span><span class="o">++</span><span class="p">){</span>
+      <span class="n">msg</span> <span class="o">+=</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+      <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">msg</span><span class="o">+=</span><span class="s">&quot;.&quot;</span><span class="p">;</span>
+    <span class="k">throw</span> <span class="n">CycException</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-void ToasterFacility::init(xmlNodePtr cur) {</p>
-<blockquote>
-<div><p>FacilityModel::init(cur);
-/// move XML pointer to current model
-cur = XMLinput-&gt;get_xpath_element(cur,&#8221;model/ToasterFacility&#8221;);
-/// initialize any ToasterFacility-specific datamembers here
-<a href="#id6"><span class="problematic" id="id7">n_slices_</span></a> = strtol(XMLinput-&gt;get_xpath_content(cur, &#8220;rate&#8221;), NULL, 10);
-<a href="#id8"><span class="problematic" id="id9">toastiness_</span></a> = XMLinput-&gt;get_xpath_content(cur,&#8221;toastiness&#8221;);
-<a href="#id10"><span class="problematic" id="id11">rate_</span></a> = strtod(XMLinput-&gt;get_xpath_content(cur, &#8220;rate&#8221;), NULL);
-<a href="#id12"><span class="problematic" id="id13">incommodity_</span></a> = XMLinput-&gt;get_xpath_content(cur, &#8220;incommodity&#8221;);
-<a href="#id14"><span class="problematic" id="id15">outcommodity_</span></a> = XMLinput-&gt;get_xpath_content(cur, &#8220;outcommodity&#8221;);</p>
-<p>// check that <a href="#id16"><span class="problematic" id="id17">toastiness_</span></a> is oneof the allowed levels :
-// this gives an example of performing input checking in the module
-// in case the xml parser is not detailed enough
-string levels_array = {&#8220;light&#8221;, &#8220;golden&#8221;, &#8220;dark&#8221;, &#8220;burnt&#8221;};
-set&lt;string&gt; allowed_levels(levels_array, levels_array+4);
-if !allowed_levels.find(<a href="#id18"><span class="problematic" id="id19">toastiness_</span></a>){</p>
-<blockquote>
-<div><p>string msg = &#8220;The value given for the darkenss parameter, &#8221;;
-msg += <a href="#id20"><span class="problematic" id="id21">toastiness_</span></a>;
-msg += &#8221;, is not within the allowed set. Allowed values are: &#8221;;
-set&lt;string&gt;::iterator it;
-for (it=allowed_levels.begin(); it != allowed_levels.end(); it++){</p>
-<blockquote>
-<div>msg += &#8221; &#8221;;
-msg += (<a href="#id1"><span class="problematic" id="id2">*</span></a>it);</div></blockquote>
-<p>}
-msg+=&#8221;.&#8221;;
-throw CycException(msg);</p>
-</div></blockquote>
-<p>}</p>
-</div></blockquote>
-</div>
-</div>
-</div>
-<div class="section" id="id3">
-<h1>}<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h1>
-<blockquote>
-<div><p>//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-void ToasterFacility::init(xmlNodePtr cur) {</p>
-<blockquote>
-<div><p>FacilityModel::init(cur);
-/// move XML pointer to current model
-cur = XMLinput-&gt;get_xpath_element(cur,&#8221;model/ToasterFacility&#8221;);
-/// initialize any ToasterFacility-specific datamembers here
-<a href="#id22"><span class="problematic" id="id23">n_slices_</span></a> = strtol(XMLinput-&gt;get_xpath_content(cur, &#8220;rate&#8221;), NULL, 10);
-<a href="#id24"><span class="problematic" id="id25">toastiness_</span></a> = XMLinput-&gt;get_xpath_content(cur,&#8221;toastiness&#8221;);
-<a href="#id26"><span class="problematic" id="id27">rate_</span></a> = strtod(XMLinput-&gt;get_xpath_content(cur, &#8220;rate&#8221;), NULL);
-<a href="#id28"><span class="problematic" id="id29">incommodity_</span></a> = XMLinput-&gt;get_xpath_content(cur, &#8220;incommodity&#8221;);
-<a href="#id30"><span class="problematic" id="id31">outcommodity_</span></a> = XMLinput-&gt;get_xpath_content(cur, &#8220;outcommodity&#8221;);</p>
-<p>// check that <a href="#id32"><span class="problematic" id="id33">toastiness_</span></a> is oneof the allowed levels :
-// this gives an example of performing input checking in the module
-// in case the xml parser is not detailed enough
-string levels_array = {&#8220;light&#8221;, &#8220;golden&#8221;, &#8220;dark&#8221;, &#8220;burnt&#8221;};
-set&lt;string&gt; allowed_levels(levels_array, levels_array+4);
-if !allowed_levels.find(<a href="#id34"><span class="problematic" id="id35">toastiness_</span></a>){</p>
-<blockquote>
-<div><p>string msg = &#8220;The value given for the darkenss parameter, &#8221;;
-msg += <a href="#id36"><span class="problematic" id="id37">toastiness_</span></a>;
-msg += &#8221;, is not within the allowed set. Allowed values are: &#8221;;
-set&lt;string&gt;::iterator it;
-for (it=allowed_levels.begin(); it != allowed_levels.end(); it++){</p>
-<blockquote>
-<div>msg += &#8221; &#8221;;
-msg += (<a href="#id4"><span class="problematic" id="id5">*</span></a>it);</div></blockquote>
-<p>}
-msg+=&#8221;.&#8221;;
-throw CycException(msg);</p>
-</div></blockquote>
-<p>}</p>
-</div></blockquote>
-<p>}</p>
-</div></blockquote>
 <p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; master</p>
 <p>These member variables must be declared in the ToasterFacility.h header file. The header file originally has a section that looks like :</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/* --------------------</span>
@@ -392,6 +345,9 @@ throw CycException(msg);</p>
 <span class="p">};</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="customization-of-the-documentation-comments">
+<h3>Customization of the Documentation Comments<a class="headerlink" href="#customization-of-the-documentation-comments" title="Permalink to this headline">¶</a></h3>
 <p>To build documentation of your module into the doxygen documentation you or your
 users build locally, your code must contain informative, Doxygen style comments
 to describe the classes and functions that define your module. More details of
@@ -488,6 +444,9 @@ that looks like :</p>
 <span class="cm">*/</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="customization-of-the-template">
+<h3>Customization of The Template<a class="headerlink" href="#customization-of-the-template" title="Permalink to this headline">¶</a></h3>
 <p>All models must provide a number of functions for which you have copied the
 minium functioning version. This tutorial will address the steps with which to
 customize each of those functions.
@@ -525,6 +484,8 @@ objects of this model type. It is defined, for example, as follows</li>
     <span class="k">return</span> <span class="k">new</span> <span class="n">ToasterFacility</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="creating-specific-model-types">
 <h2>Creating Specific Model Types<a class="headerlink" href="#creating-specific-model-types" title="Permalink to this headline">¶</a></h2>
