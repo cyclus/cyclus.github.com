@@ -1,4 +1,4 @@
-
+s
 .. summary Specific Step-by-Step instructions for creating a ToasterFacility 
 
 Model Devlopment Example : ToasterFacility
@@ -230,7 +230,7 @@ We change it to include :
     double rate_;
   
     /**
-     * The toastiness of the toast. This can be 
+     * The toastiness of the toast. This can be 'light', 'golden', 'dark' or 'burnt'. 
      */
     std::string toastiness_;
   
