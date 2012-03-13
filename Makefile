@@ -39,7 +39,9 @@ help:
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
 
 clean:
-	-rm -f $(BUILDDIR)/*.*
+	-rm -f $(BUILDDIR)/*.html
+	-rm -f $(BUILDDIR)/*.inv
+	-rm -f $(BUILDDIR)/*.js
 	-rm -Rf $(BUILDDIR)/usrdoc
 	-rm -Rf $(BUILDDIR)/devdoc
 	-rm -Rf $(BUILDDIR)/basics
