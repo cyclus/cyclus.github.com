@@ -7,72 +7,18 @@ Developing Models For Cyclus
 Introduction
 ------------
 
-The current code in `branches/paul-branch` has support for Markets, Facilities
-and Regions and loadable modules.  The instructions here will describe both how
-to add specific modules within those types, as well as how to extend this to
-other types of loadable modules.
+The Cyclus core has support for Markets, Facilities, Institutions, and Regions.  
+The instructions here will describe both how to add specific modules of those types, 
+as well as how to extend Cyclus to other types of loadable modules.
 
 Creating New Models of the Existing Types
 -----------------------------------------
 
-For each type of model, a set of stub files are available as skeletons for the
-new models.  When creating a new model, it is important that all the
-functionality defined in these files remains in the final model definition.
-
-To create a new model, e.g. a new MarketModel of type NewMarket:
-
-  * copy StubMarket.h and StubMarket.cpp to a new location, e.g. NewMarket.h &
-    NewMarket.cpp, respectively
-
-  * change the internal references to StubMarket to NewMarket
-
-  * add a new `add_library` line to the CMakeLists.txt file in that directory
-
-  * add the XML input grammar for that model to the appropriate place in the
-    `/src/cyclus.rng` XML schema
-
-All models must provide the following:
-
-  * a method named 'init' to initialize an instance of the model from an XML
-    node pointer (xmlNodePtr)
-
-     * this method must call the parent class method of the same name (e.g.
-       MarketModel::init(cur))
-
-     * this method should only initialize variables that are NOT members of the
-       parent class
-
-  * a method named 'copy' to initialize an instance of the model from another
-    instance of the same model
-
-     * this method must call the parent class method of the same name (e.g.
-       MarketModel::copy(src))
-
-     * this method should only initialize variables that are NOT members of the
-       parent class   
-
-  * a method named 'print' to print a description of the model
-
-     * this method should call the parent class method of the same name (e.g.
-       MarketModel::print())
-
-     * this method should only print information that is NOT part of the parent
-       class(es)
-
-     * this method assumes that a dangling output line (no std::endl) is left
-       from the parent class output
-
-  * two global functions `construct` and `destroy` that are used to instantiate
-    objects of this model type.  They are defined, for example, as follows::
-
-      extern "C" Model* construct() {
-          return new NewMarket();
-      }
-
-      extern "C" void destruct(Model* p) {
-          delete p;
-      }
-
+For each type of model (i.e. Market, Facility, Institution, or Region), a set of stub 
+files are available as skeletons for the new models.  When creating a new model, it is important that all the
+functionality defined in these files remains in the final model definition. A 
+step by step example of producing a new model from the existing stubs can be 
+found in the :doc:`toaster`. 
 
 Creating Specific Model Types
 -----------------------------
