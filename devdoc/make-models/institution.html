@@ -1,0 +1,160 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Developing Institution Models &mdash; Cyclus Home</title>
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../../index.html" />
+    <link rel="up" title="Developing Models For Cyclus" href="main.html" />
+    <link rel="next" title="Developing Region Models" href="region.html" />
+    <link rel="prev" title="Developing Facility Models" href="facility.html" />
+   
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <a href="http://cyclus.github.com">
+    <img src="../../_static/logo1.png"/>
+  </a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="region.html" title="Developing Region Models"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="facility.html" title="Developing Facility Models"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="../main.html" >Cyclus Developer Guide</a> &raquo;</li>
+          <li><a href="main.html" accesskey="U">Developing Models For Cyclus</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Developing Institution Models</a><ul>
+<li><a class="reference external" href="#details">Details</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="facility.html"
+                                  title="previous chapter">Developing Facility Models</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="region.html"
+                                  title="next chapter">Developing Region Models</a></p>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="developing-institution-models">
+<h1>Developing Institution Models<a class="headerlink" href="#developing-institution-models" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>In addition to inheriting from the main dynamic loading base class <cite>Model</cite>, all
+InstModel models also inherit from <cite>Communicator</cite>.</p>
+<p>A InstModel&#8217;s primary function is to</p>
+<blockquote>
+<ul class="simple">
+<li>refer to the set of facilities operating in this institution</li>
+</ul>
+</blockquote>
+<p>All InstModel models may also implement a reciveMessage function if messages
+need to be amended by the institution before being sent up to the region or
+down to the facility. This is a virtual (but not pure virtual) function, so
+implementation is optional. Default behavior is to ignore the message.</p>
+<p>InstModel models are sent a tick and tock signal at the beginning and end of
+each month, respectively. Monthly tasks, such as facility deployment or
+bookkeeping should be undertaken within the handleTick and handleTock
+functions. These are virtual (but not pure virtual), so implementation of these
+functions is optional.</p>
+<blockquote>
+<em>The InstModel model type is not yet stable and additional interface and
+data members are expected to be added.</em></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="region.html" title="Developing Region Models"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="facility.html" title="Developing Facility Models"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="../main.html" >Cyclus Developer Guide</a> &raquo;</li>
+          <li><a href="main.html" >Developing Models For Cyclus</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+    </div>
+  </body>
+</html>
