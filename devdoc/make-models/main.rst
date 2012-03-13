@@ -33,6 +33,11 @@ Model-specific reference:
    institution
    region
    market
+
+.. toctree::
+   :hidden:
+
+   toaster
   
 A Note To Core Developers
 +++++++++++++++++++++++++
