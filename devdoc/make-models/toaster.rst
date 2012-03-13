@@ -12,16 +12,13 @@ specific steps to take in order to easily add a custom module to the Cyclus
 framework. The module pursued here is a Facility type module which converts a 
 `bread` Material Resource into a `toast` Material Resource. In order to do this, 
 
-Creating New Models of the Existing Types
------------------------------------------
-
 For each type of model (i.e. Market, Facility, Institution, or Region), a set of 
 stub files are available as skeletons for the new models.  When creating a new 
 model, it is important that all the functionality defined in these files remains 
 in the final model definition. 
 
 Beginning With a Stub Template
-+++++++++++++++++++++++++++++++
+-----------------------------------------
 
 To create a new model, e.g. a new FacilityModel of type ToasterFacility:
 
@@ -73,7 +70,7 @@ would become :
 
 
 Customization of the Relax-NG Grammar
-++++++++++++++++++++++++++++++++++++++
+-----------------------------------------
 
 The parameters that define a Toaster are :
 
@@ -144,114 +141,9 @@ There are a few things to notice here.
   file that helps define a module. The interpretation, again, would have to be 
   done on the c++ side**
 
-Customization of the init function 
-+++++++++++++++++++++++++++++++++++++++++++++
-
-In order for your module to have access to these parameters that define a 
-configured prototype the init function must load the data from XML. The 
-ToasterFacility.cpp file changes from :
-
-.. code-block:: cpp
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
-  void ToasterFacility::init(xmlNodePtr cur) {
-    FacilityModel::init(cur);
-    /// move XML pointer to current model
-    cur = XMLinput->get_xpath_element(cur,"model/ToasterFacility");
-    /// initialize any ToasterFacility-specific datamembers here
-  }
-
-To :
-
-.. code-block:: cpp
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
-  void ToasterFacility::init(xmlNodePtr cur) {
-    FacilityModel::init(cur);
-    /// move XML pointer to current model
-    cur = XMLinput->get_xpath_element(cur,"model/ToasterFacility");
-    /// initialize any ToasterFacility-specific datamembers here
-    n_slices_ = strtol(XMLinput->get_xpath_content(cur, "rate"), NULL, 10);
-    toastiness_ = XMLinput->get_xpath_content(cur,"toastiness");
-    rate_ = strtod(XMLinput->get_xpath_content(cur, "rate"), NULL);
-    incommodity_ = XMLinput->get_xpath_content(cur, "incommodity");
-    outcommodity_ = XMLinput->get_xpath_content(cur, "outcommodity");
-  
-    // check that toastiness_ is oneof the allowed levels :
-    // this gives an example of performing input checking in the module 
-    // in case the xml parser is not detailed enough
-    string levels_array = {"light", "golden", "dark", "burnt"};
-    set<string> allowed_levels(levels_array, levels_array+4);
-    if !allowed_levels.find(toastiness_){
-      string msg = "The value given for the darkenss parameter, ";
-      msg += toastiness_;
-      msg += ", is not within the allowed set. Allowed values are: ";
-      set<string>::iterator it;
-      for (it=allowed_levels.begin(); it != allowed_levels.end(); it++){
-        msg += " ";
-        msg += (*it);
-      }
-      msg+=".";
-      throw CycException(msg);
-    }
-  }
-
-These member variables must be declared in the ToasterFacility.h header file. The header file originally has a section that looks like :
-
-.. code-block:: cpp
-
-  /* --------------------
-   * _THIS_ FACILITYMODEL class has these members
-   * --------------------
-   */
-  
-  /* ------------------- */ 
-
-  };
-        
-We change it to include :
- 
-.. code-block:: cpp
-  
-  /* --------------------
-   * _THIS_ FACILITYMODEL class has these members
-   * --------------------
-   */
-  
-   private:
-    /**
-     * The number of slices the toaster can handle at one time
-     */
-    int n_slices_;
-  
-    /**
-     * The speed (set of slices per minute) with which the toaster toasts
-     */
-    double rate_;
-  
-    /**
-     * The toastiness of the toast. This can be 'light', 'golden', 'dark' or 'burnt'. 
-     */
-    std::string toastiness_;
-  
-    /**
-     * The name of the commodity market for the incoming commodity.
-     */
-    std::string incommodity_;
-  
-    /**
-     * The name of the commodity market for the outgoing commodity.
-     */
-    std::string outcommodity_;
-  
-  
-  /* ------------------- */ 
-  
-  };
-
 
 Customization of the Documentation Comments 
-+++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------
 
 To build documentation of your module into the doxygen documentation you or your 
 users build locally, your code must contain informative, Doxygen style comments 
@@ -356,49 +248,166 @@ This should looke more like :
 
 
 
+Customization of Module Behavior
+-----------------------------------------
 
-Customization of The Template
-++++++++++++++++++++++++++++++
+init
++++++++
 
-All models must provide a number of functions for which you have copied the 
-minium functioning version. This tutorial will address the steps with which to 
-customize each of those functions. 
-These functions are :
+One of the requirements for a model to be properly loaded into the Cyclus 
+framework is a  method named 'init' to initialize an instance of the model from an XML node pointer (xmlNodePtr)
 
-* a method named 'init' to initialize an instance of the model from an XML
-  node pointer (xmlNodePtr)
+* this method must call the parent class method of the same name (e.g.
+  FacilityModel::init(cur))
 
-  * this method must call the parent class method of the same name (e.g.
-    FacilityModel::init(cur))
+* this method should only initialize variables that are NOT members of the
+  parent class
 
-  * this method should only initialize variables that are NOT members of the
-    parent class
+In order for your module to have access to these parameters that define a 
+configured prototype the init function must load the data from XML. The 
+ToasterFacility.cpp file changes from :
 
-* a method named 'copy' to initialize an instance of the model from another
-  instance of the same model
-
-  * this method must call the parent class method of the same name (e.g.
-    FacilityModel::copy(src))
-
-  * this method should only initialize variables that are NOT members of the
-    parent class   
-
-* a method named 'print' to print a description of the model
-
-  * this method should call the parent class method of the same name (e.g.
-    FacilityModel::print())
-
-  * this method should only print information that is NOT part of the parent
-    class(es)
-
-  * this method assumes that a dangling output line (no std::endl) is left
-    from the parent class output
-
-* a global construct function used to instantiate
-  objects of this model type. It is defined, for example, as follows
-  
 .. code-block:: cpp
 
-      extern "C" Model* constructToasterFacility() {
-          return new ToasterFacility();
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+  void ToasterFacility::init(xmlNodePtr cur) {
+    FacilityModel::init(cur);
+    /// move XML pointer to current model
+    cur = XMLinput->get_xpath_element(cur,"model/ToasterFacility");
+    /// initialize any ToasterFacility-specific datamembers here
+  }
+
+To :
+
+.. code-block:: cpp
+
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+  void ToasterFacility::init(xmlNodePtr cur) {
+    FacilityModel::init(cur);
+    /// move XML pointer to current model
+    cur = XMLinput->get_xpath_element(cur,"model/ToasterFacility");
+    /// initialize any ToasterFacility-specific datamembers here
+    n_slices_ = strtol(XMLinput->get_xpath_content(cur, "rate"), NULL, 10);
+    toastiness_ = XMLinput->get_xpath_content(cur,"toastiness");
+    rate_ = strtod(XMLinput->get_xpath_content(cur, "rate"), NULL);
+    incommodity_ = XMLinput->get_xpath_content(cur, "incommodity");
+    outcommodity_ = XMLinput->get_xpath_content(cur, "outcommodity");
+  
+    // check that toastiness_ is oneof the allowed levels :
+    // this gives an example of performing input checking in the module 
+    // in case the xml parser is not detailed enough
+    string levels_array = {"light", "golden", "dark", "burnt"};
+    set<string> allowed_levels(levels_array, levels_array+4);
+    if !allowed_levels.find(toastiness_){
+      string msg = "The value given for the darkenss parameter, ";
+      msg += toastiness_;
+      msg += ", is not within the allowed set. Allowed values are: ";
+      set<string>::iterator it;
+      for (it=allowed_levels.begin(); it != allowed_levels.end(); it++){
+        msg += " ";
+        msg += (*it);
       }
+      msg+=".";
+      throw CycException(msg);
+    }
+  }
+
+These member variables must be declared in the ToasterFacility.h header file. The header file originally has a section that looks like :
+
+.. code-block:: cpp
+
+  /* --------------------
+   * _THIS_ FACILITYMODEL class has these members
+   * --------------------
+   */
+  
+  /* ------------------- */ 
+
+  };
+        
+We change it to include :
+ 
+.. code-block:: cpp
+  
+  /* --------------------
+   * _THIS_ FACILITYMODEL class has these members
+   * --------------------
+   */
+  
+   private:
+    /**
+     * The number of slices the toaster can handle at one time
+     */
+    int n_slices_;
+  
+    /**
+     * The speed (set of slices per minute) with which the toaster toasts
+     */
+    double rate_;
+  
+    /**
+     * The toastiness of the toast. This can be 'light', 'golden', 'dark' or 'burnt'. 
+     */
+    std::string toastiness_;
+  
+    /**
+     * The name of the commodity market for the incoming commodity.
+     */
+    std::string incommodity_;
+  
+    /**
+     * The name of the commodity market for the outgoing commodity.
+     */
+    std::string outcommodity_;
+  
+  
+  /* ------------------- */ 
+  
+  };
+
+
+
+copy
+++++++
+
+All models must provide a method named 'copy' to initialize an instance of the model from another
+  instance of the same model
+
+* this method must call the parent class method of the same name (e.g.
+  FacilityModel::copy(src))
+
+* this method should only initialize variables that are NOT members of the
+  parent class   
+
+
+
+print
+++++++++
+
+All models may provide a method named 'print' to print a description of the model
+
+* this method should call the parent class method of the same name (e.g.
+  FacilityModel::print())
+
+* this method should only print information that is NOT part of the parent
+  class(es)
+
+* this method assumes that a dangling output line (no std::endl) is left
+  from the parent class output
+
+
+Customization of Model Behavior
+----------------------------------------------
+
+handleTick and handleTock
+++++++++++++++++++++++++++
+
+The handleTick and handleTock functions are called once per timestep, and it is
+in these functions that much of the behavior of the module is defined.
+
+receiveMessage
+++++++++++++++++++++++++++
+
+A communicator may implement actions for receiving a message.
+
+
