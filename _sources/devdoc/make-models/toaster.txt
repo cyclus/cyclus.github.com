@@ -396,9 +396,6 @@ All models may provide a method named 'print' to print a description of the mode
   from the parent class output
 
 
-Customization of Model Behavior
-----------------------------------------------
-
 handleTick and handleTock
 ++++++++++++++++++++++++++
 
