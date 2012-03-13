@@ -127,89 +127,11 @@ other types of loadable modules.
 </div>
 <div class="section" id="creating-new-models-of-the-existing-types">
 <h2>Creating New Models of the Existing Types<a class="headerlink" href="#creating-new-models-of-the-existing-types" title="Permalink to this headline">¶</a></h2>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-For each type of model (i.e. Market, Facility, Institution, or Region), a set of stub
+<p>For each type of model (i.e. Market, Facility, Institution, or Region), a set of stub
 files are available as skeletons for the new models.  When creating a new model, it is important that all the
 functionality defined in these files remains in the final model definition. A
 step by step example of producing a new model from the existing stubs can be
-found in the <a class="reference internal" href="toaster.html"><em>Model Devlopment Example : ToasterFacility</em></a>.
-=======
-For each type of model, a set of stub files are available as skeletons for the
-new models.  When creating a new model, it is important that all the
-functionality defined in these files remains in the final model definition.</p>
-<p>To create a new model, e.g. a new MarketModel of type NewMarket:</p>
-<blockquote>
-<div><ul class="simple">
-<li>copy StubMarket.h and StubMarket.cpp to a new location, e.g. NewMarket.h &amp;
-NewMarket.cpp, respectively</li>
-<li>change the internal references to StubMarket to NewMarket</li>
-<li>add a new <cite>add_library</cite> line to the CMakeLists.txt file in that directory</li>
-<li>add the XML input grammar for that model to the appropriate place in the
-<cite>/src/cyclus.rng</cite> XML schema</li>
-</ul>
-</div></blockquote>
-<p>All models must provide the following:</p>
-<blockquote>
-<div><ul>
-<li><p class="first">a method named &#8216;init&#8217; to initialize an instance of the model from an XML
-node pointer (xmlNodePtr)</p>
-<blockquote>
-<div><ul class="simple">
-<li>this method must call the parent class method of the same name (e.g.
-MarketModel::init(cur))</li>
-<li>this method should only initialize variables that are NOT members of the
-parent class</li>
-</ul>
-</div></blockquote>
-</li>
-<li><p class="first">a method named &#8216;copy&#8217; to initialize an instance of the model from another
-instance of the same model</p>
-<blockquote>
-<div><ul class="simple">
-<li>this method must call the parent class method of the same name (e.g.
-MarketModel::copy(src))</li>
-<li>this method should only initialize variables that are NOT members of the
-parent class</li>
-</ul>
-</div></blockquote>
-</li>
-<li><p class="first">a method named &#8216;print&#8217; to print a description of the model</p>
-<blockquote>
-<div><ul class="simple">
-<li>this method should call the parent class method of the same name (e.g.
-MarketModel::print())</li>
-<li>this method should only print information that is NOT part of the parent
-class(es)</li>
-<li>this method assumes that a dangling output line (no std::endl) is left
-from the parent class output</li>
-</ul>
-</div></blockquote>
-</li>
-<li><p class="first">two global functions <cite>construct</cite> and <cite>destroy</cite> that are used to instantiate
-objects of this model type.  They are defined, for example, as follows:</p>
-<div class="highlight-python"><pre>extern "C" Model* construct() {
-    return new NewMarket();
-}
-
-extern "C" void destruct(Model* p) {
-    delete p;
-}</pre>
-</div>
-</li>
-</ul>
-</div></blockquote>
-<p>Other notes on introducing new Model types:</p>
-<blockquote>
-<div><ul class="simple">
-<li>You will probably need to extend the input parsing for this new Model type.
-Since the primary input for <em>Cyclus</em> uses XML, you will certainly need to
-add code to recognize and process primitives for this Model type.  While
-you could, in theory, add a completely new input paradigm for Models of
-this type, you might need to extend the <em>Cyclus</em> grammar to include support
-for your Models.</li>
-</ul>
-</div></blockquote>
-<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 158f38a38f5b90bcecb60d24e119ac64cfcff7e8</p>
+found in the <a class="reference internal" href="toaster.html"><em>Model Devlopment Example : ToasterFacility</em></a>.</p>
 </div>
 <div class="section" id="creating-specific-model-types">
 <h2>Creating Specific Model Types<a class="headerlink" href="#creating-specific-model-types" title="Permalink to this headline">¶</a></h2>
@@ -236,7 +158,6 @@ Model-specific reference:</p>
 </li>
 </ul>
 </div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <div class="toctree-wrapper compound">
 </div>
 <div class="section" id="a-note-to-core-developers">
