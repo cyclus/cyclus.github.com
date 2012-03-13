@@ -195,7 +195,6 @@ To :
       throw CycException(msg);
     }
   }
->>>>>>> master
 
 These member variables must be declared in the ToasterFacility.h header file. The header file originally has a section that looks like :
 
