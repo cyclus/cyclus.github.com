@@ -320,16 +320,37 @@ This should looke more like :
     until it is golden brown. 
   
     @section modelparams Model Parameters
-    To fully define a Toaster prototype, the 00
+    To fully define a Toaster prototype, the following parameters must be 
+    defined : 
+    - int nSlices :  How many slices it can toast at once [ integer number of slices ]
+    - string toastiness : How toasted they become [ light, golden, dark, burnt ]
+    - double rate : How long it takes to toast a set of slices [ minutes ]
+    - string incommodity : The commodity market in which slices of bread are traded 
+    - string outcommodity : The commodity market in which toasted bread is traded
   
     @section optionalparams Optional Parameters
-    Place a description of the optional input parameters to define the model 
-    implementation.
+    This model has no optional parameters.
   
     @section detailed Detailed Behavior
-    Place a description of the detailed behavior of the model. Consider describing 
-    the behavior at the tick and tock as well as the behavior upon sending and
-    receiving materials and messages. 
+    The ToasterFacility starts operation immediately. 
+
+    @subsection tick On the tick :
+    The ToasterFacility immediately offers any toast that exists in the inventory from 
+    previous months and begins to request the incommodity. It requests as much sliced 
+    bread as it can toast within a timestep. That is, it requests 86400 slices if 
+    the timestep is 30 days long, the rate is 2 minutes per set of slices, and  
+    n_slices = 4. 
+     
+    @subsection receive Receiving a Message :
+    If the request is matched with an offer from another facility, 
+    the ToasterFacility executes that order by adding that quantity to its stocks. 
+   
+    @subsection tock On the tock :
+    On the tock, the ToasterFacility alters the isotopic vectors of each slice of 
+    bread in the stocks (up to the monthly capacity) to include more carbon and less
+    oxygen (the magnitude of the change is defined by the toastiness parameter). Each 
+    (now toasted) slice is then placed in the inventory. 
+    
   */
 
 
