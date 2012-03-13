@@ -7,16 +7,10 @@ Developing Models For Cyclus
 Introduction
 ------------
 
-<<<<<<< HEAD
-The Cyclus core has support for Markets, Facilities, Institutions, and Regions.  
-The instructions here will describe both how to add specific modules of those types, 
-as well as how to extend Cyclus to other types of loadable modules.
-=======
 *Cyclus* employs a Region-Institution-Facility hierarchy in simulations. Additionally,
 Resources are traded amonst the simulation agents via Markets. The instructions here will 
 describe both how to add specific modules within those types, as well as how to extend this to
 other types of loadable modules.
->>>>>>> 158f38a38f5b90bcecb60d24e119ac64cfcff7e8
 
 Creating New Models of the Existing Types
 -----------------------------------------
@@ -36,11 +30,11 @@ Model-specific reference:
 .. toctree::
    :maxdepth: 2
 
+   toaster
    facility
    institution
    region
    market
-   toaster
   
 A Note To Core Developers
 +++++++++++++++++++++++++

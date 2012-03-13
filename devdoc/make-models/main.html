@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="../main.html" />
-    <link rel="next" title="Developing Facility Models" href="facility.html" />
+    <link rel="next" title="Model Devlopment Example : ToasterFacility" href="toaster.html" />
     <link rel="prev" title="Style Guidelines for Developers" href="../style_guide.html" />
    
 <script type="text/javascript">
@@ -58,7 +58,7 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="facility.html" title="Developing Facility Models"
+          <a href="toaster.html" title="Model Devlopment Example : ToasterFacility"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="../style_guide.html" title="Style Guidelines for Developers"
@@ -87,8 +87,8 @@
   <p class="topless"><a href="../style_guide.html"
                         title="previous chapter">Style Guidelines for Developers</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="facility.html"
-                        title="next chapter">Developing Facility Models</a></p>
+  <p class="topless"><a href="toaster.html"
+                        title="next chapter">Model Devlopment Example : ToasterFacility</a></p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
@@ -114,16 +114,10 @@
 <h1>Developing Models For Cyclus<a class="headerlink" href="#developing-models-for-cyclus" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-The Cyclus core has support for Markets, Facilities, Institutions, and Regions.
-The instructions here will describe both how to add specific modules of those types,
-as well as how to extend Cyclus to other types of loadable modules.
-=======
-<em>Cyclus</em> employs a Region-Institution-Facility hierarchy in simulations. Additionally,
+<p><em>Cyclus</em> employs a Region-Institution-Facility hierarchy in simulations. Additionally,
 Resources are traded amonst the simulation agents via Markets. The instructions here will
 describe both how to add specific modules within those types, as well as how to extend this to
-other types of loadable modules.
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; 158f38a38f5b90bcecb60d24e119ac64cfcff7e8</p>
+other types of loadable modules.</p>
 </div>
 <div class="section" id="creating-new-models-of-the-existing-types">
 <h2>Creating New Models of the Existing Types<a class="headerlink" href="#creating-new-models-of-the-existing-types" title="Permalink to this headline">¶</a></h2>
@@ -139,6 +133,14 @@ found in the <a class="reference internal" href="toaster.html"><em>Model Devlopm
 Model-specific reference:</p>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="toaster.html">Model Devlopment Example : ToasterFacility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="toaster.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toaster.html#creating-new-models-of-the-existing-types">Creating New Models of the Existing Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toaster.html#creating-specific-model-types">Creating Specific Model Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toaster.html#extending-loadable-modules-to-other-types-outdated">Extending Loadable Modules to Other Types (outdated)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="toaster.html#references">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="facility.html">Developing Facility Models</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="facility.html#details">Details</a></li>
 </ul>
@@ -156,14 +158,6 @@ Model-specific reference:</p>
 <li class="toctree-l2"><a class="reference internal" href="market.html#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="toaster.html">Model Devlopment Example : ToasterFacility</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="toaster.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="toaster.html#creating-new-models-of-the-existing-types">Creating New Models of the Existing Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="toaster.html#creating-specific-model-types">Creating Specific Model Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="toaster.html#extending-loadable-modules-to-other-types-outdated">Extending Loadable Modules to Other Types (outdated)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="toaster.html#references">References</a></li>
 </ul>
 </div>
 <div class="section" id="a-note-to-core-developers">
@@ -203,7 +197,7 @@ the others to ensure it remains up-to-date.</p>
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="facility.html" title="Developing Facility Models"
+          <a href="toaster.html" title="Model Devlopment Example : ToasterFacility"
              >next</a> |</li>
         <li class="right" >
           <a href="../style_guide.html" title="Style Guidelines for Developers"

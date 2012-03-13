@@ -30,11 +30,11 @@ Model-specific reference:
 .. toctree::
    :maxdepth: 2
 
+   toaster
    facility
    institution
    region
    market
-   toaster
   
 A Note To Core Developers
 +++++++++++++++++++++++++
