@@ -260,8 +260,79 @@ this are discussed in the style guide, but the Stub files give a good begining.
 For our ToasterFacility, the ToasterFacility.h file, for instance, has a section 
 that looks like :
    
+.. code-block:: cpp
 
-To customize it, we change the 
+  // ToasterFacility.h
+  #if !defined(_TOASTERFACILITY_H)
+  #define _TOASTERFACILITY_H
+  
+  #include "Logger.h"
+  #include "FacilityModel.h"
+  
+  /**
+    @class ToasterFacility
+    
+    @brief This FacilityModel is intended 
+    as a skeleton to guide the implementation of new FacilityModel models. 
+    
+    The ToasterFacility class inherits from the FacilityModel class and is 
+    dynamically loaded by the Model class when requested.
+  
+    @section intro Introduction
+    Place an introduction to the model here. 
+  
+    @section modelparams Model Parameters
+    Place a description of the required input parameters which define the model 
+    implementation.
+  
+    @section optionalparams Optional Parameters
+    Place a description of the optional input parameters to define the model 
+    implementation.
+  
+    @section detailed Detailed Behavior
+    Place a description of the detailed behavior of the model. Consider describing 
+    the behavior at the tick and tock as well as the behavior upon sending and
+    receiving materials and messages. 
+  */
+
+This should looke more like :
+
+.. code-block:: cpp
+
+  // ToasterFacility.h
+  #if !defined(_TOASTERFACILITY_H)
+  #define _TOASTERFACILITY_H
+  
+  #include "Logger.h"
+  #include "FacilityModel.h"
+  
+  /**
+    @class ToasterFacility
+    
+    @brief This FacilityModel is intended to toast material objects
+    
+    The ToasterFacility class inherits from the FacilityModel class and is 
+    dynamically loaded by the Model class when requested.
+  
+    @section intro Introduction
+    A toaster is a common household implment which adds some carbon to our 
+    slices of bread. It usually takes about a minute to heat a slice of bread 
+    until it is golden brown. 
+  
+    @section modelparams Model Parameters
+    To fully define a Toaster prototype, the 00
+  
+    @section optionalparams Optional Parameters
+    Place a description of the optional input parameters to define the model 
+    implementation.
+  
+    @section detailed Detailed Behavior
+    Place a description of the detailed behavior of the model. Consider describing 
+    the behavior at the tick and tock as well as the behavior upon sending and
+    receiving materials and messages. 
+  */
+
+
 
 
 Customization of The Template
