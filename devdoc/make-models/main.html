@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -13,12 +15,13 @@
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
         VERSION:     '0.1',
-        COLLAPSE_MODINDEX: false,
+        COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="../main.html" />
@@ -66,39 +69,39 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="../../index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href="#">Developing Models For Cyclus</a><ul>
-<li><a class="reference external" href="#introduction">Introduction</a></li>
-<li><a class="reference external" href="#creating-new-models-of-the-existing-types">Creating New Models of the Existing Types</a></li>
-<li><a class="reference external" href="#creating-specific-model-types">Creating Specific Model Types</a><ul>
-<li><a class="reference external" href="#a-note-to-core-developers">A Note To Core Developers</a></li>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Developing Models For Cyclus</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#creating-new-models-of-the-existing-types">Creating New Models of the Existing Types</a></li>
+<li><a class="reference internal" href="#creating-specific-model-types">Creating Specific Model Types</a><ul>
+<li><a class="reference internal" href="#a-note-to-core-developers">A Note To Core Developers</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#references">References</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 </ul>
 
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="../style_guide.html"
-                                  title="previous chapter">Style Guidelines for Developers</a></p>
-            <h4>Next topic</h4>
-            <p class="topless"><a href="facility.html"
-                                  title="next chapter">Developing Facility Models</a></p>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="../../search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../style_guide.html"
+                        title="previous chapter">Style Guidelines for Developers</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="facility.html"
+                        title="next chapter">Developing Facility Models</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -111,19 +114,32 @@
 <h1>Developing Models For Cyclus<a class="headerlink" href="#developing-models-for-cyclus" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p><em>Cyclus</em> employs a Region-Institution-Facility hierarchy in simulations. Additionally,
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+The Cyclus core has support for Markets, Facilities, Institutions, and Regions.
+The instructions here will describe both how to add specific modules of those types,
+as well as how to extend Cyclus to other types of loadable modules.
+=======
+<em>Cyclus</em> employs a Region-Institution-Facility hierarchy in simulations. Additionally,
 Resources are traded amonst the simulation agents via Markets. The instructions here will
 describe both how to add specific modules within those types, as well as how to extend this to
-other types of loadable modules.</p>
+other types of loadable modules.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 158f38a38f5b90bcecb60d24e119ac64cfcff7e8</p>
 </div>
 <div class="section" id="creating-new-models-of-the-existing-types">
 <h2>Creating New Models of the Existing Types<a class="headerlink" href="#creating-new-models-of-the-existing-types" title="Permalink to this headline">¶</a></h2>
-<p>For each type of model, a set of stub files are available as skeletons for the
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+For each type of model (i.e. Market, Facility, Institution, or Region), a set of stub
+files are available as skeletons for the new models.  When creating a new model, it is important that all the
+functionality defined in these files remains in the final model definition. A
+step by step example of producing a new model from the existing stubs can be
+found in the <a class="reference internal" href="toaster.html"><em>Model Devlopment Example : ToasterFacility</em></a>.
+=======
+For each type of model, a set of stub files are available as skeletons for the
 new models.  When creating a new model, it is important that all the
 functionality defined in these files remains in the final model definition.</p>
 <p>To create a new model, e.g. a new MarketModel of type NewMarket:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>copy StubMarket.h and StubMarket.cpp to a new location, e.g. NewMarket.h &amp;
 NewMarket.cpp, respectively</li>
 <li>change the internal references to StubMarket to NewMarket</li>
@@ -131,35 +147,35 @@ NewMarket.cpp, respectively</li>
 <li>add the XML input grammar for that model to the appropriate place in the
 <cite>/src/cyclus.rng</cite> XML schema</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>All models must provide the following:</p>
 <blockquote>
-<ul>
+<div><ul>
 <li><p class="first">a method named &#8216;init&#8217; to initialize an instance of the model from an XML
 node pointer (xmlNodePtr)</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>this method must call the parent class method of the same name (e.g.
 MarketModel::init(cur))</li>
 <li>this method should only initialize variables that are NOT members of the
 parent class</li>
 </ul>
-</blockquote>
+</div></blockquote>
 </li>
 <li><p class="first">a method named &#8216;copy&#8217; to initialize an instance of the model from another
 instance of the same model</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>this method must call the parent class method of the same name (e.g.
 MarketModel::copy(src))</li>
 <li>this method should only initialize variables that are NOT members of the
 parent class</li>
 </ul>
-</blockquote>
+</div></blockquote>
 </li>
 <li><p class="first">a method named &#8216;print&#8217; to print a description of the model</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>this method should call the parent class method of the same name (e.g.
 MarketModel::print())</li>
 <li>this method should only print information that is NOT part of the parent
@@ -167,7 +183,7 @@ class(es)</li>
 <li>this method assumes that a dangling output line (no std::endl) is left
 from the parent class output</li>
 </ul>
-</blockquote>
+</div></blockquote>
 </li>
 <li><p class="first">two global functions <cite>construct</cite> and <cite>destroy</cite> that are used to instantiate
 objects of this model type.  They are defined, for example, as follows:</p>
@@ -181,10 +197,10 @@ extern "C" void destruct(Model* p) {
 </div>
 </li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>Other notes on introducing new Model types:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>You will probably need to extend the input parsing for this new Model type.
 Since the primary input for <em>Cyclus</em> uses XML, you will certainly need to
 add code to recognize and process primitives for this Model type.  While
@@ -192,35 +208,37 @@ you could, in theory, add a completely new input paradigm for Models of
 this type, you might need to extend the <em>Cyclus</em> grammar to include support
 for your Models.</li>
 </ul>
-</blockquote>
+</div></blockquote>
+<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 158f38a38f5b90bcecb60d24e119ac64cfcff7e8</p>
 </div>
 <div class="section" id="creating-specific-model-types">
 <h2>Creating Specific Model Types<a class="headerlink" href="#creating-specific-model-types" title="Permalink to this headline">¶</a></h2>
 <p>For further details about creating new models of particular types, consult the
 Model-specific reference:</p>
+<div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference external" href="facility.html">Developing Facility Models</a><ul>
-<li class="toctree-l2"><a class="reference external" href="facility.html#details">Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="facility.html">Developing Facility Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="facility.html#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference external" href="institution.html">Developing Institution Models</a><ul>
-<li class="toctree-l2"><a class="reference external" href="institution.html#details">Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="institution.html">Developing Institution Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="institution.html#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference external" href="region.html">Developing Region Models</a><ul>
-<li class="toctree-l2"><a class="reference external" href="region.html#details">Details</a></li>
-<li class="toctree-l2"><a class="reference external" href="region.html#to-do">To Do</a></li>
+<li class="toctree-l1"><a class="reference internal" href="region.html">Developing Region Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="region.html#details">Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="region.html#to-do">To Do</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference external" href="market.html">Developing Market Models</a><ul>
-<li class="toctree-l2"><a class="reference external" href="market.html#details">Details</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference external" href="tutorial.html">Tutorial on Developing a new Module</a><ul>
-<li class="toctree-l2"><a class="reference external" href="tutorial.html#details">Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="market.html">Developing Market Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="market.html#details">Details</a></li>
 </ul>
 </li>
 </ul>
+</div>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<div class="toctree-wrapper compound">
+</div>
 <div class="section" id="a-note-to-core-developers">
 <h3>A Note To Core Developers<a class="headerlink" href="#a-note-to-core-developers" title="Permalink to this headline">¶</a></h3>
 <p>It is very important to keep the Stub files in the Models directory (or in each
@@ -237,11 +255,11 @@ the others to ensure it remains up-to-date.</p>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<ol class="arabic simple">
+<div><ol class="arabic simple">
 <li><a class="reference external" href="http://oss.sgi.com/LDP/HOWTO/C++-dlopen/index.html">C++ dlopen mini HOWTO</a></li>
 <li><a class="reference external" href="http://www.yolinux.com/TUTORIALS/LibraryArchives-StaticAndDynamic.html">Static, Shared Dynamic and Loadable Linux Libraries</a></li>
 </ol>
-</blockquote>
+</div></blockquote>
 </div>
 </div>
 
@@ -268,8 +286,8 @@ the others to ensure it remains up-to-date.</p>
       </ul>
     </div>
     <div class="footer">
-      &copy; Copyright 2012, Robert Carlsen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+        &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
 </html>
