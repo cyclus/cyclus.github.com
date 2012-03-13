@@ -1,11 +1,8 @@
 
 .. summary Developers notes for the implementation of a new FacilityModel
 
-Developing Region Models
-========================
-
-After reading GuidelinesForImplementingNewModels, this should provide
-additional information specific to implementing a new FacilityModel.
+Developing Facility Models
+==========================
 
 Details
 -------

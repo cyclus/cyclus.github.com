@@ -7,99 +7,50 @@ Developing Models For Cyclus
 Introduction
 ------------
 
+<<<<<<< HEAD
 The Cyclus core has support for Markets, Facilities, Institutions, and Regions.  
 The instructions here will describe both how to add specific modules of those types, 
 as well as how to extend Cyclus to other types of loadable modules.
+=======
+*Cyclus* employs a Region-Institution-Facility hierarchy in simulations. Additionally,
+Resources are traded amonst the simulation agents via Markets. The instructions here will 
+describe both how to add specific modules within those types, as well as how to extend this to
+other types of loadable modules.
+>>>>>>> 158f38a38f5b90bcecb60d24e119ac64cfcff7e8
 
 Creating New Models of the Existing Types
 -----------------------------------------
 
+<<<<<<< HEAD
 For each type of model (i.e. Market, Facility, Institution, or Region), a set of stub 
 files are available as skeletons for the new models.  When creating a new model, it is important that all the
 functionality defined in these files remains in the final model definition. A 
 step by step example of producing a new model from the existing stubs can be 
 found in the :doc:`toaster`. 
+=======
+For each type of model, a set of stub files are available as skeletons for the
+new models.  When creating a new model, it is important that all the
+functionality defined in these files remains in the final model definition.
 
-Creating Specific Model Types
------------------------------
+To create a new model, e.g. a new MarketModel of type NewMarket:
 
-For further details about creating new models of particular types, consult the
-Model-specific reference:
+  * copy StubMarket.h and StubMarket.cpp to a new location, e.g. NewMarket.h &
+    NewMarket.cpp, respectively
 
-.. toctree::
-   :maxdepth: 2
+  * change the internal references to StubMarket to NewMarket
 
-   facility
-   institution
-   region
-   market
+  * add a new `add_library` line to the CMakeLists.txt file in that directory
 
-.. toctree::
-   :hidden:
+  * add the XML input grammar for that model to the appropriate place in the
+    `/src/cyclus.rng` XML schema
 
-   toaster
-  
-A Note To Core Developers
-+++++++++++++++++++++++++
-
-It is very important to keep the Stub files in the Models directory (or in each
-of the model sub-directories) current.  As the Model.h definition is
-improved/enhanced/developed, each of the model types will have to be updated to
-be consistent.  Treat the StubModel and the StubCommModel in the same way as
-others to ensure it remains up-to-date.
-
-Similarly if a single model type is updated, e.g. MarketModel.h, with new
-capability, each of the implemented models will need to be updated to be
-consistent.  Treat the Stub`*` Models in each sub-directory in the same way as
-the others to ensure it remains up-to-date.
-
-Extending Loadable Modules to Other Types (outdated)
-----------------------------------------------------
-
-The current code already has support for loadable modules for MarketModel,
-FacilityModel, InstModel, and RegionModel. These are all derived from base
-class Model defined in `src/Models/Model.h`.  To support extension of this
-capability to other types of models, the files `src/Models/StubModel.h` &
-`src/Models/StubModel.cpp` is provided.  (Stubs are also provided for new
-Models that are also Communicators: `src/Models/StubCommModel.h` &
-`src/Models/StubCommModel.cpp`.)
-
-To extend to a new model type, e.g. NewTypeModel:
-
-  * copy StubModel.h & StubModel.cpp to a new location, NewTypeModel.h &
-    NewTypeModel.cpp, respectively
-
-  * change the internal references to StubModel to NewTypeModel
-
-  * add NewTypeModel.cpp to the list of sources in the top level CMakeLists.txt file
-
-  * add a sub-directory (e.g. NewType) to the Models directory for your models
-
-     * this directory name will become a keyword and should match the model name
-
-  * create a StubNewType.h and StubNewType.cpp file in that sub-directory that
-    are stubs for new models of that type (you may want to copy the files
-    Stub/StubStub.h and Stub/StubStub.cpp)
-
-     * follow the directions for creating a new model above to make a Stub for
-       your NewType model
-
-All new models types must include:
-
-  * a default constructor that
-
-     * assigns the current value of nextID to the ID member variable and
-       increments nextID
-
-     * assigns a string that matches the model name to `model_type`
-
-     * (for Communicators, this should also assign the correct value to
-       `commType`)
+All models must provide the following:
 
   * a method named 'init' to initialize an instance of the model from an XML
     node pointer (xmlNodePtr)
 
-     * this method must call the parent class method Model::init(cur)
+     * this method must call the parent class method of the same name (e.g.
+       MarketModel::init(cur))
 
      * this method should only initialize variables that are NOT members of the
        parent class
@@ -107,10 +58,8 @@ All new models types must include:
   * a method named 'copy' to initialize an instance of the model from another
     instance of the same model
 
-     * this method must call the parent class method Model::copy(src)
-
-     * (for Communicators, this method must call that parent class method
-       Communicator::copy(src))
+     * this method must call the parent class method of the same name (e.g.
+       MarketModel::copy(src))
 
      * this method should only initialize variables that are NOT members of the
        parent class   
@@ -126,6 +75,17 @@ All new models types must include:
      * this method assumes that a dangling output line (no std::endl) is left
        from the parent class output
 
+  * two global functions `construct` and `destroy` that are used to instantiate
+    objects of this model type.  They are defined, for example, as follows::
+
+      extern "C" Model* construct() {
+          return new NewMarket();
+      }
+
+      extern "C" void destruct(Model* p) {
+          delete p;
+      }
+
 Other notes on introducing new Model types:
 
   * You will probably need to extend the input parsing for this new Model type.
@@ -134,15 +94,47 @@ Other notes on introducing new Model types:
     you could, in theory, add a completely new input paradigm for Models of
     this type, you might need to extend the *Cyclus* grammar to include support
     for your Models.
+>>>>>>> 158f38a38f5b90bcecb60d24e119ac64cfcff7e8
 
-  * You will probably need to create a primary storage location for your new
-    models in *Cyclus*.  Currently, most models are somehow registered with the
-    Logician (exception: InstModel are only registered with their containing
-    Region). You will need to extend the code appropriately to give a home to
-    your new models.
+Creating Specific Model Types
+-----------------------------
+
+For further details about creating new models of particular types, consult the
+Model-specific reference:
+
+.. toctree::
+   :maxdepth: 2
+
+   facility
+   institution
+   region
+   market
+<<<<<<< HEAD
+
+.. toctree::
+   :hidden:
+
+   toaster
+=======
+   tutorial
+>>>>>>> 158f38a38f5b90bcecb60d24e119ac64cfcff7e8
+  
+A Note To Core Developers
++++++++++++++++++++++++++
+
+It is very important to keep the Stub files in the Models directory (or in each
+of the model sub-directories) current.  As the Model.h definition is
+improved/enhanced/developed, each of the model types will have to be updated to
+be consistent.  Treat the StubModel and the StubCommModel in the same way as
+others to ensure it remains up-to-date.
+
+Similarly if a single model type is updated, e.g. MarketModel.h, with new
+capability, each of the implemented models will need to be updated to be
+consistent.  Treat the Stub`*` Models in each sub-directory in the same way as
+the others to ensure it remains up-to-date.
 
 References
-==========
+----------
 
   #. `C++ dlopen mini HOWTO <http://oss.sgi.com/LDP/HOWTO/C++-dlopen/index.html>`_
   #. `Static, Shared Dynamic and Loadable Linux Libraries <http://www.yolinux.com/TUTORIALS/LibraryArchives-StaticAndDynamic.html>`_

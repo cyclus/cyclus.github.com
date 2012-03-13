@@ -4,9 +4,6 @@
 Developing Institution Models
 =============================
 
-After reading GuidelinesForImplementingNewModels, this should provide
-additional information specific to implementing a new InstModel.
-
 Details
 -------
 

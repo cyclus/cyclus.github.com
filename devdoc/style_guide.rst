@@ -72,8 +72,8 @@ Documenatation Formatting
 
 Documentation in Cyclus is automated via Doxygen. All documentation occurs in header files. 
 Additionally, there are two distinct instances of automated documentation: class overviews 
-and function overviews. Class overviews occur once per class at the top of the header file 
-while function overviews occur once per function above that function. All documentation 
+and method/member overviews. Class overviews occur once per class at the top of the header file 
+while method/member overviews occur once per each method and member. All documentation 
 segments begin with a slash-double-asterisk and end with an askerisk-slash: ::
 
   /**
@@ -83,9 +83,12 @@ segments begin with a slash-double-asterisk and end with an askerisk-slash: ::
 Class Overviews
 ~~~~~~~~~~~~~~~
 
-Class overviews should include a brief overview of the class and an introduction as well as 
-sections corresponding to the key parameters used by the class and its detailed behavior, if
-the class is complex. Each portion must be preceded by the appropriate Doxygen keyword. 
+Class overviews should include the following sections: 
+ * a brief overview 
+ * an introduction 
+ * a discussion of key parameters
+ * a detailed discussion of class behavior (if the class is complex)
+
 An example is given below: ::
 
    /**
@@ -103,14 +106,14 @@ An example is given below: ::
      If the class is complex, provided a detailed description of its behavior.
     */
 
-Function Overviews
-~~~~~~~~~~~~~~~~~~
+Method/Member Overviews
+~~~~~~~~~~~~~~~~~~~~~~~
 
-Function overviews should fully describe the function's behavior, the parameters
-required to call it, and the value it returns. Each portion must be preceded by 
-the appropriate Doxygen keyword. 
+Method overviews should fully describe the method's behavior, the parameters
+required to call it, and the value it returns. Member overviews should fully describe 
+the member in question and its role in the workings of the class.
 
-Please note that class and function overviews differ in asterisk usage in the 
+Please note that class and method/member overviews differ in asterisk usage in the 
 overview's body. An example is given below: ::
 
   /**
