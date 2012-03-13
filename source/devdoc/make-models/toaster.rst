@@ -10,7 +10,7 @@ Introduction
 The instructions here will use a fictional example (a Toaster) to describe the 
 specific steps to take in order to easily add a custom module to the Cyclus 
 framework. The module pursued here is a Facility type module which converts a 
-`bread` Material Resource into a `Toast` Material Resource. In order to do this 
+`bread` Material Resource into a `toast` Material Resource. In order to do this, 
 
 Creating New Models of the Existing Types
 -----------------------------------------
@@ -77,12 +77,12 @@ Customization of the Relax-NG Grammar
 
 The parameters that define a Toaster are :
 
-* *nSlices* :  How many slices it can toast at once [ integer number of slices ]
-* *darkness* : How toasted they become [ light, golden, dark, burnt ]
-* *rate* : How long it takes to toast a set of slices [ minutes ]
-* *incommodity* : The commodity market in which slices of bread are traded in 
+* **nSlices** :  How many slices it can toast at once [ integer number of slices ]
+* **toastiness** : How toasted they become [ light, golden, dark, burnt ]
+* **rate** : How long it takes to toast a set of slices [ minutes ]
+* **incommodity** : The commodity market in which slices of bread are traded in 
   this simulation [ a string ]
-* *outcommodity* : The commodity market in which toasted bread is traded in this 
+* **outcommodity** : The commodity market in which toasted bread is traded in this 
   simulation [ a string ]
 
 To tell the cyclus framework that this is the necessary information to define a 
@@ -113,7 +113,7 @@ To customize it to include the parameters above, change it to look like :
       <element name="nSlices">
         <data type="nonNegativeInteger"/>
         </element>
-      <element name="darkness">
+      <element name="toastiness">
         <data type="string"/>
         </element>
       <element name="rate">
@@ -125,7 +125,7 @@ To customize it to include the parameters above, change it to look like :
    </define>
   
 
-There are a few things to notice. 
+There are a few things to notice here. 
 
 * The incommodity and outcommodity elements are already defined. Since these are 
   common module parameters, they can be used by reference (note the ref syntax) 
@@ -134,23 +134,135 @@ There are a few things to notice.
   in the top line. The documentation for this datatype library can be found at 
   the url. This is provided only for convenience, and allows the XML parser to 
   check the datatype of user input.
-* The darkness parameter is passed as a string. This means that the 
+* The toastiness parameter is passed as a string. This means that the 
   input error checking, string interpretation, and other parsing that must be 
   done to ensure that the value provided is within the available (light, golden, 
   dark, burnt) options must be done in the initialization function on the c++ 
-  side. Though this parameter could have been defined in other ways, this is a good
-  example of how to arrage to do the input parsing task outside of xml. *Note that 
+  side. Though this parameter could have been defined in other ways, thisi is a good
+  example of how to arrage to do the input parsing task outside of xml. **Note that 
   such a string parameter could also be used to provide the name of another input 
   file that helps define a module. The interpretation, again, would have to be 
-  done on the c++ side*
+  done on the c++ side**
+
+Customization of the init function 
++++++++++++++++++++++++++++++++++++++++++++++
+
+In order for your module to have access to these parameters that define a 
+configured prototype the init function must load the data from XML. The 
+ToasterFacility.cpp file changes from :
+
+.. code-block:: cpp
+
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+  void ToasterFacility::init(xmlNodePtr cur) {
+    FacilityModel::init(cur);
+    /// move XML pointer to current model
+    cur = XMLinput->get_xpath_element(cur,"model/ToasterFacility");
+    /// initialize any ToasterFacility-specific datamembers here
+  }
+
+To :
+
+.. code-block:: cpp
+
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+  void ToasterFacility::init(xmlNodePtr cur) {
+    FacilityModel::init(cur);
+    /// move XML pointer to current model
+    cur = XMLinput->get_xpath_element(cur,"model/ToasterFacility");
+    /// initialize any ToasterFacility-specific datamembers here
+    n_slices_ = strtol(XMLinput->get_xpath_content(cur, "rate"), NULL, 10);
+    toastiness_ = XMLinput->get_xpath_content(cur,"toastiness");
+    rate_ = strtod(XMLinput->get_xpath_content(cur, "rate"), NULL);
+    incommodity_ = XMLinput->get_xpath_content(cur, "incommodity");
+    outcommodity_ = XMLinput->get_xpath_content(cur, "outcommodity");
+  
+    // check that toastiness_ is oneof the allowed levels :
+    // this gives an example of performing input checking in the module 
+    // in case the xml parser is not detailed enough
+    string levels_array = {"light", "golden", "dark", "burnt"};
+    set<string> allowed_levels(levels_array, levels_array+4);
+    if !allowed_levels.find(toastiness_){
+      string msg = "The value given for the darkenss parameter, ";
+      msg += toastiness_;
+      msg += ", is not within the allowed set. Allowed values are: ";
+      set<string>::iterator it;
+      for (it=allowed_levels.begin(); it != allowed_levels.end(); it++){
+        msg += " ";
+        msg += (*it);
+      }
+      msg+=".";
+      throw CycException(msg);
+    }
+  }
+
+These member variables must be declared in the ToasterFacility.h header file. The header file originally has a section that looks like :
+
+.. code-block:: cpp
+
+  /* --------------------
+   * _THIS_ FACILITYMODEL class has these members
+   * --------------------
+   */
+  
+  /* ------------------- */ 
+
+  };
+        
+We change it to include :
+ 
+.. code-block:: cpp
+  
+  /* --------------------
+   * _THIS_ FACILITYMODEL class has these members
+   * --------------------
+   */
+  
+   private:
+    /**
+     * The number of slices the toaster can handle at one time
+     */
+    int n_slices_;
+  
+    /**
+     * The speed (set of slices per minute) with which the toaster toasts
+     */
+    double rate_;
+  
+    /**
+     * The toastiness of the toast. This can be 
+     */
+    std::string toastiness_;
+  
+    /**
+     * The name of the commodity market for the incoming commodity.
+     */
+    std::string incommodity;
+  
+    /**
+     * The name of the commodity market for the outgoing commodity.
+     */
+    std::string outcommodity;
+  
+  
+  /* ------------------- */ 
+  
+  };
 
 
 Customization of the Documentation Comments 
 +++++++++++++++++++++++++++++++++++++++++++++
 
-For acceptance into the Cyclus framework, your code must contain informative, 
-Doxygen style comments to describe the classes and functions that define your 
-module.
+To build documentation of your module into the doxygen documentation you or your 
+users build locally, your code must contain informative, Doxygen style comments 
+to describe the classes and functions that define your module. More details of 
+this are discussed in the style guide, but the Stub files give a good begining. 
+
+For our ToasterFacility, the ToasterFacility.h file, for instance, has a section 
+that looks like :
+   
+
+To customize it, we change the 
 
 
 Customization of The Template
