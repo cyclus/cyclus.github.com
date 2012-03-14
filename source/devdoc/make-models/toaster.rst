@@ -73,13 +73,14 @@ Customization of the Relax-NG Grammar
 
 The parameters that define a Toaster are :
 
-* **nSlices** :  How many slices it can toast at once [ integer number of slices ]
+* **nSlices** :  How many slices it can toast at once [ integer number of slices 
+  ]
 * **toastiness** : How toasted they become [ light, golden, dark, burnt ]
 * **rate** : How long it takes to toast a set of slices [ minutes ]
 * **incommodity** : The commodity market in which slices of bread are traded in 
   this simulation [ a string ]
-* **outcommodity** : The commodity market in which toasted bread is traded in this 
-  simulation [ a string ]
+* **outcommodity** : The commodity market in which toasted bread is traded in 
+  this simulation [ a string ]
 
 To tell the cyclus framework that this is the necessary information to define a 
 ToasterFacility, we include a Relax-NG grammar file. The stub looks like : 
@@ -105,8 +106,7 @@ To customize it to include the parameters above, change it to look like :
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 
   <define name="ToasterFacility">
-    <element name="ToasterFacility"> 
-      <element name="nSlices">
+    <element name="ToasterFacility"> <element name="nSlices">
         <data type="nonNegativeInteger"/>
         </element>
       <element name="toastiness">
@@ -125,20 +125,19 @@ There are a few things to notice here.
 
 * The incommodity and outcommodity elements are already defined. Since these are 
   common module parameters, they can be used by reference (note the ref syntax) 
-  in any rng file within the simulation. 
-* The data types of the parameters are defined by the datatypeLibrary referenced 
-  in the top line. The documentation for this datatype library can be found at 
-  the url. This is provided only for convenience, and allows the XML parser to 
-  check the datatype of user input.
-* The toastiness parameter is passed as a string. This means that the 
-  input error checking, string interpretation, and other parsing that must be 
-  done to ensure that the value provided is within the available (light, golden, 
-  dark, burnt) options must be done in the initialization function on the c++ 
-  side. Though this parameter could have been defined in other ways, thisi is a good
-  example of how to arrage to do the input parsing task outside of xml. **Note that 
-  such a string parameter could also be used to provide the name of another input 
-  file that helps define a module. The interpretation, again, would have to be 
-  done on the c++ side**
+  in any rng file within the simulation.  * The data types of the parameters are 
+  defined by the datatypeLibrary referenced in the top line. The documentation 
+  for this datatype library can be found at the url. This is provided only for 
+  convenience, and allows the XML parser to check the datatype of user input.
+* The toastiness parameter is passed as a string. This means that the input 
+  error checking, string interpretation, and other parsing that must be done to 
+  ensure that the value provided is within the available (light, golden, dark, 
+  burnt) options must be done in the initialization function on the c++ side. 
+  Though this parameter could have been defined in other ways, thisi is a good
+  example of how to arrage to do the input parsing task outside of xml. **Note 
+  that such a string parameter could also be used to provide the name of another 
+  input file that helps define a module. The interpretation, again, would have 
+  to be done on the c++ side**
 
 
 Customization of the Documentation Comments 
@@ -164,8 +163,8 @@ that looks like :
   /**
     @class ToasterFacility
     
-    @brief This FacilityModel is intended 
-    as a skeleton to guide the implementation of new FacilityModel models. 
+    @brief This FacilityModel is intended as a skeleton to guide the 
+    implementation of new FacilityModel models. 
     
     The ToasterFacility class inherits from the FacilityModel class and is 
     dynamically loaded by the Model class when requested.
@@ -182,10 +181,10 @@ that looks like :
     implementation.
   
     @section detailed Detailed Behavior
-    Place a description of the detailed behavior of the model. Consider describing 
-    the behavior at the tick and tock as well as the behavior upon sending and
-    receiving materials and messages. 
-  */
+    Place a description of the detailed behavior of the model. Consider 
+    describing the behavior at the tick and tock as well as the behavior upon 
+    sending and
+    receiving materials and messages.  */
 
 This should looke more like :
 
@@ -213,12 +212,13 @@ This should looke more like :
   
     @section modelparams Model Parameters
     To fully define a Toaster prototype, the following parameters must be 
-    defined : 
-    - int nSlices :  How many slices it can toast at once [ integer number of slices ]
+    defined : - int nSlices :  How many slices it can toast at once [ integer 
+    number of slices ]
     - string toastiness : How toasted they become [ light, golden, dark, burnt ]
     - double rate : How long it takes to toast a set of slices [ minutes ]
-    - string incommodity : The commodity market in which slices of bread are traded 
-    - string outcommodity : The commodity market in which toasted bread is traded
+    - string incommodity : The commodity market in which slices of bread are 
+      traded - string outcommodity : The commodity market in which toasted bread 
+      is traded
   
     @section optionalparams Optional Parameters
     This model has no optional parameters.
@@ -227,21 +227,22 @@ This should looke more like :
     The ToasterFacility starts operation immediately. 
 
     @subsection tick On the tick :
-    The ToasterFacility immediately offers any toast that exists in the inventory from 
-    previous months and begins to request the incommodity. It requests as much sliced 
-    bread as it can toast within a timestep. That is, it requests 86400 slices if 
-    the timestep is 30 days long, the rate is 2 minutes per set of slices, and  
-    n_slices = 4. 
+    The ToasterFacility immediately offers any toast that exists in the 
+    inventory from previous months and begins to request the incommodity. It 
+    requests as much sliced bread as it can toast within a timestep. That is, it 
+    requests 86400 slices if the timestep is 30 days long, the rate is 2 minutes 
+    per set of slices, and  n_slices = 4. 
      
     @subsection receive Receiving a Message :
-    If the request is matched with an offer from another facility, 
-    the ToasterFacility executes that order by adding that quantity to its stocks. 
+    If the request is matched with an offer from another facility, the 
+    ToasterFacility executes that order by adding that quantity to its stocks. 
    
     @subsection tock On the tock :
-    On the tock, the ToasterFacility alters the isotopic vectors of each slice of 
-    bread in the stocks (up to the monthly capacity) to include more carbon and less
-    oxygen (the magnitude of the change is defined by the toastiness parameter). Each 
-    (now toasted) slice is then placed in the inventory. 
+    On the tock, the ToasterFacility alters the isotopic vectors of each slice 
+    of bread in the stocks (up to the monthly capacity) to include more carbon 
+    and less
+    oxygen (the magnitude of the change is defined by the toastiness parameter). 
+    Each (now toasted) slice is then placed in the inventory. 
     
   */
 
@@ -254,7 +255,8 @@ init
 +++++++
 
 One of the requirements for a model to be properly loaded into the Cyclus 
-framework is a  method named 'init' to initialize an instance of the model from an XML node pointer (xmlNodePtr)
+framework is a  method named 'init' to initialize an instance of the model from 
+an XML node pointer (xmlNodePtr)
 
 * this method must call the parent class method of the same name (e.g.
   FacilityModel::init(cur))
@@ -268,8 +270,8 @@ ToasterFacility.cpp file changes from :
 
 .. code-block:: cpp
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
-  void ToasterFacility::init(xmlNodePtr cur) {
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  -    void ToasterFacility::init(xmlNodePtr cur) {
     FacilityModel::init(cur);
     /// move XML pointer to current model
     cur = XMLinput->get_xpath_element(cur,"model/ToasterFacility");
@@ -280,8 +282,8 @@ To :
 
 .. code-block:: cpp
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
-  void ToasterFacility::init(xmlNodePtr cur) {
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  -    void ToasterFacility::init(xmlNodePtr cur) {
     FacilityModel::init(cur);
     /// move XML pointer to current model
     cur = XMLinput->get_xpath_element(cur,"model/ToasterFacility");
@@ -293,8 +295,8 @@ To :
     outcommodity_ = XMLinput->get_xpath_content(cur, "outcommodity");
   
     // check that toastiness_ is oneof the allowed levels :
-    // this gives an example of performing input checking in the module 
-    // in case the xml parser is not detailed enough
+    // this gives an example of performing input checking in the module // in 
+    case the xml parser is not detailed enough
     string levels_array = {"light", "golden", "dark", "burnt"};
     set<string> allowed_levels(levels_array, levels_array+4);
     if !allowed_levels.find(toastiness_){
@@ -311,7 +313,8 @@ To :
     }
   }
 
-These member variables must be declared in the ToasterFacility.h header file. The header file originally has a section that looks like :
+These member variables must be declared in the ToasterFacility.h header file. 
+The header file originally has a section that looks like :
 
 .. code-block:: cpp
 
@@ -345,8 +348,8 @@ We change it to include :
     double rate_;
   
     /**
-     * The toastiness of the toast. This can be 'light', 'golden', 'dark' or 'burnt'. 
-     */
+     * The toastiness of the toast. This can be 'light', 'golden', 'dark' or 
+       'burnt'.  */
     std::string toastiness_;
   
     /**
@@ -365,11 +368,11 @@ We change it to include :
   };
 
 
-
 copy
 ++++++
 
-All models must provide a method named 'copy' to initialize an instance of the model from another
+All models must provide a method named 'copy' to initialize an instance of the 
+model from another
   instance of the same model
 
 * this method must call the parent class method of the same name (e.g.
@@ -383,7 +386,8 @@ All models must provide a method named 'copy' to initialize an instance of the m
 print
 ++++++++
 
-All models may provide a method named 'print' to print a description of the model
+All models may provide a method named 'print' to print a description of the 
+model
 
 * this method should call the parent class method of the same name (e.g.
   FacilityModel::print())
@@ -405,5 +409,31 @@ receiveMessage
 ++++++++++++++++++++++++++
 
 A communicator may implement actions for receiving a message.
+
+
+
+
+Customization of Module Tests
+-----------------------------------------
+
+
+Tests for the ToasterFacility can be implemented in the ToasterFacilityTests.cpp 
+file using the GoogleTest testing framework. For more details about testing, see
+the http://cnerg.engr.wisc.edu/cyclus/docs/testing.html, the testing section of 
+the cyclus doxygen documentation.
+
+For our purposes, we'll simply show one example of a unit test that the Toaster 
+Facility must pass and point out that by copying the ToasterFacilityTests.cpp 
+file from the Stub, we have successfully added the ToasterFacility to the 
+Models and FacilityModels whose Model and FacilityModel interfaces 
+(respectively) are tested.
+
+In the ToasterFacilityTests.cpp file, you'll notice that there is space for you 
+to fill in tests concerning the behavior of the ToasterFacility that we defined 
+in previous steps.
+
+
+
+
 
 
