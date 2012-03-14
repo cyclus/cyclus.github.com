@@ -1,4 +1,3 @@
-s
 .. summary Specific Step-by-Step instructions for creating a ToasterFacility 
 
 Model Devlopment Example : ToasterFacility
