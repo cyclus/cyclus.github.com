@@ -419,24 +419,41 @@ like :
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void ToasterFacility::handleTick(int time){
-  request(incommodity_, storage_capacity_);
-  offerToast(TI->time_step_in_minutes_/rate_);
-  toast(stored_bread_);
+    request(incommodity_, storage_capacity_);
+    offerToast(TI->time_step_in_minutes_/rate_);
+    toast(stored_bread_);
   }
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void ToasterFacility::handleTock(int time){
-  sendToast(matched_requests_);
-  cleanUp();
+    sendToast(matched_requests_);
+    cleanUp();
   }
 
-The details of implementation are entirely up to the developer. In this example, 
+Th:w
+e details of implementation are entirely up to the developer. In this example, 
 the details are hidden in the private functions that are defined elsewhere in the 
 ToasterFacility class.
 
 
 receiveMessage
 ++++++++++++++++++++++++++
+
+The Toaster likes to keep the message and deal with it later.
+
+
+.. code-block:: cpp
+
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+  void SourceFacility::receiveMessage(msg_ptr msg){
+    // is this a message from on high? 
+    if(msg->supplier() == this){
+      // file the order
+      ordersWaiting_.push_front(msg);
+    } else {
+      throw CycException("ToasterFacility is not the supplier of this msg.");
+    }
+  }
 
 
 removeResource and addResource
