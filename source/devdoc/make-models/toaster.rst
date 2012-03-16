@@ -372,8 +372,7 @@ copy
 ++++++
 
 All models must provide a method named 'copy' to initialize an instance of the 
-model from another
-  instance of the same model
+model from another instance of the same model
 
 * this method must call the parent class method of the same name (e.g.
   FacilityModel::copy(src))
