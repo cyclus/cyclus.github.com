@@ -405,13 +405,62 @@ handleTick and handleTock
 The handleTick and handleTock functions are called once per timestep, and it is
 in these functions that much of the behavior of the module is defined.
 
+If Resources must be created, manipulated, etc. these are the functions in which 
+to trigger those behaviors.
+
+Cyclus convention decrees that in the handleTick() step, facilities make 
+requests and offers.  On handleTock(), they do clean-up tasks, such as 
+responding to transaction matches and processing Resources.
+
+The ToasterFacility handleTick() and handleTock() functions may look something 
+like : 
+
+.. code-block:: cpp
+
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  void ToasterFacility::handleTick(int time){
+  request(incommodity_, storage_capacity_);
+  offerToast(TI->time_step_in_minutes_/rate_);
+  toast(stored_bread_);
+  }
+
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  void ToasterFacility::handleTock(int time){
+  sendToast(matched_requests_);
+  cleanUp();
+  }
+
+The details of implementation are entirely up to the developer. In this example, 
+the details are hidden in the private functions that are defined elsewhere in the 
+ToasterFacility class.
+
+
 receiveMessage
 ++++++++++++++++++++++++++
 
-A communicator may implement actions for receiving a message.
+
+removeResource and addResource
++++++++++++++++++++++++++++++++
 
 
+.. code-block:: cpp
 
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  vector<rsrc_ptr> ToasterFacility::removeResource(msg_ptr order) {}
+    
+
+
+.. code-block:: cpp
+
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  void ToasterFacility::addResource(msg_ptr msg, vector<rsrc_ptr> manifest){}
+
+
+A communicator may implement actions for receiving a message. In the case of 
+Facilities, most messages will contain requests for Resources offered by the Facility.  
+
+One tool in the developer's arsenal for this purpose are the DeckStore and 
+MatStore functions.
 
 Customization of Module Tests
 -----------------------------------------
