@@ -451,20 +451,14 @@ ToasterFacility class.
 receiveMessage
 ++++++++++++++++++++++++++
 
-The Toaster likes to keep the message and deal with it later.
+The Toaster likes to keep the message and deal with it later. 
 
 
 .. code-block:: cpp
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
   void SourceFacility::receiveMessage(msg_ptr msg){
-    // is this a message from on high? 
-    if(msg->supplier() == this){
-      // file the order
-      ordersWaiting_.push_front(msg);
-    } else {
-      throw CycException("ToasterFacility is not the supplier of this msg.");
-    }
+    orders_waiting_.push_front(msg);
   }
 
 
@@ -472,24 +466,39 @@ removeResource and addResource
 +++++++++++++++++++++++++++++++
 
 
-.. code-block:: cpp
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  vector<rsrc_ptr> ToasterFacility::removeResource(msg_ptr order) {}
-    
-
-
-.. code-block:: cpp
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  void ToasterFacility::addResource(msg_ptr msg, vector<rsrc_ptr> manifest){}
-
-
-A communicator may implement actions for receiving a message. In the case of 
-Facilities, most messages will contain requests for Resources offered by the Facility.  
-
 One tool in the developer's arsenal for this purpose are the DeckStore and 
 MatStore functions.
+
+.. code-block:: cpp
+
+    //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    vector<rsrc_ptr> ToasterFacility::removeResource(msg_ptr order) {}
+    Transaction trans = order->trans();
+    if (trans.commod != outcommodity_) {
+      string err_msg = "ToasterFacility can only send '" + outcommodity_ ;
+      err_msg += + "' materials.";
+      throw CycException(err_msg);
+    }
+  
+    MatManifest materials;
+    try {
+      materials = inventory_.popQty(trans.resource->quantity());
+    } catch(CycNegQtyException err) {
+      LOG(LEV_ERROR, "Toast") << "extraction of " << trans.resource->quantity()
+                     << " kg failed. Inventory is only "
+                     << inventory_.quantity() << " kg.";
+    }
+  
+    return MatStore::toRes(materials);
+  
+  }
+    
+  
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  void ToasterFacility::addResource(msg_ptr msg, vector<rsrc_ptr> manifest) {
+    stocks_.pushAll(MatStore::toMat(manifest));
+  }
+
 
 Customization of Module Tests
 -----------------------------------------
