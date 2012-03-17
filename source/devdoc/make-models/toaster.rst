@@ -290,7 +290,7 @@ To :
     /// move XML pointer to current model
     cur = XMLinput->get_xpath_element(cur,"model/ToasterFacility");
     /// initialize any ToasterFacility-specific datamembers here
-    n_slices_ = strtol(XMLinput->get_xpath_content(cur, "rate"), NULL, 10);
+    n_slices_ = strtol(XMLinput->get_xpath_content(cur, "nSlices"), NULL, 10);
     toastiness_ = XMLinput->get_xpath_content(cur,"toastiness");
     rate_ = strtod(XMLinput->get_xpath_content(cur, "rate"), NULL);
     incommodity_ = XMLinput->get_xpath_content(cur, "incommodity");
