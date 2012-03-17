@@ -397,6 +397,20 @@ model
 * this method assumes that a dangling output line (no std::endl) is left
   from the parent class output
 
+The ToasterFacility I've implemented has a print function that looks like :
+
+.. code-block:: cpp
+
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+  void ToasterFacility::print() {
+    FacilityModel::print();
+    string msg = "ToasterFacility";
+    msg += this->ID();
+    msg += " makes delicious ";
+    msg += toastiness_;
+    msg += " toast.";
+    LOG(LEV_DEBUG2,"Toast")<<msg;
+  };
 
 handleTick and handleTock
 ++++++++++++++++++++++++++
@@ -407,30 +421,29 @@ in these functions that much of the behavior of the module is defined.
 If Resources must be created, manipulated, etc. these are the functions in which 
 to trigger those behaviors.
 
-Cyclus convention decrees that in the handleTick() step, facilities make 
-requests and offers.  On handleTock(), they do clean-up tasks, such as 
+Cyclus convention decrees that in the handleTick step, facilities make 
+requests and offers.  On handleTock, they do clean-up tasks, such as 
 responding to transaction matches and processing Resources.
 
-The ToasterFacility handleTick() and handleTock() functions may look something 
+The ToasterFacility handleTick and handleTock functions may look something 
 like : 
 
 .. code-block:: cpp
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void ToasterFacility::handleTick(int time){
-    request(incommodity_, storage_capacity_);
-    offerToast(TI->time_step_in_minutes_/rate_);
-    toast(stored_bread_);
+    makeRequests();
+    makeOffers();
+    toast(stocks_);
   }
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void ToasterFacility::handleTock(int time){
-    sendToast(matched_requests_);
+    sendToast(orders_waiting_);
     cleanUp();
   }
 
-Th:w
-e details of implementation are entirely up to the developer. In this example, 
+The details of implementation are entirely up to the developer. In this example, 
 the details are hidden in the private functions that are defined elsewhere in the 
 ToasterFacility class.
 
