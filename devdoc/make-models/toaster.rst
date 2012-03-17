@@ -302,7 +302,7 @@ To :
     string levels_array = {"light", "golden", "dark", "burnt"};
     set<string> allowed_levels(levels_array, levels_array+4);
     if !allowed_levels.find(toastiness_){
-      string msg = "The value given for the darkenss parameter, ";
+      string msg = "The value given for the toastiness parameter, ";
       msg += toastiness_;
       msg += ", is not within the allowed set. Allowed values are: ";
       set<string>::iterator it;
@@ -312,6 +312,7 @@ To :
       }
       msg+=".";
       throw CycException(msg);
+      LOG(LEV_ERROR,"Toast")<<msg;
     }
   }
 
