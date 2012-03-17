@@ -91,7 +91,8 @@ ToasterFacility, we include a Relax-NG grammar file. The stub looks like :
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 
   <define name="ToasterFacility">
-    <element name="ToasterFacility"> <ref name="incommodity"/>
+    <element name="ToasterFacility"> 
+      <ref name="incommodity"/>
        <oneOrMore>
          <ref name="outcommodity"/>
        </oneOrMore>
@@ -106,7 +107,8 @@ To customize it to include the parameters above, change it to look like :
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 
   <define name="ToasterFacility">
-    <element name="ToasterFacility"> <element name="nSlices">
+    <element name="ToasterFacility"> 
+      <element name="nSlices">
         <data type="nonNegativeInteger"/>
         </element>
       <element name="toastiness">
