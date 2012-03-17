@@ -447,11 +447,16 @@ The details of implementation are entirely up to the developer. In this example,
 the details are hidden in the private functions that are defined elsewhere in the 
 ToasterFacility class.
 
+For this to work out, of course, you'll need to declare the `vector<msg_ptr> orders_waiting_`
+and the `DeckStore stocks_` in the header file. 
 
 receiveMessage
 ++++++++++++++++++++++++++
 
-The Toaster likes to keep the message and deal with it later. 
+The Toaster likes to keep the message and deal with it later. The 
+developer is welcome to deal with messages in whatever way they like. In this example, 
+a vector of the received message pointers is kept as the private member variable 
+`orders_waiting_`.
 
 
 .. code-block:: cpp
@@ -465,9 +470,12 @@ The Toaster likes to keep the message and deal with it later.
 removeResource and addResource
 +++++++++++++++++++++++++++++++
 
-
-One tool in the developer's arsenal for this purpose are the DeckStore and 
-MatStore functions.
+Though here again the developer is welcome to implement this in any way they 
+like, we recommend a particular paradigm in which the facility has raw materials ('stocks') 
+in pre-precess storage and processed materials ('inventory') in pre-transaction 
+storage. A tool in the developer's arsenal for this purpose are the DeckStore and 
+MatStore functions. Here we'll utilize the DeckStore class that provides a useful interface
+for a list of resource objects.  
 
 .. code-block:: cpp
 
