@@ -23,9 +23,10 @@ First things first - read :doc:`../basics/get_and_build`.  After
 successfully acquiring and building *Cyclus*, you can begin developing:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
   
    style_guide
+   code_tour
    make-models/main
    flow_and_structure
    output_dbase

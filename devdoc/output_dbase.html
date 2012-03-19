@@ -4,13 +4,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Output Database &mdash; Cyclus Home</title>
+    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -87,7 +90,7 @@
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -198,7 +201,7 @@ following:</p>
 <col width="11%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Agent ID</th>
+<tr class="row-odd"><th class="head">Agent ID</th>
 <th class="head">Parent ID</th>
 <th class="head">Type</th>
 <th class="head">Implementation</th>
@@ -207,7 +210,7 @@ following:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>X</td>
+<tr class="row-even"><td>X</td>
 <td>Y</td>
 <td>T</td>
 <td>I</td>
@@ -246,7 +249,7 @@ the following:</p>
 <col width="24%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Agent ID</th>
+<tr class="row-odd"><th class="head">Agent ID</th>
 <th class="head">Commodity</th>
 <th class="head">Capacity</th>
 <th class="head">Capacity Units</th>
@@ -255,7 +258,7 @@ the following:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>X</td>
+<tr class="row-even"><td>X</td>
 <td>C</td>
 <td>Y</td>
 <td>kg/month</td>
@@ -294,19 +297,19 @@ following:</p>
 <col width="11%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Agent ID</th>
+<tr class="row-odd"><th class="head">Agent ID</th>
 <th class="head">Capacity Factor</th>
 <th class="head">CF Units</th>
 <th class="head">Time</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>X</td>
+<tr class="row-even"><td>X</td>
 <td>0.95</td>
 <td>decimal %</td>
 <td>t1</td>
 </tr>
-<tr><td>X</td>
+<tr class="row-odd"><td>X</td>
 <td>0.00</td>
 <td>decimal %</td>
 <td>t2</td>
@@ -349,7 +352,7 @@ at time t2. The table entry for this resource is as follows:</p>
 <col width="12%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Resource ID</th>
+<tr class="row-odd"><th class="head">Resource ID</th>
 <th class="head">Creating Agent</th>
 <th class="head">Type</th>
 <th class="head">Unit</th>
@@ -358,7 +361,7 @@ at time t2. The table entry for this resource is as follows:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>R</td>
+<tr class="row-even"><td>R</td>
 <td>X</td>
 <td>T</td>
 <td>kg</td>
@@ -392,12 +395,12 @@ resource with ID R (and type Material) has the form uo2.</p>
 <col width="42%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Resource ID</th>
+<tr class="row-odd"><th class="head">Resource ID</th>
 <th class="head">Form</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>R</td>
+<tr class="row-even"><td>R</td>
 <td>UO,,2,,</td>
 </tr>
 </tbody>
@@ -437,7 +440,7 @@ example.</p>
 <col width="14%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Resource ID</th>
+<tr class="row-odd"><th class="head">Resource ID</th>
 <th class="head">Mass</th>
 <th class="head">Isotopics</th>
 <th class="head">Composition</th>
@@ -446,21 +449,21 @@ example.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>R</td>
+<tr class="row-even"><td>R</td>
 <td>N</td>
 <td>8016, 92235</td>
 <td>0.33, 0.67</td>
 <td>atomic</td>
 <td>t1</td>
 </tr>
-<tr><td>R</td>
+<tr class="row-odd"><td>R</td>
 <td>N</td>
 <td>8016, 92235</td>
 <td>0.34, 0.66</td>
 <td>atomic</td>
 <td>t2</td>
 </tr>
-<tr><td>R</td>
+<tr class="row-even"><td>R</td>
 <td>N - n</td>
 <td>8016, 92235</td>
 <td>0.34, 0.66</td>
@@ -498,7 +501,7 @@ price P, and the transactions unique ID is U. The table entry, at
 <col width="18%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Transaction ID</th>
+<tr class="row-odd"><th class="head">Transaction ID</th>
 <th class="head">Sender</th>
 <th class="head">Receiver</th>
 <th class="head">Resource</th>
@@ -507,7 +510,7 @@ price P, and the transactions unique ID is U. The table entry, at
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>U</td>
+<tr class="row-even"><td>U</td>
 <td>X</td>
 <td>Y</td>
 <td>R</td>
@@ -541,7 +544,7 @@ price P, and the transactions unique ID is U. The table entry, at
     </div>
     <div class="footer">
         &copy; Copyright 2012, Robert Carlsen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>
