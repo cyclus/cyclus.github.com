@@ -6,23 +6,25 @@ Output Database
 
 *Cyclus* simulations are comprised of three major constructs (the interaction
 of which we are interested in documenting). In *Cyclus*, **Agents** create
-**Resources** and then trade these resources via **Transactions**. Accordingly,
-the output database is nominally divided into three catagories: Agents,
-Resources, and Transactions. The *Cyclus* database has been designed with three
-key concepts in mind: we wish for *Cyclus* to be extensible, i.e. we do not
-want to hinder the development of a new module, we wish for the output data
-structures to be as straight-forward as possible to reduce hindrince of
-post-processing, and we wish for the database to be efficient. With these three
-goals in mind, we have developed a the database structure that sacrifices some
-amount of size (i.e., there are multiple entries per table which could be
-consolidated) in order to allow for greater flexibility and readability (i.e.
-natural intuition of where to look for a given data object). In this database
-paradigm, for example, an external developer has the ability to create a new
-agent type, and retrieve any information he/she wishes with regard to output.
-The database structure does not stunt a developer's ability or creativity.
+**Resources** and then trade these resources via **Transactions**. The primary 
+goal of fuel-cycle simulators, i.e., the tracking of material (fuel) through a
+complex system of facilities, falls easily under this paradigm -- one treats 
+facilities as a type of *agent*, fuel as a type of *resource*, and the 
+exchange of fuel between facilities as a *transaction*. The power of this paradigm
+lies in its extensibility. By describing the fuel-cycle in this general language, 
+one can easily envision other instances of resource transaction (e.g. electricity
+or man-hours) being driven by the same engine and using the same record 
+structure. The physical database used by *Cyclus* is SQL-based, specifically 
+SQLite is currently used.
+
+At larger scale, a coherent vocabulary is a chief requirement for this paradigm. 
+For instance, the terms "inventory", "stocks", and "capacity" should each have a
+ubiquitous definition across facility types in order to maintain confidence in
+robust database querying. This dictionary of terms is a near-term goal for *Cyclus*
+developers as the base pack of core modules is developed and expanded.
 
 Provenance
-----------
+++++++++++
 
 Good provenance will be provided by an output database with sufficient data to
 allow reproducibility of the results. This robust reproducibility is essential
@@ -33,244 +35,97 @@ post-simulation analysis and error-checking. Such input specifications include
 a complete description of the simulation parameters and model configurations
 defined in the input.
 
-Database Structure
-------------------
+Cyclus Database Class Constituents
+++++++++++++++++++++++++++++++++++
 
-As previously mentioned, *Cyclus* deals in three basic constructs: agents,
-resources, and transactions. A transaction in *Cyclus* is relatively static,
-i.e. every transaction has the same basic information (for example: who is the
-sender, who is the receiever, what was transacted, etc.). Conversely, agents
-and resources are highly variable. We therefore allow for each /implementation/
-of an agent (e.g. a Facility Agent) and each /type/ of resource (e.g. a
-Material) to have both **Static** and **Dynamic** tables associated with them.
-As will be outlined in detail below, the output database structure of a
-*Cyclus* simulation will have, in general, the following heirarchichal
-structure:
+The *Cyclus* database and management thereof is wholly comprised of three classes in
+its source code. The **Table** class housees the raw data which is eventually written to 
+the physical database and maintains information about the Table's structure (e.g. which
+columns uniquely identify rows). The **Database** class provides two key types of functionality:
+connectivity (open, close, read, write) to the physical database and management of a
+collection of Tables. Finally, the **BookKeeper** manages a unique instance of a Database.
+Each Table must be registered with the BookKeeper, and the BookKeeper determines the rate
+at which information is written to the physical database.
 
-  * /output/agents
-  * /output/agents/implementation/staticParams
-  * /output/agents/implementation/variableParams
-  * /output/resources
-  * /output/resources/type/staticParams
-  * /output/resources/type/variableParams
-  * /output/transactions
+Tables
+------
 
-Accordingly, there are currently seven primary tables in the *Cyclus* output
-database: 
+Tables in *Cyclus* can be thought of as having two primary functions: storing data and 
+providing data. In order to perform these two tasks, a Table must be defined -- it must be
+provided with some number of columns, the type of data held within each column, and (in
+database parlance) a primary key. A table can also have foreign keys and indicies, but neither
+is required.
 
-  * `Agent Description Table`_
-  * `Agent Static State Parameter Table`_
-  * `Agent Variable State Parameter Table`_
-  * `Resource Description Table`_
-  * `Resource Static State Parameter Table`_
-  * `Resource Variable State Parameter Table`_
-  * `Transaction Description Table`_
+A number of sources exist that describe relational database design in detail. For the purposes 
+of this wiki, however, only the concept of primary key will be described and the concept of 
+foreign keys will be mentioned. Primary keys are essential to database definition, whereas the use
+of foreign keys and indicies is solely to speed up the query process.
 
-Agent Description Table
------------------------
+The Primary Key
+~~~~~~~~~~~~~~~
 
-This table contains the generic information of each agent and information
-regarding its time of creation and deletion. The table parameters are the
-following:
+A primary key is a subset of columns that uniquely identifies a row in a table. In *Cyclus*, each
+agent has a unique id; accordingly, the table of agents has the "ID" column as its primary key. 
+The tracking of transactions, though, is a bit more complicated. A transaction of a resource occurs 
+between two agents at a given time. Accordingly, the primary key of the table of transaction is 
+comprised of each of those columns.
 
- * the agent's unique ID
- * the agent's parent's unique ID
- * the agent's type (e.g., Region, Institution, Market, etc.)
- * the agent's implementation (e.g., SourceFacility, NullRegion, GreedyMarket, etc.)
- * a timestamp of the agent's birth
- * a timestamp of the agent's death
+For the curious, a foreign key is simply a reference to another table's primary key. In the above
+example, the two agent id columns in the transaction table are foreign keys of the agent table. 
 
-Note that there is one entry for each unique agent.
+Table Definition
+~~~~~~~~~~~~~~~~
 
-As an example, let us assume that a agent X of type is owned by an agent Y and is created at time t1. Agent X has type T and implementation I and ends its service at time t2. The table entry is as follows:
+A Table is defined and registered with the BookKeeper via the following steps:
 
-========  =========  ====  ==============  =====  =====
-Agent ID  Parent ID  Type  Implementation  Birth  Death 
-========  =========  ====  ==============  =====  =====
-X         Y          T     I               t1     t2    
-========  =========  ====  ==============  =====  =====
+ * a collection of column names and datatypes is added via addColumn()
+ * the primary key is set via setPrimaryKey()
+ * the tableDefined() method is called
 
-Agent Static State Parameter Table
-----------------------------------
+Databases
+---------
 
-This table contains information about specific instances of agents that **do
-not change** with time. This table is unique to each different
-**implementation** of agent. For instance, a Reactor may have the following
-class hierarchy: Agent -> Facility -> Reactor. Accordingly, there will be a
-data entry for the Reactor in each table, with the reactor-specific information
-placed in the Reactor table. There are some tables which are associated with
-the *Cyclus* core, and thus will have an immutable form at each release (e.g.
-Regions, Institutions, Facilities, Markets). It is the responsibility of each
-developer to guarantee that their module output corresponds to this
-hierarchical structure if it is to be included in a *Cyclus* release.
+The primary database in *Cyclus* is the output database; however, the Database class also provides
+methods to query other databases. Currenly, only SQL support is provided via the Database class.
 
-Let us take the SourceFacility as it currently exists in *Cyclus*. It has,
-nominally, three static members: its monthly production capacity, its total
-inventory size, and its output commodity. For this example, let us assume that
-SourceFacility X has a maximum production capacity of Y kg/month of commodity C
-and has a maximum inventory size of Z kg. Its static state parameter table,
-located at /output/agents/SourceFacility/staticParams would therefore look like
-the following:
+Database Management
+~~~~~~~~~~~~~~~~~~~
 
-========  =========  ========  ==============  =========  ===============
-Agent ID  Commodity  Capacity  Capacity Units  Inventory  Inventory Units 
-========  =========  ========  ==============  =========  ===============
-X         C          Y         kg/month        Z          kg              
-========  =========  ========  ==============  =========  ===============
+The Database class manages the connection and writing to a specific database back-end. It is an
+eventual goal that only the Database class will have knowlege of the back-end-specific language 
+and will be able to be modularly replaced to achieve different functionality (to go from SQL to
+HDF5, for instance). A Database in *Cyclus* holds a collection of Tables and has methods to 
+create, write rows, and update rows of each Table. However, each method call must be made 
+externally, i.e., the Database must be **managed**. No connectivity-related behavior is automated,
+each action must be made explicitly.
 
+Querying a Database
+~~~~~~~~~~~~~~~~~~~
 
-Agent Variable State Parameter Table
-------------------------------------
+The database also provides functionality for making queries. A query is command to search the 
+Database (e.g. "Select * from A_TABLE"). The query result is a container (vector) of rows, where
+each row is comprised of a complete entry -- a collection of individual entries -- that satisfies 
+the query. The entries are provided as strings, so it is the responsibility of the developer to 
+know the types of data for which a query is being made. 
 
-This table is similar to the static parameter table described above, containing
-information about specific instances of agents that **do change** with time.
-This table is unique to each different **implementation** of agent. For
-instance, a Reactor may have the following class hierarchy: Agent -> Facility
--> Reactor. Accordingly, there will be a data entry for the Reactor in each
-table, with the reactor-specific information placed in the Reactor table. There
-are some tables which are associated with the *Cyclus* core, and thus will have
-an immutable form at each release (e.g. Regions, Institutions, Facilities,
-Markets). It is the responsibility of each developer to guarantee that their
-module output corresponds to this hierarchical structure if it is to be
-included in a *Cyclus* release.
+The BookKeeper
+--------------
 
-Let us continue with the above example. An optional parameter for the
-SourceFacility is the capacity factor, i.e. the percentage of maximum capacity
-Y is the facility able to operate at some time t. For this example, let us
-assume that at time t1, SourceFacility X begins operation with capacity factor
-0.95 and must go down for maintenence at time t2, reducing its capacity factor
-to 0.00.  Its variable state parameter table, located at
-/output/agents/SourceFacility/variableParams would therefore look like the
-following:
+The BookKeeper manages the *Cyclus* database. Any Table which wishes to be added to the database must
+first register with the BookKeeper. Additionally, any writing of data to the physical database is 
+explicitly ordered by the BookKeeper. Currently, information is ordered to be written to the database 
+once a Table reaches a certain threshold. The Table informs the BookKeeper that it has reached the 
+threshold, at which time the BookKeeper can decide if the information should be written. This 
+behavior allows for remote connectivity issues to be managed by the BookKeeper so that writing to the 
+database is not attempted at a time of lost connectivity.
 
-========  ===============  =========  ====
-Agent ID  Capacity Factor  CF Units   Time 
-========  ===============  =========  ====
-X          0.95            decimal %  t1   
-X          0.00            decimal %  t2   
-========  ===============  =========  ====
+The Cyclus Database -- Visually
++++++++++++++++++++++++++++++++
 
-Note that there may be multiple entries per agent in this table.
+The Cyclus database is comprised of the following tables:
 
-Additionally note that the timestamping works in the following manner: if the
-timestamp is equal to the agent's birth time stamp, then this is the first
-occurance of the variable parameter; if it is not, then one may assume that the
-parameter did not change during the period between two timestamps.
+_cycl_schema_bare.png
 
+The connections between them are shown below:
 
-Resource Description Table
---------------------------
-
-This table contains the generic information of each resource and information
-regarding its time of creation and deletion. The table parameters are the
-following:
-
-  * the resource's unique ID
-  * the resource's creating agent's unique ID
-  * the resource's type (material, man-hours, etc.)
-  * the resource's base unit (kg, hours, etc.)
-  * a timestamp of the resource's birth 
-  * a timestamp of the resoruce's death (i.e., when it is consumed, etc.)
-
-For example, let us assume that facility with unique ID X, creates a resource
-of type T at time t1 whose unique ID is Y, in addition, let us assume that the
-base unit type is kilograms. Finally, let us assume that the resource is
-eventually consumed by a chemical process (e.g., used-fuel being reprocessed)
-at time t2. The table entry for this resource is as follows:
-
-===========  ==============  ====  ====  =====  =====
-Resource ID  Creating Agent  Type  Unit  Birth  Death 
-===========  ==============  ====  ====  =====  =====
-R            X               T     kg    t1     t2    
-===========  ==============  ====  ====  =====  =====
-
-
-Resource Static State Parameter Table
--------------------------------------
-
-This table contains information about specific instances of resources that **do
-not change** with time. This table is unique to each different
-**implementation** of a resource. For instance, UO,,2,, may have the following
-class hierarchy: Resource -> Material -> UO2. Accordingly, there will be a data
-entry for the UO,,2,, in each table, with the UO,,2,,-specific information
-placed in the UO2 table. There are some tables which are associated with the
-*Cyclus* core, and thus will have an immutable form at each release (e.g.
-Material). It is the responsibility of each developer to guarantee that their
-module output corresponds to this hierarchical structure if it is to be
-included in a *Cyclus* release.
-
-Let us use the Material class as an example. The static table for the material
-resource is relatively straight-forward (most of the work is done by the
-dynamic table). As a convention in *Cyclus*, we do not allow Materials to
-change form (in order for a Material to change form, the original resource must
-be destroyed and a new resource created). Let us assume that some material
-resource with ID R (and type Material) has the form uo2.
-
-===========  ========
-Resource ID  Form    
-===========  ========
-R            UO,,2,,
-===========  ========
-
-
-Resource Variable State Parameter Table
----------------------------------------
-
-This table contains information about specific instances of resources that **do
-change** with time. This table is unique to each different **implementation**
-of a resource. For instance, UO,,2,, may have the following class hierarchy:
-Resource -> Material -> UO2. Accordingly, there will be a data entry for the
-UO,,2,, in each table, with the UO,,2,,-specific information placed in the UO2
-table. There are some tables which are associated with the *Cyclus* core, and
-thus will have an immutable form at each release (e.g. Material). It is the
-responsibility of each developer to guarantee that their module output
-corresponds to this hierarchical structure if it is to be included in a
-*Cyclus* release.
-
-We choose to provide the following example. Suppose some facility receives N
-kilograms of Used UO,,2,, at time t1 /and/ that Used UO,,2,, has the ability to
-decay, i.e. it is radioactive. Consider the following two scenarios: 
-
- #. sufficient time has passed to take into account the decay of the Used UO,,2,,
- #. an amount, n, of the Used UO,,2,, is traded to another agent 
-
-For simplicity, we assume that used UO,,2,, is comprised of only ^16^O and
-^235^U. The decay isotopics are meaningless and only meant to be a qualitative
-example. 
-
-===========  =====  ===========   ===========  =================  =========
-Resource ID  Mass   Isotopics     Composition  Composition Units  Timestamp
-===========  =====  ===========   ===========  =================  =========
-R            N      8016, 92235   0.33, 0.67   atomic             t1       
-R            N      8016, 92235   0.34, 0.66   atomic             t2       
-R            N - n  8016, 92235   0.34, 0.66   atomic             t3       
-===========  =====  ===========   ===========  =================  =========
-
-Note that there may be multiple entries per agent in this table.
-
-
-Transaction Description Table
------------------------------
-
-This table contains the generic information of each transaction. The table
-parameters are the following:
-
- * the transaction's unique ID
- * the sending agent's unique ID
- * the receiving agent's unique ID
- * the resource being transacted
- * the price for the transaction (assumed going from receiver to sender)
- * the timestamp of the transaction
-
-For example, let us assume agent X sends resource R to agent Y at time t for
-price P, and the transactions unique ID is U. The table entry, at
-/output/transactions/, would be as follows:
-
-==============  ======  ========  ========  =====  =========
-Transaction ID  Sender  Receiver  Resource  Price  Timestamp
-==============  ======  ========  ========  =====  =========
-U               X       Y         R         P      t        
-==============  ======  ========  ========  =====  =========
-
-Note that it is assumed that the amount is in the resource's base unit.
-
+_cycl_schema.png
