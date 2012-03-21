@@ -76,7 +76,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#project-repository">Project Repository</a><ul>
-<li><a class="reference internal" href="#specific-instructions">Specific Instructions</a></li>
+<li><a class="reference internal" href="#help-with-git-and-github">Help with Git and GitHub</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#build-system">Build System</a></li>
@@ -119,32 +119,47 @@
 <p>The Cyclus code requires the following software and libraries.</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="53%" />
-<col width="47%" />
+<col width="32%" />
+<col width="32%" />
+<col width="36%" />
 </colgroup>
 <thead valign="bottom">
 <tr><th class="head">Package</th>
+<th class="head">Full Name</th>
 <th class="head">Minimum Version</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr><td><cite>CMake</cite></td>
+<td>cmake</td>
 <td>2.8</td>
 </tr>
 <tr><td><cite>boost</cite></td>
+<td>libboost-all-dev</td>
 <td>1.34.1</td>
 </tr>
-<tr><td><cite>libxml2</cite></td>
+<tr><td><cite>xml2</cite></td>
+<td>libxml2-dev</td>
 <td>2</td>
 </tr>
 <tr><td><cite>sqlite3</cite></td>
+<td>libsqlite3-dev</td>
 <td>3.7.10</td>
 </tr>
 </tbody>
 </table>
-<p>NOTE: The <strong>*dev*</strong> version of each of the above libraries must be used.
+<p>NOTE: The <strong>dev</strong> version of each of the above libraries must be used.
 The build system will complain (saying it cannot find the library) if only
 the normal (release) libraries are installed.</p>
+<p>Most systems will come with git fully installed; however, some developers may
+require the following git libraries if they are not already installed:</p>
+<blockquote>
+<div><ul class="simple">
+<li>git-core</li>
+<li>git-gui</li>
+<li>git-doc</li>
+</ul>
+</div></blockquote>
 <p>An overview of some of the dependency installations
 can be found on the following pages:</p>
 <div class="toctree-wrapper compound">
@@ -157,6 +172,27 @@ can be found on the following pages:</p>
 <h2>Project Repository<a class="headerlink" href="#project-repository" title="Permalink to this headline">¶</a></h2>
 <p>The Cyclus repository is version controlled using the Git version
 control system. It is hosted externally with <em>Github</em>.</p>
+<p>The main repository is located at <a class="reference external" href="http://github.com/cyclus/core">http://github.com/cyclus/core</a>. Anyone may
+check out the code. Although you do not have to register with github to
+download and edit the code, if you desire your work to be integrated into the
+cyclus mainline of development <em>you must fork the cyclus core repository into
+your own github account and submit &#8216;Pull Requests&#8217;</em>.</p>
+<p>For the Git uninitiated, one must perform the following steps to acquire <em>Cyclus</em>:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><a class="reference external" href="http://help.github.com/linux-set-up-git/">Set Up Git</a> shows one how to set up SSH keys and Git user info</li>
+<li>Fork the <em>Cyclus</em> repository, as shown in <a class="reference external" href="http://help.github.com/fork-a-repo/">Fork A Repo</a></li>
+</ol>
+</div></blockquote>
+<p>Note that the <em>Cyclus</em> repository has <strong>two</strong> branches:</p>
+<blockquote>
+<div><ul class="simple">
+<li>master &#8211; the lastest stable release of <em>Cyclus</em></li>
+<li>develop &#8211; the lastest working copy that passes all tests</li>
+</ul>
+</div></blockquote>
+<div class="section" id="help-with-git-and-github">
+<h3>Help with Git and GitHub<a class="headerlink" href="#help-with-git-and-github" title="Permalink to this headline">¶</a></h3>
 <p>If you are unfamiliar with Git, here are some resources:</p>
 <blockquote>
 <div><ul class="simple">
@@ -166,26 +202,14 @@ control system. It is hosted externally with <em>Github</em>.</p>
 <li><a class="reference external" href="http://www-cs-students.stanford.edu/~blynn/gitmagic/">http://www-cs-students.stanford.edu/~blynn/gitmagic/</a></li>
 </ul>
 </div></blockquote>
-<p>The main repository is located at <a class="reference external" href="http://github.com/cyclus/core">http://github.com/cyclus/core</a>. Anyone may
-check out the code. Although you do not have to register with github to
-download and edit the code, if you desire your work to be integrated into the
-cyclus mainline of development <em>you must fork the cyclus core repository into
-your own github account and submit &#8216;Pull Requests&#8217;</em>.</p>
 <p>If you are unfamiliar with Github, here are some resources:</p>
 <blockquote>
 <div><ul class="simple">
 <li><a class="reference external" href="http://help.github.com">Github Help</a></li>
-<li>Visit <a class="reference external" href="http://help.github.com/linux-set-up-git/">Set Up Git</a> for basic git installation and setup instructions.</li>
-<li>Fork the cyclus repository.  Visit <a class="reference external" href="http://help.github.com/fork-a-repo/">Fork A Repo</a> for a step by step guide
-to forking.</li>
 <li>To have your changes integrated into the cyclus core project, you must
 submit a github <em>Pull Request</em>.  Visit <a class="reference external" href="http://help.github.com/send-pull-requests/">Send pull requests</a> to learn more.</li>
 </ul>
 </div></blockquote>
-<div class="section" id="specific-instructions">
-<h3>Specific Instructions<a class="headerlink" href="#specific-instructions" title="Permalink to this headline">¶</a></h3>
-<p>Specific instructions on acquiring a <em>Cyclus</em> fork can be found in the
-example of the <em>Cyclus</em> <a class="reference external" href="https://github.com/cyclus/core/tree/develop">readme</a>.</p>
 </div>
 </div>
 <div class="section" id="build-system">
@@ -197,7 +221,7 @@ recommended that you use CMake to build the Cyclus executable external to the
 source code. To do this, execute the following steps:</p>
 <div class="highlight-python"><pre>/cyclus/trunk/$ mkdir build
 /cyclus/trunk/$ cd build
-cyclus/trunk/build$ cmake ../src</pre>
+/cyclus/trunk/build$ cmake ../src</pre>
 </div>
 <p>You should see output like this:</p>
 <div class="highlight-python"><pre>...
