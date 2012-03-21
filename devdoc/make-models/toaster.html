@@ -1,0 +1,623 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Model Devlopment Example : ToasterFacility &mdash; Cyclus Home</title>
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../../index.html" />
+    <link rel="up" title="Developing Models For Cyclus" href="main.html" />
+    <link rel="next" title="Program Flow and Data Structures" href="../flow_and_structure.html" />
+    <link rel="prev" title="Developing Market Models" href="market.html" />
+   
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <a href="http://cyclus.github.com">
+    <img src="../../_static/logo1.png"/>
+  </a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../flow_and_structure.html" title="Program Flow and Data Structures"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="market.html" title="Developing Market Models"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="../main.html" >Cyclus Developer Guide</a> &raquo;</li>
+          <li><a href="main.html" accesskey="U">Developing Models For Cyclus</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Model Devlopment Example : ToasterFacility</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#beginning-with-a-stub-template">Beginning With a Stub Template</a></li>
+<li><a class="reference internal" href="#customization-of-the-relax-ng-grammar">Customization of the Relax-NG Grammar</a></li>
+<li><a class="reference internal" href="#customization-of-the-documentation-comments">Customization of the Documentation Comments</a></li>
+<li><a class="reference internal" href="#customization-of-module-behavior">Customization of Module Behavior</a><ul>
+<li><a class="reference internal" href="#init">init</a></li>
+<li><a class="reference internal" href="#copy">copy</a></li>
+<li><a class="reference internal" href="#print">print</a></li>
+<li><a class="reference internal" href="#handletick-and-handletock">handleTick and handleTock</a></li>
+<li><a class="reference internal" href="#receivemessage">receiveMessage</a></li>
+<li><a class="reference internal" href="#removeresource-and-addresource">removeResource and addResource</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#customization-of-module-tests">Customization of Module Tests</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="market.html"
+                        title="previous chapter">Developing Market Models</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../flow_and_structure.html"
+                        title="next chapter">Program Flow and Data Structures</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="model-devlopment-example-toasterfacility">
+<h1>Model Devlopment Example : ToasterFacility<a class="headerlink" href="#model-devlopment-example-toasterfacility" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The instructions here will use a fictional example (a Toaster) to describe the
+specific steps to take in order to easily add a custom module to the Cyclus
+framework. The module pursued here is a Facility type module which converts a
+<cite>bread</cite> Material Resource into a <cite>toast</cite> Material Resource. In order to do this,</p>
+<p>For each type of model (i.e. Market, Facility, Institution, or Region), a set of
+stub files are available as skeletons for the new models.  When creating a new
+model, it is important that all the functionality defined in these files remains
+in the final model definition.</p>
+</div>
+<div class="section" id="beginning-with-a-stub-template">
+<h2>Beginning With a Stub Template<a class="headerlink" href="#beginning-with-a-stub-template" title="Permalink to this headline">¶</a></h2>
+<p>To create a new model, e.g. a new FacilityModel of type ToasterFacility:</p>
+<ol class="arabic simple">
+<li>Copy the StubFacility directory and all of the files it contains to a new
+directory called ToasterFacility.</li>
+<li>Rename the Stub* files within that directory to corresponding Toaster* files.
+(That is, rename StubFacility.cpp to ToasterFacility.cpp, etc.)</li>
+<li>Search instances of <cite>Stub</cite> and <cite>STUB</cite> within those files and replace them
+with <cite>Toaster</cite> and <cite>TOASTER</cite>. That is, code such as:</li>
+</ol>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// StubFacility.h</span>
+<span class="cp">#if !defined(_STUBFACILITY_H)</span>
+<span class="cp">#define _STUBFACILITY_H</span>
+
+<span class="cp">#include &quot;Logger.h&quot;</span>
+<span class="cp">#include &quot;FacilityModel.h&quot;</span>
+
+<span class="k">class</span> <span class="nc">StubFacility</span> <span class="o">:</span> <span class="k">public</span> <span class="n">FacilityModel</span>  <span class="c1">// ...</span>
+</pre></div>
+</div>
+<p>would become :</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacility.h</span>
+<span class="cp">#if !defined(_TOASTERFACILITY_H)</span>
+<span class="cp">#define _TOASTERFACILITY_H</span>
+
+<span class="cp">#include &quot;Logger.h&quot;</span>
+<span class="cp">#include &quot;FacilityModel.h&quot;</span>
+
+<span class="k">class</span> <span class="nc">ToasterFacility</span> <span class="o">:</span> <span class="k">public</span> <span class="n">FacilityModel</span>  <span class="c1">// ...</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>Add a new add_subdirectory line to the CMakeLists.txt file in the Facility
+directory. That should look something like :</li>
+</ol>
+<div class="highlight-cmake"><pre># Build the cyclus executable from the CYCLUS_SRC source files
+ADD_SUBDIRECTORY( ConditioningFacility )
+ADD_SUBDIRECTORY( EnrichmentFacility )
+...
+ADD_SUBDIRECTORY( ToasterFacility )
+
+SET(ModelTestSource ${ModelTestSource} ${FacilityTestSource} PARENT_SCOPE)</pre>
+</div>
+</div>
+<div class="section" id="customization-of-the-relax-ng-grammar">
+<h2>Customization of the Relax-NG Grammar<a class="headerlink" href="#customization-of-the-relax-ng-grammar" title="Permalink to this headline">¶</a></h2>
+<p>The parameters that define a Toaster are :</p>
+<ul class="simple">
+<li><strong>nSlices</strong> :  How many slices it can toast at once [ integer number of slices
+]</li>
+<li><strong>toastiness</strong> : How toasted they become [ light, golden, dark, burnt ]</li>
+<li><strong>rate</strong> : How long it takes to toast a set of slices [ minutes ]</li>
+<li><strong>incommodity</strong> : The commodity market in which slices of bread are traded in
+this simulation [ a string ]</li>
+<li><strong>outcommodity</strong> : The commodity market in which toasted bread is traded in
+this simulation [ a string ]</li>
+</ul>
+<p>To tell the cyclus framework that this is the necessary information to define a
+ToasterFacility, we include a Relax-NG grammar file. The stub looks like :</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;grammar</span> <span class="na">xmlns=</span><span class="s">&quot;http://relaxng.org/ns/structure/1.0&quot;</span>
+<span class="na">datatypeLibrary=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-datatypes&quot;</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;ToasterFacility&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;ToasterFacility&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;incommodity&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;oneOrMore&gt;</span>
+       <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;outcommodity&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;/oneOrMore&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+ <span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+<p>To customize it to include the parameters above, change it to look like :</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;grammar</span> <span class="na">xmlns=</span><span class="s">&quot;http://relaxng.org/ns/structure/1.0&quot;</span>
+<span class="na">datatypeLibrary=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-datatypes&quot;</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;ToasterFacility&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;ToasterFacility&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;nSlices&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;nonNegativeInteger&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;toastiness&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;rate&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;incommodity&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;outcommodity&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+ <span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+<p>There are a few things to notice here.</p>
+<ul class="simple">
+<li>The incommodity and outcommodity elements are already defined. Since these are
+common module parameters, they can be used by reference (note the ref syntax)
+in any rng file within the simulation.  * The data types of the parameters are
+defined by the datatypeLibrary referenced in the top line. The documentation
+for this datatype library can be found at the url. This is provided only for
+convenience, and allows the XML parser to check the datatype of user input.</li>
+<li>The toastiness parameter is passed as a string. This means that the input
+error checking, string interpretation, and other parsing that must be done to
+ensure that the value provided is within the available (light, golden, dark,
+burnt) options must be done in the initialization function on the c++ side.
+Though this parameter could have been defined in other ways, thisi is a good
+example of how to arrage to do the input parsing task outside of xml. <strong>Note
+that such a string parameter could also be used to provide the name of another
+input file that helps define a module. The interpretation, again, would have
+to be done on the c++ side</strong></li>
+</ul>
+</div>
+<div class="section" id="customization-of-the-documentation-comments">
+<h2>Customization of the Documentation Comments<a class="headerlink" href="#customization-of-the-documentation-comments" title="Permalink to this headline">¶</a></h2>
+<p>To build documentation of your module into the doxygen documentation you or your
+users build locally, your code must contain informative, Doxygen style comments
+to describe the classes and functions that define your module. More details of
+this are discussed in the style guide, but the Stub files give a good begining.</p>
+<p>For our ToasterFacility, the ToasterFacility.h file, for instance, has a section
+that looks like :</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacility.h</span>
+<span class="cp">#if !defined(_TOASTERFACILITY_H)</span>
+<span class="cp">#define _TOASTERFACILITY_H</span>
+
+<span class="cp">#include &quot;Logger.h&quot;</span>
+<span class="cp">#include &quot;FacilityModel.h&quot;</span>
+
+<span class="cm">/**</span>
+<span class="cm">  @class ToasterFacility</span>
+
+<span class="cm">  @brief This FacilityModel is intended as a skeleton to guide the</span>
+<span class="cm">  implementation of new FacilityModel models.</span>
+
+<span class="cm">  The ToasterFacility class inherits from the FacilityModel class and is</span>
+<span class="cm">  dynamically loaded by the Model class when requested.</span>
+
+<span class="cm">  @section intro Introduction</span>
+<span class="cm">  Place an introduction to the model here.</span>
+
+<span class="cm">  @section modelparams Model Parameters</span>
+<span class="cm">  Place a description of the required input parameters which define the model</span>
+<span class="cm">  implementation.</span>
+
+<span class="cm">  @section optionalparams Optional Parameters</span>
+<span class="cm">  Place a description of the optional input parameters to define the model</span>
+<span class="cm">  implementation.</span>
+
+<span class="cm">  @section detailed Detailed Behavior</span>
+<span class="cm">  Place a description of the detailed behavior of the model. Consider</span>
+<span class="cm">  describing the behavior at the tick and tock as well as the behavior upon</span>
+<span class="cm">  sending and</span>
+<span class="cm">  receiving materials and messages.  */</span>
+</pre></div>
+</div>
+<p>This should looke more like :</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacility.h</span>
+<span class="cp">#if !defined(_TOASTERFACILITY_H)</span>
+<span class="cp">#define _TOASTERFACILITY_H</span>
+
+<span class="cp">#include &quot;Logger.h&quot;</span>
+<span class="cp">#include &quot;FacilityModel.h&quot;</span>
+
+<span class="cm">/**</span>
+<span class="cm">  @class ToasterFacility</span>
+
+<span class="cm">  @brief This FacilityModel is intended to toast material objects</span>
+
+<span class="cm">  The ToasterFacility class inherits from the FacilityModel class and is</span>
+<span class="cm">  dynamically loaded by the Model class when requested.</span>
+
+<span class="cm">  @section intro Introduction</span>
+<span class="cm">  A toaster is a common household implment which adds some carbon to our</span>
+<span class="cm">  slices of bread. It usually takes about a minute to heat a slice of bread</span>
+<span class="cm">  until it is golden brown.</span>
+
+<span class="cm">  @section modelparams Model Parameters</span>
+<span class="cm">  To fully define a Toaster prototype, the following parameters must be</span>
+<span class="cm">  defined : - int nSlices :  How many slices it can toast at once [ integer</span>
+<span class="cm">  number of slices ]</span>
+<span class="cm">  - string toastiness : How toasted they become [ light, golden, dark, burnt ]</span>
+<span class="cm">  - double rate : How long it takes to toast a set of slices [ minutes ]</span>
+<span class="cm">  - string incommodity : The commodity market in which slices of bread are</span>
+<span class="cm">    traded - string outcommodity : The commodity market in which toasted bread</span>
+<span class="cm">    is traded</span>
+
+<span class="cm">  @section optionalparams Optional Parameters</span>
+<span class="cm">  This model has no optional parameters.</span>
+
+<span class="cm">  @section detailed Detailed Behavior</span>
+<span class="cm">  The ToasterFacility starts operation immediately.</span>
+
+<span class="cm">  @subsection tick On the tick :</span>
+<span class="cm">  The ToasterFacility immediately offers any toast that exists in the</span>
+<span class="cm">  inventory from previous months and begins to request the incommodity. It</span>
+<span class="cm">  requests as much sliced bread as it can toast within a timestep. That is, it</span>
+<span class="cm">  requests 86400 slices if the timestep is 30 days long, the rate is 2 minutes</span>
+<span class="cm">  per set of slices, and  n_slices = 4.</span>
+
+<span class="cm">  @subsection receive Receiving a Message :</span>
+<span class="cm">  If the request is matched with an offer from another facility, the</span>
+<span class="cm">  ToasterFacility executes that order by adding that quantity to its stocks.</span>
+
+<span class="cm">  @subsection tock On the tock :</span>
+<span class="cm">  On the tock, the ToasterFacility alters the isotopic vectors of each slice</span>
+<span class="cm">  of bread in the stocks (up to the monthly capacity) to include more carbon</span>
+<span class="cm">  and less</span>
+<span class="cm">  oxygen (the magnitude of the change is defined by the toastiness parameter).</span>
+<span class="cm">  Each (now toasted) slice is then placed in the inventory.</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="customization-of-module-behavior">
+<h2>Customization of Module Behavior<a class="headerlink" href="#customization-of-module-behavior" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="init">
+<h3>init<a class="headerlink" href="#init" title="Permalink to this headline">¶</a></h3>
+<p>One of the requirements for a model to be properly loaded into the Cyclus
+framework is a  method named &#8216;init&#8217; to initialize an instance of the model from
+an XML node pointer (xmlNodePtr)</p>
+<ul class="simple">
+<li>this method must call the parent class method of the same name (e.g.
+FacilityModel::init(cur))</li>
+<li>this method should only initialize variables that are NOT members of the
+parent class</li>
+</ul>
+<p>In order for your module to have access to these parameters that define a
+configured prototype the init function must load the data from XML. The
+ToasterFacility.cpp file changes from :</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="o">-</span>    <span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">FacilityModel</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+  <span class="c1">/// move XML pointer to current model</span>
+  <span class="n">cur</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_element</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;model/ToasterFacility&quot;</span><span class="p">);</span>
+  <span class="c1">/// initialize any ToasterFacility-specific datamembers here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To :</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="o">-</span>    <span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">FacilityModel</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+  <span class="c1">/// move XML pointer to current model</span>
+  <span class="n">cur</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_element</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;model/ToasterFacility&quot;</span><span class="p">);</span>
+  <span class="c1">/// initialize any ToasterFacility-specific datamembers here</span>
+  <span class="n">n_slices_</span> <span class="o">=</span> <span class="n">strtol</span><span class="p">(</span><span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s">&quot;nSlices&quot;</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="n">toastiness_</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;toastiness&quot;</span><span class="p">);</span>
+  <span class="n">rate_</span> <span class="o">=</span> <span class="n">strtod</span><span class="p">(</span><span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s">&quot;rate&quot;</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">incommodity_</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s">&quot;incommodity&quot;</span><span class="p">);</span>
+  <span class="n">outcommodity_</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s">&quot;outcommodity&quot;</span><span class="p">);</span>
+
+  <span class="c1">// check that toastiness_ is oneof the allowed levels :</span>
+  <span class="c1">// this gives an example of performing input checking in the module // in</span>
+  <span class="k">case</span> <span class="n">the</span> <span class="n">xml</span> <span class="n">parser</span> <span class="n">is</span> <span class="n">not</span> <span class="n">detailed</span> <span class="n">enough</span>
+  <span class="n">string</span> <span class="n">levels_array</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;light&quot;</span><span class="p">,</span> <span class="s">&quot;golden&quot;</span><span class="p">,</span> <span class="s">&quot;dark&quot;</span><span class="p">,</span> <span class="s">&quot;burnt&quot;</span><span class="p">};</span>
+  <span class="n">set</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">allowed_levels</span><span class="p">(</span><span class="n">levels_array</span><span class="p">,</span> <span class="n">levels_array</span><span class="o">+</span><span class="mi">4</span><span class="p">);</span>
+  <span class="k">if</span> <span class="o">!</span><span class="n">allowed_levels</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">toastiness_</span><span class="p">){</span>
+    <span class="n">string</span> <span class="n">msg</span> <span class="o">=</span> <span class="s">&quot;The value given for the toastiness parameter, &quot;</span><span class="p">;</span>
+    <span class="n">msg</span> <span class="o">+=</span> <span class="n">toastiness_</span><span class="p">;</span>
+    <span class="n">msg</span> <span class="o">+=</span> <span class="s">&quot;, is not within the allowed set. Allowed values are: &quot;</span><span class="p">;</span>
+    <span class="n">set</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">it</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">it</span><span class="o">=</span><span class="n">allowed_levels</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">allowed_levels</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="n">it</span><span class="o">++</span><span class="p">){</span>
+      <span class="n">msg</span> <span class="o">+=</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+      <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">msg</span><span class="o">+=</span><span class="s">&quot;.&quot;</span><span class="p">;</span>
+    <span class="k">throw</span> <span class="n">CycException</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+    <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_ERROR</span><span class="p">,</span><span class="s">&quot;Toast&quot;</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">msg</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>These member variables must be declared in the ToasterFacility.h header file.
+The header file originally has a section that looks like :</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/* --------------------</span>
+<span class="cm"> * _THIS_ FACILITYMODEL class has these members</span>
+<span class="cm"> * --------------------</span>
+<span class="cm"> */</span>
+
+<span class="cm">/* ------------------- */</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>We change it to include :</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/* --------------------</span>
+<span class="cm"> * _THIS_ FACILITYMODEL class has these members</span>
+<span class="cm"> * --------------------</span>
+<span class="cm"> */</span>
+
+ <span class="k">private</span><span class="o">:</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The number of slices the toaster can handle at one time</span>
+<span class="cm">   */</span>
+  <span class="kt">int</span> <span class="n">n_slices_</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The speed (set of slices per minute) with which the toaster toasts</span>
+<span class="cm">   */</span>
+  <span class="kt">double</span> <span class="n">rate_</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The toastiness of the toast. This can be &#39;light&#39;, &#39;golden&#39;, &#39;dark&#39; or</span>
+<span class="cm">     &#39;burnt&#39;.  */</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">toastiness_</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The name of the commodity market for the incoming commodity.</span>
+<span class="cm">   */</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">incommodity_</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * The name of the commodity market for the outgoing commodity.</span>
+<span class="cm">   */</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">outcommodity_</span><span class="p">;</span>
+
+
+<span class="cm">/* ------------------- */</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="copy">
+<h3>copy<a class="headerlink" href="#copy" title="Permalink to this headline">¶</a></h3>
+<p>All models must provide a method named &#8216;copy&#8217; to initialize an instance of the
+model from another instance of the same model</p>
+<ul class="simple">
+<li>this method must call the parent class method of the same name (e.g.
+FacilityModel::copy(src))</li>
+<li>this method should only initialize variables that are NOT members of the
+parent class</li>
+</ul>
+</div>
+<div class="section" id="print">
+<h3>print<a class="headerlink" href="#print" title="Permalink to this headline">¶</a></h3>
+<p>All models may provide a method named &#8216;print&#8217; to print a description of the
+model</p>
+<ul class="simple">
+<li>this method should call the parent class method of the same name (e.g.
+FacilityModel::print())</li>
+<li>this method should only print information that is NOT part of the parent
+class(es)</li>
+<li>this method assumes that a dangling output line (no std::endl) is left
+from the parent class output</li>
+</ul>
+<p>The ToasterFacility I&#8217;ve implemented has a print function that looks like :</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">print</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">FacilityModel</span><span class="o">::</span><span class="n">print</span><span class="p">();</span>
+  <span class="n">string</span> <span class="n">msg</span> <span class="o">=</span> <span class="s">&quot;ToasterFacility&quot;</span><span class="p">;</span>
+  <span class="n">msg</span> <span class="o">+=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">();</span>
+  <span class="n">msg</span> <span class="o">+=</span> <span class="s">&quot; makes delicious &quot;</span><span class="p">;</span>
+  <span class="n">msg</span> <span class="o">+=</span> <span class="n">toastiness_</span><span class="p">;</span>
+  <span class="n">msg</span> <span class="o">+=</span> <span class="s">&quot; toast.&quot;</span><span class="p">;</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG2</span><span class="p">,</span><span class="s">&quot;Toast&quot;</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">msg</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="handletick-and-handletock">
+<h3>handleTick and handleTock<a class="headerlink" href="#handletick-and-handletock" title="Permalink to this headline">¶</a></h3>
+<p>The handleTick and handleTock functions are called once per timestep, and it is
+in these functions that much of the behavior of the module is defined.</p>
+<p>If Resources must be created, manipulated, etc. these are the functions in which
+to trigger those behaviors.</p>
+<p>Cyclus convention decrees that in the handleTick step, facilities make
+requests and offers.  On handleTock, they do clean-up tasks, such as
+responding to transaction matches and processing Resources.</p>
+<p>The ToasterFacility handleTick and handleTock functions may look something
+like :</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">handleTick</span><span class="p">(</span><span class="kt">int</span> <span class="n">time</span><span class="p">){</span>
+  <span class="n">makeRequests</span><span class="p">();</span>
+  <span class="n">makeOffers</span><span class="p">();</span>
+  <span class="n">toast</span><span class="p">(</span><span class="n">stocks_</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">handleTock</span><span class="p">(</span><span class="kt">int</span> <span class="n">time</span><span class="p">){</span>
+  <span class="n">sendToast</span><span class="p">(</span><span class="n">orders_waiting_</span><span class="p">);</span>
+  <span class="n">cleanUp</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The details of implementation are entirely up to the developer. In this example,
+the details are hidden in the private functions that are defined elsewhere in the
+ToasterFacility class.</p>
+<p>For this to work out, of course, you&#8217;ll need to declare the <cite>vector&lt;msg_ptr&gt; orders_waiting_</cite>
+and the <cite>DeckStore stocks_</cite> in the header file.</p>
+</div>
+<div class="section" id="receivemessage">
+<h3>receiveMessage<a class="headerlink" href="#receivemessage" title="Permalink to this headline">¶</a></h3>
+<p>The Toaster likes to keep the message and deal with it later. The
+developer is welcome to deal with messages in whatever way they like. In this example,
+a vector of the received message pointers is kept as the private member variable
+<cite>orders_waiting_</cite>.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">SourceFacility</span><span class="o">::</span><span class="n">receiveMessage</span><span class="p">(</span><span class="n">msg_ptr</span> <span class="n">msg</span><span class="p">){</span>
+  <span class="n">orders_waiting_</span><span class="p">.</span><span class="n">push_front</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="removeresource-and-addresource">
+<h3>removeResource and addResource<a class="headerlink" href="#removeresource-and-addresource" title="Permalink to this headline">¶</a></h3>
+<p>Though here again the developer is welcome to implement this in any way they
+like, we recommend a particular paradigm in which the facility has raw materials (&#8216;stocks&#8217;)
+in pre-precess storage and processed materials (&#8216;inventory&#8217;) in pre-transaction
+storage. A tool in the developer&#8217;s arsenal for this purpose are the DeckStore and
+MatStore functions. Here we&#8217;ll utilize the DeckStore class that provides a useful interface
+for a list of resource objects.</p>
+<div class="highlight-cpp"><div class="highlight"><pre>  <span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">rsrc_ptr</span><span class="o">&gt;</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">removeResource</span><span class="p">(</span><span class="n">msg_ptr</span> <span class="n">order</span><span class="p">)</span> <span class="p">{}</span>
+  <span class="n">Transaction</span> <span class="n">trans</span> <span class="o">=</span> <span class="n">order</span><span class="o">-&gt;</span><span class="n">trans</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">trans</span><span class="p">.</span><span class="n">commod</span> <span class="o">!=</span> <span class="n">outcommodity_</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">string</span> <span class="n">err_msg</span> <span class="o">=</span> <span class="s">&quot;ToasterFacility can only send &#39;&quot;</span> <span class="o">+</span> <span class="n">outcommodity_</span> <span class="p">;</span>
+    <span class="n">err_msg</span> <span class="o">+=</span> <span class="o">+</span> <span class="s">&quot;&#39; materials.&quot;</span><span class="p">;</span>
+    <span class="k">throw</span> <span class="n">CycException</span><span class="p">(</span><span class="n">err_msg</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">MatManifest</span> <span class="n">materials</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">materials</span> <span class="o">=</span> <span class="n">inventory_</span><span class="p">.</span><span class="n">popQty</span><span class="p">(</span><span class="n">trans</span><span class="p">.</span><span class="n">resource</span><span class="o">-&gt;</span><span class="n">quantity</span><span class="p">());</span>
+  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="n">CycNegQtyException</span> <span class="n">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_ERROR</span><span class="p">,</span> <span class="s">&quot;Toast&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;extraction of &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">trans</span><span class="p">.</span><span class="n">resource</span><span class="o">-&gt;</span><span class="n">quantity</span><span class="p">()</span>
+                   <span class="o">&lt;&lt;</span> <span class="s">&quot; kg failed. Inventory is only &quot;</span>
+                   <span class="o">&lt;&lt;</span> <span class="n">inventory_</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; kg.&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">MatStore</span><span class="o">::</span><span class="n">toRes</span><span class="p">(</span><span class="n">materials</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">addResource</span><span class="p">(</span><span class="n">msg_ptr</span> <span class="n">msg</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">rsrc_ptr</span><span class="o">&gt;</span> <span class="n">manifest</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">stocks_</span><span class="p">.</span><span class="n">pushAll</span><span class="p">(</span><span class="n">MatStore</span><span class="o">::</span><span class="n">toMat</span><span class="p">(</span><span class="n">manifest</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="customization-of-module-tests">
+<h2>Customization of Module Tests<a class="headerlink" href="#customization-of-module-tests" title="Permalink to this headline">¶</a></h2>
+<p>Tests for the ToasterFacility can be implemented in the ToasterFacilityTests.cpp
+file using the GoogleTest testing framework. For more details about testing, see
+the <a class="reference external" href="http://cnerg.engr.wisc.edu/cyclus/docs/testing.html">http://cnerg.engr.wisc.edu/cyclus/docs/testing.html</a>, the testing section of
+the cyclus doxygen documentation.</p>
+<p>For our purposes, we&#8217;ll simply show one example of a unit test that the Toaster
+Facility must pass and point out that by copying the ToasterFacilityTests.cpp
+file from the Stub, we have successfully added the ToasterFacility to the
+Models and FacilityModels whose Model and FacilityModel interfaces
+(respectively) are tested.</p>
+<p>In the ToasterFacilityTests.cpp file, you&#8217;ll notice that there is space for you
+to fill in tests concerning the behavior of the ToasterFacility that we defined
+in previous steps.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../flow_and_structure.html" title="Program Flow and Data Structures"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="market.html" title="Developing Market Models"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="../main.html" >Cyclus Developer Guide</a> &raquo;</li>
+          <li><a href="main.html" >Developing Models For Cyclus</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Robert Carlsen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

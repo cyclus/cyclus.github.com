@@ -67,3 +67,59 @@ Notable items:
 
 .. _`Google Style Guide`: http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml
 
+Documenatation Formatting
+-------------------------
+
+Documentation in Cyclus is automated via Doxygen. All documentation occurs in header files. 
+Additionally, there are two distinct instances of automated documentation: class overviews 
+and method/member overviews. Class overviews occur once per class at the top of the header file 
+while method/member overviews occur once per each method and member. All documentation 
+segments begin with a slash-double-asterisk and end with an askerisk-slash: ::
+
+  /**
+    Some documenatation...
+   */
+
+Class Overviews
+~~~~~~~~~~~~~~~
+
+Class overviews should include the following sections: 
+ * a brief overview 
+ * an introduction 
+ * a discussion of key parameters
+ * a detailed discussion of class behavior (if the class is complex)
+
+An example is given below: ::
+
+   /**
+     @class SomeClass
+  
+     @brief A brief overview of SomeClass
+
+     @section intro Introduction
+     Place an introduction to the class here. 
+
+     @section classparams Class Parameters
+     Place a description of the key parameters used by the class.
+
+     @section detailed Detailed Behavior
+     If the class is complex, provided a detailed description of its behavior.
+    */
+
+Method/Member Overviews
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Method overviews should fully describe the method's behavior, the parameters
+required to call it, and the value it returns. Member overviews should fully describe 
+the member in question and its role in the workings of the class.
+
+Please note that class and method/member overviews differ in asterisk usage in the 
+overview's body. An example is given below: ::
+
+  /**
+   * @brief An explanation of aFunction's behavior
+   * 
+   * @param aParam description of aParam
+   * @return description of what the function returns
+   */ 
+   returnType aFuction(paramType aParam);

@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="main.html" />
-    <link rel="next" title="Developing Models For Cyclus" href="make-models/main.html" />
+    <link rel="next" title="Tour of the Source Code" href="code_tour.html" />
     <link rel="prev" title="Cyclus Developer Guide" href="main.html" />
    
 <script type="text/javascript">
@@ -58,7 +58,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="make-models/main.html" title="Developing Models For Cyclus"
+          <a href="code_tour.html" title="Tour of the Source Code"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="main.html" title="Cyclus Developer Guide"
@@ -74,6 +74,11 @@
 <li><a class="reference internal" href="#">Style Guidelines for Developers</a><ul>
 <li><a class="reference internal" href="#class-file-organization">Class File Organization</a></li>
 <li><a class="reference internal" href="#code-formatting">Code Formatting</a></li>
+<li><a class="reference internal" href="#documenatation-formatting">Documenatation Formatting</a><ul>
+<li><a class="reference internal" href="#class-overviews">Class Overviews</a></li>
+<li><a class="reference internal" href="#method-member-overviews">Method/Member Overviews</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -82,8 +87,8 @@
   <p class="topless"><a href="main.html"
                         title="previous chapter">Cyclus Developer Guide</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="make-models/main.html"
-                        title="next chapter">Developing Models For Cyclus</a></p>
+  <p class="topless"><a href="code_tour.html"
+                        title="next chapter">Tour of the Source Code</a></p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -166,6 +171,63 @@ this style standard can be found in the <a class="reference external" href="http
 </li>
 </ul>
 </div>
+<div class="section" id="documenatation-formatting">
+<h2>Documenatation Formatting<a class="headerlink" href="#documenatation-formatting" title="Permalink to this headline">¶</a></h2>
+<p>Documentation in Cyclus is automated via Doxygen. All documentation occurs in header files.
+Additionally, there are two distinct instances of automated documentation: class overviews
+and method/member overviews. Class overviews occur once per class at the top of the header file
+while method/member overviews occur once per each method and member. All documentation
+segments begin with a slash-double-asterisk and end with an askerisk-slash:</p>
+<div class="highlight-python"><pre>/**
+  Some documenatation...
+ */</pre>
+</div>
+<div class="section" id="class-overviews">
+<h3>Class Overviews<a class="headerlink" href="#class-overviews" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Class overviews should include the following sections:</dt>
+<dd><ul class="first last simple">
+<li>a brief overview</li>
+<li>an introduction</li>
+<li>a discussion of key parameters</li>
+<li>a detailed discussion of class behavior (if the class is complex)</li>
+</ul>
+</dd>
+</dl>
+<p>An example is given below:</p>
+<div class="highlight-python"><pre>/**
+  @class SomeClass
+
+  @brief A brief overview of SomeClass
+
+  @section intro Introduction
+  Place an introduction to the class here.
+
+  @section classparams Class Parameters
+  Place a description of the key parameters used by the class.
+
+  @section detailed Detailed Behavior
+  If the class is complex, provided a detailed description of its behavior.
+ */</pre>
+</div>
+</div>
+<div class="section" id="method-member-overviews">
+<h3>Method/Member Overviews<a class="headerlink" href="#method-member-overviews" title="Permalink to this headline">¶</a></h3>
+<p>Method overviews should fully describe the method&#8217;s behavior, the parameters
+required to call it, and the value it returns. Member overviews should fully describe
+the member in question and its role in the workings of the class.</p>
+<p>Please note that class and method/member overviews differ in asterisk usage in the
+overview&#8217;s body. An example is given below:</p>
+<div class="highlight-python"><pre>/**
+ * @brief An explanation of aFunction's behavior
+ *
+ * @param aParam description of aParam
+ * @return description of what the function returns
+ */
+ returnType aFuction(paramType aParam);</pre>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -181,7 +243,7 @@ this style standard can be found in the <a class="reference external" href="http
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="make-models/main.html" title="Developing Models For Cyclus"
+          <a href="code_tour.html" title="Tour of the Source Code"
              >next</a> |</li>
         <li class="right" >
           <a href="main.html" title="Cyclus Developer Guide"
