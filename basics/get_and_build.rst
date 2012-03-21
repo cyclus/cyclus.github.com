@@ -65,6 +65,13 @@ If you are unfamiliar with Github, here are some resources:
 
 .. _`Send pull requests`: http://help.github.com/send-pull-requests/
 
+Specific Instructions
+~~~~~~~~~~~~~~~~~~~~~
+
+Specific instructions can be found in the README in the *Cyclus* 
+`repository`_.
+
+.. _`repository` : https://github.com/cyclus/core/tree/develop.
 
 Build System
 ------------
