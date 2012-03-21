@@ -25,9 +25,9 @@ successfully acquiring and building *Cyclus*, you can begin developing:
 .. toctree::
    :maxdepth: 1
   
-   style_guide
    cyclus_env
    code_tour
+   style_guide
    make-models/main
    flow_and_structure
    output_dbase
