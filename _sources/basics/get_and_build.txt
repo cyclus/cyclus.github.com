@@ -68,10 +68,10 @@ If you are unfamiliar with Github, here are some resources:
 Specific Instructions
 ~~~~~~~~~~~~~~~~~~~~~
 
-Specific instructions can be found in the README in the *Cyclus* 
-`repository`_.
+Specific instructions on acquiring a *Cyclus* fork can be found in the 
+README in the *Cyclus* `repository`_.
 
-.. _`repository` : https://github.com/cyclus/core/tree/develop.
+.. _`repository` : https://github.com/cyclus/core/tree/develop
 
 Build System
 ------------

@@ -69,9 +69,9 @@ Specific Instructions
 ~~~~~~~~~~~~~~~~~~~~~
 
 Specific instructions on acquiring a *Cyclus* fork can be found in the 
-README in the *Cyclus* `repository`_.
+example of the *Cyclus* `readme`_.
 
-.. _`repository` : https://github.com/cyclus/core/tree/develop
+.. _`readme` : https://github.com/cyclus/core/tree/develop
 
 Build System
 ------------
