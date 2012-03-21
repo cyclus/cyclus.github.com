@@ -18,6 +18,10 @@ Package                Minimum Version
 `sqlite3`              3.7.10            
 ====================   ==================
 
+NOTE: The ***dev*** version of each of the above libraries must be used. 
+The build system will complain (saying it cannot find the library) if only 
+the normal (release) libraries are installed.
+
 An overview of some of the dependency installations
 can be found on the following pages:
 
