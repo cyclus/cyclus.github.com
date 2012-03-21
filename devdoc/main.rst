@@ -26,6 +26,7 @@ successfully acquiring and building *Cyclus*, you can begin developing:
    :maxdepth: 1
   
    style_guide
+   cyclus_env
    code_tour
    make-models/main
    flow_and_structure
