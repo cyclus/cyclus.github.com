@@ -97,6 +97,10 @@ MassTable (MT)
 --------------
 
 The MassTable simply provides the mass of a given isotope via its alpha-numeric handle. For 
-example, MT->getMassInGrams(pu240) returns the mass of Plutonium-240 in grams.
+example, ::
+
+  MT->getMassInGrams(pu240) 
+
+returns the mass of Plutonium-240 in grams.
 
 
