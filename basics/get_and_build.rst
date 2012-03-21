@@ -120,10 +120,3 @@ it will recognize the target as a debuggable target. To debug a run for some
 input file input.xml, try the following::
 
     /cyclus/trunk/debug$ ddd ./cyclus input.xml
-
-Environment
------------
-
-The Cyclus output and testing framwork requires knowlege of where some files 
-exist and where to place files. Accordingly, the CYCLUS_OUT_DIR environment 
-variable must be set to the path to your build directory.
