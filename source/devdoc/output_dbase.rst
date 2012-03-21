@@ -5,17 +5,23 @@ Output Database
 ===============
 
 *Cyclus* simulations are comprised of three major constructs (the interaction
-of which we are interested in documenting). In *Cyclus*, **Agents** create
-**Resources** and then trade these resources via **Transactions**. The primary 
-goal of fuel-cycle simulators, i.e., the tracking of material (fuel) through a
-complex system of facilities, falls easily under this paradigm -- one treats 
-facilities as a type of *agent*, fuel as a type of *resource*, and the 
+of which we are interested in documenting): 
+
+ * **Agents** (which create...)
+ * **Resources** (which are traded in...)
+ * **Transactions**  
+
+The primary goal of fuel-cycle simulations is to track material (fuel) through
+a complex system of facilities. Such interaction falls easily under this paradigm 
+-- one treats facilities as a type of *agent*, fuel as a type of *resource*, and the 
 exchange of fuel between facilities as a *transaction*. The power of this paradigm
-lies in its extensibility. By describing the fuel-cycle in this general language, 
+lies in its extensibility. By describing the fuel cycle in this general language, 
 one can easily envision other instances of resource transaction (e.g. electricity
 or man-hours) being driven by the same engine and using the same record 
-structure. The physical database used by *Cyclus* is SQL-based, specifically 
-SQLite is currently used.
+structure. 
+
+The physical database used by *Cyclus* is SQL-based. Currently SQLite is utilized 
+to minimize server/client complications.
 
 At larger scale, a coherent vocabulary is a chief requirement for this paradigm. 
 For instance, the terms "inventory", "stocks", and "capacity" should each have a
@@ -39,13 +45,24 @@ Cyclus Database Class Constituents
 ++++++++++++++++++++++++++++++++++
 
 The *Cyclus* database and management thereof is wholly comprised of three classes in
-its source code. The **Table** class housees the raw data which is eventually written to 
-the physical database and maintains information about the Table's structure (e.g. which
-columns uniquely identify rows). The **Database** class provides two key types of functionality:
-connectivity (open, close, read, write) to the physical database and management of a
-collection of Tables. Finally, the **BookKeeper** manages a unique instance of a Database.
-Each Table must be registered with the BookKeeper, and the BookKeeper determines the rate
-at which information is written to the physical database.
+its source code:
+
+ * The **Table** class 
+ 
+   * houses the raw data eventually written to the physical database 
+   * maintains information about the Table's structure (e.g. which columns uniquely identify rows)
+
+ * The **Database** class
+
+   * handles connectivity (open, close, read, write) to the physical database 
+   * manages a collection of Tables
+   * handles queries to a database on disk
+
+ * The **BookKeeper** class
+
+   * manages a unique instance of a Database
+   * registers Tables to be included in the output database
+   * determines the rate at which data is written
 
 Tables
 ------
@@ -57,18 +74,18 @@ database parlance) a primary key. A table can also have foreign keys and indicie
 is required.
 
 A number of sources exist that describe relational database design in detail. For the purposes 
-of this wiki, however, only the concept of primary key will be described and the concept of 
-foreign keys will be mentioned. Primary keys are essential to database definition, whereas the use
-of foreign keys and indicies is solely to speed up the query process.
+of this wiki, however, only the concept of a primary key will be described and the concept of 
+foreign keys will be mentioned. Primary keys are essential to database definition, whereas foreign 
+keys and indicies are used solely to speed up the query process.
 
 The Primary Key
 ~~~~~~~~~~~~~~~
 
 A primary key is a subset of columns that uniquely identifies a row in a table. In *Cyclus*, each
 agent has a unique id; accordingly, the table of agents has the "ID" column as its primary key. 
-The tracking of transactions, though, is a bit more complicated. A transaction of a resource occurs 
-between two agents at a given time. Accordingly, the primary key of the table of transaction is 
-comprised of each of those columns.
+Material histories, however, are a bit more complicated to unique describe. At any point in time, a
+material with a certain ID may be in some state. Accordinly, a combination of the material ID and state
+ID uniquely identify a material history and are used as its primary key.
 
 For the curious, a foreign key is simply a reference to another table's primary key. In the above
 example, the two agent id columns in the transaction table are foreign keys of the agent table. 
@@ -91,18 +108,18 @@ methods to query other databases. Currenly, only SQL support is provided via the
 Database Management
 ~~~~~~~~~~~~~~~~~~~
 
-The Database class manages the connection and writing to a specific database back-end. It is an
-eventual goal that only the Database class will have knowlege of the back-end-specific language 
+The Database class provides functionality to create a connection to and write to a database back-end.
+Eventually, the team's is goal that only the Database class will have knowlege of the back-end-specific language 
 and will be able to be modularly replaced to achieve different functionality (to go from SQL to
 HDF5, for instance). A Database in *Cyclus* holds a collection of Tables and has methods to 
-create, write rows, and update rows of each Table. However, each method call must be made 
-externally, i.e., the Database must be **managed**. No connectivity-related behavior is automated,
+create, write rows, and update rows of each Table. However, each method must be called
+externally, i.e., the Database must be *managed*. No connectivity-related behavior is automated, and
 each action must be made explicitly.
 
 Querying a Database
 ~~~~~~~~~~~~~~~~~~~
 
-The database also provides functionality for making queries. A query is command to search the 
+The database also provides functionality for making queries. A query is a command to search the 
 Database (e.g. "Select * from A_TABLE"). The query result is a container (vector) of rows, where
 each row is comprised of a complete entry -- a collection of individual entries -- that satisfies 
 the query. The entries are provided as strings, so it is the responsibility of the developer to 
@@ -124,8 +141,12 @@ The Cyclus Database -- Visually
 
 The Cyclus database is comprised of the following tables:
 
-_cycl_schema_bare.png
+ .. image:: ../astatic/cycl_schema_bare.png
 
-The connections between them are shown below:
+And an example with only the keys connecting each table:
 
-_cycl_schema.png
+ .. image:: ../astatic/cycl_schema_keys.png
+
+The connections between the full tables are shown below:
+
+ .. image:: ../astatic/cycl_schema.png
