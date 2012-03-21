@@ -1,5 +1,5 @@
 
-.. summary Design Goals for the Output Database 
+.. summary Design Goals for the SQLite Output Database 
 
 Output Database
 ===============
