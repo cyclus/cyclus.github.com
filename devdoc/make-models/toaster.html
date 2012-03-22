@@ -259,7 +259,7 @@ that looks like :</p>
 <span class="cp">#include &quot;Logger.h&quot;</span>
 <span class="cp">#include &quot;FacilityModel.h&quot;</span>
 
-<span class="cm">/**</span>
+<span class="cm">/*!</span>
 <span class="cm">  @class ToasterFacility</span>
 
 <span class="cm">  @brief This FacilityModel is intended as a skeleton to guide the</span>
@@ -283,7 +283,8 @@ that looks like :</p>
 <span class="cm">  Place a description of the detailed behavior of the model. Consider</span>
 <span class="cm">  describing the behavior at the tick and tock as well as the behavior upon</span>
 <span class="cm">  sending and</span>
-<span class="cm">  receiving materials and messages.  */</span>
+<span class="cm">  receiving materials and messages.</span>
+<span class="cm">  !*/</span>
 </pre></div>
 </div>
 <p>This should looke more like :</p>
@@ -294,7 +295,7 @@ that looks like :</p>
 <span class="cp">#include &quot;Logger.h&quot;</span>
 <span class="cp">#include &quot;FacilityModel.h&quot;</span>
 
-<span class="cm">/**</span>
+<span class="cm">/*!</span>
 <span class="cm">  @class ToasterFacility</span>
 
 <span class="cm">  @brief This FacilityModel is intended to toast material objects</span>
@@ -341,7 +342,7 @@ that looks like :</p>
 <span class="cm">  oxygen (the magnitude of the change is defined by the toastiness parameter).</span>
 <span class="cm">  Each (now toasted) slice is then placed in the inventory.</span>
 
-<span class="cm">*/</span>
+<span class="cm">!*/</span>
 </pre></div>
 </div>
 </div>
@@ -362,7 +363,7 @@ parent class</li>
 configured prototype the init function must load the data from XML. The
 ToasterFacility.cpp file changes from :</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
-<span class="o">-</span>    <span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">FacilityModel</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
   <span class="c1">/// move XML pointer to current model</span>
   <span class="n">cur</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_element</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;model/ToasterFacility&quot;</span><span class="p">);</span>
@@ -371,11 +372,13 @@ ToasterFacility.cpp file changes from :</p>
 </pre></div>
 </div>
 <p>To :</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
-<span class="o">-</span>    <span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">FacilityModel</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+
   <span class="c1">/// move XML pointer to current model</span>
   <span class="n">cur</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_element</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;model/ToasterFacility&quot;</span><span class="p">);</span>
+
   <span class="c1">/// initialize any ToasterFacility-specific datamembers here</span>
   <span class="n">n_slices_</span> <span class="o">=</span> <span class="n">strtol</span><span class="p">(</span><span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s">&quot;nSlices&quot;</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
   <span class="n">toastiness_</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;toastiness&quot;</span><span class="p">);</span>
@@ -384,23 +387,24 @@ ToasterFacility.cpp file changes from :</p>
   <span class="n">outcommodity_</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s">&quot;outcommodity&quot;</span><span class="p">);</span>
 
   <span class="c1">// check that toastiness_ is oneof the allowed levels :</span>
-  <span class="c1">// this gives an example of performing input checking in the module // in</span>
-  <span class="k">case</span> <span class="n">the</span> <span class="n">xml</span> <span class="n">parser</span> <span class="n">is</span> <span class="n">not</span> <span class="n">detailed</span> <span class="n">enough</span>
-  <span class="n">string</span> <span class="n">levels_array</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;light&quot;</span><span class="p">,</span> <span class="s">&quot;golden&quot;</span><span class="p">,</span> <span class="s">&quot;dark&quot;</span><span class="p">,</span> <span class="s">&quot;burnt&quot;</span><span class="p">};</span>
-  <span class="n">set</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">allowed_levels</span><span class="p">(</span><span class="n">levels_array</span><span class="p">,</span> <span class="n">levels_array</span><span class="o">+</span><span class="mi">4</span><span class="p">);</span>
-  <span class="k">if</span> <span class="o">!</span><span class="n">allowed_levels</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">toastiness_</span><span class="p">){</span>
+  <span class="c1">// this gives an example of performing input checking in the module</span>
+  <span class="c1">// in case the xml parser is not detailed enough</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">allowed_levels_</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">toastiness_</span><span class="p">)</span><span class="o">==</span><span class="n">allowed_levels_</span><span class="p">.</span><span class="n">end</span><span class="p">()){</span>
     <span class="n">string</span> <span class="n">msg</span> <span class="o">=</span> <span class="s">&quot;The value given for the toastiness parameter, &quot;</span><span class="p">;</span>
     <span class="n">msg</span> <span class="o">+=</span> <span class="n">toastiness_</span><span class="p">;</span>
     <span class="n">msg</span> <span class="o">+=</span> <span class="s">&quot;, is not within the allowed set. Allowed values are: &quot;</span><span class="p">;</span>
-    <span class="n">set</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">it</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">it</span><span class="o">=</span><span class="n">allowed_levels</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">allowed_levels</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="n">it</span><span class="o">++</span><span class="p">){</span>
-      <span class="n">msg</span> <span class="o">+=</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
-      <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">);</span>
+    <span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">it</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">it</span><span class="o">=</span><span class="n">allowed_levels_</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">allowed_levels_</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="n">it</span><span class="o">++</span><span class="p">){</span>
+      <span class="n">msg</span> <span class="o">+=</span> <span class="s">&quot; &#39;&quot;</span><span class="p">;</span>
+      <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">).</span><span class="n">first</span><span class="p">;</span>
+      <span class="n">msg</span> <span class="o">+=</span> <span class="s">&quot;&#39;&quot;</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="n">msg</span><span class="o">+=</span><span class="s">&quot;.&quot;</span><span class="p">;</span>
-    <span class="k">throw</span> <span class="n">CycException</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
     <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_ERROR</span><span class="p">,</span><span class="s">&quot;Toast&quot;</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">msg</span><span class="p">;</span>
   <span class="p">}</span>
+
+  <span class="c1">// initialize the toastiness dependent chemistry</span>
+  <span class="n">initToastChem</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -435,7 +439,8 @@ The header file originally has a section that looks like :</p>
 
   <span class="cm">/**</span>
 <span class="cm">   * The toastiness of the toast. This can be &#39;light&#39;, &#39;golden&#39;, &#39;dark&#39; or</span>
-<span class="cm">     &#39;burnt&#39;.  */</span>
+<span class="cm">     &#39;burnt&#39;.</span>
+<span class="cm">  */</span>
   <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">toastiness_</span><span class="p">;</span>
 
   <span class="cm">/**</span>
@@ -465,6 +470,21 @@ FacilityModel::copy(src))</li>
 <li>this method should only initialize variables that are NOT members of the
 parent class</li>
 </ul>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span><span class="n">ToasterFacility</span><span class="o">*</span> <span class="n">src</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">FacilityModel</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span><span class="n">src</span><span class="p">);</span>
+  <span class="n">n_slices_</span><span class="o">=</span><span class="n">src</span><span class="o">-&gt;</span><span class="n">n_slices_</span><span class="p">;</span>
+  <span class="n">toastiness_</span><span class="o">=</span><span class="n">src</span><span class="o">-&gt;</span><span class="n">toastiness_</span><span class="p">;</span>
+  <span class="n">rate_</span><span class="o">=</span><span class="n">src</span><span class="o">-&gt;</span><span class="n">rate_</span><span class="p">;</span>
+  <span class="n">incommodity_</span><span class="o">=</span><span class="n">src</span><span class="o">-&gt;</span><span class="n">incommodity_</span><span class="p">;</span>
+  <span class="n">outcommodity_</span><span class="o">=</span><span class="n">src</span><span class="o">-&gt;</span><span class="n">outcommodity_</span><span class="p">;</span>
+  <span class="n">allowed_levels_</span><span class="o">=</span><span class="n">src</span><span class="o">-&gt;</span><span class="n">allowed_levels_</span><span class="p">;</span>
+  <span class="n">toast_bread_elt_ratio_</span><span class="o">=</span><span class="n">src</span><span class="o">-&gt;</span><span class="n">toast_bread_elt_ratio_</span><span class="p">;</span>
+  <span class="n">inventory_</span><span class="p">.</span><span class="n">makeUnlimited</span><span class="p">();</span>
+  <span class="n">stocks_</span><span class="p">.</span><span class="n">makeUnlimited</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="print">
 <h3>print<a class="headerlink" href="#print" title="Permalink to this headline">¶</a></h3>
@@ -504,14 +524,14 @@ responding to transaction matches and processing Resources.</p>
 <p>The ToasterFacility handleTick and handleTock functions may look something
 like :</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
-<span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">handleTick</span><span class="p">(</span><span class="kt">int</span> <span class="n">time</span><span class="p">){</span>
+<span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">handleTick</span><span class="p">(</span><span class="kt">int</span> <span class="n">time</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">makeRequests</span><span class="p">();</span>
   <span class="n">makeOffers</span><span class="p">();</span>
-  <span class="n">toast</span><span class="p">(</span><span class="n">stocks_</span><span class="p">);</span>
+  <span class="n">inventory_</span><span class="p">.</span><span class="n">pushAll</span><span class="p">(</span><span class="n">toast</span><span class="p">(</span><span class="n">stocks_</span><span class="p">));</span>
 <span class="p">}</span>
 
 <span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
-<span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">handleTock</span><span class="p">(</span><span class="kt">int</span> <span class="n">time</span><span class="p">){</span>
+<span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">handleTock</span><span class="p">(</span><span class="kt">int</span> <span class="n">time</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">sendToast</span><span class="p">(</span><span class="n">orders_waiting_</span><span class="p">);</span>
   <span class="n">cleanUp</span><span class="p">();</span>
 <span class="p">}</span>
@@ -526,7 +546,7 @@ and the <cite>DeckStore stocks_</cite> in the header file.</p>
 <div class="section" id="receivemessage">
 <h3>receiveMessage<a class="headerlink" href="#receivemessage" title="Permalink to this headline">¶</a></h3>
 <p>The Toaster likes to keep the message and deal with it later. The
-developer is welcome to deal with messages in whatever way they like. In this example,
+developer is welcome to deal with in whatever way they like. In this example,
 a vector of the received message pointers is kept as the private member variable
 <cite>orders_waiting_</cite>.</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
@@ -544,8 +564,8 @@ in pre-precess storage and processed materials (&#8216;inventory&#8217;) in pre-
 storage. A tool in the developer&#8217;s arsenal for this purpose are the DeckStore and
 MatStore functions. Here we&#8217;ll utilize the DeckStore class that provides a useful interface
 for a list of resource objects.</p>
-<div class="highlight-cpp"><div class="highlight"><pre>  <span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
-  <span class="n">vector</span><span class="o">&lt;</span><span class="n">rsrc_ptr</span><span class="o">&gt;</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">removeResource</span><span class="p">(</span><span class="n">msg_ptr</span> <span class="n">order</span><span class="p">)</span> <span class="p">{}</span>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">rsrc_ptr</span><span class="o">&gt;</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">removeResource</span><span class="p">(</span><span class="n">msg_ptr</span> <span class="n">order</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">Transaction</span> <span class="n">trans</span> <span class="o">=</span> <span class="n">order</span><span class="o">-&gt;</span><span class="n">trans</span><span class="p">();</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">trans</span><span class="p">.</span><span class="n">commod</span> <span class="o">!=</span> <span class="n">outcommodity_</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">string</span> <span class="n">err_msg</span> <span class="o">=</span> <span class="s">&quot;ToasterFacility can only send &#39;&quot;</span> <span class="o">+</span> <span class="n">outcommodity_</span> <span class="p">;</span>
@@ -553,23 +573,16 @@ for a list of resource objects.</p>
     <span class="k">throw</span> <span class="n">CycException</span><span class="p">(</span><span class="n">err_msg</span><span class="p">);</span>
   <span class="p">}</span>
 
-  <span class="n">MatManifest</span> <span class="n">materials</span><span class="p">;</span>
-  <span class="k">try</span> <span class="p">{</span>
-    <span class="n">materials</span> <span class="o">=</span> <span class="n">inventory_</span><span class="p">.</span><span class="n">popQty</span><span class="p">(</span><span class="n">trans</span><span class="p">.</span><span class="n">resource</span><span class="o">-&gt;</span><span class="n">quantity</span><span class="p">());</span>
-  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="n">CycNegQtyException</span> <span class="n">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_ERROR</span><span class="p">,</span> <span class="s">&quot;Toast&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;extraction of &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">trans</span><span class="p">.</span><span class="n">resource</span><span class="o">-&gt;</span><span class="n">quantity</span><span class="p">()</span>
-                   <span class="o">&lt;&lt;</span> <span class="s">&quot; kg failed. Inventory is only &quot;</span>
-                   <span class="o">&lt;&lt;</span> <span class="n">inventory_</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; kg.&quot;</span><span class="p">;</span>
-  <span class="p">}</span>
+  <span class="n">Manifest</span> <span class="n">materials</span><span class="p">;</span>
+  <span class="n">materials</span> <span class="o">=</span> <span class="n">inventory_</span><span class="p">.</span><span class="n">popNum</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 
-  <span class="k">return</span> <span class="n">MatStore</span><span class="o">::</span><span class="n">toRes</span><span class="p">(</span><span class="n">materials</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">materials</span><span class="p">;</span>
 
 <span class="p">}</span>
 
-
 <span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
 <span class="kt">void</span> <span class="n">ToasterFacility</span><span class="o">::</span><span class="n">addResource</span><span class="p">(</span><span class="n">msg_ptr</span> <span class="n">msg</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">rsrc_ptr</span><span class="o">&gt;</span> <span class="n">manifest</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">stocks_</span><span class="p">.</span><span class="n">pushAll</span><span class="p">(</span><span class="n">MatStore</span><span class="o">::</span><span class="n">toMat</span><span class="p">(</span><span class="n">manifest</span><span class="p">));</span>
+  <span class="n">stocks_</span><span class="p">.</span><span class="n">pushAll</span><span class="p">(</span><span class="n">manifest</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -589,6 +602,32 @@ Models and FacilityModels whose Model and FacilityModel interfaces
 <p>In the ToasterFacilityTests.cpp file, you&#8217;ll notice that there is space for you
 to fill in tests concerning the behavior of the ToasterFacility that we defined
 in previous steps.</p>
+<p>Our test will just query whether the toaster does one of the things that we
+expect. When we feed it bread, a timestep passes, and we pull the bread back
+out, we want the bread to have less calcium than it did before (did you know
+that, about the toasting process?).</p>
+<p>Here&#8217;s a rough example of how we write that test:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">ToasterFacilityTest</span><span class="p">,</span> <span class="n">Toast</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="n">msg_ptr</span> <span class="n">bread_msg_</span> <span class="o">=</span> <span class="n">msg_ptr</span><span class="p">(</span><span class="k">new</span> <span class="n">Message</span><span class="p">(</span><span class="n">new_facility</span><span class="p">,</span> <span class="n">src_facility</span><span class="p">));</span>
+  <span class="n">bread_msg_</span><span class="o">-&gt;</span><span class="n">setResource</span><span class="p">(</span><span class="n">bread_</span><span class="p">);</span>
+  <span class="n">bread_msg_</span><span class="o">-&gt;</span><span class="n">setCommod</span><span class="p">(</span><span class="s">&quot;bread&quot;</span><span class="p">);</span>
+
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">rsrc_ptr</span><span class="o">&gt;</span> <span class="n">manifest</span><span class="p">,</span> <span class="n">returned</span><span class="p">;</span>
+  <span class="n">manifest</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">rsrc_ptr</span><span class="p">(</span><span class="n">bread_</span><span class="p">));</span>
+  <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">addResource</span><span class="p">(</span><span class="n">bread_msg_</span><span class="p">,</span> <span class="n">manifest</span><span class="p">);</span>
+
+  <span class="kt">double</span> <span class="n">original_mass</span> <span class="o">=</span> <span class="p">(</span><span class="n">bread_</span><span class="o">-&gt;</span><span class="n">isoVector</span><span class="p">()).</span><span class="n">eltMass</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+  <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">handleTick</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">bread_msg_</span><span class="o">-&gt;</span><span class="n">setCommod</span><span class="p">(</span><span class="s">&quot;toast&quot;</span><span class="p">);</span>
+  <span class="n">returned</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">removeResource</span><span class="p">(</span><span class="n">bread_msg_</span><span class="p">);</span>
+  <span class="n">mat_rsrc_ptr</span> <span class="n">toasted_bread</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">dynamic_pointer_cast</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span><span class="p">(</span><span class="n">returned</span><span class="p">.</span><span class="n">front</span><span class="p">());</span>
+
+  <span class="n">ASSERT_LT</span><span class="p">((</span><span class="n">toasted_bread</span><span class="o">-&gt;</span><span class="n">isoVector</span><span class="p">()).</span><span class="n">eltMass</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="n">original_mass</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -616,7 +655,7 @@ in previous steps.</p>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Robert Carlsen.
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
