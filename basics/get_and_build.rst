@@ -93,9 +93,9 @@ built using `Cmake <http://www.cmake.org Cmake>`_. This relies on CMake version
 recommended that you use CMake to build the Cyclus executable external to the
 source code. To do this, execute the following steps::
 
-    /cyclus/trunk/$ mkdir build
-    /cyclus/trunk/$ cd build
-    /cyclus/trunk/build$ cmake ../src
+    /core$ mkdir build
+    /core$ cd build
+    /corebuild$ cmake ../src
 
 You should see output like this::
 
@@ -103,8 +103,8 @@ You should see output like this::
     ...
     >> -- Configuring done
     >> -- Generating done
-    >> -- Build files have been written to: /cyclus/trunk/build
-    /cyclus/trunk/build$ make cyclus
+    >> -- Build files have been written to: /core/build
+    /core/build$ make cyclus
     >> Scanning dependencies of target cyclus
     ...
     ...
@@ -114,8 +114,12 @@ You should see output like this::
 
 Now, you can make cyclus, and run it with some input file, for this example, call it input.xml::
 
-    cyclus/trunk/build$ make
-    cyclus/trunk/build$ ./cyclus input.xml
+    cyclus/build$ make
+    cyclus/build$ ./cyclus ../input/null/test1.xml
+    
+You can increase the verbosity of the log output::
+
+    cyclus/build$ ./cyclus -v5 ../input/null/test1.xml
 
 Debugging Build
 ---------------
@@ -125,16 +129,16 @@ as to facilitate debugging. It is recommended that you create second build
 directory in which you'll build a Cyclus executable for which optimizations are
 disabled and debug symbols are added. To do this, execute the following steps::
 
-    /cyclus/trunk$ mkdir debug
-    /cyclus/trunk$ cd debug
-    /cyclus/trunk/debug$ cmake -DCMAKE_BUILD_TYPE:STRING=Debug ../src
+    /cyclus$ mkdir debug
+    /cyclus$ cd debug
+    /cyclus/debug$ cmake -DCMAKE_BUILD_TYPE:STRING=Debug ../src
 
 As before, you should call make to actually build the cyclus executable::
 
-    /cyclus/trunk/debug$ make
+    /cyclus/debug$ make
 
 Now when you call gdb, ddd, or some other debugger within this debug directory
 it will recognize the target as a debuggable target. To debug a run for some
 input file input.xml, try the following::
 
-    /cyclus/trunk/debug$ ddd ./cyclus input.xml
+    /cyclus/debug$ ddd ./cyclus input.xml
