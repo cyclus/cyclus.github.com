@@ -141,12 +141,12 @@ The Cyclus Database -- Visually
 
 The Cyclus database is comprised of the following tables:
 
- .. image:: cycl_schema_bare.png
+ .. image:: /astatic/cycl_schema_bare.png
 
 And an example with only the keys connecting each table:
 
- .. image:: cycl_schema_keys.png
+ .. image:: /astatic/cycl_schema_keys.png
 
 The connections between the full tables are shown below:
 
- .. image:: cycl_schema.png
+ .. image:: /astatic/cycl_schema.png
