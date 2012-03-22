@@ -283,12 +283,14 @@ ToasterFacility.cpp file changes from :
 To :
 
 .. code-block:: cpp
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  -    void ToasterFacility::init(xmlNodePtr cur) {
+  
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+  void ToasterFacility::init(xmlNodePtr cur) {
     FacilityModel::init(cur);
+  
     /// move XML pointer to current model
     cur = XMLinput->get_xpath_element(cur,"model/ToasterFacility");
+  
     /// initialize any ToasterFacility-specific datamembers here
     n_slices_ = strtol(XMLinput->get_xpath_content(cur, "nSlices"), NULL, 10);
     toastiness_ = XMLinput->get_xpath_content(cur,"toastiness");
@@ -297,30 +299,32 @@ To :
     outcommodity_ = XMLinput->get_xpath_content(cur, "outcommodity");
   
     // check that toastiness_ is oneof the allowed levels :
-    // this gives an example of performing input checking in the module // in 
-    case the xml parser is not detailed enough
-    string levels_array = {"light", "golden", "dark", "burnt"};
-    set<string> allowed_levels(levels_array, levels_array+4);
-    if !allowed_levels.find(toastiness_){
+    // this gives an example of performing input checking in the module 
+    // in case the xml parser is not detailed enough
+    if(allowed_levels_.find(toastiness_)==allowed_levels_.end()){
       string msg = "The value given for the toastiness parameter, ";
       msg += toastiness_;
       msg += ", is not within the allowed set. Allowed values are: ";
-      set<string>::iterator it;
-      for (it=allowed_levels.begin(); it != allowed_levels.end(); it++){
-        msg += " ";
-        msg += (*it);
+      map<string,double>::iterator it;
+      for (it=allowed_levels_.begin(); it != allowed_levels_.end(); it++){
+        msg += " '";
+        msg += (*it).first;
+        msg += "'";
       }
       msg+=".";
-      throw CycException(msg);
       LOG(LEV_ERROR,"Toast")<<msg;
     }
+  
+    // initialize the toastiness dependent chemistry
+    initToastChem();
   }
-
+  
+  
 These member variables must be declared in the ToasterFacility.h header file. 
 The header file originally has a section that looks like :
-
+  
 .. code-block:: cpp
-
+  
   /* --------------------
    * _THIS_ FACILITYMODEL class has these members
    * --------------------
@@ -352,7 +356,8 @@ We change it to include :
   
     /**
      * The toastiness of the toast. This can be 'light', 'golden', 'dark' or 
-       'burnt'.  */
+       'burnt'.  
+    */
     std::string toastiness_;
   
     /**
@@ -383,6 +388,22 @@ model from another instance of the same model
 * this method should only initialize variables that are NOT members of the
   parent class   
 
+..code-block:: cpp
+
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+  void ToasterFacility::copy(ToasterFacility* src) {
+    FacilityModel::copy(src);
+    n_slices_=src->n_slices_;
+    toastiness_=src->toastiness_;
+    rate_=src->rate_;
+    incommodity_=src->incommodity_;
+    outcommodity_=src->outcommodity_;
+    allowed_levels_=src->allowed_levels_;
+    toast_bread_elt_ratio_=src->toast_bread_elt_ratio_;
+    inventory_.makeUnlimited(); 
+    stocks_.makeUnlimited();
+  }
+  
 
 
 print
@@ -432,20 +453,20 @@ The ToasterFacility handleTick and handleTock functions may look something
 like : 
 
 .. code-block:: cpp
-
+  
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  void ToasterFacility::handleTick(int time){
+  void ToasterFacility::handleTick(int time) {
     makeRequests();
     makeOffers();
-    toast(stocks_);
+    inventory_.pushAll(toast(stocks_));
   }
-
+  
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  void ToasterFacility::handleTock(int time){
+  void ToasterFacility::handleTock(int time) {
     sendToast(orders_waiting_);
     cleanUp();
   }
-
+  
 The details of implementation are entirely up to the developer. In this example, 
 the details are hidden in the private functions that are defined elsewhere in the 
 ToasterFacility class.
@@ -457,7 +478,7 @@ receiveMessage
 ++++++++++++++++++++++++++
 
 The Toaster likes to keep the message and deal with it later. The 
-developer is welcome to deal with messages in whatever way they like. In this example, 
+developer is welcome to deal with in whatever way they like. In this example, 
 a vector of the received message pointers is kept as the private member variable 
 `orders_waiting_`.
 
@@ -482,8 +503,8 @@ for a list of resource objects.
 
 .. code-block:: cpp
 
-    //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    vector<rsrc_ptr> ToasterFacility::removeResource(msg_ptr order) {}
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  vector<rsrc_ptr> ToasterFacility::removeResource(msg_ptr order) {
     Transaction trans = order->trans();
     if (trans.commod != outcommodity_) {
       string err_msg = "ToasterFacility can only send '" + outcommodity_ ;
@@ -491,25 +512,18 @@ for a list of resource objects.
       throw CycException(err_msg);
     }
   
-    MatManifest materials;
-    try {
-      materials = inventory_.popQty(trans.resource->quantity());
-    } catch(CycNegQtyException err) {
-      LOG(LEV_ERROR, "Toast") << "extraction of " << trans.resource->quantity()
-                     << " kg failed. Inventory is only "
-                     << inventory_.quantity() << " kg.";
-    }
+    Manifest materials;
+    materials = inventory_.popNum(1);
   
-    return MatStore::toRes(materials);
+    return materials;
   
   }
-    
-  
+      
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void ToasterFacility::addResource(msg_ptr msg, vector<rsrc_ptr> manifest) {
-    stocks_.pushAll(MatStore::toMat(manifest));
+    stocks_.pushAll(manifest);
   }
-
+  
 
 Customization of Module Tests
 -----------------------------------------
@@ -526,11 +540,40 @@ file from the Stub, we have successfully added the ToasterFacility to the
 Models and FacilityModels whose Model and FacilityModel interfaces 
 (respectively) are tested.
 
+
 In the ToasterFacilityTests.cpp file, you'll notice that there is space for you 
 to fill in tests concerning the behavior of the ToasterFacility that we defined 
 in previous steps.
 
+Our test will just query whether the toaster does one of the things that we 
+expect. When we feed it bread, a timestep passes, and we pull the bread back 
+out, we want the bread to have less calcium than it did before (did you know 
+that, about the toasting process?).
 
+Here's a rough example of how we write that test: 
+
+
+.. code-block:: cpp
+
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  TEST_F(ToasterFacilityTest, Toast) {
+  
+    msg_ptr bread_msg_ = msg_ptr(new Message(new_facility, src_facility));
+    bread_msg_->setResource(bread_);
+    bread_msg_->setCommod("bread");
+  
+    vector<rsrc_ptr> manifest, returned; 
+    manifest.push_back(rsrc_ptr(bread_));
+    src_facility->addResource(bread_msg_, manifest);
+  
+    double original_mass = (bread_->isoVector()).eltMass(20);
+    src_facility->handleTick(1);
+    bread_msg_->setCommod("toast");
+    returned = src_facility->removeResource(bread_msg_);
+    mat_rsrc_ptr toasted_bread = boost::dynamic_pointer_cast<Material>(returned.front());
+  
+    ASSERT_LT((toasted_bread->isoVector()).eltMass(20),original_mass);
+  }
 
 
 
