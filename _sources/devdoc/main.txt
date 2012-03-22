@@ -23,11 +23,13 @@ First things first - read :doc:`../basics/get_and_build`.  After
 successfully acquiring and building *Cyclus*, you can begin developing:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
   
+   cyclus_env
+   flow_and_structure
+   code_tour
    style_guide
    make-models/main
-   flow_and_structure
    output_dbase
 
 Doxygen Code Documentation

@@ -84,6 +84,7 @@ Class Overviews
 ~~~~~~~~~~~~~~~
 
 Class overviews should include the following sections: 
+
  * a brief overview 
  * an introduction 
  * a discussion of key parameters
@@ -111,15 +112,14 @@ Method/Member Overviews
 
 Method overviews should fully describe the method's behavior, the parameters
 required to call it, and the value it returns. Member overviews should fully describe 
-the member in question and its role in the workings of the class.
+the member in question and its role in the workings of the class. 
 
-Please note that class and method/member overviews differ in asterisk usage in the 
-overview's body. An example is given below: ::
+An example is given below: ::
 
   /**
-   * @brief An explanation of aFunction's behavior
-   * 
-   * @param aParam description of aParam
-   * @return description of what the function returns
+     @brief An explanation of aFunction's behavior
+     
+     @param aParam description of aParam
+     @return description of what the function returns
    */ 
    returnType aFuction(paramType aParam);
