@@ -162,7 +162,7 @@ that looks like :
   #include "Logger.h"
   #include "FacilityModel.h"
   
-  /**
+  /*!
     @class ToasterFacility
     
     @brief This FacilityModel is intended as a skeleton to guide the 
@@ -186,7 +186,9 @@ that looks like :
     Place a description of the detailed behavior of the model. Consider 
     describing the behavior at the tick and tock as well as the behavior upon 
     sending and
-    receiving materials and messages.  */
+    receiving materials and messages.  
+    !*/ 
+
 
 This should looke more like :
 
@@ -199,7 +201,7 @@ This should looke more like :
   #include "Logger.h"
   #include "FacilityModel.h"
   
-  /**
+  /*!
     @class ToasterFacility
     
     @brief This FacilityModel is intended to toast material objects
@@ -246,7 +248,7 @@ This should looke more like :
     oxygen (the magnitude of the change is defined by the toastiness parameter). 
     Each (now toasted) slice is then placed in the inventory. 
     
-  */
+  !*/
 
 
 
@@ -273,7 +275,7 @@ ToasterFacility.cpp file changes from :
 .. code-block:: cpp
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  -    void ToasterFacility::init(xmlNodePtr cur) {
+  void ToasterFacility::init(xmlNodePtr cur) {
     FacilityModel::init(cur);
     /// move XML pointer to current model
     cur = XMLinput->get_xpath_element(cur,"model/ToasterFacility");
@@ -388,7 +390,8 @@ model from another instance of the same model
 * this method should only initialize variables that are NOT members of the
   parent class   
 
-..code-block:: cpp
+
+.. code-block:: cpp
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
   void ToasterFacility::copy(ToasterFacility* src) {
@@ -403,7 +406,6 @@ model from another instance of the same model
     inventory_.makeUnlimited(); 
     stocks_.makeUnlimited();
   }
-  
 
 
 print
