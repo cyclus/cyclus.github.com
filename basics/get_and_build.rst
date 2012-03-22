@@ -9,14 +9,25 @@ Dependencies
 
 The Cyclus code requires the following software and libraries.
 
-====================   ==================
-Package                Minimum Version   
-====================   ==================
-`CMake`                2.8            
-`boost`                1.34.1
-`libxml2`              2                 
-`sqlite3`              3.7.10            
-====================   ==================
+================ ================  ==================
+Package          Full Name         Minimum Version   
+================ ================  ==================
+`CMake`          cmake             2.8            
+`boost`          libboost-all-dev  1.34.1
+`xml2`           libxml2-dev       2                 
+`sqlite3`        libsqlite3-dev    3.7.10            
+================ ================  ==================
+
+NOTE: The **dev** version of each of the above libraries must be used. 
+The build system will complain (saying it cannot find the library) if only 
+the normal (release) libraries are installed.
+
+Most systems will come with git fully installed; however, some developers may 
+require the following git libraries if they are not already installed:
+
+ * git-core
+ * git-gui
+ * git-doc
 
 An overview of some of the dependency installations
 can be found on the following pages:
@@ -32,6 +43,29 @@ Project Repository
 The Cyclus repository is version controlled using the Git version
 control system. It is hosted externally with *Github*.
 
+The main repository is located at http://github.com/cyclus/core. Anyone may
+check out the code. Although you do not have to register with github to
+download and edit the code, if you desire your work to be integrated into the
+cyclus mainline of development *you must fork the cyclus core repository into
+your own github account and submit 'Pull Requests'*.
+
+For the Git uninitiated, one must perform the following steps to acquire *Cyclus*:
+
+  #. `Set Up Git`_ shows one how to set up SSH keys and Git user info
+  #. Fork the *Cyclus* repository, as shown in `Fork A Repo`_
+
+Note that the *Cyclus* repository has **two** branches:
+
+  * master -- the lastest stable release of *Cyclus*
+  * develop -- the lastest working copy that passes all tests
+
+.. _`Set Up Git`: http://help.github.com/linux-set-up-git/
+
+.. _`Fork A Repo`: http://help.github.com/fork-a-repo/
+
+Help with Git and GitHub
+~~~~~~~~~~~~~~~~~~~~~~~~
+
 If you are unfamiliar with Git, here are some resources:
 
   * http://progit.org/book/ - this is a fantastic guide, from beginner to expert
@@ -39,32 +73,16 @@ If you are unfamiliar with Git, here are some resources:
   * http://gitimmersion.com/ - A very hands-on tutorial.
   * http://www-cs-students.stanford.edu/~blynn/gitmagic/
 
-The main repository is located at http://github.com/cyclus/core. Anyone may
-check out the code. Although you do not have to register with github to
-download and edit the code, if you desire your work to be integrated into the
-cyclus mainline of development *you must fork the cyclus core repository into
-your own github account and submit 'Pull Requests'*.
-
 If you are unfamiliar with Github, here are some resources:
   
   * `Github Help`_
-
-  * Visit `Set Up Git`_ for basic git installation and setup instructions.
-
-  * Fork the cyclus repository.  Visit `Fork A Repo`_ for a step by step guide
-    to forking.
 
   * To have your changes integrated into the cyclus core project, you must
     submit a github *Pull Request*.  Visit `Send pull requests`_ to learn more.
 
 .. _`Github Help`: http://help.github.com
 
-.. _`Set Up Git`: http://help.github.com/linux-set-up-git/
-
-.. _`Fork A Repo`: http://help.github.com/fork-a-repo/
-
 .. _`Send pull requests`: http://help.github.com/send-pull-requests/
-
 
 Build System
 ------------
@@ -77,7 +95,7 @@ source code. To do this, execute the following steps::
 
     /cyclus/trunk/$ mkdir build
     /cyclus/trunk/$ cd build
-    cyclus/trunk/build$ cmake ../src
+    /cyclus/trunk/build$ cmake ../src
 
 You should see output like this::
 
