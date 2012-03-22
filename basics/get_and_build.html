@@ -222,17 +222,17 @@ built using <a class="reference external" href="http://www.cmake.orgCmake">Cmake
 2.6 or higher and the CMakeLists.txt file in <cite>src/</cite>. It is
 recommended that you use CMake to build the Cyclus executable external to the
 source code. To do this, execute the following steps:</p>
-<div class="highlight-python"><pre>/cyclus/trunk/$ mkdir build
-/cyclus/trunk/$ cd build
-/cyclus/trunk/build$ cmake ../src</pre>
+<div class="highlight-python"><pre>/core$ mkdir build
+/core$ cd build
+/corebuild$ cmake ../src</pre>
 </div>
 <p>You should see output like this:</p>
 <div class="highlight-python"><pre>...
 ...
 &gt;&gt; -- Configuring done
 &gt;&gt; -- Generating done
-&gt;&gt; -- Build files have been written to: /cyclus/trunk/build
-/cyclus/trunk/build$ make cyclus
+&gt;&gt; -- Build files have been written to: /core/build
+/core/build$ make cyclus
 &gt;&gt; Scanning dependencies of target cyclus
 ...
 ...
@@ -241,8 +241,11 @@ source code. To do this, execute the following steps:</p>
 &gt;&gt; [100%] Built target cyclus</pre>
 </div>
 <p>Now, you can make cyclus, and run it with some input file, for this example, call it input.xml:</p>
-<div class="highlight-python"><pre>cyclus/trunk/build$ make
-cyclus/trunk/build$ ./cyclus input.xml</pre>
+<div class="highlight-python"><pre>cyclus/build$ make
+cyclus/build$ ./cyclus ../input/null/test1.xml</pre>
+</div>
+<p>You can increase the verbosity of the log output:</p>
+<div class="highlight-python"><pre>cyclus/build$ ./cyclus -v5 ../input/null/test1.xml</pre>
 </div>
 </div>
 <div class="section" id="debugging-build">
@@ -251,17 +254,17 @@ cyclus/trunk/build$ ./cyclus input.xml</pre>
 as to facilitate debugging. It is recommended that you create second build
 directory in which you&#8217;ll build a Cyclus executable for which optimizations are
 disabled and debug symbols are added. To do this, execute the following steps:</p>
-<div class="highlight-python"><pre>/cyclus/trunk$ mkdir debug
-/cyclus/trunk$ cd debug
-/cyclus/trunk/debug$ cmake -DCMAKE_BUILD_TYPE:STRING=Debug ../src</pre>
+<div class="highlight-python"><pre>/cyclus$ mkdir debug
+/cyclus$ cd debug
+/cyclus/debug$ cmake -DCMAKE_BUILD_TYPE:STRING=Debug ../src</pre>
 </div>
 <p>As before, you should call make to actually build the cyclus executable:</p>
-<div class="highlight-python"><pre>/cyclus/trunk/debug$ make</pre>
+<div class="highlight-python"><pre>/cyclus/debug$ make</pre>
 </div>
 <p>Now when you call gdb, ddd, or some other debugger within this debug directory
 it will recognize the target as a debuggable target. To debug a run for some
 input file input.xml, try the following:</p>
-<div class="highlight-python"><pre>/cyclus/trunk/debug$ ddd ./cyclus input.xml</pre>
+<div class="highlight-python"><pre>/cyclus/debug$ ddd ./cyclus input.xml</pre>
 </div>
 </div>
 </div>
@@ -290,7 +293,7 @@ input file input.xml, try the following:</p>
     </div>
     <div class="footer">
         &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>
