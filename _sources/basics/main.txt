@@ -8,6 +8,7 @@ Cyclus Fundamentals
   
    introduction
    get_and_build
+   ecosystem
    decay
 
 .. stuff not converted yet
