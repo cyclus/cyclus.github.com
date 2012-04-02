@@ -3,21 +3,41 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-As a successor to *GENIUS*, the next-generation fuel cycle systems analysis
-simulation tool, *Cyclus* will preserve many of its key features with a
-software architecture that provides a great deal of ﬂexibility, both in
-terms of modifying the underlying modeling algorithms and presenting
-different levels of complexity to different users.
+Cyclus
+======
+
+*Cyclus* is a next-generation nuclear fuel cycle simulator
+environment, providing flexibility to users and developers through an
+agent-based approach.  A principal goal of *Cyclus* is to present a
+low barrier to adoption by new users and developers in order to
+encourage them to join a vibrant community in an expanding ecosystem.
+
+Important features:
+
+* Modeling
+   * discrete facilities with discrete material transactions
+   * flexible design of new fuel cycles
+* Software
+   * low barrier/rapid payback to adoption
+   * minimal inherent technology assumptions
+   * commonly used/available free software unfrastructure
+* User
+   * common physics infrastructure
+   * different user interface layer for different user audiences, with varying levels of both input control and output exploration
+       * varying levels of input control
+       * varying levels of output exploration
 
 The Cyclus modeling paradigm will let users reconﬁgure the basic building
 blocks of a simulation without changing the software. The foundation of a
-simulation will be a commodity market that collects offers and requests and
+simulation will be a commodity broker that collects offers and requests and
 matches them according to some algorithm. The user will be able to select
-which type of algorithm is used for each market by selecting a MarketModel
+which type of algorithm is used for each broker by selecting a MarketModel
 and conﬁguring it with a particular set of parameters defined by that
 MarketModel. Changing the parameters of a market will change its
 performance and selecting a different MarketModel will completely change
 its behavior.
+
+Similarly, the user will have the flexibility to select FacilityModels to 
 
 Most cyclus core code development at this time will be led by Paul Wilson,
 Katy Huff, Matthew Gidden, and Robert Carlsen, the CNERG fuel cycle group.
