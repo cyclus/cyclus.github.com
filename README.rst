@@ -40,7 +40,7 @@ Thou Shalt Not
 
 * Thou shalt not modify files in the `sources` directory.
 
-* Thou shalt not commit site build changes (i.e. after runnint `make html`)
+* Thou shalt not commit site build changes (i.e. after running `make html`)
   together with changes to the site's source `rst` files in any single commit.
 
 * Thou shalt not push any site build changes to the `cyclus/cyclus.github.com`
