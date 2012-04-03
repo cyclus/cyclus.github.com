@@ -62,10 +62,11 @@ the RegionModel base class's xml initialization process. ::
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   void RegionModel::init(xmlNodePtr cur) { 
-    Model::init(cur); // name_ and model_impl_
-    RegionModel::initAllowedFacilities(cur); // allowedFacilities_
-    RegionModel::init(); // parent_ and tick listener, model 'born'
-    RegionModel::initChildren(cur); // children->setParent, requires init()
+    RegionModel::init(); // init any RegionModel members
+    Model::init(cur); // name and model_impl
+    RegionModel::initAllowedFacilities(cur); // allowedFacilities
+    RegionModel::initSimInteraction(this); // parent and tick listener, model 'born'
+    RegionModel::initChildren(cur); // children->setParent
   }
 
 Here, each major step is given its own function. This allows developers who base
