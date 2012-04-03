@@ -1,34 +1,28 @@
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Installing Dependencies on Windows &mdash; Cyclus Home</title>
-    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Getting and Building Cyclus" href="get_and_build.html" />
-    <link rel="next" title="Radioactive Decay in Cyclus" href="decay.html" />
+    <link rel="next" title="The Cyclus Community & Ecosystem" href="ecosystem.html" />
     <link rel="prev" title="Getting and Building Cyclus" href="get_and_build.html" />
    
 <script type="text/javascript">
@@ -61,7 +55,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="decay.html" title="Radioactive Decay in Cyclus"
+          <a href="ecosystem.html" title="The Cyclus Community & Ecosystem"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="get_and_build.html" title="Getting and Building Cyclus"
@@ -73,35 +67,35 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Installing Dependencies on Windows</a><ul>
-<li><a class="reference internal" href="#cygwin">Cygwin</a></li>
-<li><a class="reference internal" href="#boost">Boost</a></li>
-<li><a class="reference internal" href="#now-what">Now What?</a></li>
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Installing Dependencies on Windows</a><ul>
+<li><a class="reference external" href="#cygwin">Cygwin</a></li>
+<li><a class="reference external" href="#boost">Boost</a></li>
+<li><a class="reference external" href="#now-what">Now What?</a></li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="get_and_build.html"
-                        title="previous chapter">Getting and Building Cyclus</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="decay.html"
-                        title="next chapter">Radioactive Decay in Cyclus</a></p>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="get_and_build.html"
+                                  title="previous chapter">Getting and Building Cyclus</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="ecosystem.html"
+                                  title="next chapter">The <em>Cyclus</em> Community &amp; Ecosystem</a></p>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -125,14 +119,14 @@ according to the instructions at the <a class="reference external" href="http://
 <p>Specifically, the Cygwin installation manager will walk through the
 installation process:</p>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>Select Install From Internet.</li>
 <li>Choose a directory to install cygwin.</li>
 <li>Choose a download mirror near you.</li>
 <li>Choose packages to install</li>
 </ol>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>If you have two free gigabytes on your computer, the package
 configuration process can be simplified by choosing to download all
 packages. This will require clicking INSTALL the icon next to ALL.</li>
@@ -142,7 +136,7 @@ search for and select install for specific packages that cyclus and its
 dependencies rely on : gcc, g++, g77, cmake, make, libxml2,
 libidn.</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <ol class="arabic simple">
 <li>This will take some time to install</li>
 <li>When installed, check that these were installed correctly by using the
@@ -154,7 +148,7 @@ rerun Cygwin&#8217;s setup.exe and install just the packages that are not found.
 </ul>
 </li>
 </ol>
-</div></blockquote>
+</blockquote>
 </div>
 <div class="section" id="boost">
 <h2>Boost<a class="headerlink" href="#boost" title="Permalink to this headline">¶</a></h2>
@@ -166,13 +160,13 @@ So, download the installer.</p>
 <li>When the installer asks what packages to install, be certain to include</li>
 </ol>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>the program_options library</li>
 <li>the IOStream libraries</li>
 <li>and the date_time library</li>
 <li>in addition to the default header libraries.</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <ol class="arabic simple">
 <li>If you have surplus space on your computer, don&#8217;t hesitate to install all of
 the libraries available, but be prepared for the installation to take up to an
@@ -183,7 +177,7 @@ certain to install a dynamic and a static library. Threading is up to you.</li>
 </div>
 <div class="section" id="now-what">
 <h2>Now What?<a class="headerlink" href="#now-what" title="Permalink to this headline">¶</a></h2>
-<p>You&#8217;re now ready to build cyclus. Onward to <a class="reference internal" href="get_and_build.html"><em>Getting and Building Cyclus</em></a></p>
+<p>You&#8217;re now ready to build cyclus. Onward to <a class="reference external" href="get_and_build.html"><em>Getting and Building Cyclus</em></a></p>
 </div>
 </div>
 
@@ -200,7 +194,7 @@ certain to install a dynamic and a static library. Threading is up to you.</li>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="decay.html" title="Radioactive Decay in Cyclus"
+          <a href="ecosystem.html" title="The Cyclus Community & Ecosystem"
              >next</a> |</li>
         <li class="right" >
           <a href="get_and_build.html" title="Getting and Building Cyclus"
@@ -211,8 +205,8 @@ certain to install a dynamic and a static library. Threading is up to you.</li>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
     </div>
   </body>
 </html>
