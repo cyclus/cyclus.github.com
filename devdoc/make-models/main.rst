@@ -26,13 +26,18 @@ Model Initialization and Creation
 
 The Cyclus simulation environment has a number of fundamental aspects regarding 
 model creation:
+
   * Models in Cyclus follow a parent-child paradigm, i.e. a model has one parent and
-  may have many children. The parent-child relationship can be thought of as 
-  ownership. 
+    may have many children. The parent-child relationship can be thought of as 
+    ownership. 
+
   * Models in Cyclus are either Prototypes (templates) or Models (participants)
+
     * A Model becomes a Prototype (template) after initialization
+
     * A Model becomes a Model (paticipant) after its *parent is set* via the 
-    setParent() method defined in Model.h.
+      setParent() method defined in Model.h.
+
     * All Models start as Prototypes and become Models
 
 A Model can have many possible initilization-related methods; however, every Model
@@ -47,7 +52,7 @@ is shown: ::
     builders_ = new map<Model*, std::list<Model*>*>();
   }
 
-where prototypeOrders_ and builders_ are defined in the header file and accessed
+Note that prototypeOrders and builders are defined in the header file and accessed
 via public methods.
 
 In order to maintain clarity and flexibility, initialization methods are as
