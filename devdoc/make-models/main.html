@@ -168,10 +168,11 @@ the more benefit is gained from modularity. As a concrete example, let us examin
 the RegionModel base class&#8217;s xml initialization process.</p>
 <div class="highlight-python"><pre>//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void RegionModel::init(xmlNodePtr cur) {
-  Model::init(cur); // name_ and model_impl_
-  RegionModel::initAllowedFacilities(cur); // allowedFacilities_
-  RegionModel::init(); // parent_ and tick listener, model 'born'
-  RegionModel::initChildren(cur); // children-&gt;setParent, requires init()
+  RegionModel::init(); // init any RegionModel members
+  Model::init(cur); // name and model_impl
+  RegionModel::initAllowedFacilities(cur); // allowedFacilities
+  RegionModel::initSimInteraction(this); // parent and tick listener, model 'born'
+  RegionModel::initChildren(cur); // children-&gt;setParent
 }</pre>
 </div>
 <p>Here, each major step is given its own function. This allows developers who base
