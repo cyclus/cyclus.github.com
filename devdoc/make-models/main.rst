@@ -21,6 +21,78 @@ functionality defined in these files remains in the final model definition. A
 step by step example of producing a new model from the existing stubs can be 
 found in the :doc:`toaster`. 
 
+Model Initialization and Creation
+---------------------------------
+
+The Cyclus simulation environment has a number of fundamental aspects regarding 
+model creation:
+  * Models in Cyclus follow a parent-child paradigm, i.e. a model has one parent and
+  may have many children. The parent-child relationship can be thought of as 
+  ownership. 
+  * Models in Cyclus are either Prototypes (templates) or Models (participants)
+    * A Model becomes a Prototype (template) after initialization
+    * A Model becomes a Model (paticipant) after its *parent is set* via the 
+    setParent() method defined in Model.h.
+    * All Models start as Prototypes and become Models
+
+A Model can have many possible initilization-related methods; however, every Model
+has *at least* a method named init(). In init(), any and all publicly accesible
+members must be initialized. Should such a member attempt to be accessed when not
+initialized, a segmentation fault will occur. An example from the BuildRegion class
+is shown: ::
+          
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  void BuildRegion::init() {
+    prototypeOrders_ = new PrototypeOrders();
+    builders_ = new map<Model*, std::list<Model*>*>();
+  }
+
+where prototypeOrders_ and builders_ are defined in the header file and accessed
+via public methods.
+
+In order to maintain clarity and flexibility, initialization methods are as
+modularized as possible. The more involved a Model's initialization process, 
+the more benefit is gained from modularity. As a concrete example, let us examine
+the RegionModel base class's xml initialization process. ::
+
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  void RegionModel::init(xmlNodePtr cur) { 
+    Model::init(cur); // name_ and model_impl_
+    RegionModel::initAllowedFacilities(cur); // allowedFacilities_
+    RegionModel::init(); // parent_ and tick listener, model 'born'
+    RegionModel::initChildren(cur); // children->setParent, requires init()
+  }
+
+Here, each major step is given its own function. This allows developers who base
+their models on RegionModel to customize their own xml init method, as shown 
+in the BuildRegion class: ::
+
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  void BuildRegion::init(xmlNodePtr cur) {
+    Model::init(cur); // name_ and model_impl_
+    RegionModel::initAllowedFacilities(cur); // allowedFacilities_
+    BuildRegion::init(); // initializes member vars
+  
+    // get path to this model
+    xmlNodePtr model_cur = 
+      XMLinput->get_xpath_element(cur,"model/BuildRegion");
+
+    // populate orders for each prototype
+    xmlNodeSetPtr prototype_nodes = 
+      XMLinput->get_xpath_elements(model_cur,"prototyperequirement");
+    for (int i=0;i<prototype_nodes->nodeNr;i++){
+      populateOrders(prototype_nodes->nodeTab[i]);
+    }
+    sortOrders();
+  
+    RegionModel::init(); // parent_ and tick listener, model 'born'
+    RegionModel::initChildren(cur); // children->setParent, requires init()
+  
+    // populate the list of builders
+    populateBuilders();
+  };
+
+
 Creating Specific Model Types
 -----------------------------
 
