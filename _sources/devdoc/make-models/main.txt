@@ -44,7 +44,9 @@ A Model can have many possible initilization-related methods; however, every Mod
 has *at least* a method named init(). In init(), any and all publicly accesible
 members must be initialized. Should such a member attempt to be accessed when not
 initialized, a segmentation fault will occur. An example from the BuildRegion class
-is shown: ::
+is shown:
+
+.. code-block:: cpp
           
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   void BuildRegion::init() {
@@ -58,7 +60,9 @@ via public methods.
 In order to maintain clarity and flexibility, initialization methods are as
 modularized as possible. The more involved a Model's initialization process, 
 the more benefit is gained from modularity. As a concrete example, let us examine
-the RegionModel base class's xml initialization process. ::
+the RegionModel base class's xml initialization process. 
+
+.. code-block:: cpp
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   void RegionModel::init(xmlNodePtr cur) { 
@@ -71,7 +75,9 @@ the RegionModel base class's xml initialization process. ::
 
 Here, each major step is given its own function. This allows developers who base
 their models on RegionModel to customize their own xml init method, as shown 
-in the BuildRegion class: ::
+in the BuildRegion class: 
+
+.. code-block:: cpp
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   void BuildRegion::init(xmlNodePtr cur) {  

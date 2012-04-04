@@ -148,11 +148,12 @@ has <em>at least</em> a method named init(). In init(), any and all publicly acc
 members must be initialized. Should such a member attempt to be accessed when not
 initialized, a segmentation fault will occur. An example from the BuildRegion class
 is shown:</p>
-<div class="highlight-python"><pre>//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-void BuildRegion::init() {
-  prototypeOrders_ = new PrototypeOrders();
-  builders_ = new map&lt;Model*, std::list&lt;Model*&gt;*&gt;();
-}</pre>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">BuildRegion</span><span class="o">::</span><span class="n">init</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">prototypeOrders_</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PrototypeOrders</span><span class="p">();</span>
+  <span class="n">builders_</span> <span class="o">=</span> <span class="k">new</span> <span class="n">map</span><span class="o">&lt;</span><span class="n">Model</span><span class="o">*</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">Model</span><span class="o">*&gt;*&gt;</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
 </div>
 <p>Note that prototypeOrders and builders are defined in the header file and accessed
 via public methods.</p>
@@ -160,47 +161,49 @@ via public methods.</p>
 modularized as possible. The more involved a Model&#8217;s initialization process,
 the more benefit is gained from modularity. As a concrete example, let us examine
 the RegionModel base class&#8217;s xml initialization process.</p>
-<div class="highlight-python"><pre>//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-void RegionModel::init(xmlNodePtr cur) {
-  RegionModel::init(); // init any RegionModel members
-  Model::init(cur); // name and model_impl
-  RegionModel::initAllowedFacilities(cur); // allowedFacilities
-  RegionModel::initSimInteraction(this); // parent and tick listener, model 'born'
-  RegionModel::initChildren(cur); // children-&gt;setParent
-}</pre>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">RegionModel</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">init</span><span class="p">();</span> <span class="c1">// init any RegionModel members</span>
+  <span class="n">Model</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span> <span class="c1">// name and model_impl</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">initAllowedFacilities</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span> <span class="c1">// allowedFacilities</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">initSimInteraction</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// parent and tick listener, model &#39;born&#39;</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">initChildren</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span> <span class="c1">// children-&gt;setParent</span>
+<span class="p">}</span>
+</pre></div>
 </div>
 <p>Here, each major step is given its own function. This allows developers who base
 their models on RegionModel to customize their own xml init method, as shown
 in the BuildRegion class:</p>
-<div class="highlight-python"><pre>//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-void BuildRegion::init(xmlNodePtr cur) {
-  // non xml inits
-  BuildRegion::init();
-  RegionModel::init(); // we never explicitly call RegionModel::init(cur)
-  // xml inits
-  Model::init(cur); // name_ and model_impl_
-  RegionModel::initAllowedFacilities(cur); // allowedFacilities_
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">BuildRegion</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// non xml inits</span>
+  <span class="n">BuildRegion</span><span class="o">::</span><span class="n">init</span><span class="p">();</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">init</span><span class="p">();</span> <span class="c1">// we never explicitly call RegionModel::init(cur)</span>
+  <span class="c1">// xml inits</span>
+  <span class="n">Model</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span> <span class="c1">// name_ and model_impl_</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">initAllowedFacilities</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span> <span class="c1">// allowedFacilities_</span>
 
-  // get path to this model
-  xmlNodePtr model_cur =
-    XMLinput-&gt;get_xpath_element(cur,"model/BuildRegion");
+  <span class="c1">// get path to this model</span>
+  <span class="n">xmlNodePtr</span> <span class="n">model_cur</span> <span class="o">=</span>
+    <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_element</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;model/BuildRegion&quot;</span><span class="p">);</span>
 
-  // populate orders for each prototype
-  xmlNodeSetPtr prototype_nodes =
-    XMLinput-&gt;get_xpath_elements(model_cur,"prototyperequirement");
-  for (int i=0;i&lt;prototype_nodes-&gt;nodeNr;i++){
-    populateOrders(prototype_nodes-&gt;nodeTab[i]);
-  }
-  sortOrders();
+  <span class="c1">// populate orders for each prototype</span>
+  <span class="n">xmlNodeSetPtr</span> <span class="n">prototype_nodes</span> <span class="o">=</span>
+    <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_elements</span><span class="p">(</span><span class="n">model_cur</span><span class="p">,</span><span class="s">&quot;prototyperequirement&quot;</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">prototype_nodes</span><span class="o">-&gt;</span><span class="n">nodeNr</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="n">populateOrders</span><span class="p">(</span><span class="n">prototype_nodes</span><span class="o">-&gt;</span><span class="n">nodeTab</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+  <span class="p">}</span>
+  <span class="n">sortOrders</span><span class="p">();</span>
 
-  // parent_ and tick listener, model 'born'
-  RegionModel::initSimInteraction(this);
-  // children-&gt;setParent, requires init()
-  RegionModel::initChildren(cur);
+  <span class="c1">// parent_ and tick listener, model &#39;born&#39;</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">initSimInteraction</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="c1">// children-&gt;setParent, requires init()</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">initChildren</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
 
-  // populate the list of builders
-  populateBuilders();
-};</pre>
+  <span class="c1">// populate the list of builders</span>
+  <span class="n">populateBuilders</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="creating-specific-model-types">
