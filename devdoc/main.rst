@@ -29,6 +29,7 @@ successfully acquiring and building *Cyclus*, you can begin developing:
    flow_and_structure
    code_tour
    style_guide
+   materials_and_isotopes
    make-models/main
    output_dbase
 
