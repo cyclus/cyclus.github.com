@@ -54,19 +54,6 @@ would become :
    
    class ToasterFacility : public FacilityModel  // ...
 
-4. Add a new add_subdirectory line to the CMakeLists.txt file in the Facility 
-   directory. That should look something like :
-
-.. code-block:: cmake
-
-   # Build the cyclus executable from the CYCLUS_SRC source files
-   ADD_SUBDIRECTORY( ConditioningFacility )
-   ADD_SUBDIRECTORY( EnrichmentFacility )
-   ...
-   ADD_SUBDIRECTORY( ToasterFacility )
-
-   SET(ModelTestSource ${ModelTestSource} ${FacilityTestSource} PARENT_SCOPE)
-
 
 Customization of the Relax-NG Grammar
 -----------------------------------------
