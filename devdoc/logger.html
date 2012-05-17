@@ -1,0 +1,219 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using the Cyclus Logger &mdash; Cyclus Home</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../index.html" />
+    <link rel="up" title="Cyclus Developer Guide" href="main.html" />
+    <link rel="next" title="Output Database" href="output_dbase.html" />
+    <link rel="prev" title="Model Devlopment Example : ToasterFacility" href="make-models/toaster.html" />
+   
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <a href="http://cyclus.github.com">
+    <img src="../_static/logo1.png"/>
+  </a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="output_dbase.html" title="Output Database"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="make-models/toaster.html" title="Model Devlopment Example : ToasterFacility"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" accesskey="U">Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using the Cyclus Logger</a><ul>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="make-models/toaster.html"
+                        title="previous chapter">Model Devlopment Example : ToasterFacility</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="output_dbase.html"
+                        title="next chapter">Output Database</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="using-the-cyclus-logger">
+<h1>Using the Cyclus Logger<a class="headerlink" href="#using-the-cyclus-logger" title="Permalink to this headline">¶</a></h1>
+<p>For how to adjust log output verbosity when running cyclus, see
+<a class="reference internal" href="../usrdoc/creating_and_running_sims.html"><em>Creating and Running Simulations</em></a></p>
+<div class="highlight-python"><pre>#include "Logger.h"
+
+LOG(LogLevel level, std::string prefix)</pre>
+</div>
+<p>Built-in logging functionality has been provided to aid debugging.  To use the
+logger, you must include the <em>Logger.h</em> header file. <cite>std::cout</cite> statements
+should be generally avoided.  The <cite>LOG(level, prefix)</cite> macro should be used for
+all logging/debugging needs.  The LOG macro uses the Logger class to provide
+this functionality.  The Logger class should generally not be accessed
+directly.  The macro returns a string stream object that can be used exactly as
+<cite>std::cout</cite> for printing output.  Streamed in content is flushed to stdout as
+soon as execution passes beyond the terminating semi-colon of the log
+statement.</p>
+<p>A brief description of when to use which log level is given with the
+LogLevel enum doxygen documentation. The following is a summary:</p>
+<blockquote>
+<div><ul class="simple">
+<li>LEV_ERROR: Use for errors that require model code or input file
+modification/fixing (use extremely sparingly)</li>
+<li>LEV_WARN: Use to report questionable simulation state (use extremely
+sparingly)</li>
+<li>LEV_INFO[2, 3, 4]</li>
+<li>LEV_INFO1: Information helpful for simulation users and developers alike -
+least verbose.</li>
+<li>LEV_INFO5: Information helpful for simulation users and developers alike -
+most verbose.</li>
+<li>LEV_DEBUG1: debugging information - least verbose</li>
+<li>LEV_DEBUG[2, 3, 4]</li>
+<li>LEV_DEBUG5: debugging information - most verbose</li>
+</ul>
+</div></blockquote>
+<p>Developers working on models set the LOG prefix argument to a unique
+module/model-specific identifier (up to 6 characters long).  This will allow
+developers to more easily filter the logger output in order to isolate
+information most relevant to their work.</p>
+<p>This macro does a check on the given LogLevel &#8216;level&#8217; argument; if the
+specified level is not higher than or equal to the report-level cutoff, the
+macro does nothing, limiting the performance impact of logging statements.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Do NOT place any state-changing expressions with the LOG
+macro as they may not run if the report level excludes the specified LogLevel.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;Logger.h&quot;</span>
+
+<span class="kt">void</span> <span class="n">myfunc</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_ERROR</span><span class="p">,</span> <span class="s">&quot;prefix&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;This is my error statement. &quot;</span>
+                           <span class="o">&lt;&lt;</span> <span class="s">&quot;and more info...&quot;</span><span class="p">;</span>
+
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG2</span><span class="p">,</span> <span class="s">&quot;prefix&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;This is my first debug statement. &quot;</span>
+                            <span class="o">&lt;&lt;</span> <span class="s">&quot;and more info...&quot;</span><span class="p">;</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG1</span><span class="p">,</span> <span class="s">&quot;prefix&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;This is another debug statement. &quot;</span>
+                            <span class="o">&lt;&lt;</span> <span class="s">&quot;and more info...&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The command-line specified verbosity is used to determine the logger
+report-cutoff.  Available levels are described in the LogLevel enum.  In the
+above example if the command line verbosity were set to <em>LEV_DEBUG1</em>, the first
+and third statements would print, while the second would not. Output would be
+something like this:</p>
+<div class="highlight-python"><pre>ERROR (prefix): This is my error statement. and more info...
+DEBUG1(prefix): This is another debug statement. and more info...</pre>
+</div>
+<p>Any expression placed with a log statment that is not printed will not be
+executed. An example of what NOT to do follows:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG2</span><span class="p">,</span> <span class="s">&quot;module name&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The expression myobject.setName(newname): &quot;</span>
+                               <span class="o">&lt;&lt;</span> <span class="n">myobject</span><span class="p">.</span><span class="n">setName</span><span class="p">(</span><span class="n">newname</span><span class="p">)</span>
+                               <span class="o">&lt;&lt;</span> <span class="s">&quot; might not ever execute&quot;</span>
+                               <span class="o">&lt;&lt;</span> <span class="s">&quot; depending on the verbosity level.&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="output_dbase.html" title="Output Database"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="make-models/toaster.html" title="Model Devlopment Example : ToasterFacility"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" >Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

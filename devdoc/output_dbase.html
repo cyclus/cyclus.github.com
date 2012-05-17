@@ -1,28 +1,34 @@
 
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Output Database &mdash; Cyclus Home</title>
+    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_MODINDEX: false,
+        COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="main.html" />
-    <link rel="prev" title="Model Devlopment Example : ToasterFacility" href="make-models/toaster.html" />
+    <link rel="prev" title="Using the Cyclus Logger" href="logger.html" />
    
 <script type="text/javascript">
 
@@ -54,7 +60,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="make-models/toaster.html" title="Model Devlopment Example : ToasterFacility"
+          <a href="logger.html" title="Using the Cyclus Logger"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
           <li><a href="main.html" accesskey="U">Cyclus Developer Guide</a> &raquo;</li> 
@@ -62,45 +68,45 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="../index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href="#">Output Database</a><ul>
-<li><a class="reference external" href="#provenance">Provenance</a></li>
-<li><a class="reference external" href="#cyclus-database-class-constituents">Cyclus Database Class Constituents</a><ul>
-<li><a class="reference external" href="#tables">Tables</a><ul>
-<li><a class="reference external" href="#the-primary-key">The Primary Key</a></li>
-<li><a class="reference external" href="#table-definition">Table Definition</a></li>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Output Database</a><ul>
+<li><a class="reference internal" href="#provenance">Provenance</a></li>
+<li><a class="reference internal" href="#cyclus-database-class-constituents">Cyclus Database Class Constituents</a><ul>
+<li><a class="reference internal" href="#tables">Tables</a><ul>
+<li><a class="reference internal" href="#the-primary-key">The Primary Key</a></li>
+<li><a class="reference internal" href="#table-definition">Table Definition</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#databases">Databases</a><ul>
-<li><a class="reference external" href="#database-management">Database Management</a></li>
-<li><a class="reference external" href="#querying-a-database">Querying a Database</a></li>
+<li><a class="reference internal" href="#databases">Databases</a><ul>
+<li><a class="reference internal" href="#database-management">Database Management</a></li>
+<li><a class="reference internal" href="#querying-a-database">Querying a Database</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#the-bookkeeper">The BookKeeper</a></li>
+<li><a class="reference internal" href="#the-bookkeeper">The BookKeeper</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#the-cyclus-database-visually">The Cyclus Database &#8211; Visually</a></li>
+<li><a class="reference internal" href="#the-cyclus-database-visually">The Cyclus Database &#8211; Visually</a></li>
 </ul>
 </li>
 </ul>
 
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="make-models/toaster.html"
-                                  title="previous chapter">Model Devlopment Example : ToasterFacility</a></p>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="../search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="logger.html"
+                        title="previous chapter">Using the Cyclus Logger</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -114,12 +120,12 @@
 <p><em>Cyclus</em> simulations are comprised of three major constructs (the interaction
 of which we are interested in documenting):</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li><strong>Agents</strong> (which create...)</li>
 <li><strong>Resources</strong> (which are traded in...)</li>
 <li><strong>Transactions</strong></li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>The primary goal of fuel-cycle simulations is to track material (fuel) through
 a complex system of facilities. Such interaction falls easily under this paradigm
 &#8211; one treats facilities as a type of <em>agent</em>, fuel as a type of <em>resource</em>, and the
@@ -151,7 +157,7 @@ defined in the input.</p>
 <p>The <em>Cyclus</em> database and management thereof is wholly comprised of three classes in
 its source code:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>The <strong>Table</strong> class<ul>
 <li>houses the raw data eventually written to the physical database</li>
 <li>maintains information about the Table&#8217;s structure (e.g. which columns uniquely identify rows)</li>
@@ -170,7 +176,7 @@ its source code:</p>
 </ul>
 </li>
 </ul>
-</blockquote>
+</div></blockquote>
 <div class="section" id="tables">
 <h3>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h3>
 <p>Tables in <em>Cyclus</em> can be thought of as having two primary functions: storing data and
@@ -196,12 +202,12 @@ example, the two agent id columns in the transaction table are foreign keys of t
 <h4>Table Definition<a class="headerlink" href="#table-definition" title="Permalink to this headline">¶</a></h4>
 <p>A Table is defined and registered with the BookKeeper via the following steps:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>a collection of column names and datatypes is added via addColumn()</li>
 <li>the primary key is set via setPrimaryKey()</li>
 <li>the tableDefined() method is called</li>
 </ul>
-</blockquote>
+</div></blockquote>
 </div>
 </div>
 <div class="section" id="databases">
@@ -242,16 +248,16 @@ database is not attempted at a time of lost connectivity.</p>
 <h2>The Cyclus Database &#8211; Visually<a class="headerlink" href="#the-cyclus-database-visually" title="Permalink to this headline">¶</a></h2>
 <p>The Cyclus database is comprised of the following tables:</p>
 <blockquote>
-<img alt="../_images/cycl_schema_bare.png" src="../_images/cycl_schema_bare.png" />
-</blockquote>
+<div><img alt="../_images/cycl_schema_bare.png" src="../_images/cycl_schema_bare.png" />
+</div></blockquote>
 <p>And an example with only the keys connecting each table:</p>
 <blockquote>
-<img alt="../_images/cycl_schema_keys.png" src="../_images/cycl_schema_keys.png" />
-</blockquote>
+<div><img alt="../_images/cycl_schema_keys.png" src="../_images/cycl_schema_keys.png" />
+</div></blockquote>
 <p>The connections between the full tables are shown below:</p>
 <blockquote>
-<img alt="../_images/cycl_schema.png" src="../_images/cycl_schema.png" />
-</blockquote>
+<div><img alt="../_images/cycl_schema.png" src="../_images/cycl_schema.png" />
+</div></blockquote>
 </div>
 </div>
 
@@ -268,15 +274,15 @@ database is not attempted at a time of lost connectivity.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="make-models/toaster.html" title="Model Devlopment Example : ToasterFacility"
+          <a href="logger.html" title="Using the Cyclus Logger"
              >previous</a> |</li>
         <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
           <li><a href="main.html" >Cyclus Developer Guide</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-      &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>

@@ -1,24 +1,30 @@
 
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Getting and Building Cyclus &mdash; Cyclus Home</title>
+    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_MODINDEX: false,
+        COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Fundamentals" href="main.html" />
@@ -66,41 +72,41 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="../index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href="#">Getting and Building Cyclus</a><ul>
-<li><a class="reference external" href="#dependencies">Dependencies</a><ul>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Getting and Building Cyclus</a><ul>
+<li><a class="reference internal" href="#dependencies">Dependencies</a><ul>
 </ul>
 </li>
-<li><a class="reference external" href="#project-repository">Project Repository</a><ul>
-<li><a class="reference external" href="#help-with-git-and-github">Help with Git and GitHub</a></li>
+<li><a class="reference internal" href="#project-repository">Project Repository</a><ul>
+<li><a class="reference internal" href="#help-with-git-and-github">Help with Git and GitHub</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#build-system">Build System</a></li>
-<li><a class="reference external" href="#debugging-build">Debugging Build</a></li>
+<li><a class="reference internal" href="#build-system">Build System</a></li>
+<li><a class="reference internal" href="#debugging-build">Debugging Build</a></li>
 </ul>
 </li>
 </ul>
 
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="introduction.html"
-                                  title="previous chapter">Introduction to the <em>Cyclus</em> Fuel Cycle Simulator</a></p>
-            <h4>Next topic</h4>
-            <p class="topless"><a href="dependencies_windows.html"
-                                  title="next chapter">Installing Dependencies on Windows</a></p>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="../search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="introduction.html"
+                        title="previous chapter">Introduction to the <em>Cyclus</em> Fuel Cycle Simulator</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dependencies_windows.html"
+                        title="next chapter">Installing Dependencies on Windows</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -121,25 +127,25 @@
 <col width="36%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Package</th>
+<tr class="row-odd"><th class="head">Package</th>
 <th class="head">Full Name</th>
 <th class="head">Minimum Version</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td><cite>CMake</cite></td>
+<tr class="row-even"><td><cite>CMake</cite></td>
 <td>cmake</td>
 <td>2.8</td>
 </tr>
-<tr><td><cite>boost</cite></td>
+<tr class="row-odd"><td><cite>boost</cite></td>
 <td>libboost-all-dev</td>
 <td>1.34.1</td>
 </tr>
-<tr><td><cite>xml2</cite></td>
+<tr class="row-even"><td><cite>xml2</cite></td>
 <td>libxml2-dev</td>
 <td>2</td>
 </tr>
-<tr><td><cite>sqlite3</cite></td>
+<tr class="row-odd"><td><cite>sqlite3</cite></td>
 <td>libsqlite3-dev</td>
 <td>3.7.10</td>
 </tr>
@@ -151,17 +157,19 @@ the normal (release) libraries are installed.</p>
 <p>Most systems will come with git fully installed; however, some developers may
 require the following git libraries if they are not already installed:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>git-core</li>
 <li>git-gui</li>
 <li>git-doc</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>An overview of some of the dependency installations
 can be found on the following pages:</p>
+<div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference external" href="dependencies_windows.html">Installing Dependencies on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies_windows.html">Installing Dependencies on Windows</a></li>
 </ul>
+</div>
 </div>
 <div class="section" id="project-repository">
 <h2>Project Repository<a class="headerlink" href="#project-repository" title="Permalink to this headline">¶</a></h2>
@@ -174,37 +182,37 @@ cyclus mainline of development <em>you must fork the cyclus core repository into
 your own github account and submit &#8216;Pull Requests&#8217;</em>.</p>
 <p>For the Git uninitiated, one must perform the following steps to acquire <em>Cyclus</em>:</p>
 <blockquote>
-<ol class="arabic simple">
+<div><ol class="arabic simple">
 <li><a class="reference external" href="http://help.github.com/linux-set-up-git/">Set Up Git</a> shows one how to set up SSH keys and Git user info</li>
 <li>Fork the <em>Cyclus</em> repository, as shown in <a class="reference external" href="http://help.github.com/fork-a-repo/">Fork A Repo</a></li>
 </ol>
-</blockquote>
+</div></blockquote>
 <p>Note that the <em>Cyclus</em> repository has <strong>two</strong> branches:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>master &#8211; the lastest stable release of <em>Cyclus</em></li>
 <li>develop &#8211; the lastest working copy that passes all tests</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <div class="section" id="help-with-git-and-github">
 <h3>Help with Git and GitHub<a class="headerlink" href="#help-with-git-and-github" title="Permalink to this headline">¶</a></h3>
 <p>If you are unfamiliar with Git, here are some resources:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li><a class="reference external" href="http://progit.org/book/">http://progit.org/book/</a> - this is a fantastic guide, from beginner to expert</li>
 <li><a class="reference external" href="http://book.git-scm.com/">http://book.git-scm.com/</a></li>
 <li><a class="reference external" href="http://gitimmersion.com/">http://gitimmersion.com/</a> - A very hands-on tutorial.</li>
 <li><a class="reference external" href="http://www-cs-students.stanford.edu/~blynn/gitmagic/">http://www-cs-students.stanford.edu/~blynn/gitmagic/</a></li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>If you are unfamiliar with Github, here are some resources:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li><a class="reference external" href="http://help.github.com">Github Help</a></li>
 <li>To have your changes integrated into the cyclus core project, you must
 submit a github <em>Pull Request</em>.  Visit <a class="reference external" href="http://help.github.com/send-pull-requests/">Send pull requests</a> to learn more.</li>
 </ul>
-</blockquote>
+</div></blockquote>
 </div>
 </div>
 <div class="section" id="build-system">
@@ -284,8 +292,8 @@ input file input.xml, try the following:</p>
       </ul>
     </div>
     <div class="footer">
-      &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>

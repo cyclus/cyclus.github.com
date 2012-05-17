@@ -9,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Cyclus Fundamentals &mdash; Cyclus Home</title>
+    <title>Creating and Running Simulations &mdash; Cyclus Home</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,8 +27,9 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
-    <link rel="next" title="Introduction to the Cyclus Fuel Cycle Simulator" href="introduction.html" />
-    <link rel="prev" title="Cyclus" href="../index.html" />
+    <link rel="up" title="Cyclus User Guide" href="main.html" />
+    <link rel="next" title="Cyclus Developer Guide" href="../devdoc/main.html" />
+    <link rel="prev" title="Cyclus User Guide" href="main.html" />
    
 <script type="text/javascript">
 
@@ -60,22 +61,34 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="introduction.html" title="Introduction to the Cyclus Fuel Cycle Simulator"
+          <a href="../devdoc/main.html" title="Cyclus Developer Guide"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../index.html" title="Cyclus"
+          <a href="main.html" title="Cyclus User Guide"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Cyclus Home</a> &raquo;</li> 
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" accesskey="U">Cyclus User Guide</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Creating and Running Simulations</a><ul>
+<li><a class="reference internal" href="#cyclus-command-line-usage">Cyclus Command Line Usage</a><ul>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../index.html"
-                        title="previous chapter"><em>Cyclus</em></a></p>
+  <p class="topless"><a href="main.html"
+                        title="previous chapter">Cyclus User Guide</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="introduction.html"
-                        title="next chapter">Introduction to the <em>Cyclus</em> Fuel Cycle Simulator</a></p>
+  <p class="topless"><a href="../devdoc/main.html"
+                        title="next chapter">Cyclus Developer Guide</a></p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -97,37 +110,43 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="cyclus-fundamentals">
-<h1>Cyclus Fundamentals<a class="headerlink" href="#cyclus-fundamentals" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the <em>Cyclus</em> Fuel Cycle Simulator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#mission">Mission</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#vision">Vision</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#current-status">Current Status</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#research-areas">Research Areas</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="get_and_build.html">Getting and Building Cyclus</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="get_and_build.html#dependencies">Dependencies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="get_and_build.html#project-repository">Project Repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="get_and_build.html#build-system">Build System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="get_and_build.html#debugging-build">Debugging Build</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ecosystem.html">The <em>Cyclus</em> Community &amp; Ecosystem</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ecosystem.html#open-source-core-infrastructure">Open Source Core Infrastructure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ecosystem.html#decentralized-module-development-distribution">Decentralized Module Development &amp; Distribution</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="decay.html">Radioactive Decay in Cyclus</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="decay.html#the-uniformization-method">The Uniformization Method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decay.html#implementation-in-cyclus">Implementation in Cyclus</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decay.html#adding-new-isotopes">Adding New Isotopes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decay.html#references">References</a></li>
+  <div class="section" id="creating-and-running-simulations">
+<h1>Creating and Running Simulations<a class="headerlink" href="#creating-and-running-simulations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="cyclus-command-line-usage">
+<h2>Cyclus Command Line Usage<a class="headerlink" href="#cyclus-command-line-usage" title="Permalink to this headline">¶</a></h2>
+<p>To run a simulation you must use the <cite>cyclus</cite> command line utility:</p>
+<div class="highlight-python"><pre>./path/to/cyclus [options] [input-file]</pre>
+</div>
+<p><strong>options</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>-v[level]</cite> where level is one of:<ul>
+<li><cite>LEV_ERROR</cite> (least verbose and the default if no verbosity is specified)</li>
+<li><cite>LEV_WARN</cite></li>
+<li><cite>LEV_INFO[1, 2, 3, 4, 5]</cite></li>
+<li><cite>LEV_DEBUG[1, 2, 3, 4]</cite></li>
+<li><cite>LEV_DEBUG5</cite> (most verbose)</li>
 </ul>
 </li>
 </ul>
+<p>Note  that level can be specified as a number. Zero corresponds to
+<cite>LEV_ERROR</cite>, and 11 corresponds to <cite>LEV_DEBUG5</cite>.</p>
+</div></blockquote>
+<p><strong>input file</strong>:</p>
+<blockquote>
+<div>The absolute or relative path (including the input file name itself) to the
+input file to be run.</div></blockquote>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>./cyclus ./path/to/myinput.xml
+
+./cyclus -v LEV_DEBUG5 myinput.xml
+
+./cyclus -v LEV_INFO3 myinput.xml
+
+./cyclus -v 4 myinput.xml</pre>
+</div>
+</div>
 </div>
 </div>
 
@@ -144,12 +163,13 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="introduction.html" title="Introduction to the Cyclus Fuel Cycle Simulator"
+          <a href="../devdoc/main.html" title="Cyclus Developer Guide"
              >next</a> |</li>
         <li class="right" >
-          <a href="../index.html" title="Cyclus"
+          <a href="main.html" title="Cyclus User Guide"
              >previous</a> |</li>
-        <li><a href="../index.html">Cyclus Home</a> &raquo;</li> 
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" >Cyclus User Guide</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
