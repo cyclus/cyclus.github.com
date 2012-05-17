@@ -31,6 +31,7 @@ successfully acquiring and building *Cyclus*, you can begin developing:
    style_guide
    materials_and_isotopes
    make-models/main
+   logger
    output_dbase
 
 Doxygen Code Documentation
