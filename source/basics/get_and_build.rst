@@ -147,13 +147,13 @@ input file input.xml, try the following::
 Installation
 ------------
 
-You can install cyclus on your computer like a regular program if you type 
+You can fully install cyclus on your computer by typing 
 
 ::
 
     make install
 
-You'll likely need to be a root user to do this, perhaps by trying ```sudo make 
+You'll likely need to be a root user to do this, perhaps by trying ``sudo make 
 install``. To install cyclus in a specific location, you'll need to use the 
 CMake prefix variable on the command line. To direct the cyclus installation to 
 your foo directory, you would invoke the installation command thusly 
