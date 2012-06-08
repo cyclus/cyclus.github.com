@@ -142,3 +142,24 @@ it will recognize the target as a debuggable target. To debug a run for some
 input file input.xml, try the following::
 
     /cyclus/debug$ ddd ./cyclus input.xml
+
+
+Installation
+------------
+
+You can install cyclus on your computer like a regular program if you type 
+
+::
+
+    make install
+
+You'll likely need to be a root user to do this, perhaps by trying ```sudo make 
+install``. To install cyclus in a specific location, you'll need to use the 
+CMake prefix variable on the command line. To direct the cyclus installation to 
+your foo directory, you would invoke the installation command thusly 
+
+::
+    
+    make install -DCMAKE_INSTALL_PREFIX=/foo
+
+
