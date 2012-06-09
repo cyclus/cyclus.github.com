@@ -1,24 +1,30 @@
 
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Cyclus Developer Guide &mdash; Cyclus Home</title>
+    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_MODINDEX: false,
+        COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="next" title="The Cyclus Environment" href="cyclus_env.html" />
@@ -64,37 +70,37 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="../index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href="#">Cyclus Developer Guide</a><ul>
-<li><a class="reference external" href="#getting-started">Getting Started</a><ul>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Cyclus Developer Guide</a><ul>
+<li><a class="reference internal" href="#getting-started">Getting Started</a><ul>
 </ul>
 </li>
-<li><a class="reference external" href="#doxygen-code-documentation">Doxygen Code Documentation</a></li>
-<li><a class="reference external" href="#diversions">Diversions</a></li>
+<li><a class="reference internal" href="#doxygen-code-documentation">Doxygen Code Documentation</a></li>
+<li><a class="reference internal" href="#diversions">Diversions</a></li>
 </ul>
 </li>
 </ul>
 
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="../usrdoc/creating_and_running_sims.html"
-                                  title="previous chapter">Creating and Running Simulations</a></p>
-            <h4>Next topic</h4>
-            <p class="topless"><a href="cyclus_env.html"
-                                  title="next chapter">The Cyclus Environment</a></p>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="../search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../usrdoc/creating_and_running_sims.html"
+                        title="previous chapter">Creating and Running Simulations</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="cyclus_env.html"
+                        title="next chapter">The Cyclus Environment</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -107,7 +113,7 @@
 <h1>Cyclus Developer Guide<a class="headerlink" href="#cyclus-developer-guide" title="Permalink to this headline">¶</a></h1>
 <p>Documentation to assist with the development of <em>Cyclus</em> will be maintained
 in a variety of forms.  If you haven&#8217;t already, check out
-<a class="reference external" href="../basics/main.html"><em>Cyclus Fundamentals</em></a></p>
+<a class="reference internal" href="../basics/main.html"><em>Cyclus Fundamentals</em></a></p>
 <p>The <em>Cyclus</em> project repository is located at
 <a class="reference external" href="http://github.com/cyclus/core">http://github.com/cyclus/core</a>.</p>
 <p>Although you do not have to register with github to
@@ -116,18 +122,20 @@ cyclus mainline of development <em>you must fork the cyclus core repository into
 your own github account and submit &#8216;Pull Requests&#8217;</em>.</p>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<p>First things first - read <a class="reference external" href="../basics/get_and_build.html"><em>Getting and Building Cyclus</em></a>.  After
+<p>First things first - read <a class="reference internal" href="../basics/get_and_build.html"><em>Getting and Building Cyclus</em></a>.  After
 successfully acquiring and building <em>Cyclus</em>, you can begin developing:</p>
+<div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference external" href="cyclus_env.html">The Cyclus Environment</a></li>
-<li class="toctree-l1"><a class="reference external" href="flow_and_structure.html">Program Flow and Data Structures</a></li>
-<li class="toctree-l1"><a class="reference external" href="code_tour.html">Tour of the Source Code</a></li>
-<li class="toctree-l1"><a class="reference external" href="style_guide.html">Style Guidelines for Developers</a></li>
-<li class="toctree-l1"><a class="reference external" href="materials_and_isotopes.html">Materials and Isotopics in Cyclus</a></li>
-<li class="toctree-l1"><a class="reference external" href="make-models/main.html">Developing Models For Cyclus</a></li>
-<li class="toctree-l1"><a class="reference external" href="logger.html">Using the Cyclus Logger</a></li>
-<li class="toctree-l1"><a class="reference external" href="output_dbase.html">Output Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cyclus_env.html">The Cyclus Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_and_structure.html">Program Flow and Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_tour.html">Tour of the Source Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style_guide.html">Style Guidelines for Developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_and_isotopes.html">Materials and Isotopics in Cyclus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make-models/main.html">Developing Models For Cyclus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logger.html">Using the Cyclus Logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output_dbase.html">Output Database</a></li>
 </ul>
+</div>
 </div>
 <div class="section" id="doxygen-code-documentation">
 <h2>Doxygen Code Documentation<a class="headerlink" href="#doxygen-code-documentation" title="Permalink to this headline">¶</a></h2>
@@ -144,11 +152,11 @@ documentation by running <cite>make cyclusdoc</cite> instead of <cite>make all</
 <h2>Diversions<a class="headerlink" href="#diversions" title="Permalink to this headline">¶</a></h2>
 <p>Relevant xkcd comics:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li><a class="reference external" href="http://xkcd.com/927/">Standards</a></li>
 <li><a class="reference external" href="http://xkcd.com/974/">The General Solution</a></li>
 </ul>
-</blockquote>
+</div></blockquote>
 </div>
 </div>
 
@@ -174,14 +182,9 @@ documentation by running <cite>make cyclusdoc</cite> instead of <cite>make all</
       </ul>
     </div>
     <div class="footer">
-<<<<<<< HEAD
         &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Jun 08, 2012.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
-=======
-      &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 07, 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.5.
->>>>>>> 03ae4c463959be613b3b3dfc4d2fd544de5b7248
     </div>
   </body>
 </html>
