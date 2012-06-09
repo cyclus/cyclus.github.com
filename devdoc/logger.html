@@ -1,30 +1,24 @@
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Using the Cyclus Logger &mdash; Cyclus Home</title>
-    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="main.html" />
@@ -72,33 +66,33 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Using the Cyclus Logger</a><ul>
-<li><a class="reference internal" href="#examples">Examples</a></li>
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Using the Cyclus Logger</a><ul>
+<li><a class="reference external" href="#examples">Examples</a></li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="make-models/toaster.html"
-                        title="previous chapter">Model Devlopment Example : ToasterFacility</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="output_dbase.html"
-                        title="next chapter">Output Database</a></p>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="make-models/toaster.html"
+                                  title="previous chapter">Model Devlopment Example : ToasterFacility</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="output_dbase.html"
+                                  title="next chapter">Output Database</a></p>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -110,7 +104,7 @@
   <div class="section" id="using-the-cyclus-logger">
 <h1>Using the Cyclus Logger<a class="headerlink" href="#using-the-cyclus-logger" title="Permalink to this headline">¶</a></h1>
 <p>For how to adjust log output verbosity when running cyclus, see
-<a class="reference internal" href="../usrdoc/creating_and_running_sims.html"><em>Creating and Running Simulations</em></a></p>
+<a class="reference external" href="../usrdoc/creating_and_running_sims.html"><em>Creating and Running Simulations</em></a></p>
 <div class="highlight-python"><pre>#include "Logger.h"
 
 LOG(LogLevel level, std::string prefix)</pre>
@@ -127,7 +121,7 @@ statement.</p>
 <p>A brief description of when to use which log level is given with the
 LogLevel enum doxygen documentation. The following is a summary:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>LEV_ERROR: Use for errors that require model code or input file
 modification/fixing (use extremely sparingly)</li>
 <li>LEV_WARN: Use to report questionable simulation state (use extremely
@@ -141,7 +135,7 @@ most verbose.</li>
 <li>LEV_DEBUG[2, 3, 4]</li>
 <li>LEV_DEBUG5: debugging information - most verbose</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <p>Developers working on models set the LOG prefix argument to a unique
 module/model-specific identifier (up to 6 characters long).  This will allow
 developers to more easily filter the logger output in order to isolate
@@ -212,8 +206,14 @@ executed. An example of what NOT to do follows:</p>
       </ul>
     </div>
     <div class="footer">
+<<<<<<< HEAD
         &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+=======
+      &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Jun 07, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.5.
+>>>>>>> 03ae4c463959be613b3b3dfc4d2fd544de5b7248
     </div>
   </body>
 </html>
