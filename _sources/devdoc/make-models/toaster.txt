@@ -520,7 +520,7 @@ Customization of Module Tests
 
 Tests for the ToasterFacility can be implemented in the ToasterFacilityTests.cpp 
 file using the GoogleTest testing framework. For more details about testing, see
-the http://cnerg.engr.wisc.edu/cyclus/docs/testing.html, the testing section of 
+the http://cnergdata.engr.wisc.edu/cyclus/develop/docs/testing.html, the testing section of 
 the cyclus doxygen documentation.
 
 For our purposes, we'll simply show one example of a unit test that the Toaster 
