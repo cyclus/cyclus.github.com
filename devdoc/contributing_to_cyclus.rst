@@ -129,7 +129,7 @@ Reviewing a Pull Request
 
   - Look over the code. 
 
-    - Check that it meets :doc:`our style guidelines <devdoc/style_guide>`.
+    - Check that it meets :doc:`our style guidelines <style_guide>`.
 
     - Make inline review comments concerning improvements. 
       
