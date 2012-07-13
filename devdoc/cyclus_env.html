@@ -1,30 +1,24 @@
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>The Cyclus Environment &mdash; Cyclus Home</title>
-    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="main.html" />
@@ -72,36 +66,36 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">The Cyclus Environment</a><ul>
-<li><a class="reference internal" href="#inputxml-xmlinput">InputXML (XMLInput)</a></li>
-<li><a class="reference internal" href="#bookkeeper-bi">BookKeeper (BI)</a></li>
-<li><a class="reference internal" href="#timer-ti">Timer (TI)</a></li>
-<li><a class="reference internal" href="#masstable-mt">MassTable (MT)</a></li>
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">The Cyclus Environment</a><ul>
+<li><a class="reference external" href="#inputxml-xmlinput">InputXML (XMLInput)</a></li>
+<li><a class="reference external" href="#bookkeeper-bi">BookKeeper (BI)</a></li>
+<li><a class="reference external" href="#timer-ti">Timer (TI)</a></li>
+<li><a class="reference external" href="#masstable-mt">MassTable (MT)</a></li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="main.html"
-                        title="previous chapter">Cyclus Developer Guide</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="flow_and_structure.html"
-                        title="next chapter">Program Flow and Data Structures</a></p>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="main.html"
+                                  title="previous chapter">Cyclus Developer Guide</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="flow_and_structure.html"
+                                  title="next chapter">Program Flow and Data Structures</a></p>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -115,7 +109,7 @@
 <p>All developers will interact with the <em>Cyclus</em> simulation environment
 in three primary modes:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>Input/Output<ul>
 <li>InputXML</li>
 <li>BookKeeper</li>
@@ -130,7 +124,7 @@ in three primary modes:</p>
 </ul>
 </li>
 </ul>
-</div></blockquote>
+</blockquote>
 <p>A prolific stumbling block to dynamic system codes is a restrictive
 environment. Accordingly, the <em>Cyclus</em> team has strived to make the
 environment as bare and simple as possible.</p>
@@ -149,21 +143,21 @@ stands for &#8220;Timer Instance&#8221;.</p>
 <col width="47%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Singleton Class</th>
+<tr><th class="head">Singleton Class</th>
 <th class="head">Handle</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><cite>InputXML</cite></td>
+<tr><td><cite>InputXML</cite></td>
 <td>XMLInput</td>
 </tr>
-<tr class="row-odd"><td><cite>BookKeeper</cite></td>
+<tr><td><cite>BookKeeper</cite></td>
 <td>BI</td>
 </tr>
-<tr class="row-even"><td><cite>Timer</cite></td>
+<tr><td><cite>Timer</cite></td>
 <td>TI</td>
 </tr>
-<tr class="row-odd"><td><cite>MassTable</cite></td>
+<tr><td><cite>MassTable</cite></td>
 <td>MT</td>
 </tr>
 </tbody>
@@ -198,7 +192,7 @@ the following:</p>
 <h2>BookKeeper (BI)<a class="headerlink" href="#bookkeeper-bi" title="Permalink to this headline">¶</a></h2>
 <p>The BookKeeper manages the <em>Cyclus</em> output database. Specifically, it manages the
 registering of database tables and the frequency at which data is written to the
-database. A more in-depth overview of the topic is covered in <a class="reference internal" href="output_dbase.html"><em>Output Database</em></a>.</p>
+database. A more in-depth overview of the topic is covered in <a class="reference external" href="output_dbase.html"><em>Output Database</em></a>.</p>
 </div>
 <div class="section" id="timer-ti">
 <h2>Timer (TI)<a class="headerlink" href="#timer-ti" title="Permalink to this headline">¶</a></h2>
@@ -243,9 +237,9 @@ example,</p>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 08, 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Jul 13, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.5.
     </div>
   </body>
 </html>

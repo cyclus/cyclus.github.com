@@ -33,6 +33,7 @@ successfully acquiring and building *Cyclus*, you can begin developing:
    make-models/main
    logger
    output_dbase
+   contributing_to_cyclus
 
 Doxygen Code Documentation
 --------------------------
