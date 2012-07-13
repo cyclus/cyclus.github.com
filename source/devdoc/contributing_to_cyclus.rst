@@ -112,41 +112,40 @@ Making a Pull Request
 ----------------------
     
 When you are ready to move changes from one of your topic branches into the 
-"develop" branch, it must be reviewed and accepted by another 
-        developer. 
+"develop" branch, it must be reviewed and accepted by another developer. 
 
-      - You may want to review this `tutorial <https://help.github.com/articles/using-pull-requests/>`_ 
-        before you make a pull request to the develop branch.
+  - You may want to review this `tutorial <https://help.github.com/articles/using-pull-requests/>`_ 
+    before you make a pull request to the develop branch.
         
 Reviewing a Pull Request
 ----------------------------
 
-     - Build, install, and test it. If you have added the remmote repository as 
-       a remote you can check it out and merge it with the current develop 
-       branch thusly, ::
+  - Build, install, and test it. If you have added the remmote repository as 
+    a remote you can check it out and merge it with the current develop 
+    branch thusly, ::
        
-         git checkout -b remote_name/branch_name
-         git merge develop
+      git checkout -b remote_name/branch_name
+      git merge develop
 
-     - Look over the code. 
+  - Look over the code. 
 
-        - Check that it meets `our style guidelines <http://cyclus.github.com/devdoc/style_guide.html>`_.
+    - Check that it meets :doc:`our style guidelines <devdoc/style_guide>`.
 
-        - Make inline review comments concerning improvements. 
+    - Make inline review comments concerning improvements. 
       
-     - Accept the Pull Request    
+  - Accept the Pull Request    
 
-        - In general, **every commit** (notice this is not 'every push') to the
-          "develop" and "master" branches should compile and pass tests. This
-          is guaranteed by using a NON-fast-forward merge during the pull request 
-          acceptance process. 
+    - In general, **every commit** (notice this is not 'every push') to the
+      "develop" and "master" branches should compile and pass tests. This
+      is guaranteed by using a NON-fast-forward merge during the pull request 
+      acceptance process. 
     
-        - The green "Merge Pull Request" button does a non-fast-forward merge by 
-          default. However, if that button is unavailable, you've made minor 
-          local changes to the pulled branch, or you just want to do it from the 
-          command line, make sure your merge is a non-fast-forward merge. For example::
+    - The green "Merge Pull Request" button does a non-fast-forward merge by 
+      default. However, if that button is unavailable, you've made minor 
+      local changes to the pulled branch, or you just want to do it from the 
+      command line, make sure your merge is a non-fast-forward merge. For example::
           
-            git checkout develop
-            git merge --no-ff remote_name/branch_name -m "A message""
+        git checkout develop
+        git merge --no-ff remote_name/branch_name -m "A message""
 
 
