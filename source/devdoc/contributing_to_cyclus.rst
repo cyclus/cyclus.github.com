@@ -116,6 +116,16 @@ When you are ready to move changes from one of your topic branches into the
 
   - You may want to review this `tutorial <https://help.github.com/articles/using-pull-requests/>`_ 
     before you make a pull request to the develop branch.
+
+Sometimes, your pull request will be closed by the reviewer until further 
+changes are made to appease the reviewer's concerns. This may be frustrating, 
+but please act rationally, discuss the issues on the github space made for your 
+pull request, consult the `style guide <style_guide>`,
+email the developer listhost for further advice, and make changes to your topic branch 
+accordingly. The pull request will be updated with those changes when you push them 
+to your fork.  When you think your request is ready for another review, you can 
+reopen the review yourself with the button made available to you. 
+
         
 Reviewing a Pull Request
 ----------------------------
@@ -149,3 +159,9 @@ Reviewing a Pull Request
         git merge --no-ff remote_name/branch_name -m "A message""
 
 
+
+See also
+--------
+
+A good description of a git workflow with good graphics is available at
+http://nvie.com/posts/a-successful-git-branching-model/
