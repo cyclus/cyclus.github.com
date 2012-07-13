@@ -1,0 +1,130 @@
+
+.. summary Contributing to Cyclus 
+
+Guide for Contributing to Cyclus
+=================================
+
+*Cyclus* has a number of projects under its umbrella. 
+The core *Cyclus* project repository is located at
+http://github.com/cyclus/core. Additional projects found at 
+http://github.com/cyclus include :
+
+  - Cycamore, the cyclus additional modules repository
+  - Cyclopts, the cyclus optimization library
+  - Cycic, the cyclus input controller
+  - and more to come. 
+
+Although you do not have to register with github to
+download and edit the code, if you desire your work to be integrated into the
+cyclus mainline of development *you must fork the cyclus core repository into
+your own github account and submit 'Pull Requests'*.
+
+Working on a Topic
+---------------------
+*Note that "upstream" repository refers to the primary `cyclus/core` repository.*
+
+You may find or create an issue report in a *Cyclus* repository that you would like 
+to solve. 
+
+You'll first need to fork your repository and create a branch for the topic you'd 
+like you solve. As you do your development, push only to your own fork. Make a 
+pull request to the upstream repository (usually the "develop" branch) only after:
+
+  * You have pulled the latest changes from the upstream repository.
+  * You have completed a logical set of changes.
+  * Cyclus compiles with no errors.
+  * All tests pass.
+  * Cyclus input files run as expected.
+  * Your code has been reviewed by another developer.
+
+Code from the "develop" branch generally must pass even more rigorous checks
+before being integrated into the "master" branch. Hotfixes would be a
+possible exception to this.
+
+Keeping Your Fork Up To Date 
+-----------------------------
+
+  * Use a branching workflow similar to the one described at
+    http://progit.org/book/ch3-4.html.
+
+  * The "develop" branch is how core developers will share (generally compilable) progress
+    when we are not yet ready for the code to become 'production'.
+
+  * Keep your own "master" and "develop" branches in sync with the upstream repository's
+    "master" and "develop" branches. The master branch should always be the 'stable'
+    or 'production' release of cyclus.
+    
+     - Pull the most recent history from the upstream repository "master"
+       and/or "develop" branches before you merge changes into your
+       corresponding local branch. Consider doing a rebase pull instead of
+       a regular pull or 'fetch and merge'.  For example::
+
+         git checkout develop
+         git pull --rebase upstream develop
+
+  * As you do development on topic branches in your own fork, consider rebasing
+    the topic branch onto the "master" and/or "develop"  branches after *pulls* from the upstream
+    repository rather than merging the pulled changes into your branch.  This
+    will help maintain a more linear (and clean) history.
+    *Please see caution about rebasing below*.  For example::
+
+      git checkout [your topic branch]
+      git rebase develop
+
+Passing Tests
+-------------
+
+      - To check that your branch passes the tests, you must build and install your topic 
+        branch and then run the CyclusUnitTestDriver (at the moment, ```make 
+        test``` is insufficient). For example ::
+      
+          mkdir build
+          mkdir install
+          cd build
+          cmake ../src -DCMAKE_INSTALL_PREFIX=../install
+          make
+          make install
+          ../install/cyclus/bin/CyclusUnitTestDriver
+
+Making a Pull Request
+----------------------
+    
+      - When you are ready to move changes from one of your topic branches into the 
+        "develop" branch, it must be reviewed and accepted by another 
+        developer. 
+
+      - You may want to review this `tutorial <https://help.github.com/articles/using-pull-requests/>`_ 
+        before you make a pull request to the develop branch.
+        
+Reviewing a Pull Request
+----------------------------
+
+     - Build, install, and test it. If you have added the remmote repository as 
+       a remote you can check it out and merge it with the current develop 
+       branch thusly, ::
+       
+         git checkout -b remote_name/branch_name
+         git merge develop
+
+     - Look over the code. 
+
+        - Check that it meets `our style guidelines <http://cyclus.github.com/devdoc/style_guide.html>`_.
+
+        - Make inline review comments concerning improvements. 
+      
+     - Accept the Pull Request    
+
+        - In general, **every commit** (notice this is not 'every push') to the
+          "develop" and "master" branches should compile and pass tests. This
+          is guaranteed by using a NON-fast-forward merge during the pull request 
+          acceptance process. 
+    
+        - The green "Merge Pull Request" button does a non-fast-forward merge by 
+          default. However, if that button is unavailable, you've made minor 
+          local changes to the pulled branch, or you just want to do it from the 
+          command line, make sure your merge is a non-fast-forward merge. For example::
+          
+            git checkout develop
+            git merge --no-ff remote_name/branch_name -m "A message""
+
+
