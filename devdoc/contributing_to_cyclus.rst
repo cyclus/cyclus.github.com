@@ -74,23 +74,45 @@ Keeping Your Fork Up To Date
 Passing Tests
 -------------
 
-      - To check that your branch passes the tests, you must build and install your topic 
-        branch and then run the CyclusUnitTestDriver (at the moment, ```make 
-        test``` is insufficient). For example ::
-      
-          mkdir build
-          mkdir install
-          cd build
-          cmake ../src -DCMAKE_INSTALL_PREFIX=../install
-          make
-          make install
-          ../install/cyclus/bin/CyclusUnitTestDriver
+To check that your branch passes the tests, you must build and install your topic 
+branch and then run the tests built during that process.
+
+For the cyclus core, the tests are run using the CyclusUnitTestDriver (at the moment, 
+```make test``` is insufficient). For example ::
+
+  mkdir build
+  mkdir install
+  cd build
+  cmake ../src -DCMAKE_INSTALL_PREFIX=../install
+  make
+  make install
+  ../install/cyclus/bin/CyclusUnitTestDriver
+
+The cycamore, the additional modules repository, the tests are run in an exactly  
+analogous way, but using the CycamoreUnitTestDriver. For example ::
+
+  mkdir build
+  mkdir install
+  cd build
+  cmake ../src -DCMAKE_INSTALL_PREFIX=../install
+  make
+  make install
+  ../install/cycamore/bin/CycamoreUnitTestDriver
+
+In addition to the CycamoreUnitTestDriver, a suite of input files can be run and 
+tested using the run_inputs.py script that is configured, built, and installed 
+with Cycamore. It relies on the input files that are part of your Cycamore 
+repository, and only succeeds for input files that are correct (some may have 
+known issues. See the issue list in cycamore for details.) To run the example 
+input files, ::
+  
+  python ../install/cycamore/bin/run_inputs.py
 
 Making a Pull Request
 ----------------------
     
-      - When you are ready to move changes from one of your topic branches into the 
-        "develop" branch, it must be reviewed and accepted by another 
+When you are ready to move changes from one of your topic branches into the 
+"develop" branch, it must be reviewed and accepted by another 
         developer. 
 
       - You may want to review this `tutorial <https://help.github.com/articles/using-pull-requests/>`_ 
