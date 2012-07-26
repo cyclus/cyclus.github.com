@@ -72,3 +72,11 @@ Contact Us
 * Developers' list: cyclus-dev@groups.google.com
 * Users' list: cyclus-users@groups.google.com
 
+Acknowledgements
+----------------
+
+This research is being performed using funding received from the DOE
+Office of Nuclear Energy's Nuclear Energy University Programs.
+
+ .. image :: basics/neup_logo_large.jpg
+
