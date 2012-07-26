@@ -75,8 +75,12 @@ Contact Us
 Acknowledgements
 ----------------
 
-This research is being performed using funding received from the DOE
-Office of Nuclear Energy's Nuclear Energy University Programs.
+Support for this research has included funding received from 
 
+ *  the DOE Office of Nuclear Energy's Nuclear Energy University Programs
  .. image :: basics/neup_logo_large.jpg
+    :width: 200 px
 
+ * the US Nuclear Regulatory Commission's Faculty Development Program
+ * the National Science Foundation's Graduate Fellowship Program
+ * the U. Wisconsin-Madison's Graduate School
