@@ -4,103 +4,61 @@
 The Cyclus Environment
 ======================
 
-All developers will interact with the *Cyclus* simulation environment 
-in three primary modes:
- 
- * Input/Output
+At its heart, the Cyclus environment is an agent-based modeling tool
+with a small number of key components.
 
-   * InputXML
-   * BookKeeper
+ * Facility agents send Messages to Market agents
+ * Market agents issues Transactions to Facility agents to exchange Resources
+ * Facility agents are owned by Institution agents
+ * Institution agents operate in geo-political Region agents
 
- * Simulation Progression
+To achieve maximum flexibility, only the minimum necessary behavior of
+any agent is defined by the Cyclus core.  The detailed behavior of all
+agents is free to be defined by user/developers by defining concrete
+implementations of the agents in modules that are included at runtime.
+The following Model classes are available for extension:
 
-   * Timer
+ * MarketModel provides the basis for Market agents.  These agents
+   collects offers and requests from Facility agents in the form of
+   Messages and use some algorithm to reconcile these and issue
+   Transactions to those Facility agents
+ * FacilityModel provides the basis for Facility agents.  These agents
+   send offers and/or requests to Market agents via their Insitution
+   agent owners and Region agent geo-political regions.
+ * InstModel provides the basis for Institution agents.  These agents
+   deploy Facility agents based on instructions from the Region agent
+   in which they operate, and collect offers/requests from those
+   Facility agents and send them on to the Market agents via their
+   Region agent.
+ * RegionModel provides the basis for Region agents. These agents
+   issue instructions to Institution agents to build Facility agents
+   to satisfy some demand for the products of those Facility agents.
 
- * Static Data
+A number of core utilities are provided to manage the simulation:
 
-   * MassTable
+ * XML-based validated input is available using the RelaxNG schema
+   defintion syntax in the InputXML class
+ * SQL-based output is available for logging transactions and other
+   core data in the BookKeeper class
+ * The progression of the simulation through time is managed by the
+   Timer class
+ * A consistent set of software exceptions is provided by the
+   CycException class
+ * Standard output and error output are managed by the Logger class
 
-A prolific stumbling block to dynamic system codes is a restrictive 
-environment. Accordingly, the *Cyclus* team has strived to make the 
-environment as bare and simple as possible.
+Some standardized instance of Resources are available for use by
+module developers
 
-The environment in *Cyclus* is actually comprised of singleton classes 
-(a singleton class has a static member of its own type that is instantiated 
-only once during the code's execution). Modules within *Cyclus* then 
-interact with the singleton instance. For instance, the current simulation 
-time is called via: ::
+ * Since most fuel cycle simulations center around Resources that are
+   mixtures of isotopes, the Material class provides a standard
+   representation of these
+ * Radioactive decay necessary for these Materials is provided by the
+   DecayHandler class
 
-     TI->time()
+A number of other building blocks are available to assist module developers
+while providing some uniformity of implementation of frequently used
+concepts:
 
-Each singleton class has a predefined handle, such as "TI" above which 
-stands for "Timer Instance".
-
-====================     ==================
-Singleton Class          Handle
-====================     ==================
-`InputXML`               XMLInput
-`BookKeeper`             BI
-`Timer`                  TI
-`MassTable`              MT
-====================     ==================
-
-InputXML (XMLInput)
--------------------
-
-This class provides an interface to read input values from their respective 
-xml files. The main interaction a developer will have with this class is through 
-the grabbing of a specified element or group of elements. 
-
-A collection of elements is generally a list of some type, e.g. all of the 
-attributes which are required to define some facility. A real-life example in 
-*Cyclus* is shown via the RegionModel class. Every region has a list of allowed 
-facilities. The xml file might look something like: ::
-
-    <region>
-      <name>oneRegion</name>
-      <allowedfacility>FrontEnd</allowedfacility>
-      <allowedfacility>BackEnd</allowedfacility>
-      <model>
-        <NullRegion/>
-      </model>
-    </region>
-
-whereas the C++ code to get these allowed facilities would look like: ::
-	
-     xmlNodeSetPtr nodes = XMLinput->get_xpath_elements(cur,"allowedfacility");
-
-A single element, such as the region's name, would be accessed with 
-the following: ::
-
-     string region_name = XMLinput->get_xpath_content(cur,"name");
-
-BookKeeper (BI)
----------------
- 
-The BookKeeper manages the *Cyclus* output database. Specifically, it manages the
-registering of database tables and the frequency at which data is written to the 
-database. A more in-depth overview of the topic is covered in :doc:`output_dbase`.
-
-Timer (TI)
-----------
-
-The Timer's main directive is to increment the simulation time and alert models that the 
-time has been incremented. The general developer will only interact with the Timer through 
-the time() method.
-
-The Timer also holds a list of models that it will directly send Ticks/Tocks to and a list
-of models that it will send Resolves to. In general, the former is Region Models and the latter
-is Market Models. It is unlikely that a developer will need to utilize this functionality 
-as it taken care of at the abstract Region/Market Model level.
-
-MassTable (MT)
---------------
-
-The MassTable simply provides the mass of a given isotope via its alpha-numeric handle. For 
-example, ::
-
-  MT->getMassInGrams(pu240) 
-
-returns the mass of Plutonium-240 in grams.
-
+ * A ResourceBuffer class provides a common way for Facility agents to
+   implement inventories of Resources
 
