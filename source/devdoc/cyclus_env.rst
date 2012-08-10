@@ -26,12 +26,20 @@ There are 5 fundamental properties that may be inheritied by agents and Markets:
  * participation in a tree of agents - SimulationTree
  * agent prototypes avaialble for concrete instantiaion - Prototype
 
++-----------------+---------+--------------+-----------+---------+
 |                 | Regions | Institutions | Facilties | Markets |
++-----------------+---------+--------------+-----------+---------+
 | DynamicModule   |   X     |      X       |     X     |    X    |
++-----------------+---------+--------------+-----------+---------+
 | Communicator    |   X     |      X       |     X     |    X    |
++-----------------+---------+--------------+-----------+---------+
 | TimeHandler     |   X     |      X       |     X     |         |
++-----------------+---------+--------------+-----------+---------+
 | SiumulationTree |   X     |      X       |     X     |    X    |
++-----------------+---------+--------------+-----------+---------+
 | Prototype       |         |              |     X     |         |
++-----------------+---------+--------------+-----------+---------+
+
 
 Simulation and Agent Initialization 
 ++++++++++++++++++++++++++++++++++++
@@ -41,9 +49,9 @@ A simulation is initialized in the following order:
  * define & register Resources recipes to be used by Facilities
  * define & register protoypes of Facilities
  * populate a tree of simulation agents with
-   * Regions, and their
-     * Institutions, and their
-       * Facilities that exist in the initials state.
+     * Regions, and their
+         * Institutions, and their
+             * Facilities that exist in the initials state.
 
 Dynamic Loading
 +++++++++++++++
