@@ -70,6 +70,7 @@ It is important to note that single visualizations may contain
 multiple time series of data, with a variety of alternative
 representations depending on the user's interests.  The following
 discussion will consider, in this order:
+
   1. the resolution of the time domain,
   2. filtering operations to restrict the data included in a single time series, 
   3. application of post-processing functions for alternative engineering responses, and
