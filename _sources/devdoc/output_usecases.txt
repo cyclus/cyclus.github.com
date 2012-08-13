@@ -70,6 +70,7 @@ It is important to note that single visualizations may contain
 multiple time series of data, with a variety of alternative
 representations depending on the user's interests.  The following
 discussion will consider, in this order:
+
   1. the resolution of the time domain,
   2. filtering operations to restrict the data included in a single time series, 
   3. application of post-processing functions for alternative engineering responses, and
@@ -145,6 +146,14 @@ As with the facility filtering capability, an ideal user interface
 will allow subsets of isotopes to be added and deleted from the data
 set using notions of intersection, union and negation.
 
+One example of a graph that shows the cumulative makeup of material
+in a facility, by isotope, can be found in figure 5.11 of Kyle Oliver's 
+masters thesis, GeniusV2: Software Design and Mathematical Formulations 
+For Multi-Region Discrete Nuclear Fuel Cycle Simulation And Analysis.
+
+.. image:: /devdoc/cumulative_iso_dist.png
+   :width: 500pt
+
 Post-processing for Alternative Engineering Responses
 '''''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -152,6 +161,7 @@ While the fundamental material flows are defined as the raw quantity
 of each isotope that is being transacted, there will be a growing set
 of transformations that convert these number densities into other
 interesting metrics/quantities including:
+
   * radiotoxicity
   * decay heat
   * waste volume
@@ -233,6 +243,7 @@ Commodity Capacity and Supply/Demand Exploration
 Another primary visualization is time series data for installed
 capacity of a set of facilities.  Most of the operations discussed
 above will be of interest including:
+
   * time domain resolution and representation
   * filtering across different dimensions (although not across an isotope dimension)
   * applying transformations
