@@ -150,7 +150,7 @@ in a facility, by isotope, can be found in figure 5.11 of Kyle Oliver's
 masters thesis, GeniusV2: Software Design and Mathematical Formulations 
 For Multi-Region Discrete Nuclear Fuel Cycle Simulation And Analysis.
 
- .. image:: /devdoc/cumulative_iso_dist.png
+.. image:: /devdoc/cumulative_iso_dist.png
 
 Post-processing for Alternative Engineering Responses
 '''''''''''''''''''''''''''''''''''''''''''''''''''''
