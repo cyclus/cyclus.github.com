@@ -160,6 +160,7 @@ While the fundamental material flows are defined as the raw quantity
 of each isotope that is being transacted, there will be a growing set
 of transformations that convert these number densities into other
 interesting metrics/quantities including:
+
   * radiotoxicity
   * decay heat
   * waste volume
