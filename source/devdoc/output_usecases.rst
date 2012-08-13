@@ -145,7 +145,12 @@ As with the facility filtering capability, an ideal user interface
 will allow subsets of isotopes to be added and deleted from the data
 set using notions of intersection, union and negation.
 
-<img src="{{ pathto("_static/cumulative_iso_dist.png", 1) }}"/>
+One example of a graph that shows the cumulative makeup of material
+in a facility, by isotope, can be found in figure 5.11 of Kyle Oliver's 
+masters thesis, GeniusV2: Software Design and Mathematical Formulations 
+For Multi-Region Discrete Nuclear Fuel Cycle Simulation And Analysis.
+
+ .. image:: /devdoc/cumulative_iso_dist.png
 
 Post-processing for Alternative Engineering Responses
 '''''''''''''''''''''''''''''''''''''''''''''''''''''
