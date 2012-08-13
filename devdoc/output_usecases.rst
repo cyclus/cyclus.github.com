@@ -152,7 +152,7 @@ masters thesis, GeniusV2: Software Design and Mathematical Formulations
 For Multi-Region Discrete Nuclear Fuel Cycle Simulation And Analysis.
 
 .. image:: /devdoc/cumulative_iso_dist.png
-   :width: 200pt
+   :width: 500pt
 
 Post-processing for Alternative Engineering Responses
 '''''''''''''''''''''''''''''''''''''''''''''''''''''
