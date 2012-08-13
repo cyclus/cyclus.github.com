@@ -145,6 +145,8 @@ As with the facility filtering capability, an ideal user interface
 will allow subsets of isotopes to be added and deleted from the data
 set using notions of intersection, union and negation.
 
+<img src="{{ pathto("_static/cumulative_iso_dist.png", 1) }}"/>
+
 Post-processing for Alternative Engineering Responses
 '''''''''''''''''''''''''''''''''''''''''''''''''''''
 
