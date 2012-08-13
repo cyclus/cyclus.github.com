@@ -242,6 +242,7 @@ Commodity Capacity and Supply/Demand Exploration
 Another primary visualization is time series data for installed
 capacity of a set of facilities.  Most of the operations discussed
 above will be of interest including:
+
   * time domain resolution and representation
   * filtering across different dimensions (although not across an isotope dimension)
   * applying transformations
