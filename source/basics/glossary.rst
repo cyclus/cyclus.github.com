@@ -5,6 +5,8 @@
 Glossary of Cyclus Terms
 =========================
 
+.. glossary::
+
 **advanced users** 
     Similar to end users, but these users will desire more 
     sophisticated customization and level of detail.

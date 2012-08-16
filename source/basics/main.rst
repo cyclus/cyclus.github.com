@@ -10,6 +10,7 @@ Cyclus Fundamentals
    get_and_build
    ecosystem
    decay
+   glossary
 
 .. stuff not converted yet
 
