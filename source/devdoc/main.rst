@@ -31,6 +31,7 @@ successfully acquiring and building *Cyclus*, you can begin developing:
    style_guide
    materials_and_isotopes
    make-models/main
+   testing
    logger
    output_dbase
    output_usecases
