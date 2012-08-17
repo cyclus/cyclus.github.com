@@ -43,7 +43,7 @@ Project Repository
 The Cyclus repository is version controlled using the Git version
 control system. It is hosted externally with *Github*.
 
-The main repository is located at http://github.com/cyclus/core. Anyone may
+The main repository is located at http://github.com/cyclus/cyclus. Anyone may
 check out the code. Although you do not have to register with github to
 download and edit the code, if you desire your work to be integrated into the
 cyclus mainline of development *you must fork the cyclus core repository into
@@ -77,7 +77,7 @@ If you are unfamiliar with Github, here are some resources:
   
   * `Github Help`_
 
-  * To have your changes integrated into the cyclus core project, you must
+  * To have your changes integrated into the cyclus/cyclus project, you must
     submit a github *Pull Request*.  Visit `Send pull requests`_ to learn more.
 
 .. _`Github Help`: http://help.github.com
@@ -93,9 +93,9 @@ built using `Cmake <http://www.cmake.org Cmake>`_. This relies on CMake version
 recommended that you use CMake to build the Cyclus executable external to the
 source code. To do this, execute the following steps::
 
-    /core$ mkdir build
-    /core$ cd build
-    /corebuild$ cmake ../src
+    /cyclus$ mkdir build
+    /cyclus$ cd build
+    /cyclusbuild$ cmake ../src
 
 You should see output like this::
 
@@ -103,8 +103,8 @@ You should see output like this::
     ...
     >> -- Configuring done
     >> -- Generating done
-    >> -- Build files have been written to: /core/build
-    /core/build$ make cyclus
+    >> -- Build files have been written to: /cyclus/build
+    /cyclus/build$ make cyclus
     >> Scanning dependencies of target cyclus
     ...
     ...
