@@ -28,7 +28,7 @@ Glossary of Cyclus Terms
 **cyclus core**
     The repository at github.com/cyclus/cyclus contains only the simulation 
     engine. It links dynamically to modules contributed from other code 
-    repositories.
+    repositories. The library is called libcycluscore.
 **developers**
     Individuals from science, academia, government, or the general public 
     interested in contributing to the ecosystem of models available for use with 

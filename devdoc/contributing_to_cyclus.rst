@@ -6,7 +6,7 @@ Guide for Contributing to Cyclus
 
 *Cyclus* has a number of projects under its umbrella. 
 The core *Cyclus* project repository is located at
-http://github.com/cyclus/core. Additional projects found at 
+http://github.com/cyclus/cyclus. Additional projects found at 
 http://github.com/cyclus include :
 
   - Cycamore, the cyclus additional modules repository
@@ -21,7 +21,7 @@ your own github account and submit 'Pull Requests'*.
 
 Working on a Topic
 ---------------------
-*Note that "upstream" repository refers to the primary `cyclus/core` repository.*
+*Note that "upstream" repository refers to the primary `cyclus/cyclus` repository.*
 
 You may find or create an issue report in a *Cyclus* repository that you would like 
 to solve. 
@@ -47,7 +47,7 @@ Keeping Your Fork Up To Date
   * Use a branching workflow similar to the one described at
     http://progit.org/book/ch3-4.html.
 
-  * The "develop" branch is how core developers will share (generally compilable) progress
+  * The "develop" branch is how cyclus developers will share (generally compilable) progress
     when we are not yet ready for the code to become 'production'.
 
   * Keep your own "master" and "develop" branches in sync with the upstream repository's
