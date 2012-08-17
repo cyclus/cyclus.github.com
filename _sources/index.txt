@@ -78,6 +78,7 @@ Acknowledgements
 Support for this research has included funding received from 
 
  *  the DOE Office of Nuclear Energy's Nuclear Energy University Programs
+
  .. image :: basics/neup_logo_large.jpg
     :width: 200 px
 
