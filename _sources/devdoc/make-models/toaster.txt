@@ -7,22 +7,34 @@ Introduction
 ------------
 
 The instructions here will use a fictional example (a Toaster) to describe the 
-specific steps to take in order to easily add a custom module to the Cyclus 
-framework. The module pursued here is a Facility type module which converts a 
-`bread` Material Resource into a `toast` Material Resource. In order to do this, 
+specific steps to take in order to easily create a custom module suitable for 
+integration with the Cyclus framework. The module pursued here is a Facility 
+type module which converts a `bread` Material Resource into a `toast` Material 
+Resource. In order to do this, 
 
 For each type of model (i.e. Market, Facility, Institution, or Region), a set of 
 stub files are available as skeletons for the new models.  When creating a new 
 model, it is important that all the functionality defined in these files remains 
 in the final model definition. 
 
+Forking the cycstub Repository
+-----------------------------------------
+
+Full instructions for Forking the cycstub repository can be found on `its main 
+page. <https://github.com/cyclus/cycstub>`_
+
+Once you have forked, cloned, and configured the cycstub repository, you'll be 
+able to use the stub templates you've downloaded to create your toaster 
+facility (for example). 
+
+
 Beginning With a Stub Template
 -----------------------------------------
 
 To create a new model, e.g. a new FacilityModel of type ToasterFacility:
 
-1. Copy the StubFacility directory and all of the files it contains to a new 
-   directory called ToasterFacility.
+1. In the cycstub clone, rename the StubFacility directory and all of the files 
+   it contains to a new directory called ToasterFacility.
 
 2. Rename the Stub* files within that directory to corresponding Toaster* files.  
    (That is, rename StubFacility.cpp to ToasterFacility.cpp, etc.)

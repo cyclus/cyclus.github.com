@@ -77,6 +77,7 @@
   <ul>
 <li><a class="reference internal" href="#">Model Devlopment Example : ToasterFacility</a><ul>
 <li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#forking-the-cycstub-repository">Forking the cycstub Repository</a></li>
 <li><a class="reference internal" href="#beginning-with-a-stub-template">Beginning With a Stub Template</a></li>
 <li><a class="reference internal" href="#customization-of-the-relax-ng-grammar">Customization of the Relax-NG Grammar</a></li>
 <li><a class="reference internal" href="#customization-of-the-documentation-comments">Customization of the Documentation Comments</a></li>
@@ -130,20 +131,29 @@
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>The instructions here will use a fictional example (a Toaster) to describe the
-specific steps to take in order to easily add a custom module to the Cyclus
-framework. The module pursued here is a Facility type module which converts a
-<cite>bread</cite> Material Resource into a <cite>toast</cite> Material Resource. In order to do this,</p>
+specific steps to take in order to easily create a custom module suitable for
+integration with the Cyclus framework. The module pursued here is a Facility
+type module which converts a <cite>bread</cite> Material Resource into a <cite>toast</cite> Material
+Resource. In order to do this,</p>
 <p>For each type of model (i.e. Market, Facility, Institution, or Region), a set of
 stub files are available as skeletons for the new models.  When creating a new
 model, it is important that all the functionality defined in these files remains
 in the final model definition.</p>
 </div>
+<div class="section" id="forking-the-cycstub-repository">
+<h2>Forking the cycstub Repository<a class="headerlink" href="#forking-the-cycstub-repository" title="Permalink to this headline">¶</a></h2>
+<p>Full instructions for Forking the cycstub repository can be found on <a class="reference external" href="https://github.com/cyclus/cycstub">its main
+page.</a></p>
+<p>Once you have forked, cloned, and configured the cycstub repository, you&#8217;ll be
+able to use the stub templates you&#8217;ve downloaded to create your toaster
+facility (for example).</p>
+</div>
 <div class="section" id="beginning-with-a-stub-template">
 <h2>Beginning With a Stub Template<a class="headerlink" href="#beginning-with-a-stub-template" title="Permalink to this headline">¶</a></h2>
 <p>To create a new model, e.g. a new FacilityModel of type ToasterFacility:</p>
 <ol class="arabic simple">
-<li>Copy the StubFacility directory and all of the files it contains to a new
-directory called ToasterFacility.</li>
+<li>In the cycstub clone, rename the StubFacility directory and all of the files
+it contains to a new directory called ToasterFacility.</li>
 <li>Rename the Stub* files within that directory to corresponding Toaster* files.
 (That is, rename StubFacility.cpp to ToasterFacility.cpp, etc.)</li>
 <li>Search instances of <cite>Stub</cite> and <cite>STUB</cite> within those files and replace them
@@ -651,7 +661,7 @@ that, about the toasting process?).</p>
     </div>
     <div class="footer">
         &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Aug 16, 2012.
+      Last updated on Aug 17, 2012.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
