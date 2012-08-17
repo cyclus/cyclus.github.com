@@ -180,7 +180,7 @@ can be found on the following pages:</p>
 <h2>Project Repository<a class="headerlink" href="#project-repository" title="Permalink to this headline">¶</a></h2>
 <p>The Cyclus repository is version controlled using the Git version
 control system. It is hosted externally with <em>Github</em>.</p>
-<p>The main repository is located at <a class="reference external" href="http://github.com/cyclus/core">http://github.com/cyclus/core</a>. Anyone may
+<p>The main repository is located at <a class="reference external" href="http://github.com/cyclus/cyclus">http://github.com/cyclus/cyclus</a>. Anyone may
 check out the code. Although you do not have to register with github to
 download and edit the code, if you desire your work to be integrated into the
 cyclus mainline of development <em>you must fork the cyclus core repository into
@@ -214,7 +214,7 @@ your own github account and submit &#8216;Pull Requests&#8217;</em>.</p>
 <blockquote>
 <div><ul class="simple">
 <li><a class="reference external" href="http://help.github.com">Github Help</a></li>
-<li>To have your changes integrated into the cyclus core project, you must
+<li>To have your changes integrated into the cyclus/cyclus project, you must
 submit a github <em>Pull Request</em>.  Visit <a class="reference external" href="http://help.github.com/send-pull-requests/">Send pull requests</a> to learn more.</li>
 </ul>
 </div></blockquote>
@@ -227,17 +227,17 @@ built using <a class="reference external" href="http://www.cmake.orgCmake">Cmake
 2.6 or higher and the CMakeLists.txt file in <cite>src/</cite>. It is
 recommended that you use CMake to build the Cyclus executable external to the
 source code. To do this, execute the following steps:</p>
-<div class="highlight-python"><pre>/core$ mkdir build
-/core$ cd build
-/corebuild$ cmake ../src</pre>
+<div class="highlight-python"><pre>/cyclus$ mkdir build
+/cyclus$ cd build
+/cyclusbuild$ cmake ../src</pre>
 </div>
 <p>You should see output like this:</p>
 <div class="highlight-python"><pre>...
 ...
 &gt;&gt; -- Configuring done
 &gt;&gt; -- Generating done
-&gt;&gt; -- Build files have been written to: /core/build
-/core/build$ make cyclus
+&gt;&gt; -- Build files have been written to: /cyclus/build
+/cyclus/build$ make cyclus
 &gt;&gt; Scanning dependencies of target cyclus
 ...
 ...
@@ -310,7 +310,7 @@ your foo directory, you would invoke the installation command thusly</p>
     </div>
     <div class="footer">
         &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Aug 16, 2012.
+      Last updated on Aug 17, 2012.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
