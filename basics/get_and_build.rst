@@ -135,7 +135,7 @@ If you are unfamiliar with Github, here are some resources:
   
   * `Github Help`_
 
-  * To have your changes integrated into the cyclus core project, you must
+  * To have your changes integrated into the cyclus/cyclus project, you must
     submit a github *Pull Request*.  Visit `Send pull requests`_ to learn more.
 
 .. _`Github Help`: http://help.github.com
