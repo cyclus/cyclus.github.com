@@ -8,7 +8,7 @@ The Cyclus Library Suite
 ------------------------
 *Cyclus* is composed of a number of libraries:
   
-  * `core <https://github.com/cyclus/core>`_ (basic functionality)
+  * `core <https://github.com/cyclus/cyclus>`_ (basic functionality)
   * `cycamore <https://github.com/cyclus/cycamore>`_ (a module repository)
   * `cyclopts <https://github.com/cyclus/cyclopts>`_ (optimization)
 
@@ -151,7 +151,7 @@ to ensure future compatibility with multiple platforms.
 In the following example, it is assumed that you have downloaded the 
 source code into the following directory structure:
 
-  * ~/.../cyclus/core/src
+  * ~/.../cyclus/cyclus/src
   * ~/.../cyclus/cycamore/src
   * ~/.../cyclus/cyclopts/src
 
@@ -163,12 +163,12 @@ Due to dependencies upon one another, the libraries must be installed
 in the following order:
 
   #. cyclopts
-  #. core
+  #. cyclus
   #. cycamore
 
 Because the actual building process is the same for each library, a
 generic approach is given. Where one sees the word *library* in the
-following explanation, please substitute *core*, *cyclopts*, or
+following explanation, please substitute *cyclus*, *cyclopts*, or
 *cycamore* when appropriate.
 
   #. make a build directory and enter it::
