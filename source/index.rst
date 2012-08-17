@@ -51,7 +51,7 @@ Learn More
 ----------
 
 The *Cyclus* project repository is located at
-http://github.com/cyclus/core.
+http://github.com/cyclus/cyclus.
 
 Although you do not have to register with github to
 download and edit the code, if you desire your work to be integrated into the
