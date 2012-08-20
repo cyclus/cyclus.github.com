@@ -18,10 +18,10 @@ A brief summary of how to modify the website:
 
 #. Type `make html` in the root directory of the repository.
 
+#. Inspect the html files that correspond with your changes.
+
 #. Type `git add .` in the root directory of the repository and commit the site
    build changes.
-
-#. Inspect the html files that correspond with your changes.
 
 #. Push changes to the `cyclus/cyclus.github.com` repository.
 

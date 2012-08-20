@@ -9,7 +9,7 @@ in a variety of forms.  If you haven't already, check out
 :doc:`../basics/main`
 
 The *Cyclus* project repository is located at
-http://github.com/cyclus/core.
+http://github.com/cyclus/cyclus.
 
 Although you do not have to register with github to
 download and edit the code, if you desire your work to be integrated into the
@@ -31,8 +31,11 @@ successfully acquiring and building *Cyclus*, you can begin developing:
    style_guide
    materials_and_isotopes
    make-models/main
+   testing
    logger
    output_dbase
+   output_usecases
+   contributing_to_cyclus
 
 Doxygen Code Documentation
 --------------------------

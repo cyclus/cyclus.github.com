@@ -6,9 +6,12 @@
 *Cyclus*
 =========
 
-*Cyclus* is a next-generation nuclear fuel cycle simulator
-environment, providing flexibility to users and developers through an
-agent-based approach.  A principal goal of *Cyclus* is to present a
+*Cyclus* is a next-generation nuclear :doc:`fuel cycle simulator
+<basics/fcs_background>` environment, providing flexibility to users
+and developers through an agent-based approach.
+
+
+A principal goal of *Cyclus* is to present a
 low barrier to adoption by new users and developers in order to
 encourage them to join a vibrant community in an :doc:`expanding ecosystem <basics/ecosystem>`.
 
@@ -51,7 +54,7 @@ Learn More
 ----------
 
 The *Cyclus* project repository is located at
-http://github.com/cyclus/core.
+http://github.com/cyclus/cyclus.
 
 Although you do not have to register with github to
 download and edit the code, if you desire your work to be integrated into the
@@ -72,3 +75,16 @@ Contact Us
 * Developers' list: cyclus-dev@groups.google.com
 * Users' list: cyclus-users@groups.google.com
 
+Acknowledgements
+----------------
+
+Support for this research has included funding received from 
+
+ *  the DOE Office of Nuclear Energy's Nuclear Energy University Programs
+
+ .. image :: basics/neup_logo_large.jpg
+    :width: 200 px
+
+ * the US Nuclear Regulatory Commission's Faculty Development Program
+ * the National Science Foundation's Graduate Fellowship Program
+ * the U. Wisconsin-Madison's Graduate School
