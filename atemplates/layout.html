@@ -27,3 +27,9 @@
 </script>
 {% endblock %}
 
+
+{% block sidebarsearch %}
+  <h3>{{ _('Useful Pages') }}</h3>
+    <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
+    {{ super() }}
+{% endblock %}

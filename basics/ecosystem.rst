@@ -54,7 +54,7 @@ open source distribution of this core infrastructure is critical to
 its mission.  (*Cyclus* is also committed to free and widely used
 software development tools, such as GNU compilers, SQLite, Boost,
 etc.)  The *Cyclus* core is currently available via it's `Git hub
-repository <http://github.com/cyclus/core>`_.  Interested users and
+repository <http://github.com/cyclus/cyclus>`_.  Interested users and
 developers are invited to make their own copy of this repository,
 review the list of open issues, and participate in the developers
 mailing list. Like all open source projects, this distribution mode
