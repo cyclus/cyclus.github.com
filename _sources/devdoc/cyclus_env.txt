@@ -75,6 +75,7 @@ agents.
 The institutions that will ultimately deploy facilities are given
 lists of prototypes that they are allowed to deploy and then manage the
 steps necessary to invoke the following steps:
+
  * clone the prototype to create a concrete facility instance,
  * add the concrete instance to the simulation tree, and
  * specialize the concrete instance by changing any appropriate parameters.

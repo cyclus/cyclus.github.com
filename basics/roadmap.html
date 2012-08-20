@@ -1,0 +1,238 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Cyclus Fuel Cycle Simulator Roadmap &mdash; Cyclus Home</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../index.html" />
+    <link rel="up" title="Cyclus Fundamentals" href="main.html" />
+    <link rel="next" title="Getting and Building Cyclus" href="get_and_build.html" />
+    <link rel="prev" title="Fuel Cycle Simulators" href="fcs_background.html" />
+   
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <a href="http://cyclus.github.com">
+    <img src="../_static/logo1.png"/>
+  </a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="get_and_build.html" title="Getting and Building Cyclus"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fcs_background.html" title="Fuel Cycle Simulators"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" accesskey="U">Cyclus Fundamentals</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The <em>Cyclus</em> Fuel Cycle Simulator Roadmap</a><ul>
+<li><a class="reference internal" href="#research-areas">Research Areas</a></li>
+<li><a class="reference internal" href="#potential-research-ideas">Potential Research Ideas</a><ul>
+<li><a class="reference internal" href="#market-model-ideas">Market Model Ideas</a></li>
+<li><a class="reference internal" href="#region-model-ideas">Region Model Ideas</a></li>
+<li><a class="reference internal" href="#instituion-model-ideas">Instituion Model Ideas</a></li>
+<li><a class="reference internal" href="#potential-simulation-building-blocks">Potential Simulation Building Blocks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="fcs_background.html"
+                        title="previous chapter">Fuel Cycle Simulators</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="get_and_build.html"
+                        title="next chapter">Getting and Building Cyclus</a></p>
+  <h3>Useful Pages</h3>
+    <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
+    <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="the-cyclus-fuel-cycle-simulator-roadmap">
+<h1>The <em>Cyclus</em> Fuel Cycle Simulator Roadmap<a class="headerlink" href="#the-cyclus-fuel-cycle-simulator-roadmap" title="Permalink to this headline">¶</a></h1>
+<p>It is expected that external development contributing to the expansion of
+the Fuel Cycle Simulator will grow in creative, unpredictable ways in answer to
+the needs of the developers.</p>
+<p>To help direct and inspire development in support of current and anticipated
+use cases, the current <em>Cyclus</em> development team has identified areas of
+essential research areas as well as potential research ideas.</p>
+<div class="section" id="research-areas">
+<h2>Research Areas<a class="headerlink" href="#research-areas" title="Permalink to this headline">¶</a></h2>
+<p>A number of research areas related to <em>Cyclus</em>  have already been identified.
+In some cases, there is a lead institution already engaged in such research, or
+one or more institutions who have expressed interest:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><em>Cyclus</em> core infrastructure development    lead: UW-Madison</li>
+<li>Market model development    interest: UW-Madison, UT-Austin</li>
+<li>Region model development and deployment scenarios    interest: Idaho</li>
+<li>Reactor model development    interest: UT-Austin</li>
+<li>Separations model development</li>
+<li>Geologic repository &amp; waste form modeling    lead: UW-Madison (see <a class="reference external" href="https://github.com/katyhuff/cyder">Cyder</a>)</li>
+<li>Graphical interfaces for input and visualization    interest: Utah</li>
+<li>Social science to determine important metrics and measures    interest: UW-Madison</li>
+<li>Optimization and sensitivity infrastructure    interest: NC State</li>
+<li>Transportation</li>
+<li>Non-proliferation analysis    interest: UW</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="potential-research-ideas">
+<h2>Potential Research Ideas<a class="headerlink" href="#potential-research-ideas" title="Permalink to this headline">¶</a></h2>
+<p>In support of fuel cycle options analysis, modules representing specific
+technologies and fuel cycles will contribute significantly to the usefulness of
+the cyclus <a class="reference internal" href="ecosystem.html"><em>ecosystem</em></a>. Some specific concepts that have been identified as
+potentially versatile models for anticipated fuel cycle modeling goals include a
+number of creative Market, Region, Institution, and Facility Models.</p>
+<div class="section" id="market-model-ideas">
+<h3>Market Model Ideas<a class="headerlink" href="#market-model-ideas" title="Permalink to this headline">¶</a></h3>
+<p>Potential <em>Markets</em> that can be expected to be useful in some anticipated
+use cases include contract markets, markets encapsulating fundamental commodity
+market theories, markets employing political affinity to make resolution
+decisions, markets supporting multipass material routing, and markets that
+enable shadow fuel cycles for nuclear proliferation modeling.</p>
+</div>
+<div class="section" id="region-model-ideas">
+<h3>Region Model Ideas<a class="headerlink" href="#region-model-ideas" title="Permalink to this headline">¶</a></h3>
+<p>Potential <em>Regions</em> include those supporting political affinity models of
+international trade behavior, tax structures, creative growth patterns, political
+instabilities capable of causing technology interruption, and international fuel
+takeback agreeemnts.</p>
+</div>
+<div class="section" id="instituion-model-ideas">
+<h3>Instituion Model Ideas<a class="headerlink" href="#instituion-model-ideas" title="Permalink to this headline">¶</a></h3>
+<p>Potentially compelling <em>Institutions</em> might support capacity dispatch logistics
+similar to public utility commision behavior or define nuclear growth in the
+presence of the growth of nonnuclear energy market share.</p>
+<p>Myriad potential <em>Facilities</em> would support the broad <a class="reference internal" href="ecosystem.html"><em>ecosystem</em></a>
+of models useful for fuel cycle options analysis. Facility models are the
+technical building blocks of Cyclus simulations, and are expected to provide the
+modular representation of essential nuclear, chemical, and industrial processes
+in fuel cycles of all kinds. Potential fuel cycle technologies of import include</p>
+<blockquote>
+<div><ul class="simple">
+<li>advanced reactors</li>
+<li>separations stoichiometry process modules</li>
+<li>transportation modules</li>
+<li>uranium resource models</li>
+<li>nefarious shadow material diversion processes</li>
+<li>random facility disruption</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="potential-simulation-building-blocks">
+<h3>Potential Simulation Building Blocks<a class="headerlink" href="#potential-simulation-building-blocks" title="Permalink to this headline">¶</a></h3>
+<p>Additional simulation-level features envisioned to become useful in the near
+term for optimization, economic, and strategic use cases include :</p>
+<blockquote>
+<div><ul class="simple">
+<li>external multi-variable optimization demonstration</li>
+<li>objective functions for assessing overall simulation performance (e.g. economic)</li>
+<li>demonstration of impact of varying module fidelity</li>
+<li>implementations of relevant simultion use cases, benchmarking cases, etc.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="get_and_build.html" title="Getting and Building Cyclus"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="fcs_background.html" title="Fuel Cycle Simulators"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" >Cyclus Fundamentals</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Aug 20, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
