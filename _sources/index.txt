@@ -23,7 +23,7 @@ Important features:
 * Software Development Principles
    * low barrier/rapid payback to adoption
    * minimal inherent technology assumptions
-   * commonly used/available free software unfrastructure
+   * commonly used/available free software infrastructure
 * User Interaction
    * common physics infrastructure
    * different user interface layer for different user audiences, with varying levels of both input control and output exploration
@@ -42,7 +42,7 @@ the parameters of a module will change the performance with a fixed
 algorithm defining the behavior, while selecting a different module
 will completely change its behavior.
 
-Most cyclus core code development at this time will be led by Paul Wilson,
+Most Cyclus core code development at this time will be led by Paul Wilson,
 Katy Huff, Matthew Gidden, and Robert Carlsen, the CNERG fuel cycle group.
 
 Interested developers are welcome and encouraged to contribute but will
@@ -75,7 +75,7 @@ Contact Us
 * Developers' list: cyclus-dev@groups.google.com
 * Users' list: cyclus-users@groups.google.com
 
-Acknowledgements
+Acknowledgments
 ----------------
 
 Support for this research has included funding received from 
