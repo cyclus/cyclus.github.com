@@ -15,7 +15,16 @@ A principal goal of *Cyclus* is to present a
 low barrier to adoption by new users and developers in order to
 encourage them to join a vibrant community in an :doc:`expanding ecosystem <basics/ecosystem>`.  
 
-Important features:
+Most Cyclus core code development at this time will be led by Paul Wilson,
+Katy Huff, Matthew Gidden, and Robert Carlsen, the CNERG fuel cycle group.
+
+Interested developers are welcome and encouraged to contribute but may
+experience code instability in the early experimental stages of
+the project. For inspiration and a notion of current research directions,
+please consult our :doc:`development roadmap <basics/roadmap>`. 
+
+Important Features
+-------------------
 
 * Modeling Paradigm
    * discrete facilities with discrete material transactions
@@ -41,15 +50,6 @@ with a particular set of parameters defined by that module. Changing
 the parameters of a module will change the performance with a fixed
 algorithm defining the behavior, while selecting a different module
 will completely change its behavior.
-
-Most Cyclus core code development at this time will be led by Paul Wilson,
-Katy Huff, Matthew Gidden, and Robert Carlsen, the CNERG fuel cycle group.
-
-Interested developers are welcome and encouraged to contribute but may
-experience code instability in the early experimental stages of
-the project. For inspiration and a notion of current research directions,
-please consult our :doc:`development roadmap <basics/roadmap>`. 
-
 
 Learn More
 ----------
