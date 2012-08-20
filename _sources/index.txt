@@ -6,9 +6,12 @@
 *Cyclus*
 =========
 
-*Cyclus* is a next-generation nuclear fuel cycle simulator
-environment, providing flexibility to users and developers through an
-agent-based approach.  A principal goal of *Cyclus* is to present a
+*Cyclus* is a next-generation nuclear :doc:`fuel cycle simulator
+<basics/fcs_background>` environment, providing flexibility to users
+and developers through an agent-based approach.
+
+
+A principal goal of *Cyclus* is to present a
 low barrier to adoption by new users and developers in order to
 encourage them to join a vibrant community in an :doc:`expanding ecosystem <basics/ecosystem>`.
 
