@@ -56,7 +56,7 @@ number of creative Market, Region, Institution, and Facility Models.
 Market Model Ideas
 ~~~~~~~~~~~~~~~~~~~
 
-Potential *Markets* that can be expected to be useful in some anticipated 
+Potential **Markets** that can be expected to be useful in some anticipated 
 use cases include contract markets, markets encapsulating fundamental commodity 
 market theories, markets employing political affinity to make resolution 
 decisions, markets supporting multipass material routing, and markets that
@@ -65,20 +65,22 @@ enable shadow fuel cycles for nuclear proliferation modeling.
 Region Model Ideas
 ~~~~~~~~~~~~~~~~~~~~~
 
-Potential *Regions* include those supporting political affinity models of 
+Potential **Regions** include those supporting political affinity models of 
 international trade behavior, tax structures, creative growth patterns, political
 instabilities capable of causing technology interruption, and international fuel 
 takeback agreeemnts.
  
-Instituion Model Ideas
+Institution Model Ideas
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Potentially compelling *Institutions* might support capacity dispatch logistics 
+Potentially compelling **Institutions** might support capacity dispatch logistics 
 similar to public utility commision behavior or define nuclear growth in the 
 presence of the growth of nonnuclear energy market share.
    
+Facility Model Ideas
+~~~~~~~~~~~~~~~~~~~~~~
 
-Myriad potential *Facilities* would support the broad :doc:`ecosystem <ecosystem>` 
+Myriad potential **Facilities** would support the broad :doc:`ecosystem <ecosystem>` 
 of models useful for fuel cycle options analysis. Facility models are the 
 technical building blocks of Cyclus simulations, and are expected to provide the 
 modular representation of essential nuclear, chemical, and industrial processes 
