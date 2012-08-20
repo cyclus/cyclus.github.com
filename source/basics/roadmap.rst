@@ -30,7 +30,7 @@ one or more institutions who have expressed interest:
 
   #. Separations model development
 
-  #. Geologic repository & waste form modeling    lead: UW-Madison (see `Cyder <https://github.com/katyhuff/cyder`_)
+  #. Geologic repository & waste form modeling    lead: UW-Madison (see `Cyder <https://github.com/katyhuff/cyder>`_)
 
   #. Graphical interfaces for input and visualization    interest: Utah
 
