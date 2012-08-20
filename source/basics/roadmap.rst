@@ -71,7 +71,7 @@ instabilities capable of causing technology interruption, and international fuel
 takeback agreeemnts.
  
 Institution Model Ideas
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Potentially compelling **Institutions** might support capacity dispatch logistics 
 similar to public utility commision behavior or define nuclear growth in the 
