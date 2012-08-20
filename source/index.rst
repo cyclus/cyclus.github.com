@@ -48,7 +48,7 @@ Katy Huff, Matthew Gidden, and Robert Carlsen, the CNERG fuel cycle group.
 Interested developers are welcome and encouraged to contribute but may
 experience code instability in the early experimental stages of
 the project. For inspiration and a notion of current research directions,
-please consult our `development roadmap <basics/roadmap>`. 
+please consult our :doc:`development roadmap <basics/roadmap>`. 
 
 
 Learn More
