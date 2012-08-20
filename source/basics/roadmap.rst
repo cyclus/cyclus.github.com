@@ -49,7 +49,7 @@ Potential Research Ideas
 
 In support of fuel cycle options analysis, modules representing specific 
 technologies and fuel cycles will contribute significantly to the usefulness of 
-the cyclus ecosystem. Some specific concepts that have been identified as 
+the cyclus `ecosystem <basics/ecosystem>`. Some specific concepts that have been identified as 
 potentially versatile models for anticipated fuel cycle modeling goals include a
 number of creative Market, Region, Institution, and Facility Models. 
  
@@ -78,11 +78,11 @@ similar to public utility commision behavior or define nuclear growth in the
 presence of the growth of nonnuclear energy market share.
    
 
-Myriad potential *Facilities* would support the broad ecosystem of models useful 
-for fuel cycle options analysis. Facility models are the technical meat of 
-Cyclus simulations, and are expected to provide the modular representation of 
-essential nuclear, chemical, and industrial processes in fuel cycles of all 
-kinds. Potential fuel cycle technologies of import include
+Myriad potential *Facilities* would support the broad `ecosystem <basics/ecosystem>` 
+of models useful for fuel cycle options analysis. Facility models are the 
+technical building blocks of Cyclus simulations, and are expected to provide the 
+modular representation of essential nuclear, chemical, and industrial processes 
+in fuel cycles of all kinds. Potential fuel cycle technologies of import include
 
   - advanced reactors
   - separations stoichiometry process modules
