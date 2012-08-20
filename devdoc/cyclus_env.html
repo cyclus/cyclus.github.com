@@ -75,10 +75,14 @@
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">The Cyclus Environment</a><ul>
-<li><a class="reference internal" href="#inputxml-xmlinput">InputXML (XMLInput)</a></li>
-<li><a class="reference internal" href="#bookkeeper-bi">BookKeeper (BI)</a></li>
-<li><a class="reference internal" href="#timer-ti">Timer (TI)</a></li>
-<li><a class="reference internal" href="#masstable-mt">MassTable (MT)</a></li>
+<li><a class="reference internal" href="#agents-and-markets">Agents and Markets</a><ul>
+<li><a class="reference internal" href="#simulation-and-agent-initialization">Simulation and Agent Initialization</a></li>
+<li><a class="reference internal" href="#dynamic-loading">Dynamic Loading</a></li>
+<li><a class="reference internal" href="#on-facility-prototypes-and-their-use">On Facility Prototypes and their Use</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#resources-and-materials">Resources and Materials</a></li>
+<li><a class="reference internal" href="#utility-classes">Utility Classes</a></li>
 </ul>
 </li>
 </ul>
@@ -116,111 +120,162 @@
             
   <div class="section" id="the-cyclus-environment">
 <h1>The Cyclus Environment<a class="headerlink" href="#the-cyclus-environment" title="Permalink to this headline">¶</a></h1>
-<p>All developers will interact with the <em>Cyclus</em> simulation environment
-in three primary modes:</p>
-<blockquote>
-<div><ul class="simple">
-<li>Input/Output<ul>
-<li>InputXML</li>
-<li>BookKeeper</li>
+<div class="section" id="agents-and-markets">
+<h2>Agents and Markets<a class="headerlink" href="#agents-and-markets" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>In the most abstract sense, <em>Cyclus</em> provides a platform for agent-based simulation, in which:</dt>
+<dd><ul class="first last simple">
+<li>agents interact by offering and requesting resources,</li>
+<li>clearinghouses collect and resolve those offers/requests for like resources, and</li>
+<li>clearinhouses instruct agents to transfer those resources.</li>
 </ul>
-</li>
-<li>Simulation Progression<ul>
-<li>Timer</li>
+</dd>
+<dt>There are three fundamental types of agents:</dt>
+<dd><ul class="first last simple">
+<li>Regions - representing geopolitical regions</li>
+<li>Institutions - representing legal entities that own/operate faciltiies</li>
+<li>Facilities - representing specific facilities in a nuclear fuel cycle.</li>
 </ul>
-</li>
-<li>Static Data<ul>
-<li>MassTable</li>
+</dd>
+</dl>
+<p>The clearinghouses are repesented in <em>Cyclus</em> as Markets.</p>
+<dl class="docutils">
+<dt>There are 5 fundamental properties that may be inheritied by agents and Markets:</dt>
+<dd><ul class="first last simple">
+<li>dynamically loadable modules - Model (to be DynamicModule?)</li>
+<li>communication of offers, requests and transactions - Communicator</li>
+<li>management of time steps - TimeAgent (to be TimeHandler?)</li>
+<li>participation in a tree of agents - SimulationTree</li>
+<li>agent prototypes avaialble for concrete instantiaion - Prototype</li>
 </ul>
-</li>
-</ul>
-</div></blockquote>
-<p>A prolific stumbling block to dynamic system codes is a restrictive
-environment. Accordingly, the <em>Cyclus</em> team has strived to make the
-environment as bare and simple as possible.</p>
-<p>The environment in <em>Cyclus</em> is actually comprised of singleton classes
-(a singleton class has a static member of its own type that is instantiated
-only once during the code&#8217;s execution). Modules within <em>Cyclus</em> then
-interact with the singleton instance. For instance, the current simulation
-time is called via:</p>
-<div class="highlight-python"><pre>TI-&gt;time()</pre>
-</div>
-<p>Each singleton class has a predefined handle, such as &#8220;TI&#8221; above which
-stands for &#8220;Timer Instance&#8221;.</p>
+</dd>
+</dl>
 <table border="1" class="docutils">
 <colgroup>
-<col width="53%" />
-<col width="47%" />
+<col width="28%" />
+<col width="15%" />
+<col width="23%" />
+<col width="18%" />
+<col width="15%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Singleton Class</th>
-<th class="head">Handle</th>
-</tr>
-</thead>
 <tbody valign="top">
-<tr class="row-even"><td><cite>InputXML</cite></td>
-<td>XMLInput</td>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>Regions</td>
+<td>Institutions</td>
+<td>Facilties</td>
+<td>Markets</td>
 </tr>
-<tr class="row-odd"><td><cite>BookKeeper</cite></td>
-<td>BI</td>
+<tr class="row-even"><td>DynamicModule</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
 </tr>
-<tr class="row-even"><td><cite>Timer</cite></td>
-<td>TI</td>
+<tr class="row-odd"><td>Communicator</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
 </tr>
-<tr class="row-odd"><td><cite>MassTable</cite></td>
-<td>MT</td>
+<tr class="row-even"><td>TimeHandler</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>SiumulationTree</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="row-even"><td>Prototype</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>X</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
-<div class="section" id="inputxml-xmlinput">
-<h2>InputXML (XMLInput)<a class="headerlink" href="#inputxml-xmlinput" title="Permalink to this headline">¶</a></h2>
-<p>This class provides an interface to read input values from their respective
-xml files. The main interaction a developer will have with this class is through
-the grabbing of a specified element or group of elements.</p>
-<p>A collection of elements is generally a list of some type, e.g. all of the
-attributes which are required to define some facility. A real-life example in
-<em>Cyclus</em> is shown via the RegionModel class. Every region has a list of allowed
-facilities. The xml file might look something like:</p>
-<div class="highlight-python"><pre>&lt;region&gt;
-  &lt;name&gt;oneRegion&lt;/name&gt;
-  &lt;allowedfacility&gt;FrontEnd&lt;/allowedfacility&gt;
-  &lt;allowedfacility&gt;BackEnd&lt;/allowedfacility&gt;
-  &lt;model&gt;
-    &lt;NullRegion/&gt;
-  &lt;/model&gt;
-&lt;/region&gt;</pre>
+<div class="section" id="simulation-and-agent-initialization">
+<h3>Simulation and Agent Initialization<a class="headerlink" href="#simulation-and-agent-initialization" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>A simulation is initialized in the following order:</dt>
+<dd><ul class="first last">
+<li><p class="first">define &amp; initialize Markets</p>
+</li>
+<li><p class="first">define &amp; register Resources recipes to be used by Facilities</p>
+</li>
+<li><p class="first">define &amp; register protoypes of Facilities</p>
+</li>
+<li><dl class="first docutils">
+<dt>populate a tree of simulation agents with</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Regions, and their</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Institutions, and their</dt>
+<dd><ul class="first last simple">
+<li>Facilities that exist in the initials state.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
 </div>
-<p>whereas the C++ code to get these allowed facilities would look like:</p>
-<div class="highlight-python"><pre>xmlNodeSetPtr nodes = XMLinput-&gt;get_xpath_elements(cur,"allowedfacility");</pre>
+<div class="section" id="dynamic-loading">
+<h3>Dynamic Loading<a class="headerlink" href="#dynamic-loading" title="Permalink to this headline">¶</a></h3>
+<p>Dynamic loading of modules occurs only when a particular module is
+requested by a user.  When such a request is made, the shared object
+for that module loaded by the simulation and its constructor is
+registered for use when new modules are instantiated, using a
+Factory-like design pattern.</p>
 </div>
-<p>A single element, such as the region&#8217;s name, would be accessed with
-the following:</p>
-<div class="highlight-python"><pre>string region_name = XMLinput-&gt;get_xpath_content(cur,"name");</pre>
+<div class="section" id="on-facility-prototypes-and-their-use">
+<h3>On Facility Prototypes and their Use<a class="headerlink" href="#on-facility-prototypes-and-their-use" title="Permalink to this headline">¶</a></h3>
+<p>As <em>Cyclus</em> steps forward in time and deploys new facilities, each
+facility is generally a new instance of a similar facility, possibly
+with some distinguishing characteristics.  To enable this, facility
+prototypes are defined by the user and those prototypes are cloned to
+make concrete instance of the actual facilities that will act as
+agents.</p>
+<p>The institutions that will ultimately deploy facilities are given
+lists of prototypes that they are allowed to deploy and then manage the
+steps necessary to invoke the following steps:</p>
+<blockquote>
+<div><ul class="simple">
+<li>clone the prototype to create a concrete facility instance,</li>
+<li>add the concrete instance to the simulation tree, and</li>
+<li>specialize the concrete instance by changing any appropriate parameters.</li>
+</ul>
+</div></blockquote>
 </div>
 </div>
-<div class="section" id="bookkeeper-bi">
-<h2>BookKeeper (BI)<a class="headerlink" href="#bookkeeper-bi" title="Permalink to this headline">¶</a></h2>
-<p>The BookKeeper manages the <em>Cyclus</em> output database. Specifically, it manages the
-registering of database tables and the frequency at which data is written to the
-database. A more in-depth overview of the topic is covered in <a class="reference internal" href="output_dbase.html"><em>Output Database</em></a>.</p>
+<div class="section" id="resources-and-materials">
+<h2>Resources and Materials<a class="headerlink" href="#resources-and-materials" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="timer-ti">
-<h2>Timer (TI)<a class="headerlink" href="#timer-ti" title="Permalink to this headline">¶</a></h2>
-<p>The Timer&#8217;s main directive is to increment the simulation time and alert models that the
-time has been incremented. The general developer will only interact with the Timer through
-the time() method.</p>
-<p>The Timer also holds a list of models that it will directly send Ticks/Tocks to and a list
-of models that it will send Resolves to. In general, the former is Region Models and the latter
-is Market Models. It is unlikely that a developer will need to utilize this functionality
-as it taken care of at the abstract Region/Market Model level.</p>
-</div>
-<div class="section" id="masstable-mt">
-<h2>MassTable (MT)<a class="headerlink" href="#masstable-mt" title="Permalink to this headline">¶</a></h2>
-<p>The MassTable simply provides the mass of a given isotope via its alpha-numeric handle. For
-example,</p>
-<div class="highlight-python"><pre>MT-&gt;getMassInGrams(pu240)</pre>
-</div>
-<p>returns the mass of Plutonium-240 in grams.</p>
+<div class="section" id="utility-classes">
+<h2>Utility Classes<a class="headerlink" href="#utility-classes" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>XMLQueryEngine</li>
+<li>DecayHandler</li>
+<li>BookKeeper</li>
+<li>CycException</li>
+<li>Logger</li>
+</ul>
+</div></blockquote>
 </div>
 </div>
 
