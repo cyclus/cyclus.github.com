@@ -10,35 +10,35 @@ Agents and Markets
 In the most abstract sense, *Cyclus* provides a platform for agent-based simulation, in which:
  * agents interact by offering and requesting resources,
  * clearinghouses collect and resolve those offers/requests for like resources, and
- * clearinhouses instruct agents to transfer those resources.
+ * clearinghouses instruct agents to transfer those resources.
 
 There are three fundamental types of agents:
  * Regions - representing geopolitical regions
- * Institutions - representing legal entities that own/operate faciltiies
+ * Institutions - representing legal entities that own/operate facilities
  * Facilities - representing specific facilities in a nuclear fuel cycle.
 
-The clearinghouses are repesented in *Cyclus* as Markets.
+The clearinghouses are represented in *Cyclus* as Markets.
 
-There are 5 fundamental properties that may be inheritied by agents and Markets:
+There are 5 fundamental properties that may be inherited by agents and Markets:
  * dynamically loadable modules - Model (to be DynamicModule?)
  * communication of offers, requests and transactions - Communicator
  * management of time steps - TimeAgent (to be TimeHandler?)
  * participation in a tree of agents - SimulationTree
- * agent prototypes avaialble for concrete instantiaion - Prototype
+ * agent prototypes available for concrete instantiation - Prototype
 
-+-----------------+---------+--------------+-----------+---------+
-|                 | Regions | Institutions | Facilties | Markets |
-+-----------------+---------+--------------+-----------+---------+
-| DynamicModule   |   X     |      X       |     X     |    X    |
-+-----------------+---------+--------------+-----------+---------+
-| Communicator    |   X     |      X       |     X     |    X    |
-+-----------------+---------+--------------+-----------+---------+
-| TimeHandler     |   X     |      X       |     X     |         |
-+-----------------+---------+--------------+-----------+---------+
-| SiumulationTree |   X     |      X       |     X     |    X    |
-+-----------------+---------+--------------+-----------+---------+
-| Prototype       |         |              |     X     |         |
-+-----------------+---------+--------------+-----------+---------+
++-----------------+---------+--------------+------------+---------+
+|                 | Regions | Institutions | Facilities | Markets |
++-----------------+---------+--------------+------------+---------+
+| DynamicModule   |   X     |      X       |     X      |    X    |
++-----------------+---------+--------------+------------+---------+
+| Communicator    |   X     |      X       |     X      |    X    |
++-----------------+---------+--------------+------------+---------+
+| TimeHandler     |   X     |      X       |     X      |         |
++-----------------+---------+--------------+------------+---------+
+| SiumulationTree |   X     |      X       |     X      |    X    |
++-----------------+---------+--------------+------------+---------+
+| Prototype       |         |              |     X      |         |
++-----------------+---------+--------------+------------+---------+
 
 
 Simulation and Agent Initialization 
@@ -47,7 +47,7 @@ Simulation and Agent Initialization
 A simulation is initialized in the following order:
  * define & initialize Markets
  * define & register Resources recipes to be used by Facilities
- * define & register protoypes of Facilities
+ * define & register prototypes of Facilities
  * populate a tree of simulation agents with
      * Regions, and their
          * Institutions, and their
