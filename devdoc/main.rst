@@ -53,6 +53,10 @@ documentation by running `make cyclusdoc` instead of `make all` or `make`.
 Diversions
 ----------
 
+A video history of our development (video created using gource):
+
+  * `March 3, 2010 to July 25, 2012 <http://www.youtube.com/watch?v=-2uQia2e_cg>`_
+
 Relevant xkcd comics:
 
   * `Standards <http://xkcd.com/927/>`_
