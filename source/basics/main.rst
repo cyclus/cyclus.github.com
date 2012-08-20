@@ -7,6 +7,7 @@ Cyclus Fundamentals
    :maxdepth: 2
   
    introduction
+   roadmap
    get_and_build
    ecosystem
    decay
