@@ -201,33 +201,3 @@ seek globally optimal solutions based on global objective functions.  Since
 institutional decision making tends to seek an optimal solution only for the
 actor making that decision (local optimization), it may not lead to an outcome
 that optimizes for the largest population of stakeholders.
-
-Research Areas
---------------
-
-A number of research areas related to *Cyclus*  have already been identified.
-In some cases, there is a lead institution already engaged in such research, or
-one or more institutions who have expressed interest:
-
-  #. *Cyclus* core infrastructure development    lead: UW-Madison
-
-  #. Market model development    interest: UW-Madison, UT-Austin
-
-  #. Region model development and deployment scenarios    interest: Idaho
-
-  #. Reactor model development    interest: UT-Austin
-
-  #. Separations model development
-
-  #. Geologic repository & waste form modeling    lead: UW-Madison
-
-  #. Graphical interfaces for input and visualization    interest: Utah
-
-  #. Social science to determine important metrics and measures    interest: UW-Madison
-
-  #. Optimization and sensitivity infrastructure    interest: NC State
-
-  #. Transportation
-
-  #. Non-proliferation analysis    interest: UW
- 
