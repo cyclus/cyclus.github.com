@@ -1,30 +1,24 @@
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Getting and Building Cyclus &mdash; Cyclus Home</title>
-    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Fundamentals" href="main.html" />
@@ -72,54 +66,54 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Getting and Building Cyclus</a><ul>
-<li><a class="reference internal" href="#the-cyclus-library-suite">The Cyclus Library Suite</a></li>
-<li><a class="reference internal" href="#dependencies">Dependencies</a><ul>
-<li><a class="reference internal" href="#id1">Cyclopts</a></li>
-<li><a class="reference internal" href="#id2">Core</a></li>
-<li><a class="reference internal" href="#id3">Cycamore</a></li>
-<li><a class="reference internal" href="#additional-information">Additional Information</a><ul>
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Getting and Building Cyclus</a><ul>
+<li><a class="reference external" href="#the-cyclus-library-suite">The Cyclus Library Suite</a></li>
+<li><a class="reference external" href="#dependencies">Dependencies</a><ul>
+<li><a class="reference external" href="#id1">Cyclopts</a></li>
+<li><a class="reference external" href="#id2">Core</a></li>
+<li><a class="reference external" href="#id3">Cycamore</a></li>
+<li><a class="reference external" href="#additional-information">Additional Information</a><ul>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#building-each-library">Building Each Library</a><ul>
-<li><a class="reference internal" href="#acquiring-source-code">Acquiring Source Code</a></li>
-<li><a class="reference internal" href="#help-with-git-and-github">Help with Git and GitHub</a></li>
-<li><a class="reference internal" href="#building-and-installing-the-libraries">Building and Installing the Libraries</a></li>
-<li><a class="reference internal" href="#debugging-build">Debugging Build</a></li>
+<li><a class="reference external" href="#building-each-library">Building Each Library</a><ul>
+<li><a class="reference external" href="#acquiring-source-code">Acquiring Source Code</a></li>
+<li><a class="reference external" href="#help-with-git-and-github">Help with Git and GitHub</a></li>
+<li><a class="reference external" href="#building-and-installing-the-libraries">Building and Installing the Libraries</a></li>
+<li><a class="reference external" href="#debugging-build">Debugging Build</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="roadmap.html"
-                        title="previous chapter">The <em>Cyclus</em> Fuel Cycle Simulator Roadmap</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="dependencies_windows.html"
-                        title="next chapter">Installing Dependencies on Windows</a></p>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="roadmap.html"
+                                  title="previous chapter">The <em>Cyclus</em> Fuel Cycle Simulator Roadmap</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="dependencies_windows.html"
+                                  title="next chapter">Installing Dependencies on Windows</a></p>
   <h3>Useful Pages</h3>
     <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
     <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
     <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
     
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
 
         </div>
       </div>
@@ -135,12 +129,12 @@
 <h2>The Cyclus Library Suite<a class="headerlink" href="#the-cyclus-library-suite" title="Permalink to this headline">¶</a></h2>
 <p><em>Cyclus</em> is composed of a number of libraries:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><a class="reference external" href="https://github.com/cyclus/cyclus">core</a> (basic functionality)</li>
 <li><a class="reference external" href="https://github.com/cyclus/cycamore">cycamore</a> (a module repository)</li>
 <li><a class="reference external" href="https://github.com/cyclus/cyclopts">cyclopts</a> (optimization)</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <p>This guide will describe how to install each library.</p>
 </div>
 <div class="section" id="dependencies">
@@ -154,34 +148,34 @@ process.</p>
 <p>Cyclopts is the optimization library of <em>Cyclus</em>. It has the following
 dependencies:</p>
 <blockquote>
-<div><table border="1" class="docutils">
+<table border="1" class="docutils">
 <colgroup>
 <col width="32%" />
 <col width="32%" />
 <col width="36%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Package</th>
+<tr><th class="head">Package</th>
 <th class="head">Full Name</th>
 <th class="head">Minimum Version</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><cite>CMake</cite></td>
+<tr><td><cite>CMake</cite></td>
 <td>cmake</td>
 <td>2.8</td>
 </tr>
-<tr class="row-odd"><td><cite>boost</cite></td>
+<tr><td><cite>boost</cite></td>
 <td>libboost-all-dev</td>
 <td>1.34.1</td>
 </tr>
-<tr class="row-even"><td><cite>coin-Cbc</cite></td>
+<tr><td><cite>coin-Cbc</cite></td>
 <td>coin-Cbc</td>
 <td>2.7</td>
 </tr>
 </tbody>
 </table>
-</div></blockquote>
+</blockquote>
 <p>The <a class="reference external" href="https://projects.coin-or.org/Cbc">coin</a> dependecy is the most
 complicated of those above; full install instructions for coin-Cbc
 are provided in the <a class="reference external" href="https://github.com/cyclus/cyclopts">cyclopts readme</a>.</p>
@@ -192,88 +186,88 @@ are provided in the <a class="reference external" href="https://github.com/cyclu
 functionality of the <em>Cyclus</em> simulation engine. It has the
 following dependencies:</p>
 <blockquote>
-<div><table border="1" class="docutils">
+<table border="1" class="docutils">
 <colgroup>
 <col width="32%" />
 <col width="32%" />
 <col width="36%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Package</th>
+<tr><th class="head">Package</th>
 <th class="head">Full Name</th>
 <th class="head">Minimum Version</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><cite>CMake</cite></td>
+<tr><td><cite>CMake</cite></td>
 <td>cmake</td>
 <td>2.8</td>
 </tr>
-<tr class="row-odd"><td><cite>boost</cite></td>
+<tr><td><cite>boost</cite></td>
 <td>libboost-all-dev</td>
 <td>1.34.1</td>
 </tr>
-<tr class="row-even"><td><cite>xml2</cite></td>
+<tr><td><cite>xml2</cite></td>
 <td>libxml2-dev</td>
 <td>2</td>
 </tr>
-<tr class="row-odd"><td><cite>sqlite3</cite></td>
+<tr><td><cite>sqlite3</cite></td>
 <td>libsqlite3-dev</td>
 <td>3.7.10</td>
 </tr>
-<tr class="row-even"><td><cite>coin-Cbc</cite></td>
+<tr><td><cite>coin-Cbc</cite></td>
 <td>coin-Cbc</td>
 <td>2.7</td>
 </tr>
-<tr class="row-odd"><td><cite>cyclopts</cite></td>
+<tr><td><cite>cyclopts</cite></td>
 <td>cyclopts</td>
 <td>present</td>
 </tr>
 </tbody>
 </table>
-</div></blockquote>
+</blockquote>
 </div>
 <div class="section" id="id3">
 <h3>Cycamore<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>Cycamore is a repository of all available modules which can be used
 with the <em>Cyclus</em> Core. It has the following dependencies:</p>
 <blockquote>
-<div><table border="1" class="docutils">
+<table border="1" class="docutils">
 <colgroup>
 <col width="32%" />
 <col width="32%" />
 <col width="36%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Package</th>
+<tr><th class="head">Package</th>
 <th class="head">Full Name</th>
 <th class="head">Minimum Version</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><cite>CMake</cite></td>
+<tr><td><cite>CMake</cite></td>
 <td>cmake</td>
 <td>2.8</td>
 </tr>
-<tr class="row-odd"><td><cite>boost</cite></td>
+<tr><td><cite>boost</cite></td>
 <td>libboost-all-dev</td>
 <td>1.34.1</td>
 </tr>
-<tr class="row-even"><td><cite>xml2</cite></td>
+<tr><td><cite>xml2</cite></td>
 <td>libxml2-dev</td>
 <td>2</td>
 </tr>
-<tr class="row-odd"><td><cite>sqlite3</cite></td>
+<tr><td><cite>sqlite3</cite></td>
 <td>libsqlite3-dev</td>
 <td>3.7.10</td>
 </tr>
-<tr class="row-even"><td><cite>core</cite></td>
+<tr><td><cite>core</cite></td>
 <td>cyclus-core</td>
 <td>present</td>
 </tr>
 </tbody>
 </table>
-</div></blockquote>
+</blockquote>
 </div>
 <div class="section" id="additional-information">
 <h3>Additional Information<a class="headerlink" href="#additional-information" title="Permalink to this headline">¶</a></h3>
@@ -283,11 +277,9 @@ cannot find the library) if only the normal (release) libraries are
 installed.</p>
 <p>An overview of some of the dependency installations
 can be found on the following pages:</p>
-<div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dependencies_windows.html">Installing Dependencies on Windows</a></li>
+<li class="toctree-l1"><a class="reference external" href="dependencies_windows.html">Installing Dependencies on Windows</a></li>
 </ul>
-</div>
 </div>
 </div>
 <div class="section" id="building-each-library">
@@ -297,12 +289,12 @@ download the source code for each library.</p>
 <p>Most systems will come with git fully installed; however, some developers may
 require the following git libraries if they are not already installed:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>git-core</li>
 <li>git-gui</li>
 <li>git-doc</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <div class="section" id="acquiring-source-code">
 <h3>Acquiring Source Code<a class="headerlink" href="#acquiring-source-code" title="Permalink to this headline">¶</a></h3>
 <p>The source code of each library can be found at the <a class="reference external" href="https://github.com/cyclus">*Cyclus*
@@ -313,38 +305,38 @@ cyclus mainline of development <em>you must fork the cyclus core repository into
 your own github account and submit &#8216;Pull Requests&#8217;</em>.</p>
 <p>For the Git uninitiated, one must perform the following steps to acquire <em>Cyclus</em>:</p>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li><a class="reference external" href="http://help.github.com/linux-set-up-git/">Set Up Git</a> shows one how to set up SSH keys and Git user info</li>
 <li>Fork the <em>Cyclus</em> repository, as shown in <a class="reference external" href="http://help.github.com/fork-a-repo/">Fork A Repo</a></li>
 </ol>
-</div></blockquote>
+</blockquote>
 <p>Note that each <em>Cyclus</em> repository has <strong>two</strong> branches:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>master &#8211; the lastest stable release of the library</li>
 <li>develop &#8211; the lastest working copy that passes all tests</li>
 </ul>
-</div></blockquote>
+</blockquote>
 </div>
 <div class="section" id="help-with-git-and-github">
 <h3>Help with Git and GitHub<a class="headerlink" href="#help-with-git-and-github" title="Permalink to this headline">¶</a></h3>
 <p>If you are unfamiliar with Git, here are some resources:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><a class="reference external" href="http://progit.org/book/">http://progit.org/book/</a> - this is a fantastic guide, from beginner to expert</li>
 <li><a class="reference external" href="http://book.git-scm.com/">http://book.git-scm.com/</a></li>
 <li><a class="reference external" href="http://gitimmersion.com/">http://gitimmersion.com/</a> - A very hands-on tutorial.</li>
 <li><a class="reference external" href="http://www-cs-students.stanford.edu/~blynn/gitmagic/">http://www-cs-students.stanford.edu/~blynn/gitmagic/</a></li>
 </ul>
-</div></blockquote>
+</blockquote>
 <p>If you are unfamiliar with Github, here are some resources:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><a class="reference external" href="http://help.github.com">Github Help</a></li>
 <li>To have your changes integrated into the cyclus/cyclus project, you must
 submit a github <em>Pull Request</em>.  Visit <a class="reference external" href="http://help.github.com/send-pull-requests/">Send pull requests</a> to learn more.</li>
 </ul>
-</div></blockquote>
+</blockquote>
 </div>
 <div class="section" id="building-and-installing-the-libraries">
 <h3>Building and Installing the Libraries<a class="headerlink" href="#building-and-installing-the-libraries" title="Permalink to this headline">¶</a></h3>
@@ -353,30 +345,30 @@ to ensure future compatibility with multiple platforms.</p>
 <p>In the following example, it is assumed that you have downloaded the
 source code into the following directory structure:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>~/.../cyclus/cyclus/src</li>
 <li>~/.../cyclus/cycamore/src</li>
 <li>~/.../cyclus/cyclopts/src</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <p>As a first step, make an install directory in the cyclus directory:</p>
 <div class="highlight-python"><pre>~/.../cyclus/&gt; mkdir install</pre>
 </div>
 <p>Due to dependencies upon one another, the libraries must be installed
 in the following order:</p>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>cyclopts</li>
 <li>cyclus</li>
 <li>cycamore</li>
 </ol>
-</div></blockquote>
+</blockquote>
 <p>Because the actual building process is the same for each library, a
 generic approach is given. Where one sees the word <em>library</em> in the
 following explanation, please substitute <em>cyclus</em>, <em>cyclopts</em>, or
 <em>cycamore</em> when appropriate.</p>
 <blockquote>
-<div><ol class="arabic">
+<ol class="arabic">
 <li><p class="first">make a build directory and enter it:</p>
 <div class="highlight-python"><pre>~/.../cyclus/library/&gt; mkdir build &amp;&amp; cd build</pre>
 </div>
@@ -392,7 +384,7 @@ following explanation, please substitute <em>cyclus</em>, <em>cyclopts</em>, or
 </div>
 </li>
 </ol>
-</div></blockquote>
+</blockquote>
 <dl class="docutils">
 <dt><strong>Note</strong>:</dt>
 <dd><ul class="first last simple">
@@ -452,9 +444,9 @@ following steps:</p>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Aug 20, 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Aug 21, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
     </div>
   </body>
 </html>
