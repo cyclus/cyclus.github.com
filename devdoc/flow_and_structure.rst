@@ -1,119 +1,61 @@
 
-.. summary Describe & Design Program Flow and Data Structures
+.. summary Description of the Initialization of a Simulation
 
-Program Flow and Data Structures
-================================
+We consider a simulation to be comprised of entitites (agents) that
+interact with elements in the simulation. This document is meant to 
+describe in more detail what entities and elements are and how they are
+created within the simulation. Note that the words entity and agent
+can be used interchangably.
 
-Program Flow Overview
-+++++++++++++++++++++
+Simulation Elements
+===================
+Simulation elements are objects in the simulation that entities query 
+or manipulate. Some elements are:
+* resources
+* recipes, which describe material resources
+* commodities, which define a subset of resources
+* markets, which facilitate the transaction of resources amongst agents
 
-Execution flow outline:
+Simulation Entities
+===================
 
-   #.  Read input
-   #.  Setup model
-   #.  Start time steps
+Simulation Start Up
+===================
 
-     * `The Tick`_: collect offers/requests
-     * `Market Resolution`_
-     * `The Tock`_: distribute material objects
+Here we describe the major events that occur between entering the
+main() function and making the function call to run the simulation. 
+This process involves dynamically loading a number of different
+constructors for classes from dynamic libraries, called modules.
 
-Simulation Initialization
--------------------------
+In general, we call this process "loading the input file." The 
+process is listed below:
 
-  #. Load markets based on market models
+#. Read and initialize temporal data
+  * the simulation starting time
+  * the simulation duration
+  * information about how/what frenquency to decay material
 
-    #. for each market
+#. Read and initialize simulation elements
+  * recipes used in the simulation
+  * markets and commodities
+    * initialize markets via xml
 
-      #. check whether the model for this market has been loaded already, and load if necessary
-      #. instantiate new market and initialize parameters
+  * prototypes (various facilities used in the simulation)
+    * initialize prototypes via xml
 
-        #. Assign commodities to markets
+#. Read, initialize, and load simulation entities
+  * institutions
+    * initialize institutions via xml
 
-  #. Load facilities based on facility models
+  * regions
+    * initialize regions via xml
+    * load regions into simulation
+    * load institutions into simulation
 
-    #. for each facility
+Entering the Simulation
+=======================
 
-      #. check whether the model for this facility has been loaded already, and load if necessary
-      #. instantiate a template for a new facility based on input parameters
 
-         #. assign commodities to facilities and cross-reference with markets
 
-      #. add template to facility template map
 
-  #. Load regions based on region models
-
-    #. for each region
-
-      #. check whether the model for this region has been loaded already, and load if necessary
-      #. instantiate new region and initialize parameters
-      #. create list of available facility templates for that region
-
-  #. Load simulation parameters
-
-Facility Deployment
--------------------
-
-When and how does facility deployment happen, based on the list of facility
-templates?
-
-The Tick
---------
-
-  #. cycle through Regions
-
-    #. cycle through Institutions
-
-      #. deploy new facilities as necessary
-      #. cycle through facilities
-
-        #. update facility state as appropriate
-        #. prompt for requests/offers
-
-Market Resolution
------------------
-
-  * convert sets of requests/offers into sets of material transactions
-
-The Tock
---------
-
-  #. cycle through Markets
-
-    #. cycle through transactions
-
-      #. preform material transactions
-      #. update facility state as appropriate
-
-Data Structure Overview
-+++++++++++++++++++++++
-
-Abstract Base Classes
----------------------
-
-Communicator
-~~~~~~~~~~~~
-
-Provides all functionality for message passing among facilities and markets,
-including offers/requests and transactions.
-
-Facility
-~~~~~~~~
-
-Provides base definition of facility and standard interface.  All derived
-classes must implement this interface cleanly so that they can operate as
-plug-in modules.
-
-Market
-~~~~~~
-
-Provides base definition of a market and standard interface.  All derived
-classes must implement this interface cleanly so that they can operate as
-plug-in modules.
-
-Region
-~~~~~~
-
-Provides base definition of a region and standard interface.  All derived
-classes must implement this interface cleanly so that they can operate as
-plug-in modules.
 
