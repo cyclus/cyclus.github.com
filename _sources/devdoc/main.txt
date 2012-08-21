@@ -26,7 +26,7 @@ successfully acquiring and building *Cyclus*, you can begin developing:
    :maxdepth: 1
   
    cyclus_env
-   flow_and_structure
+   sim_init
    code_tour
    style_guide
    materials_and_isotopes
