@@ -8,7 +8,7 @@ The Cyclus Library Suite
 ------------------------
 *Cyclus* is composed of a number of libraries:
   
-  * `core <https://github.com/cyclus/cyclus>`_ (basic functionality)
+  * `cyclus core <https://github.com/cyclus/cyclus>`_ (basic functionality)
   * `cycamore <https://github.com/cyclus/cycamore>`_ (a module repository)
   * `cyclopts <https://github.com/cyclus/cyclopts>`_ (optimization)
 
