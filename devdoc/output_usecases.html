@@ -1,24 +1,30 @@
 
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Use Cases for Cyclus Output Data &mdash; Cyclus Home</title>
+    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_MODINDEX: false,
+        COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="main.html" />
@@ -66,52 +72,52 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="../index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href="#">Use Cases for Cyclus Output Data</a><ul>
-<li><a class="reference external" href="#transaction-data">Transaction Data</a></li>
-<li><a class="reference external" href="#facility-instance-data">Facility Instance Data</a></li>
-<li><a class="reference external" href="#use-cases">Use Cases</a><ul>
-<li><a class="reference external" href="#material-flow-explorations">Material flow explorations</a><ul>
-<li><a class="reference external" href="#time-domain-resolution-and-representation">Time Domain Resolution and Representation</a></li>
-<li><a class="reference external" href="#filtering-the-sets-of-participating-facilities">Filtering the Sets of Participating Facilities</a></li>
-<li><a class="reference external" href="#filtering-the-set-of-isotopes">Filtering the Set of Isotopes</a></li>
-<li><a class="reference external" href="#post-processing-for-alternative-engineering-responses">Post-processing for Alternative Engineering Responses</a></li>
-<li><a class="reference external" href="#workflows-for-comparitive-time-series-exploration">Workflows for Comparitive Time Series Exploration</a></li>
-<li><a class="reference external" href="#quasi-spatial-representation-of-material-flows">(Quasi-)Spatial Representation of Material Flows</a></li>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Use Cases for Cyclus Output Data</a><ul>
+<li><a class="reference internal" href="#transaction-data">Transaction Data</a></li>
+<li><a class="reference internal" href="#facility-instance-data">Facility Instance Data</a></li>
+<li><a class="reference internal" href="#use-cases">Use Cases</a><ul>
+<li><a class="reference internal" href="#material-flow-explorations">Material flow explorations</a><ul>
+<li><a class="reference internal" href="#time-domain-resolution-and-representation">Time Domain Resolution and Representation</a></li>
+<li><a class="reference internal" href="#filtering-the-sets-of-participating-facilities">Filtering the Sets of Participating Facilities</a></li>
+<li><a class="reference internal" href="#filtering-the-set-of-isotopes">Filtering the Set of Isotopes</a></li>
+<li><a class="reference internal" href="#post-processing-for-alternative-engineering-responses">Post-processing for Alternative Engineering Responses</a></li>
+<li><a class="reference internal" href="#workflows-for-comparitive-time-series-exploration">Workflows for Comparitive Time Series Exploration</a></li>
+<li><a class="reference internal" href="#quasi-spatial-representation-of-material-flows">(Quasi-)Spatial Representation of Material Flows</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#commodity-capacity-and-supply-demand-exploration">Commodity Capacity and Supply/Demand Exploration</a></li>
+<li><a class="reference internal" href="#commodity-capacity-and-supply-demand-exploration">Commodity Capacity and Supply/Demand Exploration</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="output_dbase.html"
-                                  title="previous chapter">Output Database</a></p>
-            <h4>Next topic</h4>
-            <p class="topless"><a href="contributing_to_cyclus.html"
-                                  title="next chapter">Guide for Contributing to Cyclus</a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="output_dbase.html"
+                        title="previous chapter">Output Database</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="contributing_to_cyclus.html"
+                        title="next chapter">Guide for Contributing to Cyclus</a></p>
   <h3>Useful Pages</h3>
     <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
     <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
     <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
     
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="../search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
 
         </div>
       </div>
@@ -128,7 +134,7 @@
 <p>The primary <em>Cyclus</em> material output data is composed of a log of individual
 material transactions.  Each transaction has the following fundamental characteristics:</p>
 <blockquote>
-<ul>
+<div><ul>
 <li><p class="first"><strong>time</strong>: an integer of time steps since the beginning of the simulation</p>
 </li>
 <li><p class="first"><strong>sender</strong>: an integer identifying the facility that sent the material</p>
@@ -155,7 +161,7 @@ material transactions.  Each transaction has the following fundamental character
 </dl>
 </li>
 </ul>
-</blockquote>
+</div></blockquote>
 </div>
 <div class="section" id="facility-instance-data">
 <h2>Facility Instance Data<a class="headerlink" href="#facility-instance-data" title="Permalink to this headline">¶</a></h2>
@@ -163,7 +169,7 @@ material transactions.  Each transaction has the following fundamental character
 individual facilities.  Each facility have the following fundamental
 characteristics:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li><strong>institution</strong>: an integer identifying the institution owning this facility</li>
 <li><strong>region</strong>: an integer identifying the region in which this facility exists</li>
 <li><strong>name</strong>: a string that is the name of this instance of the facility</li>
@@ -172,18 +178,18 @@ which this facility is based.</li>
 <li><strong>capacity</strong>: a double indicating the capacity of this facility in
 some standard units</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>There will also be a table of facility prototypes with generic prototype
 information for each:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li><strong>type</strong>: the model used to form this prototype</li>
 <li><strong>inmarkets</strong>: a list of integers indciating which markets this
 prototype receives material from</li>
 <li><strong>outmarkets</strong>: a list of integers indicating which markets this
 prototype ships material to</li>
 </ul>
-</blockquote>
+</div></blockquote>
 </div>
 <div class="section" id="use-cases">
 <h2>Use Cases<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h2>
@@ -210,13 +216,13 @@ multiple time series of data, with a variety of alternative
 representations depending on the user&#8217;s interests.  The following
 discussion will consider, in this order:</p>
 <blockquote>
-<ol class="arabic simple">
+<div><ol class="arabic simple">
 <li>the resolution of the time domain,</li>
 <li>filtering operations to restrict the data included in a single time series,</li>
 <li>application of post-processing functions for alternative engineering responses, and</li>
 <li>compartive visualization of multiple time series.</li>
 </ol>
-</blockquote>
+</div></blockquote>
 <div class="section" id="time-domain-resolution-and-representation">
 <h4>Time Domain Resolution and Representation<a class="headerlink" href="#time-domain-resolution-and-representation" title="Permalink to this headline">¶</a></h4>
 <p>Most simulations are expected to proceed with monthly time steps (this
@@ -245,7 +251,7 @@ market, thereby selecting all the facilities that participate in that
 market.  Beyond that, some other obvious ways to create sets of
 facilities for either the source or receiving set are:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>choosing individual facilities from a list of existing facilities</li>
 <li>choosing individual institutions and therefore including all
 facilities owned by that institution</li>
@@ -256,7 +262,7 @@ all facilities based on that prototype</li>
 <li>choosing a particular facility module and therefore including all
 facilities based on that module</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>The ideal user interface will allow subsets of facilities to be added
 and deleted from the ultimate set of facilities using notion of
 intersection, union, and negation.</p>
@@ -272,7 +278,7 @@ data by filtering on the set of isotopes that are included in the
 material flow data.  There are a small number of standard ways to
 define sets of isotopes:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>include all isotopes</li>
 <li>choose individual chemical elements (e.g. uranium) and thereby
 including all the isotopes of that element</li>
@@ -280,7 +286,7 @@ including all the isotopes of that element</li>
 <li>choose from predefined meaningful sets of isotopes
 (e.g. fission products, actinides, transuranics, fissile isotopes)</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>As with the facility filtering capability, an ideal user interface
 will allow subsets of isotopes to be added and deleted from the data
 set using notions of intersection, union and negation.</p>
@@ -297,13 +303,13 @@ of each isotope that is being transacted, there will be a growing set
 of transformations that convert these number densities into other
 interesting metrics/quantities including:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>radiotoxicity</li>
 <li>decay heat</li>
 <li>waste volume</li>
 <li>others-to-be-determined</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>Users will want to apply these transformations, either changing the
 metric shown in the primary visualization or cloning the primary
 visualization but showing the other metric.</p>
@@ -314,7 +320,7 @@ visualization but showing the other metric.</p>
 visualize them on adjacent axes or within the same set of axes.  One
 possible workflow is as follows:</p>
 <blockquote>
-<ol class="arabic simple">
+<div><ol class="arabic simple">
 <li>A user selects a market and is immediately shown the
 instantaneous material flow through that market over the entire
 simulation time domain, with a default time resolution.</li>
@@ -345,7 +351,7 @@ other more advanced representations.  When examining a snapshot,
 the linked visualization tool may update constantly as a user
 swipes a bar across the time series visualization.</li>
 </ol>
-</blockquote>
+</div></blockquote>
 <p>At this point, an ideal user interface may allow users to &#8220;tear-off&#8221;
 individual time series from the collection of time series into
 different axes for further exploration/differentiation in modes
@@ -378,13 +384,13 @@ represent the real geospatial locations of facilties.</p>
 capacity of a set of facilities.  Most of the operations discussed
 above will be of interest including:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>time domain resolution and representation</li>
 <li>filtering across different dimensions (although not across an isotope dimension)</li>
 <li>applying transformations</li>
 <li>comparitive visualization</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>By combining the information about the theoretical capacity with the
 information about material transactions, the relationship between
 supply and demand can be explored.  (Note that the standardization of
@@ -419,9 +425,9 @@ Access to this information will requires additional output records.)</p>
       </ul>
     </div>
     <div class="footer">
-      &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
       Last updated on Aug 21, 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

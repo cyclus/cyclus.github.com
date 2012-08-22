@@ -1,24 +1,30 @@
 
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Developing Models For Cyclus &mdash; Cyclus Home</title>
+    
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
         VERSION:     '0.1',
-        COLLAPSE_MODINDEX: false,
+        COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="../main.html" />
@@ -66,45 +72,45 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="../../index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href="#">Developing Models For Cyclus</a><ul>
-<li><a class="reference external" href="#introduction">Introduction</a></li>
-<li><a class="reference external" href="#creating-new-models-of-the-existing-types">Creating New Models of the Existing Types</a></li>
-<li><a class="reference external" href="#model-initialization-and-creation">Model Initialization and Creation</a></li>
-<li><a class="reference external" href="#creating-specific-model-types">Creating Specific Model Types</a><ul>
-<li><a class="reference external" href="#a-note-to-core-developers">A Note To Core Developers</a></li>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Developing Models For Cyclus</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#creating-new-models-of-the-existing-types">Creating New Models of the Existing Types</a></li>
+<li><a class="reference internal" href="#model-initialization-and-creation">Model Initialization and Creation</a></li>
+<li><a class="reference internal" href="#creating-specific-model-types">Creating Specific Model Types</a><ul>
+<li><a class="reference internal" href="#a-note-to-core-developers">A Note To Core Developers</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#references">References</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 </ul>
 
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="../materials_and_isotopes.html"
-                                  title="previous chapter">Materials and Isotopics in Cyclus</a></p>
-            <h4>Next topic</h4>
-            <p class="topless"><a href="facility.html"
-                                  title="next chapter">Developing Facility Models</a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../materials_and_isotopes.html"
+                        title="previous chapter">Materials and Isotopics in Cyclus</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="facility.html"
+                        title="next chapter">Developing Facility Models</a></p>
   <h3>Useful Pages</h3>
     <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
     <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
     <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
     
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="../../search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
 
         </div>
       </div>
@@ -129,14 +135,14 @@ other types of loadable modules.</p>
 files are available as skeletons for the new models.  When creating a new model, it is important that all the
 functionality defined in these files remains in the final model definition. A
 step by step example of producing a new model from the existing stubs can be
-found in the <a class="reference external" href="toaster.html"><em>Model Devlopment Example : ToasterFacility</em></a>.</p>
+found in the <a class="reference internal" href="toaster.html"><em>Model Devlopment Example : ToasterFacility</em></a>.</p>
 </div>
 <div class="section" id="model-initialization-and-creation">
 <h2>Model Initialization and Creation<a class="headerlink" href="#model-initialization-and-creation" title="Permalink to this headline">¶</a></h2>
 <p>The Cyclus simulation environment has a number of fundamental aspects regarding
 model creation:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>Models in Cyclus follow a parent-child paradigm, i.e. a model has one parent and
 may have many children. The parent-child relationship can be thought of as
 ownership.</li>
@@ -148,7 +154,7 @@ setParent() method defined in Model.h.</li>
 </ul>
 </li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>A Model can have many possible initilization-related methods; however, every Model
 has <em>at least</em> a method named init(). In init(), any and all publicly accesible
 members must be initialized. Should such a member attempt to be accessed when not
@@ -216,25 +222,29 @@ in the BuildRegion class:</p>
 <h2>Creating Specific Model Types<a class="headerlink" href="#creating-specific-model-types" title="Permalink to this headline">¶</a></h2>
 <p>For further details about creating new models of particular types, consult the
 Model-specific reference:</p>
+<div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference external" href="facility.html">Developing Facility Models</a><ul>
-<li class="toctree-l2"><a class="reference external" href="facility.html#details">Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="facility.html">Developing Facility Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="facility.html#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference external" href="institution.html">Developing Institution Models</a><ul>
-<li class="toctree-l2"><a class="reference external" href="institution.html#details">Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="institution.html">Developing Institution Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="institution.html#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference external" href="region.html">Developing Region Models</a><ul>
-<li class="toctree-l2"><a class="reference external" href="region.html#details">Details</a></li>
-<li class="toctree-l2"><a class="reference external" href="region.html#to-do">To Do</a></li>
+<li class="toctree-l1"><a class="reference internal" href="region.html">Developing Region Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="region.html#details">Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="region.html#to-do">To Do</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference external" href="market.html">Developing Market Models</a><ul>
-<li class="toctree-l2"><a class="reference external" href="market.html#details">Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="market.html">Developing Market Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="market.html#details">Details</a></li>
 </ul>
 </li>
 </ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
 <div class="section" id="a-note-to-core-developers">
 <h3>A Note To Core Developers<a class="headerlink" href="#a-note-to-core-developers" title="Permalink to this headline">¶</a></h3>
 <p>It is very important to keep the Stub files in the Models directory (or in each
@@ -251,11 +261,11 @@ the others to ensure it remains up-to-date.</p>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<ol class="arabic simple">
+<div><ol class="arabic simple">
 <li><a class="reference external" href="http://oss.sgi.com/LDP/HOWTO/C++-dlopen/index.html">C++ dlopen mini HOWTO</a></li>
 <li><a class="reference external" href="http://www.yolinux.com/TUTORIALS/LibraryArchives-StaticAndDynamic.html">Static, Shared Dynamic and Loadable Linux Libraries</a></li>
 </ol>
-</blockquote>
+</div></blockquote>
 </div>
 </div>
 
@@ -282,9 +292,9 @@ the others to ensure it remains up-to-date.</p>
       </ul>
     </div>
     <div class="footer">
-      &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
       Last updated on Aug 21, 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>
