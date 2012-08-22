@@ -76,5 +76,5 @@ So, download the installer.
 Now What?
 ---------
 
-You're now ready to build cyclus. Onward to :doc:`get_and_build`
+You're now ready to build cyclus. Onward to :doc:`../devdoc/get_and_build`
 
