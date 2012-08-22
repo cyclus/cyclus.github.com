@@ -1,13 +1,15 @@
 ﻿.. summary The Cyclus Fuel Cycle Simulator Roadmap
 
-:version: Document v1.0 - 8/20/2012
+:version: Document v1.1 - 8/21/2012
 
 The *Cyclus* Fuel Cycle Simulator Roadmap
 =================================================
 
-It is expected that external development contributing to the expansion of 
-the Fuel Cycle Simulator will grow in creative, unpredictable ways in answer to 
-the needs of the developers.
+It is expected that external development contributing to the expansion
+of the Fuel Cycle Simulator will grow in creative, unpredictable ways
+in answer to the needs of the developers.  Moreover, particular use
+cases and specific user interests are likely to drive the need for new
+capability.
 
 To help direct and inspire development in support of current and anticipated 
 use cases, the current *Cyclus* development team has identified areas of 
@@ -16,32 +18,33 @@ essential research areas as well as potential research ideas.
 Research Areas
 --------------
 
-A number of research areas related to *Cyclus*  have already been identified.
-In some cases, there is a lead institution already engaged in such research, or
-one or more institutions who have expressed interest:
+A number of research areas related to *Cyclus* have already been
+identified, but others are certainly possible:
 
-  #. *Cyclus* core infrastructure development    lead: UW-Madison
-
-  #. Market model development    interest: UW-Madison, UT-Austin
-
-  #. Region model development and deployment scenarios    interest: Idaho
-
-  #. Reactor model development    interest: UT-Austin
-
+  #. *Cyclus* core infrastructure development
+  #. Market model development
+  #. Region model development and deployment scenarios
+  #. Reactor model development    
   #. Separations model development
-
-  #. Geologic repository & waste form modeling    lead: UW-Madison (see `Cyder <https://github.com/katyhuff/cyder>`_)
-
-  #. Graphical interfaces for input and visualization    interest: Utah
-
-  #. Social science to determine important metrics and measures    interest: UW-Madison
-
-  #. Optimization and sensitivity infrastructure    interest: NC State
-
+  #. Geologic repository & waste form modeling 
+  #. Graphical interfaces for input and visualization
+  #. Social science to determine important metrics and measures
+  #. Optimization and sensitivity infrastructure  
   #. Transportation
-
-  #. Non-proliferation analysis    interest: UW
+  #. Non-proliferation analysis 
  
+Active Projects/Contributors
+----------------------------
+
+* U. Wisconsin-Madison:
+   * `Cyclus <http://github.com/cyclus/cyclus>`_ core infrastructure
+   * `Cycamore <http://github.com/cyclus/cycamore>`_ base module package
+   * `Cyder <http://github.com/katyhuff/cyder>`_ geologic repository modeling
+   * `Cyclopts <http://github.com/cyclus/cyclopts>`_ optimization interface library
+* U. Texas at Austin
+   * `Cycic <http://github.com/cyclus/cycic>`_ input control
+* U. Utah
+   * `Cyclus-viz <http://github.com/cyclus/cyclus-vis>`_ output visualization
 
 
 Potential Research Ideas 
@@ -93,14 +96,14 @@ in fuel cycles of all kinds. Potential fuel cycle technologies of import include
   - nefarious shadow material diversion processes
   - random facility disruption
   
-Potential Simulation Building Blocks
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Full Simulation Scale Contributions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Additional simulation-level features envisioned to become useful in the near 
 term for optimization, economic, and strategic use cases include :
 
    - external multi-variable optimization demonstration
    - objective functions for assessing overall simulation performance (e.g. economic)
-   - demonstration of impact of varying module fidelity
-   - implementations of relevant simultion use cases, benchmarking cases, etc.
+   - investigation of impact of varying module fidelity
+   - implementations of relevant simulation use cases, benchmarking cases, etc.
 
