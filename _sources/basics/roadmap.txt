@@ -37,13 +37,16 @@ Active Projects/Contributors
 ----------------------------
 
 * U. Wisconsin-Madison:
+
    * `Cyclus <http://github.com/cyclus/cyclus>`_ core infrastructure
    * `Cycamore <http://github.com/cyclus/cycamore>`_ base module package
    * `Cyder <http://github.com/katyhuff/cyder>`_ geologic repository modeling
    * `Cyclopts <http://github.com/cyclus/cyclopts>`_ optimization interface library
 * U. Texas at Austin
+
    * `Cycic <http://github.com/cyclus/cycic>`_ input control
 * U. Utah
+
    * `Cyclus-viz <http://github.com/cyclus/cyclus-vis>`_ output visualization
 
 
