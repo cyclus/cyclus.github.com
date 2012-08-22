@@ -25,6 +25,7 @@ successfully acquiring and building *Cyclus*, you can begin developing:
 .. toctree::
    :maxdepth: 1
   
+   get_and_build
    cyclus_env
    code_tour
 
@@ -58,7 +59,7 @@ Utilities and Components
    module_building_blocks
 
 Software Development Aids
-------------------------
+--------------------------
 .. toctree::
    :maxdepth: 1
 
