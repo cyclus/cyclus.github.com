@@ -47,7 +47,7 @@ Active Projects/Contributors
    * `Cycic <http://github.com/cyclus/cycic>`_ input control
 * U. Utah
 
-   * `Cyclus-viz <http://github.com/cyclus/cyclus-vis>`_ output visualization
+   * `Cyclist <http://github.com/cyclus/cyclist>`_ output visualization
 
 
 Potential Research Ideas 
