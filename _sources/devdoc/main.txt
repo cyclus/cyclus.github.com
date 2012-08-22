@@ -19,23 +19,58 @@ your own github account and submit 'Pull Requests'*.
 Getting Started
 ---------------
 
-First things first - read :doc:`../basics/get_and_build`.  After
+First things first - read :doc:`get_and_build`.  After
 successfully acquiring and building *Cyclus*, you can begin developing:
 
 .. toctree::
    :maxdepth: 1
   
    cyclus_env
-   sim_init
    code_tour
-   style_guide
+
+Core Concepts and Expectations
+------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   sim_init
+   control_flow
+   time_steps
+   commodities_and_markets
+   resources
    materials_and_isotopes
-   make-models/main
-   testing
+   decay
+   message_passing
+   transactions
+   facility_deployment
+   using_prototypes
+
+Utilities and Components
+------------------------
+
+.. toctree::
+   :maxdepth: 1
+
    logger
    output_dbase
    output_usecases
+   module_building_blocks
+
+Software Development Aids
+------------------------
+.. toctree::
+   :maxdepth: 1
+
+   code_documentation
+   ../basics/roadmap
+   cycamore
+   cycstub
    contributing_to_cyclus
+   git_worflows
+   make-models/main
+   testing
+   style_guide
 
 Doxygen Code Documentation
 --------------------------
@@ -44,7 +79,7 @@ The definitive documentation of any software is the source code itself.
 *Cyclus* will relies on Doxygen for automation of rich documentation from
 appropriately formatted comments in the source code. Current Doxygen
 documentation can be found at http://cnergdata.engr.wisc.edu/cyclus/develop/docs/ .
-This page will be updated weekly during active development.
+This page will be updated nightly.
 
 Documentation is a make target in the cmake build system. Documentation
 will automatically be built when you `make all`. You can build only the

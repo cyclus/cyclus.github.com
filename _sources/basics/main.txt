@@ -9,9 +9,7 @@ Cyclus Fundamentals
    introduction
    fcs_background
    roadmap
-   get_and_build
    ecosystem
-   decay
    glossary
 
 .. stuff not converted yet

@@ -23,8 +23,8 @@ development philosophies encompass the current fleet of fuel cycle simulators:
   #. A desire for detail/fidelity, thus developing a tool with an ad-hoc
      combination of existing complex analysis tools (e.g. COSI)
 
-Experience has demonstrated that each of these philosophies are hindered from
-simulating interesting problems due to complexity limits.  In most cases this
+Experience has demonstrated that each of these philosophies can be hindered from
+simulating some classes of interesting problems due to complexity limits.  In most cases this
 complexity constrains first the usability of the tool followed by its
 extendability due to increasingly convoluted dependencies. The final victim is
 performance, as the ability to quickly solve simple problems is lost to the
@@ -95,8 +95,9 @@ The *Cyclus* development framework employs a modern, open source philosophy
 that ensures transparency, attracts contributions from a varied community of
 collaborators, and guarantees institution-independent access to all potential
 users. In this development path, a public source code repository provides
-unhindered access to the fundamental simulation framework and basic fuel
-process models volunteered by developers.  Granting unfettered access only to
+unhindered access to the `fundamental simulation framework <http://github.com/cyclus/cyclys>`_ and 
+`basic fuel cycle process models <http://github.com/cyclus/cycamore>`_ volunteered by developers.  
+Granting unfettered access only to
 the *Cyclus* engine allows for compartmentalization of the code and its input
 data. Thus, secure and proprietary model developers can be similarly encouraged
 to utilize the *Cyclus* framework. This modern development model passively
