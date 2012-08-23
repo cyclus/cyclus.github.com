@@ -1,35 +1,29 @@
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Simulation Overview and Initialization &mdash; Cyclus Home</title>
-    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="main.html" />
     <link rel="next" title="Materials and Isotopics in Cyclus" href="materials_and_isotopes.html" />
-    <link rel="prev" title="Tour Snippets" href="tour_snippets.html" />
+    <link rel="prev" title="Dynamic Loading Overview" href="dynamic_loading.html" />
    
 <script type="text/javascript">
 
@@ -64,7 +58,7 @@
           <a href="materials_and_isotopes.html" title="Materials and Isotopics in Cyclus"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="tour_snippets.html" title="Tour Snippets"
+          <a href="dynamic_loading.html" title="Dynamic Loading Overview"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
           <li><a href="main.html" accesskey="U">Cyclus Developer Guide</a> &raquo;</li> 
@@ -72,45 +66,45 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Simulation Overview and Initialization</a><ul>
-<li><a class="reference internal" href="#simulation-elements">Simulation Elements</a><ul>
-<li><a class="reference internal" href="#prototypes">Prototypes</a></li>
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Simulation Overview and Initialization</a><ul>
+<li><a class="reference external" href="#simulation-elements">Simulation Elements</a><ul>
+<li><a class="reference external" href="#prototypes">Prototypes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#simulation-entities">Simulation Entities</a></li>
-<li><a class="reference internal" href="#simulation-start-up">Simulation Start Up</a></li>
-<li><a class="reference internal" href="#entering-the-simulation">Entering the Simulation</a></li>
+<li><a class="reference external" href="#simulation-entities">Simulation Entities</a></li>
+<li><a class="reference external" href="#simulation-start-up">Simulation Start Up</a></li>
+<li><a class="reference external" href="#entering-the-simulation">Entering the Simulation</a></li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="tour_snippets.html"
-                        title="previous chapter">Tour Snippets</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="materials_and_isotopes.html"
-                        title="next chapter">Materials and Isotopics in Cyclus</a></p>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="dynamic_loading.html"
+                                  title="previous chapter">Dynamic Loading Overview</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="materials_and_isotopes.html"
+                                  title="next chapter">Materials and Isotopics in Cyclus</a></p>
   <h3>Useful Pages</h3>
     <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
     <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
     <li><a href="https://github.com/cyclus">Source Code</a></li>
     <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
     
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
 
         </div>
       </div>
@@ -166,33 +160,33 @@ constructors for classes from dynamic libraries, called modules.</p>
 <p>In general, we call this process &#8220;loading the input file.&#8221; The
 process is listed below:</p>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>Read and initialize temporal data</li>
 </ol>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>the simulation starting time</li>
 <li>the simulation duration</li>
 <li>information about how/what frequency to decay material</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <ol class="arabic simple" start="2">
 <li>Read and initialize simulation elements</li>
 </ol>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>recipes used in the simulation</li>
 <li>markets and commodities</li>
 <li>initialize markets via XML</li>
 <li>prototypes (various facilities used in the simulation)
 * initialize prototypes via XML</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <ol class="arabic simple" start="3">
 <li>Read, initialize, and load simulation entities</li>
 </ol>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>institutions
 * initialize institutions via XML</li>
 <li>regions
@@ -200,11 +194,11 @@ process is listed below:</p>
 * load regions into simulation
 * load institutions into simulation</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <ol class="arabic simple" start="4">
 <li>Run the simulation</li>
 </ol>
-</div></blockquote>
+</blockquote>
 </div>
 <div class="section" id="entering-the-simulation">
 <h2>Entering the Simulation<a class="headerlink" href="#entering-the-simulation" title="Permalink to this headline">¶</a></h2>
@@ -250,16 +244,16 @@ begin without any Facilities placed in the tree.</p>
           <a href="materials_and_isotopes.html" title="Materials and Isotopics in Cyclus"
              >next</a> |</li>
         <li class="right" >
-          <a href="tour_snippets.html" title="Tour Snippets"
+          <a href="dynamic_loading.html" title="Dynamic Loading Overview"
              >previous</a> |</li>
         <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
           <li><a href="main.html" >Cyclus Developer Guide</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Aug 22, 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Aug 23, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
     </div>
   </body>
 </html>

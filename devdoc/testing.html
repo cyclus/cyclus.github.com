@@ -1,30 +1,24 @@
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Writing Tests for Modules &mdash; Cyclus Home</title>
-    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="main.html" />
@@ -72,55 +66,55 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Writing Tests for Modules</a><ul>
-<li><a class="reference internal" href="#introduction">Introduction</a></li>
-<li><a class="reference internal" href="#directory-structure">Directory Structure</a></li>
-<li><a class="reference internal" href="#testing-framework">Testing Framework</a></li>
-<li><a class="reference internal" href="#an-example">An Example</a><ul>
-<li><a class="reference internal" href="#module-h">Module.h</a></li>
-<li><a class="reference internal" href="#module-cpp">Module.cpp</a></li>
-<li><a class="reference internal" href="#moduletests-h">ModuleTests.h</a></li>
-<li><a class="reference internal" href="#moduletests-cpp">ModuleTests.cpp</a></li>
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Writing Tests for Modules</a><ul>
+<li><a class="reference external" href="#introduction">Introduction</a></li>
+<li><a class="reference external" href="#directory-structure">Directory Structure</a></li>
+<li><a class="reference external" href="#testing-framework">Testing Framework</a></li>
+<li><a class="reference external" href="#an-example">An Example</a><ul>
+<li><a class="reference external" href="#module-h">Module.h</a></li>
+<li><a class="reference external" href="#module-cpp">Module.cpp</a></li>
+<li><a class="reference external" href="#moduletests-h">ModuleTests.h</a></li>
+<li><a class="reference external" href="#moduletests-cpp">ModuleTests.cpp</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#testing-xml-initialization">Testing XML Initialization</a><ul>
-<li><a class="reference internal" href="#id1">Module.h</a></li>
-<li><a class="reference internal" href="#id2">Module.cpp</a></li>
-<li><a class="reference internal" href="#id3">ModuleTests.h</a></li>
-<li><a class="reference internal" href="#id4">ModuleTests.cpp</a></li>
+<li><a class="reference external" href="#testing-xml-initialization">Testing XML Initialization</a><ul>
+<li><a class="reference external" href="#id1">Module.h</a></li>
+<li><a class="reference external" href="#id2">Module.cpp</a></li>
+<li><a class="reference external" href="#id3">ModuleTests.h</a></li>
+<li><a class="reference external" href="#id4">ModuleTests.cpp</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="make-models/toaster.html"
-                        title="previous chapter">Model Devlopment Example : ToasterFacility</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="style_guide.html"
-                        title="next chapter">Style Guidelines for Developers</a></p>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="make-models/toaster.html"
+                                  title="previous chapter">Model Devlopment Example : ToasterFacility</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="style_guide.html"
+                                  title="next chapter">Style Guidelines for Developers</a></p>
   <h3>Useful Pages</h3>
     <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
     <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
     <li><a href="https://github.com/cyclus">Source Code</a></li>
     <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
     
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
 
         </div>
       </div>
@@ -145,7 +139,7 @@ example of how to achieve such functionality.</p>
 <h2>Directory Structure<a class="headerlink" href="#directory-structure" title="Permalink to this headline">¶</a></h2>
 <p>A fully developed module will have the following directory structure:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>Module.h</li>
 <li>Module.cpp</li>
 <li>Module.rng</li>
@@ -153,7 +147,7 @@ example of how to achieve such functionality.</p>
 <li>ModuleTests.cpp</li>
 <li>CMakeLists.txt</li>
 </ul>
-</div></blockquote>
+</blockquote>
 </div>
 <div class="section" id="testing-framework">
 <h2>Testing Framework<a class="headerlink" href="#testing-framework" title="Permalink to this headline">¶</a></h2>
@@ -173,20 +167,20 @@ defined by a macro, e.g.:</p>
 </div>
 <p>In addition to test fixtures, one must define:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>a SetUp() function</li>
 <li>a TearDown() function</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <p>When executed, the testing framework will run each test fixture
 independently. For each fixture, Google Test does the following:</p>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>Run SetUp()</li>
 <li>Run ModuleTest Fixture</li>
 <li>Run TearDown()</li>
 </ol>
-</div></blockquote>
+</blockquote>
 <p>It is the responsibility of the developer to properly initialize any
 required members in SetUp() and free the appropriate memory in
 TearDown().</p>
@@ -467,9 +461,9 @@ true in the previous example.</p>
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Aug 22, 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Aug 23, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
     </div>
   </body>
 </html>
