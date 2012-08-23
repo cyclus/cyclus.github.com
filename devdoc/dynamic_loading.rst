@@ -11,6 +11,7 @@ the executing program. In Linux, these libraries are denoted by the
 suffix '.so', in Windows, '.dll', and in OSX, '.dylib'.
 
 In *Cyclus*, every *module* is dynamically loaded. Modules include:
+
 * Markets
 * Regions
 * Institutions
