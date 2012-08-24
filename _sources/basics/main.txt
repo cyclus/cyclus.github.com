@@ -12,8 +12,8 @@ Cyclus Fundamentals
    ecosystem
    glossary
 
+
 .. stuff not converted yet
 
-      GettingAndBuildingCyclus
       ProgramFlowAndDataStructureOverview
       DevelopersDocumentation

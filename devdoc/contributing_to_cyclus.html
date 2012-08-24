@@ -1,24 +1,30 @@
 
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Guide for Contributing to Cyclus &mdash; Cyclus Home</title>
+    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_MODINDEX: false,
+        COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="main.html" />
@@ -66,44 +72,44 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="../index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href="#">Guide for Contributing to Cyclus</a><ul>
-<li><a class="reference external" href="#working-on-a-topic">Working on a Topic</a></li>
-<li><a class="reference external" href="#keeping-your-fork-up-to-date">Keeping Your Fork Up To Date</a></li>
-<li><a class="reference external" href="#passing-tests">Passing Tests</a></li>
-<li><a class="reference external" href="#making-a-pull-request">Making a Pull Request</a></li>
-<li><a class="reference external" href="#reviewing-a-pull-request">Reviewing a Pull Request</a></li>
-<li><a class="reference external" href="#see-also">See also</a></li>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Guide for Contributing to Cyclus</a><ul>
+<li><a class="reference internal" href="#working-on-a-topic">Working on a Topic</a></li>
+<li><a class="reference internal" href="#keeping-your-fork-up-to-date">Keeping Your Fork Up To Date</a></li>
+<li><a class="reference internal" href="#passing-tests">Passing Tests</a></li>
+<li><a class="reference internal" href="#making-a-pull-request">Making a Pull Request</a></li>
+<li><a class="reference internal" href="#reviewing-a-pull-request">Reviewing a Pull Request</a></li>
+<li><a class="reference internal" href="#see-also">See also</a></li>
 </ul>
 </li>
 </ul>
 
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="../basics/roadmap.html"
-                                  title="previous chapter">The <em>Cyclus</em> Fuel Cycle Simulator Roadmap</a></p>
-            <h4>Next topic</h4>
-            <p class="topless"><a href="make-models/main.html"
-                                  title="next chapter">Developing Models For Cyclus</a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../basics/roadmap.html"
+                        title="previous chapter">The <em>Cyclus</em> Fuel Cycle Simulator Roadmap</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="make-models/main.html"
+                        title="next chapter">Developing Models For Cyclus</a></p>
   <h3>Useful Pages</h3>
     <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
     <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
     <li><a href="https://github.com/cyclus">Source Code</a></li>
     <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
     
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="../search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
 
         </div>
       </div>
@@ -120,17 +126,18 @@ The core <em>Cyclus</em> project repository is located at
 <a class="reference external" href="http://github.com/cyclus/cyclus">http://github.com/cyclus/cyclus</a>. Additional projects found at
 <a class="reference external" href="http://github.com/cyclus">http://github.com/cyclus</a> include :</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>Cycamore, the cyclus additional modules repository</li>
 <li>Cyclopts, the cyclus optimization library</li>
 <li>Cycic, the cyclus input controller</li>
 <li>and more to come.</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>Although you do not have to register with github to
 download and edit the code, if you desire your work to be integrated into the
 cyclus mainline of development <em>you must fork the cyclus core repository into
-your own github account and submit &#8216;Pull Requests&#8217;</em>.</p>
+your own github account and submit &#8216;Pull Requests&#8217;</em>. <a class="reference internal" href="get_and_build.html"><em>Here is a tutorial on
+getting and building cyclus.</em></a></p>
 <div class="section" id="working-on-a-topic">
 <h2>Working on a Topic<a class="headerlink" href="#working-on-a-topic" title="Permalink to this headline">¶</a></h2>
 <p><em>Note that &#8220;upstream&#8221; repository refers to the primary `cyclus/cyclus` repository.</em></p>
@@ -140,7 +147,7 @@ to solve.</p>
 like you solve. As you do your development, push only to your own fork. Make a
 pull request to the upstream repository (usually the &#8220;develop&#8221; branch) only after:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>You have pulled the latest changes from the upstream repository.</li>
 <li>You have completed a logical set of changes.</li>
 <li>Cyclus compiles with no errors.</li>
@@ -148,7 +155,7 @@ pull request to the upstream repository (usually the &#8220;develop&#8221; branc
 <li>Cyclus input files run as expected.</li>
 <li>Your code has been reviewed by another developer.</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>Code from the &#8220;develop&#8221; branch generally must pass even more rigorous checks
 before being integrated into the &#8220;master&#8221; branch. Hotfixes would be a
 possible exception to this.</p>
@@ -156,7 +163,7 @@ possible exception to this.</p>
 <div class="section" id="keeping-your-fork-up-to-date">
 <h2>Keeping Your Fork Up To Date<a class="headerlink" href="#keeping-your-fork-up-to-date" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<ul>
+<div><ul>
 <li><p class="first">Use a branching workflow similar to the one described at
 <a class="reference external" href="http://progit.org/book/ch3-4.html">http://progit.org/book/ch3-4.html</a>.</p>
 </li>
@@ -167,7 +174,7 @@ when we are not yet ready for the code to become &#8216;production&#8217;.</p>
 &#8220;master&#8221; and &#8220;develop&#8221; branches. The master branch should always be the &#8216;stable&#8217;
 or &#8216;production&#8217; release of cyclus.</p>
 <blockquote>
-<ul>
+<div><ul>
 <li><p class="first">Pull the most recent history from the upstream repository &#8220;master&#8221;
 and/or &#8220;develop&#8221; branches before you merge changes into your
 corresponding local branch. Consider doing a rebase pull instead of
@@ -177,7 +184,7 @@ git pull --rebase upstream develop</pre>
 </div>
 </li>
 </ul>
-</blockquote>
+</div></blockquote>
 </li>
 <li><p class="first">As you do development on topic branches in your own fork, consider rebasing
 the topic branch onto the &#8220;master&#8221; and/or &#8220;develop&#8221;  branches after <em>pulls</em> from the upstream
@@ -189,7 +196,7 @@ git rebase develop</pre>
 </div>
 </li>
 </ul>
-</blockquote>
+</div></blockquote>
 </div>
 <div class="section" id="passing-tests">
 <h2>Passing Tests<a class="headerlink" href="#passing-tests" title="Permalink to this headline">¶</a></h2>
@@ -229,11 +236,11 @@ input files,</p>
 <p>When you are ready to move changes from one of your topic branches into the
 &#8220;develop&#8221; branch, it must be reviewed and accepted by another developer.</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>You may want to review this <a class="reference external" href="https://help.github.com/articles/using-pull-requests/">tutorial</a>
 before you make a pull request to the develop branch.</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>Sometimes, your pull request will be closed by the reviewer until further
 changes are made to appease the reviewer&#8217;s concerns. This may be frustrating,
 but please act rationally, discuss the issues on the github space made for your
@@ -246,7 +253,7 @@ reopen the review yourself with the button made available to you.</p>
 <div class="section" id="reviewing-a-pull-request">
 <h2>Reviewing a Pull Request<a class="headerlink" href="#reviewing-a-pull-request" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<ul>
+<div><ul>
 <li><p class="first">Build, install, and test it. If you have added the remmote repository as
 a remote you can check it out and merge it with the current develop
 branch thusly,</p>
@@ -256,7 +263,7 @@ git merge develop</pre>
 </li>
 <li><p class="first">Look over the code.</p>
 <ul class="simple">
-<li>Check that it meets <a class="reference external" href="style_guide.html"><em>our style guidelines</em></a>.</li>
+<li>Check that it meets <a class="reference internal" href="style_guide.html"><em>our style guidelines</em></a>.</li>
 <li>Make inline review comments concerning improvements.</li>
 </ul>
 </li>
@@ -278,7 +285,7 @@ git merge --no-ff remote_name/branch_name -m "A message""</pre>
 </ul>
 </li>
 </ul>
-</blockquote>
+</div></blockquote>
 </div>
 <div class="section" id="see-also">
 <h2>See also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
@@ -310,9 +317,9 @@ git merge --no-ff remote_name/branch_name -m "A message""</pre>
       </ul>
     </div>
     <div class="footer">
-      &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
       Last updated on Aug 23, 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>

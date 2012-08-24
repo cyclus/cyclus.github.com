@@ -1,24 +1,30 @@
 
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>The Cyclus Environment &mdash; Cyclus Home</title>
+    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.1',
-        COLLAPSE_MODINDEX: false,
+        COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
     <link rel="up" title="Cyclus Developer Guide" href="main.html" />
@@ -66,46 +72,46 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="../index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href="#">The Cyclus Environment</a><ul>
-<li><a class="reference external" href="#agents-and-markets">Agents and Markets</a><ul>
-<li><a class="reference external" href="#simulation-and-agent-initialization">Simulation and Agent Initialization</a></li>
-<li><a class="reference external" href="#dynamic-loading">Dynamic Loading</a></li>
-<li><a class="reference external" href="#on-facility-prototypes-and-their-use">On Facility Prototypes and their Use</a></li>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The Cyclus Environment</a><ul>
+<li><a class="reference internal" href="#agents-and-markets">Agents and Markets</a><ul>
+<li><a class="reference internal" href="#simulation-and-agent-initialization">Simulation and Agent Initialization</a></li>
+<li><a class="reference internal" href="#dynamic-loading">Dynamic Loading</a></li>
+<li><a class="reference internal" href="#on-facility-prototypes-and-their-use">On Facility Prototypes and their Use</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#resources-and-materials">Resources and Materials</a></li>
-<li><a class="reference external" href="#utility-classes">Utility Classes</a></li>
+<li><a class="reference internal" href="#resources-and-materials">Resources and Materials</a></li>
+<li><a class="reference internal" href="#utility-classes">Utility Classes</a></li>
 </ul>
 </li>
 </ul>
 
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="dependencies_windows.html"
-                                  title="previous chapter">Installing Dependencies on Windows</a></p>
-            <h4>Next topic</h4>
-            <p class="topless"><a href="code_tour.html"
-                                  title="next chapter">Tour of the Source Code</a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dependencies_windows.html"
+                        title="previous chapter">Installing Dependencies on Windows</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="code_tour.html"
+                        title="next chapter">Tour of the Source Code</a></p>
   <h3>Useful Pages</h3>
     <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
     <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
     <li><a href="https://github.com/cyclus">Source Code</a></li>
     <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
     
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="../search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
 
         </div>
       </div>
@@ -156,37 +162,37 @@
 <col width="15%" />
 </colgroup>
 <tbody valign="top">
-<tr><td>&nbsp;</td>
+<tr class="row-odd"><td>&nbsp;</td>
 <td>Regions</td>
 <td>Institutions</td>
 <td>Facilities</td>
 <td>Markets</td>
 </tr>
-<tr><td>DynamicModule</td>
+<tr class="row-even"><td>DynamicModule</td>
 <td>X</td>
 <td>X</td>
 <td>X</td>
 <td>X</td>
 </tr>
-<tr><td>Communicator</td>
+<tr class="row-odd"><td>Communicator</td>
 <td>X</td>
 <td>X</td>
 <td>X</td>
 <td>X</td>
 </tr>
-<tr><td>TimeHandler</td>
+<tr class="row-even"><td>TimeHandler</td>
 <td>X</td>
 <td>X</td>
 <td>X</td>
 <td>&nbsp;</td>
 </tr>
-<tr><td>SimulationTree</td>
+<tr class="row-odd"><td>SimulationTree</td>
 <td>X</td>
 <td>X</td>
 <td>X</td>
 <td>&nbsp;</td>
 </tr>
-<tr><td>Prototype</td>
+<tr class="row-even"><td>Prototype</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>X</td>
@@ -251,12 +257,12 @@ agents.</p>
 lists of prototypes that they are allowed to deploy and then manage the
 steps necessary to invoke the following steps:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>clone the prototype to create a concrete facility instance,</li>
 <li>add the concrete instance to the simulation tree, and</li>
 <li>specialize the concrete instance by changing any appropriate parameters.</li>
 </ul>
-</blockquote>
+</div></blockquote>
 </div>
 </div>
 <div class="section" id="resources-and-materials">
@@ -265,14 +271,14 @@ steps necessary to invoke the following steps:</p>
 <div class="section" id="utility-classes">
 <h2>Utility Classes<a class="headerlink" href="#utility-classes" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>XMLQueryEngine</li>
 <li>DecayHandler</li>
 <li>BookKeeper</li>
 <li>CycException</li>
 <li>Logger</li>
 </ul>
-</blockquote>
+</div></blockquote>
 </div>
 </div>
 
@@ -299,9 +305,9 @@ steps necessary to invoke the following steps:</p>
       </ul>
     </div>
     <div class="footer">
-      &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
       Last updated on Aug 23, 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>
