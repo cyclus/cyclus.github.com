@@ -8,7 +8,7 @@ Documentation to assist with the use of *Cyclus* will be maintained on this
 website and in the automated documentation generated via the *Cyclus* source
 code.
 
-An instruction manual for :doc:`../basics/get_and_build` is provided.
+An instruction manual for :doc:`../devdoc/get_and_build` is provided.
 Questions having to do with this process may be directed to
 cyclus-dev@googlegroups.com .
 
