@@ -79,13 +79,16 @@ Contact Us
 Acknowledgments
 ----------------
 
-Support for this research has included funding received from 
-
- *  the DOE Office of Nuclear Energy's Nuclear Energy University Programs
-
+Support for this research has included funding received from:
+ .. container:: image_band
  .. image :: basics/neup_logo_large.jpg
-    :width: 200 px
+    :height: 100 px
+ .. image :: basics/AnlLogo.png
+    :height: 100 px
+ .. image :: basics/USNRC.gif
+    :height: 100 px
+ .. image :: basics/nsf_logo.jpg
+    :height: 100 px
+ .. image :: basics/crest.png
+    :height: 100 px
 
- * the US Nuclear Regulatory Commission's Faculty Development Program
- * the National Science Foundation's Graduate Fellowship Program
- * the U. Wisconsin-Madison's Graduate School
