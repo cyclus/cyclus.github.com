@@ -83,6 +83,12 @@ steps necessary to invoke the following steps:
 Resources and Materials
 -----------------------
 
+Resources are the objects offered and requested in transactions. 
+
+Materials are a type of Resource. For more details about the material 
+interface, please see the 
+:doc:`Materials and Isotopes <materials_and_isotopes>` page.
+
 Utility Classes
 ---------------
 
