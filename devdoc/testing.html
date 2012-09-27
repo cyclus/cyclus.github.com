@@ -77,7 +77,14 @@
 <li><a class="reference internal" href="#">Writing Tests for Modules</a><ul>
 <li><a class="reference internal" href="#introduction">Introduction</a></li>
 <li><a class="reference internal" href="#directory-structure">Directory Structure</a></li>
-<li><a class="reference internal" href="#testing-framework">Testing Framework</a></li>
+<li><a class="reference internal" href="#testing-framework">Testing Framework</a><ul>
+<li><a class="reference internal" href="#unit-tests">Unit Tests</a></li>
+<li><a class="reference internal" href="#acceptance-tests">Acceptance Tests</a></li>
+<li><a class="reference internal" href="#test-cases">Test Cases</a></li>
+<li><a class="reference internal" href="#tests-with-fixtures">Tests With Fixtures</a></li>
+<li><a class="reference internal" href="#assertions">Assertions</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#an-example">An Example</a><ul>
 <li><a class="reference internal" href="#module-h">Module.h</a></li>
 <li><a class="reference internal" href="#module-cpp">Module.cpp</a></li>
@@ -166,29 +173,104 @@ example of how to achieve such functionality.</p>
 </div>
 <div class="section" id="testing-framework">
 <h2>Testing Framework<a class="headerlink" href="#testing-framework" title="Permalink to this headline">¶</a></h2>
-<p><em>Cyclus</em> makes use of the <a class="reference external" href="http://code.google.com/p/googletest/">Google Test</a> framework. For each module
-in <em>Cyclus</em>, a series of test fixtures are run. A test fixture is
-defined by a macro, e.g.:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
-<span class="n">TEST_F</span><span class="p">(</span><span class="n">ModuleTest</span><span class="p">,</span><span class="n">TestSomeFunctionality</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// for example, let us assume a variable begins in a false state,</span>
-  <span class="c1">// a function is called, and we expect that variable to end in</span>
-  <span class="c1">// a true state</span>
-  <span class="n">EXPECT_FALSE</span><span class="p">(</span><span class="n">some_var_</span><span class="p">);</span>
-  <span class="n">callSomeFunction</span><span class="p">();</span>
-  <span class="n">EXPECT_TRUE</span><span class="p">(</span><span class="n">some_var_</span><span class="p">);</span>
+<p><em>Cyclus</em> makes use of the <a class="reference external" href="http://code.google.com/p/googletest/">Google Test</a> framework.
+It is a tool which will assist Cyclus developers in incorporating tests for their
+modules. The framework is integrated with <cite>CMake</cite> with the use of gtest.cc
+gtest_main.cc and gtest.h. The Google Test primer is recommended as an
+introduction to the fundamental concepts of unit testing with Google Test.</p>
+<div class="section" id="unit-tests">
+<h3>Unit Tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline">¶</a></h3>
+<p>Unit tests are written for each new unit of functionality to assure correct
+behavior.  A Cyclus unit test should:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Sufficiently verify the expected behavior of a unit of functionality</li>
+<li>Sufficiently verify expected behavior for boundary cases</li>
+<li>Be written simply</li>
+</ul>
+</div></blockquote>
+<p>A good tutorial on how to write good unit tests can be found at
+software-carpentry.org.</p>
+<p>Cyclus test coverage should mimic the hierarchical structure of the source code.
+Each class should have a corresponding Test Case that challenges the robustness
+of its interface.</p>
+<p>An interface consists of the functions, constructors, and data retrievers with
+which the rest of the code interacts with that class. Each of these functions,
+constructors, and data retrievers should be challenged by a Test within the
+Test Case for that class.</p>
+<p>Many of these tests will require the use of Fixtures, which will represent canonical
+Cyclus objects such as Materials, Commodities, Markets, Facilities and Messages.
+These Fixtures will be shared by many Tests and sometimes many Test Cases.</p>
+</div>
+<div class="section" id="acceptance-tests">
+<h3>Acceptance Tests<a class="headerlink" href="#acceptance-tests" title="Permalink to this headline">¶</a></h3>
+<p>If you are a developer, you may write a module that is intended to be a concrete
+implementation of a FacilityModel or other interface type.</p>
+<p>To ensure that your code satisfies the basic requirements of the interface which
+it is intended to be satisfy, the Cyclus core developers have created
+parameterized abstract interface tests that must be instantiated with your
+concrete model in order for it to be accepted into the cyclus module library.</p>
+<p>The interface for our ToasterFacility can be tested by including
+FacilityModelTests.h in the beginning of the file, ensuring that
+FacilityModelTests.cpp is linked to the CyclusUnitTestDriver executable, and
+declaring the implementation of the parameterized test by providing a reference
+to a constructor to a concrete ToasterFaclity.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacilityTests.cpp</span>
+<span class="cp">#include &lt;gtest/gtest.h&gt;</span>
+<span class="cp">#include &quot;FacilityModelTests.h&quot;</span>
+
+<span class="n">FacilityModel</span><span class="o">*</span> <span class="n">ToasterFacilityConstructor</span><span class="p">(){</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">ToasterFaclity</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">INSTANTIATE_TEST_CASE_P</span><span class="p">(</span><span class="n">ToasterFac</span><span class="p">,</span>
+                        <span class="n">FacilityModelTests</span><span class="p">,</span>
+                        <span class="n">Values</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ToasterFacilityConstructor</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">ToasterFacilityTest</span><span class="p">,</span> <span class="n">AddingHeat</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">double</span> <span class="n">original_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_NO_THROW</span><span class="p">(</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">addHeat</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> <span class="p">);</span>
+  <span class="kt">double</span> <span class="n">warm_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_GT</span><span class="p">(</span><span class="n">warm_temp</span><span class="p">,</span> <span class="n">original_temp</span><span class="p">;)</span>
+  <span class="n">EXPECT_NO_THROW</span><span class="p">(</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">addHeat</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="p">)</span> <span class="p">);</span>
+  <span class="kt">double</span> <span class="n">cool_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_LT</span><span class="p">(</span><span class="n">cool_temp</span><span class="p">,</span> <span class="n">warm_temp</span><span class="p">;)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In addition to test fixtures, one must define:</p>
-<blockquote>
-<div><ul class="simple">
-<li>a SetUp() function</li>
-<li>a TearDown() function</li>
-</ul>
-</div></blockquote>
-<p>When executed, the testing framework will run each test fixture
-independently. For each fixture, Google Test does the following:</p>
+</div>
+<div class="section" id="test-cases">
+<h3>Test Cases<a class="headerlink" href="#test-cases" title="Permalink to this headline">¶</a></h3>
+<p>Test Cases are logical groupings of Tests. For Cyclus, each class, such as the
+ToasterFacility should have its own Test Case defined within a file called
+ToasterFacilityTests.cpp or something similar.</p>
+<p>The ToasterFacilityTests.cpp file should be placed in the appropriate directory
+within the code as well. Specifically, it should be placed in the
+trunk/src/Facility/ToasterFacility/ folder with the other ToasterFacility files.</p>
+<p>The Test Case is a class declared in this file. The Cyclus convention is to give
+the class the same name as the file. For the ToasterFacility, this class will
+look like:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacilityTests.cpp</span>
+<span class="cp">#include &lt;gtest/gtest.h&gt;</span>
+<span class="cp">#include &quot;ToasterFacility.h&quot;</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="k">class</span> <span class="nc">ToasterFacilityTest</span> <span class="o">:</span> <span class="k">public</span> <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">Test</span> <span class="p">{</span>
+<span class="k">protected</span><span class="o">:</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">SetUp</span><span class="p">(){</span>
+  <span class="p">};</span>
+
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">TearDown</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>When executed, the testing framework will run each test case
+independently. For each test case, Google Test does the following:</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li>Run SetUp()</li>
@@ -199,6 +281,111 @@ independently. For each fixture, Google Test does the following:</p>
 <p>It is the responsibility of the developer to properly initialize any
 required members in SetUp() and free the appropriate memory in
 TearDown().</p>
+</div>
+<div class="section" id="tests-with-fixtures">
+<h3>Tests With Fixtures<a class="headerlink" href="#tests-with-fixtures" title="Permalink to this headline">¶</a></h3>
+<p>section tests Tests with Fixtures</p>
+<dl class="docutils">
+<dt>Tests are performed on single units of functionality within Cyclus. For Cyclus,</dt>
+<dd><p class="first">imagine that the ToasterFacility class has a function called addHeat(double
+to_set) which increases the <tt class="docutils literal"><span class="pre">current_bread_temp_</span></tt> data member value. Knowing
+very little about the function, we should check that if to_set is positive,
+the <tt class="docutils literal"><span class="pre">current_bread_temp_</span></tt> increases, and if to_set is negative, the
+<tt class="docutils literal"><span class="pre">current_bread_temp_</span></tt> decreases.</p>
+<p>A test within the ToasterFacilityTest Test Case will need to utilize a
+concrete instance of a ToasterFacility to check this.</p>
+<p class="last">To test the internals of the ToasterFacility class, such as private data
+members like <tt class="docutils literal"><span class="pre">current_bread_temp_</span></tt> a fixture needs to be created in the setup
+step. A very simple class is created in order to supply a public getter
+function for the <tt class="docutils literal"><span class="pre">current_bread_temp_</span></tt> variable.</p>
+</dd>
+</dl>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacilityTests.cpp</span>
+<span class="cp">#include &lt;gtest/gtest.h&gt;</span>
+<span class="cp">#include &quot;ToasterFacility.h&quot;</span>
+<span class="cp">#include &quot;TestInst.h&quot;</span>
+<span class="cp">#include &quot;CycException.h&quot;</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="k">class</span> <span class="nc">FakeToasterFacility</span> <span class="o">:</span> <span class="k">public</span> <span class="n">ToasterFacility</span> <span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">FakeToasterFacility</span><span class="p">()</span> <span class="o">:</span> <span class="n">ToasterFacility</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">FakeToasterFacility</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="kt">double</span> <span class="n">getBreadTemp</span><span class="p">(){</span><span class="k">return</span> <span class="n">current_bread_temp_</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="k">class</span> <span class="nc">ToasterFacilityTest</span> <span class="o">:</span> <span class="k">public</span> <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">Test</span> <span class="p">{</span>
+<span class="k">protected</span><span class="o">:</span>
+  <span class="n">FakeToasterFacility</span><span class="o">*</span> <span class="n">src_facility</span><span class="p">;</span>
+
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">SetUp</span><span class="p">(){</span>
+    <span class="n">src_facility</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FakeToasterFacility</span><span class="p">();</span>
+    <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">setParent</span><span class="p">(</span><span class="k">new</span> <span class="n">TestInst</span><span class="p">());</span>
+  <span class="p">};</span>
+
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">TearDown</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">delete</span> <span class="n">src_facility</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>For a tutorial on the
+use of Googletest for creating and using Fixtures, please see the Googletest
+primer section on
+<cite>fixtures &lt;http://code.google.com/p/googletest/wiki/Primer#Test_Fixtures:_Using_the_Same_Data_Configuration_for_Multiple_Te&gt;_</cite>.</p>
+<p>Now that the fixture setup and teardown are in place, it is possible to add a
+test (with access to the fixture to ToasterFacilityTests.cpp.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">ToasterFacilityTest</span><span class="p">,</span> <span class="n">AddingHeat</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">double</span> <span class="n">original_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_NO_THROW</span><span class="p">(</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">addHeat</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> <span class="p">);</span>
+  <span class="kt">double</span> <span class="n">warm_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_GT</span><span class="p">(</span><span class="n">warm_temp</span><span class="p">,</span> <span class="n">original_temp</span><span class="p">;)</span>
+  <span class="n">EXPECT_NO_THROW</span><span class="p">(</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">addHeat</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="p">)</span> <span class="p">);</span>
+  <span class="kt">double</span> <span class="n">cool_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_LT</span><span class="p">(</span><span class="n">cool_temp</span><span class="p">,</span> <span class="n">warm_temp</span><span class="p">;)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="assertions">
+<h3>Assertions<a class="headerlink" href="#assertions" title="Permalink to this headline">¶</a></h3>
+<p>As in the example above, Each test will be one or more assertions. Assertions
+test various truth expectations for the boundary cases that might be
+encountered by the function.</p>
+<p>With the Google Test framework, it is easy to make some assertions fatal and
+some nonfatal. That is, for nonfatal assertions, the test continues but for
+fatal assertions the test ceases to continue. In googletest, fatal assertions
+are called with the macros that begin with the word EXPECT (EXPECT_EQ(),
+EXPECT_LE(), EXPECT_GE()...). For things that absolutely must be the case for
+us to trust the results of following tests,</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">TEST_F</span><span class="p">(</span><span class="n">ToasterFacilityTests</span><span class="p">,</span> <span class="n">addZeroHeat</span><span class="p">){</span>
+  <span class="kt">double</span> <span class="n">original_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_NO_THROW</span><span class="p">(</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">addHeat</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span> <span class="p">);</span>
+  <span class="kt">double</span> <span class="n">new_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">new_temp</span><span class="p">,</span> <span class="n">original_temp</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Nonfatal assertions are macros that begin with ASSERT (ASSERT_EQ(), ASSERT_LE(), ...).</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">TEST_F</span><span class="p">(</span><span class="n">FooTest</span><span class="p">,</span> <span class="n">heatTransfer</span><span class="p">){</span>
+  <span class="kt">double</span> <span class="n">original_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">addHeat</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span>
+  <span class="kt">double</span> <span class="n">new_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">ASSERT_EQ</span><span class="p">((</span><span class="n">original_temp</span><span class="o">+</span><span class="mf">2.0</span><span class="p">),</span><span class="n">new_temp</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For more information on the googletest assertion syntax please see the Googletest
+primer section on
+<cite>assertions &lt;http://code.google.com/p/googletest/wiki/PrimerAssertions&gt;_</cite>.</p>
+</div>
 </div>
 <div class="section" id="an-example">
 <h2>An Example<a class="headerlink" href="#an-example" title="Permalink to this headline">¶</a></h2>
@@ -477,8 +664,8 @@ true in the previous example.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Aug 31, 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Last updated on Sep 27, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>
