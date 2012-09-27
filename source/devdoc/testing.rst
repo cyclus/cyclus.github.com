@@ -249,6 +249,7 @@ us to trust the results of following tests,
     double new_temp = src_facility->getBreadTemp(); 
     EXPECT_EQ(new_temp, original_temp);
   }
+
 Nonfatal assertions are macros that begin with ASSERT (ASSERT_EQ(), ASSERT_LE(), ...).
 
 .. code-block:: cpp
@@ -259,6 +260,7 @@ Nonfatal assertions are macros that begin with ASSERT (ASSERT_EQ(), ASSERT_LE(),
     double new_temp = src_facility->getBreadTemp(); 
     ASSERT_EQ((original_temp+2.0),new_temp);
   }
+
 For more information on the googletest assertion syntax please see the Googletest 
 primer section on 
 <a href=http://code.google.com/p/googletest/wiki/PrimerAssertions">assertions.
