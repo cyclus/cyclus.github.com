@@ -170,6 +170,7 @@ Tests are performed on single units of functionality within Cyclus. For Cyclus,
 
 
 .. code-block:: cpp
+
   // ToasterFacilityTests.cpp
   #include <gtest/gtest.h>
   #include "ToasterFacility.h"
