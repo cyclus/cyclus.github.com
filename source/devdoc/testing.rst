@@ -138,8 +138,8 @@ look like:
     }
   };
 
-When executed, the testing framework will run each test fixture 
-independently. For each fixture, Google Test does the following:
+When executed, the testing framework will run each test case 
+independently. For each test case, Google Test does the following:
 
   #. Run SetUp()
   #. Run ModuleTest Fixture
@@ -209,7 +209,7 @@ Tests are performed on single units of functionality within Cyclus. For Cyclus,
 For a tutorial on the 
 use of Googletest for creating and using Fixtures, please see the Googletest 
 primer section on 
-<a href="http://code.google.com/p/googletest/wiki/Primer#Test_Fixtures:_Using_the_Same_Data_Configuration_for_Multiple_Te">fixtures</a>.
+`fixtures <http://code.google.com/p/googletest/wiki/Primer#Test_Fixtures:_Using_the_Same_Data_Configuration_for_Multiple_Te>_`.
 
 Now that the fixture setup and teardown are in place, it is possible to add a
 test (with access to the fixture to ToasterFacilityTests.cpp.
@@ -263,7 +263,7 @@ Nonfatal assertions are macros that begin with ASSERT (ASSERT_EQ(), ASSERT_LE(),
 
 For more information on the googletest assertion syntax please see the Googletest 
 primer section on 
-<a href=http://code.google.com/p/googletest/wiki/PrimerAssertions">assertions.
+`assertions <http://code.google.com/p/googletest/wiki/PrimerAssertions>_`.
 
 
 
