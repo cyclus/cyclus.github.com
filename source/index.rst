@@ -60,7 +60,7 @@ http://github.com/cyclus/cyclus.
 Although you do not have to register with github to
 download and edit the code, if you desire your work to be integrated into the
 cyclus mainline of development *you must fork the cyclus core repository into
-your own github account and submit 'Pull Requests'*.
+your own github account and submit 'Pull Requests'*. 
 
 .. toctree::
    :maxdepth: 1
@@ -68,6 +68,10 @@ your own github account and submit 'Pull Requests'*.
    basics/main
    usrdoc/main
    devdoc/main
+
+Once you have learned about the cyclus basics, please follow these instructions 
+for :doc:`getting and building cyclus <devdoc/get_and_build>`.
+
 
 Contact Us
 ----------
