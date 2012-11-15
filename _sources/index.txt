@@ -76,9 +76,9 @@ for :doc:`getting and building cyclus <devdoc/get_and_build>`.
 Contact Us
 ----------
 
-* Project PI Paul Wilson: wilsonp@engr.wisc.edu
-* Developers' list: cyclus-dev@groups.google.com
 * Users' list: cyclus-users@groups.google.com
+* Developers' list: cyclus-dev@groups.google.com
+* Project PI Paul Wilson: wilsonp@engr.wisc.edu
 
 Acknowledgments
 ----------------
