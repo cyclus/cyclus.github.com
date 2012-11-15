@@ -214,3 +214,10 @@ As before, you should call make to actually build the library::
 
     ~/.../cyclus/library/debug/> make
 
+Contact Us
+----------
+
+If you have further comments or questions about the build process, please don't hesitate to email or join the *cyclus* users list, which will allow you to contact the community of users and developers of cyclus.
+
+* Email the Users' list: cyclus-users@groups.google.com
+* Join the Users' list: https://groups.google.com/forum/?fromgroups#!forum/cyclus-users 
