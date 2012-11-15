@@ -10,7 +10,7 @@ code.
 
 An instruction manual for :doc:`../devdoc/get_and_build` is provided.
 Questions having to do with this process may be directed to
-cyclus-dev@googlegroups.com .
+cyclus-users@googlegroups.com .
 
 .. toctree::
    :maxdepth: 2
