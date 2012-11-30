@@ -92,5 +92,6 @@ input specifications:
 
 .. toctree::
    :glob:
+   :maxdepth: 1
 
    */*
