@@ -1,6 +1,6 @@
 
-Creating and Running Simulations
-================================
+Running Simulations
+===================
 
 Cyclus Command Line Usage
 -------------------------
