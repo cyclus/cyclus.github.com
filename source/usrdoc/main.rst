@@ -17,8 +17,9 @@ Defining a Simulation
 
 .. toctree::
    :glob:
-   :maxdepth: 2
+   :maxdepth: 3
 
+   input_specs/*
    input_specs/region/*
    input_specs/inst/*
    input_specs/facility/*
