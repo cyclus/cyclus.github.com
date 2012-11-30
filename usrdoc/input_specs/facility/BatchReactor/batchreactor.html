@@ -1,0 +1,288 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>BatchReactor &mdash; Cyclus Home</title>
+    
+    <link rel="stylesheet" href="../../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../../../../index.html" />
+    <link rel="up" title="Facility Model Input" href="../facility.html" />
+    <link rel="next" title="EnrichmentFacility" href="../EnrichmentFacility/enrichmentfacility.html" />
+    <link rel="prev" title="Facility Model Input" href="../facility.html" />
+   
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <a href="http://cyclus.github.com">
+    <img src="../../../../_static/logo1.png"/>
+  </a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../EnrichmentFacility/enrichmentfacility.html" title="EnrichmentFacility"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../facility.html" title="Facility Model Input"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="../../../main.html" >Cyclus User Guide</a> &raquo;</li>
+          <li><a href="../facility.html" accesskey="U">Facility Model Input</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">BatchReactor</a><ul>
+<li><a class="reference internal" href="#input-parameters">Input Parameters</a><ul>
+<li><a class="reference internal" href="#definiton">Definiton</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../facility.html"
+                        title="previous chapter">Facility Model Input</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../EnrichmentFacility/enrichmentfacility.html"
+                        title="next chapter">EnrichmentFacility</a></p>
+  <h3>Useful Pages</h3>
+    <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
+    <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
+    <li><a href="https://github.com/cyclus">Source Code</a></li>
+    <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Acknowledgements</h3>
+    Support for this research has included funding received from:
+    <img src=/_images/neup_logo_large.jpg width=170px>
+    <img src=/_images/AnlLogo.png height=100px>
+    <img src=/_images/USNRC.gif height=100px>
+    <img src=/_images/nsf_logo.jpg height=100px>
+    <img src=/_images/crest.png height=100px>
+
+    
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="batchreactor">
+<h1>BatchReactor<a class="headerlink" href="#batchreactor" title="Permalink to this headline">¶</a></h1>
+<p>The BatchReactor module is a <cite>relatively</cite> simple model of a reactor.
+It acts in batch mode, i.e. it replaces a prescribed percentage of its
+core at a prescribed frequency. The input and output material recipes
+(isotopics) are predefined. The input and output material quantities
+are also predefined.</p>
+<div class="section" id="input-parameters">
+<h2>Input Parameters<a class="headerlink" href="#input-parameters" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>fuel_input - information about the fuel consumed by this reactor<ul>
+<li>incommodity - the input commodity name</li>
+<li>inrecipe - the input recipe (isotopics</li>
+</ul>
+</li>
+<li>fuel_output - information about the used fuel output by this
+reactor<ul>
+<li>outcommodity - the output commodity name</li>
+<li>outrecipe - the output recipe (isotopics)</li>
+</ul>
+</li>
+<li>cyclelength - the number of time steps the reactor is operational
+before refueling</li>
+<li>refueldelay - the number of time steps the reactor must be offline
+in order to be refuel</li>
+<li>incoreloading - the quantity of core material when entering the
+reactor</li>
+<li>outcoreloading - the quantity of core material when exiting the
+reactor</li>
+<li>batchespercore - the number of batches comprising a full core</li>
+<li>commodity_production - information about the power produced by the
+reactor<ul>
+<li>commodity - the name of the produced commodity, e.g. power</li>
+<li>capacity - the nameplate capacity for the power produced</li>
+<li>cost - the cost to produce this capacity (by default, this
+should be equal to the capacity)</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<div class="section" id="definiton">
+<h3>Definiton<a class="headerlink" href="#definiton" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;BatchReactor&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;BatchReactor&quot;</span><span class="nt">&gt;</span>
+
+     <span class="c">&lt;!-- Material In/Out  --&gt;</span>
+     <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;fuel_input&quot;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;incommodity&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;inrecipe&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;/element&gt;</span>
+     <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;fuel_output&quot;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;outcommodity&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;outrecipe&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;/element&gt;</span>
+
+      <span class="c">&lt;!-- Facility Parameters --&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;cyclelength&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;nonNegativeInteger&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;element</span> <span class="na">name =</span><span class="s">&quot;refueldelay&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;nonNegativeInteger&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name =</span><span class="s">&quot;incoreloading&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;element</span> <span class="na">name =</span><span class="s">&quot;outcoreloading&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;batchespercore&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;nonNegativeInteger&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+
+     <span class="c">&lt;!-- Power Production  --&gt;</span>
+     <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;commodity_production&quot;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;commodity&quot;</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;/element&gt;</span>
+       <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;capacity&quot;</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;/element&gt;</span>
+       <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;cost&quot;</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;/element&gt;</span>
+     <span class="nt">&lt;/element&gt;</span>
+
+   <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>Reactor<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;model&gt;</span>
+    <span class="nt">&lt;BatchReactor&gt;</span>
+      <span class="nt">&lt;fuel_input&gt;</span>                                <span class="c">&lt;!-- this reactor takes as input enriched uranium --&gt;</span>
+       <span class="nt">&lt;incommodity&gt;</span>enriched_u<span class="nt">&lt;/incommodity&gt;</span>
+       <span class="nt">&lt;inrecipe&gt;</span>fuel_recipe<span class="nt">&lt;/inrecipe&gt;</span>
+      <span class="nt">&lt;/fuel_input&gt;</span>
+      <span class="nt">&lt;fuel_output&gt;</span>
+       <span class="nt">&lt;outcommodity&gt;</span>used_fuel<span class="nt">&lt;/outcommodity&gt;</span>     <span class="c">&lt;!-- this reactor outputs used fuel --&gt;</span>
+       <span class="nt">&lt;outrecipe&gt;</span>used_fuel_recipe<span class="nt">&lt;/outrecipe&gt;</span>
+      <span class="nt">&lt;/fuel_output&gt;</span>
+      <span class="nt">&lt;cyclelength&gt;</span>10<span class="nt">&lt;/cyclelength&gt;</span>               <span class="c">&lt;!-- this reactor operates on a year-long cycle, in operation for 10 months --&gt;</span>
+      <span class="nt">&lt;coreloading&gt;</span>2<span class="nt">&lt;/coreloading&gt;</span>                <span class="c">&lt;!-- and refueling for 2 --&gt;</span>
+      <span class="nt">&lt;batchespercore&gt;</span>4<span class="nt">&lt;/batchespercore&gt;</span>          <span class="c">&lt;!-- this reactor has a 4-batch core --&gt;</span>
+      <span class="nt">&lt;commodity_production&gt;</span>
+        <span class="nt">&lt;commodity&gt;</span>power<span class="nt">&lt;/commodity&gt;</span>              <span class="c">&lt;!-- this reactor produces power --&gt;</span>
+        <span class="nt">&lt;capacity&gt;</span>1000<span class="nt">&lt;/capacity&gt;</span>                 <span class="c">&lt;!-- at 1000 MWe --&gt;</span>
+        <span class="nt">&lt;cost&gt;</span>1000<span class="nt">&lt;/cost&gt;</span>                         <span class="c">&lt;!-- by default the cost is 1000 --&gt;</span>
+      <span class="nt">&lt;/commodity_production&gt;</span>
+    <span class="nt">&lt;/BatchReactor&gt;</span>
+  <span class="nt">&lt;/model&gt;</span>
+  <span class="nt">&lt;incommodity&gt;</span>enriched_u<span class="nt">&lt;/incommodity&gt;</span>
+  <span class="nt">&lt;outcommodity&gt;</span>waste<span class="nt">&lt;/outcommodity&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../EnrichmentFacility/enrichmentfacility.html" title="EnrichmentFacility"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../facility.html" title="Facility Model Input"
+             >previous</a> |</li>
+        <li><a href="../../../../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="../../../main.html" >Cyclus User Guide</a> &raquo;</li>
+          <li><a href="../facility.html" >Facility Model Input</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Nov 30, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

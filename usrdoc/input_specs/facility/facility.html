@@ -1,0 +1,248 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Facility Model Input &mdash; Cyclus Home</title>
+    
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../../../index.html" />
+    <link rel="up" title="Cyclus User Guide" href="../../main.html" />
+    <link rel="next" title="BatchReactor" href="BatchReactor/batchreactor.html" />
+    <link rel="prev" title="ManagerInst" href="../inst/ManagerInst/managerinst.html" />
+   
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <a href="http://cyclus.github.com">
+    <img src="../../../_static/logo1.png"/>
+  </a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="BatchReactor/batchreactor.html" title="BatchReactor"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../inst/ManagerInst/managerinst.html" title="ManagerInst"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="../../main.html" accesskey="U">Cyclus User Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Facility Model Input</a><ul>
+<li><a class="reference internal" href="#core-level-input">Core-level Input</a><ul>
+<li><a class="reference internal" href="#definiton">Definiton</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#supported-facility-modules">Supported Facility Modules</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../inst/ManagerInst/managerinst.html"
+                        title="previous chapter">ManagerInst</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="BatchReactor/batchreactor.html"
+                        title="next chapter">BatchReactor</a></p>
+  <h3>Useful Pages</h3>
+    <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
+    <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
+    <li><a href="https://github.com/cyclus">Source Code</a></li>
+    <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Acknowledgements</h3>
+    Support for this research has included funding received from:
+    <img src=/_images/neup_logo_large.jpg width=170px>
+    <img src=/_images/AnlLogo.png height=100px>
+    <img src=/_images/USNRC.gif height=100px>
+    <img src=/_images/nsf_logo.jpg height=100px>
+    <img src=/_images/crest.png height=100px>
+
+    
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="facility-model-input">
+<h1>Facility Model Input<a class="headerlink" href="#facility-model-input" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="core-level-input">
+<h2>Core-level Input<a class="headerlink" href="#core-level-input" title="Permalink to this headline">¶</a></h2>
+<p>Input parameters that all facilitys must specify are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>name - the facility&#8217;s name</li>
+<li><cite>optional</cite> lifetime - the total time a facility operates (units
+are in months)<ul>
+<li>Note: if no lifetime is supplied, the facility will persist
+throughout the entire simulation</li>
+</ul>
+</li>
+<li>model - the model to use for this facility</li>
+<li><cite>optional</cite> incommodities - any commodities that are inputs for
+the facility</li>
+<li><cite>optional</cite> outcommodities - any commodities that are outputs for
+the facility</li>
+</ul>
+</div></blockquote>
+<div class="section" id="definiton">
+<h3>Definiton<a class="headerlink" href="#definiton" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- begin section for facilities --&gt;</span>
+<span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;facility&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;facility&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;text/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+
+    <span class="nt">&lt;optional&gt;</span>
+      <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;lifetime&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/optional&gt;</span>
+
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;model&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;text/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+
+    <span class="nt">&lt;zeroOrMore&gt;</span>
+      <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;incommodity&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/zeroOrMore&gt;</span>
+
+    <span class="nt">&lt;zeroOrMore&gt;</span>
+      <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;outcommodity&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/zeroOrMore&gt;</span>
+
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>Source<span class="nt">&lt;/name&gt;</span>                              <span class="c">&lt;!-- a name --&gt;</span>
+  <span class="nt">&lt;lifetime&gt;</span>120<span class="nt">&lt;/lifetime&gt;</span>                         <span class="c">&lt;!-- this facility will operate for 10 years --&gt;</span>
+  <span class="nt">&lt;model&gt;</span>
+    <span class="nt">&lt;SourceFacility&gt;</span>                               <span class="c">&lt;!-- read about the SourceFacility below --&gt;</span>
+      <span class="nt">&lt;output&gt;</span>
+        <span class="nt">&lt;outcommodity&gt;</span>fuel<span class="nt">&lt;/outcommodity&gt;</span>
+        <span class="nt">&lt;output_capacity&gt;</span>1<span class="nt">&lt;/output_capacity&gt;</span>
+        <span class="nt">&lt;recipe&gt;</span>commod_recipe<span class="nt">&lt;/recipe&gt;</span>
+      <span class="nt">&lt;/output&gt;</span>
+    <span class="nt">&lt;/SourceFacility&gt;</span>
+  <span class="nt">&lt;/model&gt;</span>
+  <span class="nt">&lt;outcommodity&gt;</span>fuel<span class="nt">&lt;/outcommodity&gt;</span>                <span class="c">&lt;!-- this facility outputs a commodity named fuel --&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="supported-facility-modules">
+<h2>Supported Facility Modules<a class="headerlink" href="#supported-facility-modules" title="Permalink to this headline">¶</a></h2>
+<p>The following is a list of currently-available Cycamore module
+input specifications:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="BatchReactor/batchreactor.html">BatchReactor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EnrichmentFacility/enrichmentfacility.html">EnrichmentFacility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SinkFacility/sinkfacility.html">SinkFacility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SourceFacility/sourcefacility.html">SourceFacility</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="BatchReactor/batchreactor.html" title="BatchReactor"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../inst/ManagerInst/managerinst.html" title="ManagerInst"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="../../main.html" >Cyclus User Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Nov 30, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
