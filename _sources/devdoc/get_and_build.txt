@@ -4,6 +4,28 @@
 Getting and Building Cyclus
 ===========================
 
+Getting Cyclus as a First-Time User
+-----------------------------------
+
+The dev team recognizes that first-time users, especially those not
+familiar with building C++ libraries, will find the following process
+to be difficult. For those looking to try out Cyclus without the 
+building headaches, please download our VirtualBox 
+`image <http://cnergdata.engr.wisc.edu/cyclus/virtual-box/current/cyclus_user_environment.ova>`_.
+
+A log of changes to the VM can be found 
+`here <http://cnergdata.engr.wisc.edu/cyclus/virtual-box/change_log.rst>`_. 
+
+This is a `.ova <http://en.wikipedia.org/wiki/Open_Virtualization_Format>`_ 
+file, so it can be used with any virtual image software that supports
+such formats. Take caution, the user provided on the image has root 
+access.
+
+User information:
+
+* username: cyclus-user
+* password: cyclus (note the previous password was **cyclus-user**, see change log for details)
+
 The Cyclus Library Suite
 ------------------------
 *Cyclus* is composed of a number of libraries:
