@@ -22,6 +22,7 @@ such formats. Take caution, the user provided on the image has root
 access.
 
 User information:
+
 * username: cyclus-user
 * password: cyclus (note the previous password was **cyclus-user**, see change log for details)
 
