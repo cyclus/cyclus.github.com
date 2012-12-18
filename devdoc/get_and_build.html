@@ -76,21 +76,16 @@
   <ul>
 <li><a class="reference internal" href="#">Getting and Building Cyclus</a><ul>
 <li><a class="reference internal" href="#getting-cyclus-as-a-first-time-user">Getting Cyclus as a First-Time User</a></li>
-<li><a class="reference internal" href="#the-cyclus-library-suite">The Cyclus Library Suite</a></li>
-<li><a class="reference internal" href="#dependencies">Dependencies</a><ul>
-<li><a class="reference internal" href="#id1">Cyclopts</a></li>
-<li><a class="reference internal" href="#core">Core</a></li>
-<li><a class="reference internal" href="#id2">Cycamore</a></li>
+<li><a class="reference internal" href="#the-cyclus-library-suite">The Cyclus Library Suite</a><ul>
 <li><a class="reference internal" href="#additional-information">Additional Information</a><ul>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#building-each-library">Building Each Library</a><ul>
-<li><a class="reference internal" href="#acquiring-source-code">Acquiring Source Code</a></li>
+<li><a class="reference internal" href="#acquiring-source-code">Acquiring Source Code</a><ul>
+<li><a class="reference internal" href="#using-git">Using Git</a></li>
+<li><a class="reference internal" href="#getting-the-code">Getting the Code</a></li>
 <li><a class="reference internal" href="#help-with-git-and-github">Help with Git and GitHub</a></li>
-<li><a class="reference internal" href="#building-and-installing-the-libraries">Building and Installing the Libraries</a></li>
-<li><a class="reference internal" href="#debugging-build">Debugging Build</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#contact-us">Contact Us</a></li>
@@ -167,145 +162,14 @@ access.</p>
 <p><em>Cyclus</em> is composed of a number of libraries:</p>
 <blockquote>
 <div><ul class="simple">
+<li><a class="reference external" href="https://github.com/cyclus/cyclopts">cyclopts</a> (optimization)</li>
 <li><a class="reference external" href="https://github.com/cyclus/cyclus">cyclus core</a> (basic functionality)</li>
 <li><a class="reference external" href="https://github.com/cyclus/cycamore">cycamore</a> (a module repository)</li>
-<li><a class="reference external" href="https://github.com/cyclus/cyclopts">cyclopts</a> (optimization)</li>
 </ul>
 </div></blockquote>
-<p>This guide will describe how to install each library.</p>
-</div>
-<div class="section" id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
-<p>Each of the above libraries has external dependencies, and some have
-dependencies on others. The external libraries described below must
-be installed in order to continue with the building and installing
-process.</p>
-<div class="section" id="id1">
-<h3>Cyclopts<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>Cyclopts is the optimization library of <em>Cyclus</em>. It has the following
-dependencies:</p>
-<blockquote>
-<div><table border="1" class="docutils">
-<colgroup>
-<col width="32%" />
-<col width="32%" />
-<col width="36%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Package</th>
-<th class="head">Full Name</th>
-<th class="head">Minimum Version</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><cite>CMake</cite></td>
-<td>cmake</td>
-<td>2.8</td>
-</tr>
-<tr class="row-odd"><td><cite>boost</cite></td>
-<td>libboost-all-dev</td>
-<td>1.34.1</td>
-</tr>
-<tr class="row-even"><td><cite>coin-Cbc</cite></td>
-<td>coin-Cbc</td>
-<td>2.7</td>
-</tr>
-</tbody>
-</table>
-</div></blockquote>
-<p>The <a class="reference external" href="https://projects.coin-or.org/Cbc">coin</a> dependecy is the most
-complicated of those above; full install instructions for coin-Cbc
-are provided in the <a class="reference external" href="https://github.com/cyclus/cyclopts">cyclopts readme</a>.</p>
-</div>
-<div class="section" id="core">
-<h3>Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h3>
-<p>The <em>Cyclus</em> Core provides the basic agent-based modeling
-functionality of the <em>Cyclus</em> simulation engine. It has the
-following dependencies:</p>
-<blockquote>
-<div><table border="1" class="docutils">
-<colgroup>
-<col width="32%" />
-<col width="32%" />
-<col width="36%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Package</th>
-<th class="head">Full Name</th>
-<th class="head">Minimum Version</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><cite>CMake</cite></td>
-<td>cmake</td>
-<td>2.8</td>
-</tr>
-<tr class="row-odd"><td><cite>boost</cite></td>
-<td>libboost-all-dev</td>
-<td>1.34.1</td>
-</tr>
-<tr class="row-even"><td><cite>xml2</cite></td>
-<td>libxml2-dev</td>
-<td>2</td>
-</tr>
-<tr class="row-odd"><td><cite>sqlite3</cite></td>
-<td>libsqlite3-dev</td>
-<td>3.7.10</td>
-</tr>
-<tr class="row-even"><td><cite>coin-Cbc</cite></td>
-<td>coin-Cbc</td>
-<td>2.7</td>
-</tr>
-<tr class="row-odd"><td><cite>cyclopts</cite></td>
-<td>cyclopts</td>
-<td>present</td>
-</tr>
-</tbody>
-</table>
-</div></blockquote>
-</div>
-<div class="section" id="id2">
-<h3>Cycamore<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>Cycamore is a repository of all available modules which can be used
-with the <em>Cyclus</em> Core. It has the following dependencies:</p>
-<blockquote>
-<div><table border="1" class="docutils">
-<colgroup>
-<col width="32%" />
-<col width="32%" />
-<col width="36%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Package</th>
-<th class="head">Full Name</th>
-<th class="head">Minimum Version</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><cite>CMake</cite></td>
-<td>cmake</td>
-<td>2.8</td>
-</tr>
-<tr class="row-odd"><td><cite>boost</cite></td>
-<td>libboost-all-dev</td>
-<td>1.34.1</td>
-</tr>
-<tr class="row-even"><td><cite>xml2</cite></td>
-<td>libxml2-dev</td>
-<td>2</td>
-</tr>
-<tr class="row-odd"><td><cite>sqlite3</cite></td>
-<td>libsqlite3-dev</td>
-<td>3.7.10</td>
-</tr>
-<tr class="row-even"><td><cite>core</cite></td>
-<td>cyclus-core</td>
-<td>present</td>
-</tr>
-</tbody>
-</table>
-</div></blockquote>
-</div>
+<p>The readme at each repository describes how to install each library.
+They must be installed in the above order due to dependencies on one
+another.</p>
 <div class="section" id="additional-information">
 <h3>Additional Information<a class="headerlink" href="#additional-information" title="Permalink to this headline">¶</a></h3>
 <p>Please note that the <strong>dev</strong> version of each of the above
@@ -321,8 +185,10 @@ can be found on the following pages:</p>
 </div>
 </div>
 </div>
-<div class="section" id="building-each-library">
-<h2>Building Each Library<a class="headerlink" href="#building-each-library" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="acquiring-source-code">
+<h2>Acquiring Source Code<a class="headerlink" href="#acquiring-source-code" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="using-git">
+<h3>Using Git<a class="headerlink" href="#using-git" title="Permalink to this headline">¶</a></h3>
 <p>The build process for each library is the same. The first step is to
 download the source code for each library.</p>
 <p>Most systems will come with git fully installed; however, some developers may
@@ -334,8 +200,9 @@ require the following git libraries if they are not already installed:</p>
 <li>git-doc</li>
 </ul>
 </div></blockquote>
-<div class="section" id="acquiring-source-code">
-<h3>Acquiring Source Code<a class="headerlink" href="#acquiring-source-code" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="getting-the-code">
+<h3>Getting the Code<a class="headerlink" href="#getting-the-code" title="Permalink to this headline">¶</a></h3>
 <p>The source code of each library can be found at the <a class="reference external" href="https://github.com/cyclus">*Cyclus*
 repository</a>, hosted on <em>Github</em>. Anyone may
 check out the code. Although you do not have to register with <em>Github</em> to
@@ -377,86 +244,6 @@ submit a github <em>Pull Request</em>.  Visit <a class="reference external" href
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="building-and-installing-the-libraries">
-<h3>Building and Installing the Libraries<a class="headerlink" href="#building-and-installing-the-libraries" title="Permalink to this headline">¶</a></h3>
-<p>The <em>Cyclus</em> build system uses <a class="reference external" href="http://www.cmake.orgCmake">Cmake</a>
-to ensure future compatibility with multiple platforms.</p>
-<p>In the following example, it is assumed that you have downloaded the
-source code into the following directory structure:</p>
-<blockquote>
-<div><ul class="simple">
-<li>~/.../cyclus/cyclus/src</li>
-<li>~/.../cyclus/cycamore/src</li>
-<li>~/.../cyclus/cyclopts/src</li>
-</ul>
-</div></blockquote>
-<p>As a first step, make an install directory in the cyclus directory:</p>
-<div class="highlight-python"><pre>~/.../cyclus/&gt; mkdir install</pre>
-</div>
-<p>Due to dependencies upon one another, the libraries must be installed
-in the following order:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li>cyclopts</li>
-<li>cyclus</li>
-<li>cycamore</li>
-</ol>
-</div></blockquote>
-<p>Because the actual building process is the same for each library, a
-generic approach is given. Where one sees the word <em>library</em> in the
-following explanation, please substitute <em>cyclus</em>, <em>cyclopts</em>, or
-<em>cycamore</em> when appropriate.</p>
-<blockquote>
-<div><ol class="arabic">
-<li><p class="first">make a build directory and enter it:</p>
-<div class="highlight-python"><pre>~/.../cyclus/library/&gt; mkdir build &amp;&amp; cd build</pre>
-</div>
-</li>
-<li><p class="first">run cmake with the appropriate command line arguments:</p>
-<div class="highlight-python"><pre>~/.../cyclus/library/&gt; cmake ../src -DCMAKE_INSTALL_PREFIX=../install</pre>
-</div>
-</li>
-<li><p class="first">run make, make test, and make install:</p>
-<div class="highlight-python"><pre>~/.../cyclus/library/&gt; make
-~/.../cyclus/library/&gt; make test
-~/.../cyclus/library/&gt; make install</pre>
-</div>
-</li>
-</ol>
-</div></blockquote>
-<dl class="docutils">
-<dt><strong>Note</strong>:</dt>
-<dd><ul class="first last simple">
-<li>If you would prefer to install in a default location, simply leave off the install prefix argument</li>
-<li>Note that your system may have trouble finding coin, cyclopts,and the cyclus core. If this is the case, you have two options:<ol class="arabic">
-<li>add the nonstandard install location to your PATH environment variable</li>
-<li>run cmake with an extra command line argument, providing the location of the respective install directores, e.g.:<ul>
-<li>-DCMAKE_CYCLUS_ROOT_DIR=$cyclus_core_install_dir</li>
-<li>-DCMAKE_CYCLOPTS_ROOT_DIR=$cyclopts_install_dir</li>
-<li>-DCMAKE_COIN_ROOT_DIR=$coin_install_dir</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="debugging-build">
-<h3>Debugging Build<a class="headerlink" href="#debugging-build" title="Permalink to this headline">¶</a></h3>
-<p>If you are a developer, you may be interested in building the Cyclus
-libraries in such a was as to facilitate debugging. It is recommended
-that you create second build directory in which optimizations are
-disabled and debug symbols are added. To do this, execute the
-following steps:</p>
-<div class="highlight-python"><pre>~/.../cyclus/library/&gt; mkdir debug
-~/.../cyclus/library/&gt; cd debug
-~/.../cyclus/library/debug/&gt; cmake -DCMAKE_BUILD_TYPE:STRING=Debug ../src</pre>
-</div>
-<p>As before, you should call make to actually build the library:</p>
-<div class="highlight-python"><pre>~/.../cyclus/library/debug/&gt; make</pre>
-</div>
-</div>
 </div>
 <div class="section" id="contact-us">
 <h2>Contact Us<a class="headerlink" href="#contact-us" title="Permalink to this headline">¶</a></h2>
@@ -492,7 +279,7 @@ following steps:</p>
     </div>
     <div class="footer">
         &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Dec 14, 2012.
+      Last updated on Dec 18, 2012.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
