@@ -1,0 +1,659 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tour Snippets &mdash; Cyclus Home</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../index.html" />
+    <link rel="up" title="Tour of the Source Code" href="code_tour.html" />
+    <link rel="next" title="Dynamic Loading Overview" href="dynamic_loading.html" />
+    <link rel="prev" title="Tour of the Source Code" href="code_tour.html" />
+   
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <a href="http://cyclus.github.com">
+    <img src="../_static/logo1.png"/>
+  </a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dynamic_loading.html" title="Dynamic Loading Overview"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="code_tour.html" title="Tour of the Source Code"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" >Cyclus Developer Guide</a> &raquo;</li>
+          <li><a href="code_tour.html" accesskey="U">Tour of the Source Code</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tour Snippets</a><ul>
+<li><a class="reference internal" href="#snip-1a">Snip 1a</a></li>
+<li><a class="reference internal" href="#snip-1b">Snip 1b</a></li>
+<li><a class="reference internal" href="#snip-1c">Snip 1c</a></li>
+<li><a class="reference internal" href="#snip-1d">Snip 1d</a></li>
+<li><a class="reference internal" href="#snip-6e">Snip 6e</a></li>
+<li><a class="reference internal" href="#snip-2a">Snip 2a</a></li>
+<li><a class="reference internal" href="#snip-3b">Snip 3b</a></li>
+<li><a class="reference internal" href="#snip-3a">Snip 3a</a></li>
+<li><a class="reference internal" href="#snip-3c">Snip 3c</a></li>
+<li><a class="reference internal" href="#snip-4a">Snip 4a</a></li>
+<li><a class="reference internal" href="#snip-4b">Snip 4b</a></li>
+<li><a class="reference internal" href="#snip-2d">Snip 2d</a></li>
+<li><a class="reference internal" href="#snip-2e">Snip 2e</a></li>
+<li><a class="reference internal" href="#snip-5c">Snip 5c</a></li>
+<li><a class="reference internal" href="#snip-6b">Snip 6b</a></li>
+<li><a class="reference internal" href="#snip-5d">Snip 5d</a></li>
+<li><a class="reference internal" href="#snip-6h">Snip 6h</a></li>
+<li><a class="reference internal" href="#snip-2b">Snip 2b</a></li>
+<li><a class="reference internal" href="#snip-2c">Snip 2c</a></li>
+<li><a class="reference internal" href="#snip-6c">Snip 6c</a></li>
+<li><a class="reference internal" href="#snip-6g">Snip 6g</a></li>
+<li><a class="reference internal" href="#snip-5a">Snip 5a</a></li>
+<li><a class="reference internal" href="#snip-6a">Snip 6a</a></li>
+<li><a class="reference internal" href="#snip-6k">Snip 6k</a></li>
+<li><a class="reference internal" href="#snip-5b">Snip 5b</a></li>
+<li><a class="reference internal" href="#snip-6d">Snip 6d</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="code_tour.html"
+                        title="previous chapter">Tour of the Source Code</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dynamic_loading.html"
+                        title="next chapter">Dynamic Loading Overview</a></p>
+  <h3>Useful Pages</h3>
+    <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
+    <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
+    <li><a href="https://github.com/cyclus">Source Code</a></li>
+    <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Acknowledgements</h3>
+    Support for this research has included funding received from:
+    <img src=/_images/neup_logo_large.jpg width=170px>
+    <img src=/_images/AnlLogo.png height=100px>
+    <img src=/_images/USNRC.gif height=100px>
+    <img src=/_images/nsf_logo.jpg height=100px>
+    <img src=/_images/crest.png height=100px>
+
+    
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tour-snippets">
+<h1>Tour Snippets<a class="headerlink" href="#tour-snippets" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="snip-1a">
+<span id="tutr1a"></span><h2>Snip 1a<a class="headerlink" href="#snip-1a" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//-----------------------------------------------------------------------</span>
+<span class="c1">// Main entry point for the test application...</span>
+<span class="c1">//-----------------------------------------------------------------------</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_ERROR</span><span class="p">,</span> <span class="s">&quot;tutr1a&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Cyclus has started.&quot;</span><span class="p">;</span>
+
+  <span class="c1">// parse command line options</span>
+  <span class="n">po</span><span class="o">::</span><span class="n">options_description</span> <span class="n">desc</span><span class="p">(</span><span class="s">&quot;Allowed options&quot;</span><span class="p">);</span>
+  <span class="n">desc</span><span class="p">.</span><span class="n">add_options</span><span class="p">()</span>
+    <span class="p">(</span><span class="s">&quot;help,h&quot;</span><span class="p">,</span> <span class="s">&quot;produce help message&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="s">&quot;no-model&quot;</span><span class="p">,</span> <span class="s">&quot;only print log entries from cyclus core code&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="s">&quot;no-mem&quot;</span><span class="p">,</span> <span class="s">&quot;exclude memory log statement from logger output&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="s">&quot;verbosity,v&quot;</span><span class="p">,</span> <span class="n">po</span><span class="o">::</span><span class="n">value</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(),</span> <span class="s">&quot;set output log verbosity level&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="s">&quot;input-file&quot;</span><span class="p">,</span> <span class="n">po</span><span class="o">::</span><span class="n">value</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(),</span> <span class="s">&quot;input file&quot;</span><span class="p">)</span>
+    <span class="p">;</span>
+
+  <span class="n">po</span><span class="o">::</span><span class="n">variables_map</span> <span class="n">vm</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-1b">
+<span id="tutr1b"></span><h2>Snip 1b<a class="headerlink" href="#snip-1b" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// read input file and setup simulation</span>
+<span class="k">try</span> <span class="p">{</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO1</span><span class="p">,</span> <span class="s">&quot;tutr1b&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Reading the input file.&quot;</span><span class="p">;</span>
+  <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">load_file</span><span class="p">(</span><span class="n">vm</span><span class="p">[</span><span class="s">&quot;input-file&quot;</span><span class="p">].</span><span class="n">as</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">());</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-1c">
+<span id="tutr1c"></span><h2>Snip 1c<a class="headerlink" href="#snip-1c" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// Run the simulation</span>
+<span class="k">try</span> <span class="p">{</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO1</span><span class="p">,</span> <span class="s">&quot;tutr1c&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Starting up the simulation.&quot;</span><span class="p">;</span>
+  <span class="n">TI</span><span class="o">-&gt;</span><span class="n">runSim</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-1d">
+<span id="tutr1d"></span><h2>Snip 1d<a class="headerlink" href="#snip-1d" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre>  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO1</span><span class="p">,</span> <span class="s">&quot;tutr1d&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Cyclus is exiting.&quot;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-6e">
+<span id="tutr6e"></span><h2>Snip 6e<a class="headerlink" href="#snip-6e" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">Message</span><span class="o">::</span><span class="n">approveTransfer</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG1</span><span class="p">,</span> <span class="s">&quot;tutr6e&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Beginning a material transfer...&quot;</span><span class="p">;</span>
+
+  <span class="n">msg_ptr</span> <span class="n">me</span> <span class="o">=</span> <span class="n">msg_ptr</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">rsrc_ptr</span><span class="o">&gt;</span> <span class="n">manifest</span><span class="p">;</span>
+  <span class="n">Model</span><span class="o">*</span> <span class="n">req</span> <span class="o">=</span> <span class="n">requester</span><span class="p">();</span>
+  <span class="n">Model</span><span class="o">*</span> <span class="n">sup</span> <span class="o">=</span> <span class="n">supplier</span><span class="p">();</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">manifest</span> <span class="o">=</span> <span class="n">sup</span><span class="o">-&gt;</span><span class="n">removeResource</span><span class="p">(</span><span class="n">me</span><span class="p">);</span>
+    <span class="n">req</span><span class="o">-&gt;</span><span class="n">addResource</span><span class="p">(</span><span class="n">me</span><span class="p">,</span> <span class="n">manifest</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">CycException</span> <span class="n">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">CLOG</span><span class="p">(</span><span class="n">LEV_ERROR</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Material transfer failed from &quot;</span>
+                    <span class="o">&lt;&lt;</span> <span class="n">sup</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; to &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">req</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">err</span><span class="p">.</span><span class="n">what</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">nextTransID_</span><span class="o">++</span><span class="p">;</span>
+
+  <span class="c1">// register that this transaction occured</span>
+  <span class="k">this</span><span class="o">-&gt;</span><span class="n">Message</span><span class="o">::</span><span class="n">addTransToTable</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">nResources</span> <span class="o">=</span> <span class="n">manifest</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="n">nResources</span><span class="p">;</span> <span class="n">pos</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">Message</span><span class="o">::</span><span class="n">addResourceToTable</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">manifest</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">pos</span><span class="p">));</span>
+  <span class="p">}</span>
+
+  <span class="n">CLOG</span><span class="p">(</span><span class="n">LEV_INFO3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Material sent from &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">sup</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; to &quot;</span>
+                  <span class="o">&lt;&lt;</span> <span class="n">req</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;.&quot;</span><span class="p">;</span>
+
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG1</span><span class="p">,</span> <span class="s">&quot;tutr6e&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;... Finished transfer from id=&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">sup</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; to id=&quot;</span>
+                  <span class="o">&lt;&lt;</span> <span class="n">req</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;.&quot;</span><span class="p">;</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-2a">
+<span id="tutr2a"></span><h2>Snip 2a<a class="headerlink" href="#snip-2a" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">Timer</span><span class="o">::</span><span class="n">runSim</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">CLOG</span><span class="p">(</span><span class="n">LEV_INFO1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Simulation set to run from start=&quot;</span>
+                  <span class="o">&lt;&lt;</span> <span class="n">startDate_</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; to end=&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endDate_</span><span class="p">;</span>
+
+  <span class="n">time_</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">handlePreHistory</span><span class="p">();</span>
+  <span class="n">time_</span> <span class="o">=</span> <span class="n">time0_</span><span class="p">;</span>
+  <span class="n">CLOG</span><span class="p">(</span><span class="n">LEV_INFO1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Beginning simulation&quot;</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">date_</span> <span class="o">&lt;</span> <span class="n">endDate</span><span class="p">()){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">date_</span><span class="p">.</span><span class="n">day</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span>
+      <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO1</span><span class="p">,</span> <span class="s">&quot;tutr2a&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Current date: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">date_</span><span class="p">;</span>
+
+      <span class="n">CLOG</span><span class="p">(</span><span class="n">LEV_INFO2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Current date: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">date_</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; {&quot;</span><span class="p">;</span>
+      <span class="n">CLOG</span><span class="p">(</span><span class="n">LEV_DEBUG3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The list of current tick listeners is: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">reportListeners</span><span class="p">();</span>
+
+      <span class="n">Material</span><span class="o">::</span><span class="n">decayMaterials</span><span class="p">(</span><span class="n">time_</span><span class="p">);</span>
+
+      <span class="n">sendTick</span><span class="p">();</span>
+      <span class="n">sendResolve</span><span class="p">();</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-3b">
+<span id="tutr3b"></span><h2>Snip 3b<a class="headerlink" href="#snip-3b" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">Timer</span><span class="o">::</span><span class="n">sendResolve</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">MarketModel</span><span class="o">*&gt;::</span><span class="n">iterator</span> <span class="n">agent</span><span class="o">=</span><span class="n">resolve_listeners_</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+       <span class="n">agent</span> <span class="o">!=</span> <span class="n">resolve_listeners_</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+       <span class="n">agent</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="n">CLOG</span><span class="p">(</span><span class="n">LEV_INFO3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Sending resolve to Model ID=&quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">()</span>
+                      <span class="o">&lt;&lt;</span> <span class="s">&quot;, name=&quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; {&quot;</span><span class="p">;</span>
+      <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO2</span><span class="p">,</span> <span class="s">&quot;tutr3b&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Timer is sending resolve to &quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; id=&quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">();</span>
+      <span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">resolve</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-3a">
+<span id="tutr3a"></span><h2>Snip 3a<a class="headerlink" href="#snip-3a" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">Timer</span><span class="o">::</span><span class="n">sendTick</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TimeAgent</span><span class="o">*&gt;::</span><span class="n">iterator</span> <span class="n">agent</span><span class="o">=</span><span class="n">tick_listeners_</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+       <span class="n">agent</span> <span class="o">!=</span> <span class="n">tick_listeners_</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+       <span class="n">agent</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="n">CLOG</span><span class="p">(</span><span class="n">LEV_INFO3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Sending tick to Model ID=&quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">()</span>
+                      <span class="o">&lt;&lt;</span> <span class="s">&quot;, name=&quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; {&quot;</span><span class="p">;</span>
+      <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO2</span><span class="p">,</span> <span class="s">&quot;tutr3a&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Timer is sending tick to &quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; id=&quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">();</span>
+      <span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">handleTick</span><span class="p">(</span><span class="n">time_</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-3c">
+<span id="tutr3c"></span><h2>Snip 3c<a class="headerlink" href="#snip-3c" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">Timer</span><span class="o">::</span><span class="n">sendTock</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TimeAgent</span><span class="o">*&gt;::</span><span class="n">iterator</span> <span class="n">agent</span><span class="o">=</span><span class="n">tick_listeners_</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+       <span class="n">agent</span> <span class="o">!=</span> <span class="n">tick_listeners_</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+       <span class="n">agent</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="n">CLOG</span><span class="p">(</span><span class="n">LEV_INFO3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Sending tock to Model ID=&quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">()</span>
+                      <span class="o">&lt;&lt;</span> <span class="s">&quot;, name=&quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; {&quot;</span><span class="p">;</span>
+      <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO2</span><span class="p">,</span> <span class="s">&quot;tutr3c&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Timer is sending tock to &quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; id=&quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">();</span>
+      <span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">handleTock</span><span class="p">(</span><span class="n">time_</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-4a">
+<span id="tutr4a"></span><h2>Snip 4a<a class="headerlink" href="#snip-4a" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">InstModel</span><span class="o">::</span><span class="n">handleTick</span><span class="p">(</span><span class="kt">int</span> <span class="n">time</span><span class="p">){</span>
+  <span class="c1">// tell all of the institution models to handle the tick</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO4</span><span class="p">,</span> <span class="s">&quot;tutr4a&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;id=&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ID</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; is ticking.&quot;</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Model</span><span class="o">*&gt;::</span><span class="n">iterator</span> <span class="n">fac</span><span class="o">=</span><span class="n">children_</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+      <span class="n">fac</span> <span class="o">!=</span> <span class="n">children_</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+      <span class="n">fac</span><span class="o">++</span><span class="p">){</span>
+    <span class="p">(</span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">FacilityModel</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">*</span><span class="n">fac</span><span class="p">))</span><span class="o">-&gt;</span><span class="n">handleTick</span><span class="p">(</span><span class="n">time</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-4b">
+<span id="tutr4b"></span><h2>Snip 4b<a class="headerlink" href="#snip-4b" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">InstModel</span><span class="o">::</span><span class="n">handleTock</span><span class="p">(</span><span class="kt">int</span> <span class="n">time</span><span class="p">){</span>
+  <span class="c1">// tell all of the institution models to handle the tick</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO4</span><span class="p">,</span> <span class="s">&quot;tutr4b&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;id=&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ID</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; is tocking.&quot;</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Model</span><span class="o">*&gt;::</span><span class="n">iterator</span> <span class="n">fac</span><span class="o">=</span><span class="n">children_</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+      <span class="n">fac</span> <span class="o">!=</span> <span class="n">children_</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+      <span class="n">fac</span><span class="o">++</span><span class="p">){</span>
+    <span class="p">(</span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">FacilityModel</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">*</span><span class="n">fac</span><span class="p">))</span><span class="o">-&gt;</span><span class="n">handleTock</span><span class="p">(</span><span class="n">time</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-2d">
+<span id="tutr2d"></span><h2>Snip 2d<a class="headerlink" href="#snip-2d" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">SinkFacility</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">FacilityModel</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO2</span><span class="p">,</span> <span class="s">&quot;tutr2d&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;A new SinkFacility is being initialized from xml input.&quot;</span><span class="p">;</span>
+
+  <span class="c1">/// Sink facilities can have many input/output commodities</span>
+  <span class="c1">/// move XML pointer to current model</span>
+  <span class="n">cur</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_element</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;model/SinkFacility&quot;</span><span class="p">);</span>
+
+  <span class="c1">/// all facilities require commodities - possibly many</span>
+  <span class="n">string</span> <span class="n">commod</span><span class="p">;</span>
+  <span class="n">xmlNodeSetPtr</span> <span class="n">nodes</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_elements</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;incommodity&quot;</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">nodes</span><span class="o">-&gt;</span><span class="n">nodeNr</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">commod</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span><span class="p">)(</span><span class="n">nodes</span><span class="o">-&gt;</span><span class="n">nodeTab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">children</span><span class="o">-&gt;</span><span class="n">content</span><span class="p">);</span>
+    <span class="n">in_commods_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">commod</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// get monthly capacity</span>
+  <span class="n">capacity_</span> <span class="o">=</span> <span class="n">strtod</span><span class="p">(</span><span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;capacity&quot;</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-2e">
+<span id="tutr2e"></span><h2>Snip 2e<a class="headerlink" href="#snip-2e" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">SinkFacility</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span><span class="n">SinkFacility</span><span class="o">*</span> <span class="n">src</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO2</span><span class="p">,</span> <span class="s">&quot;tutr2e&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;A new SinkFacility is being created by copying another.&quot;</span><span class="p">;</span>
+  <span class="n">FacilityModel</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span><span class="n">src</span><span class="p">);</span>
+
+  <span class="n">in_commods_</span> <span class="o">=</span> <span class="n">src</span><span class="o">-&gt;</span><span class="n">in_commods_</span><span class="p">;</span>
+  <span class="n">capacity_</span> <span class="o">=</span> <span class="n">src</span><span class="o">-&gt;</span><span class="n">capacity_</span><span class="p">;</span>
+  <span class="n">inventory_</span><span class="p">.</span><span class="n">setCapacity</span><span class="p">(</span><span class="n">src</span><span class="o">-&gt;</span><span class="n">inventory_</span><span class="p">.</span><span class="n">capacity</span><span class="p">());</span>
+  <span class="n">commod_price_</span> <span class="o">=</span> <span class="n">src</span><span class="o">-&gt;</span><span class="n">commod_price_</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-5c">
+<span id="tutr5c"></span><h2>Snip 5c<a class="headerlink" href="#snip-5c" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">SinkFacility</span><span class="o">::</span><span class="n">handleTick</span><span class="p">(</span><span class="kt">int</span> <span class="n">time</span><span class="p">){</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO5</span><span class="p">,</span> <span class="s">&quot;tutr5c&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; id=&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ID</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; is ticking.&quot;</span><span class="p">;</span>
+
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO3</span><span class="p">,</span> <span class="s">&quot;SnkFac&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">facName</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; is ticking {&quot;</span><span class="p">;</span>
+
+  <span class="kt">double</span> <span class="n">requestAmt</span> <span class="o">=</span> <span class="n">getRequestAmt</span><span class="p">();</span>
+  <span class="kt">double</span> <span class="n">minAmt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">requestAmt</span><span class="o">&gt;</span><span class="n">EPS_KG</span><span class="p">){</span>
+    <span class="c1">// for each potential commodity, make a request</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">commod</span> <span class="o">=</span> <span class="n">in_commods_</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+        <span class="n">commod</span> <span class="o">!=</span> <span class="n">in_commods_</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+        <span class="n">commod</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO4</span><span class="p">,</span> <span class="s">&quot;SnkFac&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; requests &quot;</span><span class="o">&lt;&lt;</span> <span class="n">requestAmt</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; kg of &quot;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">commod</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;.&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-6b">
+<span id="tutr6b"></span><h2>Snip 6b<a class="headerlink" href="#snip-6b" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">MarketModel</span><span class="o">*</span> <span class="n">market</span> <span class="o">=</span> <span class="n">MarketModel</span><span class="o">::</span><span class="n">marketForCommod</span><span class="p">(</span><span class="o">*</span><span class="n">commod</span><span class="p">);</span>
+<span class="n">Communicator</span><span class="o">*</span> <span class="n">recipient</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">Communicator</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">market</span><span class="p">);</span>
+
+<span class="c1">// create a generic resource</span>
+<span class="n">gen_rsrc_ptr</span> <span class="n">request_res</span> <span class="o">=</span> <span class="n">gen_rsrc_ptr</span><span class="p">(</span><span class="k">new</span> <span class="n">GenericResource</span><span class="p">((</span><span class="o">*</span><span class="n">commod</span><span class="p">),</span> <span class="s">&quot;kg&quot;</span><span class="p">,</span> <span class="n">requestAmt</span><span class="p">));</span>
+
+<span class="c1">// build the transaction and message</span>
+<span class="n">Transaction</span> <span class="n">trans</span><span class="p">;</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">commod</span> <span class="o">=</span> <span class="o">*</span><span class="n">commod</span><span class="p">;</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">minfrac</span> <span class="o">=</span> <span class="n">minAmt</span><span class="o">/</span><span class="n">requestAmt</span><span class="p">;</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">is_offer</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">price</span> <span class="o">=</span> <span class="n">commod_price_</span><span class="p">;</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">resource</span> <span class="o">=</span> <span class="n">request_res</span><span class="p">;</span>
+
+<span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG1</span><span class="p">,</span> <span class="s">&quot;tutr6b&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;requests &quot;</span><span class="o">&lt;&lt;</span> <span class="n">requestAmt</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; kg of &quot;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">commod</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;.&quot;</span><span class="p">;</span>
+
+<span class="n">msg_ptr</span> <span class="n">request</span><span class="p">(</span><span class="k">new</span> <span class="n">Message</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">recipient</span><span class="p">,</span> <span class="n">trans</span><span class="p">));</span>
+<span class="n">request</span><span class="o">-&gt;</span><span class="n">setNextDest</span><span class="p">(</span><span class="n">facInst</span><span class="p">());</span>
+<span class="n">request</span><span class="o">-&gt;</span><span class="n">sendOn</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-5d">
+<span id="tutr5d"></span><h2>Snip 5d<a class="headerlink" href="#snip-5d" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">SinkFacility</span><span class="o">::</span><span class="n">handleTock</span><span class="p">(</span><span class="kt">int</span> <span class="n">time</span><span class="p">){</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO5</span><span class="p">,</span> <span class="s">&quot;tutr5d&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; id=&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ID</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; is tocking.&quot;</span><span class="p">;</span>
+
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO3</span><span class="p">,</span> <span class="s">&quot;SnkFac&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">facName</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; is tocking {&quot;</span><span class="p">;</span>
+
+  <span class="c1">// On the tock, the sink facility doesn&#39;t really do much.</span>
+  <span class="c1">// Maybe someday it will record things.</span>
+  <span class="c1">// For now, lets just print out what we have at each timestep.</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO4</span><span class="p">,</span> <span class="s">&quot;SnkFac&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;SinkFacility &quot;</span> <span class="o">&lt;&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">()</span>
+                  <span class="o">&lt;&lt;</span> <span class="s">&quot; is holding &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">inventory_</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span>
+                  <span class="o">&lt;&lt;</span> <span class="s">&quot; units of material at the close of month &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">time</span>
+                  <span class="o">&lt;&lt;</span> <span class="s">&quot;.&quot;</span><span class="p">;</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO3</span><span class="p">,</span> <span class="s">&quot;SnkFac&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;}&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-6h">
+<span id="tutr6h"></span><h2>Snip 6h<a class="headerlink" href="#snip-6h" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">SinkFacility</span><span class="o">::</span><span class="n">addResource</span><span class="p">(</span><span class="n">msg_ptr</span> <span class="n">msg</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">rsrc_ptr</span><span class="o">&gt;</span> <span class="n">manifest</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG1</span><span class="p">,</span> <span class="s">&quot;tutr6h&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;receiving material from id=&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">supplier</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">();</span>
+
+  <span class="n">inventory_</span><span class="p">.</span><span class="n">pushAll</span><span class="p">(</span><span class="n">MatStore</span><span class="o">::</span><span class="n">toMat</span><span class="p">(</span><span class="n">manifest</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-2b">
+<span id="tutr2b"></span><h2>Snip 2b<a class="headerlink" href="#snip-2b" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">SourceFacility</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">FacilityModel</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG2</span><span class="p">,</span> <span class="s">&quot;SrcFac&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The Source Facility is being initialized&quot;</span><span class="p">;</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO2</span><span class="p">,</span> <span class="s">&quot;tutr2b&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;A new SourceFacility is being initialized from xml input.&quot;</span><span class="p">;</span>
+
+  <span class="c1">/// move XML pointer to current model</span>
+  <span class="n">cur</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_element</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;model/SourceFacility&quot;</span><span class="p">);</span>
+
+
+  <span class="c1">/// all facilities require commodities - possibly many</span>
+  <span class="n">string</span> <span class="n">input_token</span><span class="p">;</span>
+
+  <span class="n">out_commod_</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;outcommodity&quot;</span><span class="p">);</span>
+
+  <span class="c1">// get recipe</span>
+  <span class="n">recipe_name_</span> <span class="o">=</span> <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;recipe&quot;</span><span class="p">);</span>
+  <span class="n">recipe_</span> <span class="o">=</span> <span class="n">IsoVector</span><span class="o">::</span><span class="n">recipe</span><span class="p">(</span><span class="n">recipe_name_</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-2c">
+<span id="tutr2c"></span><h2>Snip 2c<a class="headerlink" href="#snip-2c" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">SourceFacility</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span><span class="n">SourceFacility</span><span class="o">*</span> <span class="n">src</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO2</span><span class="p">,</span> <span class="s">&quot;tutr2c&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;A new SourceFacility is created by copying another.&quot;</span><span class="p">;</span>
+  <span class="n">FacilityModel</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span><span class="n">src</span><span class="p">);</span>
+
+  <span class="n">out_commod_</span> <span class="o">=</span> <span class="n">src</span><span class="o">-&gt;</span><span class="n">out_commod_</span><span class="p">;</span>
+  <span class="n">recipe_</span> <span class="o">=</span> <span class="n">src</span><span class="o">-&gt;</span><span class="n">recipe_</span><span class="p">;</span>
+  <span class="n">capacity_</span> <span class="o">=</span> <span class="n">src</span><span class="o">-&gt;</span><span class="n">capacity_</span><span class="p">;</span>
+  <span class="n">inventory_</span><span class="p">.</span><span class="n">setCapacity</span><span class="p">(</span><span class="n">src</span><span class="o">-&gt;</span><span class="n">inventory_</span><span class="p">.</span><span class="n">capacity</span><span class="p">());</span>
+  <span class="n">commod_price_</span> <span class="o">=</span> <span class="n">src</span><span class="o">-&gt;</span><span class="n">commod_price_</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-6c">
+<span id="tutr6c"></span><h2>Snip 6c<a class="headerlink" href="#snip-6c" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">SourceFacility</span><span class="o">::</span><span class="n">receiveMessage</span><span class="p">(</span><span class="n">msg_ptr</span> <span class="n">msg</span><span class="p">){</span>
+
+  <span class="c1">// is this a message from on high?</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">supplier</span><span class="p">()</span> <span class="o">==</span> <span class="k">this</span><span class="p">){</span>
+    <span class="c1">// file the order</span>
+    <span class="n">ordersWaiting_</span><span class="p">.</span><span class="n">push_front</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+
+    <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG1</span><span class="p">,</span> <span class="s">&quot;tutr6c&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;received matched order to send to id=&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">requester</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">();</span>
+
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="n">CycException</span><span class="p">(</span><span class="s">&quot;SourceFacility is not the supplier of this msg.&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-6g">
+<span id="tutr6g"></span><h2>Snip 6g<a class="headerlink" href="#snip-6g" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">vector</span><span class="o">&lt;</span><span class="n">rsrc_ptr</span><span class="o">&gt;</span> <span class="n">SourceFacility</span><span class="o">::</span><span class="n">removeResource</span><span class="p">(</span><span class="n">msg_ptr</span> <span class="n">msg</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG1</span><span class="p">,</span> <span class="s">&quot;tutr6g&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;sending material to id=&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">requester</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">();</span>
+  <span class="n">Transaction</span> <span class="n">trans</span> <span class="o">=</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">trans</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">MatStore</span><span class="o">::</span><span class="n">toRes</span><span class="p">(</span><span class="n">inventory_</span><span class="p">.</span><span class="n">popQty</span><span class="p">(</span><span class="n">trans</span><span class="p">.</span><span class="n">resource</span><span class="o">-&gt;</span><span class="n">quantity</span><span class="p">()));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-5a">
+<span id="tutr5a"></span><h2>Snip 5a<a class="headerlink" href="#snip-5a" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="#tutr6a"><em>Snip 6a</em></a> for what buildTransaction does. See <a class="reference internal" href="#tutr6k"><em>Snip 6k</em></a> for what sendOffer does.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">SourceFacility</span><span class="o">::</span><span class="n">handleTick</span><span class="p">(</span><span class="kt">int</span> <span class="n">time</span><span class="p">){</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO5</span><span class="p">,</span> <span class="s">&quot;tutr5a&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; id=&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ID</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; is ticking.&quot;</span><span class="p">;</span>
+
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO3</span><span class="p">,</span> <span class="s">&quot;SrcFac&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">facName</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; is ticking {&quot;</span><span class="p">;</span>
+
+  <span class="n">generateMaterial</span><span class="p">(</span><span class="n">time</span><span class="p">);</span>
+  <span class="n">Transaction</span> <span class="n">trans</span> <span class="o">=</span> <span class="n">buildTransaction</span><span class="p">();</span>
+
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO4</span><span class="p">,</span> <span class="s">&quot;SrcFac&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;offers &quot;</span><span class="o">&lt;&lt;</span> <span class="n">trans</span><span class="p">.</span><span class="n">resource</span><span class="o">-&gt;</span><span class="n">quantity</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; kg of &quot;</span>
+                           <span class="o">&lt;&lt;</span> <span class="n">out_commod_</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;.&quot;</span><span class="p">;</span>
+
+  <span class="n">sendOffer</span><span class="p">(</span><span class="n">trans</span><span class="p">);</span>
+
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO3</span><span class="p">,</span> <span class="s">&quot;SrcFac&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;}&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-6a">
+<span id="tutr6a"></span><h2>Snip 6a<a class="headerlink" href="#snip-6a" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Transaction</span> <span class="n">SourceFacility</span><span class="o">::</span><span class="n">buildTransaction</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// there is no minimum amount a source facility may send</span>
+  <span class="kt">double</span> <span class="n">min_amt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">offer_amt</span> <span class="o">=</span> <span class="n">inventory_</span><span class="p">.</span><span class="n">quantity</span><span class="p">();</span>
+
+  <span class="n">gen_rsrc_ptr</span> <span class="n">offer_res</span> <span class="o">=</span> <span class="n">gen_rsrc_ptr</span><span class="p">(</span><span class="k">new</span> <span class="n">GenericResource</span><span class="p">(</span><span class="n">out_commod_</span><span class="p">,</span><span class="s">&quot;kg&quot;</span><span class="p">,</span><span class="n">offer_amt</span><span class="p">));</span>
+
+  <span class="n">Transaction</span> <span class="n">trans</span><span class="p">;</span>
+  <span class="n">trans</span><span class="p">.</span><span class="n">commod</span> <span class="o">=</span> <span class="n">out_commod_</span><span class="p">;</span>
+  <span class="n">trans</span><span class="p">.</span><span class="n">minfrac</span> <span class="o">=</span> <span class="n">min_amt</span><span class="o">/</span><span class="n">offer_amt</span><span class="p">;</span>
+  <span class="n">trans</span><span class="p">.</span><span class="n">is_offer</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="n">trans</span><span class="p">.</span><span class="n">price</span> <span class="o">=</span> <span class="n">commod_price_</span><span class="p">;</span>
+  <span class="n">trans</span><span class="p">.</span><span class="n">resource</span> <span class="o">=</span> <span class="n">offer_res</span><span class="p">;</span>
+
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG1</span><span class="p">,</span> <span class="s">&quot;tutr6a&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;offers &quot;</span><span class="o">&lt;&lt;</span> <span class="n">trans</span><span class="p">.</span><span class="n">resource</span><span class="o">-&gt;</span><span class="n">quantity</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; kg of &quot;</span>
+                           <span class="o">&lt;&lt;</span> <span class="n">out_commod_</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;.&quot;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">trans</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-6k">
+<span id="tutr6k"></span><h2>Snip 6k<a class="headerlink" href="#snip-6k" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">SourceFacility</span><span class="o">::</span><span class="n">sendOffer</span><span class="p">(</span><span class="n">Transaction</span> <span class="n">trans</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">MarketModel</span><span class="o">*</span> <span class="n">market</span> <span class="o">=</span> <span class="n">MarketModel</span><span class="o">::</span><span class="n">marketForCommod</span><span class="p">(</span><span class="n">out_commod_</span><span class="p">);</span>
+
+  <span class="n">Communicator</span><span class="o">*</span> <span class="n">recipient</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">Communicator</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">market</span><span class="p">);</span>
+  <span class="n">msg_ptr</span> <span class="n">msg</span><span class="p">(</span><span class="k">new</span> <span class="n">Message</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">recipient</span><span class="p">,</span> <span class="n">trans</span><span class="p">));</span>
+  <span class="n">msg</span><span class="o">-&gt;</span><span class="n">setNextDest</span><span class="p">(</span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">Communicator</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">parent</span><span class="p">()));</span>
+  <span class="n">msg</span><span class="o">-&gt;</span><span class="n">sendOn</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-5b">
+<span id="tutr5b"></span><h2>Snip 5b<a class="headerlink" href="#snip-5b" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">SourceFacility</span><span class="o">::</span><span class="n">handleTock</span><span class="p">(</span><span class="kt">int</span> <span class="n">time</span><span class="p">){</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO5</span><span class="p">,</span> <span class="s">&quot;tutr5b&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; id=&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ID</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; is tocking.&quot;</span><span class="p">;</span>
+
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO3</span><span class="p">,</span> <span class="s">&quot;SrcFac&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">facName</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; is tocking {&quot;</span><span class="p">;</span>
+
+  <span class="c1">// check what orders are waiting,</span>
+  <span class="c1">// send material if you have it now</span>
+  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">ordersWaiting_</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">msg_ptr</span> <span class="n">order</span> <span class="o">=</span> <span class="n">ordersWaiting_</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">order</span><span class="o">-&gt;</span><span class="n">resource</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">quantity</span><span class="p">()</span> <span class="o">-</span> <span class="n">inventory_</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">EPS_KG</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_INFO3</span><span class="p">,</span> <span class="s">&quot;SrcFac&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Not enough inventory. Waitlisting remaining orders.&quot;</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="c1">// begin 6d</span>
+      <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG1</span><span class="p">,</span> <span class="s">&quot;tutr6d&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;approving order to send to id=&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">order</span><span class="o">-&gt;</span><span class="n">requester</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">();</span>
+      <span class="n">order</span><span class="o">-&gt;</span><span class="n">approveTransfer</span><span class="p">();</span>
+      <span class="n">ordersWaiting_</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
+      <span class="c1">// end 6d</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+<div class="section" id="snip-6d">
+<span id="tutr6d"></span><h2>Snip 6d<a class="headerlink" href="#snip-6d" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG1</span><span class="p">,</span> <span class="s">&quot;tutr6d&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;approving order to send to id=&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">order</span><span class="o">-&gt;</span><span class="n">requester</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">ID</span><span class="p">();</span>
+<span class="n">order</span><span class="o">-&gt;</span><span class="n">approveTransfer</span><span class="p">();</span>
+<span class="n">ordersWaiting_</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="code_tour.html#code-tour-home"><em>tour mainpage</em></a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dynamic_loading.html" title="Dynamic Loading Overview"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="code_tour.html" title="Tour of the Source Code"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" >Cyclus Developer Guide</a> &raquo;</li>
+          <li><a href="code_tour.html" >Tour of the Source Code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Nov 15, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

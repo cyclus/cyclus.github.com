@@ -1,0 +1,310 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Developing Models For Cyclus &mdash; Cyclus Home</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../../index.html" />
+    <link rel="up" title="Cyclus Developer Guide" href="../main.html" />
+    <link rel="next" title="Developing Facility Models" href="facility.html" />
+    <link rel="prev" title="Guide for Contributing to Cyclus" href="../contributing_to_cyclus.html" />
+   
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <a href="http://cyclus.github.com">
+    <img src="../../_static/logo1.png"/>
+  </a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="facility.html" title="Developing Facility Models"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../contributing_to_cyclus.html" title="Guide for Contributing to Cyclus"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="../main.html" accesskey="U">Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Developing Models For Cyclus</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#creating-new-models-of-the-existing-types">Creating New Models of the Existing Types</a></li>
+<li><a class="reference internal" href="#model-initialization-and-creation">Model Initialization and Creation</a></li>
+<li><a class="reference internal" href="#creating-specific-model-types">Creating Specific Model Types</a><ul>
+<li><a class="reference internal" href="#a-note-to-core-developers">A Note To Core Developers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../contributing_to_cyclus.html"
+                        title="previous chapter">Guide for Contributing to Cyclus</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="facility.html"
+                        title="next chapter">Developing Facility Models</a></p>
+  <h3>Useful Pages</h3>
+    <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
+    <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
+    <li><a href="https://github.com/cyclus">Source Code</a></li>
+    <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Acknowledgements</h3>
+    Support for this research has included funding received from:
+    <img src=/_images/neup_logo_large.jpg width=170px>
+    <img src=/_images/AnlLogo.png height=100px>
+    <img src=/_images/USNRC.gif height=100px>
+    <img src=/_images/nsf_logo.jpg height=100px>
+    <img src=/_images/crest.png height=100px>
+
+    
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="developing-models-for-cyclus">
+<h1>Developing Models For Cyclus<a class="headerlink" href="#developing-models-for-cyclus" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p><em>Cyclus</em> employs a Region-Institution-Facility hierarchy in simulations. Additionally,
+Resources are traded amonst the simulation agents via Markets. The instructions here will
+describe both how to add specific modules within those types, as well as how to extend this to
+other types of loadable modules.</p>
+</div>
+<div class="section" id="creating-new-models-of-the-existing-types">
+<h2>Creating New Models of the Existing Types<a class="headerlink" href="#creating-new-models-of-the-existing-types" title="Permalink to this headline">¶</a></h2>
+<p>For each type of model (i.e. Market, Facility, Institution, or Region), a set of stub
+files are available as skeletons for the new models.  When creating a new model, it is important that all the
+functionality defined in these files remains in the final model definition. A
+step by step example of producing a new model from the existing stubs can be
+found in the <a class="reference internal" href="toaster.html"><em>Model Devlopment Example : ToasterFacility</em></a>.</p>
+</div>
+<div class="section" id="model-initialization-and-creation">
+<h2>Model Initialization and Creation<a class="headerlink" href="#model-initialization-and-creation" title="Permalink to this headline">¶</a></h2>
+<p>The Cyclus simulation environment has a number of fundamental aspects regarding
+model creation:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Models in Cyclus follow a parent-child paradigm, i.e. a model has one parent and
+may have many children. The parent-child relationship can be thought of as
+ownership.</li>
+<li>Models in Cyclus are either Prototypes (templates) or Models (participants)<ul>
+<li>A Model becomes a Prototype (template) after initialization</li>
+<li>A Model becomes a Model (paticipant) after its <em>parent is set</em> via the
+setParent() method defined in Model.h.</li>
+<li>All Models start as Prototypes and become Models</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p>A Model can have many possible initilization-related methods; however, every Model
+has <em>at least</em> a method named init(). In init(), any and all publicly accesible
+members must be initialized. Should such a member attempt to be accessed when not
+initialized, a segmentation fault will occur. An example from the BuildRegion class
+is shown:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">BuildRegion</span><span class="o">::</span><span class="n">init</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">prototypeOrders_</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PrototypeOrders</span><span class="p">();</span>
+  <span class="n">builders_</span> <span class="o">=</span> <span class="k">new</span> <span class="n">map</span><span class="o">&lt;</span><span class="n">Model</span><span class="o">*</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">Model</span><span class="o">*&gt;*&gt;</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that prototypeOrders and builders are defined in the header file and accessed
+via public methods.</p>
+<p>In order to maintain clarity and flexibility, initialization methods are as
+modularized as possible. The more involved a Model&#8217;s initialization process,
+the more benefit is gained from modularity. As a concrete example, let us examine
+the RegionModel base class&#8217;s xml initialization process.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">RegionModel</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">init</span><span class="p">();</span> <span class="c1">// init any RegionModel members</span>
+  <span class="n">Model</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span> <span class="c1">// name and model_impl</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">initAllowedFacilities</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span> <span class="c1">// allowedFacilities</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">initSimInteraction</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// parent and tick listener, model &#39;born&#39;</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">initChildren</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span> <span class="c1">// children-&gt;setParent</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here, each major step is given its own function. This allows developers who base
+their models on RegionModel to customize their own xml init method, as shown
+in the BuildRegion class:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">BuildRegion</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// non xml inits</span>
+  <span class="n">BuildRegion</span><span class="o">::</span><span class="n">init</span><span class="p">();</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">init</span><span class="p">();</span> <span class="c1">// we never explicitly call RegionModel::init(cur)</span>
+  <span class="c1">// xml inits</span>
+  <span class="n">Model</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span> <span class="c1">// name_ and model_impl_</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">initAllowedFacilities</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span> <span class="c1">// allowedFacilities_</span>
+
+  <span class="c1">// get path to this model</span>
+  <span class="n">xmlNodePtr</span> <span class="n">model_cur</span> <span class="o">=</span>
+    <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_element</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="s">&quot;model/BuildRegion&quot;</span><span class="p">);</span>
+
+  <span class="c1">// populate orders for each prototype</span>
+  <span class="n">xmlNodeSetPtr</span> <span class="n">prototype_nodes</span> <span class="o">=</span>
+    <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_elements</span><span class="p">(</span><span class="n">model_cur</span><span class="p">,</span><span class="s">&quot;prototyperequirement&quot;</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">prototype_nodes</span><span class="o">-&gt;</span><span class="n">nodeNr</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="n">populateOrders</span><span class="p">(</span><span class="n">prototype_nodes</span><span class="o">-&gt;</span><span class="n">nodeTab</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+  <span class="p">}</span>
+  <span class="n">sortOrders</span><span class="p">();</span>
+
+  <span class="c1">// parent_ and tick listener, model &#39;born&#39;</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">initSimInteraction</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="c1">// children-&gt;setParent, requires init()</span>
+  <span class="n">RegionModel</span><span class="o">::</span><span class="n">initChildren</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+
+  <span class="c1">// populate the list of builders</span>
+  <span class="n">populateBuilders</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-specific-model-types">
+<h2>Creating Specific Model Types<a class="headerlink" href="#creating-specific-model-types" title="Permalink to this headline">¶</a></h2>
+<p>For further details about creating new models of particular types, consult the
+Model-specific reference:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="facility.html">Developing Facility Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="facility.html#details">Details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="institution.html">Developing Institution Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="institution.html#details">Details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="region.html">Developing Region Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="region.html#details">Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="region.html#to-do">To Do</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="market.html">Developing Market Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="market.html#details">Details</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="a-note-to-core-developers">
+<h3>A Note To Core Developers<a class="headerlink" href="#a-note-to-core-developers" title="Permalink to this headline">¶</a></h3>
+<p>It is very important to keep the Stub files in the Models directory (or in each
+of the model sub-directories) current.  As the Model.h definition is
+improved/enhanced/developed, each of the model types will have to be updated to
+be consistent.  Treat the StubModel and the StubCommModel in the same way as
+others to ensure it remains up-to-date.</p>
+<p>Similarly if a single model type is updated, e.g. MarketModel.h, with new
+capability, each of the implemented models will need to be updated to be
+consistent.  Treat the Stub`*` Models in each sub-directory in the same way as
+the others to ensure it remains up-to-date.</p>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ol class="arabic simple">
+<li><a class="reference external" href="http://oss.sgi.com/LDP/HOWTO/C++-dlopen/index.html">C++ dlopen mini HOWTO</a></li>
+<li><a class="reference external" href="http://www.yolinux.com/TUTORIALS/LibraryArchives-StaticAndDynamic.html">Static, Shared Dynamic and Loadable Linux Libraries</a></li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="facility.html" title="Developing Facility Models"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../contributing_to_cyclus.html" title="Guide for Contributing to Cyclus"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="../main.html" >Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Nov 15, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

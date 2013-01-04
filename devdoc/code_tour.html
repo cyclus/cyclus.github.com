@@ -1,0 +1,364 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tour of the Source Code &mdash; Cyclus Home</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../index.html" />
+    <link rel="up" title="Cyclus Developer Guide" href="main.html" />
+    <link rel="next" title="Tour Snippets" href="tour_snippets.html" />
+    <link rel="prev" title="The Cyclus Environment" href="cyclus_env.html" />
+   
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <a href="http://cyclus.github.com">
+    <img src="../_static/logo1.png"/>
+  </a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tour_snippets.html" title="Tour Snippets"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cyclus_env.html" title="The Cyclus Environment"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" accesskey="U">Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tour of the Source Code</a><ul>
+<li><a class="reference internal" href="#log-output">Log Output</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cyclus_env.html"
+                        title="previous chapter">The Cyclus Environment</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tour_snippets.html"
+                        title="next chapter">Tour Snippets</a></p>
+  <h3>Useful Pages</h3>
+    <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
+    <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
+    <li><a href="https://github.com/cyclus">Source Code</a></li>
+    <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Acknowledgements</h3>
+    Support for this research has included funding received from:
+    <img src=/_images/neup_logo_large.jpg width=170px>
+    <img src=/_images/AnlLogo.png height=100px>
+    <img src=/_images/USNRC.gif height=100px>
+    <img src=/_images/nsf_logo.jpg height=100px>
+    <img src=/_images/crest.png height=100px>
+
+    
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tour-of-the-source-code">
+<span id="code-tour-home"></span><h1>Tour of the Source Code<a class="headerlink" href="#tour-of-the-source-code" title="Permalink to this headline">¶</a></h1>
+<p>Following is a specially tailored log output from Cyclus that is intended to
+give a high level understanding of the cyclus internals and code flow of
+execution.  Each log statement has a link that, when clicked, shows related
+snippets of code from the cyclus core or related modules.  The code snippets
+are intended to give developers a feel for the type of code they will need to
+write in order to get things done using Cyclus.</p>
+<div class="section" id="log-output">
+<h2>Log Output<a class="headerlink" href="#log-output" title="Permalink to this headline">¶</a></h2>
+<pre class="literal-block">
+ ERROR(<a class="reference internal" href="tour_snippets.html#tutr1a"><em>Snip 1a</em></a>):Cyclus has started.
+ INFO1(<a class="reference internal" href="tour_snippets.html#tutr1b"><em>Snip 1b</em></a>):Reading the input file.
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr2b"><em>Snip 2b</em></a>):  A new SourceFacility is being initialized from xml input.
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr2d"><em>Snip 2d</em></a>):  A new SinkFacility is being initialized from xml input.
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr2c"><em>Snip 2c</em></a>):  A new SourceFacility is created by copying another.
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr2e"><em>Snip 2e</em></a>):  A new SinkFacility is being created by copying another.
+ INFO1(<a class="reference internal" href="tour_snippets.html#tutr1c"><em>Snip 1c</em></a>):Starting up the simulation.
+ INFO1(<a class="reference internal" href="tour_snippets.html#tutr2a"><em>Snip 2a</em></a>):Current date: 2000-Jan-01
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3a"><em>Snip 3a</em></a>):  Timer is sending tick to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4a"><em>Snip 4a</em></a>):      oneInstid=4 is ticking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5a"><em>Snip 5a</em></a>):        FrontEnd id=5 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6a"><em>Snip 6a</em></a>):          offers 1000 kg of uo2.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5c"><em>Snip 5c</em></a>):        BackEnd id=6 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6b"><em>Snip 6b</em></a>):          requests 1000 kg of uo2.
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3b"><em>Snip 3b</em></a>):  Timer is sending resolve to uo2market id=0
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6c"><em>Snip 6c</em></a>):          received matched order to send to id=6
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3c"><em>Snip 3c</em></a>):  Timer is sending tock to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4b"><em>Snip 4b</em></a>):      oneInstid=4 is tocking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5b"><em>Snip 5b</em></a>):        FrontEnd id=5 is tocking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6d"><em>Snip 6d</em></a>):          approving order to send to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          Beginning a material transfer...
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6g"><em>Snip 6g</em></a>):          sending material to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6h"><em>Snip 6h</em></a>):          receiving material from id=5
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          ... Finished transfer from id=5 to id=6.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5d"><em>Snip 5d</em></a>):        BackEnd id=6 is tocking.
+ INFO1(<a class="reference internal" href="tour_snippets.html#tutr2a"><em>Snip 2a</em></a>):Current date: 2000-Feb-01
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3a"><em>Snip 3a</em></a>):  Timer is sending tick to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4a"><em>Snip 4a</em></a>):      oneInstid=4 is ticking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5a"><em>Snip 5a</em></a>):        FrontEnd id=5 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6a"><em>Snip 6a</em></a>):          offers 1000 kg of uo2.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5c"><em>Snip 5c</em></a>):        BackEnd id=6 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6b"><em>Snip 6b</em></a>):          requests 1000 kg of uo2.
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3b"><em>Snip 3b</em></a>):  Timer is sending resolve to uo2market id=0
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6c"><em>Snip 6c</em></a>):          received matched order to send to id=6
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3c"><em>Snip 3c</em></a>):  Timer is sending tock to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4b"><em>Snip 4b</em></a>):      oneInstid=4 is tocking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5b"><em>Snip 5b</em></a>):        FrontEnd id=5 is tocking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6d"><em>Snip 6d</em></a>):          approving order to send to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          Beginning a material transfer...
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6g"><em>Snip 6g</em></a>):          sending material to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6h"><em>Snip 6h</em></a>):          receiving material from id=5
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          ... Finished transfer from id=5 to id=6.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5d"><em>Snip 5d</em></a>):        BackEnd id=6 is tocking.
+ INFO1(<a class="reference internal" href="tour_snippets.html#tutr2a"><em>Snip 2a</em></a>):Current date: 2000-Mar-01
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3a"><em>Snip 3a</em></a>):  Timer is sending tick to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4a"><em>Snip 4a</em></a>):      oneInstid=4 is ticking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5a"><em>Snip 5a</em></a>):        FrontEnd id=5 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6a"><em>Snip 6a</em></a>):          offers 1000 kg of uo2.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5c"><em>Snip 5c</em></a>):        BackEnd id=6 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6b"><em>Snip 6b</em></a>):          requests 1000 kg of uo2.
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3b"><em>Snip 3b</em></a>):  Timer is sending resolve to uo2market id=0
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6c"><em>Snip 6c</em></a>):          received matched order to send to id=6
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3c"><em>Snip 3c</em></a>):  Timer is sending tock to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4b"><em>Snip 4b</em></a>):      oneInstid=4 is tocking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5b"><em>Snip 5b</em></a>):        FrontEnd id=5 is tocking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6d"><em>Snip 6d</em></a>):          approving order to send to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          Beginning a material transfer...
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6g"><em>Snip 6g</em></a>):          sending material to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6h"><em>Snip 6h</em></a>):          receiving material from id=5
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          ... Finished transfer from id=5 to id=6.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5d"><em>Snip 5d</em></a>):        BackEnd id=6 is tocking.
+ INFO1(<a class="reference internal" href="tour_snippets.html#tutr2a"><em>Snip 2a</em></a>):Current date: 2000-Apr-01
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3a"><em>Snip 3a</em></a>):  Timer is sending tick to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4a"><em>Snip 4a</em></a>):      oneInstid=4 is ticking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5a"><em>Snip 5a</em></a>):        FrontEnd id=5 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6a"><em>Snip 6a</em></a>):          offers 1000 kg of uo2.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5c"><em>Snip 5c</em></a>):        BackEnd id=6 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6b"><em>Snip 6b</em></a>):          requests 1000 kg of uo2.
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3b"><em>Snip 3b</em></a>):  Timer is sending resolve to uo2market id=0
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6c"><em>Snip 6c</em></a>):          received matched order to send to id=6
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3c"><em>Snip 3c</em></a>):  Timer is sending tock to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4b"><em>Snip 4b</em></a>):      oneInstid=4 is tocking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5b"><em>Snip 5b</em></a>):        FrontEnd id=5 is tocking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6d"><em>Snip 6d</em></a>):          approving order to send to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          Beginning a material transfer...
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6g"><em>Snip 6g</em></a>):          sending material to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6h"><em>Snip 6h</em></a>):          receiving material from id=5
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          ... Finished transfer from id=5 to id=6.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5d"><em>Snip 5d</em></a>):        BackEnd id=6 is tocking.
+ INFO1(<a class="reference internal" href="tour_snippets.html#tutr2a"><em>Snip 2a</em></a>):Current date: 2000-May-01
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3a"><em>Snip 3a</em></a>):  Timer is sending tick to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4a"><em>Snip 4a</em></a>):      oneInstid=4 is ticking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5a"><em>Snip 5a</em></a>):        FrontEnd id=5 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6a"><em>Snip 6a</em></a>):          offers 1000 kg of uo2.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5c"><em>Snip 5c</em></a>):        BackEnd id=6 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6b"><em>Snip 6b</em></a>):          requests 1000 kg of uo2.
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3b"><em>Snip 3b</em></a>):  Timer is sending resolve to uo2market id=0
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6c"><em>Snip 6c</em></a>):          received matched order to send to id=6
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3c"><em>Snip 3c</em></a>):  Timer is sending tock to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4b"><em>Snip 4b</em></a>):      oneInstid=4 is tocking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5b"><em>Snip 5b</em></a>):        FrontEnd id=5 is tocking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6d"><em>Snip 6d</em></a>):          approving order to send to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          Beginning a material transfer...
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6g"><em>Snip 6g</em></a>):          sending material to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6h"><em>Snip 6h</em></a>):          receiving material from id=5
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          ... Finished transfer from id=5 to id=6.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5d"><em>Snip 5d</em></a>):        BackEnd id=6 is tocking.
+ INFO1(<a class="reference internal" href="tour_snippets.html#tutr2a"><em>Snip 2a</em></a>):Current date: 2000-Jun-01
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3a"><em>Snip 3a</em></a>):  Timer is sending tick to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4a"><em>Snip 4a</em></a>):      oneInstid=4 is ticking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5a"><em>Snip 5a</em></a>):        FrontEnd id=5 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6a"><em>Snip 6a</em></a>):          offers 1000 kg of uo2.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5c"><em>Snip 5c</em></a>):        BackEnd id=6 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6b"><em>Snip 6b</em></a>):          requests 1000 kg of uo2.
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3b"><em>Snip 3b</em></a>):  Timer is sending resolve to uo2market id=0
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6c"><em>Snip 6c</em></a>):          received matched order to send to id=6
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3c"><em>Snip 3c</em></a>):  Timer is sending tock to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4b"><em>Snip 4b</em></a>):      oneInstid=4 is tocking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5b"><em>Snip 5b</em></a>):        FrontEnd id=5 is tocking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6d"><em>Snip 6d</em></a>):          approving order to send to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          Beginning a material transfer...
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6g"><em>Snip 6g</em></a>):          sending material to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6h"><em>Snip 6h</em></a>):          receiving material from id=5
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          ... Finished transfer from id=5 to id=6.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5d"><em>Snip 5d</em></a>):        BackEnd id=6 is tocking.
+ INFO1(<a class="reference internal" href="tour_snippets.html#tutr2a"><em>Snip 2a</em></a>):Current date: 2000-Jul-01
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3a"><em>Snip 3a</em></a>):  Timer is sending tick to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4a"><em>Snip 4a</em></a>):      oneInstid=4 is ticking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5a"><em>Snip 5a</em></a>):        FrontEnd id=5 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6a"><em>Snip 6a</em></a>):          offers 1000 kg of uo2.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5c"><em>Snip 5c</em></a>):        BackEnd id=6 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6b"><em>Snip 6b</em></a>):          requests 1000 kg of uo2.
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3b"><em>Snip 3b</em></a>):  Timer is sending resolve to uo2market id=0
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6c"><em>Snip 6c</em></a>):          received matched order to send to id=6
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3c"><em>Snip 3c</em></a>):  Timer is sending tock to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4b"><em>Snip 4b</em></a>):      oneInstid=4 is tocking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5b"><em>Snip 5b</em></a>):        FrontEnd id=5 is tocking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6d"><em>Snip 6d</em></a>):          approving order to send to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          Beginning a material transfer...
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6g"><em>Snip 6g</em></a>):          sending material to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6h"><em>Snip 6h</em></a>):          receiving material from id=5
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          ... Finished transfer from id=5 to id=6.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5d"><em>Snip 5d</em></a>):        BackEnd id=6 is tocking.
+ INFO1(<a class="reference internal" href="tour_snippets.html#tutr2a"><em>Snip 2a</em></a>):Current date: 2000-Aug-01
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3a"><em>Snip 3a</em></a>):  Timer is sending tick to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4a"><em>Snip 4a</em></a>):      oneInstid=4 is ticking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5a"><em>Snip 5a</em></a>):        FrontEnd id=5 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6a"><em>Snip 6a</em></a>):          offers 1000 kg of uo2.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5c"><em>Snip 5c</em></a>):        BackEnd id=6 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6b"><em>Snip 6b</em></a>):          requests 1000 kg of uo2.
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3b"><em>Snip 3b</em></a>):  Timer is sending resolve to uo2market id=0
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6c"><em>Snip 6c</em></a>):          received matched order to send to id=6
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3c"><em>Snip 3c</em></a>):  Timer is sending tock to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4b"><em>Snip 4b</em></a>):      oneInstid=4 is tocking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5b"><em>Snip 5b</em></a>):        FrontEnd id=5 is tocking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6d"><em>Snip 6d</em></a>):          approving order to send to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          Beginning a material transfer...
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6g"><em>Snip 6g</em></a>):          sending material to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6h"><em>Snip 6h</em></a>):          receiving material from id=5
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          ... Finished transfer from id=5 to id=6.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5d"><em>Snip 5d</em></a>):        BackEnd id=6 is tocking.
+ INFO1(<a class="reference internal" href="tour_snippets.html#tutr2a"><em>Snip 2a</em></a>):Current date: 2000-Sep-01
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3a"><em>Snip 3a</em></a>):  Timer is sending tick to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4a"><em>Snip 4a</em></a>):      oneInstid=4 is ticking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5a"><em>Snip 5a</em></a>):        FrontEnd id=5 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6a"><em>Snip 6a</em></a>):          offers 1000 kg of uo2.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5c"><em>Snip 5c</em></a>):        BackEnd id=6 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6b"><em>Snip 6b</em></a>):          requests 1000 kg of uo2.
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3b"><em>Snip 3b</em></a>):  Timer is sending resolve to uo2market id=0
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6c"><em>Snip 6c</em></a>):          received matched order to send to id=6
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3c"><em>Snip 3c</em></a>):  Timer is sending tock to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4b"><em>Snip 4b</em></a>):      oneInstid=4 is tocking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5b"><em>Snip 5b</em></a>):        FrontEnd id=5 is tocking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6d"><em>Snip 6d</em></a>):          approving order to send to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          Beginning a material transfer...
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6g"><em>Snip 6g</em></a>):          sending material to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6h"><em>Snip 6h</em></a>):          receiving material from id=5
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          ... Finished transfer from id=5 to id=6.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5d"><em>Snip 5d</em></a>):        BackEnd id=6 is tocking.
+ INFO1(<a class="reference internal" href="tour_snippets.html#tutr2a"><em>Snip 2a</em></a>):Current date: 2000-Oct-01
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3a"><em>Snip 3a</em></a>):  Timer is sending tick to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4a"><em>Snip 4a</em></a>):      oneInstid=4 is ticking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5a"><em>Snip 5a</em></a>):        FrontEnd id=5 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6a"><em>Snip 6a</em></a>):          offers 1000 kg of uo2.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5c"><em>Snip 5c</em></a>):        BackEnd id=6 is ticking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6b"><em>Snip 6b</em></a>):          requests 1000 kg of uo2.
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3b"><em>Snip 3b</em></a>):  Timer is sending resolve to uo2market id=0
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6c"><em>Snip 6c</em></a>):          received matched order to send to id=6
+ INFO2(<a class="reference internal" href="tour_snippets.html#tutr3c"><em>Snip 3c</em></a>):  Timer is sending tock to oneRegion id=3
+ INFO4(<a class="reference internal" href="tour_snippets.html#tutr4b"><em>Snip 4b</em></a>):      oneInstid=4 is tocking.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5b"><em>Snip 5b</em></a>):        FrontEnd id=5 is tocking.
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6d"><em>Snip 6d</em></a>):          approving order to send to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          Beginning a material transfer...
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6g"><em>Snip 6g</em></a>):          sending material to id=6
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6h"><em>Snip 6h</em></a>):          receiving material from id=5
+DEBUG1(<a class="reference internal" href="tour_snippets.html#tutr6e"><em>Snip 6e</em></a>):          ... Finished transfer from id=5 to id=6.
+ INFO5(<a class="reference internal" href="tour_snippets.html#tutr5d"><em>Snip 5d</em></a>):        BackEnd id=6 is tocking.
+ INFO1(<a class="reference internal" href="tour_snippets.html#tutr1d"><em>Snip 1d</em></a>):Cyclus is exiting.
+</pre>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tour_snippets.html">Tour Snippets</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tour_snippets.html" title="Tour Snippets"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cyclus_env.html" title="The Cyclus Environment"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" >Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Nov 15, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

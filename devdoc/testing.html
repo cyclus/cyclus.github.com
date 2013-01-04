@@ -1,0 +1,671 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Writing Tests for Modules &mdash; Cyclus Home</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../index.html" />
+    <link rel="up" title="Cyclus Developer Guide" href="main.html" />
+    <link rel="next" title="Style Guidelines for Developers" href="style_guide.html" />
+    <link rel="prev" title="Model Devlopment Example : ToasterFacility" href="make-models/toaster.html" />
+   
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <a href="http://cyclus.github.com">
+    <img src="../_static/logo1.png"/>
+  </a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="style_guide.html" title="Style Guidelines for Developers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="make-models/toaster.html" title="Model Devlopment Example : ToasterFacility"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" accesskey="U">Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Writing Tests for Modules</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#directory-structure">Directory Structure</a></li>
+<li><a class="reference internal" href="#testing-framework">Testing Framework</a><ul>
+<li><a class="reference internal" href="#unit-tests">Unit Tests</a></li>
+<li><a class="reference internal" href="#acceptance-tests">Acceptance Tests</a></li>
+<li><a class="reference internal" href="#test-cases">Test Cases</a></li>
+<li><a class="reference internal" href="#tests-with-fixtures">Tests With Fixtures</a></li>
+<li><a class="reference internal" href="#assertions">Assertions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#an-example">An Example</a><ul>
+<li><a class="reference internal" href="#module-h">Module.h</a></li>
+<li><a class="reference internal" href="#module-cpp">Module.cpp</a></li>
+<li><a class="reference internal" href="#moduletests-h">ModuleTests.h</a></li>
+<li><a class="reference internal" href="#moduletests-cpp">ModuleTests.cpp</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing-xml-initialization">Testing XML Initialization</a><ul>
+<li><a class="reference internal" href="#id1">Module.h</a></li>
+<li><a class="reference internal" href="#id2">Module.cpp</a></li>
+<li><a class="reference internal" href="#id3">ModuleTests.h</a></li>
+<li><a class="reference internal" href="#id4">ModuleTests.cpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="make-models/toaster.html"
+                        title="previous chapter">Model Devlopment Example : ToasterFacility</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="style_guide.html"
+                        title="next chapter">Style Guidelines for Developers</a></p>
+  <h3>Useful Pages</h3>
+    <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
+    <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
+    <li><a href="https://github.com/cyclus">Source Code</a></li>
+    <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Acknowledgements</h3>
+    Support for this research has included funding received from:
+    <img src=/_images/neup_logo_large.jpg width=170px>
+    <img src=/_images/AnlLogo.png height=100px>
+    <img src=/_images/USNRC.gif height=100px>
+    <img src=/_images/nsf_logo.jpg height=100px>
+    <img src=/_images/crest.png height=100px>
+
+    
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="writing-tests-for-modules">
+<h1>Writing Tests for Modules<a class="headerlink" href="#writing-tests-for-modules" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Writing tests for your module is a prerequisite for its addition to
+any <em>Cyclus</em> library. Specifically, any public API functionality must
+provide the <a class="reference external" href="http://en.wikipedia.org/wiki/Exception_guarantees">basic guarantee</a>; however, you
+may (and I do) find it useful to test private methods and the effect
+of public methods on private members. This guide will provide an
+example of how to achieve such functionality.</p>
+</div>
+<div class="section" id="directory-structure">
+<h2>Directory Structure<a class="headerlink" href="#directory-structure" title="Permalink to this headline">¶</a></h2>
+<p>A fully developed module will have the following directory structure:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Module.h</li>
+<li>Module.cpp</li>
+<li>Module.rng</li>
+<li>ModuleTests.h</li>
+<li>ModuleTests.cpp</li>
+<li>CMakeLists.txt</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="testing-framework">
+<h2>Testing Framework<a class="headerlink" href="#testing-framework" title="Permalink to this headline">¶</a></h2>
+<p><em>Cyclus</em> makes use of the <a class="reference external" href="http://code.google.com/p/googletest/">Google Test</a> framework.
+It is a tool which will assist Cyclus developers in incorporating tests for their
+modules. The framework is integrated with <cite>CMake</cite> with the use of gtest.cc
+gtest_main.cc and gtest.h. The Google Test primer is recommended as an
+introduction to the fundamental concepts of unit testing with Google Test.</p>
+<div class="section" id="unit-tests">
+<h3>Unit Tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline">¶</a></h3>
+<p>Unit tests are written for each new unit of functionality to assure correct
+behavior.  A Cyclus unit test should:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Sufficiently verify the expected behavior of a unit of functionality</li>
+<li>Sufficiently verify expected behavior for boundary cases</li>
+<li>Be written simply</li>
+</ul>
+</div></blockquote>
+<p>A good tutorial on how to write good unit tests can be found at
+software-carpentry.org.</p>
+<p>Cyclus test coverage should mimic the hierarchical structure of the source code.
+Each class should have a corresponding Test Case that challenges the robustness
+of its interface.</p>
+<p>An interface consists of the functions, constructors, and data retrievers with
+which the rest of the code interacts with that class. Each of these functions,
+constructors, and data retrievers should be challenged by a Test within the
+Test Case for that class.</p>
+<p>Many of these tests will require the use of Fixtures, which will represent canonical
+Cyclus objects such as Materials, Commodities, Markets, Facilities and Messages.
+These Fixtures will be shared by many Tests and sometimes many Test Cases.</p>
+</div>
+<div class="section" id="acceptance-tests">
+<h3>Acceptance Tests<a class="headerlink" href="#acceptance-tests" title="Permalink to this headline">¶</a></h3>
+<p>If you are a developer, you may write a module that is intended to be a concrete
+implementation of a FacilityModel or other interface type.</p>
+<p>To ensure that your code satisfies the basic requirements of the interface which
+it is intended to be satisfy, the Cyclus core developers have created
+parameterized abstract interface tests that must be instantiated with your
+concrete model in order for it to be accepted into the cyclus module library.</p>
+<p>The interface for our ToasterFacility can be tested by including
+FacilityModelTests.h in the beginning of the file, ensuring that
+FacilityModelTests.cpp is linked to the CyclusUnitTestDriver executable, and
+declaring the implementation of the parameterized test by providing a reference
+to a constructor to a concrete ToasterFaclity.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacilityTests.cpp</span>
+<span class="cp">#include &lt;gtest/gtest.h&gt;</span>
+<span class="cp">#include &quot;FacilityModelTests.h&quot;</span>
+
+<span class="n">FacilityModel</span><span class="o">*</span> <span class="n">ToasterFacilityConstructor</span><span class="p">(){</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">ToasterFaclity</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">INSTANTIATE_TEST_CASE_P</span><span class="p">(</span><span class="n">ToasterFac</span><span class="p">,</span>
+                        <span class="n">FacilityModelTests</span><span class="p">,</span>
+                        <span class="n">Values</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ToasterFacilityConstructor</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">ToasterFacilityTest</span><span class="p">,</span> <span class="n">AddingHeat</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">double</span> <span class="n">original_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_NO_THROW</span><span class="p">(</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">addHeat</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> <span class="p">);</span>
+  <span class="kt">double</span> <span class="n">warm_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_GT</span><span class="p">(</span><span class="n">warm_temp</span><span class="p">,</span> <span class="n">original_temp</span><span class="p">;)</span>
+  <span class="n">EXPECT_NO_THROW</span><span class="p">(</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">addHeat</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="p">)</span> <span class="p">);</span>
+  <span class="kt">double</span> <span class="n">cool_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_LT</span><span class="p">(</span><span class="n">cool_temp</span><span class="p">,</span> <span class="n">warm_temp</span><span class="p">;)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-cases">
+<h3>Test Cases<a class="headerlink" href="#test-cases" title="Permalink to this headline">¶</a></h3>
+<p>Test Cases are logical groupings of Tests. For Cyclus, each class, such as the
+ToasterFacility should have its own Test Case defined within a file called
+ToasterFacilityTests.cpp or something similar.</p>
+<p>The ToasterFacilityTests.cpp file should be placed in the appropriate directory
+within the code as well. Specifically, it should be placed in the
+trunk/src/Facility/ToasterFacility/ folder with the other ToasterFacility files.</p>
+<p>The Test Case is a class declared in this file. The Cyclus convention is to give
+the class the same name as the file. For the ToasterFacility, this class will
+look like:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacilityTests.cpp</span>
+<span class="cp">#include &lt;gtest/gtest.h&gt;</span>
+<span class="cp">#include &quot;ToasterFacility.h&quot;</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="k">class</span> <span class="nc">ToasterFacilityTest</span> <span class="o">:</span> <span class="k">public</span> <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">Test</span> <span class="p">{</span>
+<span class="k">protected</span><span class="o">:</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">SetUp</span><span class="p">(){</span>
+  <span class="p">};</span>
+
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">TearDown</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>When executed, the testing framework will run each test case
+independently. For each test case, Google Test does the following:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Run SetUp()</li>
+<li>Run ModuleTest Fixture</li>
+<li>Run TearDown()</li>
+</ol>
+</div></blockquote>
+<p>It is the responsibility of the developer to properly initialize any
+required members in SetUp() and free the appropriate memory in
+TearDown().</p>
+</div>
+<div class="section" id="tests-with-fixtures">
+<h3>Tests With Fixtures<a class="headerlink" href="#tests-with-fixtures" title="Permalink to this headline">¶</a></h3>
+<p>section tests Tests with Fixtures</p>
+<dl class="docutils">
+<dt>Tests are performed on single units of functionality within Cyclus. For Cyclus,</dt>
+<dd><p class="first">imagine that the ToasterFacility class has a function called addHeat(double
+to_set) which increases the <tt class="docutils literal"><span class="pre">current_bread_temp_</span></tt> data member value. Knowing
+very little about the function, we should check that if to_set is positive,
+the <tt class="docutils literal"><span class="pre">current_bread_temp_</span></tt> increases, and if to_set is negative, the
+<tt class="docutils literal"><span class="pre">current_bread_temp_</span></tt> decreases.</p>
+<p>A test within the ToasterFacilityTest Test Case will need to utilize a
+concrete instance of a ToasterFacility to check this.</p>
+<p class="last">To test the internals of the ToasterFacility class, such as private data
+members like <tt class="docutils literal"><span class="pre">current_bread_temp_</span></tt> a fixture needs to be created in the setup
+step. A very simple class is created in order to supply a public getter
+function for the <tt class="docutils literal"><span class="pre">current_bread_temp_</span></tt> variable.</p>
+</dd>
+</dl>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacilityTests.cpp</span>
+<span class="cp">#include &lt;gtest/gtest.h&gt;</span>
+<span class="cp">#include &quot;ToasterFacility.h&quot;</span>
+<span class="cp">#include &quot;TestInst.h&quot;</span>
+<span class="cp">#include &quot;CycException.h&quot;</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="k">class</span> <span class="nc">FakeToasterFacility</span> <span class="o">:</span> <span class="k">public</span> <span class="n">ToasterFacility</span> <span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">FakeToasterFacility</span><span class="p">()</span> <span class="o">:</span> <span class="n">ToasterFacility</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">FakeToasterFacility</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="kt">double</span> <span class="n">getBreadTemp</span><span class="p">(){</span><span class="k">return</span> <span class="n">current_bread_temp_</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="k">class</span> <span class="nc">ToasterFacilityTest</span> <span class="o">:</span> <span class="k">public</span> <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">Test</span> <span class="p">{</span>
+<span class="k">protected</span><span class="o">:</span>
+  <span class="n">FakeToasterFacility</span><span class="o">*</span> <span class="n">src_facility</span><span class="p">;</span>
+
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">SetUp</span><span class="p">(){</span>
+    <span class="n">src_facility</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FakeToasterFacility</span><span class="p">();</span>
+    <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">setParent</span><span class="p">(</span><span class="k">new</span> <span class="n">TestInst</span><span class="p">());</span>
+  <span class="p">};</span>
+
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">TearDown</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">delete</span> <span class="n">src_facility</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>For a tutorial on the
+use of Googletest for creating and using Fixtures, please see the Googletest
+primer section on
+<cite>fixtures &lt;http://code.google.com/p/googletest/wiki/Primer#Test_Fixtures:_Using_the_Same_Data_Configuration_for_Multiple_Te&gt;_</cite>.</p>
+<p>Now that the fixture setup and teardown are in place, it is possible to add a
+test (with access to the fixture to ToasterFacilityTests.cpp.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">ToasterFacilityTest</span><span class="p">,</span> <span class="n">AddingHeat</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">double</span> <span class="n">original_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_NO_THROW</span><span class="p">(</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">addHeat</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> <span class="p">);</span>
+  <span class="kt">double</span> <span class="n">warm_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_GT</span><span class="p">(</span><span class="n">warm_temp</span><span class="p">,</span> <span class="n">original_temp</span><span class="p">;)</span>
+  <span class="n">EXPECT_NO_THROW</span><span class="p">(</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">addHeat</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="p">)</span> <span class="p">);</span>
+  <span class="kt">double</span> <span class="n">cool_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_LT</span><span class="p">(</span><span class="n">cool_temp</span><span class="p">,</span> <span class="n">warm_temp</span><span class="p">;)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="assertions">
+<h3>Assertions<a class="headerlink" href="#assertions" title="Permalink to this headline">¶</a></h3>
+<p>As in the example above, Each test will be one or more assertions. Assertions
+test various truth expectations for the boundary cases that might be
+encountered by the function.</p>
+<p>With the Google Test framework, it is easy to make some assertions fatal and
+some nonfatal. That is, for nonfatal assertions, the test continues but for
+fatal assertions the test ceases to continue. In googletest, fatal assertions
+are called with the macros that begin with the word EXPECT (EXPECT_EQ(),
+EXPECT_LE(), EXPECT_GE()...). For things that absolutely must be the case for
+us to trust the results of following tests,</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">TEST_F</span><span class="p">(</span><span class="n">ToasterFacilityTests</span><span class="p">,</span> <span class="n">addZeroHeat</span><span class="p">){</span>
+  <span class="kt">double</span> <span class="n">original_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_NO_THROW</span><span class="p">(</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">addHeat</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span> <span class="p">);</span>
+  <span class="kt">double</span> <span class="n">new_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">new_temp</span><span class="p">,</span> <span class="n">original_temp</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Nonfatal assertions are macros that begin with ASSERT (ASSERT_EQ(), ASSERT_LE(), ...).</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">TEST_F</span><span class="p">(</span><span class="n">FooTest</span><span class="p">,</span> <span class="n">heatTransfer</span><span class="p">){</span>
+  <span class="kt">double</span> <span class="n">original_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">addHeat</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span>
+  <span class="kt">double</span> <span class="n">new_temp</span> <span class="o">=</span> <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">getBreadTemp</span><span class="p">();</span>
+  <span class="n">ASSERT_EQ</span><span class="p">((</span><span class="n">original_temp</span><span class="o">+</span><span class="mf">2.0</span><span class="p">),</span><span class="n">new_temp</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For more information on the googletest assertion syntax please see the Googletest
+primer section on
+<cite>assertions &lt;http://code.google.com/p/googletest/wiki/PrimerAssertions&gt;_</cite>.</p>
+</div>
+</div>
+<div class="section" id="an-example">
+<h2>An Example<a class="headerlink" href="#an-example" title="Permalink to this headline">¶</a></h2>
+<p>Now we will provide an example of a very simple module. The module
+increases a privately stored counter.</p>
+<div class="section" id="module-h">
+<h3>Module.h<a class="headerlink" href="#module-h" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Module</span><span class="p">;</span>
+<span class="cp">#include &quot;ModuleTests.h&quot;</span>
+
+<span class="k">class</span> <span class="nc">Module</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="n">Module</span><span class="p">();</span>                 <span class="c1">// constructor</span>
+  <span class="kt">void</span> <span class="n">increaseCounter</span><span class="p">();</span>   <span class="c1">// increase counter_ by one</span>
+
+ <span class="k">private</span><span class="o">:</span>
+  <span class="kt">int</span> <span class="n">counter_</span><span class="p">;</span>
+
+  <span class="k">friend</span> <span class="k">class</span> <span class="nc">ModuleTest</span><span class="p">;</span>  <span class="c1">// friend class gives access to private members</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Here we use the friend keyword. This allows functions defined in the
+ModuleTest class to access both private and protected members and
+methods of the Module class.</p>
+</div>
+<div class="section" id="module-cpp">
+<h3>Module.cpp<a class="headerlink" href="#module-cpp" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;Module.h&quot;</span>
+
+<span class="c1">// -----------------------------------------------------------------</span>
+<span class="n">Module</span><span class="o">::</span><span class="n">Module</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">counter_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// -----------------------------------------------------------------</span>
+<span class="kt">void</span> <span class="n">Module</span><span class="o">::</span><span class="n">increaseCounter</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">counter_</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="moduletests-h">
+<h3>ModuleTests.h<a class="headerlink" href="#moduletests-h" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;gtest/gtest.h&gt;</span>
+<span class="cp">#include &quot;Module.h&quot;</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="k">class</span> <span class="nc">ModuleTest</span> <span class="o">:</span> <span class="k">public</span> <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">Test</span> <span class="p">{</span>
+<span class="k">protected</span><span class="o">:</span>
+  <span class="n">Module</span><span class="o">*</span> <span class="n">module_</span><span class="p">;</span>
+
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">SetUp</span><span class="p">();</span>     <span class="c1">// gtest construction</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">TearDown</span><span class="p">();</span>  <span class="c1">// gtest destruction</span>
+
+  <span class="kt">int</span> <span class="n">counter</span><span class="p">();</span>            <span class="c1">// access the counter_ variable</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="moduletests-cpp">
+<h3>ModuleTests.cpp<a class="headerlink" href="#moduletests-cpp" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;ModuleTests.h&quot;</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">ModuleTest</span><span class="o">::</span><span class="n">SetUp</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">module_</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Module</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">ModuleTest</span><span class="o">::</span><span class="n">TearDown</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">delete</span> <span class="n">module_</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">int</span> <span class="n">ModuleTest</span><span class="o">::</span><span class="n">counter</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">module_</span><span class="o">-&gt;</span><span class="n">counter_</span><span class="p">;</span> <span class="c1">// counter_ accessed via friend class</span>
+<span class="p">}</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">ModuleTest</span><span class="p">,</span><span class="n">TestConstructor</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">counter</span><span class="p">(),</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">ModuleTest</span><span class="p">,</span><span class="n">TestIncreaseCounter</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">module_</span><span class="o">-&gt;</span><span class="n">increaseCounter</span><span class="p">();</span>
+  <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">counter</span><span class="p">(),</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note here that we first test that the counter has been properly
+initialized in the Module&#8217;s constructor. Second, we test that
+increaseCounter() performs as expected. We need not test that the
+counter&#8217;s value is 0 in TestIncreaseCounter because this has been
+determined in TestConstructor.</p>
+</div>
+</div>
+<div class="section" id="testing-xml-initialization">
+<h2>Testing XML Initialization<a class="headerlink" href="#testing-xml-initialization" title="Permalink to this headline">¶</a></h2>
+<p><em>Cyclus</em> relies on reading xml files to initialize modules. It is
+often very convenient to test that a module has been initalized
+correctly. The following example will show how to achieve such
+functionality.</p>
+<p>Let us return to the Module example; however, this time let us assume
+that the initial value of the counter is determined at run time by
+reading an XML file. For example, let us say the XML is as follows:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;counter_init&gt;</span>5<span class="nt">&lt;/counter_init&gt;</span>
+</pre></div>
+</div>
+<p>Here the counter is initialized to the value 5. Let us revisit each
+file to review what has changed to test this new functionality.</p>
+<div class="section" id="id1">
+<h3>Module.h<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Module</span><span class="p">;</span>
+<span class="cp">#include &quot;ModuleTests.h&quot;</span>
+<span class="cp">#include &lt;libxml/xpath.h&gt;</span>
+
+<span class="k">class</span> <span class="nc">Module</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">,</span> <span class="n">xmlXPathContextPtr</span> <span class="n">context</span><span class="p">);</span>   <span class="c1">// initialize counter_</span>
+  <span class="kt">void</span> <span class="n">increaseCounter</span><span class="p">();</span>                             <span class="c1">// increase counter_ by one</span>
+
+ <span class="k">private</span><span class="o">:</span>
+  <span class="kt">int</span> <span class="n">counter_</span><span class="p">;</span>
+
+  <span class="k">friend</span> <span class="k">class</span> <span class="nc">ModuleTest</span><span class="p">;</span>  <span class="c1">// friend class gives access to private members</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Module.cpp<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;Module.h&quot;</span>
+<span class="cp">#include &quot;InputXML.h&quot;</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">Module</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">,</span> <span class="n">xmlXPathContextPtr</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">counter_</span> <span class="o">=</span>
+    <span class="n">atoi</span><span class="p">((</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span><span class="p">)</span>
+         <span class="n">XMLinput</span><span class="o">-&gt;</span><span class="n">get_xpath_content</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="n">node</span><span class="p">,</span><span class="s">&quot;counter_init&quot;</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// -----------------------------------------------------------------</span>
+<span class="kt">void</span> <span class="n">Module</span><span class="o">::</span><span class="n">increaseCounter</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">counter_</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The counter_ variable is now initialized via XML. Specifically, an
+XML node and context must be provided. Normally in <em>Cyclus</em>, the
+XML context is provided via the XMLinput singleton.</p>
+</div>
+<div class="section" id="id3">
+<h3>ModuleTests.h<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;Module.h&quot;</span>
+
+<span class="cp">#include &lt;gtest/gtest.h&gt;</span>
+<span class="cp">#include &lt;libxml/parser.h&gt;</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="k">class</span> <span class="nc">ModuleTest</span> <span class="o">:</span> <span class="k">public</span> <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">Test</span> <span class="p">{</span>
+<span class="k">protected</span><span class="o">:</span>
+  <span class="n">Module</span><span class="o">*</span> <span class="n">module_</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">test_counter_</span><span class="p">;</span>        <span class="c1">// a variable to set the initialized counter to</span>
+
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">SetUp</span><span class="p">();</span>     <span class="c1">// gtest construction</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">TearDown</span><span class="p">();</span>  <span class="c1">// gtest destruction</span>
+
+  <span class="n">xmlDocPtr</span> <span class="n">getXMLDoc</span><span class="p">();</span>    <span class="c1">// get an xml doc from an xml snippet</span>
+  <span class="kt">void</span> <span class="n">initModule</span><span class="p">();</span>        <span class="c1">// initialize the module</span>
+  <span class="kt">int</span> <span class="n">counter</span><span class="p">();</span>            <span class="c1">// access the counter_ variable</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>We can now test the counter_ variable at run time via the test_counter_
+variable. We additionally encapsulate the module initalization process
+in the initModule() function which will use the getXMLDoc() function
+to provide the required XML node and context.</p>
+</div>
+<div class="section" id="id4">
+<h3>ModuleTests.cpp<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;ModuleTests.h&quot;</span>
+
+<span class="cp">#include &lt;libxml/parser.h&gt;</span>
+<span class="cp">#include &lt;libxml/xpath.h&gt;</span>
+
+<span class="cp">#include &lt;string&gt;</span>
+<span class="cp">#include &lt;sstream&gt;</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">ModuleTest</span><span class="o">::</span><span class="n">SetUp</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">module_</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Module</span><span class="p">();</span>
+  <span class="n">test_counter_</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>      <span class="c1">// initialize test_counter_ to some value</span>
+  <span class="n">initModule</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">ModuleTest</span><span class="o">::</span><span class="n">TearDown</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">delete</span> <span class="n">module_</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="n">xmlDocPtr</span> <span class="n">ModuleTest</span><span class="o">::</span><span class="n">getXMLDoc</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">stringstream</span> <span class="n">ss</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+
+  <span class="c1">// get an xml snippet to test using the test_counter_ variable</span>
+  <span class="n">ss</span> <span class="o">&lt;&lt;</span>
+    <span class="s">&quot;&lt;?xml version=</span><span class="se">\&quot;</span><span class="s">1.0</span><span class="se">\&quot;</span><span class="s">?&gt;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">&lt;&lt;</span>
+    <span class="s">&quot;&lt;document&gt;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">&lt;&lt;</span>
+    <span class="s">&quot;  &lt;counter_init&gt;&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">test_counter_</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;&lt;/counter_init&gt;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">&lt;&lt;</span>
+    <span class="s">&quot;&lt;/document&gt;&quot;</span><span class="p">;</span>
+
+  <span class="c1">// return an xmlDocPtr to that snippet</span>
+  <span class="n">string</span> <span class="n">snippet</span> <span class="o">=</span> <span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">xmlParseMemory</span><span class="p">(</span><span class="n">snippet</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="n">snippet</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">void</span> <span class="n">ModuleTest</span><span class="o">::</span><span class="n">initModule</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">xmlDocPtr</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">getXMLDoc</span><span class="p">();</span>
+  <span class="n">xmlXPathContextPtr</span> <span class="n">context</span> <span class="o">=</span> <span class="n">xmlXPathNewContext</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">xmlNodePtr</span> <span class="n">node</span> <span class="o">=</span> <span class="n">doc</span><span class="o">-&gt;</span><span class="n">children</span><span class="p">;</span>
+
+  <span class="n">module_</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">(</span><span class="n">node</span><span class="p">,</span><span class="n">context</span><span class="p">);</span> <span class="c1">// initialize module_ using the xml snippet</span>
+<span class="p">}</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="kt">int</span> <span class="n">ModuleTest</span><span class="o">::</span><span class="n">counter</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">module_</span><span class="o">-&gt;</span><span class="n">counter_</span><span class="p">;</span> <span class="c1">// counter_ accessed via friend class</span>
+<span class="p">}</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">ModuleTest</span><span class="p">,</span><span class="n">TestInit</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">counter</span><span class="p">(),</span><span class="n">test_counter_</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">ModuleTest</span><span class="p">,</span><span class="n">TestIncreaseCounter</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">module_</span><span class="o">-&gt;</span><span class="n">increaseCounter</span><span class="p">();</span>
+  <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">counter</span><span class="p">(),</span><span class="n">test_counter_</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>With this update, the module_ will be initialized to test_counter_
+each time SetUp() is called. We can therefore make tests that are
+very similar to the previous example. The main difference is that we
+compare agaisnt a variable initialized by our own test suite, i.e.
+test_counter_, rather than hard-coding in a value, i.e. 0, as was
+true in the previous example.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="style_guide.html" title="Style Guidelines for Developers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="make-models/toaster.html" title="Model Devlopment Example : ToasterFacility"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" >Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Nov 15, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,274 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Simulation Overview and Initialization &mdash; Cyclus Home</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../index.html" />
+    <link rel="up" title="Cyclus Developer Guide" href="main.html" />
+    <link rel="next" title="Resources In Cyclus" href="resources.html" />
+    <link rel="prev" title="Dynamic Loading Overview" href="dynamic_loading.html" />
+   
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <a href="http://cyclus.github.com">
+    <img src="../_static/logo1.png"/>
+  </a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="resources.html" title="Resources In Cyclus"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dynamic_loading.html" title="Dynamic Loading Overview"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" accesskey="U">Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Simulation Overview and Initialization</a><ul>
+<li><a class="reference internal" href="#simulation-elements">Simulation Elements</a><ul>
+<li><a class="reference internal" href="#prototypes">Prototypes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#simulation-entities">Simulation Entities</a></li>
+<li><a class="reference internal" href="#simulation-start-up">Simulation Start Up</a></li>
+<li><a class="reference internal" href="#entering-the-simulation">Entering the Simulation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dynamic_loading.html"
+                        title="previous chapter">Dynamic Loading Overview</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="resources.html"
+                        title="next chapter">Resources In Cyclus</a></p>
+  <h3>Useful Pages</h3>
+    <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
+    <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
+    <li><a href="https://github.com/cyclus">Source Code</a></li>
+    <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Acknowledgements</h3>
+    Support for this research has included funding received from:
+    <img src=/_images/neup_logo_large.jpg width=170px>
+    <img src=/_images/AnlLogo.png height=100px>
+    <img src=/_images/USNRC.gif height=100px>
+    <img src=/_images/nsf_logo.jpg height=100px>
+    <img src=/_images/crest.png height=100px>
+
+    
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="simulation-overview-and-initialization">
+<h1>Simulation Overview and Initialization<a class="headerlink" href="#simulation-overview-and-initialization" title="Permalink to this headline">¶</a></h1>
+<p>We consider a simulation to be comprised of entities (agents) that
+interact with elements in the simulation. This document is meant to
+describe in more detail what entities and elements are and how they are
+created within the simulation.</p>
+<p>Note that the words entity and agent can be used interchangeably.</p>
+<div class="section" id="simulation-elements">
+<h2>Simulation Elements<a class="headerlink" href="#simulation-elements" title="Permalink to this headline">¶</a></h2>
+<p>Simulation elements are objects in the simulation that entities query
+or manipulate. Some elements are:</p>
+<ul class="simple">
+<li>resources</li>
+<li>recipes, which describe material resources</li>
+<li>commodities, which define a subset of resources</li>
+<li>markets, which facilitate the transaction of resources amongst agents</li>
+<li>prototypes, which can be copied and initialized as simulation entities</li>
+</ul>
+<div class="section" id="prototypes">
+<h3>Prototypes<a class="headerlink" href="#prototypes" title="Permalink to this headline">¶</a></h3>
+<p>Prototypes are a unique type of simulation element. Prototypes can be
+considered yet-to-be initialized simulation entities, and they are the
+main mechanism by which to describe Facility modules.</p>
+<p>More specifically, prototypes are entities designed to be copied
+many times over the course of a simulation due to common aspects.</p>
+</div>
+</div>
+<div class="section" id="simulation-entities">
+<h2>Simulation Entities<a class="headerlink" href="#simulation-entities" title="Permalink to this headline">¶</a></h2>
+<p>Simulation entities are agents that take actions and respond to actions
+taken by other agents in the simulation. Some agents are:</p>
+<ul class="simple">
+<li>regions</li>
+<li>institutions</li>
+<li>facilities, which are initialized from prototypes</li>
+</ul>
+</div>
+<div class="section" id="simulation-start-up">
+<h2>Simulation Start Up<a class="headerlink" href="#simulation-start-up" title="Permalink to this headline">¶</a></h2>
+<p>Here we describe the major events that occur between entering the
+main() function and making the function call to run the simulation.
+This process involves dynamically loading a number of different
+constructors for classes from dynamic libraries, called modules.</p>
+<p>In general, we call this process &#8220;loading the input file.&#8221; The
+process is listed below:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Read and initialize temporal data</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>the simulation starting time</li>
+<li>the simulation duration</li>
+<li>information about how/what frequency to decay material</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Read and initialize simulation elements</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>recipes used in the simulation</li>
+<li>markets and commodities</li>
+<li>initialize markets via XML</li>
+<li>prototypes (various facilities used in the simulation)
+* initialize prototypes via XML</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Read, initialize, and load simulation entities</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>institutions
+* initialize institutions via XML</li>
+<li>regions
+* initialize regions via XML
+* load regions into simulation
+* load institutions into simulation</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Run the simulation</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="entering-the-simulation">
+<h2>Entering the Simulation<a class="headerlink" href="#entering-the-simulation" title="Permalink to this headline">¶</a></h2>
+<p>When simulation entities are loaded into the simulation, they are
+placed in a hierarchy, i.e. a parent-child tree. The tree structure
+has the general form:</p>
+<ul class="simple">
+<li>Region<ul>
+<li>Institution 1<ul>
+<li>Facility A</li>
+<li>Facility B</li>
+<li>...</li>
+</ul>
+</li>
+<li>...</li>
+</ul>
+</li>
+<li>...</li>
+</ul>
+<p>Both region and institution entities enter the simulation during the
+simulation initialization, i.e. they always exist. Facilities enter
+the simulation when prompted to (i.e., when built) by their parent
+Institution. All Institutions may choose to build Facilities during
+their loading step, thus a fully-formed simulation must begin with
+all Regions and Institutions placed in the simulation tree, but may
+begin without any Facilities placed in the tree.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="resources.html" title="Resources In Cyclus"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dynamic_loading.html" title="Dynamic Loading Overview"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" >Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Nov 15, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

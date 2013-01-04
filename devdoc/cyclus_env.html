@@ -1,0 +1,328 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Cyclus Environment &mdash; Cyclus Home</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../index.html" />
+    <link rel="up" title="Cyclus Developer Guide" href="main.html" />
+    <link rel="next" title="Tour of the Source Code" href="code_tour.html" />
+    <link rel="prev" title="Installing Dependencies on Windows" href="dependencies_windows.html" />
+   
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <a href="http://cyclus.github.com">
+    <img src="../_static/logo1.png"/>
+  </a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="code_tour.html" title="Tour of the Source Code"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dependencies_windows.html" title="Installing Dependencies on Windows"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" accesskey="U">Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The Cyclus Environment</a><ul>
+<li><a class="reference internal" href="#agents-and-markets">Agents and Markets</a><ul>
+<li><a class="reference internal" href="#simulation-and-agent-initialization">Simulation and Agent Initialization</a></li>
+<li><a class="reference internal" href="#dynamic-loading">Dynamic Loading</a></li>
+<li><a class="reference internal" href="#on-facility-prototypes-and-their-use">On Facility Prototypes and their Use</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#resources-and-materials">Resources and Materials</a></li>
+<li><a class="reference internal" href="#utility-classes">Utility Classes</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dependencies_windows.html"
+                        title="previous chapter">Installing Dependencies on Windows</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="code_tour.html"
+                        title="next chapter">Tour of the Source Code</a></p>
+  <h3>Useful Pages</h3>
+    <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
+    <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
+    <li><a href="https://github.com/cyclus">Source Code</a></li>
+    <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Acknowledgements</h3>
+    Support for this research has included funding received from:
+    <img src=/_images/neup_logo_large.jpg width=170px>
+    <img src=/_images/AnlLogo.png height=100px>
+    <img src=/_images/USNRC.gif height=100px>
+    <img src=/_images/nsf_logo.jpg height=100px>
+    <img src=/_images/crest.png height=100px>
+
+    
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="the-cyclus-environment">
+<h1>The Cyclus Environment<a class="headerlink" href="#the-cyclus-environment" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="agents-and-markets">
+<h2>Agents and Markets<a class="headerlink" href="#agents-and-markets" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>In the most abstract sense, <em>Cyclus</em> provides a platform for agent-based simulation, in which:</dt>
+<dd><ul class="first last simple">
+<li>agents interact by offering and requesting resources,</li>
+<li>clearinghouses collect and resolve those offers/requests for like resources, and</li>
+<li>clearinghouses instruct agents to transfer those resources.</li>
+</ul>
+</dd>
+<dt>There are three fundamental types of agents:</dt>
+<dd><ul class="first last simple">
+<li>Regions - representing geopolitical regions</li>
+<li>Institutions - representing legal entities that own/operate facilities</li>
+<li>Facilities - representing specific facilities in a nuclear fuel cycle.</li>
+</ul>
+</dd>
+</dl>
+<p>The clearinghouses are represented in <em>Cyclus</em> as Markets.</p>
+<dl class="docutils">
+<dt>There are 5 fundamental properties that may be inherited by agents and Markets:</dt>
+<dd><ul class="first last simple">
+<li>dynamically loadable modules - Model (to be DynamicModule?)</li>
+<li>communication of offers, requests and transactions - Communicator</li>
+<li>management of time steps - TimeAgent (to be TimeHandler?)</li>
+<li>participation in a tree of agents - SimulationTree</li>
+<li>agent prototypes available for concrete instantiation - Prototype</li>
+</ul>
+</dd>
+</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="15%" />
+<col width="23%" />
+<col width="20%" />
+<col width="15%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td>Regions</td>
+<td>Institutions</td>
+<td>Facilities</td>
+<td>Markets</td>
+</tr>
+<tr class="row-even"><td>DynamicModule</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="row-odd"><td>Communicator</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="row-even"><td>TimeHandler</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>SimulationTree</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Prototype</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>X</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="simulation-and-agent-initialization">
+<h3>Simulation and Agent Initialization<a class="headerlink" href="#simulation-and-agent-initialization" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>A simulation is initialized in the following order:</dt>
+<dd><ul class="first last">
+<li><p class="first">define &amp; initialize Markets</p>
+</li>
+<li><p class="first">define &amp; register Resources recipes to be used by Facilities</p>
+</li>
+<li><p class="first">define &amp; register prototypes of Facilities</p>
+</li>
+<li><dl class="first docutils">
+<dt>populate a tree of simulation agents with</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Regions, and their</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Institutions, and their</dt>
+<dd><ul class="first last simple">
+<li>Facilities that exist in the initials state.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="dynamic-loading">
+<h3>Dynamic Loading<a class="headerlink" href="#dynamic-loading" title="Permalink to this headline">¶</a></h3>
+<p>Dynamic loading of modules occurs only when a particular module is
+requested by a user.  When such a request is made, the shared object
+for that module loaded by the simulation and its constructor is
+registered for use when new modules are instantiated, using a
+Factory-like design pattern.</p>
+</div>
+<div class="section" id="on-facility-prototypes-and-their-use">
+<h3>On Facility Prototypes and their Use<a class="headerlink" href="#on-facility-prototypes-and-their-use" title="Permalink to this headline">¶</a></h3>
+<p>As <em>Cyclus</em> steps forward in time and deploys new facilities, each
+facility is generally a new instance of a similar facility, possibly
+with some distinguishing characteristics.  To enable this, facility
+prototypes are defined by the user and those prototypes are cloned to
+make concrete instance of the actual facilities that will act as
+agents.</p>
+<p>The institutions that will ultimately deploy facilities are given
+lists of prototypes that they are allowed to deploy and then manage the
+steps necessary to invoke the following steps:</p>
+<blockquote>
+<div><ul class="simple">
+<li>clone the prototype to create a concrete facility instance,</li>
+<li>add the concrete instance to the simulation tree, and</li>
+<li>specialize the concrete instance by changing any appropriate parameters.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="resources-and-materials">
+<h2>Resources and Materials<a class="headerlink" href="#resources-and-materials" title="Permalink to this headline">¶</a></h2>
+<p>Resources are the objects offered and requested in transactions. For more
+details on the Resource interface, please see the <a class="reference internal" href="resources.html"><em>Resource</em></a>
+page.</p>
+<p>Materials are a type of Resource. For more details about the material
+interface, please see the
+<a class="reference internal" href="materials_and_isotopes.html"><em>Materials and Isotopes</em></a> page.</p>
+</div>
+<div class="section" id="utility-classes">
+<h2>Utility Classes<a class="headerlink" href="#utility-classes" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>XMLQueryEngine</li>
+<li>DecayHandler</li>
+<li>BookKeeper</li>
+<li>CycException</li>
+<li>Logger</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="code_tour.html" title="Tour of the Source Code"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dependencies_windows.html" title="Installing Dependencies on Windows"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" >Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Nov 15, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,443 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Use Cases for Cyclus Output Data &mdash; Cyclus Home</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../index.html" />
+    <link rel="up" title="Cyclus Developer Guide" href="main.html" />
+    <link rel="next" title="The Cyclus Fuel Cycle Simulator Roadmap" href="../basics/roadmap.html" />
+    <link rel="prev" title="Output Database" href="output_dbase.html" />
+   
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <a href="http://cyclus.github.com">
+    <img src="../_static/logo1.png"/>
+  </a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../basics/roadmap.html" title="The Cyclus Fuel Cycle Simulator Roadmap"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="output_dbase.html" title="Output Database"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" accesskey="U">Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Use Cases for Cyclus Output Data</a><ul>
+<li><a class="reference internal" href="#transaction-data">Transaction Data</a></li>
+<li><a class="reference internal" href="#facility-instance-data">Facility Instance Data</a></li>
+<li><a class="reference internal" href="#use-cases">Use Cases</a><ul>
+<li><a class="reference internal" href="#material-flow-explorations">Material flow explorations</a><ul>
+<li><a class="reference internal" href="#time-domain-resolution-and-representation">Time Domain Resolution and Representation</a></li>
+<li><a class="reference internal" href="#filtering-the-sets-of-participating-facilities">Filtering the Sets of Participating Facilities</a></li>
+<li><a class="reference internal" href="#filtering-the-set-of-isotopes">Filtering the Set of Isotopes</a></li>
+<li><a class="reference internal" href="#post-processing-for-alternative-engineering-responses">Post-processing for Alternative Engineering Responses</a></li>
+<li><a class="reference internal" href="#workflows-for-comparitive-time-series-exploration">Workflows for Comparitive Time Series Exploration</a></li>
+<li><a class="reference internal" href="#quasi-spatial-representation-of-material-flows">(Quasi-)Spatial Representation of Material Flows</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#commodity-capacity-and-supply-demand-exploration">Commodity Capacity and Supply/Demand Exploration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="output_dbase.html"
+                        title="previous chapter">Output Database</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../basics/roadmap.html"
+                        title="next chapter">The <em>Cyclus</em> Fuel Cycle Simulator Roadmap</a></p>
+  <h3>Useful Pages</h3>
+    <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
+    <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
+    <li><a href="https://github.com/cyclus">Source Code</a></li>
+    <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Acknowledgements</h3>
+    Support for this research has included funding received from:
+    <img src=/_images/neup_logo_large.jpg width=170px>
+    <img src=/_images/AnlLogo.png height=100px>
+    <img src=/_images/USNRC.gif height=100px>
+    <img src=/_images/nsf_logo.jpg height=100px>
+    <img src=/_images/crest.png height=100px>
+
+    
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="use-cases-for-cyclus-output-data">
+<h1>Use Cases for Cyclus Output Data<a class="headerlink" href="#use-cases-for-cyclus-output-data" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="transaction-data">
+<h2>Transaction Data<a class="headerlink" href="#transaction-data" title="Permalink to this headline">¶</a></h2>
+<p>The primary <em>Cyclus</em> material output data is composed of a log of individual
+material transactions.  Each transaction has the following fundamental characteristics:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>time</strong>: an integer of time steps since the beginning of the simulation</p>
+</li>
+<li><p class="first"><strong>sender</strong>: an integer identifying the facility that sent the material</p>
+</li>
+<li><p class="first"><strong>recipient</strong>: an integer identifying the facility that received the material</p>
+</li>
+<li><dl class="first docutils">
+<dt><strong>manifest</strong>: a vector of material information each containing:</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt><strong>composition vector</strong>: a vector representing the isotopic composition</dt>
+<dd><p class="first last">of the material that was transacted</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>quantity</strong>: a double indicating the magnitude of material shipped</dt>
+<dd><p class="first last">in this transaction</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="facility-instance-data">
+<h2>Facility Instance Data<a class="headerlink" href="#facility-instance-data" title="Permalink to this headline">¶</a></h2>
+<p>The primary <em>Cyclus</em> facility output data is composed of a list of
+individual facilities.  Each facility have the following fundamental
+characteristics:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>institution</strong>: an integer identifying the institution owning this facility</li>
+<li><strong>region</strong>: an integer identifying the region in which this facility exists</li>
+<li><strong>name</strong>: a string that is the name of this instance of the facility</li>
+<li><strong>prototypeID</strong>: an integer identifying which facility prototype on
+which this facility is based.</li>
+<li><strong>capacity</strong>: a double indicating the capacity of this facility in
+some standard units</li>
+</ul>
+</div></blockquote>
+<p>There will also be a table of facility prototypes with generic prototype
+information for each:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>type</strong>: the model used to form this prototype</li>
+<li><strong>inmarkets</strong>: a list of integers indciating which markets this
+prototype receives material from</li>
+<li><strong>outmarkets</strong>: a list of integers indicating which markets this
+prototype ships material to</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="use-cases">
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h2>
+<p>This section will attempt to document a number of primary data
+exploration use cases, based on this data.  The two most common modes
+are an exploration of the material flows and an exploration of the
+facility histories.</p>
+<div class="section" id="material-flow-explorations">
+<h3>Material flow explorations<a class="headerlink" href="#material-flow-explorations" title="Permalink to this headline">¶</a></h3>
+<p>Many material flow explorations would begin by visualizing the
+time-dependent material flow between a set of source facilities and a
+set of receiving facilities.  The minimum information needed to
+generate such a visualization is the population of the two sets of
+facilities, and detailed discussion on how to populate these sets is
+given below.  Once these sets are defined, the material flow
+information can be summed over all the possible transaction pathways
+at each time step to generate a single time series of data.  The
+following disucussion will identify ways to restrict/limit the
+quantity of data represented in such a time series visualization based
+primarily on filtering operations for different dimensions of the
+material flow data.</p>
+<p>It is important to note that single visualizations may contain
+multiple time series of data, with a variety of alternative
+representations depending on the user&#8217;s interests.  The following
+discussion will consider, in this order:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>the resolution of the time domain,</li>
+<li>filtering operations to restrict the data included in a single time series,</li>
+<li>application of post-processing functions for alternative engineering responses, and</li>
+<li>compartive visualization of multiple time series.</li>
+</ol>
+</div></blockquote>
+<div class="section" id="time-domain-resolution-and-representation">
+<h4>Time Domain Resolution and Representation<a class="headerlink" href="#time-domain-resolution-and-representation" title="Permalink to this headline">¶</a></h4>
+<p>Most simulations are expected to proceed with monthly time steps (this
+is user-configurable), probably too fine for meaningful visualization.
+The default resolution for such a visualization should be annual flows
+of material, requiring a summation operation across non-overlapping
+regions of the time domain.  It is likely that a user may want to
+interactively change the time domain resolution, possibly interested
+in the aggregated solution over time frames that are even coarser than
+annual.</p>
+<p>It is also likely that users may want to switch between visualizations
+of the instantaneous material flow rate within a given step of the
+time resolution, and a cumulative material flow, integrating from the
+beginning of the simulation to the current step of the time
+resolution.</p>
+<p>In a related and common time series interaction, users may want to
+zoom in and out of regions of the time domain to explore detailed
+features.</p>
+</div>
+<div class="section" id="filtering-the-sets-of-participating-facilities">
+<h4>Filtering the Sets of Participating Facilities<a class="headerlink" href="#filtering-the-sets-of-participating-facilities" title="Permalink to this headline">¶</a></h4>
+<p>Filtering operations will be always be necessary to define the set of
+facilities that participate in a given material flow visualization.
+The simplest form of such a filter is the selection of an entire
+market, thereby selecting all the facilities that participate in that
+market.  Beyond that, some other obvious ways to create sets of
+facilities for either the source or receiving set are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>choosing individual facilities from a list of existing facilities</li>
+<li>choosing individual institutions and therefore including all
+facilities owned by that institution</li>
+<li>choosing individual regions and therefore including all facilities
+operating in that region</li>
+<li>choosing a particular facility prototype and therefore including
+all facilities based on that prototype</li>
+<li>choosing a particular facility module and therefore including all
+facilities based on that module</li>
+</ul>
+</div></blockquote>
+<p>The ideal user interface will allow subsets of facilities to be added
+and deleted from the ultimate set of facilities using notion of
+intersection, union, and negation.</p>
+<p>The ideal user interface will also allow a single time series to be
+separated into multiple time series (possible displayed in a
+comparitive fashion), by selecting a characteristic that defines
+subsets of facilities.</p>
+</div>
+<div class="section" id="filtering-the-set-of-isotopes">
+<h4>Filtering the Set of Isotopes<a class="headerlink" href="#filtering-the-set-of-isotopes" title="Permalink to this headline">¶</a></h4>
+<p>It will also be important to restrict the material flow time series
+data by filtering on the set of isotopes that are included in the
+material flow data.  There are a small number of standard ways to
+define sets of isotopes:</p>
+<blockquote>
+<div><ul class="simple">
+<li>include all isotopes</li>
+<li>choose individual chemical elements (e.g. uranium) and thereby
+including all the isotopes of that element</li>
+<li>choose individual isotopes (e.g. U-235)</li>
+<li>choose from predefined meaningful sets of isotopes
+(e.g. fission products, actinides, transuranics, fissile isotopes)</li>
+</ul>
+</div></blockquote>
+<p>As with the facility filtering capability, an ideal user interface
+will allow subsets of isotopes to be added and deleted from the data
+set using notions of intersection, union and negation.</p>
+<p>One example of a graph that shows the cumulative makeup of material
+in a facility, by isotope, can be found in figure 5.11 of Kyle Oliver&#8217;s
+masters thesis, GeniusV2: Software Design and Mathematical Formulations
+For Multi-Region Discrete Nuclear Fuel Cycle Simulation And Analysis.</p>
+<img alt="../_images/cumulative_iso_dist.png" src="../_images/cumulative_iso_dist.png" style="width: 500pt;" />
+</div>
+<div class="section" id="post-processing-for-alternative-engineering-responses">
+<h4>Post-processing for Alternative Engineering Responses<a class="headerlink" href="#post-processing-for-alternative-engineering-responses" title="Permalink to this headline">¶</a></h4>
+<p>While the fundamental material flows are defined as the raw quantity
+of each isotope that is being transacted, there will be a growing set
+of transformations that convert these number densities into other
+interesting metrics/quantities including:</p>
+<blockquote>
+<div><ul class="simple">
+<li>radiotoxicity</li>
+<li>decay heat</li>
+<li>waste volume</li>
+<li>others-to-be-determined</li>
+</ul>
+</div></blockquote>
+<p>Users will want to apply these transformations, either changing the
+metric shown in the primary visualization or cloning the primary
+visualization but showing the other metric.</p>
+</div>
+<div class="section" id="workflows-for-comparitive-time-series-exploration">
+<h4>Workflows for Comparitive Time Series Exploration<a class="headerlink" href="#workflows-for-comparitive-time-series-exploration" title="Permalink to this headline">¶</a></h4>
+<p>Once a number of single time series are defined, it will be common to
+visualize them on adjacent axes or within the same set of axes.  One
+possible workflow is as follows:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>A user selects a market and is immediately shown the
+instantaneous material flow through that market over the entire
+simulation time domain, with a default time resolution.</li>
+<li>A user selects the originating region as a characteristic that
+splits the single material flow time series into multiple time
+series, each one now defined with a set of source facilities
+from a different region.  These time series are shown on the
+same axes as a stacked area chart.  The envelope of these now
+differentiated time series is identical to the envelope of the
+original time series.</li>
+<li>The user is then interested in a certain subset of the isotopes,
+say the fissile isotopes, and requests that this same material
+flow data be filtered to only include those isotopes.  Each of
+the material flow time series may (or may not) be reduced as the
+set of isotopes it includes is altered.  (Note that while it is
+theoretically possible to differentiate by isotope, it may
+become difficult to visualize the many different time series
+formed by differentiating by facility characteristic and isotope
+at the same time.  In some cases, especially where a small
+number of isotope subsets are identified, this may be
+practical.)</li>
+<li>At this point the user may seek a detailed isotopic breakdown of
+one of the material flows, either as a time series shown on a
+different axis pair, or as a single time step snapshot.  In the
+latter case, a variety of options are available to visualize
+this, including bar charts, pie charts, tables of data, and
+other more advanced representations.  When examining a snapshot,
+the linked visualization tool may update constantly as a user
+swipes a bar across the time series visualization.</li>
+</ol>
+</div></blockquote>
+<p>At this point, an ideal user interface may allow users to &#8220;tear-off&#8221;
+individual time series from the collection of time series into
+different axes for further exploration/differentiation in modes
+similar to above.</p>
+</div>
+<div class="section" id="quasi-spatial-representation-of-material-flows">
+<h4>(Quasi-)Spatial Representation of Material Flows<a class="headerlink" href="#quasi-spatial-representation-of-material-flows" title="Permalink to this headline">¶</a></h4>
+<p>Another interesting visualization of this time series data is as an
+animated graph representation.  Graph nodes would represent source and
+receiving facilties with the connecting arcs somehow indicating the
+magnitude of material flow (e.g. line thickness).  The time domain
+would be represented by animation.</p>
+<p>In some cases, the graphs of two different markets may be shown
+together, indicating the connectedness of these graphs through
+facilities that participate in both.  Different commodities could be
+respresented by different colors, for example.</p>
+<p>Such a representation could also be coordinated with the more
+traditional time series visualization, in which the graph serves as a
+way to select which facilities will be included in the sets for
+defining the material flow time series, either by selecting specific
+nodes or by selecting specific arcs.</p>
+<p>At such a time that geospatial data (or an approximation/surrogate to
+this data) is available, this graph visualization could be arranged to
+represent the real geospatial locations of facilties.</p>
+</div>
+</div>
+<div class="section" id="commodity-capacity-and-supply-demand-exploration">
+<h3>Commodity Capacity and Supply/Demand Exploration<a class="headerlink" href="#commodity-capacity-and-supply-demand-exploration" title="Permalink to this headline">¶</a></h3>
+<p>Another primary visualization is time series data for installed
+capacity of a set of facilities.  Most of the operations discussed
+above will be of interest including:</p>
+<blockquote>
+<div><ul class="simple">
+<li>time domain resolution and representation</li>
+<li>filtering across different dimensions (although not across an isotope dimension)</li>
+<li>applying transformations</li>
+<li>comparitive visualization</li>
+</ul>
+</div></blockquote>
+<p>By combining the information about the theoretical capacity with the
+information about material transactions, the relationship between
+supply and demand can be explored.  (Note that the standardization of
+input and output resource buffers within facilities means that
+instantaneous transaction flow rates are not always representative of
+instantaneous utilization of the available processing capacity.
+Access to this information will requires additional output records.)</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../basics/roadmap.html" title="The Cyclus Fuel Cycle Simulator Roadmap"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="output_dbase.html" title="Output Database"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="main.html" >Cyclus Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Nov 15, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
