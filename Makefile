@@ -1,8 +1,8 @@
 # Makefile for Sphinx documentation
 #
 GH_SOURCE_DIRS = source 
-GH_BUILT_DIRS = 
-GH_BUILT_FILES = 
+GH_BUILT_DIRS = _images _sources _static basics devdoc usrdoc build
+GH_BUILT_FILES = genindex.html index.html objects.inv search.html searchindex.js
 
 GH_CURRENT_BRANCH = $(shell git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 GH_SOURCE_BRANCH = source
