@@ -1,11 +1,19 @@
 # Makefile for Sphinx documentation
 #
+GH_SOURCE_DIRS = source 
+GH_BUILT_DIRS = 
+GH_BUILT_FILES = 
+
+GH_CURRENT_BRANCH = $(shell git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+GH_SOURCE_BRANCH = source
+GH_BUILD_BRANCH = test-master
+
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
-BUILDDIR      = .
+BUILDDIR      = ./build
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -18,6 +26,9 @@ I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
+	@echo "  gh-revert  to revert changes made to $(BUILD_BRANCH) branch "
+	@echo "             and switch back to $(SOURCE_BRANCH)"
+	@echo "  gh-push    to push HTML documentation in $(BUILD_BRANCH) branch"
 	@echo "  html       to make standalone HTML files"
 	@echo "  dirhtml    to make HTML files named index.html in directories"
 	@echo "  singlehtml to make a single large HTML file"
@@ -38,17 +49,26 @@ help:
 	@echo "  linkcheck  to check all external links for integrity"
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
 
+gh-revert:
+	git checkout -f --
+	rm -rf $(GH_SOURCE_DIRS) build
+	git checkout $(GH_SOURCE_BRANCH)
+
+gh-push:
+	rm -rf $(GH_SOURCE_DIRS) build
+	git add -A 
+	git commit -m "Generated $(GH_BUILD_BRANCH) for `git log $(GH_SOURCE_BRANCH) -1 --pretty=short --abbrev-commit`" && git push origin $(GH_BUILD_BRANCH) 
+	git checkout $(GH_SOURCE_BRANCH)
+
+gh-install:
+	rsync -a $(BUILDDIR)/html/* .
+	rm -rf $(BUILDDIR)/html/*
+
 clean:
-	-rm -f $(BUILDDIR)/*.html
-	-rm -f $(BUILDDIR)/*.inv
-	-rm -f $(BUILDDIR)/*.js
-	-rm -Rf $(BUILDDIR)/usrdoc
-	-rm -Rf $(BUILDDIR)/devdoc
-	-rm -Rf $(BUILDDIR)/basics
-	-rm -Rf $(BUILDDIR)/_*
+	rm -rf $(GH_BUILT_DIRS) $(GH_BUILT_FILES)
 
 html:
-	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)
+	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)."
 
