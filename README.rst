@@ -11,19 +11,20 @@ A brief summary of how to modify the website:
 
 #. Clone the `cyclus/cyclus.github.com` repository.
 
+#. Checkout the `source` branch 
+
 #. Modify the source `rst` files (using the restructuredText markup language)
    in the repository's `source` directory as desired.
 
-#. Commit your changes to the `rst` files.
+#. Commit your changes to the `source` branch
 
-#. Type `make html` in the root directory of the repository.
+#. Type `make gh-preview` in the root directory of the repository.  This will leave you in the `master` branch with the newly built HTML pages
 
 #. Inspect the html files that correspond with your changes.
 
-#. Type `git add .` in the root directory of the repository and commit the site
-   build changes.
+#. Type `make gh-push` in the root directory of the `master` branch to commit the site build changes.
 
-#. Push changes to the `cyclus/cyclus.github.com` repository.
+#. Checkout the `source` branch and push changes to the `cyclus/cyclus.github.com` repository.
 
 #. Visit http://cyclus.github.com to inspect your work online.
 
@@ -34,14 +35,9 @@ A brief summary of how to modify the website:
 Thou Shalt Not
 --------------
 
-* Thou shalt not modify any files outside the `source` directory.  Note that `source`
-  is different than `sources`.  The only exception to this rule is `README.rst`
-  (this file).
-
-* Thou shalt not modify files in the `sources` directory.
-
-* Thou shalt not commit site build changes (i.e. after running `make html`)
-  together with changes to the site's source `rst` files in any single commit.
+* Thou shalt not modify any files outside the `source` branch.  The
+  only exception to this rule is `README.rst` (this file) or the
+  `Makefile` for advanced users. 
 
 * Thou shalt not push any site build changes to the `cyclus/cyclus.github.com`
   repository without first having inspected the newly built html pages that
