@@ -5,7 +5,7 @@ GH_BUILT_DIRS =
 
 GH_CURRENT_BRANCH = $(shell git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 GH_SOURCE_BRANCH = source
-GH_BUILD_BRANCH = master
+GH_BUILD_BRANCH = test-master
 
 
 .PHONY: help gh-preview gh-pages
