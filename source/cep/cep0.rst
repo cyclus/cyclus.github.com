@@ -1,7 +1,6 @@
 Cyclus Enhancement Proposals
 ============================
-
-:PEP: 0
+:CEP: 0
 :Title: Index of Cyclus Enhancement Proposals (CEPs)
 :Version: N/A
 :Last-Modified: 2013-07-03
@@ -29,17 +28,17 @@ Index
 
 Key
 ---
-S - Standards Track CEP
-I - Informational CEP
-P - Process CEP
+- S - Standards Track CEP
+- I - Informational CEP
+- P - Process CEP
 
-A - Accepted proposal
-R - Rejected proposal
-W - Withdrawn proposal
-D - Deferred proposal
-F - Final proposal
-A - Active proposal
-D - Draft proposal
-S - Superseded proposal
+- A - Accepted proposal
+- R - Rejected proposal
+- W - Withdrawn proposal
+- D - Deferred proposal
+- F - Final proposal
+- A - Active proposal
+- D - Draft proposal
+- S - Superseded proposal
 
 
