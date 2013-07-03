@@ -7,7 +7,7 @@ Cyclus Enhancement Proposals
 :Author: Anthony Scopatz <scopatz at gmail.com>
 :Status: Active
 :Type: Informational
-:Created: 2013-07-3
+:Created: 2013-07-03
 
 Introduction
 ------------
