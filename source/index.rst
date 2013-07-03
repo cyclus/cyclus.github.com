@@ -68,6 +68,7 @@ your own github account and submit 'Pull Requests'*.
    basics/main
    usrdoc/main
    devdoc/main
+   cep/cep0
 
 Once you have learned about the cyclus basics, please follow these instructions 
 for :doc:`getting and building cyclus <devdoc/get_and_build>`.
