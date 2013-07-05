@@ -34,9 +34,13 @@ The Cyclus Library Suite
   * `cyclus core <https://github.com/cyclus/cyclus>`_ (basic functionality)
   * `cycamore <https://github.com/cyclus/cycamore>`_ (a module repository)
 
-The readme at each repository describes how to install each library.
-They must be installed in the above order due to dependencies on one
-another.
+Some key points about installing *Cyclus*:
+
+  * each library must be installed in the above order (cyclopts, cyclus,
+    cycamore)
+  * the source code must be obtained through git via the links above
+  * installation instructions are provided in the readmes (which are rendered as
+    the landing page) for each of the of the above libraries
 
 Additional Information
 ~~~~~~~~~~~~~~~~~~~~~~
