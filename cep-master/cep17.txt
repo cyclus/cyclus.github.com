@@ -545,15 +545,15 @@ Other Notes
 ============
 
 Current implementation bugs
-++++++++++++++++++++++++++++
+----------------------------
 
-* The current (before this CEP) Cyclus core does not correctly record
-  decayed compositions in the output database. This makes comparing
-  simulation output size and performance with that of this CEP's proposed
-  changes not exactly "fair".
+The current (before this CEP) Cyclus core does not correctly record decayed
+compositions in the output database. This has the effect of comparing
+simulation output size and performance with that of this CEP's proposed
+changes is not exactly "fair".
 
 Backends and Performance
-+++++++++++++++++++++++++
+-------------------------
 
 Preliminary investigation on my part indicates that this extra tracking
 will cause significant slowdown using an Sqlite backend database *when
@@ -567,36 +567,32 @@ reference:
 
 * ~50,000 material objects total
 * 1100 months
-* 2200 decay calculations
-* ~28,000,000 resource object state changes recorded (with CEP implemented)
+* 2200 decay calculations (2200 separate compositions recorded)
+* ~28,000,000 resource object state changes recorded.
 
 Cyclus was built with CMake's "RELEASE" mode.  Results reported are
 approximate and specific to my office computer.
 
 Without proposed changes (decayed compositions are not recorded - current bug):
 
-===================== ========= ===============
-*                     Backend
---------------------- -------------------------
-Decay                 Sqlite    Hdf5
-===================== ========= ===============
-Every 2nd timestep    41 sec.   17 sec.
-None                  41 sec.   17 sec.
-===================== ========= ===============
+===========================  =========  ========
+                             Sqlite     Hdf5
+===========================  =========  ========
+Decay every 2nd timestep     41 sec.    17 sec.
+No decay                     41 sec.    17 sec.
+===========================  =========  ========
 
 With proposed changes:
 
-===================== ========= ===============
-*                     Backend
---------------------- -------------------------
-Decay                 Sqlite    Hdf5
-===================== ========= ===============
-Every 2nd timestep    16 min.   2 min. 50 sec.
-None                  55 sec.   21 sec.
-===================== ========= ===============
+===========================  =========  ===============
+                             Sqlite     Hdf5
+===========================  =========  ===============
+Decay every 2nd timestep     16 min.    2 min. 50 sec.
+No decay                     55 sec.    21 sec.
+===========================  =========  ===============
 
 Decay Initiation
-++++++++++++++++++
+-----------------
 
 There has been some debate regarding the best way(s) to handle decaying
 material objects in the simulation. Options include: manually by agents,
