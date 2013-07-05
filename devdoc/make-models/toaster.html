@@ -171,7 +171,7 @@ it contains to a new directory called ToasterFacility.</li>
 <li>Search instances of <cite>Stub</cite> and <cite>STUB</cite> within those files and replace them
 with <cite>Toaster</cite> and <cite>TOASTER</cite>. That is, code such as:</li>
 </ol>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// StubFacility.h</span>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// StubFacility.h</span>
 <span class="cp">#if !defined(_STUBFACILITY_H)</span>
 <span class="cp">#define _STUBFACILITY_H</span>
 
@@ -182,7 +182,7 @@ with <cite>Toaster</cite> and <cite>TOASTER</cite>. That is, code such as:</li>
 </pre></div>
 </div>
 <p>would become :</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacility.h</span>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// ToasterFacility.h</span>
 <span class="cp">#if !defined(_TOASTERFACILITY_H)</span>
 <span class="cp">#define _TOASTERFACILITY_H</span>
 
@@ -268,7 +268,7 @@ to describe the classes and functions that define your module. More details of
 this are discussed in the style guide, but the Stub files give a good beginning.</p>
 <p>For our ToasterFacility, the ToasterFacility.h file, for instance, has a section
 that looks like :</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacility.h</span>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// ToasterFacility.h</span>
 <span class="cp">#if !defined(_TOASTERFACILITY_H)</span>
 <span class="cp">#define _TOASTERFACILITY_H</span>
 
@@ -304,7 +304,7 @@ that looks like :</p>
 </pre></div>
 </div>
 <p>This should look more like :</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacility.h</span>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// ToasterFacility.h</span>
 <span class="cp">#if !defined(_TOASTERFACILITY_H)</span>
 <span class="cp">#define _TOASTERFACILITY_H</span>
 
@@ -418,7 +418,7 @@ can encapsulate error checking. For example, the implementation of
         <span class="o">&lt;&lt;</span> <span class="n">input</span>
         <span class="o">&lt;&lt;</span> <span class="s">&quot;, is not within the allowed set. Allowed values are: &quot;</span>
         <span class="o">&lt;&lt;</span> <span class="n">printAllowedValues</span><span class="p">();</span>
-    <span class="k">throw</span> <span class="n">CycException</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">str</span><span class="p">());</span>
+    <span class="k">throw</span> <span class="nf">CycException</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">str</span><span class="p">());</span>
   <span class="p">}</span>
 
   <span class="n">toastiness_</span> <span class="o">=</span> <span class="n">input</span><span class="p">;</span>
@@ -443,35 +443,35 @@ The header file originally has a section that looks like :</p>
 <span class="cm"> * --------------------</span>
 <span class="cm"> */</span>
 
- <span class="k">public</span><span class="o">:</span>
+ <span class="nl">public:</span>
   <span class="c1">/// get the number of slices</span>
-  <span class="kt">int</span> <span class="n">n_slices</span><span class="p">();</span>
+  <span class="kt">int</span> <span class="nf">n_slices</span><span class="p">();</span>
 
   <span class="c1">/// get the toast rate</span>
-  <span class="kt">double</span> <span class="n">rate</span><span class="p">();</span>
+  <span class="kt">double</span> <span class="nf">rate</span><span class="p">();</span>
 
   <span class="c1">/// get the toastiness</span>
   <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">toastiness</span><span class="p">();</span>
 
- <span class="k">private</span><span class="o">:</span>
+ <span class="nl">private:</span>
   <span class="cm">/**</span>
 <span class="cm">    set the number of slices</span>
 <span class="cm">    @param n the number of slices</span>
 <span class="cm">  */</span>
-  <span class="kt">void</span> <span class="n">set_n_slices</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="nf">set_n_slices</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
 
   <span class="cm">/**</span>
 <span class="cm">    set the rate of toasting</span>
 <span class="cm">    @param r the rate to set</span>
 <span class="cm">  */</span>
-  <span class="kt">void</span> <span class="n">set_rate</span><span class="p">(</span><span class="kt">double</span> <span class="n">r</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="nf">set_rate</span><span class="p">(</span><span class="kt">double</span> <span class="n">r</span><span class="p">);</span>
 
   <span class="cm">/**</span>
 <span class="cm">    set the toastiness</span>
 <span class="cm">    @param input the input given for the toastiness</span>
 <span class="cm">    @warning an error will be thrown if the input is not in the allowable set!</span>
 <span class="cm">  */</span>
-  <span class="kt">void</span> <span class="n">set_toastiness</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">input</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="nf">set_toastiness</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">input</span><span class="p">);</span>
 
   <span class="cm">/**</span>
 <span class="cm">     The number of slices the toaster can handle at one time</span>
@@ -594,7 +594,7 @@ for a list of resource objects.</p>
   <span class="k">if</span> <span class="p">(</span><span class="n">trans</span><span class="p">.</span><span class="n">commod</span> <span class="o">!=</span> <span class="n">outcommodity_</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">string</span> <span class="n">err_msg</span> <span class="o">=</span> <span class="s">&quot;ToasterFacility can only send &#39;&quot;</span> <span class="o">+</span> <span class="n">outcommodity_</span> <span class="p">;</span>
     <span class="n">err_msg</span> <span class="o">+=</span> <span class="o">+</span> <span class="s">&quot;&#39; materials.&quot;</span><span class="p">;</span>
-    <span class="k">throw</span> <span class="n">CycException</span><span class="p">(</span><span class="n">err_msg</span><span class="p">);</span>
+    <span class="k">throw</span> <span class="nf">CycException</span><span class="p">(</span><span class="n">err_msg</span><span class="p">);</span>
   <span class="p">}</span>
 
   <span class="n">Manifest</span> <span class="n">materials</span><span class="p">;</span>
@@ -680,7 +680,7 @@ that, about the toasting process?).</p>
     </div>
     <div class="footer">
         &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 24, 2013.
+      Last updated on Jul 05, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

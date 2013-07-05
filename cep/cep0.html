@@ -9,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Dynamic Loading Overview &mdash; Cyclus Home</title>
+    <title>Cyclus Enhancement Proposals &mdash; Cyclus Home</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,9 +27,8 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
-    <link rel="up" title="Cyclus Developer Guide" href="main.html" />
-    <link rel="next" title="Simulation Overview and Initialization" href="sim_init.html" />
-    <link rel="prev" title="Tour Snippets" href="tour_snippets.html" />
+    <link rel="next" title="CEP 1 - CEP Purpose and Guidelines" href="cep1.html" />
+    <link rel="prev" title="Style Guidelines for Developers" href="../devdoc/style_guide.html" />
    
 <script type="text/javascript">
 
@@ -61,23 +60,34 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="sim_init.html" title="Simulation Overview and Initialization"
+          <a href="cep1.html" title="CEP 1 - CEP Purpose and Guidelines"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="tour_snippets.html" title="Tour Snippets"
+          <a href="../devdoc/style_guide.html" title="Style Guidelines for Developers"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
-          <li><a href="main.html" accesskey="U">Cyclus Developer Guide</a> &raquo;</li> 
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Cyclus Enhancement Proposals</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#index">Index</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#key">Key</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="tour_snippets.html"
-                        title="previous chapter">Tour Snippets</a></p>
+  <p class="topless"><a href="../devdoc/style_guide.html"
+                        title="previous chapter">Style Guidelines for Developers</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="sim_init.html"
-                        title="next chapter">Simulation Overview and Initialization</a></p>
+  <p class="topless"><a href="cep1.html"
+                        title="next chapter">CEP 1 - CEP Purpose and Guidelines</a></p>
   <h3>Useful Pages</h3>
     <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
     <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
@@ -115,23 +125,68 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="dynamic-loading-overview">
-<h1>Dynamic Loading Overview<a class="headerlink" href="#dynamic-loading-overview" title="Permalink to this headline">¶</a></h1>
-<p>Dynamic loading is a term used to describe the action of loading
-libraries at run time. This implies that knowledge of the structure
-of the classes in these libraries is not known at compile time to
-the executing program. In Linux, these libraries are denoted by the
-suffix &#8216;.so&#8217;, in Windows, &#8216;.dll&#8217;, and in OSX, &#8216;.dylib&#8217;.</p>
-<p>In <em>Cyclus</em>, every <em>module</em> is dynamically loaded. Modules include:</p>
-<ul class="simple">
-<li>Markets</li>
-<li>Regions</li>
-<li>Institutions</li>
-<li>Facilities</li>
+  <div class="section" id="cyclus-enhancement-proposals">
+<h1>Cyclus Enhancement Proposals<a class="headerlink" href="#cyclus-enhancement-proposals" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">CEP:</th><td class="field-body">0</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Title:</th><td class="field-body">Index of Cyclus Enhancement Proposals (CEPs)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">N/A</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Last-Modified:</th><td class="field-body">2013-07-03</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Anthony Scopatz &lt;scopatz at gmail.com&gt;</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status:</th><td class="field-body">Active</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Informational</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Created:</th><td class="field-body">2013-07-03</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This CEP contains the index of all Cyclus Enhancement Proposals,
+known as CEPs.  CEP numbers are assigned by the CEP editors, and
+once assigned are never changed.  The git history of
+the CEP texts here represent their historical record.</p>
+</div>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h2>
+<p><em>Meta-CEPs (CEPs about CEPs or Processes)</em></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cep1.html">P - 1 - CEP Purpose and Guidelines - Scopatz</a></li>
 </ul>
-<p>The internal process used by the <em>Cyclus</em> core is very close to that
-described in this
-<a class="reference external" href="http://www.linuxjournal.com/article/3687">article</a>.</p>
+</div>
+<p><em>Standard CEPs</em></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cep17.html">SD - 17 - Resource Tracking and Interfaces Re-Re-Redo - Carlsen</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="key">
+<h2>Key<a class="headerlink" href="#key" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>S - Standards Track CEP</li>
+<li>I - Informational CEP</li>
+<li>P - Process CEP</li>
+<li>A - Accepted proposal</li>
+<li>R - Rejected proposal</li>
+<li>W - Withdrawn proposal</li>
+<li>D - Deferred proposal</li>
+<li>F - Final proposal</li>
+<li>A - Active proposal</li>
+<li>D - Draft proposal</li>
+<li>S - Superseded proposal</li>
+</ul>
+</div>
 </div>
 
 
@@ -147,13 +202,12 @@ described in this
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="sim_init.html" title="Simulation Overview and Initialization"
+          <a href="cep1.html" title="CEP 1 - CEP Purpose and Guidelines"
              >next</a> |</li>
         <li class="right" >
-          <a href="tour_snippets.html" title="Tour Snippets"
+          <a href="../devdoc/style_guide.html" title="Style Guidelines for Developers"
              >previous</a> |</li>
-        <li><a href="../index.html">Cyclus Home</a> &raquo;</li>
-          <li><a href="main.html" >Cyclus Developer Guide</a> &raquo;</li> 
+        <li><a href="../index.html">Cyclus Home</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
