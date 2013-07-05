@@ -26,6 +26,13 @@ Index
 
     P - 1 - CEP Purpose and Guidelines - Scopatz <cep1>
 
+*Standard CEPs*
+
+.. toctree::
+    :maxdepth: 1
+
+    SD - 17 - Resource Tracking and Interfaces Re-Re-Redo - Carlsen <cep17>
+
 Key
 ---
 - S - Standards Track CEP
