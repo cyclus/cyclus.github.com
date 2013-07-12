@@ -63,11 +63,11 @@ analysis.  Examples:
 
 4. There is no mass-conservation-safe way to transmute a material (i.e.
    change its nuclide composition) outside of destroying and simultaneously
-   creating new material objects.
+   creating new material objects (which isn't mass-conservations-safe).
 
 5. When resources are split and combined, there is no way to recall this
    heritage.  Tracing paths of certain material objects is not possible.
-   Analyzing the contribution of agent X to the flow of element Y through
+   Analyzing the contribution of agent X to the flow of isotope Y through
    agent Z is not possible.
 
 The above deficiencies are used as drivers for designing/implementing a more
@@ -105,8 +105,9 @@ In addition to tracking the transfer of resources between agents (and
 corresponding state), we track:
 
 * Transmutation of a material resource within an agent (Resource,
-  ResourceHeritage, Compositions tables). This helps address problem
-  #1 and #4 from Motivation section.
+  ResourceHeritage, Compositions, GenericResource tables). The transmuted
+  resource has the prev resource as its only parent.  This helps address
+  problem #1 and #4 from Motivation section.
 
 * Decay of a material resource (Resource, ResourceHeritage, Compositions
   tables): This is a special, common case of transmutation.
@@ -293,7 +294,8 @@ like: bananas, man-hours, water, buying power, etc.
 
 .. code-block:: c++
 
-    class GenericResource : public Resource { public:
+    class GenericResource : public Resource {
+      public:
         typedef boost::shared_ptr<GenericResource> Ptr;
         static ResourceType Type;
 
@@ -630,9 +632,16 @@ With proposed changes:
 --------------------- -------------------------
 Decay                 Sqlite    Hdf5
 ===================== ========= ===============
-Every 2nd timestep    16 min.   2 min. 50 sec.
-None                  55 sec.   21 sec.
+Every 2nd timestep    14 min.   1 min. 38 sec.
+None                  50 sec.   18 sec.
 ===================== ========= ===============
+
+With proposed changes running inpro_low.xml with decay on and hdf5 backend:
+
+* Event and EventManager code takes ~25% of
+* Hdf5Back code takes ~20% of runtime.
+* ticking, tocking, and daily-tasking take about ~40% of runtime.
+* Decay calculations take ~10% of runtime.
 
 Decay Initiation
 ++++++++++++++++++
