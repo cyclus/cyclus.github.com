@@ -81,6 +81,7 @@
 <li><a class="reference internal" href="#material-class">Material class</a></li>
 <li><a class="reference internal" href="#genericresource-class">GenericResource class</a></li>
 <li><a class="reference internal" href="#composition-class">Composition class</a></li>
+<li><a class="reference internal" href="#compmath-namespace">CompMath namespace</a></li>
 <li><a class="reference internal" href="#matquery-class">MatQuery class</a></li>
 </ul>
 </li>
@@ -262,14 +263,17 @@ agent developers how enforce correct, measurable mass-conservation.</p>
 <li>[TableName] ([new/modified/removed]): [field1], [field2], ...</li>
 </ul>
 <ul class="simple">
-<li>Resource (modified): ID, type, quantity, units, StateID, Parent1, Parent2</li>
+<li>Resource (modified): ID, type, quantity, StateID, Parent1, Parent2</li>
 <li>Compositions (new): ID, Isotope, Quantity</li>
 <li>TransactedResources (modified): TransactionID, Position, ResourceID</li>
-<li>GenericResources (removed)</li>
+<li>GenericResources (modified): ID, Quality, Units</li>
 <li>IsotopicStates (removed)</li>
 </ul>
-<p><em>Note that we no longer need a special table for Generic resources - it is
-absorbed into the new &#8220;Resources&#8221; table.</em></p>
+<p><em>Note that unlike GenericResources, there is no units field for
+compositions because we can record all material composition amounts in a
+canonical unit (i.e. kg).  GenericResources, however, are
+expected/anticipated to have different unit types along with their
+differing &#8220;quality&#8221; field values.</em></p>
 </div>
 <div class="section" id="resources-material-api">
 <h3>Resources/Material API<a class="headerlink" href="#resources-material-api" title="Permalink to this headline">¶</a></h3>
@@ -412,16 +416,14 @@ does not perform any decay related logic itself.</p>
 </div>
 <div class="section" id="genericresource-class">
 <h4>GenericResource class<a class="headerlink" href="#genericresource-class" title="Permalink to this headline">¶</a></h4>
-<p>Implements the Resource class interface.  No &#8220;quality&#8221; property is
-provided.  It seemed redundant with &#8220;units&#8221;.  For a resource of quality
-&#8220;bananas&#8221;, just use units like &#8220;kg bananas&#8221; (for mass based) or &#8220;# bananas&#8221;
-(for count based).</p>
+<p>Implements the Resource class interface in a simple way usable for things
+like: bananas, man-hours, water, buying power, etc.</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">GenericResource</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Resource</span> <span class="p">{</span> <span class="k">public</span><span class="o">:</span>
     <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">GenericResource</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
     <span class="k">static</span> <span class="n">ResourceType</span> <span class="n">Type</span><span class="p">;</span>
 
-    <span class="k">static</span> <span class="n">Ptr</span> <span class="n">create</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">);</span>
-    <span class="k">static</span> <span class="n">Ptr</span> <span class="n">createUntracked</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">);</span>
+    <span class="k">static</span> <span class="n">Ptr</span> <span class="n">create</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">quality</span><span class="p">);</span>
+    <span class="k">static</span> <span class="n">Ptr</span> <span class="n">createUntracked</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">quality</span><span class="p">);</span>
 
     <span class="c1">/// Returns a reference to a newly allocated copy of this resource</span>
     <span class="k">virtual</span> <span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">clone</span><span class="p">();</span>
@@ -429,19 +431,23 @@ provided.  It seemed redundant with &#8220;units&#8221;.  For a resource of qual
     <span class="c1">/// Returns the total quantity of this resource in its base unit</span>
     <span class="k">virtual</span> <span class="kt">double</span> <span class="n">quantity</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">quantity_</span><span class="p">;};</span>
 
-    <span class="c1">/// Returns the total quantity of this resource in its base unit</span>
+    <span class="c1">/// Returns base unit for this resource&#39;s quantity</span>
     <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">units_</span><span class="p">;};</span>
+
+    <span class="c1">/// Returns the quality of this resoruce&#39;s contents (e.g. man-hours)</span>
+    <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">quality</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">quality_</span><span class="p">;};</span>
 
     <span class="c1">/// Returns the concrete type of this resource</span>
     <span class="k">virtual</span> <span class="n">ResourceType</span> <span class="n">type</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">Type</span><span class="p">;};</span>
 
-    <span class="c1">/// not needed/no meaning for generic resources</span>
-    <span class="k">virtual</span> <span class="kt">int</span> <span class="n">stateId</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="mi">0</span><span class="p">;};</span>
+    <span class="c1">/// each quality gets its own state id</span>
+    <span class="k">virtual</span> <span class="kt">int</span> <span class="n">stateId</span><span class="p">();</span>
 
     <span class="cm">/**</span>
 <span class="cm">       Absorbs the contents of the given &#39;other&#39; resource into this</span>
 <span class="cm">       resource</span>
 <span class="cm">       @throws CycGenResourceIncompatible &#39;other&#39; resource is of a</span>
+<span class="cm">       different quality.</span>
 <span class="cm">     */</span>
     <span class="k">virtual</span> <span class="kt">void</span> <span class="n">absorb</span><span class="p">(</span><span class="n">GenericResource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">other</span><span class="p">);</span>
 
@@ -457,7 +463,7 @@ provided.  It seemed redundant with &#8220;units&#8221;.  For a resource of qual
 
   <span class="k">protected</span><span class="o">:</span>
 
-    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">recordState</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">recordState</span><span class="p">();</span>
 
   <span class="k">private</span><span class="o">:</span>
 
@@ -465,17 +471,16 @@ provided.  It seemed redundant with &#8220;units&#8221;.  For a resource of qual
 <span class="cm">       @param quantity is a double indicating the quantity</span>
 <span class="cm">       @param units is a string indicating the resource unit</span>
 <span class="cm">     */</span>
-    <span class="n">GenericResource</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">);</span>
+    <span class="n">GenericResource</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">quality</span><span class="p">);</span>
 
-    <span class="cm">/**</span>
-<span class="cm">       The units of the resource</span>
-<span class="cm">     */</span>
+    <span class="k">static</span> <span class="kt">int</span> <span class="n">nextStateID_</span><span class="p">;</span>
+    <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">existingStateIds_</span><span class="p">;</span>
+
     <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units_</span><span class="p">;</span>
 
-    <span class="cm">/**</span>
-<span class="cm">       The quantity of the resource</span>
-<span class="cm">     */</span>
     <span class="kt">double</span> <span class="n">quantity_</span><span class="p">;</span>
+
+    <span class="kt">double</span> <span class="n">quality_</span><span class="p">;</span>
 <span class="p">};</span>
 </pre></div>
 </div>
@@ -499,6 +504,10 @@ consecutive small differences negligible could result in compositions
 staying the same that would have otherwise been appreciably different if
 each small change were allowed to propogate as a new composition.</pre>
 </div>
+<p>While there are definitely uses for material/composition equivalence, they
+should/will not be used by the core (for now) and best belong in MatQuery
+or other wrapper classes.  The normalize method will utilize the floating
+point math introduced by &#64;katyhuff.</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Composition</span> <span class="p">{</span>
   <span class="k">public</span><span class="o">:</span>
     <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Composition</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
@@ -545,6 +554,29 @@ each small change were allowed to propogate as a new composition.</pre>
 </pre></div>
 </div>
 </div>
+<div class="section" id="compmath-namespace">
+<h4>CompMath namespace<a class="headerlink" href="#compmath-namespace" title="Permalink to this headline">¶</a></h4>
+<p>The excellent floating point calculation handling and thresholding
+functionality introduced by &#64;katyhuff will be preserved. The current
+(pre-proposal) Material::diff and Material::applyThreshold methods will
+become public functions that operate on Composition::Vect types.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">namespace</span> <span class="n">CompMath</span> <span class="p">{</span>
+
+  <span class="c1">/// Reports the component-wise difference between two</span>
+  <span class="c1">/// Composition::Vects.</span>
+  <span class="c1">///</span>
+  <span class="c1">/// @return a new Composition::Vect of a * qtyA - b * qtyB</span>
+  <span class="n">Composition</span><span class="o">::</span><span class="n">Vect</span> <span class="n">diff</span><span class="p">(</span><span class="k">const</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Vect</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">qtyA</span><span class="p">,</span> <span class="k">const</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Vect</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">,</span> <span class="kt">double</span> <span class="n">qtyB</span><span class="p">);</span>
+
+  <span class="c1">/// Modifies the vec, by zeroing out all elements whose absolute value is less than the threshold.</span>
+  <span class="c1">///</span>
+  <span class="c1">/// @param vec the vector of isos and amounts to which to apply the threshold</span>
+  <span class="c1">/// @param threshold the smallest value considered nonzero</span>
+  <span class="kt">void</span> <span class="n">applyThreshold</span><span class="p">(</span><span class="n">Composition</span><span class="o">::</span><span class="n">Vect</span><span class="o">&amp;</span> <span class="n">v</span><span class="p">,</span> <span class="kt">double</span> <span class="n">threshold</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="matquery-class">
 <h4>MatQuery class<a class="headerlink" href="#matquery-class" title="Permalink to this headline">¶</a></h4>
 <p>(This interface will probably need extension)</p>
@@ -552,7 +584,11 @@ each small change were allowed to propogate as a new composition.</pre>
 information about a material they could ever reasonably need.</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MatQuery</span> <span class="p">{</span>
   <span class="k">public</span><span class="o">:</span>
-    <span class="n">MatQuery</span><span class="p">(</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span><span class="p">)</span> <span class="o">:</span> <span class="n">m_</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="n">MatQuery</span><span class="p">(</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span><span class="p">);</span>
+
+    <span class="c1">/// Convenience constructor that auto-casts a Resource::Ptr to a</span>
+    <span class="c1">/// Material::Ptr.</span>
+    <span class="n">MatQuery</span><span class="p">(</span><span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span><span class="p">);</span>
 
     <span class="kt">double</span> <span class="n">mass</span><span class="p">(</span><span class="n">Iso</span> <span class="n">iso</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span> <span class="n">massFrac</span><span class="p">(</span><span class="n">iso</span><span class="p">)</span> <span class="o">*</span> <span class="n">qty</span><span class="p">();</span>
@@ -576,6 +612,8 @@ information about a material they could ever reasonably need.</p>
       <span class="k">return</span> <span class="n">m_</span><span class="o">-&gt;</span><span class="n">quantity</span><span class="p">();</span>
     <span class="p">};</span>
 
+    <span class="kt">bool</span> <span class="n">almostEqual</span><span class="p">(</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">other</span><span class="p">,</span> <span class="kt">double</span> <span class="n">threshold</span><span class="o">=</span><span class="n">cyclus</span><span class="p">.</span><span class="n">eps</span><span class="p">());</span>
+
   <span class="k">private</span><span class="o">:</span>
 
     <span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m_</span><span class="p">;</span>
@@ -587,11 +625,11 @@ information about a material they could ever reasonably need.</p>
 <div class="section" id="other-changes">
 <h3>Other Changes<a class="headerlink" href="#other-changes" title="Permalink to this headline">¶</a></h3>
 <p>The RecipeLibrary&#8217;s role of composition decay management has been shifted
-into the Composition class.  It now is only responsible for loading
-recipes from xml input and serving them up simulation wide.  Agents are
-also allowed to register their own compositions manually.</p>
-<p><em>The decay lineage tracking functionality introduced by Matt Gidden has been
-effectively preserved.</em></p>
+into the Composition class.  It now is only responsible for loading recipes
+from xml input and serving them up simulation wide.  Agents are also
+allowed to register their own compositions manually. <em>The decay lineage
+tracking functionality introduced by Matt Gidden has been effectively
+preserved.</em> RecipeLibrary interface becomes:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">RecipeLibrary</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="cm">/**</span>
@@ -781,8 +819,8 @@ here <a class="reference external" href="https://github.com/cyclus/cyclus/issues
     </div>
     <div class="footer">
         &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jul 05, 2013.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Last updated on Jul 15, 2013.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>

@@ -27,7 +27,6 @@ successfully acquiring and building *Cyclus*, you can begin developing:
   
    get_and_build
    cyclus_env
-   code_tour
    dynamic_loading
 
 Core Concepts and Expectations
