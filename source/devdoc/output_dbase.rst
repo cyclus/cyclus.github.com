@@ -20,14 +20,13 @@ one can easily envision other instances of resource transaction (e.g. electricit
 or man-hours) being driven by the same engine and using the same record 
 structure. 
 
-The physical database used by *Cyclus* is SQL-based. Currently SQLite is utilized 
-to minimize server/client complications.
-
-At larger scale, a coherent vocabulary is a chief requirement for this paradigm. 
-For instance, the terms "inventory", "stocks", and "capacity" should each have a
-ubiquitous definition across facility types in order to maintain confidence in
-robust database querying. This dictionary of terms is a near-term goal for *Cyclus*
-developers as the base pack of core modules is developed and expanded.
+The standard output database used by *Cyclus* is SQLite.  At larger scale,
+a coherent vocabulary is a chief requirement for this paradigm.  For
+instance, the terms "inventory", "stocks", and "capacity" should each have
+a ubiquitous definition across facility types in order to maintain
+confidence in robust database querying. This dictionary of terms is a
+near-term goal for *Cyclus* developers as the base pack of core modules is
+developed and expanded.
 
 Provenance
 ++++++++++
@@ -41,112 +40,172 @@ post-simulation analysis and error-checking. Such input specifications include
 a complete description of the simulation parameters and model configurations
 defined in the input.
 
-Cyclus Database Class Constituents
+Output Recording Infrastructure
 ++++++++++++++++++++++++++++++++++
 
-The *Cyclus* database and management thereof is wholly comprised of three classes in
-its source code:
+The *Cyclus* output database management and recording consists of three
+basic classes:
 
- * The **Table** class 
- 
-   * houses the raw data eventually written to the physical database 
-   * maintains information about the Table's structure (e.g. which columns uniquely identify rows)
+ * **EventManager**: Collects events containing structured data to be
+   recorded. Buffers and sends the events to event backends.
 
- * The **Database** class
+ * **Event**: Allows the convenient specification of named groups of
+   field-value pairs holding arbitrary typed data.
 
-   * handles connectivity (open, close, read, write) to the physical database 
-   * manages a collection of Tables
-   * handles queries to a database on disk
+ * **EventBackend**: An abstract interface implemented by modular, concrete
+   backend implementations (e.g. sqlite, hdf5, etc.).  A standard sqlite
+   backend is provided and currently used for *Cyclus* simulations.
 
- * The **BookKeeper** class
+For Agent/module developers, the
+`EventManager API <http://cnergdata.engr.wisc.edu/cyclus/core/docs/classEventManager.html>`_
+and
+`Event API <http://cnergdata.engr.wisc.edu/cyclus/core/docs/classEvent.html>`_
+will be useful references.
 
-   * manages a unique instance of a Database
-   * registers Tables to be included in the output database
-   * determines the rate at which data is written
+Usage
++++++++++++++
 
-Tables
-------
+Agents are allowed to write their own custom output into the output
+database.  A global event manager is created for each *Cyclus* simulation
+and is accessible via the ``EM`` macro.  The ``EventManager::newEvent``
+method creates a new event bound to the event manager.  A reactor facility
+might, for instance want to record some special information every timestep:
 
-Tables in *Cyclus* can be thought of as having two primary functions: storing data and 
-providing data. In order to perform these two tasks, a Table must be defined -- it must be
-provided with some number of columns, the type of data held within each column, and (in
-database parlance) a primary key. A table can also have foreign keys and indicies, but neither
-is required.
+.. code-block:: c++
 
-A number of sources exist that describe relational database design in detail. For the purposes 
-of this wiki, however, only the concept of a primary key will be described and the concept of 
-foreign keys will be mentioned. Primary keys are essential to database definition, whereas foreign 
-keys and indicies are used solely to speed up the query process.
+  MyReactor::handleTock(int time) {
+    ...
 
-The Primary Key
-~~~~~~~~~~~~~~~
+    EM->newEvent("MyReactorResourceUsage")
+      ->addVal("AgentID", ID())
+      ->addVal("WaterUsage", monthlyWater())
+      ->addVal("OperatingCost", monthlyCost())
+      ->record();
 
-A primary key is a subset of columns that uniquely identifies a row in a table. In *Cyclus*, each
-agent has a unique id; accordingly, the table of agents has the "ID" column as its primary key. 
-Material histories, however, are a bit more complicated to unique describe. At any point in time, a
-material with a certain ID may be in some state. Accordinly, a combination of the material ID and state
-ID uniquely identify a material history and are used as its primary key.
+    ...
+  }
 
-For the curious, a foreign key is simply a reference to another table's primary key. In the above
-example, the two agent id columns in the transaction table are foreign keys of the agent table. 
+This would create a table in the output database named
+"MyReactorResourceUsage" with three columns named "AgentID", "WaterUsage"
+and "OperatingCost".  A row would be added to the table for every timestep
+of the simulation.  ``addVal`` can be chained any number of times.
+``record`` must be called once for each event after all values have been
+added.  Any custom tables created in this manner will appear in the output
+database alongside the cyclus core tables.
 
-Table Definition
-~~~~~~~~~~~~~~~~
+.. warning::
 
-A Table is defined and registered with the BookKeeper via the following steps:
+   Events with the same title must have the same schema (e.g. same field
+   names and value types). It is the responsibility of the developer to
+   enforce this in their code.
 
- * a collection of column names and datatypes is added via addColumn()
- * the primary key is set via setPrimaryKey()
- * the tableDefined() method is called
+.. warning::
 
-Databases
----------
+   Event backends only support a finite number of event value-types. Do not
+   add values to events that are not supported by the backend(s) in use. The
+   default Sqlite backend supports int, double, float, and std::string
+   types.
 
-The primary database in *Cyclus* is the output database; however, the Database class also provides
-methods to query other databases. Currenly, only SQL support is provided via the Database class.
-
-Database Management
-~~~~~~~~~~~~~~~~~~~
-
-The Database class provides functionality to create a connection to and write to a database back-end.
-Eventually, the team's is goal that only the Database class will have knowlege of the back-end-specific language 
-and will be able to be modularly replaced to achieve different functionality (to go from SQL to
-HDF5, for instance). A Database in *Cyclus* holds a collection of Tables and has methods to 
-create, write rows, and update rows of each Table. However, each method must be called
-externally, i.e., the Database must be *managed*. No connectivity-related behavior is automated, and
-each action must be made explicitly.
-
-Querying a Database
-~~~~~~~~~~~~~~~~~~~
-
-The database also provides functionality for making queries. A query is a command to search the 
-Database (e.g. "Select * from A_TABLE"). The query result is a container (vector) of rows, where
-each row is comprised of a complete entry -- a collection of individual entries -- that satisfies 
-the query. The entries are provided as strings, so it is the responsibility of the developer to 
-know the types of data for which a query is being made. 
-
-The BookKeeper
---------------
-
-The BookKeeper manages the *Cyclus* database. Any Table which wishes to be added to the database must
-first register with the BookKeeper. Additionally, any writing of data to the physical database is 
-explicitly ordered by the BookKeeper. Currently, information is ordered to be written to the database 
-once a Table reaches a certain threshold. The Table informs the BookKeeper that it has reached the 
-threshold, at which time the BookKeeper can decide if the information should be written. This 
-behavior allows for remote connectivity issues to be managed by the BookKeeper so that writing to the 
-database is not attempted at a time of lost connectivity.
-
-The Cyclus Database -- Visually
+The Cyclus Database Schema
 +++++++++++++++++++++++++++++++
 
-The Cyclus database is comprised of the following tables:
+In sqlite, events are represented by tables.  While there are relationships
+between table fields, these are implicit and not enforced by
+primary-foreign key SQL constraints. The Cyclus output database is comprised of
+the following core tables:
 
- .. image:: /devdoc/cycl_schema_bare.png
+=========== ===============
+Agents
+---------------------------
+Field-name  Field-type
+=========== ===============
+ID          int
+ModelType   string
+Prototype   string
+ParentID    int
+EnterDate   int
+DeathDate   int
+=========== ===============
 
-And an example with only the keys connecting each table:
+=========== ===============
+IsotopicStates
+---------------------------
+Field-name  Field-type
+=========== ===============
+ID          int
+IsoID       int
+Value       double
+=========== ===============
 
- .. image:: /devdoc/cycl_schema_keys.png
+================ ===============
+Resources
+--------------------------------
+Field-name       Field-type
+================ ===============
+ID               int
+Type             int
+OriginalQuantity double
+================ ===============
 
-The connections between the full tables are shown below:
+=========== ===============
+ResourceTypes
+---------------------------
+Field-name  Field-type
+=========== ===============
+Type        int
+Name        string
+Units       string
+=========== ===============
 
- .. image:: /devdoc/cycl_schema.png
+=============== ===============
+SimulationTimeInfo
+-------------------------------
+Field-name      Field-type
+=============== ===============
+InitialYear     int
+InitialMonth    int
+SimulationStart int
+Duration        int
+=============== ===============
+
+=============== ===============
+TransactedResources
+-------------------------------
+Field-name      Field-type
+=============== ===============
+TransactionID   int
+Position        int
+ResourceID      int
+StateID         int
+Quantity        double
+=============== ===============
+
+=============== ===============
+Transactions
+-------------------------------
+Field-name      Field-type
+=============== ===============
+ID              int
+SenderID        int
+ReceiverID      int
+MarketID        int
+Commodity       string
+Price           double
+Time            int
+=============== ===============
+
+The Sqlite backend has the special ability to store multiple cyclus
+simulation output results in a single sqlite file. It creates an extra
+table containing a unique long and short ID for each simulation.  All
+output tables have an extra field inserted indicating which simulation
+id/run that output row corresponds to.
+
+=========== ===============
+SimulationIds
+---------------------------
+Field-name  Field-type
+=========== ===============
+SimId       int
+LongId      string
+=========== ===============
+
