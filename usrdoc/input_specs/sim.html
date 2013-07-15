@@ -1,0 +1,396 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Simulation-level Input &mdash; Cyclus Home</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../../index.html" />
+    <link rel="up" title="Cyclus User Guide" href="../main.html" />
+    <link rel="next" title="Region Model Input" href="region/region.html" />
+    <link rel="prev" title="Cyclus User Guide" href="../main.html" />
+   
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <a href="http://cyclus.github.com">
+    <img src="../../_static/logo1.png"/>
+  </a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="region/region.html" title="Region Model Input"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../main.html" title="Cyclus User Guide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="../main.html" accesskey="U">Cyclus User Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Simulation-level Input</a><ul>
+<li><a class="reference internal" href="#simulation-control">Simulation Control</a><ul>
+<li><a class="reference internal" href="#definition">Definition</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#commodities">Commodities</a><ul>
+<li><a class="reference internal" href="#id1">Definition</a></li>
+<li><a class="reference internal" href="#id2">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#markets">Markets</a><ul>
+<li><a class="reference internal" href="#id3">Definition</a></li>
+<li><a class="reference internal" href="#id4">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recipes">Recipes</a><ul>
+<li><a class="reference internal" href="#id5">Definition</a></li>
+<li><a class="reference internal" href="#id6">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../main.html"
+                        title="previous chapter">Cyclus User Guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="region/region.html"
+                        title="next chapter">Region Model Input</a></p>
+  <h3>Useful Pages</h3>
+    <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
+    <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
+    <li><a href="https://github.com/cyclus">Source Code</a></li>
+    <li><a href="http://cnergdata.engr.wisc.edu/cyclus/core/docs/">Cyclus Core Documentation</a></li>
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Acknowledgements</h3>
+    Support for this research has included funding received from:
+    <img src=/_images/neup_logo_large.jpg width=170px>
+    <img src=/_images/AnlLogo.png height=100px>
+    <img src=/_images/USNRC.gif height=100px>
+    <img src=/_images/nsf_logo.jpg height=100px>
+    <img src=/_images/crest.png height=100px>
+
+    
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="simulation-level-input">
+<h1>Simulation-level Input<a class="headerlink" href="#simulation-level-input" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="simulation-control">
+<h2>Simulation Control<a class="headerlink" href="#simulation-control" title="Permalink to this headline">¶</a></h2>
+<p>Simulation control is the input portion relating to time and decay.
+The input parameters are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>duration - the time duration of the simulation (in months)</li>
+<li>startmonth - the starting month (0 -&gt; January, 11-&gt;December)</li>
+<li>startyear - the starting year</li>
+<li>simstart - the actual time-step to begin the simulation (to be
+deprecated)</li>
+<li>decay - an integer value denoting the frequency with which
+materials should be decayed (note, an entry of 0 or less will cause
+decay not to be turned on for the simulation</li>
+</ul>
+</div></blockquote>
+<div class="section" id="definition">
+<h3>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- begin section for simulation parameters --&gt;</span>
+<span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;control&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;interleave&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;duration&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;nonNegativeInteger&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;startmonth&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;nonNegativeInteger&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;startyear&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;nonNegativeInteger&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;simstart&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;nonNegativeInteger&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;decay&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;integer&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+  <span class="nt">&lt;/interleave&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;control&gt;</span>
+  <span class="nt">&lt;duration&gt;</span>1105<span class="nt">&lt;/duration&gt;</span>   <span class="c">&lt;!-- run for 100 years + 1 month --&gt;</span>
+  <span class="nt">&lt;startmonth&gt;</span>11<span class="nt">&lt;/startmonth&gt;</span> <span class="c">&lt;!-- start in december --&gt;</span>
+  <span class="nt">&lt;startyear&gt;</span>2007<span class="nt">&lt;/startyear&gt;</span> <span class="c">&lt;!-- start in 2007 --&gt;</span>
+  <span class="nt">&lt;simstart&gt;</span>0<span class="nt">&lt;/simstart&gt;</span>      <span class="c">&lt;!-- the initial time value is 0 --&gt;</span>
+  <span class="nt">&lt;decay&gt;</span>0<span class="nt">&lt;/decay&gt;</span>            <span class="c">&lt;!-- don&#39;t decay material --&gt;</span>
+<span class="nt">&lt;/control&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="commodities">
+<h2>Commodities<a class="headerlink" href="#commodities" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Definition<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>All materials that are passed around the simulation a denoted by their
+commodity type. For each commodity type, one must add its definition
+to the input file. The input parameters are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>name - the commodity&#8217;s name</li>
+</ul>
+</div></blockquote>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;oneOrMore&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;commodity&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;text/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/oneOrMore&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Example<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;commodity&gt;</span>
+  <span class="nt">&lt;name&gt;</span>natl_u<span class="nt">&lt;/name&gt;</span>
+<span class="nt">&lt;/commodity&gt;</span>
+
+<span class="nt">&lt;commodity&gt;</span>
+  <span class="nt">&lt;name&gt;</span>enriched_u<span class="nt">&lt;/name&gt;</span>
+<span class="nt">&lt;/commodity&gt;</span>
+
+<span class="nt">&lt;commodity&gt;</span>
+  <span class="nt">&lt;name&gt;</span>waste<span class="nt">&lt;/name&gt;</span>
+<span class="nt">&lt;/commodity&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="markets">
+<h2>Markets<a class="headerlink" href="#markets" title="Permalink to this headline">¶</a></h2>
+<p>For each commodity, a corresponding market must be defined. This step
+is necessary</p>
+<p>The input parameters are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>name - the name of the market</li>
+<li>mktcommodity - the commodity associated with the market</li>
+<li>model - the model to be used for this market. Note that the only
+market model currently available is the NullMarket.</li>
+</ul>
+</div></blockquote>
+<div class="section" id="id3">
+<h3>Definition<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;oneOrMore&gt;</span>
+<span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;market&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;text/&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;mktcommodity&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;text/&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;model&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;text/&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/oneOrMore&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Example<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;market&gt;</span>
+  <span class="nt">&lt;name&gt;</span>natl_u_market<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;mktcommodity&gt;</span>natl_u<span class="nt">&lt;/mktcommodity&gt;</span>
+  <span class="nt">&lt;model&gt;</span>
+    <span class="nt">&lt;NullMarket/&gt;</span>
+  <span class="nt">&lt;/model&gt;</span>
+<span class="nt">&lt;/market&gt;</span>
+
+<span class="nt">&lt;market&gt;</span>
+  <span class="nt">&lt;name&gt;</span>enr_u_market<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;mktcommodity&gt;</span>enriched_u<span class="nt">&lt;/mktcommodity&gt;</span>
+  <span class="nt">&lt;model&gt;</span>
+    <span class="nt">&lt;NullMarket/&gt;</span>
+  <span class="nt">&lt;/model&gt;</span>
+<span class="nt">&lt;/market&gt;</span>
+
+<span class="nt">&lt;market&gt;</span>
+  <span class="nt">&lt;name&gt;</span>waste_market<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;mktcommodity&gt;</span>waste<span class="nt">&lt;/mktcommodity&gt;</span>
+  <span class="nt">&lt;model&gt;</span>
+    <span class="nt">&lt;NullMarket/&gt;</span>
+  <span class="nt">&lt;/model&gt;</span>
+<span class="nt">&lt;/market&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="recipes">
+<h2>Recipes<a class="headerlink" href="#recipes" title="Permalink to this headline">¶</a></h2>
+<p>The input parameters are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>name - the name of the recipe</li>
+<li>basis - whether the recipe is defined on a MASS or ATOM basis</li>
+<li>isotopes - the list of isotopes comprising the recipe<ul>
+<li>id - the ZAID number for an isotope</li>
+<li>comp - the percent composition for that isotope (Note: The sum
+of these need not add to 1. Recipes are normalized.)</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p>Predefined material recipes can be supplied as input to the
+simulation. Materials can easily be instantiated with the given list
+of isotopics, e.g., natural uranium.</p>
+<div class="section" id="id5">
+<h3>Definition<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- begin section for recipes --&gt;</span>
+<span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;recipe&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;recipe&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;text/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;basis&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;text/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+
+    <span class="nt">&lt;oneOrMore&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;isotope&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;text/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;comp&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;text/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;/oneOrMore&gt;</span>
+
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>Example<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;recipe&gt;</span>
+  <span class="nt">&lt;name&gt;</span>natl_u<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;basis&gt;</span>mass<span class="nt">&lt;/basis&gt;</span>
+  <span class="nt">&lt;isotope&gt;</span>
+    <span class="nt">&lt;id&gt;</span>92235<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>0.711<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/isotope&gt;</span>
+  <span class="nt">&lt;isotope&gt;</span>
+    <span class="nt">&lt;id&gt;</span>92238<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>99.289<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/isotope&gt;</span>
+<span class="nt">&lt;/recipe&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="region/region.html" title="Region Model Input"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../main.html" title="Cyclus User Guide"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="../main.html" >Cyclus User Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Jul 05, 2013.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

@@ -12,8 +12,22 @@ An instruction manual for :doc:`../devdoc/get_and_build` is provided.
 Questions having to do with this process may be directed to
 cyclus-users@googlegroups.com .
 
+Defining a Simulation
+---------------------
+
+.. toctree::
+   :glob:
+   :maxdepth: 3
+
+   input_specs/*
+   input_specs/region/*
+   input_specs/inst/*
+   input_specs/facility/*
+
+Running a Simulation
+--------------------
+
 .. toctree::
    :maxdepth: 2
 
-   creating_and_running_sims
-
+   running_sims

@@ -1,0 +1,252 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>GrowthRegion &mdash; Cyclus Home</title>
+    
+    <link rel="stylesheet" href="../../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="Cyclus Home" href="../../../../index.html" />
+    <link rel="up" title="Region Model Input" href="../region.html" />
+    <link rel="next" title="Institution Model Input" href="../../inst/inst.html" />
+    <link rel="prev" title="Region Model Input" href="../region.html" />
+   
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+  <a href="http://cyclus.github.com">
+    <img src="../../../../_static/logo1.png"/>
+  </a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../inst/inst.html" title="Institution Model Input"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../region.html" title="Region Model Input"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="../../../main.html" >Cyclus User Guide</a> &raquo;</li>
+          <li><a href="../region.html" accesskey="U">Region Model Input</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">GrowthRegion</a><ul>
+<li><a class="reference internal" href="#input-parameters">Input Parameters</a><ul>
+<li><a class="reference internal" href="#definiton">Definiton</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../region.html"
+                        title="previous chapter">Region Model Input</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../inst/inst.html"
+                        title="next chapter">Institution Model Input</a></p>
+  <h3>Useful Pages</h3>
+    <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
+    <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
+    <li><a href="https://github.com/cyclus">Source Code</a></li>
+    <li><a href="http://cnergdata.engr.wisc.edu/cyclus/core/docs/">Cyclus Core Documentation</a></li>
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Acknowledgements</h3>
+    Support for this research has included funding received from:
+    <img src=/_images/neup_logo_large.jpg width=170px>
+    <img src=/_images/AnlLogo.png height=100px>
+    <img src=/_images/USNRC.gif height=100px>
+    <img src=/_images/nsf_logo.jpg height=100px>
+    <img src=/_images/crest.png height=100px>
+
+    
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="growthregion">
+<h1>GrowthRegion<a class="headerlink" href="#growthregion" title="Permalink to this headline">¶</a></h1>
+<p>The GrowthRegion module tracks the supply and demand for commodities.
+When demand is greater than supply, it then orders new facilities to
+be built based on their cost and capacity to produce a supply.</p>
+<div class="section" id="input-parameters">
+<h2>Input Parameters<a class="headerlink" href="#input-parameters" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>commodities - the commodities that the region tracks for supply
+and demand<ul>
+<li>name - the name of a commodity</li>
+<li>demand - the demand function(s) for a commodity<ul>
+<li>type - the type of function (e.g. linear, exponential,
+piecewise)</li>
+<li>parameters - the parameters to define the function</li>
+<li><cite>optional</cite> start_time - the time the this demand function will
+be applied</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<div class="section" id="definiton">
+<h3>Definiton<a class="headerlink" href="#definiton" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span class="c">&lt;!-- GrowthRegion --&gt;</span>
+<span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;GrowthRegion&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;GrowthRegion&quot;</span><span class="nt">&gt;</span>
+
+    <span class="c">&lt;!-- Commodity Requirements --&gt;</span>
+    <span class="nt">&lt;oneOrMore&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name =</span> <span class="s">&quot;commodity&quot;</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;element</span> <span class="na">name =</span> <span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;text/&gt;</span>
+        <span class="nt">&lt;/element&gt;</span>
+
+        <span class="nt">&lt;oneOrMore&gt;</span>
+          <span class="nt">&lt;element</span> <span class="na">name =</span> <span class="s">&quot;demand&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;type&quot;</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;text/&gt;</span>
+            <span class="nt">&lt;/element&gt;</span>
+            <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;parameters&quot;</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;text/&gt;</span>
+            <span class="nt">&lt;/element&gt;</span>
+            <span class="nt">&lt;optional&gt;</span>
+              <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;start_time&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;nonNegativeInteger&quot;</span><span class="nt">/&gt;</span>
+              <span class="nt">&lt;/element&gt;</span>
+            <span class="nt">&lt;/optional&gt;</span>
+          <span class="nt">&lt;/element&gt;</span>
+        <span class="nt">&lt;/oneOrMore&gt;</span>
+
+      <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;/oneOrMore&gt;</span>
+    <span class="c">&lt;!-- end Commodity Requirements --&gt;</span>
+
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+<span class="c">&lt;!-- end GrowthRegion --&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;region&gt;</span>
+  <span class="nt">&lt;name&gt;</span>SingleRegion<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;allowedfacility&gt;</span>Source<span class="nt">&lt;/allowedfacility&gt;</span>
+  <span class="nt">&lt;allowedfacility&gt;</span>Sink<span class="nt">&lt;/allowedfacility&gt;</span>
+  <span class="nt">&lt;model&gt;</span>
+    <span class="nt">&lt;GrowthRegion&gt;</span>
+      <span class="nt">&lt;commodity&gt;</span>
+        <span class="nt">&lt;name&gt;</span>fuel<span class="nt">&lt;/name&gt;</span>                     <span class="c">&lt;!-- there is a demand for fuel in this region --&gt;</span>
+        <span class="nt">&lt;demand&gt;</span>                              <span class="c">&lt;!-- see the doxygen documentation for SymbolicFunctions --&gt;</span>
+          <span class="nt">&lt;type&gt;</span>linear<span class="nt">&lt;/type&gt;</span>                 <span class="c">&lt;!-- the demand is linear --&gt;</span>
+          <span class="nt">&lt;parameters&gt;</span>0 1<span class="nt">&lt;/parameters&gt;</span>        <span class="c">&lt;!-- the slope is 0 and intercept is 1 --&gt;</span>
+          <span class="nt">&lt;start_time&gt;</span>1<span class="nt">&lt;/start_time&gt;</span>          <span class="c">&lt;!-- the demand starts at time t = 1 --&gt;</span>
+        <span class="nt">&lt;/demand&gt;</span>
+      <span class="nt">&lt;/commodity&gt;</span>
+    <span class="nt">&lt;/GrowthRegion&gt;</span>
+  <span class="nt">&lt;/model&gt;</span>
+  <span class="nt">&lt;institution&gt;</span>
+  ...
+  <span class="nt">&lt;/institution&gt;</span>
+<span class="nt">&lt;/region&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../inst/inst.html" title="Institution Model Input"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../region.html" title="Region Model Input"
+             >previous</a> |</li>
+        <li><a href="../../../../index.html">Cyclus Home</a> &raquo;</li>
+          <li><a href="../../../main.html" >Cyclus User Guide</a> &raquo;</li>
+          <li><a href="../region.html" >Region Model Input</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Jul 05, 2013.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

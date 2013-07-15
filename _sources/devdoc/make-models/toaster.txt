@@ -1,6 +1,6 @@
 .. summary Specific Step-by-Step instructions for creating a ToasterFacility 
 
-Model Devlopment Example : ToasterFacility
+Model Development Example : ToasterFacility
 ===========================================
 
 Introduction
@@ -76,10 +76,6 @@ The parameters that define a Toaster are :
   ]
 * **toastiness** : How toasted they become [ light, golden, dark, burnt ]
 * **rate** : How long it takes to toast a set of slices [ minutes ]
-* **incommodity** : The commodity market in which slices of bread are traded in 
-  this simulation [ a string ]
-* **outcommodity** : The commodity market in which toasted bread is traded in 
-  this simulation [ a string ]
 
 To tell the cyclus framework that this is the necessary information to define a 
 ToasterFacility, we include a Relax-NG grammar file. The stub looks like : 
@@ -89,13 +85,13 @@ ToasterFacility, we include a Relax-NG grammar file. The stub looks like :
   <grammar xmlns="http://relaxng.org/ns/structure/1.0"
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 
-  <define name="ToasterFacility">
-    <element name="ToasterFacility"> 
+  <define name="StubFacility">
+    <element name="StubFacility"> 
       <ref name="incommodity"/>
        <oneOrMore>
          <ref name="outcommodity"/>
        </oneOrMore>
-      </element>
+    </element>
    </define>
 
 To customize it to include the parameters above, change it to look like :
@@ -107,38 +103,42 @@ To customize it to include the parameters above, change it to look like :
 
   <define name="ToasterFacility">
     <element name="ToasterFacility"> 
+
+      <!-- the number of slices -->
       <element name="nSlices">
         <data type="nonNegativeInteger"/>
-        </element>
+      </element>
+
+      <!-- the toastiness -->
       <element name="toastiness">
         <data type="string"/>
-        </element>
+      </element>
+
+      <!-- how fast it gets toasty -->
       <element name="rate">
         <data type="double"/>
-        </element>
-      <ref name="incommodity"/>
-      <ref name="outcommodity"/>
       </element>
+
+    </element>
    </define>
   
 
 There are a few things to notice here. 
 
-* The incommodity and outcommodity elements are already defined. Since these are 
-  common module parameters, they can be used by reference (note the ref syntax) 
-  in any rng file within the simulation.  * The data types of the parameters are 
-  defined by the datatypeLibrary referenced in the top line. The documentation 
-  for this datatype library can be found at the url. This is provided only for 
+* The data types of the parameters are defined by the `datatypeLibrary` 
+  referenced in the top line. The documentation for this datatype 
+  library can be found at the url. This is provided only for 
   convenience, and allows the XML parser to check the datatype of user input.
+
 * The toastiness parameter is passed as a string. This means that the input 
   error checking, string interpretation, and other parsing that must be done to 
   ensure that the value provided is within the available (light, golden, dark, 
   burnt) options must be done in the initialization function on the c++ side. 
-  Though this parameter could have been defined in other ways, thisi is a good
-  example of how to arrage to do the input parsing task outside of xml. **Note 
+  Though this parameter could have been defined in other ways, this is a good
+  example of how to arrange to do the input parsing task outside of xml. **Note 
   that such a string parameter could also be used to provide the name of another 
   input file that helps define a module. The interpretation, again, would have 
-  to be done on the c++ side**
+  to be done on the c++ side.**
 
 
 Customization of the Documentation Comments 
@@ -147,7 +147,7 @@ Customization of the Documentation Comments
 To build documentation of your module into the doxygen documentation you or your 
 users build locally, your code must contain informative, Doxygen style comments 
 to describe the classes and functions that define your module. More details of 
-this are discussed in the style guide, but the Stub files give a good begining. 
+this are discussed in the style guide, but the Stub files give a good beginning. 
 
 For our ToasterFacility, the ToasterFacility.h file, for instance, has a section 
 that looks like :
@@ -189,7 +189,7 @@ that looks like :
     !*/ 
 
 
-This should looke more like :
+This should look more like :
 
 .. code-block:: cpp
 
@@ -209,7 +209,7 @@ This should looke more like :
     dynamically loaded by the Model class when requested.
   
     @section intro Introduction
-    A toaster is a common household implment which adds some carbon to our 
+    A toaster is a common household implement which adds some carbon to our 
     slices of bread. It usually takes about a minute to heat a slice of bread 
     until it is golden brown. 
   
@@ -219,9 +219,6 @@ This should looke more like :
     number of slices ]
     - string toastiness : How toasted they become [ light, golden, dark, burnt ]
     - double rate : How long it takes to toast a set of slices [ minutes ]
-    - string incommodity : The commodity market in which slices of bread are 
-      traded - string outcommodity : The commodity market in which toasted bread 
-      is traded
   
     @section optionalparams Optional Parameters
     This model has no optional parameters.
@@ -231,9 +228,9 @@ This should looke more like :
 
     @subsection tick On the tick :
     The ToasterFacility immediately offers any toast that exists in the 
-    inventory from previous months and begins to request the incommodity. It 
-    requests as much sliced bread as it can toast within a timestep. That is, it 
-    requests 86400 slices if the timestep is 30 days long, the rate is 2 minutes 
+    inventory from previous months and requests sliced bread. It 
+    requests as much sliced bread as it can toast within a time-step. That is, it 
+    requests 86400 slices if the time-step is 30 days long, the rate is 2 minutes 
     per set of slices, and  n_slices = 4. 
      
     @subsection receive Receiving a Message :
@@ -252,75 +249,81 @@ This should looke more like :
 
 
 Customization of Module Behavior
------------------------------------------
+--------------------------------
 
-init
-+++++++
+Facilities behave uniquely in *Cyclus* because they are implemented 
+using a `Prototype <http://en.wikipedia.org/wiki/Prototype_pattern#C.2B.2B>`_ 
+design pattern. At the beginning of the simulation, an archetype of
+your facility is instantiated from XML. When your facilities are 
+built in the simulation, a clone is created from this archetype. The
+details are described below.
 
-One of the requirements for a model to be properly loaded into the Cyclus 
-framework is a  method named 'init' to initialize an instance of the model from 
-an XML node pointer (xmlNodePtr)
+initialization
+++++++++++++++
 
-* this method must call the parent class method of the same name (e.g.
-  FacilityModel::init(cur))
+The archetype of your facility will be created via reading your XML
+input schema. We use an in-house tool called a QueryEngine to traverse
+the XML input. We will call your user-defined initialization function
+after all core-related members (e.g. the name of your facility, 
+lifetime, etc.) have been initialized. You should read the doxygen
+documentation for the QueryEngine to gain a better perspective of how
+the tool operates. For now it is suffice to say that any element it
+pulls from your input file will be returned as a string, so you must
+cast it into the appropriate POD type. We use the tried and true 
+Boost library's `lexical_cast <http://www.boost.org/doc/libs/1_52_0/doc/html/boost_lexical_cast.html>`_.
 
-* this method should only initialize variables that are NOT members of the
-  parent class
-
-In order for your module to have access to these parameters that define a 
-configured prototype the init function must load the data from XML. The 
-ToasterFacility.cpp file changes from :
+The original StubFacility implementation should change from:
 
 .. code-block:: cpp
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  void ToasterFacility::init(xmlNodePtr cur) {
-    FacilityModel::init(cur);
-    /// move XML pointer to current model
-    cur = XMLinput->get_xpath_element(cur,"model/ToasterFacility");
-    /// initialize any ToasterFacility-specific datamembers here
-  }
+   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+   void StubFacility::initModuleMembers(QueryEngine* qe) {
+     QueryEngine* input = qe->queryElement("input");
+     //retrieve input data members here. For example :  
+     //string query = "incommodity";
+     //incommodity_ = lexical_cast<double>(input->getElementContent(query));
+   }
 
 To :
 
 .. code-block:: cpp
   
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
-  void ToasterFacility::init(xmlNodePtr cur) {
-    FacilityModel::init(cur);
-  
-    /// move XML pointer to current model
-    cur = XMLinput->get_xpath_element(cur,"model/ToasterFacility");
-  
-    /// initialize any ToasterFacility-specific datamembers here
-    n_slices_ = strtol(XMLinput->get_xpath_content(cur, "nSlices"), NULL, 10);
-    toastiness_ = XMLinput->get_xpath_content(cur,"toastiness");
-    rate_ = strtod(XMLinput->get_xpath_content(cur, "rate"), NULL);
-    incommodity_ = XMLinput->get_xpath_content(cur, "incommodity");
-    outcommodity_ = XMLinput->get_xpath_content(cur, "outcommodity");
-  
-    // check that toastiness_ is oneof the allowed levels :
-    // this gives an example of performing input checking in the module 
-    // in case the xml parser is not detailed enough
-    if(allowed_levels_.find(toastiness_)==allowed_levels_.end()){
-      string msg = "The value given for the toastiness parameter, ";
-      msg += toastiness_;
-      msg += ", is not within the allowed set. Allowed values are: ";
-      map<string,double>::iterator it;
-      for (it=allowed_levels_.begin(); it != allowed_levels_.end(); it++){
-        msg += " '";
-        msg += (*it).first;
-        msg += "'";
-      }
-      msg+=".";
-      LOG(LEV_ERROR,"Toast")<<msg;
-    }
-  
-    // initialize the toastiness dependent chemistry
-    initToastChem();
+  void ToasterFacility::initModuleMembers(QueryEngine* qe) {
+    string data;
+
+    data = qe->getElementContent("nSlices");
+    set_n_slices(lexical_cast<double>(data));
+
+    set_toastiness(qe->getElementContent("toastiness"));
+
+    data = qe->getElementContent("rate");
+    set_rate(lexical_cast<double>(data));
   }
   
-  
+Note that by using functions to get and set your member variables, you
+can encapsulate error checking. For example, the implementation of 
+`set_toastiness` may look something like:
+
+.. code-block:: cpp
+
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+  void ToasterFacility::set_toastiness(std::string input) {    
+    // check that toastiness is one of the allowed levels :
+    // this gives an example of performing input checking in the module
+    // in case the xml parser is not detailed enough
+    if(allowed_levels_.find(input)==allowed_levels_.end()){
+      stringstream msg;
+      msg << "The value given for the toastiness parameter, "
+          << input
+          << ", is not within the allowed set. Allowed values are: "
+          << printAllowedValues();
+      throw CycException(msg.str());
+    }
+
+    toastiness_ = input;
+  }
+
 These member variables must be declared in the ToasterFacility.h header file. 
 The header file originally has a section that looks like :
   
@@ -344,98 +347,102 @@ We change it to include :
    * --------------------
    */
   
+   public:
+    /// get the number of slices
+    int n_slices();
+
+    /// get the toast rate
+    double rate();
+
+    /// get the toastiness
+    std::string toastiness();
+
    private:
     /**
-     * The number of slices the toaster can handle at one time
+      set the number of slices
+      @param n the number of slices
+    */
+    void set_n_slices(int n);
+    
+    /**
+      set the rate of toasting
+      @param r the rate to set
+    */
+    void set_rate(double r);
+
+    /**
+      set the toastiness
+      @param input the input given for the toastiness
+      @warning an error will be thrown if the input is not in the allowable set!
+    */
+    void set_toastiness(std::string input);
+    
+    /**
+       The number of slices the toaster can handle at one time
      */
     int n_slices_;
   
     /**
-     * The speed (set of slices per minute) with which the toaster toasts
+       The speed (set of slices per minute) with which the toaster toasts
      */
     double rate_;
   
     /**
-     * The toastiness of the toast. This can be 'light', 'golden', 'dark' or 
+       The toastiness of the toast. This can be 'light', 'golden', 'dark' or 
        'burnt'.  
     */
     std::string toastiness_;
-  
-    /**
-     * The name of the commodity market for the incoming commodity.
-     */
-    std::string incommodity_;
-  
-    /**
-     * The name of the commodity market for the outgoing commodity.
-     */
-    std::string outcommodity_;
-  
-  
+    
   /* ------------------- */ 
   
   };
 
+cloning
++++++++
 
-copy
-++++++
+Whenever a Facility is instantiated in the *Cyclus* world, it is
+actually cloned from its original archetype (that we initialized via 
+XML earlier). Accordingly, developers must provide a method to copy 
+the appropriate data from the archetype into the 
+about-to-be-instantiated clone. 
 
-All models must provide a method named 'copy' to initialize an instance of the 
-model from another instance of the same model
+Please note that the *Cyclus* core does not know anything about your
+module, so the function call will pass you a base class FacilityModel
+pointer. You will have to cast it into the correct derived class 
+pointer in order to access the derived class' members and methods.
 
-* this method must call the parent class method of the same name (e.g.
-  FacilityModel::copy(src))
-
-* this method should only initialize variables that are NOT members of the
-  parent class   
-
+The implementation for the Toaster's cloning function would look like:
 
 .. code-block:: cpp
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
-  void ToasterFacility::copy(ToasterFacility* src) {
-    FacilityModel::copy(src);
-    n_slices_=src->n_slices_;
-    toastiness_=src->toastiness_;
-    rate_=src->rate_;
-    incommodity_=src->incommodity_;
-    outcommodity_=src->outcommodity_;
-    allowed_levels_=src->allowed_levels_;
-    toast_bread_elt_ratio_=src->toast_bread_elt_ratio_;
-    inventory_.makeUnlimited(); 
-    stocks_.makeUnlimited();
+  void ToasterFacility::cloneModuleMembersFrom(FacilityModel* sourceModel) {
+    ToasterFacility* source = dynamic_cast<ToasterFacility*>(sourceModel);
+    set_n_slices(source->n_slices());
+    set_toastiness(source->toastiness());
+    set_rate(source->rate());
   }
 
+module information
+++++++++++++++++++
 
-print
-++++++++
-
-All models may provide a method named 'print' to print a description of the 
-model
-
-* this method should call the parent class method of the same name (e.g.
-  FacilityModel::print())
-
-* this method should only print information that is NOT part of the parent
-  class(es)
-
-* this method assumes that a dangling output line (no std::endl) is left
-  from the parent class output
-
-The ToasterFacility I've implemented has a print function that looks like :
+For debugging and verification purposes, we have found it useful to
+define a function to allow modules to print information about 
+themselves. It is provided via a virtual function in the FacilityModel
+API called str(). The ToasterFacility might implement such a function
+as:
 
 .. code-block:: cpp
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
-  void ToasterFacility::print() {
-    FacilityModel::print();
-    string msg = "ToasterFacility";
-    msg += this->ID();
-    msg += " makes delicious ";
-    msg += toastiness_;
-    msg += " toast.";
-    LOG(LEV_DEBUG2,"Toast")<<msg;
-  };
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  std::string ToasterFacility::str() {
+    std::stringstream ss;
+    ss << name()
+       << " can toast " << n_slices() << " at a time. It toasts them at "
+       << rate() << " slices per minute, and it will toast them up to "
+       << " a level of " << toastiness() << " toastiness.";
+    return ss.str();
+  }
 
 handleTick and handleTock
 ++++++++++++++++++++++++++
@@ -473,7 +480,7 @@ the details are hidden in the private functions that are defined elsewhere in th
 ToasterFacility class.
 
 For this to work out, of course, you'll need to declare the `vector<msg_ptr> orders_waiting_`
-and the `DeckStore stocks_` in the header file. 
+and the `MatBuff stocks_` in the header file. 
 
 receiveMessage
 ++++++++++++++++++++++++++
@@ -498,8 +505,8 @@ removeResource and addResource
 Though here again the developer is welcome to implement this in any way they 
 like, we recommend a particular paradigm in which the facility has raw materials ('stocks') 
 in pre-precess storage and processed materials ('inventory') in pre-transaction 
-storage. A tool in the developer's arsenal for this purpose are the DeckStore and 
-MatStore functions. Here we'll utilize the DeckStore class that provides a useful interface
+storage. A tool in the developer's arsenal for this purpose are the MatBuff and 
+MatStore functions. Here we'll utilize the MatBuff class that provides a useful interface
 for a list of resource objects.  
 
 .. code-block:: cpp
@@ -532,7 +539,7 @@ Customization of Module Tests
 
 Tests for the ToasterFacility can be implemented in the ToasterFacilityTests.cpp 
 file using the GoogleTest testing framework. For more details about testing, see
-the http://cnergdata.engr.wisc.edu/cyclus/develop/docs/testing.html, the testing section of 
+the http://cnergdata.engr.wisc.edu/cyclus/core/docs/testing.html, the testing section of 
 the cyclus doxygen documentation.
 
 For our purposes, we'll simply show one example of a unit test that the Toaster 

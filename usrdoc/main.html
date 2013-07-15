@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../index.html" />
-    <link rel="next" title="Creating and Running Simulations" href="creating_and_running_sims.html" />
+    <link rel="next" title="Simulation-level Input" href="input_specs/sim.html" />
     <link rel="prev" title="Glossary of Cyclus Terms" href="../basics/glossary.html" />
    
 <script type="text/javascript">
@@ -60,7 +60,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="creating_and_running_sims.html" title="Creating and Running Simulations"
+          <a href="input_specs/sim.html" title="Simulation-level Input"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="../basics/glossary.html" title="Glossary of Cyclus Terms"
@@ -70,17 +70,30 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Cyclus User Guide</a><ul>
+<li><a class="reference internal" href="#defining-a-simulation">Defining a Simulation</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#running-a-simulation">Running a Simulation</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="../basics/glossary.html"
                         title="previous chapter">Glossary of Cyclus Terms</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="creating_and_running_sims.html"
-                        title="next chapter">Creating and Running Simulations</a></p>
+  <p class="topless"><a href="input_specs/sim.html"
+                        title="next chapter">Simulation-level Input</a></p>
   <h3>Useful Pages</h3>
     <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
     <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
     <li><a href="https://github.com/cyclus">Source Code</a></li>
-    <li><a href="http://cnergdata.engr.wisc.edu/cyclus/develop/docs/">Code Documentation</a></li>
+    <li><a href="http://cnergdata.engr.wisc.edu/cyclus/core/docs/">Cyclus Core Documentation</a></li>
     
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
@@ -121,13 +134,85 @@ code.</p>
 <p>An instruction manual for <a class="reference internal" href="../devdoc/get_and_build.html"><em>Getting and Building Cyclus</em></a> is provided.
 Questions having to do with this process may be directed to
 <a class="reference external" href="mailto:cyclus-users&#37;&#52;&#48;googlegroups&#46;com">cyclus-users<span>&#64;</span>googlegroups<span>&#46;</span>com</a> .</p>
+<div class="section" id="defining-a-simulation">
+<h2>Defining a Simulation<a class="headerlink" href="#defining-a-simulation" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="creating_and_running_sims.html">Creating and Running Simulations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="creating_and_running_sims.html#cyclus-command-line-usage">Cyclus Command Line Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_specs/sim.html">Simulation-level Input</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="input_specs/sim.html#simulation-control">Simulation Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/sim.html#definition">Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/sim.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="input_specs/sim.html#commodities">Commodities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/sim.html#id1">Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/sim.html#id2">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="input_specs/sim.html#markets">Markets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/sim.html#id3">Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/sim.html#id4">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="input_specs/sim.html#recipes">Recipes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/sim.html#id5">Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/sim.html#id6">Example</a></li>
 </ul>
 </li>
 </ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="input_specs/region/region.html">Region Model Input</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="input_specs/region/region.html#core-level-input">Core-level Input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/region/region.html#definiton">Definiton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/region/region.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="input_specs/region/region.html#supported-region-modules">Supported Region Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/region/GrowthRegion/growthregion.html">GrowthRegion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="input_specs/inst/inst.html">Institution Model Input</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="input_specs/inst/inst.html#core-level-input">Core-level Input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/inst/inst.html#definiton">Definiton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/inst/inst.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="input_specs/inst/inst.html#supported-institution-modules">Supported Institution Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/inst/ManagerInst/managerinst.html">ManagerInst</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="input_specs/facility/facility.html">Facility Model Input</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="input_specs/facility/facility.html#core-level-input">Core-level Input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/facility/facility.html#definiton">Definiton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/facility/facility.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="input_specs/facility/facility.html#supported-facility-modules">Supported Facility Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/facility/BatchReactor/batchreactor.html">BatchReactor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/facility/EnrichmentFacility/enrichmentfacility.html">EnrichmentFacility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/facility/SinkFacility/sinkfacility.html">SinkFacility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_specs/facility/SourceFacility/sourcefacility.html">SourceFacility</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="running-a-simulation">
+<h2>Running a Simulation<a class="headerlink" href="#running-a-simulation" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="running_sims.html">Running Simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="running_sims.html#cyclus-command-line-usage">Cyclus Command Line Usage</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 </div>
 
@@ -144,7 +229,7 @@ Questions having to do with this process may be directed to
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="creating_and_running_sims.html" title="Creating and Running Simulations"
+          <a href="input_specs/sim.html" title="Simulation-level Input"
              >next</a> |</li>
         <li class="right" >
           <a href="../basics/glossary.html" title="Glossary of Cyclus Terms"
@@ -154,7 +239,7 @@ Questions having to do with this process may be directed to
     </div>
     <div class="footer">
         &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Nov 15, 2012.
+      Last updated on Jul 05, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
