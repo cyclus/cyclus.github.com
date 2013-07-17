@@ -11,7 +11,7 @@ Cyclus Fundamentals
    roadmap
    ecosystem
    glossary
-
+   acknowledgements
 
 .. stuff not converted yet
 

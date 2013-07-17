@@ -36,16 +36,10 @@ Core Concepts and Expectations
    :maxdepth: 1
 
    sim_init
-   control_flow
-   time_steps
-   commodities_and_markets
    resources
    materials_and_isotopes
+   discrete_materials
    decay
-   message_passing
-   transactions
-   facility_deployment
-   using_prototypes
 
 Utilities and Components
 ------------------------
@@ -56,19 +50,14 @@ Utilities and Components
    logger
    output_dbase
    output_usecases
-   module_building_blocks
 
 Software Development Aids
 --------------------------
 .. toctree::
    :maxdepth: 1
 
-   code_documentation
    ../basics/roadmap
-   cycamore
-   cycstub
    contributing_to_cyclus
-   git_worflows
    make-models/main
    testing
    style_guide
