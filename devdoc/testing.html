@@ -215,11 +215,11 @@ FacilityModelTests.h in the beginning of the file, ensuring that
 FacilityModelTests.cpp is linked to the CyclusUnitTestDriver executable, and
 declaring the implementation of the parameterized test by providing a reference
 to a constructor to a concrete ToasterFaclity.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// ToasterFacilityTests.cpp</span>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacilityTests.cpp</span>
 <span class="cp">#include &lt;gtest/gtest.h&gt;</span>
 <span class="cp">#include &quot;FacilityModelTests.h&quot;</span>
 
-<span class="n">FacilityModel</span><span class="o">*</span> <span class="nf">ToasterFacilityConstructor</span><span class="p">(){</span>
+<span class="n">FacilityModel</span><span class="o">*</span> <span class="n">ToasterFacilityConstructor</span><span class="p">(){</span>
   <span class="k">return</span> <span class="k">new</span> <span class="n">ToasterFaclity</span><span class="p">();</span>
 <span class="p">}</span>
 
@@ -252,7 +252,7 @@ trunk/src/Facility/ToasterFacility/ folder with the other ToasterFacility files.
 <p>The Test Case is a class declared in this file. The Cyclus convention is to give
 the class the same name as the file. For the ToasterFacility, this class will
 look like:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// ToasterFacilityTests.cpp</span>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacilityTests.cpp</span>
 <span class="cp">#include &lt;gtest/gtest.h&gt;</span>
 <span class="cp">#include &quot;ToasterFacility.h&quot;</span>
 
@@ -260,11 +260,11 @@ look like:</p>
 
 <span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
 <span class="k">class</span> <span class="nc">ToasterFacilityTest</span> <span class="o">:</span> <span class="k">public</span> <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">Test</span> <span class="p">{</span>
-<span class="nl">protected:</span>
+<span class="k">protected</span><span class="o">:</span>
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">SetUp</span><span class="p">(){</span>
   <span class="p">};</span>
 
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">TearDown</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">TearDown</span><span class="p">()</span> <span class="p">{</span>
   <span class="p">}</span>
 <span class="p">};</span>
 </pre></div>
@@ -300,7 +300,7 @@ step. A very simple class is created in order to supply a public getter
 function for the <tt class="docutils literal"><span class="pre">current_bread_temp_</span></tt> variable.</p>
 </dd>
 </dl>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// ToasterFacilityTests.cpp</span>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">// ToasterFacilityTests.cpp</span>
 <span class="cp">#include &lt;gtest/gtest.h&gt;</span>
 <span class="cp">#include &quot;ToasterFacility.h&quot;</span>
 <span class="cp">#include &quot;TestInst.h&quot;</span>
@@ -310,7 +310,7 @@ function for the <tt class="docutils literal"><span class="pre">current_bread_te
 
 <span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
 <span class="k">class</span> <span class="nc">FakeToasterFacility</span> <span class="o">:</span> <span class="k">public</span> <span class="n">ToasterFacility</span> <span class="p">{</span>
-  <span class="nl">public:</span>
+  <span class="k">public</span><span class="o">:</span>
     <span class="n">FakeToasterFacility</span><span class="p">()</span> <span class="o">:</span> <span class="n">ToasterFacility</span><span class="p">()</span> <span class="p">{</span>
     <span class="p">}</span>
 
@@ -321,15 +321,15 @@ function for the <tt class="docutils literal"><span class="pre">current_bread_te
 <span class="p">};</span>
 <span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
 <span class="k">class</span> <span class="nc">ToasterFacilityTest</span> <span class="o">:</span> <span class="k">public</span> <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">Test</span> <span class="p">{</span>
-<span class="nl">protected:</span>
+<span class="k">protected</span><span class="o">:</span>
   <span class="n">FakeToasterFacility</span><span class="o">*</span> <span class="n">src_facility</span><span class="p">;</span>
 
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">SetUp</span><span class="p">(){</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">SetUp</span><span class="p">(){</span>
     <span class="n">src_facility</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FakeToasterFacility</span><span class="p">();</span>
     <span class="n">src_facility</span><span class="o">-&gt;</span><span class="n">setParent</span><span class="p">(</span><span class="k">new</span> <span class="n">TestInst</span><span class="p">());</span>
   <span class="p">};</span>
 
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">TearDown</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">TearDown</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">delete</span> <span class="n">src_facility</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">};</span>
@@ -397,11 +397,11 @@ increases a privately stored counter.</p>
 <span class="cp">#include &quot;ModuleTests.h&quot;</span>
 
 <span class="k">class</span> <span class="nc">Module</span> <span class="p">{</span>
- <span class="nl">public:</span>
+ <span class="k">public</span><span class="o">:</span>
   <span class="n">Module</span><span class="p">();</span>                 <span class="c1">// constructor</span>
-  <span class="kt">void</span> <span class="nf">increaseCounter</span><span class="p">();</span>   <span class="c1">// increase counter_ by one</span>
+  <span class="kt">void</span> <span class="n">increaseCounter</span><span class="p">();</span>   <span class="c1">// increase counter_ by one</span>
 
- <span class="nl">private:</span>
+ <span class="k">private</span><span class="o">:</span>
   <span class="kt">int</span> <span class="n">counter_</span><span class="p">;</span>
 
   <span class="k">friend</span> <span class="k">class</span> <span class="nc">ModuleTest</span><span class="p">;</span>  <span class="c1">// friend class gives access to private members</span>
@@ -435,13 +435,13 @@ methods of the Module class.</p>
 
 <span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
 <span class="k">class</span> <span class="nc">ModuleTest</span> <span class="o">:</span> <span class="k">public</span> <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">Test</span> <span class="p">{</span>
-<span class="nl">protected:</span>
+<span class="k">protected</span><span class="o">:</span>
   <span class="n">Module</span><span class="o">*</span> <span class="n">module_</span><span class="p">;</span>
 
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">SetUp</span><span class="p">();</span>     <span class="c1">// gtest construction</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">TearDown</span><span class="p">();</span>  <span class="c1">// gtest destruction</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">SetUp</span><span class="p">();</span>     <span class="c1">// gtest construction</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">TearDown</span><span class="p">();</span>  <span class="c1">// gtest destruction</span>
 
-  <span class="kt">int</span> <span class="nf">counter</span><span class="p">();</span>            <span class="c1">// access the counter_ variable</span>
+  <span class="kt">int</span> <span class="n">counter</span><span class="p">();</span>            <span class="c1">// access the counter_ variable</span>
 <span class="p">};</span>
 </pre></div>
 </div>
@@ -505,11 +505,11 @@ file to review what has changed to test this new functionality.</p>
 <span class="cp">#include &lt;libxml/xpath.h&gt;</span>
 
 <span class="k">class</span> <span class="nc">Module</span> <span class="p">{</span>
- <span class="nl">public:</span>
+ <span class="k">public</span><span class="o">:</span>
   <span class="n">init</span><span class="p">(</span><span class="n">xmlNodePtr</span> <span class="n">cur</span><span class="p">,</span> <span class="n">xmlXPathContextPtr</span> <span class="n">context</span><span class="p">);</span>   <span class="c1">// initialize counter_</span>
-  <span class="kt">void</span> <span class="nf">increaseCounter</span><span class="p">();</span>                             <span class="c1">// increase counter_ by one</span>
+  <span class="kt">void</span> <span class="n">increaseCounter</span><span class="p">();</span>                             <span class="c1">// increase counter_ by one</span>
 
- <span class="nl">private:</span>
+ <span class="k">private</span><span class="o">:</span>
   <span class="kt">int</span> <span class="n">counter_</span><span class="p">;</span>
 
   <span class="k">friend</span> <span class="k">class</span> <span class="nc">ModuleTest</span><span class="p">;</span>  <span class="c1">// friend class gives access to private members</span>
@@ -548,16 +548,16 @@ XML context is provided via the XMLinput singleton.</p>
 
 <span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
 <span class="k">class</span> <span class="nc">ModuleTest</span> <span class="o">:</span> <span class="k">public</span> <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">Test</span> <span class="p">{</span>
-<span class="nl">protected:</span>
+<span class="k">protected</span><span class="o">:</span>
   <span class="n">Module</span><span class="o">*</span> <span class="n">module_</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">test_counter_</span><span class="p">;</span>        <span class="c1">// a variable to set the initialized counter to</span>
 
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">SetUp</span><span class="p">();</span>     <span class="c1">// gtest construction</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">TearDown</span><span class="p">();</span>  <span class="c1">// gtest destruction</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">SetUp</span><span class="p">();</span>     <span class="c1">// gtest construction</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">TearDown</span><span class="p">();</span>  <span class="c1">// gtest destruction</span>
 
-  <span class="n">xmlDocPtr</span> <span class="nf">getXMLDoc</span><span class="p">();</span>    <span class="c1">// get an xml doc from an xml snippet</span>
-  <span class="kt">void</span> <span class="nf">initModule</span><span class="p">();</span>        <span class="c1">// initialize the module</span>
-  <span class="kt">int</span> <span class="nf">counter</span><span class="p">();</span>            <span class="c1">// access the counter_ variable</span>
+  <span class="n">xmlDocPtr</span> <span class="n">getXMLDoc</span><span class="p">();</span>    <span class="c1">// get an xml doc from an xml snippet</span>
+  <span class="kt">void</span> <span class="n">initModule</span><span class="p">();</span>        <span class="c1">// initialize the module</span>
+  <span class="kt">int</span> <span class="n">counter</span><span class="p">();</span>            <span class="c1">// access the counter_ variable</span>
 <span class="p">};</span>
 </pre></div>
 </div>
@@ -601,7 +601,7 @@ to provide the required XML node and context.</p>
 
   <span class="c1">// return an xmlDocPtr to that snippet</span>
   <span class="n">string</span> <span class="n">snippet</span> <span class="o">=</span> <span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
-  <span class="k">return</span> <span class="nf">xmlParseMemory</span><span class="p">(</span><span class="n">snippet</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="n">snippet</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+  <span class="k">return</span> <span class="n">xmlParseMemory</span><span class="p">(</span><span class="n">snippet</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="n">snippet</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
 <span class="p">}</span>
 
 <span class="c1">//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
