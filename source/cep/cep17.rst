@@ -127,14 +127,18 @@ All recorded data will stay the same except for the tables listed below:
 
 * [TableName] ([new/modified/removed]): [field1], [field2], ...
 
-- Resource (modified): ID, type, quantity, units, StateID, Parent1, Parent2
+- Resource (modified): ID, type, quantity, StateID, Parent1, Parent2
 - Compositions (new): ID, Isotope, Quantity
 - TransactedResources (modified): TransactionID, Position, ResourceID
-- GenericResources (removed)
+- GenericResources (modified): ID, Quality, Units
 - IsotopicStates (removed)
 
-*Note that we no longer need a special table for Generic resources - it is
-absorbed into the new "Resources" table.*
+
+*Note that unlike GenericResources, there is no units field for
+compositions because we can record all material composition amounts in a
+canonical unit (i.e. kg).  GenericResources, however, are
+expected/anticipated to have different unit types along with their
+differing "quality" field values.*
 
 Resources/Material API
 +++++++++++++++++++++++
@@ -284,10 +288,8 @@ does not perform any decay related logic itself.
 GenericResource class
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Implements the Resource class interface.  No "quality" property is
-provided.  It seemed redundant with "units".  For a resource of quality
-"bananas", just use units like "kg bananas" (for mass based) or "# bananas"
-(for count based).
+Implements the Resource class interface in a simple way usable for things
+like: bananas, man-hours, water, buying power, etc.
 
 .. code-block:: c++
 
@@ -295,8 +297,8 @@ provided.  It seemed redundant with "units".  For a resource of quality
         typedef boost::shared_ptr<GenericResource> Ptr;
         static ResourceType Type;
 
-        static Ptr create(double quantity, std::string units);
-        static Ptr createUntracked(double quantity, std::string units);
+        static Ptr create(double quantity, std::string units, std::string quality);
+        static Ptr createUntracked(double quantity, std::string units, std::string quality);
         
         /// Returns a reference to a newly allocated copy of this resource 
         virtual Resource::Ptr clone();
@@ -304,19 +306,23 @@ provided.  It seemed redundant with "units".  For a resource of quality
         /// Returns the total quantity of this resource in its base unit 
         virtual double quantity() {return quantity_;};
           
-        /// Returns the total quantity of this resource in its base unit 
+        /// Returns base unit for this resource's quantity
         virtual std::string units() {return units_;};
+          
+        /// Returns the quality of this resoruce's contents (e.g. man-hours)
+        virtual std::string quality() {return quality_;};
           
         /// Returns the concrete type of this resource 
         virtual ResourceType type() {return Type;};
 
-        /// not needed/no meaning for generic resources
-        virtual int stateId() {return 0;};
+        /// each quality gets its own state id
+        virtual int stateId();
         
         /**
            Absorbs the contents of the given 'other' resource into this 
            resource  
-           @throws CycGenResourceIncompatible 'other' resource is of a 
+           @throws CycGenResourceIncompatible 'other' resource is of a
+           different quality.
          */
         virtual void absorb(GenericResource::Ptr other);
 
@@ -332,7 +338,7 @@ provided.  It seemed redundant with "units".  For a resource of quality
 
       protected:
 
-        virtual void recordState() { };
+        virtual void recordState();
 
       private:  
 
@@ -340,17 +346,16 @@ provided.  It seemed redundant with "units".  For a resource of quality
            @param quantity is a double indicating the quantity 
            @param units is a string indicating the resource unit 
          */
-        GenericResource(double quantity, std::string units);
+        GenericResource(double quantity, std::string units, std::string quality);
 
-        /**
-           The units of the resource 
-         */ 
+        static int nextStateID_;
+        static std::map<std::string, int> existingStateIds_;
+
         std::string units_;
 
-        /**
-           The quantity of the resource 
-         */ 
         double quantity_;
+
+        double quality_;
     };
 
 Composition class
@@ -374,6 +379,11 @@ the previous equivalence notion is this::
   consecutive small differences negligible could result in compositions
   staying the same that would have otherwise been appreciably different if
   each small change were allowed to propogate as a new composition.
+
+While there are definitely uses for material/composition equivalence, they
+should/will not be used by the core (for now) and best belong in MatQuery
+or other wrapper classes.  The normalize method will utilize the floating
+point math introduced by @katyhuff.
 
 .. code-block:: c++
 
@@ -421,6 +431,32 @@ the previous equivalence notion is this::
         int prev_decay_;
     };
 
+CompMath namespace
+~~~~~~~~~~~~~~~~~~~~~~
+
+The excellent floating point calculation handling and thresholding
+functionality introduced by @katyhuff will be preserved. The current
+(pre-proposal) Material::diff and Material::applyThreshold methods will
+become public functions that operate on Composition::Vect types.
+
+.. code-block:: c++
+
+    namespace CompMath {
+
+      /// Reports the component-wise difference between two
+      /// Composition::Vects.
+      ///  
+      /// @return a new Composition::Vect of a * qtyA - b * qtyB
+      Composition::Vect diff(const Composition::Vect& a, double qtyA, const Composition::Vect& b, double qtyB);
+
+      /// Modifies the vec, by zeroing out all elements whose absolute value is less than the threshold.
+      /// 
+      /// @param vec the vector of isos and amounts to which to apply the threshold
+      /// @param threshold the smallest value considered nonzero
+      void applyThreshold(Composition::Vect& v, double threshold);
+    }
+
+
 MatQuery class
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -433,7 +469,11 @@ information about a material they could ever reasonably need.
 
     class MatQuery {
       public:
-        MatQuery(Material::Ptr m) : m_(m) { }
+        MatQuery(Material::Ptr m);
+
+        /// Convenience constructor that auto-casts a Resource::Ptr to a
+        /// Material::Ptr.
+        MatQuery(Resource::Ptr m);
 
         double mass(Iso iso) {
           return massFrac(iso) * qty();
@@ -457,6 +497,8 @@ information about a material they could ever reasonably need.
           return m_->quantity();
         };
 
+        bool almostEqual(Material::Ptr other, double threshold=cyclus.eps());
+
       private:
 
         Material::Ptr m_;
@@ -466,12 +508,11 @@ Other Changes
 ++++++++++++++
 
 The RecipeLibrary's role of composition decay management has been shifted
-into the Composition class.  It now is only responsible for loading
-recipes from xml input and serving them up simulation wide.  Agents are
-also allowed to register their own compositions manually.
-
-*The decay lineage tracking functionality introduced by Matt Gidden has been
-effectively preserved.*
+into the Composition class.  It now is only responsible for loading recipes
+from xml input and serving them up simulation wide.  Agents are also
+allowed to register their own compositions manually. *The decay lineage
+tracking functionality introduced by Matt Gidden has been effectively
+preserved.* RecipeLibrary interface becomes:
 
 .. code-block:: c++
 
@@ -520,8 +561,6 @@ effectively preserved.*
       RecipeMap recipes_;
     };
 
-
-
 Backwards Compatibility
 ========================
 
@@ -545,15 +584,15 @@ Other Notes
 ============
 
 Current implementation bugs
-----------------------------
+++++++++++++++++++++++++++++
 
-The current (before this CEP) Cyclus core does not correctly record decayed
-compositions in the output database. This has the effect of comparing
-simulation output size and performance with that of this CEP's proposed
-changes is not exactly "fair".
+* The current (before this CEP) Cyclus core does not correctly record
+  decayed compositions in the output database. This makes comparing
+  simulation output size and performance with that of this CEP's proposed
+  changes not exactly "fair".
 
 Backends and Performance
--------------------------
++++++++++++++++++++++++++
 
 Preliminary investigation on my part indicates that this extra tracking
 will cause significant slowdown using an Sqlite backend database *when
@@ -567,32 +606,36 @@ reference:
 
 * ~50,000 material objects total
 * 1100 months
-* 2200 decay calculations (2200 separate compositions recorded)
-* ~28,000,000 resource object state changes recorded.
+* 2200 decay calculations
+* ~28,000,000 resource object state changes recorded (with CEP implemented)
 
 Cyclus was built with CMake's "RELEASE" mode.  Results reported are
 approximate and specific to my office computer.
 
 Without proposed changes (decayed compositions are not recorded - current bug):
 
-===========================  =========  ========
-                             Sqlite     Hdf5
-===========================  =========  ========
-Decay every 2nd timestep     41 sec.    17 sec.
-No decay                     41 sec.    17 sec.
-===========================  =========  ========
+===================== ========= ===============
+*                     Backend
+--------------------- -------------------------
+Decay                 Sqlite    Hdf5
+===================== ========= ===============
+Every 2nd timestep    41 sec.   17 sec.
+None                  41 sec.   17 sec.
+===================== ========= ===============
 
 With proposed changes:
 
-===========================  =========  ===============
-                             Sqlite     Hdf5
-===========================  =========  ===============
-Decay every 2nd timestep     16 min.    2 min. 50 sec.
-No decay                     55 sec.    21 sec.
-===========================  =========  ===============
+===================== ========= ===============
+*                     Backend
+--------------------- -------------------------
+Decay                 Sqlite    Hdf5
+===================== ========= ===============
+Every 2nd timestep    16 min.   2 min. 50 sec.
+None                  55 sec.   21 sec.
+===================== ========= ===============
 
 Decay Initiation
------------------
+++++++++++++++++++
 
 There has been some debate regarding the best way(s) to handle decaying
 material objects in the simulation. Options include: manually by agents,
