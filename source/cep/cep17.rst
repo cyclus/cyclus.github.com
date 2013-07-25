@@ -33,23 +33,6 @@ This proposal serves to address two related issues:
    interfaces minimized and all extra functionality will be provided by one or
    more wrapper classes.
 
-   Part of the problem has been that some questions belong to the Material
-   class, some belong to the composition class. And some can only be
-   answered by using information from both.  Another reason to use wrapper
-   classes is that sometimes a user/dev might want to manipulate
-   compositions, and other times they will want to manipulate materials -
-   and many of those queries/operations have significant overlap that we
-   don't want duplicated on both classes' implementations nor interfaces.
-   Another reason is to help the classes be more modular/maintainable for
-   the core developers.  Some basic material/composition query/manipulation
-   wrapper(s) can be made setting the stage for the further development of
-   a "toolkit" for dealing with materials and compositions.  External
-   developers can easily create toolkits for others to use that don't even
-   need to be a part of the Cyclus core. This makes it easier to ensure
-   that material/composition inner workings remain pure and correct despite
-   rapid or significant changes to the kitchen-sink API that will likely
-   evolve.
-
 Motivation and Rationale
 ==========================
 
@@ -107,6 +90,22 @@ wrapper classes for interrogating and manipulating material compositions.
 *Functionality provided by these wrapper classes can grow organically as
 needs arise without affecting the core resource classes.*
 
+Part of the problem has been that some questions belong to the Material
+class, some belong to the composition class. And some can only be answered
+by using information from both.  Another reason to use wrapper classes is
+that sometimes a user/dev might want to manipulate compositions, and other
+times they will want to manipulate materials - and many of those
+queries/operations have significant overlap that we don't want duplicated
+on both classes' implementations nor interfaces.  Another reason is to help
+the classes be more modular/maintainable for the core developers.  Some
+basic material/composition query/manipulation wrapper(s) can be made
+setting the stage for the further development of a "toolkit" for dealing
+with materials and compositions.  External developers can easily create
+toolkits for others to use that don't even need to be a part of the Cyclus
+core. This makes it easier to ensure that material/composition inner
+workings remain pure and correct despite rapid or significant changes to
+the kitchen-sink API that will likely evolve.
+
 Specification
 ===============
 
@@ -120,6 +119,9 @@ Data Tracking
 
 In addition to tracking the transfer of resources between agents (and
 corresponding state), we track:
+
+* Creation of a resource. Parentless resources are implicitly defined as
+  "newly created"
 
 * Transmutation of a material resource within an agent (Resource,
   ResourceHeritage, Compositions, GenericResource tables). The transmuted
@@ -187,7 +189,8 @@ Resource class
 Resource class provides an abstract interface allowing different types of
 resources to be transacted in a simulation. It handles some basic state
 tracking and output recording assisted by method invocations from its
-subclasses.
+subclasses. The public interface below is mostly the same as it currently
+exists in Cyclus.
 
 .. code-block:: c++
 
@@ -262,6 +265,52 @@ The material class is primarily responsible for enabling basic material
 manipulation while helping enforce mass conservation.  It also provides the
 ability to easily decay a material up to the current simulation time; it
 does not perform any decay related logic itself.
+
+There are four basic operations that can be performed on materials: create,
+transmute (change material composition - e.g. fission by reactor), absorb
+(combine materials), extract (split a material). All material
+handling/manipulation will be performed using these operations. Usage
+examples:
+
+* A mining facility that "creates" new material
+
+.. code-block:: c++
+
+    Composition::Ptr nat_u = ...
+    double qty = 10.0;
+
+    Material::Ptr m = Material::create(qty, nat_u);
+
+* A conversion facility mixing uranium and flourine:
+
+.. code-block:: c++
+
+    Material::Ptr uf6 = uranium_buf.popOne();
+    Material::Ptr f = flourine_buf.popOne();
+
+    uf6.absorb(f);
+
+* A reactor transmuting fuel:
+
+.. code-block:: c++
+
+    Composition::Ptr burned_comp = ... // fancy code to calculate burned isotopics
+    Material::Ptr assembly = core_fuel.popOne();
+
+    assembly.transmute(burned_comp);
+
+* A separations plant extracting stuff from spent fuel:
+
+.. code-block:: c++
+
+    Composition::Ptr comp = ... // fancy code to calculate extraction isotopics
+    Material::Ptr bucket = spent_fuel.popOne();
+    double qty = 3.0;
+
+    Material::Ptr mox = bucket.extractComp(qty, comp);
+
+
+Proposed material class interface:
 
 .. code-block:: c++
 
