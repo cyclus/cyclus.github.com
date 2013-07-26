@@ -679,8 +679,7 @@ Backends and Performance
 Preliminary investigation on my part indicates that this extra tracking
 will cause significant slowdown using an Sqlite backend database *when
 material decay is frequent*.  This slowdown prompted the development of a
-faster HDF5 alternative.  This alternate backend currently lives at
-https://github.com/rwcarlsen/cyclus ("hdf5" branch).
+faster HDF5 alternative (currently merged into develop branch).
 
 Basic performance stats were collected by running a full cyclus
 inpro_low.xml simulation ``time cyclus [path/to/]inpro_low.xml``.  For
