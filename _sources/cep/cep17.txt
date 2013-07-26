@@ -22,7 +22,7 @@ This proposal serves to address two related issues:
    proliferation-resistance material handling. It is proposed that all
    resource state and state transitions will be tracked (as opposed to just
    recording state at inter-agent transactions).  In addition to required
-   internal additions/changes to resource classes, explicit `transmute`
+   internal additions/changes to resource classes, explicit ``transmute``
    functionality will be added to the Material class to accommodate
    mass-conserving state changes that occur in agents such as Reactors.
 
@@ -63,11 +63,11 @@ analysis.  Examples:
 
 4. There is no mass-conservation-safe way to transmute a material (i.e.
    change its nuclide composition) outside of destroying and simultaneously
-   creating new material objects.
+   creating new material objects (which isn't mass-conservations-safe).
 
 5. When resources are split and combined, there is no way to recall this
    heritage.  Tracing paths of certain material objects is not possible.
-   Analyzing the contribution of agent X to the flow of element Y through
+   Analyzing the contribution of agent X to the flow of isotope Y through
    agent Z is not possible.
 
 The above deficiencies are used as drivers for designing/implementing a more
@@ -90,6 +90,22 @@ wrapper classes for interrogating and manipulating material compositions.
 *Functionality provided by these wrapper classes can grow organically as
 needs arise without affecting the core resource classes.*
 
+Part of the problem has been that some questions belong to the Material
+class, some belong to the composition class. And some can only be answered
+by using information from both.  Another reason to use wrapper classes is
+that sometimes a user/dev might want to manipulate compositions, and other
+times they will want to manipulate materials - and many of those
+queries/operations have significant overlap that we don't want duplicated
+on both classes' implementations nor interfaces.  Another reason is to help
+the classes be more modular/maintainable for the core developers.  Some
+basic material/composition query/manipulation wrapper(s) can be made
+setting the stage for the further development of a "toolkit" for dealing
+with materials and compositions.  External developers can easily create
+toolkits for others to use that don't even need to be a part of the Cyclus
+core. This makes it easier to ensure that material/composition inner
+workings remain pure and correct despite rapid or significant changes to
+the kitchen-sink API that will likely evolve.
+
 Specification
 ===============
 
@@ -104,9 +120,13 @@ Data Tracking
 In addition to tracking the transfer of resources between agents (and
 corresponding state), we track:
 
+* Creation of a resource. Parentless resources are implicitly defined as
+  "newly created"
+
 * Transmutation of a material resource within an agent (Resource,
-  ResourceHeritage, Compositions tables). This helps address problem
-  #1 and #4 from Motivation section.
+  ResourceHeritage, Compositions, GenericResource tables). The transmuted
+  resource has the prev resource as its only parent.  This helps address
+  problem #1 and #4 from Motivation section.
 
 * Decay of a material resource (Resource, ResourceHeritage, Compositions
   tables): This is a special, common case of transmutation.
@@ -115,10 +135,24 @@ corresponding state), we track:
   of each Resource object. Resources with no parent were newly created.
   Helps address problem #2, #3 and #5.
 
-This also simplifies rules for acceptable resource handling, namely, it is
+This also simplifies rules for acceptable resource handling. Namely, it is
 never okay for a resource to be destructed or thrown-away unless it is
 being stored permanently. The new changes should make it more obvious to
 agent developers how enforce correct, measurable mass-conservation.
+
+This proposed tracking provides orthogonality between resource
+handling/operations and resource ownership.  Resource operations don't
+know/care about who is splitting/combining/transmuting/creating them.  This
+orthogonality, I believe, is a good feature because: it simplifies the
+resource APIs, decouples transaction and resource manipulation and data
+recording code, and it decouples output data elegantly.  Resource tracking
+becomes entirely independent of facility operations, transactions, and
+simulation time-stepping. If problem #1 as described in the Motivation
+section is a fundamentally necessary analysis for basically every
+simulation we want to run, then we either need (minimally) the tracking
+proposed in this CEP or we need to break the orthogonality that I just
+described.  Eliminating even one of the things tracked as described above
+will break the ability to unambiguously determine agent inventories.
 
 Output Schema
 +++++++++++++++++++++++
@@ -127,7 +161,7 @@ All recorded data will stay the same except for the tables listed below:
 
 * [TableName] ([new/modified/removed]): [field1], [field2], ...
 
-- Resource (modified): ID, type, quantity, StateID, Parent1, Parent2
+- Resource (modified): ID, Time, Type, Quantity, StateID, Parent1, Parent2
 - Compositions (new): ID, Isotope, Quantity
 - TransactedResources (modified): TransactionID, Position, ResourceID
 - GenericResources (modified): ID, Quality, Units
@@ -155,7 +189,8 @@ Resource class
 Resource class provides an abstract interface allowing different types of
 resources to be transacted in a simulation. It handles some basic state
 tracking and output recording assisted by method invocations from its
-subclasses.
+subclasses. The public interface below is mostly the same as it currently
+exists in Cyclus.
 
 .. code-block:: c++
 
@@ -231,6 +266,52 @@ manipulation while helping enforce mass conservation.  It also provides the
 ability to easily decay a material up to the current simulation time; it
 does not perform any decay related logic itself.
 
+There are four basic operations that can be performed on materials: create,
+transmute (change material composition - e.g. fission by reactor), absorb
+(combine materials), extract (split a material). All material
+handling/manipulation will be performed using these operations. Usage
+examples:
+
+* A mining facility that "creates" new material
+
+.. code-block:: c++
+
+    Composition::Ptr nat_u = ...
+    double qty = 10.0;
+
+    Material::Ptr m = Material::create(qty, nat_u);
+
+* A conversion facility mixing uranium and flourine:
+
+.. code-block:: c++
+
+    Material::Ptr uf6 = uranium_buf.popOne();
+    Material::Ptr f = flourine_buf.popOne();
+
+    uf6.absorb(f);
+
+* A reactor transmuting fuel:
+
+.. code-block:: c++
+
+    Composition::Ptr burned_comp = ... // fancy code to calculate burned isotopics
+    Material::Ptr assembly = core_fuel.popOne();
+
+    assembly.transmute(burned_comp);
+
+* A separations plant extracting stuff from spent fuel:
+
+.. code-block:: c++
+
+    Composition::Ptr comp = ... // fancy code to calculate extraction isotopics
+    Material::Ptr bucket = spent_fuel.popOne();
+    double qty = 3.0;
+
+    Material::Ptr mox = bucket.extractComp(qty, comp);
+
+
+Proposed material class interface:
+
 .. code-block:: c++
 
     class Material: public Resource {
@@ -259,7 +340,7 @@ does not perform any decay related logic itself.
 
         Ptr extractQty(double qty);
 
-        Ptr extractComp(double qty, Composition::Ptr c);
+        Ptr extractComp(double qty, Composition::Ptr c, double threshold);
 
         void absorb(Ptr mat);
 
@@ -293,7 +374,8 @@ like: bananas, man-hours, water, buying power, etc.
 
 .. code-block:: c++
 
-    class GenericResource : public Resource { public:
+    class GenericResource : public Resource {
+      public:
         typedef boost::shared_ptr<GenericResource> Ptr;
         static ResourceType Type;
 
@@ -597,11 +679,10 @@ Backends and Performance
 Preliminary investigation on my part indicates that this extra tracking
 will cause significant slowdown using an Sqlite backend database *when
 material decay is frequent*.  This slowdown prompted the development of a
-faster HDF5 alternative.  This alternate backend currently lives at
-https://github.com/rwcarlsen/cyclus ("hdf5" branch).
+faster HDF5 alternative (currently merged into develop branch).
 
 Basic performance stats were collected by running a full cyclus
-inpro_low.xml simulation `time cyclus [path/to/]inpro_low.xml`.  For
+inpro_low.xml simulation ``time cyclus [path/to/]inpro_low.xml``.  For
 reference:
 
 * ~50,000 material objects total
@@ -619,8 +700,8 @@ Without proposed changes (decayed compositions are not recorded - current bug):
 --------------------- -------------------------
 Decay                 Sqlite    Hdf5
 ===================== ========= ===============
-Every 2nd timestep    41 sec.   17 sec.
-None                  41 sec.   17 sec.
+Every 2nd timestep    40 sec.   15 sec.
+None                  40 sec.   15 sec.
 ===================== ========= ===============
 
 With proposed changes:
@@ -630,9 +711,16 @@ With proposed changes:
 --------------------- -------------------------
 Decay                 Sqlite    Hdf5
 ===================== ========= ===============
-Every 2nd timestep    16 min.   2 min. 50 sec.
-None                  55 sec.   21 sec.
+Every 2nd timestep    16 min.   55 sec.
+None                  54 sec.   15 sec.
 ===================== ========= ===============
+
+With proposed changes running inpro_low.xml with decay on and hdf5 backend:
+
+* Event and EventManager code takes ~20% of
+* Hdf5Back code takes ~20% of runtime.
+* ticking, tocking, and daily-tasking take about ~45% of runtime.
+* Decay calculations take ~10% of runtime.
 
 Decay Initiation
 ++++++++++++++++++

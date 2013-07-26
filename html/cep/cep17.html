@@ -172,7 +172,7 @@ analyses include agent time-dependent isotopic inventories and
 proliferation-resistance material handling. It is proposed that all
 resource state and state transitions will be tracked (as opposed to just
 recording state at inter-agent transactions).  In addition to required
-internal additions/changes to resource classes, explicit <cite>transmute</cite>
+internal additions/changes to resource classes, explicit <tt class="docutils literal"><span class="pre">transmute</span></tt>
 functionality will be added to the Material class to accommodate
 mass-conserving state changes that occur in agents such as Reactors.</p>
 </li>
@@ -208,10 +208,10 @@ non-proliferation analysis) internally within an agent.</li>
 they created.</li>
 <li>There is no mass-conservation-safe way to transmute a material (i.e.
 change its nuclide composition) outside of destroying and simultaneously
-creating new material objects.</li>
+creating new material objects (which isn&#8217;t mass-conservations-safe).</li>
 <li>When resources are split and combined, there is no way to recall this
 heritage.  Tracing paths of certain material objects is not possible.
-Analyzing the contribution of agent X to the flow of element Y through
+Analyzing the contribution of agent X to the flow of isotope Y through
 agent Z is not possible.</li>
 </ol>
 <p>The above deficiencies are used as drivers for designing/implementing a more
@@ -230,6 +230,21 @@ All query convenience related methods will be moved to one (or more)
 wrapper classes for interrogating and manipulating material compositions.
 <em>Functionality provided by these wrapper classes can grow organically as
 needs arise without affecting the core resource classes.</em></p>
+<p>Part of the problem has been that some questions belong to the Material
+class, some belong to the composition class. And some can only be answered
+by using information from both.  Another reason to use wrapper classes is
+that sometimes a user/dev might want to manipulate compositions, and other
+times they will want to manipulate materials - and many of those
+queries/operations have significant overlap that we don&#8217;t want duplicated
+on both classes&#8217; implementations nor interfaces.  Another reason is to help
+the classes be more modular/maintainable for the core developers.  Some
+basic material/composition query/manipulation wrapper(s) can be made
+setting the stage for the further development of a &#8220;toolkit&#8221; for dealing
+with materials and compositions.  External developers can easily create
+toolkits for others to use that don&#8217;t even need to be a part of the Cyclus
+core. This makes it easier to ensure that material/composition inner
+workings remain pure and correct despite rapid or significant changes to
+the kitchen-sink API that will likely evolve.</p>
 </div>
 <div class="section" id="specification">
 <h2>Specification<a class="headerlink" href="#specification" title="Permalink to this headline">¶</a></h2>
@@ -242,19 +257,35 @@ implementation details can be found there.</p>
 <p>In addition to tracking the transfer of resources between agents (and
 corresponding state), we track:</p>
 <ul class="simple">
+<li>Creation of a resource. Parentless resources are implicitly defined as
+&#8220;newly created&#8221;</li>
 <li>Transmutation of a material resource within an agent (Resource,
-ResourceHeritage, Compositions tables). This helps address problem
-#1 and #4 from Motivation section.</li>
+ResourceHeritage, Compositions, GenericResource tables). The transmuted
+resource has the prev resource as its only parent.  This helps address
+problem #1 and #4 from Motivation section.</li>
 <li>Decay of a material resource (Resource, ResourceHeritage, Compositions
 tables): This is a special, common case of transmutation.</li>
 <li>All splitting/combining of materials. Tracked by recording the parent(s)
 of each Resource object. Resources with no parent were newly created.
 Helps address problem #2, #3 and #5.</li>
 </ul>
-<p>This also simplifies rules for acceptable resource handling, namely, it is
+<p>This also simplifies rules for acceptable resource handling. Namely, it is
 never okay for a resource to be destructed or thrown-away unless it is
 being stored permanently. The new changes should make it more obvious to
 agent developers how enforce correct, measurable mass-conservation.</p>
+<p>This proposed tracking provides orthogonality between resource
+handling/operations and resource ownership.  Resource operations don&#8217;t
+know/care about who is splitting/combining/transmuting/creating them.  This
+orthogonality, I believe, is a good feature because: it simplifies the
+resource APIs, decouples transaction and resource manipulation and data
+recording code, and it decouples output data elegantly.  Resource tracking
+becomes entirely independent of facility operations, transactions, and
+simulation time-stepping. If problem #1 as described in the Motivation
+section is a fundamentally necessary analysis for basically every
+simulation we want to run, then we either need (minimally) the tracking
+proposed in this CEP or we need to break the orthogonality that I just
+described.  Eliminating even one of the things tracked as described above
+will break the ability to unambiguously determine agent inventories.</p>
 </div>
 <div class="section" id="output-schema">
 <h3>Output Schema<a class="headerlink" href="#output-schema" title="Permalink to this headline">¶</a></h3>
@@ -263,7 +294,7 @@ agent developers how enforce correct, measurable mass-conservation.</p>
 <li>[TableName] ([new/modified/removed]): [field1], [field2], ...</li>
 </ul>
 <ul class="simple">
-<li>Resource (modified): ID, type, quantity, StateID, Parent1, Parent2</li>
+<li>Resource (modified): ID, Time, Type, Quantity, StateID, Parent1, Parent2</li>
 <li>Compositions (new): ID, Isotope, Quantity</li>
 <li>TransactedResources (modified): TransactionID, Position, ResourceID</li>
 <li>GenericResources (modified): ID, Quality, Units</li>
@@ -287,7 +318,8 @@ its public+protected+private interfaces are listed below.</p>
 <p>Resource class provides an abstract interface allowing different types of
 resources to be transacted in a simulation. It handles some basic state
 tracking and output recording assisted by method invocations from its
-subclasses.</p>
+subclasses. The public interface below is mostly the same as it currently
+exists in Cyclus.</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">ResourceType</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">Resource</span> <span class="p">{</span>
@@ -360,6 +392,49 @@ subclasses.</p>
 manipulation while helping enforce mass conservation.  It also provides the
 ability to easily decay a material up to the current simulation time; it
 does not perform any decay related logic itself.</p>
+<p>There are four basic operations that can be performed on materials: create,
+transmute (change material composition - e.g. fission by reactor), absorb
+(combine materials), extract (split a material). All material
+handling/manipulation will be performed using these operations. Usage
+examples:</p>
+<ul class="simple">
+<li>A mining facility that &#8220;creates&#8221; new material</li>
+</ul>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">nat_u</span> <span class="o">=</span> <span class="p">...</span>
+<span class="kt">double</span> <span class="n">qty</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
+
+<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span> <span class="o">=</span> <span class="n">Material</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="n">qty</span><span class="p">,</span> <span class="n">nat_u</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>A conversion facility mixing uranium and flourine:</li>
+</ul>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">uf6</span> <span class="o">=</span> <span class="n">uranium_buf</span><span class="p">.</span><span class="n">popOne</span><span class="p">();</span>
+<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">f</span> <span class="o">=</span> <span class="n">flourine_buf</span><span class="p">.</span><span class="n">popOne</span><span class="p">();</span>
+
+<span class="n">uf6</span><span class="p">.</span><span class="n">absorb</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>A reactor transmuting fuel:</li>
+</ul>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">burned_comp</span> <span class="o">=</span> <span class="p">...</span> <span class="c1">// fancy code to calculate burned isotopics</span>
+<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">assembly</span> <span class="o">=</span> <span class="n">core_fuel</span><span class="p">.</span><span class="n">popOne</span><span class="p">();</span>
+
+<span class="n">assembly</span><span class="p">.</span><span class="n">transmute</span><span class="p">(</span><span class="n">burned_comp</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>A separations plant extracting stuff from spent fuel:</li>
+</ul>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">comp</span> <span class="o">=</span> <span class="p">...</span> <span class="c1">// fancy code to calculate extraction isotopics</span>
+<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">bucket</span> <span class="o">=</span> <span class="n">spent_fuel</span><span class="p">.</span><span class="n">popOne</span><span class="p">();</span>
+<span class="kt">double</span> <span class="n">qty</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">;</span>
+
+<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">mox</span> <span class="o">=</span> <span class="n">bucket</span><span class="p">.</span><span class="n">extractComp</span><span class="p">(</span><span class="n">qty</span><span class="p">,</span> <span class="n">comp</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Proposed material class interface:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Material</span><span class="o">:</span> <span class="k">public</span> <span class="n">Resource</span> <span class="p">{</span>
   <span class="nl">public:</span>
     <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
@@ -386,7 +461,7 @@ does not perform any decay related logic itself.</p>
 
     <span class="n">Ptr</span> <span class="nf">extractQty</span><span class="p">(</span><span class="kt">double</span> <span class="n">qty</span><span class="p">);</span>
 
-    <span class="n">Ptr</span> <span class="nf">extractComp</span><span class="p">(</span><span class="kt">double</span> <span class="n">qty</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
+    <span class="n">Ptr</span> <span class="nf">extractComp</span><span class="p">(</span><span class="kt">double</span> <span class="n">qty</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">,</span> <span class="kt">double</span> <span class="n">threshold</span><span class="p">);</span>
 
     <span class="kt">void</span> <span class="nf">absorb</span><span class="p">(</span><span class="n">Ptr</span> <span class="n">mat</span><span class="p">);</span>
 
@@ -418,7 +493,8 @@ does not perform any decay related logic itself.</p>
 <h4>GenericResource class<a class="headerlink" href="#genericresource-class" title="Permalink to this headline">¶</a></h4>
 <p>Implements the Resource class interface in a simple way usable for things
 like: bananas, man-hours, water, buying power, etc.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">GenericResource</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Resource</span> <span class="p">{</span> <span class="k">public</span><span class="o">:</span>
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">GenericResource</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Resource</span> <span class="p">{</span>
+  <span class="nl">public:</span>
     <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">GenericResource</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
     <span class="k">static</span> <span class="n">ResourceType</span> <span class="n">Type</span><span class="p">;</span>
 
@@ -710,10 +786,9 @@ changes not exactly &#8220;fair&#8221;.</li>
 <p>Preliminary investigation on my part indicates that this extra tracking
 will cause significant slowdown using an Sqlite backend database <em>when
 material decay is frequent</em>.  This slowdown prompted the development of a
-faster HDF5 alternative.  This alternate backend currently lives at
-<a class="reference external" href="https://github.com/rwcarlsen/cyclus">https://github.com/rwcarlsen/cyclus</a> (&#8220;hdf5&#8221; branch).</p>
+faster HDF5 alternative (currently merged into develop branch).</p>
 <p>Basic performance stats were collected by running a full cyclus
-inpro_low.xml simulation <cite>time cyclus [path/to/]inpro_low.xml</cite>.  For
+inpro_low.xml simulation <tt class="docutils literal"><span class="pre">time</span> <span class="pre">cyclus</span> <span class="pre">[path/to/]inpro_low.xml</span></tt>.  For
 reference:</p>
 <ul class="simple">
 <li>~50,000 material objects total</li>
@@ -744,12 +819,12 @@ approximate and specific to my office computer.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td>Every 2nd timestep</td>
-<td>41 sec.</td>
-<td>17 sec.</td>
+<td>40 sec.</td>
+<td>15 sec.</td>
 </tr>
 <tr class="row-even"><td>None</td>
-<td>41 sec.</td>
-<td>17 sec.</td>
+<td>40 sec.</td>
+<td>15 sec.</td>
 </tr>
 </tbody>
 </table>
@@ -775,14 +850,21 @@ approximate and specific to my office computer.</p>
 <tbody valign="top">
 <tr class="row-odd"><td>Every 2nd timestep</td>
 <td>16 min.</td>
-<td>2 min. 50 sec.</td>
+<td>55 sec.</td>
 </tr>
 <tr class="row-even"><td>None</td>
-<td>55 sec.</td>
-<td>21 sec.</td>
+<td>54 sec.</td>
+<td>15 sec.</td>
 </tr>
 </tbody>
 </table>
+<p>With proposed changes running inpro_low.xml with decay on and hdf5 backend:</p>
+<ul class="simple">
+<li>Event and EventManager code takes ~20% of</li>
+<li>Hdf5Back code takes ~20% of runtime.</li>
+<li>ticking, tocking, and daily-tasking take about ~45% of runtime.</li>
+<li>Decay calculations take ~10% of runtime.</li>
+</ul>
 </div>
 <div class="section" id="decay-initiation">
 <h3>Decay Initiation<a class="headerlink" href="#decay-initiation" title="Permalink to this headline">¶</a></h3>
@@ -819,7 +901,7 @@ here <a class="reference external" href="https://github.com/cyclus/cyclus/issues
     </div>
     <div class="footer">
         &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jul 17, 2013.
+      Last updated on Jul 26, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

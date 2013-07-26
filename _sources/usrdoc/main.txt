@@ -19,10 +19,11 @@ Defining a Simulation
    :glob:
    :maxdepth: 3
 
-   input_specs/*
+   input_specs/overview/*
    input_specs/region/*
    input_specs/inst/*
    input_specs/facility/*
+   input_specs/examples/*
 
 Running a Simulation
 --------------------
