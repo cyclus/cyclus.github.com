@@ -127,7 +127,7 @@
 <h1>Using the Cyclus Logger<a class="headerlink" href="#using-the-cyclus-logger" title="Permalink to this headline">¶</a></h1>
 <p>For how to adjust log output verbosity when running cyclus, see
 <tt class="xref doc docutils literal"><span class="pre">../usrdoc/creating_and_running_sims</span></tt></p>
-<div class="highlight-python"><pre>#include "Logger.h"
+<div class="highlight-python"><pre>#include &quot;Logger.h&quot;
 
 LOG(LogLevel level, std::string prefix)</pre>
 </div>
@@ -174,7 +174,7 @@ macro as they may not run if the report level excludes the specified LogLevel.</
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;Logger.h&quot;</span>
 
-<span class="kt">void</span> <span class="n">myfunc</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">myfunc</span><span class="p">()</span> <span class="p">{</span>
 
   <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_ERROR</span><span class="p">,</span> <span class="s">&quot;prefix&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;This is my error statement. &quot;</span>
                            <span class="o">&lt;&lt;</span> <span class="s">&quot;and more info...&quot;</span><span class="p">;</span>
