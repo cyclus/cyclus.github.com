@@ -7,6 +7,7 @@ GH_BUILT_FILES = index.html
 
 GH_SOURCE_BRANCH = source
 GH_BUILD_BRANCH = master
+GH_CYCLUS_REMOTE = upstream
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
@@ -67,7 +68,7 @@ gh-pages:
 	rsync -a $(BUILDDIR)/* .
 	rm -rf $(GH_SOURCE_DIRS) build
 	git add -A 
-	git commit -m "Generated $(GH_BUILD_BRANCH) for `git log $(GH_SOURCE_BRANCH) -1 --pretty=short --abbrev-commit`" && git push origin $(GH_BUILD_BRANCH)
+	git commit -m "Generated $(GH_BUILD_BRANCH) for `git log $(GH_SOURCE_BRANCH) -1 --pretty=short --abbrev-commit`" && git push $(GH_CYCLUS_REMOTE) $(GH_BUILD_BRANCH)
 	git checkout $(GH_SOURCE_BRANCH)
 
 htmlclean cleanhtml: clean html

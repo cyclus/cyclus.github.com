@@ -14,6 +14,13 @@ files should be made in the `source` branch.
 content that is derived by Sphinx from the `source` branch.  These
 files should not be editted directly.
 
+The rest of this readme assumes that you have two remotes associated with
+cyclus.github.com.
+
+1. Your fork, called ``origin``.
+
+2. The upstream Cyclus group remote, called ``upstream``.
+
 Quickstart
 ----------
 
@@ -31,7 +38,7 @@ Best practice workflow for contributing to site changes
 
 2. Synchronize your branch with the repository (either `pull` or `fetch` and `merge`)
 
-   ``git pull origin``
+   ``git pull upstream``
 
 3. Create a branch to contain your change
 
@@ -55,9 +62,9 @@ Best practice workflow for contributing to site changes
 
    ::
    
-     git fetch origin
-     git rebase origin/source
-     git push origin add_some_info
+     git fetch upstream
+     git rebase upstream/source
+     git push upstream add_some_info
    
 
 8. Issue a pull request by going to your branch on the repo and
@@ -68,11 +75,11 @@ Best practice for managing a pull request
 
 1. Synchronize your repository with the remote repo
 
-   ``git fetch origin``
+   ``git fetch upstream``
 
 2. Checkout the `pull_request_branch`
 
-   ``git checkout -b pull_request_branch origin/pull_request_branch``
+   ``git checkout -b pull_request_branch upstream/pull_request_branch``
 
 3. Test the changes by using the `gh-preview` target
 
@@ -88,13 +95,13 @@ Best practice for managing a pull request
    ::
 
      git checkout source
-     git fetch origin
-     git rebase origin/source
+     git fetch upstream
+     git rebase upstream/source
      git merge pull_request_branch
 
 6. If there are no conflicts, push this to the repo
 
-   ``git push origin source``
+   ``git push upstream source``
 
 7. Republish the pages with the `gh-pages` target.
 
