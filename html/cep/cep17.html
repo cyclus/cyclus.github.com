@@ -172,7 +172,7 @@ analyses include agent time-dependent isotopic inventories and
 proliferation-resistance material handling. It is proposed that all
 resource state and state transitions will be tracked (as opposed to just
 recording state at inter-agent transactions).  In addition to required
-internal additions/changes to resource classes, explicit <cite>transmute</cite>
+internal additions/changes to resource classes, explicit <tt class="docutils literal"><span class="pre">transmute</span></tt>
 functionality will be added to the Material class to accommodate
 mass-conserving state changes that occur in agents such as Reactors.</p>
 </li>
@@ -208,10 +208,10 @@ non-proliferation analysis) internally within an agent.</li>
 they created.</li>
 <li>There is no mass-conservation-safe way to transmute a material (i.e.
 change its nuclide composition) outside of destroying and simultaneously
-creating new material objects.</li>
+creating new material objects (which isn&#8217;t mass-conservations-safe).</li>
 <li>When resources are split and combined, there is no way to recall this
 heritage.  Tracing paths of certain material objects is not possible.
-Analyzing the contribution of agent X to the flow of element Y through
+Analyzing the contribution of agent X to the flow of isotope Y through
 agent Z is not possible.</li>
 </ol>
 <p>The above deficiencies are used as drivers for designing/implementing a more
@@ -230,6 +230,21 @@ All query convenience related methods will be moved to one (or more)
 wrapper classes for interrogating and manipulating material compositions.
 <em>Functionality provided by these wrapper classes can grow organically as
 needs arise without affecting the core resource classes.</em></p>
+<p>Part of the problem has been that some questions belong to the Material
+class, some belong to the composition class. And some can only be answered
+by using information from both.  Another reason to use wrapper classes is
+that sometimes a user/dev might want to manipulate compositions, and other
+times they will want to manipulate materials - and many of those
+queries/operations have significant overlap that we don&#8217;t want duplicated
+on both classes&#8217; implementations nor interfaces.  Another reason is to help
+the classes be more modular/maintainable for the core developers.  Some
+basic material/composition query/manipulation wrapper(s) can be made
+setting the stage for the further development of a &#8220;toolkit&#8221; for dealing
+with materials and compositions.  External developers can easily create
+toolkits for others to use that don&#8217;t even need to be a part of the Cyclus
+core. This makes it easier to ensure that material/composition inner
+workings remain pure and correct despite rapid or significant changes to
+the kitchen-sink API that will likely evolve.</p>
 </div>
 <div class="section" id="specification">
 <h2>Specification<a class="headerlink" href="#specification" title="Permalink to this headline">¶</a></h2>
@@ -242,19 +257,35 @@ implementation details can be found there.</p>
 <p>In addition to tracking the transfer of resources between agents (and
 corresponding state), we track:</p>
 <ul class="simple">
+<li>Creation of a resource. Parentless resources are implicitly defined as
+&#8220;newly created&#8221;</li>
 <li>Transmutation of a material resource within an agent (Resource,
-ResourceHeritage, Compositions tables). This helps address problem
-#1 and #4 from Motivation section.</li>
+ResourceHeritage, Compositions, GenericResource tables). The transmuted
+resource has the prev resource as its only parent.  This helps address
+problem #1 and #4 from Motivation section.</li>
 <li>Decay of a material resource (Resource, ResourceHeritage, Compositions
 tables): This is a special, common case of transmutation.</li>
 <li>All splitting/combining of materials. Tracked by recording the parent(s)
 of each Resource object. Resources with no parent were newly created.
 Helps address problem #2, #3 and #5.</li>
 </ul>
-<p>This also simplifies rules for acceptable resource handling, namely, it is
+<p>This also simplifies rules for acceptable resource handling. Namely, it is
 never okay for a resource to be destructed or thrown-away unless it is
 being stored permanently. The new changes should make it more obvious to
 agent developers how enforce correct, measurable mass-conservation.</p>
+<p>This proposed tracking provides orthogonality between resource
+handling/operations and resource ownership.  Resource operations don&#8217;t
+know/care about who is splitting/combining/transmuting/creating them.  This
+orthogonality, I believe, is a good feature because: it simplifies the
+resource APIs, decouples transaction and resource manipulation and data
+recording code, and it decouples output data elegantly.  Resource tracking
+becomes entirely independent of facility operations, transactions, and
+simulation time-stepping. If problem #1 as described in the Motivation
+section is a fundamentally necessary analysis for basically every
+simulation we want to run, then we either need (minimally) the tracking
+proposed in this CEP or we need to break the orthogonality that I just
+described.  Eliminating even one of the things tracked as described above
+will break the ability to unambiguously determine agent inventories.</p>
 </div>
 <div class="section" id="output-schema">
 <h3>Output Schema<a class="headerlink" href="#output-schema" title="Permalink to this headline">¶</a></h3>
@@ -263,7 +294,7 @@ agent developers how enforce correct, measurable mass-conservation.</p>
 <li>[TableName] ([new/modified/removed]): [field1], [field2], ...</li>
 </ul>
 <ul class="simple">
-<li>Resource (modified): ID, type, quantity, StateID, Parent1, Parent2</li>
+<li>Resource (modified): ID, Time, Type, Quantity, StateID, Parent1, Parent2</li>
 <li>Compositions (new): ID, Isotope, Quantity</li>
 <li>TransactedResources (modified): TransactionID, Position, ResourceID</li>
 <li>GenericResources (modified): ID, Quality, Units</li>
@@ -287,18 +318,19 @@ its public+protected+private interfaces are listed below.</p>
 <p>Resource class provides an abstract interface allowing different types of
 resources to be transacted in a simulation. It handles some basic state
 tracking and output recording assisted by method invocations from its
-subclasses.</p>
+subclasses. The public interface below is mostly the same as it currently
+exists in Cyclus.</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">ResourceType</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">Resource</span> <span class="p">{</span>
-  <span class="nl">public:</span>
+  <span class="k">public</span><span class="o">:</span>
     <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Resource</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
 
     <span class="k">virtual</span> <span class="o">~</span><span class="n">Resource</span><span class="p">();</span>
 
     <span class="c1">/// Unique for each material object.  Changes whenever *any* state changing</span>
     <span class="c1">/// operation is made.</span>
-    <span class="k">const</span> <span class="kt">int</span> <span class="nf">ID</span><span class="p">();</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">ID</span><span class="p">();</span>
 
     <span class="c1">/// Returns the units this resource is based in.</span>
     <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -324,7 +356,7 @@ subclasses.</p>
     <span class="k">friend</span> <span class="k">class</span> <span class="nc">GenericResource</span><span class="p">;</span>
     <span class="k">friend</span> <span class="k">class</span> <span class="nc">Material</span><span class="p">;</span>
 
-  <span class="nl">protected:</span>
+  <span class="k">protected</span><span class="o">:</span>
     <span class="n">Resource</span><span class="p">();</span>
 
     <span class="c1">/// records the resource&#39;s state that is not accessible via the Resource /</span>
@@ -336,13 +368,13 @@ subclasses.</p>
     <span class="k">virtual</span> <span class="kt">int</span> <span class="n">stateId</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
 
-  <span class="nl">private:</span>
+  <span class="k">private</span><span class="o">:</span>
     <span class="c1">/// called by subclasses whenever any state changing operation has been</span>
     <span class="c1">/// performed. Updates the ID and recordes the resources state in the output</span>
     <span class="c1">/// database.</span>
-    <span class="kt">void</span> <span class="nf">changeState</span><span class="p">(</span><span class="kt">int</span> <span class="n">parent1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">parent2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="n">changeState</span><span class="p">(</span><span class="kt">int</span> <span class="n">parent1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">parent2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
 
-    <span class="kt">void</span> <span class="nf">recordRes</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="n">recordRes</span><span class="p">();</span>
 
     <span class="k">static</span> <span class="kt">int</span> <span class="n">nextId_</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">id_</span><span class="p">;</span>
@@ -360,13 +392,56 @@ subclasses.</p>
 manipulation while helping enforce mass conservation.  It also provides the
 ability to easily decay a material up to the current simulation time; it
 does not perform any decay related logic itself.</p>
+<p>There are four basic operations that can be performed on materials: create,
+transmute (change material composition - e.g. fission by reactor), absorb
+(combine materials), extract (split a material). All material
+handling/manipulation will be performed using these operations. Usage
+examples:</p>
+<ul class="simple">
+<li>A mining facility that &#8220;creates&#8221; new material</li>
+</ul>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">nat_u</span> <span class="o">=</span> <span class="p">...</span>
+<span class="kt">double</span> <span class="n">qty</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
+
+<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span> <span class="o">=</span> <span class="n">Material</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="n">qty</span><span class="p">,</span> <span class="n">nat_u</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>A conversion facility mixing uranium and flourine:</li>
+</ul>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">uf6</span> <span class="o">=</span> <span class="n">uranium_buf</span><span class="p">.</span><span class="n">popOne</span><span class="p">();</span>
+<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">f</span> <span class="o">=</span> <span class="n">flourine_buf</span><span class="p">.</span><span class="n">popOne</span><span class="p">();</span>
+
+<span class="n">uf6</span><span class="p">.</span><span class="n">absorb</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>A reactor transmuting fuel:</li>
+</ul>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">burned_comp</span> <span class="o">=</span> <span class="p">...</span> <span class="c1">// fancy code to calculate burned isotopics</span>
+<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">assembly</span> <span class="o">=</span> <span class="n">core_fuel</span><span class="p">.</span><span class="n">popOne</span><span class="p">();</span>
+
+<span class="n">assembly</span><span class="p">.</span><span class="n">transmute</span><span class="p">(</span><span class="n">burned_comp</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>A separations plant extracting stuff from spent fuel:</li>
+</ul>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">comp</span> <span class="o">=</span> <span class="p">...</span> <span class="c1">// fancy code to calculate extraction isotopics</span>
+<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">bucket</span> <span class="o">=</span> <span class="n">spent_fuel</span><span class="p">.</span><span class="n">popOne</span><span class="p">();</span>
+<span class="kt">double</span> <span class="n">qty</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">;</span>
+
+<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">mox</span> <span class="o">=</span> <span class="n">bucket</span><span class="p">.</span><span class="n">extractComp</span><span class="p">(</span><span class="n">qty</span><span class="p">,</span> <span class="n">comp</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Proposed material class interface:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Material</span><span class="o">:</span> <span class="k">public</span> <span class="n">Resource</span> <span class="p">{</span>
-  <span class="nl">public:</span>
+  <span class="k">public</span><span class="o">:</span>
     <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
     <span class="k">static</span> <span class="n">ResourceType</span> <span class="n">Type</span><span class="p">;</span>
 
-    <span class="k">static</span> <span class="n">Ptr</span> <span class="nf">create</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
-    <span class="k">static</span> <span class="n">Ptr</span> <span class="nf">createUntracked</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
+    <span class="k">static</span> <span class="n">Ptr</span> <span class="n">create</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
+    <span class="k">static</span> <span class="n">Ptr</span> <span class="n">createUntracked</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
 
     <span class="k">virtual</span> <span class="o">~</span><span class="n">Material</span><span class="p">();</span>
 
@@ -374,36 +449,36 @@ does not perform any decay related logic itself.</p>
     <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">();</span>
 
     <span class="c1">/// returns the mass of this material in kg.</span>
-    <span class="k">virtual</span> <span class="kt">double</span> <span class="nf">quantity</span><span class="p">();</span>
+    <span class="k">virtual</span> <span class="kt">double</span> <span class="n">quantity</span><span class="p">();</span>
 
-    <span class="k">virtual</span> <span class="n">ResourceType</span> <span class="nf">type</span><span class="p">();</span>
+    <span class="k">virtual</span> <span class="n">ResourceType</span> <span class="n">type</span><span class="p">();</span>
 
-    <span class="k">virtual</span> <span class="kt">int</span> <span class="nf">stateId</span><span class="p">();</span>
+    <span class="k">virtual</span> <span class="kt">int</span> <span class="n">stateId</span><span class="p">();</span>
 
     <span class="k">virtual</span> <span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">clone</span><span class="p">();</span>
 
     <span class="k">virtual</span> <span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">extractRes</span><span class="p">(</span><span class="kt">double</span> <span class="n">qty</span><span class="p">);</span>
 
-    <span class="n">Ptr</span> <span class="nf">extractQty</span><span class="p">(</span><span class="kt">double</span> <span class="n">qty</span><span class="p">);</span>
+    <span class="n">Ptr</span> <span class="n">extractQty</span><span class="p">(</span><span class="kt">double</span> <span class="n">qty</span><span class="p">);</span>
 
-    <span class="n">Ptr</span> <span class="nf">extractComp</span><span class="p">(</span><span class="kt">double</span> <span class="n">qty</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
+    <span class="n">Ptr</span> <span class="n">extractComp</span><span class="p">(</span><span class="kt">double</span> <span class="n">qty</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">,</span> <span class="kt">double</span> <span class="n">threshold</span><span class="p">);</span>
 
-    <span class="kt">void</span> <span class="nf">absorb</span><span class="p">(</span><span class="n">Ptr</span> <span class="n">mat</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="n">absorb</span><span class="p">(</span><span class="n">Ptr</span> <span class="n">mat</span><span class="p">);</span>
 
-    <span class="kt">void</span> <span class="nf">transmute</span><span class="p">(</span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="n">transmute</span><span class="p">(</span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
 
     <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">comp</span><span class="p">();</span>
 
-    <span class="kt">void</span> <span class="nf">decay</span><span class="p">(</span><span class="kt">int</span> <span class="n">curr_time</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="n">decay</span><span class="p">(</span><span class="kt">int</span> <span class="n">curr_time</span><span class="p">);</span>
 
-    <span class="k">static</span> <span class="kt">void</span> <span class="nf">decayAll</span><span class="p">(</span><span class="kt">int</span> <span class="n">curr_time</span><span class="p">);</span>
+    <span class="k">static</span> <span class="kt">void</span> <span class="n">decayAll</span><span class="p">(</span><span class="kt">int</span> <span class="n">curr_time</span><span class="p">);</span>
 
-  <span class="nl">protected:</span>
-    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">recordState</span><span class="p">();</span>
+  <span class="k">protected</span><span class="o">:</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">recordState</span><span class="p">();</span>
 
     <span class="n">Material</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
 
-  <span class="nl">private:</span>
+  <span class="k">private</span><span class="o">:</span>
     <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">mix</span><span class="p">(</span><span class="kt">double</span> <span class="n">other_qty</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">other</span><span class="p">);</span>
 
     <span class="kt">double</span> <span class="n">qty_</span><span class="p">;</span>
@@ -418,18 +493,19 @@ does not perform any decay related logic itself.</p>
 <h4>GenericResource class<a class="headerlink" href="#genericresource-class" title="Permalink to this headline">¶</a></h4>
 <p>Implements the Resource class interface in a simple way usable for things
 like: bananas, man-hours, water, buying power, etc.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">GenericResource</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Resource</span> <span class="p">{</span> <span class="k">public</span><span class="o">:</span>
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">GenericResource</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Resource</span> <span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
     <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">GenericResource</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
     <span class="k">static</span> <span class="n">ResourceType</span> <span class="n">Type</span><span class="p">;</span>
 
-    <span class="k">static</span> <span class="n">Ptr</span> <span class="nf">create</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">quality</span><span class="p">);</span>
-    <span class="k">static</span> <span class="n">Ptr</span> <span class="nf">createUntracked</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">quality</span><span class="p">);</span>
+    <span class="k">static</span> <span class="n">Ptr</span> <span class="n">create</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">quality</span><span class="p">);</span>
+    <span class="k">static</span> <span class="n">Ptr</span> <span class="n">createUntracked</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">quality</span><span class="p">);</span>
 
     <span class="c1">/// Returns a reference to a newly allocated copy of this resource</span>
     <span class="k">virtual</span> <span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">clone</span><span class="p">();</span>
 
     <span class="c1">/// Returns the total quantity of this resource in its base unit</span>
-    <span class="k">virtual</span> <span class="kt">double</span> <span class="nf">quantity</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">quantity_</span><span class="p">;};</span>
+    <span class="k">virtual</span> <span class="kt">double</span> <span class="n">quantity</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">quantity_</span><span class="p">;};</span>
 
     <span class="c1">/// Returns base unit for this resource&#39;s quantity</span>
     <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">units_</span><span class="p">;};</span>
@@ -438,10 +514,10 @@ like: bananas, man-hours, water, buying power, etc.</p>
     <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">quality</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">quality_</span><span class="p">;};</span>
 
     <span class="c1">/// Returns the concrete type of this resource</span>
-    <span class="k">virtual</span> <span class="n">ResourceType</span> <span class="nf">type</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">Type</span><span class="p">;};</span>
+    <span class="k">virtual</span> <span class="n">ResourceType</span> <span class="n">type</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">Type</span><span class="p">;};</span>
 
     <span class="c1">/// each quality gets its own state id</span>
-    <span class="k">virtual</span> <span class="kt">int</span> <span class="nf">stateId</span><span class="p">();</span>
+    <span class="k">virtual</span> <span class="kt">int</span> <span class="n">stateId</span><span class="p">();</span>
 
     <span class="cm">/**</span>
 <span class="cm">       Absorbs the contents of the given &#39;other&#39; resource into this</span>
@@ -449,7 +525,7 @@ like: bananas, man-hours, water, buying power, etc.</p>
 <span class="cm">       @throws CycGenResourceIncompatible &#39;other&#39; resource is of a</span>
 <span class="cm">       different quality.</span>
 <span class="cm">     */</span>
-    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">absorb</span><span class="p">(</span><span class="n">GenericResource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">other</span><span class="p">);</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">absorb</span><span class="p">(</span><span class="n">GenericResource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">other</span><span class="p">);</span>
 
     <span class="cm">/**</span>
 <span class="cm">       Extracts the specified mass from this resource and returns it as a</span>
@@ -461,11 +537,11 @@ like: bananas, man-hours, water, buying power, etc.</p>
 
     <span class="k">virtual</span> <span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">extractRes</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">);</span>
 
-  <span class="nl">protected:</span>
+  <span class="k">protected</span><span class="o">:</span>
 
-    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">recordState</span><span class="p">();</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">recordState</span><span class="p">();</span>
 
-  <span class="nl">private:</span>
+  <span class="k">private</span><span class="o">:</span>
 
     <span class="cm">/**</span>
 <span class="cm">       @param quantity is a double indicating the quantity</span>
@@ -509,39 +585,39 @@ should/will not be used by the core (for now) and best belong in MatQuery
 or other wrapper classes.  The normalize method will utilize the floating
 point math introduced by &#64;katyhuff.</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Composition</span> <span class="p">{</span>
-  <span class="nl">public:</span>
+  <span class="k">public</span><span class="o">:</span>
     <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Composition</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
     <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">Iso</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">Vect</span><span class="p">;</span>
 
-    <span class="k">static</span> <span class="n">Ptr</span> <span class="nf">createFromAtom</span><span class="p">(</span><span class="n">Vect</span> <span class="n">v</span><span class="p">);</span>
-    <span class="k">static</span> <span class="n">Ptr</span> <span class="nf">createFromMass</span><span class="p">(</span><span class="n">Vect</span> <span class="n">v</span><span class="p">);</span>
+    <span class="k">static</span> <span class="n">Ptr</span> <span class="n">createFromAtom</span><span class="p">(</span><span class="n">Vect</span> <span class="n">v</span><span class="p">);</span>
+    <span class="k">static</span> <span class="n">Ptr</span> <span class="n">createFromMass</span><span class="p">(</span><span class="n">Vect</span> <span class="n">v</span><span class="p">);</span>
 
-    <span class="kt">int</span> <span class="nf">ID</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">ID</span><span class="p">();</span>
 
-    <span class="n">Ptr</span> <span class="nf">decay</span><span class="p">(</span><span class="kt">int</span> <span class="n">delta</span><span class="p">);</span>
+    <span class="n">Ptr</span> <span class="n">decay</span><span class="p">(</span><span class="kt">int</span> <span class="n">delta</span><span class="p">);</span>
 
     <span class="k">const</span> <span class="n">Vect</span><span class="o">&amp;</span> <span class="n">atomVect</span><span class="p">();</span>
     <span class="k">const</span> <span class="n">Vect</span><span class="o">&amp;</span> <span class="n">massVect</span><span class="p">();</span>
 
     <span class="c1">/// record in output database (if not done previously).</span>
-    <span class="kt">void</span> <span class="nf">record</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="n">record</span><span class="p">();</span>
 
-  <span class="nl">protected:</span>
+  <span class="k">protected</span><span class="o">:</span>
     <span class="n">Composition</span><span class="p">();</span>
 
     <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span><span class="o">&gt;</span> <span class="n">Chain</span><span class="p">;</span>
     <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Chain</span><span class="o">&gt;</span> <span class="n">ChainPtr</span><span class="p">;</span>
     <span class="n">ChainPtr</span> <span class="n">decay_line_</span><span class="p">;</span>
 
-  <span class="nl">private:</span>
+  <span class="k">private</span><span class="o">:</span>
     <span class="c1">// This constructor allows the creation of decayed versions of</span>
     <span class="c1">// compositions while avoiding extra memory allocations.</span>
     <span class="n">Composition</span><span class="p">(</span><span class="kt">int</span> <span class="n">prev_decay</span><span class="p">,</span> <span class="n">ChainPtr</span> <span class="n">decay_line</span><span class="p">);</span>
 
-    <span class="n">Ptr</span> <span class="nf">newDecay</span><span class="p">(</span><span class="kt">int</span> <span class="n">delta</span><span class="p">);</span>
+    <span class="n">Ptr</span> <span class="n">newDecay</span><span class="p">(</span><span class="kt">int</span> <span class="n">delta</span><span class="p">);</span>
 
     <span class="c1">// normalizes the sum of all quantities in the composition&#39;s vector to one.</span>
-    <span class="kt">void</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">Vect</span><span class="o">&amp;</span> <span class="n">v</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="n">normalize</span><span class="p">(</span><span class="n">Vect</span><span class="o">&amp;</span> <span class="n">v</span><span class="p">);</span>
 
     <span class="k">static</span> <span class="kt">int</span> <span class="n">nextId_</span><span class="p">;</span>
 
@@ -572,7 +648,7 @@ become public functions that operate on Composition::Vect types.</p>
   <span class="c1">///</span>
   <span class="c1">/// @param vec the vector of isos and amounts to which to apply the threshold</span>
   <span class="c1">/// @param threshold the smallest value considered nonzero</span>
-  <span class="kt">void</span> <span class="nf">applyThreshold</span><span class="p">(</span><span class="n">Composition</span><span class="o">::</span><span class="n">Vect</span><span class="o">&amp;</span> <span class="n">v</span><span class="p">,</span> <span class="kt">double</span> <span class="n">threshold</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="n">applyThreshold</span><span class="p">(</span><span class="n">Composition</span><span class="o">::</span><span class="n">Vect</span><span class="o">&amp;</span> <span class="n">v</span><span class="p">,</span> <span class="kt">double</span> <span class="n">threshold</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -583,38 +659,38 @@ become public functions that operate on Composition::Vect types.</p>
 <p>Will be designed to allow user-developers to <em>easily</em> retrieve any kind of
 information about a material they could ever reasonably need.</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MatQuery</span> <span class="p">{</span>
-  <span class="nl">public:</span>
+  <span class="k">public</span><span class="o">:</span>
     <span class="n">MatQuery</span><span class="p">(</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span><span class="p">);</span>
 
     <span class="c1">/// Convenience constructor that auto-casts a Resource::Ptr to a</span>
     <span class="c1">/// Material::Ptr.</span>
     <span class="n">MatQuery</span><span class="p">(</span><span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span><span class="p">);</span>
 
-    <span class="kt">double</span> <span class="nf">mass</span><span class="p">(</span><span class="n">Iso</span> <span class="n">iso</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">mass</span><span class="p">(</span><span class="n">Iso</span> <span class="n">iso</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span> <span class="n">massFrac</span><span class="p">(</span><span class="n">iso</span><span class="p">)</span> <span class="o">*</span> <span class="n">qty</span><span class="p">();</span>
     <span class="p">}</span>
 
-    <span class="kt">double</span> <span class="nf">moles</span><span class="p">(</span><span class="n">Iso</span> <span class="n">iso</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">moles</span><span class="p">(</span><span class="n">Iso</span> <span class="n">iso</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span> <span class="n">mass</span><span class="p">(</span><span class="n">iso</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">MT</span><span class="o">-&gt;</span><span class="n">gramsPerMol</span><span class="p">(</span><span class="n">iso</span><span class="p">)</span> <span class="o">*</span> <span class="n">units</span><span class="o">::</span><span class="n">g</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="kt">double</span> <span class="nf">massFrac</span><span class="p">(</span><span class="n">Iso</span> <span class="n">iso</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">massFrac</span><span class="p">(</span><span class="n">Iso</span> <span class="n">iso</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">Composition</span><span class="o">::</span><span class="n">Vect</span> <span class="n">v</span> <span class="o">=</span> <span class="n">m_</span><span class="o">-&gt;</span><span class="n">comp</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">massVect</span><span class="p">();</span>
       <span class="k">return</span> <span class="n">v</span><span class="p">[</span><span class="n">iso</span><span class="p">];</span>
     <span class="p">};</span>
 
-    <span class="kt">double</span> <span class="nf">atomFrac</span><span class="p">(</span><span class="n">Iso</span> <span class="n">iso</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">atomFrac</span><span class="p">(</span><span class="n">Iso</span> <span class="n">iso</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">Composition</span><span class="o">::</span><span class="n">Vect</span> <span class="n">v</span> <span class="o">=</span> <span class="n">m_</span><span class="o">-&gt;</span><span class="n">comp</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">atomVect</span><span class="p">();</span>
       <span class="k">return</span> <span class="n">v</span><span class="p">[</span><span class="n">iso</span><span class="p">];</span>
     <span class="p">};</span>
 
-    <span class="kt">double</span> <span class="nf">qty</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">qty</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">return</span> <span class="n">m_</span><span class="o">-&gt;</span><span class="n">quantity</span><span class="p">();</span>
     <span class="p">};</span>
 
-    <span class="kt">bool</span> <span class="nf">almostEqual</span><span class="p">(</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">other</span><span class="p">,</span> <span class="kt">double</span> <span class="n">threshold</span><span class="o">=</span><span class="n">cyclus</span><span class="p">.</span><span class="n">eps</span><span class="p">());</span>
+    <span class="kt">bool</span> <span class="n">almostEqual</span><span class="p">(</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">other</span><span class="p">,</span> <span class="kt">double</span> <span class="n">threshold</span><span class="o">=</span><span class="n">cyclus</span><span class="p">.</span><span class="n">eps</span><span class="p">());</span>
 
-  <span class="nl">private:</span>
+  <span class="k">private</span><span class="o">:</span>
 
     <span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m_</span><span class="p">;</span>
 <span class="p">};</span>
@@ -631,7 +707,7 @@ allowed to register their own compositions manually. <em>The decay lineage
 tracking functionality introduced by Matt Gidden has been effectively
 preserved.</em> RecipeLibrary interface becomes:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">RecipeLibrary</span> <span class="p">{</span>
- <span class="nl">public:</span>
+ <span class="k">public</span><span class="o">:</span>
   <span class="cm">/**</span>
 <span class="cm">     Gives all simulation objects global access to the RecipeLibrary by</span>
 <span class="cm">     returning a pointer to it.</span>
@@ -644,12 +720,12 @@ preserved.</em> RecipeLibrary interface becomes:</p>
   <span class="cm">/**</span>
 <span class="cm">     loads the recipes from the input file</span>
 <span class="cm">   */</span>
-  <span class="kt">void</span> <span class="nf">load_recipes</span><span class="p">(</span><span class="n">QueryEngine</span><span class="o">*</span> <span class="n">qe</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="n">load_recipes</span><span class="p">(</span><span class="n">QueryEngine</span><span class="o">*</span> <span class="n">qe</span><span class="p">);</span>
 
   <span class="cm">/**</span>
 <span class="cm">     loads a specific recipe</span>
 <span class="cm">   */</span>
-  <span class="kt">void</span> <span class="nf">load_recipe</span><span class="p">(</span><span class="n">QueryEngine</span><span class="o">*</span> <span class="n">qe</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="n">load_recipe</span><span class="p">(</span><span class="n">QueryEngine</span><span class="o">*</span> <span class="n">qe</span><span class="p">);</span>
 
   <span class="cm">/**</span>
 <span class="cm">     records a new recipe in the simulation</span>
@@ -657,7 +733,7 @@ preserved.</em> RecipeLibrary interface becomes:</p>
 
 <span class="cm">     @param recipe the recipe to be recorded, a CompMapPtr</span>
 <span class="cm">   */</span>
-  <span class="kt">void</span> <span class="nf">addRecipe</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="n">addRecipe</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
 
   <span class="cm">/**</span>
 <span class="cm">     This returns a CompMapPtr to the named recipe in the recipes_ map</span>
@@ -666,7 +742,7 @@ preserved.</em> RecipeLibrary interface becomes:</p>
 <span class="cm">   */</span>
   <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">getRecipe</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">);</span>
 
- <span class="nl">private:</span>
+ <span class="k">private</span><span class="o">:</span>
   <span class="n">RecipeLibrary</span><span class="p">();</span>
 
   <span class="c1">/// A pointer to this RecipeLibrary once it has been initialized.</span>
@@ -710,10 +786,9 @@ changes not exactly &#8220;fair&#8221;.</li>
 <p>Preliminary investigation on my part indicates that this extra tracking
 will cause significant slowdown using an Sqlite backend database <em>when
 material decay is frequent</em>.  This slowdown prompted the development of a
-faster HDF5 alternative.  This alternate backend currently lives at
-<a class="reference external" href="https://github.com/rwcarlsen/cyclus">https://github.com/rwcarlsen/cyclus</a> (&#8220;hdf5&#8221; branch).</p>
+faster HDF5 alternative (currently merged into develop branch).</p>
 <p>Basic performance stats were collected by running a full cyclus
-inpro_low.xml simulation <cite>time cyclus [path/to/]inpro_low.xml</cite>.  For
+inpro_low.xml simulation <tt class="docutils literal"><span class="pre">time</span> <span class="pre">cyclus</span> <span class="pre">[path/to/]inpro_low.xml</span></tt>.  For
 reference:</p>
 <ul class="simple">
 <li>~50,000 material objects total</li>
@@ -744,12 +819,12 @@ approximate and specific to my office computer.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td>Every 2nd timestep</td>
-<td>41 sec.</td>
-<td>17 sec.</td>
+<td>40 sec.</td>
+<td>15 sec.</td>
 </tr>
 <tr class="row-even"><td>None</td>
-<td>41 sec.</td>
-<td>17 sec.</td>
+<td>40 sec.</td>
+<td>15 sec.</td>
 </tr>
 </tbody>
 </table>
@@ -775,14 +850,21 @@ approximate and specific to my office computer.</p>
 <tbody valign="top">
 <tr class="row-odd"><td>Every 2nd timestep</td>
 <td>16 min.</td>
-<td>2 min. 50 sec.</td>
+<td>55 sec.</td>
 </tr>
 <tr class="row-even"><td>None</td>
-<td>55 sec.</td>
-<td>21 sec.</td>
+<td>54 sec.</td>
+<td>15 sec.</td>
 </tr>
 </tbody>
 </table>
+<p>With proposed changes running inpro_low.xml with decay on and hdf5 backend:</p>
+<ul class="simple">
+<li>Event and EventManager code takes ~20% of</li>
+<li>Hdf5Back code takes ~20% of runtime.</li>
+<li>ticking, tocking, and daily-tasking take about ~45% of runtime.</li>
+<li>Decay calculations take ~10% of runtime.</li>
+</ul>
 </div>
 <div class="section" id="decay-initiation">
 <h3>Decay Initiation<a class="headerlink" href="#decay-initiation" title="Permalink to this headline">¶</a></h3>
@@ -819,7 +901,7 @@ here <a class="reference external" href="https://github.com/cyclus/cyclus/issues
     </div>
     <div class="footer">
         &copy; Copyright 2012, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jul 17, 2013.
+      Last updated on Jul 26, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

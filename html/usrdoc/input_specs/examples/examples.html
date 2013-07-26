@@ -9,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Region Model Input &mdash; Cyclus Home</title>
+    <title>Examples &mdash; Cyclus Home</title>
     
     <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -28,8 +28,8 @@
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <link rel="top" title="Cyclus Home" href="../../../index.html" />
     <link rel="up" title="Cyclus User Guide" href="../../main.html" />
-    <link rel="next" title="GrowthRegion" href="GrowthRegion/growthregion.html" />
-    <link rel="prev" title="Simulation-level Input" href="../overview/sim.html" />
+    <link rel="next" title="Running Simulations" href="../../running_sims.html" />
+    <link rel="prev" title="SourceFacility" href="../facility/SourceFacility/sourcefacility.html" />
    
 <script type="text/javascript">
 
@@ -61,10 +61,10 @@
           <a href="../../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="GrowthRegion/growthregion.html" title="GrowthRegion"
+          <a href="../../running_sims.html" title="Running Simulations"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../overview/sim.html" title="Simulation-level Input"
+          <a href="../facility/SourceFacility/sourcefacility.html" title="SourceFacility"
              accesskey="P">previous</a> |</li>
         <li><a href="../../../index.html">Cyclus Home</a> &raquo;</li>
           <li><a href="../../main.html" accesskey="U">Cyclus User Guide</a> &raquo;</li> 
@@ -74,25 +74,21 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../../../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Region Model Input</a><ul>
-<li><a class="reference internal" href="#core-level-input">Core-level Input</a><ul>
-<li><a class="reference internal" href="#definiton">Definiton</a></li>
-<li><a class="reference internal" href="#example">Example</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#supported-region-modules">Supported Region Modules</a><ul>
-</ul>
-</li>
+<li><a class="reference internal" href="#">Examples</a><ul>
+<li><a class="reference internal" href="#single-source-single-sink">Single Source/Single Sink</a></li>
+<li><a class="reference internal" href="#single-source-single-sink-with-a-lifetime">Single Source/Single Sink with a Lifetime</a></li>
+<li><a class="reference internal" href="#multiple-sources-single-sink">Multiple Sources/Single Sink</a></li>
+<li><a class="reference internal" href="#multiple-sources-single-sink-with-a-lifetime">Multiple Sources/Single Sink with a Lifetime</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../overview/sim.html"
-                        title="previous chapter">Simulation-level Input</a></p>
+  <p class="topless"><a href="../facility/SourceFacility/sourcefacility.html"
+                        title="previous chapter">SourceFacility</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="GrowthRegion/growthregion.html"
-                        title="next chapter">GrowthRegion</a></p>
+  <p class="topless"><a href="../../running_sims.html"
+                        title="next chapter">Running Simulations</a></p>
   <h3>Useful Pages</h3>
     <li><a href="http://cyclus.github.com/basics/glossary.html">Glossary</a></li>
     <li><a href="http://cyclus.github.com/basics/roadmap.html">Roadmap</a></li>
@@ -130,74 +126,36 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="region-model-input">
-<h1>Region Model Input<a class="headerlink" href="#region-model-input" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="core-level-input">
-<h2>Core-level Input<a class="headerlink" href="#core-level-input" title="Permalink to this headline">¶</a></h2>
-<p>Input parameters that all regions must specify are:</p>
-<blockquote>
-<div><ul class="simple">
-<li>name - the region&#8217;s name</li>
-<li>allowed facilities - a list of facilities that can be built in
-the region</li>
-<li>model - the region model defining this region</li>
-<li>institutions - a list of institions in this region</li>
-</ul>
-</div></blockquote>
-<div class="section" id="definiton">
-<h3>Definiton<a class="headerlink" href="#definiton" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-xml"><pre>&lt;!-- begin section for regions --&gt;
-&lt;define name="region"&gt;
-  &lt;element name="region"&gt;
-
-    &lt;element name="name"&gt;
-       &lt;text/&gt;
-    &lt;/element&gt;
-
-    &lt;oneOrMore&gt;
-    &lt;element name="allowedfacility"&gt;
-        &lt;text/&gt;
-    &lt;/element&gt;
-    &lt;/oneOrMore&gt;
-
-    &lt;element name="model"&gt;
-        &lt;text\&gt;
-    &lt;/element&gt;
-
-    &lt;oneOrMore&gt;
-    &lt;ref name="institution" /&gt;
-    &lt;/oneOrMore&gt;
-
-  &lt;/element&gt;
-&lt;/define&gt;</pre>
+  <div class="section" id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://github.com/cyclus/cycamore">Cycamore repository</a> houses pre-defined input files used by the Cyclus
+development team in its <a class="reference external" href="https://github.com/cyclus/cycamore/tree/develop/input">input directory</a>.</p>
+<p>If you&#8217;re just getting started using Cyclus, the development team suggests you
+review the input files in the <a class="reference external" href="https://github.com/cyclus/cycamore/tree/develop/input/minimal-input">minimal input directory</a>. These files describe
+very simplistic, contrite simulations.</p>
+<div class="section" id="single-source-single-sink">
+<h2>Single Source/Single Sink<a class="headerlink" href="#single-source-single-sink" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/cyclus/cycamore/blob/develop/input/minimal-input/source_1_sink_1.xml">first example</a> shows a simple simulation with 1 Source Facility and 1 Sink
+Facility. The source facility creates a resource in each time period which is
+sent to the Sink Facility. The facilities are instantiated at the beginning of
+the simulation and exist until the end of the simulation.</p>
 </div>
+<div class="section" id="single-source-single-sink-with-a-lifetime">
+<h2>Single Source/Single Sink with a Lifetime<a class="headerlink" href="#single-source-single-sink-with-a-lifetime" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/cyclus/cycamore/blob/develop/input/minimal-input/source_3_sink_1.xml">second example</a> shows a simple simulation with 1 Source Facility and 1 Sink
+Facility. The source facility creates a resource in each time period which is
+sent to the Sink Facility. The facilities are instantiated at the beginning of
+the simulation and exist for a finite lifetime.</p>
 </div>
-<div class="section" id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;region&gt;</span>
-  <span class="nt">&lt;name&gt;</span>SingleRegion<span class="nt">&lt;/name&gt;</span>                   <span class="c">&lt;!-- a name --&gt;</span>
-  <span class="nt">&lt;allowedfacility&gt;</span>Source<span class="nt">&lt;/allowedfacility&gt;</span>   <span class="c">&lt;!-- this region allows facilities of type &quot;Source&quot; --&gt;</span>
-  <span class="nt">&lt;allowedfacility&gt;</span>Sink<span class="nt">&lt;/allowedfacility&gt;</span>     <span class="c">&lt;!-- this region allows facilities of type &quot;Sink&quot; --&gt;</span>
-  <span class="nt">&lt;model&gt;</span>
-    <span class="nt">&lt;NullRegion/&gt;</span>                             <span class="c">&lt;!-- use the simplest type of Region Module --&gt;</span>
-  <span class="nt">&lt;/model&gt;</span>
-  <span class="nt">&lt;institution&gt;</span>
-    ...                                       <span class="c">&lt;!-- check out the institution documentation --&gt;</span>
-  <span class="nt">&lt;/institution&gt;</span>
-<span class="nt">&lt;/region&gt;</span>
-</pre></div>
+<div class="section" id="multiple-sources-single-sink">
+<h2>Multiple Sources/Single Sink<a class="headerlink" href="#multiple-sources-single-sink" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/cyclus/cycamore/blob/develop/input/minimal-input/source_1_lifetime_sink_1.xml">third example</a> is a direct analog to the first, except there are 3 Source
+Facilities.</p>
 </div>
-</div>
-</div>
-<div class="section" id="supported-region-modules">
-<h2>Supported Region Modules<a class="headerlink" href="#supported-region-modules" title="Permalink to this headline">¶</a></h2>
-<p>The following is a list of currently-available Cycamore module
-input specifications:</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="GrowthRegion/growthregion.html">GrowthRegion</a></li>
-</ul>
-</div>
+<div class="section" id="multiple-sources-single-sink-with-a-lifetime">
+<h2>Multiple Sources/Single Sink with a Lifetime<a class="headerlink" href="#multiple-sources-single-sink-with-a-lifetime" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/cyclus/cycamore/blob/develop/input/minimal-input/source_3_lifetime_sink_1.xml">fourth example</a> is a direct analog to the second, except there are 3
+Source Facilities.</p>
 </div>
 </div>
 
@@ -214,10 +172,10 @@ input specifications:</p>
           <a href="../../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="GrowthRegion/growthregion.html" title="GrowthRegion"
+          <a href="../../running_sims.html" title="Running Simulations"
              >next</a> |</li>
         <li class="right" >
-          <a href="../overview/sim.html" title="Simulation-level Input"
+          <a href="../facility/SourceFacility/sourcefacility.html" title="SourceFacility"
              >previous</a> |</li>
         <li><a href="../../../index.html">Cyclus Home</a> &raquo;</li>
           <li><a href="../../main.html" >Cyclus User Guide</a> &raquo;</li> 
