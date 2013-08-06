@@ -36,6 +36,24 @@ or API, it also allows users and developers to ignore downstrem effects in most
 cases.
 
 
+{
+  default_group_color = none;
+  default_shape = roundedbox;
+
+  sysdyn [label="System Dynamics"];
+  dommod [label="Domain Models"];
+  anlviz [label="Analysis &\nVisualization"];
+
+  group {
+    orientation = portrait
+    sysdyn -> dommod;
+  }
+
+  dommod -> anlviz;
+  sysdyn -> anlviz;
+
+}
+
 include optimizations
 
 Other Ecosystems
