@@ -3,7 +3,7 @@ CEP 17 - Resource Tracking and Interfaces Re-Re-Redo
 
 :CEP: 17
 :Title: Resource Tracking and Interfaces Re-Re-Redo
-:Last-Modified: 2013-07-05
+:Last-Modified: 2013-08-08
 :Author: Robert Carlsen <rwcarlsen@gmail.com>
 :Status: Draft 
 :Type: Standards Track
@@ -181,82 +181,58 @@ The Material and Composition classes will be designed to provide only the
 minimal interface to support basic manipulation and tracking required by the
 cyclus core.  All more complex operations will be implemented in helper
 classes (like MatQuery). A summary of each of these classes' new role and
-its public+protected+private interfaces are listed below.
+its public interfaces are described below.
 
 Resource class
 ~~~~~~~~~~~~~~~
 
 Resource class provides an abstract interface allowing different types of
-resources to be transacted in a simulation. It handles some basic state
-tracking and output recording assisted by method invocations from its
-subclasses. The public interface below is mostly the same as it currently
-exists in Cyclus.
+resources to be transacted in a simulation.
 
 .. code-block:: c++
+
+    namespace cyclus {
 
     typedef std::string ResourceType;
 
     class Resource {
-      public:
-        typedef boost::shared_ptr<Resource> Ptr;
+     public:
+      typedef boost::shared_ptr<Resource> Ptr;
 
-        virtual ~Resource();
+      virtual ~Resource() { };
 
-        /// Unique for each material object.  Changes whenever *any* state changing
-        /// operation is made.
-        const int ID();
+      /// Unique for each material object.  Changes whenever *any* state changing
+      /// operation is made.
+      virtual const int id() const = 0;
 
-        /// Returns the units this resource is based in.
-        virtual std::string units() = 0;
-          
-        /// returns the quantity of this resource with dimensions as specified by units().
-        virtual double quantity() = 0;
+      /// returns an id representing the specific resource implementation's internal state.
+      virtual int state_id() const = 0;
 
-        /// splits the resource and returns the extracted portion as a new resource
-        /// object.  Allows for things like ResourceBuff and market matching to
-        /// split offers/requests of arbitrary resource implementation type.
-        virtual Ptr extractRes(double quantity) = 0;
+      virtual const ResourceType type() const = 0;
 
-        virtual ResourceType type() = 0;
+      /// returns an untracked (not part of the simulation) copy of the resource.
+      virtual Ptr Clone() const = 0;
+      // the clone method implementations should set tracked_ = false.
 
-        /// returns an untracked (not part of the simulation) copy of the resource.
-        virtual Ptr clone() = 0;
-        // the clone method implementations should set tracked_ = false.
+      /// records the resource's state that is not accessible via the Resource /
+      /// class interface (i.e. this should not record units, quantity, type) in its own
+      /// table.
+      virtual void RecordSpecial() const = 0;
 
-        /// friends allow setting of tracked_ param when cloning in subclasses /
-        /// without making it public. And also allow calling of changeState in create
-        /// factory functions (wouldn't work even if protected because not changing
-        /// on context "this".
-        friend class GenericResource;
-        friend class Material;
+      /// Returns the units this resource is based in.
+      virtual std::string units() const = 0;
 
-      protected:
-        Resource();
+      /// returns the quantity of this resource with dimensions as specified by units().
+      virtual double quantity() const = 0;
 
-        /// records the resource's state that is not accessible via the Resource /
-        /// class interface (e.g. don't record units, quantity, etc) in its own
-        /// table.
-        virtual void recordState() = 0;
+      /// splits the resource and returns the extracted portion as a new resource
+      /// object.  Allows for things like ResourceBuff and market matching to
+      /// split offers/requests of arbitrary resource implementation type.
+      virtual Ptr ExtractRes(double quantity) = 0;
 
-        /// returns an id representing the specific resource implementation's internal state.
-        virtual int stateId() = 0;
-
-
-      private:
-        /// called by subclasses whenever any state changing operation has been
-        /// performed. Updates the ID and recordes the resources state in the output
-        /// database.
-        void changeState(int parent1, int parent2 = 0);
-
-        void recordRes();
-
-        static int nextId_;
-        int id_;
-        bool tracked_;
-
-        int parent1_;
-        int parent2_;
     };
+
+    } // namespace cyclus
 
 Material class
 ~~~~~~~~~~~~~~~
@@ -269,8 +245,8 @@ does not perform any decay related logic itself.
 There are four basic operations that can be performed on materials: create,
 transmute (change material composition - e.g. fission by reactor), absorb
 (combine materials), extract (split a material). All material
-handling/manipulation will be performed using these operations. Usage
-examples:
+handling/manipulation will be performed using these operations - and all
+operations performed will be recorded. Usage examples:
 
 * A mining facility that "creates" new material
 
@@ -279,35 +255,35 @@ examples:
     Composition::Ptr nat_u = ...
     double qty = 10.0;
 
-    Material::Ptr m = Material::create(qty, nat_u);
+    Material::Ptr m = Material::Create(qty, nat_u);
 
 * A conversion facility mixing uranium and flourine:
 
 .. code-block:: c++
 
-    Material::Ptr uf6 = uranium_buf.popOne();
-    Material::Ptr f = flourine_buf.popOne();
+    Material::Ptr uf6 = uranium_buf.PopOne();
+    Material::Ptr f = flourine_buf.PopOne();
 
-    uf6.absorb(f);
+    uf6.Absorb(f);
 
 * A reactor transmuting fuel:
 
 .. code-block:: c++
 
     Composition::Ptr burned_comp = ... // fancy code to calculate burned isotopics
-    Material::Ptr assembly = core_fuel.popOne();
+    Material::Ptr assembly = core_fuel.PopOne();
 
-    assembly.transmute(burned_comp);
+    assembly.Transmute(burned_comp);
 
 * A separations plant extracting stuff from spent fuel:
 
 .. code-block:: c++
 
     Composition::Ptr comp = ... // fancy code to calculate extraction isotopics
-    Material::Ptr bucket = spent_fuel.popOne();
+    Material::Ptr bucket = spent_fuel.PopOne();
     double qty = 3.0;
 
-    Material::Ptr mox = bucket.extractComp(qty, comp);
+    Material::Ptr mox = bucket.ExtractComp(qty, comp);
 
 
 Proposed material class interface:
@@ -315,56 +291,49 @@ Proposed material class interface:
 .. code-block:: c++
 
     class Material: public Resource {
-      public:
-        typedef boost::shared_ptr<Material> Ptr;
-        static ResourceType Type;
+     public:
+      typedef boost::shared_ptr<Material> Ptr;
+      static const ResourceType kType;
 
-        static Ptr create(double quantity, Composition::Ptr c);
-        static Ptr createUntracked(double quantity, Composition::Ptr c);
+      virtual ~Material();
 
-        virtual ~Material();
+      static Ptr Create(double quantity, Composition::Ptr c);
+      static Ptr CreateUntracked(double quantity, Composition::Ptr c);
 
-        /// returns "kg"
-        virtual std::string units();
-          
-        /// returns the mass of this material in kg.
-        virtual double quantity();
+      const int id() const;
 
-        virtual ResourceType type();
+      virtual int state_id() const;
 
-        virtual int stateId();
+      virtual const ResourceType type() const;
 
-        virtual Resource::Ptr clone();
+      virtual Resource::Ptr Clone() const;
 
-        virtual Resource::Ptr extractRes(double qty);
+      virtual void RecordSpecial() const;
 
-        Ptr extractQty(double qty);
+      /// returns "kg"
+      virtual std::string units() const;
 
-        Ptr extractComp(double qty, Composition::Ptr c, double threshold);
+      /// returns the mass of this material in kg.
+      virtual double quantity() const;
 
-        void absorb(Ptr mat);
+      virtual Resource::Ptr ExtractRes(double qty);
 
-        void transmute(Composition::Ptr c);
+      Ptr ExtractQty(double qty);
 
-        Composition::Ptr comp();
+      Ptr ExtractComp(double qty, Composition::Ptr c);
 
-        void decay(int curr_time);
+      void Absorb(Ptr mat);
 
-        static void decayAll(int curr_time);
+      void Transmute(Composition::Ptr c);
 
-      protected:
-        virtual void recordState();
+      void Decay(int curr_time);
 
-        Material(double quantity, Composition::Ptr c);
+      static void DecayAll(int curr_time);
 
-      private:
-        Composition::Ptr mix(double other_qty, Composition::Ptr other);
-
-        double qty_;
-        Composition::Ptr comp_;
-        int prev_decay_time_;
-        static std::map<Material*, bool> all_mats_;
+      Composition::Ptr comp() const;
     };
+
+    } // namespace cyclus
 
 GenericResource class
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -375,70 +344,55 @@ like: bananas, man-hours, water, buying power, etc.
 .. code-block:: c++
 
     class GenericResource : public Resource {
-      public:
-        typedef boost::shared_ptr<GenericResource> Ptr;
-        static ResourceType Type;
+     public:
+      typedef boost::shared_ptr<GenericResource> Ptr;
+      static const ResourceType kType;
 
-        static Ptr create(double quantity, std::string units, std::string quality);
-        static Ptr createUntracked(double quantity, std::string units, std::string quality);
-        
-        /// Returns a reference to a newly allocated copy of this resource 
-        virtual Resource::Ptr clone();
+      static Ptr Create(double quantity, std::string units);
+      static Ptr CreateUntracked(double quantity, std::string units);
 
-        /// Returns the total quantity of this resource in its base unit 
-        virtual double quantity() {return quantity_;};
-          
-        /// Returns base unit for this resource's quantity
-        virtual std::string units() {return units_;};
-          
-        /// Returns the quality of this resoruce's contents (e.g. man-hours)
-        virtual std::string quality() {return quality_;};
-          
-        /// Returns the concrete type of this resource 
-        virtual ResourceType type() {return Type;};
+      virtual const int id() const;
 
-        /// each quality gets its own state id
-        virtual int stateId();
-        
-        /**
-           Absorbs the contents of the given 'other' resource into this 
-           resource  
-           @throws CycGenResourceIncompatible 'other' resource is of a
-           different quality.
-         */
-        virtual void absorb(GenericResource::Ptr other);
+      /// not needed/no meaning for generic resources
+      virtual int state_id() const {
+        return 0;
+      };
 
-        /**
-           Extracts the specified mass from this resource and returns it as a 
-           new generic resource object with the same quality/type. 
-            
-           @throws CycGenResourceOverExtract 
-         */
-        GenericResource::Ptr extract(double quantity);
+      /// Returns the concrete type of this resource
+      virtual ResourceType type() const {
+        return kType;
+      };
 
-        virtual Resource::Ptr extractRes(double quantity);
+      /// Returns a reference to a newly allocated copy of this resource
+      virtual Resource::Ptr Clone() const;
 
-      protected:
+      virtual void RecordSpecial() const { };
 
-        virtual void recordState();
+      /// Returns the total quantity of this resource in its base unit
+      virtual std::string units() const {
+        return units_;
+      };
 
-      private:  
+      /// Returns the total quantity of this resource in its base unit
+      virtual double quantity() const {
+        return quantity_;
+      };
 
-        /**
-           @param quantity is a double indicating the quantity 
-           @param units is a string indicating the resource unit 
-         */
-        GenericResource(double quantity, std::string units, std::string quality);
+      virtual Resource::Ptr ExtractRes(double quantity);
 
-        static int nextStateID_;
-        static std::map<std::string, int> existingStateIds_;
+      /// Extracts the specified mass from this resource and returns it as a
+      /// new generic resource object with the same quality/type.
 
-        std::string units_;
+      /// @throws CycGenResourceOverExtract
+      GenericResource::Ptr Extract(double quantity);
 
-        double quantity_;
-
-        double quality_;
+      /// Absorbs the contents of the given 'other' resource into this
+      /// resource
+      /// @throws CycGenResourceIncompatible 'other' resource is of a
+      void Absorb(GenericResource::Ptr other);
     };
+
+    } // namespace cyclus
 
 Composition class
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -464,79 +418,73 @@ the previous equivalence notion is this::
 
 While there are definitely uses for material/composition equivalence, they
 should/will not be used by the core (for now) and best belong in MatQuery
-or other wrapper classes.  The normalize method will utilize the floating
-point math introduced by @katyhuff.
+or other places.
 
 .. code-block:: c++
 
+    namespace cyclus {
+
+    typedef int Iso;
+
+    // Represents an immutable nuclear material composition
     class Composition {
-      public:
-        typedef boost::shared_ptr<Composition> Ptr;
-        typedef std::map<Iso, double> Vect;
+     public:
+      typedef boost::shared_ptr<Composition> Ptr;
+      typedef std::map<Iso, double> Vect;
 
-        static Ptr createFromAtom(Vect v);
-        static Ptr createFromMass(Vect v);
+      static Ptr CreateFromAtom(Vect v);
+      static Ptr CreateFromMass(Vect v);
 
-        int ID();
+      int id();
+      const Vect& atom_vect();
+      const Vect& mass_vect();
 
-        Ptr decay(int delta);
+      Ptr Decay(int delta);
 
-        const Vect& atomVect();
-        const Vect& massVect();
-
-        /// record in output database (if not done previously).
-        void record();
-
-      protected:
-        Composition();
-
-        typedef std::map<int, Composition::Ptr> Chain;
-        typedef boost::shared_ptr<Chain> ChainPtr;
-        ChainPtr decay_line_;
-
-      private:
-        // This constructor allows the creation of decayed versions of
-        // compositions while avoiding extra memory allocations.
-        Composition(int prev_decay, ChainPtr decay_line);
-
-        Ptr newDecay(int delta);
-
-        // normalizes the sum of all quantities in the composition's vector to one.
-        void normalize(Vect& v);
-
-        static int nextId_;
-
-        int id_;
-        bool recorded_;
-        Vect atomv_;
-        Vect massv_;
-        int prev_decay_;
+      /// record in output database (if not done previously).
+      void Record();
     };
 
-CompMath namespace
+    } // namespace cyclus
+
+compmath namespace
 ~~~~~~~~~~~~~~~~~~~~~~
 
 The excellent floating point calculation handling and thresholding
 functionality introduced by @katyhuff will be preserved. The current
-(pre-proposal) Material::diff and Material::applyThreshold methods will
-become public functions that operate on Composition::Vect types.
+(pre-proposal) Material::Diff and Material::ApplyThreshold methods will
+become public functions that operate on Composition::Vect types.  Other
+common composition manipulation functions will live here.  They will
+operate on Composition::Vect's because Composition's themselves are
+immutable.  Resource and Composition classes will use these methods where
+appropriate instead of their own, internal versions.
 
 .. code-block:: c++
 
-    namespace CompMath {
+    namespace cyclus {
+    namespace compmath {
 
-      /// Reports the component-wise difference between two
-      /// Composition::Vects.
-      ///  
-      /// @return a new Composition::Vect of a * qtyA - b * qtyB
-      Composition::Vect diff(const Composition::Vect& a, double qtyA, const Composition::Vect& b, double qtyB);
+    Composition::Vect Add(const Composition::Vect& v1, double qty1,
+                          const Composition::Vect& v2, double qty2);
 
-      /// Modifies the vec, by zeroing out all elements whose absolute value is less than the threshold.
-      /// 
-      /// @param vec the vector of isos and amounts to which to apply the threshold
-      /// @param threshold the smallest value considered nonzero
-      void applyThreshold(Composition::Vect& v, double threshold);
-    }
+    /// previously Diff
+    Composition::Vect Sub(const Composition::Vect& v1, double qty1,
+                           const Composition::Vect& v2, double qty2);
+
+    void ApplyThreshold(Composition::Vect* v, double threshold);
+
+    void Normalize(cyclus::Composition::Vect* v, double val);
+
+    bool ValidIsos(const Composition::Vect& v);
+
+    bool AllPositive(const Composition::Vect& v);
+
+    bool AlmostEq(const Composition::Vect& v1,
+                  const Composition::Vect& v2,
+                  double threshold);
+
+    } // namespace compmath
+    } // namespace cyclus
 
 
 MatQuery class
@@ -557,33 +505,17 @@ information about a material they could ever reasonably need.
         /// Material::Ptr.
         MatQuery(Resource::Ptr m);
 
-        double mass(Iso iso) {
-          return massFrac(iso) * qty();
-        }
+        double mass(Iso iso);
 
-        double moles(Iso iso) {
-          return mass(iso) / (MT->gramsPerMol(iso) * units::g);
-        }
+        double moles(Iso iso);
 
-        double massFrac(Iso iso) {
-          Composition::Vect v = m_->comp()->massVect();
-          return v[iso];
-        };
+        double mass_frac(Iso iso);
 
-        double atomFrac(Iso iso) {
-          Composition::Vect v = m_->comp()->atomVect();
-          return v[iso];
-        };
+        double atom_frac(Iso iso);
 
-        double qty() {
-          return m_->quantity();
-        };
+        double qty();
 
-        bool almostEqual(Material::Ptr other, double threshold=cyclus.eps());
-
-      private:
-
-        Material::Ptr m_;
+        bool AlmostEqual(Material::Ptr other, double threshold=cyclus.eps());
     };
 
 Other Changes
@@ -612,12 +544,12 @@ preserved.* RecipeLibrary interface becomes:
       /**
          loads the recipes from the input file 
        */
-      void load_recipes(QueryEngine* qe);
+      void LoadRecipes(QueryEngine* qe);
     
       /**
          loads a specific recipe 
        */
-      void load_recipe(QueryEngine* qe);
+      void LoadRecipe(QueryEngine* qe);
       
       /**
          records a new recipe in the simulation
@@ -625,22 +557,14 @@ preserved.* RecipeLibrary interface becomes:
     
          @param recipe the recipe to be recorded, a CompMapPtr
        */
-      void addRecipe(std::string name, Composition::Ptr c);
+      void AddRecipe(std::string name, Composition::Ptr c);
     
       /**
          This returns a CompMapPtr to the named recipe in the recipes_ map 
     
          @param name the name of the parent recipe, a key in the recipes_ map
        */
-      Composition::Ptr getRecipe(std::string name);
-    
-     private:
-      RecipeLibrary();
-    
-      /// A pointer to this RecipeLibrary once it has been initialized. 
-      static RecipeLibrary* instance_;
-    
-      RecipeMap recipes_;
+      Composition::Ptr GetRecipe(std::string name);
     };
 
 Backwards Compatibility
