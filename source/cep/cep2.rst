@@ -172,6 +172,45 @@ The dependency graph for these projects is similar to the graph of the concerns.
 Figure 2 displays this graph along with other projects which implement or may 
 in the future implement this concern ('?').
 
+.. figure:: cep-0002-2.svg
+    :align: center
+
+    **Figure 2:** Dependencies Between Projects is Cyclus Ecosystem.
+
+.. blockdiag code below
+
+    http://interactive.blockdiag.com/?compression=deflate&src=eJyNUU1LAzEQve-vGFIQPQgeW5ZV2hRvngQvImW6SduBJLMkWTEt_e_G_bBbvHibee_NmzfJqQBQeoetiZu957bZ1GzYQwWOnS4nbDhgozOeRU5pteWvssh0NwQhBZUcnDIAwJ60ixiJXdY37KNHimXHGdxqU4nXFKK2sE4OLdVB9KRMtWlDX58v5oqtZTWYDwZrtkgOXlhpM46PycXs-UEu54uLK1r2euyU9n0pVp72h3j7dCf-7ERnPun4_4OWDk0KFOAG3ii0aOjY6afRKjGTcr6QcnIuhfjbUD2J0b8F3D9e5b9Cf4ZhQDvFFH_fscnf9FEW528HLJGY
+
+    {
+      default_group_color = none;
+      default_shape = roundedbox;
+
+      group sysdyn {
+        orientation = portrait;
+        label="System Dynamics";
+        Cyclus;
+        }
+
+      group dommod {
+        label="Domain Models";
+        color = "#F0CA89";
+        Cycamore;
+        Cyder;
+        "Bright(?)";
+        }
+
+      group anlviz {
+        orientation = portrait;
+        label="Analysis & Visualization";
+        color="#CC89CC";
+        Cyclist;
+        Cycic;
+        }
+
+      Cyclus -> Cycamore;
+      Cyclus -> Cyclist ;
+      Cycamore -> Cyclist [folded];
+    }
 
 
 Other Ecosystems
