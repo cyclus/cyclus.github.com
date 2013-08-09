@@ -11,7 +11,7 @@ CEP 2 - Separation of Concerns in the *Cyclus* Ecosystem
 
 Abstract
 ========
-The purpose of this CEP is to clearly deliniate the purpose -- technical and 
+The purpose of this CEP is to clearly delineate the purpose -- technical and 
 cultural -- of the various projects which make up the *Cyclus* ecosystem.  
 Projects, for purposes here, are unique entities which have independent lifetimes
 and central concerns. Many projects may try to tackle the same concern but no 
@@ -19,20 +19,21 @@ single project may tackle more than one concern.  Concerns, like projects, may
 be dependent upon one another.
 
 The central concerns in the *Cyclus* ecosystem are **system dynamics**, 
-**domain models**, and **analysis & visulaization**.
+**domain models**, and **analysis & visualization**.
 
 Concerns
 ========
 A rich fuel cycle simulator solution has three primary organizational pieces that 
-must have robust implmentations.  These pieces are a mechanism for solving for 
+must have robust implementations.  These pieces are a mechanism for solving for 
 resource exchange in the fuel cycle (system dynamics), relevant and interesting 
-models for the domain of interest (physics, economics, policy, etc.), and a 
-programatic method for parsing, slicing, aggregatiting, and displaying 
-simulation results (analysis & visulaization). As an effectively designed suite of 
-software, these concerns should be completely separated from one another [1]_.  This 
+models for the domains of interest (physics, economics, policy, etc.), and a 
+programmatic method for parsing, slicing, aggregating, and displaying 
+simulation results (analysis & visualization). As an effectively designed suite of 
+software, these concerns should be completely separated from one another 
+and interact only through well-defined interfaces [1]_.  This 
 independence allows both users and developers to reason about each concern 
 without needing to consider upstream effects.  Coupled with a stable interface 
-or API, this independence also allows users and developers to ignore downstrem 
+or API, this independence also allows users and developers to ignore downstream 
 effects in most cases.
 
 The domain model concern is dependent only on the system dynamics' concern.  
@@ -72,13 +73,13 @@ System Dynamics
 The system dynamics concern is the basis for all other fuel cycle concerns.  
 This dictates and manages how resources flow through a system and the time 
 paradigm used to model the system.  A number of possible representations of 
-system elements exist.  Two main options stand out, 1) *agent-based* models in 
-which every actor recieves its own instance and 2) *fleet-based* models where
-like actors are grouped together and assued to act identically.  Furtherore, 
+system elements exist.  Two main options stand out: 1) *agent-based* models in 
+which every actor receives its own instance, and 2) *fleet-based* models where
+like actors are grouped together and assured to act identically.  Furthermore, 
 the choice of how to represent time evolution may also fall into one of the 
 following categories:
 
-* **Equillibrium** - initial transients are ignored or discarded in favor of a steady 
+* **Equilibrium** - initial transients are ignored or discarded in favor of a steady 
   state solution.
 * **Quasi-static** - initial transients are computed but natural time (sec, min, etc) 
   are replaced with an easier to compute number of passes through a given 
@@ -90,13 +91,13 @@ following categories:
   when needed.
 * **Continuous time** - natural time is implemented as a continuous variable.
 
-The system dynamics concern is a solely mathematical endeavour and should not 
-implemenent any domain-specific calculations. However, the system dynamics 
+The system dynamics concern is a solely mathematical endeavor and should not 
+implement any domain-specific calculations. However, the system dynamics 
 implementation may be *domain-aware* in that it may know about certain sub-type
 specializations.  For example, materials and U.S. Dollars are both sub-types of 
 resources.  Still, the systemic dynamics concern is not allowed to discriminate 
 between any of these specializations nor perform domain-specific computations
-(such as transmuting a metrial or pricing a derivative).
+(such as transmuting a material or pricing a derivative).
 
 The system dynamics concern is also responsible for all optimizations of the 
 fuel cycle.  This includes optimizing resource exchange between multiple actors
@@ -105,12 +106,12 @@ subject to some constraints.
 
 Domain Models
 -------------
-The purpose of the domain models concern is to provide interesting, acurate, and 
+The purpose of the domain models concern is to provide interesting, accurate, and 
 relevant models of various aspects of the fuel cycle.  These aspects are often the
 technical meat of the fuel cycle analysis.  However, they may be mathematically 
 separated from the system dynamics.  This concern ensures that those mathematical
 separations remain distinct in the software.  There are a number of domain models 
-which are pertinant to fuel cycle calculations:
+which are pertinent to fuel cycle calculations:
 
 * Physics
 * Chemistry
@@ -124,7 +125,7 @@ for all systematic flow and timing needs.  The implementation of the domain
 calculations should be completely separated from the system dynamics concern.
 This establishes a clean interface between these two concerns.
 
-For exmaple, take an enrichment facility which is asked to compute product and tails 
+For example, take an enrichment facility which is asked to compute product and tails 
 enrichments.  In the initialization of this calculation, the system dynamics concern
 hands off the simulation time (t), the time delta (dt), and the initial feed material 
 to the underlying physics model.  The physics model then computes the desired outputs
@@ -133,19 +134,19 @@ are returned to the system dynamics model.
 
 Analysis & Visualization
 ------------------------
-The purpose of the analysis & visulaization concern is supply aggregation and 
+The purpose of the analysis & visualization concern is to supply aggregation and 
 introspection into the simulation outputs.  The analysis may take place at both
-high and low levels, common aggreagtions should be easy to perform, and static 
-and interactive visualiztion should be provided as a mechanism for easy human 
+high and low levels, common aggregations should be easy to perform, and static 
+and interactive visualization should be provided as a mechanism for easy human 
 consumption.  All post-processing of simulation data falls under this concern.
 
-The analysis & visulaization concern is dependent directly on both the system 
+The analysis & visualization concern is dependent directly on both the system 
 dynamics concern and the domain models concern.  This is because meaningful 
 inspection of simulation data requires parameters from both concerns.  Note that 
-these dependncies are indpendent.  The analysis & visulaization tools must handle
+these dependencies are independent.  The analysis & visualization tools must handle
 the case where only system dynamics models are used.  However, if domain models 
-are used and the analysis & visulaization is aware of these domain models, 
-all system dynamics parameters are gaurenteed to also be present.
+are used and the analysis & visualization is aware of these domain models, 
+all system dynamics parameters are guaranteed to also be present.
 
 The Cyclus Ecosystem
 ====================
@@ -156,9 +157,9 @@ project may try to address multiple concerns. This provides a clear guideline
 for which projects should accept which kinds of code.  
 
 If for some reason ambiguities exist, first attempt to refactor the code at hand
-with these concerns in mind.  If this fails because of a fundemental abmiguitiy
-or mixing of two concerns, place this code with the most dependent concern.  For
-example, if it is not clear if a class belongs with domain models or with the
+with these concerns in mind.  If this fails because of a fundamental ambiguity
+or mixing of multiple concerns, place the code with the most dependent concern.  
+For example, if it is not clear if a class belongs with domain models or with the
 system dynamics put it with the domain models to be safe.
 
 The cyclus development team currently provides and supports three projects, 
@@ -212,9 +213,17 @@ in the future implement this concern ('?').
       Cycamore -> Cyclist [folded];
     }
 
-
-Other Ecosystems
-================
+Summary
+=======
+Many other ecosystems and projects model the fuel cycle and make their own choices
+about how to separate -- or not -- the concerns of system dynamics, domain models, 
+and analysis and visualization.  The *Cyclus* ecosystem places all concerns in 
+separate projects.  This allows a high degree of modularity between software and
+developers.  Such an ecosystem enables experts to contribute their specific 
+knowledge base in a way that is independent from other parts of the ecosystem
+while simultaneously integrating well with the rest of the ecosystem.  Finally, 
+this  document provides instructions on where to implement tasks based on the task's
+primary concern.
 
 Document History
 ================
