@@ -105,7 +105,12 @@ subject to some constraints.
 
 Domain Models
 -------------
-There are a number of domain models which are pertinant to fuel cycle calculations:
+The purpose of the domain models concern is to provide interesting, acurate, and 
+relevant models of various aspects of the fuel cycle.  These aspects are often the
+technical meat of the fuel cycle analysis.  However, they may be mathematically 
+separated from the system dynamics.  This concern ensures that those mathematical
+separations remain distinct in the software.  There are a number of domain models 
+which are pertinant to fuel cycle calculations:
 
 * Physics
 * Chemistry
@@ -115,9 +120,9 @@ There are a number of domain models which are pertinant to fuel cycle calculatio
 * and more!
 
 The implementation of specific domain computations should rely on the system dynamics
-for all systematic flow and timing needs.  However, the implementation of the actual 
-domain calculation should be completely separated from the system dynamics concern.
-This establishes a clean interface between these concerns.
+for all systematic flow and timing needs.  The implementation of the domain 
+calculations should be completely separated from the system dynamics concern.
+This establishes a clean interface between these two concerns.
 
 For exmaple, take an enrichment facility which is asked to compute product and tails 
 enrichments.  In the initialization of this calculation, the system dynamics concern
@@ -128,13 +133,49 @@ are returned to the system dynamics model.
 
 Analysis & Visualization
 ------------------------
+The purpose of the analysis & visulaization concern is supply aggregation and 
+introspection into the simulation outputs.  The analysis may take place at both
+high and low levels, common aggreagtions should be easy to perform, and static 
+and interactive visualiztion should be provided as a mechanism for easy human 
+consumption.  All post-processing of simulation data falls under this concern.
+
+The analysis & visulaization concern is dependent directly on both the system 
+dynamics concern and the domain models concern.  This is because meaningful 
+inspection of simulation data requires parameters from both concerns.  Note that 
+these dependncies are indpendent.  The analysis & visulaization tools must handle
+the case where only system dynamics models are used.  However, if domain models 
+are used and the analysis & visulaization is aware of these domain models, 
+all system dynamics parameters are gaurenteed to also be present.
 
 The Cyclus Ecosystem
 ====================
+While many fuel cycle simulators may choose to implement all of the above concerns 
+in a single project, each concern in the *Cyclus* ecosystem is implemented in
+its own project.  Many projects may satisfy the needs of a concern.  However, no 
+project may try to address multiple concerns. This provides a clear guideline 
+for which projects should accept which kinds of code.  
+
+If for some reason ambiguities exist, first attempt to refactor the code at hand
+with these concerns in mind.  If this fails because of a fundemental abmiguitiy
+or mixing of two concerns, place this code with the most dependent concern.  For
+example, if it is not clear if a class belongs with domain models or with the
+system dynamics put it with the domain models to be safe.
+
+The cyclus development team currently provides and supports three projects, 
+one for each concern:
+
+* `Cyclus`_ - System Dynamics
+* `Cycamore`_ - Domain Models
+* `Cyclist`_ -  Analysis & Visualization
+
+The dependency graph for these projects is similar to the graph of the concerns.
+Figure 2 displays this graph along with other projects which implement or may 
+in the future implement this concern ('?').
+
+
 
 Other Ecosystems
 ================
-
 
 Document History
 ================
@@ -144,3 +185,7 @@ References and Footnotes
 ========================
 
 .. [1] http://en.wikipedia.org/wiki/Separation_of_concerns
+
+.. _Cyclus: https://github.com/cyclus/cyclus
+.. _Cycamore: https://github.com/cyclus/cycamore
+.. _Cyclist: https://github.com/cyclus/cyclist2
