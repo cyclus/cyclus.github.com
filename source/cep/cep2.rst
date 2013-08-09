@@ -29,7 +29,7 @@ resource exchange in the fuel cycle (system dynamics), relevant and interesting
 models for the domain of interest (physics, economics, policy, etc.), and a 
 programatic method for parsing, slicing, aggregatiting, and displaying 
 simulation results (analysis & visulaization). As an effectively designed suite of 
-software, these concerns should be completely separated from one another [#1]_.  This 
+software, these concerns should be completely separated from one another [1]_.  This 
 independence allows both users and developers to reason about each concern 
 without needing to consider upstream effects.  Coupled with a stable interface 
 or API, this independence also allows users and developers to ignore downstrem 
@@ -67,7 +67,70 @@ in Figure 1.
 
     }
 
-include optimizations
+System Dynamics
+---------------
+The system dynamics concern is the basis for all other fuel cycle concerns.  
+This dictates and manages how resources flow through a system and the time 
+paradigm used to model the system.  A number of possible representations of 
+system elements exist.  Two main options stand out, 1) *agent-based* models in 
+which every actor recieves its own instance and 2) *fleet-based* models where
+like actors are grouped together and assued to act identically.  Furtherore, 
+the choice of how to represent time evolution may also fall into one of the 
+following categories:
+
+* **Equillibrium** - initial transients are ignored or discarded in favor of a steady 
+  state solution.
+* **Quasi-static** - initial transients are computed but natural time (sec, min, etc) 
+  are replaced with an easier to compute number of passes through a given 
+  actor.
+* **Discrete time** - natural time is implemented but discretized to some minimum 
+  and constant dt.  
+* **Adaptive time** - natural time is implemented and discretized, but the value of 
+  dt may change from time step to time step, allowing for finer resolution only 
+  when needed.
+* **Continuous time** - natural time is implemented as a continuous variable.
+
+The system dynamics concern is a solely mathematical endeavour and should not 
+implemenent any domain-specific calculations. However, the system dynamics 
+implementation may be *domain-aware* in that it may know about certain sub-type
+specializations.  For example, materials and U.S. Dollars are both sub-types of 
+resources.  Still, the systemic dynamics concern is not allowed to discriminate 
+between any of these specializations nor perform domain-specific computations
+(such as transmuting a metrial or pricing a derivative).
+
+The system dynamics concern is also responsible for all optimizations of the 
+fuel cycle.  This includes optimizing resource exchange between multiple actors
+as well as finding the initial conditions which optimize a value function 
+subject to some constraints.  
+
+Domain Models
+-------------
+There are a number of domain models which are pertinant to fuel cycle calculations:
+
+* Physics
+* Chemistry
+* Health Physics
+* Economics
+* Public Policy
+* and more!
+
+The implementation of specific domain computations should rely on the system dynamics
+for all systematic flow and timing needs.  However, the implementation of the actual 
+domain calculation should be completely separated from the system dynamics concern.
+This establishes a clean interface between these concerns.
+
+For exmaple, take an enrichment facility which is asked to compute product and tails 
+enrichments.  In the initialization of this calculation, the system dynamics concern
+hands off the simulation time (t), the time delta (dt), and the initial feed material 
+to the underlying physics model.  The physics model then computes the desired outputs
+without further interaction with the system dynamics model.  Lastly, the outputs
+are returned to the system dynamics model.
+
+Analysis & Visualization
+------------------------
+
+The Cyclus Ecosystem
+====================
 
 Other Ecosystems
 ================
@@ -80,4 +143,4 @@ This document is released under the CC-BY 3.0 license.
 References and Footnotes
 ========================
 
-.. [#1] http://en.wikipedia.org/wiki/Separation_of_concerns
+.. [1] http://en.wikipedia.org/wiki/Separation_of_concerns
