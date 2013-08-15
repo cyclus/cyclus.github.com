@@ -201,11 +201,16 @@ resources to be transacted in a simulation.
 
       virtual ~Resource() { };
 
-      /// Unique for each material object.  Changes whenever *any* state changing
-      /// operation is made.
-      virtual const int id() const = 0;
+      /// returns the unique id corresponding to this resource and its current
+      /// state.
+      const int id() const;
 
-      /// returns an id representing the specific resource implementation's internal state.
+      /// assigns a new, unique id to this resource and its state.
+      void BumpId();
+
+      /// returns an id representing the specific resource implementation's
+      /// internal state.  Any change to the state_id should be accompanied by a
+      /// call to BumpId.
       virtual int state_id() const = 0;
 
       virtual const ResourceType type() const = 0;
@@ -214,15 +219,16 @@ resources to be transacted in a simulation.
       virtual Ptr Clone() const = 0;
       // the clone method implementations should set tracked_ = false.
 
-      /// records the resource's state that is not accessible via the Resource /
-      /// class interface (i.e. this should not record units, quantity, type) in its own
-      /// table.
-      virtual void RecordSpecial() const = 0;
+      /// records the resource's state to the output database.  This method should
+      /// generally / NOT record data accessible via the Resource class public
+      /// methods (e.g.  / state_id, units, type, quantity)
+      virtual void Record() const = 0;
 
       /// Returns the units this resource is based in.
       virtual std::string units() const = 0;
 
-      /// returns the quantity of this resource with dimensions as specified by units().
+      /// returns the quantity of this resource with dimensions as specified by
+      /// units().
       virtual double quantity() const = 0;
 
       /// splits the resource and returns the extracted portion as a new resource
@@ -300,15 +306,13 @@ Proposed material class interface:
       static Ptr Create(double quantity, Composition::Ptr c);
       static Ptr CreateUntracked(double quantity, Composition::Ptr c);
 
-      const int id() const;
-
       virtual int state_id() const;
 
       virtual const ResourceType type() const;
 
       virtual Resource::Ptr Clone() const;
 
-      virtual void RecordSpecial() const;
+      virtual void Record() const;
 
       /// returns "kg"
       virtual std::string units() const;
@@ -320,7 +324,7 @@ Proposed material class interface:
 
       Ptr ExtractQty(double qty);
 
-      Ptr ExtractComp(double qty, Composition::Ptr c);
+      Ptr ExtractComp(double qty, Composition::Ptr c, double threshold = eps_rsrc());
 
       void Absorb(Ptr mat);
 
@@ -348,10 +352,9 @@ like: bananas, man-hours, water, buying power, etc.
       typedef boost::shared_ptr<GenericResource> Ptr;
       static const ResourceType kType;
 
-      static Ptr Create(double quantity, std::string units);
-      static Ptr CreateUntracked(double quantity, std::string units);
-
-      virtual const int id() const;
+      static Ptr Create(double quantity, std::string quality, std::string units);
+      static Ptr CreateUntracked(double quantity, std::string quality,
+                                 std::string units);
 
       /// not needed/no meaning for generic resources
       virtual int state_id() const {
@@ -359,14 +362,14 @@ like: bananas, man-hours, water, buying power, etc.
       };
 
       /// Returns the concrete type of this resource
-      virtual ResourceType type() const {
+      virtual const ResourceType type() const {
         return kType;
       };
 
       /// Returns a reference to a newly allocated copy of this resource
       virtual Resource::Ptr Clone() const;
 
-      virtual void RecordSpecial() const { };
+      virtual void Record() const { };
 
       /// Returns the total quantity of this resource in its base unit
       virtual std::string units() const {
@@ -376,6 +379,10 @@ like: bananas, man-hours, water, buying power, etc.
       /// Returns the total quantity of this resource in its base unit
       virtual double quantity() const {
         return quantity_;
+      };
+
+      virtual const std::string& quality() const {
+        return quality_;
       };
 
       virtual Resource::Ptr ExtractRes(double quantity);
@@ -432,8 +439,8 @@ or other places.
       typedef boost::shared_ptr<Composition> Ptr;
       typedef std::map<Iso, double> Vect;
 
-      static Ptr CreateFromAtom(Vect v);
-      static Ptr CreateFromMass(Vect v);
+      static Ptr CreateAtom(Vect v);
+      static Ptr CreateMass(Vect v);
 
       int id();
       const Vect& atom_vect();
@@ -452,12 +459,13 @@ compmath namespace
 
 The excellent floating point calculation handling and thresholding
 functionality introduced by @katyhuff will be preserved. The current
-(pre-proposal) Material::Diff and Material::ApplyThreshold methods will
-become public functions that operate on Composition::Vect types.  Other
-common composition manipulation functions will live here.  They will
-operate on Composition::Vect's because Composition's themselves are
-immutable.  Resource and Composition classes will use these methods where
-appropriate instead of their own, internal versions.
+(pre-proposal) Material::Diff and Material::ApplyThreshold methods will become
+public functions that operate on Composition::Vect types.  Other common
+composition manipulation functions will live here.  They will operate on
+Composition::Vect's because Composition's themselves are immutable.  Resource
+and Composition classes will use these methods where appropriate instead of
+their own, internal versions. This namespace is intended to grow organically as
+needed.
 
 .. code-block:: c++
 
@@ -467,7 +475,7 @@ appropriate instead of their own, internal versions.
     Composition::Vect Add(const Composition::Vect& v1, double qty1,
                           const Composition::Vect& v2, double qty2);
 
-    /// previously Diff
+    /// previously Material::Diff
     Composition::Vect Sub(const Composition::Vect& v1, double qty1,
                            const Composition::Vect& v2, double qty2);
 
@@ -492,8 +500,9 @@ MatQuery class
 
 (This interface will probably need extension)
 
-Will be designed to allow user-developers to *easily* retrieve any kind of
-information about a material they could ever reasonably need.
+This is intended to allow user-developers to *easily* retrieve any kind of
+information about a material they could ever reasonably need. The interface is
+designed to grow organically as needed.
 
 .. code-block:: c++
 
@@ -521,12 +530,12 @@ information about a material they could ever reasonably need.
 Other Changes
 ++++++++++++++
 
-The RecipeLibrary's role of composition decay management has been shifted
-into the Composition class.  It now is only responsible for loading recipes
-from xml input and serving them up simulation wide.  Agents are also
-allowed to register their own compositions manually. *The decay lineage
-tracking functionality introduced by Matt Gidden has been effectively
-preserved.* RecipeLibrary interface becomes:
+The RecipeLibrary's role of composition decay management has been shifted into
+the Composition class.  *The decay lineage tracking functionality introduced by
+Matt Gidden has been effectively preserved.*  RecipeLibrary now is only
+responsible for loading recipes from xml input and serving them up simulation
+wide.  Agents are also allowed to register their own compositions manually.
+RecipeLibrary interface becomes:
 
 .. code-block:: c++
 
