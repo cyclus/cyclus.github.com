@@ -3,7 +3,7 @@ CEP 2 - Separation of Concerns in the *Cyclus* Ecosystem
 
 :CEP: 2
 :Title: Separation of Concerns in the *Cyclus* Ecosystem, or Where Do I Put My Code?
-:Last-Modified: 2013-08-05
+:Last-Modified: 2013-08-23
 :Author: Anthony Scopatz
 :Status: Draft
 :Type: Process
@@ -18,27 +18,28 @@ and central concerns. Many projects may try to tackle the same concern but no
 single project may tackle more than one concern.  Concerns, like projects, may 
 be dependent upon one another.
 
-The central concerns in the *Cyclus* ecosystem are **system dynamics**, 
-**domain models**, and **analysis & visualization**.
+The central concerns in the *Cyclus* ecosystem are 
+**dynamic resource exchange simulation** (DRES),  **domain models** (DM), and 
+**analysis & visualization** (A&V).
 
 Concerns
 ========
 A rich fuel cycle simulator solution has three primary organizational pieces that 
 must have robust implementations.  These pieces are a mechanism for solving for 
-resource exchange in the fuel cycle (system dynamics), relevant and interesting 
-models for the domains of interest (physics, economics, policy, etc.), and a 
+resource exchange in the fuel cycle, relevant and interesting  models for the 
+domains of interest (physics, economics, policy, etc.), and a 
 programmatic method for parsing, slicing, aggregating, and displaying 
-simulation results (analysis & visualization). As an effectively designed suite of 
-software, these concerns should be completely separated from one another 
+simulation results. As an effectively designed suite of software, these concerns 
+should be completely separated from one another 
 and interact only through well-defined interfaces [1]_.  This 
 independence allows both users and developers to reason about each concern 
 without needing to consider upstream effects.  Coupled with a stable interface 
 or API, this independence also allows users and developers to ignore downstream 
 effects in most cases.
 
-The domain model concern is dependent only on the system dynamics' concern.  
+The domain model concern is dependent only on the resource exchange concern.  
 However, the analysis & visualization concern is directly dependent on both the 
-system dynamics and the domain model concerns.  These relationships may be seen 
+resource exchange and the domain model concerns.  These relationships may be seen 
 in Figure 1.
 
 .. figure:: cep-0002-1.svg
@@ -48,36 +49,40 @@ in Figure 1.
 
 .. blockdiag code below
 
-    http://interactive.blockdiag.com/?compression=deflate&src=eJxNjsEKwjAMQO_9iuDBm18wFIRdPQleVEZmqwbaZLSd2A3_3W7O6S3kPZLXgwLQ5oqtjdXNS9tUF7HiYQ0sbIo_Gu7YmLzPEmuja3kWKuOQgk4MR4u1sevFPoVoHJSJ0dElLM7jCXFO9OyU4pAYdqKNnQxk-6BuNraMNgUKsDzxgUKLljqMJDzYWR9Loc8TgHgyHEea6xrx0SPFEU1tq81UMHx6qV9QBp_HhfqXvzv1Um_g616r
+    http://interactive.blockdiag.com/?compression=deflate&src=eJxNjstqQkEMQPfzFcFFd37BxYJQl9200I0WiTNRA5nkMg-5Kv57p9fnbsg5k5wzOIBAW6xS1rtktV97E0swAzWl7oXmPfbU5k3SQGFjQ-caTpRp8LAU3JDMJh9HxcgevihbTZ5Wuhj8HnVH8M2xChY2nfyOiy1GC8-fFpEVPi2Q5KuBKgc-PYy5ohwzZ3hb6Q_nisKnx76mj_1wbi8AS0xaRtqae0slIZcR3Yqn77eC_0sX9wxq4Hq4c6_yfeYuf_KbZsM
 
-    {
+    { 
       default_group_color = none;
       default_shape = roundedbox;
 
-      sysdyn [label="System Dynamics"];
+      resexc [label="Dynamic Resource\nExchange Simulation"];
       dommod [label="Domain Models"];
       anlviz [label="Analysis &\nVisualization"];
 
       group {
         orientation = portrait
-        sysdyn -> dommod;
+        resexc -> dommod;
       }
 
       dommod -> anlviz;
-      sysdyn -> anlviz;
+      resexc -> anlviz;
 
     }
 
-System Dynamics
----------------
-The system dynamics concern is the basis for all other fuel cycle concerns.  
-This dictates and manages how resources flow through a system and the time 
-paradigm used to model the system.  A number of possible representations of 
-system elements exist.  Two main options stand out: 1) *agent-based* models in 
+Dynamic Resource Exchange Simulation
+------------------------------------
+The dynamic resource exchange simulation concern is the basis for all other fuel 
+cycle concerns.  This dictates and manages how resources flow through a system and 
+the time paradigm used to model the system.  A number of possible representations of 
+system elements exist.  Two main options stand out: 1) *individual-based* models in 
 which every actor receives its own instance, and 2) *fleet-based* models where
-like actors are grouped together and assured to act identically.  Furthermore, 
-the choice of how to represent time evolution may also fall into one of the 
-following categories:
+like actors are grouped together and act identically.  Resource exchange may be 
+implemented using a strict *agent-based* modeling [2]_ approach or strict 
+*system dynamics* methods [3]_.  However, these two paradigms are not restrictive
+and implementations may pull from a vareity of algorithms as needed.
+
+Furthermore, the choice of how to represent time evolution may fall into one 
+of the following categories:
 
 * **Equilibrium** - initial transients are ignored or discarded in favor of a steady 
   state solution.
@@ -91,25 +96,25 @@ following categories:
   when needed.
 * **Continuous time** - natural time is implemented as a continuous variable.
 
-The system dynamics concern is a solely mathematical endeavor and should not 
-implement any domain-specific calculations. However, the system dynamics 
+It is important to note that this concern is a solely mathematical endeavor 
+and should not implement any domain-specific calculations. However, the 
 implementation may be *domain-aware* in that it may know about certain sub-type
 specializations.  For example, materials and U.S. Dollars are both sub-types of 
-resources.  Still, the systemic dynamics concern is not allowed to discriminate 
-between any of these specializations nor perform domain-specific computations
-(such as transmuting a material or pricing a derivative).
+resources.  Still, the dynamic resource exchange simulation concern is not allowed 
+to discriminate between any of these specializations nor perform domain-specific 
+computations (such as transmuting a material or pricing a derivative).
 
-The system dynamics concern is also responsible for all optimizations of the 
-fuel cycle.  This includes optimizing resource exchange between multiple actors
-as well as finding the initial conditions which optimize a value function 
-subject to some constraints.  
+The dynamic resource exchange simulation concern is also responsible for all 
+optimizations of the  fuel cycle.  This includes optimizing resource exchange 
+between multiple actors as well as finding the initial conditions which optimize 
+a value function subject to some constraints.  
 
 Domain Models
 -------------
 The purpose of the domain models concern is to provide interesting, accurate, and 
 relevant models of various aspects of the fuel cycle.  These aspects are often the
 technical meat of the fuel cycle analysis.  However, they may be mathematically 
-separated from the system dynamics.  This concern ensures that those mathematical
+separated from resource exhange.  This concern ensures that those mathematical
 separations remain distinct in the software.  There are a number of domain models 
 which are pertinent to fuel cycle calculations:
 
@@ -126,11 +131,11 @@ calculations should be completely separated from the system dynamics concern.
 This establishes a clean interface between these two concerns.
 
 For example, take an enrichment facility which is asked to compute product and tails 
-enrichments.  In the initialization of this calculation, the system dynamics concern
-hands off the simulation time (t), the time delta (dt), and the initial feed material 
-to the underlying physics model.  The physics model then computes the desired outputs
-without further interaction with the system dynamics model.  Lastly, the outputs
-are returned to the system dynamics model.
+enrichments.  In the initialization of this calculation, the dynamic resource 
+exchange simulation concern hands off the simulation time (t), the time delta (dt), 
+and the initial feed material to the underlying physics model.  The physics model 
+then computes the desired outputs without further interaction with the resource 
+exchange model.  Lastly, the outputs are returned to the DRES model.
 
 Analysis & Visualization
 ------------------------
@@ -140,13 +145,13 @@ high and low levels, common aggregations should be easy to perform, and static
 and interactive visualization should be provided as a mechanism for easy human 
 consumption.  All post-processing of simulation data falls under this concern.
 
-The analysis & visualization concern is dependent directly on both the system 
-dynamics concern and the domain models concern.  This is because meaningful 
-inspection of simulation data requires parameters from both concerns.  Note that 
-these dependencies are independent.  The analysis & visualization tools must handle
-the case where only system dynamics models are used.  However, if domain models 
+The analysis & visualization concern is dependent directly on both the dynamic 
+resource exchange simulation concern and the domain models concern.  This is because 
+meaningful inspection of simulation data requires parameters from both concerns.  
+Note that these dependencies are independent.  The analysis & visualization tools 
+must handle the case where only DRES models are used.  However, if domain models 
 are used and the analysis & visualization is aware of these domain models, 
-all system dynamics parameters are guaranteed to also be present.
+all DRES parameters are guaranteed to also be present.
 
 The Cyclus Ecosystem
 ====================
@@ -160,12 +165,12 @@ If for some reason ambiguities exist, first attempt to refactor the code at hand
 with these concerns in mind.  If this fails because of a fundamental ambiguity
 or mixing of multiple concerns, place the code with the most dependent concern.  
 For example, if it is not clear if a class belongs with domain models or with the
-system dynamics put it with the domain models to be safe.
+resource exchange put it with the domain models to be safe.
 
 The cyclus development team currently provides and supports three projects, 
 one for each concern:
 
-* `Cyclus`_ - System Dynamics
+* `Cyclus`_ - Dynamic Resource Exchange Simulation (individual actors, discrete time)
 * `Cycamore`_ - Domain Models
 * `Cyclist`_ -  Analysis & Visualization
 
@@ -180,15 +185,15 @@ in the future implement this concern ('?').
 
 .. blockdiag code below
 
-    http://interactive.blockdiag.com/?compression=deflate&src=eJyNUU1LAzEQve-vGFIQPQgeW5ZV2hRvngQvImW6SduBJLMkWTEt_e_G_bBbvHibee_NmzfJqQBQeoetiZu957bZ1GzYQwWOnS4nbDhgozOeRU5pteWvssh0NwQhBZUcnDIAwJ60ixiJXdY37KNHimXHGdxqU4nXFKK2sE4OLdVB9KRMtWlDX58v5oqtZTWYDwZrtkgOXlhpM46PycXs-UEu54uLK1r2euyU9n0pVp72h3j7dCf-7ERnPun4_4OWDk0KFOAG3ii0aOjY6afRKjGTcr6QcnIuhfjbUD2J0b8F3D9e5b9Cf4ZhQDvFFH_fscnf9FEW528HLJGY
+    http://interactive.blockdiag.com/?compression=deflate&src=eJyNUbFOwzAQ3fMVJ1dCMCB1bBUFVEzZWBhYEKqu9jWx5Pgi20Fpq_47JklpKha2u_fevXtnHzMATTtsbdyUnttmo9iyhwIcO8onbKiwoYQnkdOkt9zlWaL7IfAUqFNwTAAAe0MuYjTskr5hHz2amPecxS3ZQrxR4NYrgnWnKnQliYGWe2XbMNSni73mumY92o8Wz1yjcfDKmmwYx8_ZxexlLleL5cUVa_Z07jT5oRRP3pRVvH28E392orNf5vD_k1YO7T6YADfwbkKL1hx6_TRaIWZSLpZSTs41If42Rk1iDG8B9w9X-a_Qn2EY0V4xxT92bNNHfebZ6RsduJIm
 
     {
       default_group_color = none;
       default_shape = roundedbox;
 
-      group sysdyn {
+      group resexc {
         orientation = portrait;
-        label="System Dynamics";
+        label="Resource Exchange";
         Cyclus;
         }
 
@@ -216,13 +221,13 @@ in the future implement this concern ('?').
 Summary
 =======
 Many other ecosystems and projects model the fuel cycle and make their own choices
-about how to separate -- or not -- the concerns of system dynamics, domain models, 
+about how to separate -- or not -- the concerns of resource exchange, domain models, 
 and analysis and visualization.  The *Cyclus* ecosystem places all concerns in 
 separate projects.  This allows a high degree of modularity between software and
 developers.  Such an ecosystem enables experts to contribute their specific 
 knowledge base in a way that is independent from other parts of the ecosystem
 while simultaneously integrating well with the rest of the ecosystem.  Finally, 
-this  document provides instructions on where to implement tasks based on the task's
+this document provides instructions on where to implement tasks based on the task's
 primary concern.
 
 Document History
@@ -233,6 +238,8 @@ References and Footnotes
 ========================
 
 .. [1] http://en.wikipedia.org/wiki/Separation_of_concerns
+.. [2] http://en.wikipedia.org/wiki/Agent-based_model
+.. [3] http://en.wikipedia.org/wiki/System_dynamics
 
 .. _Cyclus: https://github.com/cyclus/cyclus
 .. _Cycamore: https://github.com/cyclus/cycamore
