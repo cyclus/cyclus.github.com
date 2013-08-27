@@ -3,7 +3,7 @@ CEP 2 - Separation of Concerns in the *Cyclus* Ecosystem
 
 :CEP: 2
 :Title: Separation of Concerns in the *Cyclus* Ecosystem, or Where Do I Put My Code?
-:Last-Modified: 2013-08-23
+:Last-Modified: 2013-08-27
 :Author: Anthony Scopatz
 :Status: Draft
 :Type: Process
@@ -79,7 +79,7 @@ which every actor receives its own instance, and 2) *fleet-based* models where
 like actors are grouped together and act identically.  Resource exchange may be 
 implemented using a strict *agent-based* modeling [2]_ approach or strict 
 *system dynamics* methods [3]_.  However, these two paradigms are not restrictive
-and implementations may pull from a vareity of algorithms as needed.
+and implementations may pull from a variety of algorithms as needed.
 
 Furthermore, the choice of how to represent time evolution may fall into one 
 of the following categories:
@@ -114,7 +114,7 @@ Domain Models
 The purpose of the domain models concern is to provide interesting, accurate, and 
 relevant models of various aspects of the fuel cycle.  These aspects are often the
 technical meat of the fuel cycle analysis.  However, they may be mathematically 
-separated from resource exhange.  This concern ensures that those mathematical
+separated from resource exchange.  This concern ensures that those mathematical
 separations remain distinct in the software.  There are a number of domain models 
 which are pertinent to fuel cycle calculations:
 
@@ -217,6 +217,27 @@ in the future implement this concern ('?').
       Cyclus -> Cyclist ;
       Cycamore -> Cyclist [folded];
     }
+
+Toolkits
+--------
+In any real system, there is glue code which holds the projects together in a 
+cohesive manner.  A collection of such utilities is called a *toolkit*.  While 
+toolkits are critically important to well functioning software their components
+are untied only in that "should be useful."  There need not be underlying concept
+tying them together.  For this reason, toolkits are not a top-level concern on 
+par with resource exchange, domain models, and analysis & visualization.
+
+Instead, each project may have its own toolkit which contains utilities that 
+corresponds most closely with its concern.  The toolkit provides a layer on top of 
+the concern implementation.  Thus the toolkit will be aware of other parts of the 
+project but the concern implementation should not call into elements from the toolkit.
+
+For example, resources are part of the primary concern of *Cyclus*.  Thus 
+a ResourceBuffer class would be part of the *Cyclus* toolkit.  This is because 
+resource exchange can be implemented without a ResourceBuffer but such a class 
+is useful to provide to domain model developers.  Furthermore, the buffer
+applies to all resources is not specific to any domain. Thus this class should be 
+included next to the resource exchange implementation.
 
 Summary
 =======
