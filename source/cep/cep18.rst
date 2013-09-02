@@ -23,18 +23,12 @@ feature.
 Motivation
 ==========
 
-The motivation is critical for CEPs that want to change the Cyclus ecosystem. It
-should clearly explain why the existing language specification is inadequate to
-address the problem that the CEP solves. CEP submissions without sufficient
-motivation may be rejected outright.
+Discussion of motivation vis-a-vis current market implementation.
 
 Rationale
 =========
 
-The rationale fleshes out the specification by describing what motivated the
-design and why particular design decisions were made. It should describe
-alternate designs that were considered and related work, e.g. how the feature is
-supported in other languages.
+Discussion from prelim - why the phases, etc.
 
 Backwards Compatability
 =======================
