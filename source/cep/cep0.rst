@@ -33,6 +33,7 @@ Index
     :maxdepth: 1
 
     SA - 17 - Resource Tracking and Interfaces Re-Re-Redo - Carlsen <cep17>
+    SD - 18 - Dynamic Resource Exchange Interface - Gidden <cep18>
 
 Key
 ---
