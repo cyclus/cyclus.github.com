@@ -223,7 +223,7 @@ Toolkits
 In any real system, there is glue code which holds the projects together in a 
 cohesive manner.  A collection of such utilities is called a *toolkit*.  While 
 toolkits are critically important to well functioning software their components
-are untied only in that "should be useful."  There need not be underlying concept
+are united only in that "should be useful."  There need not be underlying concept
 tying them together.  For this reason, toolkits are not a top-level concern on 
 par with resource exchange, domain models, and analysis & visualization.
 
