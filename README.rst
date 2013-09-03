@@ -50,7 +50,7 @@ Best practice workflow for contributing to site changes
 
    ``make gh-preview``
 
-   This will build a version of the site in the `build` directory of
+   This will build a version of the site in the `gh-build` directory of
    your branch, `add_some_info`.  You can load it directly in a local
    browser.
 
@@ -85,15 +85,14 @@ Best practice for managing a pull request
 
    ``make gh-preview``
 
-   This will build a version of the site in the `build` directory in
+   This will build a version of the site in the `gh-build` directory in
    your branch, `pull_request_branch`.  You can load it directly in a
    local browser.
 
-5. If satisfied, merge the `pull_request_branch` into the `source`
+4. If satisfied, merge the `pull_request_branch` into the `source`
    branch.  Be sure to synchronize with the remote repo first.
 
    ::
-
      git checkout source
      git fetch upstream
      git rebase upstream/source
@@ -103,7 +102,7 @@ Best practice for managing a pull request
 
    ``git push upstream source``
 
-7. Republish the pages with the `gh-pages` target.
+7. Republish the pages with the `gh-publish` target.
 
-   ``make gh-pages``
+   ``make gh-publish``
 
