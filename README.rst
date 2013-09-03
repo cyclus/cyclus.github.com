@@ -1,7 +1,14 @@
+Dependencies
+============
+
+Building the Cyclus website requires:
+
+1. [Sphinx](http://sphinx-doc.org/) v1.1.2 or higher
+2. [sphinxcontrib-bibtex](http://sphinxcontrib-bibtex.readthedocs.org/en/latest/index.html)
+   v0.2.8 or higher
+
 Modifying the Cyclus Website
 ============================
-
-(Note: Sphinx versions higher than 1.1.2 are required.)
 
 A 2 branch system has been implemented to maintain a clean process of
 rebuilding this site.
