@@ -99,6 +99,29 @@ previous supply chain agent-based modeling work
 agnostic as to the actual matching algorithm used, it is concerned only with
 querying the current status of supply and demand in the simulation.
 
+The first phase allows consumers of commodities to denote both the quantity of a
+commodity they need to consume as well as the target isotopics, or quality, by
+**posting** their demand to the market exchange. This posting informs producers
+of commodities what is needed by consumers, and is termed the **Request for
+Bids** (RFB) phase. Consumers are allowed to over-post, i.e., request more
+quantity than they can actually consume, as long as a corresponding capacity
+constraint accompanies this posting. Further, consumers are allowed to post
+demand for multiple commodities that may serve to meet the same combine
+capacity. For example, consider an LWR that can be filled with MOX or UOX. It
+can post a demand for both, but must define a preference over the set of
+possible commodities it can consume. Another example is that of an advanced fuel
+fabrication facility, i.e., one that fabricates fuel partially from separated
+material that has already passed through a reactor. Such a facility can choose
+to fill the remaining space in a certain assembly with various types of fertile
+material, including depleted uranium from enrichment or reprocessed uranium from
+separations. Accordingly, it could demand both commodities as long as it
+provides a corresponding constraint with respect to total consumption. At the
+completion of the RFB phase, the market exchange will have a set of consumption
+portfolios, :math:`P`, where each portfolio consists of a set requests,
+:math:`R`, a cardinal preference over the requests, :math:`\alpha_R`, and
+possibly a set of constraints over the requests, :math:`C_R`. Each request
+consists of a quantity, :math:`q_r`, and a target isotopic vector, :math:`I_r`.
+
 Backwards Compatability
 =======================
 
