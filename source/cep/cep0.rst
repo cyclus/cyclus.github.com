@@ -3,7 +3,7 @@ Cyclus Enhancement Proposals
 :CEP: 0
 :Title: Index of Cyclus Enhancement Proposals (CEPs)
 :Version: N/A
-:Last-Modified: 2013-07-03
+:Last-Modified: 2013-09-03
 :Author: Anthony Scopatz <scopatz at gmail.com>
 :Status: Active
 :Type: Informational
@@ -24,8 +24,8 @@ Index
 .. toctree::
     :maxdepth: 1
 
-    P - 1 - CEP Purpose and Guidelines - Scopatz <cep1>
-    P - 2 - Separation of Concerns in the Cyclus Ecosystem - Scopatz <cep2>
+    PA - 1 - CEP Purpose and Guidelines - Scopatz <cep1>
+    PA - 2 - Separation of Concerns in the Cyclus Ecosystem - Scopatz <cep2>
 
 *Standard CEPs*
 
@@ -43,10 +43,8 @@ Key
 - A - Accepted proposal
 - R - Rejected proposal
 - W - Withdrawn proposal
-- D - Deferred proposal
+- L - Deferred proposal
 - F - Final proposal
-- A - Active proposal
+- C - Active proposal
 - D - Draft proposal
-- S - Superseded proposal
-
-
+- U - Superseded proposal
