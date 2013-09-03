@@ -32,7 +32,7 @@ Index
 .. toctree::
     :maxdepth: 1
 
-    SD - 17 - Resource Tracking and Interfaces Re-Re-Redo - Carlsen <cep17>
+    SA - 17 - Resource Tracking and Interfaces Re-Re-Redo - Carlsen <cep17>
 
 Key
 ---

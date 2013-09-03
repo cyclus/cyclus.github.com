@@ -5,7 +5,7 @@ CEP 17 - Resource Tracking and Interfaces Re-Re-Redo
 :Title: Resource Tracking and Interfaces Re-Re-Redo
 :Last-Modified: 2013-09-03
 :Author: Robert Carlsen <rwcarlsen@gmail.com>
-:Status: Draft 
+:Status: Accepted
 :Type: Standards Track
 :Created: Robert Carlsen
 
