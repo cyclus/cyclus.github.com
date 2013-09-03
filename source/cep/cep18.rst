@@ -119,8 +119,29 @@ provides a corresponding constraint with respect to total consumption. At the
 completion of the RFB phase, the market exchange will have a set of consumption
 portfolios, :math:`P`, where each portfolio consists of a set requests,
 :math:`R`, a cardinal preference over the requests, :math:`\alpha_R`, and
-possibly a set of constraints over the requests, :math:`C_R`. Each request
-consists of a quantity, :math:`q_r`, and a target isotopic vector, :math:`I_r`.
+possibly a set of constraints over the requests, :math:`c_R`. Each request
+consists of a quantity, :math:`q_r`, and a target isotopic vector,
+:math:`I_r`. Consumers are allowed to offer the null set of isotopics as their
+profile, effectively providing no information.
+
+The second phase allows suppliers to **respond** to the set of consumption
+portfolios, and is termed the **Bidding** (B) phase (analgous to Julka's Reply
+to Request for Quote phase). Each consumption portfolio is comprised of requests
+for some set of commodities. Accordingly, for each request, suppliers of that
+commodity denote production capacities, :math:`c_c` and an isotopic profile of
+the commodity they can provide, :math:`I_c`. Suppliers, like consumers, are
+allowed to offer the null set of isotopics. A supplier may have its production
+constrained by more than one parameter. For example, a processing facility may
+have both a throughput constraint (i.e., it can only process material at a
+certain rate) and an inventory constraint (i.e., it can only hold some total
+material). Further, the facility could have a constraint on the quality of
+material to be processed, e.g., it may be able to handle a maximum radiotoxicity
+for any given time step which is a function of both the quantity of material in
+processes and the isotopic content of that material. At the completion of the
+Bidding phase the possible connections between supplier and producer
+facilities, i.e., the arcs in the graph of the transportation problem, have been
+established with specific capacity constraints defined both by the quantity of
+commodities that will traverse the arcs but also by the quality.
 
 Backwards Compatability
 =======================
