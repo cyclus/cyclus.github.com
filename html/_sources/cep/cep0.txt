@@ -25,6 +25,7 @@ Index
     :maxdepth: 1
 
     P - 1 - CEP Purpose and Guidelines - Scopatz <cep1>
+    P - 2 - Separation of Concerns in the Cyclus Ecosystem - Scopatz <cep2>
 
 *Standard CEPs*
 
