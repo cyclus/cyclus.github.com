@@ -14,12 +14,6 @@ Abstract
 
 a short (~200 word) description of the technical issue being addressed.
 
-Specification
-=============
-
-The technical specification should describe the syntax and semantics of any new
-feature.
-
 Motivation
 ==========
 
@@ -45,7 +39,7 @@ step.
 
 The MarketModel class defines a pure virtual function, **Resolve**, which is
 used by derived classes to determine the specific algorithm by which the market
-is to be resolved. Markets receieve proposed Transactions through their
+is to be resolved. Markets receive proposed Transactions through their
 Communicator class interface, which requires the **ReceieveMessage** function to
 be defined by the market. The Resolve function then invokes derived-class based
 algorithm to determine matches for the given set of offers and requests.
@@ -59,14 +53,14 @@ implementation of the market system can only provide this notion by ordering the
 markets in some arbitrary manner. Second, and perhaps lowest of these reasons,
 is that the Transaction class is ambiguous with respect to proposed offers,
 requests, and matched offers and requests. This ambiguity can be addressed
-during a refactor to provide clairty to future developers. Third, there is no
+during a refactor to provide clarity to future developers. Third, there is no
 defined structure to the market-facility interaction. This interaction is the
 core purpose of Cyclus' Dynamic Resource Exchange concern, but users and
 developers are required to define their own interactions (e.g., sending offers
 during the tick phase). The original conception of the tick-tock paradigm was to
-define a notion of time before the resource exchange (i.e., a pre-step) and
+define a notion of time before the resource exchange (i.e., a pare-step) and
 after the resource exchange (i.e., a post-step). The current implementation
-includes the resource exchange conern during both of these phases, complicating
+includes the resource exchange concern during both of these phases, complicating
 the process and mixing concerns. Finally, there is no response mechanism for
 facilities to delineate between resources of a given commodity. The current
 implementation places this concern upon the market's resolution algorithm,
@@ -85,7 +79,7 @@ rather than requiring facility-based notifications. Accordingly, concerns are
 appropriately separated: the information is gather by the core at the beginning
 of the resolve step, allowing facilities to inform a given market algorithm,
 market algorithms determine the set of offers and requests to be matched, and
-the core sends out resolved transactions. Message passing to and from marekts is
+the core sends out resolved transactions. Message passing to and from markets is
 addressed by the framework, providing facilities, institutions, and regions
 providing each with specific, defined agency.
 
@@ -125,7 +119,7 @@ consists of a quantity, :math:`q_r`, and a target isotopic vector,
 profile, effectively providing no information.
 
 The second phase allows suppliers to **respond** to the set of consumption
-portfolios, and is termed the **Bidding** (B) phase (analgous to Julka's Reply
+portfolios, and is termed the **Bidding** (B) phase (analogous to Julka's Reply
 to Request for Quote phase). Each consumption portfolio is comprised of requests
 for some set of commodities. Accordingly, for each request, suppliers of that
 commodity denote production capacities, :math:`c_c` and an isotopic profile of
@@ -138,12 +132,125 @@ material). Further, the facility could have a constraint on the quality of
 material to be processed, e.g., it may be able to handle a maximum radiotoxicity
 for any given time step which is a function of both the quantity of material in
 processes and the isotopic content of that material. At the completion of the
-Bidding phase the possible connections between supplier and producer
-facilities, i.e., the arcs in the graph of the transportation problem, have been
-established with specific capacity constraints defined both by the quantity of
-commodities that will traverse the arcs but also by the quality.
+Bidding phase the possible connections between supplier and producer facilities,
+i.e., the arcs in a graph of a matching problem, have been established with
+specific capacity constraints defined both by the quantity and quality of
+commodities that will traverse the arcs.
 
-Backwards Compatability
+The final phase of the information gathering procedure allows consumer
+facilities to adjust their set of preferences and for managers of consumer
+facilities to affect the consumer's set of preferences, as described in the
+remaining sections. Accordingly, the last phase is termed the **Preference
+Adjustment** (PA) phase. Preference adjustments can occur in response to the set
+of responses provided by producer facilities. Consider the example of a reactor
+facility that requests two fuel types, MOX and UOX. It may get two responses to
+its request for MOX, each with different isotopic profiles of the MOX that can
+be provided. It can then assign preference values over this set of potential MOX
+providers. Another prime example is in the case of repositories. A repository
+may have a defined preference of material to accept based upon its heat load or
+radiotoxicity, both of which are functions of the quality, or isotopics, of a
+material. In certain simulators, limits on fuel entering a repository are
+imposed based upon the amount of time that has elapsed since the fuel has exited
+a reactor, which can be assessed during this phase. The time constraint is, in
+actuality, a constraint on heat load or radiotoxicity (one must let enough of
+the fission products decay). A repository could analyze possible input fuel
+isotopics and set the arc preference of any that violate a given rule to 0,
+effectively eliminating that arc.
+
+Institutions and Regions in Cyclus are provided in order to add granularity to
+the levels of reltional modeling available to a user or developer. Both types of
+agents or models in Cyclus can possibly be allowed to affect preferences during
+the PA phase. A slightly longer discussion is included below.
+
+Facility Agency
++++++++++++++++
+
+Facilities in Cyclus are abstracted to either consumers or suppliers of
+commodities, and some may be both. Supplier agents are provided agency by being
+able to communicate to the market-resolution mechanism a variety of production
+capacity constraints in second phase of the information gathering
+methodology. Consumer agents are provided agency by being able to assign
+preferences among possible suppliers based on the supplier's quality of
+product. Because this agency is encapsulated for each agent, it is possible to
+define strategies that can be attached or detached to the agents at
+run-time. Such strategies are an example of the Strategy design pattern
+:cite:`vlissides_design_1995`.
+
+Institutional Agency
+++++++++++++++++++++
+
+Institutions in Cyclus manage a set of facilities. Facility management is
+nominally split into two main categories: the commissioning and decommissioning
+of facilities and supply-demand association. The goal of including a notion of
+institutions is to allow an increased level of detail when investigating
+regional-specific scenarios. For example, there exist multi-national
+enterprises, such as AREVA, that operate fuel cycle facilities in a variety of
+countries, or regions. Furthermore, there are international governmental
+organizations, such as the IAEA, have proposed managing large fuel cycle
+facilities that service many countries in a given global region. A fuel bank is
+an example of such a facility. 
+
+Accordingly, institutions in this proposal are able to augment the preferences
+of supplier-consumer pairs that have been established in order to simulate a
+mutual preference to trade material within an institution. Of course, situations
+arise in real life where an institution has the capability to service its own
+facilities, but choose to use an outside provider because of either cost or time
+constraints. Such a situation is allowed in this framework as well. It is not
+clear how such a relationship should be instantiated and to what degree
+institutions should be allowed to affect their managed facilities'
+preferences. This issue lies squarely in the realm of simulation design
+decisions, part of the **art** of simulation. Accordingly, the strategy of
+affecting preferences is encapsulated within the full preference allocation
+phase in order to allow for further modularity of relational options between
+agents.
+
+Regional Agency
++++++++++++++++
+
+Regions are provided agency by their ability to affect preferences between
+supplier-consumer facility pairs in the PA phase, much like institutions. The
+ability to perturb arc preferences between a given supplier and a given consumer
+allows fuel cycle simulation developers to model relatively complex interactions
+at a regional level, such as tariffs and sanctions. Constraints to cross-border
+trading can also be applied. For example, a region could place constraints on
+the total amount of a given commodity type that is able to flow into it or out
+of it into a different region. Such constraints could applied not only to bulk
+quantities of a commodity, but also to the quality of each commodity. Such a
+mechanism could be used to model interdiction of highly-enriched uranium
+transport, for example.
+
+
+Modularity
+----------
+
+Note that the algorithms used for each phase can be modular. Inputs and outputs
+are defined, but the methodology by which they are obtained can be updated as
+needed. The first two phases of the information gathering step are relatively
+simple. However, note that the PA phase is a major modeling decision and will
+likely be another source of dynamic modularity (in addition to the market
+resolution algorithm). There may be many proposed preference adjustment phase
+algorithms, and accordingly an API will be proposed with a default behavior that
+can be modularized by additional algorithms as needed.
+
+Market Resolution
+-----------------
+
+Upon completion of the information gathering step, the market resolution
+function will be called. The current "null market" behavior is defined as a
+"greedy matching" algorithm. Such an algorithm as currently implemented naively
+matches consumers with suppliers with particular regard for preference of
+commodity or resource. Accordingly, a similar algorithm will be implemented that
+greedily matches supplier and requester based on the requester's highest
+preference, accounting for multiple commodity markets and associated production
+capacities.
+
+Specification
+=============
+
+The technical specification should describe the syntax and semantics of any new
+feature.
+
+Backwards Compatibility
 =======================
 
 All CEPs that introduce major backwards incompatibilities must include a section
@@ -169,6 +276,4 @@ References and Footnotes
 
 .. bibliography:: cep-0018-1.bib
    :cited:
-
-.. _link: http://an-example-link
 
