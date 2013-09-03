@@ -113,5 +113,5 @@ Best practice for managing a pull request
 
    ``make gh-publish``
 
-.. Sphinx_: http://sphinx-doc.org/
-.. sphinxcontrib-bibtex_: http://sphinxcontrib-bibtex.readthedocs.org/en/latest/index.html
+.. _Sphinx: http://sphinx-doc.org/
+.. _sphinxcontrib-bibtex: http://sphinxcontrib-bibtex.readthedocs.org/en/latest/index.html
