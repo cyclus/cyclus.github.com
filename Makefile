@@ -1,34 +1,32 @@
 # Makefile for Sphinx documentation
 #
-GH_SOURCE_DIRS = source 
-GH_BUILT_DIRS = _images _sources _static basics devdoc usrdoc build
-GH_BUILT_FILES = genindex.html index.html objects.inv search.html searchindex.js
-
-GH_CURRENT_BRANCH = $(shell git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-GH_SOURCE_BRANCH = source
-GH_BUILD_BRANCH = master
-
+# The included file 'gh-project.mk' should define the following:
+# GH_SOURCE_DIR = top-level directory of all the ReST source files
+# GH_SOURCE_BRANCH = repository branch that contains the source
+# GH_PUBLISH_BRANCH = repository branch that contains the rendered HTML
+# GH_UPSTREAM_REPO = repository that contains the rendered HTML
+include gh-project.mk
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
-BUILDDIR      = ./build
+BUILDDIR      = ./gh-build
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
 PAPEROPT_letter = -D latex_paper_size=letter
-ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
+ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) $(GH_SOURCE_DIR)
 # the i18n builder cannot share the environment and doctrees with the others
-I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
+I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) $(GH_SOURCE_DIR)
 
 .PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  gh-revert  to revert changes made to $(BUILD_BRANCH) branch "
-	@echo "             and switch back to $(SOURCE_BRANCH)"
-	@echo "  gh-push    to push HTML documentation in $(BUILD_BRANCH) branch"
+	@echo "  gh-preview to build HTML in directory $BUILDDIR for testing"
+	@echo "  gh-revert  to cleanup HTML build in directory $BUILDDIR after testing"
+	@echo "  gh-publish final build and push from source branch to master branch"
 	@echo "  html       to make standalone HTML files"
 	@echo "  dirhtml    to make HTML files named index.html in directories"
 	@echo "  singlehtml to make a single large HTML file"
@@ -49,28 +47,28 @@ help:
 	@echo "  linkcheck  to check all external links for integrity"
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
 
-gh-revert:
-	git checkout -f --
-	rm -rf $(GH_SOURCE_DIRS) build
-	git checkout $(GH_SOURCE_BRANCH)
+gh-clean gh-revert clean:
+	-rm -rf $(BUILDDIR)
 
-gh-push:
-	rm -rf $(GH_SOURCE_DIRS) build
-	git add -A 
-	git commit -m "Generated $(GH_BUILD_BRANCH) for `git log $(GH_SOURCE_BRANCH) -1 --pretty=short --abbrev-commit`" && git push origin $(GH_BUILD_BRANCH) 
-	git checkout $(GH_SOURCE_BRANCH)
-
-gh-install:
-	rsync -a $(BUILDDIR)/html/* .
-	rm -rf $(BUILDDIR)/html/*
-
-clean:
-	rm -rf $(GH_BUILT_DIRS) $(GH_BUILT_FILES)
-
-html:
-	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
+gh-preview html:
+	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)."
+
+gh-publish:
+	git checkout $(GH_PUBLISH_BRANCH)
+	git checkout $(GH_SOURCE_BRANCH) -- $(GH_SOURCE_DIR)
+	git reset HEAD 
+	make clean
+	make html
+	rsync -a $(BUILDDIR)/* .
+	rsync -a $(BUILDDIR)/.* .
+	git add `(cd $(BUILDDIR); find . -type f; cd ..)`
+	rm -rf $(GH_SOURCE_DIR) $(BUILDDIR)
+	git commit -m "Generated $(GH_PUBLISH_BRANCH) for `git log $(GH_SOURCE_BRANCH) -1 --pretty=short --abbrev-commit`" && git push $(GH_UPSTREAM_REPO) $(GH_PUBLISH_BRANCH)
+	git checkout $(GH_SOURCE_BRANCH)
+
+htmlclean cleanhtml: clean html
 
 dirhtml:
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
@@ -103,17 +101,17 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/Cyclus.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/UW-MadisonComputationalNuclearEngineeringResearchGroupCNERG.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/Cyclus.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/UW-MadisonComputationalNuclearEngineeringResearchGroupCNERG.qhc"
 
 devhelp:
 	$(SPHINXBUILD) -b devhelp $(ALLSPHINXOPTS) $(BUILDDIR)/devhelp
 	@echo
 	@echo "Build finished."
 	@echo "To view the help file:"
-	@echo "# mkdir -p $$HOME/.local/share/devhelp/Cyclus"
-	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/Cyclus"
+	@echo "# mkdir -p $$HOME/.local/share/devhelp/UW-MadisonComputationalNuclearEngineeringResearchGroupCNERG"
+	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/UW-MadisonComputationalNuclearEngineeringResearchGroupCNERG"
 	@echo "# devhelp"
 
 epub:
@@ -177,3 +175,7 @@ doctest:
 	$(SPHINXBUILD) -b doctest $(ALLSPHINXOPTS) $(BUILDDIR)/doctest
 	@echo "Testing of doctests in the sources finished, look at the " \
 	      "results in $(BUILDDIR)/doctest/output.txt."
+install:
+	rsync -a $(BUILDDIR)build/html/* .
+	rm -rf $(BUILDDIR)build/html/*
+
