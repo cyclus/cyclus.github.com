@@ -83,6 +83,8 @@ Best practice for managing a pull request
 
 3. Test the changes by using the `gh-preview` target
 
+   ``make gh-preview``
+
    This will build a version of the site in the `gh-build` directory in
    your branch, `pull_request_branch`.  You can load it directly in a
    local browser.
@@ -100,7 +102,7 @@ Best practice for managing a pull request
 
    ``git push upstream source``
 
-7. Republish the pages with the `gh-pages` target.
+7. Republish the pages with the `gh-publish` target.
 
-   ``make gh-pages``
+   ``make gh-publish``
 
