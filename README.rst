@@ -3,9 +3,9 @@ Dependencies
 
 Building the Cyclus website requires:
 
-1. [Sphinx](http://sphinx-doc.org/) v1.1.2 or higher
-2. [sphinxcontrib-bibtex](http://sphinxcontrib-bibtex.readthedocs.org/en/latest/index.html)
-   v0.2.8 or higher
+1. `Sphinx`_ v1.1.2 or higher
+
+2. `sphinxcontrib-bibtex`_ v0.2.8 or higher
 
 Modifying the Cyclus Website
 ============================
@@ -113,3 +113,5 @@ Best practice for managing a pull request
 
    ``make gh-publish``
 
+.. Sphinx_: http://sphinx-doc.org/
+.. sphinxcontrib-bibtex_: http://sphinxcontrib-bibtex.readthedocs.org/en/latest/index.html
