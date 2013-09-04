@@ -7,6 +7,8 @@ Building the Cyclus website requires:
 
 2. `sphinxcontrib-bibtex`_ v0.2.8 or higher
 
+2. `sphinxcontrib-blockdiag`_ v1.0 or higher
+
 Modifying the Cyclus Website
 ============================
 
@@ -115,3 +117,4 @@ Best practice for managing a pull request
 
 .. _Sphinx: http://sphinx-doc.org/
 .. _sphinxcontrib-bibtex: http://sphinxcontrib-bibtex.readthedocs.org/en/latest/index.html
+.. _sphinxcontrib-blockdiag: http://blockdiag.com/en/blockdiag/sphinxcontrib.html

@@ -219,6 +219,28 @@ quantities of a commodity, but also to the quality of each commodity. Such a
 mechanism could be used to model interdiction of highly-enriched uranium
 transport, for example.
 
+.. blockdiag::
+
+   blockdiag {
+      query_requesters -> query_suppliers -> requesters_preferences
+
+      group {
+        label = "RFB"
+	query_requesters
+      }
+
+      group {
+        label = "B"
+	query_suppliers
+      }
+
+      group {
+        label = "PA"
+	orientation = portrait
+	
+	requesters_preferences -> institutional_preferences -> regional_preferences
+      }
+   }
 
 Modularity
 ----------
