@@ -283,8 +283,90 @@ capacities.
 Specification
 =============
 
-The technical specification should describe the syntax and semantics of any new
-feature.
+RFP Procedure
+-------------
+
+Input 
+++++++
+
+The set of facilities requesting/demanding one or more commodities
+at the given time step.
+
+Ouptput
+++++++
+
+A RequestsSet (defined below).
+
+Unkown 
++++++++
+
+How to construct the input list; some different options exist. 
+
+1. A naive approach would be to query every facility to determine demand at each
+   time step.
+
+2. A less naive approach would be to have facilities register with an entity
+   that they generally demand some commodity. The set of demanding facilities
+   could then be queried.
+
+3. Facilities could register with an entity at the end of their tick step if
+   they demand a commodity.
+
+Approach 1 is the easiest to implement but the least effcient. Approach 2 is
+unlikely to provide much more effciency in simulations where the majority of
+facilities consume resources. Approach 3 provides the most efficiency of the 3
+in that it is guaranteed to query only those facilities that presently demand a
+commodity. It requires a slight overhead for module developers in that they must
+notify the core that their facility has a demand rather than the core explicitly
+querying it.
+
+RequestSet
+----------
+
+A RequestSet is a set of requests and possibly accomanying constraints on those
+requests.
+
+Request
++++++++
+
+A Request encapsulates the information required to analyze commodity requests
+from facilities in a dynamic manner.
+
+1. A commodity
+
+2. A target resource, i.e., its quantity and quality. 
+
+3. A preference for that resource/commodity pairing
+
+There is a desire to not have to type check the resource in order to determine
+whether or not it is a Material. In the past GenericResources have been used in
+place of a Material with an unknown composition. A specific case is the example
+of the current SinkFacility and other repository models. Because the facility
+can take any kind of composed material, the GenericResource class was used,
+instead of defaulting to a material with an empty composition.
+
+The quality comparison for future operations depends wholly on the resource
+subclass used. Accordingly, this methodology suggests that GenericMaterials that
+are intended to be Materials without a defined composition should be constructed
+as such, i.e., as Material resources without a defined composition. Such a
+decision would greatly reduce complexity of implementation of this proposal.
+
+RequestConstraint
++++++++++++++++++
+
+A RequestConstraint is intended to provide specific, agent-based information
+regarding the ability for agents to accept more than one of their requests.
+
+Some examples include:
+
+- A reactor that can accept UOX and MOX to a certain level, i.e., a capacity
+  constraint
+- An advanced fuel fabrication facility that can use depleted uranium or
+  recycled uranium, i.e., an OR constraint
+
+Such a construct is not specifically necessary to provide proof-of-prototype
+implementation and is noted here for posterity. Further discussion is required
+to determine the usefulness of its implementation in the near term.
 
 Backwards Compatibility
 =======================
