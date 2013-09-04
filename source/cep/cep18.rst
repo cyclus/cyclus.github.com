@@ -219,28 +219,42 @@ quantities of a commodity, but also to the quality of each commodity. Such a
 mechanism could be used to model interdiction of highly-enriched uranium
 transport, for example.
 
-.. blockdiag::
 
-   blockdiag {
-      query_requesters -> query_suppliers -> requesters_preferences
+.. figure:: cep-0018-2.svg
+    :align: center
 
-      group {
-        label = "RFB"
-	query_requesters
-      }
+    **Figure 1:** Information Gathering Phase Order.
 
-      group {
-        label = "B"
-	query_suppliers
-      }
+.. blockdiag code below
 
-      group {
-        label = "PA"
-	orientation = portrait
-	
-	requesters_preferences -> institutional_preferences -> regional_preferences
-      }
-   }
+    http://interactive.blockdiag.com/?compression=deflate&src=eJzFkcsKwjAQRdf2K0JcC0VBKqJgBcGd1g-Q1I41GDIxD1DEfzctbX2C7jqLhFwmZ25uglTg7phxlpNrQIrKYM-csNtco1PbHQrUZEIkShiTFurVlDkwBd6O9yYzyFI8t2iq3ujagb6QBE4OjAVtKOlNa3XjlBK8EZsmstKwNzSoGGXa9Rf4EiwF4R9Kk0VMG7X8jQnthmEUR17vfI6uem8_wV-wcRQNwyfsw_vf1NXsEzsaDfrzucei5iAtsxyl71WorWbcBh0_8D2XMqylNPb5nEBeXK2Sqy0Vyx2by59z
+
+    blockdiag {
+    default_group_color = none;                                                                                                                    
+    default_shape = roundedbox;                                                                                                                    
+    
+    "Query Requesters" -> "Query Suppliers" -> "Requester Prefs"
+
+    group {
+    label = "RFB"
+    color="#008B8B"
+    "Query Requesters"
+    }
+
+    group {
+    label = "B"
+    color="#B8860B"
+    "Query Suppliers"
+    }
+
+    group {
+    label = "PA"
+    color="#9932CC"
+    orientation = portrait
+    
+    "Requester Prefs" -> "Inst Prefs" -> "Region Prefs"
+    }
+    }
 
 Modularity
 ----------
