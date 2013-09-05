@@ -283,6 +283,10 @@ capacities.
 Specification
 =============
 
+Each major phase method and associated classes are treated. Method inputs and
+outputs are described as well as known issues dealing with their
+implementation. The members and methods of proposed classes are also described.
+
 RFP Procedure
 -------------
 
@@ -293,12 +297,12 @@ The set of facilities requesting/demanding one or more commodities
 at the given time step.
 
 Ouptput
-++++++
-
-A RequestsSet (defined below).
-
-Unkown 
 +++++++
+
+A RequestSet (defined below).
+
+Unknown 
+++++++++
 
 How to construct the input list; some different options exist. 
 
@@ -330,7 +334,8 @@ Request
 +++++++
 
 A Request encapsulates the information required to analyze commodity requests
-from facilities in a dynamic manner.
+from facilities in a dynamic manner. A facility may have more than one Request
+associated with it at any given time step.
 
 1. A commodity
 
@@ -338,49 +343,176 @@ from facilities in a dynamic manner.
 
 3. A preference for that resource/commodity pairing
 
-There is a desire to not have to type check the resource in order to determine
-whether or not it is a Material. In the past GenericResources have been used in
-place of a Material with an unknown composition. A specific case is the example
-of the current SinkFacility and other repository models. Because the facility
-can take any kind of composed material, the GenericResource class was used,
-instead of defaulting to a material with an empty composition.
-
-The quality comparison for future operations depends wholly on the resource
-subclass used. Accordingly, this methodology suggests that GenericMaterials that
-are intended to be Materials without a defined composition should be constructed
-as such, i.e., as Material resources without a defined composition. Such a
-decision would greatly reduce complexity of implementation of this proposal.
-
 RequestConstraint
 +++++++++++++++++
 
-A RequestConstraint is intended to provide specific, agent-based information
-regarding the ability for agents to accept more than one of their requests.
+A RequestConstraint provides an ability to determine constraints on a facility's
+series of requests. Some constraints may require conversion functions which
+convert a given resource specification into a measureable value related to a
+constraint. At present, two types of RequestConstraints are provided, given the
+available use cases.
 
-Some examples include:
+First, a capacity constraint, which is comprised of:
 
-- A reactor that can accept UOX and MOX to a certain level, i.e., a capacity
-  constraint
-- An advanced fuel fabrication facility that can use depleted uranium or
-  recycled uranium, i.e., an OR constraint
+1. A constraining value
 
-Such a construct is not specifically necessary to provide proof-of-prototype
-implementation and is noted here for posterity. Further discussion is required
-to determine the usefulness of its implementation in the near term.
+2. A conversion function, whose function signature is
+   
+.. code-block:: c++
+
+   double ConversionFunction(GenericResource::Ptr)
+   double ConversionFunction(Material::Ptr)
+
+3. The set of requests associated with the constraint, which may be a subset of
+   the total requests provided by the facility.
+
+Repositories in Cyclus provide a use case for this feature. In general,
+repositories could request many different commodities, e.g., "Used LWR Fuel",
+"Separated TRU", "Recycled Uranium", etc. There is a limit, though, on what can
+be accepted at any given timer period, be it of total quantity, heatload, or
+some other metric.
+
+Second, an exclusivity constraint, which is comprised of:
+
+1. The set of requests which must be satsified exclusively
+
+Reactors that can be fueled by more than one fuel source provide a use case for
+this feature. Take for example a reactor that can be fuel with UOX or MOX. It
+requires the ability to tell any solution mechanism to provide it with one fuel
+type *or* the other, but not both.
+
+B Procedure
+-----------
+
+Input 
+++++++
+
+The set of facilities supplying one or more commodities and the set of requests
+for commodities at the given time step.
+
+Ouptput
++++++++
+
+A SupplySet (defined below).
+
+Unknown
++++++++
+
+The Bidding procedure has the same unknown as the RFP procedure.
+
+SupplySet
+---------
+
+A SupplySet is a set of is a set of resource supplies and associated
+constraints. There may be more than one Supply per facility. 
+
+Supply
+++++++
+
+A Supply encapsulates the information required to analyze commodity requests
+from facilities in a dynamic manner.
+
+1. A commodity
+
+2. A resource representation for each feasible request 
+
+SupplyConstraint
+++++++++++++++++
+
+A SupplyConstraint provides an ability to determine constraints on a suppliers
+ability to satisfy potential orders. Some constraints may require conversion
+functions which convert a given resource specification into a measureable value
+related to a constraint. 
+
+1. A constraining value
+
+2. A conversion function, similar to the RequestConstraint
+
+A general notion of constraints on supply production are required to model even
+simple scenarios. However, enrichment facilities provide a use case for the
+conversion function. Enrichment supply is measured in SWUs, which is a function
+of the target material's U-235 enrichment. A conversion from enrichment level to
+SWUs is required to appropriately constrain the facility's supply.
+
+PA Procedure
+------------
+
+At the beginning of the Preference Assignment procedure, possible connections
+between supplier and consumer facilities are known. It is useful to think of
+these connections as arcs on a graph, where each arc represents a request that
+could be met by a supplier. The RequestSet associated with a facility represent
+nodes in this graph with constraints associated with one or more of the
+arcs. The SupplySet represent supplier nodes with constraints over all incoming
+request arcs.
+
+Input 
+++++++
+
+A set of pairs of Supply and Demand, i.e., arcs on the supply-demand graph.
+
+Ouptput
++++++++
+
+Requester-based preferences for each supply-demand pair, with possible
+modifications made by the managers of the requester.
+
+Unknown
++++++++
+
+The interaction of the manager perturbation of the the requester preferences
+does not have many well-defined used cases. The primary use case to date is
+regional preference modeling. The primary question concerning this algorithm is
+the timing of the perturbation. Two choices exist:
+
+1. Apply perturbations immediately after the requester assigns a preference.
+
+2. Apply perturbations after all managed requesters assign their preferences.
+
+The second approach allows decision making given the aggregate of possible
+connections, i.e., it provides more information. However, its implementation
+will be more complicated and is perhaps unneccesary if a use case is not known.
+
+MarketAlgorithm
+---------------
+
+The MarketAlgorithm is a virtual base class for possible algorithms to solve the
+supply-demand matching algorithm. 
+
+Input
++++++
+
+The set of possible supply-demand pairs with associated preferences.
+
+Output
+++++++
+
+The set of chosen supply-demand pairs to execute.
+
+MarketExecution
+---------------
+
+The final step of the market resolution phase, the execution of the market
+provides suppliers with the full list of requests to be met. Suppliers are then
+asked to return a resource for each of the provided requests. Requesters are
+then notified of all orders that have been filled.
 
 Backwards Compatibility
 =======================
 
-All CEPs that introduce major backwards incompatibilities must include a section
-describing these incompatibilities and their severity. The CEP must explain how
-the author proposes to deal with these incompatibilities. CEP submissions
-without a sufficient backwards compatibility treatise may be rejected outright.
+This CEP proposes a number of backwards incompatabilities. 
+
+- The MarketModel is replaced by an information gathering procedure and a
+  modular MarketAlgorithm
+
+- Transactions are reduced to accepted offers, rather than proposed offers and
+  requests
+
+- The Message and Communicator classes are no longer needed
 
 Reference Implementation
 ========================
 
-The reference implementation must be completed before any CEP is given status
-“Final”, but it need not be completed before the CEP is accepted.
+Implementation to come...
 
 Document History
 ================
