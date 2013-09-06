@@ -220,7 +220,7 @@ mechanism could be used to model interdiction of highly-enriched uranium
 transport, for example.
 
 
-.. figure:: cep-0018-2.svg
+.. figure:: cep18/cep-0018-2.svg
     :align: center
 
     **Figure 1:** Information Gathering Phase Order.
@@ -524,6 +524,6 @@ References and Footnotes
 
 .. rubric:: References
 
-.. bibliography:: cep-0018-1.bib
+.. bibliography:: cep18/cep-0018-1.bib
    :cited:
 
