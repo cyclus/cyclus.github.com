@@ -313,7 +313,91 @@ Specification
 
 Each major phase method and associated classes are treated. Method inputs and
 outputs are described as well as known issues dealing with their
-implementation. The members and methods of proposed classes are also described.
+implementation. The members and methods of proposed classes are also
+described. Because the phases utilize new classes and containers, those are
+described first.
+
+Request
++++++++
+
+A Request encapsulates the information required to analyze commodity requests
+from facilities in a dynamic manner. A facility may have more than one Request
+associated with it at any given time step.
+
+1. A commodity
+
+2. A target resource, i.e., its quantity and quality. 
+
+3. A preference for that resource/commodity pairing
+
+.. code-block:: c++
+
+   /// A Request encapsulates all the information required to communicate the 
+   /// needs of an agent in the Dynamic Resource Exchange, including the 
+   /// commodity it needs as well as a resource specification for that commodity
+   class Request {
+    public:
+     /// @return the commodity associated with this request
+     std::string commodity();
+
+     /// @return the target resource for this request
+     cyclus::Material::Ptr target();
+     
+     /// @return the preference value for this request
+     double preference();
+   }
+
+RequestConstraint
++++++++++++++++++
+
+A RequestConstraint provides an ability to determine constraints on a facility's
+series of requests. Some constraints may require conversion functions which
+convert a given resource specification into a measureable value related to a
+constraint. At present, two types of RequestConstraints are provided, given the
+available use cases.
+
+First, a capacity constraint, which is comprised of:
+
+1. A constraining value
+
+2. A conversion function, whose function signature is
+   
+3. The set of requests associated with the constraint, which may be a subset of
+   the total requests provided by the facility.
+
+Repositories in Cyclus provide a use case for this feature. In general,
+repositories could request many different commodities, e.g., "Used LWR Fuel",
+"Separated TRU", "Recycled Uranium", etc. There is a limit, though, on what can
+be accepted at any given timer period, be it of total quantity, heatload, or
+some other metric.
+
+.. code-block:: c++
+
+   typedef double (*Converter)(cyclus::Material::Ptr)
+
+   /// A CapacityConstraint provides an ability to determine an agent's 
+   /// constraints on resource allocation given a capacity.
+   class CapacityConstraint {
+    public:
+     /// @return a pointer to a conversion function that converts a request 
+     /// into the units of this constraint
+     Converter CapacityConverter();
+     
+     /// @return the capacity associated with this constraint
+     double capacity();
+
+     /// @brief add a request that's associated with this constraint
+     void AddRequest(Request&);
+   }
+
+Second, an exclusivity constraint, which is comprised of:
+
+1. The set of requests which must be satsified exclusively
+
+Reactors that can be fueled by more than one fuel source provide a use case for
+this feature. Take for example a reactor that can be fuel with UOX or MOX. It
+requires the ability to tell any solution mechanism to provide it with one fuel
+type *or* the other, but not both.
 
 RFP Procedure
 -------------
@@ -327,7 +411,7 @@ at the given time step.
 Ouptput
 +++++++
 
-A RequestSet (defined below).
+A Set of RequestPortfolios (defined below).
 
 Unknown 
 ++++++++
@@ -357,57 +441,6 @@ RequestSet
 
 A RequestSet is a set of requests and possibly accomanying constraints on those
 requests.
-
-Request
-+++++++
-
-A Request encapsulates the information required to analyze commodity requests
-from facilities in a dynamic manner. A facility may have more than one Request
-associated with it at any given time step.
-
-1. A commodity
-
-2. A target resource, i.e., its quantity and quality. 
-
-3. A preference for that resource/commodity pairing
-
-RequestConstraint
-+++++++++++++++++
-
-A RequestConstraint provides an ability to determine constraints on a facility's
-series of requests. Some constraints may require conversion functions which
-convert a given resource specification into a measureable value related to a
-constraint. At present, two types of RequestConstraints are provided, given the
-available use cases.
-
-First, a capacity constraint, which is comprised of:
-
-1. A constraining value
-
-2. A conversion function, whose function signature is
-   
-.. code-block:: c++
-
-   double ConversionFunction(GenericResource::Ptr)
-   double ConversionFunction(Material::Ptr)
-
-3. The set of requests associated with the constraint, which may be a subset of
-   the total requests provided by the facility.
-
-Repositories in Cyclus provide a use case for this feature. In general,
-repositories could request many different commodities, e.g., "Used LWR Fuel",
-"Separated TRU", "Recycled Uranium", etc. There is a limit, though, on what can
-be accepted at any given timer period, be it of total quantity, heatload, or
-some other metric.
-
-Second, an exclusivity constraint, which is comprised of:
-
-1. The set of requests which must be satsified exclusively
-
-Reactors that can be fueled by more than one fuel source provide a use case for
-this feature. Take for example a reactor that can be fuel with UOX or MOX. It
-requires the ability to tell any solution mechanism to provide it with one fuel
-type *or* the other, but not both.
 
 B Procedure
 -----------
