@@ -330,6 +330,8 @@ associated with it at any given time step.
 
 3. A preference for that resource/commodity pairing
 
+4. A requester
+
 .. code-block:: c++
 
    /// A Request encapsulates all the information required to communicate the 
@@ -345,7 +347,39 @@ associated with it at any given time step.
      
      /// @return the preference value for this request
      double preference();
-   }
+
+     /// @return the model requesting the resource
+     cyclus::FacilityModel* requester();
+   };
+
+RequestResponse
++++++++++++++++
+
+A RequestResponse encapsulates the information required to analyze responses to
+requests for a commodity, and includes:
+
+1. A reference request
+
+2. A response resource, i.e., its quantity and quality. 
+
+3. A responder
+
+.. code-block:: c++
+
+   /// A RequestResponse encapsulates all the information required to 
+   /// communicate a response to a request for a resource, including the 
+   /// resource response and the responder.
+   class RequestResponse {
+    public:
+     /// @return the request this response is associated with
+     cyclus::Request& request();
+
+     /// @return the target resource for this request
+     cyclus::Material::Ptr response();
+
+     /// @return the model respondeing to the request
+     cyclus::FacilityModel* responder();
+   };
 
 RequestConstraint
 +++++++++++++++++
