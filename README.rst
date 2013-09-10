@@ -100,6 +100,7 @@ Best practice for managing a pull request
    branch.  Be sure to synchronize with the remote repo first.
 
    ::
+
      git checkout source
      git fetch upstream
      git rebase upstream/source
