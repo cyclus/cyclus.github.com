@@ -1,7 +1,14 @@
+Dependencies
+============
+
+Building the Cyclus website requires:
+
+1. `Sphinx`_ v1.1.2 or higher
+
+2. `sphinxcontrib-bibtex`_ v0.2.8 or higher
+
 Modifying the Cyclus Website
 ============================
-
-(Note: Sphinx versions higher than 1.1.2 are required.)
 
 A 2 branch system has been implemented to maintain a clean process of
 rebuilding this site.
@@ -93,6 +100,7 @@ Best practice for managing a pull request
    branch.  Be sure to synchronize with the remote repo first.
 
    ::
+
      git checkout source
      git fetch upstream
      git rebase upstream/source
@@ -106,3 +114,6 @@ Best practice for managing a pull request
 
    ``make gh-publish``
 
+.. _Sphinx: http://sphinx-doc.org/
+.. _sphinxcontrib-bibtex: http://sphinxcontrib-bibtex.readthedocs.org/en/latest/index.html
+.. _sphinxcontrib-blockdiag: http://blockdiag.com/en/blockdiag/sphinxcontrib.html
