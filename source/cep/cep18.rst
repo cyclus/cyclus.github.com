@@ -137,7 +137,7 @@ profile, effectively providing no information. In general, a requester may have
 more than one request (nodes in Figure 1) per commodity. A prime example is a
 reactor that chooses to requests fuel assemblies, of which they request many.
 
-.. image:: cep18/cep-0018-3.png
+.. image:: cep-0018-3.png
     :align: center
     :scale: 50 %
 
@@ -172,7 +172,7 @@ request as an argument and returns a value in the units of the constraint. A
 prime example is an enrichment facility, which may be able to enrich many
 orders, but is constrained by the total SWUs it can provide.
 
-.. image:: cep18/cep-0018-4.png
+.. image:: cep-0018-4.png
     :align: center
     :scale: 50 %
 
@@ -199,7 +199,7 @@ the fission products decay). A repository could analyze possible input fuel
 isotopics and set the arc preference of any that violate a given rule to 0,
 effectively eliminating that arc.
 
-.. image:: cep18/cep-0018-5.png
+.. image:: cep-0018-5.png
     :align: center
     :scale: 50 %
 
@@ -268,7 +268,7 @@ quantities of a commodity, but also to the quality of each commodity. Such a
 mechanism could be used to model interdiction of highly-enriched uranium
 transport, for example.
 
-.. image:: cep18/cep-0018-2.svg
+.. image:: cep-0018-2.svg
     :align: center
 
 **Figure 4:** Information Gathering Phase Order.
@@ -698,5 +698,5 @@ References and Footnotes
 
 .. rubric:: References
 
-.. bibliography:: cep18/cep-0018-1.bib
+.. bibliography:: cep-0018-1.bib
    :cited:
