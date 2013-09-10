@@ -317,6 +317,9 @@ implementation. The members and methods of proposed classes are also
 described. Because the phases utilize new classes and containers, those are
 described first.
 
+Constituent Classes and Containers
+----------------------------------
+
 Request
 +++++++
 
