@@ -42,7 +42,7 @@ define this functionality during their **HandleTick** functions. This
 interaction is invoked during the tick phase in the current facility invocations
 purely by practice. There is no requirement for such behavior; for example, one
 could send an offer or request during the tock phase, which would be ignored
-until the proceeding resolve step. In general looksups for specific markets and
+until the proceeding resolve step. In general lookups for specific markets and
 dynamic casts to communicate with those markets are required.
 
 The MarketModel class defines a pure virtual function, **Resolve**, which is
@@ -123,7 +123,7 @@ provides a corresponding constraint with respect to total consumption.
 At the completion of the RFB phase, the market exchange will have a set of
 consumption portfolios, :math:`P`, for each requester in the exchange, shown as
 the orange box in Figure 1. Each portfolio consists of a set of requests,
-:math:`R`, a cardinal preferencial ordering over the requests, :math:`\alpha_R`,
+:math:`R`, a cardinal preferential ordering over the requests, :math:`\alpha_R`,
 and possibly a set of constraints over the requests, :math:`c_R`. A constraint
 can be associated with more than one request. Take the previous example of MOX
 and UOX for an LWR. Each is a separate request, but a constraint may be
@@ -160,7 +160,7 @@ handle a maximum radiotoxicity for any given time step which is a function of
 both the quantity of material in processes and the isotopic content of that
 material. 
 
-At the completion of the RFBB phase, the market exchange will have a set of
+At the completion of the RRFP phase, the market exchange will have a set of
 supplier responses for each request. The supplier responses define the possible
 connections between supplier and producer facilities, i.e., the arcs in a graph
 of a matching problem. A response is comprised of a proposed isotopic profile
@@ -176,7 +176,7 @@ orders, but is constrained by the total SWUs it can provide.
     :align: center
     :scale: 50 %
 
-**Figure 2:** A Supplier during the RRFB Phase, where a collection of commodity
+**Figure 2:** A Supplier during the RRFP Phase, where a collection of commodity
 supplies (as nodes) is shown.
 
 The final phase of the information gathering procedure allows consumer
@@ -389,7 +389,7 @@ requests for a commodity, and includes:
      /// @return the target resource for this request
      cyclus::Material::Ptr response();
 
-     /// @return the model respondeing to the request
+     /// @return the model responding to the request
      cyclus::FacilityModel* responder();
    };
 
@@ -398,7 +398,7 @@ RequestConstraint
 
 A RequestConstraint provides an ability to determine constraints on a facility's
 series of requests. Some constraints may require conversion functions which
-convert a given resource specification into a measureable value related to a
+convert a given resource specification into a measurable value related to a
 constraint. At present, two types of RequestConstraints are provided, given the
 available use cases.
 
@@ -414,7 +414,7 @@ First, a capacity constraint, which is comprised of:
 Repositories in Cyclus provide a use case for this feature. In general,
 repositories could request many different commodities, e.g., "Used LWR Fuel",
 "Separated TRU", "Recycled Uranium", etc. There is a limit, though, on what can
-be accepted at any given timer period, be it of total quantity, heatload, or
+be accepted at any given timer period, be it of total quantity, heat load, or
 some other metric.
 
 .. code-block:: c++
@@ -438,7 +438,7 @@ some other metric.
 
 Second, an exclusivity constraint, which is comprised of:
 
-1. The set of requests which must be satsified exclusively
+1. The set of requests which must be satisfied exclusively
 
 Reactors that can be fueled by more than one fuel source provide a use case for
 this feature. Take for example a reactor that can be fuel with UOX or MOX. It
@@ -463,7 +463,7 @@ ResponseConstraint
 
 A ResponseConstraint provides an ability to determine constraints on a
 facility's ability to supply resources. A constraint is generally associated
-with a single commodity, and there may be one or more constraitns associated
+with a single commodity, and there may be one or more constraints associated
 with a commodity. An example is an enrichment facility which has a process
 constraint, i.e., it can only process a certain SWU amount per time step, and an
 inventory constraint, i.e., it can only process orders up to its amount of
@@ -541,11 +541,11 @@ commodity an agent offers and has the following members:
 .. code-block:: c++
 
    /// A ResponsePortfolio contains all the information corresponding to a 
-   /// responseer of resources in the exchange
+   /// responder of resources in the exchange
    struct ResponsePortfolio {
     public:
      /// @return the model associated with the portfolio
-     cyclus::FacilityModel* responseer;
+     cyclus::FacilityModel* responder;
 
      /// @return the commodity associated with the portfolio
      std::string commodity();
@@ -566,7 +566,7 @@ Input
 The set of facilities requesting/demanding one or more commodities at the given
 time step.
 
-Ouptput
+Output
 +++++++
 
 A Set of RequestPortfolios.
@@ -586,8 +586,8 @@ How to construct the input list; some different options exist.
 3. Facilities could register with an entity at the end of their tick step if
    they demand a commodity.
 
-Approach 1 is the easiest to implement but the least effcient. Approach 2 is
-unlikely to provide much more effciency in simulations where the majority of
+Approach 1 is the easiest to implement but the least efficient. Approach 2 is
+unlikely to provide much more efficiency in simulations where the majority of
 facilities consume resources. Approach 3 provides the most efficiency of the 3
 in that it is guaranteed to query only those facilities that presently demand a
 commodity. It requires a slight overhead for module developers in that they must
@@ -603,7 +603,7 @@ Input
 The set of facilities supplying one or more commodities and the set of requests
 for commodities at the given time step.
 
-Ouptput
+Output
 +++++++
 
 A set of ResponsePortfolios.
@@ -619,17 +619,17 @@ PA Procedure
 At the beginning of the Preference Assignment procedure, possible connections
 between supplier and consumer facilities are known. It is useful to think of
 these connections as arcs on a graph, where each arc represents a request that
-could be met by a supplier. The RequestSet associated with a facility represent
-nodes in this graph with constraints associated with one or more of the
-arcs. The SupplySet represent supplier nodes with constraints over all incoming
-request arcs.
+could be met by a supplier. The RequestPortfolios associated with a facility
+represent nodes in this graph with constraints associated with one or more of
+the arcs. The ResponsePortfolios represent supplier nodes with constraints over
+all incoming request arcs.
 
 Input 
 ++++++
 
 The set of ResponsePortfolios, providing the arcs on the supply-demand graph.
 
-Ouptput
+Output
 +++++++
 
 Requester-based preferences for each supply-demand pair, with possible
@@ -649,7 +649,7 @@ the timing of the perturbation. Two choices exist:
 
 The second approach allows decision making given the aggregate of possible
 connections, i.e., it provides more information. However, its implementation
-will be more complicated and is perhaps unneccesary if a use case is not known.
+will be more complicated and is perhaps unnecessary if a use case is not known.
 
 MarketAlgorithm
 ---------------
@@ -678,7 +678,7 @@ then notified of all orders that have been filled.
 Backwards Compatibility
 =======================
 
-This CEP proposes a number of backwards incompatabilities. 
+This CEP proposes a number of backwards incompatibilities. 
 
 - The MarketModel is replaced by an information gathering procedure and a
   modular MarketAlgorithm
@@ -700,4 +700,3 @@ References and Footnotes
 
 .. bibliography:: cep18/cep-0018-1.bib
    :cited:
-
