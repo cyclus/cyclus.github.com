@@ -3,7 +3,7 @@ CEP 18 - Dynamic Resource Exchange Procedure
 
 :CEP: 18
 :Title: Dynamic Resource Exchange Procedure
-:Last-Modified: 2013-09-02
+:Last-Modified: 2013-09-10
 :Author: Matthew Gidden
 :Status: Draft
 :Type: Standards Track
@@ -12,7 +12,16 @@ CEP 18 - Dynamic Resource Exchange Procedure
 Abstract
 ========
 
-a short (~200 word) description of the technical issue being addressed.
+An updated procedure for determining dynamic resource exchanges is presented. It
+occurs nominally in four phases: a request for proposals, a response to the
+request for proposals, preference assignment, and resolution. The first three
+phases encompass an information gathering procedure, providing generic
+information to any market exchange solution procedure. The final phase is
+modular in that any algorithm can be used to solve the exchange. This modular
+phase takes the place of the current implementation of MarketModels. The
+procedure is informed by agent-based supply chain modeling literature
+:cite:`julka_agent-based_2002` with modifications as required for our
+nuclear-engineering domain specific information.
 
 Motivation
 ==========
@@ -97,7 +106,7 @@ The first phase allows consumers of commodities to denote both the quantity of a
 commodity they need to consume as well as the target isotopics, or quality, by
 **posting** their demand to the market exchange. This posting informs producers
 of commodities what is needed by consumers, and is termed the **Request for
-Bids** (RFB) phase. Consumers are allowed to over-post, i.e., request more
+Proposals** (RFP) phase. Consumers are allowed to over-post, i.e., request more
 quantity than they can actually consume, as long as a corresponding capacity
 constraint accompanies this posting. Further, consumers are allowed to post
 demand for multiple commodities that may serve to meet the same combine
@@ -109,7 +118,7 @@ material that has already passed through a reactor. Such a facility can choose
 to fill the remaining space in a certain assembly with various types of fertile
 material, including depleted uranium from enrichment or reprocessed uranium from
 separations. Accordingly, it could demand both commodities as long as it
-provides a corresponding constraint with respect to total consumption. 
+provides a corresponding constraint with respect to total consumption.
 
 At the completion of the RFB phase, the market exchange will have a set of
 consumption portfolios, :math:`P`, for each requester in the exchange, shown as
@@ -136,7 +145,7 @@ reactor that chooses to requests fuel assemblies, of which they request many.
 (as nodes) is shown.
 
 The second phase allows suppliers to **respond** to the set of consumption
-portfolios, and is termed the **Response to Request for Bids** (RRFB) phase
+portfolios, and is termed the **Response to Request for Proposals** (RRFP) phase
 (analogous to Julka's Reply to Request for Quote phase). Each consumption
 portfolio is comprised of requests for some set of commodities, and suppliers of
 those commodities are allowed to respond to demand. Suppliers, like consumers,
@@ -194,8 +203,8 @@ effectively eliminating that arc.
     :align: center
     :scale: 50 %
 
-**Figure 3:** A supplier-consumer pair with request isotopics, response
- isotopics, and an associated preference.
+**Figure 3:** A supplier-consumer pair with request isotopics, response 
+isotopics, and an associated preference.
 
 Institutions and Regions in Cyclus are provided in order to add granularity to
 the levels of relational modeling available to a user or developer. Both types
@@ -266,7 +275,7 @@ transport, for example.
 
 .. blockdiag code below
 
-    http://interactive.blockdiag.com/?compression=deflate&src=eJzFkcsKwjAQRdf2K0JcC0VBKqJgBcGd1g-Q1I41GDIxD1DEfzctbX2C7jqLhFwmZ25uglTg7phxlpNrQIrKYM-csNtco1PbHQrUZEIkShiTFurVlDkwBd6O9yYzyFI8t2iq3ujagb6QBE4OjAVtKOlNa3XjlBK8EZsmstKwNzSoGGXa9Rf4EiwF4R9Kk0VMG7X8jQnthmEUR17vfI6uem8_wV-wcRQNwyfsw_vf1NXsEzsaDfrzucei5iAtsxyl71WorWbcBh0_8D2XMqylNPb5nEBeXK2Sqy0Vyx2by59z
+    http://interactive.blockdiag.com/?compression=deflate&src=eJztVd1qwyAYvd9TfLjrQVihpJQMmsKgd2n6AMUuX9KAqDMKKyHvXqNbfrbsCexBQY-KcvQc2yeAAktqmD5XShh5_hBMKEiAC45bCBETSZorlWjFsMrwAouL-Nr2w7aQo0F1gxw_DTYaVUPg5e2HPRkpWT2QwyTIFJaW9Ju46kSH1rWB0QuyhOTvGVk-F4C7noQ8R1GcxunStLDgRFm4jKDRi9L9fmEPOIxGs74m-T9eCw2zbEnjeB2Fmi3TQBlzfHDUt5umcZ3tyEy-zWb1ut97Tqgauaa6Ftw-NymUVrTWfo8_30L_Vxx4o6f9HKt-rWf8Kbo7GUM8HQ
 
     blockdiag {
     default_group_color = none;                                                                                                                    
@@ -275,13 +284,13 @@ transport, for example.
     "Query Requesters" -> "Query Suppliers" -> "Requester Prefs"
 
     group {
-    label = "RFB"
+    label = "RFP"
     color="#008B8B"
     "Query Requesters"
     }
 
     group {
-    label = "B"
+    label = "RRFP"
     color="#B8860B"
     "Query Suppliers"
     }
@@ -308,8 +317,8 @@ preference, accounting for multiple commodity markets and associated production
 capacities. The matching algorithm used by a market is modular, and replaces the
 notion of the MarketModel.
 
-Specification
-=============
+Specification \& Implementation
+===============================
 
 Each major phase method and associated classes are treated. Method inputs and
 outputs are described as well as known issues dealing with their
@@ -436,19 +445,131 @@ this feature. Take for example a reactor that can be fuel with UOX or MOX. It
 requires the ability to tell any solution mechanism to provide it with one fuel
 type *or* the other, but not both.
 
+.. code-block:: c++
+
+   /// A ExclusiveConstraint provides an ability to determine an agent's 
+   /// constraints on resource allocation given exclusivity among requested 
+   /// resources, i.e., if some resource is provided, it cannot accept other 
+   /// resources. An example is a reactor that could take MOX or UOX, but can 
+   /// not take both.
+   class ExclusiveConstraint {
+    public:
+     /// @brief add a request that's associated with this constraint
+     void AddRequest(Request&);
+   }
+
+ResponseConstraint
+++++++++++++++++++
+
+A ResponseConstraint provides an ability to determine constraints on a
+facility's ability to supply resources. A constraint is generally associated
+with a single commodity, and there may be one or more constraitns associated
+with a commodity. An example is an enrichment facility which has a process
+constraint, i.e., it can only process a certain SWU amount per time step, and an
+inventory constraint, i.e., it can only process orders up to its amount of
+natural uranium on hand. A ResponseConstraint is very similar to the previously
+described CapacityConstraint and has the following members:
+
+1. A constraining value
+
+2. A conversion function, whose function signature is
+   
+3. The set of responses associated with the constraint.
+
+.. code-block:: c++
+
+   typedef double (*Converter)(cyclus::Material::Ptr)
+
+   /// A ResponseConstraint provides an ability to determine an agent's 
+   /// constraints on resource allocation given a capacity.
+   class ResponseConstraint {
+    public:
+     /// @return a pointer to a conversion function that converts a response 
+     /// into the units of this constraint
+     Converter ResponseConverter();
+     
+     /// @return the capacity associated with this constraint
+     double capacity();
+
+     /// @brief add a response that's associated with this constraint
+     void AddResponse(Response&);
+   }
+
+RequestPortfolio
+++++++++++++++++
+
+A request portfolio is a container for information related to an agent's set of
+requests for the given timestep, having the following members:
+
+1. A requester
+
+2. A set of Requests
+
+3. A set of RequestConstraints
+
+.. code-block:: c++
+
+   /// A RequestPortfolio contains all the information corresponding to a 
+   /// requester of resources in the exchange
+   struct RequestPortfolio {
+    public:
+     /// @return the model associated with the portfolio
+     cyclus::FacilityModel* requester;
+
+     /// @return the set of requests in the portfolio
+     std::set<Request> requests;
+
+     /// @return the set of constraints over the requests
+     std::set<RequestConstraint> constraints;
+   };
+
+ResponsePortfolio
++++++++++++++++++
+
+A response portfolio is a container for information related to an agent's set of
+responses for the given timestep. A response portfolio is provided for each
+commodity an agent offers and has the following members:
+
+1. A responder
+
+2. The commodity associated with the responses
+
+3. A set of Responses
+
+4. A set of ResponseConstraints
+
+.. code-block:: c++
+
+   /// A ResponsePortfolio contains all the information corresponding to a 
+   /// responseer of resources in the exchange
+   struct ResponsePortfolio {
+    public:
+     /// @return the model associated with the portfolio
+     cyclus::FacilityModel* responseer;
+
+     /// @return the commodity associated with the portfolio
+     std::string commodity();
+
+     /// @return the set of responses in the portfolio
+     std::set<Response> responses;
+
+     /// @return the set of constraints over the responses
+     std::set<ResponseConstraint> constraints;
+   };
+
 RFP Procedure
 -------------
 
 Input 
 ++++++
 
-The set of facilities requesting/demanding one or more commodities
-at the given time step.
+The set of facilities requesting/demanding one or more commodities at the given
+time step.
 
 Ouptput
 +++++++
 
-A Set of RequestPortfolios (defined below).
+A Set of RequestPortfolios.
 
 Unknown 
 ++++++++
@@ -473,14 +594,8 @@ commodity. It requires a slight overhead for module developers in that they must
 notify the core that their facility has a demand rather than the core explicitly
 querying it.
 
-RequestSet
-----------
-
-A RequestSet is a set of requests and possibly accomanying constraints on those
-requests.
-
-B Procedure
------------
+RRFP Procedure
+--------------
 
 Input 
 ++++++
@@ -491,46 +606,12 @@ for commodities at the given time step.
 Ouptput
 +++++++
 
-A SupplySet (defined below).
+A set of ResponsePortfolios.
 
 Unknown
 +++++++
 
-The Bidding procedure has the same unknown as the RFP procedure.
-
-SupplySet
----------
-
-A SupplySet is a set of is a set of resource supplies and associated
-constraints. There may be more than one Supply per facility. 
-
-Supply
-++++++
-
-A Supply encapsulates the information required to analyze commodity requests
-from facilities in a dynamic manner.
-
-1. A commodity
-
-2. A resource representation for each feasible request 
-
-SupplyConstraint
-++++++++++++++++
-
-A SupplyConstraint provides an ability to determine constraints on a suppliers
-ability to satisfy potential orders. Some constraints may require conversion
-functions which convert a given resource specification into a measureable value
-related to a constraint. 
-
-1. A constraining value
-
-2. A conversion function, similar to the RequestConstraint
-
-A general notion of constraints on supply production are required to model even
-simple scenarios. However, enrichment facilities provide a use case for the
-conversion function. Enrichment supply is measured in SWUs, which is a function
-of the target material's U-235 enrichment. A conversion from enrichment level to
-SWUs is required to appropriately constrain the facility's supply.
+The RRFP procedure has the same unknown as the RFP procedure.
 
 PA Procedure
 ------------
@@ -546,7 +627,7 @@ request arcs.
 Input 
 ++++++
 
-A set of pairs of Supply and Demand, i.e., arcs on the supply-demand graph.
+The set of ResponsePortfolios, providing the arcs on the supply-demand graph.
 
 Ouptput
 +++++++
@@ -579,7 +660,7 @@ supply-demand matching algorithm.
 Input
 +++++
 
-The set of possible supply-demand pairs with associated preferences.
+The set of ResponsePortfolios with associated preferences.
 
 Output
 ++++++
@@ -606,11 +687,6 @@ This CEP proposes a number of backwards incompatabilities.
   requests
 
 - The Message and Communicator classes are no longer needed
-
-Reference Implementation
-========================
-
-Implementation to come...
 
 Document History
 ================
