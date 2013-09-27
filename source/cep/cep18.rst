@@ -507,7 +507,7 @@ requests for the given timestep, having the following members:
 
 3. A set of CapacityConstraints
 
-3. A set of ExclusiveConstraints
+4. A set of ExclusiveConstraints
 
 .. code-block:: c++
 
