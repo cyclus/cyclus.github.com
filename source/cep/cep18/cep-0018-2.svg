@@ -34,7 +34,7 @@
   <polygon fill="rgb(0,0,0)" points="512,119 508,112 516,112 512,119" stroke="rgb(0,0,0)" />
   <path d="M 512 160 L 512 192" fill="none" stroke="rgb(0,0,0)" />
   <polygon fill="rgb(0,0,0)" points="512,199 508,192 516,192 512,199" stroke="rgb(0,0,0)" />
-  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="119" y="36">RFP</text>
-  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="308" y="36">RRFP</text>
+  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="119" y="36">RFB</text>
+  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="308" y="36">RRFB</text>
   <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="506" y="36">PA</text>
 </svg>

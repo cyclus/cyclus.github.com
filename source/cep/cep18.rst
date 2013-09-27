@@ -3,7 +3,7 @@ CEP 18 - Dynamic Resource Exchange Procedure
 
 :CEP: 18
 :Title: Dynamic Resource Exchange Procedure
-:Last-Modified: 2013-09-10
+:Last-Modified: 2013-09-27
 :Author: Matthew Gidden
 :Status: Draft
 :Type: Standards Track
@@ -13,15 +13,15 @@ Abstract
 ========
 
 An updated procedure for determining dynamic resource exchanges is presented. It
-occurs nominally in four phases: a request for proposals, a response to the
-request for proposals, preference assignment, and resolution. The first three
-phases encompass an information gathering procedure, providing generic
-information to any market exchange solution procedure. The final phase is
-modular in that any algorithm can be used to solve the exchange. This modular
-phase takes the place of the current implementation of MarketModels. The
-procedure is informed by agent-based supply chain modeling literature
-:cite:`julka_agent-based_2002` with modifications as required for our
-nuclear-engineering domain specific information.
+occurs nominally in four phases: a request for bids, a response to the request
+for bids, preference assignment, and resolution. The first three phases
+encompass an information gathering procedure, providing generic information to
+any market exchange solution procedure. The final phase is modular in that any
+algorithm can be used to solve the exchange. This modular phase takes the place
+of the current implementation of MarketModels. The procedure is informed by
+agent-based supply chain modeling literature :cite:`julka_agent-based_2002` with
+modifications as required for our nuclear-engineering domain specific
+information.
 
 Motivation
 ==========
@@ -95,8 +95,8 @@ Supply-Demand Framework
 -----------------------
 
 Supply-demand determination at any given time step occurs in nominally three
-steps, or **phases**, and the terminology of this "phase space" is taken from
-previous supply chain agent-based modeling work
+steps, or **phases**, and the associated terminology is taken from previous
+supply chain agent-based modeling work
 :cite:`julka_agent-based_2002`. Importantly, this information-gathering step is
 agnostic as to the actual matching algorithm used, it is concerned only with
 querying the current status of supply and demand and facility preference thereof
@@ -106,7 +106,7 @@ The first phase allows consumers of commodities to denote both the quantity of a
 commodity they need to consume as well as the target isotopics, or quality, by
 **posting** their demand to the market exchange. This posting informs producers
 of commodities what is needed by consumers, and is termed the **Request for
-Proposals** (RFP) phase. Consumers are allowed to over-post, i.e., request more
+Bids** (RFB) phase. Consumers are allowed to over-post, i.e., request more
 quantity than they can actually consume, as long as a corresponding capacity
 constraint accompanies this posting. Further, consumers are allowed to post
 demand for multiple commodities that may serve to meet the same combine
@@ -145,7 +145,7 @@ reactor that chooses to requests fuel assemblies, of which they request many.
 (as nodes) is shown.
 
 The second phase allows suppliers to **respond** to the set of consumption
-portfolios, and is termed the **Response to Request for Proposals** (RRFP) phase
+portfolios, and is termed the **Response to Request for Bids** (RRFB) phase
 (analogous to Julka's Reply to Request for Quote phase). Each consumption
 portfolio is comprised of requests for some set of commodities, and suppliers of
 those commodities are allowed to respond to demand. Suppliers, like consumers,
@@ -160,7 +160,7 @@ handle a maximum radiotoxicity for any given time step which is a function of
 both the quantity of material in processes and the isotopic content of that
 material. 
 
-At the completion of the RRFP phase, the market exchange will have a set of
+At the completion of the RRFB phase, the market exchange will have a set of
 supplier responses for each request. The supplier responses define the possible
 connections between supplier and producer facilities, i.e., the arcs in a graph
 of a matching problem. A response is comprised of a proposed isotopic profile
@@ -176,7 +176,7 @@ orders, but is constrained by the total SWUs it can provide.
     :align: center
     :scale: 50 %
 
-**Figure 2:** A Supplier during the RRFP Phase, where a collection of commodity
+**Figure 2:** A Supplier during the RRFB Phase, where a collection of commodity
 supplies (as nodes) is shown.
 
 The final phase of the information gathering procedure allows consumer
@@ -284,13 +284,13 @@ transport, for example.
     "Query Requesters" -> "Query Suppliers" -> "Requester Prefs"
 
     group {
-    label = "RFP"
+    label = "RFB"
     color="#008B8B"
     "Query Requesters"
     }
 
     group {
-    label = "RRFP"
+    label = "RRFB"
     color="#B8860B"
     "Query Suppliers"
     }
@@ -393,20 +393,20 @@ requests for a commodity, and includes:
      cyclus::FacilityModel* responder();
    };
 
-RequestConstraint
-+++++++++++++++++
+Request Constraints
++++++++++++++++++++
 
-A RequestConstraint provides an ability to determine constraints on a facility's
+Request constraints provides an ability to determine constraints on a facility's
 series of requests. Some constraints may require conversion functions which
 convert a given resource specification into a measurable value related to a
-constraint. At present, two types of RequestConstraints are provided, given the
+constraint. At present, two types of request constraints are provided, given the
 available use cases.
 
-First, a capacity constraint, which is comprised of:
+First, a CapacityConstraint, which is comprised of:
 
-1. A constraining value
+1. A conversion function, whose function signature is
 
-2. A conversion function, whose function signature is
+2. A constraining value
    
 3. The set of requests associated with the constraint, which may be a subset of
    the total requests provided by the facility.
@@ -436,14 +436,16 @@ some other metric.
      void AddRequest(Request&);
    }
 
-Second, an exclusivity constraint, which is comprised of:
+Second, an ExclusiveConstraint, which is comprised of:
 
 1. The set of requests which must be satisfied exclusively
 
-Reactors that can be fueled by more than one fuel source provide a use case for
-this feature. Take for example a reactor that can be fuel with UOX or MOX. It
-requires the ability to tell any solution mechanism to provide it with one fuel
-type *or* the other, but not both.
+The notion of an exclusivity constraint allows for requests to require that they
+are met by only one supplier and a single commodity. This capability allows one
+to model the notion of reactor fuel assemblies for instance, in addition to any
+other quantized-based order. A single assembly generally comes from a single
+supplier. In the case of a light water reactor, it is generally either UOX or
+MOX, but not a mixture of the two. 
 
 .. code-block:: c++
 
@@ -564,7 +566,7 @@ commodity an agent offers and has the following members:
      std::set<ResponseConstraint> constraints;
    };
 
-RFP Procedure
+RFB Procedure
 -------------
 
 Input 
@@ -578,30 +580,15 @@ Output
 
 A Set of RequestPortfolios.
 
-Unknown 
+Comments
 ++++++++
 
-How to construct the input list; some different options exist. 
+There are multiple strategies that could be taken to determine the input
+list. As a first approach, a naive strategy will be taken that queries each
+facility that is registered as a requester to determine demand at each time
+step.
 
-1. A naive approach would be to query every facility to determine demand at each
-   time step.
-
-2. A less naive approach would be to have facilities register with an entity
-   that they generally demand some commodity. The set of demanding facilities
-   could then be queried.
-
-3. Facilities could register with an entity at the end of their tick step if
-   they demand a commodity.
-
-Approach 1 is the easiest to implement but the least efficient. Approach 2 is
-unlikely to provide much more efficiency in simulations where the majority of
-facilities consume resources. Approach 3 provides the most efficiency of the 3
-in that it is guaranteed to query only those facilities that presently demand a
-commodity. It requires a slight overhead for module developers in that they must
-notify the core that their facility has a demand rather than the core explicitly
-querying it.
-
-RRFP Procedure
+RRFB Procedure
 --------------
 
 Input 
@@ -615,10 +602,11 @@ Output
 
 A set of ResponsePortfolios.
 
-Unknown
-+++++++
+Comments
+++++++++
 
-The RRFP procedure has the same unknown as the RFP procedure.
+As with the the RFB procedure, many strategies exist to construct the input
+set. A similar approach will be taken that queries all registered suppliers.
 
 PA Procedure
 ------------
