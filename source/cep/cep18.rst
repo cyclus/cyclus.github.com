@@ -505,7 +505,9 @@ requests for the given timestep, having the following members:
 
 2. A set of Requests
 
-3. A set of RequestConstraints
+3. A set of CapacityConstraints
+
+3. A set of ExclusiveConstraints
 
 .. code-block:: c++
 
@@ -519,8 +521,13 @@ requests for the given timestep, having the following members:
      /// @return the set of requests in the portfolio
      std::set<Request> requests;
 
-     /// @return the set of constraints over the requests
-     std::set<RequestConstraint> constraints;
+     /// @return the set of constraints over the requests based on request 
+     /// capacity
+     std::set<CapacityConstraint> cap_constraints;
+
+     /// @return the set of constraints over the requests based on request 
+     /// exclusivity
+     std::set<ExclusiveConstraint> excl_constraints;
    };
 
 ResponsePortfolio
