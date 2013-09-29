@@ -199,6 +199,19 @@ the fission products decay). A repository could analyze possible input fuel
 isotopics and set the arc preference of any that violate a given rule to 0,
 effectively eliminating that arc.
 
+It should be noted that these preferences are requester based. This choice is
+based on the current simulation design notion of requesters having a preference
+over possible inputs. It is possible that in the future, one would like to model
+the notion of supplier preference (i.e., moreso than the implicit nature
+currently provided by allowing suppliers to set the transaction quality and
+whether to respond to the transaction at all). One suggestion may be to allow
+suppliers to also have a supply preference, and to use the average of them in
+the objective function, but this gets into even murkier modeling/simulation
+ground. Another would be to move the paradigm more towards economics and have
+the suppliers set the cost of a transaction, which they could tailor to the
+requester. However, this draws in a whole other field of bidding that requires
+much more rigor and thought as to its validity and implementation.
+
 .. image:: cep18/cep-0018-5.png
     :align: center
     :scale: 50 %
@@ -404,7 +417,7 @@ available use cases.
 
 First, a CapacityConstraint, which is comprised of:
 
-1. A conversion function, whose function signature is
+1. A conversion function, which takes as an argument a concrete resource
 
 2. A constraining value
    
