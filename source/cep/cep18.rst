@@ -342,242 +342,23 @@ described first.
 Constituent Classes and Containers
 ----------------------------------
 
-Request
-+++++++
+The major new datastructures required for this proposal are:
 
-A Request encapsulates the information required to analyze commodity requests
-from facilities in a dynamic manner. A facility may have more than one Request
-associated with it at any given time step.
+* Bids
+* BidPortfolios
+* CapacityConstraints
+* Requests
+* RequestPortfolios
 
-1. A commodity
+Reference implementation (in /src) and tests (in /tests) for each can be found
+in the `CEP18 branch`_.
 
-2. A target resource, i.e., its quantity and quality. 
-
-3. A preference for that resource/commodity pairing
-
-4. A requester
-
-.. code-block:: c++
-
-   /// A Request encapsulates all the information required to communicate the 
-   /// needs of an agent in the Dynamic Resource Exchange, including the 
-   /// commodity it needs as well as a resource specification for that commodity
-   class Request {
-    public:
-     /// @return the commodity associated with this request
-     std::string commodity();
-
-     /// @return the target resource for this request
-     cyclus::Material::Ptr target();
-     
-     /// @return the preference value for this request
-     double preference();
-
-     /// @return the model requesting the resource
-     cyclus::FacilityModel* requester();
-   };
-
-RequestResponse
-+++++++++++++++
-
-A RequestResponse encapsulates the information required to analyze responses to
-requests for a commodity, and includes:
-
-1. A reference request
-
-2. A response resource, i.e., its quantity and quality. 
-
-3. A responder
-
-.. code-block:: c++
-
-   /// A RequestResponse encapsulates all the information required to 
-   /// communicate a response to a request for a resource, including the 
-   /// resource response and the responder.
-   class RequestResponse {
-    public:
-     /// @return the request this response is associated with
-     cyclus::Request& request();
-
-     /// @return the target resource for this request
-     cyclus::Material::Ptr response();
-
-     /// @return the model responding to the request
-     cyclus::FacilityModel* responder();
-   };
-
-Request Constraints
-+++++++++++++++++++
-
-Request constraints provides an ability to determine constraints on a facility's
-series of requests. Some constraints may require conversion functions which
-convert a given resource specification into a measurable value related to a
-constraint. At present, two types of request constraints are provided, given the
-available use cases.
-
-First, a CapacityConstraint, which is comprised of:
-
-1. A conversion function, which takes as an argument a concrete resource
-
-2. A constraining value
-   
-3. The set of requests associated with the constraint, which may be a subset of
-   the total requests provided by the facility.
-
-Repositories in Cyclus provide a use case for this feature. In general,
-repositories could request many different commodities, e.g., "Used LWR Fuel",
-"Separated TRU", "Recycled Uranium", etc. There is a limit, though, on what can
-be accepted at any given timer period, be it of total quantity, heat load, or
-some other metric.
-
-.. code-block:: c++
-
-   typedef double (*Converter)(cyclus::Material::Ptr)
-
-   /// A CapacityConstraint provides an ability to determine an agent's 
-   /// constraints on resource allocation given a capacity.
-   class CapacityConstraint {
-    public:
-     /// @return a pointer to a conversion function that converts a request 
-     /// into the units of this constraint
-     Converter CapacityConverter();
-     
-     /// @return the capacity associated with this constraint
-     double capacity();
-
-     /// @brief add a request that's associated with this constraint
-     void AddRequest(Request&);
-   }
-
-Second, an ExclusiveConstraint, which is comprised of:
-
-1. The set of requests which must be satisfied exclusively
-
-The notion of an exclusivity constraint allows for requests to require that they
-are met by only one supplier and a single commodity. This capability allows one
-to model the notion of reactor fuel assemblies for instance, in addition to any
-other quantized-based order. A single assembly generally comes from a single
-supplier. In the case of a light water reactor, it is generally either UOX or
-MOX, but not a mixture of the two. 
-
-.. code-block:: c++
-
-   /// A ExclusiveConstraint provides an ability to determine an agent's 
-   /// constraints on resource allocation given exclusivity among requested 
-   /// resources, i.e., if some resource is provided, it cannot accept other 
-   /// resources. An example is a reactor that could take MOX or UOX, but can 
-   /// not take both.
-   class ExclusiveConstraint {
-    public:
-     /// @brief add a request that's associated with this constraint
-     void AddRequest(Request&);
-   }
-
-ResponseConstraint
-++++++++++++++++++
-
-A ResponseConstraint provides an ability to determine constraints on a
-facility's ability to supply resources. A constraint is generally associated
-with a single commodity, and there may be one or more constraints associated
-with a commodity. An example is an enrichment facility which has a process
-constraint, i.e., it can only process a certain SWU amount per time step, and an
-inventory constraint, i.e., it can only process orders up to its amount of
-natural uranium on hand. A ResponseConstraint is very similar to the previously
-described CapacityConstraint and has the following members:
-
-1. A constraining value
-
-2. A conversion function, whose function signature is
-   
-3. The set of responses associated with the constraint.
-
-.. code-block:: c++
-
-   typedef double (*Converter)(cyclus::Material::Ptr)
-
-   /// A ResponseConstraint provides an ability to determine an agent's 
-   /// constraints on resource allocation given a capacity.
-   class ResponseConstraint {
-    public:
-     /// @return a pointer to a conversion function that converts a response 
-     /// into the units of this constraint
-     Converter ResponseConverter();
-     
-     /// @return the capacity associated with this constraint
-     double capacity();
-
-     /// @brief add a response that's associated with this constraint
-     void AddResponse(Response&);
-   }
-
-RequestPortfolio
-++++++++++++++++
-
-A request portfolio is a container for information related to an agent's set of
-requests for the given timestep, having the following members:
-
-1. A requester
-
-2. A set of Requests
-
-3. A set of CapacityConstraints
-
-4. A set of ExclusiveConstraints
-
-.. code-block:: c++
-
-   /// A RequestPortfolio contains all the information corresponding to a 
-   /// requester of resources in the exchange
-   struct RequestPortfolio {
-    public:
-     /// @return the model associated with the portfolio
-     cyclus::FacilityModel* requester;
-
-     /// @return the set of requests in the portfolio
-     std::set<Request> requests;
-
-     /// @return the set of constraints over the requests based on request 
-     /// capacity
-     std::set<CapacityConstraint> cap_constraints;
-
-     /// @return the set of constraints over the requests based on request 
-     /// exclusivity
-     std::set<ExclusiveConstraint> excl_constraints;
-   };
-
-ResponsePortfolio
-+++++++++++++++++
-
-A response portfolio is a container for information related to an agent's set of
-responses for the given timestep. A response portfolio is provided for each
-commodity an agent offers and has the following members:
-
-1. A responder
-
-2. The commodity associated with the responses
-
-3. A set of Responses
-
-4. A set of ResponseConstraints
-
-.. code-block:: c++
-
-   /// A ResponsePortfolio contains all the information corresponding to a 
-   /// responder of resources in the exchange
-   struct ResponsePortfolio {
-    public:
-     /// @return the model associated with the portfolio
-     cyclus::FacilityModel* responder;
-
-     /// @return the commodity associated with the portfolio
-     std::string commodity();
-
-     /// @return the set of responses in the portfolio
-     std::set<Response> responses;
-
-     /// @return the set of constraints over the responses
-     std::set<ResponseConstraint> constraints;
-   };
+A template approach has been taken, delineating, for instance, a material
+request, ``Request<Material>``, from a GenericResource request,
+``Request<GenericResource>``. The current behavior (i.e., only using parent
+classes and dynamic casting to derived classes) can be invoked by templating on
+the ``Resource`` type, i.e., ``Request<Resource>``. See the `capacity constraint
+tests`_ for an example of this range of behavior.
 
 RFB Procedure
 -------------
@@ -708,3 +489,7 @@ References and Footnotes
 
 .. bibliography:: cep18/cep-0018-1.bib
    :cited:
+
+.. _CEP18 branch: https://github.com/gidden/cyclus/tree/cep18
+
+.. _capacity constraint tests: https://github.com/gidden/cyclus/blob/cep18/tests/capacity_constraint_tests.cc
