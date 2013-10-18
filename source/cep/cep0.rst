@@ -34,6 +34,7 @@ Index
 
     SA - 17 - Resource Tracking and Interfaces Re-Re-Redo - Carlsen <cep17>
     SD - 18 - Dynamic Resource Exchange Interface - Gidden <cep18>
+    ID - 20 - Entity Instantiation and Simulation Entry - Gidden <cep20>
 
 Key
 ---
