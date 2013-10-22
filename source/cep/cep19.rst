@@ -38,11 +38,12 @@ Specification \& Implementation
 ===============================
 The following patterns are proposed to be added to the master Cyclus schema.
 
-
+.. code-block:: xml
 <grammar xmlns="http://relaxng.org/ns/structure/1.0"
   xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
   xmlns:rng="http://relaxng.org/ns/structure/1.0"
 datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+*
 
 Tooltip
 =======
@@ -55,6 +56,7 @@ show when a user scrolls over this field in the graphical user interface. This i
       <data type="string" />
      </element>
   </define>
+*
 
 Help
 ====
@@ -67,6 +69,7 @@ graphical user interface. This is an optional field.
       <data type="string" />
     </element>
   </define>
+*
 
 Units
 =====
@@ -80,6 +83,7 @@ value in this field.
     </element>
   </define>
 
+*
 User Level
 ==========
 User level elements allow developers to set the user level of a specific input field. This value ranges
@@ -104,6 +108,7 @@ and if left blank the value will be set to zero by the graphical user interface.
       </choice>
     </element>
   </define>
+*
 
 Vary
 ====
@@ -117,6 +122,7 @@ the values "true", "false", "1", "0".
       <data type="boolean" />
     </element>
   </define>
+*
 
 Sampling Function
 =================
@@ -130,6 +136,7 @@ input that represents the mathematical expression of the sampling function. This
       <data type="string" />
     </element>
   </define>
+*
 
 Field Types
 ===========
@@ -443,8 +450,6 @@ Field Types
       </interleave>		
     </element>
   </define>
-
-</grammar>
 
 
 
