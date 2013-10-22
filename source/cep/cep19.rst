@@ -38,12 +38,6 @@ Specification \& Implementation
 ===============================
 The following patterns are proposed to be added to the master Cyclus schema.
 
-.. code-block:: xml
-<grammar xmlns="http://relaxng.org/ns/structure/1.0"
-  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
-  xmlns:rng="http://relaxng.org/ns/structure/1.0"
-datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
-*
 
 Tooltip
 =======
@@ -51,12 +45,13 @@ Tooltip elements is a short string of text that the developer can add to an inpu
 show when a user scrolls over this field in the graphical user interface. This is an optional field.
 
 .. code-block:: xml
+
   <define name="tooltip">
     <element name="tooltip">
       <data type="string" />
      </element>
   </define>
-*
+
 
 Help
 ====
@@ -64,12 +59,13 @@ Help elements will provide a more thorough explaination of the input field, it c
 graphical user interface. This is an optional field.
 
 .. code-block:: xml
+
   <define name="help">
     <element name="help">
       <data type="string" />
     </element>
   </define>
-*
+
 
 Units
 =====
@@ -77,13 +73,14 @@ Units elements apply information to an input field that indicate to the user wha
 value in this field. 
 
 .. code-block:: xml 
+
   <define name="units">
     <element name="units">
       <data type="string" />
     </element>
   </define>
 
-*
+
 User Level
 ==========
 User level elements allow developers to set the user level of a specific input field. This value ranges
@@ -91,6 +88,7 @@ from 0 to 10 with 0 being simple inputs and 10 being very advanced inputs. This 
 and if left blank the value will be set to zero by the graphical user interface.
 
 .. code-block:: xml 
+
   <define name="userLevel">
     <element name="userLevel">
       <choice>
@@ -108,7 +106,7 @@ and if left blank the value will be set to zero by the graphical user interface.
       </choice>
     </element>
   </define>
-*
+
 
 Vary
 ====
@@ -117,12 +115,13 @@ field it is attached to can be varied for a parametric study. This flag is optio
 the values "true", "false", "1", "0".
 
 .. code-block:: xml
+
   <define name="vary"> 
     <element name="vary">
       <data type="boolean" />
     </element>
   </define>
-*
+
 
 Sampling Function
 =================
@@ -131,16 +130,18 @@ a sampling function is required to provide the sampling behavior for the element
 input that represents the mathematical expression of the sampling function. This is an optional flag.
 
 .. code-block:: xml
+
   <define name="samplingFunction">
     <element name="samplingFunction">				
       <data type="string" />
     </element>
   </define>
-*
+
 
 Field Types
 ===========
 .. code-block:: xml
+
   <define name="floatField">
     <element name="floatField">
       <interleave>
