@@ -52,8 +52,19 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
      </element>
   </define>
 
+The tooltip field is a short string of text that the developer can add to a field that will show when
+a user scrolls over this field in the graphical user interface.
+
+.. code-block:: xml
   <define name="help">
     <element name="help">
+      <data type="string" />
+    </element>
+  </define>
+ 
+.. code-block:: xml 
+  <define name="units">
+    <element name="units">
       <data type="string" />
     </element>
   </define>
@@ -119,6 +130,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	<optional>
 	  <ref name="help" />
 	</optional>
+	<optional>
+	  <ref name="units" />
+	</optional>
       </interleave>		
     </element>
   </define>
@@ -153,6 +167,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	</optional>
 	<optional>
 	  <ref name="help" />
+	</optional>
+	<optional>
+	  <ref name="units" />
 	</optional>
       </interleave>		
     </element>
@@ -189,6 +206,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	<optional>
 	  <ref name="help" />
 	</optional>
+	<optional>
+	  <ref name="units" />
+	</optional>
       </interleave>		
     </element>
   </define>
@@ -214,6 +234,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	<optional>
 	  <ref name="help" />
 	</optional>
+	<optional>
+	  <ref name="units" />
+	</optional>
       </interleave>		
     </element>
   </define>
@@ -238,6 +261,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	</optional>
 	<optional>
 	  <ref name="help" />
+	</optional>
+	<optional>
+	  <ref name="units" />
 	</optional>
       </interleave>		
     </element>
@@ -271,6 +297,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	<optional>
 	  <ref name="help" />
 	</optional>
+	<optional>
+	  <ref name="units" />
+	</optional>
       </interleave>		
     </element>
   </define>
@@ -302,6 +331,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	</optional>
 	<optional>
 	  <ref name="help" />
+	</optional>
+	<optional>
+	  <ref name="units" />
 	</optional>
       </interleave>		
     </element>
@@ -335,6 +367,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	<optional>
 	  <ref name="help" />
 	</optional>
+	<optional>
+	  <ref name="units" />
+	</optional>
       </interleave>		
     </element>
   </define>
@@ -367,11 +402,16 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	<optional>
 	  <ref name="help" />
 	</optional>
+	<optional>
+	  <ref name="units" />
+	</optional>
       </interleave>		
     </element>
   </define>
 
 </grammar>
+
+
 
 Document History
 ================

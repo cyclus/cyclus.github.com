@@ -52,12 +52,30 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
      </element>
   </define>
 
+Tooltip elements is a short string of text that the developer can add to an input field that will 
+show when a user scrolls over this field in the graphical user interface. This is an optional field.
+
+.. code-block:: xml
   <define name="help">
     <element name="help">
       <data type="string" />
     </element>
   </define>
 
+Help elements will provide a more thorough explaination of the input field, it can be accessed through the
+graphical user interface. This is an optional field.
+
+.. code-block:: xml 
+  <define name="units">
+    <element name="units">
+      <data type="string" />
+    </element>
+  </define>
+
+Units elements apply information to an input field that indicate to the user what units are attached to the
+value in this field. 
+
+.. code-block:: xml 
   <define name="userLevel">
     <element name="userLevel">
       <choice>
@@ -76,18 +94,33 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
     </element>
   </define>
 
+User level elements allow developers to set the user level of a specific input field. This value ranges
+from 0 to 10 with 0 being simple inputs and 10 being very advanced inputs. This is an optional field
+and if left blank the value will be set to zero by the graphical user interface.
+
+.. code-block:: xml
   <define name="vary"> 
     <element name="vary">
       <data type="boolean" />
     </element>
   </define>
 
+The 'vary' element is a special boolean element that allows a cyclus user to set wether the input 
+field it is attached to can be varied for a parametric study. This flag is optional and can take
+the values "true", "false", "1", "0".
+
+.. code-block:: xml
   <define name="samplingFunction">
     <element name="samplingFunction">				
       <data type="string" />
     </element>
   </define>
 
+Sampling function is an element that goes with the vary element. If the vary element is set to true
+a sampling function is required to provide the sampling behavior for the element. This is a string
+input that represents the mathematical expression of the sampling function. This is an optional flag.
+
+.. code-block:: xml
   <define name="floatField">
     <element name="floatField">
       <interleave>
@@ -118,6 +151,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	</optional>
 	<optional>
 	  <ref name="help" />
+	</optional>
+	<optional>
+	  <ref name="units" />
 	</optional>
       </interleave>		
     </element>
@@ -154,6 +190,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	<optional>
 	  <ref name="help" />
 	</optional>
+	<optional>
+	  <ref name="units" />
+	</optional>
       </interleave>		
     </element>
   </define>
@@ -189,6 +228,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	<optional>
 	  <ref name="help" />
 	</optional>
+	<optional>
+	  <ref name="units" />
+	</optional>
       </interleave>		
     </element>
   </define>
@@ -214,6 +256,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	<optional>
 	  <ref name="help" />
 	</optional>
+	<optional>
+	  <ref name="units" />
+	</optional>
       </interleave>		
     </element>
   </define>
@@ -238,6 +283,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	</optional>
 	<optional>
 	  <ref name="help" />
+	</optional>
+	<optional>
+	  <ref name="units" />
 	</optional>
       </interleave>		
     </element>
@@ -271,6 +319,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	<optional>
 	  <ref name="help" />
 	</optional>
+	<optional>
+	  <ref name="units" />
+	</optional>
       </interleave>		
     </element>
   </define>
@@ -302,6 +353,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	</optional>
 	<optional>
 	  <ref name="help" />
+	</optional>
+	<optional>
+	  <ref name="units" />
 	</optional>
       </interleave>		
     </element>
@@ -335,6 +389,9 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	<optional>
 	  <ref name="help" />
 	</optional>
+	<optional>
+	  <ref name="units" />
+	</optional>
       </interleave>		
     </element>
   </define>
@@ -367,11 +424,16 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	<optional>
 	  <ref name="help" />
 	</optional>
+	<optional>
+	  <ref name="units" />
+	</optional>
       </interleave>		
     </element>
   </define>
 
 </grammar>
+
+
 
 Document History
 ================
