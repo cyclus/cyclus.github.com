@@ -26,6 +26,7 @@ Index
 
     PA - 1 - CEP Purpose and Guidelines - Scopatz <cep1>
     PA - 2 - Separation of Concerns in the Cyclus Ecosystem - Scopatz <cep2>
+    PD - 3 - Release Procedure - Scopatz <cep3>
 
 *Standard CEPs*
 
