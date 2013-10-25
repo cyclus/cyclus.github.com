@@ -212,7 +212,7 @@ the suppliers set the cost of a transaction, which they could tailor to the
 requester. However, this draws in a whole other field of bidding that requires
 much more rigor and thought as to its validity and implementation.
 
-.. image:: cep18/cep-0018-5.png
+.. image:: cep-0018-5.png
     :align: center
     :scale: 50 %
 
