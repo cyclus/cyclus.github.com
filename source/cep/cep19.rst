@@ -458,6 +458,137 @@ implies that the field has discrete values for which it can take.
   </define>
 
 
+Cycic Specific Tags
+===================
+In order to facilitate loading cyclus scenarios that were previously built with CycIC
+some additional fields are proposed to be added to the xml grammar. These fields will
+hold information on how to display the graphical parts of the simulation. 
+
+This portion of the xml file will not be read by cyclus, and should have no impact on
+the cyclus core code. 
+
+Top level Information
++++++++++++++++++++++
+Here the name of the CycIC simulation, a description, and some comments about it 
+can be saved.
+
+.. code-block:: xml
+
+  <define name="CycicSimulation">
+    <element name="CycicSimulation">
+      <element name="name">
+        <data type="string" />
+      </element>
+      <element name="description">
+	<data type="string">
+      </element>
+      <element name="comments">
+	<data type="string">
+      </element>
+      <oneOrMore>
+	<ref name="facilityCircle" />
+      </oneOrMore>
+      <oneOrMore>
+	<ref name="marketCircle" />
+      </oneOrMore>
+      <oneOrMore>
+	<ref name="regionShape" />
+      </oneOrMore>
+      <oneOrMore>
+	<ref name="institutionShape" />
+      </oneOrMore>
+    </element>
+  </define>
+
+
+
+Facility Circles
++++++++++++++++
+Here the initital proposal is to save the x and y locations of the facilities so that 
+they may be loaded in the proper place. 
+
+.. code-block:: xml
+
+  <define name="facilityCircle">
+    <element name="facilityCircle">
+      <element name="name">
+        <data type="string" />
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+    </element>
+  </define>
+
+
+Market Circles
++++++++++++++++
+Here the initital proposal is to save the x and y locations of the markets so that 
+they may be loaded in the proper place. 
+
+.. code-block:: xml
+
+  <define name="marketCircle">
+    <element name="marketCircle">
+      <element name="name">
+        <data type="string" />
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+    </element>
+  </define>
+
+
+Region Shapes
++++++++++++++++
+Here the initital proposal is to save the x and y locations of the region nodes so that 
+they may be loaded in the proper place. 
+
+.. code-block:: xml
+
+  <define name="regionShape">
+    <element name="regionShape">
+      <element name="name">
+        <data type="string" />
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+    </element>
+  </define>
+
+
+Institution Shapes
++++++++++++++++
+Here the initital proposal is to save the x and y locations of the institution 
+nodes so that they may be loaded in the proper place. 
+
+.. code-block:: xml
+
+  <define name="regionShape">
+    <element name="regionShape">
+      <element name="name">
+        <data type="string" />
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+    </element>
+  </define>
+
 
 Document History
 ================

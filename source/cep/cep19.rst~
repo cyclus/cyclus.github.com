@@ -40,7 +40,7 @@ The following patterns are proposed to be added to the master Cyclus schema.
 
 
 Tooltip
-=======
++++++++
 Tooltip elements is a short string of text that the developer can add to an input field that will 
 show when a user scrolls over this field in the graphical user interface. This is an optional field.
 
@@ -54,7 +54,7 @@ show when a user scrolls over this field in the graphical user interface. This i
 
 
 Help
-====
+++++
 Help elements will provide a more thorough explaination of the input field, it can be accessed through the
 graphical user interface. This is an optional field.
 
@@ -68,7 +68,7 @@ graphical user interface. This is an optional field.
 
 
 Units
-=====
++++++
 Units elements apply information to an input field that indicate to the user what units are attached to the
 value in this field. 
 
@@ -82,7 +82,7 @@ value in this field.
 
 
 User Level
-==========
+++++++++++
 User level elements allow developers to set the user level of a specific input field. This value ranges
 from 0 to 10 with 0 being simple inputs and 10 being very advanced inputs. This is an optional field
 and if left blank the value will be set to zero by the graphical user interface.
@@ -109,7 +109,7 @@ and if left blank the value will be set to zero by the graphical user interface.
 
 
 Vary
-====
+++++
 The 'vary' element is a special boolean element that allows a cyclus user to set wether the input 
 field it is attached to can be varied for a parametric study. This flag is optional and can take
 the values "true", "false", "1", "0".
@@ -124,7 +124,7 @@ the values "true", "false", "1", "0".
 
 
 Sampling Function
-=================
++++++++++++++++++
 Sampling function is an element that goes with the vary element. If the vary element is set to true
 a sampling function is required to provide the sampling behavior for the element. This is a string
 input that represents the mathematical expression of the sampling function. This is an optional flag.
@@ -139,7 +139,12 @@ input that represents the mathematical expression of the sampling function. This
 
 
 Field Types
-===========
++++++++++++
+
+The field types used for input fields are listed below. In general they are associated with a 
+specific data type. In addition there are several field types that are categorical. This
+implies that the field has discrete values for which it can take.  
+
 .. code-block:: xml
 
   <define name="floatField">
@@ -452,6 +457,128 @@ Field Types
     </element>
   </define>
 
+
+Cycic Specific Tags
+===================
+In order to facilitate loading cyclus scenarios that were previously built with CycIC
+some additional fields are proposed to be added to the xml grammar. These fields will
+hold information on how to display the graphical parts of the simulation. 
+
+This portion of the xml file will not be read by cyclus, and should have no impact on
+the cyclus core code. 
+
+Top level Information
++++++++++++++++++++++
+Here the name of the CycIC simulation, a description, and some comments about it 
+can be saved.
+
+.. code-block:: xml
+
+  <define name="CycicSimulation">
+    <element name="CycicSimulation">
+      <element name="name">
+        <data type="string" />
+      </element>
+      <element name="description">
+	<data type="string">
+      </element>
+      <element name="comments">
+	<data type="string">
+      </element>
+      <oneOrMore>
+	<ref name="facilityCircle" />
+      </oneOrMore
+    </element>
+  </define>
+
+
+
+Facility Circles
++++++++++++++++
+Here the initital proposal is to save the x and y locations of the facilities so that 
+they may be loaded in the proper place. 
+
+.. code-block:: xml
+
+  <define name="facilityCircle">
+    <element name="facilityCircle">
+      <element name="name">
+        <data type="string" />
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+    </element>
+  </define>
+
+
+Market Circles
++++++++++++++++
+Here the initital proposal is to save the x and y locations of the markets so that 
+they may be loaded in the proper place. 
+
+.. code-block:: xml
+
+  <define name="marketCircle">
+    <element name="marketCircle">
+      <element name="name">
+        <data type="string" />
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+    </element>
+  </define>
+
+
+Region Shapes
++++++++++++++++
+Here the initital proposal is to save the x and y locations of the region nodes so that 
+they may be loaded in the proper place. 
+
+.. code-block:: xml
+
+  <define name="regionShape">
+    <element name="regionShape">
+      <element name="name">
+        <data type="string" />
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+    </element>
+  </define>
+
+
+Institution Shapes
++++++++++++++++
+Here the initital proposal is to save the x and y locations of the institution 
+nodes so that they may be loaded in the proper place. 
+
+.. code-block:: xml
+
+  <define name="regionShape">
+    <element name="regionShape">
+      <element name="name">
+        <data type="string" />
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+      <element name="xPosition">
+	<data type="double">
+      </element>
+    </element>
+  </define>
 
 
 Document History
