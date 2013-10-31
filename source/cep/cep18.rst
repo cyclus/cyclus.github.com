@@ -3,7 +3,7 @@ CEP 18 - Dynamic Resource Exchange Procedure
 
 :CEP: 18
 :Title: Dynamic Resource Exchange Procedure
-:Last-Modified: 2013-09-27
+:Last-Modified: 2013-10-31
 :Author: Matthew Gidden
 :Status: Draft
 :Type: Standards Track
@@ -360,109 +360,94 @@ classes and dynamic casting to derived classes) can be invoked by templating on
 the ``Resource`` type, i.e., ``Request<Resource>``. See the `capacity constraint
 tests`_ for an example of this range of behavior.
 
-RFB Procedure
--------------
+Resource Exchange
+-----------------
 
-Input 
-++++++
+The resource exchange is implemented through coordination of two classes, the
+ResourceExchange and the ExchangeContext, both of which are implemented with
+tests in the `CEP18 branch`_.
 
-The set of facilities requesting/demanding one or more commodities at the given
-time step.
+The ExchangeContext retains the current state of the exchange, including
+information regarding the players (i.e., requesters and suppliers) as well as
+information regarding requests and bids. The ResourceExchange initiates the
+phase order and updates the context state. As currently envisioned, an exchange
+and context's lifetime is the single resolution of the exchange at a given
+time. The exchange is populated with traders as known by the wider simulation
+context. Both the ExchangeContext and ResourceExchange are templated on the
+Resource being exchanged, as was the case above. An overview of the exchange
+implementation follows, noting the state updates of the context at each phase.
 
-Output
-+++++++
+RFB Phase
++++++++++
 
-A Set of RequestPortfolios.
+Note that the ExchangeContext has no state at the beginning of the phases.
 
-Comments
-++++++++
+ResourceExchange operations:
 
-There are multiple strategies that could be taken to determine the input
-list. As a first approach, a naive strategy will be taken that queries each
-facility that is registered as a requester to determine demand at each time
-step.
+* Queries each Trader registered with the simulation Context, asking for
+  RequestPortfolios
 
-RRFB Procedure
---------------
+ExchangeContext state at end of phase:
 
-Input 
-++++++
+* Requesters
+* Requests
+* RequestPortfolio
 
-The set of facilities supplying one or more commodities and the set of requests
-for commodities at the given time step.
+RRFB Phase
+++++++++++
 
-Output
-+++++++
+ResourceExchange operations:
 
-A set of ResponsePortfolios.
+* Queries each Trader registered with the simulation Context, asking for
+  BidPorftolios
+* The ExchangeContext is given to each trader in order to determine all Requests
+  for a specific commodity
 
-Comments
-++++++++
+ExchangeContext state at end of phase:
 
-As with the the RFB procedure, many strategies exist to construct the input
-set. A similar approach will be taken that queries all registered suppliers.
+* Bidders
+* BidPortfolios
+* Default preferences for each Bid-Request pair (provided in the original Request)
 
 PA Procedure
 ------------
 
-At the beginning of the Preference Assignment procedure, possible connections
-between supplier and consumer facilities are known. It is useful to think of
-these connections as arcs on a graph, where each arc represents a request that
-could be met by a supplier. The RequestPortfolios associated with a facility
-represent nodes in this graph with constraints associated with one or more of
-the arcs. The ResponsePortfolios represent supplier nodes with constraints over
-all incoming request arcs.
+ResourceExchange operations:
 
-Input 
-++++++
+* For each Requester and each parent in the Model child-parent tree of that
+  Requester, preferences are allowed to be perturbed, which looks nominally like:
 
-The set of ResponsePortfolios, providing the arcs on the supply-demand graph.
+.. code-block:: c++
 
-Output
-+++++++
+  /// @brief allows a trader and its parents to adjust any preferences in the
+  /// system
+  void DoAdjustment(Trader* t) {
+    typename PrefMap<T>::type& prefs = ex_ctx_.Prefs(t);
+    Model* m = dynamic_cast<Model*>(t);
+    while (m != NULL) {
+      cyclus::AdjustPrefs(m, prefs);
+      m = m->parent();
+    }
+  };
 
-Requester-based preferences for each supply-demand pair, with possible
-modifications made by the managers of the requester.
+For full implementation details, please see the `CEP18 branch`_.
 
-Unknown
-+++++++
+ExchangeContext state at end of phase:
 
-The interaction of the manager perturbation of the the requester preferences
-does not have many well-defined used cases. The primary use case to date is
-regional preference modeling. The primary question concerning this algorithm is
-the timing of the perturbation. Two choices exist:
+* Possibly perturbed preferences for each Bid-Request pair
 
-1. Apply perturbations immediately after the requester assigns a preference.
-
-2. Apply perturbations after all managed requesters assign their preferences.
-
-The second approach allows decision making given the aggregate of possible
-connections, i.e., it provides more information. However, its implementation
-will be more complicated and is perhaps unnecessary if a use case is not known.
 
 MarketAlgorithm
----------------
++++++++++++++++
 
 The MarketAlgorithm is a virtual base class for possible algorithms to solve the
 supply-demand matching algorithm. 
 
-Input
-+++++
+The input for the algorithm is the full set of Requests, Bids, preferences, and
+CapacityConstraints.
 
-The set of ResponsePortfolios with associated preferences.
-
-Output
-++++++
-
-The set of chosen supply-demand pairs to execute.
-
-MarketExecution
----------------
-
-The final step of the market resolution phase, the execution of the market
-provides suppliers with the full list of requests to be met. Suppliers are then
-asked to return a resource for each of the provided requests. Requesters are
-then notified of all orders that have been filled.
+The output for the algorithm is Request-Bid pairs such that CapacityConstraints
+are not exceeded.
 
 Backwards Compatibility
 =======================
