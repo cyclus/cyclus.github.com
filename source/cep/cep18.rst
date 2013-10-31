@@ -410,7 +410,7 @@ ExchangeContext state at end of phase:
 * Default preferences for each Bid-Request pair (provided in the original Request)
 
 PA Procedure
-------------
+++++++++++++
 
 ResourceExchange operations:
 
