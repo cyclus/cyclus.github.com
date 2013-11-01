@@ -320,15 +320,22 @@ transport, for example.
 Market Resolution
 -----------------
 
-Upon completion of the information gathering step, the market resolution
-function will be called. The current "null market" behavior is defined as a
-"greedy matching" algorithm. Such an algorithm as currently implemented naively
-matches consumers with suppliers without particular regard for preference of
-commodity or resource. Accordingly, a similar algorithm will be implemented that
-greedily matches supplier and requester based on the requester's highest
-preference, accounting for multiple commodity markets and associated production
-capacities. The matching algorithm used by a market is modular, and replaces the
-notion of the MarketModel.
+Upon completion of the information gathering step, all information regarding the
+exchange is known. Importantly, proposed resource qualities, constraining values
+based on the resource quality, and other data such as preferences and/or costs
+are known. Given these static values, the exchange can be translated to a graph
+with supplier/consumer nodes, arcs defined by bids, supplier and consumer
+constraints on those arcs, and consumer-based preferences for those arcs.
+
+The exchange is responsible for translating its gathered information into such a
+graph formulation, and various solvers can solve the material flow along the
+arcs of that graph. The solutions are then provided to the exchange for
+back-translation into resource-specific request-bid pairs. Given such pairings,
+the exchange executes the trades.
+
+It is important to note that a generic solver interface is defined and provided
+a resource exchange graph. Different subclasses can define solution algorithms
+given the graph.
 
 Specification \& Implementation
 ===============================
@@ -436,18 +443,59 @@ ExchangeContext state at end of phase:
 
 * Possibly perturbed preferences for each Bid-Request pair
 
+ExchangeGraph
+-------------
 
-MarketAlgorithm
-+++++++++++++++
+An ExchangeGraph is a graph representation of a resource exchange. It provides a
+resource-free representation of the exchange, i.e., the quality-specific
+constraint and preference values are "baked in". By the nature of the
+supplier/requester setup, the graph is bipartite, thus there is a notion of U
+(left) and V (right) nodes, and arcs strictly connect a U node to a V
+node. Constraints are defined along arcs, where each u-v node pair is associated
+with a constraining value. Preferences are also defined along arcs.
 
-The MarketAlgorithm is a virtual base class for possible algorithms to solve the
-supply-demand matching algorithm. 
+ExchangeTranslator
+------------------
 
-The input for the algorithm is the full set of Requests, Bids, preferences, and
-CapacityConstraints.
+The ExchangeTranslator is an object responsible for translating a given
+ExchangeContext into an ExchangeGraph, and has a pretty simple interface: 
 
-The output for the algorithm is Request-Bid pairs such that CapacityConstraints
-are not exceeded.
+.. code-block:: c++
+
+    template<T>
+    struct ExchangePair {
+       Request<T>::Ptr r; // request
+       Bid<T>::Ptr b; // bid
+       double p; // percent of bid to give
+    }
+
+    template<T>
+    class ExchangeTranslator {
+     public:
+      ExchangeGraph ToGraph(const ExchangeContext& ec) {
+       /* do translation */
+      };
+
+      std::set< ExchangePair<T> >  
+        FromGraph(const ExchangeGraph& eg) {
+         /* do back-translation */
+      };
+    };
+
+ExchangeSolver
+--------------
+
+The ExchangeSolver is a virtual interface for solvers of a resource exchange. A
+constrained ExchangeGraph is provided as input, and a solution ExchangeGraph is
+provided as output, which satisfies the provided constraints. It too, has a
+pretty simple interface
+
+.. code-block:: c++
+
+    class ExchangeSolver {
+     public:
+      virtual void Solve(const ExchangeGraph& g) = 0;
+    };
 
 Backwards Compatibility
 =======================
