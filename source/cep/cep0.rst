@@ -3,7 +3,7 @@ Cyclus Enhancement Proposals
 :CEP: 0
 :Title: Index of Cyclus Enhancement Proposals (CEPs)
 :Version: N/A
-:Last-Modified: 2013-09-03
+:Last-Modified: 2013-11-01
 :Author: Anthony Scopatz <scopatz at gmail.com>
 :Status: Active
 :Type: Informational
@@ -34,7 +34,7 @@ Index
     :maxdepth: 1
 
     SA - 17 - Resource Tracking and Interfaces Re-Re-Redo - Carlsen <cep17>
-    SD - 18 - Dynamic Resource Exchange Interface - Gidden <cep18>
+    SD - 18 - Dynamic Resource Exchange Procedure - Gidden <cep18>
 
 Key
 ---
