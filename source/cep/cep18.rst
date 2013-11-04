@@ -3,7 +3,7 @@ CEP 18 - Dynamic Resource Exchange Procedure
 
 :CEP: 18
 :Title: Dynamic Resource Exchange Procedure
-:Last-Modified: 2013-11-01
+:Last-Modified: 2013-11-04
 :Author: Matthew Gidden
 :Status: Draft
 :Type: Standards Track
@@ -81,15 +81,16 @@ Rationale
 The proposed refactor addresses each of the issues provided in the previous
 section. The notion of market models is redefined, separating the collection of
 supply-demand information from the algorithm used to match suppliers with
-consumers. The information gathering framework is structured and core-based. It
-is top-down in the sense that it queries facilities for their supply and demand
-rather than requiring facility-based notifications. Accordingly, concerns are
-appropriately separated: the information is gathered by the core at the
-beginning of the resolve step, allowing facilities to inform a given market
-algorithm; market algorithms determine the set of offers and requests to be
-matched; and the core sends out resolved transactions. Message passing to and
-from markets is addressed by the framework, providing facilities, institutions,
-and regions each with specific, defined agency.
+consumers. The information gathering framework is structured and handled by the
+Cyclus core (i.e., not adjustable by model developers). It is top-down in the
+sense that it queries facilities for their supply and demand rather than
+requiring facility-based notifications. Accordingly, concerns are appropriately
+separated: the information is gathered by the core at the beginning of the
+resolve step, allowing facilities to inform a given market algorithm; market
+algorithms determine the set of offers and requests to be matched; and the core
+sends out resolved transactions. Message passing to and from markets is
+addressed by the framework, providing facilities, institutions, and regions each
+with specific, defined agency.
 
 Supply-Demand Framework
 -----------------------
@@ -276,9 +277,9 @@ allows fuel cycle simulation developers to model relatively complex interactions
 at a regional level, such as tariffs and sanctions. Constraints to cross-border
 trading can also be applied. For example, a region could place constraints on
 the total amount of a given commodity type that is able to flow into it or out
-of it into a different region. Such constraints could applied not only to bulk
-quantities of a commodity, but also to the quality of each commodity. Such a
-mechanism could be used to model interdiction of highly-enriched uranium
+of it into a different region. Such constraints could be applied not only to
+bulk quantities of a commodity, but also to the quality of each commodity. Such
+a mechanism could be used to model interdiction of highly-enriched uranium
 transport, for example.
 
 .. image:: cep-0018-2.svg
@@ -333,9 +334,9 @@ arcs of that graph. The solutions are then provided to the exchange for
 back-translation into resource-specific request-bid pairs. Given such pairings,
 the exchange executes the trades.
 
-It is important to note that a generic solver interface is defined and provided
-a resource exchange graph. Different subclasses can define solution algorithms
-given the graph.
+It is important to note that a generic solver interface is defined and its
+constructor is provided a resource exchange graph. Different subclasses can
+define solution algorithms given the graph.
 
 Specification \& Implementation
 ===============================
@@ -377,12 +378,13 @@ tests in the `CEP18 branch`_.
 The ExchangeContext retains the current state of the exchange, including
 information regarding the players (i.e., requesters and suppliers) as well as
 information regarding requests and bids. The ResourceExchange initiates the
-phase order and updates the context state. As currently envisioned, an exchange
-and context's lifetime is the single resolution of the exchange at a given
-time. The exchange is populated with traders as known by the wider simulation
-context. Both the ExchangeContext and ResourceExchange are templated on the
-Resource being exchanged, as was the case above. An overview of the exchange
-implementation follows, noting the state updates of the context at each phase.
+various phases and updates the context state. As currently envisioned, an
+exchange and context's lifetime is the single resolution of the exchange at a
+given time. The exchange is populated with traders as known by the wider
+simulation context. Both the ExchangeContext and ResourceExchange are templated
+on the Resource being exchanged, as was the case above. An overview of the
+exchange implementation follows, noting the state updates of the context at each
+phase.
 
 RFB Phase
 +++++++++
