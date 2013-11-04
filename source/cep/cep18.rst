@@ -203,7 +203,7 @@ effectively eliminating that arc.
 It should be noted that these preferences are requester based. This choice is
 based on the current simulation design notion of requesters having a preference
 over possible inputs. It is possible that in the future, one would like to model
-the notion of supplier preference (i.e., moreso than the implicit nature
+the notion of supplier preference (i.e., more so than the implicit nature
 currently provided by allowing suppliers to set the transaction quality and
 whether to respond to the transaction at all). One suggestion may be to allow
 suppliers to also have a supply preference, and to use the average of them in
@@ -350,7 +350,7 @@ described first.
 Constituent Classes and Containers
 ----------------------------------
 
-The major new datastructures required for this proposal are:
+The major new data structures required for this proposal are:
 
 * Bids
 * BidPortfolios
