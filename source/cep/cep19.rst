@@ -474,8 +474,8 @@ can be saved.
 
 .. code-block:: xml
 
-  <define name="CycicSimulation">
-    <element name="CycicSimulation">
+  <define name="cycicSimulation">
+    <element name="cycicSimulation">
       <element name="name">
         <data type="string" />
       </element>
