@@ -4,7 +4,7 @@ CEP 19 - Cyclus Input Procedure Updates
 :CEP: 19
 :Title: Cyclus Input Procedure Updates
 :Last-Modified: 2013-10-16
-:Author: Dr. Tony Scopes & Robert Flanagan
+:Author: Dr. Tony Scopes & Robby Flanny
 :Status: Draft
 :Type: Standards Track
 :Created: 2013-10-16
@@ -503,7 +503,7 @@ can be saved.
 
 
 Facility Circles
-+++++++++++++++
+++++++++++++++++
 Here the initital proposal is to save the x and y locations of the facilities so that 
 they may be loaded in the proper place. 
 
@@ -569,7 +569,7 @@ they may be loaded in the proper place.
 
 
 Institution Shapes
-+++++++++++++++
+++++++++++++++++++++
 Here the initital proposal is to save the x and y locations of the institution 
 nodes so that they may be loaded in the proper place. 
 
