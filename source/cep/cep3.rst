@@ -76,8 +76,9 @@ When releasing a cyclus project, make sure to do the following items in order:
    to the next release's milestone is a perfectly valid strategy for completing this
    milestone.  
 3. Write and commit the release notes.
-4. Bump the version (in code, documentation, etc.) and commit the change.
-5. Merge or rebase the branch: 
+4. Review the current state of documentation and make approriate updates.
+5. Bump the version (in code, documentation, etc.) and commit the change.
+6. Merge or rebase the branch: 
 
    * If this is the first release candidate, create a release branch called
      'vX.X.X-release' off of develop.  Merge the release branch into master.
@@ -86,9 +87,9 @@ When releasing a cyclus project, make sure to do the following items in order:
    * If this is a full release, merge or rebase the release branch into
      the master branch.  Then delete the release candidate branch.
 
-6. Create a tag in the version control system whose name matches that of the release.
-7. Push the tags upstream
-8. Update release information on the website.
+7. Create a tag in the version control system whose name matches that of the release.
+8. Push the tags upstream
+9. Update release information on the website.
 
 Document History
 ================
