@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="branch-usage.png">
+   sodipodi:docname="cep-0003-1.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -69,14 +69,14 @@
     <text
        xml:space="preserve"
        style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:FreeSerif;-inkscape-font-specification:FreeSerif"
-       x="69.285713"
-       y="177.50504"
+       x="89.285713"
+       y="115.50504"
        id="text2991"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan2993"
-         x="69.285713"
-         y="177.50504"
+         x="89.285713"
+         y="115.50504"
          style="font-size:16px">develop</tspan></text>
     <path
        sodipodi:type="arc"
@@ -91,14 +91,14 @@
     <text
        xml:space="preserve"
        style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:FreeSerif;-inkscape-font-specification:FreeSerif"
-       x="152.79428"
-       y="178.94731"
+       x="160.79428"
+       y="150.94731"
        id="text2991-3"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan2993-6"
-         x="152.79428"
-         y="178.94731"
+         x="160.79428"
+         y="150.94731"
          style="font-size:16px">v0.2-release</tspan></text>
     <path
        sodipodi:type="arc"
