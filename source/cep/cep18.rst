@@ -5,7 +5,7 @@ CEP 18 - Dynamic Resource Exchange Procedure
 :Title: Dynamic Resource Exchange Procedure
 :Last-Modified: 2013-11-04
 :Author: Matthew Gidden
-:Status: Draft
+:Status: Accepted
 :Type: Standards Track
 :Created: 2013-09-02
 
