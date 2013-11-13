@@ -62,21 +62,21 @@ into master.  When the actual release happens, the release branch is deleted.
 
 If you have a new fix that needs to be in the next release candidate, you make a 
 topical branch and then pull request it into the release branch.  After this has 
-been accepted, you merge topical with develop as well.
+been accepted, the topical branch should be merged with develop as well.
 
 The release branch must be quiet and untouched for 2 - 5 days prior to the full 
 release.
 
 Project Checklist
 =================
-When releasing a cyclus project, make sure to do the following items in order.
+When releasing a cyclus project, make sure to do the following items in order:
 
 1. Review **ALL** issues in the issue tracker, reassigning or closing them as needed.
 2. Ensure that all issues in this release's milestone have been closed.  Moving issues
    to the next release's milestone is a perfectly valid strategy for completing this
    milestone.  
 3. Write and commit the release notes.
-4. Bump the version and commit the change.
+4. Bump the version (in code, documentation, etc.) and commit the change.
 5. Merge or rebase the branch: 
 
    * If this is the first release candidate, create a release branch called
