@@ -3,7 +3,7 @@ CEP 3 - Cyclus Release Procedure
 
 :CEP: 3
 :Title: Cyclus Release Procedure
-:Last-Modified: 2013-10-25
+:Last-Modified: 2013-11-14
 :Author: Anthony Scopatz
 :Status: Draft
 :Type: Process
@@ -41,13 +41,13 @@ All projects should have a release candidate ('-rc1') that comes out 2 - 5 days
 prior to the scheduled release.  During this time, no changes should occur to 
 a special release branch ('vX.X.X-release').  
 
-The release branches are there so that development can continue on the 
+The release branch is there so that development can continue on the 
 develop branch while the release candidates (rc) are out and under review.  
 This is because otherwise any new developments would have to wait until 
 post-release to be merged into develop to prevent them from accidentally 
 getting released early.    
 
-As such, these 'vX.X.X-release' branches should only exist while there are 
+As such, the 'vX.X.X-release' branch should only exist while there are 
 release candidates out.  They are akin to a temporary second level of staging 
 to be used to keep master clean and safe.  As such, everything that is in this 
 branch should also be part of develop.  Graphically, 
@@ -57,12 +57,14 @@ branch should also be part of develop.  Graphically,
 
     **Figure 1:** Branch hierarchy under release.
 
-Every time a new release candidate comes out is when vX.X.X-release gets merged 
-into master.  When the actual release happens, the release branch is deleted.
+Every time a new release candidate comes out the vX.X.X-release should be 
+tagged with the name 'X.X.X-rcX'.  There should be a 2 - 5 day period of time 
+in between release candidates.  When the full and final release happens, the 
+'vX.X.X-release' branch is merged into master and then deleted.
 
-If you have a new fix that needs to be in the next release candidate, you make a 
-topical branch and then pull request it into the release branch.  After this has 
-been accepted, the topical branch should be merged with develop as well.
+If you have a new fix that needs to be in the next release candidate, you should 
+make a topical branch and then pull request it into the release branch.  After this 
+has been accepted, the topical branch should be merged with develop as well.
 
 The release branch must be quiet and untouched for 2 - 5 days prior to the full 
 release.
@@ -78,16 +80,17 @@ When releasing a cyclus project, make sure to do the following items in order:
 3. Write and commit the release notes.
 4. Review the current state of documentation and make approriate updates.
 5. Bump the version (in code, documentation, etc.) and commit the change.
-6. Merge or rebase the branch: 
+6. Tag the branch with a name that matches that of the release: 
 
    * If this is the first release candidate, create a release branch called
-     'vX.X.X-release' off of develop.  Merge the release branch into master.
-   * If this is the second or later release candidate, merge or rebase the 
-     release branch into master.
-   * If this is a full release, merge or rebase the release branch into
-     the master branch.  Then delete the release candidate branch.
+     'vX.X.X-release' off of develop.  Tag this branch with the name 'X.X.X-rc1'.
+   * If this is the second or later release candidate, tag the release branch 
+     with the name 'X.X.X-rcX'.
+   * If this is the full and final release, tag this branch with the name
+     'X.X.X'.
 
-7. Create a tag in the version control system whose name matches that of the release.
+7. If this is a full release, merge or rebase the release branch into the 
+   master branch.  Then delete the release branch.
 8. Push the tags upstream
 9. Update release information on the website.
 
