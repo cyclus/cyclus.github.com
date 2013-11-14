@@ -80,17 +80,17 @@ When releasing a cyclus project, make sure to do the following items in order:
 3. Write and commit the release notes.
 4. Review the current state of documentation and make approriate updates.
 5. Bump the version (in code, documentation, etc.) and commit the change.
-6. Tag the branch with a name that matches that of the release: 
+6. If this is a release candidate, tag the release branch with a name that matches 
+   that of the release: 
 
    * If this is the first release candidate, create a release branch called
      'vX.X.X-release' off of develop.  Tag this branch with the name 'X.X.X-rc1'.
    * If this is the second or later release candidate, tag the release branch 
      with the name 'X.X.X-rcX'.
-   * If this is the full and final release, tag this branch with the name
-     'X.X.X'.
 
-7. If this is a full release, merge or rebase the release branch into the 
-   master branch.  Then delete the release branch.
+7. If this is the full and final release (and not a release candidate), 
+   merge the release branch into the master branch.  Next, tag the master branch 
+   with the name 'X.X.X'.  Finally, delete the release branch.
 8. Push the tags upstream
 9. Update release information on the website.
 
