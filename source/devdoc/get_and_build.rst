@@ -6,19 +6,19 @@ Getting and Building Cyclus
 
 The Cyclus Library Suite
 ------------------------
-*Cyclus* is composed of a number of libraries:
+*Cyclus* is composed of two libraries:
   
-  * `cyclopts <https://github.com/cyclus/cyclopts>`_ (optimization)
-  * `cyclus core <https://github.com/cyclus/cyclus>`_ (basic functionality)
-  * `cycamore <https://github.com/cyclus/cycamore>`_ (a module repository)
+  * Cyclus Core, comprising core library functionality
+  * Cycamore, a module repository
 
-Some key points about installing *Cyclus*:
+Installation information is provided in the readmes of each repository, and the
+core must be installed before cycamore. Accordingly, installation steps are as
+follows:
 
-  * each library must be installed in the above order (cyclopts, cyclus,
-    cycamore)
-  * the source code must be obtained through git via the links above
-  * installation instructions are provided in the readmes (which are rendered as
-    the landing page) for each of the of the above libraries
+  #. Visit the `Cyclus repo <https://github.com/cyclus/cyclus>`_ and follow its
+     installation instructions
+  #. Visit the `Cycamore readme <https://github.com/cyclus/cycamore>`_ and
+     follow its installation instructions
 
 Additional Information
 ~~~~~~~~~~~~~~~~~~~~~~
