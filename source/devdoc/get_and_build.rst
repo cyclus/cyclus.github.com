@@ -15,17 +15,17 @@ Installation information is provided in the readmes of each repository, and the
 core must be installed before cycamore. Accordingly, installation steps are as
 follows:
 
-  #. Visit the `Cyclus repo <https://github.com/cyclus/cyclus>`_ and follow its
-     installation instructions
+  #. Visit the `Cyclus repo <https://github.com/cyclus/cyclus>`_ and follow the
+     installation instructions on the main page (README.rst)
   #. Visit the `Cycamore readme <https://github.com/cyclus/cycamore>`_ and
-     follow its installation instructions
+     follow the installation instructions on the main page (README.rst)
 
 Supported Systems
 ~~~~~~~~~~~~~~~~~
 
 Currently, two specific systems are supported
 
-  * Ubuntu 12 64-bit
+  * Linux 64-bit (Ubuntu 12+ recommended)
   * MacOSX 8 64-bit
 
 Unfamiliar with git and Github?
