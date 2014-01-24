@@ -3,9 +3,9 @@ CEP 17 - Resource Tracking and Interfaces Re-Re-Redo
 
 :CEP: 17
 :Title: Resource Tracking and Interfaces Re-Re-Redo
-:Last-Modified: 2013-08-08
+:Last-Modified: 2013-09-03
 :Author: Robert Carlsen <rwcarlsen@gmail.com>
-:Status: Draft 
+:Status: Accepted
 :Type: Standards Track
 :Created: Robert Carlsen
 
@@ -429,22 +429,23 @@ or other places.
 
 .. code-block:: c++
 
+
     namespace cyclus {
 
     typedef int Iso;
+    typedef std::map<Iso, double> CompMap;
 
     // Represents an immutable nuclear material composition
     class Composition {
      public:
       typedef boost::shared_ptr<Composition> Ptr;
-      typedef std::map<Iso, double> Vect;
 
-      static Ptr CreateAtom(Vect v);
-      static Ptr CreateMass(Vect v);
+      static Ptr CreateAtom(CompMap v);
+      static Ptr CreateMass(CompMap v);
 
       int id();
-      const Vect& atom_vect();
-      const Vect& mass_vect();
+      const CompMap& atom_vect();
+      const CompMap& mass_vect();
 
       Ptr Decay(int delta);
 
@@ -460,9 +461,9 @@ compmath namespace
 The excellent floating point calculation handling and thresholding
 functionality introduced by @katyhuff will be preserved. The current
 (pre-proposal) Material::Diff and Material::ApplyThreshold methods will become
-public functions that operate on Composition::Vect types.  Other common
+public functions that operate on CompMap types.  Other common
 composition manipulation functions will live here.  They will operate on
-Composition::Vect's because Composition's themselves are immutable.  Resource
+CompMap's because Composition's themselves are immutable.  Resource
 and Composition classes will use these methods where appropriate instead of
 their own, internal versions. This namespace is intended to grow organically as
 needed.
@@ -472,23 +473,23 @@ needed.
     namespace cyclus {
     namespace compmath {
 
-    Composition::Vect Add(const Composition::Vect& v1, double qty1,
-                          const Composition::Vect& v2, double qty2);
+    CompMap Add(const CompMap& v1, double qty1,
+                          const CompMap& v2, double qty2);
 
     /// previously Material::Diff
-    Composition::Vect Sub(const Composition::Vect& v1, double qty1,
-                           const Composition::Vect& v2, double qty2);
+    CompMap Sub(const CompMap& v1, double qty1,
+                           const CompMap& v2, double qty2);
 
-    void ApplyThreshold(Composition::Vect* v, double threshold);
+    void ApplyThreshold(CompMap* v, double threshold);
 
-    void Normalize(cyclus::Composition::Vect* v, double val);
+    void Normalize(cyclus::CompMap* v, double val);
 
-    bool ValidIsos(const Composition::Vect& v);
+    bool ValidIsos(const CompMap& v);
 
-    bool AllPositive(const Composition::Vect& v);
+    bool AllPositive(const CompMap& v);
 
-    bool AlmostEq(const Composition::Vect& v1,
-                  const Composition::Vect& v2,
+    bool AlmostEq(const CompMap& v1,
+                  const CompMap& v2,
                   double threshold);
 
     } // namespace compmath

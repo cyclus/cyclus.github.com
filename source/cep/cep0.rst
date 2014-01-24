@@ -3,7 +3,7 @@ Cyclus Enhancement Proposals
 :CEP: 0
 :Title: Index of Cyclus Enhancement Proposals (CEPs)
 :Version: N/A
-:Last-Modified: 2013-09-03
+:Last-Modified: 2013-11-01
 :Author: Anthony Scopatz <scopatz at gmail.com>
 :Status: Active
 :Type: Informational
@@ -26,13 +26,16 @@ Index
 
     PA - 1 - CEP Purpose and Guidelines - Scopatz <cep1>
     PA - 2 - Separation of Concerns in the Cyclus Ecosystem - Scopatz <cep2>
+    PD - 3 - Release Procedure - Scopatz <cep3>
 
 *Standard CEPs*
 
 .. toctree::
     :maxdepth: 1
 
-    SD - 17 - Resource Tracking and Interfaces Re-Re-Redo - Carlsen <cep17>
+    SA - 17 - Resource Tracking and Interfaces Re-Re-Redo - Carlsen <cep17>
+    SA - 18 - Dynamic Resource Exchange Procedure - Gidden <cep18>
+    SD - 19 - Cyclus Input Procedure Updates - Flanagan <cep19>
 
 Key
 ---
