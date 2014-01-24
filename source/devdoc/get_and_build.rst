@@ -28,29 +28,8 @@ Currently, two specific systems are supported
   * Ubuntu 12 64-bit
   * MacOSX 8 64-bit
 
-Acquiring Source Code
----------------------
-
-Using Git
-~~~~~~~~~
-The build process for each library is the same. The first step is to
-download the source code for each library.
-
-Most systems will come with git fully installed; however, some developers may 
-require the following git libraries if they are not already installed:
-
- * git-core
- * git-gui
- * git-doc
-
-Getting the Code
-~~~~~~~~~~~~~~~~
-The source code of each library can be found at the `*Cyclus* 
-repository <https://github.com/cyclus>`_, hosted on *Github*. Anyone may
-check out the code. Although you do not have to register with *Github* to
-download and edit the code, if you desire your work to be integrated into the
-cyclus mainline of development *you must fork the cyclus core repository into
-your own github account and submit 'Pull Requests'*.
+Unfamiliar with git and Github?
+-------------------------------
 
 For the Git uninitiated, one must perform the following steps to acquire *Cyclus*:
 
@@ -90,7 +69,9 @@ If you are unfamiliar with Github, here are some resources:
 Contact Us
 ----------
 
-If you have further comments or questions about the build process, please don't hesitate to email or join the Cyclus users list, which will allow you to contact the community of users and developers of Cyclus.
+If you have further comments or questions about the build process, please don't
+hesitate to email or join the Cyclus users list, which will allow you to contact
+the community of users and developers of Cyclus.
 
 * Email the Users' list: cyclus-users@groups.google.com
 * Join the Users' list: https://groups.google.com/forum/?fromgroups#!forum/cyclus-users 
