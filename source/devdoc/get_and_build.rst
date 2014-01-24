@@ -20,20 +20,13 @@ follows:
   #. Visit the `Cycamore readme <https://github.com/cyclus/cycamore>`_ and
      follow its installation instructions
 
-Additional Information
-~~~~~~~~~~~~~~~~~~~~~~
-Please note that the **dev** version of each of the above 
-libraries must be used. The build system will complain (saying it 
-cannot find the library) if only the normal (release) libraries are 
-installed.
+Supported Systems
+~~~~~~~~~~~~~~~~~
 
-An overview of some of the dependency installations
-can be found on the following pages:
+Currently, two specific systems are supported
 
-.. toctree::
-  :maxdepth: 1
-
-  dependencies_windows
+  * Ubuntu 12 64-bit
+  * MacOSX 8 64-bit
 
 Acquiring Source Code
 ---------------------
