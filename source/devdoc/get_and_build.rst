@@ -41,6 +41,9 @@ Note that each *Cyclus* repository has **two** branches:
   * master -- the lastest stable release of the library
   * develop -- the lastest working copy that passes all tests
 
+The above branches are synchronized with each other, and should be used in tandem
+(i.e., use master (Cyclus) with master (Cycamore) or develop with develop only).
+
 .. _`Set Up Git`: http://help.github.com/linux-set-up-git/
 
 .. _`Fork A Repo`: http://help.github.com/fork-a-repo/
