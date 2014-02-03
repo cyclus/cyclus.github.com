@@ -67,9 +67,10 @@ Doxygen Code Documentation
 
 The definitive documentation of any software is the source code itself.
 *Cyclus* will relies on Doxygen for automation of rich documentation from
-appropriately formatted comments in the source code. Current Doxygen
-documentation can be found at http://cnergdata.engr.wisc.edu/cyclus/core/docs/ .
-This page will be updated nightly.
+appropriately formatted comments in the source code. Current Doxygen 
+documentation can be found online for both `cyclus 
+<http://fuelcycle.org/cyclus/api/>`_ and `cycamore 
+<http://fuelcycle.org/cycamore/api/>`_.  These pages will be updated nightly.
 
 Documentation is a make target in the cmake build system. Documentation
 will automatically be built when you `make all`. You can build only the

@@ -4,82 +4,32 @@
 Getting and Building Cyclus
 ===========================
 
-Getting Cyclus as a First-Time User
------------------------------------
-
-The dev team recognizes that first-time users, especially those not
-familiar with building C++ libraries, will find the following process
-to be difficult. For those looking to try out Cyclus without the 
-building headaches, please download our VirtualBox 
-`image <http://cnergdata.engr.wisc.edu/cyclus/virtual-box/current/cyclus_user_environment.ova>`_.
-
-A log of changes to the VM can be found 
-`here <http://cnergdata.engr.wisc.edu/cyclus/virtual-box/change_log.rst>`_. 
-
-This is a `.ova <http://en.wikipedia.org/wiki/Open_Virtualization_Format>`_ 
-file, so it can be used with any virtual image software that supports
-such formats. Take caution, the user provided on the image has root 
-access.
-
-User information:
-
-* username: cyclus-user
-* password: cyclus (note the previous password was **cyclus-user**, see change log for details)
-
 The Cyclus Library Suite
 ------------------------
-*Cyclus* is composed of a number of libraries:
+*Cyclus* is composed of two libraries:
   
-  * `cyclopts <https://github.com/cyclus/cyclopts>`_ (optimization)
-  * `cyclus core <https://github.com/cyclus/cyclus>`_ (basic functionality)
-  * `cycamore <https://github.com/cyclus/cycamore>`_ (a module repository)
+  * Cyclus Core, comprising core library functionality
+  * Cycamore, a module repository
 
-Some key points about installing *Cyclus*:
+Installation information is provided in the readmes of each repository, and the
+core must be installed before cycamore. Accordingly, installation steps are as
+follows:
 
-  * each library must be installed in the above order (cyclopts, cyclus,
-    cycamore)
-  * the source code must be obtained through git via the links above
-  * installation instructions are provided in the readmes (which are rendered as
-    the landing page) for each of the of the above libraries
+  #. Visit the `Cyclus repo <https://github.com/cyclus/cyclus>`_ and follow the
+     installation instructions on the main page (README.rst)
+  #. Visit the `Cycamore readme <https://github.com/cyclus/cycamore>`_ and
+     follow the installation instructions on the main page (README.rst)
 
-Additional Information
-~~~~~~~~~~~~~~~~~~~~~~
-Please note that the **dev** version of each of the above 
-libraries must be used. The build system will complain (saying it 
-cannot find the library) if only the normal (release) libraries are 
-installed.
+Supported Systems
+~~~~~~~~~~~~~~~~~
 
-An overview of some of the dependency installations
-can be found on the following pages:
+Currently, two specific systems are supported
 
-.. toctree::
-  :maxdepth: 1
+  * Linux 64-bit (Ubuntu 12+ recommended)
+  * MacOSX 8 64-bit
 
-  dependencies_windows
-
-Acquiring Source Code
----------------------
-
-Using Git
-~~~~~~~~~
-The build process for each library is the same. The first step is to
-download the source code for each library.
-
-Most systems will come with git fully installed; however, some developers may 
-require the following git libraries if they are not already installed:
-
- * git-core
- * git-gui
- * git-doc
-
-Getting the Code
-~~~~~~~~~~~~~~~~
-The source code of each library can be found at the `*Cyclus* 
-repository <https://github.com/cyclus>`_, hosted on *Github*. Anyone may
-check out the code. Although you do not have to register with *Github* to
-download and edit the code, if you desire your work to be integrated into the
-cyclus mainline of development *you must fork the cyclus core repository into
-your own github account and submit 'Pull Requests'*.
+Unfamiliar with git and Github?
+-------------------------------
 
 For the Git uninitiated, one must perform the following steps to acquire *Cyclus*:
 
@@ -90,6 +40,9 @@ Note that each *Cyclus* repository has **two** branches:
 
   * master -- the lastest stable release of the library
   * develop -- the lastest working copy that passes all tests
+
+The above branches are synchronized with each other, and should be used in tandem
+(i.e., use master (Cyclus) with master (Cycamore) or develop with develop only).
 
 .. _`Set Up Git`: http://help.github.com/linux-set-up-git/
 
@@ -119,7 +72,9 @@ If you are unfamiliar with Github, here are some resources:
 Contact Us
 ----------
 
-If you have further comments or questions about the build process, please don't hesitate to email or join the Cyclus users list, which will allow you to contact the community of users and developers of Cyclus.
+If you have further comments or questions about the build process, please don't
+hesitate to email or join the Cyclus users list, which will allow you to contact
+the community of users and developers of Cyclus.
 
 * Email the Users' list: cyclus-users@groups.google.com
 * Join the Users' list: https://groups.google.com/forum/?fromgroups#!forum/cyclus-users 
