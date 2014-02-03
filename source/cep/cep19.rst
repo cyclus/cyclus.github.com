@@ -5,7 +5,7 @@ CEP 19 - Cyclus Input Procedure Updates
 :Title: Cyclus Input Procedure Updates
 :Last-Modified: 2013-10-16
 :Author: Dr. Tony Scopes & Robby Flanny
-:Status: Draft
+:Status: Withdrawn
 :Type: Standards Track
 :Created: 2013-10-16
 
