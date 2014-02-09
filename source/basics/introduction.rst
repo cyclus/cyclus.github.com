@@ -1,53 +1,44 @@
-﻿.. summary Introduction to the Cyclus Fuel Cycle Simulator
-
-:version: Document v1.2 - 9/28/2011
-
 Introduction to the *Cyclus* Fuel Cycle Simulator
 =================================================
+*Cyclus* is a next generation nuclear fuel cycle simulation platform whose genesis 
+was driven by a variety of gaps seen in previous fuel cycle simulation efforts. 
+Three major design and development philosophies encompass the current fleet of 
+fuel cycle simulators:
 
+    #. A desire for usability, thus developing a tool which begins with a simple
+       model in a visual development environment that aims to provide an intuitive
+       user interface (e.g. DYMOND, DANESS, VISION)  
+    #. A desire for rapid prototyping, thus developing a tool which begins with
+       simple models in a scripting language that allows for quick answers to early
+       problems (e.g.  CAFCA, GENIUS v1)
+    #. A desire for detail/fidelity, thus developing a tool with an ad-hoc
+       combination of existing complex analysis tools (e.g. COSI)
 
-The Computational Nuclear Engineering Research Group (CNERG) of the University
-of  Wisconsin-Madison (UW) has been developing a next generation nuclear fuel
-cycle simulation platform called *Cyclus* whose genesis was driven by a variety
-of gaps seen in previous fuel cycle simulation efforts.  Three major design and
-development philosophies encompass the current fleet of fuel cycle simulators:
-
-  #. A desire for usability, thus developing a tool which begins with a simple
-     model in a visual development environment that aims to provide an intuitive
-     user interface (e.g. DYMOND, DANESS, VISION)
-  
-  #. A desire for rapid prototyping, thus developing a tool which begins with
-     simple models in a scripting language that allows for quick answers to early
-     problems (e.g.  CAFCA, GENIUS v1)
-  
-  #. A desire for detail/fidelity, thus developing a tool with an ad-hoc
-     combination of existing complex analysis tools (e.g. COSI)
-
-Experience has demonstrated that each of these philosophies can be hindered from
-simulating some classes of interesting problems due to complexity limits.  In most cases this
+Each of these philosophies can be hindered from simulating some classes of 
+interesting problems due to complexity limits. In most cases this
 complexity constrains first the usability of the tool followed by its
 extendability due to increasingly convoluted dependencies. The final victim is
 performance, as the ability to quickly solve simple problems is lost to the
 desire to solve more complex ones.  
 
-In addition to these technical challenges, there is also an institutional
-challenge.  A combination of closed development platforms and closed
+In addition to these technical challenges there is also an institutional one. 
+A combination of closed development platforms and closed
 development processes has made it difficult for an individual researcher to
-incorporate their ideas into a fuel cycle systems analysis.  The ability to
-combine existing systems simulation tools with data about new facilities or
-fuel cycle concepts is so challenging that many researchers either choose to
-avoid systems analysis altogether or to write their own simplified tool
-(usually in category 2 above).  These new, special purpose fuel cycle
-simulation tools involve a duplication of effort and generally lack any robust
-benchmarking.
+incorporate their ideas into a fuel cycle systems analysis studies or frameworks. 
+The ability to combine existing systems simulation tools with data about new 
+facilities or fuel cycle concepts is so challenging that many researchers either 
+choose to avoid systems analysis altogether or to write their own simplified tool.
+These new special purpose fuel cycle simulation tools involve a duplication of 
+effort.
 
 Each of these approaches lacks a design basis in computational science and
 software development that can deliver the stated desired attributes of the
 final software product:
 
-  * usability -- accommodating a wide range of user sophistication
-  * performance -- solving simple problems in interactive time scales
-  * fidelity -- accommodating many levels of detail/fidelity, commensurate with a range of user sophistication
+    * **usability:** accommodating a wide range of user sophistication,
+    * **performance:** -- solving simple problems in interactive time scales, and
+    * **fidelity:** accommodating many levels of detail & fidelity, commensurate 
+      with a range of user sophistication.
 
 A complete nuclear fuel cycle simulator requires modeling efforts in a wide
 variety of physical and social science domains.  This places a premium on a
@@ -56,9 +47,13 @@ large group of geographically dispersed developers.  With this constraint in
 mind, a number of software development practices can be identified as highly
 valuable for this effort:
 
-  * openness -- the process should have low institutional & technical obstacles to collaboration
-  * modularity -- a particular approach to modularity should be pursued to allow the core infrastructure to be independent of proprietary and/or sensitive data and/or models
-  * extensibility -- attention to both robustness and flexibility allows for myriad potential developer extensions
+    * **openness:** the process should have low institutional & technical obstacles 
+      to collaboration,
+    * **modularity:** a particular approach to modularity should be pursued to 
+      allow the core infrastructure to be independent of proprietary or 
+      sensitive data and models, and 
+    * **extensibility:** attention to both robustness and flexibility allows for 
+      myriad potential developer extensions.
 
 Mission
 -------
