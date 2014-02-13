@@ -1,9 +1,8 @@
-.. summary Description of Cyclus Ecosystem
-
 ====================================
  The *Cyclus* Community & Ecosystem
 ====================================
 
+**Cyclus welcomes code & contributions from everyone!**
 
 An important goal of the *Cyclus* effort is to attract a community of
 developers contributing to a vibrant ecosystem of models for use by

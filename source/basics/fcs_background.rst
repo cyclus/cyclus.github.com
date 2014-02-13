@@ -1,8 +1,5 @@
-.. 
-
 Fuel Cycle Simulators
 ---------------------
-
 A nuclear fuel cycle simulator is a tool used to explore the impacts
 of alternative nuclear fuel cycle choices, when considered as a full
 system at a national or international level.  Fundamentally, a nuclear
@@ -31,7 +28,6 @@ virtual reality environments.
 
 History of Systems Analysis Tools
 +++++++++++++++++++++++++++++++++++
-
 Historically, a variety of systems analysis tools have been developed
 to study nuclear fuel cycles.  One category of tools has been derived
 from detailed facility models, arranged in complex coupling schemes,
@@ -56,11 +52,11 @@ preclude the use of the advanced features of any one tool.
 That said, there are a number of tools that are currently used around
 the world to support systems decision on nuclear fuel cycle options:
 
-   * VISION
-   * DANESS
-   * COSI
-   * NUWASTE
-   * CAFCA
-   * NFCSim
+* VISION
+* DANESS
+* COSI
+* NUWASTE
+* CAFCA
+* NFCSim
 
 

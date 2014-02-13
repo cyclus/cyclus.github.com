@@ -55,31 +55,8 @@ valuable for this effort:
     * **extensibility:** attention to both robustness and flexibility allows for 
       myriad potential developer extensions.
 
-Mission
--------
-
-*Cyclus*  will be a nuclear fuel cycle systems analysis software platform that
-encourages collaboration among a diverse set of researchers. Emphasis will be
-placed on both ease of collaboration through modularity as well as ubiquity in
-order to analyze a significant number of possible future fuel cycle scenarios
-succinctly and consistently.
-
-Vision
-------
-
-In order to accomplish this mission, the *Cyclus* team has developed a vision
-for the development of a next generation fuel cycle simulator that includes
-elements of software architecture, software development process and
-fundamental design paradigms.
-
-Current Status
---------------
-
-*Cyclus* is being developed in an open environment.  For the current status of *Cyclus*, visit http://cyclus.github.com.
-
 Software Process & Architecture
 +++++++++++++++++++++++++++++++
-
 As indicated above, the software architecture and accompanying development
 process are critical to a simultaneously robust and flexible analysis platform.
 
@@ -111,7 +88,6 @@ for network flow optimization.
 
 Dynamically-loadable Modules
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 Dynamically-loadable modules are the primary mechanism for extending *Cyclus*
 with new underlying models.  The primary benefit of this approach is
 encapsulation: the trunk of the code is completely independent of the
@@ -124,7 +100,6 @@ wrapping other simulation tools as loadable modules for *Cyclus*.
 
 Use Cases & Visualization
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-
 Because of the wide array of use cases for *Cyclus*, flexibility in the user
 interface is important to provide different kinds of users with different
 experiences.  This is true for input generation as well as output
@@ -139,7 +114,6 @@ provide context to a variety of users.
 
 Modeling Paradigm
 +++++++++++++++++
-
 The modeling paradigm adopted by *Cyclus* includes a number of deeply embedded
 fundamental concepts.  These basic design choices comprise the bedrock on which
 most future design choices are made. The *Cyclus* team recognizes the
@@ -148,7 +122,6 @@ these attributes will change.
 
 Discrete Facility & Discrete Material Objects
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 The modeling infrastructure is designed such that every facility in a global
 nuclear fuel cycle is treated individually.  While modeling options will exist
 to allow collective action, this will be as a special case of the individual
@@ -158,21 +131,8 @@ from an input form to an output form.  These materials will be modeled as
 discrete objects that exist for a finite time and whose composition and
 transaction history is logged throughout the simulation.
 
-Market-based Material Transactions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The transaction of nuclear materials will take place in "markets" that act as
-brokers to match a set of requests for material with a set of offers for that
-material.  A variety of market models (see Vision: Software Architecture) will
-be available to perform this broker role, but each market will act
-independently of other markets.  Markets will used to model a variety of
-decision making behaviors, not restricted to behaviors that simulate economic
-activity.  Once the requests and offers have been matched, the facilities will
-exchange material objects.
-
 Region-Institution-Facility Hierarchy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 Every discrete facility in *Cyclus* is owned by an institution that operates in
 a geographic region.  An institution can be used to represent any entity that
 may own and operate a facility such as a private corporation, a government
@@ -187,9 +147,7 @@ and/or operated.
 
 Optimization and Sensitivity
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-While the market models that form the basis of material transactions represent
-largely social constructs, there is an initial desire to minimize the direct
+There is an initial desire to minimize the direct
 simulation of institutional decision making to seek optimal solutions.
 Instead, the fundamental approach is to drive a single simulation with a large
 multi-dimensional data set and then allow modern optimization technology to
