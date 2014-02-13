@@ -28,8 +28,9 @@ Important Features
    * common physics infrastructure
    * different user interface layer for different user audiences, 
      with varying levels of both input control and output exploration
-       * varying levels of input control
-       * varying levels of output exploration
+
+        * varying levels of input control
+        * varying levels of output exploration
 
 The *Cyclus* modeling paradigm lets users reconfigure the basic
 building blocks of a simulation without changing the software. 

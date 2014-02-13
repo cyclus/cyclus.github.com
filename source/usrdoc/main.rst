@@ -4,26 +4,25 @@
 Cyclus User Guide
 =================
 
-Documentation to assist with the use of *Cyclus* will be maintained on this 
-website and in the automated documentation generated via the *Cyclus* source
-code.
+.. note:: A user's guide is in development.
 
 An instruction manual for :doc:`../devdoc/get_and_build` is provided.
 Questions having to do with this process may be directed to
-cyclus-users@googlegroups.com .
+the mailing list.
 
-Defining a Simulation
----------------------
+.. 
+    Defining a Simulation
+    ---------------------
 
-.. toctree::
-   :glob:
-   :maxdepth: 3
+    .. toctree::
+       :glob:
+       :maxdepth: 3
 
-   input_specs/overview/*
-   input_specs/region/*
-   input_specs/inst/*
-   input_specs/facility/*
-   input_specs/examples/*
+       input_specs/overview/*
+       input_specs/region/*
+       input_specs/inst/*
+       input_specs/facility/*
+       input_specs/examples/*
 
 Running a Simulation
 --------------------
