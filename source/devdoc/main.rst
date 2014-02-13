@@ -1,12 +1,7 @@
-
-.. summary Documentation for Cyclus Developers
-
 Cyclus Developer Guide
 ======================
 
-Documentation to assist with the development of *Cyclus* will be maintained
-in a variety of forms.  If you haven't already, check out
-:doc:`../basics/main`
+.. note:: The devloper's guide remains a work in progress.
 
 The *Cyclus* project repository is located at
 http://github.com/cyclus/cyclus.
@@ -16,18 +11,17 @@ download and edit the code, if you desire your work to be integrated into the
 cyclus mainline of development *you must fork the cyclus core repository into
 your own github account and submit 'Pull Requests'*.
 
+If you haven't already, check out :doc:`../basics/main`
+
 Getting Started
 ---------------
-
-First things first - read :doc:`get_and_build`.  After
-successfully acquiring and building *Cyclus*, you can begin developing:
 
 .. toctree::
    :maxdepth: 1
   
    get_and_build
-   cyclus_env
    dynamic_loading
+..   cyclus_env
 
 Core Concepts and Expectations
 ------------------------------
@@ -37,9 +31,9 @@ Core Concepts and Expectations
 
    sim_init
    resources
-   materials_and_isotopes
    discrete_materials
    decay
+..   materials_and_isotopes
 
 Utilities and Components
 ------------------------
@@ -58,9 +52,9 @@ Software Development Aids
 
    ../basics/roadmap
    contributing_to_cyclus
-   make-models/main
    testing
    style_guide
+..   make-models/main
 
 Doxygen Code Documentation
 --------------------------

@@ -1,6 +1,3 @@
-
-.. summary Dynamic Loading in Cyclus
-
 Dynamic Loading Overview
 ========================
 
@@ -12,7 +9,6 @@ suffix '.so', in Windows, '.dll', and in OSX, '.dylib'.
 
 In *Cyclus*, every *module* is dynamically loaded. Modules include:
 
-* Markets
 * Regions
 * Institutions
 * Facilities

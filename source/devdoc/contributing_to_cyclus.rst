@@ -9,10 +9,9 @@ The core *Cyclus* project repository is located at
 http://github.com/cyclus/cyclus. Additional projects found at 
 http://github.com/cyclus include :
 
-  - Cycamore, the cyclus additional modules repository
-  - Cyclopts, the cyclus optimization library
-  - Cycic, the cyclus input controller
-  - and more to come. 
+- Cycamore, the cyclus additional modules repository
+- Cycic, the cyclus input controller
+- and more to come. 
 
 Although you do not have to register with github to
 download and edit the code, if you desire your work to be integrated into the
@@ -31,12 +30,12 @@ You'll first need to fork your repository and create a branch for the topic you'
 like you solve. As you do your development, push only to your own fork. Make a 
 pull request to the upstream repository (usually the "develop" branch) only after:
 
-  * You have pulled the latest changes from the upstream repository.
-  * You have completed a logical set of changes.
-  * Cyclus compiles with no errors.
-  * All tests pass.
-  * Cyclus input files run as expected.
-  * Your code has been reviewed by another developer.
+* You have pulled the latest changes from the upstream repository.
+* You have completed a logical set of changes.
+* Cyclus compiles with no errors.
+* All tests pass.
+* Cyclus input files run as expected.
+* Your code has been reviewed by another developer.
 
 Code from the "develop" branch generally must pass even more rigorous checks
 before being integrated into the "master" branch. Hotfixes would be a
@@ -163,6 +162,5 @@ Reviewing a Pull Request
 
 See also
 --------
-
 A good description of a git workflow with good graphics is available at
 http://nvie.com/posts/a-successful-git-branching-model/

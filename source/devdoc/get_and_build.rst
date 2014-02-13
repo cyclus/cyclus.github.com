@@ -1,6 +1,4 @@
 
-.. summary Information on getting Cyclus from the repository and building it on a new system
-
 Getting and Building Cyclus
 ===========================
 

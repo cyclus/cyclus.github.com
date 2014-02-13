@@ -61,8 +61,8 @@ permits a thorough code review by interested parties and the
 possibility of contributions in order to identify/resolve defects or
 request/provide feature enhancements.
 
-The *Cyclus* core infrastructure provides :doc:`a generic environment
-<../devdoc/cyclus_env>` for modeling flows of materials among a
+The *Cyclus* core infrastructure provides a generic environment
+for modeling flows of materials among a
 collection of nuclear facilities.  This infrastructure could be used
 for modeling many different supply chain systems, nuclear and
 non-nuclear alike, although the introduction of features to this

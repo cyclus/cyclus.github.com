@@ -1,6 +1,12 @@
 *Cyclus*
 =========
 
+.. raw:: html
+
+    <div style="text-align:center;">
+    <h2><a href="https://github.com/cyclus/cyclus/releases/tag/0.4">
+    v0.4 has been released!</a></h2><br><br></div>
+
 *Cyclus* is a next-generation nuclear :doc:`fuel cycle simulator
 <basics/fcs_background>` environment, providing flexibility to users
 and developers through an agent-based approach.

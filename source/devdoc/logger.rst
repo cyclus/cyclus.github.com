@@ -1,13 +1,7 @@
-
 Using the Cyclus Logger
 =======================
 
-For how to adjust log output verbosity when running cyclus, see
-:doc:`../usrdoc/creating_and_running_sims`
-
-::
-
-  #include "Logger.h"
+.. code-block:: bash
 
   LOG(LogLevel level, std::string prefix)
 
