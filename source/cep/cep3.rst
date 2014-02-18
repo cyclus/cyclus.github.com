@@ -76,11 +76,12 @@ When releasing a cyclus project, make sure to do the following items in order:
 1. Review **ALL** issues in the issue tracker, reassigning or closing them as needed.
 2. Ensure that all issues in this release's milestone have been closed.  Moving issues
    to the next release's milestone is a perfectly valid strategy for completing this
-   milestone.  
-3. Write and commit the release notes.
-4. Review the current state of documentation and make approriate updates.
-5. Bump the version (in code, documentation, etc.) and commit the change.
-6. If this is a release candidate, tag the release branch with a name that matches 
+   milestone. 
+3. Perform maintainence tasks for this project, see below.
+4. Write and commit the release notes.
+5. Review the current state of documentation and make approriate updates.
+6. Bump the version (in code, documentation, etc.) and commit the change.
+7. If this is a release candidate, tag the release branch with a name that matches 
    that of the release: 
 
    * If this is the first release candidate, create a release branch called
@@ -88,11 +89,30 @@ When releasing a cyclus project, make sure to do the following items in order:
    * If this is the second or later release candidate, tag the release branch 
      with the name 'X.X.X-rcX'.
 
-7. If this is the full and final release (and not a release candidate), 
+8. If this is the full and final release (and not a release candidate), 
    merge the release branch into the master branch.  Next, tag the master branch 
    with the name 'X.X.X'.  Finally, delete the release branch.
-8. Push the tags upstream
-9. Update release information on the website.
+9. Push the tags upstream
+10. Update release information on the website.
+
+Maintainence Tasks
+==================
+Each project may have associate maintenance tasks which may need to be performed at 
+least as often as every micro release.
+
+Cyclus
+------
+**Update Pyne:**  PyNE source code is included and shipped as part of cyclus. As pyne
+evolves, we'll want to have our version evolve as well. Here are the steps to do so.
+These assume that in your HOME dir there are both the pyne and cyclus repos.  Remember 
+to check in the changes afterwards.
+
+.. code-block:: bash
+
+    $ cd ~/pyne
+    $ ./amalgamate.py -s pyne.cc -i pyne.h -f license.txt cpp/pyne.* cpp/extra_types.h \
+      cpp/h5wrap.h cpp/nucname.* cpp/rxname.*
+    $ cp pyne.* ~/cyclus/src
 
 Document History
 ================
