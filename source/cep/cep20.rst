@@ -69,17 +69,18 @@ or, equivalently, experience the entire time step execution stack*.
 
 This leads to the following ordering, or *phases*, of time step execution:
 
-* agents enter simulation
-* agents respond to current simulation state
-* resource exchange execution
-* agents respond to current simulation state
-* agents leave simulation
+* agents enter simulation (Deployment Phase)
+* agents respond to current simulation state (PreExchange Phase)
+* resource exchange execution (Exchange Phase)
+* agents respond to current simulation state (PostExchange Phase)
+* agents leave simulation (Decommissioning Phase)
 
-Technically, whether the agent entry occurs simultaneously with agent exit
-because the two (sub)events occur in a direct ordering. It is simpler
-cognitively, however, to think of an agent entering the simulation and acting in
-that time step, rather than entering a simulation at a given time and taking its
-first action in the subsequent time step.
+Technically, whether agent entry occurs simultaneously with agent exit or not
+does not matter from a simulation-mechanics point of view, because the two
+phases have a direct ordering. It will, however, from the point of view of
+module development. It is simpler cognitively to think of an agent entering the
+simulation and acting in that time step, rather than entering a simulation at a
+given time and taking its first action in the subsequent time step.
 
 In the spirit of Law's definition of a fixed-increment time advance mechanism,
 there is a final important invariant: *there is no guaranteed agent ordering of
@@ -107,8 +108,6 @@ The agent entry/exit question is a bit more involved because of the parent-child
 entry and exit of agents should be managed by the agent's manager. The following
 provides one possible specification.
 
-(please excuse the python)
-
 .. code-block:: python
 
   /// @brief execute time step stack
@@ -131,21 +130,20 @@ provides one possible specification.
             agent.parent->decommission(agent)
 
 The primary change here is the notion of a build_list and decomm_list. Managers
-of agents can add agents to each list as required. Prototypes (which know their
-initial state) are used in the build_list and to-be decommissioned agents in the
-decomm_list to allow for queries of future simulation state (e.g., the power
-level at a future point in time).
+of agents, nominally their parent, can add agents to each list as required
+during the Pre- and PostExchange phases. At some future time, the building and
+decommissioning lists can be made queryable in order to determine future overall
+or sub-simulation state (e.g., the power level at a future point in
+time). Accordingly, prototypes (which know their initial state) are used in the
+build_list and to-be decommissioned agents in the decomm_list.
 
-Importantly, the notion of build and decommission lists can change in a time
-step. When combined with the invariant that the order of agent execution within
-a phase in unordered, future simulation predictions would be unreliable *if*
-both lists could be changed in both the PreExchange and PostExchange
-phases. This issue can be remedied by using staging data structures and merging
-the staging data structures into the lists after the completion of a
-phase. Accordingly, I propose that we use staging data structures and that they
-not be queryable by agents in the simulation (i.e., only the build/decomm lists
-are queryable). This would allow for all agents to make decisions given the same
-information in the same phase.
+As described above, the notion of build and decommission lists can change in a
+time step. When combined with the invariant that the order of agent execution
+within a phase is unordered, future simulation predictions would be unreliable
+*if* both lists could be changed in within a phase. Therefore, these lists must
+be immutable *during* phases. This issue can be remedied by using staging data
+structures and merging the staging data structures into the lists after the
+completion of a phase.
 
 Backwards Compatibility
 =======================
