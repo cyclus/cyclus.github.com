@@ -3,7 +3,7 @@ CEP 20 - Time Step Execution Stack
 
 :CEP: 20
 :Title: CEP Purpose and Guidelines
-:Last-Modified: 2014-02-19
+:Last-Modified: 2014-02-20
 :Author: Time Step Execution Stack
 :Status: Draft
 :Type: Standards Track
@@ -23,7 +23,7 @@ The current time step in *Cyclus* consists of the following stack:
 
 Until very recently, only Regions received ticks/tocks from the Timer
 class. They were then expected to pass the Tick/Tock "message" to their
-children, and so on, until all Models receieved a Tick or Tock. It was pointed
+children, and so on, until all Models received a Tick or Tock. It was pointed
 out recently that this behavior, when mixed with entity entry and exit into/from
 the simulation could produce unexpected behavior, e.g., an entity could
 enter/exit in the middle of a time step. Furthermore, modules were developed
@@ -46,13 +46,13 @@ advance mechanism. In general, fixed-increment time advance scenarios assume a
 time step (dt), and assume that all events that would happen during a time occur
 simultaneously at the end of the time step. This situation can be thought of as
 an event-based time advance mechanism, i.e., one that steps from event to event,
-that executes all events simultaneously that were supposed to have occured in
+that executes all events simultaneously that were supposed to have occurred in
 the time step.
 
 Two key types of events happen in a *Cyclus* simulation:
 
 * the exchange of resources
-* agent entry into and exit from the simultion
+* agent entry into and exit from the simulation
 
 Simulation entities can have arbitrarily complex state which is dependent on the
 results of the exchange and the present status of agents in the
@@ -63,10 +63,11 @@ Because there is a key event that defines agent interaction in a given time
 step, it is necessary to involve all agents in that interaction. Accordingly it
 is necessary that there be an ordering between these two key types of events,
 deviating slightly from Law's description of fixed-increment time
-advance. Specifically, any agent that exists in a given time step should be
-included in the resource exchange.
+advance. Specifically, we want to preserve the following invariant: *any agent
+that exists in a given time step should be included in the resource exchange,
+or, equivalently, experience the entire time step execution stack*.
 
-This leads to the following ordering of time step execution:
+This leads to the following ordering, or *phases*, of time step execution:
 
 * agents enter simulation
 * agents respond to current simulation state
@@ -76,15 +77,83 @@ This leads to the following ordering of time step execution:
 
 Technically, whether the agent entry occurs simultaneously with agent exit
 because the two (sub)events occur in a direct ordering. It is simpler
-cognitavely, however, to think of an agent entering the simulation and acting in
+cognitively, however, to think of an agent entering the simulation and acting in
 that time step, rather than entering a simulation at a given time and taking its
 first action in the subsequent time step.
+
+In the spirit of Law's definition of a fixed-increment time advance mechanism,
+there is a final important invariant: *there is no guaranteed agent ordering of
+within-phase execution*. This invariant allows for:
+
+* a more cognitively simple process
+* paralellization
 
 Specification \& Implementation
 ===============================
 
+Two primary concerns exist for changing the current state of *Cyclus* to
+incorporate this CEP:
+
+* how to implement agent entry/exit as described
+* what name to give to the response phases
+
+Currently, the response phases are called Tick and Tock. These names have been
+criticized for not being specific/informative about the expected actions agents
+will/should take during the phases. I propose we instead use *PreExchange* and
+*PostExchange*. Wordsmithing and/or other suggestions are welcome.
+
+The agent entry/exit question is a bit more involved because of the parent-child
+(or manager-managed) relationship agents have in *Cyclus*. Specifically, the
+entry and exit of agents should be managed by the agent's manager. The following
+provides one possible specification.
+
+(please excuse the python)
+
+.. code-block:: python
+
+  /// @brief execute time step stack
+  def Step(context):
+      time = context.time()
+
+      for each builder, prototype in build_list[time]:
+            builder.build(prototype)
+
+      for each agent in agent_list:
+            agent.PreExchange()
+
+      for each manager in resource_exchange_managers:
+            manager.Execute()
+
+      for each agent in agent_list:
+            agent.PostExchange()
+
+      for each agent in decomm_list[time]:
+            agent.parent->decommission(agent)
+
+The primary change here is the notion of a build_list and decomm_list. Managers
+of agents can add agents to each list as required. Prototypes (which know their
+initial state) are used in the build_list and to-be decommissioned agents in the
+decomm_list to allow for queries of future simulation state (e.g., the power
+level at a future point in time).
+
+Importantly, the notion of build and decommission lists can change in a time
+step. When combined with the invariant that the order of agent execution within
+a phase in unordered, future simulation predictions would be unreliable *if*
+both lists could be changed in both the PreExchange and PostExchange
+phases. This issue can be remedied by using staging data structures and merging
+the staging data structures into the lists after the completion of a
+phase. Accordingly, I propose that we use staging data structures and that they
+not be queryable by agents in the simulation (i.e., only the build/decomm lists
+are queryable). This would allow for all agents to make decisions given the same
+information in the same phase.
+
 Backwards Compatibility
 =======================
+
+The overall *Cyclus* implementation/framework will remain largely unchanged,
+with the exception of the core's handling of agent entry/exit
+registration. *Cycamore* modules that deal with agent entry/exit will have to be
+redesigned to incorporate the new execution stack.
 
 Document History
 ================
