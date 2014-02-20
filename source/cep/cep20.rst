@@ -40,9 +40,45 @@ simulation, that it will experience an entire time step on the time it leaves.
 Rationale
 =========
 
-By Law's definition :cite:`Law:1999:SMA:554952`, a *Cyclus* simulation is
-dynamic, discrete-event simulation that uses a fixed-increment time advance
-mechanism.
+By Law's definition :cite:`Law:1999:SMA:554952`, a *Cyclus* simulation is,
+broadly, a dynamic, discrete-event simulation that uses a fixed-increment time
+advance mechanism. In general, fixed-increment time advance scenarios assume a
+time step (dt), and assume that all events that would happen during a time occur
+simultaneously at the end of the time step. This situation can be thought of as
+an event-based time advance mechanism, i.e., one that steps from event to event,
+that executes all events simultaneously that were supposed to have occured in
+the time step.
+
+Two key types of events happen in a *Cyclus* simulation:
+
+* the exchange of resources
+* agent entry into and exit from the simultion
+
+Simulation entities can have arbitrarily complex state which is dependent on the
+results of the exchange and the present status of agents in the
+simulation. Accordingly, methods that allow entities to update state must occur
+in response to these events and to schedule agent entry and exit. 
+
+Because there is a key event that defines agent interaction in a given time
+step, it is necessary to involve all agents in that interaction. Accordingly it
+is necessary that there be an ordering between these two key types of events,
+deviating slightly from Law's description of fixed-increment time
+advance. Specifically, any agent that exists in a given time step should be
+included in the resource exchange.
+
+This leads to the following ordering of time step execution:
+
+* agents enter simulation
+* agents respond to current simulation state
+* resource exchange execution
+* agents respond to current simulation state
+* agents leave simulation
+
+Technically, whether the agent entry occurs simultaneously with agent exit
+because the two (sub)events occur in a direct ordering. It is simpler
+cognitavely, however, to think of an agent entering the simulation and acting in
+that time step, rather than entering a simulation at a given time and taking its
+first action in the subsequent time step.
 
 Specification \& Implementation
 ===============================
