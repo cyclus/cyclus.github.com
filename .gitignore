@@ -1,3 +1,4 @@
 *.swp
 doctrees
 build
+*~
