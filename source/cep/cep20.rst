@@ -29,7 +29,9 @@ the simulation could produce unexpected behavior, e.g., an entity could
 enter/exit in the middle of a time step. Furthermore, modules were developed
 specifically taking advantage of this behavior (i.e., the ordering of
 ticks/tocks) in order to guarantee that entities that were constructed during
-the Tick phase also received a Tick in that phase.
+the Tick phase also received a Tick in that phase. Furthermore, this imposed a
+requirement on Regions and Institutions that they pass Ticks and Tocks along to
+their children in a trickle-down-like manner.
 
 Accordingly, there is a need to standardize what can/should be expected to occur
 in each phase of a given time step. Guarantees should be given to module
@@ -49,7 +51,7 @@ an event-based time advance mechanism, i.e., one that steps from event to event,
 that executes all events simultaneously that were supposed to have occurred in
 the time step.
 
-Two key types of events happen in a *Cyclus* simulation:
+Two key types of events happen in a *Cyclus* simulation (at present):
 
 * the exchange of resources
 * agent entry into and exit from the simulation
@@ -88,6 +90,9 @@ within-phase execution*. This invariant allows for:
 
 * a more cognitively simple process
 * paralellization
+
+Any future addition of phases in the timestep execution stack neccessarily
+guarantee the two invariants described above.
 
 Specification \& Implementation
 ===============================
