@@ -3,9 +3,9 @@ CEP 3 - Cyclus Release Procedure
 
 :CEP: 3
 :Title: Cyclus Release Procedure
-:Last-Modified: 2013-11-14
+:Last-Modified: 2014-02-24
 :Author: Anthony Scopatz
-:Status: Draft
+:Status: Accepted
 :Type: Process
 :Created: 2013-10-25
 
