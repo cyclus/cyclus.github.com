@@ -2,10 +2,10 @@ CEP 20 - Time Step Execution Stack
 **********************************
 
 :CEP: 20
-:Title: CEP Purpose and Guidelines
-:Last-Modified: 2014-02-20
-:Author: Time Step Execution Stack
-:Status: Draft
+:Title: Time Step Execution Stack
+:Last-Modified: 2014-02-24
+:Author: Matthew Gidden
+:Status: Accepted
 :Type: Standards Track
 :Created: 2014-02-19
 
