@@ -12,6 +12,14 @@ CEP 20 - Time Step Execution Stack
 Abstract
 ========
 
+An update to the time step execution stack is proposed. A timestep will now
+progress through phases, including a building phase, a tick phase, a resource
+exchange phase, a tock phase, and a decommissioning phase. Phases are grouped in
+two categories: kernel phases and agent phases. Kernel phases have required or
+guaranteed actions that occur during them, and include the build, exchange, and
+decommission phases. Agent phases include the Tick and Tock phases, and allow
+agents to inspect simulation state and update their own state.
+
 Motivation
 ==========
 
@@ -71,11 +79,23 @@ or, equivalently, experience the entire time step execution stack*.
 
 This leads to the following ordering, or *phases*, of time step execution:
 
-* agents enter simulation (Deployment Phase)
-* agents respond to current simulation state (PreExchange Phase)
+* agents enter simulation (Building Phase)
+* agents respond to current simulation state (Tick Phase)
 * resource exchange execution (Exchange Phase)
-* agents respond to current simulation state (PostExchange Phase)
+* agents respond to current simulation state (Tock Phase)
 * agents leave simulation (Decommissioning Phase)
+
+The Building, Exchange, and Decommissioning phases each include critical,
+core-based events, and will be called *Kernel* phases. The Tick and Tock phases
+do not include core-based events, and instead let agents react to previous
+core-based events and inspect core simulation state. Furthermore, they are
+periods in which agents can update their own state and are accordingly
+considered *Agent* phases. In general, Agent phases *must* bracket *critical*
+Kernel phases, of which only the Exchange Phase exists for now. If another
+critical core phase is added in the future it must provide a similar invariant,
+i.e., that it is bracketed by Agent phases. For example, if a new phase is added
+before Exchange, then the time execution stack would follow as: Building, Tick,
+*New Kernel Phase*, *New Agent Phase*, Exchange, Tock, Decommission.
 
 Technically, whether agent entry occurs simultaneously with agent exit or not
 does not matter from a simulation-mechanics point of view, because the two
@@ -92,7 +112,7 @@ within-phase execution*. This invariant allows for:
 * paralellization
 
 Any future addition of phases in the timestep execution stack neccessarily
-guarantee the two invariants described above.
+guarantee the three invariants described above.
 
 Specification \& Implementation
 ===============================
