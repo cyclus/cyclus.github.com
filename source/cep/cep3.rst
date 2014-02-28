@@ -111,7 +111,7 @@ to check in the changes afterwards.
 
     $ cd ~/pyne
     $ ./amalgamate.py -s pyne.cc -i pyne.h -f license.txt cpp/pyne.* cpp/extra_types.h \
-      cpp/h5wrap.h cpp/nucname.* cpp/rxname.*
+      cpp/h5wrap.h cpp/nucname.* cpp/rxname.* cpp/data.*
     $ cp pyne.* ~/cyclus/src
 
 Document History
