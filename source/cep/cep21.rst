@@ -27,19 +27,19 @@ Agent Spec
 Agents will be uniquely identified by 3 components together referred to as an
 "agent spec":
 
-1. path (optional): e.g. ``my/module/path``
+1. path: e.g. ``my/module/path``
 
    A slash-delimited, valid filesystem path relative to CYCLUS_PATH (see
    Module Discovery below).
 
-2. library (optional): e.g. ``MyModule``
+2. library: e.g. ``MyModule``
 
    Name of the compiled shared object library file without the "lib" prefix
    and without the file extension. If empty, is expanded to the agent class.
    The example above would correspond to a library file named "libMyModule.so"
    (linux), "libMyModule.dylib" (darwin), etc.
 
-3. agent class (required): e.g. ``MyAgent``
+3. agent class: e.g. ``MyAgent``
 
    The name of the agent's c++ class as compiled into the shared library file.
 
@@ -53,8 +53,8 @@ separated by colons::
 Example linux agent specs with corresponding filepath expansions::
 
     my/path:MyModule:MyAgent -> my/path/libMyModule.so
-    :MyModule:MyAgent        -> libMyModule.so
     my/path::MyAgent         -> my/path/libMyAgent.so
+    :MyModule:MyAgent        -> libMyModule.so
     ::MyAgent                -> libMyAgent.so
 
 Module Discovery
