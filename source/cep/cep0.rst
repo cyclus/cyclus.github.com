@@ -37,6 +37,7 @@ Index
     SA - 18 - Dynamic Resource Exchange Procedure - Gidden <cep18>
     SW - 19 - Cyclus Input Procedure Updates - Flanagan <cep19>
     SA - 20 - Time Step Execution Stack - Gidden <cep20>
+    SD - 21 - Module Identification and Discovery - Carlsen <cep21>
 
 Key
 ---
