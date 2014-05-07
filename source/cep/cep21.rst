@@ -5,7 +5,7 @@ CEP 21 - Agent Identification and Discovery
 :Title: Agent Identification and Distribution
 :Last-Modified: 2014-05-05
 :Author: Robert Carlsen <rwcarlsen@gmail.com>
-:Status: Draft
+:Status: Accepted 
 :Type: Standards Track
 :Created: Robert Carlsen
 
