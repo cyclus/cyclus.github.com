@@ -114,6 +114,18 @@ to check in the changes afterwards.
       cpp/h5wrap.h cpp/state_map.cpp cpp/nucname.* cpp/rxname.* cpp/data.* cpp/jsoncpp.cpp \
       cpp/json/*
     $ cp pyne.* ~/cyclus/src
+    
+**Update Nuclear Data:** PyNE also provides a nuclear data library generator which we use for 
+our source data.  Occassionally, this needs to be updated as updates to pyne itself come out.
+The command for generating cyclus specific nuclear data is as follows:
+
+.. code-block:: bash
+
+   $ cd ~/pyne
+   $ nuc_data_make -o cyclus_nuc_data.h5 \
+    -m atomic_mass,scattering_lengths,decay,simple_xs,materials,eaf,wimsd_fpy,nds_fpy
+
+Once the file is generated it must be put onto rackspace.
 
 Document History
 ================
