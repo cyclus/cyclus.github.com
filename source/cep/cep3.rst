@@ -110,8 +110,9 @@ to check in the changes afterwards.
 .. code-block:: bash
 
     $ cd ~/pyne
-    $ ./amalgamate.py -s pyne.cc -i pyne.h -f license.txt cpp/pyne.* cpp/extra_types.h \
-      cpp/h5wrap.h cpp/nucname.* cpp/rxname.* cpp/data.*
+    $ ./amalgamate.py -s pyne.cc -i pyne.h -f license.txt cpp/pyne.* cpp/extra_types.h  \
+      cpp/h5wrap.h cpp/state_map.cpp cpp/nucname.* cpp/rxname.* cpp/data.* cpp/jsoncpp.cpp \
+      cpp/json/*
     $ cp pyne.* ~/cyclus/src
 
 Document History
