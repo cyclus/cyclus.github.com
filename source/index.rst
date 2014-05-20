@@ -1,5 +1,17 @@
 *Cyclus*
-=========
+=============
+
+.. raw:: html
+
+    <div style="text-align:center;"><br /><br />
+
+.. image:: logos/logo2_bike.gif
+    :align: center
+    :alt: Cyclus
+
+.. raw:: html
+
+    </div>
 
 .. raw:: html
 
@@ -78,18 +90,18 @@ Support for this research has included funding received from:
 
 .. container:: image_band
 
-    .. image :: basics/neup_logo_large.jpg
+    .. image :: astatic/neup_logo_large.jpg
         :height: 100 px
  
-    .. image :: basics/AnlLogo.png
+    .. image :: astatic/AnlLogo.png
         :height: 100 px
 
-    .. image :: basics/USNRC.gif
+    .. image :: astatic/USNRC.gif
         :height: 100 px
 
-    .. image :: basics/nsf_logo.jpg
+    .. image :: astatic/nsf_logo.jpg
         :height: 100 px
 
-    .. image :: basics/crest.png
+    .. image :: astatic/crest.png
         :height: 100 px
 

@@ -1,0 +1,18 @@
+@import url("cloud.css");
+
+body {
+    background-image:url('gear_flourish_transp.png'), url('curlydivider-right.png'), 
+                     url('curlydivider-left.png');
+    background-repeat: no-repeat, repeat-y, repeat-y;
+    background-position: bottom left, right, left;
+    background-attachment: scroll, scroll, scroll;
+    background-size:20%, 51px, 51px;
+}
+
+table.docutils th.field-name {
+    white-space: nowrap;
+}
+
+div#cyclus.section h1 {
+  display: none;
+}
