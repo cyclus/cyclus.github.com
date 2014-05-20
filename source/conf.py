@@ -107,12 +107,14 @@ html_theme_options = {
     'max_width': '1250px',
     'relbarbgcolor': '#34312e',
     'footerbgcolor': '#d5b683',
-    #'footerbgcolor': '#fff3b6',
+    'codebgcolor': 'white',
     'sidebarwidth': '322px',
     'sidebarbgcolor': '#fcf1df',
+    'sidebarlinkcolor': '#4b1a07',
+    'linkcolor': '#bb3f3f',
     'googleanalytics_id': 'UA-12222727-2',
     'externalrefs': False,
-    'externalrefs': False,
+    'stickysidebar': False,
     }
 
 # Add any paths that contain custom themes here, relative to this directory.

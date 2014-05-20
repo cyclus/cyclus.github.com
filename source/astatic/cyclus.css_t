@@ -13,6 +13,11 @@ table.docutils th.field-name {
     white-space: nowrap;
 }
 
+div.body h2 {
+  background-color: #98c575;
+}
+
 div#cyclus.section h1 {
   display: none;
 }
+
