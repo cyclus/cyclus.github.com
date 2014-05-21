@@ -2,11 +2,11 @@
 
 body {
     background-image:url('gear_flourish_transp.png'), url('curlydivider-right.png'), 
-                     url('curlydivider-left.png');
-    background-repeat: no-repeat, repeat-y, repeat-y;
-    background-position: bottom left, right, left;
-    background-attachment: scroll, scroll, scroll;
-    background-size:20%, 51px, 51px;
+                     url('curlydivider-left.png'), url('metal.png');
+    background-repeat: no-repeat, repeat-y, repeat-y, repeat;
+    background-position: bottom left, right, left, 0 0;
+    background-attachment: scroll, scroll, scroll, scroll;
+    background-size:20%, 51px, 51px, auto;
 }
 
 table.docutils th.field-name {

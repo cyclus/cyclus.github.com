@@ -107,6 +107,7 @@ html_theme_options = {
     'max_width': '1250px',
     'relbarbgcolor': '#34312e',
     'footerbgcolor': '#d5b683',
+    'footertextcolor': '#34312e',
     'codebgcolor': 'white',
     'sidebarwidth': '322px',
     'sidebarbgcolor': '#fcf1df',
