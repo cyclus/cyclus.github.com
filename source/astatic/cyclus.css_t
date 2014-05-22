@@ -1,17 +1,27 @@
 @import url("cloud.css");
 
 body {
-    background-image:url('gear_flourish_transp.png'), url('curlydivider-right.png'), 
-                     url('curlydivider-left.png'), url('metal.png'), 
-                     url('pocket-watch.png'), url('smallalarmclock.png'),
-                     url('bicyclelady.png');
-    background-repeat: no-repeat, repeat-y, 
-                      repeat-y, repeat, 
-                      no-repeat, no-repeat, no-repeat;
-    background-position: bottom left, right, 
-                         left, 0 0, 
-                         95% 99%, 42px 42px, 
-                         95% 100px;
+    background-image:url('gear_flourish_transp.png'), 
+                     url('curlydivider-right.png'), 
+                     url('curlydivider-left.png'), 
+                     url('metal.png'),
+                     url('corner_flourish.png'),
+                     url('pocket-watch.png'),
+                     url('smallalarmclock.png');
+    background-repeat: no-repeat, 
+                       repeat-y, 
+                       repeat-y, 
+                       repeat,
+                       no-repeat, 
+                       no-repeat,
+                       no-repeat;
+    background-position: bottom left, 
+                         right, 
+                         left,  
+                         0 0,
+                         98% 0px,
+                         97% 99%,
+                         42px 42px;
     background-attachment: scroll, scroll, scroll, scroll, scroll, scroll, scroll;
     background-size:20%, 51px, 51px, auto, auto, auto, auto;
 }

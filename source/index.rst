@@ -90,16 +90,16 @@ Support for this research has included funding received from:
 
 .. container:: image_band
 
-    .. image :: astatic/neup_logo_large.jpg
+    .. image :: astatic/neup_logo_large.png
         :height: 100 px
  
     .. image :: astatic/AnlLogo.png
         :height: 100 px
 
-    .. image :: astatic/USNRC.gif
+    .. image :: astatic/USNRC.png
         :height: 100 px
 
-    .. image :: astatic/nsf_logo.jpg
+    .. image :: astatic/nsf_logo.png
         :height: 100 px
 
     .. image :: astatic/crest.png
