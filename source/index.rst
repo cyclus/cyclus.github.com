@@ -75,6 +75,36 @@ patches via pull requests.
 Once you have learned about the cyclus basics, please follow these instructions 
 for :doc:`getting and building cyclus <kernel/build_from_source>`.
 
+Try It
+-------
+
+.. raw:: html
+
+    <style type="text/css">
+        #dashboard table {width:80%;border-color:#a9a9a9;color:#333333;border-collapse:collapse;margin:auto;border-width:1px;text-align:center;}
+        #dashboard th {padding:4px;border-style:solid;border-color:#a9a9a9;border-width:1px;background-color:#b8b8b8;text-align:left;}
+        #dashboard tr {background-color:#ffffff;text-align:center;}
+        #dashboard td {padding:4px;border-color:#a9a9a9;border-style:solid;border-width:1px;text-align:center;}
+        .status-complete {background-color:#95C97E;}
+        .status-queued {background-color:#FF9933;}
+        .status-running {background-color:#FAA460;}
+        .status-failed {background-color:#BD2C00;}
+    </style>
+  
+    <br>
+    <div id="dashboard"></div>
+
+    <script> 
+        function loadDash() {
+            $('#dashboard').load("http://cyc-submit.rwcr.net/dashboard",
+                function() {
+                    $('head').append('<style e2.css" type="text/css" />');
+                    setTimeout("loadDash()", 10000)
+                });
+        }
+        loadDash();
+    </script>
+
 
 Contact Us
 ----------
