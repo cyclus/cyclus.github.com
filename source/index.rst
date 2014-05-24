@@ -81,7 +81,15 @@ Try It
 .. raw:: html
 
     <br>
+
+    <form action="cyc-submit.rwcr.net/job/submit-infile" method="post">
+        Cyclus input file: <br>
+        <textarea NAME="comments" COLS=40 ROWS=6> </textarea>
+        <br><input type="submit" value="Submit">
+    </form>
+
     <div id="dashboard"></div>
+    <br>
 
     <script> 
         function loadDash() {
