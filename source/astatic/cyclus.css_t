@@ -90,3 +90,11 @@ div#cyclus.section h1 {
 #dashboard tr.status-failed {
     background-color:#F0C2B2;
 }
+
+#infile-form {
+    width:80%;
+    margin:auto;
+}
+#infile-form textarea {
+    width: 100%;
+}

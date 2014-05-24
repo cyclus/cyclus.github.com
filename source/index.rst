@@ -81,13 +81,13 @@ Try It
 .. raw:: html
 
     <br>
-
-    <form action="cyc-submit.rwcr.net/job/submit-infile" method="post">
+    <form id="infile-form" action="cyc-submit.rwcr.net/job/submit-infile" method="post">
         Cyclus input file: <br>
-        <textarea NAME="comments" COLS=40 ROWS=6> </textarea>
+        <textarea name="infile" cols=60 rows=6>paste input file here...</textarea>
         <br><input type="submit" value="Submit">
     </form>
 
+    <br>
     <div id="dashboard"></div>
     <br>
 
