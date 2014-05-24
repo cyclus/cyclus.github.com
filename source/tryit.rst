@@ -20,6 +20,7 @@ Try It
             var text = $('#infile-box').val();
             $.post("http://cyc-submit.rwcr.net/job/submit-infile", text, function(data) {
                 $('#jobid').text(data);
+                $('#dashboard').load("http://cyc-submit.rwcr.net/dashboard");
             })
         }
         function loadDash() {
