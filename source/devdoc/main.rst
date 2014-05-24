@@ -41,6 +41,7 @@ Utilities and Components
 .. toctree::
    :maxdepth: 1
 
+   dbtypes
    logger
    output_dbase
    output_usecases
