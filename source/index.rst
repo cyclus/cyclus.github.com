@@ -81,17 +81,25 @@ Try It
 .. raw:: html
 
     <br>
-    <form id="infile-form" action="cyc-submit.rwcr.net/job/submit-infile" method="post">
-        Cyclus input file: <br>
-        <textarea name="infile" cols=60 rows=6>paste input file here...</textarea>
-        <br><input type="submit" value="Submit">
-    </form>
+    <div id="infile-form">
+    Cyclus input file: <br>
+    <textarea id="infile-box" name="infile">paste input file here...</textarea>
+    <br><button onclick="submitJob()">Submit</button><label>Job Id: </label><label id="jobid"></label>
+    </div>
 
     <br>
     <div id="dashboard"></div>
     <br>
 
     <script> 
+        function submitJob() {
+            var text = $('#infile-box').val();
+            alert(text);
+            $.post("http://cyc-submit.rwcr.net/job/submit-infile", text, function(data) {
+                    $('#jobid').text(data);
+                    alert(data);
+                })
+        }
         function loadDash() {
             $('#dashboard').load("http://cyc-submit.rwcr.net/dashboard",
                 function() {
