@@ -16,20 +16,22 @@ Try It
     <br>
 
     <script> 
+        var server = "http://23.253.61.86"
+
         function submitJob() {
             var text = $('#infile-box').val();
-            $.post("http://cyc-submit.rwcr.net/job/submit-infile", text, function(data) {
+            $.post(server + "/job/submit-infile", text, function(data) {
                 $('#jobid').text(data);
-                $('#dashboard').load("http://cyc-submit.rwcr.net/dashboard");
+                $('#dashboard').load(server + "/dashboard");
             })
         }
         function loadDash() {
-            $('#dashboard').load("http://cyc-submit.rwcr.net/dashboard", function() {
+            $('#dashboard').load(server + "/dashboard", function() {
                 setTimeout("loadDash()", 30000)
             });
         }
         function loadDefaultInfile() {
-            $.get("http://cyc-submit.rwcr.net/dashboard/default-infile", function( data ) {
+            $.get(server + "/dashboard/default-infile", function( data ) {
                 $('#infile-box').text(data);
             })
         }
