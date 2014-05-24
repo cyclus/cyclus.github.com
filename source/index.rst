@@ -78,37 +78,7 @@ for :doc:`getting and building cyclus <kernel/build_from_source>`.
 Try It
 -------
 
-.. raw:: html
-
-    <br>
-    <div id="infile-form">
-    Cyclus input file: <br>
-    <textarea id="infile-box" name="infile">paste input file here...</textarea>
-    <br><button onclick="submitJob()">Submit</button><label>Job Id: </label><label id="jobid"></label>
-    </div>
-
-    <br>
-    <div id="dashboard"></div>
-    <br>
-
-    <script> 
-        function submitJob() {
-            var text = $('#infile-box').val();
-            alert(text);
-            $.post("http://cyc-submit.rwcr.net/job/submit-infile", text, function(data) {
-                    $('#jobid').text(data);
-                    alert(data);
-                })
-        }
-        function loadDash() {
-            $('#dashboard').load("http://cyc-submit.rwcr.net/dashboard",
-                function() {
-                    setTimeout("loadDash()", 30000)
-                });
-        }
-        loadDash();
-    </script>
-
+Run a cyclus simulation from your brosere :doc:`here <tryit>`.
 
 Contact Us
 ----------
