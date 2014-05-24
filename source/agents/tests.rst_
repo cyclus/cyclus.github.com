@@ -1,0 +1,11 @@
+Test Agents
+================
+This is a collection of agents found in the ``tests`` path that comes with 
+cyclus itself.
+
+.. cyclus-agent:: tests:TestRegion:TestRegion
+
+.. cyclus-agent:: tests:TestInst:TestInst
+
+.. cyclus-agent:: tests:TestFacility:TestFacility
+    :no-sep:

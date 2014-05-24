@@ -1,0 +1,19 @@
+Cycamore Agents
+================
+This is a collection of agents found in the ``cycamore`` module that comes with 
+cycamore itself.
+
+.. cyclus-agent:: :cycamore:SourceFacility
+
+.. cyclus-agent:: :cycamore:SinkFacility
+
+.. cyclus-agent:: :cycamore:DeployInst
+
+.. cyclus-agent:: :cycamore:ManagerInst
+
+.. cyclus-agent:: :cycamore:GrowthRegion
+
+.. cyclus-agent:: :cycamore:EnrichmentFacility
+
+.. cyclus-agent:: :cycamore:BatchReactor
+    :no-sep:

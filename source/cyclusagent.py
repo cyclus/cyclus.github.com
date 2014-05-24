@@ -32,20 +32,32 @@ from docutils.statemachine import ViewList
 
 from sphinx.util.nodes import nested_parse_with_titles
 
+if sys.version_info[0] == 2:
+    STRING_TYPES = (str, unicode, basestring)
+elif sys.version_info[0] >= 3:
+    STRING_TYPES = (str,)
+
 PRIMITIVES = {'bool', 'int', 'float', 'double', 'std::string', 'cyclus::Blob', 
               'boost::uuids::uuid'}
 
 BUFFERS = {'cyclus::toolkit::ResourceBuff'}
 
+def ensure_tuple_or_str(x):
+    if isinstance(x, STRING_TYPES):
+        return x
+    else:
+        return tuple(x)
+
 def type_to_str(t):
+    t = ensure_tuple_or_str(t)
     if t in PRIMITIVES or t in BUFFERS:
         return t
     else:
-        s = t[0] + '< '
+        s = t[0] + '<'
         s += type_to_str(t[1])
         for thing in t[2:]:
             s += ', ' + type_to_str(thing)
-        s += ' >'
+        s += '>'
         return s
 
 class CyclusAgent(Directive):
@@ -90,10 +102,12 @@ class CyclusAgent(Directive):
     skipstatevar = {'type', 'index', 'shape', 'doc', 'tooltip', 'default'}
 
     def append_statevars(self):
-        lines = self.lines
-        lines += ['', '**State Variables:**', '']
         vars = OrderedDict(sorted(self.annotations.get('vars', {}).items(), 
                            key=lambda x: x[1]['index']))
+        if len(vars) == 0:
+            return
+        lines = self.lines
+        lines += ['', '**State Variables:**', '']
         for name, info in vars.items():
             # add name
             n = ":{0}: *{1}*" .format(name, type_to_str(info['type']))
