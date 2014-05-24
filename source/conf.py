@@ -20,7 +20,7 @@ import cloud_sptheme as csp
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('.'))
 
 # -- General configuration -----------------------------------------------------
 
@@ -29,8 +29,7 @@ import cloud_sptheme as csp
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.pngmath', 
-              'sphinxcontrib.bibtex']
+extensions = ['sphinx.ext.pngmath', 'sphinxcontrib.bibtex', 'cyclusagent']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['atemplates']
@@ -171,7 +170,7 @@ html_last_updated_fmt = '%b %d, %Y'
 html_show_sourcelink = False
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
-#html_show_sphinx = True
+html_show_sphinx = False
 
 # If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
 #html_show_copyright = True

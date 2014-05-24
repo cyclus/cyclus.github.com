@@ -64,12 +64,21 @@ you must fork the cyclus core repository into your own github account and submit
 patches via pull Requests. 
 
 .. toctree::
-   :maxdepth: 1
+    :maxdepth: 1
 
-   basics/main
-   usrdoc/main
-   devdoc/main
-   cep/cep0
+    basics/main
+    usrdoc/main
+    devdoc/main
+    cep/cep0
+
+**Agents:**
+
+.. toctree::
+    :maxdepth: 1
+
+    agents/cyclus
+    agents/cycamore
+    agents/stubs
 
 Once you have learned about the cyclus basics, please follow these instructions 
 for :doc:`getting and building cyclus <devdoc/get_and_build>`.
