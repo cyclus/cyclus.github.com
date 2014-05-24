@@ -2,3 +2,5 @@
 doctrees
 build
 *~
+*.pyc
+gh-build
