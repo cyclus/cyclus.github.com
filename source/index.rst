@@ -72,15 +72,6 @@ patches via pull requests.
     kernel/main
     cep/cep0
 
-**Agents:**
-
-.. toctree::
-    :maxdepth: 1
-
-    agents/cyclus
-    agents/cycamore
-    agents/stubs
-
 Once you have learned about the cyclus basics, please follow these instructions 
 for :doc:`getting and building cyclus <module/get_and_build>`.
 

@@ -10,6 +10,18 @@ An instruction manual for :doc:`../module/get_and_build` is provided.
 Questions having to do with this process may be directed to
 the mailing list.
 
+Agents
+------
+The following is a listing of core-supported modules and documentation for 
+the agents that live inside of them.
+
+.. toctree::
+    :maxdepth: 2
+
+    cyclusagents
+    cycamoreagents
+    stubagents
+
 .. 
     Defining a Simulation
     ---------------------
