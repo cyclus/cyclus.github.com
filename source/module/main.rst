@@ -10,28 +10,29 @@ Hello World
 
 TODO: Write a simple hello world example
 
-
-Core Concepts and Expectations
-------------------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   sim_init
-   resources
-   discrete_materials
-   decay
-   dynamic_loading
-..   cyclus_env
-..   materials_and_isotopes
-
-Utilities and Components
-------------------------
+Writing Modules
+---------------
 
 .. toctree::
    :maxdepth: 1
 
    dbtypes
    logger
+
+TODO: Add errors and warnings page.
+
+How It Works
+------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   sim_init
+   dynamic_loading
+   resources
+   discrete_materials
+   decay
    output_dbase
    output_usecases
+..   cyclus_env
+..   materials_and_isotopes

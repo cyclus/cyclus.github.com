@@ -1,4 +1,4 @@
-Using the Cyclus Logger
+Logging
 =======================
 
 .. code-block:: bash

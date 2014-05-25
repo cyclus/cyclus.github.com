@@ -1,5 +1,6 @@
 Database Types
 ==============
+
 Here is a listing of all supported data types that the various backends have 
 implemented, by cyclus version number.
 
@@ -24,8 +25,17 @@ implemented, by cyclus version number.
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
 
+    <style>
+    p {
+      font-size: 100%; 
+    }
+
+    img {
+      max-height: 100px;
+    }
+    </style>
+
     <!-- jquery_pivot must be loaded after pivot.js and jQuery -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="../_static/pivot/subnav.js"></script>
     <script type="text/javascript" src="../_static/pivot/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="../_static/pivot/dataTables.bootstrap.js"></script>
