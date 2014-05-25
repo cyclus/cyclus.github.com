@@ -73,7 +73,7 @@ patches via pull requests.
     cep/cep0
 
 Once you have learned about the cyclus basics, please follow these instructions 
-for :doc:`getting and building cyclus <module/get_and_build>`.
+for :doc:`getting and building cyclus <kernel/build_from_source>`.
 
 
 Contact Us

@@ -1,13 +1,13 @@
 
-Getting and Building Cyclus
-===========================
+Getting and Building Cyclus From Source
+=======================================
 
 The Cyclus Library Suite
 ------------------------
-*Cyclus* is composed of two libraries:
+The *Cyclus* ecosystem is composed of two projects:
   
-  * Cyclus Core, comprising core library functionality
-  * Cycamore, a module repository
+  * Cyclus Core, comprising core kernel functionality
+  * Cycamore, a physics and other domain module repository
 
 Installation information is provided in the readmes of each repository, and the
 core must be installed before cycamore. Accordingly, installation steps are as

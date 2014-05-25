@@ -1,4 +1,7 @@
 Cyclus Kernel Developer Guide
 =============================
 
-Nada
+.. toctree:: 
+    :maxdepth: 1
+
+    build_from_source

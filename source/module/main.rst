@@ -1,5 +1,5 @@
-Cyclus Developer Guide
-======================
+Cyclus Module Developer Guide
+=============================
 
 .. note:: The devloper's guide remains a work in progress.
 
@@ -13,15 +13,11 @@ your own github account and submit 'Pull Requests'*.
 
 If you haven't already, check out :doc:`../basics/main`
 
-Getting Started
+Hello World
 ---------------
 
-.. toctree::
-   :maxdepth: 1
-  
-   get_and_build
-   dynamic_loading
-..   cyclus_env
+TODO: Write a simple hello world example
+
 
 Core Concepts and Expectations
 ------------------------------
@@ -33,6 +29,8 @@ Core Concepts and Expectations
    resources
    discrete_materials
    decay
+   dynamic_loading
+..   cyclus_env
 ..   materials_and_isotopes
 
 Utilities and Components

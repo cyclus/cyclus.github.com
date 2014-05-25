@@ -2,13 +2,12 @@
 .. summary Documentation for Cyclus Users
 
 Cyclus User Guide
-=================
+===================
 
 .. note:: A user's guide is in development.
 
-An instruction manual for :doc:`../module/get_and_build` is provided.
-Questions having to do with this process may be directed to
-the mailing list.
+
+TODO: ADD INSTALL INSTRUCTIONS HERE
 
 Agents
 ------
