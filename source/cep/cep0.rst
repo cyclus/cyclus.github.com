@@ -1,5 +1,11 @@
 Cyclus Enhancement Proposals
 ============================
+
+.. raw:: html
+
+    <table style="width:100%">
+    <tr><td>
+
 :CEP: 0
 :Title: Index of Cyclus Enhancement Proposals (CEPs)
 :Version: N/A
@@ -8,6 +14,18 @@ Cyclus Enhancement Proposals
 :Status: Active
 :Type: Informational
 :Created: 2013-07-03
+
+.. raw:: html
+
+    </td><td>
+
+.. image:: ../astatic/bicyclelady.jpg
+    :align: center
+
+.. raw:: html
+
+    </td></tr>
+    </table>
 
 Introduction
 ------------
