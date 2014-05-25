@@ -310,8 +310,14 @@ implemented, by cyclus version number.
 
     $(document).ready(function() {
         fields =[{name: 'id',         type: 'integer', filterable: true},
-                 {name: 'name',       type: 'string',  filterable: true},
-                 {name: "C++ type",   type: 'string',  filterable: true},
+                 {name: 'name',       type: 'string',  filterable: true,
+                  displayFunction: function(value){
+                    return '<div style="font-family:Courier,monospace;">' + 
+                           value + '</div>';}},
+                 {name: "C++ type",   type: 'string',  filterable: true,
+                  displayFunction: function(value){
+                    return '<div style="font-family:Courier,monospace;">' + 
+                           value + '</div>';}},
                  {name: 'shape rank', type: 'integer', filterable: true},
                  {name: 'backend',    type: 'string',  filterable: true, 
                   columnLabelable: true},
