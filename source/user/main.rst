@@ -6,7 +6,7 @@ Cyclus User Guide
 
 .. note:: A user's guide is in development.
 
-An instruction manual for :doc:`../devdoc/get_and_build` is provided.
+An instruction manual for :doc:`../module/get_and_build` is provided.
 Questions having to do with this process may be directed to
 the mailing list.
 
