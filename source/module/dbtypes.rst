@@ -33,6 +33,10 @@ implemented, by cyclus version number.
     img {
       max-height: 100px;
     }
+
+    img.logo {
+      max-height: none;
+    }
     </style>
 
     <!-- jquery_pivot must be loaded after pivot.js and jQuery -->

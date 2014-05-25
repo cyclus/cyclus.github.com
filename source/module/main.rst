@@ -14,10 +14,11 @@ Writing Modules
 ---------------
 
 .. toctree::
-   :maxdepth: 1
+    :maxdepth: 1
 
-   dbtypes
-   logger
+    cycpp
+    dbtypes
+    logger
 
 TODO: Add errors and warnings page.
 
@@ -25,14 +26,14 @@ How It Works
 ------------------------------
 
 .. toctree::
-   :maxdepth: 1
+    :maxdepth: 1
 
-   sim_init
-   dynamic_loading
-   resources
-   discrete_materials
-   decay
-   output_dbase
-   output_usecases
+    sim_init
+    dynamic_loading
+    resources
+    discrete_materials
+    decay
+    output_dbase
+    output_usecases
 ..   cyclus_env
 ..   materials_and_isotopes
