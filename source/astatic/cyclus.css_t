@@ -34,6 +34,10 @@ div.body h2 {
   background-color: #7b7f82;
 }
 
+div.body h2.highlighted {
+  border: 0.25em solid #ece48b;
+}
+
 h2 a {
  color: #fff3b6;
 }
