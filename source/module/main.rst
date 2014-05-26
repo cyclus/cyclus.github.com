@@ -30,7 +30,6 @@ How It Works
     sim_init
     dynamic_loading
     resources
-    discrete_materials
     decay
     output_dbase
     output_usecases
