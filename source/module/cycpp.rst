@@ -505,16 +505,30 @@ Inventories may be used as normal state variables.  For example:
     #pragma cyclus var {'doc': 'my stocks'}
     cyclus::Inventories invs;
 
-
 It is therefore *hightly* recomended that you store resources in this 
 data structure.
 
+State Variable Code Generation Overrides
+-----------------------------------------
+A powerful feature of most of the code generation directives is that the 
+C++ code that is created for a state variable may be optionally replaced with a
+code snippet writing in the annotations. This allows you to selectively 
+define the C++ behaviour without the need to fully rewite the member function.
+
+A potential use case is to provide a custom schema while still utilizing all other 
+parts of |cycpp|.  For example:
+
+.. code-block:: c++
+
+    #pragma cyclus var {'schema': '<my>Famcy RNG here</my>'}
+    cyclus::Inventories invs;
+
+
+For a listing of all code generation functions that may be overridden, please 
+see :ref:`cycpp-table-1`.
 
 Implementation Hacks
 ---------------------
 Cool.
 
-State Variable Code Generation Overrides
------------------------------------------
-Neat-o
 
