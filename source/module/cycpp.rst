@@ -347,6 +347,12 @@ associated C++ information.
     initinv      ``InitInv(cyclus::Inventories& inv)``     ``void``
     ============ ========================================= =======================
 
+.. raw:: html
+
+    <br />
+
+--------------
+
 Lastly, the agent's classname may be optionally passed the to the directive. 
 This is most useful in source files for the definition directives. This is 
 because such directives typically lack the needed class scope.  For example, 
@@ -357,6 +363,50 @@ use:
 
     #pragma cyclus def snapshot mynamespace::MyAgent
 
+Putting It Together
+--------------------
+Cyclus agents are written by declaring certain member variables to be 
+**state variables**.  This means that they *define* the conditions of the agent 
+at the start of every time step.
+State variables are automatically are saved and loaded to the 
+database as well a dictating other important interactions with the kernel.
+
+The preprocessor will generate the desired implementation of key a
+member fucntions for your agent.  The easiest way to obtain these is through the
+prime directive.
+
+As a simple example, consider a reactor model that has three state variables: 
+a flux, a power level, and a flag for whether it is shutdown or not.  
+This could be implemented as follows:
+
+.. code-block:: c++
+
+    class Reactor : public cyclus::Facility {
+     public:
+      Reactor(cyclus::Context* ctx) {};
+      virtual ~Reactor() {};
+
+      #pragma cyclus
+
+     private:
+      #pragma cyclus var {'default': 4e14, \
+                          'doc': 'the core-average flux', \
+                          'units': 'n/cm2/2'}
+      double flux;
+
+      #pragma cyclus var {'default': 1000, 'units': 'MWe'}
+      float power;
+
+      #pragma cyclus var {'doc': 'Are we operating?'}
+      bool shutdown;
+    };
+
+Note that the state variables may be private or protected if desired.  
+Furthermore state variable annotations may be broken up over many lines using 
+trailing backslashes to make the code more readable.
+It remains up to you - the module developer - to implement the desired agent in the 
+``Tick()`` and ``Tock()`` member functions.  Fancier tricks are available as needed
+but this is the essense of how to write cyclus agents.
 
 Abusing the Cyclus Preprocessor
 ==================================
@@ -415,4 +465,5 @@ cluttering up the C++ source code.
 Implementation Hacks
 ---------------------
 Cool.
+
 
