@@ -18,9 +18,8 @@ Writing Modules
 
     cycpp
     dbtypes
+    errors
     logger
-
-TODO: Add errors and warnings page.
 
 How It Works
 ------------------------------

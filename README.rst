@@ -9,6 +9,8 @@ Building the Cyclus website requires:
 
 3. `cyclus`_
 
+4. `Cloud Sphinx Theme <https://pythonhosted.org/cloud_sptheme/index.html>`_
+
 Modifying the Cyclus Website
 ============================
 
