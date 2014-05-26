@@ -491,7 +491,7 @@ the enemy must write ``mi6.Spy.name``. For example:
 
 Inventories
 ------------
-In addition to the normal :ref:`dbtypes`, state variables may also be declared 
+In addition to the normal :doc:`dbtypes`, state variables may also be declared 
 with the ``cyclus::Inventories`` type.  This is a special cyclus typedef 
 of ``std::map<std::string, std::vector<Resource::Ptr> >`` that enables the 
 storing of an arbitrary of resources (map values) by the associated commodity 
@@ -530,6 +530,28 @@ see :ref:`cycpp-table-1`.
 
 Implementation Hacks
 ---------------------
-Cool.
+The ``impl`` code generation directives exist primarily to be abused.  Unlike the 
+``def`` directives, the implementation directives do not include the function 
+signature or return statement.  The downside of this is that you must provide
+the function signature and the return value yourself.  The upside is that 
+you may perform any operation before & after the directive! 
 
+For example, suppose that we wanted to make sure that the flux state variable 
+on the Reactor agent is always snapshotted to the database as the value 42. However, 
+we did not want to permenantky atlter the value of this variable.  This could be
+achived through the following pattern:
 
+.. code-block:: c++
+
+    void Reactor::Snapshot(cyclus::DbInit di) {
+      double real_flux = flux;  // copy the existsing fluc value.
+      flux = 42;  // set the value to wat we want temporarily
+
+      // fill in the code generated implementation of Shapshop()
+      #prama cyclus impl snapshot Reactor
+
+      flux = real_flux;  // reset the flux
+    }
+
+There are likely much more legitimate uses for this feature. For a complete listing 
+of the member function information, please see :ref:`cycpp-table-3`.
