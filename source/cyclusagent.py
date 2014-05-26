@@ -72,12 +72,12 @@ class CyclusAgent(Directive):
 
     def load_schema(self):
         stdout = subprocess.check_output(['cyclus', '--agent-schema', self.agentspec])
-        self.schema = stdout
+        self.schema = stdout.decode()
 
     def load_annotations(self):
         stdout = subprocess.check_output(['cyclus', '--agent-annotations', 
                                           self.agentspec])
-        j = json.loads(stdout)
+        j = json.loads(stdout.decode())
         self.annotations = j
 
     def append_name(self):
