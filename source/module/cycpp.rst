@@ -347,21 +347,24 @@ associated C++ information.
     initinv      ``InitInv(cyclus::Inventories& inv)``     ``void``
     ============ ========================================= =======================
 
-Python & cycpp
----------------
-We have chosen to write the cyclus preprocessor (``cycpp``) in Python - though 
-truly it could have been written in any language.  Writing it in Python gave us
-access to some awesome parts of the Python interpreter. 
+Lastly, the agent's classname may be optionally passed the to the directive. 
+This is most useful in source files for the definition directives. This is 
+because such directives typically lack the needed class scope.  For example, 
+for the snapshot definition of ``MyAgent`` living in ``mynamespace`` we would
+use:
 
-You may have noticed that the variable annotations above look a lot like a 
-Python dictionary.  That is because they are! (Or more generally, they are 
-any expression which evaluates to a mapping.  Most JSON is valid here too.)
-This is awesome.  This means that not even our annotations exist in their own
-DSL.  Every part of simulator is valid in a language that we are not the sole
-proprietors of.  If a 3rd party developer has already gone through the process
-of learning C++ to add a model to our simulator, learning Python dictionaries
-is not a barrier to entry.
+.. code-block:: c++
 
+    #pragma cyclus def snapshot mynamespace::MyAgent
+
+
+Abusing the Cyclus Preprocessor
+==================================
+Now that you know how to use |cycpp|, it is useful to know about some of it
+more advanced features and how they can be leveraged.
+
+Scope and Annotations
+-------------------------
 Furthermore, since these are Python expressions, we have wired it up so that 
 the scope of these dicts matches that of the class they are declared within.
 This let's users do neat things like the following:
@@ -409,117 +412,7 @@ separate sidecar ``*.py`` file and then import and use them rather than
 cluttering up the C++ source code.
 
 
-Mirror, Mirror
----------------
-*So where is the reflection?*
-
-The reflection comes out of the fact that our state accumulation stage
-is prior to any code that we generate.  ``cycpp`` is a 3-pass
-preprocessor. The three passes are:
-
-1. run cpp normally to canonize all other preprocessor directives,
-2. accumulate annotations for agents and state variables, and
-3. generate code based on annotations.
-
-Two passes are the minimum required, but having the first stage where we 
-run the code through plain old ``cpp`` is ideal because this resolves
-a lot of wacky things that people *can* do with the preprocessor:
-
-.. code-block:: c++
-
-    #define OPEN_CURLY_BRACE {
-    #define CLOSED_CURLY_BRACE }
-
-    class Spy OPEN_CURLY_BRACE
-      int id;
-    CLOSED_CURLY_BRACE;
-
-The above (shamefully) is fully valid C++. So if you don't use ``cpp`` 
-as a first stage then to be robust you need to implement ``cpp``. 
-(Which is too much work for a simulator.)
-
-In the end, we have a whole suite of ``#pragma cyclus`` directives that 
-let users specify what they want generated and where. These are based on:
-
-1. the method they want generated, 
-2. whether they want the declaration, definition, or implementation
-   of this method, or
-3. a wrap up of the above.
-
-These pragmas are, of course, scope aware.  The code generation pragmas 
-are not particularly interesting to someone not doing cyclus development 
-so I will skip them here. To give you a taste though, in the simplest 
-case for one state variable on a single class we transform the code the 
-user or developer has to write from:
-
-.. code-block:: c++
-
-    class Friend: public Spy {
-       public:
-        #pragma cyclus 
-
-        #pragma cyclus var {\
-          "default": "friend of " + Spy.name['default'], \
-          }
-        std::string friend;
-    };
-
-into this automatically:
-
-.. code-block:: c++
-
-    class Friend: public Spy {
-     public:
-      virtual void InitFrom(mi6::Friend* m) {
-        mi6::Spy::InitFrom(m);
-        friend = m->friend;
-      };
-
-      virtual void InitFrom(cyclus::QueryableBackend* b) {
-        mi6::Spy::InitFrom(b);
-        cyclus::QueryResult qr = b->Query("Info", NULL);
-        friend = qr.GetVal<std::string>("friend");
-      };
-
-      virtual void InfileToDb(cyclus::InfileTree* tree, cyclus::DbInit di) {
-        mi6::Spy::InfileToDb(tree, di);
-        tree = tree->SubTree("agent/" + agent_impl());
-        di.NewDatum("Info")
-        ->AddVal("friend", cyclus::OptionalQuery<std::string>(tree, "friend", "friend of James Bond, 007"))
-        ->Record();
-      };
-
-      virtual cyclus::Agent* Clone() {
-        mi6::Friend* m = new mi6::Friend(context());
-        m->InitFrom(this);
-        return m;
-      };
-
-      virtual std::string schema() {
-        return ""
-          "<optional>\n"
-          "    <element name=\"friend\">\n"
-          "        <data type=\"string\" />\n"
-          "    </element>\n"
-          "</optional>\n"
-          ;
-      };
-
-      virtual void InitInv(cyclus::Inventories& inv) {
-      };
-
-      virtual cyclus::Inventories SnapshotInv() {
-        cyclus::Inventories invs;
-        return invs;
-      };
-
-      virtual void Snapshot(cyclus::DbInit di) {
-        di.NewDatum("Info")
-        ->AddVal("friend", friend)
-        ->Record();
-      };
-
-    #pragma cyclus var { "default": "friend of " + Spy.name['default'], }
-    std::string friend;
-    };
+Implementation Hacks
+---------------------
+Cool.
 
