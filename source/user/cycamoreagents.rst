@@ -3,9 +3,9 @@ Cycamore Agents
 This is a collection of agents found in the ``cycamore`` module that comes with 
 cycamore itself.
 
-.. cyclus-agent:: :cycamore:SourceFacility
+.. cyclus-agent:: :cycamore:Source
 
-.. cyclus-agent:: :cycamore:SinkFacility
+.. cyclus-agent:: :cycamore:Sink
 
 .. cyclus-agent:: :cycamore:DeployInst
 

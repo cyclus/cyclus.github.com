@@ -37,7 +37,7 @@ Markets are communicated with through Messages. Communication to Markets utilize
 the Transaction class to define whether the communication is an **offer** or
 **request** for the Market's commodity. Communication is initialized by
 Facilities, but there is no Cyclus core support for this operation. Individual
-derived Facilities (e.g., the SinkFacility and SourceFacility in Cycamore)
+derived Facilities (e.g., the Sink and Source in Cycamore)
 define this functionality during their **HandleTick** functions. This
 interaction is invoked during the tick phase in the current facility invocations
 purely by practice. There is no requirement for such behavior; for example, one

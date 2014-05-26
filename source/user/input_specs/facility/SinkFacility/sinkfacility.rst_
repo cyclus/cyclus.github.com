@@ -1,8 +1,8 @@
 
-SinkFacility
+Sink
 ============
 
-The SinkFacility module accepts material in a given set of 
+The Sink module accepts material in a given set of 
 commodities. 
 
 Input Parameters
@@ -20,8 +20,8 @@ Definiton
 
 .. code-block:: xml
 
-  <define name="SinkFacility">
-     <element name="SinkFacility"> 
+  <define name="Sink">
+     <element name="Sink"> 
        <element name ="input">
          <element name = "commodities">
            <ref name="incommodity"/>
@@ -44,15 +44,15 @@ Example
   <facility>
     <name>Sink</name>
     <model>
-      <SinkFacility>
+      <Sink>
 	<input>
 	  <commodities>
-	    <incommodity>used_fuel</incommodity>  <!-- this SinkFacility stores used fuel -->
+	    <incommodity>used_fuel</incommodity>  <!-- this Sink stores used fuel -->
 	  </commodities>
 	  <input_capacity>1</input_capacity>      <!-- it can take at most 1 kg per time step -->
 	  <inventorysize>100</inventorysize>      <!-- it can store up to 100 kg -->
 	</input>
-      </SinkFacility>
+      </Sink>
     </model>
     <incommodity>used_fuel</incommodity>
   </facility>

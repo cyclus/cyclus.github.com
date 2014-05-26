@@ -494,7 +494,7 @@ a vector of the received message pointers is kept as the private member variable
 .. code-block:: cpp
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
-  void SourceFacility::receiveMessage(msg_ptr msg){
+  void Source::receiveMessage(msg_ptr msg){
     orders_waiting_.push_front(msg);
   }
 

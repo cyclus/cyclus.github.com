@@ -61,13 +61,13 @@ Example
     <name>Source</name>                              <!-- a name -->
     <lifetime>120</lifetime>                         <!-- this facility will operate for 10 years -->
     <model>
-      <SourceFacility>                               <!-- read about the SourceFacility below -->
+      <Source>                               <!-- read about the Source below -->
         <output>
           <outcommodity>fuel</outcommodity>
           <output_capacity>1</output_capacity>
           <recipe>commod_recipe</recipe>
         </output>
-      </SourceFacility>
+      </Source>
     </model>
     <outcommodity>fuel</outcommodity>                <!-- this facility outputs a commodity named fuel -->
   </facility>

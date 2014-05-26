@@ -1,8 +1,8 @@
 
-SourceFacility
+Source
 ==============
 
-The SourceFacility module creates material commodities each time step.
+The Source module creates material commodities each time step.
 
 Input Parameters
 ----------------
@@ -21,8 +21,8 @@ Definiton
 
 .. code-block:: xml
 
-  <define name="SourceFacility">
-     <element name="SourceFacility"> 
+  <define name="Source">
+     <element name="Source"> 
        <element name ="output">
          <ref name="outcommodity"/>
          <ref name="output_capacity"/>
@@ -45,13 +45,13 @@ Example
     <name>Source</name>
     <lifetime>5</lifetime>
     <model>
-      <SourceFacility>
+      <Source>
 	<output>
 	  <outcommodity>fuel</outcommodity>     <!-- this facility outputs fuel -->
 	  <output_capacity>1</output_capacity>  <!-- at 1 kg per time step -->
 	  <recipe>fuel_recipe</recipe>          <!-- with the isotopics described by the fuel_recipe -->
 	</output>
-      </SourceFacility>
+      </Source>
     </model>
     <outcommodity>fuel</outcommodity>
   </facility>
