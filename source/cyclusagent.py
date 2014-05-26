@@ -16,8 +16,10 @@ from collections import OrderedDict
 
 try:
     import simplejson as json
+    JSONDecodeError = json.JSONDecodeError
 except ImportError:
     import json
+    JSONDecodeError = ValueError
 
 from docutils import io, nodes, statemachine, utils
 try:
@@ -79,7 +81,7 @@ class CyclusAgent(Directive):
                                           self.agentspec])
         try:
             j = json.loads(stdout.decode())
-        except json.JSONDecodeError:
+        except JSONDecodeError:
             raise ValueError("Error reading agent annotations for "\
                                  "{0}.".format(self.agentspec))
         
