@@ -21,14 +21,16 @@ the agents that live inside of them.
     cycamoreagents
     stubagents
 
-.. 
-    Defining a Simulation
-    ---------------------
+Defining a Simulation
+---------------------
 
-    .. toctree::
-       :glob:
-       :maxdepth: 3
+.. toctree::
+    :glob:
+    :maxdepth: 2
 
+    find_agents
+
+..
        input_specs/overview/*
        input_specs/region/*
        input_specs/inst/*
@@ -42,3 +44,4 @@ Running a Simulation
    :maxdepth: 2
 
    running_sims
+
