@@ -89,9 +89,12 @@ of type double with the given metadata.  The keys of this dictionary may be anyt
 you desire, though because they are eventaully persisted to JSON the keys must 
 be have a string types. Certain keys have special semantic meaning and there are 
 two - ``type`` and ``index`` - that are set by |cycpp| and should not be specified
-explicitly.
+explicitly.  :ref:`cycpp-table-1` contains a listing of all special keys and their 
+meaning.
 
 .. rst-class:: centered
+
+.. _cycpp-table-1:
 
 .. table:: **Table I.** Special State Variable Annotations
     :widths: 1 9
@@ -139,21 +142,102 @@ explicitly.
                  this state variable instead of using code generation.
     ============ ==============================================================
 
+.. raw:: html
+
+    <br />
+
+--------------
+
+Cyclus also has a notion of class-level **agent annotations**. These are specified
+by the **note directive**. Similarly to the state variable annotations, agent 
+annotations must be given inside of the class declaration. They also have a very 
+similar signature:
+
+**Note (agent annotation) signature:**
+
+.. code-block:: c++
+
+    #pragma cyclus note <dict>
+
+Again, the ``<dict>`` argument here must evaluate to a Python dictionary.
+For example, 
+
+**Note (agent annotation) example:**
+
+.. code-block:: c++
+
+    #pragma cyclus note {"doc": "If I wanna be rich, I’ve got to find myself"}
+
+Unlike state variables, agent annotations only have a few special members.  One of 
+this is ``vars`` which contains the state variable annotations! 
+:ref:`cycpp-table-2` contains a listing of all special keys and their meaning.
+
+.. rst-class:: centered
+
+.. _cycpp-table-2:
+
+.. table:: **Table II.** Special Agent Annotations
+    :widths: 1 9
+    :column-alignment: left left
+    :column-wrapping: true true 
+    :column-dividers: none single none
+
+    ============ ==============================================================
+    key          meaning
+    ============ ==============================================================
+    vars         The state variable annotations, **DO NOT SET**.
+    doc          Documentation string.
+    tooltip      Brief documentation string for user interfaces.
+    userlevel    Integer from 0 - 10 for representing ease (0) or difficulty (10) 
+                 in using this variable, default 0.
+    ============ ==============================================================
+
+.. raw:: html
+
+    <br />
+
+--------------
+
+If you find dictionaries too confining, |cycpp| also has an **exec directive**. 
+This allows you to execute arbitrary Python code which is added to the global
+namespace the state variables and agent annotations are evaluated within.  This 
+directive may be placed anywhere and is not confined to the class declaration, 
+like above.  However, it is only executed durring the annotations phase of 
+preprocessing.  The signature for this directive is:
+
+**Exec signature:**
+
+.. code-block:: c++
+
+    #pragma cyclus exec <code>
+
+The ``<code>`` argument may be any valid Python code. A non-trivial example, 
+
+**Exec example:**
+
+.. code-block:: c++
+
+    #pragma cyclus exec from math import pi
+    #pragma cyclus exec r = 10
+
+    #pragma cyclus var {"default": 2*pi*r}
+    float circumfrence;
+    
+One possible use for this is to keep all state variable annotations in a 
+separate sidecar ``*.py`` file and then import and use them rather than
+cluttering up the C++ source code.  Such decisions are up to the style of the 
+developer.
+
+
+Code Generation Directives
+---------------------------
+
 **The prime directive:**
 
 .. code-block:: c++
 
     #pragma cyclus
 
-Only the first token (``cyclus``) is matched by normal ``cpp`` to determine if
-it is a known pragma.  This is great, because you can then add arguments to
-it.  
-
-
-Now you can go through your the code as many times you need, accumulating state & 
-annotations, and inserting whatever C++ code needs to be generated elsewhere.
-This let's users write fully compatible and compilable C++ code that can hook into
-your simulation - or not!
 
 Python & cycpp
 ---------------
@@ -215,6 +299,7 @@ namespace the state variables are evaluated in.
 Users can decide to keep all of their state variable annotations in a 
 separate sidecar ``*.py`` file and then import and use them rather than
 cluttering up the C++ source code.
+
 
 Mirror, Mirror
 ---------------
