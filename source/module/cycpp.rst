@@ -94,20 +94,50 @@ explicitly.
 .. rst-class:: centered
 
 .. table:: **Table I.** Special State Variable Annotations
+    :widths: 1 9
+    :column-alignment: left left
+    :column-wrapping: true true 
+    :column-dividers: none single none
 
-
-
-    =====   =======
-    key     meaning
-    =====   =======
-    type    The C++ type, **DO NOT SET**.
-    index   Which number state variable is this, 0-indexed, **DO NOT SET**.
-    default The default value for this variable that is used if otherwise unspecified. The value must match the type of the variable.
-    doc     Documentation string.
-    tooltip Brief documentation string for user interfaces.
-    units   The physical units, if any.
-    =====   =======
-
+    ============ ==============================================================
+    key          meaning
+    ============ ==============================================================
+    type         The C++ type, **DO NOT SET**.
+    index        Which number state variable is this, 0-indexed, 
+                 **DO NOT SET**.
+    default      The default value for this variable that is used if otherwise 
+                 unspecified. The value must match the type of the variable.
+    shape        The shape of a variable length datatypes. If present this must
+                 be a list of integers whose length (rank) makes sense for this
+                 type. Specifying positive values will (depending on the 
+                 backend) turn a variable length type into a fixed length one 
+                 with the length of the given value. Putting a ``-1`` in the 
+                 shape will retain the variable length nature along that axis. 
+                 Fixed length variables are normally more performant so it is 
+                 often a good idea to specify the shape where possible. For 
+                 example, a length-5 string would have a shape of ``[5]`` and 
+                 a length-10 vector of variable length strings would have a 
+                 shape of ``[10, -1]``.
+    doc          Documentation string.
+    tooltip      Brief documentation string for user interfaces.
+    units        The physical units, if any.
+    userlevel    Integer from 0 - 10 for representing ease (0) or difficulty (10) 
+                 in using this variable, default 0.
+    initfromcopy Code snippet to use in the ``InitFrom(Agent* m)`` function for 
+                 this state variable instead of using code generation.
+    initfromdb   Code snippet to use in the ``InitFrom(QueryableBackend* b)`` 
+                 function for this state variable instead of using code generation.
+    infiletodb   Code snippet to use in the ``InfileToDb()`` function for 
+                 this state variable instead of using code generation.
+    schema       Code snippet to use in the ``schema()`` function for 
+                 this state variable instead of using code generation.
+    snapshot     Code snippet to use in the ``Snapshot()`` function for 
+                 this state variable instead of using code generation.
+    snapshotinv  Code snippet to use in the ``SnapshotInv()`` function for 
+                 this state variable instead of using code generation.
+    initinv      Code snippet to use in the ``InitInv()`` function for 
+                 this state variable instead of using code generation.
+    ============ ==============================================================
 
 **The prime directive:**
 
