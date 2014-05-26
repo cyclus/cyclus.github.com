@@ -77,7 +77,12 @@ class CyclusAgent(Directive):
     def load_annotations(self):
         stdout = subprocess.check_output(['cyclus', '--agent-annotations', 
                                           self.agentspec])
-        j = json.loads(stdout.decode())
+        try:
+            j = json.loads(stdout.decode())
+        except json.JSONDecodeError:
+            raise ValueError("Error reading agent annotations for "\
+                                 "{0}.".format(self.agentspec))
+        
         self.annotations = j
 
     def append_name(self):
