@@ -89,8 +89,10 @@ of type double with the given metadata.  The keys of this dictionary may be anyt
 you desire, though because they are eventaully persisted to JSON the keys must 
 be have a string types. Certain keys have special semantic meaning and there are 
 two - ``type`` and ``index`` - that are set by |cycpp| and should not be specified
-explicitly.  :ref:`cycpp-table-1` contains a listing of all special keys and their 
-meaning.
+explicitly. State variables my have any C++ type that is allowed by the database 
+backend that is being used.  For a listing of valid type please refer to the 
+:doc:`dbtypes` page. :ref:`cycpp-table-1` contains a listing of all special keys 
+and their meaning.
 
 .. rst-class:: centered
 
@@ -105,7 +107,8 @@ meaning.
     ============ ==============================================================
     key          meaning
     ============ ==============================================================
-    type         The C++ type, **DO NOT SET**.
+    type         The C++ type.  Valid types may be found on the :doc:`dbtypes` 
+                 page. **DO NOT SET**.
     index        Which number state variable is this, 0-indexed, 
                  **DO NOT SET**.
     default      The default value for this variable that is used if otherwise 
@@ -128,18 +131,27 @@ meaning.
                  in using this variable, default 0.
     initfromcopy Code snippet to use in the ``InitFrom(Agent* m)`` function for 
                  this state variable instead of using code generation.
+                 This is a string.
     initfromdb   Code snippet to use in the ``InitFrom(QueryableBackend* b)`` 
                  function for this state variable instead of using code generation.
-    infiletodb   Code snippet to use in the ``InfileToDb()`` function for 
-                 this state variable instead of using code generation.
+                 This is a string.
+    infiletodb   Code snippets to use in the ``InfileToDb()`` function 
+                 for this state variable instead of using code generation.
+                 This is a dictionary of string values with the two keys 'read'
+                 and 'write' which represent reading values from the input file 
+                 writing them out to the database respectively.
     schema       Code snippet to use in the ``schema()`` function for 
                  this state variable instead of using code generation.
+                 This is a string.
     snapshot     Code snippet to use in the ``Snapshot()`` function for 
                  this state variable instead of using code generation.
+                 This is an RNG string.
     snapshotinv  Code snippet to use in the ``SnapshotInv()`` function for 
                  this state variable instead of using code generation.
+                 This is a string.
     initinv      Code snippet to use in the ``InitInv()`` function for 
                  this state variable instead of using code generation.
+                 This is a string.
     ============ ==============================================================
 
 .. raw:: html
@@ -410,19 +422,29 @@ but this is the essense of how to write cyclus agents.
 
 Abusing the Cyclus Preprocessor
 ==================================
-Now that you know how to use |cycpp|, it is useful to know about some of it
+Now that you know how to use |cycpp|, it is useful to know about some of the
 more advanced features and how they can be leveraged.
 
 Scope and Annotations
 -------------------------
-Furthermore, since these are Python expressions, we have wired it up so that 
-the scope of these dicts matches that of the class they are declared within.
-This let's users do neat things like the following:
+Annotations dictionaries retain the C++ scope that they are defined in even though 
+they are written in Python.  This allows state variables to refer to the 
+annotations for previously declared state variables.  Since the scope is 
+retained, this allows annotations to refer to each other across agent/class and
+namespace boundaries.
+
+Because the annotations are dictionaries, the scoping is performed with 
+the Python scoping operator (``.``) rather than the C++ scoping operator (``::``).
+For example, consider the case where we have a ``Spy`` class that lives in the 
+``mi6`` namespace.  Also in the namespace is the spy's ``Friend``.  Furthermore, 
+somewhere out in global scope lives the Spy's arch-nemisis class ``Enemy``.  
+
+The first rule of scoping is that two state variables on the same class 
+share the smae scope.  Thus they can directly refer to each other.
 
 .. code-block:: c++
 
     namespace mi6 {
-
     class Spy {
       #pragma cyclus var {"default": 7}
       int id;
@@ -430,40 +452,52 @@ This let's users do neat things like the following:
       #pragma cyclus var {"default": "James Bond, {0:0>3}".format(id['default'])}
       std::string name;
     };
+    }; // namespace mi6
 
+In the above, ``id`` is used to help define the annotations for ``name``.  
+Note that from within the annotations, other state variables are the annotation
+dictionary that was previously defined.  They fo not take on the C++ default value.
+This is why we could look up ``id['default']``.
+
+The second rule of scoping is that you are allowed to look into the annotations 
+of other classes.  However, to do so you must specifiy the class you are looking 
+into.  Looking at our spy's friend
+
+.. code-block:: c++
+
+    namespace mi6 {
     class Friend {
-      #pragma cyclus var {\
-        "docstring": "Normally helps {0}".format(Spy.name['default'])}
+      #pragma cyclus var {"doc": "Normally helps {0}".format(Spy.name['default'])}
       std::string help_first;
     };
-    }; // namespace cyclus
+    }; // namespace mi6
+
+Here, to access the annotations for Spy's name we had to use ``Spy.name``, drilling
+into the Spy class. Inspecting in this way is not limited by C++ access control 
+(public, private, or protected).
+
+Lastly, if the agent we are trying to inspect lives in a completely different 
+namespace, we must first drill into that namespace. For example, the spy's 
+main enemy is not part of ``mi6``.  Thus to access the spy's name annotations, 
+the enemy must write ``mi6.Spy.name``. For example:
+
+.. code-block:: c++
 
     class Enemy {
         #pragma cyclus var {'default': mi6.Spy.name['default']}
         std::string nemesis;
     };
 
-If this isn't expressive enough, we also added an ``exec`` pragma which 
-allows users to execute arbitrary Python code, that is added to the global
-namespace the state variables are evaluated in.
 
-.. code-block:: c++
-
-    #pragma cyclus exec import uuid
-    #pragma cyclus exec x = 10
-
-    class TimeBomb {
-      #pragma cyclus var {"default": int(uuid.uuid1(clock_seq=x))}
-      int deactivation_code;
-    };
-    
-Users can decide to keep all of their state variable annotations in a 
-separate sidecar ``*.py`` file and then import and use them rather than
-cluttering up the C++ source code.
-
+Inventories
+------------
+wooterscope
 
 Implementation Hacks
 ---------------------
 Cool.
 
+State Variable Code Generation Overrides
+-----------------------------------------
+Neat-o
 
