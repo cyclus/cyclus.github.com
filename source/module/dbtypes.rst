@@ -52,22 +52,22 @@ implemented, by cyclus version number.
         '[1, "INT", "int", 0, "SQLite", "v1.0", 1],' +
         '[2, "FLOAT", "float", 0, "SQLite", "v1.0", 1],' +
         '[3, "DOUBLE", "double", 0, "SQLite", "v1.0", 1],' +
-        '[4, "STRING", "std::string", 0, "SQLite", "v1.0", 0],' +
+        '[4, "STRING", "std::string", 0, "SQLite", "v1.0", 1],' +
         '[5, "VL_STRING", "std::string", 0, "SQLite", "v1.0", 1],' +
         '[6, "BLOB", "cyclus::Blob", 0, "SQLite", "v1.0", 1],' +
         '[7, "UUID", "boost::uuids::uuid", 0, "SQLite", "v1.0", 1],' +
         '[8, "VECTOR_BOOL", "std::vector<bool>", 1, "SQLite", "v1.0", 0],' +
         '[9, "VL_VECTOR_BOOL", "std::vector<bool>", 1, "SQLite", "v1.0", 0],' +
         '[10, "VECTOR_INT", "std::vector<int>", 1, "SQLite", "v1.0", 1],' +
-        '[11, "VL_VECTOR_INT", "std::vector<int>", 1, "SQLite", "v1.0", 0],' +
+        '[11, "VL_VECTOR_INT", "std::vector<int>", 1, "SQLite", "v1.0", 1],' +
         '[12, "VECTOR_FLOAT", "std::vector<float>", 1, "SQLite", "v1.0", 0],' +
         '[13, "VL_VECTOR_FLOAT", "std::vector<float>", 1, "SQLite", "v1.0", 0],' +
         '[14, "VECTOR_DOUBLE", "std::vector<double>", 1, "SQLite", "v1.0", 0],' +
         '[15, "VL_VECTOR_DOUBLE", "std::vector<double>", 1, "SQLite", "v1.0", 0],' +
-        '[16, "VECTOR_STRING", "std::vector<std::string>", 2, "SQLite", "v1.0", 0],' +
-        '[17, "VL_VECTOR_STRING", "std::vector<std::string>", 2, "SQLite", "v1.0", 0],' +
+        '[16, "VECTOR_STRING", "std::vector<std::string>", 2, "SQLite", "v1.0", 1],' +
+        '[17, "VL_VECTOR_STRING", "std::vector<std::string>", 2, "SQLite", "v1.0", 1],' +
         '[18, "VECTOR_VL_STRING", "std::vector<std::string>", 2, "SQLite", "v1.0", 1],' +
-        '[19, "VL_VECTOR_VL_STRING", "std::vector<std::string>", 2, "SQLite", "v1.0", 0],' +
+        '[19, "VL_VECTOR_VL_STRING", "std::vector<std::string>", 2, "SQLite", "v1.0", 1],' +
         '[20, "VECTOR_BLOB", "std::vector<cyclus::Blob>", 1, "SQLite", "v1.0", 0],' +
         '[21, "VL_VECTOR_BLOB", "std::vector<cyclus::Blob>", 1, "SQLite", "v1.0", 0],' +
         '[22, "VECTOR_UUID", "std::vector<boost::uuids::uuid>", 1, "SQLite", "v1.0", 0],' +
