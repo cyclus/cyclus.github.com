@@ -491,7 +491,24 @@ the enemy must write ``mi6.Spy.name``. For example:
 
 Inventories
 ------------
-wooterscope
+In addition to the normal :ref:`dbtypes`, state variables may also be declared 
+with the ``cyclus::Inventories`` type.  This is a special cyclus typedef 
+of ``std::map<std::string, std::vector<Resource::Ptr> >`` that enables the 
+storing of an arbitrary of resources (map values) by the associated commodity 
+(map key). While the concept of a resource inventory may be implemented in many 
+ways, the advantage in using the ``cyclus::Inventories`` is that the Cyclus
+kernel knows how to save and load this type as well as represent it in RNG. 
+Inventories may be used as normal state variables.  For example: 
+
+.. code-block:: c++
+
+    #pragma cyclus var {'doc': 'my stocks'}
+    cyclus::Inventories invs;
+
+
+It is therefore *hightly* recomended that you store resources in this 
+data structure.
+
 
 Implementation Hacks
 ---------------------
