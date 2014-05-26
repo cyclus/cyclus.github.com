@@ -228,9 +228,15 @@ separate sidecar ``*.py`` file and then import and use them rather than
 cluttering up the C++ source code.  Such decisions are up to the style of the 
 developer.
 
-
 Code Generation Directives
 ---------------------------
+Once all of the annotations have been accumulated, the preprocessor takes *another*
+pass through the code.  This time it ignores the annotations directives and 
+injects C++ code anytime it sees a s valid code generation diective.
+
+The simplest and most powerful of the code geneartors is known as 
+**the prime directive**. This engages all possible code generation routines and 
+must live within the public part of the class declaration.  
 
 **The prime directive:**
 
@@ -238,6 +244,108 @@ Code Generation Directives
 
     #pragma cyclus
 
+Unless you are doing something fancy such as manually writing any of the agent 
+member functions that |cycpp| generates, the prime directive should be all that 
+you ever need.  For example, an agent that does nothing and has no state variables
+would be completely defined by the following thanks to the prime directive:
+
+**The prime directive example:**
+
+.. code-block:: c++
+
+    class DoNothingCongress : public cyclus::Institution {
+     public:
+      DoNothingCongress(cyclus::Context* ctx) {};
+      virtual ~DoNothingCongress() {};
+
+      #pragma cyclus
+    };
+
+.. raw:: html
+
+    <br />
+
+--------------
+
+For the times when you wish to break the prime directive, you may drill down 
+into more specific code generation routines.  These fit into three broad 
+categories:
+
+1. **Declaration (decl) directives**,
+2. **Definition (def) directives**, and
+3. **Implementation (impl) directives**.
+
+The ``decl`` directives generate only the member function declaration and 
+must be used from within the public part of the agent's class declaration.
+The ``def`` generate the member function definition in its entirety including 
+the function signature.  These may be used either in te class declaration or 
+in the source file (``*.cc``, ``*.cpp``, etc).  The ``impl`` directives 
+generate only the body of the member function, leaving off the function signature.
+These are useful for intercepting default behaviour while still benefiiting from 
+code generation.  These must be called from with the appropriate funtion body.
+
+The signature for the targeted code generation directives is as follows:
+
+**Targeted code generation directive signatures:**
+
+.. code-block:: c++
+
+    #pragma cyclus <decl|def|impl> [<func> [<agent>]]
+
+The first argument must be one of ``decl``, ``def``, or ``impl``, which deterimes
+the kind of code generation that will be performed.  The second, optional ``<func>``
+argument is the member function name that code should be generated for. The 
+third and final and optional ``<agent>`` argument is the agent name to code generate 
+for. This argument is useful in the face of ambiguous or absent C++ scope.
+The ``<func>`` argument must be present if ``<agent>`` needs to be sepcified.
+
+In the absence of optional arguments there are only:
+
+.. code-block:: c++
+
+    #pragma cyclus decl
+    #pragma cyclus def
+
+These generate all of the member function declarations and defeinitions respectively.
+Note that there is no coorespending ``#pragma cyclus impl`` because function
+bodies cannot be strung together without the cooresponding signatures encapsulating
+them.
+
+When the ``<func>`` argument is provided the directive generates only the definition, 
+declaration, or implementation for the given agent API function.  For example the
+following would generate the definition for the ``schema()`` function.
+
+.. code-block:: c++
+
+    #pragma cyclus def schema
+
+:ref:`cycpp-table-3` contains a listing of all available function flags and their
+associated C++ information.
+
+.. rst-class:: centered
+
+.. _cycpp-table-3:
+
+.. table:: **Table III.** Member Function Flags and Their C++ Signatures
+    :widths: 1 6 3
+    :column-alignment: left left left
+    :column-wrapping: true true true
+    :column-dividers: none single single none
+
+    ============ ========================================= =======================
+    func         C++ Signature                             Return Type
+    ============ ========================================= =======================
+    clone        ``Clone()``                               ``cyclus::Agent*``
+    initfromcopy ``InitFrom(MyAgent* m)``                  ``void``
+    initfromdb   ``InitFrom(cyclus::QueryableBackend* b)`` ``void``
+    infiletodb   ``InfileToDb(cyclus::InfileTree* tree,    ``void``
+                 cyclus::DbInit di)`` 
+    schema       ``schema()``                              ``std::string``
+    annotations  ``annotations()``                         ``Json::Value``
+    snapshot     ``Snapshot(cyclus::DbInit di)``           ``void``
+    snapshotinv  ``SnapshotInv()``                         ``cyclus::Inventories``
+    initinv      ``InitInv(cyclus::Inventories& inv)``     ``void``
+    ============ ========================================= =======================
 
 Python & cycpp
 ---------------
