@@ -50,6 +50,11 @@ div#cyclus.section h1 {
   display: none;
 }
 
+#dashboard {
+    max-height: 600px;
+    overflow: auto;
+}
+
 #dashboard table {
     width:80%;
     border-color:#a9a9a9;
