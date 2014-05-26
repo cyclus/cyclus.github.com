@@ -521,9 +521,10 @@ parts of |cycpp|.  For example:
 .. code-block:: c++
 
     #pragma cyclus var {'schema': '<my>Famcy RNG here</my>'}
-    cyclus::Inventories invs;
+    std::set<int> fibonacci;
 
-
+This will only override the schema anod only for the fibonacci state 
+variable.
 For a listing of all code generation functions that may be overridden, please 
 see :ref:`cycpp-table-1`.
 
