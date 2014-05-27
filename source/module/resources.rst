@@ -157,22 +157,22 @@ database and redundant decay calculations.
 Resource IDs
 ---------------
 
-Every resource object has 3 differet IDs.  One of them, the ``qual_id``, is
+Every resource object has 3 different IDs.  One of them, the ``qual_id``, is
 generally not of use to agent developers and can be ignored.  The other two
 serve two different purposes, and it is important to understand their
 difference:
 
 * ``state_id``: A unique identifier associated with the entire state of the
-  resource object.  Any time a resources state changes in any way (mass,
-  composition, etc.) this ID will be reassigned to a new, unique value
+  resource object.  Any time a resource's state changes in any way (mass,
+  composition, etc.) this ID will be updated to a new, unique value
   associated with the new state.  When recording resource-related information
   to the database in custom tables, this ID should generally be used.
 
 * ``obj_id``: A unique identifier associated with the resource object
-  instance.  This id does not change for a resource variable ever.  Only newly
-  created resource objects get new obj_id's.  This ID should be used when using
-  resources as std::map keys and in other data structures when resource
-  objects need to be associated with some other information.
+  instance.  This ID does not ever change for the life of a resource instance.
+  Only newly created resource objects get new obj_id's.  This ID should be
+  used when using resources as std::map keys and in other data structures when
+  resource objects need to be associated with some other information.
 
 Here are some examples of how these IDs work:
 
@@ -204,4 +204,4 @@ Here are some examples of how these IDs work:
 When associating information with resources like the ``rsrc_labels`` example
 above, you should **NEVER** use pointers (e.g.
 ``std::map<cyclus::Resource::Ptr, std::string>``).  Pointers are unstable and
-change across simulation snapsho+restart.
+change across simulation snapshot+restart.
