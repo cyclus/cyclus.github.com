@@ -40,7 +40,7 @@ type defined:
 
 These pointer types should be always be used instead of plain class instances
 or raw pointers.  The following sections describe basic creation and
-manipulation of resource objects.  The cyclus kernel deals with resources in
+manipulation of resource objects.  The Cyclus kernel deals with resources in
 terms of the ``cyclus::Resource`` superclass.  So it will sometimes be
 necessary to cast down to the appropriate resource subclass.  Cyclus provides
 an overloaded ResCast function for casting convenience:
