@@ -2,7 +2,8 @@ Database Types
 ==============
 
 Here is a listing of all supported data types that the various backends have 
-implemented, by cyclus version number.
+implemented, by cyclus version number. If your agents need a type that is not 
+yet supported, please let us know and we'll get to it as soon as possible!
 
 **Description of fields:**
 

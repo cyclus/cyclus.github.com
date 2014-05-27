@@ -14,6 +14,7 @@ your own github account and submit 'Pull Requests'*.
     :maxdepth: 1
 
     build_from_source
+    database
 
 Software Development Aids
 --------------------------

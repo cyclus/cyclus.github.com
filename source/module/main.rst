@@ -31,7 +31,5 @@ How It Works
     dynamic_loading
     resources
     decay
-    output_dbase
-    output_usecases
 ..   cyclus_env
 ..   materials_and_isotopes

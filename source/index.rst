@@ -17,51 +17,37 @@
 
     <div style="text-align:center;">
     <h2><a href="https://github.com/cyclus/cyclus/releases/tag/0.4">
-    v0.4 has been released!</a></h2><br><br></div>
+    v0.4 has been released!</a></h2><br></div>
 
-*Cyclus* is a next-generation nuclear :doc:`fuel cycle simulator
-<basics/fcs_background>` environment, providing flexibility to users
-and developers through an agent-based approach.
+*Cyclus* is *the* agent-based nuclear :doc:`fuel cycle simulator
+<basics/fcs_background>`, providing flexibility to users
+and developers through a dynamic resource exchange solver and plugin,
+user-developed agent framework.
 
-A principal goal of *Cyclus* is to present a
-low barrier to adoption by new users and developers in order to
-encourage them to join a vibrant community in an 
+The goal of *Cyclus* is to enable a broad specutrum of 
+fuel cycle simulation while providing a 
+low barrier to entry for new users and agent developers. Cyclus engages 
+with potential module developers and 
+encourages them to join a vibrant community in an 
 :doc:`expanding ecosystem <basics/ecosystem>`.  
-
 Users and developers are always welcome and encouraged to use or contribute 
-to the cyclus project. For inspiration and current research directions,
-please consult the :doc:`development roadmap <basics/roadmap>`. 
-
-Important Features
--------------------
-
-* Modeling Paradigm
-   * discrete facilities with discrete material transactions
-   * flexible design of new fuel cycles
-* Software Development Principles
-   * Free and open source development licensing 
-   * commonly used free software infrastructure
-   * engagement with users, developers, and the fuel cycle community
-* User Interaction
-   * common physics infrastructure
-   * different user interface layer for different user audiences, 
-     with varying levels of both input control and output exploration
-
-        * varying levels of input control
-        * varying levels of output exploration
-
-The *Cyclus* modeling paradigm lets users reconfigure the basic
-building blocks of a simulation without changing the software. 
-
-Learn More
-----------
+to the cyclus project. 
 
 The *Cyclus* project repository is located at http://github.com/cyclus/cyclus.
 
-Although you do not have to register with github to download and edit the code, 
-if you desire your work to be integrated into the cyclus mainline of development 
-you must fork the cyclus core repository into your own github account and submit 
-patches via pull requests. 
+* User Interaction
+   * Common physics infrastructure
+   * Different user interface layers for different user audiences
+     which vary based on the needs of the user.
+* Modeling Paradigm
+   * Agent-based simulation allows for the exploration of emergent phenomenon.
+   * Flexible design of new fuel cycles and agents.
+* Software Development Principles
+   * Free and open source development licensing (BSD 3-clause)
+   * Engagement with users, developers, and the fuel cycle community.
+
+Learn More
+----------
 
 .. toctree::
     :maxdepth: 1
@@ -71,9 +57,6 @@ patches via pull requests.
     module/main
     kernel/main
     cep/cep0
-
-Once you have learned about the cyclus basics, please follow these instructions 
-for :doc:`getting and building cyclus <kernel/build_from_source>`.
 
 Try It
 -------
