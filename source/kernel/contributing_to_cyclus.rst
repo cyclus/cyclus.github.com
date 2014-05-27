@@ -2,7 +2,7 @@
 .. summary Contributing to |Cyclus| 
 
 Guide for Contributing to |Cyclus|
-=================================
+==================================
 
 |cyclus| has a number of projects under its umbrella. 
 The core |cyclus| project repository is located at

@@ -15,7 +15,7 @@ The purpose of this document is to act as a guideline and checklist for how
 to release the |cyclus| core code base and the supported projects in the ecosystem.
 
 The |Cyclus| Ecosystem
-====================
+======================
 The very first thing to do when preparing for an upcoming release is to elect 
 a release manager.  This person has the special responsibility of making sure 
 all of the following tasks are implemented.  Therefore, their judgment for the 

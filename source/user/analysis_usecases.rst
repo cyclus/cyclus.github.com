@@ -1,7 +1,7 @@
 .. summary Discussing Standard Usage of |Cyclus| Output Transaction Data
 
 Use Cases for |Cyclus| Data Analysis
-==================================
+====================================
 
 Transaction Data
 ++++++++++++++++

@@ -46,7 +46,7 @@ such as on the command line (note the starting colon indicating an empty path):
 For more details, you can read :doc:`/cep/cep21`
 
 |Cyclus| Path
-------------
+-------------
 
 When running a |Cyclus| simulation, |cyclus| searches your system for the agents
 specified in the input file.  In addition to searching a few default install

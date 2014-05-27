@@ -1,5 +1,5 @@
 |Cyclus| Funding and Support
-==========================
+============================
 
 The development of the |Cyclus| core infrastructure has been supported
 by a number of programs and agencies.

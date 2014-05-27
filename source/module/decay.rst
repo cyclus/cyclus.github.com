@@ -1,7 +1,7 @@
 ﻿.. summary Documentation for the |Cyclus| Decay Method
 
 Radioactive Decay in |Cyclus|
-===========================
+=============================
 
 .. note:: This wiki page is currently a work in progress.
 
@@ -82,7 +82,7 @@ of the original matrix A by substituting the definition for `P`:
 
 
 Implementation in |Cyclus|
-------------------------
+--------------------------
 
 Adding New Isotopes
 -------------------

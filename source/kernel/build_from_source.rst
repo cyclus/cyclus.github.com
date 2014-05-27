@@ -1,9 +1,9 @@
 
 Getting and Building |Cyclus| From Source
-=======================================
+=========================================
 
 The |Cyclus| Library Suite
-------------------------
+--------------------------
 The |cyclus| ecosystem is composed of two projects:
   
   * |Cyclus| Core, comprising core kernel functionality

@@ -1,5 +1,5 @@
 |Cyclus| Module Developer Guide
-=============================
+===============================
 
 .. image:: /astatic/antipode-bike.jpg
     :align: center
@@ -46,5 +46,5 @@ TODO: Write about DRE
 
 
 |Cyclus| Toolkit
----------------
+----------------
 TODO: Write about |cyclus| toolkit. Probably deserves its own heading.

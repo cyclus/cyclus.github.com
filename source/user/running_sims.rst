@@ -3,7 +3,7 @@ Running Simulations
 ===================
 
 |Cyclus| Command Line Usage
--------------------------
+---------------------------
 
 To run a simulation you must use the `cyclus` command line utility:
 

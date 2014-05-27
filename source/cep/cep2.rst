@@ -154,7 +154,7 @@ are used and the analysis & visualization is aware of these domain models,
 all DRES parameters are guaranteed to also be present.
 
 The |Cyclus| Ecosystem
-====================
+======================
 While many fuel cycle simulators may choose to implement all of the above concerns 
 in a single project, each concern in the |cyclus| ecosystem is implemented in
 its own project.  Many projects may satisfy the needs of a concern.  However, no 
