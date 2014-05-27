@@ -143,7 +143,7 @@ Here are some examples of how these IDs work:
 
 .. code-block:: c++
 
-    cyclus::Product::Ptr p1 = cyclus::Product::Create(this, 10, "bananas);
+    cyclus::Product::Ptr p1 = cyclus::Product::Create(this, 10, "bananas");
     // p1 gets new separate state_id and obj_id
 
     cyclus::Product::Ptr p2 = p1->ExtractQty(3);
@@ -160,3 +160,13 @@ Here are some examples of how these IDs work:
     // p1 and p1_dup have idential state_id's
     // p1 and p1_dup have idential obj_id's
 
+    // want to associate some label with resource objects? - use the obj_id:
+    std::map<int, std::string> rsrc_labels;
+    rsrc_labels[p1->obj_id()] = "fruit";
+    rsrc_labels[p2->obj_id()] = "fruit";
+    ...
+
+When associating information with resources like the ``rsrc_labels`` example
+above, you should **NEVER** use pointers (e.g.
+``std::map<cyclus::Resource::Ptr, std::string>``).  Pointers are unstable and
+change across simulation snapsho+restart.
