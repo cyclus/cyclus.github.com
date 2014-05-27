@@ -22,7 +22,7 @@ Agent phases are invoked using a method call of the same name, e.g.,
 
 .. code-block:: c++
 
-    virtual void MyAgent::Tick(int time) {
+    virtual void MyAgent::Tick() {
       // perform agent-phase Tick's work
     }
 
@@ -99,5 +99,6 @@ scheduled for the current time step or any future time step.
 Further Reading
 ---------------
 
-For a more in depth (and historical) discussion, see the relevant `CEP <http://fuelcycle.org/cep/cep20.html>`_. 
+For a more in depth (and historical) discussion, see `CEP 20
+<http://fuelcycle.org/cep/cep20.html>`_.
 
