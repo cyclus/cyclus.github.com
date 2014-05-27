@@ -20,11 +20,11 @@ TODO: write about starting from cycstub and the organization of modules.
     
     timestep
     cycpp
+    resources
     dbtypes
     errors
     logger
     testing
-    resources
     dre
 
 TODO: write about custom tables.
