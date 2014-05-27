@@ -23,7 +23,7 @@ import cloud_sptheme as csp
 sys.path.insert(0, os.path.abspath('.'))
 
 # add path to cycpp.py
-h = subprocess.check_output(['cycpp.py', '-h'])
+h = subprocess.check_output(['cycpp.py', '-h']).decode()
 fname = [x[10:].strip() for x in h.splitlines() if x.startswith('filename:')][0]
 sys.path.insert(1, os.path.dirname(fname))
 
