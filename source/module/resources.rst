@@ -60,9 +60,9 @@ simulation input.
 There are 4 basic operations that can be performed on material resources:
 
 * Create
-* ExtractQty/ExtractComp
+* Extract[Qty/Comp]
 * Absorb
-* Transmute
+* Transmute (and Decay)
 
 Here are some examples of these operations:
 
@@ -116,8 +116,47 @@ above example have different compositions.
 Because compositions are immutable, it is desirable for performance and
 database space reasons to avoid as much as possible creating multiple
 compositions from equivalent ``cyclus::CompMap`` objects.  Reusing
-``cyclus::Composition`` objects allows avoiding duplicate records in the
-database and unnecessary decay calculations.
+``cyclus::Composition`` objects helps avoid duplicate records in the
+database and redundant decay calculations.
 
 Resource IDs
 ---------------
+
+Every resource object has 3 differet IDs.  One of them, the ``qual_id``, is
+generally not of use to agent developers and can be ignored.  The other two
+serve two different purposes, and it is important to understand their
+difference:
+
+* ``state_id``: A unique identifier associated with the entire state of the
+  resource object.  Any time a resources state changes in any way (mass,
+  composition, etc.) this ID will be reassigned to a new, unique value
+  associated with the new state.  When recording resource-related information
+  to the database in custom tables, this ID should generally be used.
+
+* ``obj_id``: A unique identifier associated with the resource object
+  instance.  This id does not change for a resource variable ever.  Only newly
+  created resource objects get new obj_id's.  This ID should be used when using
+  resources as std::map keys and in other data structures when resource
+  objects need to be associated with some other information.
+
+Here are some examples of how these IDs work:
+
+.. code-block:: c++
+
+    cyclus::Product::Ptr p1 = cyclus::Product::Create(this, 10, "bananas);
+    // p1 gets new separate state_id and obj_id
+
+    cyclus::Product::Ptr p2 = p1->ExtractQty(3);
+    // p1 gets new state_id and keeps same obj_id
+    // p2 gets new separate state_id and obj_id
+
+    p1->Absorb(p2);
+    // p1 gets new state_id and keeps same obj_id
+    // p2 gets new state_id and keeps same obj_id
+
+    cyclus::Product::Ptr p1_dup = p1;
+    // no new resource object is created, p1 and p1_dup point to same resource object
+    // p1 keeps same state_id and same obj_id
+    // p1 and p1_dup have idential state_id's
+    // p1 and p1_dup have idential obj_id's
+
