@@ -15,6 +15,7 @@ your own github account and submit 'Pull Requests'*.
 
     build_from_source
     database
+    cycpp
 
 Software Development Aids
 --------------------------
