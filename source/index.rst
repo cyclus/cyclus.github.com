@@ -70,7 +70,7 @@ You can run a |cyclus| simulation right now from the comfort of your own browser
 
     <br>
     <div id="infile-form">
-    |Cyclus| input file: <br>
+    Cyclus input file: <br>
     <textarea id="infile-box" name="infile" rows=10></textarea>
     <br><button onclick="submitJob()">Submit</button><label>    Job Id: </label><label id="jobid"></label>
     </div>

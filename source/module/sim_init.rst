@@ -21,6 +21,7 @@ used to automate the generation of code for the following functions:
     cyclus::Inventories SnapshotInv();
     void Snapshot(Agent*);
     std::string schema();
+    Json::Value annotations();
     cyclus::Agent* Clone();
     void InitFrom(Agent*);
 
