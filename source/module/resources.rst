@@ -1,6 +1,6 @@
 
-Resources In |Cyclus|
-=================================
+Resources
+==========
 
 One of the defining features of |Cyclus| among other fuel cycle simulators is
 the treatment of resources/materials as discrete, quantized objects that can
