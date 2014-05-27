@@ -16,8 +16,8 @@ body {
                        no-repeat,
                        no-repeat;
     background-position: bottom left, 
-                         right, 
-                         left,  
+                         top right, 
+                         top left,  
                          0 0,
                          98% 0px,
                          97% 99%,
