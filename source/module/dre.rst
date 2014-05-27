@@ -77,7 +77,7 @@ be:
       return ports;  
     }
 
-
+.. _rrfb:
 
 Response to Request For Bids Phase
 ----------------------------------
@@ -152,6 +152,8 @@ nuclide. A valid ``GetMatlBids`` implementaiton would then be:
       return ports;
     }
 
+.. _adj:
+
 Preference Adjustment Phase
 ---------------------------
 
@@ -185,6 +187,8 @@ would then be:
       }
     }
 
+.. _solve:
+
 Solution Phase
 --------------
 
@@ -195,6 +199,8 @@ satisfy and the quantity each resource to assign to each satisfied request-bid
 pairing. The solution times and actual pairings will depend on the concrete
 solver that is employed by the |cyclus| kernel. At present, only the
 ``cyclus::GreedySolver`` is available.
+
+.. _trade:
 
 Trade Execution Phase
 ---------------------
