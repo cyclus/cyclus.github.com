@@ -58,6 +58,9 @@ Learn More
     kernel/main
     cep/cep0
 
+TODO: Add publications on or using cyclus page, should contain bibtex entry for
+citing cyclus (PHYSOR for now?)
+
 Try It
 -------
 
