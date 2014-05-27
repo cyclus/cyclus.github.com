@@ -104,7 +104,7 @@ Each CEP must have a champion -- someone who writes the CEP using the
 style and format described below, shepherds the discussions in the
 appropriate forums, and attempts to build community consensus around
 the idea.  The CEP champion (a.k.a. Author) should first attempt to
-ascertain whether the idea is CEP-able.  Posting to the cyclus-dev 
+ascertain whether the idea is CEP-able.  Posting to the `cyclus-dev`_ 
 mailing list is the best way to go about this.
 
 Vetting an idea publicly before going as far as writing a CEP is meant
@@ -222,7 +222,7 @@ accepted that a competing proposal is a better alternative.
 When a CEP is Accepted, Rejected or Withdrawn, the CEP should be updated
 accordingly. In addition to updating the status field, at the very least
 the Resolution header should be added with a link to the relevant post
-in the cyclus-dev mailing list archives.
+in the `cyclus-dev`_ mailing list archives.
 
 CEPs can also be superseded by a different CEP, rendering the original
 obsolete.  This is intended for Informational CEPs, where version 2 of
@@ -479,4 +479,4 @@ References and Footnotes
 
 .. _CEP repository: https://github.com/cyclus/cyclus.github.com/tree/source/source/cep
 
-
+.. _cyclus-dev: https://groups.google.com/forum/#!forum/cyclus-dev
