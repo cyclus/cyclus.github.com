@@ -103,3 +103,7 @@ div#cyclus.section h1 {
 #infile-form textarea {
     width: 100%;
 }
+
+div.sphinxlocaltoc ul a, div.sphinxglobaltoc ul a {
+    display: inline;
+}
