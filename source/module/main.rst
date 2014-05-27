@@ -25,10 +25,11 @@ TODO: Write about stack execution / Tick() and Tock()
     errors
     logger
     testing
+    resources
 
 TODO: write about custom tables.
 
-How It Works
+Under the Hood
 ------------------------------
 
 .. toctree::
@@ -36,7 +37,6 @@ How It Works
 
     sim_init
     dynamic_loading
-    resources
     decay
 ..   cyclus_env
 ..   materials_and_isotopes
