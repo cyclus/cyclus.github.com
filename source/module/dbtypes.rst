@@ -2,7 +2,7 @@ Database Types
 ==============
 
 Here is a listing of all supported data types that the various backends have 
-implemented, by cyclus version number. If your agents need a type that is not 
+implemented, by |cyclus| version number. If your agents need a type that is not 
 yet supported, please let us know and we'll get to it as soon as possible!
 
 **Description of fields:**
@@ -12,7 +12,7 @@ yet supported, please let us know and we'll get to it as soon as possible!
 :C++ type: the cooresponding C++ type.
 :shape rank: the maximum rank (length) of the ``shape`` vector.
 :backend: the database backend type.
-:version: the cyclus version.
+:version: the |cyclus| version.
 :supported: flag for if the backend supported this type in this release.
 
 .. raw:: html

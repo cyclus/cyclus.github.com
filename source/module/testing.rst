@@ -11,7 +11,7 @@ TODO: fix this page
 Introduction
 ------------
 Writing tests for your module is a prerequisite for its addition to 
-any *Cyclus* library. Specifically, any public API functionality must
+any |cyclus| library. Specifically, any public API functionality must
 provide the `basic guarantee 
 <http://en.wikipedia.org/wiki/Exception_guarantees>`_; however, you
 may (and I do) find it useful to test private methods and the effect 
@@ -31,9 +31,9 @@ A fully developed module will have the following directory structure:
 
 Testing Framework
 -----------------
-*Cyclus* makes use of the `Google Test 
+|cyclus| makes use of the `Google Test 
 <http://code.google.com/p/googletest/>`_ framework. 
-It is a tool which will assist Cyclus developers in incorporating tests for their 
+It is a tool which will assist |Cyclus| developers in incorporating tests for their 
 modules. The framework is integrated with `CMake` with the use of gtest.cc 
 gtest_main.cc and gtest.h. The Google Test primer is recommended as an 
 introduction to the fundamental concepts of unit testing with Google Test.
@@ -41,7 +41,7 @@ introduction to the fundamental concepts of unit testing with Google Test.
 Unit Tests
 ~~~~~~~~~~
 Unit tests are written for each new unit of functionality to assure correct 
-behavior.  A Cyclus unit test should: 
+behavior.  A |Cyclus| unit test should: 
 
   - Sufficiently verify the expected behavior of a unit of functionality
   - Sufficiently verify expected behavior for boundary cases 
@@ -50,7 +50,7 @@ behavior.  A Cyclus unit test should:
 A good tutorial on how to write good unit tests can be found at 
 software-carpentry.org.
 
-Cyclus test coverage should mimic the hierarchical structure of the source code.
+|Cyclus| test coverage should mimic the hierarchical structure of the source code.
 Each class should have a corresponding Test Case that challenges the robustness 
 of its interface.
 
@@ -60,7 +60,7 @@ constructors, and data retrievers should be challenged by a Test within the
 Test Case for that class.
 
 Many of these tests will require the use of Fixtures, which will represent canonical 
-Cyclus objects such as Materials, Commodities, Markets, Facilities and Messages. 
+|Cyclus| objects such as Materials, Commodities, Markets, Facilities and Messages. 
 These Fixtures will be shared by many Tests and sometimes many Test Cases.
 
 
@@ -71,9 +71,9 @@ If you are a developer, you may write a module that is intended to be a concrete
 implementation of a FacilityModel or other interface type.
 
 To ensure that your code satisfies the basic requirements of the interface which 
-it is intended to be satisfy, the Cyclus core developers have created 
+it is intended to be satisfy, the |Cyclus| core developers have created 
 parameterized abstract interface tests that must be instantiated with your 
-concrete model in order for it to be accepted into the cyclus module library.
+concrete model in order for it to be accepted into the |cyclus| module library.
 
 The interface for our ToasterFacility can be tested by including 
 FacilityModelTests.h in the beginning of the file, ensuring that 
@@ -112,7 +112,7 @@ to a constructor to a concrete ToasterFaclity.
 Test Cases
 ~~~~~~~~~~~
 
-Test Cases are logical groupings of Tests. For Cyclus, each class, such as the 
+Test Cases are logical groupings of Tests. For |Cyclus|, each class, such as the 
 ToasterFacility should have its own Test Case defined within a file called 
 ToasterFacilityTests.cpp or something similar.
 
@@ -120,7 +120,7 @@ The ToasterFacilityTests.cpp file should be placed in the appropriate directory
 within the code as well. Specifically, it should be placed in the 
 trunk/src/Facility/ToasterFacility/ folder with the other ToasterFacility files.
 
-The Test Case is a class declared in this file. The Cyclus convention is to give 
+The Test Case is a class declared in this file. The |Cyclus| convention is to give 
 the class the same name as the file. For the ToasterFacility, this class will 
 look like:
 
@@ -157,7 +157,7 @@ Tests With Fixtures
 ~~~~~~~~~~~~~~~~~~~~
 section tests Tests with Fixtures
 
-Tests are performed on single units of functionality within Cyclus. For Cyclus, 
+Tests are performed on single units of functionality within |Cyclus|. For |Cyclus|, 
   imagine that the ToasterFacility class has a function called addHeat(double 
   to_set) which increases the ``current_bread_temp_`` data member value. Knowing 
   very little about the function, we should check that if to_set is positive, 
@@ -379,7 +379,7 @@ determined in TestConstructor.
 Testing XML Initialization
 --------------------------
 
-*Cyclus* relies on reading xml files to initialize modules. It is 
+|cyclus| relies on reading xml files to initialize modules. It is 
 often very convenient to test that a module has been initalized
 correctly. The following example will show how to achieve such
 functionality.
@@ -436,7 +436,7 @@ Module.cpp
   }
 
 The counter\_ variable is now initialized via XML. Specifically, an
-XML node and context must be provided. Normally in *Cyclus*, the
+XML node and context must be provided. Normally in |cyclus|, the
 XML context is provided via the XMLinput singleton.
 
 ModuleTests.h

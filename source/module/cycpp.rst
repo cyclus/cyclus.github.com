@@ -1,4 +1,4 @@
-Using the Cyclus Preprocessor
+Using the |Cyclus| Preprocessor
 ==================================
 
 .. |cycpp| replace:: ``cycpp``
@@ -8,13 +8,13 @@ Using the Cyclus Preprocessor
     <table style="width:100%">
     <tr><td>
 
-A key part of the Cyclus agent and module development infrastructure is
-a Cyclus-aware C++ preprocessor called |cycpp|.  This preprocessor 
+A key part of the |Cyclus| agent and module development infrastructure is
+a |Cyclus|-aware C++ preprocessor called |cycpp|.  This preprocessor 
 inspects the agents that you write and then - based on the directives you 
-have given it - generates code that conforms to the *Cyclus* agent API.
+have given it - generates code that conforms to the |cyclus| agent API.
 This allows you to focus on coding up the desired agent behaviour rather 
 than worrying about the tedious and error-prone process of making your
-agents conform to the Cyclus kernel.
+agents conform to the |Cyclus| kernel.
 
 Before we continue there are a couple of noteworthy points about |cycpp|:
 
@@ -39,9 +39,9 @@ Without further ado, let's dive in!
     </td></tr>
     </table>
 
-Pragma Cyclus
+Pragma |Cyclus|
 -----------------
-The preprocessor functions by defining a suite of cyclus-directives that 
+The preprocessor functions by defining a suite of |cyclus|-directives that 
 |cycpp| picks up (but that plain old ``cpp`` ignores).  These all start 
 with the prefix ``#pragma cyclus`` and fall into one of two broad categories:
 
@@ -56,7 +56,7 @@ in their absence you must implement the cooresponding agent API yourself.
 
 Annotation Directives
 -----------------------
-Cyclus agents are based on the notion of **state variables**.  These are memeber 
+|Cyclus| agents are based on the notion of **state variables**.  These are memeber 
 variables of your agents whose values (should) fully determine the state of the your 
 agent at any time step. State variables are important because they are what is 
 written to and read from the database, they may be specified in the input file and 
@@ -160,7 +160,7 @@ and their meaning.
 
 --------------
 
-Cyclus also has a notion of class-level **agent annotations**. These are specified
+|Cyclus| also has a notion of class-level **agent annotations**. These are specified
 by the **note directive**. Similarly to the state variable annotations, agent 
 annotations must be given inside of the class declaration. They also have a very 
 similar signature:
@@ -377,7 +377,7 @@ use:
 
 Putting It Together
 --------------------
-Cyclus agents are written by declaring certain member variables to be 
+|Cyclus| agents are written by declaring certain member variables to be 
 **state variables**.  This means that they *define* the conditions of the agent 
 at the start of every time step.
 State variables are automatically are saved and loaded to the 
@@ -418,9 +418,9 @@ Furthermore state variable annotations may be broken up over many lines using
 trailing backslashes to make the code more readable.
 It remains up to you - the module developer - to implement the desired agent in the 
 ``Tick()`` and ``Tock()`` member functions.  Fancier tricks are available as needed
-but this is the essense of how to write cyclus agents.
+but this is the essense of how to write |cyclus| agents.
 
-Abusing the Cyclus Preprocessor
+Abusing the |Cyclus| Preprocessor
 ==================================
 Now that you know how to use |cycpp|, it is useful to know about some of the
 more advanced features and how they can be leveraged.
@@ -492,11 +492,11 @@ the enemy must write ``mi6.Spy.name``. For example:
 Inventories
 ------------
 In addition to the normal :doc:`dbtypes`, state variables may also be declared 
-with the ``cyclus::Inventories`` type.  This is a special cyclus typedef 
+with the ``cyclus::Inventories`` type.  This is a special |cyclus| typedef 
 of ``std::map<std::string, std::vector<Resource::Ptr> >`` that enables the 
 storing of an arbitrary of resources (map values) by the associated commodity 
 (map key). While the concept of a resource inventory may be implemented in many 
-ways, the advantage in using the ``cyclus::Inventories`` is that the Cyclus
+ways, the advantage in using the ``cyclus::Inventories`` is that the |Cyclus|
 kernel knows how to save and load this type as well as represent it in RNG. 
 Inventories may be used as normal state variables.  For example: 
 

@@ -1,21 +1,21 @@
 
-.. summary Contributing to Cyclus 
+.. summary Contributing to |Cyclus| 
 
-Guide for Contributing to Cyclus
-=================================
+Guide for Contributing to |Cyclus|
+==================================
 
-*Cyclus* has a number of projects under its umbrella. 
-The core *Cyclus* project repository is located at
+|cyclus| has a number of projects under its umbrella. 
+The core |cyclus| project repository is located at
 http://github.com/cyclus/cyclus. Additional projects found at 
 http://github.com/cyclus include :
 
-- Cycamore, the cyclus additional modules repository
-- Cycic, the cyclus input controller
+- Cycamore, the |cyclus| additional modules repository
+- Cycic, the |cyclus| input controller
 - and more to come. 
 
 Although you do not have to register with github to
 download and edit the code, if you desire your work to be integrated into the
-cyclus mainline of development *you must fork the cyclus core repository into
+|cyclus| mainline of development *you must fork the |cyclus| core repository into
 your own github account and submit 'Pull Requests'*. :doc:`Here is a tutorial on 
 getting and building cyclus.<build_from_source>`
 
@@ -23,7 +23,7 @@ Working on a Topic
 ---------------------
 *Note that "upstream" repository refers to the primary `cyclus/cyclus` repository.*
 
-You may find or create an issue report in a *Cyclus* repository that you would like 
+You may find or create an issue report in a |cyclus| repository that you would like 
 to solve. 
 
 You'll first need to fork your repository and create a branch for the topic you'd 
@@ -32,9 +32,9 @@ pull request to the upstream repository (usually the "develop" branch) only afte
 
 * You have pulled the latest changes from the upstream repository.
 * You have completed a logical set of changes.
-* Cyclus compiles with no errors.
+* |Cyclus| compiles with no errors.
 * All tests pass.
-* Cyclus input files run as expected.
+* |Cyclus| input files run as expected.
 * Your code has been reviewed by another developer.
 
 Code from the "develop" branch generally must pass even more rigorous checks
@@ -47,12 +47,12 @@ Keeping Your Fork Up To Date
   * Use a branching workflow similar to the one described at
     http://progit.org/book/ch3-4.html.
 
-  * The "develop" branch is how cyclus developers will share (generally compilable) progress
+  * The "develop" branch is how |cyclus| developers will share (generally compilable) progress
     when we are not yet ready for the code to become 'production'.
 
   * Keep your own "master" and "develop" branches in sync with the upstream repository's
     "master" and "develop" branches. The master branch should always be the 'stable'
-    or 'production' release of cyclus.
+    or 'production' release of |cyclus|.
     
      - Pull the most recent history from the upstream repository "master"
        and/or "develop" branches before you merge changes into your
@@ -77,7 +77,7 @@ Passing Tests
 To check that your branch passes the tests, you must build and install your topic 
 branch and then run the tests built during that process.
 
-For the cyclus core, the tests are run using the CyclusUnitTestDriver (at the moment, 
+For the |cyclus| core, the tests are run using the CyclusUnitTestDriver (at the moment, 
 ```make test``` is insufficient). For example ::
 
   mkdir build

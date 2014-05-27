@@ -1,7 +1,8 @@
-Cyclus Agents
-=============
+|Cyclus| Agents
+===============
+
 This is a collection of agents found in the ``agents`` module that comes with 
-cyclus itself.
+|cyclus| itself.
 
 .. cyclus-agent:: :agents:Source
 

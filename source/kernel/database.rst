@@ -6,7 +6,7 @@ Database Backends
 
 .. warning:: This page is wildly out-of-date!
 
-*Cyclus* simulations are comprised of three major constructs (the interaction
+|cyclus| simulations are comprised of three major constructs (the interaction
 of which we are interested in documenting): 
 
 * **Agents** (which create...)
@@ -22,12 +22,12 @@ one can easily envision other instances of resource transaction (e.g. electricit
 or man-hours) being driven by the same engine and using the same record 
 structure. 
 
-The standard output database used by *Cyclus* is SQLite.  At larger scale,
+The standard output database used by |cyclus| is SQLite.  At larger scale,
 a coherent vocabulary is a chief requirement for this paradigm.  For
 instance, the terms "inventory", "stocks", and "capacity" should each have
 a ubiquitous definition across facility types in order to maintain
 confidence in robust database querying. This dictionary of terms is a
-near-term goal for *Cyclus* developers as the base pack of core modules is
+near-term goal for |cyclus| developers as the base pack of core modules is
 developed and expanded.
 
 Provenance
@@ -35,7 +35,7 @@ Provenance
 
 Good provenance will be provided by an output database with sufficient data to
 allow reproducibility of the results. This robust reproducibility is essential
-to the scientific effort. In the case of *Cyclus*, the inclusion of a complete
+to the scientific effort. In the case of |cyclus|, the inclusion of a complete
 notion of the input specifications in the output database will be sufficient to
 allow for result reproduction as well as facilitate knowledge sharing,
 post-simulation analysis and error-checking. Such input specifications include
@@ -45,7 +45,7 @@ defined in the input.
 Output Recording Infrastructure
 ++++++++++++++++++++++++++++++++++
 
-The *Cyclus* output database management and recording consists of three
+The |cyclus| output database management and recording consists of three
 basic classes:
 
  * **EventManager**: Collects events containing structured data to be
@@ -56,7 +56,7 @@ basic classes:
 
  * **EventBackend**: An abstract interface implemented by modular, concrete
    backend implementations (e.g. sqlite, hdf5, etc.).  A standard sqlite
-   backend is provided and currently used for *Cyclus* simulations.
+   backend is provided and currently used for |cyclus| simulations.
 
 For Agent/module developers, the
 `EventManager API <http://cnergdata.engr.wisc.edu/cyclus/core/docs/classEventManager.html>`_
@@ -68,7 +68,7 @@ Usage
 +++++++++++++
 
 Agents are allowed to write their own custom output into the output
-database.  A global event manager is created for each *Cyclus* simulation
+database.  A global event manager is created for each |cyclus| simulation
 and is accessible via the ``EM`` macro.  The ``EventManager::newEvent``
 method creates a new event bound to the event manager.  A reactor facility
 might, for instance want to record some special information every timestep:
@@ -93,7 +93,7 @@ and "OperatingCost".  A row would be added to the table for every timestep
 of the simulation.  ``addVal`` can be chained any number of times.
 ``record`` must be called once for each event after all values have been
 added.  Any custom tables created in this manner will appear in the output
-database alongside the cyclus core tables.
+database alongside the |cyclus| core tables.
 
 .. warning::
 
@@ -108,12 +108,12 @@ database alongside the cyclus core tables.
    default Sqlite backend supports int, double, float, and std::string
    types.
 
-The Cyclus Database Schema
+The |Cyclus| Database Schema
 +++++++++++++++++++++++++++++++
 
 In sqlite, events are represented by tables.  While there are relationships
 between table fields, these are implicit and not enforced by
-primary-foreign key SQL constraints. The Cyclus output database is comprised of
+primary-foreign key SQL constraints. The |Cyclus| output database is comprised of
 the following core tables:
 
 =========== ===============
@@ -196,7 +196,7 @@ Price           double
 Time            int
 =============== ===============
 
-The Sqlite backend has the special ability to store multiple cyclus
+The Sqlite backend has the special ability to store multiple |cyclus|
 simulation output results in a single sqlite file. It creates an extra
 table containing a unique long and short ID for each simulation.  All
 output tables have an extra field inserted indicating which simulation

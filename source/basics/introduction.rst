@@ -1,6 +1,6 @@
-Introduction to the *Cyclus* Fuel Cycle Simulator
+Introduction to the |cyclus| Fuel Cycle Simulator
 =================================================
-*Cyclus* is a next generation nuclear fuel cycle simulation platform whose genesis 
+|cyclus| is a next generation nuclear fuel cycle simulation platform whose genesis 
 was driven by a variety of gaps seen in previous fuel cycle simulation efforts. 
 Three major design and development philosophies encompass the current fleet of 
 fuel cycle simulators:
@@ -63,16 +63,16 @@ process are critical to a simultaneously robust and flexible analysis platform.
 Open Source Development Process
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The *Cyclus* development framework employs a modern, open source philosophy
+The |cyclus| development framework employs a modern, open source philosophy
 that ensures transparency, attracts contributions from a varied community of
 collaborators, and guarantees institution-independent access to all potential
 users. In this development path, a public source code repository provides
 unhindered access to the `fundamental simulation framework <http://github.com/cyclus/cyclys>`_ and 
 `basic fuel cycle process models <http://github.com/cyclus/cycamore>`_ volunteered by developers.  
 Granting unfettered access only to
-the *Cyclus* engine allows for compartmentalization of the code and its input
+the |cyclus| engine allows for compartmentalization of the code and its input
 data. Thus, secure and proprietary model developers can be similarly encouraged
-to utilize the *Cyclus* framework. This modern development model passively
+to utilize the |cyclus| framework. This modern development model passively
 distributes specialized content to interested research groups, and facilitates
 parallel model development efforts by institutions with complimentary goals.
 The transparency inherent in this type of open source development path also
@@ -88,7 +88,7 @@ for network flow optimization.
 
 Dynamically-loadable Modules
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Dynamically-loadable modules are the primary mechanism for extending *Cyclus*
+Dynamically-loadable modules are the primary mechanism for extending |cyclus|
 with new underlying models.  The primary benefit of this approach is
 encapsulation: the trunk of the code is completely independent of the
 individual models and all customization and extension is implemented only in
@@ -96,11 +96,11 @@ the loadable module.  A secondary benefit of this encapsulation is the ability
 for contributors to choose different distribution and licensing strategies for
 their contributions.  Finally, this strategy allows an individual developers
 to explore different levels of complexity within their modules, including
-wrapping other simulation tools as loadable modules for *Cyclus*.
+wrapping other simulation tools as loadable modules for |cyclus|.
 
 Use Cases & Visualization
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-Because of the wide array of use cases for *Cyclus*, flexibility in the user
+Because of the wide array of use cases for |cyclus|, flexibility in the user
 interface is important to provide different kinds of users with different
 experiences.  This is true for input generation as well as output
 visualization.  A variety of graphical user interface modes have been designed
@@ -114,9 +114,9 @@ provide context to a variety of users.
 
 Modeling Paradigm
 +++++++++++++++++
-The modeling paradigm adopted by *Cyclus* includes a number of deeply embedded
+The modeling paradigm adopted by |cyclus| includes a number of deeply embedded
 fundamental concepts.  These basic design choices comprise the bedrock on which
-most future design choices are made. The *Cyclus* team recognizes the
+most future design choices are made. The |cyclus| team recognizes the
 accompanying inflexibility to the code and therefore does not anticipate that
 these attributes will change.
 
@@ -133,7 +133,7 @@ transaction history is logged throughout the simulation.
 
 Region-Institution-Facility Hierarchy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Every discrete facility in *Cyclus* is owned by an institution that operates in
+Every discrete facility in |cyclus| is owned by an institution that operates in
 a geographic region.  An institution can be used to represent any entity that
 may own and operate a facility such as a private corporation, a government
 agency, or a non-governmental agency, among others.  A region can be used to

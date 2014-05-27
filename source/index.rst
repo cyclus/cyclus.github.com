@@ -1,4 +1,4 @@
-*Cyclus*
+|Cyclus|
 =============
 
 .. raw:: html
@@ -24,16 +24,16 @@
 and developers through a dynamic resource exchange solver and plugin,
 user-developed agent framework.
 
-The goal of *Cyclus* is to enable a broad specutrum of 
+The goal of |cyclus| is to enable a broad specutrum of 
 fuel cycle simulation while providing a 
-low barrier to entry for new users and agent developers. Cyclus engages 
+low barrier to entry for new users and agent developers. |Cyclus| engages 
 with potential module developers and 
 encourages them to join a vibrant community in an 
 :doc:`expanding ecosystem <basics/ecosystem>`.  
 Users and developers are always welcome and encouraged to use or contribute 
-to the cyclus project. 
+to the |cyclus| project. 
 
-The *Cyclus* project repository is located at http://github.com/cyclus/cyclus.
+The |Cyclus| project repository is located at http://github.com/cyclus/cyclus.
 
 * User Interaction
    * Common physics and resource exchange infrastructure.
@@ -58,19 +58,19 @@ Learn More
     kernel/main
     cep/cep0
 
-TODO: Add publications on or using cyclus page, should contain bibtex entry for
-citing cyclus (PHYSOR for now?)
+TODO: Add publications on or using |cyclus| page, should contain bibtex entry for
+citing |cyclus| (PHYSOR for now?)
 
 Try It
 -------
 
-You can run a cyclus simulation right now from the comfort of your own browser:
+You can run a |cyclus| simulation right now from the comfort of your own browser:
 
 .. raw:: html
 
     <br>
     <div id="infile-form">
-    Cyclus input file: <br>
+    |Cyclus| input file: <br>
     <textarea id="infile-box" name="infile" rows=10></textarea>
     <br><button onclick="submitJob()">Submit</button><label>    Job Id: </label><label id="jobid"></label>
     </div>

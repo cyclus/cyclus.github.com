@@ -1,8 +1,8 @@
 Style Guidelines for Developers
 ===============================
-*Cyclus* uses the `Google C++ Style Guide`_ and `Google Python Style Guide`_.
+|cyclus| uses the `Google C++ Style Guide`_ and `Google Python Style Guide`_.
 In order to ensure compliance with these styles, we recommend the `Artistic Style`_ tool
-with the following `settings`_ located in cyclus repo. However, be wary of applying
+with the following `settings`_ located in |cyclus| repo. However, be wary of applying
 this tool blindly because it has some `limits and bugs`_.
 `Cpplint`_ and `Pylint`_ are other helpful tools to check your code for style and 
 syntax errors. Unfortunately, these tools may also suffer false positives and 
@@ -11,7 +11,7 @@ false negatives.
 Doxygen Code Documentation
 ===============================
 The definitive documentation of any software is the source code itself.
-*Cyclus* will relies on Doxygen for automation of rich documentation from
+|cyclus| will relies on Doxygen for automation of rich documentation from
 appropriately formatted comments in the source code. Current Doxygen 
 documentation can be found online for both `cyclus 
 <http://fuelcycle.org/cyclus/api/>`_ and `cycamore 

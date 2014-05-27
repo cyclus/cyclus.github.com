@@ -1,12 +1,12 @@
-.. summary Discussing Standard Usage of Cyclus Output Transaction Data
+.. summary Discussing Standard Usage of |Cyclus| Output Transaction Data
 
-Use Cases for Cyclus Data Analysis
-==================================
+Use Cases for |Cyclus| Data Analysis
+====================================
 
 Transaction Data
 ++++++++++++++++
 
-The primary *Cyclus* material output data is composed of a log of individual
+The primary |cyclus| material output data is composed of a log of individual
 material transactions.  Each transaction has the following fundamental characteristics:
 
  * **time**: an integer of time steps since the beginning of the simulation
@@ -21,7 +21,7 @@ material transactions.  Each transaction has the following fundamental character
 Facility Instance Data
 ++++++++++++++++++++++
 
-The primary *Cyclus* facility output data is composed of a list of
+The primary |cyclus| facility output data is composed of a list of
 individual facilities.  Each facility have the following fundamental
 characteristics:
 

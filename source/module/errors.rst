@@ -1,23 +1,23 @@
 Errors and Warnings
 ===================
-Module developers may also leverage the Cyclus error and warning system 
+Module developers may also leverage the |Cyclus| error and warning system 
 within the code that they write. These are useful for failing gracefully 
 from undefined behaviour or to signal that code is still experimental 
 and under development.
 
 Errors
 ------
-Cyclus uses `standard C++ execptions <http://www.cplusplus.com/doc/tutorial/exceptions/>`_ 
+|Cyclus| uses `standard C++ execptions <http://www.cplusplus.com/doc/tutorial/exceptions/>`_ 
 to throw and catch errors. However, whenever you ``#include "cyclus.h"`` or 
 ``#include "error.h"`` you have access to a suite of exceptions that the 
-kernel itself knows about.  :ref:`errors-table-1` displays all of the Cyclus errors 
+kernel itself knows about.  :ref:`errors-table-1` displays all of the |Cyclus| errors 
 which live within the ``cyclus`` namespace and subclass from ``std::exception``.
 
 .. rst-class:: centered
 
 .. _errors-table-1:
 
-.. table:: **Table I.** Cyclus Error Classes
+.. table:: **Table I.** |Cyclus| Error Classes
     :widths: 1 9
     :column-alignment: left left
     :column-wrapping: true true 
@@ -26,7 +26,7 @@ which live within the ``cyclus`` namespace and subclass from ``std::exception``.
     =============== ==============================================================
     Error           Description
     =============== ==============================================================
-    Error           Base error for Cyclus.
+    Error           Base error for |Cyclus|.
     ValueError      For values that are too big, too small, etc.
     KeyError        For failed retrieval/insertion of key-based data into/from 
                     data structures.
@@ -68,7 +68,7 @@ warning that was given.  All warnings are issued through the
 
 .. _errors-table-2:
 
-.. table:: **Table II.** Cyclus Warnings
+.. table:: **Table II.** |Cyclus| Warnings
     :widths: 3 7
     :column-alignment: left left
     :column-wrapping: true true 
@@ -77,7 +77,7 @@ warning that was given.  All warnings are issued through the
     =========================== =================================================
     Warnings                    Description
     =========================== =================================================
-    WARNING                     Basic warning for Cyclus.
+    WARNING                     Basic warning for |Cyclus|.
     VALUE_WARNING               For values that are too big, too small, etc.
     KEY_WARNING                 For unexpected retrieval/insertion of key-based 
                                 data into/from data structures.
@@ -124,7 +124,7 @@ behaviour.  The first is ``--warn-limit``.  This changes the maximum number of
 times a warning of each kind will be issued before further warnings are suppressed.
 This defaults to 1.  A value of zero means to suppress all warnings and a very large
 number will print them all.  For example, if the user wished to print the first 
-42 warnings of each kind they would call cyclus as follows:
+42 warnings of each kind they would call |cyclus| as follows:
 
 .. code-block:: bash
 

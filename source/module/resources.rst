@@ -1,8 +1,8 @@
 
-Resources In Cyclus
+Resources In |Cyclus|
 =================================
 
-One of the defining features of Cyclus among other fuel cycle simulators is
+One of the defining features of |Cyclus| among other fuel cycle simulators is
 the treatment of resources/materials as discrete, quantized objects that can
 be traded and tracked throughout the simulation.
 
@@ -12,7 +12,7 @@ prior ownership.  One example is that of a nuclear fuel assembly.  A nuclear
 fuel assembly for a given reactor has a clear definition of material
 properties (including mass) can be treated as a single unit.
 
-The Cyclus core provides two types of Resources that can be used/manipulated
+The |Cyclus| core provides two types of Resources that can be used/manipulated
 by agents:
 
 * Material - a generic material object comprised of a mass and nuclide
@@ -86,7 +86,7 @@ There are 3 basic operations that can be performed on product resources
 Material Resources
 -------------------
 
-Materials in Cyclus have a mass and an associated nuclide composition.  The
+Materials in |Cyclus| have a mass and an associated nuclide composition.  The
 composition is represented by a  ``cyclus::Composition`` object.  Material
 quantity is always represented in units of kg. Agents can either create a
 composition manually (see the *Compositions* section below) or acquired from

@@ -1,17 +1,17 @@
 ====================================
- The *Cyclus* Community & Ecosystem
+ The |Cyclus| Community & Ecosystem
 ====================================
 
-**Cyclus welcomes code & contributions from everyone!**
+**|Cyclus| welcomes code & contributions from everyone!**
 
-An important goal of the *Cyclus* effort is to attract a community of
+An important goal of the |cyclus| effort is to attract a community of
 developers contributing to a vibrant ecosystem of models for use by
 users.  However, due to sensitivities regarding the distribution of
 software for simulating nuclear systems, this ecosystem requires
 careful considerations in its design and implementation.
 
 Critical to the success of this community is the widespread
-availability of the core infrastructure of the Cyclus simulation
+availability of the core infrastructure of the |Cyclus| simulation
 environment.  Because this environment is formulated using a variety
 of very generic concepts - not specific to nuclear energy systems -
 this should mitigate concerns for the open source distribution of this
@@ -47,12 +47,12 @@ by barriers to adoption by new users and developers including:
 * deeply embedded nuclear technology assumptions arising from
   development path.
 
-Since, one of the principle purposes of *Cyclus* is to create a fuel
+Since, one of the principle purposes of |cyclus| is to create a fuel
 cycle simulator system with a low barrier to adoption, a policy of
 open source distribution of this core infrastructure is critical to
-its mission.  (*Cyclus* is also committed to free and widely used
+its mission.  (|cyclus| is also committed to free and widely used
 software development tools, such as GNU compilers, SQLite, Boost,
-etc.)  The *Cyclus* core is currently available via it's `Git hub
+etc.)  The |cyclus| core is currently available via it's `Git hub
 repository <http://github.com/cyclus/cyclus>`_.  Interested users and
 developers are invited to make their own copy of this repository,
 review the list of open issues, and participate in the developers
@@ -61,7 +61,7 @@ permits a thorough code review by interested parties and the
 possibility of contributions in order to identify/resolve defects or
 request/provide feature enhancements.
 
-The *Cyclus* core infrastructure provides a generic environment
+The |cyclus| core infrastructure provides a generic environment
 for modeling flows of materials among a
 collection of nuclear facilities.  This infrastructure could be used
 for modeling many different supply chain systems, nuclear and
@@ -72,7 +72,7 @@ technology assumptions, one consequence of this approach is that the
 core infrastructure has a very low risk of containing sensitive
 information regarding the simulation of nuclear systems.  These
 capabilities are added by acquiring and invoking plug-in modules
-developed and distributed by the *Cyclus* community.
+developed and distributed by the |cyclus| community.
 
 The open source approach can also allow the project to leverage the
 efforts a larger pool of developers and improve the quality of the
@@ -82,23 +82,23 @@ Decentralized Module Development & Distribution
 ===============================================
 
 When a user/developer wishes to contribute a new module to the
-*Cyclus* ecosystem, they will be responsible for all aspects of that
-distribution.  The *Cyclus* core development team will provide a
+|cyclus| ecosystem, they will be responsible for all aspects of that
+distribution.  The |cyclus| core development team will provide a
 catalog of available modules (details are still under development),
 but this catalog will point to external distribution sites that are
 consistent with each contributors personal and/or institutional needs.
 For example, developers who are permitted to follow an open source
 approach with their own contributions can have their own Github
 account and share their modules through the same mechanism as - but a
-different location from - the *Cyclus* core.  For some subset of open
-source distribution mechanisms, the *Cyclus* core will include tools
+different location from - the |cyclus| core.  For some subset of open
+source distribution mechanisms, the |cyclus| core will include tools
 to make it easier for individual users to download and install
 contributed modules or collections of modules.
 
 Decentralizing the development and distribution of run-time plug-in
 modules provides a number of benefits.  First, as is true for the core
 infrastructure, this opens the door for a larger pool of developers to
-contribute to the *Cyclus* ecosystem, by providing modules that
+contribute to the |cyclus| ecosystem, by providing modules that
 represent their organizations specific technical interest.  If a
 particular user/developer would like to understand the impact of their
 own technology on the greater fuel cycle, they are free to develop a
@@ -129,7 +129,7 @@ Between concerns for copyright and intellectual property, and the risk
 that sensitive information could be inadvertently introduced into a
 plug-in module, the burden of acquiring and confirming distribution
 rights by a centralized organization could become prohibitive.  If,
-instead, the *Cyclus* ecosystem is captured in a catalog that refers
+instead, the |cyclus| ecosystem is captured in a catalog that refers
 to a variety distribution sites as appropriate for each developer, the
 effort for ensuring the rights for distribution are in the hands of
 the developer and their organization.  The inclusion of a given module
@@ -144,7 +144,7 @@ software distribution would be regarded as a tacit approval of the
 quality and utility of the module.  In most such cases, a substantial
 burden of quality assurance and testing would be required by the
 organization preforming this centralized distribution.  In the
-decentralized approach of the *Cyclus* ecosystem, mechanisms will be
+decentralized approach of the |cyclus| ecosystem, mechanisms will be
 provided for members of the community to provide peer-review of the
 modules' quality and applicability to certain problems.
 
@@ -166,7 +166,7 @@ Curation and Collections
 When the number of contributions is sufficiently large, there will be
 benefit in developing collections of modules that are known to be
 useful for certain types of simulations.  A decentralized approach
-will allow individual members of the *Cyclus* community to create such
+will allow individual members of the |cyclus| community to create such
 collections, providing a curation function to help both new and
 experienced users identify the modules that are likely to give them
 the most benefit.

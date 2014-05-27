@@ -1,11 +1,11 @@
-﻿.. summary Documentation for the Cyclus Decay Method
+﻿.. summary Documentation for the |Cyclus| Decay Method
 
-Radioactive Decay in Cyclus
-===========================
+Radioactive Decay in |Cyclus|
+=============================
 
 .. note:: This wiki page is currently a work in progress.
 
-.. warning:: Decay in *Cyclus* is experimental.
+.. warning:: Decay in |cyclus| is experimental.
 
 Radioactive decay of a group of isotopes over time can be described by the
 following first order differential equation:
@@ -23,7 +23,7 @@ of a matrix exponential:
 
    \mathbf{N(\mathit{to+\Delta t})}=e^{\Delta t \textrm{A}}\: \mathbf{N(\mathit{to})}
 
-The decay method currently implemented in *Cyclus* computes this matrix
+The decay method currently implemented in |cyclus| computes this matrix
 exponential solution at any given time using a series approximation known as
 the Uniformization Method.  This implementation was written by Kerry Dunn, and
 is explained in more detail below.
@@ -81,8 +81,8 @@ of the original matrix A by substituting the definition for `P`:
    \mathbf{N(\mathit{to+\Delta t})}\approx e^{-\alpha\Delta t}\sum_{k=0}^{p}\frac{\left (\Delta t \right )^k}{k!}\: (\textrm{A}+\alpha \textrm{I})^k\: \mathbf{N(\mathit{to})}
 
 
-Implementation in Cyclus
-------------------------
+Implementation in |Cyclus|
+--------------------------
 
 Adding New Isotopes
 -------------------
@@ -93,9 +93,9 @@ Limitations
 When adding a new isotope, the most important thing to take into account is its
 half-life or decay constant.  The isotope with the smallest half-life, or
 largest decay constant, will be the limiting factor for the time scale over
-which *Cyclus* can decay _all_ materials in one step.  This occurs because the
+which |cyclus| can decay _all_ materials in one step.  This occurs because the
 Uniformization Method requires the computation of an exponential term, which is
-limited by the size of a long double on the system being used to run *Cyclus*.
+limited by the size of a long double on the system being used to run |cyclus|.
 To determine the maximum time scale that will be valid for a particular group
 of isotopes, the following equation can be used:
 

@@ -12,15 +12,15 @@ CEP 1 - CEP Purpose and Guidelines
 What is a CEP?
 ==============
 
-CEP stands for Cyclus Enhancement Proposal.  A CEP is a design
-document providing information to the *Cyclus* community, or describing
-a new feature or process for Cyclus and related prjects in its ecosystem.  
+CEP stands for |Cyclus| Enhancement Proposal.  A CEP is a design
+document providing information to the |cyclus| community, or describing
+a new feature or process for |Cyclus| and related prjects in its ecosystem.  
 The CEP should provide a concise technical specification of the feature and a
 rationale for the feature.
 
 We intend CEPs to be the primary mechanisms for proposing major new
 features, for collecting community input on an issue, and for
-documenting the design decisions that have gone into the Cyclus ecosystem.  
+documenting the design decisions that have gone into the |Cyclus| ecosystem.  
 The CEP author is responsible for building consensus within the community and
 documenting dissenting opinions.
 
@@ -35,25 +35,25 @@ CEP Types
 There are three kinds of CEP:
 
 1. A **Standards Track** CEP describes a new feature or implementation
-   for *Cyclus*. It may also describe an interoperability standard that will
-   be supported outside of *Cyclus* core.
+   for |cyclus|. It may also describe an interoperability standard that will
+   be supported outside of |cyclus| core.
 
-2. An **Informational** CEP describes a *Cyclus* design issue, or
-   provides general guidelines or information to the *Cyclus* community,
+2. An **Informational** CEP describes a |cyclus| design issue, or
+   provides general guidelines or information to the |cyclus| community,
    but does not propose a new feature.  Informational CEPs do not
-   necessarily represent a *Cyclus* community consensus or
+   necessarily represent a |cyclus| community consensus or
    recommendation, so users and implementers are free to ignore
    Informational CEPs or follow their advice.
 
-3. A **Process** CEP describes a process surrounding *Cyclus*, or
+3. A **Process** CEP describes a process surrounding |cyclus|, or
    proposes a change to (or an event in) a process.  Process CEPs are
-   like Standards Track CEPs but apply to areas other than the *Cyclus*
+   like Standards Track CEPs but apply to areas other than the |cyclus|
    code development.  They may propose an implementation, but not to
-   *Cyclus*'s codebase; they often require community consensus; unlike
+   |cyclus|'s codebase; they often require community consensus; unlike
    Informational CEPs, they are more than recommendations, and users
    are typically not free to ignore them.  Examples include
    procedures, guidelines, changes to the decision-making process, and
-   changes to the tools or environment used in *Cyclus* development.
+   changes to the tools or environment used in |cyclus| development.
    Any meta-CEP is also considered a Process CEP.
 
 
@@ -61,13 +61,13 @@ CEP Workflow
 ============
 
 
-*Cyclus*'s BDFP
+|cyclus|'s BDFP
 ---------------
 
 There are several reference in this CEP to the "BDFP". This acronym stands
 for "Benevolent Dictator for the Proposal." In most cases, it is fairly clear 
 who this person is (Paul Wilson or Anthony Scopatz).  It is this persons
-responsibility to consider the entire *Cyclus* ecosystem when deciding whether
+responsibility to consider the entire |cyclus| ecosystem when deciding whether
 or not to accept a proposal.  Weighted with this burden, their decision 
 must be adhered to (dictator status), though they will try to do the right 
 thing (benevolent).
@@ -91,11 +91,11 @@ CEP editorship is by invitation of the current editors.
 Submitting a CEP
 ----------------
 
-The CEP process begins with a new idea for *Cyclus*.  It is highly
+The CEP process begins with a new idea for |cyclus|.  It is highly
 recommended that a single CEP contain a single key proposal or new
 idea. Small enhancements or patches often don't need
-a CEP and can be injected into the *Cyclus* development workflow with a
-patch submission to the *Cyclus* `issue tracker`_. The more focused the
+a CEP and can be injected into the |cyclus| development workflow with a
+patch submission to the |cyclus| `issue tracker`_. The more focused the
 CEP, the more successful it tends to be.  The CEP editors reserve the
 right to reject CEP proposals if they appear too unfocused or too
 broad.  If in doubt, split your CEP into several well-focused ones.
@@ -104,21 +104,21 @@ Each CEP must have a champion -- someone who writes the CEP using the
 style and format described below, shepherds the discussions in the
 appropriate forums, and attempts to build community consensus around
 the idea.  The CEP champion (a.k.a. Author) should first attempt to
-ascertain whether the idea is CEP-able.  Posting to the *Cyclus*-dev 
+ascertain whether the idea is CEP-able.  Posting to the cyclus-dev 
 mailing list is the best way to go about this.
 
 Vetting an idea publicly before going as far as writing a CEP is meant
 to save the potential author time. Many ideas have been brought
-forward for changing *Cyclus* that have been rejected for various
-reasons. Asking the *Cyclus* community first if an idea is original
+forward for changing |cyclus| that have been rejected for various
+reasons. Asking the |cyclus| community first if an idea is original
 helps prevent too much time being spent on something that is
 guaranteed to be rejected based on prior discussions (searching
 the internet does not always do the trick). It also helps to make sure
 the idea is applicable to the entire community and not just the author.
 Just because an idea sounds good to the author does not
-mean it will work for most people in most areas where *Cyclus* is used.
+mean it will work for most people in most areas where |cyclus| is used.
 
-Once the champion has asked the *Cyclus* community as to whether an
+Once the champion has asked the |cyclus| community as to whether an
 idea has any chance of acceptance, a draft CEP should be presented to
 mailing list.  This gives the author a chance to flesh out the draft
 CEP to make properly formatted, of high quality, and to address
@@ -136,7 +136,7 @@ and create and check-in the initial draft of the CEP.  The CEP editors
 will not unreasonably deny a CEP.  Reasons for denying CEP status
 include duplication of effort, being technically unsound, not
 providing proper motivation or addressing backwards compatibility, or
-not in keeping with the *Cyclus* philosophy.  The BDFP can be consulted
+not in keeping with the |cyclus| philosophy.  The BDFP can be consulted
 during the approval phase, and is the final arbiter of the draft's
 CEP-ability.
 
@@ -202,7 +202,7 @@ must be a clear and complete description of the proposed enhancement.
 The enhancement must represent a net improvement.  The proposed
 implementation, if applicable, must be solid and must not complicate
 the infrastructure unduly.  Finally, a proposed enhancement must be
-follow *Cyclus* best practices in order to be accepted by the BDFP.  
+follow |cyclus| best practices in order to be accepted by the BDFP.  
 
 Once a CEP has been accepted, the reference implementation must be
 completed.  When the reference implementation is complete and incorporated
@@ -222,7 +222,7 @@ accepted that a competing proposal is a better alternative.
 When a CEP is Accepted, Rejected or Withdrawn, the CEP should be updated
 accordingly. In addition to updating the status field, at the very least
 the Resolution header should be added with a link to the relevant post
-in the *Cyclus*-dev mailing list archives.
+in the cyclus-dev mailing list archives.
 
 CEPs can also be superseded by a different CEP, rendering the original
 obsolete.  This is intended for Informational CEPs, where version 2 of
@@ -270,7 +270,7 @@ Each CEP should have the following parts:
    syntax and semantics of any new feature.  
 
 5. Motivation -- The motivation is critical for CEPs that want to
-   change the *Cyclus* ecosystem.  It should clearly explain why the
+   change the |cyclus| ecosystem.  It should clearly explain why the
    existing language specification is inadequate to address the
    problem that the CEP solves.  CEP submissions without sufficient
    motivation may be rejected outright.
@@ -301,7 +301,7 @@ Each CEP should have the following parts:
    discussions of API details.
 
    The final implementation must include test code and documentation
-   appropriate for *Cyclus*.
+   appropriate for |cyclus|.
 
 
 CEP Header Preamble
@@ -345,16 +345,16 @@ Informational, or Process.
 
 The Created header records the date that the CEP was assigned a
 number, while Post-History is used to record the dates of when new
-versions of the CEP are posted to *Cyclus* mailing list.  Both
+versions of the CEP are posted to |cyclus| mailing list.  Both
 headers should be in yyyy-mm-dd format, e.g. 2001-08-14.
 
-Standards Track CEPs will typically have a *Cyclus*-Version header which
-indicates the version of *Cyclus* that the feature will be released with.
-Standards Track CEPs without a *Cyclus*-Version header indicate
+Standards Track CEPs will typically have a |cyclus|-Version header which
+indicates the version of |cyclus| that the feature will be released with.
+Standards Track CEPs without a |cyclus|-Version header indicate
 interoperability standards that will initially be supported through
 external libraries and tools, and then supplemented by a later CEP to
 add support to the standard library. Informational and Process CEPs do
-not need a *Cyclus*-Version header.
+not need a |cyclus|-Version header.
 
 CEPs may have a Requires header, indicating the CEP numbers that this
 CEP depends on.
@@ -383,8 +383,8 @@ factors, such as the maturity of the CEP, the preferences of the CEP
 author, and the nature of your comments.  For the early draft stages
 of the CEP, it's probably best to send your comments and changes
 directly to the CEP author.  For more mature, or finished CEPs you may
-want to submit corrections to the *Cyclus* `issue tracker`_ so that your
-changes don't get lost.  If the CEP author is a *Cyclus* developer, assign the
+want to submit corrections to the |cyclus| `issue tracker`_ so that your
+changes don't get lost.  If the CEP author is a |cyclus| developer, assign the
 bug/patch to them, otherwise assign it to a CEP editor.
 
 When in doubt about where to send your changes, please check first
@@ -410,7 +410,7 @@ consensus around a CEP, but if that's not possible, an author can always
 submit a competing CEP.
 
 If you are interested in assuming ownership of a CEP, send a message
-asking to take over, addressed to both the original author and the *Cyclus*
+asking to take over, addressed to both the original author and the |cyclus|
 mailing list.  If the original author doesn't respond to
 email in a timely manner, the CEP editors will make a unilateral
 decision (it's not like such decisions can't be reversed :).
@@ -419,7 +419,7 @@ decision (it's not like such decisions can't be reversed :).
 CEP Editor Responsibilities & Workflow
 ======================================
 
-A CEP editor must subscribe to the *Cyclus* development mailing list.  
+A CEP editor must subscribe to the |cyclus| development mailing list.  
 For each new CEP that comes in an editor does the following:
 
 * Read the CEP to check if it is ready: sound and complete.  The ideas
@@ -446,10 +446,10 @@ Once the CEP is ready for the repository, a CEP editor will:
   properly. 
 
 * Send email back to the CEP author with next steps (post to the
-  *Cyclus* development mailing list).
+  |cyclus| development mailing list).
 
 Many CEPs are written and maintained by developers with write access
-to the *Cyclus* codebase.  The CEP editors monitor the various repositories
+to the |cyclus| codebase.  The CEP editors monitor the various repositories
 for CEP changes, and correct any structure, grammar, spelling, or
 markup mistakes they see.
 

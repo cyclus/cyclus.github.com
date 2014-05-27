@@ -1,8 +1,8 @@
-CEP 2 - Separation of Concerns in the *Cyclus* Ecosystem
+CEP 2 - Separation of Concerns in the |cyclus| Ecosystem
 ********************************************************
 
 :CEP: 2
-:Title: Separation of Concerns in the *Cyclus* Ecosystem, or Where Do I Put My Code?
+:Title: Separation of Concerns in the |cyclus| Ecosystem, or Where Do I Put My Code?
 :Last-Modified: 2013-08-27
 :Author: Anthony Scopatz
 :Status: Accepted
@@ -12,13 +12,13 @@ CEP 2 - Separation of Concerns in the *Cyclus* Ecosystem
 Abstract
 ========
 The purpose of this CEP is to clearly delineate the purpose -- technical and 
-cultural -- of the various projects which make up the *Cyclus* ecosystem.  
+cultural -- of the various projects which make up the |cyclus| ecosystem.  
 Projects, for purposes here, are unique entities which have independent lifetimes
 and central concerns. Many projects may try to tackle the same concern but no 
 single project may tackle more than one concern.  Concerns, like projects, may 
 be dependent upon one another.
 
-The central concerns in the *Cyclus* ecosystem are 
+The central concerns in the |cyclus| ecosystem are 
 **dynamic resource exchange simulation** (DRES),  **domain models** (DM), and 
 **analysis & visualization** (A&V).
 
@@ -153,10 +153,10 @@ must handle the case where only DRES models are used.  However, if domain models
 are used and the analysis & visualization is aware of these domain models, 
 all DRES parameters are guaranteed to also be present.
 
-The Cyclus Ecosystem
-====================
+The |Cyclus| Ecosystem
+======================
 While many fuel cycle simulators may choose to implement all of the above concerns 
-in a single project, each concern in the *Cyclus* ecosystem is implemented in
+in a single project, each concern in the |cyclus| ecosystem is implemented in
 its own project.  Many projects may satisfy the needs of a concern.  However, no 
 project may try to address multiple concerns. This provides a clear guideline 
 for which projects should accept which kinds of code.  
@@ -167,7 +167,7 @@ or mixing of multiple concerns, place the code with the most dependent concern.
 For example, if it is not clear if a class belongs with domain models or with the
 resource exchange put it with the domain models to be safe.
 
-The cyclus development team currently provides and supports three projects, 
+The |cyclus| development team currently provides and supports three projects, 
 one for each concern:
 
 * `Cyclus`_ - Dynamic Resource Exchange Simulation (individual actors, discrete time)
@@ -181,7 +181,7 @@ in the future implement this concern ('?').
 .. figure:: cep-0002-2.svg
     :align: center
 
-    **Figure 2:** Dependencies Between Projects is Cyclus Ecosystem.
+    **Figure 2:** Dependencies Between Projects is |Cyclus| Ecosystem.
 
 .. blockdiag code below
 
@@ -232,8 +232,8 @@ corresponds most closely with its concern.  The toolkit provides a layer on top 
 the concern implementation.  Thus the toolkit will be aware of other parts of the 
 project but the concern implementation should not call into elements from the toolkit.
 
-For example, resources are part of the primary concern of *Cyclus*.  Thus 
-a ResourceBuffer class would be part of the *Cyclus* toolkit.  This is because 
+For example, resources are part of the primary concern of |cyclus|.  Thus 
+a ResourceBuffer class would be part of the |cyclus| toolkit.  This is because 
 resource exchange can be implemented without a ResourceBuffer but such a class 
 is useful to provide to domain model developers.  Furthermore, the buffer
 applies to all resources is not specific to any domain. Thus this class should be 
@@ -243,7 +243,7 @@ Summary
 =======
 Many other ecosystems and projects model the fuel cycle and make their own choices
 about how to separate -- or not -- the concerns of resource exchange, domain models, 
-and analysis and visualization.  The *Cyclus* ecosystem places all concerns in 
+and analysis and visualization.  The |cyclus| ecosystem places all concerns in 
 separate projects.  This allows a high degree of modularity between software and
 developers.  Such an ecosystem enables experts to contribute their specific 
 knowledge base in a way that is independent from other parts of the ecosystem

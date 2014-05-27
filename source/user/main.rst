@@ -1,7 +1,7 @@
 
-.. summary Documentation for Cyclus Users
+.. summary Documentation for |Cyclus| Users
 
-Cyclus User Guide
+|Cyclus| User Guide
 ===================
 
 
