@@ -2,9 +2,9 @@
 Resources In Cyclus
 =================================
 
-One of the defining features of Cyclus among other fuel cycle
-simulators is the treatment of resources/materials as discrete, quantized objects
-that can be traded and tracked throughout the simulation.
+One of the defining features of Cyclus among other fuel cycle simulators is
+the treatment of resources/materials as discrete, quantized objects that can
+be traded and tracked throughout the simulation.
 
 A primary motivation for discrete and quantized materials is the ability to
 study the flow of material and the attribution of those materials through
@@ -13,15 +13,6 @@ that are clearly defined in a discrete and quantized way.  Perhaps the most
 obvious example in a fuel cycle scenario is that of a nuclear fuel assembly.
 A nuclear fuel assembly for a given reactor has a clear definition of material
 properties (including mass) can be treated as a single unit.
-
-Introduction
-------------
-
-The following section will discuss the Resource class, the base class for
-items that are passed between agents in a Cyclus simulation.  Materials are
-the primary Resource that is transacted in a *Cyclus* simulation.
-Conceptually, though, a resource can be anything that might be an interesting
-traded item (e.g., electricity, money, or workers).
 
 The Cyclus core provides two types of Resources that can be used/manipulated
 by agents:
@@ -32,3 +23,101 @@ by agents:
 * Product - a general resource comprised of a quantity of a custom specified
   quality/units.
 
+``cyclus::Material`` resources are the primary Resource that is transacted in a
+simulation.  Conceptually, though, a resource can be anything that might be an
+interesting traded item (e.g., electricity, money, or workers). All resource
+objects are created and managed as pointer types. For convenience, each of
+the classes related to resources have a special pointer type defined:
+
+.. code-block:: c++
+
+    cyclus::Resource::Ptr r;
+    cyclus::Product::Ptr p;
+    cyclus::Material::Ptr m;
+    cyclus::Composition::Ptr c;
+
+These pointer types should be always be used instead of plain class instances
+or raw pointers.  The following sections describe basic creation and
+manipulation of resource objects.  *All changes to resource objects (including
+creation) are tracked and recorded in the database.  Because of this, agents
+should handle resources carefully, being conscious of mass conservation among
+other things.*
+
+Product Resources
+-------------------
+
+
+Material Resources
+-------------------
+
+Materials in Cyclus have a mass and an associated nuclide composition.  The
+composition is represented by a  ``cyclus::Composition`` object.  Material
+quantity is always represented in units of kg. Agents can either create a
+composition manually (see the *Compositions* section below) or acquired from
+the ``cyclus::Context`` which holds all recipes defined as part of the
+simulation input.
+
+There are 4 basic operations that can be performed on material resources:
+
+* Create
+* ExtractQty/ExtractComp
+* Absorb
+* Transmute
+
+Here are some examples of these operations:
+
+.. code-block:: c++
+
+    cyclus::Composition::Ptr c1 = context()->GetRecipe("nat_u");
+    cyclus::Composition::Ptr c2 = context()->GetRecipe("enriched_u");
+
+    // create a 100 kg material from the nat_u recipe defined in the input file
+    cyclus::Material::Ptr m1 = cyclus::Material::Create(this, 100, c);
+
+    // extract 1 kg of enriched U from m1
+    cyclus::Material::Ptr m2 = m1->ExtractComp(1, c);
+    // mass of m1 is now 99 kg and its composition has changed
+
+    // extract 1 kg from m1 of whatever composition it is
+    cyclus::Material::Ptr m3 = m1->ExtractQty(1);
+    // mass of m1 is now 98 kg and its composition. m1 and m3 have the same composition
+
+    // combine m2 and m3 back into m1
+    m1->Absorb(m2);
+    m1->Absorb(m3);
+    // m2 and m3 now have mass 0 kg. m1 has mass 100 kg with its original nat_u composition
+
+    // decay composition m1 up to the current time step (EXPERIMENTAL)
+    m1->Decay();
+
+Compositions
+++++++++++++++
+
+A ``cyclus::Composition`` is a massless, immutable nuclide composition.
+Because it is immutable, a mutable ``cyclus::CompMap`` must be populated in
+order to create a composition:
+
+.. code-block:: c++
+
+    cyclus::CompMap m;
+    m[922350000] = 5;
+    m[922380000] = 95;
+
+    // 5% U235, 95% U238 by mass
+    cyclus::Composition::Ptr c1 = cyclus::Composition::CreateFromMass(m);
+
+    // 5% U235, 95% U238 by atom fraction
+    cyclus::Composition::Ptr c2 = cyclus::Composition::CreateFromAtom(m);
+
+Note that the ``cyclus::CompMap`` above has no notion of mass.  Only the
+relative nuclide ratios matter.  Also notable is that ``c1`` and ``c2`` in the
+above example have different compositions.
+
+Because compositions are immutable, it is desirable for performance and
+database space reasons to avoid as much as possible creating multiple
+compositions from equivalent ``cyclus::CompMap`` objects.  Reusing
+``cyclus::Composition`` objects allows avoiding duplicate records in the
+database and unnecessary decay calculations.
+
+Resource IDs
+---------------
