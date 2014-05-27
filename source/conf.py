@@ -266,3 +266,13 @@ texinfo_documents = [
 
 # How to display URL addresses: 'footnote', 'no', or 'inline'.
 #texinfo_show_urls = 'footnote'
+
+rst_epilog = """
+.. |cyclus| raw:: html 
+
+       <span style="font-variant:small-caps;font-style:italic">Cyclus</span>
+
+.. |Cyclus| raw:: html 
+
+       <span style="font-variant:small-caps;font-style:italic">Cyclus</span>
+"""
