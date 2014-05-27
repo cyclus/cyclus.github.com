@@ -15,8 +15,6 @@ Writing Agents & Modules
 
 TODO: write about starting from cycstub and the organization of modules.
 
-TODO: Write about stack execution / Tick() and Tock()
-
 .. toctree::
     :maxdepth: 1
     
@@ -27,6 +25,7 @@ TODO: Write about stack execution / Tick() and Tock()
     logger
     testing
     resources
+    dre
 
 TODO: write about custom tables.
 

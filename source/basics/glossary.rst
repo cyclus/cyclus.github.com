@@ -111,3 +111,14 @@ Glossary of Cyclus Terms
   viewers   
     Members of the public not directly interfacing with the code but to 
     whom the output may be made available for demonstration purposes.
+
+  parent agent
+    An agent that manages (is in charge of) some number of child agents.
+
+  kernel phase
+    A phase during a simulation time step that is managed by the simulation
+    kernel engine
+
+  agent phase
+    A phase during a simulation time step in which agents are allowed to query
+    the simulation environment and perform general actions
