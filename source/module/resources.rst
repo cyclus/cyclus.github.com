@@ -8,10 +8,8 @@ be traded and tracked throughout the simulation.
 
 A primary motivation for discrete and quantized materials is the ability to
 study the flow of material and the attribution of those materials through
-prior ownership.  Such a notion is clear when refering to real world objects
-that are clearly defined in a discrete and quantized way.  Perhaps the most
-obvious example in a fuel cycle scenario is that of a nuclear fuel assembly.
-A nuclear fuel assembly for a given reactor has a clear definition of material
+prior ownership.  One example is that of a nuclear fuel assembly.  A nuclear
+fuel assembly for a given reactor has a clear definition of material
 properties (including mass) can be treated as a single unit.
 
 The Cyclus core provides two types of Resources that can be used/manipulated
@@ -23,11 +21,15 @@ by agents:
 * Product - a general resource comprised of a quantity of a custom specified
   quality/units.
 
-``cyclus::Material`` resources are the primary Resource that is transacted in a
-simulation.  Conceptually, though, a resource can be anything that might be an
-interesting traded item (e.g., electricity, money, or workers). All resource
-objects are created and managed as pointer types. For convenience, each of
-the classes related to resources have a special pointer type defined:
+Conceptually, a resource can be anything that might be an interesting traded
+item (e.g., electricity, money, or workers).  *All changes to resource objects
+(including creation) are tracked and recorded in the database.  Because of
+this, agents should handle resources carefully, being conscious of mass
+conservation among other things.*
+
+All resource objects are created and managed as pointer types. For
+convenience, each of the classes related to resources have a special pointer
+type defined:
 
 .. code-block:: c++
 
@@ -38,14 +40,48 @@ the classes related to resources have a special pointer type defined:
 
 These pointer types should be always be used instead of plain class instances
 or raw pointers.  The following sections describe basic creation and
-manipulation of resource objects.  *All changes to resource objects (including
-creation) are tracked and recorded in the database.  Because of this, agents
-should handle resources carefully, being conscious of mass conservation among
-other things.*
+manipulation of resource objects.  The cyclus kernel deals with resources in
+terms of the ``cyclus::Resource`` superclass.  So it will sometimes be
+necessary to cast down to the appropriate resource subclass.  Cyclus provides
+an overloaded ResCast function for casting convenience:
+
+.. code-block:: c++
+
+    // r is a Material object stored in a cyclus::Resource::Ptr var
+    cyclus::Material::Ptr m = cyclus::ResCast<Material>(r);
+
+    // ResCast works on vectors too
+    std::vector<cyclus::Resource::Ptr> rs;
+    ...
+    std::vector<cyclus::Product::Ptr> ps = cyclus::ResCast<Product>(rs);
 
 Product Resources
 -------------------
 
+Products in Cyclus have a quantity (no particular units) and a quality.
+The quality is a ``std::string`` that describes what the product is.  A
+product's quality might be "apples", "kg apples", "man-hours", etc.  Product
+resources with different qualities may NOT be combined together.  
+
+There are 3 basic operations that can be performed on product resources
+(examples follow):
+
+* Create
+* Extract
+* Absorb
+
+.. code-block:: c++
+
+    // create a 100 grapes product resource
+    cyclus::Product::Ptr p1 = cyclus::Product::Create(this, 100, "grapes");
+
+    // extract 7 grapes from p1
+    cyclus::Product::Ptr p2 = p1->Extract(7);
+    // p1 now has 93 grapes
+
+    // combine p2 back into p1
+    p1->Absorb(p2);
+    // p2 now has 0 grapes. p1 has 100 grapes.
 
 Material Resources
 -------------------
@@ -57,14 +93,13 @@ composition manually (see the *Compositions* section below) or acquired from
 the ``cyclus::Context`` which holds all recipes defined as part of the
 simulation input.
 
-There are 4 basic operations that can be performed on material resources:
+There are 4 basic operations that can be performed on material resources
+(examples follow):
 
 * Create
 * Extract[Qty/Comp]
 * Absorb
 * Transmute (and Decay)
-
-Here are some examples of these operations:
 
 .. code-block:: c++
 
