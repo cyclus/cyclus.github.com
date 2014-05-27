@@ -4,25 +4,13 @@
 Cyclus User Guide
 ===================
 
-.. note:: A user's guide is in development.
-
 
 TODO: ADD INSTALL INSTRUCTIONS HERE
 
-Agents
-------
-The following is a listing of core-supported modules and documentation for 
-the agents that live inside of them.
-
-.. toctree::
-    :maxdepth: 2
-
-    cyclusagents
-    cycamoreagents
-    stubagents
-
-Defining a Simulation
+Writing Input Files
 ---------------------
+
+TODO: Add page on actually writing input files
 
 .. toctree::
     :glob:
@@ -37,7 +25,7 @@ Defining a Simulation
        input_specs/facility/*
        input_specs/examples/*
 
-Running a Simulation
+Running Simulations
 --------------------
 
 .. toctree::
@@ -45,7 +33,21 @@ Running a Simulation
 
    running_sims
 
-Visulaization & Analysis
+TODO: add running from website page
+
+Agents
+------
+The following is a listing of core-supported modules and documentation for 
+the agents that live inside of them.
+
+.. toctree::
+    :maxdepth: 2
+
+    cyclusagents
+    cycamoreagents
+    stubagents
+
+Visualization & Analysis
 --------------------------
 
 .. toctree::

@@ -23,26 +23,17 @@ Software Development Aids
 
    ../basics/roadmap
    contributing_to_cyclus
-   testing
    style_guide
 ..   make-models/main
 
-Doxygen Code Documentation
---------------------------
-
-The definitive documentation of any software is the source code itself.
-*Cyclus* will relies on Doxygen for automation of rich documentation from
-appropriately formatted comments in the source code. Current Doxygen 
-documentation can be found online for both `cyclus 
-<http://fuelcycle.org/cyclus/api/>`_ and `cycamore 
-<http://fuelcycle.org/cycamore/api/>`_.  These pages will be updated nightly.
-
-Documentation is a make target in the cmake build system. Documentation
-will automatically be built when you `make all`. You can build only the
-documentation by running `make cyclusdoc` instead of `make all` or `make`.
+Previous Versions of Cyclus
+---------------------------
+TODO: Add release notes, dates, and links to previous versions.
 
 Diversions
 ----------
+
+TODO: add our new, award winning gource video!
 
 A video history of our development (video created using gource):
 

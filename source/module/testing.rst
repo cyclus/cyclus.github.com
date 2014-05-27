@@ -1,8 +1,12 @@
 
 .. summary Some guidelines on writing module tests
 
-Writing Tests for Modules
-=========================
+Testing Agents and Modules
+===============================
+
+.. warning:: This page is wildly out-of-date!
+
+TODO: fix this page
 
 Introduction
 ------------

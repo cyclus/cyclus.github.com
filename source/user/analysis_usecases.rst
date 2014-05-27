@@ -1,7 +1,7 @@
 .. summary Discussing Standard Usage of Cyclus Output Transaction Data
 
-Use Cases for Cyclus Output Data
-=================================
+Use Cases for Cyclus Data Analysis
+==================================
 
 Transaction Data
 ++++++++++++++++
@@ -135,12 +135,12 @@ data by filtering on the set of isotopes that are included in the
 material flow data.  There are a small number of standard ways to
 define sets of isotopes:
 
-  * include all isotopes
-  * choose individual chemical elements (e.g. uranium) and thereby
-    including all the isotopes of that element
-  * choose individual isotopes (e.g. U-235)
-  * choose from predefined meaningful sets of isotopes
-    (e.g. fission products, actinides, transuranics, fissile isotopes)
+* include all isotopes
+* choose individual chemical elements (e.g. uranium) and thereby
+  including all the isotopes of that element
+* choose individual isotopes (e.g. U-235)
+* choose from predefined meaningful sets of isotopes
+  (e.g. fission products, actinides, transuranics, fissile isotopes)
 
 As with the facility filtering capability, an ideal user interface
 will allow subsets of isotopes to be added and deleted from the data
@@ -162,10 +162,10 @@ of each isotope that is being transacted, there will be a growing set
 of transformations that convert these number densities into other
 interesting metrics/quantities including:
 
-  * radiotoxicity
-  * decay heat
-  * waste volume
-  * others-to-be-determined
+* radiotoxicity
+* decay heat
+* waste volume
+* others-to-be-determined
 
 Users will want to apply these transformations, either changing the
 metric shown in the primary visualization or cloning the primary
@@ -244,10 +244,10 @@ Another primary visualization is time series data for installed
 capacity of a set of facilities.  Most of the operations discussed
 above will be of interest including:
 
-  * time domain resolution and representation
-  * filtering across different dimensions (although not across an isotope dimension)
-  * applying transformations
-  * comparitive visualization
+* time domain resolution and representation
+* filtering across different dimensions (although not across an isotope dimension)
+* applying transformations
+* comparitive visualization
 
 By combining the information about the theoretical capacity with the
 information about material transactions, the relationship between

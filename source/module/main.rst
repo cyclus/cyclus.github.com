@@ -1,17 +1,21 @@
 Cyclus Module Developer Guide
 =============================
 
-.. note:: The devloper's guide remains a work in progress.
-
-If you haven't already, check out :doc:`../basics/main`
+.. image:: /astatic/antipode-bike.jpg
+    :align: center
+    :alt: http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=9361427
 
 Hello World
 ---------------
 
 TODO: Write a simple hello world example
 
-Writing Modules
----------------
+Writing Agents & Modules
+------------------------
+
+TODO: write about starting from cycstub and the organization of modules.
+
+TODO: Write about stack execution / Tick() and Tock()
 
 .. toctree::
     :maxdepth: 1
@@ -20,6 +24,9 @@ Writing Modules
     dbtypes
     errors
     logger
+    testing
+
+TODO: write about custom tables.
 
 How It Works
 ------------------------------
@@ -33,3 +40,10 @@ How It Works
     decay
 ..   cyclus_env
 ..   materials_and_isotopes
+
+TODO: Write about DRE
+
+
+Cyclus Toolkit
+---------------
+TODO: Write about cyclus toolkit. Probably deserves its own heading.

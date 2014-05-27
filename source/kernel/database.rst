@@ -1,15 +1,17 @@
 
 .. summary Design Goals for the SQLite Output Database 
 
-Output Database
-===============
+Database Backends
+====================
+
+.. warning:: This page is wildly out-of-date!
 
 *Cyclus* simulations are comprised of three major constructs (the interaction
 of which we are interested in documenting): 
 
- * **Agents** (which create...)
- * **Resources** (which are traded in...)
- * **Transactions**  
+* **Agents** (which create...)
+* **Resources** (which are traded in...)
+* **Transactions**  
 
 The primary goal of fuel-cycle simulations is to track material (fuel) through
 a complex system of facilities. Such interaction falls easily under this paradigm 

@@ -105,8 +105,8 @@ You can run a cyclus simulation right now from the comfort of your own browser:
 Contact Us
 ----------
 
-* `Users' mailing list <https://groups.google.com/forum/#!forum/cyclus-users>`_
-* `Developer's' mailing list <https://groups.google.com/forum/#!forum/cyclus-dev>`_
+* `Users' mailing list and forum <https://groups.google.com/forum/#!forum/cyclus-users>`_
+* `Developers' mailing list and forum <https://groups.google.com/forum/#!forum/cyclus-dev>`_
 * Project PI, Paul Wilson: wilsonp AT engr.wisc.edu
 * Project Lead, Anthony Scopatz:  scopatz AT gmail.com
 
