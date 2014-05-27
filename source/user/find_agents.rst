@@ -5,7 +5,7 @@ Agent Identification and Discovery
 Agent Specification
 ---------------------
 
-Cyclus agents are uniquely identified by a 3-part specification that includes:
+|Cyclus| agents are uniquely identified by a 3-part specification that includes:
 
 * a slash separated path
 * a library name
