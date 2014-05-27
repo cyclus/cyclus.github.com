@@ -1,8 +1,8 @@
-CEP 19 - Cyclus Input Procedure Updates
+CEP 19 - |Cyclus| Input Procedure Updates
 ********************************************
 
 :CEP: 19
-:Title: Cyclus Input Procedure Updates
+:Title: |Cyclus| Input Procedure Updates
 :Last-Modified: 2013-10-16
 :Author: Dr. Tony Scopes & Robby Flanny
 :Status: Withdrawn
@@ -12,14 +12,14 @@ CEP 19 - Cyclus Input Procedure Updates
 Introduction
 ============
 
-This CEP proposes to update the cyclus input paradigm and the module schemas such that
+This CEP proposes to update the |cyclus| input paradigm and the module schemas such that
 they enable a wider variety of tools. This CEP was written with two types of tools in mind:
 graphical user interfaces and large scale parameter investigations. The goal of this 
 CEP is to give the input scheme the descriptive power it needs to provide users and module
-developers with an elegent and clear method of building cyclus input files.
+developers with an elegent and clear method of building |cyclus| input files.
 
 
-The first major change is to develop a suite of patterns for use by cyclus module schema. 
+The first major change is to develop a suite of patterns for use by |cyclus| module schema. 
 These patterns are meant to richly representing module input fields. These patterns will be a 
 collection of elements that provide sufficient metadata needed by the two use cases listed
 above. For instance, one such additional element is 'tooltip'.
@@ -36,7 +36,7 @@ many elements of the pattern will also be useful for parametric sweeps.
 
 Specification \& Implementation
 ===============================
-The following patterns are proposed to be added to the master Cyclus schema.
+The following patterns are proposed to be added to the master |Cyclus| schema.
 
 
 Tooltip
@@ -110,7 +110,7 @@ and if left blank the value will be set to zero by the graphical user interface.
 
 Vary
 ++++
-The 'vary' element is a special boolean element that allows a cyclus user to set wether the input 
+The 'vary' element is a special boolean element that allows a |cyclus| user to set wether the input 
 field it is attached to can be varied for a parametric study. This flag is optional and can take
 the values "true", "false", "1", "0".
 
@@ -460,12 +460,12 @@ implies that the field has discrete values for which it can take.
 
 Cycic Specific Tags
 ===================
-In order to facilitate loading cyclus scenarios that were previously built with CycIC
+In order to facilitate loading |cyclus| scenarios that were previously built with CycIC
 some additional fields are proposed to be added to the xml grammar. These fields will
 hold information on how to display the graphical parts of the simulation. 
 
-This portion of the xml file will not be read by cyclus, and should have no impact on
-the cyclus core code. 
+This portion of the xml file will not be read by |cyclus|, and should have no impact on
+the |cyclus| core code. 
 
 Top level Information
 +++++++++++++++++++++

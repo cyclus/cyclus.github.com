@@ -1,4 +1,4 @@
-Cyclus Fundamentals
+|Cyclus| Fundamentals
 ===================
 
 .. image:: ../astatic/steven-m-johnson-bike.jpeg

@@ -1,4 +1,4 @@
-Cyclus Enhancement Proposals
+|Cyclus| Enhancement Proposals
 ============================
 
 .. raw:: html
@@ -7,7 +7,7 @@ Cyclus Enhancement Proposals
     <tr><td>
 
 :CEP: 0
-:Title: Index of Cyclus Enhancement Proposals (CEPs)
+:Title: Index of |Cyclus| Enhancement Proposals (CEPs)
 :Version: N/A
 :Last-Modified: 2013-11-01
 :Author: Anthony Scopatz <scopatz at gmail.com>
@@ -29,7 +29,7 @@ Cyclus Enhancement Proposals
 
 Introduction
 ------------
-This CEP contains the index of all Cyclus Enhancement Proposals,
+This CEP contains the index of all |Cyclus| Enhancement Proposals,
 known as CEPs.  CEP numbers are assigned by the CEP editors, and
 once assigned are never changed.  The git history of
 the CEP texts here represent their historical record.
@@ -43,7 +43,7 @@ Index
     :maxdepth: 1
 
     PA - 1 - CEP Purpose and Guidelines - Scopatz <cep1>
-    PA - 2 - Separation of Concerns in the Cyclus Ecosystem - Scopatz <cep2>
+    PA - 2 - Separation of Concerns in the |Cyclus| Ecosystem - Scopatz <cep2>
     PA - 3 - Release Procedure - Scopatz <cep3>
 
 *Standard CEPs*

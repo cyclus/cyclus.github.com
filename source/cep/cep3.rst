@@ -1,8 +1,8 @@
-CEP 3 - Cyclus Release Procedure
+CEP 3 - |Cyclus| Release Procedure
 ********************************************************
 
 :CEP: 3
-:Title: Cyclus Release Procedure
+:Title: |Cyclus| Release Procedure
 :Last-Modified: 2014-02-24
 :Author: Anthony Scopatz
 :Status: Accepted
@@ -12,22 +12,22 @@ CEP 3 - Cyclus Release Procedure
 Abstract
 ========
 The purpose of this document is to act as a guideline and checklist for how 
-to release the cyclus core code base and the supported projects in the ecosystem.
+to release the |cyclus| core code base and the supported projects in the ecosystem.
 
-The Cyclus Ecosystem
+The |Cyclus| Ecosystem
 ====================
 The very first thing to do when preparing for an upcoming release is to elect 
 a release manager.  This person has the special responsibility of making sure 
 all of the following tasks are implemented.  Therefore, their judgment for the 
 placement of issues and code stability must be adhered to.  
 
-The cyclus ecosystem has a few projects which are all released together. 
+The |cyclus| ecosystem has a few projects which are all released together. 
 (This may change in the future a development diverges and the core becomes more 
 stable.)  The projects that are under the release manager's purview are:
 
 * `Cyclus`_ 
 * `Cycamore`_ 
-* `Cycstub`_ - copy the files from cyclus core's ``stub/`` dir into the 
+* `Cycstub`_ - copy the files from |cyclus| core's ``stub/`` dir into the 
   cycstub's ``src/`` dir.
 
 The projects which are not yet under the release managers purview are:
@@ -71,7 +71,7 @@ release.
 
 Project Checklist
 =================
-When releasing a cyclus project, make sure to do the following items in order:
+When releasing a |cyclus| project, make sure to do the following items in order:
 
 1. Review **ALL** issues in the issue tracker, reassigning or closing them as needed.
 2. Ensure that all issues in this release's milestone have been closed.  Moving issues
@@ -100,11 +100,11 @@ Maintainence Tasks
 Each project may have associate maintenance tasks which may need to be performed at 
 least as often as every micro release.
 
-Cyclus
-------
-**Update Pyne:**  PyNE source code is included and shipped as part of cyclus. As pyne
+|Cyclus|
+--------
+**Update Pyne:**  PyNE source code is included and shipped as part of |cyclus|. As pyne
 evolves, we'll want to have our version evolve as well. Here are the steps to do so.
-These assume that in your HOME dir there are both the pyne and cyclus repos.  Remember 
+These assume that in your HOME dir there are both the pyne and |cyclus| repos.  Remember 
 to check in the changes afterwards.
 
 .. code-block:: bash
@@ -117,7 +117,7 @@ to check in the changes afterwards.
     
 **Update Nuclear Data:** PyNE also provides a nuclear data library generator which we use for 
 our source data.  Occassionally, this needs to be updated as updates to pyne itself come out.
-The command for generating cyclus specific nuclear data is as follows:
+The command for generating |cyclus| specific nuclear data is as follows:
 
 .. code-block:: bash
 

@@ -1,12 +1,12 @@
 
-Getting and Building Cyclus From Source
+Getting and Building |Cyclus| From Source
 =======================================
 
-The Cyclus Library Suite
+The |Cyclus| Library Suite
 ------------------------
-The *Cyclus* ecosystem is composed of two projects:
+The |cyclus| ecosystem is composed of two projects:
   
-  * Cyclus Core, comprising core kernel functionality
+  * |Cyclus| Core, comprising core kernel functionality
   * Cycamore, a physics and other domain module repository
 
 Installation information is provided in the readmes of each repository, and the
@@ -29,18 +29,18 @@ Currently, two specific systems are supported
 Unfamiliar with git and Github?
 -------------------------------
 
-For the Git uninitiated, one must perform the following steps to acquire *Cyclus*:
+For the Git uninitiated, one must perform the following steps to acquire |cyclus|:
 
   #. `Set Up Git`_ shows one how to set up SSH keys and Git user info
-  #. Fork the *Cyclus* repository, as shown in `Fork A Repo`_
+  #. Fork the |cyclus| repository, as shown in `Fork A Repo`_
 
-Note that each *Cyclus* repository has **two** branches:
+Note that each |cyclus| repository has **two** branches:
 
   * master -- the lastest stable release of the library
   * develop -- the lastest working copy that passes all tests
 
 The above branches are synchronized with each other, and should be used in tandem
-(i.e., use master (Cyclus) with master (Cycamore) or develop with develop only).
+(i.e., use master (|Cyclus|) with master (Cycamore) or develop with develop only).
 
 .. _`Set Up Git`: http://help.github.com/linux-set-up-git/
 
@@ -71,8 +71,8 @@ Contact Us
 ----------
 
 If you have further comments or questions about the build process, please don't
-hesitate to email or join the Cyclus users list, which will allow you to contact
-the community of users and developers of Cyclus.
+hesitate to email or join the |Cyclus| users list, which will allow you to contact
+the community of users and developers of |Cyclus|.
 
 * Email the Users' list: cyclus-users@groups.google.com
 * Join the Users' list: https://groups.google.com/forum/?fromgroups#!forum/cyclus-users 

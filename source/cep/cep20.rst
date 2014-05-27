@@ -23,7 +23,7 @@ agents to inspect simulation state and update their own state.
 Motivation
 ==========
 
-The current time step in *Cyclus* consists of the following stack:
+The current time step in |cyclus| consists of the following stack:
 
 * Tick
 * Resource Exchange
@@ -50,7 +50,7 @@ simulation, that it will experience an entire time step on the time it leaves.
 Rationale
 =========
 
-By Law's definition :cite:`Law:1999:SMA:554952`, a *Cyclus* simulation is,
+By Law's definition :cite:`Law:1999:SMA:554952`, a |cyclus| simulation is,
 broadly, a dynamic, discrete-event simulation that uses a fixed-increment time
 advance mechanism. In general, fixed-increment time advance scenarios assume a
 time step (dt), and assume that all events that would happen during a time occur
@@ -59,7 +59,7 @@ an event-based time advance mechanism, i.e., one that steps from event to event,
 that executes all events simultaneously that were supposed to have occurred in
 the time step.
 
-Two key types of events happen in a *Cyclus* simulation (at present):
+Two key types of events happen in a |cyclus| simulation (at present):
 
 * the exchange of resources
 * agent entry into and exit from the simulation
@@ -117,7 +117,7 @@ guarantee the three invariants described above.
 Specification \& Implementation
 ===============================
 
-Two primary concerns exist for changing the current state of *Cyclus* to
+Two primary concerns exist for changing the current state of |cyclus| to
 incorporate this CEP:
 
 * how to implement agent entry/exit as described
@@ -129,7 +129,7 @@ will/should take during the phases. I propose we instead use *PreExchange* and
 *PostExchange*. Wordsmithing and/or other suggestions are welcome.
 
 The agent entry/exit question is a bit more involved because of the parent-child
-(or manager-managed) relationship agents have in *Cyclus*. Specifically, the
+(or manager-managed) relationship agents have in |cyclus|. Specifically, the
 entry and exit of agents should be managed by the agent's manager. The following
 provides one possible specification.
 
@@ -173,7 +173,7 @@ completion of a phase.
 Backwards Compatibility
 =======================
 
-The overall *Cyclus* implementation/framework will remain largely unchanged,
+The overall |cyclus| implementation/framework will remain largely unchanged,
 with the exception of the core's handling of agent entry/exit
 registration. *Cycamore* modules that deal with agent entry/exit will have to be
 redesigned to incorporate the new execution stack.

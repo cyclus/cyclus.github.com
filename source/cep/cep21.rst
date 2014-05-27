@@ -12,13 +12,13 @@ CEP 21 - Agent Identification and Discovery
 Abstract
 ========
 
-Cyclus is designed to have plugin modules that can be easily distributed and
+|Cyclus| is designed to have plugin modules that can be easily distributed and
 installed.  A "module" is a shared library containing one or more compiled
-Cyclus agents.  Agents within mouldes must be uniquely identifiable and
-discoverable by both users managing their Cyclus installation and by the
-Cyclus kernel itself.  A user wishing to use certain modules must install them
-in a desired location and then identify specific agents in them to Cyclus.
-This CEP explains where modules can/should be installed and how Cyclus finds
+|Cyclus| agents.  Agents within mouldes must be uniquely identifiable and
+discoverable by both users managing their |Cyclus| installation and by the
+|Cyclus| kernel itself.  A user wishing to use certain modules must install them
+in a desired location and then identify specific agents in them to |Cyclus|.
+This CEP explains where modules can/should be installed and how |Cyclus| finds
 and identifies agents in them.
 
 Agent Spec
@@ -60,19 +60,19 @@ Example linux agent specs with corresponding filepath expansions::
 Module Discovery
 ================
 
-When running a simulation, Cyclus will search the following candidate
+When running a simulation, |Cyclus| will search the following candidate
 directories (in order) for each given agent spec:
 
 1. Each colon-separated directory in the CYCLUS_PATH environment variable.
 
-2. The default cyclus module install directory: ``[install-dir]/lib/cyclus``.
+2. The default |cyclus| module install directory: ``[install-dir]/lib/cyclus``.
 
-Cyclus will check for the library by building consecutive paths with the
+|Cyclus| will check for the library by building consecutive paths with the
 following composition::
 
     [candidate-dir]/[path]/lib[library][extension]
 
-Cyclus uses the first matching shared library file found and assumes the
+|Cyclus| uses the first matching shared library file found and assumes the
 specified agent class exists inside it.
 
 Conventions

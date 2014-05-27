@@ -17,7 +17,7 @@ This proposal serves to address two related issues:
 1. **Resource tracking:**
 
    Several types of analysis are made difficult to impossible by the
-   incomplete resource history currently recorded by Cyclus simulations. Such
+   incomplete resource history currently recorded by |Cyclus| simulations. Such
    analyses include agent time-dependent isotopic inventories and
    proliferation-resistance material handling. It is proposed that all
    resource state and state transitions will be tracked (as opposed to just
@@ -43,7 +43,7 @@ together is desirable.
 
 **Resouce Tracking:**
 
-Currently Cyclus only tracks the state of resources when they are transacted.
+Currently |Cyclus| only tracks the state of resources when they are transacted.
 This limited tracking is problematic for certain kinds of output
 analysis.  Examples:
 
@@ -101,7 +101,7 @@ the classes be more modular/maintainable for the core developers.  Some
 basic material/composition query/manipulation wrapper(s) can be made
 setting the stage for the further development of a "toolkit" for dealing
 with materials and compositions.  External developers can easily create
-toolkits for others to use that don't even need to be a part of the Cyclus
+toolkits for others to use that don't even need to be a part of the |Cyclus|
 core. This makes it easier to ensure that material/composition inner
 workings remain pure and correct despite rapid or significant changes to
 the kitchen-sink API that will likely evolve.
@@ -109,7 +109,7 @@ the kitchen-sink API that will likely evolve.
 Specification
 ===============
 
-A reference implementation exists for both the cyclus core and cycamore.
+A reference implementation exists for both the |cyclus| core and cycamore.
 These reside at https://github.com/rwcarlsen/cyclus ("res" branch) and
 https://github.com/rwcarlsen/cycamore ("res" branch) respectively.  Further
 implementation details can be found there.
@@ -179,7 +179,7 @@ Resources/Material API
 
 The Material and Composition classes will be designed to provide only the
 minimal interface to support basic manipulation and tracking required by the
-cyclus core.  All more complex operations will be implemented in helper
+|cyclus| core.  All more complex operations will be implemented in helper
 classes (like MatQuery). A summary of each of these classes' new role and
 its public interfaces are described below.
 
@@ -602,7 +602,7 @@ Other Notes
 Current implementation bugs
 ++++++++++++++++++++++++++++
 
-* The current (before this CEP) Cyclus core does not correctly record
+* The current (before this CEP) |Cyclus| core does not correctly record
   decayed compositions in the output database. This makes comparing
   simulation output size and performance with that of this CEP's proposed
   changes not exactly "fair".
@@ -615,7 +615,7 @@ will cause significant slowdown using an Sqlite backend database *when
 material decay is frequent*.  This slowdown prompted the development of a
 faster HDF5 alternative (currently merged into develop branch).
 
-Basic performance stats were collected by running a full cyclus
+Basic performance stats were collected by running a full |cyclus|
 inpro_low.xml simulation ``time cyclus [path/to/]inpro_low.xml``.  For
 reference:
 
@@ -624,7 +624,7 @@ reference:
 * 2200 decay calculations
 * ~28,000,000 resource object state changes recorded (with CEP implemented)
 
-Cyclus was built with CMake's "RELEASE" mode.  Results reported are
+|Cyclus| was built with CMake's "RELEASE" mode.  Results reported are
 approximate and specific to my office computer.
 
 Without proposed changes (decayed compositions are not recorded - current bug):

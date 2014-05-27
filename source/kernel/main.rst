@@ -1,12 +1,12 @@
-Cyclus Kernel Developer Guide
+|Cyclus| Kernel Developer Guide
 =============================
 
-The *Cyclus* project repository is located at
+The |cyclus| project repository is located at
 http://github.com/cyclus/cyclus.
 
 Although you do not have to register with github to
 download and edit the code, if you desire your work to be integrated into the
-cyclus mainline of development *you must fork the cyclus core repository into
+|cyclus| mainline of development *you must fork the |cyclus| core repository into
 your own github account and submit 'Pull Requests'*.
 
 
@@ -27,7 +27,7 @@ Software Development Aids
    style_guide
 ..   make-models/main
 
-Previous Versions of Cyclus
+Previous Versions of |Cyclus|
 ---------------------------
 TODO: Add release notes, dates, and links to previous versions.
 

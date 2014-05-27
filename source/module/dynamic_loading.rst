@@ -6,9 +6,9 @@ of the classes in these libraries is not known at compile time to
 the executing program. In Linux, these libraries are denoted by the
 suffix '.so', in Windows, '.dll', and in OSX, '.dylib'.
 
-In *Cyclus*, every *module* is dynamically loaded. Modules include one or more
+In |cyclus|, every *module* is dynamically loaded. Modules include one or more
 *agents*.
 
-The internal process used by the *Cyclus* core is very close to that
+The internal process used by the |cyclus| core is very close to that
 described in this 
 `article <http://www.linuxjournal.com/article/3687>`_.

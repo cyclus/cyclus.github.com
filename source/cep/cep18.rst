@@ -26,7 +26,7 @@ information.
 Motivation
 ==========
 
-The current implementation of Markets in Cyclus includes a base MarketModel
+The current implementation of Markets in |Cyclus| includes a base MarketModel
 class which is intended to be derived from by concrete, dynamically loaded,
 user-defined classes. Markets are assigned specific commodities, i.e., there is
 no communication across demand for multiple commodities. Markets act in the
@@ -36,7 +36,7 @@ before the **tock** for each timestep.
 Markets are communicated with through Messages. Communication to Markets utilize
 the Transaction class to define whether the communication is an **offer** or
 **request** for the Market's commodity. Communication is initialized by
-Facilities, but there is no Cyclus core support for this operation. Individual
+Facilities, but there is no |Cyclus| core support for this operation. Individual
 derived Facilities (e.g., the Sink and Source in Cycamore)
 define this functionality during their **HandleTick** functions. This
 interaction is invoked during the tick phase in the current facility invocations
@@ -53,7 +53,7 @@ be defined by the market. The Resolve function then invokes the derived-class
 algorithm to determine matches for the given set of offers and requests.
 
 This class structure and interaction has worked well for a proof-of-prototype
-use of Cyclus to model simple, once-through fuel cycles. However, an extension
+use of |Cyclus| to model simple, once-through fuel cycles. However, an extension
 or refactor is necessary to model more complicated fuel cycles for a number of
 reasons. First, there is no support for facilities that can offer or request
 resources across multiple commodities if a capacity is included. The current
@@ -63,7 +63,7 @@ reasons, is that the Transaction class is ambiguous with respect to proposed
 offers, requests, and matched offers and requests. This ambiguity can be
 addressed during a refactor to provide clarity to future developers. Third,
 there is no defined structure to the market-facility interaction. This
-interaction is the core purpose of Cyclus' Dynamic Resource Exchange concern,
+interaction is the core purpose of |Cyclus|' Dynamic Resource Exchange concern,
 but users and developers are required to define their own interactions (e.g.,
 sending offers during the tick phase). The original conception of the tick-tock
 paradigm was to define a notion of time before the resource exchange (i.e., a
@@ -82,7 +82,7 @@ The proposed refactor addresses each of the issues provided in the previous
 section. The notion of market models is redefined, separating the collection of
 supply-demand information from the algorithm used to match suppliers with
 consumers. The information gathering framework is structured and handled by the
-Cyclus core (i.e., not adjustable by model developers). It is top-down in the
+|Cyclus| core (i.e., not adjustable by model developers). It is top-down in the
 sense that it queries facilities for their supply and demand rather than
 requiring facility-based notifications. Accordingly, concerns are appropriately
 separated: the information is gathered by the core at the beginning of the
@@ -220,15 +220,15 @@ much more rigor and thought as to its validity and implementation.
 **Figure 3:** A supplier-consumer pair with request isotopics, response 
 isotopics, and an associated preference.
 
-Institutions and Regions in Cyclus are provided in order to add granularity to
+Institutions and Regions in |Cyclus| are provided in order to add granularity to
 the levels of relational modeling available to a user or developer. Both types
-of agents or models in Cyclus can possibly be allowed to affect preferences
+of agents or models in |Cyclus| can possibly be allowed to affect preferences
 during the PA phase. A slightly longer discussion is included below.
 
 Facility Agency
 +++++++++++++++
 
-Facilities in Cyclus are abstracted to either consumers or suppliers of
+Facilities in |Cyclus| are abstracted to either consumers or suppliers of
 commodities, and some may be both. Supplier agents are provided agency by being
 able to communicate to the market-resolution mechanism a variety of production
 capacity constraints in second phase of the information gathering
@@ -242,7 +242,7 @@ run-time. Such strategies are an example of the Strategy design pattern
 Institutional Agency
 ++++++++++++++++++++
 
-Institutions in Cyclus manage a set of facilities. Facility management is
+Institutions in |Cyclus| manage a set of facilities. Facility management is
 nominally split into two main categories: the commissioning and decommissioning
 of facilities and supply-demand association. The goal of including a notion of
 institutions is to allow an increased level of detail when investigating

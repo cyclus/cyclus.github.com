@@ -1,11 +1,11 @@
 Time Step Execution
 ===================
 
-A *Cyclus* simulation is composed of discrete time steps, and each time step is
+A |cyclus| simulation is composed of discrete time steps, and each time step is
 subdivided into phases. Phases come in two flavors: kernel phases and agent
 phases. Kernel phases include actions that have either been registered to occur
-with the *Cyclus* kernel (e.g., building a new facility agent) or are driven by
-the *Cyclus* kernel (e.g., the Resource Exchange). Agent phases are points
+with the |cyclus| kernel (e.g., building a new facility agent) or are driven by
+the |cyclus| kernel (e.g., the Resource Exchange). Agent phases are points
 within a given time step that allow agents to query the current simulation
 environment and perform any agent-specific actions, such as scheduling a new
 agent to be built or scheduling a current agent to be decommissioned. 
