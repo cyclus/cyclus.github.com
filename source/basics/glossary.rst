@@ -8,16 +8,6 @@ Glossary of Cyclus Terms
 .. glossary::
   :sorted:
 
-  prototype
-
-    An instance of an :term:`agent` that is fully configured with its initial
-    state and conditions, but does not act in the simulation. Agents that do act
-    in the simulation are cloned (copied) from prototypes.
-
-  agent
-
-    An entity that acts in a |cyclus| simulation.
-
   context
 
     The queryable environment of a |cyclus| simulation.
@@ -35,7 +25,18 @@ Glossary of Cyclus Terms
 
   plug-in  
 
-    See :term:`dynamically loadable module`.
+    See :term:`module`.
+
+  open development platform  
+
+    A code repository or server that is publicly viewable and downloadable, 
+    though not necessarily modifiable.
+
+  open development process
+
+    A software development workflow, usually on an :term:`open platform`, that
+    is transparent to the public. Hallmarks include public bug reports, source
+    code access, and code contribution.
 
   closed development platform  
 
@@ -44,105 +45,80 @@ Glossary of Cyclus Terms
 
   closed development process  
 
-    A software development workflow, usually on a closed platform, that is not 
-    transparent to the public as authorization is required before development 
-    access to the codebase is granted. This is used for secure proprietary or 
-    sensitive work.
+    A software development workflow, usually on a :term:`closed development
+    platform`, that is not transparent to the public as authorization is
+    required before development access to the codebase is granted. This is used
+    for secure proprietary or sensitive work.
 
   cyclus core  
 
-    The repository at github.com/cyclus/cyclus contains only the simulation 
-    engine. It links dynamically to modules contributed from other code 
-    repositories. The library is called libcycluscore.
+    The repository at github.com/cyclus/cyclus and primary focus of the core
+    developers of the cyclus project.  
 
-  developers  
+  cyclus kernel
 
-    Individuals from science, academia, government, or the general public 
-    interested in contributing to the ecosystem of models available for use with 
-    the simulator.
+    The simultion engine housed in :term:`cyclus core`. :term:`Archetype`\ s
+    defined in :term:`module`\ s are linked dynamically to the kernel at the
+    beginning of every simultion.
 
-  dynamically loadable module  
+  archetype
 
-    A shared object or dynamic library representing a model class in |cyclus|, 
-    such as a Facility. It's functionality is linked at runtime to the 
-    simulator.
+    A collection of logic and behavior which can be configured into a
+    :term:`prototype` which can then be instantiated in simulation as a
+    :term:`agent`. Archetypes are represented as C++ classes that inherit from
+    the base ``cyclus::Agent`` class.
 
-  ecosystem  
+  prototype
 
-    A community of developers contributing to a vibrant ecosystem of models 
-    for use by cyclus users.
+    A configured :term:`archetype` with initial state and
+    conditions. :term:`Agent`\ s that do act in the simulation are cloned
+    (copied) from prototypes.
 
-  end users  
+  agent
 
-    Members of the public who directly interface with the code, but perhaps only
-    through its graphical interface and have only a limited need for detail.
+    An entity that acts in a |cyclus| simulation. Agents enter the simulation
+    after having been cloned from a :term:`prototype`. An agent's internal logic
+    and behavior is determined by its :term:`archetype`.
 
-  extensibility  
+  module
 
-    An extensible code must be robust against changes and provide a flexibile 
-    component interface for incorporating contributed modular code additions.
+    A shared-object library that houses implementations of :term:`archetype`\ s
+    and related tools that is dynamically linked to the :term:`cyclus kernel` at
+    runtime if one of its :term:`archetype` is used in a simulation.
 
-  maintainers   
+  core developer   
 
-    These individuals are an advanced group of developers tasked with 
-    moderating code contributions to the core of the cyclus code.
+    An advanced developer tasked with developing and maintaining the
+    :term:`cyclus kernel` and related code.
 
-  model  
+  archetype developer
 
-    A conceptual representation used to represent something. In |cyclus|, a 
-    computational representation of some component (Market, Facility, etc.) 
-    within the nuclear fuel cycle. 
+    An individual from science, academia, government, or the general public
+    interested in contributing to the ecosystem of :term:`archetype`\ s
+    available for use with the simulator.
 
-  modularity  
+  user
 
-    Best acheived by a framework with clear component interfaces, modularity is
-    an interchangeability of components such as data, classes, objects, or
-    libraries within a simulation. Modularity facilitates encapsulation and
-    independence of components that might be proprietary or sensitive.
-
-  module  
-
-    A shared object or dynamic library representing a model class in |cyclus|, 
-    such as a Facility.
+    A member of the public, government, or academia who use |cyclus| to run
+    simulations.
 
   nuclear fuel cycle  
 
-    The progression of nuclear fuel through the collection of facilities and 
-    process stages from mining to disposal that are necessary to generate 
-    nuclear power as well as to prepare, manage, recycle, and store nuclear fuel. 
-
-  open development platform  
-
-    A code repository or server that is publicly viewable and downloadable, 
-    though not necessarily modifiable.
-
-  open development process  
-
-    A software development workflow, usually on an open platform, that is 
-    transparent to the public. Hallmarks include public bug reports, source code 
-    access, and a  a member of the public to contribute code.
-
-  openness  
-
-    A general notion that code, the development process, collaboration, and the 
-    research it supports be unfettered by institutional, national, or other 
-    boundaries, where possible.
-
-  viewers   
-
-    Members of the public not directly interfacing with the code but to 
-    whom the output may be made available for demonstration purposes.
+    The progression of nuclear fuel through the collection of facilities and
+    process stages from mining to disposal that are necessary to generate
+    nuclear power as well as to prepare, manage, recycle, and store nuclear
+    fuel.
 
   parent agent
 
-    An agent that manages (is in charge of) some number of child agents.
+    An :term:`agent` that manages (is in charge of) some number of child agents.
 
   kernel phase
 
-    A phase during a simulation time step that is managed by the simulation
-    kernel engine.
+    A phase during a simulation time step that is managed by the :term:`cyclus
+    kernel`.
 
   agent phase
 
-    A phase during a simulation time step in which agents are allowed to query
-    the simulation environment and perform general actions.
+    A phase during a simulation time step in which :term:`agent`\ s are allowed
+    to query the simulation environment and perform general actions.
