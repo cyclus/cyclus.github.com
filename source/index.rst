@@ -61,6 +61,8 @@ Learn More
 TODO: Add publications on or using |cyclus| page, should contain bibtex entry for
 citing |cyclus| (PHYSOR for now?)
 
+.. _try-it:
+
 Try It
 -------
 

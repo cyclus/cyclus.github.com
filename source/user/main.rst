@@ -33,7 +33,8 @@ Running Simulations
 
    running_sims
 
-TODO: add running from website page
+You can run a simulation now from the comfort of your browser :ref:`here
+<try-it>`.
 
 Agents
 ------
