@@ -1,5 +1,7 @@
-Hello, |Cyclus|!
-================
+.. _hello_world:
+
+Hello, Cyclus!
+==============
 This pages walks you through a very simple hello world example using 
 |cyclus| agents.  First make sure that you have the dependencies installed, 
 namely |Cyclus|, CMake, and a recent verison of Python (2.7 or 3.3+).

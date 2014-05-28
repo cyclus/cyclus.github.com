@@ -19,17 +19,28 @@ Writing Agents & Modules
 
 TODO: write about starting from cycstub and the organization of modules.
 
+Building, Installing and Testing
+++++++++++++++++++++++++++++++++
+
+.. toctree::
+    :maxdepth: 1
+
+    cmake    
+    cycpp
+    testing
+
+Interfacing with the |Cyclus| Kernel
+++++++++++++++++++++++++++++++++++++
+
 .. toctree::
     :maxdepth: 1
     
     timestep
-    cycpp
     resources
+    dre
     dbtypes
     errors
     logger
-    testing
-    dre
 
 TODO: write about custom tables.
 
