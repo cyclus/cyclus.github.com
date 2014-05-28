@@ -25,8 +25,6 @@ message between people:
 
 .. code-block:: xml
 
-.. code-block:: xml
-
   <note>
      <to>Matt</to>          <!-- message recipient -->
      <from>Anthony</from>   <!-- message sender -->
@@ -68,14 +66,12 @@ The following sections are required to appear *only once* in the
 
    input_specs/control
 
-
 The following sections are required to appear *at least once* in the
-``simlation`` section of ecah |Cyclus| input file:
+``simulation`` section of ecah |Cyclus| input file:
 
 .. toctree::
    :maxdepth: 1
 
-   input_specs/commodity
    input_specs/facility
    input_spects/region
 
@@ -85,6 +81,7 @@ The following sections are optional and may appear multiple times in the
 .. toctree::
    :maxdepth: 1
 
+   input_specs/commodity
    input_specs/recipe
 
 .. _XML : http://www.w3schools.com/xml/default.asp
