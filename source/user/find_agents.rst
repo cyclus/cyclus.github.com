@@ -53,8 +53,8 @@ the input file when defining facility prototypes, institutions, and regions.
 
 Archetype specifications also have a single-string form where the three parts
 are separated by colons.  This form is used in places such as in the database
-and on the command line. For example (note the starting colon indicating an
-empty path):
+and on the command line. For example, to print out the schema for an agent on
+the command line (note the starting colon indicating an empty path):
 
 .. code-block:: bash
 
