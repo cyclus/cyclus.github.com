@@ -5,7 +5,7 @@ Archetype Identification and Discovery
 Archetype Specification
 ------------------------
 
-|Cyclus| :term:`archetype`\ s are uniquely identified by a 3-part
+|Cyclus| :term:`archetypes <archetype>` are uniquely identified by a 3-part
 specification that includes:
 
 * a slash separated path
@@ -26,6 +26,7 @@ All archetypes used in a simulation must be defined in the ``archetypes``
 section in the input file:
 
 .. code-block:: xml
+
     <simulation>
     ...
 
@@ -50,9 +51,10 @@ same name, then aliases *must* be specified - no two aliases may have the same
 value (including defaults).  The values of the aliases are referenced later in
 the input file when defining facility prototypes, institutions, and regions.
 
-Archetype specifications also have a single-string form where the three parts are
-separated by colons.  This form is used in places such as on the command line
-(note the starting colon indicating an empty path):
+Archetype specifications also have a single-string form where the three parts
+are separated by colons.  This form is used in places such as in the database
+and on the command line. For example (note the starting colon indicating an
+empty path):
 
 .. code-block:: bash
 
