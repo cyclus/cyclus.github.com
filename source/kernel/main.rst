@@ -24,6 +24,7 @@ Software Development Aids
 
    ../basics/roadmap
    contributing_to_cyclus
+   build_with_conda
    style_guide
 ..   make-models/main
 

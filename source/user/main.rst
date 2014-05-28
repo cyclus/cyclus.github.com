@@ -4,8 +4,11 @@
 |Cyclus| User Guide
 ===================
 
+.. toctree::
+     :maxdepth: 2
+     
+     install
 
-TODO: ADD INSTALL INSTRUCTIONS HERE
 
 Writing Input Files
 ---------------------
