@@ -10,7 +10,7 @@ recipes using the ``conda build <recipe dir>`` command. Necessary dependency
 packages will be automatically downloaded and installed before the build.sh 
 script is run and installed.  The final output is a tar.bz2 file which is a 
 conda package containing the necessary binaries, libraries, etc.  This package 
-can then be installed or can be uploaded to `Binstar <binstar.org>`_, which is 
+can then be installed or can be uploaded to `Binstar <http://binstar.org>`_, which is 
 a service provided to store and distribute conda packages. Notice that Conda 
 requires all dependencies explicitly listed in meta.yaml must have an 
 available Conda package to install. 
@@ -22,7 +22,7 @@ maintaining |Cyclus| with conda, recipes for a number of dependencies have
 also been created.  All lowercase directories in this repo (except fetch) are 
 conda recipes.  Additionally, this repo contains a stock ``.condarc`` file
 which automatically points to the 
-`|Cyclus| Binstar Account <binstar.org/cyclus>`_. 
+|Cyclus| `Binstar Account <http://binstar.org/cyclus>`_. 
 
 
 ------------------------------------------------------------------
