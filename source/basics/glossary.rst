@@ -34,9 +34,9 @@ Glossary of Cyclus Terms
 
   open development process
 
-    A software development workflow, usually on an :term:`open platform`, that
-    is transparent to the public. Hallmarks include public bug reports, source
-    code access, and code contribution.
+    A software development workflow, usually on an :term:`open development
+    platform`, that is transparent to the public. Hallmarks include public bug
+    reports, source code access, and code contribution.
 
   closed development platform  
 
