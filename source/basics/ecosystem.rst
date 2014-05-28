@@ -44,7 +44,7 @@ barriers to adoption by new users and developers including:
 
 * deeply embedded nuclear technology assumptions arising from
   development path.
-1
+
 Because one of the principle purposes of |cyclus| is to create a fuel cycle
 simulator system with a low barrier to adoption, a policy of open source
 distribution of this core infrastructure is critical to its mission.
