@@ -7,14 +7,14 @@ The Dynamic Resource Exchange (DRE) is the heart of a |cyclus| simulation time
 step. Every ``cyclus::Trader`` that is registered with the ``cyclus::Context``
 are automatically included in the exchange. |cyclus| agents can either implement
 the ``cyclus::Trader`` interface as a mixin or can be composed of one or more
-``cyclus::Trader``s. Note that ``cyclus::Facility`` derives the
+``cyclus::Trader``\ s. Note that ``cyclus::Facility`` derives the
 ``cyclus::Trader`` interface, therefore all agents that derive from
 ``cyclus::Facility`` also get the interface.
 
-At any given time step, there is a separate ``cyclus::ResourceExchange``
+At any given time step, there is a separate ``cyclus::ResourceExchange`` 
 instance for each concrete ``cyclus::Resource`` of which the kernel is
-aware. For example, there is an exchange for ``cyclus::Material``s and another
-for ``cyclus::Product``s.
+aware. For example, there is an exchange for ``cyclus::Material``\ s and another
+for ``cyclus::Product``\ s.
 
 The DRE is comprised of five phases:
 
@@ -34,9 +34,9 @@ regarding their demand for a given resource type. Querying is provided through
 the ``cyclus::Trader`` interface's ``Get*Requests`` for a given resource type,
 e.g., ``GetMatlRequests``.
 
-Requests are modeled as collections of ``cyclus::RequestPortfolio``s, where each
-portfolio includes a collection of ``cyclus::Request``s and a collection of
-``cyclus::CapacityConstraint``s. A portfolio is sufficiently met if one or more
+Requests are modeled as collections of ``cyclus::RequestPortfolio``\ s, where each
+portfolio includes a collection of ``cyclus::Request``\ s and a collection of
+``cyclus::CapacityConstraint``\ s. A portfolio is sufficiently met if one or more
 of its constiuent requests are met and all of its constraints are satisfied.
 
 A request provides a target resource, a commodity, and a preference for that
@@ -87,9 +87,9 @@ registered traders regarding their supply for a given resource type. Querying is
 provided through the ``cyclus::Trader`` interface's ``Get*Bids`` for a given
 resource type, e.g., ``GetMatlBids``.
 
-Bids are modeled as collections of ``cyclus::BidPortfolio``s, where each
-portfolio includes a collection of ``cyclus::Bid``s and a collection of
-``cyclus::CapacityConstraint``s. A portfolio is not violated if any of its
+Bids are modeled as collections of ``cyclus::BidPortfolio``\ s, where each
+portfolio includes a collection of ``cyclus::Bid``\ s and a collection of
+``cyclus::CapacityConstraint``\ s. A portfolio is not violated if any of its
 constiuent bids are connected to their requests and all of its constraints are
 satisfied.
 
