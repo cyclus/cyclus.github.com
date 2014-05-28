@@ -34,9 +34,9 @@ There are many ways to customize the files in Ciclus repo.
 Once you have successfully built a conda recipe, it can be uploaded to binstar 
 with the command ::
 
-   binstar upload -u cyclus anaconda/conda-bld/linux-64/cyclus.<VERSION>.tar.gz
+   binstar upload -u cyclus anaconda/conda-bld/linux-64/cyclus-1.0rc-0.tar.bz2
 
-can be used to upload a Linux version.
+can be used to upload a Linux version 1.0 of |Cyclus|.
 
 2) Change the repository  to build
 Say you want to test your fork of |Cyclus| before making a pull request. To 
