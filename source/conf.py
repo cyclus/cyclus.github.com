@@ -34,8 +34,10 @@ sys.path.insert(1, os.path.dirname(fname))
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.pngmath', 'sphinx.ext.autodoc', 'sphinxcontrib.bibtex', 
-              'cyclusagent', 'cloud_sptheme.ext.table_styling']
+extensions = ['sphinx.ext.pngmath', 'sphinx.ext.autodoc', 
+              'cyclusagent', 'cloud_sptheme.ext.table_styling', 
+              'sphinxcontrib.bibtex', 
+              'sphinxext.numpydoc']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['atemplates']
