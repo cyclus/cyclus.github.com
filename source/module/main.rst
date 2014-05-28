@@ -7,8 +7,12 @@
 
 Hello World
 ---------------
-
 TODO: Write a simple hello world example
+
+.. toctree::
+    :maxdepth: 1
+    
+    hello_world
 
 Writing Agents & Modules
 ------------------------
