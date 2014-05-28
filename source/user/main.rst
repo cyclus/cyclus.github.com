@@ -24,6 +24,7 @@ TODO: Add page on actually writing input files
     :glob:
     :maxdepth: 2
 
+    writing_input
     find_agents
 
 ..
