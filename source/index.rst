@@ -64,7 +64,20 @@ citing |cyclus| (PHYSOR for now?)
 Try It
 -------
 
-You can run a |cyclus| simulation right now from the comfort of your own browser:
+You can run a simulation right now from the comfort of your own
+browser.  Just paste in any |cyclus| input file (or use the default one below)
+into the text box below and click submit.  A job ID will be created and
+displayed - you should keep track of this in order to retrieve your results.
+The job table below updates automatically every 30 seconds, or you can refresh
+this page.  It contains all submitted jobs - their status, output, and database
+(if completed) with some useful links:
+
+* Clicking on the job ID link downloads the input file for the job.
+
+* Clicking on the Status link shows the simulation output - useful for
+  diagnosing failures.
+
+* For completed jobs, download the database in a tar file by clicking the Results link
 
 .. raw:: html
 
@@ -72,7 +85,7 @@ You can run a |cyclus| simulation right now from the comfort of your own browser
     <div id="infile-form">
     Cyclus input file: <br>
     <textarea id="infile-box" name="infile" rows=10></textarea>
-    <br><button onclick="submitJob()">Submit</button><label>    Job Id: </label><label id="jobid"></label>
+    <br><button onclick="submitJob()">Submit</button><label>    Job ID: </label><label id="jobid"></label>
     </div>
 
     <br>

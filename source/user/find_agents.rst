@@ -78,7 +78,7 @@ environment variable.  For example:
 
 Directories specified in your ``CYCLUS_PATH`` are searched *before* |Cyclus|'
 default search directories. ``CYCLUS_PATH`` directories mark the *starting
-points* for architype specifications.  This meaning that the path portion of an
+points* for archetype specifications.  This meaning that the path portion of an
 agent specification is appended to the CYCLUS_PATH directories.  For example
 using the above defined ``CYCLUS_PATH``, |Cyclus| would search for::
 
