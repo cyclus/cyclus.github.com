@@ -1,4 +1,3 @@
-
 .. summary Documentation for |Cyclus| Users
 
 |Cyclus| User Guide
@@ -33,13 +32,13 @@ Running Simulations
 
    running_sims
 
-You can run a simulation now from the comfort of your browser :ref:`here
-<try-it>`.
+You can also run a simulation from the comfort of your browser :ref:`here
+<try-it>`!
 
-Agents
-------
-The following is a listing of core-supported modules and documentation for 
-the agents that live inside of them.
+Archetypes
+----------
+The following is a listing of core-supported libraries and documentation for 
+the archetypes that live inside of them.
 
 .. toctree::
     :maxdepth: 2

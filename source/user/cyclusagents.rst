@@ -1,7 +1,7 @@
-|Cyclus| Agents
-===============
+|Cyclus| Archetypes
+===================
 
-This is a collection of agents found in the ``agents`` module that comes with 
+This is a collection of archetypes found in the ``agents`` module that comes with 
 |cyclus| itself.
 
 .. cyclus-agent:: :agents:Source

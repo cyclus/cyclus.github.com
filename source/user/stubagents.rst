@@ -1,7 +1,7 @@
-Stub Agents
+Stub Archetypes
 ================
-This is a collection of agents found in the ``stubs`` path that comes with 
-|cyclus| itself.
+This is a collection of archetypes found in the ``stubs`` path that comes with 
+|cyclus|.
 
 .. cyclus-agent:: stubs:StubRegion:StubRegion
 
