@@ -65,8 +65,8 @@ Interfacing with the |Cyclus| Kernel
     timestep
     resources
     dre
-    custom_tables
     dbtypes
+    custom_tables
     errors
     logger
 
