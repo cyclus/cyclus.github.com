@@ -1,6 +1,6 @@
-Cycamore Agents
-================
-This is a collection of agents found in the ``cycamore`` module that comes with 
+Cycamore Archetypes
+====================
+This is a collection of archetypes found in the ``cycamore`` module that comes with 
 cycamore itself.
 
 .. cyclus-agent:: :cycamore:Source

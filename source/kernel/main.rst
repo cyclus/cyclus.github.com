@@ -22,8 +22,8 @@ Software Development Aids
 .. toctree::
    :maxdepth: 1
 
-   ../basics/roadmap
    contributing_to_cyclus
+   build_with_conda
    style_guide
 ..   make-models/main
 

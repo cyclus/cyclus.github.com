@@ -6,41 +6,39 @@ Use Cases for |Cyclus| Data Analysis
 Transaction Data
 ++++++++++++++++
 
-The primary |cyclus| material output data is composed of a log of individual
-material transactions.  Each transaction has the following fundamental characteristics:
-
- * **time**: an integer of time steps since the beginning of the simulation
- * **sender**: an integer identifying the facility that sent the material
- * **recipient**: an integer identifying the facility that received the material
- * **manifest**: a vector of material information each containing:
-     * **composition vector**: a vector representing the isotopic composition
-        of the material that was transacted
-     * **quantity**: a double indicating the magnitude of material shipped
-        in this transaction
-
-Facility Instance Data
-++++++++++++++++++++++
-
-The primary |cyclus| facility output data is composed of a list of
-individual facilities.  Each facility have the following fundamental
+One of the primary |cyclus| output data is composed of a log of individual
+resource transactions.  Each transaction has the following fundamental
 characteristics:
 
- * **institution**: an integer identifying the institution owning this facility
- * **region**: an integer identifying the region in which this facility exists
- * **name**: a string that is the name of this instance of the facility
- * **prototypeID**: an integer identifying which facility prototype on
-   which this facility is based.
- * **capacity**: a double indicating the capacity of this facility in
-   some standard units
+ * **time**: an integer of time steps since the beginning of the simulation
+ * **sender**: an agent ID identifying the facility that sent the material
+ * **recipient**: an agent ID identifying the facility that received the material
 
-There will also be a table of facility prototypes with generic prototype
-information for each:
+ * **resource**: an ID identifying the resource object that was transferred.
+   Resources have an associated quantity in addition to other properties (e.g.
+   nuclide composition).
 
- * **type**: the model used to form this prototype
- * **inmarkets**: a list of integers indciating which markets this
-   prototype receives material from
- * **outmarkets**: a list of integers indicating which markets this
-   prototype ships material to
+
+Resource Data
+++++++++++++++
+
+
+Agent Instance Data
+++++++++++++++++++++++
+
+The database contains a list of all agents (facilities, regions, etc.) that
+existed in the simulation.  Each agent have the following fundamental
+characteristics:
+
+ * **parent** an ID identifying an owning agent that created/manages the agent
+ * **spec**: a string identifying the specific library and archetype used for
+   the agent
+ * **prototype**: an string identifying the prototype configuration on which
+   the agent is based.
+ * **enter-time**: an integer indicating the time step the agent entered the
+   simulation.
+ * **exit-time**: a integer indicating the time step the agent left the
+   simulation
 
 Use Cases
 +++++++++
@@ -54,7 +52,7 @@ Material flow explorations
 --------------------------
 
 Many material flow explorations would begin by visualizing the
-time-dependent material flow between a set of source facilities and a
+time-dependent material flow between a set of sending facilities and a
 set of receiving facilities.  The minimum information needed to
 generate such a visualization is the population of the two sets of
 facilities, and detailed discussion on how to populate these sets is

@@ -133,6 +133,16 @@ Gtest's natural evolution cycle, please download the latest release of Google Te
 and follow `the fused source directions here`_.  If we go too long without doing this, 
 it could be very painful to update.
 
+Cycstub
+--------
+Every release the relevant files from |cyclus| should be copied over to cyclus.
+Use the following BASH commands to do so:
+
+.. code-block:: bash
+
+   $ cp ~/cyclus/tests/input/stub_example.xml ~/cycstub/input/example.xml && \
+     cp ~/cyclus/stubs/stub_* ~/cycstub/src/
+
 Document History
 ================
 This document is released under the CC-BY 3.0 license.

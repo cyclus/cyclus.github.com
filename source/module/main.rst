@@ -1,13 +1,41 @@
-|Cyclus| Module Developer Guide
-===============================
+|Cyclus| Archetype Developer Guide
+===================================
+
+.. raw:: html
+
+    <table style="width:100%">
+    <tr><td style="width:300px;">
 
 .. image:: /astatic/antipode-bike.jpg
     :align: center
+    :width: 300px
     :alt: http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=9361427
+
+.. raw:: html
+
+    </td><td>
+
+Welcome!
+
+You are here because you 
+have made (or are making) the transition from wanting to run simulations
+to wanting to dig in and start dictating agent logic and behaviour on a more 
+fundemental level. Perhaps existing archetypes are insufficient for your needs, 
+perhaps you are curious as to how it all works, or are a devilishly handsome 
+thrill-seeker.  Whatever your reasons, you have come to the right place!
+
+This guide assumes that you have |cyclus| installed, are familiar with running
+simulations, and understand user-level concepts.
+
+To get started please follow the instructions in :doc:`hello_world`.
+
+.. raw:: html
+
+    </td></tr>
+    </table>
 
 Hello World
 ---------------
-TODO: Write a simple hello world example
 
 .. toctree::
     :maxdepth: 1
@@ -57,7 +85,6 @@ Under the Hood
 ..   materials_and_isotopes
 
 TODO: Write about DRE
-
 
 |Cyclus| Toolkit
 ----------------

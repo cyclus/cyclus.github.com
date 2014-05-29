@@ -57,9 +57,9 @@ Glossary of Cyclus Terms
 
   cyclus kernel
 
-    The simultion engine housed in :term:`cyclus core`. :term:`Archetype`\ s
+    The simulation engine housed in :term:`cyclus core`. :term:`Archetype`\ s
     defined in :term:`module`\ s are linked dynamically to the kernel at the
-    beginning of every simultion.
+    beginning of every simulation.
 
   archetype
 
