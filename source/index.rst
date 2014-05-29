@@ -55,6 +55,7 @@ Learn More
     module/main
     kernel/main
     cep/cep0
+    previous/main
 
 TODO: Add publications on or using |cyclus| page, should contain bibtex entry for
 citing |cyclus| (PHYSOR for now?)
@@ -117,6 +118,11 @@ this page.  It contains all submitted jobs - their status, output, and database
         loadDash();
     </script>
 
+Previous Versions
+-----------------
+
+Details on the evolution of |cyclus| can be found on the :doc:`Previous
+Versions <previous/index>` page.
 
 Contact Us
 ----------
