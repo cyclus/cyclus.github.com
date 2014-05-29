@@ -1,3 +1,5 @@
+.. _cmake_build:
+
 Building Modules with CMake
 ===========================
 

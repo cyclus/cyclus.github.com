@@ -1,275 +1,66 @@
 
-.. summary Some guidelines on writing module tests
-
 Testing Agents and Modules
-===============================
+==========================
 
-.. warning:: This page is wildly out-of-date!
+Overview
+--------
 
-TODO: fix this page
+Writing `unit tests <http://en.wikipedia.org/wiki/Unit_testing>`_ for your
+module is a prerequisite for its addition to any |cyclus| library, but it's
+really a `good idea anyway
+<http://software-carpentry.org/v4/test/unit.html>`_. 
 
-Introduction
-------------
-Writing tests for your module is a prerequisite for its addition to 
-any |cyclus| library. Specifically, any public API functionality must
-provide the `basic guarantee 
-<http://en.wikipedia.org/wiki/Exception_guarantees>`_; however, you
-may (and I do) find it useful to test private methods and the effect 
-of public methods on private members. This guide will provide an 
-example of how to achieve such functionality.
+|cyclus| makes use of the `Google Test <http://code.google.com/p/googletest/>`_
+framework. The `primer <https://code.google.com/p/googletest/wiki/Primer>`_ is
+recommended as an introduction to the fundamental concepts of unit testing with
+Google Test. Seriously, if you're unfamiliar with unit testing or Google Test,
+check out the primer.
 
-Directory Structure
--------------------
-A fully developed module will have the following directory structure:
+Unit Tests Out of the Box
+-------------------------
 
-  * Module.h
-  * Module.cpp
-  * Module.rng
-  * ModuleTests.h
-  * ModuleTests.cpp  
-  * CMakeLists.txt
+The |cyclus| dev team provides a number of unit tests for free (as in
+beer). Really! You can unit test your :term:`archetype` immediately to confirm
+some basic functionality with the :term:`cyclus kernel`. We provide basic unit
+tests for any class that inherits from one of:
 
-Testing Framework
------------------
-|cyclus| makes use of the `Google Test 
-<http://code.google.com/p/googletest/>`_ framework. 
-It is a tool which will assist |Cyclus| developers in incorporating tests for their 
-modules. The framework is integrated with `CMake` with the use of gtest.cc 
-gtest_main.cc and gtest.h. The Google Test primer is recommended as an 
-introduction to the fundamental concepts of unit testing with Google Test.
+* ``cyclus::Agent``
+* ``cyclus::Facility``
+* ``cyclus::Institution``
+* ``cyclus::Region``
 
-Unit Tests
-~~~~~~~~~~
-Unit tests are written for each new unit of functionality to assure correct 
-behavior.  A |Cyclus| unit test should: 
+Note that ``cyclus::Agent`` is the base class for any object that acts as an
+agent in the simulation, so every archetype can invoke those unit tests.
 
-  - Sufficiently verify the expected behavior of a unit of functionality
-  - Sufficiently verify expected behavior for boundary cases 
-  - Be written simply
+In order to get the provided unit tests in your archetype's tests, a few extra
+lines must be added to your ``*_tests.cc`` file. For instance, the
+``WorldFacility`` in the :ref:`hello_world` example with the file structure
+outline in :ref:`cmake_build` adds the following lines: ::
 
-A good tutorial on how to write good unit tests can be found at 
-software-carpentry.org.
+  #include "facility_tests.h"
+  #include "agent_tests.h"
 
-|Cyclus| test coverage should mimic the hierarchical structure of the source code.
-Each class should have a corresponding Test Case that challenges the robustness 
-of its interface.
+  #ifndef CYCLUS_AGENT_TESTS_CONNECTED
+  int ConnectAgentTests();
+  static int cyclus_agent_tests_connected = ConnectAgentTests();
+  #define CYCLUS_AGENT_TESTS_CONNECTED cyclus_agent_tests_connected
+  #endif // CYCLUS_AGENT_TESTS_CONNECTED
 
-An interface consists of the functions, constructors, and data retrievers with 
-which the rest of the code interacts with that class. Each of these functions, 
-constructors, and data retrievers should be challenged by a Test within the 
-Test Case for that class.
-
-Many of these tests will require the use of Fixtures, which will represent canonical 
-|Cyclus| objects such as Materials, Commodities, Markets, Facilities and Messages. 
-These Fixtures will be shared by many Tests and sometimes many Test Cases.
-
-
-Acceptance Tests
-~~~~~~~~~~~~~~~~
-
-If you are a developer, you may write a module that is intended to be a concrete 
-implementation of a FacilityModel or other interface type.
-
-To ensure that your code satisfies the basic requirements of the interface which 
-it is intended to be satisfy, the |Cyclus| core developers have created 
-parameterized abstract interface tests that must be instantiated with your 
-concrete model in order for it to be accepted into the |cyclus| module library.
-
-The interface for our ToasterFacility can be tested by including 
-FacilityModelTests.h in the beginning of the file, ensuring that 
-FacilityModelTests.cpp is linked to the CyclusUnitTestDriver executable, and 
-declaring the implementation of the parameterized test by providing a reference 
-to a constructor to a concrete ToasterFaclity.
-
-.. code-block:: cpp
-
-  // ToasterFacilityTests.cpp
-  #include <gtest/gtest.h>
-  #include "FacilityModelTests.h"
-
-  FacilityModel* ToasterFacilityConstructor(){
-    return new ToasterFaclity();
+  cyclus::Agent* WorldFacilityConstructor(cyclus::Context* ctx) {
+    return new WorldFacility(ctx);
   }
 
-  INSTANTIATE_TEST_CASE_P(ToasterFac, 
-                          FacilityModelTests, 
-                          Values(&ToasterFacilityConstructor));
+  INSTANTIATE_TEST_CASE_P(WorldFac, FacilityTests,
+                          ::testing::Values(&WorldFacilityConstructor));
 
+  INSTANTIATE_TEST_CASE_P(WorldFac, AgentTests,
+                          ::testing::Values(&WorldFacilityConstructor));
 
-.. code-block:: cpp
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  TEST_F(ToasterFacilityTest, AddingHeat) {
-    double original_temp = src_facility->getBreadTemp();
-    EXPECT_NO_THROW( src_facility->addHeat(2.0) );
-    double warm_temp = src_facility->getBreadTemp(); 
-    EXPECT_GT(warm_temp, original_temp;)
-    EXPECT_NO_THROW( src_facility->addHeat(-2.0) );
-    double cool_temp = src_facility->getBreadTemp(); 
-    EXPECT_LT(cool_temp, warm_temp;)
-  }
-
-Test Cases
-~~~~~~~~~~~
-
-Test Cases are logical groupings of Tests. For |Cyclus|, each class, such as the 
-ToasterFacility should have its own Test Case defined within a file called 
-ToasterFacilityTests.cpp or something similar.
-
-The ToasterFacilityTests.cpp file should be placed in the appropriate directory 
-within the code as well. Specifically, it should be placed in the 
-trunk/src/Facility/ToasterFacility/ folder with the other ToasterFacility files.
-
-The Test Case is a class declared in this file. The |Cyclus| convention is to give 
-the class the same name as the file. For the ToasterFacility, this class will 
-look like:
-
-.. code-block:: cpp
-
-  // ToasterFacilityTests.cpp
-  #include <gtest/gtest.h>
-  #include "ToasterFacility.h"
-
-  using namespace std;
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  class ToasterFacilityTest : public ::testing::Test {
-  protected:
-    virtual void SetUp(){
-    };
-
-    virtual void TearDown() {
-    }
-  };
-
-When executed, the testing framework will run each test case 
-independently. For each test case, Google Test does the following:
-
-  #. Run SetUp()
-  #. Run ModuleTest Fixture
-  #. Run TearDown()
-
-It is the responsibility of the developer to properly initialize any
-required members in SetUp() and free the appropriate memory in 
-TearDown().
-
-Tests With Fixtures
-~~~~~~~~~~~~~~~~~~~~
-section tests Tests with Fixtures
-
-Tests are performed on single units of functionality within |Cyclus|. For |Cyclus|, 
-  imagine that the ToasterFacility class has a function called addHeat(double 
-  to_set) which increases the ``current_bread_temp_`` data member value. Knowing 
-  very little about the function, we should check that if to_set is positive, 
-  the ``current_bread_temp_`` increases, and if to_set is negative, the 
-  ``current_bread_temp_`` decreases. 
-  
-  A test within the ToasterFacilityTest Test Case will need to utilize a 
-  concrete instance of a ToasterFacility to check this. 
-  
-  To test the internals of the ToasterFacility class, such as private data 
-  members like ``current_bread_temp_`` a fixture needs to be created in the setup 
-  step. A very simple class is created in order to supply a public getter 
-  function for the ``current_bread_temp_`` variable.
-
-
-.. code-block:: cpp
-
-  // ToasterFacilityTests.cpp
-  #include <gtest/gtest.h>
-  #include "ToasterFacility.h"
-  #include "TestInst.h"
-  #include "CycException.h"
-
-  using namespace std;
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  class FakeToasterFacility : public ToasterFacility {
-    public:
-      FakeToasterFacility() : ToasterFacility() {
-      }
-
-      virtual ~FakeToasterFacility() {
-      }
-
-      double getBreadTemp(){return current_bread_temp_;
-  };
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  class ToasterFacilityTest : public ::testing::Test {
-  protected:
-    FakeToasterFacility* src_facility;
-
-    virtual void SetUp(){
-      src_facility = new FakeToasterFacility();
-      src_facility->setParent(new TestInst());
-    };
-
-    virtual void TearDown() {
-      delete src_facility;
-    }
-  };
-   
-
-For a tutorial on the 
-use of Googletest for creating and using Fixtures, please see the Googletest 
-primer section on 
-`fixtures <http://code.google.com/p/googletest/wiki/Primer#Test_Fixtures:_Using_the_Same_Data_Configuration_for_Multiple_Te>_`.
-
-Now that the fixture setup and teardown are in place, it is possible to add a
-test (with access to the fixture to ToasterFacilityTests.cpp.
-
-.. code-block:: cpp
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  TEST_F(ToasterFacilityTest, AddingHeat) {
-    double original_temp = src_facility->getBreadTemp();
-    EXPECT_NO_THROW( src_facility->addHeat(2.0) );
-    double warm_temp = src_facility->getBreadTemp(); 
-    EXPECT_GT(warm_temp, original_temp;)
-    EXPECT_NO_THROW( src_facility->addHeat(-2.0) );
-    double cool_temp = src_facility->getBreadTemp(); 
-    EXPECT_LT(cool_temp, warm_temp;)
-  }
-
-Assertions
-~~~~~~~~~~
-
-As in the example above, Each test will be one or more assertions. Assertions 
-test various truth expectations for the boundary cases that might be 
-encountered by the function. 
-
-With the Google Test framework, it is easy to make some assertions fatal and 
-some nonfatal. That is, for nonfatal assertions, the test continues but for 
-fatal assertions the test ceases to continue. In googletest, fatal assertions
-are called with the macros that begin with the word EXPECT (EXPECT_EQ(),
-EXPECT_LE(), EXPECT_GE()...). For things that absolutely must be the case for
-us to trust the results of following tests,
-
-.. code-block:: cpp
-
-  TEST_F(ToasterFacilityTests, addZeroHeat){
-    double original_temp = src_facility->getBreadTemp();
-    EXPECT_NO_THROW( src_facility->addHeat(0.0) );
-    double new_temp = src_facility->getBreadTemp(); 
-    EXPECT_EQ(new_temp, original_temp);
-  }
-
-Nonfatal assertions are macros that begin with ASSERT (ASSERT_EQ(), ASSERT_LE(), ...).
-
-.. code-block:: cpp
-
-  TEST_F(FooTest, heatTransfer){
-    double original_temp = src_facility->getBreadTemp();
-    src_facility->addHeat(2.0);
-    double new_temp = src_facility->getBreadTemp(); 
-    ASSERT_EQ((original_temp+2.0),new_temp);
-  }
-
-For more information on the googletest assertion syntax please see the Googletest 
-primer section on 
-`assertions <http://code.google.com/p/googletest/wiki/PrimerAssertions>_`.
-
-
+The above lines can be specialized to your case by replacing ``WorlfFac`` with
+an appropriate moniker (anything that uniquely identifies your unit test
+name). Also, if you're subclassing from ``cyclus::Institution`` or
+``cyclus::Region``, replace all instances of facility in the above example with
+the institution or region, respectively.
 
 An Example
 ----------
