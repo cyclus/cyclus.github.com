@@ -120,9 +120,15 @@ Contact Us
 ----------
 
 * `Users' mailing list and forum <https://groups.google.com/forum/#!forum/cyclus-users>`_
+
 * `Developers' mailing list and forum <https://groups.google.com/forum/#!forum/cyclus-dev>`_
+
 * Project PI, Paul Wilson: wilsonp AT engr.wisc.edu
+
 * Project Lead, Anthony Scopatz:  scopatz AT gmail.com
+
+* Kernel Developer, `Matthew Gidden <http://mattgidden.com/>`_: matthew.gidden AT
+  gmail.com
 
 Acknowledgments
 ----------------
