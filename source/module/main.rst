@@ -84,4 +84,8 @@ Under the Hood
 
 |Cyclus| Toolkit
 ----------------
-TODO: Write about |cyclus| toolkit. Probably deserves its own heading.
+
+.. toctree::
+    :maxdepth: 1
+
+    toolkit
