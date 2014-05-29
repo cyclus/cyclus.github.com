@@ -3,8 +3,7 @@ Writing a |Cyclus| Input File
 
 This section will provide an introduction to creating a valid input file for
 |Cyclus| by hand.  Because |Cyclus| uses XML, input files have clearly defined
-sections that can appear in any order and can be automatically validated for
-correctness.
+sections, or blocks, that can be automatically validated for correctness.
 
 Work is underway to provide a drag-and-drop graphical user interface to
 faciliate building |Cyclus| input files in the future.
@@ -58,32 +57,20 @@ contains all other data for a simulation.
      ... simulation data will go here ...
    </simulation>
 
-The following sections are required to appear *only once* in the
-``simulation`` section of each |Cyclus| input file:
+Although not all sections are required, the following sections are required to
+appear in the following order if they do appear:
 
 .. toctree::
    :maxdepth: 1
 
    input_specs/control
-   input_specs/archetypes
-
-The following sections are required to appear *at least once* in the
-``simulation`` section of ecah |Cyclus| input file:
-
-.. toctree::
-   :maxdepth: 1
-
-   input_specs/facility
-   input_spects/region
-
-The following sections are optional and may appear multiple times in the
-``simulation`` section of each |Cyclus| input file:
-
-.. toctree::
-   :maxdepth: 1
-
    input_specs/commodity
+   input_specs/archetypes
+   input_specs/facility
+   input_specs/region
+   input_specs/inst
    input_specs/recipe
 
 .. _XML : http://www.w3schools.com/xml/default.asp
+
 

@@ -137,3 +137,12 @@ Glossary of Cyclus Terms
   
     An :term:`agent phase` that occurs after the :term:`dynamic resource
     exchange` every time step
+
+  composition
+
+    A list of nuclides and their relative quantity.
+
+  material
+
+    A particular kind of resource that combines a :term:`composition` and a
+    mass to be exchanged

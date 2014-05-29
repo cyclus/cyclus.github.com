@@ -18,8 +18,6 @@ simulations and run them.
 Writing Input Files
 ---------------------
 
-TODO: Add page on actually writing input files
-
 .. toctree::
     :glob:
     :maxdepth: 2

@@ -7,7 +7,7 @@ Every agent that participates in a |cyclus| simulation is based on a
 simulation, and provides specifications that uniquely identify each archetype.
 
 A single ``archetypes`` block is required, and contains one or more ``spec``
-blocks include:
+blocks.  Each ``spec`` block has these blocks in the following order:
 
 * ``path`` (optional) - a slash-separated path
 * ``lib`` (optional) - a library name
@@ -17,7 +17,8 @@ blocks include:
 In addition to the unambiguous specification (as defined in
 :doc:`../find_agents`) formed by the ``path``, ``lib``, and ``name``, the
 ``alias`` provides an alternative name by which to refer to the archetype
-elsewhere in the file.
+elsewhere in the file.  If an alias is defined, it is the **only way** to
+refer to that archetype in other locations.
 
 Example 
 ++++++++

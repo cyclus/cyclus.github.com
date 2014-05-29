@@ -1,5 +1,5 @@
-``Control`` - Simulation Control (required)
-============================================
+``Control`` - Simulation Control (required once)
+================================================
 
 Simulation control is the input portion relating to time, uses the ``control``
 tag, and has the following sections in any order:

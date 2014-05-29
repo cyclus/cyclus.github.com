@@ -1,12 +1,11 @@
 ``Facility`` - Facility Prototypes (at least one required)
 ============================================================
 
-Every agent that participates in a |cyclus| simulation is based on a
-:term:`prototype` that is formed by configuring an :term:`archetype`.  Each
-``facility`` block defines a single prototype for an agent that acts as a
-facility in the simulation.
+Every agent that participates in a |cyclus| simulation represents either a
+facility, an institution or a region.  Each ``facility`` block defines a
+single prototype for an agent that acts as a facility in the simulation.
 
-Each ``facility`` block contains:
+Each ``facility`` block has the follwoing sections in any order:
 
 * ``name`` (required once) - a name for the prototype
 * ``lifetime`` (optional once) - a non-negative integer indicating the number

@@ -1,11 +1,10 @@
 ``Commodity`` - Commodity Priority  (optional, may appear multiple times)
 ==========================================================================
 
-In |Cyclus|, a commodity is a fundemantal concept that defines how agents can
-interact.  Commodities are simply used to define which resources a facility
-can request and/or offer.  The list of commodities in a problem is defined
-exclusively by the commodities that are used in the definition of facility
-prototypes.
+In |Cyclus|, a commodity is used to define how agents can interact.
+Commodities are simply used to define which resources a facility can request
+and/or offer.  The list of commodities in a problem is defined exclusively by
+the commodities that are used in the definition of facility prototypes.
 
 The ``commodity`` input block is only used to indicate a non-default priority
 for a particular commodity in the dynamic resource exchange solution.
