@@ -124,6 +124,16 @@ Glossary of Cyclus Terms
     kernel`.
 
   agent phase
-
+  
     A phase during a simulation time step in which :term:`agents <agent>` are
     allowed to query the simulation environment and perform general actions.
+
+  tick
+  
+    An :term:`agent phase` that occurs before the :term:`dynamic resource
+    exchange` every time step
+
+  tock
+  
+    An :term:`agent phase` that occurs after the :term:`dynamic resource
+    exchange` every time step

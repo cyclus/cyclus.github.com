@@ -35,8 +35,11 @@ agent in the simulation, so every archetype can invoke those unit tests.
 In order to get the provided unit tests in your archetype's tests, a few extra
 lines must be added to your ``*_tests.cc`` file. For instance, the
 ``WorldFacility`` in the :ref:`hello_world` example with the file structure
-outline in :ref:`cmake_build` adds the following lines: ::
+outline in :ref:`cmake_build` adds the following lines to
+``world_facility_tests.cc`` to get all of the free ``cyclus::Agent`` and
+``cyclus::Facility`` unit tests: ::
 
+  #include "world_facility.h"
   #include "facility_tests.h"
   #include "agent_tests.h"
 
@@ -56,278 +59,152 @@ outline in :ref:`cmake_build` adds the following lines: ::
   INSTANTIATE_TEST_CASE_P(WorldFac, AgentTests,
                           ::testing::Values(&WorldFacilityConstructor));
 
-The above lines can be specialized to your case by replacing ``WorlfFac`` with
+The above lines can be specialized to your case by replacing ``WorldFac`` with
 an appropriate moniker (anything that uniquely identifies your unit test
 name). Also, if you're subclassing from ``cyclus::Institution`` or
 ``cyclus::Region``, replace all instances of facility in the above example with
 the institution or region, respectively.
 
-An Example
-----------
-Now we will provide an example of a very simple module. The module 
-increases a privately stored counter.
+Unit Test Example
+-----------------
 
-Module.h
-~~~~~~~~
+Now we will provide an example of a very simple :term:`archetype` that keeps
+track of how many :term:`ticks <tick>` it has experienced. We'll call it
+``TickTracker``.
+
+This tutorial assumes that you have a directory setup like that described in
+:ref:`hello_world`, namely that there is a `src` directory in which
+:term:`archetype` source files are housed and a `install.py` file that will
+install them on your system.
+
+Make a file called ``tick_tracker.h`` in the ``src`` directory that has the
+following lines:
 
 .. code-block:: cpp
 
-  class Module;
-  #include "ModuleTests.h"
+  #include "cyclus.h"
 
-  class Module {
+  class TickTracker : public cyclus::Facility {
    public:
-    Module();                 // constructor
-    void increaseCounter();   // increase counter_ by one
-      
+    TickTracker(cyclus::Context* ctx);
+
+    #pragma cyclus
+
+    /// increments n_ticks  
+    virtual void Tick();
+
+    /// no-op
+    virtual void Tock() {};
+
+    /// query now many ticks the agent has experienced
+    inline int n_ticks() const {return n_ticks_;}
+
    private:
-    int counter_;
-
-    friend class ModuleTest;  // friend class gives access to private members 
+    int n_ticks_;
   };
 
-Here we use the friend keyword. This allows functions defined in the
-ModuleTest class to access both private and protected members and 
-methods of the Module class.
-
-Module.cpp
-~~~~~~~~~~
+Next, make a file called ``tick_tracker.cc`` in the ``src`` directory that has the
+following lines:
 
 .. code-block:: cpp
 
-  #include "Module.h"
+  #include "tick_tracker.h"
+  
+  // we have to call the base cyclus::Facility class' constructor 
+  // with a context argument
+  TickTracker::TickTracker(cyclus::Context* ctx) : n_ticks_(0), cyclus::Facility(ctx) {};
 
-  // -----------------------------------------------------------------
-  Module::Module() {
-    counter_ = 0;
-  }
+  // tick experienced!
+  void TickTracker::Tick() {n_ticks_++;}    
 
-  // -----------------------------------------------------------------
-  void Module::increaseCounter() {
-    counter_++;
-  }
-
-
-ModuleTests.h
-~~~~~~~~~~~~~
+Now, make a file called ``tick_tracker_tests.cc`` in the ``src`` directory that
+has the following lines:
 
 .. code-block:: cpp
 
+  // gtest deps
   #include <gtest/gtest.h>
-  #include "Module.h"
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  class ModuleTest : public ::testing::Test {
-  protected:
-    Module* module_;
-      
-    virtual void SetUp();     // gtest construction
-    virtual void TearDown();  // gtest destruction
-
-    int counter();            // access the counter_ variable
-  };
-
-
-ModuleTests.cpp
-~~~~~~~~~~~~~~~
-
-.. code-block:: cpp
-
-  #include "ModuleTests.h"
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  void ModuleTest::SetUp() {
-    module_ = new Module();
-  }
   
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  void ModuleTest::TearDown() {
-    delete module_;
-  }  
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  int ModuleTest::counter() {
-    return module_->counter_; // counter_ accessed via friend class
-  }  
+  // cyclus deps
+  #include "facility_tests.h"
+  #include "agent_tests.h"
+  #include "test_context.h"
   
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  TEST_F(ModuleTest,TestConstructor) {
-    EXPECT_EQ(counter(),0);
+  // our deps
+  #include "tick_tracker.h"
+  
+  // write a unit test of our own
+  TEST(TickTracker, track_ticks) {
+    cyclus::TestContext ctx;
+    TickTracker fac(&ctx);
+    EXPECT_EQ(0, fac.n_ticks());
+    fac.Tick();
+    EXPECT_EQ(1, fac.n_ticks());
+    fac.Tick();
+    EXPECT_EQ(2, fac.n_ticks());
   }
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  TEST_F(ModuleTest,TestIncreaseCounter) {
-    module_->increaseCounter();
-    EXPECT_EQ(counter(),1);
+  // get all the basic unit tests
+  #ifndef CYCLUS_AGENT_TESTS_CONNECTED
+  int ConnectAgentTests();
+  static int cyclus_agent_tests_connected = ConnectAgentTests();
+  #define CYCLUS_AGENT_TESTS_CONNECTED cyclus_agent_tests_connected
+  #endif // CYCLUS_AGENT_TESTS_CONNECTED
+
+  cyclus::Agent* TickTrackerConstructor(cyclus::Context* ctx) {
+    return new TickTracker(ctx);
   }
 
-Note here that we first test that the counter has been properly 
-initialized in the Module's constructor. Second, we test that 
-increaseCounter() performs as expected. We need not test that the
-counter's value is 0 in TestIncreaseCounter because this has been
-determined in TestConstructor.
+  INSTANTIATE_TEST_CASE_P(TicTrac, FacilityTests,
+                          ::testing::Values(&TickTrackerConstructor));
 
-Testing XML Initialization
---------------------------
+  INSTANTIATE_TEST_CASE_P(TicTrac, AgentTests,
+                          ::testing::Values(&TickTrackerConstructor));
 
-|cyclus| relies on reading xml files to initialize modules. It is 
-often very convenient to test that a module has been initalized
-correctly. The following example will show how to achieve such
-functionality.
+Add the following lines to the ``src/CMakeLists.txt`` file: ::
 
-Let us return to the Module example; however, this time let us assume
-that the initial value of the counter is determined at run time by 
-reading an XML file. For example, let us say the XML is as follows:
+  INSTALL_CYCLUS_STANDALONE("TickTracker", "tick_tracker", "tutorial")
 
-.. code-block:: xml
+Now we're ready to install the ``TickTracker`` module and run its tests. If you
+haven't already, now's a good time to add the ``$CYCLUS_INCLUDE_PATH`` to your
+``PATH`` environment variable (|cyclus|'s ``install.py`` defaults to
+``~/.local``). Next, from your top level directory (where your ``install.py``
+file is), run: 
 
-  <counter_init>5</counter_init>
+.. code-block:: bash
 
-Here the counter is initialized to the value 5. Let us revisit each
-file to review what has changed to test this new functionality.
+  $ ./install.py
+  $ TickTracker_unit_tests
 
-Module.h
-~~~~~~~~
+Which results in: ::
 
-.. code-block:: cpp
+  [==========] Running 8 tests from 3 test cases.
+  [----------] Global test environment set-up.
+  [----------] 1 test from TickTracker
+  [ RUN      ] TickTracker.track_ticks
+  [       OK ] TickTracker.track_ticks (19 ms)
+  [----------] 1 test from TickTracker (20 ms total)
 
-  class Module;
-  #include "ModuleTests.h"
-  #include <libxml/xpath.h>
+  [----------] 5 tests from TicTrac/AgentTests
+  [ RUN      ] TicTrac/AgentTests.Clone/0
+  [       OK ] TicTrac/AgentTests.Clone/0 (8 ms)
+  [ RUN      ] TicTrac/AgentTests.Print/0
+  [       OK ] TicTrac/AgentTests.Print/0 (9 ms)
+  [ RUN      ] TicTrac/AgentTests.Schema/0
+  [       OK ] TicTrac/AgentTests.Schema/0 (9 ms)
+  [ RUN      ] TicTrac/AgentTests.Annotations/0
+  [       OK ] TicTrac/AgentTests.Annotations/0 (15 ms)
+  [ RUN      ] TicTrac/AgentTests.GetAgentType/0
+  [       OK ] TicTrac/AgentTests.GetAgentType/0 (8 ms)
+  [----------] 5 tests from TicTrac/AgentTests (49 ms total)
 
-  class Module {
-   public:
-    init(xmlNodePtr cur, xmlXPathContextPtr context);   // initialize counter_
-    void increaseCounter();                             // increase counter_ by one
-      
-   private:
-    int counter_;
+  [----------] 2 tests from TicTrac/FacilityTests
+  [ RUN      ] TicTrac/FacilityTests.Tick/0
+  [       OK ] TicTrac/FacilityTests.Tick/0 (9 ms)
+  [ RUN      ] TicTrac/FacilityTests.Tock/0
+  [       OK ] TicTrac/FacilityTests.Tock/0 (8 ms)
+  [----------] 2 tests from TicTrac/FacilityTests (17 ms total)
 
-    friend class ModuleTest;  // friend class gives access to private members 
-  };
-
-Module.cpp
-~~~~~~~~~~
-
-.. code-block:: cpp
-
-  #include "Module.h"
-  #include "InputXML.h"
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  void Module::init(xmlNodePtr cur, xmlXPathContextPtr context) {
-    counter_ = 	       
-      atoi((const char*)
-           XMLinput->get_xpath_content(context,node,"counter_init"));
-  }
-
-  // -----------------------------------------------------------------
-  void Module::increaseCounter() {
-    counter_++;
-  }
-
-The counter\_ variable is now initialized via XML. Specifically, an
-XML node and context must be provided. Normally in |cyclus|, the
-XML context is provided via the XMLinput singleton.
-
-ModuleTests.h
-~~~~~~~~~~~~~
-
-.. code-block:: cpp
-
-  #include "Module.h"
-
-  #include <gtest/gtest.h>
-  #include <libxml/parser.h>
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  class ModuleTest : public ::testing::Test {
-  protected:
-    Module* module_;
-    int test_counter_;        // a variable to set the initialized counter to
-  
-    virtual void SetUp();     // gtest construction
-    virtual void TearDown();  // gtest destruction
-  
-    xmlDocPtr getXMLDoc();    // get an xml doc from an xml snippet
-    void initModule();        // initialize the module
-    int counter();            // access the counter_ variable  
-  };
-
-We can now test the counter\_ variable at run time via the test_counter\_
-variable. We additionally encapsulate the module initalization process
-in the initModule() function which will use the getXMLDoc() function
-to provide the required XML node and context.
-
-ModuleTests.cpp
-~~~~~~~~~~~~~~~
-
-.. code-block:: cpp
-
-  #include "ModuleTests.h"
-
-  #include <libxml/parser.h>
-  #include <libxml/xpath.h>
-
-  #include <string>
-  #include <sstream>
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  void ModuleTest::SetUp() {
-    module_ = new Module();
-    test_counter_ = 5;      // initialize test_counter_ to some value
-    initModule();
-  }
-  
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  void ModuleTest::TearDown() {
-    delete module_;
-  }  
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  xmlDocPtr ModuleTest::getXMLDoc() {
-    stringstream ss("");
-
-    // get an xml snippet to test using the test_counter_ variable
-    ss <<
-      "<?xml version=\"1.0\"?>\n" <<
-      "<document>\n" <<
-      "  <counter_init>" << test_counter_ << "</counter_init>\n" <<
-      "</document>";
-  
-    // return an xmlDocPtr to that snippet
-    string snippet = ss.str();
-    return xmlParseMemory(snippet.c_str(),snippet.size());
-  }  
-  
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  void ModuleTest::initModule() {
-    xmlDocPtr doc = getXMLDoc();
-    xmlXPathContextPtr context = xmlXPathNewContext(doc);
-    xmlNodePtr node = doc->children;
-
-    module_->init(node,context); // initialize module_ using the xml snippet
-  }  
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  int ModuleTest::counter() {
-    return module_->counter_; // counter_ accessed via friend class
-  }  
-  
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  TEST_F(ModuleTest,TestInit) {
-    EXPECT_EQ(counter(),test_counter_);
-  }
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  TEST_F(ModuleTest,TestIncreaseCounter) {
-    module_->increaseCounter();
-    EXPECT_EQ(counter(),test_counter_+1);
-  }
-
-With this update, the module\_ will be initialized to test_counter\_ 
-each time SetUp() is called. We can therefore make tests that are
-very similar to the previous example. The main difference is that we
-compare agaisnt a variable initialized by our own test suite, i.e.
-test_counter\_, rather than hard-coding in a value, i.e. 0, as was 
-true in the previous example.
+  [----------] Global test environment tear-down
+  [==========] 8 tests from 3 test cases ran. (86 ms total)
+  [  PASSED  ] 8 tests.
