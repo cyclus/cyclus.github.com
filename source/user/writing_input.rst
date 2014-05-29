@@ -49,7 +49,7 @@ The |Cyclus| Input File
 ------------------------
 
 Every |Cyclus| input file must have exactly one ``simulation`` section that
-contains all other data for a simulation.
+contains all data for a simulation.
 
 .. code-block:: xml
 
@@ -57,8 +57,8 @@ contains all other data for a simulation.
      ... simulation data will go here ...
    </simulation>
 
-Although not all sections are required, the following sections are required to
-appear in the following order if they do appear:
+Although not all sections are required, the following sections may appear in
+any order in the input file:
 
 .. toctree::
    :maxdepth: 1
@@ -72,5 +72,4 @@ appear in the following order if they do appear:
    input_specs/recipe
 
 .. _XML : http://www.w3schools.com/xml/default.asp
-
 
