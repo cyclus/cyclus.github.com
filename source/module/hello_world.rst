@@ -111,20 +111,20 @@ an :file:`example.xml`. Running |cyclus| on this file with the command
               iCCCCCLCf                                                           
                .  C. ,                                                            
                   :                                                               
-    Hello, Tutorial!
-    Hello, Tutorial!
-    Hello, Tutorial!
-    Hello, Tutorial!
-    Hello, Tutorial!
-    Hello, Tutorial!
-    Hello, Tutorial!
-    Hello, Tutorial!
-    Hello, Tutorial!
-    Hello, Tutorial!
+    Hello, World!
+    Hello, World!
+    Hello, World!
+    Hello, World!
+    Hello, World!
+    Hello, World!
+    Hello, World!
+    Hello, World!
+    Hello, World!
+    Hello, World!
 
     Status: Cyclus run successful!
     Output location: cyclus.sqlite
     Simulation ID: 0ae730e0-a9a8-4576-afaa-d1db6399d5a2
 
 If you look in the input file you'll see that the simulation duration was set to 10.
-This is why "Hello, Tutorial!" is printed ten times.
+This is why "Hello, World!" is printed ten times.
