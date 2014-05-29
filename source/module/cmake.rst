@@ -110,21 +110,21 @@ using a ``src/CMakeLists.txt`` file that looks something like
 .. literalinclude:: standalone-cmake
 
 This setup will install three shared object libraries in
-``$CYCLUS_INSTALL_PREFIX/lib/cyclus/world``:
+``$CYCLUS_INSTALL_PREFIX/lib/cyclus/tutorial``:
 
-* ``libWorldFacility.so`` (\*nix) or ``libWorldFacility.dylib`` (mac)
+* ``libTutorialFacility.so`` (\*nix) or ``libTutorialFacility.dylib`` (mac)
 
-* ``libWorldInstitution.so`` (\*nix) ``libWorldInstitution.dylib`` (mac)
+* ``libTutorialInstitution.so`` (\*nix) ``libTutorialInstitution.dylib`` (mac)
 
-* ``libWorldRegion.so`` (\*nix) ``libWorldRegion.dylib`` (mac)
+* ``libTutorialRegion.so`` (\*nix) ``libTutorialRegion.dylib`` (mac)
 
 and three unit test executables in ``$CYCLUS_INSTALL_PREFIX/bin``:
 
-* ``WorldFacility_unit_tests``
+* ``TutorialFacility_unit_tests``
 
-* ``WorldInstitution_unit_tests``
+* ``TutorialInstitution_unit_tests``
 
-* ``WorldRegion_unit_tests``
+* ``TutorialRegion_unit_tests``
 
 Module Installation
 +++++++++++++++++++
@@ -136,14 +136,14 @@ together. We can do better!
 What if we wanted to install one module named ``helloworld``? Specifically, we
 would want:
 
-* a single shared object library in ``$CYCLUS_INSTALL_PREFIX/lib/cyclus/world``
+* a single shared object library in ``$CYCLUS_INSTALL_PREFIX/lib/cyclus/tutorial``
   named ``libhelloworld.so`` (\*nix) or ``libhelloworld.dylib`` (mac)
 
 * a single unit test exectuable in ``$CYCLUS_INSTALL_PREFIX/bin`` named
   ``helloworld_unit_tests``
 
-where both incorporate the ``WorldFacility``, ``WorldInstitution``, and
-``WorldRegion`` :term:`archetypes <archetype>`.
+where both incorporate the ``TutorialFacility``, ``TutorialInstitution``, and
+``TutorialRegion`` :term:`archetypes <archetype>`.
 
 Such behavior is pretty simple to achieve. We first must call ``UseCyclus`` on
 each of our source file roots to inform the build system of their presence and

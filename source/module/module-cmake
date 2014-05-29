@@ -1,4 +1,4 @@
-USE_CYCLUS("helloworld" "world_facility")
-USE_CYCLUS("helloworld" "world_inst")
-USE_CYCLUS("helloworld" "world_region")
-INSTALL_CYCLUS_MODULE("helloworld" "world")
+USE_CYCLUS("helloworld" "tutorial_facility")
+USE_CYCLUS("helloworld" "tutorial_inst")
+USE_CYCLUS("helloworld" "tutorial_region")
+INSTALL_CYCLUS_MODULE("helloworld" "tutorial")

@@ -35,7 +35,7 @@ To get started please follow the instructions in :doc:`hello_world`.
     </table>
 
 Hello World
----------------
+-----------
 
 .. toctree::
     :maxdepth: 1
