@@ -154,6 +154,8 @@ compositions from equivalent ``cyclus::CompMap`` objects.  Reusing
 ``cyclus::Composition`` objects helps avoid duplicate records in the
 database and redundant decay calculations.
 
+.. _resource-ids:
+
 Resource IDs
 ---------------
 
