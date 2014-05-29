@@ -56,9 +56,7 @@ Learn More
     kernel/main
     cep/cep0
     previous/main
-
-TODO: Add publications on or using |cyclus| page, should contain bibtex entry for
-citing |cyclus| (PHYSOR for now?)
+    cite/main
 
 .. _try-it:
 
