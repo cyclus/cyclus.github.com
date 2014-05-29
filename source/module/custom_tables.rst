@@ -52,3 +52,39 @@ enforce this in their code.
    use. For information on which c++ types the backends support, you can check
    :doc:`here <dbtypes>`.
 
+The cyclus kernel creates several of its own tables.  The names of these
+tables are reserved, and you are responsible to avoid using them for custom
+table names.  The reserved table names are (all case combos upper and lower):
+
+* all names starting with the prefixes:
+
+    * Agent
+    * Pair
+    * Vector
+    * String
+    * VL\ _
+    * Blob
+    * Map
+    * List
+    * Vector
+    * Set
+
+* Resources
+* Products
+* Transactions
+* Info
+* Finish
+* InputFiles
+* Prototypes
+* Recipes
+* Snapshots
+* MaterialInfo
+* Compositions
+* NextIds
+* ResCreators
+
+.. warning::
+
+   Table names may only contain alphanumeric characters and underscores and
+   must not start with a number.
+
