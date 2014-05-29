@@ -25,10 +25,11 @@ used to automate the generation of code for the following functions:
     cyclus::Agent* Clone();
     void InitFrom(Agent*);
 
-When the preprocessor isn't sufficient, read the api docs for these functions
-VERY CAREFULLY: http://fuelcycle.org/cyclus/api/classcyclus_1_1Agent.html.
-There are a few other functions related to initialization that are important
-to understand well:
+When the preprocessor isn't sufficient, read the api docs for the functions
+listed above VERY CAREFULLY (
+http://fuelcycle.org/cyclus/api/classcyclus_1_1Agent.html).  There are also a
+few other functions related to initialization that are important to understand
+well:
 
 .. code-block:: c++
 
@@ -37,6 +38,8 @@ to understand well:
     void BuildNotify(cyclus::Agent* child);
     void Decommission(cyclus::Agent* child);
 
-*Note that the functions mentioned on this page should NEVER be invoked
-directly by agents.*
+.. warning::
+
+    The functions mentioned on this page (except ``void InitFrom(cyclus::Agent*)``)
+    should NEVER be invoked directly by agents.
 
