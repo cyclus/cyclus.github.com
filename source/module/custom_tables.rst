@@ -58,16 +58,16 @@ table names.  The reserved table names are (all case combos upper and lower):
 
 * all names starting with the prefixes:
 
+    * Cyclus
     * Agent
-    * Pair
-    * Vector
-    * String
     * VL\ _
-    * Blob
+    * Pair
+    * String
+    * Vector
     * Map
     * List
-    * Vector
     * Set
+    * Blob
 
 * Resources
 * Products
@@ -82,6 +82,7 @@ table names.  The reserved table names are (all case combos upper and lower):
 * Compositions
 * NextIds
 * ResCreators
+* CommodPriority
 
 .. warning::
 
