@@ -1,4 +1,4 @@
-Fundamental Concepts in |Cyclus|
+Fundamental Concepts in Cyclus
 ================================
 
 Several fundamental concepts are deeply engrained in the |Cyclus| kernel, and
