@@ -24,7 +24,6 @@ yet supported, please let us know and we'll get to it as soon as possible!
     <link rel="stylesheet" href="../_static/pivot/pivot.css" type="text/css" />
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
 
     <style>
     p {

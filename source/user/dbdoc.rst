@@ -73,9 +73,16 @@ tables.
 Compositions Table
 --------------------
 
-* **QualId** (id(int)): 
-* **NucId** (int): 
-* **MassFrac** (double): 
+A composition consists of one or more nuclides and their respective mass
+fractions.  Each nuclide for a composition gets its own row and have the same
+QualId.
+
+* **QualId** (int): Key to associate this composition with one or more
+  entries in the ``Resources`` table.
+
+* **NucId** (int): Nuclide identifier in ``zzzaaammmm`` form.
+
+* **MassFrac** (double): Mass fraction for the nuclide in this composition.
 
 Recipes Table
 -------------------
@@ -88,31 +95,57 @@ Recipes Table
 Products Table
 ----------------
 
-* **QualId** (int): 
-* **Quality** (string): 
+* **QualId** (int): Key to associate this quality with one or more entries in
+  the ``Resources`` table.
+
+* **Quality** (string): Describes a product's quality (e.g. "bananas", "KWh",
+  etc.)
 
 ResCreators Table
 -------------------
 
-* **ResourceId** (int): 
-* **AgentId** (int): 
+* **ResourceId** (int): ID of a resource that was created at some point in the
+  simulation.
+
+* **AgentId** (int): ID of the agent that created the resource associated with
+  the ResourceId.
 
 AgentEntry Table
 -------------------
 
-* **AgentId** (int): 
-* **Kind** (string): 
-* **Spec** (string): 
-* **Prototype** (string): 
-* **ParentId** (int): 
-* **Lifetime** (int): 
-* **EnterTime** (int): 
+Each agent that enters and participates in a simulation gets a row in this
+table.
+
+* **AgentId** (int): Every agent in a simulation gets its own, unique ID.
+
+* **Kind** (string): One of "Region", "Inst", "Facility", or "Agent".
+
+* **Spec** (string): The single-string of the :doc:`agent specification <find_agents>`.
+
+* **Prototype** (string): The prototype name, as defined in the input file,
+  that was used to create this agent.
+
+* **ParentId** (int): The AgentId of this agent's parent - the agent that
+  built/created this agent.
+
+* **Lifetime** (int): Number of time steps an agent is designed to operate
+  over.  ``-1`` indicates an infinite lifetime.  Note that depending on how
+  agents use the lifetime param, this may be entirely unrelated to how long
+  agents were actually operating in the simulation.
+
+* **EnterTime** (int): The time step when the agent was built and entered the
+  simulation.
 
 AgentExit Table
 ------------------
 
-* **AgentId** (id(int)): 
-* **ExitTime** (int): 
+Due to implementation details in the |cyclus| kernel, this table is separate
+from the ``AgentEntry`` table.  
+
+* **AgentId** (int): Key to the AgentId on the ``AgentEntry`` table.
+
+* **ExitTime** (int): The time step when the agent was decommissioned and
+  exited the simulation.
 
 Transactions Table
 -------------------
