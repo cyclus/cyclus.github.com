@@ -104,6 +104,9 @@ Products Table
 ResCreators Table
 -------------------
 
+Every time an agent creates a new resource from scratch, that event is
+recorded in this table.
+
 * **ResourceId** (int): ID of a resource that was created at some point in the
   simulation.
 
@@ -140,7 +143,8 @@ AgentExit Table
 ------------------
 
 Due to implementation details in the |cyclus| kernel, this table is separate
-from the ``AgentEntry`` table.  
+from the ``AgentEntry`` table.  If this table doesn't exist, then no agents
+were decommissioned in the simulation.
 
 * **AgentId** (int): Key to the AgentId on the ``AgentEntry`` table.
 
@@ -150,41 +154,86 @@ from the ``AgentEntry`` table.
 Transactions Table
 -------------------
 
-* **TransactionId** (int): 
-* **SenderId** (int): 
-* **ReceiverId** (int): 
-* **ResourceId** (int): 
-* **Commodity** (string): 
-* **Time** (int): 
+Every single resource transfer between two agents is recorded as a row
+in this table.
+
+* **TransactionId** (int): A unique identifier for this resource transfer.
+
+* **SenderId** (int): AgentId for the sending agent.
+
+* **ReceiverId** (int): AgentId for the receiving agent.
+
+* **ResourceId** (int): Key to the entry in the Resources table that describes
+  the transferred resource.
+
+* **Commodity** (string): The commodity under which this transfer was
+  negotiated.
+
+* **Time** (int): The time step at which the resource transfer took place.
 
 Info Table
 -------------------
 
-* **Handle** (string): 
-* **InitialYear** (int): 
-* **InitialMonth** (int): 
-* **Duration** (int): 
-* **ParentSimId** (uuid): 
-* **ParentType** (string): 
-* **BranchTime** (int): 
-* **CyclusVersion** (string): 
-* **CyclusVersionDescribe** (string): 
-* **SqliteVersion** (string): 
-* **Hdf5Version** (string): 
-* **BoostVersion** (string): 
-* **LibXML2Version** (string): 
-* **CoinCBCVersion** (string): 
+Each simulation gets a single row in this table describing global simulation
+parameters and |cyclus| and dependency version information.
+
+* **Handle** (string): A custom user-specified value from the input file
+  allowing for convenient idenfication of simulations in a database (because
+  the simulation uuid's are not very memorable by mere mortals).
+
+* **InitialYear** (int): The year in which time step zero occurs.
+
+* **InitialMonth** (int): The month that time step zero represents.
+
+* **Duration** (int): The length of the simulation in time steps.  Note that
+  it is possible a simulation terminated early before running its entire
+  duration (see the ``Finish`` table section).
+
+* **ParentSimId** (uuid): The SimId for this simulation's parent. Zero if this
+  simulation has no parent.
+ 
+* **ParentType** (string): One of:
+    
+    - "init" for simulations that are not based on any other simulation.
+
+    - "restart" for simulations that were restarted another simulation's
+      snapshot.
+
+    - "branch" for simulations that were started from a perturbed state of
+      another simulation's snapshot.
+ 
+* **BranchTime** (int): Zero if this was not a restarted or branched
+  simulation. Otherwise, the time step of the parent sim at which the
+  restart/branch occurred.
+ 
+* **CyclusVersion** (string): Version of |cyclus| used to run this simulation.
+ 
+* **CyclusVersionDescribe** (string): Detailed |cyclus| version info (with commit hash)
+ 
+* **SqliteVersion** (string)
+ 
+* **Hdf5Version** (string)
+ 
+* **BoostVersion** (string)
+ 
+* **LibXML2Version** (string)
+ 
+* **CoinCBCVersion** (string)
 
 Finish Table
 -------------------
 
-* **EarlyTerm** (bool): 
-* **EndTime** (int): 
+Each simulation gets one row/entry in this table.
+
+* **EarlyTerm** (bool): True (or 1) if the simulation terminated early and did
+  not complete normally. False (or 0) otherwise.
+
+* **EndTime** (int): The time step at which the simulation ended.
 
 InputFiles Table
 -------------------
 
-* **Data** (blob): 
+* **Data** (blob): A dump of the entire input file used for this simulation.
 
 DecomSchedule Table
 --------------------
