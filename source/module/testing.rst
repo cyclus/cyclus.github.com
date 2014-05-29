@@ -136,7 +136,7 @@ has the following lines:
   // write a unit test of our own
   TEST(TickTracker, track_ticks) {
     cyclus::TestContext ctx;
-    TickTracker fac(&ctx);
+    TickTracker fac(ctx.get());
     EXPECT_EQ(0, fac.n_ticks());
     fac.Tick();
     EXPECT_EQ(1, fac.n_ticks());
@@ -163,7 +163,7 @@ has the following lines:
 
 Add the following lines to the ``src/CMakeLists.txt`` file: ::
 
-  INSTALL_CYCLUS_STANDALONE("TickTracker", "tick_tracker", "tutorial")
+  INSTALL_CYCLUS_STANDALONE("TickTracker" "tick_tracker" "tutorial")
 
 Now we're ready to install the ``TickTracker`` module and run its tests. If you
 haven't already, now's a good time to add the ``$CYCLUS_INCLUDE_PATH`` to your
