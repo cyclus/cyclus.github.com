@@ -1,4 +1,4 @@
-Hello, |Cyclus|!
+Hello, Cyclus!
 ================
 This pages walks you through a very simple hello world example using 
 |cyclus| agents.  First make sure that you have the dependencies installed, 
