@@ -35,15 +35,15 @@ New features
 - added more detail about context agent ownership and stack agents are bad. (7682c6c)
 - changed clone methods to use context-arg constructor (eaede68)
 - changed xml Init[Core/Module]Member fan methods to be InitFrom chain. 
-  Gave agent class a default val for spec_ to facilitate testing of xml init 
+  Gave agent class a default val for *spec_* to facilitate testing of xml init 
   methods. (3efb2b6)
 - renamed InitCoreMembers to InitFrom (f6e0add)
-- fixed deploy self as parent bug in xmlfileloader. Agent class removes 'this' from 
-  context agent_list_ in destructor to prevent some segfaults when agents are 
-  allocated on the stack causing a double delete (one by runtime and one by context). 
-  Put guard on context::DelAgent to only delete if the agent is in the agent_list_ 
-  (53ec514)
-- made context agent management more universal. Made agent_list_ a std::set. 
+- fixed deploy self as parent bug in xmlfileloader. Agent class removes 'this'
+  from  context *agent_list_* in destructor to prevent some segfaults when
+  agents are allocated on the stack causing a double delete (one by runtime and
+  one by context). Put guard on context::DelAgent to only delete if the agent is
+  in the *agent_list_* (53ec514)
+- made context agent management more universal. Made *agent_list_* a std::set. 
   added doc comment about context agent management. minor tweaks (45efa47)
 - removed agent_list getters from context class. agent list is now entirely 
   context-private (4b18f0d)
@@ -77,7 +77,6 @@ New features
   (f464cb8)
 - added request class and associated tests for materials (202048c)
 
-
 Known bugs
 ----------
 N/A
@@ -96,4 +95,3 @@ name indicates a first time contributor.  Names follow alphabetically,
 * Anthony Scopatz
 * Zach Welch
 * Paul Wilson
-
