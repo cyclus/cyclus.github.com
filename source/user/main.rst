@@ -60,6 +60,7 @@ Visualization & Analysis
 --------------------------
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 2
 
-   analysis_usecases
+    dbdoc
+    analysis_usecases
