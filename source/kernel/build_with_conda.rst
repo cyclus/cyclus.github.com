@@ -10,10 +10,10 @@ recipes using the ``conda build <recipe dir>`` command. Necessary dependency
 packages will be automatically downloaded and installed before the build.sh 
 script is run and installed.  The final output is a tar.bz2 file which is a 
 conda package containing the necessary binaries, libraries, etc.  This package 
-can then be installed or can be uploaded to `Binstar <http://binstar.org>`_, which is 
-a service provided to store and distribute conda packages. Notice that Conda 
-requires all dependencies explicitly listed in meta.yaml must have an 
-available Conda package to install. 
+can then be installed or can be uploaded to `Binstar <http://binstar.org>`_, 
+which is a service provided to store and distribute conda packages. Notice 
+that Conda requires all dependencies explicitly listed in meta.yaml must have 
+an available Conda package to install. 
 
 
 All associated conda recipes can be found in the 
@@ -34,9 +34,12 @@ There are many ways to customize the files in Ciclus repo.
 Once you have successfully built a conda recipe, it can be uploaded to binstar 
 with the command ::
 
-   binstar upload -u cyclus anaconda/conda-bld/linux-64/cyclus-1.0rc-0.tar.bz2
+   binstar upload -u cyclus anaconda/conda-bld/linux-64/cyclus-<VERSION>.tar.bz2
 
-can be used to upload a Linux version 1.0 of |Cyclus|.
+So, for instance, uploading version 1.0 of |Cyclus| would be ::
+
+   binstar upload -u cyclus anaconda/conda-bld/linux-64/cyclus-1.0.tar.bz2
+
 
 2) Change the repository  to build
 Say you want to test your fork of |Cyclus| before making a pull request. To 
