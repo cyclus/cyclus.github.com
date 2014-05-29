@@ -133,14 +133,14 @@ A valid criticism of the hello world standalone approach is that a lot of
 libraries and executables are generated for three modules that are grouped
 together. We can do better!
 
-What if we wanted to install one module named ``hellotutorial``? Specifically, we
+What if we wanted to install one module named ``helloworld``? Specifically, we
 would want:
 
 * a single shared object library in ``$CYCLUS_INSTALL_PREFIX/lib/cyclus/tutorial``
-  named ``libhellotutorial.so`` (\*nix) or ``libhellotutorial.dylib`` (mac)
+  named ``libhelloworld.so`` (\*nix) or ``libhelloworld.dylib`` (mac)
 
 * a single unit test exectuable in ``$CYCLUS_INSTALL_PREFIX/bin`` named
-  ``hellotutorial_unit_tests``
+  ``helloworld_unit_tests``
 
 where both incorporate the ``TutorialFacility``, ``TutorialInstitution``, and
 ``TutorialRegion`` :term:`archetypes <archetype>`.
