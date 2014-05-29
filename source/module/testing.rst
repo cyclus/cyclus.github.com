@@ -166,7 +166,7 @@ Add the following lines to the ``src/CMakeLists.txt`` file: ::
   INSTALL_CYCLUS_STANDALONE("TickTracker" "tick_tracker" "tutorial")
 
 Now we're ready to install the ``TickTracker`` module and run its tests. If you
-haven't already, now's a good time to add the ``$CYCLUS_INCLUDE_PATH`` to your
+haven't already, now's a good time to add the ``$CYCLUS_INSTALL_PATH`` to your
 ``PATH`` environment variable (|cyclus|'s ``install.py`` defaults to
 ``~/.local``). Next, from your top level directory (where your ``install.py``
 file is), run: 
