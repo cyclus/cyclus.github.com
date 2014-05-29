@@ -5,15 +5,10 @@ Overview
 --------
 
 If you haven't follow the initial example in :ref:`hello_world`, you should get
-the `Cycstub repo <https://github.com/cyclus/cycstub>`_. We'll assume you want
-your |Cyclus| :term:`module` library to be named 'world', but you can change
-that as you see fit (see `Cycamore <https://github.com/cyclus/cycamore>`_ as an
-example):
-
-.. code-block:: bash
-
-    $ git clone https://github.com/cyclus/cycstub.git world
-    $ cd world
+the `Cycstub repo <https://github.com/cyclus/cycstub>`_ by either `cloning the
+repository <https://github.com/cyclus/cycstub.git>`_ or by `downloading the zip
+file <https://github.com/cyclus/cycstub/archive/develop.zip>`_ (see
+:ref:`hello_world` for further instructions).
 
 The Cycstub repo provides a number of critical tools for building your own
 module:
@@ -45,8 +40,113 @@ Using UseCyclus
 * ``USE_CYCLUS``: informs the build system of the source files related to an
   :term:`archetype` implementation and its tests, if tests exist
 
-* ``INSTALL_CYCLUS_MODULE``: install a collection of :term:`archetypes` that all
-  belong to the same :term:`module`
+* ``INSTALL_CYCLUS_MODULE``: install a collection of :term:`archetypes
+  <archetype>` that all belong to the same :term:`module`
 
 * ``INSTALL_CYCLUS_STANDALONE``: install an :term:`archetype` as a standalone
   module
+
+UseCyclus Vocabulary
+++++++++++++++++++++
+
+The ``UseCyclus.cmake`` macro suite uses the following terms:
+
+* ``lib_root``: The root name for the to-be-installed library (e.g., ``MyAgent``
+  for a standalone install or ``my_module`` for a module install).
+
+* ``src_root``: The common prefix for all source files required to implement and
+  test an :term:`archetypes <archetype>`. For example if your ``src_root`` is
+  ``my_agent``, the macro suite will be aware of the following files:
+
+  * ``my_agent.cc``
+  * ``my_agent.h``
+  * ``my_agent_tests.cc``
+  * ``my_agent_tests.h``
+
+* ``lib_dir``: The install directory relative the |Cyclus| library installation
+  directory. For example, if ``lib_dir`` is blank (i.e. ""), the module will be
+  installed in ``$CYCLUS_INSTALL_PREFIX/lib/cyclus/``; if ``lib_dir`` is
+  something else, e.g. ``my_module_dir``, the module will be installed in
+  ``$CYCLUS_INSTALL_PREFIX/lib/cyclus/my_module_dir/``. The value of
+  ``$CYCLUS_INSTALL_PREFIX`` can be queried by
+
+  .. code-block:: bash
+
+      $ cyclus --install-path
+
+* ``test_driver``: (optional) A custom `GTest
+  <https://code.google.com/p/googletest/>`_ test driver. This is an advanced
+  feature which will not be needed by most archetype developers.
+
+UseCyclus Macro Arguments
++++++++++++++++++++++++++
+
+Each ``UseCyclus.cmake`` macro has arguments included in the above vocabulary
+listing:
+
+* ``USE_CYCLUS``::
+
+    USE_CYCLUS(lib_root src_root)
+
+* ``INSTALL_CYCLUS_STANDALONE``::
+
+    INSTALL_CYCLUS_STANDALONE(lib_root src_root lib_dir [test_driver])
+
+* ``INSTALL_CYCLUS_MODULE``::
+
+    INSTALL_CYCLUS_MODULE(lib_root lib_dir [test_driver])
+
+Examples
+--------
+    
+Standalone Installation
++++++++++++++++++++++++
+
+Through the :ref:`hello_world` example, three standalone modules are installed
+using a ``src/CMakeLists.txt`` file that looks something like
+
+.. literalinclude:: standalone-cmake
+
+This setup will install three shared object libraries in
+``$CYCLUS_INSTALL_PREFIX/lib/cyclus/world``:
+
+* ``libWorldFacility.so`` (\*nix) or ``libWorldFacility.dylib`` (mac)
+
+* ``libWorldInstitution.so`` (\*nix) ``libWorldInstitution.dylib`` (mac)
+
+* ``libWorldRegion.so`` (\*nix) ``libWorldRegion.dylib`` (mac)
+
+and three unit test executables in ``$CYCLUS_INSTALL_PREFIX/bin``:
+
+* ``WorldFacility_unit_tests``
+
+* ``WorldInstitution_unit_tests``
+
+* ``WorldRegion_unit_tests``
+
+Module Installation
++++++++++++++++++++
+
+A valid criticism of the hello world standalone approach is that a lot of
+libraries and executables are generated for three modules that are grouped
+together. We can do better!
+
+What if we wanted to install one module named ``helloworld``? Specifically, we
+would want:
+
+* a single shared object library in ``$CYCLUS_INSTALL_PREFIX/lib/cyclus/world``
+  named ``libhelloworld.so`` (\*nix) or ``libhelloworld.dylib`` (mac)
+
+* a single unit test exectuable in ``$CYCLUS_INSTALL_PREFIX/bin`` named
+  ``helloworld_unit_tests``
+
+where both incorporate the ``WorldFacility``, ``WorldInstitution``, and
+``WorldRegion`` :term:`archetypes <archetype>`.
+
+Such behavior is pretty simple to achieve. We first must call ``UseCyclus`` on
+each of our source file roots to inform the build system of their presence and
+follow up with a call to ``INSTALL_CYCLUS_MODULE``:
+
+.. literalinclude:: module-cmake
+    
+

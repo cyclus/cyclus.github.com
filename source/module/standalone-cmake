@@ -1,0 +1,3 @@
+INSTALL_CYCLUS_STANDALONE("WorldFacility" "world_facility" "world")
+INSTALL_CYCLUS_STANDALONE("WorldInst" "world_inst" "world")
+INSTALL_CYCLUS_STANDALONE("WorldRegion" "world_region" "world")
