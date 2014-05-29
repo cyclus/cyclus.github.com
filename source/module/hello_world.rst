@@ -11,79 +11,79 @@ that you can use to quick-start new cyclus module development projects.
 You can grab cycstub either by using git to 
 `clone the repository <https://github.com/cyclus/cycstub.git>`_ or by 
 `downloading the zip file <https://github.com/cyclus/cycstub/archive/develop.zip>`_.
-Let's put this code in a ``world`` directory and go into it.
+Let's put this code in a ``tutorial`` directory and go into it.
 
 **Getting cycstub via git:**
 
 .. code-block:: bash
 
-    $ git clone https://github.com/cyclus/cycstub.git world
-    $ cd world
+    $ git clone https://github.com/cyclus/cycstub.git tutorial
+    $ cd tutorial
 
 **Getting cycstub via zip:**
 
 .. code-block:: bash
 
-    $ curl -L https://api.github.com/repos/cyclus/cycstub/zipball > world.zip
-    $ unzip world.zip
-    $ mv cyclus-cycstub-* world
-    $ cd world
+    $ curl -L https://api.github.com/repos/cyclus/cycstub/zipball > tutorial.zip
+    $ unzip tutorial.zip
+    $ mv cyclus-cycstub-* tutorial
+    $ cd tutorial
 
 ------------
 
 Since cycstub is a template project everything is named ``stub``. We need to change 
-this to refelect the name we want our new project to be called - ``world`` here.
+this to refelect the name we want our new project to be called - ``tutorial`` here.
 Cystub comes with a renaming tool to do just this! From the command line, run
 Python in the following way:
 
 .. code-block:: bash
 
-    world $ python rename.py world
+    tutorial $ python rename.py tutorial
 
 ------------
 
-Let's now change the behaviour of the WorldFacility's ``Tick()`` & ``Tock()``
-member functions to print "Hello" and "World" repspectively.  To do this, please
-open up the :file:`src/world_facility.cc` file in your favorite text editor 
+Let's now change the behaviour of the TutorialFacility's ``Tick()`` & ``Tock()``
+member functions to print "Hello" and "Tutorial" repspectively.  To do this, please
+open up the :file:`src/tutorial_facility.cc` file in your favorite text editor 
 (vim, emacs, gedit, `xo <http://exofrills.org>`_).  Change the orignal functions 
 to look like:
 
-**Original Tick() and Tock() in src/world_facility.cc:**
+**Original Tick() and Tock() in src/tutorial_facility.cc:**
 
 .. code-block:: c++
 
-    void WorldFacility::Tick() {}
+    void TutorialFacility::Tick() {}
 
-    void WorldFacility::Tock() {}
+    void TutorialFacility::Tock() {}
 
-**New Tick() and Tock() in src/world_facility.cc:**
+**New Tick() and Tock() in src/tutorial_facility.cc:**
 
 .. code-block:: c++
 
-    void WorldFacility::Tick() {std::cout << "Hello, ";}
+    void TutorialFacility::Tick() {std::cout << "Hello, ";}
 
-    void WorldFacility::Tock() {std::cout << "World!\n";}
+    void TutorialFacility::Tock() {std::cout << "Tutorial!\n";}
 
 ------------
 
-Now that we have altered the behavior of the WorldFacility, let's compile and 
-install the ``world`` project.  This done with the install.py script.
+Now that we have altered the behavior of the TutorialFacility, let's compile and 
+install the ``tutorial`` project.  This done with the install.py script.
 The install script puts the project into your cyclus userspace, 
 ``${HOME}/.local/lib/cyclus``.
 
 .. code-block:: bash
 
-    world $ python install.py
+    tutorial $ python install.py
 
 ------------
 
-Let's run |cyclus| with the WorldFacility! In the input directory there is an 
+Let's run |cyclus| with the TutorialFacility! In the input directory there is an 
 an :file:`example.xml`. Running |cyclus| on this file with the command
 ``cyclus input/example.xml`` should produce the following output.
 
 .. code-block:: bash
 
-    world $ cyclus input/example.xml
+    tutorial $ cyclus input/example.xml
                   :                                                               
               .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
             CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)  
@@ -111,20 +111,20 @@ an :file:`example.xml`. Running |cyclus| on this file with the command
               iCCCCCLCf                                                           
                .  C. ,                                                            
                   :                                                               
-    Hello, World!
-    Hello, World!
-    Hello, World!
-    Hello, World!
-    Hello, World!
-    Hello, World!
-    Hello, World!
-    Hello, World!
-    Hello, World!
-    Hello, World!
+    Hello, Tutorial!
+    Hello, Tutorial!
+    Hello, Tutorial!
+    Hello, Tutorial!
+    Hello, Tutorial!
+    Hello, Tutorial!
+    Hello, Tutorial!
+    Hello, Tutorial!
+    Hello, Tutorial!
+    Hello, Tutorial!
 
     Status: Cyclus run successful!
     Output location: cyclus.sqlite
     Simulation ID: 0ae730e0-a9a8-4576-afaa-d1db6399d5a2
 
 If you look in the input file you'll see that the simulation duration was set to 10.
-This is why "Hello, World!" is printed ten times.
+This is why "Hello, Tutorial!" is printed ten times.

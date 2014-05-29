@@ -34,7 +34,7 @@ To get started please follow the instructions in :doc:`hello_world`.
     </td></tr>
     </table>
 
-Hello World
+Hello Tutorial
 ---------------
 
 .. toctree::

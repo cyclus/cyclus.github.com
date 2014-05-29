@@ -34,12 +34,12 @@ agent in the simulation, so every archetype can invoke those unit tests.
 
 In order to get the provided unit tests in your archetype's tests, a few extra
 lines must be added to your ``*_tests.cc`` file. For instance, the
-``WorldFacility`` in the :ref:`hello_world` example with the file structure
+``TutorialFacility`` in the :ref:`hello_world` example with the file structure
 outline in :ref:`cmake_build` adds the following lines to
-``world_facility_tests.cc`` to get all of the free ``cyclus::Agent`` and
+``tutorial_facility_tests.cc`` to get all of the free ``cyclus::Agent`` and
 ``cyclus::Facility`` unit tests: ::
 
-  #include "world_facility.h"
+  #include "tutorial_facility.h"
   #include "facility_tests.h"
   #include "agent_tests.h"
 
@@ -49,17 +49,17 @@ outline in :ref:`cmake_build` adds the following lines to
   #define CYCLUS_AGENT_TESTS_CONNECTED cyclus_agent_tests_connected
   #endif // CYCLUS_AGENT_TESTS_CONNECTED
 
-  cyclus::Agent* WorldFacilityConstructor(cyclus::Context* ctx) {
-    return new WorldFacility(ctx);
+  cyclus::Agent* TutorialFacilityConstructor(cyclus::Context* ctx) {
+    return new TutorialFacility(ctx);
   }
 
-  INSTANTIATE_TEST_CASE_P(WorldFac, FacilityTests,
-                          ::testing::Values(&WorldFacilityConstructor));
+  INSTANTIATE_TEST_CASE_P(TutorialFac, FacilityTests,
+                          ::testing::Values(&TutorialFacilityConstructor));
 
-  INSTANTIATE_TEST_CASE_P(WorldFac, AgentTests,
-                          ::testing::Values(&WorldFacilityConstructor));
+  INSTANTIATE_TEST_CASE_P(TutorialFac, AgentTests,
+                          ::testing::Values(&TutorialFacilityConstructor));
 
-The above lines can be specialized to your case by replacing ``WorldFac`` with
+The above lines can be specialized to your case by replacing ``TutorialFac`` with
 an appropriate moniker (anything that uniquely identifies your unit test
 name). Also, if you're subclassing from ``cyclus::Institution`` or
 ``cyclus::Region``, replace all instances of facility in the above example with
