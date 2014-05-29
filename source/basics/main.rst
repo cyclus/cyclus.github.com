@@ -9,10 +9,9 @@
   
    introduction
    fcs_background
-   roadmap
    ecosystem
-   glossary
    acknowledgements
+   glossary
 
 .. stuff not converted yet
 
