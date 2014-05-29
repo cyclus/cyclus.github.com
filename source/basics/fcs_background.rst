@@ -1,7 +1,7 @@
 Nuclear Fuel Cycle Simulators
 -----------------------------
 
-A nuclear fuel cycle simulator is a tool used to explore the impacts of
+A nuclear :term:`fuel cycle simulator` is a tool used to explore the impacts of
 alternative nuclear fuel cycle choices when considered as a full system at a
 national or international level.  Fundamentally, these simulators track the
 flow of materials through the nuclear fuel cycle, accounting for processes

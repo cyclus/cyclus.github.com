@@ -19,9 +19,14 @@ Glossary of Cyclus Terms
   commodity  
 
     A name assigned to a class of resources. |cyclus| determines the flow of
-    resources during a time step based on the supply of and demand for
-    commodities based on :term:`agent`\ 's requests and bids for those
+    resources during a time step based on the supply of and demand for 
+    commodities based on :term:`agent's <agent>` requests and bids for those 
     commodities.
+
+  dynamic resource exchange
+
+    the methodology that governs time step behavior in |cyclus| -- see
+    :doc:`Dynamic Resource Exchange <../module/dre>`
 
   plug-in  
 
@@ -57,9 +62,9 @@ Glossary of Cyclus Terms
 
   cyclus kernel
 
-    The simulation engine housed in :term:`cyclus core`. :term:`Archetype`\ s
-    defined in :term:`module`\ s are linked dynamically to the kernel at the
-    beginning of every simulation.
+    The simulation engine housed in :term:`cyclus core`. :term:`Archetypes
+    <archetype>` defined in :term:`modules <module>` are linked dynamically to the
+    kernel at the beginning of every simulation.
 
   archetype
 
@@ -70,9 +75,9 @@ Glossary of Cyclus Terms
 
   prototype
 
-    A configured :term:`archetype` with initial state and
-    conditions. :term:`Agent`\ s that do act in the simulation are cloned
-    (copied) from prototypes.
+    A configured :term:`archetype` with initial state and conditions.
+    :term:`Agents <agent>` that do act in the simulation are cloned (copied) from
+    prototypes.
 
   agent
 
@@ -82,9 +87,9 @@ Glossary of Cyclus Terms
 
   module
 
-    A shared-object library that houses implementations of :term:`archetype`\ s
-    and related tools that is dynamically linked to the :term:`cyclus kernel` at
-    runtime if one of its :term:`archetype` is used in a simulation.
+    A shared-object library that houses implementations of :term:`archetypes
+    <archetype>` and related tools that is dynamically linked to the :term:`cyclus
+    kernel` at runtime if one of its :term:`archetype` is used in a simulation.
 
   core developer   
 
@@ -94,7 +99,7 @@ Glossary of Cyclus Terms
   archetype developer
 
     An individual from science, academia, government, or the general public
-    interested in contributing to the ecosystem of :term:`archetype`\ s
+    interested in contributing to the ecosystem of :term:`archetypes <archetype>`
     available for use with the simulator.
 
   user
@@ -120,5 +125,5 @@ Glossary of Cyclus Terms
 
   agent phase
 
-    A phase during a simulation time step in which :term:`agent`\ s are allowed
-    to query the simulation environment and perform general actions.
+    A phase during a simulation time step in which :term:`agents <agent>` are
+    allowed to query the simulation environment and perform general actions.

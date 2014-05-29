@@ -2,7 +2,7 @@
  The |Cyclus| Community & Ecosystem
 ====================================
 
-|Cyclus| **welcomes code & contributions from everyone!**
+**Cyclus welcomes code & contributions from everyone!**
 
 An important goal of the |cyclus| effort is to attract a community of
 developers contributing to a vibrant ecosystem of models.  Due to
@@ -17,7 +17,7 @@ nuclear energy systems, this should mitigate concerns for the open source
 distribution of this core infrastructure.  
 
 Moreover, this infrastructure is also designed to allow for the addition of
-runtime :term:`module`\ s, or :term:`plug-in`\ s, that can be developed and
+runtime :term:`modules <module>`, or :term:`plug-ins <plug-in>`, that can be developed and
 distributed under any licensing scheme.  Separate from the core
 infrastructure, the distribution responsibility will rest with the developer
 of each module.  This system will insulate the core infrastructure from
@@ -50,7 +50,7 @@ simulator system with a low barrier to adoption, a policy of open source
 distribution of this core infrastructure is critical to its mission.
 (|cyclus| is also committed to free and widely used software development
 tools, such as GNU compilers, SQLite, Boost, etc.)  The |cyclus| core is
-currently available via its `Git hub repository
+currently available via its `GitHub repository
 <http://github.com/cyclus/cyclus>`_.  Interested users and developers are
 invited to make their own copy of this repository, review the list of open
 issues, and participate in the developer's mailing list. Like all open source
@@ -81,7 +81,7 @@ ecosystem, they will be responsible for all aspects of that distribution.  The
 (details are still under development), but this catalog will point to external
 distribution sites that are consistent with each contributors personal and/or
 institutional needs.  For example, developers who are permitted to follow an
-open source approach with their own contributions can have their own Github
+open source approach with their own contributions can have their own GitHub
 account and share their modules through the same mechanism as - but a
 different location from - the |cyclus| core.  For some subset of open source
 distribution mechanisms, the |cyclus| core will include tools to make it

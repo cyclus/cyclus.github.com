@@ -3,8 +3,9 @@ Introduction to the |cyclus| Fuel Cycle Simulator
 
 |cyclus| is a next generation agent-based nuclear fuel cycle simulation
 platform whose genesis was driven by a variety of gaps seen in previous fuel
-cycle simulation efforts.  The current fleet of :term:`fuel cycle simulator`\
-s addresses three major design and development philosophies:
+cycle simulation efforts.  The current fleet of :term:`fuel cycle simulators
+<fuel cycle simulator>` addresses three major design and development
+philosophies:
 
     #. A desire for usability, thus developing a tool which begins with a
        simple model in a visual development environment that aims to provide an
@@ -72,13 +73,13 @@ Open Source Development Process
 The |cyclus| development framework employs a modern, open source philosophy
 that ensures transparency, attracts contributions from a varied community of
 collaborators, and guarantees institution-independent access to all potential
-:term:`user`\ s. In this development path, a public source code repository provides
+:term:`users <user>`. In this development path, a public source code repository provides
 unhindered access to the `fundamental simulation framework
 <http://github.com/cyclus/cyclys>`_ and `additional agent archetypes
 <http://github.com/cyclus/cycamore>`_ volunteered by developers.  Granting
 unfettered access only to the |cyclus| engine allows for compartmentalization
 of the code and its input data. Thus, secure and proprietary :term:`archetype
-developer`\ s can be similarly encouraged to utilize the |cyclus| framework.
+developers <archetype developer>` can be similarly encouraged to utilize the |cyclus| framework.
 This modern development model passively distributes specialized content to
 interested research groups, and facilitates parallel archetype development
 efforts by institutions with complimentary goals.  The transparency inherent

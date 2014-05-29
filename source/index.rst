@@ -20,18 +20,16 @@
     v0.4 has been released!</a></h2><br></div>
 
 |cyclus| is *the* agent-based nuclear :doc:`fuel cycle simulator
-<basics/fcs_background>`, providing flexibility to users
-and developers through a dynamic resource exchange solver and plugin,
-user-developed agent framework.
+<basics/fcs_background>`, providing flexibility to users and developers
+through a :term:`dynamic resource exchange` solver and :term:`plug-in`,
+user-developed :term:`agent` framework.
 
-The goal of |cyclus| is to enable a broad specutrum of 
-fuel cycle simulation while providing a 
-low barrier to entry for new users and agent developers. |Cyclus| engages 
-with potential module developers and 
-encourages them to join a vibrant community in an 
-:doc:`expanding ecosystem <basics/ecosystem>`.  
-Users and developers are always welcome and encouraged to use or contribute 
-to the |cyclus| project. 
+The goal of |cyclus| is to enable a broad spectrum of :term:`fuel cycle
+simulation <fuel cycle simulator>` while providing a low barrier to entry for
+new users and agent developers. |Cyclus| engages with potential module
+developers and encourages them to join a vibrant community in an
+:doc:`expanding ecosystem <basics/ecosystem>`.  Users and developers are
+always welcome and encouraged to use or contribute to the |cyclus| project. 
 
 The |Cyclus| project repository is located at http://github.com/cyclus/cyclus.
 
