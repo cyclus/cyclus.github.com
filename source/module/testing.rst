@@ -30,7 +30,7 @@ tests for any class that inherits from one of:
 * ``cyclus::Region``
 
 Note that ``cyclus::Agent`` is the base class for any object that acts as an
-agent in the simulation, so every archetype can invoke those unit tests.
+:term:`agent` in the simulation, so every archetype can invoke those unit tests.
 
 In order to get the provided unit tests in your archetype's tests, a few extra
 lines must be added to your ``*_tests.cc`` file. For instance, the
