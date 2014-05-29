@@ -3,6 +3,7 @@
 
 .. image:: ../astatic/sp_sketch.jpg
     :align: center
+    :scale: 50
 
 The following are release notes for and links to previously released versions of
 |cyclus|:
