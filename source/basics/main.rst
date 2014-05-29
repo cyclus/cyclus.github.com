@@ -8,6 +8,7 @@
    :maxdepth: 2
   
    introduction
+   concepts
    fcs_background
    ecosystem
    acknowledgements
