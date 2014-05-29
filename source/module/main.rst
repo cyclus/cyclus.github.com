@@ -46,8 +46,6 @@ Hello World
 Writing Agents & Modules
 ------------------------
 
-TODO: write about starting from cycstub and the organization of modules.
-
 Building, Installing and Testing
 ++++++++++++++++++++++++++++++++
 
