@@ -82,8 +82,6 @@ Under the Hood
 ..   cyclus_env
 ..   materials_and_isotopes
 
-TODO: Write about DRE
-
 |Cyclus| Toolkit
 ----------------
 TODO: Write about |cyclus| toolkit. Probably deserves its own heading.
