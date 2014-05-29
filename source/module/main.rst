@@ -66,11 +66,10 @@ Interfacing with the |Cyclus| Kernel
     timestep
     resources
     dre
+    custom_tables
     dbtypes
     errors
     logger
-
-TODO: write about custom tables.
 
 Under the Hood
 ------------------------------
