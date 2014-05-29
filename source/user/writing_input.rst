@@ -65,6 +65,7 @@ The following sections are required to appear *only once* in the
    :maxdepth: 1
 
    input_specs/control
+   input_specs/archetypes
 
 The following sections are required to appear *at least once* in the
 ``simulation`` section of ecah |Cyclus| input file:
