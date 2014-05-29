@@ -43,7 +43,7 @@ Python in the following way:
 ------------
 
 Let's now change the behaviour of the TutorialFacility's ``Tick()`` & ``Tock()``
-member functions to print "Hello" and "Tutorial" repspectively.  To do this, please
+member functions to print "Hello" and "World" repspectively.  To do this, please
 open up the :file:`src/tutorial_facility.cc` file in your favorite text editor 
 (vim, emacs, gedit, `xo <http://exofrills.org>`_).  Change the orignal functions 
 to look like:
@@ -62,7 +62,7 @@ to look like:
 
     void TutorialFacility::Tick() {std::cout << "Hello, ";}
 
-    void TutorialFacility::Tock() {std::cout << "Tutorial!\n";}
+    void TutorialFacility::Tock() {std::cout << "World!\n";}
 
 ------------
 
