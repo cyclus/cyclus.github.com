@@ -41,6 +41,7 @@ Hello World
     :maxdepth: 1
     
     hello_world
+    tour
 
 Writing Agents & Modules
 ------------------------

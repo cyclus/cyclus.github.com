@@ -1,4 +1,6 @@
-Using the |Cyclus| Preprocessor
+.. _cycpp:
+
+Using the Cyclus Preprocessor
 ==================================
 
 .. |cycpp| replace:: ``cycpp``
