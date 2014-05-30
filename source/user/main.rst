@@ -7,20 +7,18 @@ This guide covers the basics of installation, creating simulation input files,
 and running them.  If you haven't already, you should take a look at
 :ref:`Fundemental Concepts in Cyclus <basics-concepts>`. After that you can install |cyclus|:
 
-.. toctree::
-     :maxdepth: 2
-     
-     install
+Installing |Cyclus|
+--------------------
 
-After installation, the sections below will explain how to define your own
-simulations and run them.
+* The easiest way to install |Cyclus| on a new system is to :doc:`install using Conda <install>`.  
+* More adventurous users may want to try :doc:`getting and building Cyclus from source </kernel/build_from_source>`.
 
 Writing Input Files
 ---------------------
 
 .. toctree::
     :glob:
-    :maxdepth: 2
+    :maxdepth: 1
 
     writing_input
     find_agents
@@ -37,7 +35,7 @@ Running Simulations
 --------------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    running_sims
 
