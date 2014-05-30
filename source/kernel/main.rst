@@ -43,9 +43,8 @@ A video history of our development (video created using gource):
 
     .. raw:: html
 
-      <div class="box50short"><video id='81b00554' class='sublime' width='420' height='284' poster='http://whyfiles.org/wp-content/uploads/2014/03/csi2014cnerg.jpg' preload='none' data-uid='81b00554' >
-      <source src='http://whyfiles.org/wp-content/uploads/2014/03/csi2014cnerg-Wi-Fi.m4v' />
-      <source src='http://whyfiles.org/wp-content/uploads/2014/03/csi2014cnerg-Cellular.m4v' />
+      <div class="box50short"><video controls id='81b00554' class='sublime' width='420' height='284'  preload='none' data-uid='81b00554' >
+      <source src='http://cnergdata.engr.wisc.edu/cyclus/vids/cyclus_cycamore_gource_2014_02_27.mp4' />
       </video></div>
 
 Relevant xkcd comics:
