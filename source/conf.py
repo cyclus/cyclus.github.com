@@ -278,9 +278,9 @@ texinfo_documents = [
 rst_epilog = """
 .. |cyclus| raw:: html 
 
-       <span style="font-variant:small-caps;font-style:italic">Cyclus</span>
+       <span style="font-variant:small-caps;">Cyclus</span>
 
 .. |Cyclus| raw:: html 
 
-       <span style="font-variant:small-caps;font-style:italic">Cyclus</span>
+       <span style="font-variant:small-caps;">Cyclus</span>
 """
