@@ -1,5 +1,5 @@
-Introduction to |cyclus|
-================================================
+|Cyclus| Introduction
+=====================
 
 |cyclus| is a nuclear fuel cycle simulation platform whose genesis was driven
 by a variety of gaps seen in previous fuel cycle simulation efforts, which
