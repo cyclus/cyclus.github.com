@@ -3,9 +3,6 @@
 Building Modules with CMake
 ===========================
 
-Overview
---------
-
 If you haven't follow the initial example in :ref:`hello_world`, you should get
 the `Cycstub repo <https://github.com/cyclus/cycstub>`_ by either `cloning the
 repository <https://github.com/cyclus/cycstub.git>`_ or by `downloading the zip
