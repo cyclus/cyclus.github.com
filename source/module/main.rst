@@ -17,12 +17,12 @@
 
 Welcome!
 
-You are here because you 
-have made (or are making) the transition from wanting to run simulations
-to wanting to dig in and start dictating agent logic and behaviour on a more 
-fundemental level. Perhaps existing archetypes are insufficient for your needs, 
-perhaps you are curious as to how it all works, or are a devilishly handsome 
-thrill-seeker.  Whatever your reasons, you have come to the right place!
+You are here because you have made (or are making) the transition from wanting
+to run simulations to wanting to dig in and start dictating agent logic and
+behaviour on a more fundemental level. Perhaps existing archetypes are
+insufficient for your needs, perhaps you are curious as to how it all works, or
+are a devilishly handsome thrill-seeker.  Whatever your reasons, you have come
+to the right place!
 
 This guide assumes that you have |cyclus| installed, are familiar with running
 simulations, and understand user-level concepts.
