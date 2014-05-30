@@ -3,49 +3,10 @@
 Use Cases for |Cyclus| Data Analysis
 ====================================
 
-Transaction Data
-++++++++++++++++
-
-One of the primary |cyclus| output data is composed of a log of
-individual resource transactions.  Each transaction has the following
-fundamental characteristics:
-
- * **time**: an integer of time steps since the beginning of the simulation
- * **sender**: an agent ID identifying the facility that sent the material
- * **recipient**: an agent ID identifying the facility that received the material
-
- * **resource**: an ID identifying the resource object that was transferred.
-   Resources have an associated quantity in addition to other properties (e.g.
-   nuclide composition).
-
-
-Resource Data
-++++++++++++++
-
-
-Agent Instance Data
-++++++++++++++++++++++
-
-The database contains a list of all agents (facilities, regions, etc.) that
-existed in the simulation.  Each agent has the following fundamental
-characteristics:
-
- * **parent** an ID identifying an owning agent that created/managed the agent
- * **spec**: a string identifying the specific library and archetype used for
-   the agent
- * **prototype**: an string identifying the prototype configuration on which
-   the agent is based.
- * **enter-time**: an integer indicating the time step the agent entered the
-   simulation.
- * **exit-time**: a integer indicating the time step the agent left the
-   simulation
-
-Use Cases
-+++++++++
-
-This section will attempt to document a number of primary data
-exploration use cases, based on this data.  The two most common modes
-are explorations of the material flows and the facility histories.
+This section will attempt to document a number of primary data exploration use
+cases, based on this data.  For an overview of the information recorded in a
+|cyclus| simulation database, check out :doc:`dbdoc`.  The two most common
+modes are explorations of the material flows and the facility histories.
 
 Material flow explorations
 --------------------------
