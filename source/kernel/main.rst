@@ -37,7 +37,7 @@ A video history of our development (video created using gource):
 
     .. raw:: html
 
-      <div class="box50short"><video controls id='81b00554' class='sublime' width='420' height='284'  preload='none' data-uid='81b00554' >
+      <div class="box50short"><video controls class='sublime' width='420' height='284'  preload='none' >
       <source src='http://cnergdata.engr.wisc.edu/cyclus/vids/why_files_snippet.m4v' />
       </video></div>
  
@@ -45,7 +45,7 @@ A video history of our development (video created using gource):
 
     .. raw:: html
 
-      <div class="box50short"><video controls id='81b00554' class='sublime' width='420' height='284'  preload='none' data-uid='81b00554' >
+      <div class="box50short"><video controls class='sublime' width='420' height='284'  preload='none' >
       <source src='http://cnergdata.engr.wisc.edu/cyclus/vids/cyclus_cycamore_gource_2014_02_27.mp4' />
       </video></div>
 
