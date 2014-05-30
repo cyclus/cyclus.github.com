@@ -127,10 +127,10 @@ Contact Us
 
 * Project Lead, `Anthony Scopatz <http://scopatz.com/>`_:  scopatz AT gmail.com
 
+* Kernel Developer, Robert Carlsen
+
 * Kernel Developer, `Matthew Gidden <http://mattgidden.com/>`_: matthew.gidden AT
   gmail.com
-
-* Kernel Developer, Robert Carlsen
 
 * Archetype and Analysis Developer, Arrielle Opotowsky: arrielle.opotowsky AT 
   gmail.com
