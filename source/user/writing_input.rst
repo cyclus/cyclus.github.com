@@ -1,6 +1,5 @@
 Writing a |Cyclus| Input File
 =============================
-
 This section will provide an introduction to creating a valid input file for
 |Cyclus| by hand.  Because |Cyclus| uses XML, input files have clearly defined
 sections, or blocks, that can be automatically validated for correctness.
@@ -11,7 +10,6 @@ facilitate building |Cyclus| input files in the future.
 
 A Brief Introduction to XML
 ---------------------------
-
 `XML`_ stands for EXtensible Markup Language, and was designed to provide
 structure to data in a generic way by grouping the data between starting and
 ending "tags".  The tags used to provide that structure are not defined
@@ -47,7 +45,6 @@ as shown above.
 
 The |Cyclus| Input File
 ------------------------
-
 Every |Cyclus| input file must have exactly one ``simulation`` section that
 contains all data for a simulation.
 
@@ -70,5 +67,52 @@ any order in the input file:
    input_specs/region
    input_specs/inst
    input_specs/recipe
+
+Including XML Files
+--------------------
+One feature of XML is that you are able to include external XML files inside of
+your current document. This lets you reuse common parts of your input file that 
+do not change across multiple simulations. To enable XML include semantics
+the attribute ``xmlns:xi="http://www.w3.org/2001/XInclude"`` *must* be added to the 
+``<simulation>`` tag. Then to include an external 
+file use the ``<xi:include href="path/to/file" />`` tag where you want the included
+file to go.
+
+A common inclusion pattern is to have a recipe book of materials in one file 
+and then include this in your simulation.
+
+**input.xml:**
+
+.. code-block:: xml
+
+    <simulation xmlns:xi="http://www.w3.org/2001/XInclude">
+      ...
+      <xi:include href="recipebook.xml" /> 
+      ... 
+    </simulation>
+
+**recipebook.xml:**
+
+.. code-block:: xml
+
+  <recipe>
+    <name>proton_recipe</name>
+    <basis>mass</basis>
+    <nuclide>
+      <id>010010000</id>
+      <comp>1</comp>
+    </nuclide>
+  </recipe>
+
+  <recipe>
+    <name>natU_recipe</name>
+    <basis>atom</basis>
+    <nuclide>
+      <id>922350000</id><comp>0.007</comp>
+    </nuclide>
+    <nuclide>
+      <id>922380000</id><comp>0.993</comp>
+    </nuclide>
+  </recipe>
 
 .. _XML : http://www.w3schools.com/xml/default.asp
