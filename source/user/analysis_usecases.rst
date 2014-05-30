@@ -4,7 +4,7 @@ Use Cases for |Cyclus| Data Analysis
 ====================================
 
 This section will attempt to document a number of primary data exploration use
-cases, based on this data.  For an overview of the information recorded in a
+cases.  For an overview of the information recorded in a
 |cyclus| simulation database, check out :doc:`dbdoc`.  The two most common
 modes are explorations of the material flows and the facility histories.
 
