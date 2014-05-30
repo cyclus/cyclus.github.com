@@ -29,9 +29,9 @@ Currently, two specific systems are supported:
 Unfamiliar with git and Github?
 -------------------------------
 
-For the Git uninitiated, one must perform the following steps to acquire |cyclus|:
+For the git uninitiated, one must perform the following steps to acquire |cyclus|:
 
-  #. `Set Up Git`_ shows one how to set up SSH keys and Git user info
+  #. `Set Up git`_ shows one how to set up SSH keys and git user info
   #. Fork the |cyclus| repository, as shown in `Fork A Repo`_
 
 Note that each |cyclus| repository has **two** branches:
@@ -42,14 +42,14 @@ Note that each |cyclus| repository has **two** branches:
 The above branches are synchronized with each other, and should be used in tandem
 (i.e., use master (|Cyclus|) with master (Cycamore) or develop with develop only).
 
-.. _`Set Up Git`: http://help.github.com/linux-set-up-git/
+.. _`Set Up git`: http://help.github.com/linux-set-up-git/
 
 .. _`Fork A Repo`: http://help.github.com/fork-a-repo/
 
-Help with Git and GitHub
+Help with git and GitHub
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you are unfamiliar with Git, here are some resources:
+If you are unfamiliar with git, here are some resources:
 
   * http://progit.org/book/ - this is a fantastic guide, from beginner to expert
   * http://book.git-scm.com/
