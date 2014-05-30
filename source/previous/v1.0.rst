@@ -80,10 +80,10 @@ Major features
 Since v0.4
 
 * Cyclus: 1,125 commits resulted in 262 changed files encompassing a net 33,825
-line insertions(+) and 9,676 deletions(-).
+  line insertions(+) and 9,676 deletions(-).
 
 * Cycamore: 270 commits resulted in 133 changed files encompassing a net 2,243
-line insertions(+) and 95,294 deletions(-).
+  line insertions(+) and 95,294 deletions(-).
 
 Contributors
 ============
