@@ -37,22 +37,48 @@ Major features
 
 - Pre-processing
 
-- Post-processing 
-
-- Input/XML deets?
+  * auto-generate input/output archetype code for supported datatypes
 
 - Simulation initialization and restart
 
 - Now using PyNE for nuclear data (http://pyne.io)
 
-- Build system deets?
+- Basic Lodtka-Volterra predator/prey-like simulation behavior demonstrated
+
+- Updated build system
+
+  * kernel in ``$PREFIX/lib/`` as ``cyclus`` (i.e., ``libcyclus.so`` or
+    ``libcyclus.dylib``)
+
+  * cyclus agents in ``$PREFIX/lib/cyclus`` as ``agents``
+
+  * cyclus generic agent archetype unit tests in ``$PREFIX/lib/cyclus`` as
+    ``baseagentunittests``
+
+  * cycamore agents in ``$PREFIX/lib/cyclus`` as ``cycamore``
+
+  * cyclus unit tests in ``$PREFIX/bin`` as ``cyclus_unit_tests``
+
+  * cycamore unit tests in ``$PREFIX/bin`` as ``cycamore_unit_tests``
+
+  * support for easy build/install of modules with single agent archetype and
+    associated tests
+
+  * support for easy build/install of modules of group of agent archetypes and
+    associated tests
 
 - Toolkit
 
-- Backend database deets?
+  * separation of additional "helper" classes and interfaces out of kernel
+    source directory and namespace
 
-Since v0.4, xxx files have changed encompassing a net xxxx line insertions(+) and 
-xxxx deletions(-).
+- Significantly updated database schema, utilized for both canonical input and
+  output
+
+  * supports variable length datatypes for both sqlite and hdf5
+
+Since v0.4, 262 files have changed encompassing a net 33,820 line insertions(+)
+and 9,673 deletions(-).
 
 Contributors
 ============
@@ -61,7 +87,6 @@ The following people contributed to this release of Cyclus.  A "*" by their
 name indicates a first time contributor.  Names follow alphabetically, 
 
 * Robert Carlsen
-* Royal Elmore
 * Matthew Gidden
 * Katy Huff
 * Arrielle Opotowsky
