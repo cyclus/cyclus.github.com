@@ -25,7 +25,7 @@ are a devilishly handsome thrill-seeker.  Whatever your reasons, you have come
 to the right place!
 
 This guide assumes that you have |cyclus| installed, are familiar with running
-simulations, and understand user-level concepts.
+simulations and understand user-level concepts.
 
 To get started please follow the instructions in :doc:`hello_world`.
 
@@ -69,6 +69,19 @@ Interfacing with the |Cyclus| Kernel
     custom_tables
     errors
     logger
+
+A Word About Style
+++++++++++++++++++
+
+Having a consistent style in your code is important. Python has a great style
+guide encapsulated in `PEP8 <http://legacy.python.org/dev/peps/pep-0008/>`_. As
+our code base is mostly C++, the kernel development team follows the `Google C++
+Style Guide <http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml>`_
+(GCSG) as closely as possible, and we invite you to as well! A notable (and
+required) exception to the GCSG used in |Cyclus| and Cycamore :term:`archetypes
+<archetype>` is the use of preprocessor-aware private member variables without a
+trailing underscore, due to consistency requirements across input files,
+implemenetation, and databases. Happy (well styled) coding!
 
 Under the Hood
 ------------------------------
