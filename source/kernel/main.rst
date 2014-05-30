@@ -29,13 +29,7 @@ Software Development Aids
 Diversions
 ----------
 
-
-
-TODO: add our new, award winning gource video!
-
 A video history of our development (video created using gource):
-
-  * `March 3, 2010 to July 25, 2012 <http://www.youtube.com/watch?v=-2uQia2e_cg>`_
   
   * `Award winning
     <http://whyfiles.org/2014/2014-cool-science-image-contest-slideshow/>`_
@@ -55,8 +49,7 @@ A video history of our development (video created using gource):
       <source src='http://cnergdata.engr.wisc.edu/cyclus/vids/cyclus_cycamore_gource_2014_02_27.mp4' />
       </video></div>
 
-
-  
+  * `March 3, 2010 to July 25, 2012 <http://www.youtube.com/watch?v=-2uQia2e_cg>`_  
 
 Relevant xkcd comics:
 
