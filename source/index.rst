@@ -19,7 +19,7 @@
     <h2><a href="https://github.com/cyclus/cyclus/releases/tag/0.4">
     v0.4 has been released!</a></h2><br></div>
 
-|cyclus| is *the* agent-based nuclear :doc:`fuel cycle simulator
+|cyclus| is the next-generation agent-based nuclear :doc:`fuel cycle simulator
 <basics/fcs_background>`, providing flexibility to users and developers
 through a :term:`dynamic resource exchange` solver and :term:`plug-in`,
 user-developed :term:`agent` framework.
