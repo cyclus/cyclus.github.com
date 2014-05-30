@@ -24,6 +24,7 @@ Writing Input Files
 
     writing_input
     find_agents
+    sim_schema
 
 ..
        input_specs/overview/*
