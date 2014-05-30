@@ -46,6 +46,16 @@ h2 a {
  color: #fff3b6;
 }
 
+div.body h2.html-toggle-button:hover
+{
+ background: #4b1a07;
+  -moz-box-shadow: 0 0 2px #bb3f3f;
+  -webkit-box-shadow: 0 0 2px #bb3f3f;
+  -o-box-shadow: 0 0 2px #bb3f3f;
+  -ms-box-shadow: 0 0 2px #bb3f3f;
+  box-shadow: 0 0 2px #bb3f3f;
+}
+
 div#cyclus.section h1 {
   display: none;
 }
