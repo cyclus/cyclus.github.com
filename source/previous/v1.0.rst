@@ -13,10 +13,6 @@ of the cyclus ecosystem!  This includes over 5000 commits by
 Major features
 ==============
 
-- Fast simulation performance
-
-- Memory management: model instantiation/deallocation
-
 - Cyclus Enhancement Proposal (CEP) system for large changes
 
 - Testing suite 
