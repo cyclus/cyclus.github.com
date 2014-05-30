@@ -125,10 +125,18 @@ Contact Us
 
 * Project PI, Paul Wilson: wilsonp AT engr.wisc.edu
 
-* Project Lead, Anthony Scopatz:  scopatz AT gmail.com
+* Project Lead, `Anthony Scopatz <http://scopatz.com/>`_:  scopatz AT gmail.com
 
 * Kernel Developer, `Matthew Gidden <http://mattgidden.com/>`_: matthew.gidden AT
   gmail.com
+
+* Kernel Developer, Robert Carlsen
+
+* Archetype and Analysis Developer, Arrielle Opotwoskty
+
+* Archetype and Analysis Developer, Olzhas Rakhimov
+
+* Continuous Integration Developer, Zach Welch
 
 Acknowledgments
 ----------------
