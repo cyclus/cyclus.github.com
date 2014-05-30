@@ -11,9 +11,9 @@ The following concepts are defined in more detail below:
 * |Cyclus| tracks the evolution of a system over time
 * agents interact through a dynamic resource exchange that is recomputed at each time step
 * |Cyclus| catalogs the transactions of discrete quanta of resources
-* agents may enter or leave the simulation over the lifetime of a simulation
+* agents may enter or leave the simulation over its lifetime
 * each agent is deployed as a clone of a prototype
-* each prototype is defined as a configuration an archetype
+* each prototype is defined as a configuration of an archetype
 * archetypes are loaded dynamically at runtime and can be contributed by any user/developer
 
 Agent-Based Simulation
@@ -33,9 +33,9 @@ single discrete nuclear fuel cycle facility.
 Each Facility agent is owned/operated by an Institution agent, representing a
 legal operating organization such as a utility, government, non-governmental
 organization, etc.  Institution agents are responsible for deploying and
-decomissioning Facility agents.  
+decommissioning Facility agents.  
 
-Each Institution operates in a Region agent, respresenting a geopolitical
+Each Institution operates in a Region agent, representing a geopolitical
 region such as a nation-state, sub-national state, super-national region, etc.
 Region agents are responsible for requesting the deployment of additional
 Facilities through their Institutions.
@@ -53,11 +53,11 @@ recomputed.
 Dynamic Resource Exchange
 -------------------------
 
-Facility agents interact through the dynamic resource exchange by submitting requests
-for resources and/or receiving bids to provide those resources.  All
+Facility agents interact through the dynamic resource exchange by submitting
+requests for resources and/or receiving bids to provide those resources.  All
 facilities that request resources can then establish their preferences across
-the set of bids they receive and the global set of proferences is used to
-resolve the exchange by mazimizing the global preference.
+the set of bids they receive and the global set of preferences is used to
+resolve the exchange by maximizing the global preference.
 
 Discrete Resource Tracking
 --------------------------
@@ -74,8 +74,8 @@ Facility agents can be deployed or decommissioned at each time step, changing
 the system that is being modeled through the dynamic resource exchange.  The
 decision of when to deploy new facility agents and which agents to deploy is
 made by the institution agents based on user input.  Agents may be
-decomissioned either because they reach their lifetime or because a decision
-to decommision is made by the institution that operates them.
+decommissioned either because they reach their lifetime or because a decision
+to decommission is made by the institution that operates them.
 
 
 Agent Prototypes

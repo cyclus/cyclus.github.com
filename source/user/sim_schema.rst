@@ -8,9 +8,9 @@ from the command line as well, should you ever need them.
 Default Schema
 --------------
 This is the recommended schema to use for most simulations.  It imposes a
-Region, Institution, and Facility heiracrhy that is natural for modeling
+Region, Institution, and Facility hierarchy that is natural for modeling
 the relationship between different actors in the nuclear fuel cycle.  You 
-can print this schema from the commdand line with the ``--schema`` option:
+can print this schema from the command line with the ``--schema`` option:
 
 .. code-block:: bash
 
@@ -135,7 +135,7 @@ This returns the following:
 Flat Schema
 -----------
 The flat schema is an option schema for advanced users. It 'flattens' the 
-Region, Institution, and Facility heirarchy. This make it easeir to model
+Region, Institution, and Facility hierarchy. This make it easier to model
 collections of facilities in cases where regional and institutional effects
 are not of primary interest.  You can print this from the command line 
 with the combination of the ``--schema`` and ``--flat-schema`` options:

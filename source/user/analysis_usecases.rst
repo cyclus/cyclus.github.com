@@ -6,9 +6,9 @@ Use Cases for |Cyclus| Data Analysis
 Transaction Data
 ++++++++++++++++
 
-One of the primary |cyclus| output data is composed of a log of individual
-resource transactions.  Each transaction has the following fundamental
-characteristics:
+One of the primary |cyclus| output data is composed of a log of
+individual resource transactions.  Each transaction has the following
+fundamental characteristics:
 
  * **time**: an integer of time steps since the beginning of the simulation
  * **sender**: an agent ID identifying the facility that sent the material
@@ -27,10 +27,10 @@ Agent Instance Data
 ++++++++++++++++++++++
 
 The database contains a list of all agents (facilities, regions, etc.) that
-existed in the simulation.  Each agent have the following fundamental
+existed in the simulation.  Each agent has the following fundamental
 characteristics:
 
- * **parent** an ID identifying an owning agent that created/manages the agent
+ * **parent** an ID identifying an owning agent that created/managed the agent
  * **spec**: a string identifying the specific library and archetype used for
    the agent
  * **prototype**: an string identifying the prototype configuration on which
@@ -45,8 +45,7 @@ Use Cases
 
 This section will attempt to document a number of primary data
 exploration use cases, based on this data.  The two most common modes
-are an exploration of the material flows and an exploration of the
-facility histories.
+are explorations of the material flows and the facility histories.
 
 Material flow explorations
 --------------------------
@@ -59,7 +58,7 @@ facilities, and detailed discussion on how to populate these sets is
 given below.  Once these sets are defined, the material flow
 information can be summed over all the possible transaction pathways
 at each time step to generate a single time series of data.  The
-following disucussion will identify ways to restrict/limit the
+following discussion will identify ways to restrict/limit the
 quantity of data represented in such a time series visualization based
 primarily on filtering operations for different dimensions of the
 material flow data.
@@ -72,7 +71,7 @@ discussion will consider, in this order:
   1. the resolution of the time domain,
   2. filtering operations to restrict the data included in a single time series, 
   3. application of post-processing functions for alternative engineering responses, and
-  4. compartive visualization of multiple time series.
+  4. comparative visualization of multiple time series.
 
 Time Domain Resolution and Representation
 '''''''''''''''''''''''''''''''''''''''''
@@ -117,12 +116,12 @@ facilities for either the source or receiving set are:
     facilities based on that module
 
 The ideal user interface will allow subsets of facilities to be added
-and deleted from the ultimate set of facilities using notion of
+and deleted from the ultimate set of facilities using the notions of
 intersection, union, and negation.
 
 The ideal user interface will also allow a single time series to be
-separated into multiple time series (possible displayed in a
-comparitive fashion), by selecting a characteristic that defines
+separated into multiple time series (possibly displayed in a
+comparative fashion), by selecting a characteristic that defines
 subsets of facilities.
 
 Filtering the Set of Isotopes
@@ -142,12 +141,12 @@ define sets of isotopes:
 
 As with the facility filtering capability, an ideal user interface
 will allow subsets of isotopes to be added and deleted from the data
-set using notions of intersection, union and negation.
+set using the notions of intersection, union, and negation.
 
-One example of a graph that shows the cumulative makeup of material
-in a facility, by isotope, can be found in figure 5.11 of Kyle Oliver's 
-masters thesis, GeniusV2: Software Design and Mathematical Formulations 
-For Multi-Region Discrete Nuclear Fuel Cycle Simulation And Analysis.
+One example of a graph that shows the cumulative makeup of material in a
+facility with respect to isotope can be found in figure 5.11 of Kyle Oliver's
+masters thesis, GeniusV2: Software Design and Mathematical Formulations For
+Multi-Region Discrete Nuclear Fuel Cycle Simulation And Analysis.
 
 .. image:: cumulative_iso_dist.png
    :width: 500pt
@@ -163,7 +162,7 @@ interesting metrics/quantities including:
 * radiotoxicity
 * decay heat
 * waste volume
-* others-to-be-determined
+* others to-be-determined
 
 Users will want to apply these transformations, either changing the
 metric shown in the primary visualization or cloning the primary
@@ -216,14 +215,14 @@ similar to above.
 
 Another interesting visualization of this time series data is as an
 animated graph representation.  Graph nodes would represent source and
-receiving facilties with the connecting arcs somehow indicating the
+receiving facilities with the connecting arcs somehow indicating the
 magnitude of material flow (e.g. line thickness).  The time domain
 would be represented by animation.
 
 In some cases, the graphs of two different markets may be shown
 together, indicating the connectedness of these graphs through
 facilities that participate in both.  Different commodities could be
-respresented by different colors, for example.
+represented by different colors, for example.
 
 Such a representation could also be coordinated with the more
 traditional time series visualization, in which the graph serves as a
@@ -233,7 +232,7 @@ nodes or by selecting specific arcs.
 
 At such a time that geospatial data (or an approximation/surrogate to
 this data) is available, this graph visualization could be arranged to
-represent the real geospatial locations of facilties.
+represent the real geospatial locations of facilities.
 
 Commodity Capacity and Supply/Demand Exploration
 -------------------------------------------------
@@ -245,7 +244,7 @@ above will be of interest including:
 * time domain resolution and representation
 * filtering across different dimensions (although not across an isotope dimension)
 * applying transformations
-* comparitive visualization
+* comparative visualization
 
 By combining the information about the theoretical capacity with the
 information about material transactions, the relationship between
@@ -253,5 +252,5 @@ supply and demand can be explored.  (Note that the standardization of
 input and output resource buffers within facilities means that
 instantaneous transaction flow rates are not always representative of
 instantaneous utilization of the available processing capacity.
-Access to this information will requires additional output records.)
+Access to this information will require additional output records.)
 

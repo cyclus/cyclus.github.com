@@ -1,7 +1,7 @@
 Running Simulations
 ===================
 
-To run a simulation you must use the `cyclus` command line utility:
+To run a simulation you must use the |cyclus| command line utility:
 
 .. code-block:: bash
 

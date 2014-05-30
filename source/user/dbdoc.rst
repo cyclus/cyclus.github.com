@@ -2,13 +2,13 @@
 Understanding the Database
 ============================
 
-A single database can store multiple simuations' results. In order for this to
+A single database can store multiple simulations' results. In order for this to
 work, every table in the database has a SimId column that identifies which
 simulation each row belongs to.  In order to robustly analyze the data, all
 processing should be simulation-ID-aware.  Because simulation ID's are UUID's,
 databases can be safely merged without conflicts.
 
-Cyclus supports multiple database formats.  While each format is allowed to
+|Cyclus| supports multiple database formats.  While each format is allowed to
 store information in its own way, the overall table structure in databases is
 the same.  |Cyclus| ships supporting two database formats:
 
@@ -59,8 +59,8 @@ tables.
   resources.
 
 * **QualId** (int): Used to identify the corresponding internal-state
-  entrie(s) in the ``Products`` or ``Compositions`` table depending on the
-  resource's type.
+  entry (or entries) in the ``Products`` or ``Compositions`` table depending 
+  on the resource's type.
 
 * **Parent1** (int): If a resource was newly created, this is zero. If this
   resource came from another via is transmutation, combining, or splitting,
@@ -144,7 +144,7 @@ table.
 
 * **Lifetime** (int): Number of time steps an agent is designed to operate
   over.  ``-1`` indicates an infinite lifetime.  Note that depending on how
-  agents use the lifetime param, this may be entirely unrelated to how long
+  agents use the lifetime parameter, this may be entirely unrelated to how long
   agents were actually operating in the simulation.
 
 * **EnterTime** (int): The time step when the agent was built and entered the
@@ -190,12 +190,12 @@ Info Table
 -------------------
 
 Each simulation gets a single row in this table describing global simulation
-parameters and |cyclus| and dependency version information.
+parameters and |cyclus| dependency version information.
 
 * **SimId** (uuid)
 
 * **Handle** (string): A custom user-specified value from the input file
-  allowing for convenient idenfication of simulations in a database (because
+  allowing for convenient identification of simulations in a database (because
   the simulation uuid's are not very memorable by mere mortals).
 
 * **InitialYear** (int): The year in which time step zero occurs.
@@ -203,7 +203,7 @@ parameters and |cyclus| and dependency version information.
 * **InitialMonth** (int): The month that time step zero represents.
 
 * **Duration** (int): The length of the simulation in time steps.  Note that
-  it is possible a simulation terminated early before running its entire
+  it is possible a simulation to terminate early before running its entire
   duration (see the ``Finish`` table section).
 
 * **ParentSimId** (uuid): The SimId for this simulation's parent. Zero if this
@@ -220,7 +220,7 @@ parameters and |cyclus| and dependency version information.
       another simulation's snapshot.
  
 * **BranchTime** (int): Zero if this was not a restarted or branched
-  simulation. Otherwise, the time step of the parent sim at which the
+  simulation. Otherwise, the time step of the ParentSim at which the
   restart/branch occurred.
  
 * **CyclusVersion** (string): Version of |cyclus| used to run this simulation.

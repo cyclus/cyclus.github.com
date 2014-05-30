@@ -132,7 +132,8 @@ Contact Us
 
 * Kernel Developer, Robert Carlsen
 
-* Archetype and Analysis Developer, Arrielle Opotwoskty
+* Archetype and Analysis Developer, Arrielle Opotowsky: arrielle.opotowsky AT 
+  gmail.com
 
 * Archetype and Analysis Developer, Olzhas Rakhimov
 

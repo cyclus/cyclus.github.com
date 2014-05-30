@@ -6,13 +6,13 @@ This section will provide an introduction to creating a valid input file for
 sections, or blocks, that can be automatically validated for correctness.
 
 Work is underway to provide a drag-and-drop graphical user interface to
-faciliate building |Cyclus| input files in the future.
+facilitate building |Cyclus| input files in the future.
 
 
 A Brief Introduction to XML
 ---------------------------
 
-`XML`_ stands for EXtensible Markup Lanuage, and was designed to provide
+`XML`_ stands for EXtensible Markup Language, and was designed to provide
 structure to data in a generic way by grouping the data between starting and
 ending "tags".  The tags used to provide that structure are not defined
 universally, but each project can invent their own language for those tags.
@@ -36,7 +36,7 @@ In this example, a section named ``note`` includes four other sections named
 
 The set of tags for any given project, and their relationship to each other in
 the hierarchy, is referred to as a grammar.  In addition to defining which
-tags exist, the grammar can define how many times each tag must or may exist
+tags exist, the grammar defines how many times each tag must or may exist
 in a given section.  A tag may be completely optional, required one or more
 times, or allowed to appear as many times as the user desires.
 
@@ -72,4 +72,3 @@ any order in the input file:
    input_specs/recipe
 
 .. _XML : http://www.w3schools.com/xml/default.asp
-
