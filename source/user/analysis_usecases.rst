@@ -85,27 +85,27 @@ separated into multiple time series (possibly displayed in a
 comparative fashion), by selecting a characteristic that defines
 subsets of facilities.
 
-Filtering the Set of Isotopes
+Filtering the Set of Nuclides
 '''''''''''''''''''''''''''''
 
 It will also be important to restrict the material flow time series
-data by filtering on the set of isotopes that are included in the
+data by filtering on the set of nuclides that are included in the
 material flow data.  There are a small number of standard ways to
-define sets of isotopes:
+define sets of nuclides:
 
-* include all isotopes
+* include all nuclides
 * choose individual chemical elements (e.g. uranium) and thereby
-  including all the isotopes of that element
-* choose individual isotopes (e.g. U-235)
-* choose from predefined meaningful sets of isotopes
-  (e.g. fission products, actinides, transuranics, fissile isotopes)
+  including all the nuclides of that element
+* choose individual nuclides (e.g. U-235)
+* choose from predefined meaningful sets of nuclides
+  (e.g. fission products, actinides, transuranics, fissile nuclides)
 
 As with the facility filtering capability, an ideal user interface
-will allow subsets of isotopes to be added and deleted from the data
+will allow subsets of nuclides to be added and deleted from the data
 set using the notions of intersection, union, and negation.
 
 One example of a graph that shows the cumulative makeup of material in a
-facility with respect to isotope can be found in figure 5.11 of Kyle Oliver's
+facility with respect to nuclide can be found in figure 5.11 of Kyle Oliver's
 masters thesis, GeniusV2: Software Design and Mathematical Formulations For
 Multi-Region Discrete Nuclear Fuel Cycle Simulation And Analysis.
 
@@ -116,7 +116,7 @@ Post-processing for Alternative Engineering Responses
 '''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 While the fundamental material flows are defined as the raw quantity
-of each isotope that is being transacted, there will be a growing set
+of each nuclide that is being transacted, there will be a growing set
 of transformations that convert these number densities into other
 interesting metrics/quantities including:
 
@@ -146,16 +146,16 @@ possible workflow is as follows:
       same axes as a stacked area chart.  The envelope of these now
       differentiated time series is identical to the envelope of the
       original time series.
-   3. The user is then interested in a certain subset of the isotopes,
-      say the fissile isotopes, and requests that this same material
-      flow data be filtered to only include those isotopes.  Each of
+   3. The user is then interested in a certain subset of the nuclides,
+      say the fissile nuclides, and requests that this same material
+      flow data be filtered to only include those nuclides.  Each of
       the material flow time series may (or may not) be reduced as the
-      set of isotopes it includes is altered.  (Note that while it is
-      theoretically possible to differentiate by isotope, it may
+      set of nuclides it includes is altered.  (Note that while it is
+      theoretically possible to differentiate by nuclide, it may
       become difficult to visualize the many different time series
-      formed by differentiating by facility characteristic and isotope
+      formed by differentiating by facility characteristic and nuclide
       at the same time.  In some cases, especially where a small
-      number of isotope subsets are identified, this may be
+      number of nuclide subsets are identified, this may be
       practical.)
    4. At this point the user may seek a detailed isotopic breakdown of
       one of the material flows, either as a time series shown on a
@@ -203,7 +203,7 @@ capacity of a set of facilities.  Most of the operations discussed
 above will be of interest including:
 
 * time domain resolution and representation
-* filtering across different dimensions (although not across an isotope dimension)
+* filtering across different dimensions (although not across a nuclide dimension)
 * applying transformations
 * comparative visualization
 
