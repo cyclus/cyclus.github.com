@@ -57,7 +57,7 @@ Best practice workflow for contributing to site changes
 
 4. Make your changes in this branch
 
-5. Test you changes by using the `gh-preview` target
+5. Test your changes by using the `gh-preview` target
 
    ``make gh-preview``
 
