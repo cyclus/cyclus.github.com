@@ -291,13 +291,13 @@ that creates a few new tables to assist data analysis and visualization.
 These tables are not set in stone and their schemas are subject to change.
 Below is a summary of them.
 
-Inventories Table
--------------------
+.. Inventories Table
+.. -------------------
 
-TODO: describe post-processed inventories table
+.. TODO: describe post-processed inventories table
 
-Agents Table
--------------------
+.. Agents Table
+.. -------------------
 
-TODO: describe post-processed agents table
+.. TODO: describe post-processed agents table
 
