@@ -26,10 +26,6 @@ Software Development Aids
    style_guide
 ..   make-models/main
 
-Previous Versions of |Cyclus|
-------------------------------
-TODO: Add release notes, dates, and links to previous versions.
-
 Diversions
 ----------
 
