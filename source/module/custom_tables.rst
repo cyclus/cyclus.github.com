@@ -52,6 +52,9 @@ enforce this in their code.
    use. For information on which c++ types the backends support, you can check
    :doc:`here <dbtypes>`.
 
+.. note:: If you require a datatype that isn't currently supported, please 
+          ask the kernel developers and they will help as soon as possible. 
+
 The cyclus kernel creates several of its own tables.  The names of these
 tables are reserved, and you are responsible to avoid using them for custom
 table names.  The reserved table names are (all case combos upper and lower):

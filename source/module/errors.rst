@@ -92,7 +92,7 @@ warning that was given.  All warnings are issued through the
                                 longer supported. Expect removal in future 
                                 releases.
     PENDING_DEPRECATION_WARNING For features, behaviours, or APIs that are 
-                                candidated for future deprecation.
+                                candidates for future deprecation.
     EXPERIMENTAL_WARNING        For features, behaviours, or APIs that are not 
                                 considered stable. Reasons for instability may 
                                 include a lack of benchmarking, uncertainty about

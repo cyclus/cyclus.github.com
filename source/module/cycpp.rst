@@ -385,7 +385,7 @@ at the start of every time step.
 State variables are automatically are saved and loaded to the 
 database as well a dictating other important interactions with the kernel.
 
-The preprocessor will generate the desired implementation of key a
+The preprocessor will generate the desired implementation of key
 member fucntions for your agent.  The easiest way to obtain these is through the
 prime directive.
 
@@ -416,9 +416,10 @@ This could be implemented as follows:
     };
 
 Note that the state variables may be private or protected if desired.  
-Furthermore state variable annotations may be broken up over many lines using 
+Furthermore annotations may be broken up over many lines using 
 trailing backslashes to make the code more readable.
-It remains up to you - the module developer - to implement the desired agent in the 
+It remains up to you - the module developer - to implement the desired behaviour
+and logic in the 
 ``Tick()`` and ``Tock()`` member functions.  Fancier tricks are available as needed
 but this is the essense of how to write |cyclus| agents.
 
@@ -525,7 +526,7 @@ parts of |cycpp|.  For example:
     #pragma cyclus var {'schema': '<my>Famcy RNG here</my>'}
     std::set<int> fibonacci;
 
-This will only override the schema anod only for the fibonacci state 
+This will override the schema only for the fibonacci state 
 variable.
 For a listing of all code generation functions that may be overridden, please 
 see :ref:`cycpp-table-1`.
