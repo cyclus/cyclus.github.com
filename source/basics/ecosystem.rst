@@ -2,7 +2,7 @@
  The |Cyclus| Community & Ecosystem
 ====================================
 
-**Cyclus welcomes code & contributions from everyone!**
+**The Cyclus project is owned by its community of users & developers and welcomes code & contributions from everyone!**
 
 An important goal of the |cyclus| effort is to attract a community of
 developers contributing to a vibrant ecosystem of models.  Due to
