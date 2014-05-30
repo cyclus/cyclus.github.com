@@ -92,12 +92,12 @@ warning that was given.  All warnings are issued through the
     VALIDATION_WARNING          For validating files received via I/O or for 
                                 indicating that the software has not been 
                                 properly benchmarked.
-    DEPRECATION_WARNING         For features, behaviours, or APIs that are no
+    DEPRECATION_WARNING         For features, behaviors, or APIs that are no
                                 longer supported. Expect removal in future 
                                 releases.
-    PENDING_DEPRECATION_WARNING For features, behaviours, or APIs that are 
+    PENDING_DEPRECATION_WARNING For features, behaviors, or APIs that are 
                                 candidates for future deprecation.
-    EXPERIMENTAL_WARNING        For features, behaviours, or APIs that are not 
+    EXPERIMENTAL_WARNING        For features, behaviors, or APIs that are not 
                                 considered stable. Reasons for instability may 
                                 include a lack of benchmarking, uncertainty about
                                 future needs, or known future API changes.
