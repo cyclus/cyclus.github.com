@@ -8,7 +8,7 @@ packages. Conda packages can be easily installed by using the
 ``conda install <PKG>`` command from command line.
 
 To install |Cyclus| (which is not currently in a default conda package 
-location), an extra step is needed. A .condarc file should be created in your 
+location), an extra step is needed. A ``.condarc`` file should be created in your 
 home directory which contains::
 
 	channels:

@@ -17,7 +17,7 @@ which live within the ``cyclus`` namespace and subclass from ``std::exception``.
 
 .. _errors-table-1:
 
-.. table:: **Table I.** |Cyclus| Error Classes
+.. table:: **Table I.** Cyclus Error Classes
     :widths: 1 9
     :column-alignment: left left
     :column-wrapping: true true 
@@ -68,7 +68,7 @@ warning that was given.  All warnings are issued through the
 
 .. _errors-table-2:
 
-.. table:: **Table II.** |Cyclus| Warnings
+.. table:: **Table II.** Cyclus Warnings
     :widths: 3 7
     :column-alignment: left left
     :column-wrapping: true true 
