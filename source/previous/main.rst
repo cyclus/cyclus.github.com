@@ -21,6 +21,8 @@ The following are release notes for and links to previously released versions of
 ========= ========== ================ ==============
 Version   Date       Zip              Tar
 ========= ========== ================ ==============
+1.0.0     2014-05-30 `zip 1.0.0`_     `tar 1.0.0`_
+1.0.0-rc4 2014-05-30 `zip 1.0.0-rc4`_ `tar 1.0.0-rc4`_
 1.0.0-rc3 2014-05-27 `zip 1.0.0-rc3`_ `tar 1.0.0-rc3`_
 1.0.0-rc2 2014-05-26 `zip 1.0.0-rc2`_ `tar 1.0.0-rc2`_
 1.0.0-rc1 2014-05-24 `zip 1.0.0-rc1`_ `tar 1.0.0-rc1`_
@@ -36,6 +38,10 @@ Version   Date       Zip              Tar
 0.1       2012-03-27 `zip 0.1`_       `tar 0.1`_
 ========= ========== ================ ==============
 
+.. _zip 1.0.0: https://github.com/cyclus/cyclus/archive/1.0.0.zip
+.. _tar 1.0.0: https://github.com/cyclus/cyclus/archive/1.0.0.tar.gz
+.. _zip 1.0.0-rc4: https://github.com/cyclus/cyclus/archive/1.0.0-rc4.zip
+.. _tar 1.0.0-rc4: https://github.com/cyclus/cyclus/archive/1.0.0-rc4.tar.gz
 .. _zip 1.0.0-rc3: https://github.com/cyclus/cyclus/archive/1.0.0-rc3.zip
 .. _tar 1.0.0-rc3: https://github.com/cyclus/cyclus/archive/1.0.0-rc3.tar.gz
 .. _zip 1.0.0-rc2: https://github.com/cyclus/cyclus/archive/1.0.0-rc2.zip
