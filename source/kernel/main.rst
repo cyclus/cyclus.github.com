@@ -29,11 +29,24 @@ Software Development Aids
 Diversions
 ----------
 
+
+
 TODO: add our new, award winning gource video!
 
 A video history of our development (video created using gource):
 
   * `March 3, 2010 to July 25, 2012 <http://www.youtube.com/watch?v=-2uQia2e_cg>`_
+  
+  * `Award winning
+    <http://whyfiles.org/2014/2014-cool-science-image-contest-slideshow/>`_
+    snippet 
+
+    .. raw:: html
+
+      <div class="box50short"><video id='81b00554' class='sublime' width='420' height='284' poster='http://whyfiles.org/wp-content/uploads/2014/03/csi2014cnerg.jpg' preload='none' data-uid='81b00554' >
+      <source src='http://whyfiles.org/wp-content/uploads/2014/03/csi2014cnerg-Wi-Fi.m4v' />
+      <source src='http://whyfiles.org/wp-content/uploads/2014/03/csi2014cnerg-Cellular.m4v' />
+      </video></div>
 
 Relevant xkcd comics:
 
