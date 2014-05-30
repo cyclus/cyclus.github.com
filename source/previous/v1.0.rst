@@ -77,8 +77,8 @@ Major features
 
   * supports variable length datatypes for both sqlite and hdf5
 
-Since v0.4, 262 files have changed encompassing a net 33,820 line insertions(+)
-and 9,673 deletions(-).
+Since v0.4, 1,120 commits resulted in 262 changed files encompassing a net
+33,820 line insertions(+) and 9,673 deletions(-).
 
 Contributors
 ============
