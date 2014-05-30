@@ -99,7 +99,8 @@ There are 4 basic operations that can be performed on material resources
 * Create
 * Extract[Qty/Comp]
 * Absorb
-* Transmute (and Decay)
+* Transmute
+* Decay (EXPERIMENTAL) - which is a special case of the Transmute operation
 
 .. code-block:: c++
 
@@ -123,7 +124,12 @@ There are 4 basic operations that can be performed on material resources
     // m2 and m3 now have mass 0 kg. m1 has mass 100 kg with its original nat_u composition
 
     // decay composition m1 up to the current time step (EXPERIMENTAL)
-    m1->Decay();
+    m1->Decay(); // EXPERIMENTAL
+
+.. warning::
+
+    Decay functionality as currently implemented is experimental and may not
+    be correct.
 
 Compositions
 ++++++++++++++
@@ -203,7 +209,10 @@ Here are some examples of how these IDs work:
     rsrc_labels[p2->obj_id()] = "fruit";
     ...
 
-When associating information with resources like the ``rsrc_labels`` example
-above, you should **NEVER** use pointers (e.g.
-``std::map<cyclus::Resource::Ptr, std::string>``).  Pointers are unstable and
-change across simulation snapshot+restart.
+.. warning::
+
+    When associating information with resources like the ``rsrc_labels``
+    example above, you should **NEVER** use pointers (e.g.
+    ``std::map<cyclus::Resource::Ptr, std::string>``).  Pointers are unstable
+    and change across simulation snapshot+restart.
+
