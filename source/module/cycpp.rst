@@ -14,7 +14,7 @@ A key part of the |Cyclus| agent and module development infrastructure is
 a |Cyclus|-aware C++ preprocessor called |cycpp|.  This preprocessor 
 inspects the agents that you write and then - based on the directives you 
 have given it - generates code that conforms to the |cyclus| agent API.
-This allows you to focus on coding up the desired agent behaviour rather 
+This allows you to focus on coding up the desired agent behavior rather 
 than worrying about the tedious and error-prone process of making your
 agents conform to the |Cyclus| kernel.
 
@@ -50,25 +50,28 @@ with the prefix ``#pragma cyclus`` and fall into one of two broad categories:
 1. **Annotation directives** and
 2. **Code generation directives**.
 
-The annotation directives allow you specify information and metadata (documentaion,
-default values, maximum shape sizes, etc) about your agents. The code generation
-directives replace themselves with C++ code inside of the agents based on the 
-annotations provided. *The use of these directives is entirely optional.*  However, 
-in their absence you must implement the cooresponding agent API yourself.
+The annotation directives allow you specify information and metadata
+(documentation, default values, maximum shape sizes, etc.) about your agents.
+The code generation directives replace themselves with C++ code inside of the
+agents based on the annotations provided. *The use of these directives is
+entirely optional.*  However, in their absence you must implement the
+corresponding agent API yourself.
 
 Annotation Directives
 -----------------------
-|Cyclus| agents are based on the notion of **state variables**.  These are memeber 
-variables of your agents whose values (should) fully determine the state of the your 
-agent at any time step. State variables are important because they are what is 
-written to and read from the database, they may be specified in the input file and 
-have an associated schema, and define the public interface for the agent.
 
-Thus, the most important annotation directive is the **state variable directive**.
-This must be written within the agent's class declaration and applies to the 
-next member variable declartion that it sees. This directive not only defines 
-the annotations for a variable but also declares it as being a state variable.
-It has the following signature:
+|Cyclus| agents are based on the notion of **state variables**.  These are
+member variables of your agents whose values (should) fully determine the
+state of the your agent at any time step. State variables are important
+because they are what is written to and read from the database, they may be
+specified in the input file and have an associated schema, and they define the
+public interface for the agent.
+
+Thus, the most important annotation directive is the **state variable
+directive**.  This must be written within the agent's class declaration and
+applies to the next member variable declaration that it sees. This directive
+not only defines the annotations for a variable, but also declares it as being
+a state variable.  It has the following signature:
 
 **State variable annotation signature:**
 
@@ -86,15 +89,15 @@ For example,
     #pragma cyclus var {"default": 42.0, "units": "n/cm2/s"}
     double flux;
 
-These two lines declare that the member variable ``flux`` is in fact a state variable
-of type double with the given metadata.  The keys of this dictionary may be anything
-you desire, though because they are eventaully persisted to JSON the keys must 
-be have a string types. Certain keys have special semantic meaning and there are 
-two - ``type`` and ``index`` - that are set by |cycpp| and should not be specified
-explicitly. State variables my have any C++ type that is allowed by the database 
-backend that is being used.  For a listing of valid type please refer to the 
-:doc:`dbtypes` page. :ref:`cycpp-table-1` contains a listing of all special keys 
-and their meaning.
+These two lines declare that the member variable ``flux`` is in fact a state
+variable of type double with the given metadata.  The keys of this dictionary
+may be anything you desire, though because they are eventually persisted to
+JSON the keys must be have a string types. Certain keys have special semantic
+meaning and there are two - ``type`` and ``index`` - that are set by |cycpp|
+and should not be specified explicitly. State variables my have any C++ type
+that is allowed by the database backend that is being used.  For a listing of
+valid types please refer to the :doc:`dbtypes` page. :ref:`cycpp-table-1`
+contains a listing of all special keys and their meaning.
 
 .. rst-class:: centered
 
@@ -162,10 +165,10 @@ and their meaning.
 
 --------------
 
-|Cyclus| also has a notion of class-level **agent annotations**. These are specified
-by the **note directive**. Similarly to the state variable annotations, agent 
-annotations must be given inside of the class declaration. They also have a very 
-similar signature:
+|Cyclus| also has a notion of class-level **agent annotations**. These are
+specified by the **note directive**. Similarly to the state variable
+annotations, agent annotations must be given inside of the class declaration.
+They also have a very similar signature:
 
 **Note (agent annotation) signature:**
 
@@ -216,7 +219,7 @@ If you find dictionaries too confining, |cycpp| also has an **exec directive**.
 This allows you to execute arbitrary Python code which is added to the global
 namespace the state variables and agent annotations are evaluated within.  This 
 directive may be placed anywhere and is not confined to the class declaration, 
-like above.  However, it is only executed durring the annotations phase of 
+like above.  However, it is only executed during the annotations phase of 
 preprocessing.  The signature for this directive is:
 
 **Exec signature:**
@@ -237,20 +240,22 @@ The ``<code>`` argument may be any valid Python code. A non-trivial example,
     #pragma cyclus var {"default": 2*pi*r}
     float circumfrence;
     
-One possible use for this is to keep all state variable annotations in a 
+One possible use for this is to keep all state variable annotations in a
 separate sidecar ``*.py`` file and then import and use them rather than
-cluttering up the C++ source code.  Such decisions are up to the style of the 
+cluttering up the C++ source code.  Such decisions are up to the style of the
 developer.
 
 Code Generation Directives
 ---------------------------
-Once all of the annotations have been accumulated, the preprocessor takes *another*
-pass through the code.  This time it ignores the annotations directives and 
-injects C++ code anytime it sees a s valid code generation diective.
 
-The simplest and most powerful of the code geneartors is known as 
-**the prime directive**. This engages all possible code generation routines and 
-must live within the public part of the class declaration.  
+Once all of the annotations have been accumulated, the preprocessor takes
+*another* pass through the code.  This time it ignores the annotations
+directives and injects C++ code anytime it sees a valid code generation
+directive.
+
+The simplest and most powerful of the code generators is known as **the prime
+directive**. This engages all possible code generation routines and must live
+within the public part of the class declaration.  
 
 **The prime directive:**
 
@@ -289,14 +294,15 @@ categories:
 2. **Definition (def) directives**, and
 3. **Implementation (impl) directives**.
 
-The ``decl`` directives generate only the member function declaration and 
-must be used from within the public part of the agent's class declaration.
-The ``def`` generate the member function definition in its entirety including 
-the function signature.  These may be used either in te class declaration or 
-in the source file (``*.cc``, ``*.cpp``, etc).  The ``impl`` directives 
-generate only the body of the member function, leaving off the function signature.
-These are useful for intercepting default behaviour while still benefiiting from 
-code generation.  These must be called from with the appropriate funtion body.
+The ``decl`` directives generate only the member function declaration and must
+be used from within the public part of the agent's class declaration.  The
+``def`` generate the member function definition in its entirety including the
+function signature.  These may be used either in the class declaration or in
+the source file (``*.cc``, ``*.cpp``, etc.).  The ``impl`` directives generate
+only the body of the member function, leaving off the function signature.
+These are useful for intercepting default behavior while still benefiting from
+code generation.  These must be called from with the appropriate function
+body.
 
 The signature for the targeted code generation directives is as follows:
 
@@ -306,12 +312,13 @@ The signature for the targeted code generation directives is as follows:
 
     #pragma cyclus <decl|def|impl> [<func> [<agent>]]
 
-The first argument must be one of ``decl``, ``def``, or ``impl``, which deterimes
-the kind of code generation that will be performed.  The second, optional ``<func>``
-argument is the member function name that code should be generated for. The 
-third and final and optional ``<agent>`` argument is the agent name to code generate 
-for. This argument is useful in the face of ambiguous or absent C++ scope.
-The ``<func>`` argument must be present if ``<agent>`` needs to be sepcified.
+The first argument must be one of ``decl``, ``def``, or ``impl``, which
+determines the kind of code generation that will be performed.  The second,
+optional ``<func>`` argument is the member function name that code should be
+generated for. The third and final and optional ``<agent>`` argument is the
+agent name to code generate for. This argument is useful in the face of
+ambiguous or absent C++ scope.  The ``<func>`` argument must be present if
+``<agent>`` needs to be specified.
 
 In the absence of optional arguments there are only:
 
@@ -320,14 +327,15 @@ In the absence of optional arguments there are only:
     #pragma cyclus decl
     #pragma cyclus def
 
-These generate all of the member function declarations and defeinitions respectively.
-Note that there is no coorespending ``#pragma cyclus impl`` because function
-bodies cannot be strung together without the cooresponding signatures encapsulating
-them.
+These generate all of the member function declarations and definitions,
+respectively.  Note that there is no corresponding ``#pragma cyclus impl``
+because function bodies cannot be strung together without the corresponding
+signatures encapsulating them.
 
-When the ``<func>`` argument is provided the directive generates only the definition, 
-declaration, or implementation for the given agent API function.  For example the
-following would generate the definition for the ``schema()`` function.
+When the ``<func>`` argument is provided the directive generates only the
+definition, declaration, or implementation for the given agent API function.
+For example the following would generate the definition for the ``schema()``
+function.
 
 .. code-block:: c++
 
@@ -379,14 +387,15 @@ use:
 
 Putting It Together
 --------------------
-|Cyclus| agents are written by declaring certain member variables to be 
-**state variables**.  This means that they *define* the conditions of the agent 
-at the start of every time step.
-State variables are automatically are saved and loaded to the 
-database as well a dictating other important interactions with the kernel.
 
-The preprocessor will generate the desired implementation of key
-member fucntions for your agent.  The easiest way to obtain these is through the
+|Cyclus| agents are written by declaring certain member variables to be
+**state variables**.  This means that they *define* the conditions of the
+agent at the start of every time step.  State variables are automatically are
+saved and loaded to the database as well a dictating other important
+interactions with the kernel.
+
+The preprocessor will generate the desired implementation of key member
+functions for your agent.  The easiest way to obtain these is through the
 prime directive.
 
 As a simple example, consider a reactor model that has three state variables: 
@@ -415,13 +424,12 @@ This could be implemented as follows:
       bool shutdown;
     };
 
-Note that the state variables may be private or protected if desired.  
-Furthermore annotations may be broken up over many lines using 
-trailing backslashes to make the code more readable.
-It remains up to you - the module developer - to implement the desired behaviour
-and logic in the 
-``Tick()`` and ``Tock()`` member functions.  Fancier tricks are available as needed
-but this is the essense of how to write |cyclus| agents.
+Note that the state variables may be private or protected if desired.
+Furthermore annotations may be broken up over many lines using trailing
+backslashes to make the code more readable.  It remains up to you - the module
+developer - to implement the desired behavior and logic in the ``Tick()`` and
+``Tock()`` member functions.  Fancier tricks are available as needed but this
+is the essence of how to write |cyclus| agents.
 
 Abusing the |Cyclus| Preprocessor
 ==================================
@@ -430,20 +438,22 @@ more advanced features and how they can be leveraged.
 
 Scope and Annotations
 -------------------------
-Annotations dictionaries retain the C++ scope that they are defined in even though 
-they are written in Python.  This allows state variables to refer to the 
-annotations for previously declared state variables.  Since the scope is 
-retained, this allows annotations to refer to each other across agent/class and
-namespace boundaries.
 
-Because the annotations are dictionaries, the scoping is performed with 
-the Python scoping operator (``.``) rather than the C++ scoping operator (``::``).
-For example, consider the case where we have a ``Spy`` class that lives in the 
-``mi6`` namespace.  Also in the namespace is the spy's ``Friend``.  Furthermore, 
-somewhere out in global scope lives the Spy's arch-nemisis class ``Enemy``.  
+Annotations dictionaries retain the C++ scope that they are defined in even
+though they are written in Python.  This allows state variables to refer to
+the annotations for previously declared state variables.  Since the scope is
+retained, this allows annotations to refer to each other across agent/class
+and namespace boundaries.
+
+Because the annotations are dictionaries, the scoping is performed with the
+Python scoping operator (``.``) rather than the C++ scoping operator (``::``).
+For example, consider the case where we have a ``Spy`` class that lives in the
+``mi6`` namespace.  Also in the namespace is the spy's ``Friend``.
+Furthermore, somewhere out in global scope lives the Spy's arch-nemesis class
+``Enemy``.  
 
 The first rule of scoping is that two state variables on the same class 
-share the smae scope.  Thus they can directly refer to each other.
+share the same scope.  Thus they can directly refer to each other.
 
 .. code-block:: c++
 
@@ -475,13 +485,13 @@ into.  Looking at our spy's friend
     };
     }; // namespace mi6
 
-Here, to access the annotations for Spy's name we had to use ``Spy.name``, drilling
-into the Spy class. Inspecting in this way is not limited by C++ access control 
-(public, private, or protected).
+Here, to access the annotations for Spy's name we had to use ``Spy.name``,
+drilling into the Spy class. Inspecting in this way is not limited by C++
+access control (public, private, or protected).
 
-Lastly, if the agent we are trying to inspect lives in a completely different 
-namespace, we must first drill into that namespace. For example, the spy's 
-main enemy is not part of ``mi6``.  Thus to access the spy's name annotations, 
+Lastly, if the agent we are trying to inspect lives in a completely different
+namespace, we must first drill into that namespace. For example, the spy's
+main enemy is not part of ``mi6``.  Thus to access the spy's name annotations,
 the enemy must write ``mi6.Spy.name``. For example:
 
 .. code-block:: c++
@@ -508,7 +518,7 @@ Inventories may be used as normal state variables.  For example:
     #pragma cyclus var {'doc': 'my stocks'}
     cyclus::Inventories invs;
 
-It is therefore *hightly* recomended that you store resources in this 
+It is therefore *hightly* recommended that you store resources in this 
 data structure.
 
 State Variable Code Generation Overrides
@@ -516,7 +526,7 @@ State Variable Code Generation Overrides
 A powerful feature of most of the code generation directives is that the 
 C++ code that is created for a state variable may be optionally replaced with a
 code snippet writing in the annotations. This allows you to selectively 
-define the C++ behaviour without the need to fully rewite the member function.
+define the C++ behavior without the need to fully rewrite the member function.
 
 A potential use case is to provide a custom schema while still utilizing all other 
 parts of |cycpp|.  For example:
@@ -526,23 +536,23 @@ parts of |cycpp|.  For example:
     #pragma cyclus var {'schema': '<my>Famcy RNG here</my>'}
     std::set<int> fibonacci;
 
-This will override the schema only for the fibonacci state 
-variable.
-For a listing of all code generation functions that may be overridden, please 
-see :ref:`cycpp-table-1`.
+This will override the schema only for the Fibonacci state variable.  For a
+listing of all code generation functions that may be overridden, please see
+:ref:`cycpp-table-1`.
 
 Implementation Hacks
 ---------------------
-The ``impl`` code generation directives exist primarily to be abused.  Unlike the 
-``def`` directives, the implementation directives do not include the function 
-signature or return statement.  The downside of this is that you must provide
-the function signature and the return value yourself.  The upside is that 
-you may perform any operation before & after the directive! 
 
-For example, suppose that we wanted to make sure that the flux state variable 
-on the Reactor agent is always snapshotted to the database as the value 42. However, 
-we did not want to permenantky atlter the value of this variable.  This could be
-achived through the following pattern:
+The ``impl`` code generation directives exist primarily to be abused.  Unlike
+the ``def`` directives, the implementation directives do not include the
+function signature or return statement.  The downside of this is that you must
+provide the function signature and the return value yourself.  The upside is
+that you may perform any operation before & after the directive! 
+
+For example, suppose that we wanted to make sure that the flux state variable
+on the Reactor agent is always snapshotted to the database as the value 42.
+However, we did not want to permanently alter the value of this variable.
+This could be achieved through the following pattern:
 
 .. code-block:: c++
 
@@ -556,5 +566,5 @@ achived through the following pattern:
       flux = real_flux;  // reset the flux
     }
 
-There are likely much more legitimate uses for this feature. For a complete listing 
-of the member function information, please see :ref:`cycpp-table-3`.
+There are likely much more legitimate uses for this feature. For a complete
+listing of the member function information, please see :ref:`cycpp-table-3`.

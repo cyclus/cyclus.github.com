@@ -1,6 +1,7 @@
 Dynamic Loading Overview
 ========================
-Dynamic loading is a term used to describe the action of loading
+
+*Dynamic loading* is a term used to describe the action of loading
 libraries at run time. This implies that knowledge of the structure
 of the classes in these libraries is not known at compile time to
 the executing program. In Linux, these libraries are denoted by the

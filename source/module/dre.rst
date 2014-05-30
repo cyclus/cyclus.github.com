@@ -37,7 +37,7 @@ e.g., ``GetMatlRequests``.
 Requests are modeled as collections of ``cyclus::RequestPortfolio``\ s, where each
 portfolio includes a collection of ``cyclus::Request``\ s and a collection of
 ``cyclus::CapacityConstraint``\ s. A portfolio is sufficiently met if one or more
-of its constiuent requests are met and all of its constraints are satisfied.
+of its constituent requests are met and all of its constraints are satisfied.
 
 A request provides a target resource, a commodity, and a preference for that
 commodity-resource combination. A constraint provides a constraining value and a
@@ -47,7 +47,7 @@ capacity (see :ref:`rrfb` for a more detailed example).
 For example, consider a facility of type ``MyFacility`` that needs 5 kg fuel,
 which is a ``cyclus::Material`` resource type. It knows of two commodities in
 the simulation that meet its demand, ``FuelA`` and ``FuelB``, and it prefers
-``FuelA`` over ``FuelB``. A valid ``GetMatlRequests`` implementaiton would then
+``FuelA`` over ``FuelB``. A valid ``GetMatlRequests`` implementation would then
 be:
 
 .. code-block:: c++
@@ -90,16 +90,16 @@ resource type, e.g., ``GetMatlBids``.
 Bids are modeled as collections of ``cyclus::BidPortfolio``\ s, where each
 portfolio includes a collection of ``cyclus::Bid``\ s and a collection of
 ``cyclus::CapacityConstraint``\ s. A portfolio is not violated if any of its
-constiuent bids are connected to their requests and all of its constraints are
+constituent bids are connected to their requests and all of its constraints are
 satisfied.
 
-A bid is comprised of request to which it is responding and a resource that it is
+A bid is comprised of a request to which it is responding and a resource that it is
 offering in response to the request.
 
 For example, consider a facility of type ``MyFacility`` that has 10 kg of fuel
 of commodity type ``FuelA`` that it can provide. Furthermore, consider that its
 capacity to fulfill orders is constrained by the total amount of a given
-nuclide. A valid ``GetMatlBids`` implementaiton would then be:
+nuclide. A valid ``GetMatlBids`` implementation would then be:
 
 .. code-block:: c++
 

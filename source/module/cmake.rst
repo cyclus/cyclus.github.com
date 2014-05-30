@@ -139,7 +139,7 @@ would want:
 * a single shared object library in ``$CYCLUS_INSTALL_PREFIX/lib/cyclus/tutorial``
   named ``libhelloworld.so`` (\*nix) or ``libhelloworld.dylib`` (mac)
 
-* a single unit test exectuable in ``$CYCLUS_INSTALL_PREFIX/bin`` named
+* a single unit test executable in ``$CYCLUS_INSTALL_PREFIX/bin`` named
   ``helloworld_unit_tests``
 
 where both incorporate the ``TutorialFacility``, ``TutorialInstitution``, and

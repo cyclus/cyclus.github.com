@@ -4,7 +4,7 @@ Initialization and Restart
 
 |Cyclus| has built-in functionality for simulation snapshotting and restart.
 All simulations are initialized from the database.  In order to support
-running from xml input files, the |Cyclus| kernel translates the input file
+running from XML input files, the |Cyclus| kernel translates the input file
 contents into the database and then initializes the simulation from the
 database.  In order for this to work correctly, agents must be able to record
 the entirety of their internal state to the database and able to restore that
@@ -25,11 +25,10 @@ used to automate the generation of code for the following functions:
     cyclus::Agent* Clone();
     void InitFrom(Agent*);
 
-When the preprocessor isn't sufficient, read the api docs for the functions
-listed above VERY CAREFULLY (
-http://fuelcycle.org/cyclus/api/classcyclus_1_1Agent.html).  There are also a
-few other functions related to initialization that are important to understand
-well:
+When the preprocessor isn't sufficient, read the `API documents
+<http://fuelcycle.org/cyclus/api/classcyclus_1_1Agent.html>`_ for the functions
+listed above VERY CAREFULLY. There are also a few other functions related to
+initialization that are important to understand well:
 
 .. code-block:: c++
 

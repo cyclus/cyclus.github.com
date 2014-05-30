@@ -40,9 +40,9 @@ type defined:
 
 These pointer types should be always be used instead of plain class instances
 or raw pointers.  The following sections describe basic creation and
-manipulation of resource objects.  The Cyclus kernel deals with resources in
+manipulation of resource objects.  The |Cyclus| kernel deals with resources in
 terms of the ``cyclus::Resource`` superclass.  So it will sometimes be
-necessary to cast down to the appropriate resource subclass.  Cyclus provides
+necessary to cast down to the appropriate resource subclass.  |Cyclus| provides
 an overloaded ResCast function for casting convenience:
 
 .. code-block:: c++
@@ -58,7 +58,7 @@ an overloaded ResCast function for casting convenience:
 Product Resources
 -------------------
 
-Products in Cyclus have a quantity (no particular units) and a quality.
+Products in |Cyclus| have a quantity (no particular units) and a quality.
 The quality is a ``std::string`` that describes what the product is.  A
 product's quality might be "apples", "kg apples", "man-hours", etc.  Product
 resources with different qualities may NOT be combined together.  
@@ -97,7 +97,7 @@ There are 4 basic operations that can be performed on material resources
 (examples follow):
 
 * Create
-* Extract[Qty/Comp]
+* Extract [Qty/Comp]
 * Absorb
 * Transmute
 * Decay (EXPERIMENTAL) - which is a special case of the Transmute operation

@@ -10,11 +10,12 @@ module is a prerequisite for its addition to any |cyclus| library, but it's
 really a `good idea anyway
 <http://software-carpentry.org/v4/test/unit.html>`_. 
 
-|cyclus| makes use of the `Google Test <http://code.google.com/p/googletest/>`_
-framework. The `primer <https://code.google.com/p/googletest/wiki/Primer>`_ is
-recommended as an introduction to the fundamental concepts of unit testing with
-Google Test. Seriously, if you're unfamiliar with unit testing or Google Test,
-check out the primer.
+|cyclus| makes use of the `Google Test
+<http://code.google.com/p/googletest/>`_ framework. The `primer
+<https://code.google.com/p/googletest/wiki/Primer>`_ is recommended as an
+introduction to the fundamental concepts of unit testing with Google Test.
+Seriously, if you're unfamiliar with unit testing or Google Test, check out
+the primer.
 
 Unit Tests Out of the Box
 -------------------------
@@ -166,8 +167,8 @@ Add the following lines to the ``src/CMakeLists.txt`` file: ::
   INSTALL_CYCLUS_STANDALONE("TickTracker" "tick_tracker" "tutorial")
 
 Now we're ready to install the ``TickTracker`` module and run its tests. If you
-haven't already, now's a good time to add the ``$CYCLUS_INSTALL_PATH`` to your
-``PATH`` environment variable (|cyclus|'s ``install.py`` defaults to
+haven't already, now is a good time to add the ``$CYCLUS_INSTALL_PATH`` to your
+``PATH`` environment variable (|cyclus|' ``install.py`` defaults to
 ``~/.local``). Next, from your top level directory (where your ``install.py``
 file is), run: 
 

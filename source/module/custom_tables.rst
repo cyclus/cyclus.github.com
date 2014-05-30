@@ -3,7 +3,7 @@ Custom Database Tables
 =======================
 
 Agents are allowed to write their own custom output into the database during
-simulations.  The interface for recording this data is acessible through the
+simulations.  The interface for recording this data is accessible through the
 agent's :term:`context`.  Data may be logged via the Context::NewDatum function:
 
 .. code-block:: c++
@@ -96,7 +96,7 @@ construction to destruction of your agent.
 Reserved Table Names
 ---------------------
 
-The cyclus kernel creates several of its own tables.  The names of these
+The |cyclus| kernel creates several of its own tables.  The names of these
 tables are reserved, and you are responsible to avoid using them for custom
 table names.  The reserved table names are (all case combos upper and lower):
 

@@ -28,7 +28,7 @@ Agent phases are invoked using a method call of the same name, e.g.,
 
 Importantly, the order in which agents' agent-phase methods are invoked is *not
 guaranteed*. In other words, the execution of any given phase is conceptually
-occuring *simultaneously among agents*.
+occurring *simultaneously among agents*.
 
 .. _build:
 
@@ -44,8 +44,8 @@ parent is informed that a new child has been built via the ``cyclus::Agent``'s
 
 Future builds can be scheduled by any :term:`agent` using the
 ``cyclus::Context``'s ``SchedBuild`` member function. A build cannot be
-scheduled for the current time step, but a build can be scheduled for any future
-time step.
+scheduled for the current time step, but a build can be scheduled for any
+future time step.
 
 .. _tick:
 

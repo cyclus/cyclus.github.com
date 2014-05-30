@@ -2,7 +2,7 @@ The (Experimental) Cyclus Toolkit
 =================================
 
 Currently in an experimental state, the |cyclus| toolkit aims to provide
-functionality relevant to a variety of :term:`archetypes <archetype>` that does
+functionality relevant to a variety of :term:`archetypes <archetype>` that do
 not belong strictly in the :term:`cyclus kernel`.
 
 Resourcebuff
@@ -16,8 +16,8 @@ Cycamore make use of this class.
 MatQuery
 ++++++++
 
-The ``cyclus::toolkit::MatQuery`` class provides some easy of use functions that
-interrogate at ``cyclus::Material`` object. For example, one can query the mass
+The ``cyclus::toolkit::MatQuery`` class provides some easy-to-use functions that
+interrogate the ``cyclus::Material`` object. For example, one can query the mass
 or number of moles of a given nuclide.
 
 Enrichment
@@ -25,7 +25,7 @@ Enrichment
 
 A number of functions are provided in ``toolkit/enrichment.h`` that assist in
 enrichment-related calculations. Some highlights include a representation of
-Uranium assays in ``cyclus::toolkit::Assays``, as well as functions to calculate
+uranium assays in ``cyclus::toolkit::Assays``, as well as functions to calculate
 feed, tails, and SWU quantity requirements.
 
 Commodity Recipe Context
@@ -37,7 +37,7 @@ commodities and recipes that can be updated as a simulation progresses.
 Symbolic Functions
 ++++++++++++++++++
 
-The ``cyclus::toolkit::SymbolicFunction`` class and its deritatives provides an
+The ``cyclus::toolkit::SymbolicFunction`` class and its derivatives provide an
 object-oriented hierarchy to represent symbolic functions. Factory methods are
 provided by the ``cyclus::toolkit::SymbFunctionFactory`` class.
 
@@ -51,7 +51,7 @@ composable, agent-managed state variables:
 * ``cyclus::toolkit::Builder``: an interface for adding information about agents
   that can be built by the manager
 
-* ``cyclus::toolkit::BuildingManager``: an interface to make build decisions
+* ``cyclus::toolkit::BuildingManager``: an interface for making build decisions
   based on supply, demand, and agents that can be built
 
 * ``cyclus::toolkit::CommodityProducer``: an interface for adding information
@@ -60,5 +60,5 @@ composable, agent-managed state variables:
 * ``cyclus::toolkit::CommodityProducerManager``: an interface that allows an
   agent to query a collection of ``cyclus::toolkit::CommodityProducer``\ s
 
-* ``cyclus::toolkit::SupplyDemandManager``: an interface for query the supply
+* ``cyclus::toolkit::SupplyDemandManager``: an interface for querying the supply
   and demand on commodities
