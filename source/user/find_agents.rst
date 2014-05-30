@@ -2,9 +2,6 @@
 Archetype Identification and Discovery
 =======================================
 
-Archetype Specification
-------------------------
-
 |Cyclus| :term:`archetypes <archetype>` are uniquely identified by a 3-part
 specification that includes:
 
