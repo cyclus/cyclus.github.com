@@ -18,8 +18,7 @@ The following are notable publications regarding |cyclus|:
 Citing |Cyclus|
 ---------------
 
-Here is an entry for citing |cyclus| in your publications (export a bibtex
-entry here_):
+Here is an entry for citing |cyclus| in your publications:
 
 .. bibliography:: citecyc.bib
    :all:
