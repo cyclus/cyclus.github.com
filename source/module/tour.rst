@@ -30,7 +30,7 @@ of Cycstub (or follow along on the `website
     $ mv cyclus-cycstub-* cycstub
     $ cd cycstub
 
-Feel free to ``rm`` the cystub directory when we're done (you can always get it
+Feel free to ``rm`` the cycstub directory when we're done (you can always get it
 back!).
 
 StubFacility
