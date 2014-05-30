@@ -14,7 +14,7 @@ projects found at http://github.com/cyclus include :
 
 Although you do not have to register with GitHub to download and edit the
 code, if you desire your work to be integrated into the |cyclus| mainline of
-development *you must fork the |cyclus| core repository into your own github
+development *you must fork the cyclus core repository into your own GitHub
 account and submit 'Pull Requests'*. :doc:`Here is a tutorial on getting and
 building cyclus.<build_from_source>`
 
