@@ -7,7 +7,7 @@ Cyclus 1.0 Release Notes
 :Contact: https://groups.google.com/forum/#!forum/cyclus-dev
 
 The Cyclus core team is excited to announce the latest stable version 
-of the cyclus ecosystem!  This includes nearly 4000 commits by 
+of the cyclus ecosystem!  This includes over 5000 commits by 
 8 developers.  
 
 Major features
@@ -43,7 +43,7 @@ Major features
 
 - Simulation initialization and restart
 
-- Depends on PyNE for nuclear data (pyne.io)
+- Now using PyNE for nuclear data (http://pyne.io)
 
 - Build system deets?
 
@@ -53,10 +53,6 @@ Major features
 
 Since v0.4, xxx files have changed encompassing a net xxxx line insertions(+) and 
 xxxx deletions(-).
-
-Known bugs
-----------
-N/A
 
 Contributors
 ============
