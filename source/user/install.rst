@@ -43,7 +43,6 @@ Basic installation instructions for Conda can be found
     * Now that conda is installed and ready, installing |Cyclus| is as simple as:
 
       .. code-block:: bash 
-      .. code-block:: bash 
     
           $ conda install cycamore --yes
 

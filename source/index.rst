@@ -39,7 +39,7 @@ Learn More
 .. toctree::
     :maxdepth: 1
 
-    Cyclus Fundamentals <basics/main>
+    basics/main
     user/main
     module/main
     kernel/main

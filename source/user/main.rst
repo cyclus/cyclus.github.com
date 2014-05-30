@@ -5,7 +5,7 @@
 
 This guide covers the basics of installation, creating simulation input files,
 and running them.  If you haven't already, you should take a look at
-:doc:`/basics/concepts`. After that you can install |cyclus|:
+:ref:`Fundemental Concepts in Cyclus <basics-concepts>`. After that you can install |cyclus|:
 
 .. toctree::
      :maxdepth: 2

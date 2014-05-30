@@ -1,4 +1,4 @@
-Introduction to |cyclus| Fuel Cycle Simulator
+Introduction to |cyclus|
 ================================================
 
 |cyclus| is a nuclear fuel cycle simulation platform whose genesis was driven
@@ -62,6 +62,9 @@ valuable for this effort:
 
     * **extensibility:** attention to both robustness and flexibility allows
       for myriad potential developer extensions.
+
+Sections
+----------
 
 .. toctree::
    :maxdepth: 1
