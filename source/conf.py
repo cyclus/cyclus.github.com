@@ -128,6 +128,7 @@ html_theme_options = {
     'googleanalytics_id': 'UA-12222727-2',
     'externalrefs': False,
     'stickysidebar': False,
+    'highlighttoc': False,
     }
 
 # Add any paths that contain custom themes here, relative to this directory.
