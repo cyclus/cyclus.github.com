@@ -33,24 +33,13 @@ always welcome and encouraged to use or contribute to the |cyclus| project.
 
 The |Cyclus| project repository is located at http://github.com/cyclus/cyclus.
 
-* User Interaction
-   * Common physics and resource exchange infrastructure.
-   * Different user interface layers for different user audiences
-     which vary based on the needs of the user.
-* Modeling Paradigm
-   * Agent-based simulation allows for the exploration of emergent phenomenon.
-   * Flexible design of new fuel cycles and agents.
-* Software Development Principles
-   * Free and open source software license (BSD 3-clause).
-   * Engagement with users, developers, and the fuel cycle community.
-
 Learn More
 ----------
 
 .. toctree::
     :maxdepth: 1
 
-    basics/main
+    Cyclus Fundamentals <basics/main>
     user/main
     module/main
     kernel/main
