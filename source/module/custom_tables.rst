@@ -45,6 +45,7 @@ Datums with the same table name must have the same schema (e.g. same field
 names and value types). It is the responsibility of the developer to
 enforce this in their code.
 
+
 .. warning::
 
    Database formats only support a finite number of datum value-types.  Do not
@@ -54,6 +55,46 @@ enforce this in their code.
 
 .. note:: If you require a datatype that isn't currently supported, please 
           ask the kernel developers and they will help as soon as possible. 
+
+Table Data Shapes
+------------------
+
+All added values can optionally take a `std::vector<int>*` shape argument that
+is used as maximum dimensions for the value being added.  The :doc:`dbtypes`
+page lists the rank of the shape of different C++ types.  A
+``std::vector<std::string>`` has rank two - the first shape element being the
+length of the vector, the second element being the length of each string in
+the vector.  When the shape argument is ommitted, the default is to treat all
+elements in the value as variable-length.  An entry of `-1` in the shape
+vector indicates variable length also.  It is an error to pass in a shape
+vector with the wrong rank (number of elements) for that type.  An example of
+using the shape vector follows:
+
+.. code-block:: c++
+
+    std::vector<std::string> colors;
+    colors.push_back("green");
+    colors.push_back("blue");
+    colors.push_back("chartreuse");
+
+    std::vector<int> shape; // this should usually be a class memebr variable
+    shape->push_back(5); // maximum number of elements in the color vector
+    shape->push_back(8); // maximum character length of each color
+
+    context()->NewDatum("DecorPreferences")
+             ->AddVal("AgentID", id())
+             ->AddVal("Time", context()->time())
+             ->AddVal("FavoritColors", colors, shape)
+             ->Record();
+
+In the example above, the "chartreuse" color is longer than the 8 characters
+specified in the shape.  So it will be truncated to "chartreu" in the
+database. Shape vectors should generally be stored as class member variables
+to avoid excessive memory [de]allocation and should be set correctly from
+construction to destruction of your agent.
+    
+Reserved Table Names
+---------------------
 
 The cyclus kernel creates several of its own tables.  The names of these
 tables are reserved, and you are responsible to avoid using them for custom
