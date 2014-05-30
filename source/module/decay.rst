@@ -3,8 +3,6 @@
 Radioactive Decay in |Cyclus|
 =============================
 
-.. note:: This wiki page is currently a work in progress.
-
 .. warning:: Decay in |cyclus| is experimental.
 
 Radioactive decay of a group of isotopes over time can be described by the
