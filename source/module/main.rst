@@ -19,7 +19,7 @@ Welcome!
 
 You are here because you have made (or are making) the transition from wanting
 to run simulations to wanting to dig in and start dictating agent logic and
-behaviour on a more fundemental level. Perhaps existing archetypes are
+behavior on a more fundamental level. Perhaps existing archetypes are
 insufficient for your needs, perhaps you are curious as to how it all works, or
 are a devilishly handsome thrill-seeker.  Whatever your reasons, you have come
 to the right place!
@@ -81,7 +81,7 @@ Style Guide <http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml>`_
 required) exception to the GCSG used in |Cyclus| and Cycamore :term:`archetypes
 <archetype>` is the use of preprocessor-aware private member variables without a
 trailing underscore, due to consistency requirements across input files,
-implemenetation, and databases. Happy (well styled) coding!
+implementation, and databases. Happy (well-styled) coding!
 
 Under the Hood
 ------------------------------

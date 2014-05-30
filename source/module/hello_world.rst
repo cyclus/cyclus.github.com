@@ -4,10 +4,10 @@ Hello, Cyclus!
 ==============
 This pages walks you through a very simple hello world example using 
 |cyclus| agents.  First make sure that you have the dependencies installed, 
-namely |Cyclus|, CMake, and a recent verison of Python (2.7 or 3.3+).
+namely |Cyclus|, CMake, and a recent version of Python (2.7 or 3.3+).
 
 First, you need to get the ``cycstub`` code.  Cycstub is a skeleton code base 
-that you can use to quick-start new cyclus module development projects.
+that you can use to quick-start new |cyclus| module development projects.
 You can grab cycstub either by using git to 
 `clone the repository <https://github.com/cyclus/cycstub.git>`_ or by 
 `downloading the zip file <https://github.com/cyclus/cycstub/archive/develop.zip>`_.
@@ -31,10 +31,10 @@ Let's put this code in a ``tutorial`` directory and go into it.
 
 ------------
 
-Since cycstub is a template project everything is named ``stub``. We need to change 
-this to refelect the name we want our new project to be called - ``tutorial`` here.
-Cystub comes with a renaming tool to do just this! From the command line, run
-Python in the following way:
+Since cycstub is a template project everything is named ``stub``. We need to
+change this to reflect the name we want our new project to be called -
+``tutorial`` here.  Cycstub comes with a renaming tool to do just this! From
+the command line, run Python in the following way:
 
 .. code-block:: bash
 
@@ -42,11 +42,11 @@ Python in the following way:
 
 ------------
 
-Let's now change the behaviour of the TutorialFacility's ``Tick()`` & ``Tock()``
-member functions to print "Hello" and "World" repspectively.  To do this, please
-open up the :file:`src/tutorial_facility.cc` file in your favorite text editor 
-(vim, emacs, gedit, `xo <http://exofrills.org>`_).  Change the orignal functions 
-to look like:
+Let's now change the behavior of the TutorialFacility's ``Tick()`` &
+``Tock()`` member functions to print "Hello" and "World" respectively.  To do
+this, please open up the :file:`src/tutorial_facility.cc` file in your
+favorite text editor (vim, emacs, gedit, `notepad++ <http://exofrills.org>`_).
+Change the original functions to look like:
 
 **Original Tick() and Tock() in src/tutorial_facility.cc:**
 
@@ -77,7 +77,7 @@ The install script puts the project into your cyclus userspace,
 
 ------------
 
-Let's run |cyclus| with the TutorialFacility! In the input directory there is an 
+Let's run |cyclus| with the TutorialFacility! In the input directory there is
 an :file:`example.xml`. Running |cyclus| on this file with the command
 ``cyclus input/example.xml`` should produce the following output.
 
@@ -126,5 +126,5 @@ an :file:`example.xml`. Running |cyclus| on this file with the command
     Output location: cyclus.sqlite
     Simulation ID: 0ae730e0-a9a8-4576-afaa-d1db6399d5a2
 
-If you look in the input file you'll see that the simulation duration was set to 10.
-This is why "Hello, World!" is printed ten times.
+If you look in the input file you'll see that the simulation duration was set
+to 10.  This is why "Hello, World!" is printed ten times.
