@@ -1,11 +1,9 @@
 Introduction to the |cyclus| Fuel Cycle Simulator
 =================================================
 
-|cyclus| is a next generation agent-based nuclear fuel cycle simulation
-platform whose genesis was driven by a variety of gaps seen in previous fuel
-cycle simulation efforts.  The current fleet of :term:`fuel cycle simulators
-<fuel cycle simulator>` addresses three major design and development
-philosophies:
+|cyclus| is a nuclear fuel cycle simulation platform whose genesis was driven
+by a variety of gaps seen in previous fuel cycle simulation efforts, which
+attempted to address three major design and development philosophies:
 
     #. A desire for usability, thus developing a tool which begins with a
        simple model in a visual development environment that aims to provide an
@@ -18,10 +16,10 @@ philosophies:
 
 Each of these philosophies can hinder the simulation of some classes of
 interesting problems due to complexity limits. In most cases this complexity
-constrains first the usability of the tool followed by its extendability due
+constrains first the usability of the tool followed by its extensibility due
 to increasingly convoluted dependencies. The final victim is performance, as
 the ability to quickly solve simple problems is lost to the desire to solve
-more complex ones.  
+more complex ones.
 
 In addition to these technical challenges there is also an institutional one.
 A combination of closed development platforms and processes has made it
@@ -33,8 +31,8 @@ analysis altogether or to write their own simplified tool. These custom fuel
 cycle simulation tools involve a duplication of effort.
 
 Each of these approaches lacks a design basis in computational science and
-software development that can deliver the stated desired attributes of the
-final software product:
+software development that can deliver the desired attributes of the final
+software product:
 
     * **usability:** accommodating a wide range of user sophistication,
 
@@ -90,14 +88,14 @@ with diverse areas of specialization and levels of expertise.
 Another aspect of this development process is a preference for open source
 third party libraries where additional functionality is necessary and
 available from such libraries.  This includes basic infrastructure such as
-file input/output, as well as :term:`archetype`-specific capabilities like
+file input/output, as well as archetype-specific capabilities like
 integer programming for network flow optimization.
 
-Dynamically loadable Modules
+Dynamically Loadable Modules
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Dynamically loadable modules are the primary mechanism for extending |cyclus|
-with new underlying archetypes.  The primary benefit of this
+with new underlying :term:`archetypes <archetype>`.  The primary benefit of this
 approach is encapsulation: the :term:`cyclus kernel` is completely independent
 of the individual archetypes and all customization and extension is
 implemented only in the loadable module.  A secondary benefit of this
@@ -125,7 +123,7 @@ Modeling Paradigm
 +++++++++++++++++
 
 The modeling paradigm adopted by |cyclus| includes a number of deeply embedded
-fundamental concepts.  These basic design choices comprise the bedrock on which
+:doc:`fundamental concepts <concepts>`.  These basic design choices comprise the bedrock on which
 most future design choices are made. The |cyclus| team recognizes the
 accompanying inflexibility to the code and therefore does not anticipate that
 these attributes will change.
