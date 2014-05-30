@@ -17,8 +17,7 @@ the same.  |Cyclus| ships supporting two database formats:
 
 There are several tools that can be used to interrogate these file formats.
 That is left as an exercise for the reader.  Below are a few sections that
-group together and describe related tables.  *Note that every one of the
-tables described below has a "SimId" column that is not shown.*
+group together and describe related tables.
 
 Table Descriptions
 +++++++++++++++++++
@@ -36,6 +35,8 @@ resources.  It is interesting to note that the Resources table does not encode
 any information about where a resource is.  This information can be inferred
 by corroborating Resource ID's with the ``ResCreators`` and ``Transactions``
 tables.
+
+* **SimId** (uuid)
 
 * **ResourceId** (int): The unique ID for this resource entry. See
   :ref:`resource-ids` for more details.
@@ -77,6 +78,8 @@ A composition consists of one or more nuclides and their respective mass
 fractions.  Each nuclide for a composition gets its own row and have the same
 QualId.
 
+* **SimId** (uuid)
+
 * **QualId** (int): Key to associate this composition with one or more
   entries in the ``Resources`` table.
 
@@ -87,6 +90,8 @@ QualId.
 Recipes Table
 -------------------
 
+* **SimId** (uuid)
+
 * **Recipe** (string): Recipe name as given in the input file.
 
 * **QualId** (int): Key to identify the Composition for this recipe in the
@@ -94,6 +99,8 @@ Recipes Table
 
 Products Table
 ----------------
+
+* **SimId** (uuid)
 
 * **QualId** (int): Key to associate this quality with one or more entries in
   the ``Resources`` table.
@@ -107,6 +114,8 @@ ResCreators Table
 Every time an agent creates a new resource from scratch, that event is
 recorded in this table.
 
+* **SimId** (uuid)
+
 * **ResourceId** (int): ID of a resource that was created at some point in the
   simulation.
 
@@ -118,6 +127,8 @@ AgentEntry Table
 
 Each agent that enters and participates in a simulation gets a row in this
 table.
+
+* **SimId** (uuid)
 
 * **AgentId** (int): Every agent in a simulation gets its own, unique ID.
 
@@ -146,6 +157,8 @@ Due to implementation details in the |cyclus| kernel, this table is separate
 from the ``AgentEntry`` table.  If this table doesn't exist, then no agents
 were decommissioned in the simulation.
 
+* **SimId** (uuid)
+
 * **AgentId** (int): Key to the AgentId on the ``AgentEntry`` table.
 
 * **ExitTime** (int): The time step when the agent was decommissioned and
@@ -156,6 +169,8 @@ Transactions Table
 
 Every single resource transfer between two agents is recorded as a row
 in this table.
+
+* **SimId** (uuid)
 
 * **TransactionId** (int): A unique identifier for this resource transfer.
 
@@ -176,6 +191,8 @@ Info Table
 
 Each simulation gets a single row in this table describing global simulation
 parameters and |cyclus| and dependency version information.
+
+* **SimId** (uuid)
 
 * **Handle** (string): A custom user-specified value from the input file
   allowing for convenient idenfication of simulations in a database (because
@@ -225,6 +242,8 @@ Finish Table
 
 Each simulation gets one row/entry in this table.
 
+* **SimId** (uuid)
+
 * **EarlyTerm** (bool): True (or 1) if the simulation terminated early and did
   not complete normally. False (or 0) otherwise.
 
@@ -233,11 +252,14 @@ Each simulation gets one row/entry in this table.
 InputFiles Table
 -------------------
 
+* **SimId** (uuid)
+
 * **Data** (blob): A dump of the entire input file used for this simulation.
 
 DecomSchedule Table
 --------------------
 
+* **SimId** (uuid)
 * **AgentId** (int): 
 * **SchedTime** (int): 
 * **DecomTime** (int): 
@@ -245,6 +267,7 @@ DecomSchedule Table
 BuildSchedule Table
 --------------------
 
+* **SimId** (uuid)
 * **ParentId** (piintd): 
 * **Prototype** (string): 
 * **SchedTime** (int): 
@@ -253,15 +276,20 @@ BuildSchedule Table
 Snapshots Table
 -------------------
 
-* **Time** (int): 
+Every snapshot made during the simulation gets an entry in this table.  All
+times in this table are candidates for simulation restart/branching.
+
+* **SimId** (uuid)
+
+* **Time** (int): The time step a snapshot was taken for this simulation.
 
 Post Processing
 +++++++++++++++++
 
-We are currently working on developing a post-process for the database that
-creates a few new tables to assist data analysis and visualization.  These
-tables are not set in stone and their schemas are subject to change.  Below is
-a summary of them.
+We are currently working on developing a post-process step for the database
+that creates a few new tables to assist data analysis and visualization.
+These tables are not set in stone and their schemas are subject to change.
+Below is a summary of them.
 
 Inventories Table
 -------------------
