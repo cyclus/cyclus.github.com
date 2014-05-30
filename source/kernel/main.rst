@@ -41,7 +41,7 @@ A video history of our development (video created using gource):
       <source src='http://cnergdata.engr.wisc.edu/cyclus/vids/why_files_snippet.m4v' />
       </video></div>
  
-    and the original full video
+  * the original full video
 
     .. raw:: html
 
@@ -49,7 +49,8 @@ A video history of our development (video created using gource):
       <source src='http://cnergdata.engr.wisc.edu/cyclus/vids/cyclus_cycamore_gource_2014_02_27.mp4' />
       </video></div>
 
-  * `March 3, 2010 to July 25, 2012 <http://www.youtube.com/watch?v=-2uQia2e_cg>`_  
+  * We also have a `prior <http://www.youtube.com/watch?v=-2uQia2e_cg>`_ version
+    representing March 3, 2010 to July 25, 2012
 
 Relevant xkcd comics:
 
