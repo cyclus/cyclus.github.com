@@ -27,7 +27,7 @@ Example
 
   <archetypes>
      <spec>
-       <path>/path/to/cyclus</path>
+       <path>my/custom/path</path>
        <lib>myAgentCollection</lib>
        <name>myFirstReactorAgent</name>
        <alias>ReactorAgent</alias>
@@ -47,7 +47,7 @@ This example introduces four different archetypes into the simulation to be
 used elsewhere when defining agent prototypes.  The first archetype is named
 `myFirstReactorAgent`, found in a library file such as
 `libmyAgentCollection.so` (on linux), in the filesystem path
-`/path/to/cyclus`.  All references to this archetype will use the alias
+`my/custom/path`.  All references to this archetype will use the alias
 `ReactorAgent`.  The other archetypes are named `simpleSource`,
 `simpleRegion`, and `simpleInst`, all of which are found in standard locations
 defined in :doc:`../find_agents`.  For example, `simpleSource` will be found

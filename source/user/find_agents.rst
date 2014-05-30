@@ -45,7 +45,8 @@ section in the input file:
       </archetypes>
 
 The ``path`` tag can be ommitted if it is empty (as in the case of |Cyclus|'
-default agents library).  The ``alias`` tag may also be ommited, in which case
+default agents library).  If the ``lib`` tag is ommitted, it defaults to the
+value of the ``name`` tag. The ``alias`` tag may also be ommited, in which case
 it defaults to the value in the ``name`` tag.  If multiple archetypes have the
 same name, then aliases *must* be specified - no two aliases may have the same
 value (including defaults).  The values of the aliases are referenced later in
