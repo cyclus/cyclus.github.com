@@ -1,12 +1,13 @@
 Style Guidelines for Developers
 ===============================
+
 |cyclus| uses the `Google C++ Style Guide`_ and `Google Python Style Guide`_.
-In order to ensure compliance with these styles, we recommend the `Artistic Style`_ tool
-with the following `settings`_ located in |cyclus| repo. However, be wary of applying
-this tool blindly because it has some `limits and bugs`_.
-`Cpplint`_ and `Pylint`_ are other helpful tools to check your code for style and 
-syntax errors. Unfortunately, these tools may also suffer false positives and 
-false negatives.
+In order to ensure compliance with these styles, we recommend the `Artistic
+Style`_ tool with the following `settings`_ located in |cyclus| repo. However,
+be wary of applying this tool blindly because it has some `limits and bugs`_.
+`Cpplint`_ and `Pylint`_ are other helpful tools to check your code for style
+and syntax errors. Unfortunately, these tools may also suffer false positives
+and false negatives.
 
 Doxygen Code Documentation
 ===============================
@@ -17,7 +18,7 @@ documentation can be found online for both `cyclus
 <http://fuelcycle.org/cyclus/api/>`_ and `cycamore 
 <http://fuelcycle.org/cycamore/api/>`_.  These pages will be updated nightly.
 
-Documentation is a make target in the cmake build system. Documentation
+Documentation is a make target in the CMake build system. Documentation
 will automatically be built when you `make all`. You can build only the
 documentation by running `make cyclusdoc` instead of `make all` or `make`.
 

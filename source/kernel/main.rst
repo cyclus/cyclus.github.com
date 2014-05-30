@@ -4,10 +4,10 @@
 The |cyclus| project repository is located at
 http://github.com/cyclus/cyclus.
 
-Although you do not have to register with github to
-download and edit the code, if you desire your work to be integrated into the
-|cyclus| mainline of development *you must fork the cyclus core repository into
-your own github account and submit 'Pull Requests'*.
+Although you do not have to register with GitHub to download and edit the
+code, if you desire your work to be integrated into the |cyclus| mainline of
+development *you must fork the cyclus core repository into your own github
+account and submit 'Pull Requests'*.
 
 
 .. toctree:: 
