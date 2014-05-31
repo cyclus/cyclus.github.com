@@ -13,6 +13,11 @@ Installing |Cyclus|
 * The easiest way to install |Cyclus| on a new system is to :doc:`install using Conda <install>`.  
 * More adventurous users may want to try :doc:`getting and building Cyclus from source </kernel/build_from_source>`.
 
+.. toctree::
+    :hidden:
+
+    install
+
 Writing Input Files
 ---------------------
 

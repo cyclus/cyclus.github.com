@@ -56,6 +56,13 @@ A video history of our development (video created using gource):
   * We also have a `prior <http://www.youtube.com/watch?v=-2uQia2e_cg>`_ version
     representing development from March 3, 2010 to July 25, 2012
 
+The |Cyclus| core developer team circa 1.0 release, 2014-05-30:
+
+.. image:: /astatic/core-team-2014-05-30.jpg
+    :width: 750px
+    :align: center
+
+
 Relevant xkcd comics:
 
   * `Standards <http://xkcd.com/927/>`_
