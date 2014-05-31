@@ -12,12 +12,22 @@ databases can be safely merged without conflicts.
 store information in its own way, the overall table structure in databases is
 the same.  |Cyclus| ships supporting two database formats:
 
-* SQLite
-* HDF5
+* `SQLite <http://sqlite.org/index.html>`_ (".sqlite" extension) - |cyclus|'
+  default database format. Some useful viewers:
 
-There are several tools that can be used to interrogate these file formats.
-That is left as an exercise for the reader.  Below are a few sections that
-group together and describe related tables.
+    - `Sqliteman <http://sqliteman.com/>`_ (windows and linux)
+    - `SQLite Browser <http://sqlitebrowser.org/>`_ (windows, mac, and linux)
+    - `SQLite Manager <https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/>`_
+      Firefox Add-on (windows, mac, and linux)
+
+* `HDF5 <http://www.hdfgroup.org/HDF5/>`_ (".h5" extension). Some useful
+  viewers:
+
+    - `HDFView <http://www.hdfgroup.org/products/java/hdf-java-html/hdfview/>`_
+      (windows, mac, and linux)
+    - `ViTables <http://vitables.org/>`_ (linux only)
+
+Below are a few sections that describe the data tables found in the database.
 
 Table Descriptions
 +++++++++++++++++++
