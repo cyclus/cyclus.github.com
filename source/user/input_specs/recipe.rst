@@ -14,10 +14,13 @@ A ``recipe`` block has the following sections in the following order:
   * ``name`` (required once) - the unique name for this commodity
   * ``basis`` (required once) - an indication of whether the composition is
     based on the atom fractions or mass fractions; one of:
+
         * `atom` - atom fractions are given in the nuclide list
         * `mass` - mass fractions are given in the nuclude list
+
   * ``nuclide`` (required at least once) - a list of nuclides and their
     relative composition, where each section includes:
+
        * ``id`` - a non-negative integer defining the nuclide in the form
          ZZAAAMMMM
        * ``comp`` - a number indicating the fraction of the material made up
