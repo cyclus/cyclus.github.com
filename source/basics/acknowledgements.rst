@@ -21,3 +21,7 @@ by a number of programs and agencies.
 
    * Lab-grad program
 
+The |Cyclus| project benefits greatly from the computational resources of the
+University of Wisconsin-Madison's `Center for High Throughput Computing
+<http://chtc.cs.wisc.edu>`_ and it's `BaTLab <http://www.batlab.org>`_ build
+and test facility.
