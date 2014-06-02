@@ -127,7 +127,7 @@ Contributors
 
 * `Kathryn (Katy) Huff <http://katyhuff.github.io/>`_
 
-* Arrielle Opotowsky
+* `Arrielle Opotowsky <http://cnerg.github.io/people/opotowsky.html>`_
 
 * Olzhas Rakhimov
 
