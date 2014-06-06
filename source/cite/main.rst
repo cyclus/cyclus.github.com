@@ -18,7 +18,7 @@ The following are notable publications regarding |cyclus|:
 Citing |Cyclus|
 ---------------
 
-Here is an entry for citing |cyclus| in your publications:
+Here are entries for citing |cyclus| and Cycamore in your publications:
 
 .. bibliography:: citecyc.bib
    :all:
