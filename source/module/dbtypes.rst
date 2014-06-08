@@ -463,10 +463,10 @@ yet supported, please let us know and we'll get to it as soon as possible!
         '[29, "VL_SET_FLOAT", "std::set<float>", 1, "HDF5", "v1.1", 0],' +
         '[30, "SET_DOUBLE", "std::set<double>", 1, "HDF5", "v1.1", 0],' +
         '[31, "VL_SET_DOUBLE", "std::set<double>", 1, "HDF5", "v1.1", 0],' +
-        '[32, "SET_STRING", "std::set<std::string>", 2, "HDF5", "v1.1", 0],' +
-        '[33, "VL_SET_STRING", "std::set<std::string>", 2, "HDF5", "v1.1", 0],' +
-        '[34, "SET_VL_STRING", "std::set<std::string>", 2, "HDF5", "v1.1", 0],' +
-        '[35, "VL_SET_VL_STRING", "std::set<std::string>", 2, "HDF5", "v1.1", 0],' +
+        '[32, "SET_STRING", "std::set<std::string>", 2, "HDF5", "v1.1", 1],' +
+        '[33, "VL_SET_STRING", "std::set<std::string>", 2, "HDF5", "v1.1", 1],' +
+        '[34, "SET_VL_STRING", "std::set<std::string>", 2, "HDF5", "v1.1", 1],' +
+        '[35, "VL_SET_VL_STRING", "std::set<std::string>", 2, "HDF5", "v1.1", 1],' +
         '[36, "SET_BLOB", "std::set<cyclus::Blob>", 1, "HDF5", "v1.1", 0],' +
         '[37, "VL_SET_BLOB", "std::set<cyclus::Blob>", 1, "HDF5", "v1.1", 0],' +
         '[38, "SET_UUID", "std::set<boost::uuids::uuid>", 1, "HDF5", "v1.1", 0],' +
@@ -479,10 +479,10 @@ yet supported, please let us know and we'll get to it as soon as possible!
         '[45, "VL_LIST_FLOAT", "std::list<float>", 1, "HDF5", "v1.1", 0],' +
         '[46, "LIST_DOUBLE", "std::list<double>", 1, "HDF5", "v1.1", 0],' +
         '[47, "VL_LIST_DOUBLE", "std::list<double>", 1, "HDF5", "v1.1", 0],' +
-        '[48, "LIST_STRING", "std::list<std::string>", 2, "HDF5", "v1.1", 0],' +
-        '[49, "VL_LIST_STRING", "std::list<std::string>", 2, "HDF5", "v1.1", 0],' +
-        '[50, "LIST_VL_STRING", "std::list<std::string>", 2, "HDF5", "v1.1", 0],' +
-        '[51, "VL_LIST_VL_STRING", "std::list<std::string>", 2, "HDF5", "v1.1", 0],' +
+        '[48, "LIST_STRING", "std::list<std::string>", 2, "HDF5", "v1.1", 1],' +
+        '[49, "VL_LIST_STRING", "std::list<std::string>", 2, "HDF5", "v1.1", 1],' +
+        '[50, "LIST_VL_STRING", "std::list<std::string>", 2, "HDF5", "v1.1", 1],' +
+        '[51, "VL_LIST_VL_STRING", "std::list<std::string>", 2, "HDF5", "v1.1", 1],' +
         '[52, "LIST_BLOB", "std::list<cyclus::Blob>", 1, "HDF5", "v1.1", 0],' +
         '[53, "VL_LIST_BLOB", "std::list<cyclus::Blob>", 1, "HDF5", "v1.1", 0],' +
         '[54, "LIST_UUID", "std::list<boost::uuids::uuid>", 1, "HDF5", "v1.1", 0],' +
@@ -517,44 +517,44 @@ yet supported, please let us know and we'll get to it as soon as possible!
         '[83, "VL_MAP_INT_INT", "std::map<int, int>", 1, "HDF5", "v1.1", 1],' +
         '[84, "MAP_INT_FLOAT", "std::map<int, float>", 1, "HDF5", "v1.1", 0],' +
         '[85, "VL_MAP_INT_FLOAT", "std::map<int, float>", 1, "HDF5", "v1.1", 0],' +
-        '[86, "MAP_INT_DOUBLE", "std::map<int, double>", 1, "HDF5", "v1.1", 0],' +
-        '[87, "VL_MAP_INT_DOUBLE", "std::map<int, double>", 1, "HDF5", "v1.1", 0],' +
-        '[88, "MAP_INT_STRING", "std::map<int, std::string>", 2, "HDF5", "v1.1", 0],' +
-        '[89, "VL_MAP_INT_STRING", "std::map<int, std::string>", 2, "HDF5", "v1.1", 0],' +
-        '[90, "MAP_INT_VL_STRING", "std::map<int, std::string>", 2, "HDF5", "v1.1", 0],' +
-        '[91, "VL_MAP_INT_VL_STRING", "std::map<int, std::string>", 2, "HDF5", "v1.1", 0],' +
+        '[86, "MAP_INT_DOUBLE", "std::map<int, double>", 1, "HDF5", "v1.1", 1],' +
+        '[87, "VL_MAP_INT_DOUBLE", "std::map<int, double>", 1, "HDF5", "v1.1", 1],' +
+        '[88, "MAP_INT_STRING", "std::map<int, std::string>", 2, "HDF5", "v1.1", 1],' +
+        '[89, "VL_MAP_INT_STRING", "std::map<int, std::string>", 2, "HDF5", "v1.1", 1],' +
+        '[90, "MAP_INT_VL_STRING", "std::map<int, std::string>", 2, "HDF5", "v1.1", 1],' +
+        '[91, "VL_MAP_INT_VL_STRING", "std::map<int, std::string>", 2, "HDF5", "v1.1", 1],' +
         '[92, "MAP_INT_BLOB", "std::map<int, cyclus::Blob>", 1, "HDF5", "v1.1", 0],' +
         '[93, "VL_MAP_INT_BLOB", "std::map<int, cyclus::Blob>", 1, "HDF5", "v1.1", 0],' +
         '[94, "MAP_INT_UUID", "std::map<int, boost::uuids::uuid>", 1, "HDF5", "v1.1", 0],' +
         '[95, "VL_MAP_INT_UUID", "std::map<int, boost::uuids::uuid>", 1, "HDF5", "v1.1", 0],' +
         '[96, "MAP_STRING_BOOL", "std::map<std::string, bool>", 2, "HDF5", "v1.1", 0],' +
         '[97, "VL_MAP_STRING_BOOL", "std::map<std::string, bool>", 2, "HDF5", "v1.1", 0],' +
-        '[98, "MAP_STRING_INT", "std::map<std::string, int>", 2, "HDF5", "v1.1", 0],' +
-        '[99, "VL_MAP_STRING_INT", "std::map<std::string, int>", 2, "HDF5", "v1.1", 0],' +
+        '[98, "MAP_STRING_INT", "std::map<std::string, int>", 2, "HDF5", "v1.1", 1],' +
+        '[99, "VL_MAP_STRING_INT", "std::map<std::string, int>", 2, "HDF5", "v1.1", 1],' +
         '[100, "MAP_STRING_FLOAT", "std::map<std::string, float>", 2, "HDF5", "v1.1", 0],' +
         '[101, "VL_MAP_STRING_FLOAT", "std::map<std::string, float>", 2, "HDF5", "v1.1", 0],' +
-        '[102, "MAP_STRING_DOUBLE", "std::map<std::string, double>", 2, "HDF5", "v1.1", 0],' +
-        '[103, "VL_MAP_STRING_DOUBLE", "std::map<std::string, double>", 2, "HDF5", "v1.1", 0],' +
-        '[104, "MAP_STRING_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 0],' +
-        '[105, "VL_MAP_STRING_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 0],' +
-        '[106, "MAP_STRING_VL_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 0],' +
-        '[107, "VL_MAP_STRING_VL_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 0],' +
+        '[102, "MAP_STRING_DOUBLE", "std::map<std::string, double>", 2, "HDF5", "v1.1", 1],' +
+        '[103, "VL_MAP_STRING_DOUBLE", "std::map<std::string, double>", 2, "HDF5", "v1.1", 1],' +
+        '[104, "MAP_STRING_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 1],' +
+        '[105, "VL_MAP_STRING_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 1],' +
+        '[106, "MAP_STRING_VL_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 1],' +
+        '[107, "VL_MAP_STRING_VL_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 1],' +
         '[108, "MAP_STRING_BLOB", "std::map<std::string, cyclus::Blob>", 2, "HDF5", "v1.1", 0],' +
         '[109, "VL_MAP_STRING_BLOB", "std::map<std::string, cyclus::Blob>", 2, "HDF5", "v1.1", 0],' +
         '[110, "MAP_STRING_UUID", "std::map<std::string, boost::uuids::uuid>", 2, "HDF5", "v1.1", 0],' +
         '[111, "VL_MAP_STRING_UUID", "std::map<std::string, boost::uuids::uuid>", 2, "HDF5", "v1.1", 0],' +
         '[112, "MAP_VL_STRING_BOOL", "std::map<std::string, bool>", 2, "HDF5", "v1.1", 0],' +
         '[113, "VL_MAP_VL_STRING_BOOL", "std::map<std::string, bool>", 2, "HDF5", "v1.1", 0],' +
-        '[114, "MAP_VL_STRING_INT", "std::map<std::string, int>", 2, "HDF5", "v1.1", 0],' +
-        '[115, "VL_MAP_VL_STRING_INT", "std::map<std::string, int>", 2, "HDF5", "v1.1", 0],' +
+        '[114, "MAP_VL_STRING_INT", "std::map<std::string, int>", 2, "HDF5", "v1.1", 1],' +
+        '[115, "VL_MAP_VL_STRING_INT", "std::map<std::string, int>", 2, "HDF5", "v1.1", 1],' +
         '[116, "MAP_VL_STRING_FLOAT", "std::map<std::string, float>", 2, "HDF5", "v1.1", 0],' +
         '[117, "VL_MAP_VL_STRING_FLOAT", "std::map<std::string, float>", 2, "HDF5", "v1.1", 0],' +
-        '[118, "MAP_VL_STRING_DOUBLE", "std::map<std::string, double>", 2, "HDF5", "v1.1", 0],' +
-        '[119, "VL_MAP_VL_STRING_DOUBLE", "std::map<std::string, double>", 2, "HDF5", "v1.1", 0],' +
-        '[120, "MAP_VL_STRING_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 0],' +
-        '[121, "VL_MAP_VL_STRING_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 0],' +
-        '[122, "MAP_VL_STRING_VL_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 0],' +
-        '[123, "VL_MAP_VL_STRING_VL_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 0],' +
+        '[118, "MAP_VL_STRING_DOUBLE", "std::map<std::string, double>", 2, "HDF5", "v1.1", 1],' +
+        '[119, "VL_MAP_VL_STRING_DOUBLE", "std::map<std::string, double>", 2, "HDF5", "v1.1", 1],' +
+        '[120, "MAP_VL_STRING_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 1],' +
+        '[121, "VL_MAP_VL_STRING_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 1],' +
+        '[122, "MAP_VL_STRING_VL_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 1],' +
+        '[123, "VL_MAP_VL_STRING_VL_STRING", "std::map<std::string, std::string>", 3, "HDF5", "v1.1", 1],' +
         '[124, "MAP_VL_STRING_BLOB", "std::map<std::string, cyclus::Blob>", 2, "HDF5", "v1.1", 0],' +
         '[125, "VL_MAP_VL_STRING_BLOB", "std::map<std::string, cyclus::Blob>", 2, "HDF5", "v1.1", 0],' +
         '[126, "MAP_VL_STRING_UUID", "std::map<std::string, boost::uuids::uuid>", 2, "HDF5", "v1.1", 0],' +
