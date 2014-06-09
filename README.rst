@@ -5,7 +5,7 @@ Building the Cyclus website requires:
 
 1. `Sphinx`_ v1.1.2 or higher
 
-2. `sphinxcontrib-bibtex`_ v0.2.8 or higher
+2. `sphinxcontrib-bibtex`_ v0.3.0 or higher
 
 3. `cyclus`_
 
