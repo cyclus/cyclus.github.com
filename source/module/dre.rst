@@ -131,13 +131,10 @@ nuclide. A valid ``GetMatlBids`` implementation would then be:
       // respond to all requests of my commodity
       std::string my_commodity = "FuelA";
       BidPortfolio<Material>::Ptr port(new BidPortfolio<Material>());
+      std::vector<Request<Material>*>& requests = commod_requests[my_commdoity];
       std::vector<Request<Material>*>::iterator it;
       for (it = requests.begin(); it != requests.end(); ++it) {
-        Request<Material>* req = *it;
-      	if (req->commodity() == my_commodity) {
-          Material::Ptr offer = Material::CreateUntracked(/* appropriate args */);
-          port->AddBid(req, offer, this);
-      	}
+        Material::Ptr offer = Material::CreateUntracked(/* appropriate args */);
       }
 
       // add a custom constraint for Pu-239
