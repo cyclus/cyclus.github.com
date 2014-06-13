@@ -20,9 +20,9 @@ agents conform to the |Cyclus| kernel.
 
 Before we continue there are a couple of noteworthy points about |cycpp|:
 
-* Even when using the preprocessor agents are still completely valid C++
-  and may be compiled even without running |cycpp| (though they probably
-  won't do the correct thing in a simulation).
+* Even when using the preprocessor, agents are still completely valid C++
+  and may be compiled without running |cycpp| - though they probably
+  won't do the correct thing in a simulation.
 * If your module is compiled with the CMake macros found in UseCyclus, 
   |cycpp| is run automatically for you on all relevant files.
 
@@ -91,13 +91,13 @@ For example,
 
 These two lines declare that the member variable ``flux`` is in fact a state
 variable of type double with the given metadata.  The keys of this dictionary
-may be anything you desire, though because they are eventually persisted to
-JSON the keys must be have a string types. Certain keys have special semantic
-meaning and there are two - ``type`` and ``index`` - that are set by |cycpp|
-and should not be specified explicitly. State variables my have any C++ type
-that is allowed by the database backend that is being used.  For a listing of
+may be anything you desire. Though because they are eventually persisted to
+JSON the keys must be strings. Certain keys have special semantic
+meaning. Furthermore, there are two keys - ``type`` and ``index`` - that are set by 
+|cycpp| itself and should not be specified explicitly. State variables may have any 
+C++ type that is allowed by the database backend that is being used.  For a listing of
 valid types please refer to the :doc:`dbtypes` page. :ref:`cycpp-table-1`
-contains a listing of all special keys and their meaning.
+contains a listing of all special keys and their meanings.
 
 .. rst-class:: centered
 
@@ -147,10 +147,10 @@ contains a listing of all special keys and their meaning.
                  writing them out to the database respectively.
     schema       Code snippet to use in the ``schema()`` function for 
                  this state variable instead of using code generation.
-                 This is a string.
+                 This is an RNG string.
     snapshot     Code snippet to use in the ``Snapshot()`` function for 
                  this state variable instead of using code generation.
-                 This is an RNG string.
+                 This is a string.
     snapshotinv  Code snippet to use in the ``SnapshotInv()`` function for 
                  this state variable instead of using code generation.
                  This is a string.
