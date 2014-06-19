@@ -14,7 +14,7 @@ Abstract
 
 The purpose of this CEP is to define the method for attribution of code 
 products within the |cyclus| ecosystem. In particular, along with any software 
-release a unique, publically citeable object should be created which 
+release a unique, publicly citable object should be created which 
 appropriately attributes its authors. This CEP therefore introduces a method 
 for creating a `Digital Object Identifier`_ for each code release, with alphabetically ordered 
 authorship, and encapsulating all of and only the authors responsible for that 
@@ -25,16 +25,16 @@ Concerns
 
 The concerns driving this CEP are threefold :
 
-* **Unambiguous Citability** 
+* **Unambiguous Citation** 
 * **Author Identification** 
 * **Contribution Equality** 
 
-First, public and unambigious citeability of scientific and code products like 
+First, public and unambiguous citation of scientific and code products like 
 those in the |cyclus| ecosystem is of paramount importance to scientific 
 reproducibility. Due to the algorithmic and authorship differences between 
 versions of the codebase, a unique identifier is required for accurate citation 
 of that version.  Therefore, to enable reproducibility in the use of the 
-|cyclus| ecosystem, each version must be unambiguously citeable with a distinct 
+|cyclus| ecosystem, each version must be unambiguously citable with a distinct 
 DOI.
 
 Second, to provide an appropriately transparent public link between the 
@@ -53,7 +53,7 @@ scientific community, the ordering of authorship for code products in the
 relative contribution importance. Specifically, due to the inherently 
 apples-and-oranges nature of code contributions, no metric for code importance 
 was deemed suitable for comparing contribution importance within the |cyclus| 
-ecosystem. That is, a lack of hierarchy was preffered. Thus, alphabetical 
+ecosystem. That is, a lack of hierarchy was preferred. Thus, alphabetical 
 ordering, which is perceived by convention as non-hierarchical, shall be used.
 
 What releases should have a DOI?
@@ -82,13 +82,15 @@ be shared with the development team.
 Who is an author?
 ------------------------------------
 
+An author has contributed code contributing to the release. 
 For a **major release**, all authors that contributed code between version 
-n.0.0 and version m.0 should be listed in the m.0.0 code release DOI. No additional 
-authors should be included.
+n.0.0 and version m.0 should be listed in the m.0.0 code release DOI. 
 
 In the same way, for a **minor release**, all authors that contributed code between 1.n.0 and 
-1.m.0 should be listed in the 1.1.m code release DOI. No additional authors 
-should be included.
+1.m.0 should be listed in the 1.1.m code release DOI. Note that additional authors 
+should not be included if they have not contributed to this minor release. For 
+example, if someone has contributed to version 1.0.0, but not since then, that 
+person should not be listed as an author on the DOI for version 1.1.0.
 
 How are authors listed?
 ------------------------------------
@@ -102,7 +104,7 @@ Summary
 
 In the absence of a rigid convention in the scientific computing community concerning 
 contribuion metrics, author attribution, and code citation, this CEP proposes 
-that uniquely and publically citeable DOIs as well as comprehensive but  flat 
+that uniquely and publicly citable DOIs as well as comprehensive but  flat 
 authorship reflect the needs and desires of the |cyclus| development community. 
 Finally, this document provides resources for implementing the requirements 
 it introduces. 
