@@ -3,11 +3,11 @@ CEP 3 - |Cyclus| Release Procedure
 
 :CEP: 3
 :Title: |Cyclus| Release Procedure
-:Last-Modified: 2014-02-24
+:Last-Modified: 2014-06-19
 :Author: Anthony Scopatz
 :Status: Accepted
 :Type: Process
-:Created: 2014-06-19
+:Created: 2013-10-25
 
 Abstract
 ========
