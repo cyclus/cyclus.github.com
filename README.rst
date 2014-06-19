@@ -5,11 +5,14 @@ Building the Cyclus website requires:
 
 1. `Sphinx`_ v1.1.2 or higher
 
-2. `sphinxcontrib-bibtex`_ v0.2.8 or higher
+2. `sphinxcontrib-bibtex`_ v0.3.0 or higher
 
 3. `cyclus`_
 
 4. `Cloud Sphinx Theme <https://pythonhosted.org/cloud_sptheme/index.html>`_
+
+**NOTE:** The cloud package for Debian and Ubuntu is broken, so do not apt-get
+this. Please ``pip install cloud_sptheme``, ``easy_install cloud_sptheme``, or install from source instead.
 
 Modifying the Cyclus Website
 ============================

@@ -445,8 +445,8 @@ yet supported, please let us know and we'll get to it as soon as possible!
         '[11, "VL_VECTOR_INT", "std::vector<int>", 1, "HDF5", "v1.1", 1],' +
         '[12, "VECTOR_FLOAT", "std::vector<float>", 1, "HDF5", "v1.1", 0],' +
         '[13, "VL_VECTOR_FLOAT", "std::vector<float>", 1, "HDF5", "v1.1", 0],' +
-        '[14, "VECTOR_DOUBLE", "std::vector<double>", 1, "HDF5", "v1.1", 0],' +
-        '[15, "VL_VECTOR_DOUBLE", "std::vector<double>", 1, "HDF5", "v1.1", 0],' +
+        '[14, "VECTOR_DOUBLE", "std::vector<double>", 1, "HDF5", "v1.1", 1],' +
+        '[15, "VL_VECTOR_DOUBLE", "std::vector<double>", 1, "HDF5", "v1.1", 1],' +
         '[16, "VECTOR_STRING", "std::vector<std::string>", 2, "HDF5", "v1.1", 1],' +
         '[17, "VL_VECTOR_STRING", "std::vector<std::string>", 2, "HDF5", "v1.1", 1],' +
         '[18, "VECTOR_VL_STRING", "std::vector<std::string>", 2, "HDF5", "v1.1", 1],' +

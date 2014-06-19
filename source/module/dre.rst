@@ -44,7 +44,7 @@ commodity-resource combination. A constraint provides a constraining value and a
 conversion function that can convert a potential resource into the units of the
 capacity (see :ref:`rrfb` for a more detailed example).
 
-For example, consider a facility of type ``MyFacility`` that needs 5 kg fuel,
+For example, consider a facility of type ``FooFac`` that needs 5 kg fuel,
 which is a ``cyclus::Material`` resource type. It knows of two commodities in
 the simulation that meet its demand, ``FuelA`` and ``FuelB``, and it prefers
 ``FuelA`` over ``FuelB``. A valid ``GetMatlRequests`` implementation would then
@@ -53,7 +53,7 @@ be:
 .. code-block:: c++
 
     virtual std::set<cyclus::RequestPortfolio<cyclus::Material>::Ptr>
-        MyFacility::GetMatlRequests() {
+        FooFac::GetMatlRequests() {
       using cyclus::RequestPortfolio;
       using cyclus::Material;
       using cyclus::CapacityConstraint;
@@ -96,7 +96,7 @@ satisfied.
 A bid is comprised of a request to which it is responding and a resource that it is
 offering in response to the request.
 
-For example, consider a facility of type ``MyFacility`` that has 10 kg of fuel
+For example, consider a facility of type ``FooFac`` that has 10 kg of fuel
 of commodity type ``FuelA`` that it can provide. Furthermore, consider that its
 capacity to fulfill orders is constrained by the total amount of a given
 nuclide. A valid ``GetMatlBids`` implementation would then be:
@@ -120,7 +120,7 @@ nuclide. A valid ``GetMatlBids`` implementation would then be:
     };
 
     virtual std::set<cyclus::BidPortfolio<cyclus::Material>::Ptr>
-      MyFacility::GetMatlBids(
+      FooFac::GetMatlBids(
         cyclus::CommodMap<cyclus::Material>::type& commod_requests) {
       using cyclus::BidPortfolio;
       using cyclus::CapacityConstraint;
@@ -131,13 +131,10 @@ nuclide. A valid ``GetMatlBids`` implementation would then be:
       // respond to all requests of my commodity
       std::string my_commodity = "FuelA";
       BidPortfolio<Material>::Ptr port(new BidPortfolio<Material>());
+      std::vector<Request<Material>*>& requests = commod_requests[my_commdoity];
       std::vector<Request<Material>*>::iterator it;
       for (it = requests.begin(); it != requests.end(); ++it) {
-        Request<Material>* req = *it;
-      	if (req->commodity() == my_commodity) {
-          Material::Ptr offer = Material::CreateUntracked(/* appropriate args */);
-          port->AddBid(req, offer, this);
-      	}
+        Material::Ptr offer = Material::CreateUntracked(/* appropriate args */);
       }
 
       // add a custom constraint for Pu-239
