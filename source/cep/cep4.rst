@@ -66,7 +66,7 @@ How should a DOI be created?
 ------------------------------------
 
 Creation of a DOI should be conducted or delegated by the code release 
-manager. Accordingly, CEP3 has been updated to reflect this responsibility. 
+manager. Accordingly, :doc:`CEP3<./cep3>` has been updated to reflect this responsibility. 
 That person is responsible for identifying the code contributors since the last 
 release at that level.  
 
@@ -114,10 +114,11 @@ This document is released under the CC-BY 3.0 license.
 References and Footnotes
 ========================
 
-.. rubric:: References
-
-.. bibliography:: cep-004-1.bib
-   :cited:
-
 .. _figshare: http://figshare.com/
 .. _Digital Object Identifier: http://en.wikipedia.org/wiki/Digital_object_identifier
+
+.. rubric:: References
+
+.. bibliography:: cep-0004-1.bib
+   :cited:
+

@@ -93,7 +93,7 @@ When releasing a |cyclus| project, make sure to do the following items in order:
    merge the release branch into the master branch.  Next, tag the master branch 
    with the name 'X.X.X'.  Finally, delete the release branch.
 9. Push the tags upstream
-10. Create a DOI. See CEP 4 for details.
+10. Create a DOI. See :doc:`CEP4 <./cep4>` for details.
 11. Update release information on the website.
 
 Maintainence Tasks
