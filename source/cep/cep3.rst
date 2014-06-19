@@ -7,7 +7,7 @@ CEP 3 - |Cyclus| Release Procedure
 :Author: Anthony Scopatz
 :Status: Accepted
 :Type: Process
-:Created: 2013-10-25
+:Created: 2014-06-19
 
 Abstract
 ========
