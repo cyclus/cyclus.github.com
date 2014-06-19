@@ -11,6 +11,9 @@ Building the Cyclus website requires:
 
 4. `Cloud Sphinx Theme <https://pythonhosted.org/cloud_sptheme/index.html>`_
 
+**NOTE:** The cloud package for Debian and Ubuntu is broken, so do not apt-get
+this. Please ``pip install cloud_sptheme``, ``easy_install cloud_sptheme``, or install from source instead.
+
 Modifying the Cyclus Website
 ============================
 
