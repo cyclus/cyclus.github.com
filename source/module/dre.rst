@@ -23,6 +23,7 @@ The DRE is comprised of five phases:
 * :ref:`adj`
 * :ref:`solve`
 * :ref:`trade`
+* :ref:`examples`
 
 .. _rfb:
 
@@ -209,12 +210,93 @@ member function (e.g. ``GetMatlTrades``), and requesters are provided their
 satisfied requests through the ``cyclus::Trader`` ``Accept*Trades`` member
 function (e.g. ``AcceptMatlTrades``).
 
+Traders can implement a ``TradeResponse`` function that provides a
+``cyclus::Material::Ptr`` given a ``cyclus::Trade``. It can then implement its
+Trader interface as follows:
+
+.. code-block:: c++
+
+    void GetMatlTrades(
+      const std::vector< cyclus::Trade<cyclus::Material> >& trades,
+      std::vector<std::pair<cyclus::Trade<cyclus::Material>,
+      cyclus::Material::Ptr> >& responses) {
+      using cyclus::Material;
+      using cyclus::Trade;
+
+      std::vector< Trade<Material> >::const_iterator it;
+      for (it = trades.begin(); it != trades.end(); ++it) {
+        Material::Ptr mat = it->bid->offer();
+        Material::Ptr response = TradeResponse(mat);
+        responses.push_back(std::make_pair(*it, response));
+      }
+    }
+
+Similarly, Traders can implement an ``AcceptTrade`` function that accepts a
+``cyclus::Material::Ptr`` given a ``cyclus::Trade``. It can then implement its
+Trader interface as follows:
+
+.. code-block:: c++
+
+    void EnrichmentFacility::AcceptMatlTrades(
+      const std::vector< std::pair<cyclus::Trade<cyclus::Material>,
+      cyclus::Material::Ptr> >& responses) {
+      std::vector< std::pair<cyclus::Trade<cyclus::Material>,
+          cyclus::Material::Ptr> >::const_iterator it;
+      for (it = responses.begin(); it != responses.end(); ++it) {
+        AcceptTrade(it->second);
+      }
+    }
+
 The implementation logic for each of these functions is determined by how each
 individual agent handles their resource inventories. Accordingly, their
 implementation will be unique to each agent. Some initial examples can be found
 in the ``cyclus::Source`` and ``cyclus::Sink`` agents, where ``cyclus::Source``
 implements ``GetMatlTrades`` as a bidder and ``cyclus::Sink`` implements
 ``AcceptMatlTrades`` as a requester.
+
+.. _examples:
+
+Examples
+--------
+
+Mixin-based Trader Behavior
++++++++++++++++++++++++++++
+
+Trader behavior can be specialized based on mixins that an archetype uses. For
+example, consider an interface that helps determines preferences based on
+``cyclus::Agent`` equality.
+
+.. code-block:: c++
+ 
+  class PrefGetter {
+   public:
+    double GetPref(cyclus::Agent* mine, cyclus::Agent* yours) {
+       return (mine == yours) ? 1 : 0.5;
+    } 
+  };
+
+A trader can then implement its preference adjustment as follows:
+
+.. code-block:: c++
+
+    virtual void AdjustMatlPrefs(
+        cyclus::PrefMap<cyclus::Material>::type& prefs) {
+      cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
+      for (pmit = prefs.begin(); pmit != prefs.end(); ++pmit) {
+        std::map<Bid<Material>*, double>::iterator mit;
+        Request<Material>* req = pmit->first();
+	cyclus::Agent* reqagent = req->requester()->manager();
+	for (mit = pmit->second().begin(); mit != pmit->second().end(); ++mit) {
+          Bid<Material>* bid = mit->first();
+	  cyclus::Agent* bidagent = bid->bidder()->manager();
+	  PrefGetter* pg_cast = dynamic_cast<PrefGetter*>(bidagent);
+	  if (pg_cast != NULL)
+	    mit->second() = cast->GetPref(reqagent, bidagent); // special behavior
+	  else
+	    mit->second() = 0; // choose any default behavior
+	} 
+      }
+    }
 
 Further Reading
 ---------------
