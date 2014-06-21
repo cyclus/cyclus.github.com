@@ -1,3 +1,5 @@
+.. _toolkit:
+
 The (Experimental) Cyclus Toolkit
 =================================
 

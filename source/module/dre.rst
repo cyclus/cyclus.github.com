@@ -176,11 +176,11 @@ would then be:
       cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
       for (pmit = prefs.begin(); pmit != prefs.end(); ++pmit) {
         std::map<Bid<Material>*, double>::iterator mit;
-        Request<Material>* req = pmit->first();
-	for (mit = pmit->second().begin(); mit != pmit->second().end(); ++mit) {
-          Bid<Material>* bid = mit->first();
+        Request<Material>* req = pmit->first;
+	for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
+          Bid<Material>* bid = mit->first;
 	  if (parent() == bid->bidder()->parent())
-	    mit->second() += 1; // bump pref if parents are equal
+	    mit->second += 1; // bump pref if parents are equal
 	} 
       }
     }
@@ -264,7 +264,7 @@ Mixin-based Trader Behavior
 
 Trader behavior can be specialized based on mixins that an archetype uses. For
 example, consider an interface that helps determines preferences based on
-``cyclus::Agent`` equality.
+the equality of the parent of a ``cyclus::Agent``.
 
 .. code-block:: c++
  
@@ -282,22 +282,43 @@ from ``PrefGetter`` can then implement its preference adjustment as follows:
 
     virtual void AdjustMatlPrefs(
         cyclus::PrefMap<cyclus::Material>::type& prefs) {
+
       cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
       for (pmit = prefs.begin(); pmit != prefs.end(); ++pmit) {
+
         std::map<Bid<Material>*, double>::iterator mit;
-        Request<Material>* req = pmit->first();
+        Request<Material>* req = pmit->first;
 	cyclus::Agent* reqagent = req->requester()->manager();
-	for (mit = pmit->second().begin(); mit != pmit->second().end(); ++mit) {
-          Bid<Material>* bid = mit->first();
+	for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
+
+          Bid<Material>* bid = mit->first;
 	  cyclus::Agent* bidagent = bid->bidder()->manager();
 	  PrefGetter* pg_cast = dynamic_cast<PrefGetter*>(bidagent);
-	  if (pg_cast != NULL)
-	    mit->second() = cast->GetPref(reqagent, bidagent); // special behavior
-	  else
-	    mit->second() = 0; // choose any default behavior
+
+	  if (pg_cast != NULL) {
+	    // special behavior for the mixin
+	    mit->second = cast->GetPref(reqagent->parent(), 
+	                                bidagent->parent()); 
+	  } else {
+	    mit->second = 0; // choose any (reasonable) default behavior
+	  }
 	} 
       }
     }
+
+.. warning::
+
+   Using a dynamic-checking approach will limit the interoperability of your
+   archetype with others. Some mixins are provided by the |Cyclus| kernel in its
+   :ref:`toolkit <toolkit>`, which is part of the core library.
+
+.. warning::
+
+   Using a mixin-based approach will require special implementation of restart
+   related functions *if* the mixin has state associated with it (i.e., members
+   that are initialized from an input file and/or stored from timestep to
+   timestep). For further reading, see the ``pragma cyclus impl`` directive in
+   :ref:`cycpp`.
 
 Further Reading
 ---------------
