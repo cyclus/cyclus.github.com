@@ -275,7 +275,8 @@ example, consider an interface that helps determines preferences based on
     } 
   };
 
-A trader can then implement its preference adjustment as follows:
+A trader who then wants behavior based on whether a bidder's manager inherits
+from ``PrefGetter`` can then implement its preference adjustment as follows:
 
 .. code-block:: c++
 
