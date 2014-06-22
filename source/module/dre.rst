@@ -23,6 +23,7 @@ The DRE is comprised of five phases:
 * :ref:`adj`
 * :ref:`solve`
 * :ref:`trade`
+* :ref:`examples`
 
 .. _rfb:
 
@@ -175,11 +176,11 @@ would then be:
       cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
       for (pmit = prefs.begin(); pmit != prefs.end(); ++pmit) {
         std::map<Bid<Material>*, double>::iterator mit;
-        Request<Material>* req = pmit->first();
-	for (mit = pmit->second().begin(); mit != pmit->second().end(); ++mit) {
-          Bid<Material>* bid = mit->first();
+        Request<Material>* req = pmit->first;
+	for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
+          Bid<Material>* bid = mit->first;
 	  if (parent() == bid->bidder()->parent())
-	    mit->second() += 1; // bump pref if parents are equal
+	    mit->second += 1; // bump pref if parents are equal
 	} 
       }
     }
@@ -209,12 +210,115 @@ member function (e.g. ``GetMatlTrades``), and requesters are provided their
 satisfied requests through the ``cyclus::Trader`` ``Accept*Trades`` member
 function (e.g. ``AcceptMatlTrades``).
 
+Traders can implement a ``TradeResponse`` function that provides a
+``cyclus::Material::Ptr`` given a ``cyclus::Trade``. It can then implement its
+Trader interface as follows:
+
+.. code-block:: c++
+
+    void GetMatlTrades(
+      const std::vector< cyclus::Trade<cyclus::Material> >& trades,
+      std::vector<std::pair<cyclus::Trade<cyclus::Material>,
+      cyclus::Material::Ptr> >& responses) {
+      using cyclus::Material;
+      using cyclus::Trade;
+
+      std::vector< Trade<Material> >::const_iterator it;
+      for (it = trades.begin(); it != trades.end(); ++it) {
+        Material::Ptr mat = it->bid->offer();
+        Material::Ptr response = TradeResponse(mat);
+        responses.push_back(std::make_pair(*it, response));
+      }
+    }
+
+Similarly, Traders can implement an ``AcceptTrade`` function that accepts a
+``cyclus::Material::Ptr`` given a ``cyclus::Trade``. It can then implement its
+Trader interface as follows:
+
+.. code-block:: c++
+
+    void EnrichmentFacility::AcceptMatlTrades(
+      const std::vector< std::pair<cyclus::Trade<cyclus::Material>,
+      cyclus::Material::Ptr> >& responses) {
+      std::vector< std::pair<cyclus::Trade<cyclus::Material>,
+          cyclus::Material::Ptr> >::const_iterator it;
+      for (it = responses.begin(); it != responses.end(); ++it) {
+        AcceptTrade(it->second);
+      }
+    }
+
 The implementation logic for each of these functions is determined by how each
 individual agent handles their resource inventories. Accordingly, their
 implementation will be unique to each agent. Some initial examples can be found
 in the ``cyclus::Source`` and ``cyclus::Sink`` agents, where ``cyclus::Source``
 implements ``GetMatlTrades`` as a bidder and ``cyclus::Sink`` implements
 ``AcceptMatlTrades`` as a requester.
+
+.. _examples:
+
+Examples
+--------
+
+Mixin-based Trader Behavior
++++++++++++++++++++++++++++
+
+Trader behavior can be specialized based on mixins that an archetype uses. For
+example, consider an interface that helps determines preferences based on
+the equality of the parent of a ``cyclus::Agent``.
+
+.. code-block:: c++
+ 
+  class PrefGetter {
+   public:
+    double GetPref(cyclus::Agent* mine, cyclus::Agent* yours) {
+       return (mine == yours) ? 1 : 0.5;
+    } 
+  };
+
+A trader who then wants behavior based on whether a bidder's manager inherits
+from ``PrefGetter`` can then implement its preference adjustment as follows:
+
+.. code-block:: c++
+
+    virtual void AdjustMatlPrefs(
+        cyclus::PrefMap<cyclus::Material>::type& prefs) {
+
+      cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
+      for (pmit = prefs.begin(); pmit != prefs.end(); ++pmit) {
+
+        std::map<Bid<Material>*, double>::iterator mit;
+        Request<Material>* req = pmit->first;
+	cyclus::Agent* reqagent = req->requester()->manager();
+	for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
+
+          Bid<Material>* bid = mit->first;
+	  cyclus::Agent* bidagent = bid->bidder()->manager();
+	  PrefGetter* pg_cast = dynamic_cast<PrefGetter*>(bidagent);
+
+	  if (pg_cast != NULL) {
+	    // special behavior for the mixin
+	    mit->second = cast->GetPref(reqagent->parent(), 
+	                                bidagent->parent()); 
+	  } else {
+	    mit->second = 0; // choose any (reasonable) default behavior
+	  }
+	} 
+      }
+    }
+
+.. warning::
+
+   Using a dynamic-checking approach will limit the interoperability of your
+   archetype with others. Some mixins are provided by the |Cyclus| kernel in its
+   :ref:`toolkit <toolkit>`, which is part of the core library.
+
+.. warning::
+
+   Using a mixin-based approach will require special implementation of restart
+   related functions *if* the mixin has state associated with it (i.e., members
+   that are initialized from an input file and/or stored from timestep to
+   timestep). For further reading, see the ``pragma cyclus impl`` directive in
+   :ref:`cycpp`.
 
 Further Reading
 ---------------

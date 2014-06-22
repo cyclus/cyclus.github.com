@@ -41,7 +41,7 @@ Second, to provide an appropriately transparent public link between the
 identities and efforts of the authors, the true names of the authors should be 
 listed. As with other forms of scientific publication, public attribution of 
 authorship is of importance for appropriately enabling direct praise and blame 
-related to that scientific work :cite:`shamoo_responsible_2003`.  This features 
+related to that scientific work :cite:`shamoo_responsible_2003`.  This feature 
 of scientific publication holds the scientist accountable for their work and 
 enables them to establish a record of their scientific pursuits. It is for this 
 reason that clear attribution of true names is superior to other options, such 
@@ -84,10 +84,10 @@ Who is an author?
 
 An author has contributed code contributing to the release. 
 For a **major release**, all authors that contributed code between version 
-n.0.0 and version m.0 should be listed in the m.0.0 code release DOI. 
+m.0.0 and version n.0.0 should be listed in the n.0.0 code release DOI. 
 
-In the same way, for a **minor release**, all authors that contributed code between 1.n.0 and 
-1.m.0 should be listed in the 1.m.0 code release DOI. Note that additional authors 
+In the same way, for a **minor release**, all authors that contributed code between 1.m.0 and 
+1.n.0 should be listed in the 1.n.0 code release DOI. Note that additional authors 
 should not be included if they have not contributed to this minor release. For 
 example, if someone has contributed to version 1.0.0, but not since then, that 
 person should not be listed as an author on the DOI for version 1.1.0.
