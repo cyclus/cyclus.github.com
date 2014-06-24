@@ -60,7 +60,8 @@ What releases should have a DOI?
 ------------------------------------
 
 Cyclus versions are indicated by numbers of the form : vMAJ.MIN.MICRO-patch. At the 
-very least, major, minor, micro versions should have associated DOIs.
+very least, major, and minor versions should have associated DOIs. For micro 
+versions, which do not undergo a release process, a DOI is optional.
 
 How should a DOI be created?
 ------------------------------------
