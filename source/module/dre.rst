@@ -136,6 +136,7 @@ nuclide. A valid ``GetMatlBids`` implementation would then be:
       std::vector<Request<Material>*>::iterator it;
       for (it = requests.begin(); it != requests.end(); ++it) {
         Material::Ptr offer = Material::CreateUntracked(/* appropriate args */);
+	port->AddBid(*it, offer, this);
       }
 
       // add a custom constraint for Pu-239
@@ -149,6 +150,8 @@ nuclide. A valid ``GetMatlBids`` implementation would then be:
       ports.insert(port);
       return ports;
     }
+
+For additional examples of custom response functionality, see :ref:`white_box`.
 
 .. _adj:
 
@@ -319,6 +322,66 @@ from ``PrefGetter`` can then implement its preference adjustment as follows:
    that are initialized from an input file and/or stored from timestep to
    timestep). For further reading, see the ``pragma cyclus impl`` directive in
    :ref:`cycpp`.
+
+.. _white_box:
+
+Non-Black Box Behavior
++++++++++++++++++++++++++++
+
+Cyclus provides a simulation framework that supports black-box entity
+interaction, i.e., any entity in the simulation can interact with any other
+entity through its ``cyclus::Agent`` interface. However, there is nothing
+stopping an archetype developer from implementing logic that is specific to a
+implemented archetype.
+
+For example, take a facility that informs a trader what composition of material
+it wants given another facility's inventory. 
+
+.. code-block:: c++
+ 
+  class TradeInformer: public cyclus::Facility {
+   public:
+    #pragma cyclus
+
+    cyclus::Material::Ptr IdealMatl(const std::vector<cyclus::Material::Ptr>& manifest) {
+       // provide whatever implementation is desired
+    } 
+  };
+
+A provider of material can then implement its ``GetMatlBids`` as follows:
+
+.. code-block:: c++
+
+    virtual std::set<cyclus::BidPortfolio<cyclus::Material>::Ptr>
+      FooFac::GetMatlBids(
+        cyclus::CommodMap<cyclus::Material>::type& commod_requests) {
+      using cyclus::BidPortfolio;
+      using cyclus::Material;
+      using cyclus::Request;
+      using cyclus::Agent;
+
+      // respond to all requests of my commodity
+      std::string my_commodity = "FuelA";
+      BidPortfolio<Material>::Ptr port(new BidPortfolio<Material>());
+      std::vector<Request<Material>*>& requests = commod_requests[my_commdoity];
+      std::vector<Request<Material>*>::iterator it;
+      for (it = requests.begin(); it != requests.end(); ++it) {
+        Material::Ptr offer;
+	Agent* agent = it->requester();
+	TradeInformer* cast = dynamic_cast<TradeInformer*>(agent);
+	if (cast != NULL) {
+	    std::vector<Material::Ptr> inv = GetInv(/* appropriate args */);
+	    offer = cast->IdealMatl(inv);
+	} else {
+	    offer = GetDefaultOffer(/* appropriate args */);
+	}	    
+	port->AddBid(*it, offer, this);
+      }
+
+      std::set<BidPortfolio<Material>::Ptr> ports;
+      ports.insert(port);
+      return ports;
+    }
 
 Further Reading
 ---------------
