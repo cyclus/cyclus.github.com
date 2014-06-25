@@ -59,18 +59,22 @@ be:
       using cyclus::Material;
       using cyclus::CapacityConstraint;
 
-      Material::Ptr targeta = Material::CreateUntracked(/* appropriate args */);
+      double request_qty = 10; // kg
+      std::string recipeA = "recipeA";
       std::string commoda = "FuelA";
+      Material::Ptr targetA = 
+          Material::CreateUntracked(request_qty, context()->GetRecipe(recipeA));
 
-      Material::Ptr targetb = Material::CreateUntracked(/* appropriate args */);
-      std::string commodb = "FuelB";
+      std::string recipeB = "recipeB";
+      std::string commodB = "FuelB";
+      Material::Ptr targetB = 
+          Material::CreateUntracked(request_qty, context()->GetRecipe(recipeB));
       
-      double qty_needed = 5;
-      CapacityConstraint<Material> cc(qty_needed);
+      CapacityConstraint<Material> cc(request_qty);
       
       RequestPortfolio<Material>::Ptr port(new RequestPortfolio<Material>());
-      port->AddRequest(targeta, this, commoda);
-      port->AddRequest(targetb, this, commodb);
+      port->AddRequest(targeta, this, commodA);
+      port->AddRequest(targetb, this, commodB);
       port->AddConstraint(cc);
 
       std::set<RequestPortfolio<Material>::Ptr> ports();
@@ -135,7 +139,11 @@ nuclide. A valid ``GetMatlBids`` implementation would then be:
       std::vector<Request<Material>*>& requests = commod_requests[my_commdoity];
       std::vector<Request<Material>*>::iterator it;
       for (it = requests.begin(); it != requests.end(); ++it) {
-        Material::Ptr offer = Material::CreateUntracked(/* appropriate args */);
+        std::string recipe = "recipe";
+        std::string commod = "Fuel";
+        for (it = requests.begin(); it != requests.end(); ++it) {      
+          Material::Ptr offer = 
+              Material::CreateUntracked(request_qty, context()->GetRecipe(recipe));
 	port->AddBid(*it, offer, this);
       }
 
@@ -343,7 +351,7 @@ it wants given another facility's inventory.
    public:
     #pragma cyclus
 
-    cyclus::Material::Ptr IdealMatl(const std::vector<cyclus::Material::Ptr>& manifest) {
+    cyclus::Material::Ptr IdealMatl(const cyclus::ResourceBuff& buffer) {
        // provide whatever implementation is desired
     } 
   };
@@ -370,10 +378,12 @@ A provider of material can then implement its ``GetMatlBids`` as follows:
 	Agent* agent = it->requester();
 	TradeInformer* cast = dynamic_cast<TradeInformer*>(agent);
 	if (cast != NULL) {
-	    std::vector<Material::Ptr> inv = GetInv(/* appropriate args */);
-	    offer = cast->IdealMatl(inv);
-	} else {
-	    offer = GetDefaultOffer(/* appropriate args */);
+	    offer = cast->IdealMatl(inventory); // inventory is a state variable cyclus::ResourceBuff
+	} else { 
+	    double qty = it->quantity();     
+      	    std::string recipe = "recipe";
+      	    std::string commoda = "Fuel";
+      	    Material::Ptr offer = Material::CreateUntracked(qty, context()->GetRecipe(recipe));
 	}	    
 	port->AddBid(*it, offer, this);
       }
