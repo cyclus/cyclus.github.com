@@ -43,9 +43,9 @@ Index
     :maxdepth: 1
 
     PA - 1 - CEP Purpose and Guidelines - Scopatz <cep1>
-    PA - 2 - Separation of Concerns in the |Cyclus| Ecosystem - Scopatz <cep2>
+    PA - 2 - Separation of Concerns in the Cyclus Ecosystem - Scopatz <cep2>
     PA - 3 - Release Procedure - Scopatz <cep3>
-    PD - 4 - Attribution of Code Products in the |Cyclus| Ecosystem - Huff <cep4>
+    PA - 4 - Attribution of Code Products in the Cyclus Ecosystem - Huff <cep4>
 
 *Standard CEPs*
 
