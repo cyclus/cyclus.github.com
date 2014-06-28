@@ -459,7 +459,7 @@ administrative & editorial part (which is generally a low volume task).
 Document History
 ================
 This document was forked and modified from the `Python Enhancement Proposals
-<http://www.python.org/dev/ceps/cep-0001/>`_
+<http://www.python.org/dev/peps/pep-0001/>`_
 
 This document is released under the CC-BY 3.0 license.
 
