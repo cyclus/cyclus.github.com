@@ -45,7 +45,8 @@ Index
     PA - 1 - CEP Purpose and Guidelines - Scopatz <cep1>
     PA - 2 - Separation of Concerns in the Cyclus Ecosystem - Scopatz <cep2>
     PA - 3 - Release Procedure - Scopatz <cep3>
-    PA - 4 - Attribution of Code Products in the Cyclus Ecosystem - Huff <cep4>
+    PD - 4 - Attribution of Code Products in the |Cyclus| Ecosystem - Huff <cep4>
+    PL - 5 - Archetype Development Best Practices - None <cep5>
 
 *Standard CEPs*
 
@@ -57,6 +58,7 @@ Index
     SW - 19 - Cyclus Input Procedure Updates - Flanagan <cep19>
     SA - 20 - Time Step Execution Stack - Gidden <cep20>
     SA - 21 - Agent Identification and Discovery - Carlsen <cep21>
+    SL - 22 - Logging Methodology and Implementation - None <cep22>
 
 Key
 ---
