@@ -166,11 +166,12 @@ White Box Examples
 +++++++++++++++++++
 
 Consider a case where a facility's bid depends on the type of the requester's
-``cyclus::Agent``.
+``cyclus::Agent``, and the bidder determines its offer based on the requester's
+interface:
 
 .. code-block:: c++
 
-    cyclus::Material::Ptr FooFac::FooRequest() {
+    cyclus::Material::Ptr FooFac::SpecialFooOffer() {
       std::string recipe = "recipe";
       double quantity = 10;
       Material::Ptr target = 
@@ -195,7 +196,7 @@ Consider a case where a facility's bid depends on the type of the requester's
 	Agent* agent = it->requester();
 	FooFac* cast = dynamic_cast<FooFac*>(agent);
 	if (cast != NULL) {
-	    offer = cast->FooRequest(); // get a special response that the requester wants
+	    offer = cast->SpecialFooOffer(); // get a special response that the requester wants
 	} else { 
 	    double qty = it->quantity();     
       	    std::string recipe = "some_other_recipe";
@@ -241,7 +242,7 @@ would then be:
         Request<Material>* req = pmit->first;
 	for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
           Bid<Material>* bid = mit->first;
-	  if (parent() == bid->bidder()->parent())
+	  if (parent() == bid->bidder()->manager()->parent())
 	    mit->second += 1; // bump pref if parents are equal
 	} 
       }
