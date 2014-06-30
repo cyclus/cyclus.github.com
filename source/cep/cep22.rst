@@ -4,10 +4,14 @@ CEP 5 - Logging Methodology and Implementation
 :CEP: 22
 :Title: Logging Methodology and Implementation 
 :Last-Modified: 2014-06-29
-:Author: None
+:Author: Matthew Gidden
 :Status: Deferred
 :Type: Standards Track
 :Created: 2014-06-29
+
+.. note::
+
+    This CEP is looking for a champion.
 
 Overview
 ========

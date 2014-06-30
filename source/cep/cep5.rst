@@ -4,10 +4,14 @@ CEP 5 - Archetype Development Best Practices
 :CEP: 5
 :Title: Archetype Development Best Practices 
 :Last-Modified: 2014-06-29
-:Author: None
+:Author: Matthew Gidden
 :Status: Deferred
 :Type: Process
 :Created: 2014-06-29
+
+.. note::
+
+    This CEP is looking for a champion.
 
 Overview
 ========
