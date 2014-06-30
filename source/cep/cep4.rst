@@ -3,9 +3,9 @@ CEP 4 - Attribution of Code Products in the |cyclus| Ecosystem
 
 :CEP: 4
 :Title: Attribution of Code Products in the |cyclus| Ecosystem 
-:Last-Modified: 2014-06-19
+:Last-Modified: 2014-06-27
 :Author: Kathryn Huff
-:Status: Draft
+:Status: Accepted
 :Type: Process
 :Created: 2014-06-01
 
