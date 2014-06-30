@@ -101,10 +101,13 @@ satisfied.
 A bid is comprised of a request to which it is responding and a resource that it is
 offering in response to the request.
 
-For example, consider a facility of type ``FooFac`` that has 10 kg of fuel
-of commodity type ``FuelA`` that it can provide. Furthermore, consider that its
-capacity to fulfill orders is constrained by the total amount of a given
-nuclide. A valid ``GetMatlBids`` implementation would then be:
+Black Box Examples
+++++++++++++++++++
+
+Consider a facility of type ``FooFac`` that has 10 kg of fuel of commodity type
+``FuelA`` that it can provide. Furthermore, consider that its capacity to
+fulfill orders is constrained by the total amount of a given nuclide. A valid
+``GetMatlBids`` implementation would then be:
 
 .. code-block:: c++
 
@@ -159,7 +162,52 @@ nuclide. A valid ``GetMatlBids`` implementation would then be:
       return ports;
     }
 
-For additional examples of custom response functionality, see :ref:`white_box`.
+White Box Examples
++++++++++++++++++++
+
+Consider a case where a facility's bid depends on the type of the requester's
+``cyclus::Agent``.
+
+.. code-block:: c++
+
+    cyclus::Material::Ptr FooFac::FooRequest() {
+      std::string recipe = "recipe";
+      double quantity = 10;
+      Material::Ptr target = 
+          Material::CreateUntracked(quantity, context()->GetRecipe(recipe));
+      return target;
+    };
+
+    virtual std::set<cyclus::BidPortfolio<cyclus::Material>::Ptr>
+      FooFac::GetMatlBids(
+        cyclus::CommodMap<cyclus::Material>::type& commod_requests) {
+      using cyclus::BidPortfolio;
+      using cyclus::Material;
+      using cyclus::Request;
+
+      // respond to all requests of my commodity
+      std::string my_commodity = "FuelA";
+      BidPortfolio<Material>::Ptr port(new BidPortfolio<Material>());
+      std::vector<Request<Material>*>& requests = commod_requests[my_commdoity];
+      std::vector<Request<Material>*>::iterator it;
+      for (it = requests.begin(); it != requests.end(); ++it) {
+        Material::Ptr offer;
+	Agent* agent = it->requester();
+	FooFac* cast = dynamic_cast<FooFac*>(agent);
+	if (cast != NULL) {
+	    offer = cast->FooRequest(); // get a special response that the requester wants
+	} else { 
+	    double qty = it->quantity();     
+      	    std::string recipe = "some_other_recipe";
+      	    Material::Ptr offer = Material::CreateUntracked(qty, context()->GetRecipe(recipe));
+	}	    
+	port->AddBid(*it, offer, this);
+      }
+
+      std::set<BidPortfolio<Material>::Ptr> ports;
+      ports.insert(port);
+      return ports;
+    }
 
 .. _adj:
 
@@ -176,13 +224,16 @@ Preferences are used by resource exchange solvers to inform their solution
 method. Agents will only utilize the PA phase if there is a reason to update
 preferences over the default provided in their original request.
 
+Black Box Examples
+++++++++++++++++++
+
 For example, suppose that an agent prefers potential trades in which the bidder
 has the same parent agent as it does. A valid ``AdjustMatlPrefs`` implementation
 would then be:
 
 .. code-block:: c++
 
-    virtual void AdjustMatlPrefs(
+    virtual void FooFac::AdjustMatlPrefs(
         cyclus::PrefMap<cyclus::Material>::type& prefs) {
       cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
       for (pmit = prefs.begin(); pmit != prefs.end(); ++pmit) {
@@ -193,6 +244,28 @@ would then be:
 	  if (parent() == bid->bidder()->parent())
 	    mit->second += 1; // bump pref if parents are equal
 	} 
+      }
+    }
+
+White Box Examples
+++++++++++++++++++
+
+Consider a scenario in which preferences will only be adjusted if the requester
+and bidder are of the same type:
+
+.. code-block:: c++
+
+    virtual void FooFac::AdjustMatlPrefs(
+        cyclus::PrefMap<cyclus::Material>::type& prefs) {
+      cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
+      for (pmit = prefs.begin(); pmit != prefs.end(); ++pmit) {
+        std::map<Bid<Material>*, double>::iterator mit;
+        Request<Material>* req = pmit->first;
+	FooFac* cast = dynamic_cast<FooFac*>(req->requester()->manager());
+        double pref = mit->second;
+	if (cast != NULL) 
+	    pref *= 10; // we like this guy!
+	mit->second = pref;
       }
     }
 
@@ -227,7 +300,7 @@ Trader interface as follows:
 
 .. code-block:: c++
 
-    void GetMatlTrades(
+    void FooFac::GetMatlTrades(
       const std::vector< cyclus::Trade<cyclus::Material> >& trades,
       std::vector<std::pair<cyclus::Trade<cyclus::Material>,
       cyclus::Material::Ptr> >& responses) {
@@ -248,7 +321,7 @@ Trader interface as follows:
 
 .. code-block:: c++
 
-    void EnrichmentFacility::AcceptMatlTrades(
+    void FooFac::AcceptMatlTrades(
       const std::vector< std::pair<cyclus::Trade<cyclus::Material>,
       cyclus::Material::Ptr> >& responses) {
       std::vector< std::pair<cyclus::Trade<cyclus::Material>,
@@ -291,7 +364,7 @@ from ``PrefGetter`` can then implement its preference adjustment as follows:
 
 .. code-block:: c++
 
-    virtual void AdjustMatlPrefs(
+    virtual void FooFac::AdjustMatlPrefs(
         cyclus::PrefMap<cyclus::Material>::type& prefs) {
 
       cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
@@ -371,7 +444,7 @@ A provider of material can then implement its ``GetMatlBids`` as follows:
       // respond to all requests of my commodity
       std::string my_commodity = "FuelA";
       BidPortfolio<Material>::Ptr port(new BidPortfolio<Material>());
-      std::vector<Request<Material>*>& requests = commod_requests[my_commdoity];
+      std::vector<Request<Material>*>& requests = commod_requests[my_commodity];
       std::vector<Request<Material>*>::iterator it;
       for (it = requests.begin(); it != requests.end(); ++it) {
         Material::Ptr offer;
@@ -382,7 +455,6 @@ A provider of material can then implement its ``GetMatlBids`` as follows:
 	} else { 
 	    double qty = it->quantity();     
       	    std::string recipe = "recipe";
-      	    std::string commoda = "Fuel";
       	    Material::Ptr offer = Material::CreateUntracked(qty, context()->GetRecipe(recipe));
 	}	    
 	port->AddBid(*it, offer, this);
