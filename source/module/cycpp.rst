@@ -113,9 +113,15 @@ contains a listing of all special keys and their meanings.
     key          meaning
     ============ ==============================================================
     type         The C++ type.  Valid types may be found on the :doc:`dbtypes` 
-                 page. **DO NOT SET**.
-    index        Which number state variable is this, 0-indexed, 
-                 **DO NOT SET**.
+                 page. **READ ONLY:** Do not set this key in 
+                 ``#pragma cyclus var {...}`` as it is set automatically by 
+                 cycpp. Feel free to use this downstream in your class or in a 
+                 post-process.
+    index        Which number state variable is this, 0-indexed.
+                 **READ ONLY:** Do not set this key in 
+                 ``#pragma cyclus var {...}`` as it is set automatically by 
+                 cycpp. Feel free to use this downstream in your class or in a 
+                 post-process.
     default      The default value for this variable that is used if otherwise 
                  unspecified. The value must match the type of the variable.
     shape        The shape of a variable length datatypes. If present this must
