@@ -648,6 +648,7 @@ as follows:
                                     '  material_identifier++;\n', \
                                     'write': '->AddVal("material_identifier", material_identifier)\n' \
                         }}
+    int material_identifier;
 
 Other state variable annotation keys allow you to provide code snippets
 in much the same way.
