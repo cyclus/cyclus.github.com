@@ -161,7 +161,9 @@ contains a listing of all special keys and their meanings.
                  writing them out to the database respectively.
     schema       Code snippet to use in the ``schema()`` function for 
                  this state variable instead of using code generation.
-                 This is an RNG string.
+                 This is an RNG string. If you supply this then you likely need
+                 to supply ``infiletodb`` as well to ensure that your custom
+                 schema is read into the database correctly.
     snapshot     Code snippet to use in the ``Snapshot()`` function for 
                  this state variable instead of using code generation.
                  This is a string.
@@ -582,3 +584,71 @@ This could be achieved through the following pattern:
 
 There are likely much more legitimate uses for this feature. For a complete
 listing of the member function information, please see :ref:`cycpp-table-3`.
+
+Custom Schema & Initialization
+------------------------------
+Suppose that you would like for the schema for a state variable to be different
+than the default behavior provided by |cycpp|. Or perhaps you would like more
+sophisticated input validation than can is provided by XML and RelaxNG for a 
+state variable. This may be easily done by supplying the state variable annotation 
+keys ``schema`` and ``infiletodb``. These allow you to inject code snippets 
+pertaining to the state variable without interfering with the rest of the 
+code generation.
+
+For example, let's say that we have an integer state variable called 
+``material_identifier`` that we know always should be even.  This name is
+a bit long to make users type in, so we would prefer to expose this in the 
+input file as ``matid``.  The RNG snippet that you would use for the ``schema`` 
+is thus:
+
+.. code-block:: python
+
+    {'schema': '"<element name=\\"matid\\">\\n"' \ 
+               '"  <data type=\\"int\\" />\\n"' \
+               '"</element>\\n"'}
+
+You must double escape the quotes and newlines so that they are written out 
+correctly.  You could have also changed the data type or any other valid
+RNG here.
+
+.. note:: Whenever a state variable name is changed in the ``schema``, you 
+          must supply an accompanying ``infiletodb``.
+
+Providing a custom ``infiletodb`` is slightly more complicated because you
+must give C++ snippets for reading from the input file and for persisting to
+the database. The value for ``infiletodb`` is thus not a simple string 
+but a dict that has ``read`` and ``write`` keys.  Continuing with the 
+example we can ensure that ``matid`` is even after it has been read in.
+Here, we do not change the name of the state variable on the agent in 
+memory or in the database. 
+
+.. code-block:: python
+
+    {'infiletodb': { \
+        'read': 'material_identifier = cyclus::Query<int>(tree, "matid");\n' \
+                'if (material_identifier%2 == 1)\n' \
+                '  material_identifier++;\n', \
+        'write': '->AddVal("material_identifier", material_identifier)\n' \
+        }}
+
+For more examples and explanation of what the ``InfileToDb()`` function 
+does please refer to other code generated samples and refer to other parts
+of the documentation.
+Pulling this all together, we can write our custom schema and initialization 
+as follows:
+
+.. code-block:: c++
+
+    #pragma cyclus var {'schema': '"<element name=\\"matid\\">\\n"' \ 
+                                  '"  <data type=\\"int\\" />\\n"' \
+                                  '"</element>\\n"', \
+                        'infiletodb': { \
+                            'read': 'material_identifier = cyclus::Query<int>(tree, "matid");\n' \
+                                    'if (material_identifier%2 == 1)\n' \
+                                    '  material_identifier++;\n', \
+                                    'write': '->AddVal("material_identifier", material_identifier)\n' \
+                        }}
+
+Other state variable annotation keys allow you to provide code snippets
+in much the same way.
+
