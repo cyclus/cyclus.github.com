@@ -217,13 +217,46 @@ Preference Adjustment Phase
 
 In the Preference Adjustment (PA) phase, requesters are allowed to view which
 bids were matched to their requests, and adjust their preference for the given
-bid-request pairing. Querying is provided through the ``cyclus::Trader``
-interface's ``Adjust*Prefs`` for a given resource type, e.g.,
+bid-request pairing. Querying is provided through the ``cyclus::Trader`` and
+``cyclus::Agent`` interfaces' ``Adjust*Prefs`` for a given resource type, e.g.,
 ``AdjustMaterialPrefs``.
 
 Preferences are used by resource exchange solvers to inform their solution
 method. Agents will only utilize the PA phase if there is a reason to update
 preferences over the default provided in their original request.
+
+Preferences can be adjusted by both the original ``cyclus::Trader`` placing
+requests as well as any parent ``cyclus::Agent``\s, with the trader adjusting
+first and the most senior parent adjusting last. In the supported
+Region-Institution-Facility agent relationship, Facilities adjust first,
+followed by Institution and Region parent agents. The calling chain is shown in
+Figure 1, with the orange box representing a call through the ``cyclus::Trader``
+interface and a green box representing the ``cyclus::Agent`` interface.
+
+.. figure:: dre-1.svg
+    :align: center
+
+    **Figure 1:** R-I-F Preference Adjustment Call Chain
+
+.. blockdiag code below
+
+    http://interactive.blockdiag.com/?compression=deflate&src=eJxtjTELAjEMRvf7FeEmHQQdDofqKriKu9Q2tMHSHDGHiNx_t1cVRBzz8j3eObG7eLIBHg0AC2FWq8QZttCzqFjS8sjs8XQjr7HwVbc0HxaRQtQC193EDhgmd7OAfb4q6aDvs91ZR4n0DrOjWI8yb01ThCA89LUN_zaFjz8rx4mlBIMg5kpeUfOdNFUcn5VaRHw
+
+    blockdiag {
+      orientation = portrait
+      node_width = 150;
+      node_height = 75;
+      Region <- Institution <- "Facility (Trader)";
+
+      group {
+        "Facility (Trader)"
+	}
+      group {
+        color = green
+	Region; Institution;
+	}
+      }    
+
 
 Black Box Examples
 ++++++++++++++++++
@@ -247,6 +280,49 @@ would then be:
 	} 
       }
     }
+
+Alternatively, a ``cyclus::Institution`` managing a ``cyclus::Facility`` could
+adjust preferences as follows
+
+.. code-block:: c++
+
+    virtual void FooInst::AdjustMatlPrefs(
+        cyclus::PrefMap<cyclus::Material>::type& prefs) {
+      cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
+      for (pmit = prefs.begin(); pmit != prefs.end(); ++pmit) {
+        std::map<Bid<Material>*, double>::iterator mit;
+        Request<Material>* req = pmit->first;
+	for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
+          Bid<Material>* bid = mit->first;
+	  Agent* you = bid->bidder()->manager()->parent();
+	  Agent* me = this;
+	  if (me == you)
+	    mit->second += 1; // bump pref if the parent is me (institutions are equal)
+	} 
+      }
+    }
+
+Finally, a ``cyclus::Region`` managing a ``cyclus::Institution`` could adjust
+preferences as
+
+.. code-block:: c++
+
+    virtual void FooRegion::AdjustMatlPrefs(
+        cyclus::PrefMap<cyclus::Material>::type& prefs) {
+      cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
+      for (pmit = prefs.begin(); pmit != prefs.end(); ++pmit) {
+        std::map<Bid<Material>*, double>::iterator mit;
+        Request<Material>* req = pmit->first;
+	for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
+          Bid<Material>* bid = mit->first;
+	  Agent* you = bid->bidder()->manager()->parent()->parent();
+	  Agent* me = this;
+	  if (me == you)
+	    mit->second += 1; // bump pref if the grandparent is me (regions are equal)
+	} 
+      }
+    }
+
 
 White Box Examples
 ++++++++++++++++++
