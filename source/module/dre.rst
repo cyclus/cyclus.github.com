@@ -235,6 +235,7 @@ interface and a green box representing the ``cyclus::Agent`` interface.
 
 .. figure:: dre-1.svg
     :align: center
+    :height: 500
 
     **Figure 1:** R-I-F Preference Adjustment Call Chain
 
