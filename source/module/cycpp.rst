@@ -140,6 +140,15 @@ contains a listing of all special keys and their meanings.
     units        The physical units, if any.
     userlevel    Integer from 0 - 10 for representing ease (0) or difficulty (10) 
                  in using this variable, default 0.
+    cycicLabel   The text string CycIC will display as the name of this input on
+                 the CycIC input form.
+    cycicSType   The special type of the input field in reference in CycIC, 
+                 currently supported special types are; incommodity, outcommodity,
+                 range, combobox, and recipe. 
+    cycicRange   This indicates the range associated with a range SType.
+                 It must take the form of <min, max>.
+    cycicDsct    This indicates the decrete values a combobox SType can take. It
+                 must take the form of <value1, value2, value3, etc>. 
     schematype   This is the data type that is used in the schema for input file
                  validation. This enables the you to supply just the data type
                  rather than having to overwrite the full schema for this state
