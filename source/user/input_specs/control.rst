@@ -8,6 +8,7 @@ tag, and has the following sections in any order:
   * startmonth (required once) - the starting month (1 -> January, 12->December)
   * startyear (required once) - the starting year
   * simhandle (optional, once) - a user-defined identifier for this simulation
+  * decay (optional, once) - choose "manual" or "never" to define decay behavior
 
 
 Example
