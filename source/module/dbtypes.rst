@@ -607,7 +607,7 @@ yet supported, please let us know and we'll get to it as soon as possible!
                  ];
 
         setupPivot({json: dbdata, fields: fields,
-                    filters: {version: "v1.0"}, 
+                    filters: {version: "v1.1"}, 
                     rowLabels: ["id", "name", "C++ type", "shape rank"], 
                     columnLabels: ["backend"],
                     summaries: ["supported_sum"]});
