@@ -53,6 +53,7 @@ gh-clean gh-revert clean:
 gh-preview html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)
 	sed -i 's/function top_offset([$$]node){ return [$$]node\[0\].getBoundingClientRect().top; }/function top_offset($$node){ return (typeof $$node[0] === "undefined") ? 0 : $$node[0].getBoundingClientRect().top; }/' ./gh-build/_static/cloud.js
+	cp $(BUILDDIR)/cep/cep0.html $(BUILDDIR)/cep/index.html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)."
 
