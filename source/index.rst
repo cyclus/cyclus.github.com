@@ -39,13 +39,13 @@ Learn More
 .. toctree::
     :maxdepth: 1
 
-    basics/main
-    user/main
-    arche/main
-    kernel/main
+    basics/index
+    user/index
+    arche/index
+    kernel/index
     cep/cep0
-    previous/main
-    cite/main
+    previous/index
+    cite/index
 
 .. _try-it:
 
