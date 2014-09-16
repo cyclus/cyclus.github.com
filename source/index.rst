@@ -41,7 +41,7 @@ Learn More
 
     basics/main
     user/main
-    module/main
+    arche/main
     kernel/main
     cep/cep0
     previous/main
