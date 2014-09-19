@@ -58,7 +58,7 @@ A |Cyclus| simulation marches through time with a fixed time step.  At each
 time step, the system itself may change and the dynamic resource exchange is
 recomputed.
 
-.. _dre:
+.. _dre_concepts:
 
 Dynamic Resource Exchange
 -------------------------

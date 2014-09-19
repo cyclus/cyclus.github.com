@@ -26,7 +26,7 @@ Glossary of Cyclus Terms
   dynamic resource exchange
 
     the methodology that governs time step behavior in |cyclus| -- see
-    :doc:`Dynamic Resource Exchange <../module/dre>`
+    :doc:`Dynamic Resource Exchange <../arche/dre>`
 
   plug-in  
 
