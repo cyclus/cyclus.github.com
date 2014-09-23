@@ -146,3 +146,10 @@ Glossary of Cyclus Terms
 
     A particular kind of resource that combines a :term:`composition` and a
     mass to be exchanged
+
+  entity
+
+    The kind of the archetype. Usually this is either region, institution, 
+    or facility. For agents that are not specificaly one of these kinds
+    still inherit from the ``Agent`` class the term archtype is used.
+    Otherwise the entity is unknown.
