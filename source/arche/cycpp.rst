@@ -218,11 +218,24 @@ this is ``vars`` which contains the state variable annotations!
     ============ ==============================================================
     key          meaning
     ============ ==============================================================
-    vars         The state variable annotations, **DO NOT SET**.
+    vars         The state variable annotations, **READ ONLY**.
+    entity       The kind of archetype that this is based on which class it 
+                 inherits from. If this inherits from ``cyclus::Region``,
+                 ``cyclus::Institution``, or ``cyclus::Facility`` then this 
+                 will be the string 'region', 'institution', or 'facility'
+                 respecively. If the class inherits from ``cyclus::Agent`` but 
+                 does not inherit from the previous three then this will be 
+                 the string 'archetype'. In the class does not even inherit 
+                 from ``cyclus::Agent``, then this will be 'unknown'. 
+                 **READ ONLY.** *New in version 1.1.1.*
+    parents      List of string class names of the direct superclasses of this
+                 archetype. **READ ONLY.** *New in version 1.1.1.*
+    all_parents  List of string class names of all the superclasses of this
+                 archetype. **READ ONLY.** *New in version 1.1.1.*
     doc          Documentation string.
     tooltip      Brief documentation string for user interfaces.
-    userlevel    Integer from 0 - 10 for representing ease (0) or difficulty (10) 
-                 in using this variable, default 0.
+    userlevel    Integer from 0 - 10 for representing ease (0) or 
+                 difficulty (10) in using this variable, default 0.
     ============ ==============================================================
 
 .. raw:: html
