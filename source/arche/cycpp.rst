@@ -219,6 +219,8 @@ this is ``vars`` which contains the state variable annotations!
     key          meaning
     ============ ==============================================================
     vars         The state variable annotations, **READ ONLY**.
+    name         C++ class name (string) of the archetype. **READ ONLY.** 
+                 *New in version 1.1.1.*
     entity       The kind of archetype that this is based on which class it 
                  inherits from. If this inherits from ``cyclus::Region``,
                  ``cyclus::Institution``, or ``cyclus::Facility`` then this 
