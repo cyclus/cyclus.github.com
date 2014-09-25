@@ -588,7 +588,7 @@ This could be achieved through the following pattern:
 .. code-block:: c++
 
     void Reactor::Snapshot(cyclus::DbInit di) {
-      double real_flux = flux;  // copy the existsing fluc value.
+      double real_flux = flux;  // copy the existing flux value.
       flux = 42;  // set the value to wat we want temporarily
 
       // fill in the code generated implementation of Shapshop()
