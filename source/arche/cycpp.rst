@@ -644,7 +644,7 @@ memory or in the database.
                 'if (material_identifier%2 == 1)\n' \
                 '  material_identifier++;\n', \
         'write': '->AddVal("material_identifier", material_identifier)\n' \
-        }}
+    }}
 
 For more examples and explanation of what the ``InfileToDb()`` function 
 does please refer to other code generated samples and refer to other parts
@@ -661,8 +661,9 @@ as follows:
                             'read': 'material_identifier = cyclus::Query<int>(tree, "matid");\n' \
                                     'if (material_identifier%2 == 1)\n' \
                                     '  material_identifier++;\n', \
-                                    'write': '->AddVal("material_identifier", material_identifier)\n' \
-                        }}
+                            'write': '->AddVal("material_identifier", material_identifier)\n' \
+                            }\
+                        }
     int material_identifier;
 
 Other state variable annotation keys allow you to provide code snippets
