@@ -1,13 +1,11 @@
-
 Archetype Identification and Discovery
 =======================================
-
 |Cyclus| :term:`archetypes <archetype>` are uniquely identified by a 3-part
 specification that includes:
 
-* a slash separated path
-* a library name
-* a name
+* a slash separated path,
+* a library name, and
+* an archetype name.
       
 The agents available for running simulations depend on which agent libraries
 have been installed on your system.  |Cyclus| ships with a default library
@@ -41,6 +39,9 @@ section in the input file:
         ...
       </archetypes>
 
+    ...
+    </simulation>
+
 The ``path`` tag can be omitted if it is empty (as in the case of |Cyclus|'
 default agents library).  If the ``lib`` tag is omitted, it defaults to the
 value of the ``name`` tag. The ``alias`` tag may also be omitted, in which case
@@ -61,9 +62,8 @@ path):
 
 For more details, you can read :doc:`/cep/cep21`
 
-|Cyclus| Path
--------------
-
+Cyclus Path
+-----------
 When running a simulation, |Cyclus| searches your system for the archetypes
 specified in the input file.  In addition to searching a few default install
 directories, it is possible to manually specify other directories for |Cyclus|
