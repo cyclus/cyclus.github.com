@@ -87,8 +87,13 @@ this page.  It contains all submitted jobs - their status, output, and database
 
         function submitJob() {
             var text = $('#infile-box').val();
-            $.post(server + "/job/submit-infile", text, function(data) {
-                $('#jobid').text(data);
+            $.post(server + "/api/v1/job-infile", text, function(data) {
+                var resp = JSON.parse(data)
+				var jid = ""
+				for (var i = 0; i < resp.Id.length; i++) {
+					jid += resp.Id[i].toString(16)
+				}
+                $('#jobid').text(jid);
                 $('#dashboard').load(server + "/dashboard");
             })
         }
