@@ -152,8 +152,9 @@ class CyclusAgent(Directive):
             if 'tooltip' in info:
                 self.lines += [ind + '*' + info['tooltip'] + '*', '']
             if 'doc' in info:
-                doc = (ind + info['doc'].replace('\n', '\n'+ind) + '\n')
+                doc = ind + info['doc'].replace('\n', '\n'+ind) 
                 lines += doc.splitlines()
+                lines.append('')
 
             # add everything else
             for key, val in info.items():
