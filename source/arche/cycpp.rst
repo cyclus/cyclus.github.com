@@ -141,7 +141,7 @@ contains a listing of all special keys and their meanings.
     userlevel    Integer from 0 - 10 for representing ease (0) or difficulty (10) 
                  in using this variable, default 0.
     schematype   This is the data type that is used in the schema for input file
-                 validation. This enables the you to supply just the data type
+                 validation. This enables you to supply just the data type
                  rather than having to overwrite the full schema for this state
                  variable. In most cases - when the shape is rank 0 or 1 such
                  as for scalars or vectors - this is simply a string. In cases
