@@ -52,7 +52,7 @@ Best practice workflow for contributing to site changes
 
 2. Synchronize your branch with the repository (either `pull` or `fetch` and `merge`)
 
-   ``git pull upstream``
+   ``git pull upstream source``
 
 3. Create a branch to contain your change
 
