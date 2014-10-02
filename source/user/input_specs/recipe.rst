@@ -21,14 +21,15 @@ A ``recipe`` block has the following sections in the following order:
   * ``nuclide`` (required at least once) - a list of nuclides and their
     relative composition, where each section includes:
 
-       * ``id`` - a non-negative integer defining the nuclide in the form
-         ZZAAAMMMM
+       * ``id`` - either a named isotope (ie. U-235) or a non-negative
+	 integer defining the nuclide in the form ZZAAAMMMM
        * ``comp`` - a number indicating the fraction of the material made up
-         of this nuclide
+         of this nuclide.  The fractions are normalized to the sum of all
+	 constituents.
 
-The format of the `nuclide` `id` is a general format that encodes the atomic
-number (Z), the mass number (A) and the energy state (M) with the formula
-(Z*1000 + A) * 10000 + M.
+The numerical format of the `nuclide` `id` is a general format that 
+encodes the atomic number (Z), the mass number (A) and the energy
+ state (M) with the formula (Z*1000 + A) * 10000 + M.
 
 
 Example
