@@ -65,7 +65,7 @@ this page.  It contains all submitted jobs - their status, output, and database
 * Clicking on the Status link shows the simulation output - useful for
   diagnosing failures.
 
-* For completed jobs, download the database in a tar file by clicking the
+* For completed jobs, download the database in a zip file by clicking the
   Results link. You can check out :doc:`user/dbdoc` for information on working
   with the data.
 
