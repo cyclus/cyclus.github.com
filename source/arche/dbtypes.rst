@@ -52,8 +52,8 @@ yet supported, please let us know and we'll get to it as soon as possible!
         '[1, "INT", "int", 0, "SQLite", "v1.0", 1],' +
         '[2, "FLOAT", "float", 0, "SQLite", "v1.0", 1],' +
         '[3, "DOUBLE", "double", 0, "SQLite", "v1.0", 1],' +
-        '[4, "STRING", "std::string", 0, "SQLite", "v1.0", 1],' +
-        '[5, "VL_STRING", "std::string", 0, "SQLite", "v1.0", 1],' +
+        '[4, "STRING", "std::string", 1, "SQLite", "v1.0", 1],' +
+        '[5, "VL_STRING", "std::string", 1, "SQLite", "v1.0", 1],' +
         '[6, "BLOB", "cyclus::Blob", 0, "SQLite", "v1.0", 1],' +
         '[7, "UUID", "boost::uuids::uuid", 0, "SQLite", "v1.0", 1],' +
         '[8, "VECTOR_BOOL", "std::vector<bool>", 1, "SQLite", "v1.0", 0],' +
@@ -180,8 +180,8 @@ yet supported, please let us know and we'll get to it as soon as possible!
         '[1, "INT", "int", 0, "HDF5", "v1.0", 1],' +
         '[2, "FLOAT", "float", 0, "HDF5", "v1.0", 1],' +
         '[3, "DOUBLE", "double", 0, "HDF5", "v1.0", 1],' +
-        '[4, "STRING", "std::string", 0, "HDF5", "v1.0", 1],' +
-        '[5, "VL_STRING", "std::string", 0, "HDF5", "v1.0", 1],' +
+        '[4, "STRING", "std::string", 1, "HDF5", "v1.0", 1],' +
+        '[5, "VL_STRING", "std::string", 1, "HDF5", "v1.0", 1],' +
         '[6, "BLOB", "cyclus::Blob", 0, "HDF5", "v1.0", 1],' +
         '[7, "UUID", "boost::uuids::uuid", 0, "HDF5", "v1.0", 1],' +
         '[8, "VECTOR_BOOL", "std::vector<bool>", 1, "HDF5", "v1.0", 0],' +
@@ -308,8 +308,8 @@ yet supported, please let us know and we'll get to it as soon as possible!
         '[1, "INT", "int", 0, "SQLite", "v1.1", 1],' +
         '[2, "FLOAT", "float", 0, "SQLite", "v1.1", 1],' +
         '[3, "DOUBLE", "double", 0, "SQLite", "v1.1", 1],' +
-        '[4, "STRING", "std::string", 0, "SQLite", "v1.1", 1],' +
-        '[5, "VL_STRING", "std::string", 0, "SQLite", "v1.1", 1],' +
+        '[4, "STRING", "std::string", 1, "SQLite", "v1.1", 1],' +
+        '[5, "VL_STRING", "std::string", 1, "SQLite", "v1.1", 1],' +
         '[6, "BLOB", "cyclus::Blob", 0, "SQLite", "v1.1", 1],' +
         '[7, "UUID", "boost::uuids::uuid", 0, "SQLite", "v1.1", 1],' +
         '[8, "VECTOR_BOOL", "std::vector<bool>", 1, "SQLite", "v1.1", 0],' +
@@ -435,8 +435,8 @@ yet supported, please let us know and we'll get to it as soon as possible!
         '[1, "INT", "int", 0, "HDF5", "v1.1", 1],' +
         '[2, "FLOAT", "float", 0, "HDF5", "v1.1", 1],' +
         '[3, "DOUBLE", "double", 0, "HDF5", "v1.1", 1],' +
-        '[4, "STRING", "std::string", 0, "HDF5", "v1.1", 1],' +
-        '[5, "VL_STRING", "std::string", 0, "HDF5", "v1.1", 1],' +
+        '[4, "STRING", "std::string", 1, "HDF5", "v1.1", 1],' +
+        '[5, "VL_STRING", "std::string", 1, "HDF5", "v1.1", 1],' +
         '[6, "BLOB", "cyclus::Blob", 0, "HDF5", "v1.1", 1],' +
         '[7, "UUID", "boost::uuids::uuid", 0, "HDF5", "v1.1", 1],' +
         '[8, "VECTOR_BOOL", "std::vector<bool>", 1, "HDF5", "v1.1", 0],' +
