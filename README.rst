@@ -52,7 +52,7 @@ Best practice workflow for contributing to site changes
 
 2. Synchronize your branch with the repository (either `pull` or `fetch` and `merge`)
 
-   ``git pull upstream``
+   ``git pull upstream source``
 
 3. Create a branch to contain your change
 
@@ -70,30 +70,35 @@ Best practice workflow for contributing to site changes
 
 6. Repeat steps 4-5 until satisfied.
 
-7. Once satisfied with the source RST files, push your branch to the
-   repo.  Be sure to synchronize with any possible changes to the
-   `source` branch first.
+7. Once satisfied with the source RST files, push your branch to your fork of
+   the repo.  Be sure to synchronize with any possible changes to the upstream
+   repo `source` branch first.
 
    ::
    
      git fetch upstream
      git rebase upstream/source
-     git push upstream add_some_info
+     git push origin add_some_info
    
 
-8. Issue a pull request by going to your branch on the repo and
+8. Issue a pull request by going to your branch on your fork of the repo and
    clicking the "Pull Request" button.
 
 Best practice for managing a pull request
 ------------------------------------------
 
-1. Synchronize your repository with the remote repo
+1. Synchronize your repository with the upstream repo::
 
-   ``git fetch upstream``
+   git fetch upstream
+   git checkout master
+   git merge upstream/master
+   git checkout source
+   git merge upstream/source
 
-2. Checkout the `pull_request_branch`
+2. Checkout the `pull_request_branch` in the pull request submitter's repo::
 
-   ``git checkout -b pull_request_branch upstream/pull_request_branch``
+     git fetch https://github.com/[username]/cyclus.github.com pull_request_branch
+     git checkout -b pull_request_branch
 
 3. Test the changes by using the `gh-preview` target
 
@@ -104,13 +109,9 @@ Best practice for managing a pull request
    local browser.
 
 4. If satisfied, merge the `pull_request_branch` into the `source`
-   branch.  Be sure to synchronize with the remote repo first.
-
-   ::
+   branch::
 
      git checkout source
-     git fetch upstream
-     git rebase upstream/source
      git merge pull_request_branch
 
 6. If there are no conflicts, push this to the repo
