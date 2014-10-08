@@ -269,19 +269,44 @@ InputFiles Table
 DecomSchedule Table
 --------------------
 
+When agents are scheduled to be decommissioned in the simulation, the details
+are recorded in this table.  Note that this table contains an entry for each
+scheduling regardless of whether or not it actually occurred; if a simulation
+ended before time reached the scheduled time, the agent would not have been
+decommissioned.
+
 * **SimId** (uuid)
-* **AgentId** (int): 
-* **SchedTime** (int): 
-* **DecomTime** (int): 
+
+* **AgentId** (int): ID of the agent that is/was to be decommissioned.
+
+* **SchedTime** (int): The time step on which this decommissioning event was
+  created.
+
+* **DecomTime** (int): The time step on which the agent was (or would have
+  been) decommissioned.
 
 BuildSchedule Table
 --------------------
 
+When agents are scheduled to be built in the simulation, the details are
+recorded in this table.  Note that this table contains an entry for each
+scheduling regardless of whether or not it actually occurred; if a simulation
+ended before time reached the scheduled time, the agent would not have been
+built.
+
 * **SimId** (uuid)
-* **ParentId** (piintd): 
-* **Prototype** (string): 
-* **SchedTime** (int): 
-* **BuildTime** (int): 
+
+* **ParentId** (piintd): The Id of the agent that will become this new agent's
+  parent.
+
+* **Prototype** (string): The name of the agent prototype that will be used to
+  generate the new agent.  This corresponds to the prototypes defined in an
+  input files.
+
+* **SchedTime** (int): The time step on which this build event was created.
+
+* **BuildTime** (int): The time step on which the agent was (or would have
+  been) built and deployed into the simulation.
 
 Snapshots Table
 -------------------
