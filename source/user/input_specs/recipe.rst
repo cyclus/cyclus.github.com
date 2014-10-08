@@ -20,19 +20,19 @@ A ``recipe`` block has the following sections in the following order:
         * `mass` - mass fractions are given in the nuclude list
 
   * ``nuclide`` (required at least once) - a list of nuclides and their
-    relative composition, where each section includes:
+    relative quantities, where each section includes:
 
-       * ``id`` - either a named isotope (ie. U-235) or a non-negative integer
-         defining the nuclide in the form ZZAAAMMMM
+       * ``id`` - identifies a particular nuclide either with its canonical
+         integer ID in the form ZZAAAMMMM or one of a few other common forms.
+         Here are some acceptable forms: 922350000, U-235, U235, Am242M.
+         The canonical integer nuclide format is a general format that encodes
+         the atomic number (Z), the mass number (A) and the energy state (M)
+         with the formula (Z*1000 + A) * 10000 + M.
 
-       * ``comp`` - a number indicating the fraction of the material made up
-         of this nuclide.  The fractions are normalized to the sum of all
-         constituents.
-
-The numerical format of the `nuclide` `id` is a general format that encodes
-the atomic number (Z), the mass number (A) and the energy state (M) with the
-formula (Z*1000 + A) * 10000 + M.
-
+       * ``comp`` - a number indicating the quantity of this nuclide to that
+         of other nuclides in the material.  The quantities are normalized to
+         the sum of all a composition's constituents, so the user need not
+         provide quantities normalized to any particular value.
 
 Example
 +++++++
