@@ -125,4 +125,4 @@ Best practice for managing a pull request
 .. _Sphinx: http://sphinx-doc.org/
 .. _sphinxcontrib-bibtex: http://sphinxcontrib-bibtex.readthedocs.org/en/latest/index.html
 .. _sphinxcontrib-blockdiag: http://blockdiag.com/en/blockdiag/sphinxcontrib.html
-.. _cyclus: https://github.com/cyclus/cyclus
+.. _cyclus: https://fuelcycle.org/
