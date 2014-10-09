@@ -11,6 +11,7 @@ import sys
 import os.path
 import re
 import time
+import warnings
 import subprocess
 from collections import OrderedDict, Mapping, Sequence
 
@@ -91,12 +92,13 @@ class CyclusAgent(Directive):
     has_content = False
 
     def load_schema(self):
-        stdout = subprocess.check_output(['cyclus', '--agent-schema', self.agentspec])
+        cmd = 'cyclus --agent-schema {0}'.format(self.agentspec)
+        stdout = subprocess.check_output(cmd, shell=True)
         self.schema = stdout.decode()
 
     def load_annotations(self):
-        stdout = subprocess.check_output(['cyclus', '--agent-annotations', 
-                                              self.agentspec])
+        cmd = 'cyclus --agent-annotations {0}'.format(self.agentspec)
+        stdout = subprocess.check_output(cmd, shell=True)
         try:
             j = json.loads(stdout.decode())
         except JSONDecodeError:
@@ -183,11 +185,13 @@ class CyclusAgent(Directive):
         try:
             self.load_schema()
         except OSError:
-            print("WARNING: Failed to load schema, proceeding without schema")
+            warnings.warn("WARNING: Failed to load schema, proceeding without schema",
+                          RuntimeWraning)
         try:
             self.load_annotations()
         except OSError:
-            print("WARNING: Failed to load annotations, proceeding without annotations")
+            warnings.warn("WARNING: Failed to load annotations, proceeding without "
+                          "annotations", RuntimeWraning)
 
         # set up list of rst stirngs
         self.lines = []

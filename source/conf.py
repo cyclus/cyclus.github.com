@@ -13,6 +13,7 @@
 
 import os
 import sys
+import warnings
 import subprocess
 
 import cloud_sptheme as csp
@@ -27,9 +28,9 @@ sys.path.insert(0, os.path.abspath('.'))
 # add path to cycpp.py
 h = ""
 try:
-    h = subprocess.check_output(['cycpp.py', '-h']).decode()
+    h = subprocess.check_output('cycpp.py -h', shell=True).decode()
 except OSError:
-    print "WARNING: Continuing without cypp.py!!!"
+    warnings.warn('WARNING: Continuing without cypp.py!!!', RuntimeWarning)
 
 if len(h) != 0:
     fname = [x[10:].strip() for x in h.splitlines() if x.startswith('filename:')][0]
@@ -73,9 +74,10 @@ copyright = (u'2012-2014, University of Wisconsin Computational Nuclear '
 # built documents.
 verout = ""
 try:
-    verout = subprocess.check_output(['cyclus', '--version']).split()
+    verout = subprocess.check_output('cyclus --version', shell=True).split()
 except OSError:
-    print "WARNING: Continuing without cyclus - will not include agents in output"
+    warnings.warn("WARNING: Continuing without cyclus - will not include "
+                  "agents in output", RuntimeWarning)
 
 if len(verout) != 0:
     # The short X.Y version.
