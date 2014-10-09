@@ -96,13 +96,13 @@ class CyclusAgent(Directive):
 
     def load_annotations(self):
         stdout = subprocess.check_output(['cyclus', '--agent-annotations', 
-                                          self.agentspec])
+                                              self.agentspec])
         try:
             j = json.loads(stdout.decode())
         except JSONDecodeError:
             raise ValueError("Error reading agent annotations for "\
-                                 "{0}.".format(self.agentspec))
-        
+                             "{0}.".format(self.agentspec))
+
         self.annotations = j
 
     def append_name(self):
@@ -178,8 +178,16 @@ class CyclusAgent(Directive):
     def run(self):
         # load agent
         self.agentspec = self.arguments[0]
-        self.load_schema()
-        self.load_annotations()
+        try:
+            self.schema = ""
+            self.load_schema()
+        except:
+            print("WARNING: Failed to load schemas, proceeding without schemas")
+        try:
+            self.annotations= {}
+            self.load_annotations()
+        except:
+            print("WARNING: Failed to load annotations, proceeding without annotations")
 
         # set up list of rst stirngs
         self.lines = []
