@@ -178,15 +178,15 @@ class CyclusAgent(Directive):
     def run(self):
         # load agent
         self.agentspec = self.arguments[0]
+        self.schema = ""
+        self.annotations= {}
         try:
-            self.schema = ""
             self.load_schema()
-        except:
-            print("WARNING: Failed to load schemas, proceeding without schemas")
+        except OSError:
+            print("WARNING: Failed to load schema, proceeding without schema")
         try:
-            self.annotations= {}
             self.load_annotations()
-        except:
+        except OSError:
             print("WARNING: Failed to load annotations, proceeding without annotations")
 
         # set up list of rst stirngs
