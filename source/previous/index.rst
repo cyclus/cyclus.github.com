@@ -11,6 +11,7 @@ The following are release notes for and links to previously released versions of
 .. toctree::
     :maxdepth: 1
 
+    v1.1
     v1.0
     v0.4
     v0.3
@@ -21,6 +22,8 @@ The following are release notes for and links to previously released versions of
 ========= ========== ================ ==============
 Version   Date       Zip              Tar
 ========= ========== ================ ==============
+1.1.0     2014-09-19 `zip 1.1.0`_     `tar 1.1.0`_
+1.1.0-rc1 2014-09-16 `zip 1.1.0-rc1`_ `tar 1.1.0-rc1`_
 1.0.0     2014-05-30 `zip 1.0.0`_     `tar 1.0.0`_
 1.0.0-rc4 2014-05-30 `zip 1.0.0-rc4`_ `tar 1.0.0-rc4`_
 1.0.0-rc3 2014-05-27 `zip 1.0.0-rc3`_ `tar 1.0.0-rc3`_
@@ -38,6 +41,10 @@ Version   Date       Zip              Tar
 0.1       2012-03-27 `zip 0.1`_       `tar 0.1`_
 ========= ========== ================ ==============
 
+.. _zip 1.1.0: https://github.com/cyclus/cyclus/archive/1.1.0.zip
+.. _tar 1.1.0: https://github.com/cyclus/cyclus/archive/1.1.0.tar.gz
+.. _zip 1.1.0-rc1: https://github.com/cyclus/cyclus/archive/1.1.0-rc1.zip
+.. _tar 1.1.0-rc1: https://github.com/cyclus/cyclus/archive/1.1.0-rc1.tar.gz
 .. _zip 1.0.0: https://github.com/cyclus/cyclus/archive/1.0.0.zip
 .. _tar 1.0.0: https://github.com/cyclus/cyclus/archive/1.0.0.tar.gz
 .. _zip 1.0.0-rc4: https://github.com/cyclus/cyclus/archive/1.0.0-rc4.zip

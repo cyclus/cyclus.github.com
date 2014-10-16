@@ -3,7 +3,7 @@ CEP 3 - |Cyclus| Release Procedure
 
 :CEP: 3
 :Title: |Cyclus| Release Procedure
-:Last-Modified: 2014-06-19
+:Last-Modified: 2014-09-11
 :Author: Anthony Scopatz
 :Status: Accepted
 :Type: Process
@@ -111,9 +111,7 @@ to check in the changes afterwards.
 .. code-block:: bash
 
     $ cd ~/pyne
-    $ ./amalgamate.py -s pyne.cc -i pyne.h -f license.txt cpp/pyne.* cpp/extra_types.h  \
-      cpp/h5wrap.h cpp/state_map.cpp cpp/nucname.* cpp/rxname.* cpp/data.* cpp/jsoncpp.cpp \
-      cpp/json/*
+    $ ./amalgamate.py -s pyne.cc -i pyne.h
     $ cp pyne.* ~/cyclus/src
     
 **Update Nuclear Data:** PyNE also provides a nuclear data library generator which we use for 
@@ -133,6 +131,35 @@ source tree located in the ``tests/GoogleTest`` directory.  To keep up with
 Gtest's natural evolution cycle, please download the latest release of Google Tests 
 and follow `the fused source directions here`_.  If we go too long without doing this, 
 it could be very painful to update.
+
+**Verify & Update API Stability:** Since Cyclus v1.0 we promise API stability. 
+Luckily, we have a tool for keeping track of this mostly automatically.  
+Every release please run the following command to verify that the release 
+branch is stable:
+
+.. code-block:: bash
+
+    $ cd cyclus/release
+    $ ./smbchk.py --update -t HEAD --no-save --check
+
+If cyclus only has API additions, it is considered stable and the command will 
+tell you so. If cyclus also has API deletions, then cyclus is considered 
+unstable and a diff of the symbols will be prinited. 
+**You cannot release cyclus if it is unstable!** Please post the diff to 
+either the mailing list or the issue tracker and work to resolve the removed
+symbols until it this command declares that cyclus is stable. It is 
+probably best to do this prior to any release candidates if possible.
+
+Once stable and there are no more code changes to be made, add the symbols
+in this release to the database with the following command:
+
+.. code-block:: bash
+
+    $ cd cyclus/release
+    $ ./smbchk-t.py --update -t X.X.X
+
+where ``X.X.X`` is the version tag. This should alter the ``symbols.json`` 
+file.  Commit this and add it to the repo.  
 
 Cycstub
 --------

@@ -8,6 +8,7 @@ tag, and has the following sections in any order:
   * startmonth (required once) - the starting month (1 -> January, 12->December)
   * startyear (required once) - the starting year
   * simhandle (optional, once) - a user-defined identifier for this simulation
+  * decay (optional, once) - choose "manual" or "never" to define decay behavior
 
 
 Example
@@ -30,24 +31,21 @@ Grammar Definition
 
 .. code-block:: xml
    
-  <!-- begin section for simulation parameters -->
-  <define name="control"/>
+  <element name ="control">
     <interleave>
-      <element name="duration">
-        <data type="nonNegativeInteger"/>
-      </element>
-      <element name="startmonth">
-        <data type="nonNegativeInteger"/>
-      </element>
-      <element name="startyear">
-        <data type="nonNegativeInteger"/>
-      </element>
-      <element name="simstart">
-        <data type="nonNegativeInteger"/>
-      </element>
-      <element name="decay">
-        <data type="integer"/>
-      </element>
+
+      <element name="duration">   <data type="nonNegativeInteger"/> </element>
+      <element name="startmonth"> <data type="nonNegativeInteger"/> </element>
+      <element name="startyear">  <data type="nonNegativeInteger"/> </element>
+
+      <optional>
+        <element name="simhandle"> <data type="string"/> </element>
+      </optional>
+
+      <optional>
+        <element name="decay"> <text/> </element>
+      </optional>
+
     </interleave>
-  </define>
+  </element>
 

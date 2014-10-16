@@ -126,7 +126,7 @@ and implementation
 
 of the ``str`` method allows the ``StubFacility`` to customize its string
 representation, which is printed at a variety of ``cyclus::Logger`` logging
-levels, which is explained further in :doc:`/module/logger`.
+levels, which is explained further in :doc:`/arche/logger`.
 
 Tick
 ++++

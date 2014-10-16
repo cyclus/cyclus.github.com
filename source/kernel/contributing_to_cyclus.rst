@@ -163,6 +163,23 @@ Reviewing a Pull Request
         git merge --no-ff remote_name/branch_name -m "A message""
 
 
+Keeping Cyclus Stable
+---------------------
+A goal of cyclus is to keep the API stable for every major version. 
+If you ever need to check whether the curent cyclus is stable or not
+simply go into the release directory and run the following command.
+
+.. code-block:: bash
+
+    $ cd cyclus/release
+    $ ./smbchk.py --update -t HEAD --no-save --check
+
+If cyclus is stable, it will tell you so. If cyclus is not stable
+it will print a diff that lets you know where the instabilities lie.
+These are given by the minuses (-) of the diff.  Stability in this 
+context means that it is OK to add things to the API, but not remove
+them.  For various reasons as documented in the tool itself, this 
+is only availble on posix platforms.
 
 See also
 --------

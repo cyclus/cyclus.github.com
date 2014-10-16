@@ -19,11 +19,11 @@ used to automate the generation of code for the following functions:
     void InitFrom(cyclus::QueryableBackend*);
     void InitInv(cyclus::Inventories& invs);
     cyclus::Inventories SnapshotInv();
-    void Snapshot(Agent*);
+    void Snapshot(cyclus::Agent*);
     std::string schema();
     Json::Value annotations();
     cyclus::Agent* Clone();
-    void InitFrom(Agent*);
+    void InitFrom(cyclus::Agent*);
 
 When the preprocessor isn't sufficient, read the `API documents
 <http://fuelcycle.org/cyclus/api/classcyclus_1_1Agent.html>`_ for the functions

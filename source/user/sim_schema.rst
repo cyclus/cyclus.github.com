@@ -34,6 +34,9 @@ This returns the following:
           <element name="duration"> <data type="nonNegativeInteger"/> </element>
           <element name="startmonth"> <data type="nonNegativeInteger"/> </element>
           <element name="startyear"> <data type="nonNegativeInteger"/> </element>
+          <optional>
+            <element name="decay"> <text/> </element>
+          </optional>
         </interleave>
       </element>
 
@@ -162,6 +165,9 @@ This displays the following:
           <element name="duration"><data type="nonNegativeInteger"/></element>
           <element name="startmonth"><data type="nonNegativeInteger"/></element>
           <element name="startyear"><data type="nonNegativeInteger"/></element>
+          <optional>
+            <element name="decay"> <text/> </element>
+          </optional>
         </interleave>
       </element>
 

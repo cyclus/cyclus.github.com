@@ -16,8 +16,8 @@
 .. raw:: html
 
     <div style="text-align:center;">
-    <h2><a href="https://github.com/cyclus/cyclus/releases/tag/1.0.0">
-    v1.0.0 has been released!</a></h2><br></div>
+    <h2><a href="https://github.com/cyclus/cyclus/releases/tag/1.1.0">
+    v1.1.0 has been released!</a></h2><br></div>
 
 |cyclus| is the next-generation agent-based nuclear :doc:`fuel cycle simulator
 <basics/fcs_background>`, providing flexibility to users and developers
@@ -39,13 +39,13 @@ Learn More
 .. toctree::
     :maxdepth: 1
 
-    basics/main
-    user/main
-    module/main
-    kernel/main
+    basics/index
+    user/index
+    arche/index
+    kernel/index
     cep/cep0
-    previous/main
-    cite/main
+    previous/index
+    cite/index
 
 .. _try-it:
 
@@ -65,7 +65,7 @@ this page.  It contains all submitted jobs - their status, output, and database
 * Clicking on the Status link shows the simulation output - useful for
   diagnosing failures.
 
-* For completed jobs, download the database in a tar file by clicking the
+* For completed jobs, download the database in a zip file by clicking the
   Results link. You can check out :doc:`user/dbdoc` for information on working
   with the data.
 
@@ -87,8 +87,9 @@ this page.  It contains all submitted jobs - their status, output, and database
 
         function submitJob() {
             var text = $('#infile-box').val();
-            $.post(server + "/job/submit-infile", text, function(data) {
-                $('#jobid').text(data);
+            $.post(server + "/api/v1/job-infile", text, function(data) {
+                var resp = JSON.parse(data)
+                $('#jobid').text(resp.Id);
                 $('#dashboard').load(server + "/dashboard");
             })
         }

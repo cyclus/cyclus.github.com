@@ -11,8 +11,9 @@ import sys
 import os.path
 import re
 import time
+import warnings
 import subprocess
-from collections import OrderedDict
+from collections import OrderedDict, Mapping, Sequence
 
 try:
     import simplejson as json
@@ -36,8 +37,10 @@ from sphinx.util.nodes import nested_parse_with_titles
 
 if sys.version_info[0] == 2:
     STRING_TYPES = (str, unicode, basestring)
+    IS_PY3 = False
 elif sys.version_info[0] >= 3:
     STRING_TYPES = (str,)
+    IS_PY3 = True
 
 PRIMITIVES = {'bool', 'int', 'float', 'double', 'std::string', 'cyclus::Blob', 
               'boost::uuids::uuid'}
@@ -62,6 +65,22 @@ def type_to_str(t):
         s += '>'
         return s
 
+def nicestr(x):
+    if IS_PY3:
+        newx = str(x)
+    elif isinstance(x, STRING_TYPES):
+        newx = str(x)
+    elif isinstance(x, Sequence):
+        newx = '[' + ', '.join(map(nicestr, x)) + ']'
+    elif isinstance(x, Mapping):
+        newx = '{'
+        newxs = [nicestr(k) + ': ' + nicestr(v) for k, v in sorted(x.items())]
+        newx += ', '.join(newxs)
+        newx += '}'
+    else:
+        newx = str(x)
+    return newx
+
 class CyclusAgent(Directive):
     """The cyclus-agent directive, which is based on constructing a list of 
     of string lines of restructured text and then parsing it into its own node.
@@ -73,18 +92,19 @@ class CyclusAgent(Directive):
     has_content = False
 
     def load_schema(self):
-        stdout = subprocess.check_output(['cyclus', '--agent-schema', self.agentspec])
+        cmd = 'cyclus --agent-schema {0}'.format(self.agentspec)
+        stdout = subprocess.check_output(cmd, shell=True)
         self.schema = stdout.decode()
 
     def load_annotations(self):
-        stdout = subprocess.check_output(['cyclus', '--agent-annotations', 
-                                          self.agentspec])
+        cmd = 'cyclus --agent-annotations {0}'.format(self.agentspec)
+        stdout = subprocess.check_output(cmd, shell=True)
         try:
             j = json.loads(stdout.decode())
         except JSONDecodeError:
             raise ValueError("Error reading agent annotations for "\
-                                 "{0}.".format(self.agentspec))
-        
+                             "{0}.".format(self.agentspec))
+
         self.annotations = j
 
     def append_name(self):
@@ -92,14 +112,19 @@ class CyclusAgent(Directive):
         name = path + ':' + lib + ':**' + agent + '**'
         self.lines += [name, '~' * len(name), '']
 
-    skipdoc = {'doc', 'tooltip', 'vars'}
+    skipdoc = {'doc', 'tooltip', 'vars', 'entity', 'parents', 'all_parents'}
 
     def append_doc(self):
         if 'tooltip' in self.annotations:
-            self.lines += [self.annotations['tooltip'], '']
+            self.lines += ['*' + self.annotations['tooltip'] + '*', '']
         if 'doc' in self.annotations:
             self.lines += self.annotations['doc'].splitlines()
         self.lines.append('')
+        for key in ('entity', 'parents', 'all_parents'):
+            val = self.annotations.get(key, None)
+            if val is None:
+                continue
+            self.lines.append(':{0}: {1}'.format(key, nicestr(val)))
         for key, val in sorted(self.annotations.items()):
             if key in self.skipdoc:
                 continue
@@ -117,7 +142,7 @@ class CyclusAgent(Directive):
         lines += ['', '**State Variables:**', '']
         for name, info in vars.items():
             # add name
-            n = ":{0}: *{1}*" .format(name, type_to_str(info['type']))
+            n = ":{0}: ``{1}``" .format(name, type_to_str(info['type']))
             if 'shape' in info:
                 n += ', shape={0}'.format(info['shape'])
             if 'default' in info:
@@ -127,10 +152,11 @@ class CyclusAgent(Directive):
             # add docs
             ind = " " * 4
             if 'tooltip' in info:
-                self.lines += [ind + info['tooltip'], '']
+                self.lines += [ind + '*' + info['tooltip'] + '*', '']
             if 'doc' in info:
-                doc = (ind + info['doc'].replace('\n', '\n'+ind) + '\n')
+                doc = ind + info['doc'].replace('\n', '\n'+ind) 
                 lines += doc.splitlines()
+                lines.append('')
 
             # add everything else
             for key, val in info.items():
@@ -154,8 +180,18 @@ class CyclusAgent(Directive):
     def run(self):
         # load agent
         self.agentspec = self.arguments[0]
-        self.load_schema()
-        self.load_annotations()
+        self.schema = ""
+        self.annotations= {}
+        try:
+            self.load_schema()
+        except OSError:
+            warnings.warn("WARNING: Failed to load schema, proceeding without schema",
+                          RuntimeWraning)
+        try:
+            self.load_annotations()
+        except OSError:
+            warnings.warn("WARNING: Failed to load annotations, proceeding without "
+                          "annotations", RuntimeWraning)
 
         # set up list of rst stirngs
         self.lines = []

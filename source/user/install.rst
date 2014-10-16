@@ -13,7 +13,7 @@ Basic installation instructions for Conda can be found
 
 1. Download and Install Miniconda
 
-    * Go to the `miniconda downloads page <http://repo.continuum.io/miniconda/>`_
+    * Go to the `miniconda downloads page <http://conda.pydata.org/miniconda.html>`_
       and get the version approriate to your system.
     * Install this to the ``~/miniconda`` directory.  For example, you would 
       use a command similar the following:

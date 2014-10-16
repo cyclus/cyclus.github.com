@@ -150,7 +150,7 @@ contains a listing of all special keys and their meanings.
     categorical  This indicates the decrete values a combobox Type can take. It
                  must take the form of ``[value1, value2, value3, etc]``. 
     schematype   This is the data type that is used in the schema for input file
-                 validation. This enables the you to supply just the data type
+                 validation. This enables you to supply just the data type
                  rather than having to overwrite the full schema for this state
                  variable. In most cases - when the shape is rank 0 or 1 such
                  as for scalars or vectors - this is simply a string. In cases
@@ -227,11 +227,26 @@ this is ``vars`` which contains the state variable annotations!
     ============ ==============================================================
     key          meaning
     ============ ==============================================================
-    vars         The state variable annotations, **DO NOT SET**.
+    vars         The state variable annotations, **READ ONLY**.
+    name         C++ class name (string) of the archetype. **READ ONLY.** 
+                 *New in version 1.1.1.*
+    entity       The kind of archetype that this is based on which class it 
+                 inherits from. If this inherits from ``cyclus::Region``,
+                 ``cyclus::Institution``, or ``cyclus::Facility`` then this 
+                 will be the string 'region', 'institution', or 'facility'
+                 respecively. If the class inherits from ``cyclus::Agent`` but 
+                 does not inherit from the previous three then this will be 
+                 the string 'archetype'. In the class does not even inherit 
+                 from ``cyclus::Agent``, then this will be 'unknown'. 
+                 **READ ONLY.** *New in version 1.1.1.*
+    parents      List of string class names of the direct superclasses of this
+                 archetype. **READ ONLY.** *New in version 1.1.1.*
+    all_parents  List of string class names of all the superclasses of this
+                 archetype. **READ ONLY.** *New in version 1.1.1.*
     doc          Documentation string.
     tooltip      Brief documentation string for user interfaces.
-    userlevel    Integer from 0 - 10 for representing ease (0) or difficulty (10) 
-                 in using this variable, default 0.
+    userlevel    Integer from 0 - 10 for representing ease (0) or 
+                 difficulty (10) in using this variable, default 0.
     ============ ==============================================================
 
 .. raw:: html
@@ -582,7 +597,7 @@ This could be achieved through the following pattern:
 .. code-block:: c++
 
     void Reactor::Snapshot(cyclus::DbInit di) {
-      double real_flux = flux;  // copy the existsing fluc value.
+      double real_flux = flux;  // copy the existing flux value.
       flux = 42;  // set the value to wat we want temporarily
 
       // fill in the code generated implementation of Shapshop()
@@ -638,7 +653,7 @@ memory or in the database.
                 'if (material_identifier%2 == 1)\n' \
                 '  material_identifier++;\n', \
         'write': '->AddVal("material_identifier", material_identifier)\n' \
-        }}
+    }}
 
 For more examples and explanation of what the ``InfileToDb()`` function 
 does please refer to other code generated samples and refer to other parts
@@ -655,8 +670,9 @@ as follows:
                             'read': 'material_identifier = cyclus::Query<int>(tree, "matid");\n' \
                                     'if (material_identifier%2 == 1)\n' \
                                     '  material_identifier++;\n', \
-                                    'write': '->AddVal("material_identifier", material_identifier)\n' \
-                        }}
+                            'write': '->AddVal("material_identifier", material_identifier)\n' \
+                            }\
+                        }
     int material_identifier;
 
 Other state variable annotation keys allow you to provide code snippets
