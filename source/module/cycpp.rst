@@ -140,8 +140,8 @@ contains a listing of all special keys and their meanings.
     units        The physical units, if any.
     userlevel    Integer from 0 - 10 for representing ease (0) or difficulty (10) 
                  in using this variable, default 0.
-    uilabel      The text string CycIC will display as the name of this input on
-                 the CycIC input form.
+    uilabel      The text string a UI will display as the name of this input on
+                 the UI input form.
     uitype       The type of the input field in reference in a UI, 
                  currently supported types are; incommodity, outcommodity,
                  range, combobox, facility, and recipe. 
