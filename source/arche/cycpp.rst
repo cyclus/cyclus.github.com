@@ -140,6 +140,15 @@ contains a listing of all special keys and their meanings.
     units        The physical units, if any.
     userlevel    Integer from 0 - 10 for representing ease (0) or difficulty (10) 
                  in using this variable, default 0.
+    uilabel      The text string a UI will display as the name of this input on
+                 the UI input form.
+    uitype       The type of the input field in reference in a UI, 
+                 currently supported types are; incommodity, outcommodity,
+                 range, combobox, facility, and recipe. 
+    range        This indicates the range associated with a range Type.
+                 It must take the form of ``[min, max]`` or ``[min, max, (optional) step size]``.
+    catagorical  This indicates the decrete values a combobox Type can take. It
+                 must take the form of ``[value1, value2, value3, etc]``. 
     schematype   This is the data type that is used in the schema for input file
                  validation. This enables you to supply just the data type
                  rather than having to overwrite the full schema for this state
