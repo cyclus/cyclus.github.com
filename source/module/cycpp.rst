@@ -142,13 +142,13 @@ contains a listing of all special keys and their meanings.
                  in using this variable, default 0.
     uilabel      The text string CycIC will display as the name of this input on
                  the CycIC input form.
-    uitype       The special type of the input field in reference in CycIC, 
-                 currently supported special types are; incommodity, outcommodity,
+    uitype       The type of the input field in reference in a UI, 
+                 currently supported types are; incommodity, outcommodity,
                  range, combobox, facility, and recipe. 
     range        This indicates the range associated with a range Type.
-                 It must take the form of <min, max>.
-    discrete     This indicates the decrete values a combobox Type can take. It
-                 must take the form of <value1, value2, value3, etc>. 
+                 It must take the form of <[min, max, (optional) step size]>.
+    catagorical  This indicates the decrete values a combobox Type can take. It
+                 must take the form of <[value1, value2, value3, etc]>. 
     schematype   This is the data type that is used in the schema for input file
                  validation. This enables the you to supply just the data type
                  rather than having to overwrite the full schema for this state
