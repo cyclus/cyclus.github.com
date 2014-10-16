@@ -147,7 +147,7 @@ contains a listing of all special keys and their meanings.
                  range, combobox, facility, and recipe. 
     range        This indicates the range associated with a range Type.
                  It must take the form of ``[min, max]`` or ``[min, max, (optional) step size]``.
-    catagorical  This indicates the decrete values a combobox Type can take. It
+    categorical  This indicates the decrete values a combobox Type can take. It
                  must take the form of ``[value1, value2, value3, etc]``. 
     schematype   This is the data type that is used in the schema for input file
                  validation. This enables the you to supply just the data type
