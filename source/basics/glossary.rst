@@ -150,6 +150,6 @@ Glossary of Cyclus Terms
   entity
 
     The kind of the archetype. Usually this is either region, institution, 
-    or facility. For agents that are not specificaly one of these kinds
-    still inherit from the ``Agent`` class the term archtype is used.
+    or facility. For agents that are not specifically one of these kinds
+    still inherit from the ``Agent`` class the term archetype is used.
     Otherwise the entity is unknown.
