@@ -243,6 +243,13 @@ this is ``vars`` which contains the state variable annotations!
                  archetype. **READ ONLY.** *New in version 1.1.1.*
     all_parents  List of string class names of all the superclasses of this
                  archetype. **READ ONLY.** *New in version 1.1.1.*
+    niche        A string which names the group that the achetype belongs to 
+                 that defines how it is swappable with other archetypes. If 
+                 two archetypes have the same niche then they are partially or 
+                 wholly swappable. Niches may overlap and any string may be 
+                 used as the niche. Some example niches that are useful to 
+                 displaying user interfaces are: ``reactor``, ``reprocessing``,
+                 ``repository``, ``mine``, and others.
     doc          Documentation string.
     tooltip      Brief documentation string for user interfaces.
     userlevel    Integer from 0 - 10 for representing ease (0) or 
