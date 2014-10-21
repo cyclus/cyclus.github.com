@@ -22,10 +22,10 @@ by agents:
   quality/units.
 
 Conceptually, a resource can be anything that might be an interesting traded
-item (e.g., electricity, money, or workers).  *All changes to resource objects
-(including creation) are tracked and recorded in the database.  Because of
-this, agents should handle resources carefully, being conscious of mass
-conservation among other things.*
+item (e.g., electricity, money, or workers).  By default, all changes to
+resource objects (including creation) are tracked and recorded in the
+database.  Because of this, agents should handle resources carefully.  For
+more details about this, see :ref:`tracked-untracked`.
 
 All resource objects are created and managed as pointer types. For
 convenience, each of the classes related to resources have a special pointer
@@ -72,7 +72,7 @@ There are 3 basic operations that can be performed on product resources
 
 .. code-block:: c++
 
-    // create a 100 grapes product resource
+    // create a "grapes" product holding 100 grapes.
     cyclus::Product::Ptr p1 = cyclus::Product::Create(this, 100, "grapes");
 
     // extract 7 grapes from p1
@@ -89,8 +89,8 @@ Material Resources
 Materials in |Cyclus| have a mass and an associated nuclide composition.  The
 composition is represented by a  ``cyclus::Composition`` object.  Material
 quantity is always represented in units of kg. Agents can either create a
-composition manually (see the *Compositions* section below) or acquired from
-the ``cyclus::Context`` which holds all recipes defined as part of the
+composition manually (see the *Compositions* section below) or acquire one from
+their ``cyclus::Context`` which holds all recipes defined as part of the
 simulation input.
 
 There are 4 basic operations that can be performed on material resources
@@ -215,4 +215,45 @@ Here are some examples of how these IDs work:
     example above, you should **NEVER** use pointers (e.g.
     ``std::map<cyclus::Resource::Ptr, std::string>``).  Pointers are unstable
     and change across simulation snapshot+restart.
+
+.. _tracked-untracked:
+
+Tracked and Untracked Resources
+---------------------------------
+
+All changes to normal resource objects (including creation, splitting,
+trasmutation, etc.) are tracked and recorded in the database.  By default, all
+resources are **tracked resources**.  Because of this, agents should handle
+resources carefully, being conscious of mass conservation among other things.
+Anything done with resources is recorded in the database as having *actually*
+happened in the simulation.  If a new resource is created, it is instantly
+recorded in the database as being a part of an agent's real/actual inventory.
+Placeholder or "dummy" resources can also be created if necessary.  No
+information about these resources is recorded in the simulation database and
+they are referred to as **untracked resources**.  An agent's most common (and
+likely only) need for untracked resources occurs when communicating details
+about a desired/available resources for requests/bids during resource
+exchange.  Here untracked resources fulfill a communication roll only.
+
+Just like the functions for creating trakced resources, there are
+corresponding function for creating both untracked materials and untracked
+products:
+
+.. code-block:: c++
+
+    cyclus::Composition::Ptr c = context()->GetRecipe("enriched_u");
+
+    // create an untracked 100 kg material from c (the enriched_u recipe)
+    cyclus::Material::Ptr m1 = cyclus::Material::CreateUntracked(100, c);
+
+    // create an untracked "grapes" product holding 100 grapes.
+    cyclus::Product::Ptr p1 = cyclus::Product::CreateUntracked(100, "grapes");
+
+    // nothing about m1 and p1 will ever be recorded in the output data.
+
+.. warning::
+
+    When a need for placeholder, dummy, or otherwise untracked
+    resource arises, use "untracked" resources.  Do NOT create tracked
+    resources to use in resource exchange requests and bids.
 
