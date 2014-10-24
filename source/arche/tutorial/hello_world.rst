@@ -120,3 +120,23 @@ Note: the arguement ``-v 2`` invokes the level 2 verbosity of the logger.
 
 If you look in the input file you'll see that the simulation duration was set
 to 10.  This is why the log messages were printed ten times.
+
+Commit these Changes to your Local Repository
+-----------------------------------------------
+
+Now is a good time to follow the best practice of registering your changes in
+your local repository.  Commit early, commit often!
+
+Since only one file has changed you need to add it and then commit:
+
+.. code-block:: bash
+
+    $ git add src/tutorial_storage_facility.cc
+    $ git commit -m "Added log messages as hello world to Tick and Tock"
+
+You don't need to push this to your Github repo, but it is not a bad idea...
+
+.. code-block:: bash
+
+    $ git push origin
+
