@@ -42,9 +42,9 @@ stop tracking the original stub files:
 
     $ git rm src/stub_*
 
-We will then add the files that were modified:
+We will then add the files that were modified::
 
-    $ git add CMakeLists.txt input/example.xml src/CMakeLists.txt tutorial_storage_*
+    $ git add CMakeLists.txt input/example.xml src/CMakeLists.txt src/tutorial_storage_*
 
 Finally, we can commit these changes:
 

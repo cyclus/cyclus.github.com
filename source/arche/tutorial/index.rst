@@ -10,7 +10,7 @@ Overview
 ---------
 
 Through this tutorial, we will transform a copy of the Cycstub repository into
-an open source Cyclus archetype module that includes an arcehtype to simulate
+an open source Cyclus archetype module that includes an archetype to simulate
 a very simple interim storage facility, named "Storage".  Ultimately, this
 facility will have the following characteristics, all definable by the user:
 
