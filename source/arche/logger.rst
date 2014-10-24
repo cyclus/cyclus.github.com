@@ -24,10 +24,10 @@ enum doxygen documentation. The following is a summary:
   * LEV_WARN: Use to report questionable simulation state (use extremely
     sparingly)
 
-  * LEV_INFO[2, 3, 4]
-
   * LEV_INFO1: Information helpful for simulation users and developers alike -
     least verbose.
+
+  * LEV_INFO[2, 3, 4]
 
   * LEV_INFO5: Information helpful for simulation users and developers alike -
     most verbose.
