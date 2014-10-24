@@ -30,6 +30,7 @@ This tutorial has the following steps:
     setup
     hello_world
     state_var
+    add_buffer
 
 
 1. Setup a new code repository based on Cycstub
