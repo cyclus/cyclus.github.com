@@ -108,10 +108,10 @@ There are 4 basic operations that can be performed on material resources
     cyclus::Composition::Ptr c2 = context()->GetRecipe("enriched_u");
 
     // create a 100 kg material from the nat_u recipe defined in the input file
-    cyclus::Material::Ptr m1 = cyclus::Material::Create(this, 100, c);
+    cyclus::Material::Ptr m1 = cyclus::Material::Create(this, 100, c1);
 
     // extract 1 kg of enriched U from m1
-    cyclus::Material::Ptr m2 = m1->ExtractComp(1, c);
+    cyclus::Material::Ptr m2 = m1->ExtractComp(1, c2);
     // mass of m1 is now 99 kg and its composition has changed
 
     // extract 1 kg from m1 of whatever composition it is
