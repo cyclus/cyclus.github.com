@@ -96,6 +96,11 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 10. Create a DOI. See :doc:`CEP4 <./cep4>` for details.
 11. Update release information on the website.
 
+.. note:: 
+
+    To distingush them, branche names have a ``v`` prefix (``vX.X.X``) while tag
+    names lack this prefix (``X.X.X``).
+
 Maintainence Tasks
 ==================
 Each project may have associate maintenance tasks which may need to be performed at 
