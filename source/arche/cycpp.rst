@@ -140,12 +140,18 @@ contains a listing of all special keys and their meanings.
     units        The physical units, if any.
     userlevel    Integer from 0 - 10 for representing ease (0) or difficulty (10) 
                  in using this variable, default 0.
+    alias        The name of the state variable in the schema and input file.
+                 If this is not present it defaults to the C++ variable name. 
     uilabel      The text string a UI will display as the name of this input on
                  the UI input form.
     uitype       The type of the input field in reference in a UI, 
                  currently supported types are; incommodity, outcommodity,
-                 range, combobox, facility, and recipe. 
-    range        This indicates the range associated with a range Type.
+                 range, combobox, facility, recipe, nuclide, and none.
+                 For 'nuclide' when the type is an int, the values will be read in 
+                 from the input file in human readable string format ('U-235') and 
+                 automatically converted to results of ``pyne::nucname::id()``
+                 (922350000) in the database and on the archetype.
+    range        This indicates the range associated with a range type.
                  It must take the form of ``[min, max]`` or ``[min, max, (optional) step size]``.
     categorical  This indicates the decrete values a combobox Type can take. It
                  must take the form of ``[value1, value2, value3, etc]``. 
