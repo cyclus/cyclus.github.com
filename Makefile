@@ -53,6 +53,7 @@ gh-clean gh-revert clean:
 gh-preview html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)
 	sed -i.bak 's/function top_offset([$$]node){ return [$$]node\[0\].getBoundingClientRect().top; }/function top_offset($$node){ return (typeof $$node[0] === "undefined") ? 0 : $$node[0].getBoundingClientRect().top; }/' ./gh-build/_static/cloud.js
+	sed -i.bak 's/  if (state == "collapsed"){/  if (typeof state === "undefined") {\n	var state = "uncollapsed";\n  };\n  if (state == "collapsed"){/' ./gh-build/_static/cloud.js
 	rm ./gh-build/_static/*.bak
 	cp $(BUILDDIR)/cep/cep0.html $(BUILDDIR)/cep/index.html
 	@echo
