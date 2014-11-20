@@ -43,9 +43,8 @@ elif sys.version_info[0] >= 3:
     IS_PY3 = True
 
 PRIMITIVES = {'bool', 'int', 'float', 'double', 'std::string', 'cyclus::Blob', 
-              'boost::uuids::uuid'}
-
-BUFFERS = {'cyclus::toolkit::ResourceBuff'}
+              'boost::uuids::uuid', 'cyclus::toolkit::ResourceBuff',
+              'cyclus::Material', 'cyclus::Resource', 'cyclus::Product'}
 
 def ensure_tuple_or_str(x):
     if isinstance(x, STRING_TYPES):
@@ -55,7 +54,7 @@ def ensure_tuple_or_str(x):
 
 def type_to_str(t):
     t = ensure_tuple_or_str(t)
-    if t in PRIMITIVES or t in BUFFERS:
+    if t in PRIMITIVES:
         return t
     else:
         s = t[0] + '<'

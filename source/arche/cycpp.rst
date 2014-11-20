@@ -57,6 +57,8 @@ agents based on the annotations provided. *The use of these directives is
 entirely optional.*  However, in their absence you must implement the
 corresponding agent API yourself.
 
+.. _pragma-cyclus-var:
+
 Annotation Directives
 -----------------------
 
