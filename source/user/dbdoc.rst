@@ -318,6 +318,34 @@ times in this table are candidates for simulation restart/branching.
 
 * **Time** (int): The time step a snapshot was taken for this simulation.
 
+Debugging
+----------
+
+If |Cyclus| was run in debugging mode then the database will then contain 
+the following two extra tables:
+
+* **DebugRequests**: record of every resource request made in the simulation.
+
+  - ``SimId``:  simulation UUID
+  - ``Time``:  time step of the request
+  - ``ReqId``, simulation-unique identifier for this request
+  - ``RequesterID``: ID of the requesting agent
+  - ``Commodity``: the commodity of the request
+  - ``Preference``: agent's preference for this particular request
+  - ``Exclusive``: true (non-zero) if this request is all-or-nothing (integral)
+  - ``ResType``: resource type (e.g. "Material", "Product")
+  - ``Quantity``: amount of the request
+  - ``ResUnits``: units of the request (e.g. kg)
+
+* **DebugBids**: record of every resource bid made in the simulation.
+
+  - ``SimId``: simulation UUID
+  - ``ReqId``: simulation-unique identifier for the bid's request
+  - ``BidderId``: ID of the the bidding agent
+  - ``BidQuantity``: amount of thd bid
+  - ``Exclusive``: true(non-zero) if this request is all-or-nothing (integral)
+
+
 Post Processing
 +++++++++++++++++
 
