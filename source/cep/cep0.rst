@@ -59,6 +59,7 @@ Index
     SA - 20 - Time Step Execution Stack - Gidden <cep20>
     SA - 21 - Agent Identification and Discovery - Carlsen <cep21>
     SL - 22 - Logging Methodology and Implementation - Gidden <cep22>
+    SD - 23 - Defining Time Steps, High Noon for Blue Moon - Scopatz <cep23>
 
 Key
 ---
