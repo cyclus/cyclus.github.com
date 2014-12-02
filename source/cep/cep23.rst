@@ -5,6 +5,7 @@ CEP 23 - Defining Time Step Length, High Noon for Blue Moon
 :Title: Defining Time Step Length, High Noon for Blue Moon
 :Last-Modified: 2014-12-01
 :Author: Anthony Scopatz
+:BDFP: Paul P. H. Wilson
 :Status: Draft
 :Type: Standards Track
 :Created: 2014-12-01
@@ -13,10 +14,20 @@ Motivation
 ==========
 Cyclus is a discrete time simulator whose assumed default time step is 
 months. Months are the worst unit ever. This proposal adds precision and 
-flexibility to what we mean by :math:`\delta t`.
+flexibility to what we mean by :math:`\delta t`. Namely, this CEP moves from 
+months to seconds and allows the user to set the time step length, preserving 
+a default length of a Julian month.
 
 Discussion
 ==========
+Cyclus lacks a canonical time system. This CEP seeks to unambiguously define
+the seconds as the default time unit.  This allows agents to unambiguously 
+communicate with each other and to determine their own time scales internally.
+This CEP also adds the capability for users to specify a time step length 
+(:math:`\delta t`) of their choosing. The default time step, if unspecified, 
+will be a well-defined month, improving on the historically nebulous month.
+
+This CEP is motivated by our past woes with months.
 Months are an awful time step because there is no single definition for what a 
 month *is* and all definitions lack a physical basis. Days and years map nicely 
 (enough) onto a solar cycle. A lunar cycle is 29.53059 days with 7.4 days per phase.
@@ -61,32 +72,53 @@ input file. The following changes to the master schema(s) are thus needed:
 
 This information would be added to the context with the following members:
 
-.. code-block:: C++
+.. code-block:: c++
 
     class Context {
      public:
       // Returns the time step in seconds
-      inline double dt() { return dt_; }; 
+      inline uint64_t dt() { return dt_; }; 
 
       // Returns the time step in [units], given as string
-      double dt(std::string units); 
+      uint64_t dt(std::string units); 
 
       // Returns the time step in [units], given as TimeUnits enum
-      double dt(TimeUnits units);
+      uint64_t dt(TimeUnits units);
 
      private:
-      double dt_; // the length of the time step, in seconds.
+      uint64_t dt_;  // the length of the time step, in seconds.
     }
 
 All archetypes and toolkit code should then ask the context what the time step 
 size is whenever they actually need the current. As per `CEP20 <cep20.html>`_, 
 the time step length is fixed for the entire simulation and may not change.
-Along with this CEP comes the 
-best practice that no archetype should ever assume a nominal time step.
 
 Furthermore, ``TimeUnits`` will be a fixed set of time increments that will 
 not be able to be set by the users.  An initial set of time units are:
-fs, ps, ns, us, ms, s, min, hr, d, month (as defined above), y, ky, My, Gy.
+s, min, hr, d, month (as defined above), y, ky, My, Gy.
+
+Best Practices
+--------------
+Along with this CEP comes the best practice that no archetype should ever 
+assume a nominal time step. Archetypes must always get the time step length 
+from the context.  Since the time step is fixed, this need only be done once
+per prototype.
+
+Moreover, because users will be able to set the time step, archetypes should now
+check that :math:`\delta t` is within a valid range that they define. They may 
+do so anywhere in any of their member functions.  If a static range is known
+ahead of time, then this check is most appropriate in the constructor. If the 
+time step length is outside of the valid range of the agent, then an exception 
+should be raised.  We recommend something along the lines of:
+
+.. code-block:: c++
+
+    if (context().dt() > max_dt)
+      throw cyclus::ValidationError("time step exceeds valid range!");
+
+Lastly, archetype state variables should be expressible by default 
+in terms of number of time steps, not in terms of seconds.  If other time values 
+are desirable, the user should explicitly give the time units. 
 
 Implementation
 ==============
