@@ -1,8 +1,8 @@
-CEP 23 - Defining Time Steps, High Noon for Blue Moon
+CEP 23 - Defining Time Step Length, High Noon for Blue Moon
 **************************************************************
 
 :CEP: 23
-:Title: Defining Time Steps, High Noon for Blue Moon
+:Title: Defining Time Step Length, High Noon for Blue Moon
 :Last-Modified: 2014-12-01
 :Author: Anthony Scopatz
 :Status: Draft
@@ -46,16 +46,18 @@ input file. The following changes to the master schema(s) are thus needed:
 
 .. code-block:: xml
 
-    <optional>
-      <element name="time">
-        <interleave>
+
+    <element name ="control">
+      <interleave>
+        . . .
+        <optional>
           <element name="dt"><data type="double"/</element>
-          <optional>
-            <element name="units"><data type="token"/</element>
-          </optional>
-        </interleave>
-      </element>
-    </optional>
+        </optional>
+        <optional>
+          <element name="dt_units"><data type="token"/</element>
+        </optional>
+      </interleave>
+    </element>
 
 This information would be added to the context with the following members:
 
@@ -77,8 +79,14 @@ This information would be added to the context with the following members:
     }
 
 All archetypes and toolkit code should then ask the context what the time step 
-size is whenever they actually need the current. Along with this CEP comes the 
+size is whenever they actually need the current. As per `CEP20 <cep20.html>`_, 
+the time step length is fixed for the entire simulation and may not change.
+Along with this CEP comes the 
 best practice that no archetype should ever assume a nominal time step.
+
+Furthermore, ``TimeUnits`` will be a fixed set of time increments that will 
+not be able to be set by the users.  An initial set of time units are:
+fs, ps, ns, us, ms, s, min, hr, d, month (as defined above), y, ky, My, Gy.
 
 Implementation
 ==============
