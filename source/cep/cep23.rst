@@ -62,7 +62,7 @@ input file. The following changes to the master schema(s) are thus needed:
       <interleave>
         . . .
         <optional>
-          <element name="dt"><data type="double"/</element>
+          <element name="dt"><data type="unsignedLong"/</element>
         </optional>
         <optional>
           <element name="dt_units"><data type="token"/</element>
