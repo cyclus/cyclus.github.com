@@ -104,21 +104,27 @@ assume a nominal time step. Archetypes must always get the time step length
 from the context.  Since the time step is fixed, this need only be done once
 per prototype.
 
-Moreover, because users will be able to set the time step, archetypes should now
-check that :math:`\delta t` is within a valid range that they define. They may 
-do so anywhere in any of their member functions.  If a static range is known
-ahead of time, then this check is most appropriate in the constructor. If the 
-time step length is outside of the valid range of the agent, then an exception 
-should be raised.  We recommend something along the lines of:
+From here, we also define two broad archetype classifications: those which care 
+about actual real physical time and those which simply function per 
+simulation time step.
+
+When an archetype uses real time, due to physics calculations or other needs, 
+the archetype should now check that :math:`\delta t` is within a valid range 
+that they define. This is because users will now be able to set the time step.
+This validation check maybe performed in any of the archetype's member functions.  
+If a static range is known ahead of time, then this check is most appropriate in 
+the constructor. If the time step length is outside of the valid range of the agent, 
+then an exception should be raised.  We recommend something along the lines of:
 
 .. code-block:: c++
 
     if (context().dt() > max_dt)
       throw cyclus::ValidationError("time step exceeds valid range!");
 
-Lastly, archetype state variables should be expressible by default 
-in terms of number of time steps, not in terms of seconds.  If other time values 
-are desirable, the user should explicitly give the time units. 
+On the other hand, if the archtype only models per time step behavior, then
+state variables should be expressible by default in terms of number of time steps, 
+not in terms of seconds.  If other time values are desirable, the user 
+should explicitly give the time units. 
 
 Implementation
 ==============
