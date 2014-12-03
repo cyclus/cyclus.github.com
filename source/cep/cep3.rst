@@ -161,7 +161,7 @@ in this release to the database with the following command:
 .. code-block:: bash
 
     $ cd cyclus/release
-    $ ./smbchk-t.py --update -t X.X.X
+    $ ./smbchk.py --update -t X.X.X
 
 where ``X.X.X`` is the version tag. This should alter the ``symbols.json`` 
 file.  Commit this and add it to the repo.  
