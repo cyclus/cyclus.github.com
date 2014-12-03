@@ -16,8 +16,8 @@
 .. raw:: html
 
     <div style="text-align:center;">
-    <h2><a href="https://github.com/cyclus/cyclus/releases/tag/1.1.0">
-    v1.1.0 has been released!</a></h2><br></div>
+    <h2><a href="https://github.com/cyclus/cyclus/releases/tag/1.2.0">
+    v1.2.0 has been released!</a></h2><br></div>
 
 |cyclus| is the next-generation agent-based nuclear :doc:`fuel cycle simulator
 <basics/fcs_background>`, providing flexibility to users and developers
