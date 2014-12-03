@@ -98,7 +98,7 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 
 .. note:: 
 
-    To distingush them, branche names have a ``v`` prefix (``vX.X.X``) while tag
+    To distingush them, branch names have a ``v`` prefix (``vX.X.X``) while tag
     names lack this prefix (``X.X.X``).
 
 Maintainence Tasks
