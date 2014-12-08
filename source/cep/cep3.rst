@@ -166,6 +166,66 @@ in this release to the database with the following command:
 where ``X.X.X`` is the version tag. This should alter the ``symbols.json`` 
 file.  Commit this and add it to the repo.  
 
+Cycamore
+------------
+
+On each new release (major, minor, micro), the release manager is responsible
+for updating the regression test databases updated.
+
+First, add the actual releases as tags (this can be done through the GitHub
+interface).
+
+Next, generate the new databases:
+
+.. code-block:: bash
+
+  $ cd ~/cycamore/tests
+  $ python ref.py gen
+
+Next, rename the databases:
+
+.. code-block:: bash
+
+  $ rename 's/^[^_]*_[^_]*_(.*)/<cyclus version>_<cycamore version>_$1/' *.h5
+
+where
+
+* <cyclus version> is replaced by the current version tag name for cyclus
+  (e.g. v0.1)
+* <cycamore version> is replaced by the current version tag name for cycamore
+  (e.g. v0.1)
+
+so that, using the above examples, the command is
+
+.. code-block:: bash
+
+  $ rename 's/^[^_]*_[^_]*_(.*)/v0.1_v0.1_$1/' *.h5
+
+At this point, you will need to get a credentials file, which exists in the
+metadata document in the Cyclus-CI shared folder on Google drive. If you have
+questions, please email cyclus-ci@googlegroups.com. The file must be named
+`rs.cred`.
+
+Now, update (add) them on the regression test server
+
+.. code-block:: bash
+
+  $ python ref.py add *.h5
+
+Next, add the reflist file you just altered:
+
+.. code-block:: bash
+
+  $ git add reflist.json
+  $ git commit -m "updated reflist.json"
+  $ git push upstream develop
+
+Finally, feel free to clean up after yourself
+
+.. code-block:: bash
+
+  $ rm *.h5
+
 Cycstub
 --------
 Every release the relevant files from |cyclus| should be copied over to cyclus.
