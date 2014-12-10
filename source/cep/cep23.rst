@@ -99,8 +99,9 @@ s, min, hr, d, month (as defined above), y, ky, My, Gy.
 
 Best Practices
 --------------
-Along with this CEP comes the best practice that no archetype should ever 
-assume a nominal time step. Archetypes must always get the time step length 
+Along with this CEP comes the best practice that 
+archetypes which model time-dependent behavior should not 
+assume a nominal time step. Archetypes should always get the time step length 
 from the context.  Since the time step is fixed, this need only be done once
 per prototype.
 
