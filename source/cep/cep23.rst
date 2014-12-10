@@ -125,7 +125,8 @@ then an exception should be raised.  We recommend something along the lines of:
 On the other hand, if the archtype only models per time step behavior, then
 state variables should be expressible by default in terms of number of time steps, 
 not in terms of seconds.  If other time values are desirable, the user 
-should explicitly give the time units. 
+should explicitly give the time units. For any time-based variable, the default
+associated units should be provided by the metadata.
 
 Implementation
 ==============
