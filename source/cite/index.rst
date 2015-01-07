@@ -1,5 +1,5 @@
-|Cyclus| Publications
-=====================
+|Cyclus| Publications & Meetings
+=================================
 
 .. image:: ../astatic/flying_gears.jpg
     :align: center
@@ -14,6 +14,21 @@ The following are notable publications regarding |cyclus|:
    :all:
    :list: enumerated
    :enumtype: upperroman
+
+
+|Cyclus| Meetings and Tutorials
+-------------------------------
+
+The |Cyclus| community will occasionally hold meetings and tutorials, with documents shared here:
+
+.. toctree::
+    :maxdepth: 1
+    :glob:
+
+    meetings/*
+
+
+
 
 Citing |Cyclus|
 ---------------
