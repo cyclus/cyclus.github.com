@@ -13,8 +13,7 @@ Agenda
 | 8:20    | Introductory Comments by DOE Technical                           | B. Dixon (INL)         |
 |         | Point of Conctact for  Cyclus Related-Activities                 |                        |
 +---------+------------------------------------------------------------------+------------------------+
-| 8:30    | Cyclus Development: History, Strategy, Contributors,             | P. Wilson (U. Wisc)    |
-|         | Funding, Future Developmental Needs, and Potential Users         |                        |
+| 8:30    | |830_wilson|_                                                    | P. Wilson (U. Wisc)    |
 +---------+------------------------------------------------------------------+------------------------+
 | 9:30    | Cyclus v1.1 Status and Capabilities                              | Scopatz (U. Wisc)      | 
 +---------+------------------------------------------------------------------+------------------------+
@@ -43,3 +42,6 @@ Agenda
 | 15:45   | Cyclus Community/Ecosystem Roadmap                               | Scopatz (U. Wisc)      |
 +---------+------------------------------------------------------------------+------------------------+
 
+.. |830_wilson| replace:: Cyclus Development: History, Strategy, Contributors, Funding, Future Developmental Needs, and Potential Users
+
+.. _820_wilson: http://dx.doi.org/10.6084/m9.figshare.1285435
