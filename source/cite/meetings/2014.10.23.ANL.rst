@@ -17,7 +17,7 @@ Agenda
 +---------+------------------------------------------------------------------+------------------------+
 | 9:30    | Cyclus v1.1 Status and Capabilities                              | Scopatz (U. Wisc)      | 
 +---------+------------------------------------------------------------------+------------------------+
-| 10:00   | Communication Research                                           | Brossard (U. Wisc)     |
+| 10:00   | |1000_brossard|_                                                 | Brossard (U. Wisc)     |
 +---------+------------------------------------------------------------------+------------------------+
 | 10:30   | Break                                                            |                        |
 +---------+------------------------------------------------------------------+------------------------+
@@ -25,7 +25,7 @@ Agenda
 +---------+------------------------------------------------------------------+------------------------+
 | 11:15   | Exploring Cyclus Results with Cyclist                            | Livnat (U. Utah)       |
 +---------+------------------------------------------------------------------+------------------------+
-| 11:45   | Module development for FCO analysis                              | Huff (UC- Berkeley)    |
+| 11:45   | |1145_huff|_                                                     | Huff (UC- Berkeley)    |
 +---------+------------------------------------------------------------------+------------------------+
 | 12:15   | Lunch                                                            |                        |
 +---------+------------------------------------------------------------------+------------------------+
@@ -44,4 +44,12 @@ Agenda
 
 .. |830_wilson| replace:: Cyclus Development: History, Strategy, Contributors, Funding, Future Developmental Needs, and Potential Users
 
-.. _820_wilson: http://dx.doi.org/10.6084/m9.figshare.1285435
+.. _830_wilson: http://dx.doi.org/10.6084/m9.figshare.1285435
+
+.. |1145_huff| replace:: Module development for FCO analysis
+
+.. _1145_huff: http://dx.doi.org/10.6084/m9.figshare.1287476
+
+.. |1000_brossard| replace:: Thrust 1: Stakeholder, Parameter & Metric Identification
+
+.. _1000_brossard: http://dx.doi.org/10.6084/m9.figshare.1285755
