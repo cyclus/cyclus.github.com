@@ -15,7 +15,7 @@ Agenda
 +---------+------------------------------------------------------------------+------------------------+
 | 8:30    | |830_wilson|_                                                    | P. Wilson (U. Wisc)    |
 +---------+------------------------------------------------------------------+------------------------+
-| 9:30    | Cyclus v1.1 Status and Capabilities                              | Scopatz (U. Wisc)      | 
+| 9:30    | |930_scopatz|_                                                   | Scopatz (U. Wisc)      | 
 +---------+------------------------------------------------------------------+------------------------+
 | 10:00   | |1000_brossard|_                                                 | Brossard (U. Wisc)     |
 +---------+------------------------------------------------------------------+------------------------+
@@ -39,12 +39,16 @@ Agenda
 +---------+------------------------------------------------------------------+------------------------+
 | 15:15   | Cyclus Optimization Strategies                                   | Carlsen (U. Wisc)      |
 +---------+------------------------------------------------------------------+------------------------+
-| 15:45   | Cyclus Community/Ecosystem Roadmap                               | Scopatz (U. Wisc)      |
+| 15:45   | |1545_scopatz|_                                                  | Scopatz (U. Wisc)      |
 +---------+------------------------------------------------------------------+------------------------+
 
 .. |830_wilson| replace:: Cyclus Development: History, Strategy, Contributors, Funding, Future Developmental Needs, and Potential Users
 
 .. _830_wilson: http://dx.doi.org/10.6084/m9.figshare.1285435
+
+.. |930_scopatz| replace:: Cyclus v1.1 Status and Capabilities
+
+.. _930_scopatz: http://dx.doi.org/10.6084/m9.figshare.1289050
 
 .. |1145_huff| replace:: Module development for FCO analysis
 
@@ -53,3 +57,8 @@ Agenda
 .. |1000_brossard| replace:: Thrust 1: Stakeholder, Parameter & Metric Identification
 
 .. _1000_brossard: http://dx.doi.org/10.6084/m9.figshare.1285755
+
+.. |1545_scopatz| replace:: A Cyclus Roadmap
+
+.. _1545_scopatz: http://dx.doi.org/10.6084/m9.figshare.1289053
+
