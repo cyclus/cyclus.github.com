@@ -5,10 +5,20 @@ Simulation control is the input portion relating to time, uses the ``control``
 tag, and has the following sections in any order:
 
   * duration (required once) - the time duration of the simulation (in months)
-  * startmonth (required once) - the starting month (1 -> January, 12->December)
+  * startmonth (required once) - the starting month (1 -> January, 
+    12->December)
   * startyear (required once) - the starting year
   * simhandle (optional, once) - a user-defined identifier for this simulation
-  * decay (optional, once) - choose "manual" or "never" to define decay behavior
+  * decay (optional, once) - choose "manual" or "never" to define decay 
+    behavior.
+  * solver (optional, once) - The dynamic resource exchange solver to use.
+    Only option is "greedy" currently.
+  * preconditioner (optional, once) - The dynamic resource exchange 
+    preconditioner to apply to the solver. Only option is "greedy" currently.
+  * exclusive_orders_only (optional, once) - Whether the solver specified 
+    should only use exclusive orders (true) or whether to allow partial 
+    orders as well (false). Defaults to false.
+  
 
 
 Example
@@ -44,6 +54,20 @@ Grammar Definition
 
       <optional>
         <element name="decay"> <text/> </element>
+      </optional>
+
+      <optional>
+        <element name="solver"> <text/> </element>
+      </optional>
+
+      <optional>
+        <element name="preconditioner"> <text/> </element>
+      </optional>
+
+      <optional>
+        <element name="exclusive_orders_only">
+          <data type="boolean" />
+        </element>
       </optional>
 
     </interleave>
