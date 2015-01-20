@@ -33,7 +33,7 @@ Agenda
 +---------+------------------------------------------------------------------+------------------------+
 | 14:00   | |1400_schneider|_                                                | Schneider (U. Texas)   |
 +---------+------------------------------------------------------------------+------------------------+
-| 14:30   | Facility Modules for Cyclus based on Origen                      | Skutnik (U. Tennessee) |
+| 14:30   | |1430_skutnik|_                                                  | Skutnik (U. Tennessee) |
 +---------+------------------------------------------------------------------+------------------------+
 | 15:00   | Break                                                            |                        |
 +---------+------------------------------------------------------------------+------------------------+
@@ -65,6 +65,10 @@ Agenda
 .. |1400_schneider| replace:: Reactor Modules for Cyclus based on Bright-lite
 
 .. _1400_schneider: http://dx.doi.org/10.6084/m9.figshare.1291036
+
+.. |1430_skutnik| replace:: Facility Modules for Cyclus based on Origen
+
+.. _1430_skutnik:  http://dx.doi.org/10.6084/m9.figshare.1291144
 
 .. |1545_scopatz| replace:: A Cyclus Roadmap
 
