@@ -220,10 +220,10 @@ run a simulation with your archetype.  Cyclus comes with a mock simulation
 environment that makes it easy to write these kinds of tests in a way that
 works well with gtest.
 
-``MockSim`` is a helper for running full simulations entirely in-code
-without having to deal with input files, output database
-files, and other pieces of the full Cyclus stack.  All you have to do is initialize a MockSim indicating the
-archetype you want to test and the simulation duration.  Then add any
+``MockSim`` is a helper for running full simulations entirely in-code without
+having to deal with input files, output database files, and other pieces of
+the full Cyclus stack.  All you have to do is initialize a MockSim indicating
+the archetype you want to test and the simulation duration.  Then add any
 number of sources and/or sinks to transact with your agent.  They can have
 specific recipes (or not) and their deployment and lifetime (before
 decommissioning) can be specified too.  Here is an example using the
@@ -260,7 +260,7 @@ agents:Source archetype in Cyclus as the tested agent:
             // and with infinite capacity
         .start(3) // that isn't built until the 3rd timestep.
         .Finalize();
-    sim.Run();
+    int agent_id = sim.Run(); // capture the ID of the agent being tested
 
 The parameters that can be set (or not) for each source/sink are:
 
@@ -287,9 +287,22 @@ a sample query and test you might write using the gtest framework:
 
 .. code-block:: c++
 
-    cyclus::QueryResult qr = sim.db().Query("Transactions", NULL);
+    // return all transactions where our source facility is the sender
+    std::vector<cyclus::Cond> conds;
+    conds.push_back("SenderId", "==", agent_id);
+    cyclus::QueryResult qr = sim.db().Query("Transactions", &conds);
     int n_trans = qr.rows.size();
     EXPECT_EQ(10, n_trans) << "expected 10 transactions, got " << n_trans;
+    
+    // reconstruct the material object for the first transaction
+    int res_id = qr.GetVal<int>("ResourceId", 0);
+    cyclus::Material::Ptr m = sim.GetMaterial(res_id);
+    EXPECT_DOUBLE_EQ(10, m->quantity());
+    
+    // confirm composition is as expected
+    cyclus::toolkit::MatQuery mq(m);
+    EXPECT_DOUBLE_EQ(0.5, mq.mass(922350000));
+    EXPECT_DOUBLE_EQ(9.5, mq.mass(922380000));
 
 You can read API documentation for the `queryable database
 <http://fuelcycle.org/cyclus/api/classcyclus_1_1QueryableBackend.html>`_ and
