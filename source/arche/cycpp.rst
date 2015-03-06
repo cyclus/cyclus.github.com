@@ -644,9 +644,9 @@ is thus:
 
 .. code-block:: python
 
-    {'schema': '"<element name=\\"matid\\">\\n"' \ 
-               '"  <data type=\\"int\\" />\\n"' \
-               '"</element>\\n"'}
+    {'schema': '"<element name=\\"matid\\">\\n"\n' \ 
+               '"  <data type=\\"int\\" />\\n"\n' \
+               '"</element>\\n"\n'}
 
 You must double escape the quotes and newlines so that they are written out 
 correctly.  You could have also changed the data type or any other valid
