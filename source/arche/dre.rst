@@ -222,8 +222,9 @@ bid-request pairing. Querying is provided through the ``cyclus::Trader`` and
 ``AdjustMaterialPrefs``.
 
 Preferences are used by resource exchange solvers to inform their solution
-method. Agents will only utilize the PA phase if there is a reason to update
-preferences over the default provided in their original request.
+method. The default preference for all bids is zero. Agents will only utilize
+the PA phase if there is a reason to update preferences over the default
+provided in their original request.
 
 Preferences can be adjusted by both the original ``cyclus::Trader`` placing
 requests as well as any parent ``cyclus::Agent``\s, with the trader adjusting
@@ -342,7 +343,7 @@ and bidder are of the same type:
 	FooFac* cast = dynamic_cast<FooFac*>(req->requester()->manager());
         double pref = mit->second;
 	if (cast != NULL) 
-	    pref *= 10; // we like this guy!
+	    pref += 10; // we like this guy!
 	mit->second = pref;
       }
     }
