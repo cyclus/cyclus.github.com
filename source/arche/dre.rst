@@ -338,13 +338,13 @@ and bidder are of the same type:
         cyclus::PrefMap<cyclus::Material>::type& prefs) {
       cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
       for (pmit = prefs.begin(); pmit != prefs.end(); ++pmit) {
-        std::map<Bid<Material>*, double>::iterator mit;
         Request<Material>* req = pmit->first;
 	FooFac* cast = dynamic_cast<FooFac*>(req->requester()->manager());
-        double pref = mit->second;
-	if (cast != NULL) 
-	    pref += 10; // we like this guy!
-	mit->second = pref;
+	if (cast != NULL) {
+  	  for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
+            mit->second = pref + 10; // we like this guy!
+	  }
+        }
       }
     }
 
