@@ -23,8 +23,8 @@ agent's :term:`context`.  Data may be logged via the Context::NewDatum function:
   }
 
 This would create a table in the output database named "MyReactorData". The
-table would get a new row entry every time step with three columns named
-"AgentID", "WaterUsage" and "OperatingCost".  ``AddVal`` calls can be chained
+table would get a new row entry every time step with four columns named
+"AgentID", "Time", "WaterUsage" and "OperatingCost".  ``AddVal`` calls can be chained
 any number of times for an arbitrary number of columns.  ``Record`` must be
 called once for each datum after all values have been added.  Any custom
 tables created in this manner will appear in the output database alongside the
@@ -77,7 +77,7 @@ using the shape vector follows:
     colors.push_back("blue");
     colors.push_back("chartreuse");
 
-    std::vector<int> shape; // this should usually be a class memebr variable
+    std::vector<int> shape; // this should usually be a class member variable
     shape->push_back(5); // maximum number of elements in the color vector
     shape->push_back(8); // maximum character length of each color
 

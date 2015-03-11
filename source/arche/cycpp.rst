@@ -57,6 +57,8 @@ agents based on the annotations provided. *The use of these directives is
 entirely optional.*  However, in their absence you must implement the
 corresponding agent API yourself.
 
+.. _pragma-cyclus-var:
+
 Annotation Directives
 -----------------------
 
@@ -140,6 +142,23 @@ contains a listing of all special keys and their meanings.
     units        The physical units, if any.
     userlevel    Integer from 0 - 10 for representing ease (0) or difficulty (10) 
                  in using this variable, default 0.
+    alias        The name of the state variable in the schema and input file.
+                 If this is not present it defaults to the C++ variable name. 
+    uilabel      The text string a UI will display as the name of this input on
+                 the UI input form.
+    uitype       The type of the input field in reference in a UI, 
+                 currently supported types are; incommodity, outcommodity, 
+                 commodity, range, combobox, facility, prototype, recipe, nuclide, 
+                 and none.
+                 For 'nuclide' when the type is an int, the values will be read in 
+                 from the input file in human readable string format ('U-235') and 
+                 automatically converted to results of ``pyne::nucname::id()``
+                 (922350000) in the database and on the archetype.
+    range        This indicates the range associated with a range type.
+                 It must take the form of ``[min, max]`` or 
+                 ``[min, max, (optional) step size]``.
+    categorical  This indicates the decrete values a combobox Type can take. It
+                 must take the form of ``[value1, value2, value3, etc]``. 
     schematype   This is the data type that is used in the schema for input file
                  validation. This enables you to supply just the data type
                  rather than having to overwrite the full schema for this state
@@ -234,6 +253,13 @@ this is ``vars`` which contains the state variable annotations!
                  archetype. **READ ONLY.** *New in version 1.1.1.*
     all_parents  List of string class names of all the superclasses of this
                  archetype. **READ ONLY.** *New in version 1.1.1.*
+    niche        A string which names the group that the achetype belongs to 
+                 that defines how it is swappable with other archetypes. If 
+                 two archetypes have the same niche then they are partially or 
+                 wholly swappable. Niches may overlap and any string may be 
+                 used as the niche. Some example niches that are useful to 
+                 displaying user interfaces are: ``reactor``, ``reprocessing``,
+                 ``repository``, ``mine``, and others.
     doc          Documentation string.
     tooltip      Brief documentation string for user interfaces.
     userlevel    Integer from 0 - 10 for representing ease (0) or 

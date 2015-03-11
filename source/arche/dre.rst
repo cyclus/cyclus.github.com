@@ -503,7 +503,7 @@ it wants given another facility's inventory.
    public:
     #pragma cyclus
 
-    cyclus::Material::Ptr IdealMatl(const cyclus::ResourceBuff& buffer) {
+    cyclus::Material::Ptr IdealMatl(const cyclus::toolkit::ResBuf& buffer) {
        // provide whatever implementation is desired
     } 
   };
@@ -530,7 +530,7 @@ A provider of material can then implement its ``GetMatlBids`` as follows:
 	Agent* agent = it->requester();
 	TradeInformer* cast = dynamic_cast<TradeInformer*>(agent);
 	if (cast != NULL) {
-	    offer = cast->IdealMatl(inventory); // inventory is a state variable cyclus::ResourceBuff
+	    offer = cast->IdealMatl(inventory); // inventory is a state variable ResBuf
 	} else { 
 	    double qty = it->quantity();     
       	    std::string recipe = "recipe";

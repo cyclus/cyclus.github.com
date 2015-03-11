@@ -11,6 +11,7 @@ import sys
 import os.path
 import re
 import time
+import warnings
 import subprocess
 from collections import OrderedDict, Mapping, Sequence
 
@@ -42,9 +43,8 @@ elif sys.version_info[0] >= 3:
     IS_PY3 = True
 
 PRIMITIVES = {'bool', 'int', 'float', 'double', 'std::string', 'cyclus::Blob', 
-              'boost::uuids::uuid'}
-
-BUFFERS = {'cyclus::toolkit::ResourceBuff'}
+              'boost::uuids::uuid', 'cyclus::toolkit::ResourceBuff',
+              'cyclus::Material', 'cyclus::Resource', 'cyclus::Product'}
 
 def ensure_tuple_or_str(x):
     if isinstance(x, STRING_TYPES):
@@ -54,7 +54,7 @@ def ensure_tuple_or_str(x):
 
 def type_to_str(t):
     t = ensure_tuple_or_str(t)
-    if t in PRIMITIVES or t in BUFFERS:
+    if t in PRIMITIVES:
         return t
     else:
         s = t[0] + '<'
@@ -91,18 +91,19 @@ class CyclusAgent(Directive):
     has_content = False
 
     def load_schema(self):
-        stdout = subprocess.check_output(['cyclus', '--agent-schema', self.agentspec])
+        cmd = 'cyclus --agent-schema {0}'.format(self.agentspec)
+        stdout = subprocess.check_output(cmd, shell=True)
         self.schema = stdout.decode()
 
     def load_annotations(self):
-        stdout = subprocess.check_output(['cyclus', '--agent-annotations', 
-                                          self.agentspec])
+        cmd = 'cyclus --agent-annotations {0}'.format(self.agentspec)
+        stdout = subprocess.check_output(cmd, shell=True)
         try:
             j = json.loads(stdout.decode())
         except JSONDecodeError:
             raise ValueError("Error reading agent annotations for "\
-                                 "{0}.".format(self.agentspec))
-        
+                             "{0}.".format(self.agentspec))
+
         self.annotations = j
 
     def append_name(self):
@@ -178,8 +179,18 @@ class CyclusAgent(Directive):
     def run(self):
         # load agent
         self.agentspec = self.arguments[0]
-        self.load_schema()
-        self.load_annotations()
+        self.schema = ""
+        self.annotations= {}
+        try:
+            self.load_schema()
+        except OSError:
+            warnings.warn("WARNING: Failed to load schema, proceeding without schema",
+                          RuntimeWraning)
+        try:
+            self.load_annotations()
+        except OSError:
+            warnings.warn("WARNING: Failed to load annotations, proceeding without "
+                          "annotations", RuntimeWraning)
 
         # set up list of rst stirngs
         self.lines = []

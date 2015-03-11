@@ -269,19 +269,44 @@ InputFiles Table
 DecomSchedule Table
 --------------------
 
+When agents are scheduled to be decommissioned in the simulation, the details
+are recorded in this table.  Note that this table contains an entry for each
+scheduling regardless of whether or not it actually occurred; if a simulation
+ended before time reached the scheduled time, the agent would not have been
+decommissioned.
+
 * **SimId** (uuid)
-* **AgentId** (int): 
-* **SchedTime** (int): 
-* **DecomTime** (int): 
+
+* **AgentId** (int): ID of the agent that is/was to be decommissioned.
+
+* **SchedTime** (int): The time step on which this decommissioning event was
+  created.
+
+* **DecomTime** (int): The time step on which the agent was (or would have
+  been) decommissioned.
 
 BuildSchedule Table
 --------------------
 
+When agents are scheduled to be built in the simulation, the details are
+recorded in this table.  Note that this table contains an entry for each
+scheduling regardless of whether or not it actually occurred; if a simulation
+ended before time reached the scheduled time, the agent would not have been
+built.
+
 * **SimId** (uuid)
-* **ParentId** (piintd): 
-* **Prototype** (string): 
-* **SchedTime** (int): 
-* **BuildTime** (int): 
+
+* **ParentId** (piintd): The Id of the agent that will become this new agent's
+  parent.
+
+* **Prototype** (string): The name of the agent prototype that will be used to
+  generate the new agent.  This corresponds to the prototypes defined in an
+  input files.
+
+* **SchedTime** (int): The time step on which this build event was created.
+
+* **BuildTime** (int): The time step on which the agent was (or would have
+  been) built and deployed into the simulation.
 
 Snapshots Table
 -------------------
@@ -292,6 +317,34 @@ times in this table are candidates for simulation restart/branching.
 * **SimId** (uuid)
 
 * **Time** (int): The time step a snapshot was taken for this simulation.
+
+Debugging
+----------
+
+If |Cyclus| was run in debugging mode then the database will then contain 
+the following two extra tables:
+
+* **DebugRequests**: record of every resource request made in the simulation.
+
+  - ``SimId``:  simulation UUID
+  - ``Time``:  time step of the request
+  - ``ReqId``, simulation-unique identifier for this request
+  - ``RequesterID``: ID of the requesting agent
+  - ``Commodity``: the commodity of the request
+  - ``Preference``: agent's preference for this particular request
+  - ``Exclusive``: true (non-zero) if this request is all-or-nothing (integral)
+  - ``ResType``: resource type (e.g. "Material", "Product")
+  - ``Quantity``: amount of the request
+  - ``ResUnits``: units of the request (e.g. kg)
+
+* **DebugBids**: record of every resource bid made in the simulation.
+
+  - ``SimId``: simulation UUID
+  - ``ReqId``: simulation-unique identifier for the bid's request
+  - ``BidderId``: ID of the the bidding agent
+  - ``BidQuantity``: amount of thd bid
+  - ``Exclusive``: true(non-zero) if this request is all-or-nothing (integral)
+
 
 Post Processing
 +++++++++++++++++

@@ -52,17 +52,20 @@ gh-clean gh-revert clean:
 
 gh-preview html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)
-	sed -i 's/function top_offset([$$]node){ return [$$]node\[0\].getBoundingClientRect().top; }/function top_offset($$node){ return (typeof $$node[0] === "undefined") ? 0 : $$node[0].getBoundingClientRect().top; }/' ./gh-build/_static/cloud.js
+	sed -i.bak 's/function top_offset([$$]node){ return [$$]node\[0\].getBoundingClientRect().top; }/function top_offset($$node){ return (typeof $$node[0] === "undefined") ? 0 : $$node[0].getBoundingClientRect().top; }/' ./gh-build/_static/cloud.js
+	sed -i.bak 's/  if (state == "collapsed"){/  if (typeof state === "undefined") {\n	var state = "uncollapsed";\n  };\n  if (state == "collapsed"){/' ./gh-build/_static/cloud.js
+	rm ./gh-build/_static/*.bak
 	cp $(BUILDDIR)/cep/cep0.html $(BUILDDIR)/cep/index.html
+	cp source/arche/dbtypes.js $(BUILDDIR)/arche/
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)."
 
 gh-publish:
+	make clean
+	make html
 	git checkout $(GH_PUBLISH_BRANCH)
 	git checkout $(GH_SOURCE_BRANCH) -- $(GH_SOURCE_DIR)
 	git reset HEAD 
-	make clean
-	make html
 	rsync -a $(BUILDDIR)/* .
 	rsync -a $(BUILDDIR)/.* .
 	git add `(cd $(BUILDDIR); find . -type f; cd ..)`

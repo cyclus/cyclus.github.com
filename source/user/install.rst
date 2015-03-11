@@ -13,7 +13,7 @@ Basic installation instructions for Conda can be found
 
 1. Download and Install Miniconda
 
-    * Go to the `miniconda downloads page <http://repo.continuum.io/miniconda/>`_
+    * Go to the `miniconda downloads page <http://conda.pydata.org/miniconda.html>`_
       and get the version approriate to your system.
     * Install this to the ``~/miniconda`` directory.  For example, you would 
       use a command similar the following:
@@ -49,6 +49,15 @@ Basic installation instructions for Conda can be found
       Note that installing cycamore will also install cyclus since cyclus is one 
       of cycamore's dependencies.
 
+4. Install Cyclist (optional)
+
+    * Now that cyclus is installed and ready, installing the graphical user interface is 
+      simple as:
+
+      .. code-block:: bash 
+    
+          $ conda install cyclist --yes
+
 And that is it! 
 
 Already Have Conda?
@@ -71,4 +80,12 @@ Once this is done, install |Cyclus| with the following comand.
     $ conda install cycamore --yes
 
 Note that installing cycamore will also install cyclus since cyclus is one 
-of cycamore's dependencies.
+of cycamore's dependencies.  Furthermore, you may also optionally install Cyclist,
+the graphical user interface tool for cyclus databases. This can be done 
+with the following:
+
+.. code-block:: bash 
+    
+    $ conda install cyclist --yes
+
+Happy simulating!
