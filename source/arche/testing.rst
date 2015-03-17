@@ -276,7 +276,7 @@ The parameters that can be set (or not) for each source/sink are:
 * ``lifetime(int)``: The number of time steps the source/sink is deployed
   until automatic decommissioning. Default is infinite (never decommissioned).
 
-For more details, you can read the `MockSim API docs <TODO: insert>`_.
+For more details, you can read the `MockSim API docs <http://fuelcycle.org/cyclus/api/classcyclus_1_1MockSim.html>`_.
 Querying simulation results can be accomplished by getting a reference to the
 in-memory database generated.  Not all data that is present in normal
 full-stack simulations is available.  However, most of the key core tables are
