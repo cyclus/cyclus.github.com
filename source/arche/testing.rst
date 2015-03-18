@@ -210,6 +210,106 @@ Which results in: ::
   [==========] 8 tests from 3 test cases ran. (86 ms total)
   [  PASSED  ] 8 tests.
 
+Testing Resource Exchange
+--------------------------
+
+One of the most important things to test is your archetype's resource exchange
+behavior.  Does it request/receive the right kinds of material?  Does it offer/sell
+resources at the right time?  One of the best ways to test this is to actually
+run a simulation with your archetype.  Cyclus comes with a mock simulation
+environment that makes it easy to write these kinds of tests in a way that
+works well with gtest.
+
+``MockSim`` is a helper for running full simulations entirely in-code without
+having to deal with input files, output database files, and other pieces of
+the full Cyclus stack.  All you have to do is initialize a MockSim indicating
+the archetype you want to test and the simulation duration.  Then add any
+number of sources and/or sinks to transact with your agent.  They can have
+specific recipes (or not) and their deployment and lifetime (before
+decommissioning) can be specified too.  Here is an example using the
+agents:Source archetype in Cyclus as the tested agent:
+
+.. code-block:: c++
+
+    // Define a composition to use as a simulation recipe.
+    cyclus::CompMap m;
+    m[922350000] = .05;
+    m[922380000] = .95;
+    cyclus::Composition::Ptr fresh = cyclus::Composition::CreateFromMass(m);
+
+    // Define our archetype xml configuration.
+    // This is the info that goes
+    // "<config><[archetype-name]>here</[archetype-name]></config>"
+    // in the input file.
+    std::string config =
+        "<commod>enriched_u</commod>"
+        "<recipe_name>fresh_fuel</recipe_name>"
+        "<capacity>10</capacity>";
+
+    // Create and run a 10 time step mock simulation
+    int dur = 10;
+    cyclus::MockSim sim(cyclus::AgentSpec(":agents:Source"), config, dur);
+    sim.AddRecipe("fresh_fuel", fresh); // with one composition recipe
+    sim.AddSink("enriched_u") // and one sink facility
+        .recipe("fresh_fuel") // requesting a particular recipe
+        .capacity(5) // with a 5 kg per time step receiving limit
+        .Finalize(); // (don't forget to call this for each source/sink you add)
+
+    sim.AddSink("enriched_u") // And another sink facility
+            // requesting no particular recipe
+            // and with infinite capacity
+        .start(3) // that isn't built until the 3rd timestep.
+        .Finalize();
+    int agent_id = sim.Run(); // capture the ID of the agent being tested
+
+The parameters that can be set (or not) for each source/sink are:
+
+* ``recipe(std::string r)``: The recipe to request/provide. Default is none -
+  sources provide requested material, sinks take anything.
+
+* ``capacity(double cap)``: The per time step throughput/capacity limit for
+  the source/sink. Default is infinite.
+
+* ``start(int t)``: Time the source/sink is initially built. Default is time
+  step zero.
+
+* ``lifetime(int)``: The number of time steps the source/sink is deployed
+  until automatic decommissioning. Default is infinite (never decommissioned).
+
+For more details, you can read the `MockSim API docs <http://fuelcycle.org/cyclus/api/classcyclus_1_1MockSim.html>`_.
+Querying simulation results can be accomplished by getting a reference to the
+in-memory database generated.  Not all data that is present in normal
+full-stack simulations is available.  However, most of the key core tables are
+fully available.  Namely the Transactions, Composition, Resources,
+ResCreators, AgentEntry, and AgentExit tables are available.  Any
+custom-tables created by the tested archetype will also be available.  Here is
+a sample query and test you might write using the gtest framework:
+
+.. code-block:: c++
+
+    // return all transactions where our source facility is the sender
+    std::vector<cyclus::Cond> conds;
+    conds.push_back("SenderId", "==", agent_id);
+    cyclus::QueryResult qr = sim.db().Query("Transactions", &conds);
+    int n_trans = qr.rows.size();
+    EXPECT_EQ(10, n_trans) << "expected 10 transactions, got " << n_trans;
+    
+    // reconstruct the material object for the first transaction
+    int res_id = qr.GetVal<int>("ResourceId", 0);
+    cyclus::Material::Ptr m = sim.GetMaterial(res_id);
+    EXPECT_DOUBLE_EQ(10, m->quantity());
+    
+    // confirm composition is as expected
+    cyclus::toolkit::MatQuery mq(m);
+    EXPECT_DOUBLE_EQ(0.5, mq.mass(922350000));
+    EXPECT_DOUBLE_EQ(9.5, mq.mass(922380000));
+
+You can read API documentation for the `queryable database
+<http://fuelcycle.org/cyclus/api/classcyclus_1_1QueryableBackend.html>`_ and
+`query results
+<http://fuelcycle.org/cyclus/api/classcyclus_1_1QueryResult.html>`_ for more
+details.
+
 Debugging
 ----------
 

@@ -10,7 +10,9 @@ not belong strictly in the :term:`cyclus kernel`.
 Resourcebuff
 ++++++++++++
 
-*ResourceBuff will soon be deprecated in favor of ``ResBuf``.*
+.. warning::
+
+    ResourceBuff will soon be deprecated in favor of ``ResBuf``.
 
 The ``cyclus::toolkit::ResourceBuff`` class provides provides a canonical
 methodology for dealing with collections of ``cyclus::Resources``.
