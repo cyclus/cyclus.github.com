@@ -644,13 +644,11 @@ is thus:
 
 .. code-block:: python
 
-    {'schema': '"<element name=\\"matid\\">\\n"' \ 
-               '"  <data type=\\"int\\" />\\n"' \
-               '"</element>\\n"'}
+    {'schema': '<element name="matid">' \ 
+               '  <data type="int" />' \
+               '</element>'}
 
-You must double escape the quotes and newlines so that they are written out 
-correctly.  You could have also changed the data type or any other valid
-RNG here.
+You can change the data type or any other valid RNG here.
 
 .. note:: Whenever a state variable name is changed in the ``schema``, you 
           must supply an accompanying ``infiletodb``.
@@ -680,9 +678,9 @@ as follows:
 
 .. code-block:: c++
 
-    #pragma cyclus var {'schema': '"<element name=\\"matid\\">\\n"' \ 
-                                  '"  <data type=\\"int\\" />\\n"' \
-                                  '"</element>\\n"', \
+    #pragma cyclus var {'schema': '<element name="matid">' \ 
+                                  '  <data type="int" />' \
+                                  '</element>', \
                         'infiletodb': { \
                             'read': 'material_identifier = cyclus::Query<int>(tree, "matid");\n' \
                                     'if (material_identifier%2 == 1)\n' \
