@@ -1,5 +1,6 @@
 Cycamore Archetypes
 ====================
+
 This is a collection of archetypes found in the ``cycamore`` module that comes with 
 cycamore itself.
 
