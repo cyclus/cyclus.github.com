@@ -1055,8 +1055,7 @@ var dbdata =
     '[141, "VL_MAP_STRING_VL_MAP_INT_DOUBLE", "std::map<std::string, std::map<int, double> >", 3, "HDF5", "v1.3", 0],' +
     '[142, "VL_MAP_VL_STRING_MAP_INT_DOUBLE", "std::map<std::string, std::map<int, double> >", 3, "HDF5", "v1.3", 0],' +
     '[143, "VL_MAP_VL_STRING_VL_MAP_INT_DOUBLE", "std::map<std::string, std::map<int, double> >", 3, "HDF5", "v1.3", 0],' +
-    '[0, "BOOL", "bool", 0, "HDF5", "v1.3", 1]' +
-    ']]';
+    '[0, "BOOL", "bool", 0, "HDF5", "v1.3", 1]];'
 
 dbdata = dbdata.replace(new RegExp('<', 'g'), '&lt;')
                .replace(new RegExp('>', 'g'), '&gt;');
