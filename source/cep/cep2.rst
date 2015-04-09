@@ -3,8 +3,9 @@ CEP 2 - Separation of Concerns in the |cyclus| Ecosystem
 
 :CEP: 2
 :Title: Separation of Concerns in the |cyclus| Ecosystem, or Where Do I Put My Code?
-:Last-Modified: 2013-08-27
+:Last-Modified: 2015-04-09
 :Author: Anthony Scopatz
+:Edited By: Matthew Gidden
 :Status: Accepted
 :Type: Process
 :Created: 2013-08-05
@@ -96,18 +97,30 @@ of the following categories:
   when needed.
 * **Continuous time** - natural time is implemented as a continuous variable.
 
-It is important to note that this concern is a solely mathematical endeavor 
-and should not implement any domain-specific calculations. However, the 
+It is important to note that this concern is a solely mathematical endeavor and
+should not implement any domain-specific calculations. However, the
 implementation may be *domain-aware* in that it may know about certain sub-type
-specializations.  For example, materials and U.S. Dollars are both sub-types of 
-resources.  Still, the dynamic resource exchange simulation concern is not allowed 
-to discriminate between any of these specializations nor perform domain-specific 
-computations (such as transmuting a material or pricing a derivative).
+specializations.  For example, materials and U.S. Dollars are both sub-types of
+resources. Still, the dynamic resource exchange simulation concern is not
+allowed to discriminate between any of these specializations nor perform
+domain-specific computations (such as transmuting a material or pricing a
+derivative).
 
-The dynamic resource exchange simulation concern is also responsible for all 
-optimizations of the  fuel cycle.  This includes optimizing resource exchange 
-between multiple actors as well as finding the initial conditions which optimize 
-a value function subject to some constraints.  
+In broad terms, this concern *fully enables* the general, dynamic simulation of
+supply chain networks in a resource-neutral manner. As such it is responsible
+for housing general archetypes that meet this need. Supply chain network models
+require, at minimum, three types of entities (i.e., nodes in a network)
+:cite:`bazaraa2011linear`:
+
+* Sources (Supply)
+* Transshipment (Storage)
+* Sinks (Demand)
+
+In addition to enabling such basic simulations, the dynamic resource exchange
+simulation concern is also responsible for all optimizations of the fuel cycle.
+This includes optimizing resource exchange between multiple actors as well as
+finding the initial conditions which optimize a value function subject to some
+constraints.
 
 Domain Models
 -------------
@@ -170,7 +183,8 @@ resource exchange put it with the domain models to be safe.
 The |cyclus| development team currently provides and supports three projects, 
 one for each concern:
 
-* `Cyclus`_ - Dynamic Resource Exchange Simulation (individual actors, discrete time)
+* `Cyclus`_ - Dynamic Resource Exchange Simulation (individual actors, discrete
+  time, canonical supply chain entities)
 * `Cycamore`_ - Domain Models
 * `Cyclist`_ -  Analysis & Visualization
 
@@ -265,3 +279,6 @@ References and Footnotes
 .. _Cyclus: https://github.com/cyclus/cyclus
 .. _Cycamore: https://github.com/cyclus/cycamore
 .. _Cyclist: https://github.com/cyclus/cyclist2
+
+.. bibliography:: cep-0002-1.bib
+   :cited:
