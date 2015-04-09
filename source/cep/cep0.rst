@@ -48,6 +48,7 @@ Index
     PD - 4 - Attribution of Code Products in the |Cyclus| Ecosystem - Huff <cep4>
     PL - 5 - Archetype Development Best Practices - Gidden <cep5>
     PD - 6 - Cyclus Pull Request Style Guide - Gidden <cep6>
+    PP - 24 - Preference Conventions <cep24>
 
 *Standard CEPs*
 
