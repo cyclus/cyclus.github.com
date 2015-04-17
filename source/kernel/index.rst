@@ -22,6 +22,7 @@ Software Development Aids
    :maxdepth: 1
 
    contributing_to_cyclus
+   pr_review
    build_with_conda
    style_guide
 ..   make-models/main

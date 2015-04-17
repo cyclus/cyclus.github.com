@@ -141,7 +141,7 @@ Reviewing a Pull Request
       git checkout -b remote_name/branch_name
       git merge develop
 
-  - Look over the code. 
+  - Look over the code. The `next page <pr_review>` details what to look for while reviewing.)
 
     - Check that it meets :doc:`our style guidelines <style_guide>`.
 
