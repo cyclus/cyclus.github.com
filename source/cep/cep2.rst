@@ -4,8 +4,7 @@ CEP 2 - Separation of Concerns in the |cyclus| Ecosystem
 :CEP: 2
 :Title: Separation of Concerns in the |cyclus| Ecosystem, or Where Do I Put My Code?
 :Last-Modified: 2015-04-09
-:Author: Anthony Scopatz
-:Edited By: Matthew Gidden
+:Author: Anthony Scopatz, Matthew Gidden
 :Status: Accepted
 :Type: Process
 :Created: 2013-08-05
@@ -106,15 +105,14 @@ allowed to discriminate between any of these specializations nor perform
 domain-specific computations (such as transmuting a material or pricing a
 derivative).
 
-In broad terms, this concern *fully enables* the general, dynamic simulation of
-supply chain networks in a resource-neutral manner. As such it is responsible
-for housing general archetypes that meet this need. Supply chain network models
-require, at minimum, three types of entities (i.e., nodes in a network)
-:cite:`bazaraa2011linear`:
+This concern is responsible for housing general archetypes that allow for
+general, dynamic simulation of supply chain networks in a resource-neutral
+manner. Supply chain network models require, at minimum, three types of entities
+(i.e., nodes) :cite:`bazaraa2011linear`:
 
-* Sources (Supply)
-* Transshipment (Storage)
-* Sinks (Demand)
+* Sources (supply nodes)
+* Storage (transshipment nodes)
+* Sinks (demand nodes)
 
 In addition to enabling such basic simulations, the dynamic resource exchange
 simulation concern is also responsible for all optimizations of the fuel cycle.
