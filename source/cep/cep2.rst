@@ -3,7 +3,7 @@ CEP 2 - Separation of Concerns in the |cyclus| Ecosystem
 
 :CEP: 2
 :Title: Separation of Concerns in the |cyclus| Ecosystem, or Where Do I Put My Code?
-:Last-Modified: 2015-04-09
+:Last-Modified: 2015-04-20
 :Author: Anthony Scopatz, Matthew Gidden
 :Status: Accepted
 :Type: Process
