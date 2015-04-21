@@ -11,7 +11,7 @@ Maintaining a Collegial Atmosphere
 
 A collegial (as opposed to an adversarial) atmosphere is critical to the success of an open-source software project.  Imagine how it would be feel for a new person to appear out of the blue wanting to contribute to Cyclus. Let’s not drive them away!
 
-* Contributing should all be rainbows and butterflies (only positive interactions
+* Contributing should all be rainbows and butterflies (only positive interactions)
 * Thank people for contributing
 * Timely feedback engenders enthusiasm and future contributions
 * There is no need for adversarial comments, even (especially) when there is disagreement
@@ -26,7 +26,7 @@ Am I ready to do a review on my own?
 * It’s ok for multiple people to review PRs, so don’t feel like you can’t review if someone else already is.
 * Do not expect that someone else will re-review YOUR review.  Take responsibility for your reviewing.
 * If you are not 100% comfortable, then complete your review and say “I have completed my review and will merge this in 2 days if there are no further comments.” This gives more experienced reviewers the opportunity to look at it if they choose to.
-*   A good exercise for learning your way around the codebase is to start from cyclus.cc and follow the trail of code execution as a simulation is initialized and executed - to get a rough sort of callgraph in your head.
+*   A good exercise for learning your way around the code base is to start from cyclus.cc and follow the trail of code execution as a simulation is initialized and executed - to get a rough sort of callgraph in your head.
 
 How do I feel about the purpose of this PR?
 
@@ -50,8 +50,7 @@ Start a review with the obvious stuff, so that if there are major problems then 
 
 Do I understand why this PR is being added?
 
-* If there is ANY part of the code you do not understand, do NOT merge it!
-* Instead, use the API to figure out what the code is doing
+* Do not merge code you do not understand; instead, use the API to figure out what the code is doing
 * Never assume the person who opened the PR knew what they were doing
 * If you still can’t figure it out - put inline comment to ask why it is done this way
 * Fixing bugs should always take precedence over adding features
@@ -83,12 +82,9 @@ Is there a reasonable use case that would fail given the provided implementation
 Is the code implemented cleanly?
 
 * Are there "easy" optimizations (e.g. variable allocation outside of a well-used loop)?
-* Are the data structures you’re using the right ones?
-* If you have a list or a vector where all elements must be unique, then a set is the right data structure.
-* But if you’re using a dataset that must remain ordered, then DON’T use a set.
+* Are the data structures you’re using the right ones? (ie. sets have unique elements while vectors have ordered elements)
 * For loops vs while loops.
-* Premature optimization is not always good (you don’t know apriori where the sticking points will be.
-* Optimization often reduces maintainability.
+* Premature optimization is not always good (you don’t know apriori where the sticking points will be, and optimization often reduces maintainability).
 
 
 
@@ -96,10 +92,10 @@ More Best Practices
 -------------------
 Cover the full gamut of `Software Carpentry <https://software-carpentry.org>`_ best practices. And remember:
 
-* Style Guide adherence is not a personal critique.  It is designed to keep code maintainable.  Don’t be offended.  Everyone hates something in the style guide, but a common standard is necessary.
-* Google C++ style guide says Never Abbreviate. Cyclus has been historically bad at this point, but try to not add new abbreviations. (ie. ‘rsrc’ is an accepted abbreviation for ‘resource’)
 * Is there sufficient documentation?
-* If not, then do not merge it.
+* Style Guide adherence is not a personal critique.  It is designed to keep code maintainable.  Don’t be offended.  Everyone hates something in the style guide, but a common standard is necessary.
+* Google C++ style guide says Never Abbreviate. Cyclus has historical reasons for some abbreviations, but new abbeviations are strongly discouraged absent justification.
+
 
 Remember, if there is *anything* in the pull request that you don't understand, don't merge it!  Educate yourself using the API docs, ask questions, or request an explanation from the coder.
 
