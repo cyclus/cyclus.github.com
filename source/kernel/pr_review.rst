@@ -6,7 +6,7 @@ Guide for Reviewing Pull Requests
 
 |cyclus| depends on a community of contributors.  Bug fixes and new features
 (and archetypes!) are added by submitting a pull request on github.  The new
-code is then reviewed by by other |cyclus| developers to confirm that the code
+code is then reviewed by other |cyclus| developers to confirm that the code
 meets all requirements for style and stability before being added to the code
 base.  You do not need to be an expert  |cyclus| developer to contribute by
 reviewing pull requests! In fact, reviewing other people's code is a great way
