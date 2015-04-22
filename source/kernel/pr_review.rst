@@ -143,7 +143,7 @@ best practices. And remember:
   code maintainable.  Don’t be offended.  Everyone hates something in the style
   guide, but a common standard is necessary
 * Google C++ style guide says Never Abbreviate. Cyclus has historical reasons
-  for some abbreviations, but new abbeviations are strongly discouraged absent
+  for some abbreviations, but new abbreviations are strongly discouraged absent
   justification
 * Communally agreed upon departures from the existing style guide should be
   documented
