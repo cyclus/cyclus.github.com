@@ -62,7 +62,8 @@ Start Reviews by Looking for Hard Stops
 Start a review with the obvious stuff, so that if there are major problems then
 the coder can fix them before you do the detailed review:
 
-* Does it pass CI?
+* Does it pass
+  `continuous integration <http://cyclus-ci.fuelcycle.org/dashboard>`_ tests (CI)?
 * Does it build and pass tests on my machine? (ie. nosetests, cyclus_unit_tests)
 * Have new unit tests been added to confirm the functionality of the proposed
   change? 
