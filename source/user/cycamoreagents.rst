@@ -13,7 +13,11 @@ cycamore itself.
 
 .. cyclus-agent:: :cycamore:GrowthRegion
 
-.. cyclus-agent:: :cycamore:EnrichmentFacility
+.. cyclus-agent:: :cycamore:Enrichment
 
-.. cyclus-agent:: :cycamore:BatchReactor
+.. cyclus-agent:: :cycamore:FuelFab
+
+.. cyclus-agent:: :cycamore:Separations
+
+.. cyclus-agent:: :cycamore:Reactor
     :no-sep:

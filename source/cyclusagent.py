@@ -50,7 +50,7 @@ def ensure_tuple_or_str(x):
     if isinstance(x, STRING_TYPES):
         return x
     else:
-        return tuple(x)
+        return tuple(map(ensure_tuple_or_str, x))
 
 def type_to_str(t):
     t = ensure_tuple_or_str(t)
@@ -132,14 +132,26 @@ class CyclusAgent(Directive):
 
     skipstatevar = {'type', 'index', 'shape', 'doc', 'tooltip', 'default'}
 
+    def _sort_statevars(self, item):
+        key, val = item
+        vars = self.annotations.get('vars', {})
+        while not isinstance(val, Mapping):
+            # resolves aliasing
+            key = val
+            val = vars[key]
+        return val['index']
+
     def append_statevars(self):
         vars = OrderedDict(sorted(self.annotations.get('vars', {}).items(), 
-                           key=lambda x: x[1]['index']))
+                           key=self._sort_statevars))
         if len(vars) == 0:
             return
         lines = self.lines
         lines += ['', '**State Variables:**', '']
         for name, info in vars.items():
+            if not isinstance(info, Mapping):
+                lines += [':{0}: *aliases* {1}'.format(name, info), '']
+                continue
             # add name
             n = ":{0}: ``{1}``" .format(name, type_to_str(info['type']))
             if 'shape' in info:
