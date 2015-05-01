@@ -107,7 +107,7 @@ When releasing a |cyclus| project, make sure to do the following items in order:
       $ cd ~/cyclus/cycamore/release
       $ export CORE_DIR=~/cyclus/cyclus
       $ export CYCAMORE_DIR=~/cyclus/cycamore
-      $ ./make_release_notes.sh V.V.V X.X.X # V.V.V is the previous version, X.X.X is *this* version
+      $ ./make_release_notes.sh W.W.W X.X.X # W.W.W is the previous version, X.X.X is *this* version
 
    - add the release notes to ``cyclus.github.com/source/previous/`` with
      appropriate updates to ``index.rst`` in that directory
