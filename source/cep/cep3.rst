@@ -120,7 +120,7 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 
    - make sure all commits in the ``release`` branch also are in ``develop``
 
-#. Bump the version in ``cyclus/cyclus/version.h``, commit the change
+#. Bump the version in ``cyclus/src/version.h``, commit the change
 
 #. Perform maintainence tasks for this project
 
