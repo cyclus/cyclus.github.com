@@ -37,7 +37,6 @@ The projects which are not yet under the release managers purview are:
 
 Release Candidates (Tags & Branches)
 ====================================
-
 At the beginning of a release, a special branch for *each* project should be
 made off of ``develop`` named ``vX.X.X-release``. Note the *v* at the beginning. Each
 project should have the initial version of of it's release branch *tagged* as
@@ -164,7 +163,6 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 
 Maintainence Tasks
 ==================
-
 .. note::
 
     There is now the ``maintenence.sh`` utility in ``cycamore/release`` that
