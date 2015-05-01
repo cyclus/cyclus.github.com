@@ -90,33 +90,85 @@ Project Checklist
 =================
 When releasing a |cyclus| project, make sure to do the following items in order:
 
-1. Review **ALL** issues in the issue tracker, reassigning or closing them as needed.
-2. Ensure that all issues in this release's milestone have been closed.  Moving issues
-   to the next release's milestone is a perfectly valid strategy for completing this
-   milestone. 
-3. Perform maintainence tasks for this project, see below.
-4. Write and commit the release notes.
-5. Review the current state of documentation and make approriate updates.
-6. Bump the version (in code, documentation, etc.) and commit the change.
-7. If this is a release candidate, tag the release branch with a name that matches 
-   that of the release: 
+#. Initiate the release candidate process (see above)
 
-   * If this is the first release candidate, create a release branch called
-     'vX.X.X-release' off of develop.  Tag this branch with the name 'X.X.X-rc1'.
-   * If this is the second or later release candidate, tag the release branch 
-     with the name 'X.X.X-rcX'.
+#. Review **ALL** issues and pull requests, reassigning or closing them as needed.
 
-8. If this is the full and final release (and not a release candidate), 
-   merge the release branch into the master branch.  Next, tag the master branch 
-   with the name 'X.X.X'.  Finally, delete the release branch.
-9. Push the tags upstream
-10. Create a DOI. See :doc:`CEP4 <./cep4>` for details.
-11. Update release information on the website.
+#. Ensure that all issues/PRs in this release's milestone have been closed.
+   Moving them to the next release's milestone is a perfectly valid strategy for
+   completing this milestone.
+
+#. Draft release notes
+
+  - the ``cycamore/release/make_release_notes.sh`` utility will help provide a
+    template
+
+  .. code-block:: bash
+
+    $ cd ~/cyclus/cycamore/release
+    $ export CORE_DIR=~/cyclus/cyclus
+    $ export CYCAMORE_DIR=~/cyclus/cycamore
+    $ ./make_release_notes.sh V.V.V X.X.X # V.V.V is the previous version, X.X.X is *this* version
+
+  - add the release notes to ``cyclus.github.com/source/previous/`` with
+    appropriate updates to ``index.rst`` in that directory
+
+#. Review the current state of documentation and make approriate updates.
+
+#. Finish the release candidate process
+
+  - make sure all commits in the ``release`` branch also are in ``develop``
+
+#. Bump the version in ``cyclus/cyclus/version.h``, commit the change
+
+#. Perform maintainence tasks for this project
+
+  - they are described in detail below, *but*
+  
+  - the ``cycamore/release/maintenence.sh`` utility will do this automatically
+    for you
+
+  .. code-block:: bash
+
+    $ cd ~/cyclus/cycamore/release
+    $ export CORE_DIR=~/cyclus/cyclus
+    $ export CYCAMORE_DIR=~/cyclus/cycamore
+    $ export STUB_DIR=~/cyclus/cycstub
+    $ ./maintenence.sh X.X.X # X.X.X is *this* version
+
+#. Upload the conda packages
+
+  - the ``cycamore/release/upload_conda.sh`` utility will do this automatically
+    for you
+
+  .. code-block:: bash
+
+    $ cd ~/cyclus/cycamore/release
+    $ export CORE_DIR=~/cyclus/cyclus
+    $ export CYCAMORE_DIR=~/cyclus/cycamore
+    $ ./conda_upload.sh X.X.X # X.X.X is *this* version
+
+#. Update the ``master`` branch
+
+  - merge the ``release`` branch into ``master``
+  
+  - tag the master branch with the name 'X.X.X'
+
+  - push the master branch and tag upstream
+
+  - delete the release branch
+
+#. Create a DOI. See :doc:`CEP4 <./cep4>` for details.
+
+#. Update release information on the front page (``index.rst``) of the website.
 
 Maintainence Tasks
 ==================
-Each project may have associate maintenance tasks which may need to be performed at 
-least as often as every micro release.
+
+Each project may have associate maintenance tasks which may need to be performed
+at least as often as every micro release. Note that there is now the
+``maintenence.sh`` utility in ``cycamore/release`` that will automate this for
+you. The section remains here for posterity.
 
 |Cyclus|
 --------
