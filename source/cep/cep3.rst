@@ -75,15 +75,14 @@ Graphically,
     as well. However, it is the ultimate release manager's responsibility to
     make sure ``develop`` is kept up to date with the ``release`` branch.
 
-At the manager's discretion, a new candidate can be issued if sufficient
-progress is made on the release branch. Every time a new release candidate comes
-out the ``vX.X.X-release`` must be tagged with the name ``X.X.X-rcX``. A
-developer's list annoucement must accompany any new candidate, and there must be
-a 2 - 5 day period of time in between release candidates.
+If changes are made to the release branch, a new candidate must be issued after
+*2 - 5 days*. Every time a new release candidate comes out the ``vX.X.X-release``
+must be tagged with the name ``X.X.X-rcX``. A developer's list annoucement must
+accompany any new candidate.
 
-The release branch must be quiet and untouched for 2 - 5 days prior to the full
-release. When the full and final release happens, the ``vX.X.X-release`` branch
-is merged into ``master`` and then deleted. All commits in the
+The release branch must be quiet and untouched for *2 - 5 days prior* to the
+full release. When the full and final release happens, the ``vX.X.X-release``
+branch is merged into ``master`` and then deleted. All commits in the
 ``vX.X.X-release`` branch must have also been merged into the ``develop`` branch
 as they were accepted.
 
