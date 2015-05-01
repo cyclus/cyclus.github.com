@@ -91,13 +91,13 @@ Project Checklist
 =================
 When releasing a |cyclus| project, make sure to do the following items in order:
 
-#. Initiate the release candidate process (see above)
-
 #. Review **ALL** issues and pull requests, reassigning or closing them as needed.
 
 #. Ensure that all issues/PRs in this release's milestone have been closed.
    Moving them to the next release's milestone is a perfectly valid strategy for
    completing this milestone.
+
+#. Initiate the release candidate process (see above)
 
 #. Draft release notes
 
