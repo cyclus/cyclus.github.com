@@ -27,8 +27,7 @@ stable.)  The projects that are under the release manager's purview are:
 
 * `Cyclus`_ 
 * `Cycamore`_ 
-* `Cycstub`_ - copy the files from |cyclus| core's ``stub/`` dir into the 
-  cycstub's ``src/`` dir.
+* `Cycstub`_
 
 The projects which are not yet under the release managers purview are:
 
