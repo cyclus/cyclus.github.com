@@ -138,7 +138,7 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 #. Upload the conda packages
 
    - the ``upload_conda.sh`` utility in ``cycamore/release`` will do this
-    automatically for you
+     automatically for you
 
    .. code-block:: bash
 
@@ -147,7 +147,7 @@ When releasing a |cyclus| project, make sure to do the following items in order:
       $ export CYCAMORE_DIR=/path/to/cycamore
       $ ./conda_upload.sh X.X.X # X.X.X is *this* version
 
-#. Update the ``master`` branch
+#. Update the ``master`` branch of all projects
 
    - merge the ``release`` branch into ``master``
   
