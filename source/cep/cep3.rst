@@ -70,8 +70,10 @@ Graphically,
 .. note:: 
 
     Any commits merged into the release branch must *also* be merged into
-    ``develop``. Once a PR is accepted into the release branch, it is the
-    release manager's responsibility to also update ``develop``.
+    ``develop``. It is common practice for the release manager to request the
+    reviewer pull requests to merge the subject topical branch into ``develop``
+    as well. However, it is the ultimate release manager's responsibility to
+    make sure ``develop`` is kept up to date with the ``release`` branch.
 
 At the manager's discretion, a new candidate can be issued if sufficient
 progress is made on the release branch. Every time a new release candidate comes
