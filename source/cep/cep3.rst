@@ -3,8 +3,8 @@ CEP 3 - |Cyclus| Release Procedure
 
 :CEP: 3
 :Title: |Cyclus| Release Procedure
-:Last-Modified: 2014-09-11
-:Author: Anthony Scopatz
+:Last-Modified: 2015-05-01
+:Author: Anthony Scopatz and Matthew Gidden
 :Status: Accepted
 :Type: Process
 :Created: 2013-10-25
