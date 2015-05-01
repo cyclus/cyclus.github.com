@@ -100,63 +100,63 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 
 #. Draft release notes
 
-  - the ``cycamore/release/make_release_notes.sh`` utility will help provide a
-    template
+   - the ``make_release_notes.sh`` utility in ``cycamore/release`` will help
+     provide a template
 
-  .. code-block:: bash
+   .. code-block:: bash
 
-    $ cd ~/cyclus/cycamore/release
-    $ export CORE_DIR=~/cyclus/cyclus
-    $ export CYCAMORE_DIR=~/cyclus/cycamore
-    $ ./make_release_notes.sh V.V.V X.X.X # V.V.V is the previous version, X.X.X is *this* version
+      $ cd ~/cyclus/cycamore/release
+      $ export CORE_DIR=~/cyclus/cyclus
+      $ export CYCAMORE_DIR=~/cyclus/cycamore
+      $ ./make_release_notes.sh V.V.V X.X.X # V.V.V is the previous version, X.X.X is *this* version
 
-  - add the release notes to ``cyclus.github.com/source/previous/`` with
-    appropriate updates to ``index.rst`` in that directory
+   - add the release notes to ``cyclus.github.com/source/previous/`` with
+     appropriate updates to ``index.rst`` in that directory
 
 #. Review the current state of documentation and make approriate updates.
 
 #. Finish the release candidate process
 
-  - make sure all commits in the ``release`` branch also are in ``develop``
+   - make sure all commits in the ``release`` branch also are in ``develop``
 
 #. Bump the version in ``cyclus/cyclus/version.h``, commit the change
 
 #. Perform maintainence tasks for this project
 
-  - they are described in detail below, *but*
+   - they are described in detail below, *but*
   
-  - the ``cycamore/release/maintenence.sh`` utility will do this automatically
-    for you
+   - the ``maintenence.sh`` utility in ``cycamore/release`` will do this
+     automatically for you
 
-  .. code-block:: bash
+   .. code-block:: bash
 
-    $ cd ~/cyclus/cycamore/release
-    $ export CORE_DIR=~/cyclus/cyclus
-    $ export CYCAMORE_DIR=~/cyclus/cycamore
-    $ export STUB_DIR=~/cyclus/cycstub
-    $ ./maintenence.sh X.X.X # X.X.X is *this* version
+      $ cd ~/cyclus/cycamore/release
+      $ export CORE_DIR=~/cyclus/cyclus
+      $ export CYCAMORE_DIR=~/cyclus/cycamore
+      $ export STUB_DIR=~/cyclus/cycstub
+      $ ./maintenence.sh X.X.X # X.X.X is *this* version
 
 #. Upload the conda packages
 
-  - the ``cycamore/release/upload_conda.sh`` utility will do this automatically
-    for you
+   - the ``upload_conda.sh`` utility in ``cycamore/release`` will do this
+    automatically for you
 
-  .. code-block:: bash
+   .. code-block:: bash
 
-    $ cd ~/cyclus/cycamore/release
-    $ export CORE_DIR=~/cyclus/cyclus
-    $ export CYCAMORE_DIR=~/cyclus/cycamore
-    $ ./conda_upload.sh X.X.X # X.X.X is *this* version
+      $ cd ~/cyclus/cycamore/release
+      $ export CORE_DIR=~/cyclus/cyclus
+      $ export CYCAMORE_DIR=~/cyclus/cycamore
+      $ ./conda_upload.sh X.X.X # X.X.X is *this* version
 
 #. Update the ``master`` branch
 
-  - merge the ``release`` branch into ``master``
+   - merge the ``release`` branch into ``master``
   
-  - tag the master branch with the name 'X.X.X'
+   - tag the master branch with the name 'X.X.X'
 
-  - push the master branch and tag upstream
+   - push the master branch and tag upstream
 
-  - delete the release branch
+   - delete the release branch
 
 #. Create a DOI. See :doc:`CEP4 <./cep4>` for details.
 
@@ -165,10 +165,13 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 Maintainence Tasks
 ==================
 
+.. note::
+
+    There is now the ``maintenence.sh`` utility in ``cycamore/release`` that
+    will automate this for you. The section remains here for posterity.
+
 Each project may have associate maintenance tasks which may need to be performed
-at least as often as every micro release. Note that there is now the
-``maintenence.sh`` utility in ``cycamore/release`` that will automate this for
-you. The section remains here for posterity.
+at least as often as every micro release. 
 
 |Cyclus|
 --------
