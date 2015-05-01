@@ -51,15 +51,15 @@ Release candidates serve as an official proving ground for the release. Upon
 creation, an announcement should be made to the developer's list, and users of
 the project should be encouraged to test them out in order to bugs/other issues.
 
-Any required changes should be pull requested from a topical branch into the
-*release* branch.  After this has been accepted, the topical branch should be
+Any required changes must be pull requested from a topical branch into the
+*release* branch.  After this has been accepted, the topical branch must be
 merged with ``develop`` as well. The release branch is there so that development
 can continue on the ``develop`` branch while the release candidates (rc) are out
 and under review.  This is because otherwise any new developments would have to
 wait until post-release to be merged into ``develop`` to prevent them from
 accidentally getting released early.
 
-Everything that is in the release branch should also be part of ``develop``.
+Everything that is in the release branch must also be part of ``develop``.
 Graphically,
 
 .. figure:: cep-0003-1.svg
@@ -77,15 +77,15 @@ Graphically,
 
 At the manager's discretion, a new candidate can be issued if sufficient
 progress is made on the release branch. Every time a new release candidate comes
-out the ``vX.X.X-release`` should be tagged with the name ``X.X.X-rcX``. A
-developer's list annoucement should accompany any new candidate, and there
-should be a 2 - 5 day period of time in between release candidates.
+out the ``vX.X.X-release`` must be tagged with the name ``X.X.X-rcX``. A
+developer's list annoucement must accompany any new candidate, and there must be
+a 2 - 5 day period of time in between release candidates.
 
 The release branch must be quiet and untouched for 2 - 5 days prior to the full
 release. When the full and final release happens, the ``vX.X.X-release`` branch
 is merged into ``master`` and then deleted. All commits in the
-``vX.X.X-release`` branch should have also been merged into the ``develop``
-branch as they were accepted.
+``vX.X.X-release`` branch must have also been merged into the ``develop`` branch
+as they were accepted.
 
 Project Checklist
 =================
@@ -232,6 +232,10 @@ in this release to the database with the following command:
 
 where ``X.X.X`` is the version tag. This should alter the ``symbols.json`` 
 file.  Commit this and add it to the repo.  
+
+Cycamore
+--------
+No maintenence required.
 
 Cycstub
 --------
