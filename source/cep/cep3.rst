@@ -105,9 +105,9 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 
    .. code-block:: bash
 
-      $ cd ~/cyclus/cycamore/release
-      $ export CORE_DIR=~/cyclus/cyclus
-      $ export CYCAMORE_DIR=~/cyclus/cycamore
+      $ cd /path/to/cycamore/release
+      $ export CORE_DIR=/path/to/cyclus
+      $ export CYCAMORE_DIR=/path/to/cycamore
       $ ./make_release_notes.sh W.W.W X.X.X # W.W.W is the previous version, X.X.X is *this* version
 
    - add the release notes to ``cyclus.github.com/source/previous/`` with
@@ -130,10 +130,10 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 
    .. code-block:: bash
 
-      $ cd ~/cyclus/cycamore/release
-      $ export CORE_DIR=~/cyclus/cyclus
-      $ export CYCAMORE_DIR=~/cyclus/cycamore
-      $ export STUB_DIR=~/cyclus/cycstub
+      $ cd /path/to/cycamore/release
+      $ export CORE_DIR=/path/to/cyclus
+      $ export CYCAMORE_DIR=/path/to/cycamore
+      $ export STUB_DIR=/path/to/cycstub
       $ ./maintenence.sh X.X.X # X.X.X is *this* version
 
 #. Upload the conda packages
@@ -143,9 +143,9 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 
    .. code-block:: bash
 
-      $ cd ~/cyclus/cycamore/release
-      $ export CORE_DIR=~/cyclus/cyclus
-      $ export CYCAMORE_DIR=~/cyclus/cycamore
+      $ cd /path/to/cycamore/release
+      $ export CORE_DIR=/path/to/cyclus
+      $ export CYCAMORE_DIR=/path/to/cycamore
       $ ./conda_upload.sh X.X.X # X.X.X is *this* version
 
 #. Update the ``master`` branch
