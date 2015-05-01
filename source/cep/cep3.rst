@@ -35,27 +35,37 @@ The projects which are not yet under the release managers purview are:
 * `Cyclist`_ 
 * `CIclus`_
 
-Release Candidates & Branches
-=============================
-All projects should have a release candidate ('-rc1') that comes out 2 - 5 days
-prior to the scheduled release.  During this time, no changes should occur to 
-a special release branch ('vX.X.X-release').  
+Release Candidates Tags & Branches
+===================================
 
-The release branch is there so that development can continue on the 
-develop branch while the release candidates (rc) are out and under review.  
-This is because otherwise any new developments would have to wait until 
-post-release to be merged into develop to prevent them from accidentally 
-getting released early.    
+At the beginning of a release, a special branch for *each* project should be
+made off of develop named `vX.X.X-release`. Note the *v* at the beginning. Each
+project should have the initial version of of it's release branch *tagged* as
+`X.X.X-rc1`, the first release candidate.
 
-As such, the 'vX.X.X-release' branch should only exist while there are 
-release candidates out.  They are akin to a temporary second level of staging 
-to be used to keep master clean and safe.  As such, everything that is in this 
-branch should also be part of develop.  Graphically, 
+Release candidates serve as an official proving ground for the release. Upon
+creation, should be announced to the developer's list, and users of the project
+should be encouraged to test them out in order to bugs/other issues.
+
+Any required changes should be pull requested into the *release* branch.  The
+release branch is there so that development can continue on the develop branch
+while the release candidates (rc) are out and under review.  This is because
+otherwise any new developments would have to wait until post-release to be
+merged into develop to prevent them from accidentally getting released early. 
+
+Everything that is in the release branch should also be part of develop.
+Graphically,
 
 .. figure:: cep-0003-1.svg
     :align: center
 
     **Figure 1:** Branch hierarchy under release.
+
+.. warning:: 
+
+    Any commits merged into the release branch must *also* be merged into
+    develop. Once a PR is accepted into the release branch, it is the release
+    manager's responsibility to also update develop.
 
 Every time a new release candidate comes out the vX.X.X-release should be 
 tagged with the name 'X.X.X-rcX'.  There should be a 2 - 5 day period of time 
