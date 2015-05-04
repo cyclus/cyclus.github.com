@@ -32,7 +32,6 @@ stable.)  The projects that are under the release manager's purview are:
 The projects which are not yet under the release managers purview are:
 
 * `Cyclist`_ 
-* `CIclus`_
 
 Release Candidates (Tags & Branches)
 ====================================
@@ -87,6 +86,10 @@ as they were accepted.
 
 Project Checklist
 =================
+.. note::
+
+    Utility scripts for this process can be found in the `release`_ repository
+
 When releasing a |cyclus| project, make sure to do the following items in order:
 
 #. Review **ALL** issues and pull requests, reassigning or closing them as needed.
@@ -99,12 +102,12 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 
 #. Draft release notes
 
-   - the ``make_release_notes.sh`` utility in ``cycamore/release`` will help
+   - the ``make_release_notes.sh`` utility in ``release/utils`` will help
      provide a template
 
    .. code-block:: bash
 
-      $ cd /path/to/cycamore/release
+      $ cd /path/to/release/utils
       $ export CORE_DIR=/path/to/cyclus
       $ export CYCAMORE_DIR=/path/to/cycamore
       $ ./make_release_notes.sh W.W.W X.X.X # W.W.W is the previous version, X.X.X is *this* version
@@ -124,12 +127,12 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 
    - they are described in detail below, *but*
   
-   - the ``maintenence.sh`` utility in ``cycamore/release`` will do this
+   - the ``maintenence.sh`` utility in ``release/utils`` will do this
      automatically for you
 
    .. code-block:: bash
 
-      $ cd /path/to/cycamore/release
+      $ cd /path/to/release/utils
       $ export CORE_DIR=/path/to/cyclus
       $ export CYCAMORE_DIR=/path/to/cycamore
       $ export STUB_DIR=/path/to/cycstub
@@ -137,12 +140,12 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 
 #. Upload the conda packages
 
-   - the ``upload_conda.sh`` utility in ``cycamore/release`` will do this
+   - the ``upload_conda.sh`` utility in ``release/utils`` will do this
      automatically for you
 
    .. code-block:: bash
 
-      $ cd /path/to/cycamore/release
+      $ cd /path/to/release/utils
       $ export CORE_DIR=/path/to/cyclus
       $ export CYCAMORE_DIR=/path/to/cycamore
       $ ./conda_upload.sh X.X.X # X.X.X is *this* version
@@ -165,7 +168,7 @@ Maintainence Tasks
 ==================
 .. note::
 
-    There is now the ``maintenence.sh`` utility in ``cycamore/release`` that
+    There is now the ``maintenence.sh`` utility in ``release/utils`` that
     will automate this for you. The section remains here for posterity.
 
 Each project may have associate maintenance tasks which may need to be performed
@@ -253,5 +256,5 @@ This document is released under the CC-BY 3.0 license.
 .. _Cycamore: https://github.com/cyclus/cycamore
 .. _Cycstub: https://github.com/cyclus/cycstub
 .. _Cyclist: https://github.com/cyclus/cyclist2
-.. _CIclus: https://github.com/cyclus/ciclus
+.. _release: https://github.com/cyclus/release
 .. _the fused source directions here: https://code.google.com/p/googletest/wiki/V1_6_AdvancedGuide#Fusing_Google_Test_Source_Files
