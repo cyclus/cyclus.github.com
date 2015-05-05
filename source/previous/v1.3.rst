@@ -10,11 +10,19 @@ cyclus ecosystem!
 
 Major features
 ==============
-!--- TODO: Fill in major features --!
+
+- New facilities archetypes added
+  - Reactor
+  - FuelFab
+  - Separations
+  - Enrichment
+- Other facilities archetypes removed
+  - BatchReactor
+  - EnrichmentFacility
+
 
 Summary
 =======
-
 Since v1.2.0,
 
 * Cyclus: 308 commits resulting in  97 files changed, 6539 insertions(+), 1639 deletions(-)
