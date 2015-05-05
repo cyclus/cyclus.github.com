@@ -12,9 +12,16 @@ CEP 6 - Cyclus Pull Request Style Guide
 Abstract
 ========
 
-All accepted pull requests must have a reasonable description of their
-purpose. Requiring a consistent format across projects for each pull request
-description assists in their review and allows for certain summary automation.
+All accepted pull requests (PRs) must have a reasonable description of their
+purpose. Requiring a consistent format across projects for each PR
+description assists in their review and allows for certain summary automation. A
+specific use case regards the generation of release notes.
+
+Release notes require a summary of each major feature addition to the code base,
+each of which is required to go through a PR. If a consistent style
+guide is adopted that requires the notation of major features with a short
+summary, the reporting of each major feature can be both automated and remain
+true to the author's original description.
 
 Overview
 ========
@@ -24,13 +31,13 @@ requests. Having a uniform style will aide in the timely review of PRs as all
 reviewers can expect standard information. Furthermore, given a uniform style,
 automated tools can be developed that assist in other managerial tasks. 
 
-Github supports it's own version of a flavored markdown `syntax`_. That syntax
-is expected to be used in the body of each PR.
+Github supports its own version of a flavored markdown `syntax`_. That syntax is
+expected to be used in the body of each PR.
 
 Labels
 =======
 
-Every pull request must be assigned one label from the following set:
+Every PR must be assigned one label from the following set:
 
 - Major Feature
 - Minor Feature
@@ -75,7 +82,7 @@ Example
 -------
 
 The following provides an example of the raw markdown associated with an
-existing `pull request <https://github.com/cyclus/cyclus/pull/1127>`_::
+existing `PR <https://github.com/cyclus/cyclus/pull/1127>`_::
 
     Summary
     =======
@@ -106,7 +113,7 @@ through a module like `github3.py
 <https://github3py.readthedocs.org/en/master/>`_ in conjunction with a standard
 style can allow for the automation of otherwise repetitive and time consuming
 tasks. A chief use case is the generation of release notes. Specifically, if
-every pull request that enables a major and minor feature can be identified and
+every PR that enables a major and minor feature can be identified and
 a summary statement extracted, then the task of writing release notes becomes
 much simpler. This proposal enables such tools to be constructed and utilized.
 
