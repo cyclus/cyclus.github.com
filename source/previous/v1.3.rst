@@ -17,7 +17,7 @@ Kernel
 - Basic inventory policies added
 - Support for recursive containers in archetypes
 - Many new recursive containers added to sqlite backend
-- Tests run on macs!
+- Regression tests run on macs!
 - A MockSim interface for full simulation testing without input files
 - Added customizeable TimeSeries output for recording archetype-specific time
   series
@@ -39,7 +39,7 @@ Cycamore
 - Other facility archetypes removed
    - BatchReactor
    - EnrichmentFacility
-- tests work on macs!
+- Regresion tests run on macs!
 
 Summary
 =======
