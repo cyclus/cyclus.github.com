@@ -11,6 +11,28 @@ cyclus ecosystem!
 Major features
 ==============
 
+Kernel
+-------
+
+- ~3x speedups for recipe-based simulations
+- Basic inventory policies added
+- Support for recursive containers in archetypes
+- many new recursive containers added to sqlite backend
+- tests run on macs!
+- a MockSim interface for full simulation testing without input files
+- added customizeable TimeSeries output for recording archetype-specific time
+  series
+- added json-to-xml conversion capability
+- added new ResMap container
+- Decay added (via Pyne)! An input file flag can be set to
+  - never: never decay
+  - manual: archetypes must call the decay API manually
+  - lazy: materials are decayed as needed when their Material::comp function is
+    called
+
+Cycamore
+---------
+
 - New facilities archetypes added
   - Reactor
   - FuelFab
@@ -19,6 +41,7 @@ Major features
 - Other facilities archetypes removed
   - BatchReactor
   - EnrichmentFacility
+- tests work on macs!
 
 
 Summary
