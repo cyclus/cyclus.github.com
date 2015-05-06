@@ -111,6 +111,7 @@ When releasing a |cyclus| project, make sure to do the following items in order:
       $ cd /path/to/release/utils
       $ export CYCLUS_DIR=/path/to/cyclus
       $ export CYCAMORE_DIR=/path/to/cycamore
+      $ export CYMETRIC_DIR=/path/to/cymetric
       $ ./make_release_notes.sh W.W.W X.X.X # W.W.W is the previous version, X.X.X is *this* version
 
    - add the release notes to ``cyclus.github.com/source/previous/`` with
@@ -149,6 +150,7 @@ When releasing a |cyclus| project, make sure to do the following items in order:
       $ cd /path/to/release/utils
       $ export CYCLUS_DIR=/path/to/cyclus
       $ export CYCAMORE_DIR=/path/to/cycamore
+      $ export CYMETRIC_DIR=/path/to/cymetric
       $ ./conda_upload.sh X.X.X # X.X.X is *this* version
 
 #. Update the ``master`` branch of all projects
