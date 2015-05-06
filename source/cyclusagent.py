@@ -179,7 +179,7 @@ def buildsample(cpptype, schematype=None, uitype=None, names=None):
             names[0] = [name, None]
         if names[0][0] is not None:
             name = names[0][0]
-        itemname ='item' if names[0][1] is None else names[0][1]
+        itemname = 'item' if names[0][1] is None else names[0][1]
         keynames = 'key' if isinstance(cpptype[1], STRING_TYPES) else ['key']
         if names[1] is not None:
             keynames = names[1]
@@ -338,7 +338,7 @@ class CyclusAgent(Directive):
                     if l.strip() == '...':
                         l = previndent + l.strip()
                     self.lines.append(ind + '    ' + l)
-                    previndent = ' '*(len(l) - len(l.lstrip()))
+                    previndent = ' ' * (len(l) - len(l.lstrip()))
             self.lines.append('')
 
 
