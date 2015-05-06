@@ -39,7 +39,19 @@ Cycamore
 - Other facility archetypes removed
    - BatchReactor
    - EnrichmentFacility
-- Regresion tests run on macs!
+- Regression tests run on macs!
+
+Cymetric
+--------
+- First release for a new analysis and visualization tool for Cyclus simulation output
+- Command line tool and Python interface
+- Calculates metrics of user interest from a Cyclus database
+    - Writes metrics back to database 
+    - Simple for users to extend the suite of metrics 
+        - Designed so calculations can be based on dependencies (other metrics or root metrics)
+        - Uses pandas data types 
+    - Uses PyNE for nuclear data
+- Visualization available from the command line via matplotlib
 
 Summary
 =======
@@ -48,6 +60,8 @@ Since v1.2.0,
 * Cyclus: 308 commits resulting in  97 files changed, 6539 insertions(+), 1639 deletions(-)
 
 * Cycamore: 272 commits resulting in  67 files changed, 6077 insertions(+), 5912 deletions(-)
+
+* Cymetric: 1st release
 
 Contributors
 ============
