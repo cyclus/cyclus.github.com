@@ -28,6 +28,7 @@ stable.)  The projects that are under the release manager's purview are:
 * `Cyclus`_ 
 * `Cycamore`_ 
 * `Cycstub`_
+* `Cymetric`_
 
 The projects which are not yet under the release managers purview are:
 
@@ -176,9 +177,9 @@ at least as often as every micro release.
 
 |Cyclus|
 --------
-**Update Pyne:**  PyNE source code is included and shipped as part of |cyclus|. As pyne
+**Update Pyne:**  PyNE source code is included and shipped as part of |cyclus|. As PyNE
 evolves, we'll want to have our version evolve as well. Here are the steps to do so.
-These assume that in your HOME dir there are both the pyne and |cyclus| repos.  Remember 
+These assume that in your HOME dir there are both the PyNE and |cyclus| repos.  Remember 
 to check in the changes afterwards.
 
 .. code-block:: bash
@@ -188,7 +189,7 @@ to check in the changes afterwards.
     $ cp pyne.* ~/cyclus/src
     
 **Update Nuclear Data:** PyNE also provides a nuclear data library generator which we use for 
-our source data.  Occassionally, this needs to be updated as updates to pyne itself come out.
+our source data.  Occassionally, this needs to be updated as updates to PyNE itself come out.
 The command for generating |cyclus| specific nuclear data is as follows:
 
 .. code-block:: bash
@@ -205,7 +206,7 @@ Gtest's natural evolution cycle, please download the latest release of Google Te
 and follow `the fused source directions here`_.  If we go too long without doing this, 
 it could be very painful to update.
 
-**Verify & Update API Stability:** Since Cyclus v1.0 we promise API stability. 
+**Verify & Update API Stability:** Since |Cyclus| v1.0 we promise API stability. 
 Luckily, we have a tool for keeping track of this mostly automatically.  
 Every release please run the following command to verify that the release 
 branch is stable:
@@ -215,12 +216,12 @@ branch is stable:
     $ cd cyclus/release
     $ ./smbchk.py --update -t HEAD --no-save --check
 
-If cyclus only has API additions, it is considered stable and the command will 
-tell you so. If cyclus also has API deletions, then cyclus is considered 
+If |cyclus| only has API additions, it is considered stable and the command will 
+tell you so. If |cyclus| also has API deletions, then |cyclus| is considered 
 unstable and a diff of the symbols will be prinited. 
-**You cannot release cyclus if it is unstable!** Please post the diff to 
+**You cannot release |cyclus| if it is unstable!** Please post the diff to 
 either the mailing list or the issue tracker and work to resolve the removed
-symbols until it this command declares that cyclus is stable. It is 
+symbols until it this command declares that |cyclus| is stable. It is 
 probably best to do this prior to any release candidates if possible.
 
 Once stable and there are no more code changes to be made, add the symbols
@@ -240,13 +241,17 @@ No maintenence required.
 
 Cycstub
 --------
-Every release the relevant files from |cyclus| should be copied over to cyclus.
+Every release the relevant files from |cyclus| should be copied over to |cyclus|.
 Use the following BASH commands to do so:
 
 .. code-block:: bash
 
    $ cp ~/cyclus/tests/input/stub_example.xml ~/cycstub/input/example.xml && \
      cp ~/cyclus/stubs/stub_* ~/cycstub/src/
+
+Cymetric
+--------
+No maintenance required.
 
 Document History
 ================
@@ -255,6 +260,7 @@ This document is released under the CC-BY 3.0 license.
 .. _Cyclus: https://github.com/cyclus/cyclus
 .. _Cycamore: https://github.com/cyclus/cycamore
 .. _Cycstub: https://github.com/cyclus/cycstub
+.. _Cymetric: https://github.com/cyclus/cymetric
 .. _Cyclist: https://github.com/cyclus/cyclist2
 .. _release: https://github.com/cyclus/release
 .. _the fused source directions here: https://code.google.com/p/googletest/wiki/V1_6_AdvancedGuide#Fusing_Google_Test_Source_Files
