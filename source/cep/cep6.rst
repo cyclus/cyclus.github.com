@@ -12,71 +12,37 @@ CEP 6 - Cyclus Pull Request Style Guide
 Abstract
 ========
 
-All accepted pull requests (PRs) must have a reasonable description of their
-purpose. Requiring a consistent format across projects for each PR
-description assists in their review and allows for certain summary automation. A
-specific use case regards the generation of release notes.
+There is a strong motivation for summarizing and enumerating feature additions,
+bug fixes, and other changes to the code base. Through use of an agreed-upon
+format and style, tools for aggregating and categorizing changes can be
+developed. While this strategy may be applied to issues, this CEP is related to
+pull requests (PRs) only.
 
-Release notes require a summary of each major feature addition to the code base,
-each of which is required to go through a PR. If a consistent style
-guide is adopted that requires the notation of major features with a short
-summary, the reporting of each major feature can be both automated and remain
-true to the author's original description.
-
-Overview
-========
-
-The goal of this document is to define a minimum uniform style for pull
-requests. Having a uniform style will aide in the timely review of PRs as all
-reviewers can expect standard information. Furthermore, given a uniform style,
-automated tools can be developed that assist in other managerial tasks. 
-
-Github supports its own version of a flavored markdown `syntax`_. That syntax is
-expected to be used in the body of each PR.
+A canoncial class of top-level labels is proposed. The purpose of these labels
+is to broadly categorize additions to the code base. Then, a minimum style guide
+is proposed to provide a known, queryable structure to the body of each pull
+request.
 
 Labels
 =======
 
-Every PR must be assigned one label from the following set:
+Every PR must be assigned at least one label from the following set:
 
 - Major Feature
 - Minor Feature
 - Bug Fix
 - Other
 
-A PR must have one and only one of the above labels. It may have any number of
-other descriptive labels. A PR is considered blocked if it does not have one of
-the above labels.
+It may have any number of other descriptive labels. A PR is considered blocked
+if it does not have one of the above labels.
 
 Layout
 =======
 
-The body of every PR is expected to have three top-level sections:
+Any PR must have, at minimum, a succint summary of its associated changes. This
+summary must be present at the top of the PR body and must be followed by a new
+line. A PR is considered blocked if it does comply with this structure.
 
-- Summary
-- Detail (see below)
-- Related Issues
-
-Summary
--------
-
-Every PR must have a succinct summary of its associated changes. The summary may
-not be more than one sentence. The summary should be treated as if it were read
-as a line in the patch notes.
-
-Detail
-------
-
-For any *non-trivial* PR, a section explaining its purpose in more detail is
-required. A description should be provided of why the change is
-necessary. Discretion is provided to the reviewer of the PR if there is
-disagreement regarding the triviality of a PR.
-
-Related Issues
---------------
-
-All related issues should be listed. If the PR fixes an issue, that should be
-noted.
 
 Example
 -------
@@ -84,8 +50,6 @@ Example
 The following provides an example of the raw markdown associated with an
 existing `PR <https://github.com/cyclus/cyclus/pull/1127>`_::
 
-    Summary
-    =======
     Added simple buy and sell inventory policies
 
     Detail
@@ -117,6 +81,13 @@ every PR that enables a major and minor feature can be identified and
 a summary statement extracted, then the task of writing release notes becomes
 much simpler. This proposal enables such tools to be constructed and utilized.
 
+Backwards Compatability
+=======================
+
+Closed PRs are archival documents whereas a codebase is a living
+"document". Accordingly, while one would expect a code style guide to be
+applicable upon acceptance to the entire code base, this style guide to only be
+applicable to open PRs.
 
 Document History
 ================
