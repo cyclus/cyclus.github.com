@@ -9,7 +9,11 @@ Building the Cyclus website requires:
 
 3. `cyclus`_
 
-4. `Cloud Sphinx Theme <https://pythonhosted.org/cloud_sptheme/index.html>`_
+4. `cymetric <https://github.com/cyclus/cymetric>`_
+
+5. `cycamore <https://github.com/cyclus/cycamore>`_
+
+6. `Cloud Sphinx Theme <https://pythonhosted.org/cloud_sptheme/index.html>`_
 
 **NOTE:** The cloud package for Debian and Ubuntu is broken, so do not apt-get
 this. Please ``pip install cloud_sptheme``, ``easy_install cloud_sptheme``, or install from source instead.

@@ -66,5 +66,6 @@ Visualization & Analysis
 .. toctree::
     :maxdepth: 2
 
+    cymetric/index
     dbdoc
     analysis_usecases
