@@ -31,6 +31,7 @@ Every PR must be assigned at least one label from the following set:
 - Major Feature
 - Minor Feature
 - Bug Fix
+- Maintenance
 - Other
 
 A major feature is likely to be highlighted in subsequent release notes, whereas
