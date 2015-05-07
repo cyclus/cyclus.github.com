@@ -33,16 +33,20 @@ Every PR must be assigned at least one label from the following set:
 - Bug Fix
 - Other
 
+A major feature is likely to be highlighted in subsequent release notes, whereas
+a minor feature may either not be listed or listed separately.
+
 It may have any number of other descriptive labels. A PR is considered blocked
 if it does not have one of the above labels.
 
 Layout
 =======
 
-Any PR must have, at minimum, a succint summary of its associated changes. This
+Any PR must have, at minimum, a succinct summary of its associated changes. This
 summary must be present at the top of the PR body and must be followed by a new
 line. A PR is considered blocked if it does comply with this structure.
 
+Any additional structure, while clarifying, is optional.
 
 Example
 -------
@@ -87,7 +91,8 @@ Backwards Compatability
 Closed PRs are archival documents whereas a codebase is a living
 "document". Accordingly, while one would expect a code style guide to be
 applicable upon acceptance to the entire code base, this style guide to only be
-applicable to open PRs.
+applicable to open PRs. Closed PR text is not allowed to be updated
+again. Additional comments on closed PRs encouraged as they are needed.
 
 Document History
 ================
