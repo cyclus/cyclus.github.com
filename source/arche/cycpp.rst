@@ -144,6 +144,15 @@ contains a listing of all special keys and their meanings.
                  in using this variable, default 0.
     alias        The name of the state variable in the schema and input file.
                  If this is not present it defaults to the C++ variable name. 
+                 The alias may also be a nested list of strings that matches 
+                 the C++ template type. Each member of the hierarchy will 
+                 recieve the corresponding alias.  For example, a 
+                 ``[std::map, int, double]`` could be aliased by 
+                 ``['recipe', 'id', 'mass']``. For maps, an additional item
+                 tag is inserted. To also alias the item tag, make the top
+                 alias into a 2-element list, whose first string represents 
+                 the map and whose second string is the item alias, e.g.
+                 ``[['recipe', 'entry'], 'id', 'mass']``
     uilabel      The text string a UI will display as the name of this input on
                  the UI input form.
     uitype       The type of the input field in reference in a UI, 
