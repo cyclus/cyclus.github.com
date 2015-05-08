@@ -146,7 +146,7 @@ contains a listing of all special keys and their meanings.
                  If this is not present it defaults to the C++ variable name. 
                  The alias may also be a nested list of strings that matches 
                  the C++ template type. Each member of the hierarchy will 
-                 recieve the cooresponding alias.  For example, a 
+                 recieve the corresponding alias.  For example, a 
                  ``[std::map, int, double]`` could be aliased by 
                  ``['recipe', 'id', 'mass']``. For maps, an additional item
                  tag is inserted. To also alias the item tag, make the top
