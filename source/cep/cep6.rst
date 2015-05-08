@@ -91,7 +91,7 @@ every PR that enables a major and minor feature can be identified and
 a summary statement extracted, then the task of writing release notes becomes
 much simpler. This proposal enables such tools to be constructed and utilized.
 
-Backwards Compatability
+Backwards Compatibility
 =======================
 
 Closed PRs are archival documents whereas a codebase is a living
