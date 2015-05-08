@@ -138,7 +138,7 @@ When releasing a |cyclus| project, make sure to do the following items in order:
       $ export CYCLUS_DIR=/path/to/cyclus
       $ export CYCAMORE_DIR=/path/to/cycamore
       $ export CYCSTUB_DIR=/path/to/cycstub
-      $ ./maintenence.sh X.X.X # X.X.X is *this* version
+      $ ./maintenence.sh -r -v X.X.X # X.X.X is *this* version
 
 #. Upload the conda packages
 
