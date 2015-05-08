@@ -3,7 +3,7 @@ CEP 6 - |Cyclus| Pull Request Style Guide
 
 :CEP: 6
 :Title: |Cyclus| Pull Request Style Guide 
-:Last-Modified: 2015-05-04
+:Last-Modified: 2015-05-08
 :Author: Matthew Gidden
 :Status: Draft
 :Type: Process
@@ -97,8 +97,9 @@ Backwards Compatibility
 Closed PRs are archival documents whereas a codebase is a living
 "document". Accordingly, while one would expect a code style guide to be
 applicable upon acceptance to the entire code base, this style guide to only be
-applicable to open PRs. Closed PR text is not allowed to be updated
-again. Additional comments on closed PRs encouraged as they are needed.
+applicable to open PRs. Closed PR text cannot be edited such that it no longer
+complies with the document structure listed in the Layout section. Additional
+comments on closed PRs encouraged as they are needed.
 
 Document History
 ================
