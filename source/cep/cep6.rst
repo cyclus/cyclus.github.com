@@ -1,4 +1,4 @@
-CEP 6 - Cyclus Pull Request Style Guide 
+CEP 6 - |Cyclus| Pull Request Style Guide 
 **************************************************************
 
 :CEP: 6
@@ -28,17 +28,20 @@ Labels
 
 Every PR must be assigned at least one label from the following set:
 
-- Major Feature
-- Minor Feature
+- Feature - Release Notes
+- Feature
 - Bug Fix
 - Maintenance
 - Other
 
-A major feature is likely to be highlighted in subsequent release notes, whereas
-a minor feature may either not be listed or listed separately.
+While a PR may have any number of other descriptive labels, it is considered
+blocked if it does not have (at minimum) one of the above labels.
 
-It may have any number of other descriptive labels. A PR is considered blocked
-if it does not have one of the above labels.
+A PR may be labeled as `Feature - Release Notes` by either the author or
+reviewer. If there is a disagreement between the two parties, deference is given
+to the party who prefers the `Feature - Release Notes` tag. A PR with this label
+is provided candidacy for inclusion in the release notes (highlighting the
+feature addition) but does not guaranteed inclusion in the release notes.
 
 Layout
 =======
