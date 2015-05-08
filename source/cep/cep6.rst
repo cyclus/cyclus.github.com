@@ -41,7 +41,9 @@ A PR may be labeled as `Feature - Release Notes` by either the author or
 reviewer. If there is a disagreement between the two parties, deference is given
 to the party who prefers the `Feature - Release Notes` tag. A PR with this label
 is provided candidacy for inclusion in the release notes (highlighting the
-feature addition) but does not guaranteed inclusion in the release notes.
+feature addition) but does not guaranteed inclusion in the release notes. The
+release manager is provided deference in making the decision of what features to
+highlight in the release notes, per `CEP 3 <fuelcycle.org/cep/cep3.html>`_.
 
 Layout
 =======
