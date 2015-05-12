@@ -15,12 +15,8 @@ a very simple interim storage facility, named "Storage".  Ultimately, this
 facility will have the following characteristics, all definable by the user:
 
 * a fixed rate at which it can transfer material
-* a fixed storage capacity
 * a minimum time that material stays in storage
-* a limit on the fraction of each material that is fissile
-
-This archetype will have a custom table that records the average fraction of
-each material across its entire inventory at any point in time.
+* a fixed storage capacity
 
 This tutorial has the following steps:
 
@@ -28,17 +24,10 @@ This tutorial has the following steps:
     :maxdepth: 1
 
     setup
-    hello_world
     state_var
-    add_buffer
-
-
-1. Setup a new code repository based on Cycstub
-2. Making your first change by introducing Logging: "Hello World!"
-3. Adding state variables
-4. Adding a ResourceBuffer from the Toolkit
-5. Begin accepting material from the DRE
-6. Begin offering material to the DRE
-7. Add a delay between accepting and offering material
+    toolkit
+    input_files
+    cyclist
+    dre
 
 
