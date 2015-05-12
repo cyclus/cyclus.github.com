@@ -179,9 +179,9 @@ at least as often as every micro release.
 
 |Cyclus|
 --------
-**Update Pyne:**  PyNE source code is included and shipped as part of |cyclus|. As PyNE
+**Update PyNE:**  PyNE source code is included and shipped as part of |cyclus|. As pyne
 evolves, we'll want to have our version evolve as well. Here are the steps to do so.
-These assume that in your HOME dir there are both the PyNE and |cyclus| repos.  Remember 
+These assume that in your HOME dir there are both the pyne and |cyclus| repos.  Remember 
 to check in the changes afterwards.
 
 .. code-block:: bash
@@ -191,7 +191,7 @@ to check in the changes afterwards.
     $ cp pyne.* ~/cyclus/src
     
 **Update Nuclear Data:** PyNE also provides a nuclear data library generator which we use for 
-our source data.  Occassionally, this needs to be updated as updates to PyNE itself come out.
+our source data.  Occassionally, this needs to be updated as updates to pyne itself come out.
 The command for generating |cyclus| specific nuclear data is as follows:
 
 .. code-block:: bash
