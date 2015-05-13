@@ -49,6 +49,12 @@ Install the tutorial project
 
     $ ./install.py
 
+Run the unit tests
+
+.. code-block:: bash
+
+    $ Storage_unit_tests
+
 Make a new input file that is a copy of the test input file 
 
 .. code-block:: bash

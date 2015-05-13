@@ -50,11 +50,12 @@ stored and the maximum storage capacity.
 Build and Install the Modified Module
 ---------------------------------------
 
-To rebuild and reinstall this module, just issue the same command as before:
+To rebuild, reinstall, and test this module, just issue the same command as before:
 
 .. code-block:: bash
 
     $ ./install.py
+    $ Storage_unit_tests
 
 Modifying the Input File
 -------------------------

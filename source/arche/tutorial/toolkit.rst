@@ -1,5 +1,5 @@
-Adding a ResourceBuffer from the Toolkit
-========================================
+Adding Buffers and Policies from the Toolkit
+=================================================
 
 Cyclus has a growing Toolkit of standard patterns that can be used by
 archetype developers.  There are many advantages to using the Toolkit patterns
@@ -12,23 +12,29 @@ situations:
 
 Code reuse is a critical best practice in all software development.
 
-One of the Toolkit patterns is a ResourceBuff, providing a way to track an inventory of Resoure objects.
+One of the Toolkit patterns is a ``ResourceBuff``, providing a way to track an
+inventory of ``Resoure`` objects. There are also ``MatlBuyPolicy`` and
+``MatlSellPolicy`` for managing the trading of ``Material`` objects.
 
 In this lesson, we will:
 
-1. Add a ResourceBuff to use as an inventory of material
-2. Change our log information to show the info about the buffer
-3. Add a state variable for the user input to set the size of the buffer
+1. Add ResourceBuffs to use as material inventories
+2. Add Policies to manage the trading of material
+3. Add inventory management logic
+4. Change our log information to show the info about the inventories
 
-Add a ResourceBuff
--------------------
+Adding State Variables
+------------------------
 
-A ResourceBuff is available as a data type for another state variable, so we simply have to add the following:
+All state variable additions should be included in ``src/storage.h`` below the
+other state variables added previously.
+
+A ``ResourceBuff`` is available as a data type for another state variable, so we simply have to add the following:
 
 .. code-block:: c++
 
     /// this facility holds material in storage.
-    #pragma cyclus var
+    #pragma cyclus var {}
     cyclus::toolkit::ResourceBuff inventory;
 
 This creates a state variable named ``inventory`` that is based on the
@@ -36,12 +42,35 @@ This creates a state variable named ``inventory`` that is based on the
 handling by the preprocessor, so it will not appear in the schema and
 therefore will not appear in the Cycic UI either.
 
-Let's build, install and test this:
+Next, add two additional buffers
+
+.. code-block:: c++
+
+    /// an buffer for incoming material
+    #pragma cyclus var {}
+    cyclus::toolkit::ResourceBuff input;
+
+    /// an buffer for outgoing material
+    #pragma cyclus var {}
+    cyclus::toolkit::ResourceBuff output;
+
+Finally, add the policies. Policies do not require any special handling, and
+thus do not need a pragma
+
+.. code-block:: c++
+
+    /// a policy for requesting material
+    cyclus::toolkit::MatlBuyPolicy buy;
+
+    /// a policy for sending material
+    cyclus::toolkit::MatlSellPolicy sell;
+
+Check that everything works by installing and testing
 
 .. code-block:: bash
 
-    $ python install.py --prefix=../install
-    $ cyclus -v 2 input/example.xml
+    $ ./install.py
+    $ Storage_unit_tests
 
 
 Change the Log Output to Be About the Buffer
