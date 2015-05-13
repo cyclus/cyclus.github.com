@@ -54,44 +54,179 @@ Next, add two additional buffers
     #pragma cyclus var {}
     cyclus::toolkit::ResourceBuff output;
 
-Finally, add the policies. Policies do not require any special handling, and
+After, add the policies. Policies do not require any special handling, and
 thus do not need a pragma
 
 .. code-block:: c++
 
     /// a policy for requesting material
-    cyclus::toolkit::MatlBuyPolicy buy;
+    cyclus::toolkit::MatlBuyPolicy buy_policy;
 
     /// a policy for sending material
-    cyclus::toolkit::MatlSellPolicy sell;
+    cyclus::toolkit::MatlSellPolicy sell_policy;
 
-Check that everything works by installing and testing
+There needs to be a mechansim for keeping track of when materials enter the
+inventory. An appropriate data structure is a `queue
+<http://www.cplusplus.com/reference/queue/queue/>`_. Accordingly, add one
+
+.. code-block:: c++
+
+    /// queue for material entry times
+    std::queue<int> time_q;
+
+This requires another header file, so at the top of file, after ``#include
+<string>``, add another include
+
+.. code-block:: c++
+
+    #include <queue>
+
+Finally, check that everything works by installing and testing
 
 .. code-block:: bash
 
     $ ./install.py
     $ Storage_unit_tests
 
+Adding Implementation Logic
+-----------------------------
 
-Change the Log Output to Be About the Buffer
----------------------------------------------
+The goal of a storage facility is to ask for material up to some limit, store it
+for some amount of time, and then send it on to any interested parties. This can
+be implemented in Cyclus by utilizing the Toolkit objects stated above. A
+concept of material flow through the facility is shown below.
 
-Now that we have some interesting data, let's change our log message to report
-things about that data.  In particular, we will plot the quantity of material
-in the buffer and the remaining space in the buffer.
+.. figure:: storage_diagram.svg
+    :width: 50 %
+    :align: center
 
-First, remove the LOG from the ``Tick()`` method that wrote "Hello".
+    **Figure:** Storage Material Flow
 
-Then change the LOG in the ``Tock()`` to be:
+Connecting Buffers and Policies
+++++++++++++++++++++++++++++++++
+
+In order to utilize policies, they must be connected to their respective
+buffers. The storage facility would like them always connected; accordingly,
+that operation should happen whenever the facility enters a simulation. The
+kernel will let agents know that they are entering a simulation via the
+``EnterNotify()`` function.
+
+Add the following to ``src/storage.h`` before the ``Tick()`` function
 
 .. code-block:: c++
 
-    LOG(cyclus::LEV_INFO1, "tutorial_storage") << "The current inventory is " << inventory.quantity() 
-                                               << " kg of material with " << inventory.space()
-                                               << " kg of space remaining.";
+    /// set up policies and buffers
+    virtual void EnterNotify();
 
-Notice tht this uses the built in ``quantity()`` and ``space()`` methods of a
-ResourceBuff object.
+And add the following to ``src/storage.cc`` before the ``Tick()`` function
+
+.. code-block:: c++
+
+    void Storage::EnterNotify() {
+      cyclus::Facility::EnterNotify(); // call base function first
+      buy_policy.Init(this, &input, std::string("input")).Set(incommod).Start();
+      sell_policy.Init(this, &output, std::string("output")).Set(outcommod).Start(); 
+    }
+
+Buffer Transfer Logic
+++++++++++++++++++++++++++++++++
+
+The buy and sell policies will automatically fill and empty the input and output
+buffers, respectively. The job of the ``Storage`` archetype developer is to
+determine and implement the logic related to transfering material between these
+buffers and the middle inventory buffer. Two rules govern buffer transfer logic
+in this model:
+
+1. All material in the input buffer is transfered to the inventory buffer
+2. Material in the inventory buffer that has been stored for long enough is
+   transferred to the output buffer
+
+Because the input buffer transfer should occur *after* the DRE, it must happen
+in the ``Tock()`` method. Similarly, because the output buffer transfer should
+occur *before* the DRE, it must happen in the ``Tick()`` method. For each
+transfer, care must be taken to update the ``time_q`` queue appropriately.
+
+The input buffer transfer requires the following operation for every object in
+the buffer:
+
+1. *Pop* the object from the input buffer
+2. *Push* the object to the inventory buffer
+3. *Push* the current time to the ``time_q``
+
+In order to implement this, replace the current ``Tock()`` implementation in
+``src/storage.cc`` with
+
+.. code-block:: c++
+
+    void Storage::Tock() {
+      int t = context()->time();
+      while (!input.empty()) {
+        inventory.Push(input.Pop());
+        time_q.push(t);
+      }
+    }
+
+The output buffer transfer requires the following operation until the first
+condition is not met:
+
+1. Check if enough time has passed since the time at the front of ``time_q``
+   *and* the inventory is not empty. If so
+2. *Pop* an object from the inventory buffer
+3. *Push* that object to the output buffer
+4. *Pop* an time from the  ``time_q``
+
+In order to implement this, replace the current ``Tick()`` implementation in
+``src/storage.cc`` with
+
+.. code-block:: c++
+
+    void Storage::Tick() {
+      int finished_storing = context()->time() - storage_time;
+      while (!inventory.Empty() && time_q.front() <= finished_storing) {
+        output.Push(inventory.Pop());
+   	time_q.pop();
+      }     
+    }
+
+
+Add Some Logging
+---------------------------------------------
+
+Now that all of the required logic is there, it would be nice to know some
+information about what is happening to a facility during a simulation. This is
+accomplished in Cyclus through :ref:`logging`, which is implemented as a stream
+operation.
+
+Information about the current inventory can be added by updating the ``Tock()``
+function (after any pushing/popping) with
+
+.. code-block:: c++
+
+    LOG(cyclus::LEV_INFO1, "tutorial_storage") << "The current inventory is " << inventory.quantity() + output.quantity()
+                                               << " kg of material.";
+
+After updating the function should look something like 
+
+.. code-block:: c++
+
+    void Storage::Tock() {
+      int t = context()->time();
+      while (!input.empty()) {
+        inventory.Push(input.Pop());
+        time_q.push(t);
+      }
+
+      LOG(cyclus::LEV_INFO1, "storage") << "The total inventory at time " 
+                                        << t << " is " 
+                                        << inventory.quantity() + output.quantity()
+                                        << " kg.";
+    }
+
+Notice that this uses the built in ``quantity()`` method of a ResourceBuff
+object and that both the ``inventory`` and ``output`` buffers are queried. While
+the implementation logic requires multiple buffers, the model assumes the
+facility acts as a single cohesive unit.
+
 
 Let's build, install and test this:
 
@@ -152,12 +287,13 @@ no way to specify it in the input.  We can do this by adding another state varia
 
 .. code-block:: c++
 
-    /// max inventory size
-    #pragma cyclus var {'doc': 'Total quantity of material that can be stored.', \
-                        'tooltip': 'Storage facility size', \
-                        'units': 'kg', \
-                        'uilabel': 'Inventory Size' }
-    double max_inv_size;
+    #pragma cyclus var { \
+      'doc': 'Maximum storage capacity (including all material in the facility)', \
+      'tooltip': 'Maximum storage capacity', \
+      'units': 'kg', \
+      'uilabel': 'Maximum Storage Capacity' \
+    }
+    double capacity;
 
 As a special (read, undocumented) feature of a ResourceBuff, you also use the
 pragma to initialize its size from another state variable.  Change the pragma
