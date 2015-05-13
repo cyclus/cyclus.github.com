@@ -11,7 +11,7 @@ In this lesson, we will:
 Follow the Hello Cyclus! Instructions
 ---------------------------------------------------
 
-Follow all of the steps of our :ref:`hello_world`.
+Follow all of the steps of :ref:`hello_world`.
 
 Make a Storage Facility
 ------------------------------------------
