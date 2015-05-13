@@ -209,8 +209,8 @@ And add the following to ``src/storage.cc`` before the ``Tick()`` function
 
     void Storage::EnterNotify() {
       cyclus::Facility::EnterNotify(); // call base function first
-      buy_policy.Init(this, &input, std::string("input")).Set(incommod).Start();
-      sell_policy.Init(this, &output, std::string("output")).Set(outcommod).Start(); 
+      buy_policy.Init(this, &input, std::string("input"), throughput).Set(incommod).Start();
+      sell_policy.Init(this, &output, std::string("output"), throughput).Set(outcommod).Start(); 
     }
 
 Buffer Transfer Logic
@@ -397,12 +397,11 @@ To see the logging output, build and rerun the simulation
     Output location: cyclus.sqlite
     Simulation ID: 9f15b93c-9ab2-49bb-a14f-fef872e64ce8
 
-
-Add a State Variable to Define the Size of the ResBuf
+Add a State Variable to Define Storage Capcity
 -------------------------------------------------------------
 
-You will note that the space remaining is a very large number and that we have
-no way to specify it in the input.  We can do this by adding another state variable:
+A natural extension for the current storage facility implementation is to have a
+maximum storage capacity. 
 
 .. code-block:: c++
 
