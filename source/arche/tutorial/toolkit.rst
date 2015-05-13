@@ -297,8 +297,10 @@ function (after any pushing/popping) with
 
 .. code-block:: c++
 
-    LOG(cyclus::LEV_INFO1, "tutorial_storage") << "The current inventory is " << inventory.quantity() + output.quantity()
-                                               << " kg of material.";
+    LOG(cyclus::LEV_INFO1, "storage") << "The total inventory at time " 
+                                      << t << " is " 
+                                      << inventory.quantity() + output.quantity()
+                                      << " kg.";
 
 After updating the function should look something like 
 
@@ -321,6 +323,31 @@ Notice that this uses the built in ``quantity()`` method of a ResBuf
 object and that both the ``inventory`` and ``output`` buffers are queried. While
 the implementation logic requires multiple buffers, the model assumes the
 facility acts as a single cohesive unit.
+
+You can also add information about the quantity of material that will be
+requested and offered. Since this information is important to know *before* the
+DRE, it goes in the ``Tick()``
+
+.. code-block:: c++
+
+    LOG(cyclus::LEV_INFO1, "storage") << "Quantity to be requested: " << buy_policy.TotalQty() << " kg.";
+    LOG(cyclus::LEV_INFO1, "storage") << "Quantity to be offered: " << sell_policy.Limit() << " kg.";
+
+After updating the function should look something like 
+
+.. code-block:: c++
+
+    void Storage::Tick() {
+      int finished_storing = context()->time() - storage_time;
+      while (!inventory.empty() && time_q.front() <= finished_storing) {
+        output.Push(inventory.Pop());
+   	time_q.pop();
+      }
+     
+      LOG(cyclus::LEV_INFO1, "storage") << "Quantity to be requested: " << buy_policy.TotalQty() << " kg.";
+      LOG(cyclus::LEV_INFO1, "storage") << "Quantity to be offered: " << sell_policy.Limit() << " kg.";
+    }
+
 
 To see the logging output, build and rerun the simulation
 
@@ -380,18 +407,38 @@ To see the logging output, build and rerun the simulation
     Experimental Warning: ResBuf is experimental and its API may be subject to change
     Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
     Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
-    INFO1(core  ):Simulation set to run from start=0 to end=10
-    INFO1(core  ):Beginning simulation
-    INFO1(storag):The total inventory at time 0 is 0 kg of material.
-    INFO1(storag):The total inventory at time 1 is 0 kg of material.
-    INFO1(storag):The total inventory at time 2 is 0 kg of material.
-    INFO1(storag):The total inventory at time 3 is 0 kg of material.
-    INFO1(storag):The total inventory at time 4 is 0 kg of material.
-    INFO1(storag):The total inventory at time 5 is 0 kg of material.
-    INFO1(storag):The total inventory at time 6 is 0 kg of material.
-    INFO1(storag):The total inventory at time 7 is 0 kg of material.
-    INFO1(storag):The total inventory at time 8 is 0 kg of material.
-    INFO1(storag):The total inventory at time 9 is 0 kg of material.
+     INFO1(core  ):Simulation set to run from start=0 to end=10
+     INFO1(core  ):Beginning simulation
+     INFO1(storag):Quantity to be requested: 10 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 0 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 10 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 1 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 10 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 2 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 10 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 3 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 10 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 4 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 10 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 5 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 10 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 6 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 10 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 7 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 10 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 8 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 10 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 9 is 0 kg of material.
 
     Status: Cyclus run successful!
     Output location: cyclus.sqlite
@@ -401,7 +448,9 @@ Add a State Variable to Define Storage Capcity
 -------------------------------------------------------------
 
 A natural extension for the current storage facility implementation is to have a
-maximum storage capacity. 
+maximum storage capacity. To do so, first add a capacity state variable. If you
+still want the input file to work, you have to provide a ``default`` key in the
+pragma data structure. A sufficiently large value will do.
 
 .. code-block:: c++
 
@@ -409,73 +458,160 @@ maximum storage capacity.
       'doc': 'Maximum storage capacity (including all material in the facility)', \
       'tooltip': 'Maximum storage capacity', \
       'units': 'kg', \
+      'default': 1e200, \
       'uilabel': 'Maximum Storage Capacity' \
     }
     double capacity;
+    
+The required implementation is slightly nontrivial. The goal of adding a capcity
+member is to guarantee that the amount of material in the facility never exceeds
+a certain value. The only way for material to enter the facility is through the
+``input`` ResBuff via the ``buy_policy``. The ``MatlBuyPolicy`` sets a maximum
+buy amount based on both its ``throughput`` and the ``capacity`` of the
+connected ``ResBuf``. Accordingly, you can update the ``input`` buffer's
+capacity before the DRE occurs to achieve this behavior.
 
-As a special (read, undocumented) feature of a ResBuf, you also use the
-pragma to initialize its size from another state variable.  Change the pragma
-for the ResourceBuf to be:
+To do so, add the following line to the end of the ``Tick()`` function, which
+update's ``input``'s capacity through the ``ResBuf`` ``capacity()`` API
 
 .. code-block:: c++
 
-    #pragma cyclus var {'capacity' : 'max_inv_size'}
-    
+    // only allow requests up to the storage capacity 
+    input.capacity(capacity - inventory.quantity() - output.quantity());
 
-Finally, we need to change our sample input file to include the additional
-state variable.  Insert the following element into the
-``<Tutorial_storageFacility>`` element:
+So the full ``Tick()`` function now looks like
+
+.. code-block:: c++
+
+    void Storage::Tick() {
+      int finished_storing = context()->time() - storage_time;
+      while (!inventory.empty() && time_q.front() <= finished_storing) {
+        output.Push(inventory.Pop());
+   	time_q.pop();
+      }
+
+      // only allow requests up to the storage capacity 
+      input.capacity(capacity - inventory.quantity() - output.quantity());
+     
+      LOG(cyclus::LEV_INFO1, "storage") << "Quantity to be requested: " << buy_policy.TotalQty() << " kg.";
+      LOG(cyclus::LEV_INFO1, "storage") << "Quantity to be offered: " << sell_policy.Limit() << " kg.";
+    }
+
+
+Build and Test
+++++++++++++++++++++++++++++++++
+
+Same as it ever was
+
+.. code-block:: console
+
+    $ ./install.py
+    $ Storage_unit_tests
+
+Update Input File and Run
+++++++++++++++++++++++++++++++++
+
+You can test that your new capacity capability works by adding the following to
+the end of the `Storage`'s `config` block in `input/storage.xml`
 
 .. code-block:: xml
 
-     <max_inv_size>10000</max_inv_size>
+     <capacity>8</capacity>
+
+Note that this capacity is smaller than the throughput! What do you think you
+will see in the output logs?
 
 Let's build, install and try it:
 
 .. code-block:: console
 
-    $ python install.py --prefix=../install
-    $ cyclus -v 2 input/example.xml
-		 :                                                               
-	     .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
-	   CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)  
-	   CCCCCCCCCCCCCl       __O|/O___O|/O_OO|/O__O|/O__O|/O____________O|/O__
-	CCCCCCf     iCCCLCC     /////////////////////////////////////////////////
-	iCCCt  ;;;;;.  CCCC                                                      
-       CCCC  ;;;;;;;;;. CClL.                          c                         
-      CCCC ,;;       ;;: CCCC  ;                   : CCCCi                       
-       CCC ;;         ;;  CC   ;;:                CCC`   `C;                     
-     lCCC ;;              CCCC  ;;;:             :CC .;;. C;   ;    :   ;  :;;   
-     CCCC ;.              CCCC    ;;;,           CC ;    ; Ci  ;    :   ;  :  ;  
-      iCC :;               CC       ;;;,        ;C ;       CC  ;    :   ; .      
-     CCCi ;;               CCC        ;;;.      .C ;       tf  ;    :   ;  ;.    
-     CCC  ;;               CCC          ;;;;;;; fC :       lC  ;    :   ;    ;:  
-      iCf ;;               CC         :;;:      tC ;       CC  ;    :   ;     ;  
-     fCCC :;              LCCf      ;;;:         LC :.  ,: C   ;    ;   ; ;   ;  
-     CCCC  ;;             CCCC    ;;;:           CCi `;;` CC.  ;;;; :;.;.  ; ,;  
-       CCl ;;             CC    ;;;;              CCC    CCL                     
-      tCCC  ;;        ;; CCCL  ;;;                  tCCCCC.                      
-       CCCC  ;;     :;; CCCCf  ;                     ,L                          
-	lCCC   ;;;;;;  CCCL                                                      
-	CCCCCC  :;;  fCCCCC                                                      
-	 . CCCC     CCCC .                                                       
-	  .CCCCCCCCCCCCCi                                                        
-	     iCCCCCLCf                                                           
-	      .  C. ,                                                            
-		 :                                                               
-    INFO1(core  ):Simulation set to run from start=0 to end=10
-    INFO1(core  ):Beginning simulation
-    INFO1(tutori):The current inventory is 0 kg of material with 10000 kg of space remaining.
-    INFO1(tutori):The current inventory is 0 kg of material with 10000 kg of space remaining.
-    INFO1(tutori):The current inventory is 0 kg of material with 10000 kg of space remaining.
-    INFO1(tutori):The current inventory is 0 kg of material with 10000 kg of space remaining.
-    INFO1(tutori):The current inventory is 0 kg of material with 10000 kg of space remaining.
-    INFO1(tutori):The current inventory is 0 kg of material with 10000 kg of space remaining.
-    INFO1(tutori):The current inventory is 0 kg of material with 10000 kg of space remaining.
-    INFO1(tutori):The current inventory is 0 kg of material with 10000 kg of space remaining.
-    INFO1(tutori):The current inventory is 0 kg of material with 10000 kg of space remaining.
-    INFO1(tutori):The current inventory is 0 kg of material with 10000 kg of space remaining.
+    $ ./install.py
+    $ cyclus -v 2 input/storage.xml
+                  :                                                               
+              .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
+            CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)  
+            CCCCCCCCCCCCCl       __O|/O___O|/O_OO|/O__O|/O__O|/O____________O|/O__
+         CCCCCCf     iCCCLCC     /////////////////////////////////////////////////
+         iCCCt  ;;;;;.  CCCC                                                      
+        CCCC  ;;;;;;;;;. CClL.                          c                         
+       CCCC ,;;       ;;: CCCC  ;                   : CCCCi                       
+        CCC ;;         ;;  CC   ;;:                CCC`   `C;                     
+      lCCC ;;              CCCC  ;;;:             :CC .;;. C;   ;    :   ;  :;;   
+      CCCC ;.              CCCC    ;;;,           CC ;    ; Ci  ;    :   ;  :  ;  
+       iCC :;               CC       ;;;,        ;C ;       CC  ;    :   ; .      
+      CCCi ;;               CCC        ;;;.      .C ;       tf  ;    :   ;  ;.    
+      CCC  ;;               CCC          ;;;;;;; fC :       lC  ;    :   ;    ;:  
+       iCf ;;               CC         :;;:      tC ;       CC  ;    :   ;     ;  
+      fCCC :;              LCCf      ;;;:         LC :.  ,: C   ;    ;   ; ;   ;  
+      CCCC  ;;             CCCC    ;;;:           CCi `;;` CC.  ;;;; :;.;.  ; ,;  
+        CCl ;;             CC    ;;;;              CCC    CCL                     
+       tCCC  ;;        ;; CCCL  ;;;                  tCCCCC.                      
+        CCCC  ;;     :;; CCCCf  ;                     ,L                          
+         lCCC   ;;;;;;  CCCL                                                      
+         CCCCCC  :;;  fCCCCC                                                      
+          . CCCC     CCCC .                                                       
+           .CCCCCCCCCCCCCi                                                        
+              iCCCCCLCf                                                           
+               .  C. ,                                                            
+                  :                                                               
+    Experimental Warning: ResBuf is experimental and its API may be subject to change
+    Experimental Warning: ResBuf is experimental and its API may be subject to change
+    Experimental Warning: ResBuf is experimental and its API may be subject to change
+    Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+    Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+    Experimental Warning: ResBuf is experimental and its API may be subject to change
+    Experimental Warning: ResBuf is experimental and its API may be subject to change
+    Experimental Warning: ResBuf is experimental and its API may be subject to change
+    Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+    Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+    Experimental Warning: ResBuf is experimental and its API may be subject to change
+    Experimental Warning: ResBuf is experimental and its API may be subject to change
+    Experimental Warning: ResBuf is experimental and its API may be subject to change
+    Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+    Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+    Experimental Warning: ResBuf is experimental and its API may be subject to change
+    Experimental Warning: ResBuf is experimental and its API may be subject to change
+    Experimental Warning: ResBuf is experimental and its API may be subject to change
+    Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+    Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+    Experimental Warning: ResBuf is experimental and its API may be subject to change
+    Experimental Warning: ResBuf is experimental and its API may be subject to change
+    Experimental Warning: ResBuf is experimental and its API may be subject to change
+    Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+    Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+     INFO1(core  ):Simulation set to run from start=0 to end=10
+     INFO1(core  ):Beginning simulation
+     INFO1(storag):Quantity to be requested: 8 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 0 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 8 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 1 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 8 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 2 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 8 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 3 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 8 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 4 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 8 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 5 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 8 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 6 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 8 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 7 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 8 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 8 is 0 kg of material.
+     INFO1(storag):Quantity to be requested: 8 kg.
+     INFO1(storag):Quantity to be offered: 0 kg.
+     INFO1(storag):The total inventory at time 9 is 0 kg of material.
 
     Status: Cyclus run successful!
     Output location: cyclus.sqlite
-    Simulation ID: 7bf4a93e-e719-41d3-a468-9e596e725529
+    Simulation ID: 9f15b93c-9ab2-49bb-a14f-fef872e64ce8
