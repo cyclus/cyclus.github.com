@@ -13,6 +13,7 @@ import re
 import time
 import warnings
 import subprocess
+import xml.dom.minidom
 from collections import OrderedDict, Mapping, Sequence
 
 try:
@@ -84,6 +85,142 @@ def nicestr(x):
     else:
         newx = str(x)
     return newx
+
+def prepare_type(cpptype, othertype):
+    """Updates othertype to conform to the length of cpptype using None's.
+    """
+    if not isinstance(cpptype, STRING_TYPES):
+        if isinstance(othertype, STRING_TYPES):
+            othertype = [othertype]
+
+        if othertype is None:
+            othertype = [None] * len(cpptype)
+        elif len(othertype) < len(cpptype):
+            othertype.extend([None] * (len(cpptype) - len(othertype)))
+        return othertype
+    else:
+        return othertype
+
+PRIMITIVES = {'bool', 'int', 'float', 'double', 'std::string', 'cyclus::Blob',
+              'boost::uuids::uuid', }
+
+alltypes = frozenset(['anyType', 'anySimpleType', 'string', 'boolean', 'decimal',
+                      'float', 'double', 'duration', 'dateTime', 'time', 'date',
+                      'gYearMonth', 'gYear', 'gMonthDay', 'gDay', 'gMonth',
+                      'hexBinary', 'base64Binary', 'anyURI', 'QName', 'NOTATION',
+                      'normalizedString', 'token', 'language', 'NMTOKEN',
+                      'NMTOKENS', 'Name', 'NCName', 'ID', 'IDREF', 'IDREFS',
+                      'ENTITY', 'ENTITIES', 'integer', 'nonPositiveInteger',
+                      'negativeInteger', 'long', 'int', 'short', 'byte',
+                      'nonNegativeInteger', 'unsignedLong', 'unsignedInt',
+                      'unsignedShort', 'unsignedByte', 'positiveInteger'])
+
+default_types = {
+    # Primitive types
+    'bool': 'boolean',
+    'std::string': 'string',
+    'int': 'int',
+    'float': 'float',
+    'double': 'double',
+    'cyclus::Blob': 'string',
+    'boost::uuids::uuid': 'token',
+    # UI types
+    'nuclide': 'string',
+    'commodity': None, 
+    'incommodity': None, 
+    'outcommodity': None, 
+    'range': None, 
+    'combobox': None, 
+    'facility': None, 
+    'prototype': None, 
+    'recipe': None,
+    'none': None,
+    None: None,
+    '': None,
+    }
+
+def _type(cpp, given=None):
+    """Finds a schema type for a C++ type with a possible type given."""
+    if given is not None:
+        if given in alltypes:
+            return given
+        elif given in default_types:
+            return default_types[given] or default_types[cpp]
+        msg = ("Note that {0!r} is not a valid XML schema data type, see "
+               "http://www.w3.org/TR/xmlschema-2/ for more information.")
+        raise TypeError(msg.format(given))
+    return default_types[cpp]
+
+def buildsample(cpptype, schematype=None, uitype=None, names=None):
+    schematype = prepare_type(cpptype, schematype)
+    uitype = prepare_type(cpptype, uitype)
+    names = prepare_type(cpptype, names)
+
+    impl = ''
+    t = cpptype if isinstance(cpptype, STRING_TYPES) else cpptype[0]
+    if t in PRIMITIVES:
+        name = 'val'
+        if names is not None:
+            name = names
+        d_type = _type(t, schematype or uitype)
+        impl += '<{0}>[{1}]</{0}>'.format(name, d_type)
+    elif t in ['std::list', 'std::set', 'std::vector']:
+        name = 'list' if names[0] is None else names[0]
+        impl += '<{0}>'.format(name)
+        impl += buildsample(cpptype[1], schematype[1], uitype[1], names[1])
+        impl += buildsample(cpptype[1], schematype[1], uitype[1], names[1])
+        impl += '...'
+        impl += '</{0}>'.format(name)
+    elif t == 'std::map':
+        name = 'map'
+        if isinstance(names[0], STRING_TYPES):
+            names[0] = [names[0], None]
+        elif names[0] is None:
+            names[0] = [name, None]
+        if names[0][0] is not None:
+            name = names[0][0]
+        itemname = 'item' if names[0][1] is None else names[0][1]
+        keynames = 'key' if isinstance(cpptype[1], STRING_TYPES) else ['key']
+        if names[1] is not None:
+            keynames = names[1]
+        valnames = 'val' if isinstance(cpptype[2], STRING_TYPES) else ['val']
+        if names[1] is not None:
+            valnames = names[2]
+        impl += '<{0}>'.format(name)
+        impl += '<{0}>'.format(itemname)
+        impl += buildsample(cpptype[1], schematype[1], uitype[1], keynames)
+        impl += buildsample(cpptype[2], schematype[2], uitype[2], valnames)
+        impl += '</{0}>'.format(itemname)
+        impl += '<{0}>'.format(itemname)
+        impl += buildsample(cpptype[1], schematype[1], uitype[1], keynames)
+        impl += buildsample(cpptype[2], schematype[2], uitype[2], valnames)
+        impl += '</{0}>'.format(itemname)
+        impl += '...'
+        impl += '</{0}>'.format(name)
+    elif t == 'std::pair':
+        name = 'pair'
+        if names[0] is not None:
+            name = names[0]
+        firstname = 'first' if isinstance(cpptype[1], STRING_TYPES) else ['first']
+        if names[1] is not None:
+            firstname = names[1]
+        secondname = 'second' if isinstance(cpptype[2], STRING_TYPES) else ['second']
+        if names[2] is not None:
+            secondname = names[2]
+        impl += '<{0}>'.format(name)
+        impl += buildsample(cpptype[1], schematype[1], uitype[1], firstname)
+        impl += buildsample(cpptype[2], schematype[2], uitype[2], secondname)
+        impl += '</{0}>'.format(name)
+    else:
+        msg = 'Unsupported type {1}'.format(t)
+        raise RuntimeError(msg)
+
+
+    s = xml.dom.minidom.parseString(impl)
+    s = s.toprettyxml(indent='    ')
+    lines = s.splitlines()
+    lines = lines[1:] # remove initial xml version tag
+    return '\n'.join(lines)
 
 class CyclusAgent(Directive):
     """The cyclus-agent directive, which is based on constructing a list of 
@@ -160,7 +297,12 @@ class CyclusAgent(Directive):
             # add name
             n = ":{0}: ``{1}``" .format(name, type_to_str(info['type']))
             if 'default' in info:
-                n += ', default={0}'.format(info['default'])
+                n += ', optional ('
+                if info['type'] == 'std::string':
+                    n += 'default="{0}"'.format(info['default'])
+                else:
+                    n += 'default={0}'.format(info['default'])
+                n += ')'
             if 'shape' in info:
                 n += ', shape={0}'.format(info['shape'])
             lines += [n, '']
@@ -174,12 +316,31 @@ class CyclusAgent(Directive):
                 lines += doc.splitlines()
                 lines.append('')
 
+            t = info['type']
+            uitype = info.get('uitype', None)
+            schematype = info.get('schematype', None)
+            labels = info.get('alias', None)
+            if labels is None:
+                labels = name if isinstance(t, STRING_TYPES) else [name]
+
             # add everything else
             for key, val in info.items():
                 if key in self.skipstatevar:
                     continue
                 self.lines.append(ind + ':{0}: {1}'.format(key, val))
             self.lines.append('')
+
+            self.lines += ['', ind + '.. code-block:: xml', '']
+            schemalines = buildsample(t, schematype, uitype, labels).split('\n')
+            previndent = ''
+            for l in schemalines:
+                if len(l.strip()) > 0:
+                    if l.strip() == '...':
+                        l = previndent + l.strip()
+                    self.lines.append(ind + '    ' + l)
+                    previndent = ' ' * (len(l) - len(l.lstrip()))
+            self.lines.append('')
+
 
     def append_schema(self):
         lines = self.lines
