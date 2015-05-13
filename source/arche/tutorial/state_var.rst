@@ -200,16 +200,3 @@ Now we can try it again:
  Status: Cyclus run successful!
  Output location: cyclus.sqlite
  Simulation ID: 9f15b93c-9ab2-49bb-a14f-fef872e64ce8
-
-If you happen to see an error like
-
-.. code-block:: bash
-
- ERROR(core  ):SQL error [INSERT INTO AgentStatetutorial_Storage_StorageInfo VALUES (?, ?, ?, ?, ?, ?);]: table AgentStatetutorial_Storage_StorageInfo has 3 columns but 6 values were supplied
-
-then simply remove the existing database and run cyclus again
-
-.. code-block:: bash
-
-    $ rm cyclus.sqlite
-    $ cyclus -v 2 input/storage.xml
