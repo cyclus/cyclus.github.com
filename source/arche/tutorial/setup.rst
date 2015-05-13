@@ -1,4 +1,4 @@
-Setup a new code repository based on Cycstub
+Setup a New Code Repository Based on Cycstub
 ==============================================
 
 In this lesson, we will:
