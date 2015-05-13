@@ -67,7 +67,7 @@ Build and Install the Modified Module
 
 To rebuild, reinstall, and test this module, just issue the same command as before:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ ./install.py
     $ Storage_unit_tests
@@ -79,7 +79,7 @@ If you try to run the same input file with your modified module, you will get
 errors because the sample input file no longer includes the necessary pieces
 to define your module.  It is missing the new variables.  Try it:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cyclus -v 2 input/storage.xml
                   :                                                               
@@ -144,7 +144,7 @@ We need to replace the ``<config>`` element with this:
 
 Now we can try it again:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cyclus -v 2 input/storage.xml
                   :                                                               
@@ -174,29 +174,29 @@ Now we can try it again:
               iCCCCCLCf                                                           
                .  C. ,                                                            
                   :                                                               
- INFO1(core  ):Simulation set to run from start=0 to end=10
- INFO1(core  ):Beginning simulation
- INFO1(tutori):Hello
- INFO1(tutori):World!
- INFO1(tutori):Hello
- INFO1(tutori):World!
- INFO1(tutori):Hello
- INFO1(tutori):World!
- INFO1(tutori):Hello
- INFO1(tutori):World!
- INFO1(tutori):Hello
- INFO1(tutori):World!
- INFO1(tutori):Hello
- INFO1(tutori):World!
- INFO1(tutori):Hello
- INFO1(tutori):World!
- INFO1(tutori):Hello
- INFO1(tutori):World!
- INFO1(tutori):Hello
- INFO1(tutori):World!
- INFO1(tutori):Hello
- INFO1(tutori):World!
+    INFO1(core  ):Simulation set to run from start=0 to end=10
+    INFO1(core  ):Beginning simulation
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
 
- Status: Cyclus run successful!
- Output location: cyclus.sqlite
- Simulation ID: 9f15b93c-9ab2-49bb-a14f-fef872e64ce8
+    Status: Cyclus run successful!
+    Output location: cyclus.sqlite
+    Simulation ID: 9f15b93c-9ab2-49bb-a14f-fef872e64ce8
