@@ -25,27 +25,42 @@ Immediately after the declaration of ``Tock()``, add the following:
 
 .. code-block:: c++
 
-    #pragma cyclus var {'doc': 'Maximum amount of material that can be transfered in or out each time step', \
-                        'tooltip': 'Maximum amount of material that can be transfered in or out each time step', \
-                        'units': 'kg', \
-                        'uilabel': 'Maximum Throughput'}
+    #pragma cyclus var { \
+      "doc": "Maximum amount of material that can be transfered in or out each time step", \
+      "tooltip": "Maximum amount of material that can be transfered in or out each time step", \
+      "units": "kg", \
+      "uilabel": "Maximum Throughput" \
+    }
     double throughput;
 
-Now, we'll add variable for the minimum amount of time that material is
-stored and the maximum storage capacity.
+Now, we"ll add variable for the minimum amount of time that material is
+stored and the input/output commodity names.
 
 .. code-block:: c++
 
-    #pragma cyclus var {'doc': 'Minimum amount of time material must be stored', \
-                        'tooltip': 'Minimum amount of time material must be stored', \
-                        'units': 'months', \
-                        'uilabel': 'Storage Time'}
+    #pragma cyclus var { \
+      "doc": "Minimum amount of time material must be stored", \
+      "tooltip": "Minimum amount of time material must be stored", \
+      "units": "months", \
+      "uilabel": "Storage Time" \ 
+    }
     int storage_time;
 
-    #pragma cyclus var {'doc': 'Maximum storage capacity (including all material in the facility)', \
-                        'tooltip': 'Maximum storage capacity', \
-                        'uilabel': 'Maximum Storage Capacity'}
-    double capacity;
+    #pragma cyclus var { \
+     "tooltip": "Storage input commodity", \
+     "doc": "Input commodity on which Storage requests material.", \
+     "uilabel": "Input Commodity", \
+     "uitype": "incommodity", \
+    }
+    std::string incommod;
+
+    #pragma cyclus var { \
+     "tooltip": "Storage output commodity", \
+     "doc": "Output commodity on which Storage offers material.", \
+     "uilabel": "Output Commodity", \
+     "uitype": "outcommodity", \
+    }
+    std::string outcommod;
 
 Build and Install the Modified Module
 ---------------------------------------
@@ -122,7 +137,8 @@ We need to replace the ``<config>`` element with this:
       <Storage>
         <throughput>10</throughput>
         <storage_time>5</storage_time>
-        <capacity>40</capacity>
+        <incommod>fuel</incommod>
+        <outcommod>stored_fuel</outcommod>
       </Storage>
     </config>
 
