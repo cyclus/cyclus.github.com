@@ -88,6 +88,91 @@ Finally, check that everything works by installing and testing
     $ ./install.py
     $ Storage_unit_tests
 
+You can also confirm that everything still works with running the simulation:
+
+.. code-block:: bash
+
+    $ cyclus -v 2 input/storage.xml
+                  :                                                               
+              .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
+            CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)  
+            CCCCCCCCCCCCCl       __O|/O___O|/O_OO|/O__O|/O__O|/O____________O|/O__
+         CCCCCCf     iCCCLCC     /////////////////////////////////////////////////
+         iCCCt  ;;;;;.  CCCC                                                      
+        CCCC  ;;;;;;;;;. CClL.                          c                         
+       CCCC ,;;       ;;: CCCC  ;                   : CCCCi                       
+        CCC ;;         ;;  CC   ;;:                CCC`   `C;                     
+      lCCC ;;              CCCC  ;;;:             :CC .;;. C;   ;    :   ;  :;;   
+      CCCC ;.              CCCC    ;;;,           CC ;    ; Ci  ;    :   ;  :  ;  
+       iCC :;               CC       ;;;,        ;C ;       CC  ;    :   ; .      
+      CCCi ;;               CCC        ;;;.      .C ;       tf  ;    :   ;  ;.    
+      CCC  ;;               CCC          ;;;;;;; fC :       lC  ;    :   ;    ;:  
+       iCf ;;               CC         :;;:      tC ;       CC  ;    :   ;     ;  
+      fCCC :;              LCCf      ;;;:         LC :.  ,: C   ;    ;   ; ;   ;  
+      CCCC  ;;             CCCC    ;;;:           CCi `;;` CC.  ;;;; :;.;.  ; ,;  
+        CCl ;;             CC    ;;;;              CCC    CCL                     
+       tCCC  ;;        ;; CCCL  ;;;                  tCCCCC.                      
+        CCCC  ;;     :;; CCCCf  ;                     ,L                          
+         lCCC   ;;;;;;  CCCL                                                      
+         CCCCCC  :;;  fCCCCC                                                      
+          . CCCC     CCCC .                                                       
+           .CCCCCCCCCCCCCi                                                        
+              iCCCCCLCf                                                           
+               .  C. ,                                                            
+                  :                                                               
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+ Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+ Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+ Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+ Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+ Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+ INFO1(core  ):Simulation set to run from start=0 to end=10
+ INFO1(core  ):Beginning simulation
+ INFO1(tutori):Hello
+ INFO1(tutori):World!
+ INFO1(tutori):Hello
+ INFO1(tutori):World!
+ INFO1(tutori):Hello
+ INFO1(tutori):World!
+ INFO1(tutori):Hello
+ INFO1(tutori):World!
+ INFO1(tutori):Hello
+ INFO1(tutori):World!
+ INFO1(tutori):Hello
+ INFO1(tutori):World!
+ INFO1(tutori):Hello
+ INFO1(tutori):World!
+ INFO1(tutori):Hello
+ INFO1(tutori):World!
+ INFO1(tutori):Hello
+ INFO1(tutori):World!
+ INFO1(tutori):Hello
+ INFO1(tutori):World!
+
+ Status: Cyclus run successful!
+ Output location: cyclus.sqlite
+ Simulation ID: 9f15b93c-9ab2-49bb-a14f-fef872e64ce8
+
+
 Adding Implementation Logic
 -----------------------------
 
@@ -189,6 +274,16 @@ In order to implement this, replace the current ``Tick()`` implementation in
     }
 
 
+Build and Test
+++++++++++++++++++++++++++++++++
+
+Same as it ever was
+
+.. code-block:: bash
+
+    $ ./install.py
+    $ Storage_unit_tests
+
 Add Some Logging
 ---------------------------------------------
 
@@ -227,56 +322,80 @@ object and that both the ``inventory`` and ``output`` buffers are queried. While
 the implementation logic requires multiple buffers, the model assumes the
 facility acts as a single cohesive unit.
 
+To see the logging output, build and rerun the simulation
 
-Let's build, install and test this:
+.. code-block:: console
 
-.. code-block:: bash
-
-    $ python install.py --prefix=../install
-    $ cyclus -v 2 input/example.xml
-              :                                                               
-          .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
-        CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)  
-        CCCCCCCCCCCCCl       __O|/O___O|/O_OO|/O__O|/O__O|/O____________O|/O__
-     CCCCCCf     iCCCLCC     /////////////////////////////////////////////////
-     iCCCt  ;;;;;.  CCCC                                                      
-    CCCC  ;;;;;;;;;. CClL.                          c                         
-   CCCC ,;;       ;;: CCCC  ;                   : CCCCi                       
-    CCC ;;         ;;  CC   ;;:                CCC`   `C;                     
-  lCCC ;;              CCCC  ;;;:             :CC .;;. C;   ;    :   ;  :;;   
-  CCCC ;.              CCCC    ;;;,           CC ;    ; Ci  ;    :   ;  :  ;  
-   iCC :;               CC       ;;;,        ;C ;       CC  ;    :   ; .      
-  CCCi ;;               CCC        ;;;.      .C ;       tf  ;    :   ;  ;.    
-  CCC  ;;               CCC          ;;;;;;; fC :       lC  ;    :   ;    ;:  
-   iCf ;;               CC         :;;:      tC ;       CC  ;    :   ;     ;  
-  fCCC :;              LCCf      ;;;:         LC :.  ,: C   ;    ;   ; ;   ;  
-  CCCC  ;;             CCCC    ;;;:           CCi `;;` CC.  ;;;; :;.;.  ; ,;  
-    CCl ;;             CC    ;;;;              CCC    CCL                     
-   tCCC  ;;        ;; CCCL  ;;;                  tCCCCC.                      
-    CCCC  ;;     :;; CCCCf  ;                     ,L                          
-     lCCC   ;;;;;;  CCCL                                                      
-     CCCCCC  :;;  fCCCCC                                                      
-      . CCCC     CCCC .                                                       
-       .CCCCCCCCCCCCCi                                                        
-          iCCCCCLCf                                                           
-           .  C. ,                                                            
-              :                                                               
+    $ ./install.py
+    $ cyclus -v 2 input/storage.xml
+                  :                                                               
+              .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
+            CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)  
+            CCCCCCCCCCCCCl       __O|/O___O|/O_OO|/O__O|/O__O|/O____________O|/O__
+         CCCCCCf     iCCCLCC     /////////////////////////////////////////////////
+         iCCCt  ;;;;;.  CCCC                                                      
+        CCCC  ;;;;;;;;;. CClL.                          c                         
+       CCCC ,;;       ;;: CCCC  ;                   : CCCCi                       
+        CCC ;;         ;;  CC   ;;:                CCC`   `C;                     
+      lCCC ;;              CCCC  ;;;:             :CC .;;. C;   ;    :   ;  :;;   
+      CCCC ;.              CCCC    ;;;,           CC ;    ; Ci  ;    :   ;  :  ;  
+       iCC :;               CC       ;;;,        ;C ;       CC  ;    :   ; .      
+      CCCi ;;               CCC        ;;;.      .C ;       tf  ;    :   ;  ;.    
+      CCC  ;;               CCC          ;;;;;;; fC :       lC  ;    :   ;    ;:  
+       iCf ;;               CC         :;;:      tC ;       CC  ;    :   ;     ;  
+      fCCC :;              LCCf      ;;;:         LC :.  ,: C   ;    ;   ; ;   ;  
+      CCCC  ;;             CCCC    ;;;:           CCi `;;` CC.  ;;;; :;.;.  ; ,;  
+        CCl ;;             CC    ;;;;              CCC    CCL                     
+       tCCC  ;;        ;; CCCL  ;;;                  tCCCCC.                      
+        CCCC  ;;     :;; CCCCf  ;                     ,L                          
+         lCCC   ;;;;;;  CCCL                                                      
+         CCCCCC  :;;  fCCCCC                                                      
+          . CCCC     CCCC .                                                       
+           .CCCCCCCCCCCCCi                                                        
+              iCCCCCLCf                                                           
+               .  C. ,                                                            
+                  :                                                               
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+ Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+ Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+ Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+ Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: ResBuf is experimental and its API may be subject to change
+ Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+ Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
  INFO1(core  ):Simulation set to run from start=0 to end=10
  INFO1(core  ):Beginning simulation
- INFO1(tutori):The current inventory is 0 kg of material with 1.79769e+308 kg of space remaining.
- INFO1(tutori):The current inventory is 0 kg of material with 1.79769e+308 kg of space remaining.
- INFO1(tutori):The current inventory is 0 kg of material with 1.79769e+308 kg of space remaining.
- INFO1(tutori):The current inventory is 0 kg of material with 1.79769e+308 kg of space remaining.
- INFO1(tutori):The current inventory is 0 kg of material with 1.79769e+308 kg of space remaining.
- INFO1(tutori):The current inventory is 0 kg of material with 1.79769e+308 kg of space remaining.
- INFO1(tutori):The current inventory is 0 kg of material with 1.79769e+308 kg of space remaining.
- INFO1(tutori):The current inventory is 0 kg of material with 1.79769e+308 kg of space remaining.
- INFO1(tutori):The current inventory is 0 kg of material with 1.79769e+308 kg of space remaining.
- INFO1(tutori):The current inventory is 0 kg of material with 1.79769e+308 kg of space remaining.
+ INFO1(storag):The total inventory at time 0 is 0 kg of material.
+ INFO1(storag):The total inventory at time 1 is 0 kg of material.
+ INFO1(storag):The total inventory at time 2 is 0 kg of material.
+ INFO1(storag):The total inventory at time 3 is 0 kg of material.
+ INFO1(storag):The total inventory at time 4 is 0 kg of material.
+ INFO1(storag):The total inventory at time 5 is 0 kg of material.
+ INFO1(storag):The total inventory at time 6 is 0 kg of material.
+ INFO1(storag):The total inventory at time 7 is 0 kg of material.
+ INFO1(storag):The total inventory at time 8 is 0 kg of material.
+ INFO1(storag):The total inventory at time 9 is 0 kg of material.
 
  Status: Cyclus run successful!
  Output location: cyclus.sqlite
- Simulation ID: f26913d0-c743-4e2f-9859-20cbcb916498
+ Simulation ID: 9f15b93c-9ab2-49bb-a14f-fef872e64ce8
 
 
 Add a State Variable to Define the Size of the ResBuf
