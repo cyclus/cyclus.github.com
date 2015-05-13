@@ -27,6 +27,12 @@ This tutorial has the following steps:
     state_var
     toolkit
     input_files
+
+Given enough time, the following extra topics may be covered:
+
+.. toctree::
+    :maxdepth: 1
+
     cyclist
     dre
 
