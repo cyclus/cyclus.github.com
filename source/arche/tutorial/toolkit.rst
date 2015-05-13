@@ -12,13 +12,13 @@ situations:
 
 Code reuse is a critical best practice in all software development.
 
-One of the Toolkit patterns is a ``ResourceBuff``, providing a way to track an
+One of the Toolkit patterns is a ``ResBuf``, providing a way to track an
 inventory of ``Resoure`` objects. There are also ``MatlBuyPolicy`` and
 ``MatlSellPolicy`` for managing the trading of ``Material`` objects.
 
 In this lesson, we will:
 
-1. Add ResourceBuffs to use as material inventories
+1. Add ResBufs to use as material inventories
 2. Add Policies to manage the trading of material
 3. Add inventory management logic
 4. Change our log information to show the info about the inventories
@@ -29,16 +29,16 @@ Adding State Variables
 All state variable additions should be included in ``src/storage.h`` below the
 other state variables added previously.
 
-A ``ResourceBuff`` is available as a data type for another state variable, so we simply have to add the following:
+A ``ResBuf`` is available as a data type for another state variable, so we simply have to add the following:
 
 .. code-block:: c++
 
     /// this facility holds material in storage.
     #pragma cyclus var {}
-    cyclus::toolkit::ResourceBuff inventory;
+    cyclus::toolkit::ResBuf<cyclus::Material> inventory;
 
 This creates a state variable named ``inventory`` that is based on the
-``cyclus::toolkit::ResourceBuff`` class.  A ResourceBuff object has special
+``cyclus::toolkit::ResBuf`` class.  A ResBuf object has special
 handling by the preprocessor, so it will not appear in the schema and
 therefore will not appear in the Cycic UI either.
 
@@ -48,11 +48,11 @@ Next, add two additional buffers
 
     /// an buffer for incoming material
     #pragma cyclus var {}
-    cyclus::toolkit::ResourceBuff input;
+    cyclus::toolkit::ResBuf<cyclus::Material> input;
 
     /// an buffer for outgoing material
     #pragma cyclus var {}
-    cyclus::toolkit::ResourceBuff output;
+    cyclus::toolkit::ResBuf<cyclus::Material> output;
 
 After, add the policies. Policies do not require any special handling, and
 thus do not need a pragma
@@ -182,7 +182,7 @@ In order to implement this, replace the current ``Tick()`` implementation in
 
     void Storage::Tick() {
       int finished_storing = context()->time() - storage_time;
-      while (!inventory.Empty() && time_q.front() <= finished_storing) {
+      while (!inventory.empty() && time_q.front() <= finished_storing) {
         output.Push(inventory.Pop());
    	time_q.pop();
       }     
@@ -222,7 +222,7 @@ After updating the function should look something like
                                         << " kg.";
     }
 
-Notice that this uses the built in ``quantity()`` method of a ResourceBuff
+Notice that this uses the built in ``quantity()`` method of a ResBuf
 object and that both the ``inventory`` and ``output`` buffers are queried. While
 the implementation logic requires multiple buffers, the model assumes the
 facility acts as a single cohesive unit.
@@ -279,7 +279,7 @@ Let's build, install and test this:
  Simulation ID: f26913d0-c743-4e2f-9859-20cbcb916498
 
 
-Add a State Variable to Define the Size of the ResourceBuff
+Add a State Variable to Define the Size of the ResBuf
 -------------------------------------------------------------
 
 You will note that the space remaining is a very large number and that we have
@@ -295,7 +295,7 @@ no way to specify it in the input.  We can do this by adding another state varia
     }
     double capacity;
 
-As a special (read, undocumented) feature of a ResourceBuff, you also use the
+As a special (read, undocumented) feature of a ResBuf, you also use the
 pragma to initialize its size from another state variable.  Change the pragma
 for the ResourceBuf to be:
 
