@@ -3,52 +3,67 @@ Setup a new code repository based on Cycstub
 
 In this lesson, we will:
 
-0. Do the tasks the the Cyclus Archetype Hello World!
-0. Clean up the file system for the single storage facility
-0. Install the storage facility 
+1. Do the tasks the the Cyclus Archetype Hello World!
+2. Clean up the file system for the single storage facility
+3. Install the storage facility 
+4. Run an input file that uses the new storage facility
 
 Follow the Hello Cyclus! Instructions
 ---------------------------------------------------
 
 Follow all of the steps of our :ref:`hello_world`.
 
-Clean Up for Tutorial
+Make a Storage Facility
 ------------------------------------------
 
-The goal of this section is to clean up the current directory from the Hello
-Cyclus! example to only include the required Storage archetype. It will require
-a few shell commands.
+Next, make a new facility by copying the facility archetype from the Hello World! tutorial. 
 
-First make sure you start in the tutorial's ``src`` directory
+Start by making sure you are in the correct directory
 
 .. code-block:: bash
 
     $ cd ~/tutorial
-    $ cd src
 
-Next, clean up the facility name
-
-.. code-block:: bash
-
-    $ for file in `ls tutorial_facility*`; do mv "${file}" "${file/tutorial_facility/storage}"; done
-    $ for file in `*`; do sed -i "s/tutorial_facility/storage/"; done    
-    $ for file in `*`; do sed -i "s/TutorialFacility/Storage/"; done    
-
-Then remove the old stubs
+Then make the new archetype, updating all the files as needed
 
 .. code-block:: bash
 
-    $ rm stub_*
-    $ for file in `ls *`; do sed -i "/stub_*/d"; done
+    $ for file in `ls src/tutorial_facility*`; do cp "${file}" "${file/tutorial_facility/storage}"; done
+    $ sed -i'' "s/tutorial_facility/storage/g" src/storage*
+    $ sed -i'' "s/TutorialFacility/Storage/g" src/storage*
+    $ sed -i'' "s/TUTORIAL_FACILITY/STORAGE/g" src/storage*
+
+Finally, update the ``src/CMakeLists.txt`` file with the following line
+
+.. code-block:: bash
+
+    $ echo $'\ninstall_cyclus_standalone("Storage" "storage" "tutorial")' >> src/CMakeLists.txt
 
 
-Install!
+Install and Test
 ----------------------------------
 
-Finally, install:
+Install the tutorial project
 
 .. code-block:: bash
 
-    $ cd ~/tutorial
-    $ ./install.py --user
+    $ ./install.py
 
+Make a new input file that is a copy of the test input file 
+
+.. code-block:: bash
+
+    $ cp input/example.xml input/storage.xml
+
+Then change ever instance of ``TutorialFacility`` with ``Storage``. This can be
+done by hand or on the command line with
+
+.. code-block:: bash
+
+    $ sed -i'' "s/TutorialFacility/Storage/g" input/storage.xml
+
+Test the input file by running Cyclus
+
+.. code-block:: bash
+
+    $ cyclus input/storage.xml
