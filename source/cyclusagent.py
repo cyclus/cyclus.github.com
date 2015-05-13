@@ -261,18 +261,24 @@ class CyclusAgent(Directive):
         if 'doc' in self.annotations:
             self.lines += self.annotations['doc'].splitlines()
         self.lines.append('')
+
+    def append_otherinfo(self):
+        header = 'Other Info'
+        self.lines += [header, ';' * len(header), '']
+
         for key in ('entity', 'parents', 'all_parents'):
             val = self.annotations.get(key, None)
             if val is None:
                 continue
-            self.lines.append(':{0}: {1}'.format(key, nicestr(val)))
+            self.lines.append('* **{0}**: {1}'.format(key, nicestr(val)))
         for key, val in sorted(self.annotations.items()):
             if key in self.skipdoc:
                 continue
-            self.lines.append(':{0}: {1}'.format(key, val))
+            self.lines.append('* **{0}**: {1}'.format(key, val))
         self.lines.append('')
 
-    skipstatevar = {'type', 'index', 'shape', 'doc', 'tooltip', 'default', None}
+    skipstatevar = {'type', 'index', 'shape', 'doc', 'tooltip', 'default',
+                    'units', None}
 
     def _sort_statevars(self, item):
         key, val = item
@@ -289,7 +295,9 @@ class CyclusAgent(Directive):
         if len(vars) == 0:
             return
         lines = self.lines
-        lines += ['', '**State Variables:**', '']
+        header = 'State Variables'
+        lines += [header, ';' * len(header), '']
+
         for name, info in vars.items():
             if isinstance(info, STRING_TYPES):
                 # must be an alias entry - skip it
@@ -304,7 +312,12 @@ class CyclusAgent(Directive):
             name = alias if isinstance(alias, STRING_TYPES) else alias[0]
 
             # add name
-            n = ":{0}: ``{1}``" .format(name, type_to_str(info['type']))
+            ts = type_to_str(info['type'])
+            if 'units' in info:
+                n = ":{0}: ``{1}`` {2} " .format(name, ts, info['units'])
+            else:
+                n = ":{0}: ``{1}``" .format(name, ts)
+
             if 'default' in info:
                 n += ', optional ('
                 if info['type'] == 'std::string':
@@ -318,12 +331,12 @@ class CyclusAgent(Directive):
 
             # add docs
             ind = " " * 4
-            if 'tooltip' in info:
-                self.lines += [ind + '*' + info['tooltip'] + '*', '']
             if 'doc' in info:
                 doc = ind + info['doc'].replace('\n', '\n'+ind) 
                 lines += doc.splitlines()
                 lines.append('')
+            elif 'tooltip' in info:
+                self.lines += [ind + '*' + info['tooltip'] + '*', '']
 
             t = info['type']
             uitype = info.get('uitype', None)
@@ -352,8 +365,11 @@ class CyclusAgent(Directive):
 
 
     def append_schema(self):
+        header = 'XML Input Schema'
+        self.lines += [header, ';' * len(header), '']
+
         lines = self.lines
-        lines += ['', '**Schema:**', '', '.. code-block:: xml', '']
+        lines += ['', '.. code-block:: xml', '']
         ind = " " * 4
         s = ind + self.schema.replace('\n', '\n' + ind) + '\n'
         lines += s.splitlines()
@@ -384,6 +400,7 @@ class CyclusAgent(Directive):
         self.append_name()
         self.append_doc()
         self.append_statevars()
+        self.append_otherinfo()
         self.append_schema()
         self.append_sep()
 
