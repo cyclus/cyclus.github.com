@@ -11,6 +11,7 @@ The following are release notes for and links to previously released versions of
 .. toctree::
     :maxdepth: 1
 
+    v1.3
     v1.2
     v1.1
     v1.0
