@@ -3,99 +3,52 @@ Setup a new code repository based on Cycstub
 
 In this lesson, we will:
 
-1. Clone the Cycstub repository to your local machine
-2. Rename the templates in your Cycstub repository
-3. Create a new respository on Github
-4. Connect this repository with your new Github repository
-5. Push the Cycstub repository to your new Github repository
+0. Do the tasks the the Cyclus Archetype Hello World!
+0. Clean up the file system for the single storage facility
+0. Install the storage facility 
 
-Clone the Cycstub repository to your local machine
+Follow the Hello Cyclus! Instructions
 ---------------------------------------------------
 
-First, you need to get the ``cycstub`` code.  Cycstub is a skeleton code base
-that you can use to quick-start new |cyclus| module development projects.  We
-will grab cycstub by using git to `clone the repository
-<https://github.com/cyclus/cycstub.git>`_.  Let's put this code in a
-``TutorialStorage`` directory and go into it.
+Follow all of the steps of our :ref:`hello_world`.
 
-.. code-block:: bash
-
-    $ git clone https://github.com/cyclus/cycstub.git TutorialStorage
-    $ cd TutorialStorage
-
-Rename the templates in the Cycstub clone
+Clean Up for Tutorial
 ------------------------------------------
 
-Since cycstub is a template project everything is named ``stub``. We need to
-change this to reflect the name we want our new project to be called -
-``tutorial_storage`` here.  Cycstub comes with a renaming tool to do just
-this!  From the command line, run Python in the following way:
+The goal of this section is to clean up the current directory from the Hello
+Cyclus! example to only include the required Storage archetype. It will require
+a few shell commands.
+
+First make sure you start in the tutorial's ``src`` directory
 
 .. code-block:: bash
 
-    $ python rename.py tutorial_storage
+    $ cd ~/tutorial
+    $ cd src
 
-We will now commit the changes to this local repository.  The first step is to
-stop tracking the original stub files:
-
-.. code-block:: bash
-
-    $ git rm src/stub_*
-
-We will then add the files that were modified::
-
-    $ git add CMakeLists.txt input/example.xml src/CMakeLists.txt src/tutorial_storage_*
-
-Finally, we can commit these changes:
+Next, clean up the facility name
 
 .. code-block:: bash
 
-    $ git commit -m "Changed cycstub files from stub to tutorial_storage"
+    $ for file in `ls tutorial_facility*`; do mv "${file}" "${file/tutorial_facility/storage}"; done
+    $ for file in `*`; do sed -i "s/tutorial_facility/storage/"; done    
+    $ for file in `*`; do sed -i "s/TutorialFacility/Storage/"; done    
+
+Then remove the old stubs
+
+.. code-block:: bash
+
+    $ rm stub_*
+    $ for file in `ls *`; do sed -i "/stub_*/d"; done
 
 
-Create a New Repository on Github
+Install!
 ----------------------------------
 
-Log in to your Github account and start a new repository by clicking on the
-'+' symbol next to your account name.
-
-.. image:: github_new.png
-
-Enter the name for your repository, "TutorialStorage", and click the "Create
-repository" button.
-
-Connect this repository with your new Github repository
---------------------------------------------------------
-
-The clone of ``cycstub`` that you just made is connected to the original
-`cycstub repository <https://github.com/cyclus/cycstub.git>`_.  You can see
-this using the ``git remote`` command:
+Finally, install:
 
 .. code-block:: bash
 
-    $ git remote -v
-    origin	https://github.com/cyclus/cycstub.git (fetch)
-    origin	https://github.com/cyclus/cycstub.git (push)
-
-We would like to sever this connection since and instead connect this local
-repository to our new Github repository:
-
-.. code-block:: bash
-
-    $ git remote set-url origin https://github.com/<your_github_username>/TutorialStorage.git
-    $ git remote -v
-    origin	https://github.com/<your_github_username>/TutorialStorage.git (fetch)
-    origin	https://github.com/<your_github_username>/TutorialStorage.git (push)
-
-Push the Cycstub repository to your new Github repository
------------------------------------------------------------
-
-You are now ready to push this renamed clone of ``cycstub`` to your new
-repository and begin development.  Since the primary branch of this repository
-is the ``develop`` branch, you will need to connect this branch 
-
-.. code-block:: bash
-
-    $ git push origin
-
+    $ cd ~/tutorial
+    $ ./install.py --user
 
