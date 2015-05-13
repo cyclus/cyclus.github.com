@@ -33,11 +33,12 @@ Then make the new archetype, updating all the files as needed
     $ sed -i'' "s/TutorialFacility/Storage/g" src/storage*
     $ sed -i'' "s/TUTORIAL_FACILITY/STORAGE/g" src/storage*
 
-Finally, update the ``src/CMakeLists.txt`` file with the following line
+Finally, open -``src/CMakeLists.txt`` with your favorite text editor and add the
+following line to the end of it
 
-.. code-block:: console
+.. code-block:: bash
 
-    $ echo $'\ninstall_cyclus_standalone("Storage" "storage" "tutorial")' >> src/CMakeLists.txt
+    install_cyclus_standalone("Storage" "storage" "tutorial")
 
 
 Install and Test
@@ -72,4 +73,58 @@ Test the input file by running Cyclus
 
 .. code-block:: console
 
-    $ cyclus input/storage.xml
+    $ cyclus -v 2 input/storage.xml
+                  :                                                               
+              .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
+            CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)  
+            CCCCCCCCCCCCCl       __O|/O___O|/O_OO|/O__O|/O__O|/O____________O|/O__
+         CCCCCCf     iCCCLCC     /////////////////////////////////////////////////
+         iCCCt  ;;;;;.  CCCC                                                      
+        CCCC  ;;;;;;;;;. CClL.                          c                         
+       CCCC ,;;       ;;: CCCC  ;                   : CCCCi                       
+        CCC ;;         ;;  CC   ;;:                CCC`   `C;                     
+      lCCC ;;              CCCC  ;;;:             :CC .;;. C;   ;    :   ;  :;;   
+      CCCC ;.              CCCC    ;;;,           CC ;    ; Ci  ;    :   ;  :  ;  
+       iCC :;               CC       ;;;,        ;C ;       CC  ;    :   ; .      
+      CCCi ;;               CCC        ;;;.      .C ;       tf  ;    :   ;  ;.    
+      CCC  ;;               CCC          ;;;;;;; fC :       lC  ;    :   ;    ;:  
+       iCf ;;               CC         :;;:      tC ;       CC  ;    :   ;     ;  
+      fCCC :;              LCCf      ;;;:         LC :.  ,: C   ;    ;   ; ;   ;  
+      CCCC  ;;             CCCC    ;;;:           CCi `;;` CC.  ;;;; :;.;.  ; ,;  
+        CCl ;;             CC    ;;;;              CCC    CCL                     
+       tCCC  ;;        ;; CCCL  ;;;                  tCCCCC.                      
+        CCCC  ;;     :;; CCCCf  ;                     ,L                          
+         lCCC   ;;;;;;  CCCL                                                      
+         CCCCCC  :;;  fCCCCC                                                      
+          . CCCC     CCCC .                                                       
+           .CCCCCCCCCCCCCi                                                        
+              iCCCCCLCf                                                           
+               .  C. ,                                                            
+                  :                                                               
+    INFO1(core  ):Simulation set to run from start=0 to end=10
+    INFO1(core  ):Beginning simulation
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+
+    Status: Cyclus run successful!
+    Output location: cyclus.sqlite
+    Simulation ID: 9f15b93c-9ab2-49bb-a14f-fef872e64ce8
+

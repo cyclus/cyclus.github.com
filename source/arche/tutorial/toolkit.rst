@@ -1,6 +1,17 @@
 Adding Buffers and Policies from the Toolkit
 =================================================
 
+In this lesson, we will:
+
+1. Add ResBufs to use as material inventories
+2. Add Policies to manage the trading of material
+3. Add inventory management logic
+4. Change our log information to show the info about the inventories
+5. Add a notion of total storage capacity
+
+Overview
+--------------
+
 Cyclus has a growing Toolkit of standard patterns that can be used by
 archetype developers.  There are many advantages to using the Toolkit patterns
 vs developing similar functionality yourself, typical of most code reuse
@@ -15,13 +26,6 @@ Code reuse is a critical best practice in all software development.
 One of the Toolkit patterns is a ``ResBuf``, providing a way to track an
 inventory of ``Resoure`` objects. There are also ``MatlBuyPolicy`` and
 ``MatlSellPolicy`` for managing the trading of ``Material`` objects.
-
-In this lesson, we will:
-
-1. Add ResBufs to use as material inventories
-2. Add Policies to manage the trading of material
-3. Add inventory management logic
-4. Change our log information to show the info about the inventories
 
 Adding State Variables
 ------------------------
@@ -512,7 +516,7 @@ Update Input File and Run
 ++++++++++++++++++++++++++++++++
 
 You can test that your new capacity capability works by adding the following to
-the end of the `Storage`'s `config` block in `input/storage.xml`
+the end of the ``Storage``'s ``config`` block in ``input/storage.xml``
 
 .. code-block:: xml
 
@@ -521,11 +525,10 @@ the end of the `Storage`'s `config` block in `input/storage.xml`
 Note that this capacity is smaller than the throughput! What do you think you
 will see in the output logs?
 
-Let's build, install and try it:
+Try it out:
 
 .. code-block:: console
 
-    $ ./install.py
     $ cyclus -v 2 input/storage.xml
                   :                                                               
               .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   

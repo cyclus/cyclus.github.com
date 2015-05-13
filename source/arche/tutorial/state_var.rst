@@ -1,14 +1,10 @@
 Adding State Variables
 =======================
 
-In this lesson, we will add the state variables that will define this
-facility.  We will make use of the Cyclus ``#pragma`` directives so that these
-state variables are available in the Cycic user interface as well as being
-logged in the output.
+In this lesson, we will:
 
-We will take the following steps:
-
-1. Add the necessary state variables
+1. Add the necessary state variables to define this facility using the Cyclus
+   ``#pragma`` directives
 2. Build and install the updated module
 3. Modify the sample input file to include these variables
 
