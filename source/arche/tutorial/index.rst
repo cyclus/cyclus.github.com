@@ -30,3 +30,8 @@ This tutorial has the following steps:
     cyclist
     dre
 
+.. note::
+
+    If you ever see an error like ``ERROR(core ):SQL error [INSERT INTO
+    AgentState...`` simply remove the output database with ``$ rm
+    cyclus.sqlite`` and rerun the simulation
