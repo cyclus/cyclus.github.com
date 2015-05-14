@@ -189,7 +189,9 @@ concept of material flow through the facility is shown below.
     :width: 50 %
     :align: center
 
-    **Figure:** Storage Material Flow
+    **Figure:** Material flow through a Storage facility. Green arrows occur
+    **before** the DRE (during the Tick). Yellow arrows occur during the
+    DRE. Brown arrows occur **after** the DRE (during the Tock).
 
 Connecting Buffers and Policies
 ++++++++++++++++++++++++++++++++
@@ -474,6 +476,17 @@ a certain value. The only way for material to enter the facility is through the
 buy amount based on both its ``throughput`` and the ``capacity`` of the
 connected ``ResBuf``. Accordingly, you can update the ``input`` buffer's
 capacity before the DRE occurs to achieve this behavior.
+
+
+.. figure:: storage_capacity.svg
+    :align: center
+
+    **Figure:** Storage buffers between two time steps. The total capacity is
+    represented by the area of all three boxes. The ``input`` buffer's capacity
+    must be updated to reflect how much material is in both the ``inventory``
+    and ``output`` buffers. The colored arrows on the right match the material
+    flows in the previous figure.
+
 
 To do so, add the following line to the end of the ``Tick()`` function, which
 update's ``input``'s capacity through the ``ResBuf`` ``capacity()`` API
