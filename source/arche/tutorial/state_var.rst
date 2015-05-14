@@ -132,7 +132,7 @@ We need to replace the ``<config>`` element with this:
     <config>
       <Storage>
         <throughput>10</throughput>
-        <storage_time>5</storage_time>
+        <storage_time>1</storage_time>
         <incommod>fuel</incommod>
         <outcommod>stored_fuel</outcommod>
       </Storage>
