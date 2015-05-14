@@ -224,8 +224,9 @@ Run the file with a slightly higher verbosity
     You'll get more helpful information for this run by upping the verbosity
     from ``3`` to ``4``.
 
-What output do you see? Are things working as expected? You should see something
-like the following for a single time step
+What output do you see? Are things working as expected? 
+
+You should see something like the following for a single time step
 
 .. code-block:: console
 

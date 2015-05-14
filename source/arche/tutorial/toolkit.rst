@@ -96,7 +96,7 @@ You can also confirm that everything still works with running the simulation:
 
 .. code-block:: console
 
-    $ cyclus -v 2 input/storage.xml
+    $ cyclus -v 3 input/storage.xml
                   :                                                               
               .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
             CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)  
@@ -186,7 +186,7 @@ be implemented in Cyclus by utilizing the Toolkit objects stated above. A
 concept of material flow through the facility is shown below.
 
 .. figure:: storage_diagram.svg
-    :width: 50 %
+    :width: 75 %
     :align: center
 
     **Figure:** Material flow through a Storage facility. Green arrows occur
@@ -303,7 +303,7 @@ function (after any pushing/popping) with
 
 .. code-block:: c++
 
-    LOG(cyclus::LEV_INFO3, "Storage") << "The total inventory at time " 
+    LOG(cyclus::LEV_INFO2, "Storage") << "The total inventory at time " 
                                       << t << " is " 
                                       << inventory.quantity() + output.quantity()
                                       << " kg.";
@@ -357,19 +357,23 @@ After updating the function should look something like
 
 To see the logging output, build and rerun the simulation
 
+.. note::
+
+    Increase the verbosity from ``2`` to ``3``.
+
 .. code-block:: console
 
     $ ./install.py
-    $ cyclus -v 2 input/storage.xml
-                  :                                                               
-              .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
-            CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)  
-            CCCCCCCCCCCCCl       __O|/O___O|/O_OO|/O__O|/O__O|/O____________O|/O__
-         CCCCCCf     iCCCLCC     /////////////////////////////////////////////////
-         iCCCt  ;;;;;.  CCCC                                                      
-        CCCC  ;;;;;;;;;. CClL.                          c                         
+    $ cyclus -v 3 input/storage.xml
+		  :                                                               
+	      .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
+	    CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)  
+	    CCCCCCCCCCCCCl       __O|/O___O|/O_OO|/O__O|/O__O|/O____________O|/O__
+	 CCCCCCf     iCCCLCC     /////////////////////////////////////////////////
+	 iCCCt  ;;;;;.  CCCC                                                      
+	CCCC  ;;;;;;;;;. CClL.                          c                         
        CCCC ,;;       ;;: CCCC  ;                   : CCCCi                       
-        CCC ;;         ;;  CC   ;;:                CCC`   `C;                     
+	CCC ;;         ;;  CC   ;;:                CCC`   `C;                     
       lCCC ;;              CCCC  ;;;:             :CC .;;. C;   ;    :   ;  :;;   
       CCCC ;.              CCCC    ;;;,           CC ;    ; Ci  ;    :   ;  :  ;  
        iCC :;               CC       ;;;,        ;C ;       CC  ;    :   ; .      
@@ -378,16 +382,16 @@ To see the logging output, build and rerun the simulation
        iCf ;;               CC         :;;:      tC ;       CC  ;    :   ;     ;  
       fCCC :;              LCCf      ;;;:         LC :.  ,: C   ;    ;   ; ;   ;  
       CCCC  ;;             CCCC    ;;;:           CCi `;;` CC.  ;;;; :;.;.  ; ,;  
-        CCl ;;             CC    ;;;;              CCC    CCL                     
+	CCl ;;             CC    ;;;;              CCC    CCL                     
        tCCC  ;;        ;; CCCL  ;;;                  tCCCCC.                      
-        CCCC  ;;     :;; CCCCf  ;                     ,L                          
-         lCCC   ;;;;;;  CCCL                                                      
-         CCCCCC  :;;  fCCCCC                                                      
-          . CCCC     CCCC .                                                       
-           .CCCCCCCCCCCCCi                                                        
-              iCCCCCLCf                                                           
-               .  C. ,                                                            
-                  :                                                               
+	CCCC  ;;     :;; CCCCf  ;                     ,L                          
+	 lCCC   ;;;;;;  CCCL                                                      
+	 CCCCCC  :;;  fCCCCC                                                      
+	  . CCCC     CCCC .                                                       
+	   .CCCCCCCCCCCCCi                                                        
+	      iCCCCCLCf                                                           
+	       .  C. ,                                                            
+		  :                                                               
     Experimental Warning: ResBuf is experimental and its API may be subject to change
     Experimental Warning: ResBuf is experimental and its API may be subject to change
     Experimental Warning: ResBuf is experimental and its API may be subject to change
@@ -415,40 +419,80 @@ To see the logging output, build and rerun the simulation
     Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
      INFO1(core  ):Simulation set to run from start=0 to end=10
      INFO1(core  ):Beginning simulation
-     INFO1(storag):Quantity to be requested: 10 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 0 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 10 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 1 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 10 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 2 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 10 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 3 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 10 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 4 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 10 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 5 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 10 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 6 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 10 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 7 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 10 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 8 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 10 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 9 is 0 kg of material.
+     INFO1(core  ):Current time: 0
+     INFO2(core  ):  Beginning Tick for time: 0
+     INFO2(Storag):  Quantity to be requested: 10 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 0
+     INFO2(core  ):  Beginning Tock for time: 0
+     INFO2(Storag):  The total inventory at time 0 is 0 kg of material.
+     INFO1(core  ):Current time: 1
+     INFO2(core  ):  Beginning Tick for time: 1
+     INFO2(Storag):  Quantity to be requested: 10 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 1
+     INFO2(core  ):  Beginning Tock for time: 1
+     INFO2(Storag):  The total inventory at time 1 is 0 kg of material.
+     INFO1(core  ):Current time: 2
+     INFO2(core  ):  Beginning Tick for time: 2
+     INFO2(Storag):  Quantity to be requested: 10 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 2
+     INFO2(core  ):  Beginning Tock for time: 2
+     INFO2(Storag):  The total inventory at time 2 is 0 kg of material.
+     INFO1(core  ):Current time: 3
+     INFO2(core  ):  Beginning Tick for time: 3
+     INFO2(Storag):  Quantity to be requested: 10 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 3
+     INFO2(core  ):  Beginning Tock for time: 3
+     INFO2(Storag):  The total inventory at time 3 is 0 kg of material.
+     INFO1(core  ):Current time: 4
+     INFO2(core  ):  Beginning Tick for time: 4
+     INFO2(Storag):  Quantity to be requested: 10 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 4
+     INFO2(core  ):  Beginning Tock for time: 4
+     INFO2(Storag):  The total inventory at time 4 is 0 kg of material.
+     INFO1(core  ):Current time: 5
+     INFO2(core  ):  Beginning Tick for time: 5
+     INFO2(Storag):  Quantity to be requested: 10 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 5
+     INFO2(core  ):  Beginning Tock for time: 5
+     INFO2(Storag):  The total inventory at time 5 is 0 kg of material.
+     INFO1(core  ):Current time: 6
+     INFO2(core  ):  Beginning Tick for time: 6
+     INFO2(Storag):  Quantity to be requested: 10 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 6
+     INFO2(core  ):  Beginning Tock for time: 6
+     INFO2(Storag):  The total inventory at time 6 is 0 kg of material.
+     INFO1(core  ):Current time: 7
+     INFO2(core  ):  Beginning Tick for time: 7
+     INFO2(Storag):  Quantity to be requested: 10 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 7
+     INFO2(core  ):  Beginning Tock for time: 7
+     INFO2(Storag):  The total inventory at time 7 is 0 kg of material.
+     INFO1(core  ):Current time: 8
+     INFO2(core  ):  Beginning Tick for time: 8
+     INFO2(Storag):  Quantity to be requested: 10 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 8
+     INFO2(core  ):  Beginning Tock for time: 8
+     INFO2(Storag):  The total inventory at time 8 is 0 kg of material.
+     INFO1(core  ):Current time: 9
+     INFO2(core  ):  Beginning Tick for time: 9
+     INFO2(Storag):  Quantity to be requested: 10 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 9
+     INFO2(core  ):  Beginning Tock for time: 9
+     INFO2(Storag):  The total inventory at time 9 is 0 kg of material.
 
     Status: Cyclus run successful!
     Output location: cyclus.sqlite
-    Simulation ID: 9f15b93c-9ab2-49bb-a14f-fef872e64ce8
+    Simulation ID: 747f6c86-fce8-49be-8c57-8bb38e11761a
 
 Add a State Variable to Define Storage Capcity
 -------------------------------------------------------------
@@ -542,16 +586,16 @@ Try it out:
 
 .. code-block:: console
 
-    $ cyclus -v 2 input/storage.xml
-                  :                                                               
-              .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
-            CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)  
-            CCCCCCCCCCCCCl       __O|/O___O|/O_OO|/O__O|/O__O|/O____________O|/O__
-         CCCCCCf     iCCCLCC     /////////////////////////////////////////////////
-         iCCCt  ;;;;;.  CCCC                                                      
-        CCCC  ;;;;;;;;;. CClL.                          c                         
+    $ cyclus -v 3 input/storage.xml
+		  :                                                               
+	      .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
+	    CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)  
+	    CCCCCCCCCCCCCl       __O|/O___O|/O_OO|/O__O|/O__O|/O____________O|/O__
+	 CCCCCCf     iCCCLCC     /////////////////////////////////////////////////
+	 iCCCt  ;;;;;.  CCCC                                                      
+	CCCC  ;;;;;;;;;. CClL.                          c                         
        CCCC ,;;       ;;: CCCC  ;                   : CCCCi                       
-        CCC ;;         ;;  CC   ;;:                CCC`   `C;                     
+	CCC ;;         ;;  CC   ;;:                CCC`   `C;                     
       lCCC ;;              CCCC  ;;;:             :CC .;;. C;   ;    :   ;  :;;   
       CCCC ;.              CCCC    ;;;,           CC ;    ; Ci  ;    :   ;  :  ;  
        iCC :;               CC       ;;;,        ;C ;       CC  ;    :   ; .      
@@ -560,16 +604,16 @@ Try it out:
        iCf ;;               CC         :;;:      tC ;       CC  ;    :   ;     ;  
       fCCC :;              LCCf      ;;;:         LC :.  ,: C   ;    ;   ; ;   ;  
       CCCC  ;;             CCCC    ;;;:           CCi `;;` CC.  ;;;; :;.;.  ; ,;  
-        CCl ;;             CC    ;;;;              CCC    CCL                     
+	CCl ;;             CC    ;;;;              CCC    CCL                     
        tCCC  ;;        ;; CCCL  ;;;                  tCCCCC.                      
-        CCCC  ;;     :;; CCCCf  ;                     ,L                          
-         lCCC   ;;;;;;  CCCL                                                      
-         CCCCCC  :;;  fCCCCC                                                      
-          . CCCC     CCCC .                                                       
-           .CCCCCCCCCCCCCi                                                        
-              iCCCCCLCf                                                           
-               .  C. ,                                                            
-                  :                                                               
+	CCCC  ;;     :;; CCCCf  ;                     ,L                          
+	 lCCC   ;;;;;;  CCCL                                                      
+	 CCCCCC  :;;  fCCCCC                                                      
+	  . CCCC     CCCC .                                                       
+	   .CCCCCCCCCCCCCi                                                        
+	      iCCCCCLCf                                                           
+	       .  C. ,                                                            
+		  :                                                               
     Experimental Warning: ResBuf is experimental and its API may be subject to change
     Experimental Warning: ResBuf is experimental and its API may be subject to change
     Experimental Warning: ResBuf is experimental and its API may be subject to change
@@ -597,37 +641,77 @@ Try it out:
     Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
      INFO1(core  ):Simulation set to run from start=0 to end=10
      INFO1(core  ):Beginning simulation
-     INFO1(storag):Quantity to be requested: 8 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 0 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 8 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 1 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 8 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 2 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 8 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 3 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 8 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 4 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 8 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 5 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 8 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 6 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 8 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 7 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 8 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 8 is 0 kg of material.
-     INFO1(storag):Quantity to be requested: 8 kg.
-     INFO1(storag):Quantity to be offered: 0 kg.
-     INFO1(storag):The total inventory at time 9 is 0 kg of material.
+     INFO1(core  ):Current time: 0
+     INFO2(core  ):  Beginning Tick for time: 0
+     INFO2(Storag):  Quantity to be requested: 8 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 0
+     INFO2(core  ):  Beginning Tock for time: 0
+     INFO2(Storag):  The total inventory at time 0 is 0 kg of material.
+     INFO1(core  ):Current time: 1
+     INFO2(core  ):  Beginning Tick for time: 1
+     INFO2(Storag):  Quantity to be requested: 8 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 1
+     INFO2(core  ):  Beginning Tock for time: 1
+     INFO2(Storag):  The total inventory at time 1 is 0 kg of material.
+     INFO1(core  ):Current time: 2
+     INFO2(core  ):  Beginning Tick for time: 2
+     INFO2(Storag):  Quantity to be requested: 8 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 2
+     INFO2(core  ):  Beginning Tock for time: 2
+     INFO2(Storag):  The total inventory at time 2 is 0 kg of material.
+     INFO1(core  ):Current time: 3
+     INFO2(core  ):  Beginning Tick for time: 3
+     INFO2(Storag):  Quantity to be requested: 8 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 3
+     INFO2(core  ):  Beginning Tock for time: 3
+     INFO2(Storag):  The total inventory at time 3 is 0 kg of material.
+     INFO1(core  ):Current time: 4
+     INFO2(core  ):  Beginning Tick for time: 4
+     INFO2(Storag):  Quantity to be requested: 8 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 4
+     INFO2(core  ):  Beginning Tock for time: 4
+     INFO2(Storag):  The total inventory at time 4 is 0 kg of material.
+     INFO1(core  ):Current time: 5
+     INFO2(core  ):  Beginning Tick for time: 5
+     INFO2(Storag):  Quantity to be requested: 8 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 5
+     INFO2(core  ):  Beginning Tock for time: 5
+     INFO2(Storag):  The total inventory at time 5 is 0 kg of material.
+     INFO1(core  ):Current time: 6
+     INFO2(core  ):  Beginning Tick for time: 6
+     INFO2(Storag):  Quantity to be requested: 8 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 6
+     INFO2(core  ):  Beginning Tock for time: 6
+     INFO2(Storag):  The total inventory at time 6 is 0 kg of material.
+     INFO1(core  ):Current time: 7
+     INFO2(core  ):  Beginning Tick for time: 7
+     INFO2(Storag):  Quantity to be requested: 8 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 7
+     INFO2(core  ):  Beginning Tock for time: 7
+     INFO2(Storag):  The total inventory at time 7 is 0 kg of material.
+     INFO1(core  ):Current time: 8
+     INFO2(core  ):  Beginning Tick for time: 8
+     INFO2(Storag):  Quantity to be requested: 8 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 8
+     INFO2(core  ):  Beginning Tock for time: 8
+     INFO2(Storag):  The total inventory at time 8 is 0 kg of material.
+     INFO1(core  ):Current time: 9
+     INFO2(core  ):  Beginning Tick for time: 9
+     INFO2(Storag):  Quantity to be requested: 8 kg.
+     INFO2(Storag):  Quantity to be offered: 0 kg.
+     INFO2(core  ):  Beginning DRE for time: 9
+     INFO2(core  ):  Beginning Tock for time: 9
+     INFO2(Storag):  The total inventory at time 9 is 0 kg of material.
 
     Status: Cyclus run successful!
     Output location: cyclus.sqlite
-    Simulation ID: 9f15b93c-9ab2-49bb-a14f-fef872e64ce8
+    Simulation ID: 1ce98e9b-bd89-402b-8bd6-c8266e293dba
