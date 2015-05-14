@@ -303,7 +303,7 @@ function (after any pushing/popping) with
 
 .. code-block:: c++
 
-    LOG(cyclus::LEV_INFO1, "storage") << "The total inventory at time " 
+    LOG(cyclus::LEV_INFO3, "Storage") << "The total inventory at time " 
                                       << t << " is " 
                                       << inventory.quantity() + output.quantity()
                                       << " kg.";
@@ -319,7 +319,7 @@ After updating the function should look something like
         time_q.push(t);
       }
 
-      LOG(cyclus::LEV_INFO1, "storage") << "The total inventory at time " 
+      LOG(cyclus::LEV_INFO2, "Storage") << "The total inventory at time " 
                                         << t << " is " 
                                         << inventory.quantity() + output.quantity()
                                         << " kg.";
@@ -336,8 +336,8 @@ DRE, it goes in the ``Tick()``
 
 .. code-block:: c++
 
-    LOG(cyclus::LEV_INFO1, "storage") << "Quantity to be requested: " << buy_policy.TotalQty() << " kg.";
-    LOG(cyclus::LEV_INFO1, "storage") << "Quantity to be offered: " << sell_policy.Limit() << " kg.";
+    LOG(cyclus::LEV_INFO2, "Storage") << "Quantity to be requested: " << buy_policy.TotalQty() << " kg.";
+    LOG(cyclus::LEV_INFO2, "Storage") << "Quantity to be offered: " << sell_policy.Limit() << " kg.";
 
 After updating the function should look something like 
 
@@ -350,8 +350,8 @@ After updating the function should look something like
    	time_q.pop();
       }
      
-      LOG(cyclus::LEV_INFO1, "storage") << "Quantity to be requested: " << buy_policy.TotalQty() << " kg.";
-      LOG(cyclus::LEV_INFO1, "storage") << "Quantity to be offered: " << sell_policy.Limit() << " kg.";
+      LOG(cyclus::LEV_INFO2, "Storage") << "Quantity to be requested: " << buy_policy.TotalQty() << " kg.";
+      LOG(cyclus::LEV_INFO2, "Storage") << "Quantity to be offered: " << sell_policy.Limit() << " kg.";
     }
 
 
@@ -510,8 +510,8 @@ So the full ``Tick()`` function now looks like
       // only allow requests up to the storage capacity 
       input.capacity(capacity - inventory.quantity() - output.quantity());
      
-      LOG(cyclus::LEV_INFO1, "storage") << "Quantity to be requested: " << buy_policy.TotalQty() << " kg.";
-      LOG(cyclus::LEV_INFO1, "storage") << "Quantity to be offered: " << sell_policy.Limit() << " kg.";
+      LOG(cyclus::LEV_INFO2, "Storage") << "Quantity to be requested: " << buy_policy.TotalQty() << " kg.";
+      LOG(cyclus::LEV_INFO2, "Storage") << "Quantity to be offered: " << sell_policy.Limit() << " kg.";
     }
 
 
