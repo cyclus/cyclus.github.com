@@ -62,7 +62,7 @@ Make a new input file that is a copy of the test input file
 
     $ cp input/example.xml input/storage.xml
 
-Then change ever instance of ``TutorialFacility`` with ``Storage``. This can be
+Then change every instance of ``TutorialFacility`` with ``Storage``. This can be
 done by hand or on the command line with
 
 .. code-block:: console

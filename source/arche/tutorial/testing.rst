@@ -73,18 +73,11 @@ You can then test the test's initial condition
     EXPECT_DOUBLE_EQ(facility->input.quantity(), qty);
     EXPECT_DOUBLE_EQ(facility->inventory.quantity(), 0);
 
-Now your test should look like
+Then execute the Tock:
 
 .. code-block:: c++
 
-    TEST_F(StorageTest, Tock) {
-      double qty = 42;
-      facility->input.Push(cyclus::NewBlankMaterial(qty));
-      EXPECT_DOUBLE_EQ(facility->input.quantity(), qty);
-      EXPECT_DOUBLE_EQ(facility->inventory.quantity(), 0);
       EXPECT_NO_THROW(facility->Tock());
-      // Test Storage specific behaviors of the Tock function here
-    }
 
 Next, add the test for the final state after the call to ``Tock()``
 

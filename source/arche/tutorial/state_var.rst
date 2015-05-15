@@ -8,11 +8,11 @@ In this lesson, we will:
 2. Build and install the updated module
 3. Modify the sample input file to include these variables
 
-Adding State Variables with Cyclus #pragma
+Add State Variables with Cyclus #pragma
 ----------------------------------------------
 
-The Cyclus preprocessor provides a ``#pragma`` that includes a variable in the
-set of state variables and allows convenient annotations.
+The Cyclus preprocessor provides a ``#pragma`` that defines variables to
+be part of the set of state variables and allows convenient annotations.
 
 First, we'll add the maximum monthly transfer capacity, called ``throughput``.
 Open the file ``src/storage.h`` in your text editor.
@@ -22,14 +22,14 @@ Immediately after the declaration of ``Tock()``, add the following:
 .. code-block:: c++
 
     #pragma cyclus var { \
-      "doc": "Maximum amount of material that can be transfered in or out each time step", \
-      "tooltip": "Maximum amount of material that can be transfered in or out each time step", \
+      "doc": "Maximum amount of material that can be transferred in or out each time step", \
+      "tooltip": "Maximum amount of material that can be transferred in or out each time step", \
       "units": "kg", \
       "uilabel": "Maximum Throughput" \
     }
     double throughput;
 
-Now, we"ll add variable for the minimum amount of time that material is
+Now, we'll add variables for the minimum amount of time that material is
 stored and the input/output commodity names.
 
 .. code-block:: c++
@@ -68,7 +68,7 @@ To rebuild, reinstall, and test this module, just issue the same command as befo
     $ ./install.py
     $ Storage_unit_tests
 
-Modifying the Input File
+Modify the Input File
 -------------------------
 
 If you try to run the same input file with your modified module, you will get
@@ -112,7 +112,13 @@ to define your module.  It is missing the new variables.  Try it:
 
 Notice that you were able to take advantage of the input file validation simply by using the ``#pragma``.
 
-Now, we'll change that input file.  Open the file ``input/example.xml`` in
+Our failed cyclus simulation produced an output file that will need to be deleted.
+
+.. code-block:: console
+
+    $ rm cyclus.sqlite
+
+Now, we'll change that input file.  Open the file ``input/storage.xml`` in
 your text editor, and find the prototype configuration for the single facility
 named "OneFacility" that looks like this.
 

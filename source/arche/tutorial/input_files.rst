@@ -16,7 +16,7 @@ Cyclus uses XML as its input file format, and there is an extensive guide to
 making input files on the `website
 <http://fuelcycle.org/user/writing_input.html>`_. Rather than getting into the
 details of how to write input files, this lesson will focus instead on the
-minimum information needed to get up and running for the Storage archetype.
+minimum information needed to get up and running with the Storage archetype.
 
 Make a Basic Input File
 -----------------------
@@ -48,7 +48,8 @@ In this example, material is being transferred between facilities. As in real
 life, in Cyclus, material must have some composition. For this example, we can
 use an LEU-like composition.
 
-Add the following lines to the bottom of the input file
+Add the following lines to the bottom of the input file (but before the close
+tag </simulation> )
 
 .. code-block:: xml
 
@@ -129,7 +130,7 @@ Similarly, the Cyclus `Sink
 <http://fuelcycle.org/user/cyclusagents.html#agents-sink>`_, you must, at
 minimum, supply an entry in the ``<in_commod/>`` tag and a ``<capacity/>``. We
 want a similar structure to the Source prototype, i.e., connection to the
-Storage prototype and a deamnd for one unit of fuel per time step. We can also
+Storage prototype and a demand for one unit of fuel per time step. We can also
 name this Sink prototype "FuelSink".
 
 Accordingly, add the following lines after the Storage prototype
@@ -256,7 +257,7 @@ from the Source to Storage every time step. After the first time step, a unit of
 material was also sent from Storage to the Sink every time step, having been
 stored for the interim period.
 
-This consistent flow occured because, given the storage time :math:`t_s`,
+This consistent flow occurred because, given the storage time :math:`t_s`,
 capacity :math:`c`, and throughput :math:`\tau`, the following relation is true
 
 .. math::

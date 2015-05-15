@@ -3,7 +3,7 @@ Adding Buffers and Policies from the Toolkit
 
 In this lesson, we will:
 
-1. Add ResBufs to use as material inventories
+1. Add ResBufs to track material inventories
 2. Add Policies to manage the trading of material
 3. Add inventory management logic
 4. Change our log information to show the info about the inventories
@@ -14,26 +14,27 @@ Overview
 
 Cyclus has a growing Toolkit of standard patterns that can be used by
 archetype developers.  There are many advantages to using the Toolkit patterns
-vs developing similar functionality yourself, typical of most code reuse
-situations:
+rather than developing similar functionality yourself, typical of most code
+reuse situations:
 
 * robustness - Toolkit patterns have been subjected to the Cyclus QA process
-* time savings - it will take less time to learn how to use a Toolkit than it takes to develop your own
+* time savings - It will take less time to learn how to use a Toolkit than it takes to develop your own
 * improvements - You can benefit immediately from any improvements in the performance of the Toolkit pattern
 
 Code reuse is a critical best practice in all software development.
 
 One of the Toolkit patterns is a ``ResBuf``, providing a way to track an
-inventory of ``Resoure`` objects. There are also ``MatlBuyPolicy`` and
+inventory of ``Resource`` objects. There are also ``MatlBuyPolicy`` and
 ``MatlSellPolicy`` for managing the trading of ``Material`` objects.
 
-Adding State Variables
-------------------------
+Add State Variables, Buffers, and Policies
+------------------------------------------
 
 All state variable additions should be included in ``src/storage.h`` below the
-other state variables added previously.
+other state variables added previously. 
 
-A ``ResBuf`` is available as a data type for another state variable, so we simply have to add the following:
+ A ``ResBuf`` is available as a data type for another state variable, so we
+ simply have to add the following:
 
 .. code-block:: c++
 
@@ -42,23 +43,24 @@ A ``ResBuf`` is available as a data type for another state variable, so we simpl
     cyclus::toolkit::ResBuf<cyclus::Material> inventory;
 
 This creates a state variable named ``inventory`` that is based on the
-``cyclus::toolkit::ResBuf`` class.  A ResBuf object has special
-handling by the preprocessor, so it will not appear in the schema and
-therefore will not appear in the Cycic UI either.
+``cyclus::toolkit::ResBuf`` class.  We'll explain how buffers and policies
+work in just a moment.  A ResBuf object has special handling by the
+preprocessor, so it will not appear in the schema and therefore will not
+appear in the Cycic UI either.
 
 Next, add two additional buffers
 
 .. code-block:: c++
 
-    /// an buffer for incoming material
+    /// a buffer for incoming material
     #pragma cyclus var {}
     cyclus::toolkit::ResBuf<cyclus::Material> input;
 
-    /// an buffer for outgoing material
+    /// a buffer for outgoing material
     #pragma cyclus var {}
     cyclus::toolkit::ResBuf<cyclus::Material> output;
 
-After, add the policies. Policies do not require any special handling, and
+Now add the policies. Policies do not require any special handling, and
 thus do not need a pragma
 
 .. code-block:: c++
@@ -78,8 +80,8 @@ inventory. An appropriate data structure is a `queue
     /// queue for material entry times
     std::queue<int> time_q;
 
-This requires another header file, so at the top of file, after ``#include
-<string>``, add another include
+This requires another header file, so at the top of the storage.h file, after
+``#include <string>``, add another include
 
 .. code-block:: c++
 
@@ -177,13 +179,15 @@ You can also confirm that everything still works with running the simulation:
     Simulation ID: 9f15b93c-9ab2-49bb-a14f-fef872e64ce8
 
 
-Adding Implementation Logic
+Add Implementation Logic
 -----------------------------
 
 The goal of a storage facility is to ask for material up to some limit, store it
-for some amount of time, and then send it on to any interested parties. This can
-be implemented in Cyclus by utilizing the Toolkit objects stated above. A
-concept of material flow through the facility is shown below.
+for an amount of time, and then send it on to any interested parties. This can
+be implemented in Cyclus by utilizing the Toolkit objects stated above. The buy
+and sell policies will automatically fill and empty the input and output
+buffers, respectively.  A concept of material flow through the facility is
+shown below.
 
 .. figure:: storage_diagram.svg
     :width: 75 %
@@ -193,10 +197,10 @@ concept of material flow through the facility is shown below.
     **before** the DRE (during the Tick). Yellow arrows occur during the
     DRE. Brown arrows occur **after** the DRE (during the Tock).
 
-Connecting Buffers and Policies
+Connect Buffers and Policies
 ++++++++++++++++++++++++++++++++
 
-In order to utilize policies, they must be connected to their respective
+In order for policies to be utilized, they must be connected to their respective
 buffers. The storage facility would like them always connected; accordingly,
 that operation should happen whenever the facility enters a simulation. The
 kernel will let agents know that they are entering a simulation via the
@@ -222,13 +226,12 @@ And add the following to ``src/storage.cc`` before the ``Tick()`` function
 Buffer Transfer Logic
 ++++++++++++++++++++++++++++++++
 
-The buy and sell policies will automatically fill and empty the input and output
-buffers, respectively. The job of the ``Storage`` archetype developer is to
-determine and implement the logic related to transfering material between these
-buffers and the middle inventory buffer. Two rules govern buffer transfer logic
+The job of the ``Storage`` archetype developer is to determine and implement
+the logic related to transfering material between the input and output buffers
+and the middle inventory buffer. Two rules govern buffer transfer logic
 in this model:
 
-1. All material in the input buffer is transfered to the inventory buffer
+1. All material in the input buffer is transferred to the inventory buffer
 2. Material in the inventory buffer that has been stored for long enough is
    transferred to the output buffer
 
@@ -237,7 +240,7 @@ in the ``Tock()`` method. Similarly, because the output buffer transfer should
 occur *before* the DRE, it must happen in the ``Tick()`` method. For each
 transfer, care must be taken to update the ``time_q`` queue appropriately.
 
-The input buffer transfer requires the following operation for every object in
+The input buffer transfer requires the following operation for each object in
 the buffer:
 
 1. *Pop* the object from the input buffer
@@ -257,14 +260,14 @@ In order to implement this, replace the current ``Tock()`` implementation in
       }
     }
 
-The output buffer transfer requires the following operation until the first
-condition is not met:
+The output buffer transfer requires the following operation so long as the
+condition in 1. is met:
 
-1. Check if enough time has passed since the time at the front of ``time_q``
-   *and* the inventory is not empty. If so
+1. Check whether enough time has passed since the time at the front of
+   ``time_q`` *and* the inventory is not empty. If so:
 2. *Pop* an object from the inventory buffer
 3. *Push* that object to the output buffer
-4. *Pop* an time from the  ``time_q``
+4. *Pop* a time from the ``time_q``
 
 In order to implement this, replace the current ``Tick()`` implementation in
 ``src/storage.cc`` with
@@ -498,9 +501,10 @@ Add a State Variable to Define Storage Capcity
 -------------------------------------------------------------
 
 A natural extension for the current storage facility implementation is to have a
-maximum storage capacity. To do so, first add a capacity state variable. If you
-still want the input file to work, you have to provide a ``default`` key in the
-pragma data structure. A sufficiently large value will do.
+maximum storage capacity. To do so, first add a capacity state variable to
+storage.h . If you still want the input file to work, you have to provide a
+``default`` key in the pragma data structure. A sufficiently large value will
+do.
 
 .. code-block:: c++
 
@@ -513,7 +517,7 @@ pragma data structure. A sufficiently large value will do.
     }
     double capacity;
     
-The required implementation is slightly nontrivial. The goal of adding a capcity
+The required implementation is nontrivial. The goal of adding a capacity
 member is to guarantee that the amount of material in the facility never exceeds
 a certain value. The only way for material to enter the facility is through the
 ``input`` ResBuff via the ``buy_policy``. The ``MatlBuyPolicy`` sets a maximum
@@ -532,8 +536,9 @@ capacity before the DRE occurs to achieve this behavior.
     flows in the previous figure.
 
 
-To do so, add the following line to the end of the ``Tick()`` function, which
-update's ``input``'s capacity through the ``ResBuf`` ``capacity()`` API
+To do so, add the following line to the end of the ``Tick()`` function (in the
+implementation file), which updates capacity of the ``input`` through the
+``ResBuf`` ``capacity()`` API
 
 .. code-block:: c++
 
@@ -573,7 +578,8 @@ Update Input File and Run
 ++++++++++++++++++++++++++++++++
 
 You can test that your new capacity capability works by adding the following to
-the end of the ``Storage``'s ``config`` block in ``input/storage.xml``
+the end of the ``config`` block for ``Storage`` (before the close tag
+</Storage>) in ``input/storage.xml``
 
 .. code-block:: xml
 
@@ -582,10 +588,11 @@ the end of the ``Storage``'s ``config`` block in ``input/storage.xml``
 Note that this capacity is smaller than the throughput! What do you think you
 will see in the output logs?
 
-Try it out:
+Try it out (don't forget to delete the old sqlite file first):
 
 .. code-block:: console
 
+    $ rm cyclus.sqlite
     $ cyclus -v 3 input/storage.xml
 		  :                                                               
 	      .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
