@@ -278,7 +278,7 @@ class CyclusAgent(Directive):
         self.lines.append('')
 
     skipstatevar = {'type', 'index', 'shape', 'doc', 'tooltip', 'default',
-                    'units', None}
+                    'uitype', 'alias', 'uilabel', None}
 
     def _sort_statevars(self, item):
         key, val = item
@@ -335,8 +335,6 @@ class CyclusAgent(Directive):
                 doc = ind + info['doc'].replace('\n', '\n'+ind) 
                 lines += doc.splitlines()
                 lines.append('')
-            elif 'tooltip' in info:
-                self.lines += [ind + '*' + info['tooltip'] + '*', '']
 
             t = info['type']
             uitype = info.get('uitype', None)
