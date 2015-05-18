@@ -309,7 +309,12 @@ class CyclusAgent(Directive):
                 continue
 
             alias = info.get('alias', name)
-            name = alias if isinstance(alias, STRING_TYPES) else alias[0]
+            if isinstance(alias, STRING_TYPES):
+                name = alias 
+            elif isinstance(alias[0], STRING_TYPES):
+                name = alias[0]
+            else:
+                name = alias[0][0]
 
             # add name
             ts = type_to_str(info['type'])
