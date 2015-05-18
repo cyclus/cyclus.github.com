@@ -278,7 +278,7 @@ class CyclusAgent(Directive):
         self.lines.append('')
 
     skipstatevar = {'type', 'index', 'shape', 'doc', 'tooltip', 'default',
-                    'alias', 'uilabel', None}
+                    'units', 'alias', 'uilabel', None}
 
     def _sort_statevars(self, item):
         key, val = item
