@@ -278,17 +278,25 @@ class CyclusAgent(Directive):
             self.lines += self.annotations['doc'].splitlines()
         self.lines.append('')
 
+    # must use list constructor to maintain order
+    keynames = OrderedDict([
+        ('name', 'Full Archetype Name'),
+        ('entity', 'Simulation Entity Type'),
+        ('parents', 'Interfaces'),
+        ('all_parents', 'All Interfaces'),
+    ])
+
     def append_otherinfo(self):
         header = 'Other Info'
         self.lines += [header, ';' * len(header), '']
 
-        for key in ('entity', 'parents', 'all_parents'):
+        for key, name in self.keynames.items():
             val = self.annotations.get(key, None)
             if val is None:
                 continue
-            self.lines.append('* **{0}**: {1}'.format(key, nicestr(val)))
+            self.lines.append('* **{0}**: {1}'.format(name, nicestr(val)))
         for key, val in sorted(self.annotations.items()):
-            if key in self.skipdoc:
+            if key in self.skipdoc or key in self.keynames.keys():
                 continue
             self.lines.append('* **{0}**: {1}'.format(key, val))
         self.lines.append('')
