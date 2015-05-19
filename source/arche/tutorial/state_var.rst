@@ -110,6 +110,12 @@ to define your module.  It is missing the new variables.  Try it:
     Entity: line 17: element Storage: Relax-NG validity error : Element Storage failed to validate content
      ERROR(core  ):Document failed schema validation
 
+The simulation now fails because it does not match the schema. You can view the schema with
+
+.. code-block:: console
+
+    $ cyclus --agent-schema tutorial:Storage:Storage
+
 Notice that you were able to take advantage of the input file validation simply by using the ``#pragma``.
 
 Our failed cyclus simulation produced an output file that will need to be deleted.
