@@ -126,17 +126,26 @@ default_types = {
     'boost::uuids::uuid': 'token',
     # UI types
     'nuclide': 'string',
-    'commodity': None, 
-    'incommodity': None, 
-    'outcommodity': None, 
+    'commodity': 'string', 
+    'incommodity': 'string', 
+    'outcommodity': 'string', 
     'range': None, 
     'combobox': None, 
     'facility': None, 
-    'prototype': None, 
-    'recipe': None,
+    'prototype': 'string', 
+    'recipe': 'string',
     'none': None,
     None: None,
     '': None,
+    }
+
+special_uitypes = {
+    'nuclide': 'string',
+    'recipe': 'string',
+    'prototype': 'string',
+    'commodity': 'string',
+    'incommodity': 'string',
+    'outcommodity': 'string',
     }
 
 def _type(cpp, given=None):
@@ -151,10 +160,12 @@ def _type(cpp, given=None):
         raise TypeError(msg.format(given))
     return default_types[cpp]
 
-def buildsample(cpptype, schematype=None, uitype=None, names=None):
+
+def buildsample(cpptype, schematype=None, uitype=None, names=None, units=None):
     schematype = prepare_type(cpptype, schematype)
     uitype = prepare_type(cpptype, uitype)
     names = prepare_type(cpptype, names)
+    units = prepare_type(cpptype, units)
 
     impl = ''
     t = cpptype if isinstance(cpptype, STRING_TYPES) else cpptype[0]
@@ -163,12 +174,17 @@ def buildsample(cpptype, schematype=None, uitype=None, names=None):
         if names is not None:
             name = names
         d_type = _type(t, schematype or uitype)
-        impl += '<{0}>[{1}]</{0}>'.format(name, d_type)
+        d_type = uitype if uitype in special_uitypes else d_type
+
+        if isinstance(units, STRING_TYPES):
+            impl += '<{0}>[{1} ( {2} )]</{0}>'.format(name, d_type, units)
+        else:
+            impl += '<{0}>[{1}]</{0}>'.format(name, d_type)
     elif t in ['std::list', 'std::set', 'std::vector']:
         name = 'list' if names[0] is None else names[0]
         impl += '<{0}>'.format(name)
-        impl += buildsample(cpptype[1], schematype[1], uitype[1], names[1])
-        impl += buildsample(cpptype[1], schematype[1], uitype[1], names[1])
+        impl += buildsample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
+        impl += buildsample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
         impl += '...'
         impl += '</{0}>'.format(name)
     elif t == 'std::map':
@@ -188,12 +204,12 @@ def buildsample(cpptype, schematype=None, uitype=None, names=None):
             valnames = names[2]
         impl += '<{0}>'.format(name)
         impl += '<{0}>'.format(itemname)
-        impl += buildsample(cpptype[1], schematype[1], uitype[1], keynames)
-        impl += buildsample(cpptype[2], schematype[2], uitype[2], valnames)
+        impl += buildsample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
+        impl += buildsample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
         impl += '</{0}>'.format(itemname)
         impl += '<{0}>'.format(itemname)
-        impl += buildsample(cpptype[1], schematype[1], uitype[1], keynames)
-        impl += buildsample(cpptype[2], schematype[2], uitype[2], valnames)
+        impl += buildsample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
+        impl += buildsample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
         impl += '</{0}>'.format(itemname)
         impl += '...'
         impl += '</{0}>'.format(name)
@@ -208,8 +224,8 @@ def buildsample(cpptype, schematype=None, uitype=None, names=None):
         if names[2] is not None:
             secondname = names[2]
         impl += '<{0}>'.format(name)
-        impl += buildsample(cpptype[1], schematype[1], uitype[1], firstname)
-        impl += buildsample(cpptype[2], schematype[2], uitype[2], secondname)
+        impl += buildsample(cpptype[1], schematype[1], uitype[1], firstname, units[1])
+        impl += buildsample(cpptype[2], schematype[2], uitype[2], secondname, units[2])
         impl += '</{0}>'.format(name)
     else:
         msg = 'Unsupported type {1}'.format(t)
@@ -278,7 +294,7 @@ class CyclusAgent(Directive):
         self.lines.append('')
 
     skipstatevar = {'type', 'index', 'shape', 'doc', 'tooltip', 'default',
-                    'units', 'alias', 'uilabel', None}
+                    'units', 'alias', 'uilabel', 'uitype', None}
 
     def _sort_statevars(self, item):
         key, val = item
@@ -318,10 +334,7 @@ class CyclusAgent(Directive):
 
             # add name
             ts = type_to_str(info['type'])
-            if 'units' in info:
-                n = ":{0}: ``{1}`` {2} " .format(name, ts, info['units'])
-            else:
-                n = ":{0}: ``{1}``" .format(name, ts)
+            n = ":{0}: ``{1}``" .format(name, ts)
 
             if 'default' in info:
                 n += ', optional ('
@@ -343,6 +356,7 @@ class CyclusAgent(Directive):
 
             t = info['type']
             uitype = info.get('uitype', None)
+            units = info.get('units', None)
             schematype = info.get('schematype', None)
             labels = info.get('alias', None)
             if labels is None:
@@ -356,7 +370,7 @@ class CyclusAgent(Directive):
             self.lines.append('')
 
             self.lines += ['', ind + '.. code-block:: xml', '']
-            schemalines = buildsample(t, schematype, uitype, labels).split('\n')
+            schemalines = buildsample(t, schematype, uitype, labels, units).split('\n')
             previndent = ''
             for l in schemalines:
                 if len(l.strip()) > 0:
