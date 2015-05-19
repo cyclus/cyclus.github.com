@@ -173,7 +173,7 @@ def buildsample(cpptype, schematype=None, uitype=None, names=None, units=None):
         name = 'val'
         if names is not None:
             name = names
-        d_type =  _type(t, schematype or uitype)
+        d_type = _type(t, schematype or uitype)
         d_type = uitype if uitype in special_uitypes else d_type
 
         if isinstance(units, STRING_TYPES):
