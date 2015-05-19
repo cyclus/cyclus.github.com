@@ -71,7 +71,7 @@ done by hand or on the command line with
 
 .. code-block:: console
 
-    $ sed -i'' "s/TutorialFacility/Storage/g" input/storage.xml
+    $ sed -i "s/TutorialFacility/Storage/g" input/storage.xml
 
 Test the input file by running Cyclus
 
