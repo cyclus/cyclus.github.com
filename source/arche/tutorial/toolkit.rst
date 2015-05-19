@@ -202,9 +202,9 @@ Connect Buffers and Policies
 
 In order for policies to be utilized, they must be connected to their respective
 buffers. The storage facility would like them always connected; accordingly,
-that operation should happen whenever the facility enters a simulation. The
-kernel will let agents know that they are entering a simulation via the
-``EnterNotify()`` function.
+that operation should happen at the time when the facility enters a
+simulation. The kernel will let agents know that they are entering a simulation
+via the ``EnterNotify()`` function.
 
 Add the following to ``src/storage.h`` before the ``Tick()`` function
 
