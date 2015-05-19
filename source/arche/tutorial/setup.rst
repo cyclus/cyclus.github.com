@@ -26,12 +26,16 @@ Start by making sure you are in the correct directory
 
 Then make the new archetype, updating all the files as needed
 
+.. note::
+
+    If you are on a Mac, replace all instances of ``sed -i`` with ``sed -i ''``.
+
 .. code-block:: console
 
     $ for file in `ls src/tutorial_facility*`; do cp "${file}" "${file/tutorial_facility/storage}"; done
-    $ sed -i'' "s/tutorial_facility/storage/g" src/storage*
-    $ sed -i'' "s/TutorialFacility/Storage/g" src/storage*
-    $ sed -i'' "s/TUTORIAL_FACILITY/STORAGE/g" src/storage*
+    $ sed -i "s/tutorial_facility/storage/g" src/storage*
+    $ sed -i "s/TutorialFacility/Storage/g" src/storage*
+    $ sed -i "s/TUTORIAL_FACILITY/STORAGE/g" src/storage*
 
 Finally, open -``src/CMakeLists.txt`` with your favorite text editor and add the
 following line to the end of it
