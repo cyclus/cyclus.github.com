@@ -1,3 +1,5 @@
+.. _cycamore_archetypes:
+
 Cycamore Archetypes
 ====================
 

@@ -1,4 +1,6 @@
-|Cyclus| Archetypes
+.. _cyclus_archetypes:
+
+Cyclus Archetypes
 ===================
 
 This is a collection of archetypes found in the ``agents`` module that comes with 

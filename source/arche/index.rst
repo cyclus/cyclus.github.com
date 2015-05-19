@@ -46,6 +46,14 @@ Hello World
 Writing Agents & Modules
 ------------------------
 
+Tutorial
+++++++++
+
+.. toctree::
+    :maxdepth: 1
+    
+    tutorial/index
+
 Building, Installing and Testing
 ++++++++++++++++++++++++++++++++
 

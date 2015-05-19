@@ -1,101 +1,134 @@
-Setup a new code repository based on Cycstub
+Setup a New Project Based on Cycstub
 ==============================================
 
 In this lesson, we will:
 
-1. Clone the Cycstub repository to your local machine
-2. Rename the templates in your Cycstub repository
-3. Create a new respository on Github
-4. Connect this repository with your new Github repository
-5. Push the Cycstub repository to your new Github repository
+1. Do the tasks the the Cyclus Archetype Hello World!
+2. Clean up the file system for the single storage facility
+3. Install the storage facility 
+4. Run an input file that uses the new storage facility
 
-Clone the Cycstub repository to your local machine
+Follow the Hello Cyclus! Instructions
 ---------------------------------------------------
 
-First, you need to get the ``cycstub`` code.  Cycstub is a skeleton code base
-that you can use to quick-start new |cyclus| module development projects.  We
-will grab cycstub by using git to `clone the repository
-<https://github.com/cyclus/cycstub.git>`_.  Let's put this code in a
-``TutorialStorage`` directory and go into it.
+Follow all of the steps of :ref:`hello_world`.
 
-.. code-block:: bash
-
-    $ git clone https://github.com/cyclus/cycstub.git TutorialStorage
-    $ cd TutorialStorage
-
-Rename the templates in the Cycstub clone
+Make a Storage Facility
 ------------------------------------------
 
-Since cycstub is a template project everything is named ``stub``. We need to
-change this to reflect the name we want our new project to be called -
-``tutorial_storage`` here.  Cycstub comes with a renaming tool to do just
-this!  From the command line, run Python in the following way:
+Next, make a new facility by copying the facility archetype from the Hello World! tutorial. 
+
+Start by making sure you are in the correct directory
+
+.. code-block:: console
+
+    $ cd ~/tutorial
+
+Then make the new archetype, updating all the files as needed
+
+.. note::
+
+    If you are on a Mac, replace all instances of ``sed -i`` with ``sed -i ''``.
+
+.. code-block:: console
+
+    $ for file in `ls src/tutorial_facility*`; do cp "${file}" "${file/tutorial_facility/storage}"; done
+    $ sed -i "s/tutorial_facility/storage/g" src/storage*
+    $ sed -i "s/TutorialFacility/Storage/g" src/storage*
+    $ sed -i "s/TUTORIAL_FACILITY/STORAGE/g" src/storage*
+
+Finally, open -``src/CMakeLists.txt`` with your favorite text editor and add the
+following line to the end of it
 
 .. code-block:: bash
 
-    $ python rename.py tutorial_storage
-
-We will now commit the changes to this local repository.  The first step is to
-stop tracking the original stub files:
-
-.. code-block:: bash
-
-    $ git rm src/stub_*
-
-We will then add the files that were modified::
-
-    $ git add CMakeLists.txt input/example.xml src/CMakeLists.txt src/tutorial_storage_*
-
-Finally, we can commit these changes:
-
-.. code-block:: bash
-
-    $ git commit -m "Changed cycstub files from stub to tutorial_storage"
+    install_cyclus_standalone("Storage" "storage" "tutorial")
 
 
-Create a New Repository on Github
+Install and Test
 ----------------------------------
 
-Log in to your Github account and start a new repository by clicking on the
-'+' symbol next to your account name.
+Install the tutorial project
 
-.. image:: github_new.png
+.. code-block:: console
 
-Enter the name for your repository, "TutorialStorage", and click the "Create
-repository" button.
+    $ ./install.py
 
-Connect this repository with your new Github repository
---------------------------------------------------------
+Run the unit tests
 
-The clone of ``cycstub`` that you just made is connected to the original
-`cycstub repository <https://github.com/cyclus/cycstub.git>`_.  You can see
-this using the ``git remote`` command:
+.. code-block:: console
 
-.. code-block:: bash
+    $ Storage_unit_tests
 
-    $ git remote -v
-    origin	https://github.com/cyclus/cycstub.git (fetch)
-    origin	https://github.com/cyclus/cycstub.git (push)
+Make a new input file that is a copy of the test input file 
 
-We would like to sever this connection since and instead connect this local
-repository to our new Github repository:
+.. code-block:: console
 
-.. code-block:: bash
+    $ cp input/example.xml input/storage.xml
 
-    $ git remote set-url origin https://github.com/<your_github_username>/TutorialStorage.git
-    $ git remote -v
-    origin	https://github.com/<your_github_username>/TutorialStorage.git (fetch)
-    origin	https://github.com/<your_github_username>/TutorialStorage.git (push)
+Then change every instance of ``TutorialFacility`` with ``Storage``. This can be
+done by hand or on the command line with
 
-Push the Cycstub repository to your new Github repository
------------------------------------------------------------
+.. code-block:: console
 
-You are now ready to push this renamed clone of ``cycstub`` to your new
-repository and begin development.  Since the primary branch of this repository
-is the ``develop`` branch, you will need to connect this branch 
+    $ sed -i'' "s/TutorialFacility/Storage/g" input/storage.xml
 
-.. code-block:: bash
+Test the input file by running Cyclus
 
-    $ git push origin
+.. code-block:: console
 
+    $ cyclus -v 2 input/storage.xml
+                  :                                                               
+              .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
+            CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)  
+            CCCCCCCCCCCCCl       __O|/O___O|/O_OO|/O__O|/O__O|/O____________O|/O__
+         CCCCCCf     iCCCLCC     /////////////////////////////////////////////////
+         iCCCt  ;;;;;.  CCCC                                                      
+        CCCC  ;;;;;;;;;. CClL.                          c                         
+       CCCC ,;;       ;;: CCCC  ;                   : CCCCi                       
+        CCC ;;         ;;  CC   ;;:                CCC`   `C;                     
+      lCCC ;;              CCCC  ;;;:             :CC .;;. C;   ;    :   ;  :;;   
+      CCCC ;.              CCCC    ;;;,           CC ;    ; Ci  ;    :   ;  :  ;  
+       iCC :;               CC       ;;;,        ;C ;       CC  ;    :   ; .      
+      CCCi ;;               CCC        ;;;.      .C ;       tf  ;    :   ;  ;.    
+      CCC  ;;               CCC          ;;;;;;; fC :       lC  ;    :   ;    ;:  
+       iCf ;;               CC         :;;:      tC ;       CC  ;    :   ;     ;  
+      fCCC :;              LCCf      ;;;:         LC :.  ,: C   ;    ;   ; ;   ;  
+      CCCC  ;;             CCCC    ;;;:           CCi `;;` CC.  ;;;; :;.;.  ; ,;  
+        CCl ;;             CC    ;;;;              CCC    CCL                     
+       tCCC  ;;        ;; CCCL  ;;;                  tCCCCC.                      
+        CCCC  ;;     :;; CCCCf  ;                     ,L                          
+         lCCC   ;;;;;;  CCCL                                                      
+         CCCCCC  :;;  fCCCCC                                                      
+          . CCCC     CCCC .                                                       
+           .CCCCCCCCCCCCCi                                                        
+              iCCCCCLCf                                                           
+               .  C. ,                                                            
+                  :                                                               
+    INFO1(core  ):Simulation set to run from start=0 to end=10
+    INFO1(core  ):Beginning simulation
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+    INFO1(tutori):Hello
+    INFO1(tutori):World!
+
+    Status: Cyclus run successful!
+    Output location: cyclus.sqlite
+    Simulation ID: 9f15b93c-9ab2-49bb-a14f-fef872e64ce8
 

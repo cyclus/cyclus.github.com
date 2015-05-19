@@ -1,4 +1,6 @@
 
+.. _testing:
+
 Testing Agents and Modules
 ==========================
 
