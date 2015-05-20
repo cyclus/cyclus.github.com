@@ -33,6 +33,19 @@ always welcome and encouraged to use or contribute to the |cyclus| project.
 
 The |Cyclus| project repository is located at http://github.com/cyclus/cyclus.
 
+2015 ANS Annual Meeting Tutorials
+----------------------------------
+
+The |cyclus| development team will be hosting two tutorials during the `2015
+ANS Annual Meeting <http://ansannual.org/>`_, sponsored by the `Fuel Cycle and
+Waste Management Division <http://fcwmd.ans.org>`_, on Wednesday, June 10, 2015.
+
+* *8:30-11:30 AM*, :doc:`User's Tutorial <cite/tutorials/2015-ans-users>`
+* *1:00-4:00 PM*, :doc:`Archetype Developer's Tutorial <cite/tutorials/2015-ans-archdev>`
+
+Please plan to attend these tutorials and check here for more information
+about what you will need to bring.
+
 Learn More
 ----------
 
