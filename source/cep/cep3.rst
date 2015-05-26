@@ -11,11 +11,13 @@ CEP 3 - |Cyclus| Release Procedure
 
 Abstract
 ========
+
 The purpose of this document is to act as a guideline and checklist for how 
 to release the |cyclus| core code base and the supported projects in the ecosystem.
 
 The |Cyclus| Ecosystem
 ======================
+
 The very first thing to do when preparing for an upcoming release is to elect 
 a release manager.  This person has the special responsibility of making sure 
 all of the following tasks are implemented.  Therefore, their judgment for the 
@@ -36,6 +38,7 @@ The projects which are not yet under the release managers purview are:
 
 Release Candidates (Tags & Branches)
 ====================================
+
 At the beginning of a release, a special branch for *each* project should be
 made off of ``develop`` named ``vX.X.X-release``. Note the *v* at the beginning. Each
 project should have the initial version of of it's release branch *tagged* as
@@ -87,6 +90,7 @@ as they were accepted.
 
 Project Checklist
 =================
+
 .. note::
 
     Utility scripts for this process can be found in the `release`_ repository
@@ -173,23 +177,35 @@ Release Process
       $ export CYMETRIC_DIR=/path/to/cymetric
       $ ./conda_upload.sh X.X.X # X.X.X is *this* version
 
+#. **TODO** Update the API docs (see old ciclus nightly scripts)
+
 #. Update the ``master`` branch of all projects and clean up
 
     .. code-block:: bash
 
       $ cd /path/to/project
-      $ git checkout master
       $ git push --tags upstream master
-      $ git merge --no-ff vX.X.X-release
+      $ git push --delete upstream vX.X.X-release
+
+#. Manually visit the github.com page for each project and mark the tags as releases
+
+    - This can be updated one day to use the Github `release API
+      <https://developer.github.com/v3/repos/releases/#create-a-release>`_
 
 #. Create a DOI. See :doc:`CEP4 <./cep4>` for details.
+
+    - This can be updated one day to use the Figshare `API
+      <http://api.figshare.com/docs/intro.html>`_
 
 #. Update release information on the front page (``index.rst``) of the website.
 
 #. Commit all changes to ``cyclus.github.com`` and ``make gh-publish`` 
 
+#. Send out an email to `cyclus-dev` and `cyclus-users` to announce the release!
+
 Maintainence Tasks
 ==================
+
 .. note::
 
     There is now the ``maintenence.sh`` utility in ``release/utils`` that
@@ -200,6 +216,7 @@ at least as often as every micro release.
 
 |Cyclus|
 --------
+
 **Update PyNE:**  PyNE source code is included and shipped as part of |cyclus|. As pyne
 evolves, we'll want to have our version evolve as well. Here are the steps to do so.
 These assume that in your HOME dir there are both the pyne and |cyclus| repos.  Remember 
@@ -260,10 +277,12 @@ file.  Commit this and add it to the repo.
 
 Cycamore
 --------
+
 No maintenence required.
 
 Cycstub
 --------
+
 Every release the relevant files from |cyclus| should be copied over to |cyclus|.
 Use the following BASH commands to do so:
 
@@ -274,10 +293,12 @@ Use the following BASH commands to do so:
 
 Cymetric
 --------
+
 No maintenance required.
 
 Document History
 ================
+
 This document is released under the CC-BY 3.0 license.
 
 .. _Cyclus: https://github.com/cyclus/cyclus
