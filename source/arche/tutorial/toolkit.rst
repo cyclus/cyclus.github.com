@@ -72,20 +72,28 @@ thus do not need a pragma
     cyclus::toolkit::MatlSellPolicy sell_policy;
 
 There needs to be a mechansim for keeping track of when materials enter the
-inventory. An appropriate data structure is a `queue
-<http://www.cplusplus.com/reference/queue/queue/>`_. Accordingly, add one
+inventory. In order to utilize Cyclus' sophisticated restart capability, we must
+choose a data structure that is compatible with the at least one of the Cyclus
+output databases (see :ref:`dbtypes`). Given that requirement, an appropriate
+data structure is a `list
+<http://www.cplusplus.com/reference/list/list/>`_. Accordingly, add the
+following
 
 .. code-block:: c++
 
-    /// queue for material entry times
-    std::queue<int> time_q;
+    /// list for material entry times, providing a default lets this variable be
+    /// optional in an input file
+    #pragma cyclus var { \
+      "default": [] \
+    }
+    std::list<int> entry_times;
 
 This requires another header file, so at the top of the storage.h file, after
 ``#include <string>``, add another include
 
 .. code-block:: c++
 
-    #include <queue>
+    #include <list>
 
 Finally, check that everything works by installing and testing
 
@@ -238,14 +246,14 @@ in this model:
 Because the input buffer transfer should occur *after* the DRE, it must happen
 in the ``Tock()`` method. Similarly, because the output buffer transfer should
 occur *before* the DRE, it must happen in the ``Tick()`` method. For each
-transfer, care must be taken to update the ``time_q`` queue appropriately.
+transfer, care must be taken to update the ``entry_times`` list appropriately.
 
 The input buffer transfer requires the following operation for each object in
 the buffer:
 
 1. *Pop* the object from the input buffer
 2. *Push* the object to the inventory buffer
-3. *Push* the current time to the ``time_q``
+3. *Push* the current time to the ``entry_times``
 
 In order to implement this, replace the current ``Tock()`` implementation in
 ``src/storage.cc`` with
@@ -256,7 +264,7 @@ In order to implement this, replace the current ``Tock()`` implementation in
       int t = context()->time();
       while (!input.empty()) {
         inventory.Push(input.Pop());
-        time_q.push(t);
+        entry_times.push_back(t);
       }
     }
 
@@ -264,10 +272,10 @@ The output buffer transfer requires the following operation so long as the
 condition in 1. is met:
 
 1. Check whether enough time has passed since the time at the front of
-   ``time_q`` *and* the inventory is not empty. If so:
+   ``entry_times`` *and* the inventory is not empty. If so:
 2. *Pop* an object from the inventory buffer
 3. *Push* that object to the output buffer
-4. *Pop* a time from the ``time_q``
+4. *Pop* a time from the ``entry_times``
 
 In order to implement this, replace the current ``Tick()`` implementation in
 ``src/storage.cc`` with
@@ -276,10 +284,10 @@ In order to implement this, replace the current ``Tick()`` implementation in
 
     void Storage::Tick() {
       int finished_storing = context()->time() - storage_time;
-      while (!inventory.empty() && time_q.front() <= finished_storing) {
+      while (!inventory.empty() && entry_times.front() <= finished_storing) {
         output.Push(inventory.Pop());
-   	time_q.pop();
-      }     
+        entry_times.pop_front();
+      }
     }
 
 
@@ -319,7 +327,7 @@ After updating the function should look something like
       int t = context()->time();
       while (!input.empty()) {
         inventory.Push(input.Pop());
-        time_q.push(t);
+        entry_times.push_back(t);
       }
 
       LOG(cyclus::LEV_INFO2, "Storage") << "The total inventory at time " 
@@ -348,9 +356,9 @@ After updating the function should look something like
 
     void Storage::Tick() {
       int finished_storing = context()->time() - storage_time;
-      while (!inventory.empty() && time_q.front() <= finished_storing) {
+      while (!inventory.empty() && entry_times.front() <= finished_storing) {
         output.Push(inventory.Pop());
-   	time_q.pop();
+   	    entry_times.pop_front();
       }
      
       LOG(cyclus::LEV_INFO2, "Storage") << "Quantity to be requested: " << buy_policy.TotalQty() << " kg.";
@@ -551,9 +559,9 @@ So the full ``Tick()`` function now looks like
 
     void Storage::Tick() {
       int finished_storing = context()->time() - storage_time;
-      while (!inventory.empty() && time_q.front() <= finished_storing) {
+      while (!inventory.empty() && entry_times.front() <= finished_storing) {
         output.Push(inventory.Pop());
-   	time_q.pop();
+        entry_times.pop_front();
       }
 
       // only allow requests up to the storage capacity 
