@@ -103,10 +103,10 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 
 #. Draft release notes
 
-   - the ``make_release_notes.sh`` utility in ``release/utils`` will help
-     provide a template
+    - the ``make_release_notes.sh`` utility in ``release/utils`` will help
+      provide a template
 
-   .. code-block:: bash
+    .. code-block:: bash
 
       $ cd /path/to/release/utils
       $ export CYCLUS_DIR=/path/to/cyclus
@@ -114,25 +114,27 @@ When releasing a |cyclus| project, make sure to do the following items in order:
       $ export CYMETRIC_DIR=/path/to/cymetric
       $ ./make_release_notes.sh W.W.W X.X.X # W.W.W is the previous version, X.X.X is *this* version
 
-   - add the release notes to ``cyclus.github.com/source/previous/`` with
-     appropriate updates to ``index.rst`` in that directory
+    - add the release notes to ``cyclus.github.com/source/previous/`` with
+      appropriate updates to ``index.rst`` in that directory
 
 #. Review the current state of documentation and make approriate updates.
 
+#. Update any new database types in ``cyclus.github.com/source/arche/dbtypes.js``
+
 #. Finish the release candidate process
 
-   - make sure all commits in the ``release`` branch also are in ``develop``
+    - make sure all commits in the ``release`` branch also are in ``develop``
 
 #. Bump the version in ``cyclus/src/version.h``, commit the change
 
 #. Perform maintainence tasks for this project
 
-   - they are described in detail below, *but*
+    - they are described in detail below, *but*
   
-   - the ``maintenence.sh`` utility in ``release/utils`` will do this
-     automatically for you
+    - the ``maintenence.sh`` utility in ``release/utils`` will do this
+      automatically for you
 
-   .. code-block:: bash
+    .. code-block:: bash
 
       $ cd /path/to/release/utils
       $ export CYCLUS_DIR=/path/to/cyclus
@@ -142,10 +144,10 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 
 #. Upload the conda packages
 
-   - the ``upload_conda.sh`` utility in ``release/utils`` will do this
-     automatically for you
+    - the ``upload_conda.sh`` utility in ``release/utils`` will do this
+      automatically for you
 
-   .. code-block:: bash
+    .. code-block:: bash
 
       $ cd /path/to/release/utils
       $ export CYCLUS_DIR=/path/to/cyclus
@@ -155,17 +157,19 @@ When releasing a |cyclus| project, make sure to do the following items in order:
 
 #. Update the ``master`` branch of all projects
 
-   - merge the ``release`` branch into ``master``
+    - merge the ``release`` branch into ``master``
   
-   - tag the master branch with the name 'X.X.X'
+    - tag the master branch with the name 'X.X.X'
 
-   - push the master branch and tag upstream
+    - push the master branch and tag upstream
 
-   - delete the release branch
+    - delete the release branch
 
 #. Create a DOI. See :doc:`CEP4 <./cep4>` for details.
 
 #. Update release information on the front page (``index.rst``) of the website.
+
+#. Commit all changes to ``cyclus.github.com`` and ``make gh-publish`` 
 
 Maintainence Tasks
 ==================
