@@ -91,7 +91,11 @@ Project Checklist
 
     Utility scripts for this process can be found in the `release`_ repository
 
-When releasing a |cyclus| project, make sure to do the following items in order:
+Releasing a |cyclus| project is comprised of the following operations. Each
+operation should be enacted in order.
+
+Release Candidate Process
+-------------------------
 
 #. Review **ALL** issues and pull requests, reassigning or closing them as needed.
 
@@ -100,6 +104,32 @@ When releasing a |cyclus| project, make sure to do the following items in order:
    completing this milestone.
 
 #. Initiate the release candidate process (see above)
+
+#. Review the current state of documentation and make approriate updates.
+
+#. Update any new database types in ``cyclus.github.com/source/arche/dbtypes.js``
+
+#. Finish the release candidate process
+
+    - make sure all commits in the ``release`` branch also are in ``develop``
+
+Release Process
+---------------
+
+#. Make sure every |cyclus| project repository is up to date with its
+   ``vX.X.X-release`` branch
+
+#. Bump the version in ``cyclus/src/version.h``, commit the change
+
+#. *Locally* tag the repository for *each* of the projects
+
+    .. code-block:: bash
+
+      $ cd /path/to/project
+      $ git checkout master
+      $ git pull upstream master
+      $ git merge --no-ff vX.X.X-release
+      $ git tag -a -m "Cyclus project release X.X.X, see http://fuelcycle.org/previous/vX.X.X.html for release notes" X.X.X
 
 #. Draft release notes
 
@@ -114,25 +144,13 @@ When releasing a |cyclus| project, make sure to do the following items in order:
       $ export CYMETRIC_DIR=/path/to/cymetric
       $ ./make_release_notes.sh W.W.W X.X.X # W.W.W is the previous version, X.X.X is *this* version
 
-    - add the release notes to ``cyclus.github.com/source/previous/`` with
-      appropriate updates to ``index.rst`` in that directory
-
-#. Review the current state of documentation and make approriate updates.
-
-#. Update any new database types in ``cyclus.github.com/source/arche/dbtypes.js``
-
-#. Finish the release candidate process
-
-    - make sure all commits in the ``release`` branch also are in ``develop``
-
-#. Bump the version in ``cyclus/src/version.h``, commit the change
+    - add the release notes as ``cyclus.github.com/source/previous/vX.X.X.rst``
+      with appropriate updates to ``index.rst`` in that directory
 
 #. Perform maintainence tasks for this project
 
-    - they are described in detail below, *but*
-  
-    - the ``maintenence.sh`` utility in ``release/utils`` will do this
-      automatically for you
+    - they are described in detail below, *but* the ``maintenence.sh`` utility
+      in ``release/utils`` will do this automatically for you
 
     .. code-block:: bash
 
@@ -155,15 +173,14 @@ When releasing a |cyclus| project, make sure to do the following items in order:
       $ export CYMETRIC_DIR=/path/to/cymetric
       $ ./conda_upload.sh X.X.X # X.X.X is *this* version
 
-#. Update the ``master`` branch of all projects
+#. Update the ``master`` branch of all projects and clean up
 
-    - merge the ``release`` branch into ``master``
-  
-    - tag the master branch with the name 'X.X.X'
+    .. code-block:: bash
 
-    - push the master branch and tag upstream
-
-    - delete the release branch
+      $ cd /path/to/project
+      $ git checkout master
+      $ git push --tags upstream master
+      $ git merge --no-ff vX.X.X-release
 
 #. Create a DOI. See :doc:`CEP4 <./cep4>` for details.
 
