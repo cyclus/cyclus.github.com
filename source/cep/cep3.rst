@@ -120,8 +120,8 @@ Release Candidate Process
 Release Process
 ---------------
 
-#. Make sure every |cyclus| project repository is up to date with its
-   ``vX.X.X-release`` branch
+#. Make sure every local |cyclus| project repository is up to date with its
+   ``master``, ``develop``, and ``vX.X.X-release`` branches on ``upstream``
 
 #. Bump the version in ``cyclus/src/version.h``, commit the change
 
