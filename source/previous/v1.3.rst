@@ -1,5 +1,7 @@
+.. _1.3.0:
+
 ==================================
-Cyclus 1.3.0 Release Notes
+Cyclus 1.3.0 Release
 ==================================
 :Author: Cyclus Developers
 :Website: http://fuelcycle.org/
@@ -11,8 +13,10 @@ cyclus ecosystem!
 Major features
 ==============
 
-Kernel
--------
+
+`Cyclus <https://github.com/cyclus/cyclus>`_
+---------------------------------------------
+
 - ~3x speedups for recipe-based simulations
 - Basic inventory policies added
 - Support for recursive containers in archetypes
@@ -29,8 +33,9 @@ Kernel
    - lazy: materials are decayed as needed when their Material::comp function is
      called
 
-Cycamore
----------
+`Cycamore <https://github.com/cyclus/cycamore>`_
+--------------------------------------------------
+
 - New facility archetypes added
    - Reactor
    - FuelFab
@@ -44,8 +49,9 @@ Cycamore
 - Much better end-of-life fuel handling in reactors
 - Regression tests run on macs!
 
-Cymetric
---------
+`Cymetric <https://github.com/cyclus/cymetric>`_
+--------------------------------------------------
+
 - First release for a new analysis and visualization tool for Cyclus simulation output
 - Command line tool and Python interface
 - Calculates metrics of user interest from a Cyclus database
