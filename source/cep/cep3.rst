@@ -233,7 +233,8 @@ Release Process
     - This can be updated one day to use the Figshare `API
       <http://api.figshare.com/docs/intro.html>`_
 
-#. Update release information on the front page (``index.rst``) of the website.
+#. Update release information on the front page (``source/index.rst``) and
+   layout template (``source/atemplates/layout.html``) of the website.
 
 #. Commit all changes to ``cyclus.github.com`` and ``make gh-publish`` 
 
