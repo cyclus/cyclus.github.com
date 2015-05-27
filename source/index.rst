@@ -33,12 +33,29 @@ always welcome and encouraged to use or contribute to the |cyclus| project.
 
 The |Cyclus| project repository is located at http://github.com/cyclus/cyclus.
 
-2015 ANS Annual Meeting Tutorials
-----------------------------------
+2015 ANS Annual Meeting: Technical Presentations and Tutorials
+---------------------------------------------------------------
 
-The |cyclus| development team will be hosting two tutorials during the `2015
-ANS Annual Meeting <http://ansannual.org/>`_, sponsored by the `Fuel Cycle and
-Waste Management Division <http://fcwmd.ans.org>`_, on Wednesday, June 10, 2015.
+The |cyclus| development team will be participating in two technical sessions
+and hosting two tutorials during the `2015 ANS Annual Meeting
+<http://ansannual.org/>`_.
+
+Monday, June 8, 1:00-4:30 PM
++++++++++++++++++++++++++++++
+
+Yarden Livnat (U. Utah) will participate in the "Roundtable on Computational
+Methods - Big Data" and include some discussion of data exploration with
+respect to |Cyclus|.
+
+Tuesday, June 9, 1:00-3:05 PM (Lone Star A Room)
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+Many of the speakers in the "Fuel Cycle Simulators" session sponsored by the
+`Fuel Cycle & Waste Management Division <http://fcwmd.ans.org>`_ will discuss
+developments related to |Cyclus|.
+
+Wednesday, June 10 (Lone Star A Room)
++++++++++++++++++++++++++++++++++++++++
 
 * *8:30-11:30 AM*, :doc:`User's Tutorial <cite/tutorials/2015-ans-users>`
 * *1:00-4:00 PM*, :doc:`Archetype Developer's Tutorial <cite/tutorials/2015-ans-archdev>`
