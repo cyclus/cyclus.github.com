@@ -220,8 +220,8 @@ Release Process
     .. code-block:: bash
 
       $ cd /path/to/project
-      $ git push --tags upstream master
-      $ git push --delete upstream vX.X.X-release
+      $ git push upstream X.X.X master
+      $ git push upstream --delete vX.X.X-release
 
 #. Manually visit the github.com page for each project and mark the tags as releases
 
