@@ -190,8 +190,17 @@ Release Process
     - This can be updated one day to use the Github `release API
       <https://developer.github.com/v3/repos/releases/#create-a-release>`_
 
-#. **TODO** Update the API docs (see old ciclus `nightly scripts
-   <https://github.com/cyclus/release/blob/ecfe93eea530fd65128fa1bf35901e1d623b4468/CYCA/gh_pages.sh>`_)
+#. Update the API docs
+
+    - the ``api_docs.sh`` utility in ``release/utils`` will do this
+      automatically for you
+
+    .. code-block:: bash
+
+      $ cd /path/to/release/utils
+      $ export CYCLUS_DIR=/path/to/cyclus
+      $ export CYCAMORE_DIR=/path/to/cycamore
+      $ ./api_docs.sh X.X.X # X.X.X is *this* version
 
 #. Create a DOI. See :doc:`CEP4 <./cep4>` for details.
 
