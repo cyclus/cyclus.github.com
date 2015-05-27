@@ -39,6 +39,9 @@ Cycamore
 - Other facility archetypes removed
    - BatchReactor
    - EnrichmentFacility
+- Some experimental archetype APIs updated
+   - GrowthRegion
+- Much better end-of-life fuel handling in reactors
 - Regression tests run on macs!
 
 Cymetric
@@ -46,22 +49,23 @@ Cymetric
 - First release for a new analysis and visualization tool for Cyclus simulation output
 - Command line tool and Python interface
 - Calculates metrics of user interest from a Cyclus database
-    - Writes metrics back to database 
-    - Simple for users to extend the suite of metrics 
+    - Writes metrics back to database
+    - Simple for users to extend the suite of metrics
         - Designed so calculations can be based on dependencies (other metrics or root metrics)
-        - Uses pandas data types 
+        - Uses pandas data types
     - Uses PyNE for nuclear data
 - Visualization available from the command line via matplotlib
 
 Summary
 =======
+
 Since v1.2.0,
 
-* Cyclus: 308 commits resulting in  97 files changed, 6539 insertions(+), 1639 deletions(-)
+* Cyclus: 409 commits resulting in  113 files changed, 8466 insertions(+), 1760 deletions(-)
 
-* Cycamore: 272 commits resulting in  67 files changed, 6077 insertions(+), 5912 deletions(-)
+* Cycamore: 353 commits resulting in  79 files changed, 7466 insertions(+), 6830 deletions(-)
 
-* Cymetric: 1st release
+* Cymetric: 366 commits resulting in  49 files changed, 5978 insertions(+), 266 deletions(-)
 
 Contributors
 ============
@@ -69,10 +73,13 @@ The following people contributed to this release of Cyclus.  A "*" by their
 name indicates a first time contributor.  Names follow alphabetically, 
 
 * Robert Carlsen
+* Denia Djokic*
 * Robert Flanagan
 * Matthew Gidden
-* Meghan McGarry
+* Katy Huff
+* Meghan McGarry*
 * Arrielle Opotowsky
+* Olzhas Rakhimov
 * Anthony Scopatz
 * Paul Wilson
 * John Xia
