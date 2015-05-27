@@ -163,7 +163,6 @@ Release Process
 
       $ cd /path/to/project
       $ git checkout master
-      $ git pull upstream master
       $ git merge --no-ff vX.X.X-release
       $ git tag -a -m "Cyclus project release X.X.X, see http://fuelcycle.org/previous/vX.X.X.html for release notes" X.X.X
 
