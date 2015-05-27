@@ -125,6 +125,27 @@ Release Process
 
 #. Bump the version in ``cyclus/src/version.h``, commit the change
 
+#. Perform maintainence tasks for all projects
+
+    - they are described in detail below, *but* the ``maintenence.sh`` utility
+      in ``release/utils`` will do this automatically for you
+
+    .. code-block:: bash
+
+      $ cd /path/to/release/utils
+      $ export CYCLUS_DIR=/path/to/cyclus
+      $ export CYCAMORE_DIR=/path/to/cycamore
+      $ export CYCSTUB_DIR=/path/to/cycstub
+      $ ./maintenence.sh -r -v X.X.X # X.X.X is *this* version
+
+#. Commit all changes for all projects
+
+    .. code-block:: bash
+
+      $ cd /path/to/project
+	  $ git checkout vX.X.X-release
+	  $ git commit -am "final release commit after maintenence"
+      
 #. *Locally* tag the repository for *each* of the projects
 
     .. code-block:: bash
@@ -150,19 +171,6 @@ Release Process
 
     - add the release notes as ``cyclus.github.com/source/previous/vX.X.X.rst``
       with appropriate updates to ``index.rst`` in that directory
-
-#. Perform maintainence tasks for this project
-
-    - they are described in detail below, *but* the ``maintenence.sh`` utility
-      in ``release/utils`` will do this automatically for you
-
-    .. code-block:: bash
-
-      $ cd /path/to/release/utils
-      $ export CYCLUS_DIR=/path/to/cyclus
-      $ export CYCAMORE_DIR=/path/to/cycamore
-      $ export CYCSTUB_DIR=/path/to/cycstub
-      $ ./maintenence.sh -r -v X.X.X # X.X.X is *this* version
 
 #. Update the API docs
 
