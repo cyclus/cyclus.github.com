@@ -143,17 +143,17 @@ Release Process
     .. code-block:: bash
 
       $ cd /path/to/project
-	  $ git checkout vX.X.X-release
-	  $ git commit -am "final release commit after maintenence"
+      $ git checkout vX.X.X-release
+      $ git commit -am "final release commit after maintenence"
 
 #. Update all develop branches
 
     .. code-block:: bash
 
       $ cd /path/to/project
-	  $ git checkout develop
-	  $ git merge --no-ff vX.X.X-release
-	  $ git push upstream develop
+      $ git checkout develop
+      $ git merge --no-ff vX.X.X-release
+      $ git push upstream develop
 
 #. *Locally* tag the repository for *each* of the projects
 
