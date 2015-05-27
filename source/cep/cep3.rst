@@ -130,6 +130,8 @@ Release Process
     - they are described in detail below, *but* the ``maintenence.sh`` utility
       in ``release/utils`` will do this automatically for you
 
+    - make sure to have your ``rs.cred`` file (see ``maintenence.sh``'s help)
+
     .. code-block:: bash
 
       $ cd /path/to/release/utils
