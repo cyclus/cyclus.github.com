@@ -164,6 +164,18 @@ Release Process
       $ export CYCSTUB_DIR=/path/to/cycstub
       $ ./maintenence.sh -r -v X.X.X # X.X.X is *this* version
 
+#. Update the API docs
+
+    - the ``api_docs.sh`` utility in ``release/utils`` will do this
+      automatically for you
+
+    .. code-block:: bash
+
+      $ cd /path/to/release/utils
+      $ export CYCLUS_DIR=/path/to/cyclus
+      $ export CYCAMORE_DIR=/path/to/cycamore
+      $ ./api_docs.sh X.X.X # X.X.X is *this* version
+
 #. Upload the conda packages
 
     - the ``upload_conda.sh`` utility in ``release/utils`` will do this
@@ -189,18 +201,6 @@ Release Process
 
     - This can be updated one day to use the Github `release API
       <https://developer.github.com/v3/repos/releases/#create-a-release>`_
-
-#. Update the API docs
-
-    - the ``api_docs.sh`` utility in ``release/utils`` will do this
-      automatically for you
-
-    .. code-block:: bash
-
-      $ cd /path/to/release/utils
-      $ export CYCLUS_DIR=/path/to/cyclus
-      $ export CYCAMORE_DIR=/path/to/cycamore
-      $ ./api_docs.sh X.X.X # X.X.X is *this* version
 
 #. Create a DOI. See :doc:`CEP4 <./cep4>` for details.
 
