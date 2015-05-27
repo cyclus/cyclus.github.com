@@ -56,6 +56,7 @@ Learn More
     user/index
     arche/index
     kernel/index
+    projects/index
     cep/cep0
     previous/index
     cite/index
