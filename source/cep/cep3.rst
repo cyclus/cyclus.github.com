@@ -199,6 +199,14 @@ Release Process
     - the ``upload_conda.sh`` utility in ``release/utils`` will do this
       automatically for you
 
+    .. note::
+
+       You must be associated with the account at http://binstar.org/cyclus/cyclus.
+	   
+    .. note::
+
+       You may be prompted for your binstar user name and password.
+
     .. code-block:: bash
 
       $ cd /path/to/release/utils
