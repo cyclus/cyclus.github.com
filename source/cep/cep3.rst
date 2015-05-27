@@ -177,9 +177,6 @@ Release Process
       $ export CYMETRIC_DIR=/path/to/cymetric
       $ ./conda_upload.sh X.X.X # X.X.X is *this* version
 
-#. **TODO** Update the API docs (see old ciclus `nightly scripts
-   <https://github.com/cyclus/release/blob/ecfe93eea530fd65128fa1bf35901e1d623b4468/CYCA/gh_pages.sh>`_)
-
 #. Update the ``master`` branch of all projects and clean up
 
     .. code-block:: bash
@@ -192,6 +189,9 @@ Release Process
 
     - This can be updated one day to use the Github `release API
       <https://developer.github.com/v3/repos/releases/#create-a-release>`_
+
+#. **TODO** Update the API docs (see old ciclus `nightly scripts
+   <https://github.com/cyclus/release/blob/ecfe93eea530fd65128fa1bf35901e1d623b4468/CYCA/gh_pages.sh>`_)
 
 #. Create a DOI. See :doc:`CEP4 <./cep4>` for details.
 
