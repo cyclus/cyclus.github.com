@@ -8,6 +8,6 @@ of their research.
 * Bright-lite (U. Texas-Austin)
 * ???? (U. Tennessee)
 * Fuel Cycle Options Transition Analysis (LLNL, U. California-Berkeley, U. Wisconsin)
-* Fuel Cycle Optimization (U. Wisconain-Madison)
+* Fuel Cycle Optimization (U. Wisconsin-Madison)
 
 
