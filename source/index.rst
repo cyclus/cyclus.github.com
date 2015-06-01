@@ -40,8 +40,8 @@ The |cyclus| development team will be participating in two technical sessions
 and hosting two tutorials during the `2015 ANS Annual Meeting
 <http://ansannual.org/>`_.
 
-Monday, June 8, 1:00-4:30 PM
-+++++++++++++++++++++++++++++
+Monday, June 8, 1:00-4:30 PM (Lone Star D Room)
++++++++++++++++++++++++++++++++++++++++++++++++
 
 Yarden Livnat (U. Utah) will participate in the "Roundtable on Computational
 Methods - Big Data" and include some discussion of data exploration with
