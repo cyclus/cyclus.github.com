@@ -18,7 +18,7 @@ Installing |Cyclus|
     :hidden:
 
     install
-	virtualbox
+    virtualbox
 
 Writing Input Files
 ---------------------
