@@ -10,13 +10,15 @@ and running them.  If you haven't already, you should take a look at
 Installing |Cyclus|
 --------------------
 
-* The easiest way to install |Cyclus| on a new system is to :doc:`install using Conda <install>`.  
+* The easiest way to install |Cyclus| on a new system is to :doc:`install using Conda <install>`.
+* If you are on an unsupported system (e.g., Windows), try the :doc:`Cyclus virtual box <virtualbox>`.
 * More adventurous users may want to try :doc:`getting and building Cyclus from source </kernel/build_from_source>`.
 
 .. toctree::
     :hidden:
 
     install
+	virtualbox
 
 Writing Input Files
 ---------------------
