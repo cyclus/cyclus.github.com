@@ -12,7 +12,7 @@ three steps:
 #. Download `cyclus_user_environment.ova
    <http://cnergdata.engr.wisc.edu/cyclus/virtual-box/current/cyclus_user_environment.ova>`_
 #. Open the .ova file using VirtualBox (File->Import Appliance).
-#. Login with the username``ubuntu`` and pw ``reverse``
+#. Login with the username ``ubuntu`` and pw ``reverse``
 #. Open a terminal and type ``conda update``
 
 Congratulations! You now have the same user environment as someone who installed
