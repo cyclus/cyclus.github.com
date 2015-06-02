@@ -34,6 +34,12 @@ To get started please follow the instructions in :doc:`hello_world`.
     </td></tr>
     </table>
 
+Installation
+-------------
+
+Install Cyclus via the instructions on `Github
+<https://github.com/cyclus/cyclus>`_.
+
 Hello World
 -----------
 
