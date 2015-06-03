@@ -1,10 +1,10 @@
 
-Installing a Cyclus VirtualBox
+Installing a |Cyclus| VirtualBox
 ==============================
 
 A native Windows installation is not currently explicitly supported. However, a
 Virtual Machine image can be downloaded which includes a pre-installation of all
-of these dependencies as well as a pre-installation of Cyclus and Cycamore. If
+of these dependencies as well as a pre-installation of |Cyclus| and Cycamore. If
 you do not have access to a Linux or Unix (MacOS) machine, please follow these
 three steps:
 
@@ -16,4 +16,4 @@ three steps:
 #. Open a terminal and type ``conda update``
 
 Congratulations! You now have the same user environment as someone who installed
-cyclus on an Ubuntu Linux machine.
+|Cyclus| on an Ubuntu Linux machine.
