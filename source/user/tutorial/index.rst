@@ -27,12 +27,10 @@ Exercise #1
 
     install_launch_cyclist
     cyclist_tour 
+    sim_parm 
     add_arche
     add_proto
-    add_commod
-    add_recipe
     add_reg_inst
-    sim_parm 
-    launch_cyclus 
+    launch_cyclus
     get_output 
     plot_output

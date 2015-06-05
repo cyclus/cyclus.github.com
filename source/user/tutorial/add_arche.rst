@@ -1,7 +1,7 @@
 Understanding and Adding Archetypes to Your Scenario
 ++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-|Cyclus| Concept: Archetypes
+Concept: Archetypes
 =========================================
 
 One of the principal features of |Cyclus| is the ability for users to easily
@@ -64,3 +64,35 @@ facility archetypes are:
   geologic repository, an interim storage facility, etc.
 
 
+Activity: Discover the Available Archetypes
+---------------------------------------------
+
+Since archetypes can change without having to resinstall |Cyclus|, there is
+the ability to automatically discover which archetypes are available.
+
+1. Press the "Discover Archetypes" button to update the archetypes available to you.
+
+.. image:: disc_arche_annotated.png
+    :align: center
+    :width: 100%
+    :alt: Annotated view of archetype discovery pane.
+
+Activity: Select Archetypes to Use in this Scneario
+------------------------------------------------------
+
+After discovering which archetypes are available on your system, you are able to select which
+subset of archetypes will be used in this particular scenario.
+
+1. For this scenario, select each of these archetypes from the drop down box.
+
+* *cycamore Source*: to act as the mine
+* *cycamore Enrichment*: to act as the enrichment facility
+* *cycamore Reactor*: to act as the LWR 
+* *cycamore Sink*: to act as the geoligic respository
+
+Notice how these now appear in the window on the right.
+
+.. image:: arche_ribbon_annotated.png
+    :align: center
+    :width: 100%
+    :alt: Annotated view of selected archetype ribbon
