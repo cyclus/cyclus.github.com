@@ -72,10 +72,12 @@ the ability to automatically discover which archetypes are available.
 
 1. Press the "Discover Archetypes" button to update the archetypes available to you.
 
-.. image:: disc_arche_annotated.png
+.. image:: disc_arche.png
     :align: center
-    :width: 100%
-    :alt: Annotated view of archetype discovery pane.
+    :alt: View of archetype discovery pane.
+
+2. Select the "Add Archetype to Simulation" drop-down box to see which
+   archetypes are available.
 
 Activity: Select Archetypes to Use in this Scneario
 ------------------------------------------------------
@@ -92,7 +94,7 @@ subset of archetypes will be used in this particular scenario.
 
 Notice how these now appear in the window on the right.
 
-.. image:: arche_ribbon_annotated.png
+.. image:: arche_ribbon.png
     :align: center
     :width: 100%
-    :alt: Annotated view of selected archetype ribbon
+    :alt: View of archetype ribbon after adding archetypes
