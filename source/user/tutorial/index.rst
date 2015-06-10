@@ -34,3 +34,21 @@ Exercise #1
     launch_cyclus
     data_explorer
     plot_output
+
+Exercise #2
+-------------
+
+The description of this exercise will be described with less detail and more
+flexibility than the previous exercise.  This should allow you to test your
+new-found knowledge, learn to explore your own analysis, and try some things
+on your own, all with the support of the Cyclus development team.
+
+
+.. toctree::
+   :maxdepth: 1
+
+   add_arche_commod_recipe
+   add_sep
+   add_fab
+   mod_rxtr
+   add_deploy  
