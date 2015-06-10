@@ -111,7 +111,7 @@ Release Candidate Process
 
 #. Review the current state of documentation and make approriate updates.
 
-#. Update any new database types in ``cyclus.github.com/source/arche/dbtypes.js``
+#. Update any new database types in ``cyclus/share/dbtypes.json``
 
 #. Finish the release candidate process
 
