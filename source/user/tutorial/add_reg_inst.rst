@@ -86,3 +86,11 @@ Activity: Add a Region
     :align: center
     :alt: This simple region has a complete configuration.
 
+Activity: Generate (and Save) your Input File
++++++++++++++++++++++++++++++++++++++++++++++++
+
+You are now ready to generate a full |Cyclus| input file.
+
+1. Click on the "Generate" button in the "Simulation Details" pane.
+2. Choose a file name and save.
+

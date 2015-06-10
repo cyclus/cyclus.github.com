@@ -170,3 +170,28 @@ and configure it with the following information.
     :alt: Complete once through cycle including repo.
 
 
+Advanced Input Options
+----------------------
+
+In order to streamline input for users, some advanced input quantities are
+hidden by default.  These input quantities will always have default values, so
+users aren't required to set them.  In theory, the archetype developers can
+create many layers with increasing numbers of input quantities.  These deeper
+levels of inputs are accesible using the "User Level" option on each form.
+
+Activity: Set the Reactor Power
+++++++++++++++++++++++++++++++++
+
+1. Open the configuration form for the "ALWR" reactor
+2. Change the "User Level" to 1
+
+.. image:: user-level-1.png
+    :align: center
+    :alt: First look at user level 1 for the reactor
+
+3. Scroll down to find the input for "Power" and set it to 1000 MWe
+
+.. image:: user-level-1-power.png
+    :align: center
+    :alt: First look at user level 1 for the reactor
+

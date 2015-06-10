@@ -32,5 +32,4 @@ Exercise #1
     add_proto
     add_reg_inst
     launch_cyclus
-    get_output 
     plot_output
