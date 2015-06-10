@@ -27,7 +27,7 @@ Activity: Execute your Scneario in the Cloud
     :alt: Job status is shown when executing in the cloud
 
 Activity: Retrieve your Results for Analysis
-----------------------------------------------
+++++++++++++++++++++++++++++++++++++++++++++++
 
 1. When your simulation in the cloud has finished, it will indicate in the
    Jobs pane.
@@ -38,3 +38,11 @@ Activity: Retrieve your Results for Analysis
 
 2. Right-click on the job number and select "Load Simulation"
 3. Switch to the "Data Exploration" tab in the *Workspace*.
+
+Backup: Files for Success
+++++++++++++++++++++++++++
+
+In case your run did not succeed, you can retrieve these files to continue:
+
+* `Successful input file <http://cnergdata.engr.wisc.edu/cyclus/cyclist/tutorial/cycic-tutorial.xml>`_
+* `Successful output db file <http://cnergdata.engr.wisc.edu/cyclus/cyclist/tutorial/cycic-tutorial.sqlite>`_
