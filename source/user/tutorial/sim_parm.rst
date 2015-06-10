@@ -78,7 +78,6 @@ Enter the following data:
 
 .. image:: sim_detail.png
     :align: center
-    :width: 100%
     :alt: Annotated view of the Cycic Main View
 
 
