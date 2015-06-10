@@ -23,8 +23,8 @@ understanding of the features that matter the most.
      * filter or select subsets of data
 4. Filters: TBD!!
 
-Activity: Examine Your First Table
-+++++++++++++++++++++++++++++++++++
+Activity: Examine Your First Data Exploration Session
++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 1. Click on the "QuantityInventory" table to selecct it.
 2. Right-click on the "QuantityInventory" table and select "Plot"
@@ -99,3 +99,12 @@ Some observations:
   eqilibirum.
 * After 1 full core loading cycle (12 time steps), the first material appears
   at the repository as spent fuel and begins accumulating.
+
+12. Finally, remove "Time" from the x-axis and move "Protoype" from the Group
+    By to the x-axis, select all the nuclides in the filter, and expand the
+    time filter to include the whole simulation.  This has quickly become a
+    bar chart showing the relative nuc8lide amounts in each facility type.
+
+.. image:: plot-01-0.png
+    :align: center
+    :alt: A bar chart comparing nuclide concentrations.
