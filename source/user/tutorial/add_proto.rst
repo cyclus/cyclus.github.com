@@ -191,7 +191,17 @@ Activity: Set the Reactor Power
 
 3. Scroll down to find the input for "Power" and set it to 1000 MWe
 
-.. image:: user-level-1-power.png
+.. image:: user-level-1-power-annotated.png
     :align: center
     :alt: First look at user level 1 for the reactor
 
+Activity: Set the Maximum Inventory of Feed at the Reactor
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+1. Open the configuration form for the "EnrichPlant"
+2. Chnage to "User Level: 1
+3. Find the "Maximum Feed Inventory" entry and set it to: 100000
+
+.. image:: enrich-max-inv-annotated.png
+    :align: center
+    :alt: First look at user level 1 for the reactor

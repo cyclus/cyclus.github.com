@@ -1,2 +1,2 @@
-Making Your First Plot
-=======================
+|Cyclus|-specific Views
+=========================
