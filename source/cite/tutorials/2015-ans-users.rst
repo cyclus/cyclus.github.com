@@ -15,6 +15,4 @@ guide participants through the process of designing and analyzing a typical
 nuclear fuel cycle. Participants should bring a laptop computer for the
 installation of Cyclus. 
 
-**Additional instructions for participants will be provided here after June 1,
-2015.**
-
+You can begin our tutorial :doc:`here <../../user/tutorial/index>`.
