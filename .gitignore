@@ -4,3 +4,4 @@ build
 *~
 *.pyc
 gh-build
+source/arche/dbtypes.js
