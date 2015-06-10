@@ -105,6 +105,6 @@ Some observations:
     time filter to include the whole simulation.  This has quickly become a
     bar chart showing the relative nuc8lide amounts in each facility type.
 
-.. image:: plot-01-0.png
+.. image:: plot-01-08.png
     :align: center
     :alt: A bar chart comparing nuclide concentrations.
