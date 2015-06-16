@@ -123,7 +123,8 @@ Release Process
 #. Make sure every local |cyclus| project repository is up to date with its
    ``master``, ``develop``, and ``vX.X.X-release`` branches on ``upstream``
 
-#. Bump the version in ``cyclus/src/version.h``, commit the change
+#. Bump the version in ``cyclus/src/version.h``, ``cycamore/src/version.h``, and
+   ``cymetric/setup.py``; commit the changes
 
 #. Perform maintainence tasks for all projects
 
