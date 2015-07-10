@@ -35,7 +35,7 @@ non-positive preferences (see `Backwards Compatibility`_).
 Specification \& Implementation
 ===============================
 
-See [1]_ for the implementation of unity default preferences.
+See [1]_ and [2]_ for the implementation of unity default preferences.
 
 Backwards Compatibility
 =======================
@@ -47,9 +47,11 @@ new default preference value of `1`.
 
 For a simulator, however, this is still backwards incompatability -- simulation
 behavior for valid input files can (and will) change if explicit use of 0-valued
-preferences is engaged. Accordingly, an issue will be made to update this
-restriction upon the next minor version release; 0-valued preferences will
-continue to be allowed for the current release.
+preferences is engaged. Accordingly, to make this deprecation loud and explicit,
+an error will be thrown for the remainder of this minor release cycle. At the
+end of this cycle, arcs with 0-valued preferences will be "quietly" removed
+(i.e., as quietly as negative-preference arcs are currently). An issue will be
+made perform this update.
 
 For updating archetype code, look primarily to the `AddRequest` and
 `Adjust*Pref` APIs.
@@ -63,3 +65,4 @@ References and Footnotes
 ========================
 
 .. [1] https://github.com/cyclus/cyclus/pull/1121
+.. [2] https://github.com/cyclus/cycamore/pull/381
