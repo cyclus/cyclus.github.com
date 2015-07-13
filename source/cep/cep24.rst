@@ -5,7 +5,7 @@ CEP 24 - Preference Conventions
 :Title: Preference Conventions
 :Last-Modified: 2015-07-07
 :Author: Matthew Gidden
-:Status: Active
+:Status: Draft
 :Type: Standards Track
 :Created: 2015-04-09
 

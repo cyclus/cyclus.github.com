@@ -5,7 +5,7 @@ CEP 25 - Preference Adjustment Process
 :Title: Preference Adjustment Process
 :Last-Modified: 2015-07-07
 :Author: Matthew Gidden
-:Status: Active
+:Status: Draft
 :Type: Standards Track
 :Created: 2015-07-07
 
