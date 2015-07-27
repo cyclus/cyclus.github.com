@@ -83,6 +83,7 @@ Interfacing with the |Cyclus| Kernel
     custom_tables
     errors
     logger
+    cli
 
 A Word About Style
 ++++++++++++++++++
