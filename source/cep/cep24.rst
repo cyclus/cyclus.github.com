@@ -1,8 +1,8 @@
-CEP 24 - Preference Conventions
+CEP 24 - Default Preferences
 *****************************************************
 
 :CEP: 24
-:Title: Preference Conventions
+:Title: Default Preferences
 :Last-Modified: 2015-07-07
 :Author: Matthew Gidden
 :Status: Draft
@@ -13,8 +13,7 @@ CEP 24 - Preference Conventions
 Abstract
 ========
 
-This CEP describes conventions related to preference values within the DRE,
-e.g., what default values should be.
+This CEP describes agreed-upon default preference values within the DRE.
 
 Motivation
 ==========
@@ -48,10 +47,10 @@ new default preference value of `1`.
 For a simulator, however, this is still backwards incompatability -- simulation
 behavior for valid input files can (and will) change if explicit use of 0-valued
 preferences is engaged. Accordingly, to make this deprecation loud and explicit,
-an error will be thrown for the remainder of this minor release cycle. At the
-end of this cycle, arcs with 0-valued preferences will be "quietly" removed
-(i.e., as quietly as negative-preference arcs are currently). An issue will be
-made perform this update.
+an error will be thrown for the remainder of this minor release cycle (currently
+release 1.3.1 to 1.3.2). At the end of this cycle, arcs with 0-valued
+preferences will be "quietly" removed (i.e., as quietly as negative-preference
+arcs are currently). An issue will be made perform this update.
 
 For updating archetype code, look primarily to the `AddRequest` and
 `Adjust*Pref` APIs.
