@@ -33,35 +33,6 @@ always welcome and encouraged to use or contribute to the |cyclus| project.
 
 The |Cyclus| project repository is located at http://github.com/cyclus/cyclus.
 
-2015 ANS Annual Meeting: Technical Presentations and Tutorials
----------------------------------------------------------------
-
-The |cyclus| development team will be participating in two technical sessions
-and hosting two tutorials during the `2015 ANS Annual Meeting
-<http://ansannual.org/>`_.
-
-Monday, June 8, 1:00-4:30 PM (Lone Star D Room)
-+++++++++++++++++++++++++++++++++++++++++++++++
-
-Yarden Livnat (U. Utah) will participate in the "Roundtable on Computational
-Methods - Big Data" and include some discussion of data exploration with
-respect to |Cyclus|.
-
-Tuesday, June 9, 1:00-3:05 PM (Lone Star A Room)
-++++++++++++++++++++++++++++++++++++++++++++++++
-
-Many of the speakers in the "Fuel Cycle Simulators" session sponsored by the
-`Fuel Cycle & Waste Management Division <http://fcwmd.ans.org>`_ will discuss
-developments related to |Cyclus|.
-
-Wednesday, June 10 (Lone Star A Room)
-+++++++++++++++++++++++++++++++++++++++
-
-* *8:30-11:30 AM*, :doc:`User's Tutorial <cite/tutorials/2015-ans-users>`
-* *1:00-4:00 PM*, :doc:`Archetype Developer's Tutorial <cite/tutorials/2015-ans-archdev>`
-
-Please plan to attend these tutorials and check here for more information
-about what you will need to bring.
 
 Learn More
 ----------
@@ -154,9 +125,15 @@ Contributors
 
 * Robert Carlsen
 
+* Denia Djokic
+
+* Robert Flanagan
+
 * `Matthew Gidden <http://mattgidden.com/>`_
 
 * `Kathryn (Katy) Huff <http://katyhuff.github.io/>`_
+
+* `Meghan McGarry <http://cnerg.github.io/people/mcgarry.html>`_
 
 * `Arrielle Opotowsky <http://cnerg.github.io/people/opotowsky.html>`_
 
@@ -166,7 +143,9 @@ Contributors
 
 * Zach Welch
 
-* Paul Wilson
+* `Paul Wilson <http://cnerg.github.io/people/pphw.html>`_
+
+* John Xia
 
 Acknowledgments
 ----------------
