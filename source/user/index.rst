@@ -52,7 +52,12 @@ You can also run a simulation right now from the comfort of your browser :ref:`h
 Tutorials
 ----------
 
-* :doc:`ANS 2015 Annual Meeting Tutorial <tut01/index>` - using the user interface and cloud simulation environment
+* :doc:`ANS 2015 Annual Meeting Tutorial <tutorial/index>` - using the user interface and cloud simulation environment
+
+.. toctree::
+   :hidden:
+
+   tutorial/index
 
 Archetypes
 ----------
