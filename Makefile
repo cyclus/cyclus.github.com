@@ -47,6 +47,9 @@ help:
 	@echo "  linkcheck  to check all external links for integrity"
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
 
+html-docker gh-preview-docker:
+	docker run -w /cyclus.github.com -v $(PWD):/cyclus.github.com cyclus/fuelcycle.org-deps make gh-preview
+
 gh-clean gh-revert clean:
 	-rm -rf $(BUILDDIR)
 
