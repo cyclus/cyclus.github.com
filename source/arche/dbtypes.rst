@@ -9,6 +9,8 @@ yet supported, please let us know and we'll get to it as soon as possible!
 
 **Description of fields:**
 
+:id: enum identifier (value) for database type in the ``cyclus::DbTypes`` enum.
+:name: enum name for database type in the ``cyclus::DbTypes`` enum.
 :C++ type: the cooresponding C++ type.
 :shape rank: the maximum rank (length) of the ``shape`` vector.
 :backend: the database backend type.
@@ -65,7 +67,12 @@ yet supported, please let us know and we'll get to it as soon as possible!
     };
 
     $(document).ready(function() {
-        fields =[{name: "C++ type",   type: 'string',  filterable: true,
+        fields =[{name: 'id',         type: 'integer', filterable: true},
+                 {name: 'name',       type: 'string',  filterable: true,
+                  displayFunction: function(value){
+                    return '<div style="font-family:Courier,monospace;">' + 
+                           value + '</div>';}},
+                 {name: "C++ type",   type: 'string',  filterable: true,
                   displayFunction: function(value){
                     return '<div style="font-family:Courier,monospace;">' + 
                            value + '</div>';}},
@@ -89,7 +96,7 @@ yet supported, please let us know and we'll get to it as soon as possible!
 
         setupPivot({json: dbdata, fields: fields,
                     filters: {version: "v1.2"}, 
-                    rowLabels: ["C++ type", "shape rank"], 
+                    rowLabels: ["id", "name", "C++ type", "shape rank"], 
                     columnLabels: ["backend"],
                     summaries: ["supported_sum"]});
 
