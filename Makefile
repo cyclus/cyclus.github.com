@@ -60,7 +60,7 @@ gh-preview html:
 	sed -i.bak 's/  if (state == "collapsed"){/  if (typeof state === "undefined") {\n	var state = "uncollapsed";\n  };\n  if (state == "collapsed"){/' ./gh-build/_static/cloud.js
 	rm ./gh-build/_static/*.bak
 	cp $(BUILDDIR)/cep/cep0.html $(BUILDDIR)/cep/index.html
-	cp `cyclus --install-path`/share/cyclus/dbtypes.js $(BUILDDIR)/arche/
+	cp `cyclus --install-path`/share/cyclus/dbtypes.json $(BUILDDIR)/arche/
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)."
 

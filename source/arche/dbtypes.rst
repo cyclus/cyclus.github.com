@@ -48,9 +48,12 @@ yet supported, please let us know and we'll get to it as soon as possible!
     <script type="text/javascript" src="../_static/pivot/pivot.min.js"></script>
     <script type="text/javascript" src="../_static/pivot/jquery_pivot.js"></script>
 
-    <script type="text/javascript" src="dbtypes.js"></script>
-    
     <script type="text/javascript">
+    var dbdata = []
+    $.getJSON("/arche/dbtypes.json", function(json) {
+        dbdata = json;
+    });
+    
     function setupPivot(input){
       input.callbacks = {afterUpdateResults: function(){
         $('#results > table').dataTable({
