@@ -93,9 +93,6 @@ and individuals for use by |Cyclus| users.
    :maxdepth: 2
 
    cyclusagents
-   stubagents
-
-
 
 Visualization & Analysis
 --------------------------
