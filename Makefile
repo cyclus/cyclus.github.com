@@ -49,7 +49,7 @@ help:
 	@echo "  doctest     to run all doctests embedded in the documentation (if enabled)"
 
 html-docker gh-preview-docker:
-	docker run -w /cyclus.github.com -v $(PWD):/cyclus.github.com cyclus/fuelcycle.org-deps make gh-preview
+	docker run -w /cyclus.github.com -v $(PWD):/cyclus.github.com cyclus/fuelcycle.org-deps bash -c "make gh-preview && chmod -R 777 gh-build"
 
 gh-clean gh-revert clean:
 	-rm -rf $(BUILDDIR)
