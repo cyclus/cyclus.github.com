@@ -198,7 +198,6 @@ in this table.
 
 Info Table
 -------------------
-
 Each simulation gets a single row in this table describing global simulation
 parameters and |cyclus| dependency version information.
 
@@ -247,9 +246,23 @@ parameters and |cyclus| dependency version information.
  
 * **CoinCBCVersion** (string)
 
+SolverInfo Table
+-------------------
+Each simulation gets one row in this table.
+
+* **SimId** (uuid)
+
+* **Solver** (string): The name of solver used, e.g. "greedy".
+
+* **Preconditioner** (string): The name of preconditioner used, e.g. "greedy".
+
+* **ExclusiveOrders** (bool): Whether the solver specified to only use 
+  exclusive orders (true) or whether to allow partial orders as well (false).
+
+
+
 Finish Table
 -------------------
-
 Each simulation gets one row/entry in this table.
 
 * **SimId** (uuid)
@@ -310,7 +323,6 @@ built.
 
 Snapshots Table
 -------------------
-
 Every snapshot made during the simulation gets an entry in this table.  All
 times in this table are candidates for simulation restart/branching.
 
