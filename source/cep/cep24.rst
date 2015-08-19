@@ -3,9 +3,9 @@ CEP 24 - Default Preferences
 
 :CEP: 24
 :Title: Default Preferences
-:Last-Modified: 2015-07-07
+:Last-Modified: 2015-07-29
 :Author: Matthew Gidden
-:Status: Draft
+:Status: Accepted
 :Type: Standards Track
 :Created: 2015-04-09
 
@@ -50,7 +50,7 @@ preferences is engaged. Accordingly, to make this deprecation loud and explicit,
 an error will be thrown for the remainder of this minor release cycle (currently
 release 1.3.1 to 1.3.2). At the end of this cycle, arcs with 0-valued
 preferences will be "quietly" removed (i.e., as quietly as negative-preference
-arcs are currently). An issue will be made perform this update.
+arcs are currently). An issue will be made to perform this update.
 
 For updating archetype code, look primarily to the `AddRequest` and
 `Adjust*Pref` APIs.
