@@ -225,12 +225,30 @@ a flag intends little judgment, a Public Flag can both imply judgment and
 impose substantial stigma, and can become inflammatory.  Recognizing this does
 not negate the utility of a Public Flag, but calls for great care in its use.
 
+Any member of the community is empowered to choose this response at their own
+discretion.
+
 3. Monitored Flags
 -------------------
 
-Clearly an escalation from the previous responses, this 
+Clearly an escalation from the previous responses, this follows the same
+pattern as other flags, but explicitly includes one or more members of the
+Council of PIs, as appropriate.
 
+Escalation to this response implies that previous attempts to resolve the
+situation were unsuccessful and/or that there is an emerging pattern of
+transgression.  The PI are included both to make them aware of the situation
+and to invite them to take independent action.  This response also implies an
+explicit judgment and hence imposes stigma on the recipient.
 
+Any member of the community is empowered to choose this response at their own
+discretion.
+
+4. Greivance
+-------------
+
+A party may explicitly request action by the PIs when they feel that other
+avenues have been exhausted.  Need a formal process for this??
 
 Document History
 ================
