@@ -49,7 +49,10 @@ help:
 	@echo "  doctest     to run all doctests embedded in the documentation (if enabled)"
 
 html-docker gh-preview-docker:
-	docker run -w /cyclus.github.com -v $(PWD):/cyclus.github.com cyclus/fuelcycle.org-deps bash -c "make gh-preview && chmod -R 777 gh-build"
+	docker run -w /cyclus.github.com -v $(PWD):/cyclus.github.com cyclus/fuelcycle.org-deps bash -c "make gh-preview"
+
+gh-publish-docker:
+	docker run -w /cyclus.github.com -v $(PWD):/cyclus.github.com cyclus/fuelcycle.org-deps bash -c "make gh-publish"
 
 gh-clean gh-revert clean:
 	-rm -rf $(BUILDDIR)
@@ -61,6 +64,7 @@ gh-preview html:
 	rm ./gh-build/_static/*.bak
 	cp $(BUILDDIR)/cep/cep0.html $(BUILDDIR)/cep/index.html
 	cp source/arche/dbtypes.js $(BUILDDIR)/arche/
+	chmod -R 777 $(BUILDDIR)
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)."
 
