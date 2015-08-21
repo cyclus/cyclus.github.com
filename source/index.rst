@@ -15,10 +15,6 @@
 
 .. raw:: html
 
-    <div style="text-align:center;">
-    <h2><a href="http://fuelcycle.org/previous/v1.3.html">
-    v1.3.0 has been released!</a></h2><br></div>
-
 |cyclus| is the next-generation agent-based nuclear :doc:`fuel cycle simulator
 <basics/fcs_background>`, providing flexibility to users and developers
 through a :term:`dynamic resource exchange` solver and :term:`plug-in`,
@@ -33,6 +29,16 @@ always welcome and encouraged to use or contribute to the |cyclus| project.
 
 The |Cyclus| project repository is located at http://github.com/cyclus/cyclus.
 
+News
+-----
+
+**August 13, 2015:** :doc:`Cyclus included in FY2016 workscopes for the NEUP program <news/fy16neup>`
+
+**July 21-24, 2015:** Joint workshop with CLASS_ project held in Madison, WI
+
+**June 10, 2015:** First Cyclus :doc:`user tutorial <user/tutorial/index>` and :doc:`developer tutorial <arche/tutorial/index>` are held at the 2015 ANS Annual Meeting in San Antonio, TX 
+
+**June 7, 2015:** :doc:`Cyclus v1.3.1 is released <previous/v1.3>`
 
 Learn More
 ----------
@@ -170,3 +176,4 @@ Support for this research has included funding received from:
         :height: 100 px
 
 
+.. _CLASS: https://forge.in2p3.fr/projects/classforge
