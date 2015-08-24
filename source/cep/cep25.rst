@@ -15,14 +15,14 @@ Abstract
 
 This CEP describes the process of adjusting preferences in the DRE, e.g., with
 regard to implementing international trade instruments. It generalizes
-methodology of the preference andjustment phase.
+methodology of the preference adjustment phase.
 
 Motivation
 ==========
 
 The current preference adjustment phase only includes the requesting facility
 and its managers (i.e. institution and region). Only allowing requesting
-managers to adjust preferences are problematic because it prohibits, for
+managers to adjust preferences is problematic because it prohibits, for
 example, the complete modeling of intra-regional instruments such as tariffs.
 
 Specification \& Implementation
@@ -47,10 +47,10 @@ For the purpose of this CEP, a default ordering is defined: the requester and
 its managers are queried in order followed by the managers of the bidder. The
 bidder is not involved, because it is assumed that suppliers are motivated to
 reduce inventory. Bidder's managers are involved in order to generally model
-international instruments, such as tariffs. As a different ordering are desired
+international instruments, such as tariffs. As different orderings are desired
 in the future, they may be implemented. The only requirement of a given ordering
 implementation is that it must maintain a preference adjustment history. That
-is, a datastructure comprising and ordered list of entity-preference pairs that
+is, a data structure comprising and ordered list of entity-preference pairs that
 records the history of the adjusted preference for each trade.
 
 An important caveat includes the adjustment of preferences to a "no trade"
@@ -59,7 +59,7 @@ setting the preference value to a non-positive number. If at any point during
 the adjustment phase such a state is found, the phase is considered over for
 that trade and the trade is removed from the exchange. Consider the following
 situation: a trade is initially set to the default preference of unity; the
-first manager quried has a rule that negates the trade (sending its value to
+first manager queried has a rule that negates the trade (sending its value to
 negative unity) while the next manager queried has a rule that increases all
 trades by a magnitude of two units. Rather than setting the final trade
 preference at unity based on input from both managers, the trade is removed from
@@ -71,8 +71,8 @@ many different negotiation models, or negotiation rules, by which to determine a
 final value given a collection of entities' input. Again, this CEP provides a
 default rule, which is to take the final preference value, unperturbed, through
 the adjustment process. However, any rule that takes as an argument the
-adjustment history datastructure and provides a final preference value is valid
-in this methodology. Of course, different rules must be implemented as they are
+adjustment history data structure and provides a final preference value is valid
+in this methodology. Of course, different rules may be implemented as they are
 required.
 
 This CEP does not explicitly provide an user-facing interface for adjusting
@@ -89,7 +89,7 @@ See [1]_ for implementation of Agent-based preference adjustment.
 Backwards Compatibility
 =======================
 
-No backwards incompatabilities are introduced with this CEP.
+No backwards incompatibilities are introduced with this CEP.
 
 Document History
 ================
