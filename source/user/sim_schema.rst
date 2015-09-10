@@ -24,8 +24,12 @@ This returns the following:
     datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
     <start>
 
-    <element name="simulation"> <interleave>
-  
+    <element name="simulation">
+      <optional><element name="schematype"><text/></element></optional>
+    <interleave>
+
+      <optional><element name="ui"><text/></element></optional>
+      
       <element name ="control">
         <interleave>
           <optional>
@@ -37,39 +41,73 @@ This returns the following:
           <optional>
             <element name="decay"> <text/> </element>
           </optional>
+          <optional> 
+            <element name="dt"><data type="nonNegativeInteger"/></element> 
+          </optional>
+          <optional>
+            <element name="solver"> 
+              <interleave>
+                <optional>
+                  <element name="name"> <text/> </element>
+                </optional>
+                <optional>
+                  <choice>
+                    <element name="greedy">
+                      <interleave>
+                        <optional>
+                          <element name="preconditioner"> <text/> </element>
+                        </optional>
+                      </interleave>
+                    </element>
+                  </choice>
+                </optional>
+                <optional>
+                  <element name="exclusive_orders_only">
+                    <data type="boolean" />
+                  </element>
+                </optional>
+              </interleave>
+            </element>
+          </optional>
         </interleave>
       </element>
 
       <zeroOrMore>
         <element name="commodity">
-          <element name="name"> <text/> </element>
-          <element name="solution_priority"> <data type="double"/> </element>
+          <interleave>
+            <element name="name"> <text/> </element>
+            <element name="solution_priority"> <data type="double"/> </element>
+          </interleave>
         </element>
       </zeroOrMore>
-    
+        
       <element name="archetypes"> 
         <oneOrMore>
-          <element name="spec"> 
-            <optional><element name="path"><text/></element></optional>
-            <optional><element name="lib"><text/></element></optional>
-            <element name="name"><text/></element>
-            <optional><element name="alias"><text/></element></optional>
+          <element name="spec">
+            <interleave>
+              <optional><element name="path"><text/></element></optional>
+              <optional><element name="lib"><text/></element></optional>
+              <element name="name"><text/></element>
+              <optional><element name="alias"><text/></element></optional>
+            </interleave>
           </element>
         </oneOrMore>
       </element>
 
       <oneOrMore>
         <element name="facility">
-          <element name="name"> <text/> </element>
-          <optional>
-            <element name="lifetime"> <data type="nonNegativeInteger"/> </element>
-          </optional>
+          <interleave>
+            <element name="name"> <text/> </element>
+            <optional>
+              <element name="lifetime"> <data type="nonNegativeInteger"/> </element>
+            </optional>
 
-          <element name="config">
-            <choice>
-            @Facility_REFS@
-            </choice>
-          </element>
+            <element name="config">
+              <choice>
+              @Facility_REFS@
+              </choice>
+            </element>
+          </interleave>
         </element>
       </oneOrMore>
 
@@ -97,8 +135,10 @@ This returns the following:
                 <element name="initialfacilitylist">
                   <oneOrMore>
                     <element name="entry">
-                      <element name="prototype"> <text/> </element>
-                      <element name="number"> <data type="nonNegativeInteger"/> </element>
+                      <interleave>
+                        <element name="prototype"> <text/> </element>
+                        <element name="number"> <data type="nonNegativeInteger"/> </element>
+                      </interleave>
                     </element>
                   </oneOrMore>
                 </element>
@@ -117,14 +157,18 @@ This returns the following:
 
       <zeroOrMore>
         <element name="recipe">
-          <element name="name"><text/></element>
-          <element name="basis"><text/></element>
-          <oneOrMore>
-            <element name="nuclide">
-              <element name="id"><data type="nonNegativeInteger"/></element>
-              <element name="comp"><data type="double"/></element>
-            </element>
-          </oneOrMore>
+          <interleave>
+            <element name="name"><text/></element>
+            <element name="basis"><text/></element>
+            <oneOrMore>
+              <element name="nuclide">
+                <interleave>
+                  <element name="id"><data type="string"/></element>
+                  <element name="comp"><data type="double"/></element>
+                </interleave>
+              </element>
+            </oneOrMore>
+          </interleave>
         </element>
       </zeroOrMore>
 
@@ -133,7 +177,6 @@ This returns the following:
     </start>
 
     </grammar>
-
 
 Flat Schema
 -----------
@@ -155,7 +198,10 @@ This displays the following:
     datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
     <start>
     <element name="simulation">
+      <optional><element name="schematype"><text/></element></optional>
     <interleave>
+
+      <optional><element name="ui"><text/></element></optional>
 
       <element name ="control">
         <interleave>
@@ -165,26 +211,57 @@ This displays the following:
           <element name="duration"><data type="nonNegativeInteger"/></element>
           <element name="startmonth"><data type="nonNegativeInteger"/></element>
           <element name="startyear"><data type="nonNegativeInteger"/></element>
-          <optional>
-            <element name="decay"> <text/> </element>
+          <optional> 
+            <element name="decay"><text/></element> 
           </optional>
+          <optional> 
+            <element name="dt"><data type="nonNegativeInteger"/></element> 
+          </optional>
+          <optional>
+            <element name="solver"> 
+              <interleave>
+                <optional>
+                  <element name="config">
+                    <choice>
+                      <element name="greedy">
+                        <interleave>
+                          <optional>
+                            <element name="preconditioner"> <text/> </element>
+                          </optional>
+                        </interleave>
+                      </element>
+                    </choice>
+                  </element>
+                </optional>
+                <optional>
+                  <element name="exclusive_orders_only">
+                    <data type="boolean" />
+                  </element>
+                </optional>
+              </interleave>
+            </element>
+          </optional> 
         </interleave>
       </element>
 
       <zeroOrMore>
         <element name="commodity">
-          <element name="name"><text/></element>
-          <element name="solution_priority"><data type="double"/></element>
+          <interleave>
+            <element name="name"><text/></element>
+            <element name="solution_priority"><data type="double"/></element>
+          </interleave>
         </element>
       </zeroOrMore>
 
       <element name="archetypes"> 
         <oneOrMore>
-          <element name="spec"> 
-            <optional><element name="path"><text/></element></optional>
-            <optional><element name="lib"><text/></element></optional>
-            <element name="name"><text/></element>
-            <optional><element name="alias"><text/></element></optional>
+          <element name="spec">
+            <interleave>
+              <optional><element name="path"><text/></element></optional>
+              <optional><element name="lib"><text/></element></optional>
+              <element name="name"><text/></element>
+              <optional><element name="alias"><text/></element></optional>
+            </interleave>
           </element>
         </oneOrMore>
       </element>
@@ -209,24 +286,30 @@ This displays the following:
 
       <oneOrMore>
         <element name="agent">
-          <element name="name"><text/></element>
-          <element name="prototype"><text/></element>
-          <optional>
-            <element name="parent"><text/></element>
-          </optional>
+          <interleave>
+            <element name="name"><text/></element>
+            <element name="prototype"><text/></element>
+            <optional>
+              <element name="parent"><text/></element>
+            </optional>
+          </interleave>
         </element>
       </oneOrMore>
 
       <zeroOrMore>
         <element name="recipe">
-          <element name="name"><text/></element>
-          <element name="basis"><text/></element>
-          <oneOrMore>
-            <element name="nuclide">
-              <element name="id"><data type="integer"/></element>
-              <element name="comp"><data type="double"/></element>
-            </element>
-          </oneOrMore>
+          <interleave>
+            <element name="name"><text/></element>
+            <element name="basis"><text/></element>
+            <oneOrMore>
+              <element name="nuclide">
+                <interleave>
+                  <element name="id"><data type="string"/></element>
+                  <element name="comp"><data type="double"/></element>
+                </interleave>
+              </element>
+            </oneOrMore>
+          </interleave>
         </element>
       </zeroOrMore>
 
@@ -234,3 +317,4 @@ This displays the following:
     </element><!-- end of simulation -->
     </start>
     </grammar>
+
