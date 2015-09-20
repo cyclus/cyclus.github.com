@@ -97,6 +97,13 @@ Usability
 Code of Conduct
 ================
 
+Some other related codes of conduct during the development of our own:
+
+* http://contributor-covenant.org/
+* http://www.ubuntu.com/about/about-ubuntu/conduct
+* http://www.apache.org/foundation/policies/conduct.html
+* https://www.mozilla.org/en-US/about/governance/policies/participation/
+
 
 Change Control Process
 ========================
