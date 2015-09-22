@@ -3,7 +3,7 @@
 
 | **Where:** `ANS Annual Meeting <http://ansannual.org>`_ (Lone Star A)
 | **When:** Wednesday, June 10, 1:00-4:00 PM
-| **Who:** `Matt Gidden <http://mattgidden.com>`_ & `The Cyclus Development team <file:///home/wilsonp/UW/research/software/cyclus/cyclus.github.com/gh-build/index.html#contributors>`_
+| **Who:** `Matt Gidden <http://mattgidden.com>`_ & `The Cyclus Development team <http://fuelcycle.org/index.html#contributors>`_
 | **Why:** Learn how to develop your own plugin module for the Cyclus Fuel Cycle Simulator
 
 Cyclus is an advanced and flexible fuel cycle simulator capable of modeling

@@ -122,7 +122,7 @@ Contact Us
 
 * `Developers' mailing list and forum <https://groups.google.com/forum/#!forum/cyclus-dev>`_
 
-* Project PI, Paul Wilson: wilsonp AT engr.wisc.edu
+* Project PI, Paul Wilson: paul.wilson AT wisc.edu
 
 * Project Lead, Anthony Scopatz:  scopatz AT gmail.com
 
