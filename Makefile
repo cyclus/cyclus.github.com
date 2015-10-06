@@ -31,6 +31,7 @@ help:
 	@echo "  gh-publish-only   to push from source branch to master branch, assuming already built"
 	@echo "  docker-html       to use docker to build HTML in directory $BUILDDIR for testing"
 	@echo "  docker-gh-publish to use docker to build final version and push from source branch to master branch"
+	@echo "  serve             serve built html files using Python's SimpleHTTPServer"
 	@echo "  dirhtml           to make HTML files named index.html in directories"
 	@echo "  singlehtml        to make a single large HTML file"
 	@echo "  pickle            to make pickle files"
@@ -86,6 +87,10 @@ docker-gh-publish:
 	make clean
 	make docker-html
 	make gh-publish-only
+
+serve: html
+	cd $(BUILDDIR)
+	python -m SimpleHTTPServer
 
 htmlclean cleanhtml: clean html
 
