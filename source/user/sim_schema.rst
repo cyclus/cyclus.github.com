@@ -21,162 +21,165 @@ This returns the following:
 .. code-block:: xml
 
     <grammar xmlns="http://relaxng.org/ns/structure/1.0"
-    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
-    <start>
+	datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+	<start>
 
-    <element name="simulation">
-      <optional><element name="schematype"><text/></element></optional>
-    <interleave>
+	<element name="simulation">
+	  <optional><element name="schematype"><text/></element></optional>
+	<interleave>
 
-      <optional><element name="ui"><text/></element></optional>
-      
-      <element name ="control">
-        <interleave>
-          <optional>
-            <element name="simhandle"> <data type="string"/> </element>
-          </optional>
-          <element name="duration"> <data type="nonNegativeInteger"/> </element>
-          <element name="startmonth"> <data type="nonNegativeInteger"/> </element>
-          <element name="startyear"> <data type="nonNegativeInteger"/> </element>
-          <optional>
-            <element name="decay"> <text/> </element>
-          </optional>
-          <optional> 
-            <element name="dt"><data type="nonNegativeInteger"/></element> 
-          </optional>
-          <optional>
-            <element name="solver"> 
-              <interleave>
-                <optional>
-                  <element name="name"> <text/> </element>
-                </optional>
-                <optional>
-                  <choice>
-                    <element name="greedy">
-                      <interleave>
-                        <optional>
-                          <element name="preconditioner"> <text/> </element>
-                        </optional>
-                      </interleave>
-                    </element>
-                  </choice>
-                </optional>
-                <optional>
-                  <element name="exclusive_orders_only">
-                    <data type="boolean" />
-                  </element>
-                </optional>
-              </interleave>
-            </element>
-          </optional>
-        </interleave>
-      </element>
+	  <optional><element name="ui"><text/></element></optional>
 
-      <zeroOrMore>
-        <element name="commodity">
-          <interleave>
-            <element name="name"> <text/> </element>
-            <element name="solution_priority"> <data type="double"/> </element>
-          </interleave>
-        </element>
-      </zeroOrMore>
-        
-      <element name="archetypes"> 
-        <oneOrMore>
-          <element name="spec">
-            <interleave>
-              <optional><element name="path"><text/></element></optional>
-              <optional><element name="lib"><text/></element></optional>
-              <element name="name"><text/></element>
-              <optional><element name="alias"><text/></element></optional>
-            </interleave>
-          </element>
-        </oneOrMore>
-      </element>
+	  <element name ="control">
+		<interleave>
+		  <optional>
+			<element name="simhandle"> <data type="string"/> </element>
+		  </optional>
+		  <element name="duration"> <data type="nonNegativeInteger"/> </element>
+		  <element name="startmonth"> <data type="nonNegativeInteger"/> </element>
+		  <element name="startyear"> <data type="nonNegativeInteger"/> </element>
+		  <optional>
+			<element name="decay"> <text/> </element>
+		  </optional>
+		  <optional>
+			<element name="solver"> 
+			  <interleave>
+				<optional><element name="config">
+				<choice>
+				  <element name="greedy">
+					<interleave>
+					  <optional>
+						<element name="preconditioner"> <text/> </element>
+					  </optional>
+					</interleave>
+				  </element>
+				  <element name="coin-or">
+					<interleave>
+					  <optional>
+						<element name="timeout">  <data type="positiveInteger"/>  </element>
+					  </optional>
+					  <optional><element name="verbose"><data type="boolean"/></element></optional>
+					  <optional><element name="mps"><data type="boolean"/></element></optional>
+					</interleave>
+				  </element>
+				</choice>
+				</element></optional>
+				<optional>
+				  <element name="allow_exclusive_orders">
+					<data type="boolean" />
+				  </element>
+				</optional>
+			  </interleave>
+			</element>
+		  </optional>
+		</interleave>
+	  </element>
 
-      <oneOrMore>
-        <element name="facility">
-          <interleave>
-            <element name="name"> <text/> </element>
-            <optional>
-              <element name="lifetime"> <data type="nonNegativeInteger"/> </element>
-            </optional>
+	  <zeroOrMore>
+		<element name="commodity">
+		  <interleave>
+			<element name="name"> <text/> </element>
+			<element name="solution_priority"> <data type="double"/> </element>
+		  </interleave>
+		</element>
+	  </zeroOrMore>
 
-            <element name="config">
-              <choice>
-              @Facility_REFS@
-              </choice>
-            </element>
-          </interleave>
-        </element>
-      </oneOrMore>
+	  <element name="archetypes"> 
+		<oneOrMore>
+		  <element name="spec">
+			<interleave>
+			  <optional><element name="path"><text/></element></optional>
+			  <optional><element name="lib"><text/></element></optional>
+			  <element name="name"><text/></element>
+			  <optional><element name="alias"><text/></element></optional>
+			</interleave>
+		  </element>
+		</oneOrMore>
+	  </element>
 
-      <oneOrMore>
-        <element name="region"> <interleave>
-          <element name="name"> <text/> </element>
-          <optional>
-            <element name="lifetime"> <data type="nonNegativeInteger"/> </element>
-          </optional>
+	  <oneOrMore>
+		<element name="facility">
+		  <interleave>
+			<element name="name"> <text/> </element>
+			<optional>
+			  <element name="lifetime"> <data type="nonNegativeInteger"/> </element>
+			</optional>
 
-          <element name="config">
-            <choice>
-            @Region_REFS@
-            </choice>
-          </element>
+			<element name="config">
+			  <choice>
+			  @Facility_REFS@
+			  </choice>
+			</element>
+		  </interleave>
+		</element>
+	  </oneOrMore>
 
-          <oneOrMore>
-            <element name="institution"> <interleave>
-              <element name="name"> <text/> </element>
-              <optional>
-                <element name="lifetime"> <data type="nonNegativeInteger"/> </element>
-              </optional>
+	  <oneOrMore>
+		<element name="region"> <interleave>
+		  <element name="name"> <text/> </element>
+		  <optional>
+			<element name="lifetime"> <data type="nonNegativeInteger"/> </element>
+		  </optional>
 
-              <optional>
-                <element name="initialfacilitylist">
-                  <oneOrMore>
-                    <element name="entry">
-                      <interleave>
-                        <element name="prototype"> <text/> </element>
-                        <element name="number"> <data type="nonNegativeInteger"/> </element>
-                      </interleave>
-                    </element>
-                  </oneOrMore>
-                </element>
-              </optional>
+		  <element name="config">
+			<choice>
+			@Region_REFS@
+			</choice>
+		  </element>
 
-              <element name="config">
-                <choice>
-                @Inst_REFS@
-                </choice>
-              </element>
-            </interleave> </element>
-          </oneOrMore>
+		  <oneOrMore>
+			<element name="institution"> <interleave>
+			  <element name="name"> <text/> </element>
+			  <optional>
+				<element name="lifetime"> <data type="nonNegativeInteger"/> </element>
+			  </optional>
 
-        </interleave> </element>
-      </oneOrMore>
+			  <optional>
+				<element name="initialfacilitylist">
+				  <oneOrMore>
+					<element name="entry">
+					  <interleave>
+						<element name="prototype"> <text/> </element>
+						<element name="number"> <data type="nonNegativeInteger"/> </element>
+					  </interleave>
+					</element>
+				  </oneOrMore>
+				</element>
+			  </optional>
 
-      <zeroOrMore>
-        <element name="recipe">
-          <interleave>
-            <element name="name"><text/></element>
-            <element name="basis"><text/></element>
-            <oneOrMore>
-              <element name="nuclide">
-                <interleave>
-                  <element name="id"><data type="string"/></element>
-                  <element name="comp"><data type="double"/></element>
-                </interleave>
-              </element>
-            </oneOrMore>
-          </interleave>
-        </element>
-      </zeroOrMore>
+			  <element name="config">
+				<choice>
+				@Inst_REFS@
+				</choice>
+			  </element>
+			</interleave> </element>
+		  </oneOrMore>
 
-    </interleave> </element>
+		</interleave> </element>
+	  </oneOrMore>
 
-    </start>
+	  <zeroOrMore>
+		<element name="recipe">
+		  <interleave>
+			<element name="name"><text/></element>
+			<element name="basis"><text/></element>
+			<oneOrMore>
+			  <element name="nuclide">
+				<interleave>
+				  <element name="id"><data type="string"/></element>
+				  <element name="comp"><data type="double"/></element>
+				</interleave>
+			  </element>
+			</oneOrMore>
+		  </interleave>
+		</element>
+	  </zeroOrMore>
 
-    </grammar>
+	</interleave> </element>
+
+	</start>
+
+	</grammar>
 
 Flat Schema
 -----------
@@ -195,126 +198,130 @@ This displays the following:
 .. code-block:: xml
 
     <grammar xmlns="http://relaxng.org/ns/structure/1.0"
-    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
-    <start>
-    <element name="simulation">
-      <optional><element name="schematype"><text/></element></optional>
-    <interleave>
+	datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+	<start>
+	<element name="simulation">
+	  <optional><element name="schematype"><text/></element></optional>
+	<interleave>
 
-      <optional><element name="ui"><text/></element></optional>
+	  <optional><element name="ui"><text/></element></optional>
 
-      <element name ="control">
-        <interleave>
-          <optional>
-            <element name="simhandle"><data type="string"/></element>
-          </optional>
-          <element name="duration"><data type="nonNegativeInteger"/></element>
-          <element name="startmonth"><data type="nonNegativeInteger"/></element>
-          <element name="startyear"><data type="nonNegativeInteger"/></element>
-          <optional> 
-            <element name="decay"><text/></element> 
-          </optional>
-          <optional> 
-            <element name="dt"><data type="nonNegativeInteger"/></element> 
-          </optional>
-          <optional>
-            <element name="solver"> 
-              <interleave>
-                <optional>
-                  <element name="config">
-                    <choice>
-                      <element name="greedy">
-                        <interleave>
-                          <optional>
-                            <element name="preconditioner"> <text/> </element>
-                          </optional>
-                        </interleave>
-                      </element>
-                    </choice>
-                  </element>
-                </optional>
-                <optional>
-                  <element name="exclusive_orders_only">
-                    <data type="boolean" />
-                  </element>
-                </optional>
-              </interleave>
-            </element>
-          </optional> 
-        </interleave>
-      </element>
+	  <element name ="control">
+		<interleave>
+		  <optional>
+			<element name="simhandle"><data type="string"/></element>
+		  </optional>
+		  <element name="duration"><data type="nonNegativeInteger"/></element>
+		  <element name="startmonth"><data type="nonNegativeInteger"/></element>
+		  <element name="startyear"><data type="nonNegativeInteger"/></element>
+		  <optional> 
+			<element name="decay"><text/></element> 
+		  </optional>
+		  <optional>
+			<element name="solver"> 
+			  <interleave>
+				<optional><element name="config">
+				<choice>
+				  <element name="greedy">
+					<interleave>
+					  <optional>
+						<element name="preconditioner"> <text/> </element>
+					  </optional>
+					</interleave>
+				  </element>
+				  <element name="coin-or">
+					<interleave>
+					  <optional>
+						<element name="timeout">  <data type="positiveInteger"/>  </element>
+					  </optional>
+					  <optional><element name="verbose"><data type="boolean"/></element></optional>
+					  <optional><element name="mps"><data type="boolean"/></element></optional>
+					</interleave>
+				  </element>
+				</choice>
+				</element></optional>
+				<optional>
+				  <element name="allow_exclusive_orders">
+					<data type="boolean" />
+				  </element>
+				</optional>
+			  </interleave>
+			</element>
+		  </optional>
+		</interleave>
+	  </element>
 
-      <zeroOrMore>
-        <element name="commodity">
-          <interleave>
-            <element name="name"><text/></element>
-            <element name="solution_priority"><data type="double"/></element>
-          </interleave>
-        </element>
-      </zeroOrMore>
+	  <zeroOrMore>
+		<element name="commodity">
+		  <interleave>
+			<element name="name"><text/></element>
+			<element name="solution_priority"><data type="double"/></element>
+		  </interleave>
+		</element>
+	  </zeroOrMore>
 
-      <element name="archetypes"> 
-        <oneOrMore>
-          <element name="spec">
-            <interleave>
-              <optional><element name="path"><text/></element></optional>
-              <optional><element name="lib"><text/></element></optional>
-              <element name="name"><text/></element>
-              <optional><element name="alias"><text/></element></optional>
-            </interleave>
-          </element>
-        </oneOrMore>
-      </element>
+	  <element name="archetypes"> 
+		<oneOrMore>
+		  <element name="spec">
+			<interleave>
+			  <optional><element name="path"><text/></element></optional>
+			  <optional><element name="lib"><text/></element></optional>
+			  <element name="name"><text/></element>
+			  <optional><element name="alias"><text/></element></optional>
+			</interleave>
+		  </element>
+		</oneOrMore>
+	  </element>
 
-      <oneOrMore>
-        <element name="prototype">
-        <interleave>
-          <element name="name"><text/></element>
-          <optional>
-            <element name="lifetime"> <data type="nonNegativeInteger"/> </element>
-          </optional>
+	  <oneOrMore>
+		<element name="prototype">
+		<interleave>
+		  <element name="name"><text/></element>
+		  <optional>
+			<element name="lifetime"> <data type="nonNegativeInteger"/> </element>
+		  </optional>
 
-          <element name="config">
-            <choice>
-              @MODEL_SCHEMAS@
-            </choice>
-          </element>
+		  <element name="config">
+			<choice>
+			  @MODEL_SCHEMAS@
+			</choice>
+		  </element>
 
-        </interleave>
-        </element>
-      </oneOrMore>
+		</interleave>
+		</element>
+	  </oneOrMore>
 
-      <oneOrMore>
-        <element name="agent">
-          <interleave>
-            <element name="name"><text/></element>
-            <element name="prototype"><text/></element>
-            <optional>
-              <element name="parent"><text/></element>
-            </optional>
-          </interleave>
-        </element>
-      </oneOrMore>
+	  <oneOrMore>
+		<element name="agent">
+		  <interleave>
+			<element name="name"><text/></element>
+			<element name="prototype"><text/></element>
+			<optional>
+			  <element name="parent"><text/></element>
+			</optional>
+		  </interleave>
+		</element>
+	  </oneOrMore>
 
-      <zeroOrMore>
-        <element name="recipe">
-          <interleave>
-            <element name="name"><text/></element>
-            <element name="basis"><text/></element>
-            <oneOrMore>
-              <element name="nuclide">
-                <interleave>
-                  <element name="id"><data type="string"/></element>
-                  <element name="comp"><data type="double"/></element>
-                </interleave>
-              </element>
-            </oneOrMore>
-          </interleave>
-        </element>
-      </zeroOrMore>
+	  <zeroOrMore>
+		<element name="recipe">
+		  <interleave>
+			<element name="name"><text/></element>
+			<element name="basis"><text/></element>
+			<oneOrMore>
+			  <element name="nuclide">
+				<interleave>
+				  <element name="id"><data type="string"/></element>
+				  <element name="comp"><data type="double"/></element>
+				</interleave>
+			  </element>
+			</oneOrMore>
+		  </interleave>
+		</element>
+	  </zeroOrMore>
 
-    </interleave>
-    </element><!-- end of simulation -->
-    </start>
-    </grammar>
+	</interleave>
+	</element><!-- end of simulation -->
+	</start>
+	</grammar>
 
