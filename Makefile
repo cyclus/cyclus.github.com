@@ -20,13 +20,14 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) $(G
 # the i18n builder cannot share the environment and doctrees with the others
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) $(GH_SOURCE_DIR)
 
-.PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext
+.PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext serve
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  gh-preview  to build HTML in directory $BUILDDIR for testing"
 	@echo "  gh-revert   to cleanup HTML build in directory $BUILDDIR after testing"
 	@echo "  gh-publish  final build and push from source branch to master branch"
+	@echo "  serve       serve built html files using Python's SimpleHTTPServer"
 	@echo "  html        to make standalone HTML files"
 	@echo "  html-docker to make standalone HTML files inside a docker container"
 	@echo "  dirhtml     to make HTML files named index.html in directories"
@@ -76,6 +77,10 @@ gh-publish:
 	rm -rf $(GH_SOURCE_DIR) $(BUILDDIR)
 	git commit -m "Generated $(GH_PUBLISH_BRANCH) for `git log $(GH_SOURCE_BRANCH) -1 --pretty=short --abbrev-commit`" && git push $(GH_UPSTREAM_REPO) $(GH_PUBLISH_BRANCH)
 	git checkout $(GH_SOURCE_BRANCH)
+
+serve: html
+	cd $(BUILDDIR)
+	python -m SimpleHTTPServer
 
 htmlclean cleanhtml: clean html
 
