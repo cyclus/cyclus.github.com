@@ -24,6 +24,31 @@ tag, and has the following sections in any order:
     - ``lazy``: decay is only computed whenever archetypes/agents "look" at a
       composition.
 
+  * solver (optional, once) - configure the DRE solver.
+
+    - choose one of:
+
+      - ``greedy``: use a greedy heuristic (not guaranteed optimal, but fast)
+        that orders trades based on the average preference of exchange groups
+
+        - preconditioner (optional) - precondition greedy-solved graphs
+
+          - choose one of:
+		  
+		    - ``greedy``: use an average-preference greedy preconditioner
+
+      - ``coin-or``: use the COIN-OR CLP/CBC solver suite
+
+        - timeout (optional): kill solutions after this time (in seconds)
+		- verbose (optional): print information about problems being solved
+		- mps (optional): write MPS files for each exchange
+
+    - ``allow_exclusive_orders`` (optional) - exclusive orders should be
+      allowed, `True` by default. **NOTE** many Cycamore archetypes depend on
+      this option being `True` and will not work as expected if it is
+      `False`. This option can be turned to `False` to guarantee LP solves of
+      the DRE.
+
 Example
 +++++++
 
@@ -64,7 +89,7 @@ Grammar Definition
 ++++++++++++++++++
 
 .. code-block:: xml
-   
+
   <element name ="control">
     <interleave>
       <optional>
@@ -76,28 +101,31 @@ Grammar Definition
       <optional>
         <element name="decay"> <text/> </element>
       </optional>
-      <optional> 
-        <element name="dt"><data type="nonNegativeInteger"/></element> 
-      </optional>
       <optional>
         <element name="solver"> 
           <interleave>
+            <optional><element name="config">
+            <choice>
+              <element name="greedy">
+                <interleave>
+                  <optional>
+                    <element name="preconditioner"> <text/> </element>
+                  </optional>
+                </interleave>
+              </element>
+              <element name="coin-or">
+                <interleave>
+                  <optional>
+                    <element name="timeout">  <data type="positiveInteger"/>  </element>
+                  </optional>
+                  <optional><element name="verbose"><data type="boolean"/></element></optional>
+                  <optional><element name="mps"><data type="boolean"/></element></optional>
+                </interleave>
+              </element>
+            </choice>
+            </element></optional>
             <optional>
-              <element name="name"> <text/> </element>
-            </optional>
-            <optional>
-              <choice>
-                <element name="greedy">
-                  <interleave>
-                    <optional>
-                      <element name="preconditioner"> <text/> </element>
-                    </optional>
-                  </interleave>
-                </element>
-              </choice>
-            </optional>
-            <optional>
-              <element name="exclusive_orders_only">
+              <element name="allow_exclusive_orders">
                 <data type="boolean" />
               </element>
             </optional>
@@ -105,4 +133,5 @@ Grammar Definition
         </element>
       </optional>
     </interleave>
+  </element>
 
