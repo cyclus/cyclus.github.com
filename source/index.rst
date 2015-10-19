@@ -175,5 +175,8 @@ Support for this research has included funding received from:
     .. image :: astatic/crest.png
         :height: 100 px
 
+    .. image :: astatic/nnsa.png
+        :height: 100 px
+
 
 .. _CLASS: https://forge.in2p3.fr/projects/classforge
