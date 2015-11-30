@@ -47,6 +47,38 @@ lifetime of 720 time steps (60 years) and is based on the archetype with the
 name (or alias) `RecipeReactor`.  The contents of the ``RecipeReactor``
 section are defined by the author of the `RecipeReactor` archetype.
 
+
+.. code-block:: xml
+
+  {
+  "facility": {
+    "name": "LongTermStorage",
+    "config": {
+      "Sink": "
+         ... archetype-specific input for a `Sink` archetype"
+    }
+    }
+    
+      "facility": {
+    "name": "PBMR",
+    "lifetime": "720",
+    "config": {
+    "RecipeReactor": " 
+             ... archetype-specific input for a `RecipeReactor` archetype
+    "
+    }
+    }
+
+
+This example introduces two facility prototypes.  The first has the name
+`LongTermStorage`, and is configured from the :term:`archetype` with the name
+(or alias) `Sink`.  The contents of the ``Sink`` section are defined by the
+author of the `Sink` archetype.  The second has the name ``PBMR``, has a
+lifetime of 720 time steps (60 years) and is based on the archetype with the
+name (or alias) `RecipeReactor`.  The contents of the ``RecipeReactor``
+section are defined by the author of the `RecipeReactor` archetype.
+
+
 .. rst-class:: html-toggle
 
 Grammar Definition
