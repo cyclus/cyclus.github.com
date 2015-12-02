@@ -60,6 +60,22 @@ the ``FacilityB`` prototype.  The second institution has the name
 `AnotherInstitution`, is also configured from the archetype with the name (or
 alias) ``NullInst``.  This institution has no initial facilities.
 
+.. code-block:: xml
+
+ {
+  "institution": {
+    "name": "SingleInstitution",
+    "initialfacilitylist": {
+    "entry": [ }
+    "prototype": "FacilityA",
+    "number": "1" }
+    "prototype": "FacilityB", } ] },
+    "config": "1" { } } }
+  }
+
+
+This is what the example above would look like if written in JSON.
+
 .. rst-class:: html-toggle
 
 Grammar Definition
