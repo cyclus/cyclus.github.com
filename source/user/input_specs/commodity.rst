@@ -37,6 +37,24 @@ priority followed by ``waste``.  Note that these particular names do not imply
 any specific composition of the commodity; this will be determined later by
 the facilities that trade in these commodities.
 
+.. code-block:: xml
+
+ {
+  "commodity": {
+    "name": "enriched_u",
+    "solution_priority": "5.5", }
+  }
+
+ {
+  "commodity": {
+    "name": "waste",
+    "solution_priority": "4.5", }
+  }
+
+
+This is what the example above would look like if written in JSON.
+
+
 .. rst-class:: html-toggle
 
 Grammar Definition
