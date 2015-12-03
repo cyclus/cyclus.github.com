@@ -65,6 +65,40 @@ nuclide of H-1.  The second recipe is named `natU_recipe`, is defined using
 atom fractions, and contains two nuclides: 0.7% of the atoms are U-235 and
 99.3% of the atoms are U-238.
 
+
+.. code-block:: xml
+
+ {
+  "recipe": {
+    "name": "proton_recipe",
+    "basis": "mass",
+    "nuclide": {
+    "id": "010010000",
+    "comp": "1",
+    },
+    }
+  }
+
+
+ {
+  "recipe": {
+    "name": "natU_recipe",
+    "basis": "atom",
+    "nuclide": {
+    "id": "922350000",
+    "comp": "0.007",
+    },
+    "nuclide": {
+    "id": "922380000",
+    "comp": "0.993<",
+    },
+    }
+  }
+
+
+This is what the example above would look like if written in JSON.
+
+
 .. rst-class:: html-toggle
 
 Grammar Definition
