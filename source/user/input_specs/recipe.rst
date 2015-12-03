@@ -88,7 +88,7 @@ atom fractions, and contains two nuclides: 0.7% of the atoms are U-235 and
     "comp": "0.007", },
     "nuclide": {
     "id": "922380000",
-    "comp": "0.993<", },
+    "comp": "0.993", },
     }
   }
 
