@@ -60,15 +60,15 @@ in a library file with a name such as `libsimpleSource.so`, in the standard
  {
   "archetypes": {
     "spec": {
-    "path": "my/custom/path",
-    "lib": "myAgentCollection",
-    "alias": "ReactorAgent", },
+      "path": "my/custom/path",
+      "lib": "myAgentCollection",
+      "alias": "ReactorAgent", },
     "spec": {
-    "name": "simpleSource", },
+      "name": "simpleSource", },
     "spec": {
-    "name": "simpleRegion", },
+      "name": "simpleRegion", },
     "spec": {
-    "name": "simpleInst", },
+      "name": "simpleInst", },
   }
   }
 
