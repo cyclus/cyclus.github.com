@@ -63,7 +63,7 @@ contents of the ``GrowthRegion`` section are defined by the author of the
   "region": {
     "name": "MyNeighborRegion",
     "config": {
-    "GrowthRegion": "... archetype-specific input for a `GrowthRegion` archetype", },
+      "GrowthRegion": "... archetype-specific input for a `GrowthRegion` archetype", },
     "institution": "... data for this institution goes here", }
   }
 
