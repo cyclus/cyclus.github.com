@@ -60,27 +60,26 @@ the ``FacilityB`` prototype.  The second institution has the name
 `AnotherInstitution`, is also configured from the archetype with the name (or
 alias) ``NullInst``.  This institution has no initial facilities.
 
-.. code-block:: xml
+.. code-block:: json
 
  {
   "institution": {
     "name": "SingleInstitution",
-    "initialfacilitylist": {
-    "entry": {
-    "prototype": "FacilityA",
-    "number": "1" }
-    "entry": {
-    "prototype": "FacilityB", },
-    "config": { }
-    }
+    "initialfacilitylist": [{
+      "entry": {
+        "prototype": "FacilityA",
+        "number": "1"},
+      {"entry": {"prototype": "FacilityB"}}],
+    "config": {}
+      }
     }
   }
 
  {
   "institution": {
     "name": "AnotherInstitution",
-    "config": { }
-  }
+    "config": {}
+    }
   }
 
 
