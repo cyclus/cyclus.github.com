@@ -73,8 +73,8 @@ atom fractions, and contains two nuclides: 0.7% of the atoms are U-235 and
     "name": "proton_recipe",
     "basis": "mass",
     "nuclide": {
-    "id": "010010000",
-    "comp": "1", }, 
+      "id": "010010000",
+      "comp": "1", }, 
     }
   }
 
@@ -84,11 +84,11 @@ atom fractions, and contains two nuclides: 0.7% of the atoms are U-235 and
     "name": "natU_recipe",
     "basis": "atom",
     "nuclide": {
-    "id": "922350000",
-    "comp": "0.007", },
+      "id": "922350000",
+      "comp": "0.007", },
     "nuclide": {
-    "id": "922380000",
-    "comp": "0.993", },
+      "id": "922380000",
+      "comp": "0.993", },
     }
   }
 
