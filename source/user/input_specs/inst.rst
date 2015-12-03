@@ -71,7 +71,9 @@ alias) ``NullInst``.  This institution has no initial facilities.
     "number": "1" }
     "entry": {
     "prototype": "FacilityB", },
-    "config": "1" { } } }
+    "config": { }
+    }
+    }
   }
 
  {
