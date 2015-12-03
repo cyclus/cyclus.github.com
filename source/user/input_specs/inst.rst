@@ -79,6 +79,7 @@ alias) ``NullInst``.  This institution has no initial facilities.
     "name": "AnotherInstitution",
     "config": { }
   }
+  }
 
 
 This is what the example above would look like if written in JSON.
