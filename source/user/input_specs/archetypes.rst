@@ -70,6 +70,7 @@ in a library file with a name such as `libsimpleSource.so`, in the standard
     "spec": {
     "name": "simpleInst", },
   }
+  }
 
 
 This is what the example above would look like if written in JSON.
