@@ -5,40 +5,18 @@ Tutorial
 This document will walk you through the basics of how to use cymetric on the 
 command line, from Python, and even how to write your own metrics!
 
+Cymetric is an extension of |cyclus|, so it is assumed that |cyclus| is already
+installed on your system. If not, please visit here for `building it from
+source <http://fuelcycle.org/kernel/build_from_source.html>`_. Cymetric
+installation instructions are available on `github
+<https://github.com/cyclus/cymetric>`_.
+
 Cymetric operates by reading data from a |cyclus| database, computing metrics, 
 and writing those metrics back to the database. This way, previously seen 
-metrics are stored for later retrieval.  The dependencies between metrics are 
+metrics are stored for later retrieval. The dependencies between metrics are 
 automatically computed and evaluated.  
 
 Without further ado, let's dive in!
-
-Getting Cymetric
-----------------
-Cymetric is an extension of |cyclus|, so it is assumed that |cyclus| is
-already installed on your system. (If not, please visit here
-for building it from source http://fuelcycle.org/kernel/build_from_source.html.)
-
-Cymetric is available on the same platforms as |cyclus|: Ubuntu and Max OS.
-
-Building from Source
-~~~~~~~~~~~~~~~~~~~~
-Cymetric can be built from source by first downloading the code by cloning the GitHub repository:
-
-.. code-block:: bash
-
-    $ git clone https://github.com/cyclus/cymetric
-
-Then build and install:
-
-.. code-block:: bash
-
-    $ cd cymetric
-    $ python setup.py install --user
-
-Installation via Binary
-~~~~~~~~~~~~~~~~~~~~~~~
-
-Cymetric will soon be available to install via Conda.
 
 Command Line Usage
 ------------------
