@@ -7,6 +7,7 @@ to use cymetric from the command line or using Python. It also discusses how to
 write your own metrics for custom analyses.  
 
 Cymetric is an extension of |cyclus|, so it is assumed that |cyclus| is already
+<<<<<<< HEAD
 installed on your system. If not, please visit here for `building it from
 source <http://fuelcycle.org/kernel/build_from_source.html>`_. Cymetric
 installation instructions are available on `github
