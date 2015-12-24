@@ -45,7 +45,7 @@ Example
 
 .. code-block:: json
 
- { "control": {
+ {"control": {
     "startyear": "2007",
     "startmonth": "11",
     "duration": "1200",
