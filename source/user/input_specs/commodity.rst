@@ -54,8 +54,6 @@ priority followed by ``waste``.  Note that these particular names do not imply
 any specific composition of the commodity; this will be determined later by
 the facilities that trade in these commodities.
 
-This is what the example above would look like if written in JSON.
-
 
 .. rst-class:: html-toggle
 
