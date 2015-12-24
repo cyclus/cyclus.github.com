@@ -44,24 +44,20 @@ Example
 
 **JSON:**
 
+.. code-block:: json
 
-.. code-block:: xml
-
- {
-  "region": {
+ {"region": {
    "config": {"NullRegion": null}, 
-   "institution": "\n      ... data for this institution goes here\n  ", 
+   "institution": "(... data for this institution goes here)", 
   "name": "MyHomeRegion"
   }
  }
 
  {
  "region": {
-   "config": {
-    "GrowthRegion": "\n       ... archetype-specific input for a `GrowthRegion` archetype\n    "
-   }, 
-   "institution": "\n       ... data for this institution goes here\n  ", 
-   "name": "MyNeighborRegion"
+   "config": {"GrowthRegion": "(... archetype-specific input for a `GrowthRegion` archetype)"}, 
+   "institution": "(... data for this institution goes here)", 
+  "name": "MyNeighborRegion"
   }
  }
 
