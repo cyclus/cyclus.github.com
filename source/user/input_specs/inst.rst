@@ -58,8 +58,8 @@ Example
    "entry": [
     {"number": "1", "prototype": "FacilityA"}, 
     {"number": "1", "prototype": "FacilityB"}
-   ]
-  }, 
+     ]
+    }, 
   "name": "SingleInstitution"
    }
   }
