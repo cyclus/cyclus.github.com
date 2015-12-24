@@ -56,8 +56,8 @@ Example
    "RecipeReactor": "(... archetype-specific input for a `RecipeReactor` archetype)"}, 
   "lifetime": 720, 
   "name": "PBMR"
+  }
  }
-}
 
 
 This example introduces two facility prototypes.  The first has the name
