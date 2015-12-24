@@ -66,8 +66,8 @@ Example
 {"institution": {
  "config": {"NullInst": null},
  "name": "AnotherInstitution"
-  }
  }
+}
 
 
 
