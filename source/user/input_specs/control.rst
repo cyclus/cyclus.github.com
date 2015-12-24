@@ -46,10 +46,10 @@ Example
 .. code-block:: json
 
  {"control": {
-    "startyear": "2007",
-    "startmonth": "11",
-    "duration": "1200",
-    "dt": "86400",
+    "startyear": 2007,
+    "startmonth": 11,
+    "duration": 1200,
+    "dt": 86400,
     "decay": "lazy" }
   }
 
