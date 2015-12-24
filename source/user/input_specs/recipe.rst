@@ -37,6 +37,8 @@ A ``recipe`` block has the following sections in the following order:
 Example
 +++++++
 
+**XML:**
+
 .. code-block:: xml
 
   <recipe>
@@ -59,6 +61,26 @@ Example
     </nuclide>
   </recipe>
 
+**JSON:**
+
+.. code-block:: json
+
+ {"recipe": {
+   "basis": "mass", 
+   "name": "proton_recipe", 
+   "nuclide": {"comp": "1", "id": "010010000"}
+  }
+ }
+ 
+ {"recipe": {
+   "basis": "atom", 
+   "name": "natU_recipe", 
+   "nuclide": [{"comp": "0.007", "id": "922350000"}, {"comp": "0.993", "id": "922380000"}]
+  }
+ }
+
+
+
 This example defines two material compositions.  The first has the name
 `commod_recipe`, is defined using mass fractions, and contains a single
 nuclide of H-1.  The second recipe is named `natU_recipe`, is defined using
@@ -66,31 +88,6 @@ atom fractions, and contains two nuclides: 0.7% of the atoms are U-235 and
 99.3% of the atoms are U-238.
 
 
-.. code-block:: xml
-
- {
-  "recipe": {
-    "name": "proton_recipe",
-    "basis": "mass",
-    "nuclide": {
-      "id": "010010000",
-      "comp": "1", }, 
-    }
-  }
-
-
- {
-  "recipe": {
-    "name": "natU_recipe",
-    "basis": "atom",
-    "nuclide": {
-      "id": "922350000",
-      "comp": "0.007", },
-    "nuclide": {
-      "id": "922380000",
-      "comp": "0.993", },
-    }
-  }
 
 
 This is what the example above would look like if written in JSON.
