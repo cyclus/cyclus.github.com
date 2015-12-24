@@ -46,14 +46,14 @@ Example
 
  {"facility": {
    "config": {
-    "Sink": "\n(... archetype-specific input for a `Sink` archetype)\n"}, 
+    "Sink": "(... archetype-specific input for a `Sink` archetype)"}, 
    "name": "LongTermStorage"
   }
  }
  
  {"facility": {
   "config": {
-   "RecipeReactor": "\n(... archetype-specific input for a `RecipeReactor` archetype)\n"}, 
+   "RecipeReactor": "(... archetype-specific input for a `RecipeReactor` archetype)"}, 
   "lifetime": 720, 
   "name": "PBMR"
  }
