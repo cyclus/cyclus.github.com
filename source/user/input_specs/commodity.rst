@@ -53,7 +53,7 @@ of them are given explicit priorities.  The ``enriched_u`` has the highest
 priority followed by ``waste``.  Note that these particular names do not imply
 any specific composition of the commodity; this will be determined later by
 the facilities that trade in these commodities.
-
+ 
 
 .. rst-class:: html-toggle
 
