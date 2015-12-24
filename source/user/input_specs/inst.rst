@@ -27,6 +27,8 @@ each contain the following sections, in the following order:
 Example
 +++++++
 
+**XML:**
+
 .. code-block:: xml
 
     <institution>
@@ -49,6 +51,7 @@ Example
       <config> <NullInst/> </config>
     </institution>
 
+**JSON:**
 
 .. code-block:: json
 
