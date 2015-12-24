@@ -89,10 +89,6 @@ atom fractions, and contains two nuclides: 0.7% of the atoms are U-235 and
 
 
 
-
-This is what the example above would look like if written in JSON.
-
-
 .. rst-class:: html-toggle
 
 Grammar Definition
