@@ -45,15 +45,14 @@ Example
 .. code-block:: json
 
  {"facility": {
-  "config": {"Sink": "\n       ... archetype-specific input for a `Sink` archetype \n  "}, 
-  "name": "LongTermStorage"
+   "config": {"Sink": "\n       ... archetype-specific input for a `Sink` archetype \n"}, 
+   "name": "LongTermStorage"
+  }
  }
-}
 
 {"facility": {
   "config": {
-   "RecipeReactor": "\n... archetype-specific input for a `RecipeReactor` archetype\n"
-  }, 
+   "RecipeReactor": "\n... archetype-specific input for a `RecipeReactor` archetype\n"}, 
   "lifetime": 720, 
   "name": "PBMR"
  }
