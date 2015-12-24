@@ -49,8 +49,7 @@ Example
    "name": "LongTermStorage"
   }
  }
-
-{"facility": {
+ {"facility": {
   "config": {
    "RecipeReactor": "\n... archetype-specific input for a `RecipeReactor` archetype\n"}, 
   "lifetime": 720, 
