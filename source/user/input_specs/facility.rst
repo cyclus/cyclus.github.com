@@ -41,13 +41,14 @@ Example
 
 .. code-block:: json
 
-{"facility": {
+
+ {"facility": {
   "config": {"Sink": "\n       ... archetype-specific input for a `Sink` archetype \n  "}, 
   "name": "LongTermStorage"
  }
 }
 
-{"facility": {
+ {"facility": {
   "config": {
    "RecipeReactor": "\n... archetype-specific input for a `RecipeReactor` archetype\n"
   }, 
