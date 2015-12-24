@@ -17,6 +17,8 @@ Each ``facility`` block has the follwoing sections in any order:
 Example
 +++++++
 
+**XML:**
+
 .. code-block:: xml
 
   <facility>
@@ -38,9 +40,9 @@ Example
     </config>
   </facility>
 
+**JSON:**
 
 .. code-block:: json
-
 
  {"facility": {
   "config": {"Sink": "\n       ... archetype-specific input for a `Sink` archetype \n  "}, 
@@ -48,7 +50,7 @@ Example
  }
 }
 
- {"facility": {
+{"facility": {
   "config": {
    "RecipeReactor": "\n... archetype-specific input for a `RecipeReactor` archetype\n"
   }, 
