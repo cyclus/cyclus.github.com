@@ -68,14 +68,14 @@ Example
  {"recipe": {
    "basis": "mass", 
    "name": "proton_recipe", 
-   "nuclide": {"comp": "1", "id": "010010000"}
+   "nuclide": {"comp": 1, "id": 010010000}
   }
  }
  
  {"recipe": {
    "basis": "atom", 
    "name": "natU_recipe", 
-   "nuclide": [{"comp": "0.007", "id": "922350000"}, {"comp": "0.993", "id": "922380000"}]
+   "nuclide": [{"comp": 0.007, "id": 922350000}, {"comp": 0.993, "id": 922380000}]
   }
  }
 
