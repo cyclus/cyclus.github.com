@@ -56,19 +56,19 @@ Example
   "config": {"NullInst": null}, 
   "initialfacilitylist": {
    "entry": [
-    {"number": "1", "prototype": "FacilityA"}, 
-    {"number": "1", "prototype": "FacilityB"}
+    {"number": 1, "prototype": "FacilityA"}, 
+    {"number": 1, "prototype": "FacilityB"}
      ]
     }, 
   "name": "SingleInstitution"
    }
   }
 
-{"institution": {
- "config": {"NullInst": null},
- "name": "AnotherInstitution"
+ {"institution": {
+  "config": {"NullInst": null},
+  "name": "AnotherInstitution"
+  }
  }
-}
 
 
 
