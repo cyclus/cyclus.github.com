@@ -62,25 +62,25 @@ alias) ``NullInst``.  This institution has no initial facilities.
 
 .. code-block:: json
 
- {
-  "institution": {
-    "name": "SingleInstitution",
-    "initialfacilitylist": [{
-      "entry": {
-        "prototype": "FacilityA",
-        "number": "1"},
-      {"entry": {"prototype": "FacilityB"}}],
-    "config": {}
+     {
+      "institution": {
+        "name": "SingleInstitution",
+        "initialfacilitylist": [{
+          "entry": {
+            "prototype": "FacilityA",
+            "number": "1"},
+          {"entry": {"prototype": "FacilityB"}}],
+        "config": {}
+          }
+        }
       }
-    }
-  }
 
- {
-  "institution": {
-    "name": "AnotherInstitution",
-    "config": {}
-    }
-  }
+     {
+      "institution": {
+        "name": "AnotherInstitution",
+        "config": {}
+        }
+      }
 
 
 This is what the example above would look like if written in JSON.
