@@ -68,7 +68,7 @@ alias) ``NullInst``.  This institution has no initial facilities.
         "initialfacilitylist": [{
           "entry": {
             "prototype": "FacilityA",
-            "number": "1"}},
+            "number": 1}},
           {"entry": {"prototype": "FacilityB"}}],
         "config": {}
         }
