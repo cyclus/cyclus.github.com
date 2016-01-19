@@ -40,7 +40,7 @@ Example
 This example starts in November 2007, and runs for 100 years (1200 months).
 
 
-.. code-block:: xml
+.. code-block:: json
 
  {
   "control": {
