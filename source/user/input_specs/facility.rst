@@ -47,6 +47,31 @@ lifetime of 720 time steps (60 years) and is based on the archetype with the
 name (or alias) `RecipeReactor`.  The contents of the ``RecipeReactor``
 section are defined by the author of the `RecipeReactor` archetype.
 
+
+.. code-block:: json
+
+     {
+      "facility": {
+        "name": "LongTermStorage",
+        "config": {
+        "sink": "... archetype-specific input for a `Sink` archetype" }
+        }
+      }
+
+
+     {
+      "facility": {
+        "name": "PBMR",
+        "lifetime": 720,
+        "config": {
+        "RecipeReactor": "... archetype-specific input for a `RecipeReactor` archetype" }
+        }
+      }
+
+
+This is what the example above would look like if written in JSON.
+
+
 .. rst-class:: html-toggle
 
 Grammar Definition

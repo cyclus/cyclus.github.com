@@ -19,6 +19,8 @@ A ``commodity`` block has the following sections in the following order:
 Example
 +++++++
 
+**XML:**
+
 .. code-block:: xml
 
   <commodity>
@@ -31,11 +33,27 @@ Example
     <solution_priority>4.5</solution_priority>
   </commodity>
 
+**JSON:**
+
+.. code-block:: json
+
+    {"commodity": {
+       "name": "enriched_u",
+       "solution_priority": 5.5 }
+     }
+
+    {"commodity": {
+       "name": "waste",
+       "solution_priority": 4.5 }
+     }
+
+
 In this example, while there may be many commodities used in the problem, two
 of them are given explicit priorities.  The ``enriched_u`` has the highest
 priority followed by ``waste``.  Note that these particular names do not imply
 any specific composition of the commodity; this will be determined later by
 the facilities that trade in these commodities.
+ 
 
 .. rst-class:: html-toggle
 
