@@ -54,7 +54,7 @@ section are defined by the author of the `RecipeReactor` archetype.
       "facility": {
         "name": "LongTermStorage",
         "config": {
-        "sink": "... archetype-specific input for a `Sink` archetype", }
+        "sink": "... archetype-specific input for a `Sink` archetype" }
         }
       }
 
@@ -62,9 +62,9 @@ section are defined by the author of the `RecipeReactor` archetype.
      {
       "facility": {
         "name": "PBMR",
-        "lifetime": "720",
+        "lifetime": 720,
         "config": {
-        "RecipeReactor": "... archetype-specific input for a `RecipeReactor` archetype", }
+        "RecipeReactor": "... archetype-specific input for a `RecipeReactor` archetype" }
         }
       }
 
