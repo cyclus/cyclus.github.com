@@ -74,7 +74,7 @@ atom fractions, and contains two nuclides: 0.7% of the atoms are U-235 and
         "basis": "mass",
         "nuclide": {
           "id": "H1",
-          "comp": 1, }, 
+          "comp": 1 } 
         }
       }
 
@@ -85,10 +85,10 @@ atom fractions, and contains two nuclides: 0.7% of the atoms are U-235 and
         "basis": "atom",
         "nuclide": {
           "id": "U235",
-          "comp": 0.007, },
+          "comp": 0.007 },
         "nuclide": {
           "id": "U238",
-          "comp": 0.993, },
+          "comp": 0.993 }
         }
       }
 
