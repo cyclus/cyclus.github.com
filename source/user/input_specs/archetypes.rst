@@ -62,10 +62,10 @@ in a library file with a name such as `libsimpleSource.so`, in the standard
       "spec": {
         "path": "my/custom/path",
         "lib": "myAgentCollection",
-        "alias": "ReactorAgent", },
-      "spec": {"name": "simpleSource", }
-      "spec": {"name": "simpleRegion", }
-      "spec": {"name": "simpleInst", }
+        "alias": "ReactorAgent" },
+      "spec": {"name": "simpleSource" },
+      "spec": {"name": "simpleRegion" },
+      "spec": {"name": "simpleInst" }
     }
     }
 
