@@ -30,6 +30,24 @@ Importantly, the order in which agents' agent-phase methods are invoked is *not
 guaranteed*. In other words, the execution of any given phase is conceptually
 occurring *simultaneously among agents*.
 
+The duration of a time step can be set to custom values by users when running
+simulations.  Archetypes must be coded with this in mind.  One easy method for
+supporting arbitrary time step duration is to make all time-related quantities
+and configuration in the archetype operate on a per-time-step basis (e.g.
+reactor cycle length measured in time steps instead of days or months).  If
+archetypes do have constraints on the time step duration (e.g. they only
+support approximately 1-month time steps), then they should throw an
+exception as early as possible (i.e. in their constructor).  The time step
+duration can be queried from an the simulation context:
+
+.. code-block:: c++
+
+    virtual void MyAgent::Tick() {
+        ...
+        double discharge_qty = discharge_rate * context()->dt();
+        ...
+    }
+
 .. _build:
 
 Build Phase

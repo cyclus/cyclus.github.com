@@ -1,6 +1,6 @@
 
 Installing a |Cyclus| VirtualBox
-==============================
+================================
 
 A native Windows installation is not currently explicitly supported. However, a
 Virtual Machine image can be downloaded that includes a pre-installation of all

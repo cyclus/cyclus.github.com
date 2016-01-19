@@ -47,6 +47,11 @@ branch, you may always run::
 
     make html
 
+Or if you have docker, you can forget about the other dependencies and just
+run::
+
+    make html-docker
+
 Best practice workflow for contributing to site changes
 --------------------------------------------------------
 
@@ -70,7 +75,13 @@ Best practice workflow for contributing to site changes
 
    This will build a version of the site in the `gh-build` directory of
    your branch, `add_some_info`.  You can load it directly in a local
-   browser.
+   browser.  Or if you have docker installed, you can optionally use the
+   docker preview target:
+
+   ``make gh-preview-docker``
+
+   to build the website inside a docker container with all the correct
+   dependencies and configuration taken care of automagically.
 
 6. Repeat steps 4-5 until satisfied.
 

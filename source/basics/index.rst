@@ -73,6 +73,7 @@ Sections
    sw_dev
    fcs_background
    ecosystem
+   projects
    optsens
    acknowledgements
    glossary

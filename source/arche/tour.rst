@@ -99,9 +99,7 @@ ability to help automate some documentation:
   #pragma cyclus note {"doc": "A stub facility is provided as a skeleton " \
                               "for the design of new facility agents."}
 
-Again, ``#pragma cyclus note`` is explained further in :ref:`cycpp`; however you
-can see the results of using this particular directive in our own Stub archetype
-:doc:`documentation </user/stubagents>`.
+Again, ``#pragma cyclus note`` is explained further in :ref:`cycpp`.
 
 Continuing along, we reach the final three member functions, each of which are
 defined on the base ``cyclus::Agent`` class and are overrode by the

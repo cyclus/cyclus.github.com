@@ -15,10 +15,6 @@
 
 .. raw:: html
 
-    <div style="text-align:center;">
-    <h2><a href="http://fuelcycle.org/previous/v1.3.html">
-    v1.3.0 has been released!</a></h2><br></div>
-
 |cyclus| is the next-generation agent-based nuclear :doc:`fuel cycle simulator
 <basics/fcs_background>`, providing flexibility to users and developers
 through a :term:`dynamic resource exchange` solver and :term:`plug-in`,
@@ -33,35 +29,16 @@ always welcome and encouraged to use or contribute to the |cyclus| project.
 
 The |Cyclus| project repository is located at http://github.com/cyclus/cyclus.
 
-2015 ANS Annual Meeting: Technical Presentations and Tutorials
----------------------------------------------------------------
+News
+-----
 
-The |cyclus| development team will be participating in two technical sessions
-and hosting two tutorials during the `2015 ANS Annual Meeting
-<http://ansannual.org/>`_.
+**August 13, 2015:** :doc:`Cyclus included in FY2016 workscopes for the NEUP program <news/fy16neup>`
 
-Monday, June 8, 1:00-4:30 PM (Lone Star D Room)
-+++++++++++++++++++++++++++++++++++++++++++++++
+**July 21-24, 2015:** Joint workshop with CLASS_ project held in Madison, WI
 
-Yarden Livnat (U. Utah) will participate in the "Roundtable on Computational
-Methods - Big Data" and include some discussion of data exploration with
-respect to |Cyclus|.
+**June 10, 2015:** First Cyclus :doc:`user tutorial <user/tutorial/index>` and :doc:`developer tutorial <arche/tutorial/index>` are held at the 2015 ANS Annual Meeting in San Antonio, TX 
 
-Tuesday, June 9, 1:00-3:05 PM (Lone Star A Room)
-++++++++++++++++++++++++++++++++++++++++++++++++
-
-Many of the speakers in the "Fuel Cycle Simulators" session sponsored by the
-`Fuel Cycle & Waste Management Division <http://fcwmd.ans.org>`_ will discuss
-developments related to |Cyclus|.
-
-Wednesday, June 10 (Lone Star A Room)
-+++++++++++++++++++++++++++++++++++++++
-
-* *8:30-11:30 AM*, :doc:`User's Tutorial <cite/tutorials/2015-ans-users>`
-* *1:00-4:00 PM*, :doc:`Archetype Developer's Tutorial <cite/tutorials/2015-ans-archdev>`
-
-Please plan to attend these tutorials and check here for more information
-about what you will need to bring.
+**June 7, 2015:** :doc:`Cyclus v1.3.1 is released <previous/v1.3>`
 
 Learn More
 ----------
@@ -145,7 +122,7 @@ Contact Us
 
 * `Developers' mailing list and forum <https://groups.google.com/forum/#!forum/cyclus-dev>`_
 
-* Project PI, Paul Wilson: wilsonp AT engr.wisc.edu
+* Project PI, Paul Wilson: paul.wilson AT wisc.edu
 
 * Project Lead, Anthony Scopatz:  scopatz AT gmail.com
 
@@ -154,9 +131,15 @@ Contributors
 
 * Robert Carlsen
 
+* Denia Djokic
+
+* Robert Flanagan
+
 * `Matthew Gidden <http://mattgidden.com/>`_
 
 * `Kathryn (Katy) Huff <http://katyhuff.github.io/>`_
+
+* `Meghan McGarry <http://cnerg.github.io/people/mcgarry.html>`_
 
 * `Arrielle Opotowsky <http://cnerg.github.io/people/opotowsky.html>`_
 
@@ -166,7 +149,9 @@ Contributors
 
 * Zach Welch
 
-* Paul Wilson
+* `Paul Wilson <http://cnerg.github.io/people/pphw.html>`_
+
+* John Xia
 
 Acknowledgments
 ----------------
@@ -190,4 +175,8 @@ Support for this research has included funding received from:
     .. image :: astatic/crest.png
         :height: 100 px
 
+    .. image :: astatic/nnsa.png
+        :height: 100 px
 
+
+.. _CLASS: https://forge.in2p3.fr/projects/classforge
