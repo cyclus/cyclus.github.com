@@ -50,23 +50,23 @@ section are defined by the author of the `RecipeReactor` archetype.
 
 .. code-block:: json
 
- {
-  "facility": {
-    "name": "LongTermStorage",
-    "config": {
-    "sink": "... archetype-specific input for a `Sink` archetype", }
-    }
-  }
+     {
+      "facility": {
+        "name": "LongTermStorage",
+        "config": {
+        "sink": "... archetype-specific input for a `Sink` archetype", }
+        }
+      }
 
 
- {
-  "facility": {
-    "name": "PBMR",
-    "lifetime": "720",
-    "config": {
-    "RecipeReactor": "... archetype-specific input for a `RecipeReactor` archetype", }
-    }
-  }
+     {
+      "facility": {
+        "name": "PBMR",
+        "lifetime": "720",
+        "config": {
+        "RecipeReactor": "... archetype-specific input for a `RecipeReactor` archetype", }
+        }
+      }
 
 
 This is what the example above would look like if written in JSON.
