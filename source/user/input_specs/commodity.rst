@@ -37,15 +37,15 @@ Example
 
 .. code-block:: json
 
-   {"commodity": {
-      "name": "enriched_u",
-      "solution_priority": 5.5 }
-    }
+    {"commodity": {
+       "name": "enriched_u",
+       "solution_priority": 5.5 }
+     }
 
-   {"commodity": {
-      "name": "waste",
-      "solution_priority": 4.5 }
-    }
+    {"commodity": {
+       "name": "waste",
+       "solution_priority": 4.5 }
+     }
 
 
 In this example, while there may be many commodities used in the problem, two
