@@ -44,10 +44,10 @@ This example starts in November 2007, and runs for 100 years (1200 months).
 
      {
       "control": {
-        "startyear": "2007"
-        "startmonth": "11"
-        "duration": "1200"
-        "dt": "86400"
+        "startyear": 2007,
+        "startmonth": 11,
+        "duration": 1200,
+        "dt": 86400,
         "decay": "lazy" }
       }
 
