@@ -48,7 +48,7 @@ name (or alias) `RecipeReactor`.  The contents of the ``RecipeReactor``
 section are defined by the author of the `RecipeReactor` archetype.
 
 
-.. code-block:: xml
+.. code-block:: json
 
  {
   "facility": {
