@@ -49,23 +49,23 @@ is based on the archetype with the name (or alias) `GrowthRegion`.  The
 contents of the ``GrowthRegion`` section are defined by the author of the
 `GrowthRegion` archetype.
 
-.. code-block:: xml
+.. code-block:: json
 
- {
-  "region": {
-    "name": "MyHomeRegion",
-    "config": { },
-    "institution": "... data for this institution goes here", }
-  }
+     {
+      "region": {
+        "name": "MyHomeRegion",
+        "config": { },
+        "institution": "... data for this institution goes here" }
+      }
 
 
- {
-  "region": {
-    "name": "MyNeighborRegion",
-    "config": {
-      "GrowthRegion": "... archetype-specific input for a `GrowthRegion` archetype", },
-    "institution": "... data for this institution goes here", }
-  }
+     {
+      "region": {
+        "name": "MyNeighborRegion",
+        "config": {
+          "GrowthRegion": "... archetype-specific input for a `GrowthRegion` archetype" },
+        "institution": "... data for this institution goes here" }
+      }
 
 
 This is what the example above would look like if written in JSON.
