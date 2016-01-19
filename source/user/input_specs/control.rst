@@ -39,6 +39,23 @@ Example
 
 This example starts in November 2007, and runs for 100 years (1200 months).
 
+
+.. code-block:: json
+
+     {
+      "control": {
+        "startyear": 2007,
+        "startmonth": 11,
+        "duration": 1200,
+        "dt": 86400,
+        "decay": "lazy" }
+      }
+
+
+This is what the example above would look like if written in JSON.
+
+
+
 .. rst-class:: html-toggle
 
 Grammar Definition
