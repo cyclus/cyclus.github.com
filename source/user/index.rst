@@ -65,7 +65,8 @@ Archetypes
 Collections of :term:`archetypes <archetype>` are provided by various teams
 and individuals for use by |Cyclus| users.
 
-**Cycamore**
+Cycamore
+~~~~~~~~
    The Cycamore library of archetypes is provided by the |Cyclus| development
    team as a basic set of archetypes for modeling simple nuclear fuel cycles.
 
@@ -74,6 +75,19 @@ and individuals for use by |Cyclus| users.
 
     cycamoreagents
 
+Cyclus Testing
+~~~~~~~~~~~~~~
+   The |Cyclus| kernel includes some archetype for testing the basic
+   functionality of the kenel.
+
+.. toctree::
+   :maxdepth: 2
+
+   cyclusagents
+
+
+Third-Party Archetypes
+~~~~~~~~~~~~~~~~~~~~~~
 **Bright-lite**
    The University of Texas - Austin is developing a set of archetypes for fuel
    fabrication and reactors that rely on interpolation tables for more
@@ -85,15 +99,25 @@ and individuals for use by |Cyclus| users.
    develop archetypes that will use ORIGEN calculations to improve the
    estimate of nuclear fuel properties.
 
-**Cyclus Testing**
-   The |Cyclus| kernel includes some archetype for testing the basic
-   functionality of the kenel.
-
-.. toctree::
-   :maxdepth: 2
-
-   cyclusagents
-
+**Mbmore**
+  Facility archetypes that utilize a random number generator to create
+  non-deterministic behaviors.  General methods controlling the behavior
+  (including random number generation and Gaussian distributions) are defined in
+  the `behavior functions. <https://github.com/mbmcgarry/mbmore/blob/master/src/behavior_functions.h>`_
+  
+  * `Mbmore Archetypes <https://github.com/mbmcgarry/mbmore>`_
+    
+    - `:mbmore:RandomEnrich <https://github.com/mbmcgarry/mbmore/blob/master/src/RandomEnrich.h#242>`_ - Based on cycamore enrichment facility, it can have
+      variable tails assay, and bidding behavior can be set to occur at Every X
+      timestep or at Random timesteps
+    - `:mbmore:RandomSink <https://github.com/mbmcgarry/mbmore/blob/master/src/RandomSink.h#L78>`_ - Based on cycamore sink facility,
+      it can accept multiple recipes, has modifiable material preference,
+      material request behavior can be set, trading can be suppressed before
+      a specified timestep, material requests can occur at Every X timestep
+      or at Random timesteps, and quantity requested can be varied using a
+      Gaussian distribution function.
+ 
+   
 Visualization & Analysis
 --------------------------
 
