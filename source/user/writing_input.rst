@@ -40,9 +40,9 @@ Here is a simple example of the difference between the XML and JSON languages:
 
     {
       "note": {
-        "to": "Matt"
-        "from": "Anthony"
-        "heading": "Cyclus released today"
+        "to": "Matt",
+        "from": "Anthony",
+        "heading": "Cyclus released today",
         "body": "We have released Cyclus v1.0 for everyone to use."
       }
     }
