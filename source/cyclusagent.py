@@ -161,7 +161,7 @@ def _type(cpp, given=None):
     return default_types[cpp]
 
 
-def buildsample(cpptype, schematype=None, uitype=None, names=None, units=None):
+def build_xml_sample(cpptype, schematype=None, uitype=None, names=None, units=None):
     schematype = prepare_type(cpptype, schematype)
     uitype = prepare_type(cpptype, uitype)
     names = prepare_type(cpptype, names)
@@ -183,8 +183,8 @@ def buildsample(cpptype, schematype=None, uitype=None, names=None, units=None):
     elif t in ['std::list', 'std::set', 'std::vector']:
         name = 'list' if names[0] is None else names[0]
         impl += '<{0}>'.format(name)
-        impl += buildsample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
-        impl += buildsample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
+        impl += build_xml_sample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
+        impl += build_xml_sample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
         impl += '...'
         impl += '</{0}>'.format(name)
     elif t == 'std::map':
@@ -204,12 +204,12 @@ def buildsample(cpptype, schematype=None, uitype=None, names=None, units=None):
             valnames = names[2]
         impl += '<{0}>'.format(name)
         impl += '<{0}>'.format(itemname)
-        impl += buildsample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
-        impl += buildsample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
+        impl += build_xml_sample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
+        impl += build_xml_sample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
         impl += '</{0}>'.format(itemname)
         impl += '<{0}>'.format(itemname)
-        impl += buildsample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
-        impl += buildsample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
+        impl += build_xml_sample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
+        impl += build_xml_sample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
         impl += '</{0}>'.format(itemname)
         impl += '...'
         impl += '</{0}>'.format(name)
@@ -224,8 +224,78 @@ def buildsample(cpptype, schematype=None, uitype=None, names=None, units=None):
         if names[2] is not None:
             secondname = names[2]
         impl += '<{0}>'.format(name)
-        impl += buildsample(cpptype[1], schematype[1], uitype[1], firstname, units[1])
-        impl += buildsample(cpptype[2], schematype[2], uitype[2], secondname, units[2])
+        impl += build_xml_sample(cpptype[1], schematype[1], uitype[1], firstname, units[1])
+        impl += build_xml_sample(cpptype[2], schematype[2], uitype[2], secondname, units[2])
+        impl += '</{0}>'.format(name)
+    else:
+        msg = 'Unsupported type {1}'.format(t)
+        raise RuntimeError(msg)
+
+def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=None):
+    schematype = prepare_type(cpptype, schematype)
+    uitype = prepare_type(cpptype, uitype)
+    names = prepare_type(cpptype, names)
+    units = prepare_type(cpptype, units)
+
+    impl = ''
+    t = cpptype if isinstance(cpptype, STRING_TYPES) else cpptype[0]
+    if t in PRIMITIVES:
+        name = 'val'
+        if names is not None:
+            name = names
+        d_type = _type(t, schematype or uitype)
+        d_type = uitype if uitype in special_uitypes else d_type
+
+        if isinstance(units, STRING_TYPES):
+            impl += '"{0}" {1} ( {2} )'.format(name, d_type, units)
+        else:
+            impl += '"{0}" {1}'.format(name, d_type)
+    elif t in ['std::list', 'std::set', 'std::vector']:
+        name = 'list' if names[0] is None else names[0]
+        impl += '"{0}"'.format(name)
+        impl += build_json_sample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
+        impl += build_json_sample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
+        impl += '...'
+        impl += '"/{0}"'.format(name)
+    elif t == 'std::map':
+        name = 'map'
+        if isinstance(names[0], STRING_TYPES):
+            names[0] = [names[0], None]
+        elif names[0] is None:
+            names[0] = [name, None]
+        if names[0][0] is not None:
+            name = names[0][0]
+        itemname = 'item' if names[0][1] is None else names[0][1]
+        keynames = 'key' if isinstance(cpptype[1], STRING_TYPES) else ['key']
+        if names[1] is not None:
+            keynames = names[1]
+        valnames = 'val' if isinstance(cpptype[2], STRING_TYPES) else ['val']
+        if names[1] is not None:
+            valnames = names[2]
+        impl += '<{0}>'.format(name)
+        impl += '<{0}>'.format(itemname)
+        impl += build_json_sample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
+        impl += build_json_sample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
+        impl += '</{0}>'.format(itemname)
+        impl += '<{0}>'.format(itemname)
+        impl += build_json_sample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
+        impl += build_json_sample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
+        impl += '</{0}>'.format(itemname)
+        impl += '...'
+        impl += '</{0}>'.format(name)
+    elif t == 'std::pair':
+        name = 'pair'
+        if names[0] is not None:
+            name = names[0]
+        firstname = 'first' if isinstance(cpptype[1], STRING_TYPES) else ['first']
+        if names[1] is not None:
+            firstname = names[1]
+        secondname = 'second' if isinstance(cpptype[2], STRING_TYPES) else ['second']
+        if names[2] is not None:
+            secondname = names[2]
+        impl += '<{0}>'.format(name)
+        impl += build_json_sample(cpptype[1], schematype[1], uitype[1], firstname, units[1])
+        impl += build_json_sample(cpptype[2], schematype[2], uitype[2], secondname, units[2])
         impl += '</{0}>'.format(name)
     else:
         msg = 'Unsupported type {1}'.format(t)
