@@ -48,11 +48,21 @@ The |Cyclus| Input File
 Every |Cyclus| input file must have exactly one ``simulation`` section that
 contains all data for a simulation.
 
+**XML:**
+
 .. code-block:: xml
 
    <simulation>
      ... simulation data will go here ...
    </simulation>
+ 
+**JSON:** 
+ 
+.. code-block:: json
+
+    {“simulation”: {
+      … simulation data will go here …
+    }
 
 Although not all sections are required, the following sections may appear in
 any order in the input file:
