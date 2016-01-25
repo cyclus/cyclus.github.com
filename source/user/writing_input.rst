@@ -17,8 +17,14 @@ universally, but each project can invent their own language for those tags.
 The data that lies between a pair starting and ending tags may be additional
 sections defined by other tags.
 
-Here is a simple example of an XML section for the common concept of a
-message between people:
+
+A Brief Introduction to JSON
+---------------------------
+`JSON`_ stands for JavaScript Object Notation, and is similar in many ways to XML. JSON was created to replace XML with a more user friendly language. It was designed to be a simpler and easier to use markup language. It does this by cutting out unnecessary parts of the XML language, such as closing tags. One area where JSON excels is that it is a data-oriented language, compared to XML which is document-oriented.
+
+
+Here is a simple example of the difference between the XML and JSON languages:
+
 
 .. code-block:: xml
 
@@ -28,6 +34,19 @@ message between people:
      <heading>Cyclus released today</heading>
      <body>We have released Cyclus v1.0 for everyone to use.</body>
   </note>
+
+
+.. code-block:: json
+
+    {
+      “note”: {
+        “to”: “Matt”
+        “from: “Anthony”
+        “heading”: “Cyclus released today”
+        “body”: “We have released Cyclus v1.0 for everyone to use.”
+      }
+    }
+
 
 In this example, a section named ``note`` includes four other sections named
 ``to``, ``from``, ``heading``, and ``body``, respectively.  
