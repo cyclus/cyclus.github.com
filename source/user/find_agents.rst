@@ -48,7 +48,7 @@ section in the input file:
    {"simulation": {
       "archetypes": {
         "spec": {
-          "path":
+          "path": "...",
           "lib": "agents",
           "name": "KFacility",
           "alias": "myfac1" }
