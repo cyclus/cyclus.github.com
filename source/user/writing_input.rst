@@ -8,8 +8,8 @@ Work is underway to provide a drag-and-drop graphical user interface to
 facilitate building |Cyclus| input files in the future.
 
 
-A Brief Introduction to XML
----------------------------
+A Brief Introduction to XML and JSON
+------------------------------------
 `XML`_ stands for EXtensible Markup Language, and was designed to provide
 structure to data in a generic way by grouping the data between starting and
 ending "tags".  The tags used to provide that structure are not defined
@@ -17,11 +17,7 @@ universally, but each project can invent their own language for those tags.
 The data that lies between a pair starting and ending tags may be additional
 sections defined by other tags.
 
-
-A Brief Introduction to JSON
----------------------------
 `JSON` stands for JavaScript Object Notation, and is similar in many ways to XML. JSON was created to replace XML with a more user friendly language. It was designed to be a simpler and easier to use markup language. It does this by cutting out unnecessary parts of the XML language, such as closing tags. One area where JSON excels is that it is a data-oriented language, compared to XML, which is document-oriented.
-
 
 Here is a simple example of the difference between the XML and JSON languages:
 
