@@ -1,7 +1,7 @@
 Writing a |Cyclus| Input File
 =============================
 This section will provide an introduction to creating a valid input file for
-|Cyclus| by hand.  Because |Cyclus| uses XML, input files have clearly defined
+|Cyclus| by hand.  Because |Cyclus| uses both XML and JSON, input files have clearly defined
 sections, or blocks, that can be automatically validated for correctness.
 
 Work is underway to provide a drag-and-drop graphical user interface to
