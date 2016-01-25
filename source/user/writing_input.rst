@@ -60,7 +60,7 @@ contains all data for a simulation.
  
 .. code-block:: json
 
-    {“simulation”: {
+    {"simulation": {
       … simulation data will go here …
     }
 
