@@ -75,8 +75,9 @@ contains all data for a simulation.
  
 .. code-block:: json
 
-    {"simulation": {
-        "… simulation data will go here …"
+    {
+      "simulation": {
+          "… simulation data will go here …"
     }
 
 Although not all sections are required, the following sections may appear in
