@@ -52,7 +52,7 @@ section in the input file:
           "lib": "agents",
           "name": "KFacility",
           "alias": "myfac1" }
-        "spec": {...}
+        "spec": {"..."}
       }
      }
     }
