@@ -51,8 +51,9 @@ section in the input file:
           "path": "...",
           "lib": "agents",
           "name": "KFacility",
-          "alias": "myfac1" }
-        "spec": {"..."}
+          "alias": "myfac1" },
+        "spec": {
+        }
       }
      }
     }
