@@ -231,7 +231,12 @@ def build_xml_sample(cpptype, schematype=None, uitype=None, names=None, units=No
         msg = 'Unsupported type {1}'.format(t)
         raise RuntimeError(msg)
 
-def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=None):
+    s = xml.dom.minidom.parseString(impl)
+    s = s.toprettyxml(indent='  ')
+    _, lines = s.split("\n", 1)
+    return lines
+
+def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=None, default=None):
     schematype = prepare_type(cpptype, schematype)
     uitype = prepare_type(cpptype, uitype)
     names = prepare_type(cpptype, names)
@@ -247,9 +252,9 @@ def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=N
         d_type = uitype if uitype in special_uitypes else d_type
 
         if isinstance(units, STRING_TYPES):
-            impl += '"{0}" {1} ( {2} )'.format(name, d_type, units)
+            impl += '"{0}": {1} ( {2} )'.format(name, d_type, units)
         else:
-            impl += '"{0}" {1}'.format(name, d_type)
+            impl += '"{0}": {1},  # {2}'.format(name, default, d_type)
     elif t in ['std::list', 'std::set', 'std::vector']:
         name = 'list' if names[0] is None else names[0]
         impl += '"{0}"'.format(name)
@@ -300,13 +305,7 @@ def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=N
     else:
         msg = 'Unsupported type {1}'.format(t)
         raise RuntimeError(msg)
-
-
-    s = xml.dom.minidom.parseString(impl)
-    s = s.toprettyxml(indent='    ')
-    lines = s.splitlines()
-    lines = lines[1:] # remove initial xml version tag
-    return '\n'.join(lines)
+    return impl
 
 class CyclusAgent(Directive):
     """The cyclus-agent directive, which is based on constructing a list of 
@@ -448,7 +447,7 @@ class CyclusAgent(Directive):
             self.lines.append('')
 
             self.lines += ['', ind + '.. code-block:: xml', '']
-            schemalines = buildsample(t, schematype, uitype, labels, units).split('\n')
+            schemalines = build_xml_sample(t, schematype, uitype, labels, units).split('\n')
             previndent = ''
             for l in schemalines:
                 if len(l.strip()) > 0:
@@ -510,5 +509,7 @@ def setup(app):
     app.add_directive('cyclus-agent', CyclusAgent)
 
 if __name__ == "__main__":
-    s = build_json_sample(["std::vector", "double"])
+    t = ["std::vector", "double"]
+    #t = 'double'
+    s = build_json_sample(t, default=[42.0])
     print(s)
