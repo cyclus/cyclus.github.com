@@ -509,3 +509,6 @@ class CyclusAgent(Directive):
 def setup(app):
     app.add_directive('cyclus-agent', CyclusAgent)
 
+if __name__ == "__main__":
+    s = build_json_sample(["std::vector", "double"])
+    print(s)
