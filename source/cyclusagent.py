@@ -272,17 +272,17 @@ def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=N
         valnames = 'val' if isinstance(cpptype[2], STRING_TYPES) else ['val']
         if names[1] is not None:
             valnames = names[2]
-        impl += '<{0}>'.format(name)
-        impl += '<{0}>'.format(itemname)
+        impl += '{0}'.format(name)
+        impl += '{0}'.format(itemname)
         impl += build_json_sample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
         impl += build_json_sample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
-        impl += '</{0}>'.format(itemname)
-        impl += '<{0}>'.format(itemname)
+        impl += '/{0}'.format(itemname)
+        impl += '{0}'.format(itemname)
         impl += build_json_sample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
         impl += build_json_sample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
-        impl += '</{0}>'.format(itemname)
+        impl += '/{0}'.format(itemname)
         impl += '...'
-        impl += '</{0}>'.format(name)
+        impl += '/{0}'.format(name)
     elif t == 'std::pair':
         name = 'pair'
         if names[0] is not None:
@@ -293,10 +293,10 @@ def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=N
         secondname = 'second' if isinstance(cpptype[2], STRING_TYPES) else ['second']
         if names[2] is not None:
             secondname = names[2]
-        impl += '<{0}>'.format(name)
+        impl += '{0}'.format(name)
         impl += build_json_sample(cpptype[1], schematype[1], uitype[1], firstname, units[1])
         impl += build_json_sample(cpptype[2], schematype[2], uitype[2], secondname, units[2])
-        impl += '</{0}>'.format(name)
+        impl += '/{0}'.format(name)
     else:
         msg = 'Unsupported type {1}'.format(t)
         raise RuntimeError(msg)
