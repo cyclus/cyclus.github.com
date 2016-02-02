@@ -37,6 +37,8 @@ A ``recipe`` block has the following sections in the following order:
 Example
 +++++++
 
+**XML:**
+
 .. code-block:: xml
 
   <recipe>
@@ -59,12 +61,7 @@ Example
     </nuclide>
   </recipe>
 
-This example defines two material compositions.  The first has the name
-`commod_recipe`, is defined using mass fractions, and contains a single
-nuclide of H-1.  The second recipe is named `natU_recipe`, is defined using
-atom fractions, and contains two nuclides: 0.7% of the atoms are U-235 and
-99.3% of the atoms are U-238.
-
+**JSON:**
 
 .. code-block:: json
 
@@ -92,8 +89,12 @@ atom fractions, and contains two nuclides: 0.7% of the atoms are U-235 and
         }
       }
 
+This example defines two material compositions.  The first has the name
+`commod_recipe`, is defined using mass fractions, and contains a single
+nuclide of H-1.  The second recipe is named `natU_recipe`, is defined using
+atom fractions, and contains two nuclides: 0.7% of the atoms are U-235 and
+99.3% of the atoms are U-238.
 
-This is what the example above would look like if written in JSON.
 
 
 .. rst-class:: html-toggle

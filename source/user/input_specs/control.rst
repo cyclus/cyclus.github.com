@@ -27,6 +27,9 @@ tag, and has the following sections in any order:
 Example
 +++++++
 
+
+**XML:**
+
 .. code-block:: xml
 
   <control>
@@ -37,8 +40,8 @@ Example
     <decay>lazy</decay>           
   </control>
 
-This example starts in November 2007, and runs for 100 years (1200 months).
 
+**JSON:**
 
 .. code-block:: json
 
@@ -52,8 +55,7 @@ This example starts in November 2007, and runs for 100 years (1200 months).
       }
 
 
-This is what the example above would look like if written in JSON.
-
+This example starts in November 2007, and runs for 100 years (1200 months).
 
 
 .. rst-class:: html-toggle

@@ -17,6 +17,8 @@ Each ``facility`` block has the follwoing sections in any order:
 Example
 +++++++
 
+**XML:**
+
 .. code-block:: xml
 
   <facility>
@@ -37,6 +39,25 @@ Example
       </RecpieReactor>
     </config>
   </facility>
+
+**JSON:**
+
+.. code-block:: json
+
+    {"facility": {
+      "config": {
+       "Sink": "(... archetype-specific input for a `Sink` archetype)"}, 
+      "name": "LongTermStorage"
+     }
+    }
+ 
+    {"facility": {
+     "config": {
+      "RecipeReactor": "(... archetype-specific input for a `RecipeReactor` archetype)"}, 
+     "lifetime": 720, 
+     "name": "PBMR"
+     }
+    }
 
 
 This example introduces two facility prototypes.  The first has the name

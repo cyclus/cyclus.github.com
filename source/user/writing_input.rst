@@ -1,7 +1,7 @@
 Writing a |Cyclus| Input File
 =============================
 This section will provide an introduction to creating a valid input file for
-|Cyclus| by hand.  Because |Cyclus| uses XML, input files have clearly defined
+|Cyclus| by hand.  Because |Cyclus| uses both XML and JSON, input files have clearly defined
 sections, or blocks, that can be automatically validated for correctness.
 
 Work is underway to provide a drag-and-drop graphical user interface to
@@ -9,7 +9,7 @@ facilitate building |Cyclus| input files in the future.
 
 
 A Brief Introduction to XML
----------------------------
+------------------------------------
 `XML`_ stands for EXtensible Markup Language, and was designed to provide
 structure to data in a generic way by grouping the data between starting and
 ending "tags".  The tags used to provide that structure are not defined
@@ -17,8 +17,7 @@ universally, but each project can invent their own language for those tags.
 The data that lies between a pair starting and ending tags may be additional
 sections defined by other tags.
 
-Here is a simple example of an XML section for the common concept of a
-message between people:
+Here is an example of a XML code block.
 
 .. code-block:: xml
 
@@ -28,6 +27,26 @@ message between people:
      <heading>Cyclus released today</heading>
      <body>We have released Cyclus v1.0 for everyone to use.</body>
   </note>
+
+
+
+A Brief Introduction to JSON
+------------------------------------
+`JSON`_ stands for JavaScript Object Notation, and is similar in many ways to XML. JSON was created to replace XML with a more user friendly language. It was designed to be a simpler and easier to use markup language. It does this by cutting out unnecessary parts of the XML language, such as closing tags. One area where JSON excels is that it is a data-oriented language, compared to XML, which is document-oriented.
+
+Here is the same code block using JSON.
+
+.. code-block:: json
+
+    {
+      "note": {
+        "to": "Matt",
+        "from": "Anthony",
+        "heading": "Cyclus released today",
+        "body": "We have released Cyclus v1.0 for everyone to use."
+      }
+    }
+
 
 In this example, a section named ``note`` includes four other sections named
 ``to``, ``from``, ``heading``, and ``body``, respectively.  
@@ -48,11 +67,22 @@ The |Cyclus| Input File
 Every |Cyclus| input file must have exactly one ``simulation`` section that
 contains all data for a simulation.
 
+**XML:**
+
 .. code-block:: xml
 
    <simulation>
      ... simulation data will go here ...
    </simulation>
+ 
+**JSON:** 
+ 
+.. code-block:: json
+
+    {
+      "simulation": {
+          "… simulation data will go here …"
+    }
 
 Although not all sections are required, the following sections may appear in
 any order in the input file:
@@ -116,3 +146,4 @@ and then include this in your simulation.
   </recipe>
 
 .. _XML : http://www.w3schools.com/xml/default.asp
+.. _JSON : http://www.json.org/
