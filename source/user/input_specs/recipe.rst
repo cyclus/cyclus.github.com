@@ -65,21 +65,29 @@ Example
 
 .. code-block:: json
 
- {"recipe": {
-   "basis": "mass", 
-   "name": "proton_recipe", 
-   "nuclide": {"comp": 1, "id": 010010000}
-  }
- }
- 
- {"recipe": {
-   "basis": "atom", 
-   "name": "natU_recipe", 
-   "nuclide": [{"comp": 0.007, "id": 922350000}, {"comp": 0.993, "id": 922380000}]
-  }
- }
+     {
+      "recipe": {
+        "name": "proton_recipe",
+        "basis": "mass",
+        "nuclide": {
+          "id": "H1",
+          "comp": 1 } 
+        }
+      }
 
 
+     {
+      "recipe": {
+        "name": "natU_recipe",
+        "basis": "atom",
+        "nuclide": {
+          "id": "U235",
+          "comp": 0.007 },
+        "nuclide": {
+          "id": "U238",
+          "comp": 0.993 }
+        }
+      }
 
 This example defines two material compositions.  The first has the name
 `commod_recipe`, is defined using mass fractions, and contains a single

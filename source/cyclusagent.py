@@ -6,7 +6,7 @@ For example,
     .. cyclus-agent:: tests:TestFacility:TestFacility
 
 """
-from __future__ import print_function
+from __future__ import print_function, unicode_literals
 import sys
 import os.path
 import re
@@ -250,11 +250,12 @@ def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=N
             name = names
         d_type = _type(t, schematype or uitype)
         d_type = uitype if uitype in special_uitypes else d_type
+	defstr = repr(default.encode()) if isinstance(default, STRING_TYPES) else default 
 
         if isinstance(units, STRING_TYPES):
-            impl += '"{0}": {1} ( {2} )'.format(name, d_type, units)
+            impl += '{{"{0}": {1}}}  # {2}, {3}'.format(name, defstr, d_type, units)
         else:
-            impl += '"{0}": {1},  # {2}'.format(name, default, d_type)
+            impl += '{{"{0}": {1}}}  # {2}'.format(name, defstr, d_type)
     elif t in ['std::list', 'std::set', 'std::vector']:
         name = 'list' if names[0] is None else names[0]
         impl += '"{0}"'.format(name)
@@ -456,6 +457,18 @@ class CyclusAgent(Directive):
                     self.lines.append(ind + '    ' + l)
                     previndent = ' ' * (len(l) - len(l.lstrip()))
             self.lines.append('')
+
+            self.lines += ['', ind + '.. code-block:: yaml', '']
+            schemalines = build_json_sample(t, schematype, uitype, labels, units, default=info.get('default', 'null')).split('\n')
+            previndent = ''
+            for l in schemalines:
+                if len(l.strip()) > 0:
+                    if l.strip() == '...':
+                        l = previndent + l.strip()
+                    self.lines.append(ind + '    ' + l)
+                    previndent = ' ' * (len(l) - len(l.lstrip()))
+            self.lines.append('')
+
 
 
     def append_schema(self):

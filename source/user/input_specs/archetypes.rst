@@ -55,22 +55,19 @@ in a library file with a name such as `libsimpleSource.so`, in the standard
 |Cyclus| archetype path.
 
 
-.. code-block:: xml
+.. code-block:: json
 
- {
-  "archetypes": {
-    "spec": {
-      "path": "my/custom/path",
-      "lib": "myAgentCollection",
-      "alias": "ReactorAgent", },
-    "spec": {
-      "name": "simpleSource", },
-    "spec": {
-      "name": "simpleRegion", },
-    "spec": {
-      "name": "simpleInst", },
-  }
-  }
+    {
+    "archetypes": {
+      "spec": {
+        "path": "my/custom/path",
+        "lib": "myAgentCollection",
+        "alias": "ReactorAgent" },
+      "spec": {"name": "simpleSource" },
+      "spec": {"name": "simpleRegion" },
+      "spec": {"name": "simpleInst" }
+    }
+    }
 
 
 This is what the example above would look like if written in JSON.
