@@ -11,6 +11,7 @@ import sys
 import os.path
 import re
 import time
+import textwrap
 import warnings
 import subprocess
 import xml.dom.minidom
@@ -39,9 +40,14 @@ from sphinx.util.nodes import nested_parse_with_titles
 if sys.version_info[0] == 2:
     STRING_TYPES = (str, unicode, basestring)
     IS_PY3 = False
+    def indent(text, prefix):
+        lines = text.splitlines(True)
+        s = prefix + prefix.join(lines)
+        return s 
 elif sys.version_info[0] >= 3:
     STRING_TYPES = (str,)
     IS_PY3 = True
+    indent = textwrap.indent
 
 def contains_resbuf(type_str):
     bufs = ('cyclus::toolkit::ResBuf',
@@ -250,7 +256,10 @@ def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=N
             name = names
         d_type = _type(t, schematype or uitype)
         d_type = uitype if uitype in special_uitypes else d_type
-	defstr = repr(default.encode()) if isinstance(default, STRING_TYPES) else default 
+	defstr = json.dumps(default.encode()) if isinstance(default, STRING_TYPES) else default
+        if default is None or defstr == '"null"':
+            defstr = '"<required>"' 
+
 
         if isinstance(units, STRING_TYPES):
             impl += '{{"{0}": {1}}}  # {2}, {3}'.format(name, defstr, d_type, units)
@@ -258,11 +267,15 @@ def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=N
             impl += '{{"{0}": {1}}}  # {2}'.format(name, defstr, d_type)
     elif t in ['std::list', 'std::set', 'std::vector']:
         name = 'list' if names[0] is None else names[0]
-        impl += '"{0}"'.format(name)
-        impl += build_json_sample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
-        impl += build_json_sample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
-        impl += '...'
-        impl += '"/{0}"'.format(name)
+        impl += '{{"{0}":'.format(name)
+        x = build_json_sample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
+        pre, post = x.split(':', 1)
+        post, _ = post.rsplit('}', 1)
+        impl += indent(pre + ': [\n', "  ")
+        impl += indent(post.rstrip() + ",\n", '  ')
+        impl += indent(post.rstrip() + ",\n", '  ')
+        impl += indent('...\n', '  ')
+        impl += ']}}'
     elif t == 'std::map':
         name = 'map'
         if isinstance(names[0], STRING_TYPES):
@@ -278,17 +291,24 @@ def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=N
         valnames = 'val' if isinstance(cpptype[2], STRING_TYPES) else ['val']
         if names[1] is not None:
             valnames = names[2]
-        impl += '{0}'.format(name)
-        impl += '{0}'.format(itemname)
-        impl += build_json_sample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
-        impl += build_json_sample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
-        impl += '/{0}'.format(itemname)
-        impl += '{0}'.format(itemname)
-        impl += build_json_sample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
-        impl += build_json_sample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
-        impl += '/{0}'.format(itemname)
-        impl += '...'
-        impl += '/{0}'.format(name)
+        impl += '{{"{0}": {{\n'.format(name)
+        impl += indent('"{0}": [{{\n'.format(itemname), '  ')
+        x = build_json_sample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
+        pre, post = x.split('{', 1)
+        post, _ = post.rsplit('}', 1)
+        impl += indent(post.rstrip() + ',\n', '    ')
+        y = build_json_sample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
+        pre, post = y.split('{', 1)
+        post, _, _ = post.rpartition('}')
+        impl += indent(post + '},\n', '    ')
+        pre, post = x.split('{', 1)
+        post, _ = post.rsplit('}', 1)
+        impl += indent('{' + post.rstrip() + ',\n', '    ')
+        pre, post = y.split('{', 1)
+        post, _, _ = post.rpartition('}')
+        impl += indent(post + '},\n', '    ')        
+        impl += indent('...\n', '  ')
+        impl += ']}}'
     elif t == 'std::pair':
         name = 'pair'
         if names[0] is not None:
@@ -299,10 +319,16 @@ def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=N
         secondname = 'second' if isinstance(cpptype[2], STRING_TYPES) else ['second']
         if names[2] is not None:
             secondname = names[2]
-        impl += '{0}'.format(name)
-        impl += build_json_sample(cpptype[1], schematype[1], uitype[1], firstname, units[1])
-        impl += build_json_sample(cpptype[2], schematype[2], uitype[2], secondname, units[2])
-        impl += '/{0}'.format(name)
+        x = build_json_sample(cpptype[1], schematype[1], uitype[1], firstname, units[1])
+        impl += '{{"{0}": {{\n'.format(name)
+        pre, post = x.split('{', 1)
+        post, _ = post.rsplit('}', 1)
+        impl += indent(post.rstrip() + ',\n', '  ')
+        y = build_json_sample(cpptype[2], schematype[2], uitype[2], secondname, units[2])
+        pre, post = y.split('{', 1)
+        post, _, _ = post.rpartition('}')
+        impl += indent(post.rstrip() + '\n', '  ')
+        impl += "  " + '}\n}'
     else:
         msg = 'Unsupported type {1}'.format(t)
         raise RuntimeError(msg)
@@ -447,7 +473,7 @@ class CyclusAgent(Directive):
                 self.lines.append(ind + ':{0}: {1}'.format(key, val))
             self.lines.append('')
 
-            self.lines += ['', ind + '.. code-block:: xml', '']
+            self.lines += [ind + '**XML:**', '', ind + '.. code-block:: xml', '']
             schemalines = build_xml_sample(t, schematype, uitype, labels, units).split('\n')
             previndent = ''
             for l in schemalines:
@@ -458,7 +484,7 @@ class CyclusAgent(Directive):
                     previndent = ' ' * (len(l) - len(l.lstrip()))
             self.lines.append('')
 
-            self.lines += ['', ind + '.. code-block:: yaml', '']
+            self.lines += [ind + '**JSON:**', '', ind + '.. code-block:: yaml', '']
             schemalines = build_json_sample(t, schematype, uitype, labels, units, default=info.get('default', 'null')).split('\n')
             previndent = ''
             for l in schemalines:
