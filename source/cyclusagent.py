@@ -256,10 +256,11 @@ def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=N
             name = names
         d_type = _type(t, schematype or uitype)
         d_type = uitype if uitype in special_uitypes else d_type
-	defstr = json.dumps(default.encode()) if isinstance(default, STRING_TYPES) else default
+
+        defstr = json.dumps(default) if isinstance(default, STRING_TYPES) else default
+
         if default is None or defstr == '"null"':
             defstr = '"<required>"' 
-
 
         if isinstance(units, STRING_TYPES):
             impl += '{{"{0}": {1}}}  # {2}, {3}'.format(name, defstr, d_type, units)
