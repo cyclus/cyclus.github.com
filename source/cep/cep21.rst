@@ -21,6 +21,8 @@ in a desired location and then identify specific agents in them to |Cyclus|.
 This CEP explains where modules can/should be installed and how |Cyclus| finds
 and identifies agents in them.
 
+.. _agent-spec-docs:
+
 Agent Spec
 ===========
 
