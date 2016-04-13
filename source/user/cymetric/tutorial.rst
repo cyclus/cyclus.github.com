@@ -204,9 +204,12 @@ Will pop up with the following figure:
 To write or not to write: ``--write`` and ``--no-write``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Cymetric automatically writes an evaluated metric to the database. There are
-some scenarios when you may not want this to happen. This can be accomplished
-with the ``--no-write`` flag. In the example below, the table will not be
-written to the database: 
+some scenarios when you may not want this to happen. For example, you might
+want your script to do many metric calculations and save the results elsewhere;
+in this case, writing to the database is unneccessary. While writing is the
+default functionality when you use the ``-e`` flag, the lack of writing
+can be accomplished with the ``--no-write`` flag. In the example below, the
+table will not be written to the database: 
 
 .. code-block:: bash
 
@@ -260,11 +263,14 @@ As was noted in the previous section, multiple filters can be applied at once.
 
     filtered_frame = cym.eval('AgentEntry', db, conds=[('Kind', '==','Facility'), ('AgentId', '>', 14)]) 
 
-Calling ``eval()`` creates a new ``Evaluator`` object each time a metric is
-evaluated, which means it reads the database each time it is called. This can
-be inefficient if you are computing many metrics. Thus, it is better to create
-your own ``Evaluator`` object for a given database and call its ``eval()``
-method directly so the database is only read once. For example, 
+However, if you are evaluating many metrics, this method will be
+computationally inefficient. Calling ``eval()`` creates a new ``Evaluator``
+object each time a metric is evaluated. Since each ``Evaluator`` object reads
+the database individually, this means ``eval()`` reads the database each time
+it is called. Alternatively, there is a way to ensure the database only gets
+read once by accessing the ``eval()`` functionality directly within an
+``Evaluator`` object.  You can create an ``Evaluator`` instance with a single
+database and call ``eval()`` from within it. For example,
 
 .. code-block:: python
 
@@ -367,7 +373,7 @@ review a quick tutorial, `10 Minutes to pandas
 <http://pandas.pydata.org/pandas-docs/stable/10min.html>`_.
 
 The above shows how easy it is to incorporate metrics that are computed via
-cymetric. However, |cyclus| databases can be comprised of both `default tables
+cymetric. Moreover, |cyclus| databases can be comprised of both `default tables
 <http://fuelcycle.org/user/dbdoc.html#table-descriptions>`_ and  `custom tables
 <http://fuelcycle.org/arche/custom_tables.html>`_. Cymetric also helps you
 bring in data that might come a custom table in a |cyclus| database.  All you
