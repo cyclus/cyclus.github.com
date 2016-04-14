@@ -1,14 +1,14 @@
 .. _cym_tutorial:
 
-Tutorial
-========
-This document will walk you through the basics of how to use cymetric on the 
-command line, from Python, and even how to write your own metrics!
+Cymetric Tutorial
+==================
+This tutorial will describe how to use cymetric from the command line or using
+Python. It also discusses how to write your own metrics for custom analyses.  
 
 Cymetric is an extension of |cyclus|, so it is assumed that |cyclus| is already
-installed on your system. If not, please visit here for `building it from
-source <http://fuelcycle.org/kernel/build_from_source.html>`_. Cymetric
-installation instructions are available on `github
+installed on your system. (If not, please visit `Getting and Building Cyclus
+from Source <http://fuelcycle.org/kernel/build_from_source.html>`_.) Cymetric
+installation instructions are available on `GitHub
 <https://github.com/cyclus/cymetric>`_.
 
 Cymetric operates by reading data from a |cyclus| database, computing metrics, 
@@ -20,17 +20,32 @@ Without further ado, let's dive in!
 
 Command Line Usage
 ------------------
-Cymetric ships with a command line utility, just called ``cymetric``. Since 
-cymetric is wholly dependent on acting |cyclus| database, you must supply a
-database as an argument on the command line. We'll be using ``test.h5`` and 
-``test.sqlite`` as our example database here.  
+Cymetric ships with a command line utility, just called ``cymetric``. 
+The command line tool is useful for quick feedback. It can show a list of
+tables in a database or execute some code using a database, e.g., evaluating
+a metric or quickly checking a plot.
+
+Since cymetric is wholly dependent on |cyclus| databases, you must supply a
+database as an argument on the command line. This will look something like the
+following:
+
+.. code-block:: bash
+
+    $ cymetric database -flags 
+
+We'll be using ``test.h5`` and ``test.sqlite`` as our example databases here.
+The sections below explain the flags for use on the command line.  
+
+.. warning::
+    
+    Please note that cymetric may not work on the command line within its own directory. 
 
 Table Listing: ``-l``
 ~~~~~~~~~~~~~~~~~~~~~
-The first switch here, lowercase-L ``-l``, simply lists the tables in the database.
-Note that this may list more tables in the database than are strictly part of the 
-|cyclus| interface, because of the need for |cyclus| to store metadata. Don't
-be alarmed. Listing the current tables is easy:
+The first switch here, lowercase-L ``-l``, simply lists the tables in the
+database.  Note that this may list more tables in the database than are
+strictly part of the |cyclus| interface, because of the need for |cyclus| to
+store metadata. Don't be alarmed. Listing the current tables is easy:
 
 .. code-block:: bash
 
@@ -60,17 +75,21 @@ be alarmed. Listing the current tables is easy:
     Transactions
     XMLPPInfo
 
-Metrics that are generated will show up in this listing after they have been computed.
+Metrics that are generated will show up in this listing after they have been
+computed. All of the core |cyclus| tables are denoted as root metrics, and they
+are listed here too. To understand the core tables included in a |cyclus|
+database, please review the page `Understanding the Database
+<http://fuelcycle.org/user/dbdoc.html>`_.
 
 Code Execution: ``-e``
 ~~~~~~~~~~~~~~~~~~~~~~~
-Cymetric allows you to execute arbitrary code on metrics from the command line with 
-the ``-e`` flag. The code that you pass in is pure Python. Every metric and root
-|cyclus| table (see http://fuelcycle.org/user/dbdoc.html) are assigned automatically
-to variable names that you can use. Indexing the table variables will return the 
-metric as a pandas data frame (see http://pandas.pydata.org/). For example, to 
-print the ``AgentEntry`` table, we would write ``AgentEntry[:]`` to get the 
-table and ``print(AgentEntry[:])`` to display it after the ``-e`` flag:
+Cymetric allows you to execute arbitrary code on metrics from the command line
+with the ``-e`` flag. The code that you pass in is pure Python. Every metric
+and root |cyclus| table are assigned automatically to variable names that you
+can use. Indexing the table variables will return the metric as a `pandas
+<http://pandas.pydata.org/>`_ DataFrame. For example, to print the
+``AgentEntry`` table, we would write ``AgentEntry[:]`` to get the table and
+``print(AgentEntry[:])`` to display it after the ``-e`` flag:
 
 .. code-block:: bash
 
@@ -182,11 +201,38 @@ Will pop up with the following figure:
 
 .. image:: ../../astatic/tut_nucid_mass.png
 
+To write or not to write: ``--write`` and ``--no-write``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Cymetric automatically writes an evaluated metric to the database. There are
+some scenarios when you may not want this to happen. For example, you might
+want your script to do many metric calculations and save the results elsewhere;
+in this case, writing to the database is unneccessary. While writing is the
+default functionality when you use the ``-e`` flag, the lack of writing
+can be accomplished with the ``--no-write`` flag. In the example below, the
+table will not be written to the database: 
+
+.. code-block:: bash
+
+    $ cymetric test.h5 --no-write -e "Materials[:]"
+
+Since cymetric looks up an already evaluated metric in the database,
+overwriting an existing table with a new one might be desired. This is where
+the ``--write`` flag is useful:
+
+.. code-block:: bash
+
+    $ cymetric test.h5 --write -e "Materials[:]"
+
 Python Interface
 ------------------
-Using cymetric from Python is also easy.  Typically, it is recommended that you 
-alias ``cymetric`` as ``cym``, because all of the important functionality lives here.
-To start, use the ``dbopen()`` function to open up a database:
+While quick feedback is useful, it is more likely that cymetric will be of use
+in a script.  Therefore, this section details how to employ Python to interact
+with cymetric. In addition to writing scripts to compute metrics and produce
+figures, this is essential for the development of new metrics. 
+
+Typically, it is recommended that you alias ``cymetric`` as ``cym``, because
+all of the important functionality lives here.  To start, use the ``dbopen()``
+function to open up a database:
 
 .. code-block:: python
 
@@ -211,11 +257,20 @@ filter the metric on.
 
     filtered_frame = cym.eval('Materials', db, conds=[('NucId', '==', 922350000)]) 
 
-Calling ``eval()`` sets up a new ``Evaluator`` object each time a metric is 
-evaluated.  This can be inefficient if you computing many metrics because it will 
-have to read in from the database each time.  Thus, if you are planning on computing
-many metrics, then its is better to create your own ``Evaluator`` and call its
-``eval()`` method directly. For example, 
+As was noted in the previous section, multiple filters can be applied at once. 
+
+.. code-block:: python
+
+    filtered_frame = cym.eval('AgentEntry', db, conds=[('Kind', '==','Facility'), ('AgentId', '>', 14)]) 
+
+However, if you are evaluating many metrics, this method will be
+computationally inefficient. Calling ``eval()`` creates a new ``Evaluator``
+object each time a metric is evaluated. Since each ``Evaluator`` object reads
+the database individually, this means ``eval()`` reads the database each time
+it is called. Alternatively, there is a way to ensure the database only gets
+read once by accessing the ``eval()`` functionality directly within an
+``Evaluator`` object.  You can create an ``Evaluator`` instance with a single
+database and call ``eval()`` from within it. For example,
 
 .. code-block:: python
 
@@ -223,8 +278,9 @@ many metrics, then its is better to create your own ``Evaluator`` and call its
     frame1 = evaler.eval('Materials') 
     frame2 = evaler.eval('AgentEntry', conds=[('Kind', '==', 'Facility')]) 
     
-And you can run with the data from there! We recommend learning pandas to get the 
-most out of your analysis from this point.
+And you can run with the data from there! We recommend learning `pandas
+<http://pandas.pydata.org/>`_ to get the most out of your analysis from this
+point.
 
 Executing Code
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -237,20 +293,62 @@ This function accepts the code string and the database:
 
     cym.exec_code("print(AgentEntry[:])", db)
 
-For more exciting capabilities, please explore the online documentation or ask 
-us questions on the mailing list.
+For more exciting capabilities, please explore the `examples directory
+<https://github.com/cyclus/cymetric>`_ in the cymetric repository or ask us
+questions on the |cyclus| users mailing list.
 
 Writing Metrics
 ------------------
-Naturally, you do not want to be limited to your the metrics that come predefined
-by cymetric. You have your own data and your own analysis that you want to perform.
-Cymetric makes it easy to write your own metrics and fully hook into the cymetric 
-tools.  
 
-All you need to do is write a function that accepts pandas series, returns a pandas
-data frame, and decorate it by the ``@metric()`` decorator found in cymetric.
-For example, if you wanted to square the mass of materials as your
-metric, you could write the following.  Call the new metric ``MaterialsSquared``.
+Naturally, you do not want to be limited to the metrics that come `predefined
+by cymetric <http://fuelcycle.org/user/cymetric/api/metrics.html>`_. You have
+your own data and your own analysis that you want to perform. It is easy to
+write metrics and fully hook into the cymetric tools. 
+
+A metric is a function that accepts a pandas Series, returns a
+pandas DataFrame, and is decorated by the ``@metric()`` decorator found in
+cymetric. The general format is as follows:
+
+.. code-block:: python
+
+    dependencies = [
+        ('Table1', ('Col1', 'Col2'), 'Value1'), 
+	('Table2', ('Col3',), 'Value2')
+	]
+
+    schema = [('Id', cym.INT), ('MetricValue', cym.DOUBLE)]
+
+    @cym.metric(name='MyMetric', depends=dependencies, schema=schema)
+    def my_metric(series):
+        one = series[0]
+	two = series[1]
+        #calculations and pandas manipulations go here
+        return dataframe
+    
+In the above, the ``@metric()`` decorator takes three arguments. The first is
+the ``name`` of the metric (e.g., ``'MyMetric'``). Note that this can be
+distinct from the function name.
+
+The second is ``depends``, which represents the metric dependencies.  This is a
+list of 3-tuples that represents which ``series`` to pull out of the database
+and pass into the metric function (e.g., ``my_metric()``).  The entries in the
+dependency list have three components. The first element is the table name as a
+string (e.g., ``'Table1'``). The second element is a tuple of column names that
+become the index of the series (e.g., ``('Col1', 'Col2')``). Finally, the last
+element is the column of the table that becomes the values of the series (e.g.,
+``'Value1'``).  A metric may have as many dependencies as required. Circular
+dependencies are not allowed.
+
+Lastly, the ``@metric()`` decorator takes a ``schema`` argument. The schema is
+defined by a list of 2-tuples. The first entry is the column name and the
+second is the |cyclus| database type. This represents the structure of the
+metric table on disk and in |cyclus|. Thus, it is highly tied to the |cyclus|
+`type system <http://fuelcycle.org/arche/dbtypes.html>`_, as represented in
+cymetric. The DataFrame that is returned should have column names that match
+the schema provided. It is generally a good idea to include a ``SimId`` column. 
+
+For a more concrete example, if you wanted to square the mass of materials as a
+metric, you could write a ``MaterialsSquared`` metric.
 
 .. code-block:: python
 
@@ -270,30 +368,17 @@ metric, you could write the following.  Call the new metric ``MaterialsSquared``
 Note that to write this metric, no knowledge of the database or any filters is
 assumed. Cymetric handles all of these details for you!
 
-In the above, the ``@metric()`` decorator takes three arguments. The first is 
-the ``name`` of the metric. Note that this can be distinct from the function name.
+If the pandas functionality seems mysterious to you, it may be beneficial to
+review a quick tutorial, `10 Minutes to pandas
+<http://pandas.pydata.org/pandas-docs/stable/10min.html>`_.
 
-The second is ``deps``, which represents the metric dependencies.  This is a list 
-of 3-tuples that represents which ``series`` to pull out of the database and 
-pass into the metric function (here ``mats_sqrd()``).  The first element is 
-the table name as a string (eg ``'Materials'``). The second element is a tuple of 
-column names that become the index of the series 
-(eg ``('SimId', 'ResourceId', 'NucId')``). Finally, the last element is the 
-column of the table that becomes the values of the series.  A metric may have 
-as many dependencies as required. Circular dependencies are not allowed.
-
-Lastly, the ``@metric()`` decorator takes a ``schema`` argument. This represents 
-the structure of the metric table on disk and in |cyclus|. Thus, it is highly
-tied to the |cyclus| type system (see http://fuelcycle.org/arche/dbtypes.html), 
-as represented in cymetric. The data frame that is returned should have column 
-names that match the schema provided. It is generally a good idea to include a 
-``SimId`` column.  
-
-The above shows how easy it is to incorporate metrics that are computed via 
-cymetric. However, cymetric also helps you bring in data that might come from 
-custom |cyclus| tables (see http://fuelcycle.org/arche/custom_tables.html).
-All you need to do is use the ``root_metric()`` function somewhere. This simply 
-accepts the name of the table.  For example, 
+The above shows how easy it is to incorporate metrics that are computed via
+cymetric. Moreover, |cyclus| databases can be comprised of both `default tables
+<http://fuelcycle.org/user/dbdoc.html#table-descriptions>`_ and  `custom tables
+<http://fuelcycle.org/arche/custom_tables.html>`_. Cymetric also helps you
+bring in data that might come a custom table in a |cyclus| database.  All you
+need to do is use the ``root_metric()`` function somewhere. This simply accepts
+the name of the table.  For example, 
 
 .. code-block:: python
 
