@@ -290,10 +290,11 @@ Gtest's natural evolution cycle, please download the latest release of Google Te
 and follow `the fused source directions here`_.  If we go too long without doing this, 
 it could be very painful to update.
 
-**Verify & Update API Stability:** Since |Cyclus| v1.0 we promise API stability. 
-Luckily, we have a tool for keeping track of this mostly automatically.  
-Every release please run the following command to verify that the release 
-branch is stable:
+**Verify & Update API Stability:** Since |Cyclus| v1.0 we promise API
+stability.  Luckily, we have a tool for keeping track of this mostly
+automatically.  In order to check this correctly, you must have a **RELEASE**
+build of Cyclus compiled/installed.  Every release please run the following
+command to verify that the release branch is stable:
 
 .. code-block:: bash
 
@@ -309,7 +310,8 @@ symbols until it this command declares that |cyclus| is stable. It is
 probably best to do this prior to any release candidates if possible.
 
 Once stable and there are no more code changes to be made, add the symbols
-in this release to the database with the following command:
+in this release to the database with the following command (again - make sure
+you are working on a RELEASE build of Cyclus):
 
 .. code-block:: bash
 
