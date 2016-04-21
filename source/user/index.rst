@@ -88,6 +88,13 @@ Cyclus Testing
 
 Third-Party Archetypes
 ~~~~~~~~~~~~~~~~~~~~~~
+
+Several useful archetypes have been developed by the community outside the
+purview of the Cyclus project itself and are listed here.  These archetypes do
+not necessarily adhere to the same standards of quality (documentation,
+testint, etc.) as Cyclus and Cycamore code - users are responsible for
+evaluating their suitability.
+
 **Bright-lite**
    The University of Texas - Austin is developing a set of archetypes for fuel
    fabrication and reactors that rely on interpolation tables for more
