@@ -151,6 +151,13 @@ evaluating their suitability.
   agents to deploy/decommission single-reactor units, but these
   single-reactors just adjust the size/capacity of the homogenous fleet.
 
+- `:rwc:PatternSink
+  <https://github.com/rwcarlsen/rwc-archetypes/blob/master/pattern_sink.h>`_
+  Pattern sink is identical to the Cycamore sink facility except it has an
+  additional parameter that allows the user to control the frequency with
+  which the facility requests material - i.e. the user can tell the
+  facility to only request material every Nth time step.
+   
 - `:rwc:Storage
   <https://github.com/rwcarlsen/rwc-archetypes/blob/master/storage.h>`_
   This facility is very similar to the Cycamore storage facility, and was
@@ -161,13 +168,6 @@ evaluating their suitability.
   implementation details from this archetype to improve the Cycamore
   storage archetype.
 
-- `:rwc:PatternSink
-  <https://github.com/rwcarlsen/rwc-archetypes/blob/master/pattern_sink.h>`_
-  Pattern sink is identical to the Cycamore sink facility except it has an
-  additional parameter that allows the user to control the frequency with
-  which the facility requests material - i.e. the user can tell the
-  facility to only request material every Nth time step.
-   
 Visualization & Analysis
 --------------------------
 
