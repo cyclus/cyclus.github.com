@@ -168,3 +168,12 @@ This can be done by::
 .. _sphinxcontrib-bibtex: http://sphinxcontrib-bibtex.readthedocs.org/en/latest/index.html
 .. _sphinxcontrib-blockdiag: http://blockdiag.com/en/blockdiag/sphinxcontrib.html
 .. _cyclus: https://fuelcycle.org/
+
+Remote Execution
+=================
+
+The website has functionality for allowing visitors to submit and run Cyclus
+simulations in the cloud.  Files and instructions for deploying/updating the
+remote execution back-end functionality are in the ``misc/fuelcycle.org``
+directory of the http://github.com/rwcarlsen/cloudlus repository.
+
