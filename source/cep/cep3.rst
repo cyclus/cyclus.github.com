@@ -3,7 +3,7 @@ CEP 3 - |Cyclus| Release Procedure
 
 :CEP: 3
 :Title: |Cyclus| Release Procedure
-:Last-Modified: 2015-05-01
+:Last-Modified: 2016-05-04
 :Author: Anthony Scopatz and Matthew Gidden
 :Status: Accepted
 :Type: Process
@@ -29,7 +29,6 @@ stable.)  The projects that are under the release manager's purview are:
 
 * `Cyclus`_ 
 * `Cycamore`_ 
-* `Cycstub`_
 * `Cymetric`_
 
 The projects which are not yet under the release managers purview are:
@@ -138,7 +137,6 @@ Release Process
       $ cd /path/to/release/utils
       $ export CYCLUS_DIR=/path/to/cyclus
       $ export CYCAMORE_DIR=/path/to/cycamore
-      $ export CYCSTUB_DIR=/path/to/cycstub
       $ ./maintenence.sh -r -v X.X.X # X.X.X is *this* version
 
 #. Commit all changes for all projects
@@ -326,17 +324,6 @@ Cycamore
 
 No maintenence required.
 
-Cycstub
---------
-
-Every release the relevant files from |cyclus| should be copied over to |cyclus|.
-Use the following BASH commands to do so:
-
-.. code-block:: bash
-
-   $ cp ~/cyclus/tests/input/stub_example.xml ~/cycstub/input/example.xml && \
-     cp ~/cyclus/stubs/stub_* ~/cycstub/src/
-
 Cymetric
 --------
 
@@ -349,7 +336,6 @@ This document is released under the CC-BY 3.0 license.
 
 .. _Cyclus: https://github.com/cyclus/cyclus
 .. _Cycamore: https://github.com/cyclus/cycamore
-.. _Cycstub: https://github.com/cyclus/cycstub
 .. _Cymetric: https://github.com/cyclus/cymetric
 .. _Cyclist: https://github.com/cyclus/cyclist2
 .. _release: https://github.com/cyclus/release
