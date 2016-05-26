@@ -15,12 +15,12 @@ tag, and has the following sections in any order:
   * explicit_inventory (optional, once) - boolean specifying whether or not to
     create the :ref:`ExplicitInventory <explicit-inv-table>` table in the
     database.  Because this significantly impacts simulation performance, it
-    is deactivated by defaul.
+    is deactivated by default.
 
   * explicit_inventory_compact (optional, once) - boolean specifying whether
     or not to create the :ref:`ExplicitInventoryCompact
     <explicit-inv-compact-table>` table in the database.  Because this
-    significantly impacts simulation performance, it is deactivated by defaul.
+    significantly impacts simulation performance, it is deactivated by default.
 
   * dt (optional, once) - the duration of a single time step in seconds.  If
     omitted, a default value of 1/12 of a year is used (i.e. 2,629,846

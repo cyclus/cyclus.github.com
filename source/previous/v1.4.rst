@@ -30,7 +30,7 @@ Features:
 
 * Added new optional :ref:`ExplicitInventory <explicit-inv-table>`  and
   :ref:`ExplicitInventoryCompact <explicit-inv-compact-table>` tables to the
-  database.
+  database that can be enabled via input file.
 
 * Implemented custom time step duration that can be set in the input
   file (i.e. CEP 23).  
