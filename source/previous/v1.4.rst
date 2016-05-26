@@ -1,0 +1,114 @@
+.. _1.4.0:
+
+==================================
+Cyclus 1.4.0 Release
+==================================
+:Author: Cyclus Developers
+:Website: http://fuelcycle.org/
+:Contact: https://groups.google.com/forum/#!forum/cyclus-dev
+
+The Cyclus core team is excited to announce the latest stable version of the
+cyclus ecosystem!
+
+Major features
+==============
+
+Compatibility:
+
+* C++ 11 support is now required to compile Cyclus and Cycamore.
+
+* Resource exchange preferences now default to 1.0 instead of zero.
+
+
+`Cyclus <https://github.com/cyclus/cyclus>`_
+---------------------------------------------
+
+Features:
+
+* Resource exchange now supports COIN linear and mixed integer linear solvers.
+  This can be specified in the input file.
+
+* Added new optional :ref:`ExplicitInventory <explicit-inv-table>`  and
+  :ref:`ExplicitInventoryCompact <explicit-inv-compact-table>` tables to the
+  database.
+
+* Implemented custom time step duration that can be set in the input
+  file (i.e. CEP 23).  
+
+* Agents/archetypes now can provide their own versions that are recorded in
+  the :ref:`AgentVersion <agent-version-table>` table in the database for
+  provenance/reproducibility.
+
+* Support for new datatypes added to the sqlite backend:
+
+  - ``std::list<std::pair<int, int> >``
+  - ``std::map<std::string, std::pair<std::string, std::vector<double> > >``
+
+* ``cycpp`` now supports the ``internal`` annotation for state variables
+  allowing them to be persisted in the database, but not visible in the input
+  file or GUI.
+
+Bug fixes:
+
+* Fixed floating-point comparison bugs in DRE causing incorrectly failed
+  resource trades.
+
+* Determinism/reproducibility improved by calling agents' resource exchange
+  related functions in consistent order.
+
+* Fixed invalid memory access bugs affecting newer and mac compilers.
+
+* xinclude substitutions in input files are now procesed for the input file
+  stored in output databases - rather than storing the incomplete, partial
+  input file.
+
+* Archetype compilation now correctly fails early if the ``cycpp``
+  preprocessor fails.
+
+* Fix late silent failures on <= 0.0 quantity bids to early loud failures.
+
+* ``cyclus::toolkit::ResBuf`` is no longer experimental.
+
+
+`Cycamore <https://github.com/cyclus/cycamore>`_
+--------------------------------------------------
+
+TODO
+
+`Cymetric <https://github.com/cyclus/cymetric>`_
+--------------------------------------------------
+
+TODO
+
+Summary
+=======
+
+Since v1.3.0,
+
+* Cyclus: 265 commits resulting in  155 files changed, 15488 insertions(+), 5738 deletions(-)
+
+* Cycamore: 131 commits resulting in  61 files changed, 3185 insertions(+), 1530 deletions(-)
+
+* Cymetric: 35 commits resulting in  38 files changed, 1357 insertions(+), 1398 deletions(-)
+
+Contributors
+============
+The following people contributed to this release of Cyclus.  A "*" by their
+name indicates a first time contributor.  Names follow alphabetically, 
+
+.. warning::
+
+   TODO: Add star next any new contributors and clean up list as needed
+
+* Anthony Scopatz
+* Arrielle Opotowsky
+* Baptiste Mouginot*
+* Jenny Littell*
+* Katy Huff
+* Matthew Gidden
+* Meghan McGarry
+* Paul Wilson
+* Robert Carlsen
+* Robert Flanagan
+* Ryan Hodge*
+* Steve Skutnik*
