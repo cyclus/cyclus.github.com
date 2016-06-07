@@ -73,7 +73,9 @@ Bug fixes:
 `Cycamore <https://github.com/cyclus/cycamore>`_
 --------------------------------------------------
 
-TODO
+* Added Storage archetype.  TODO details
+ 
+* Added Mixer archetype.  TODO details
 
 `Cymetric <https://github.com/cyclus/cymetric>`_
 --------------------------------------------------
@@ -96,10 +98,6 @@ Contributors
 The following people contributed to this release of Cyclus.  A "*" by their
 name indicates a first time contributor.  Names follow alphabetically, 
 
-.. warning::
-
-   TODO: Add star next any new contributors and clean up list as needed
-
 * Anthony Scopatz
 * Arrielle Opotowsky
 * Baptiste Mouginot*
@@ -112,3 +110,4 @@ name indicates a first time contributor.  Names follow alphabetically,
 * Robert Flanagan
 * Ryan Hodge*
 * Steve Skutnik*
+
