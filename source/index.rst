@@ -29,6 +29,10 @@ always welcome and encouraged to use or contribute to the |cyclus| project.
 
 The |Cyclus| project repository is located at http://github.com/cyclus/cyclus.
 
+Want to try out |Cyclus|?  Head to the :doc:`Quick Start <user/install>`. 
+
+project repository is located at http://github.com/cyclus/cyclus.
+
 News
 -----
 
