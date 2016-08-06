@@ -27,11 +27,13 @@ developers and encourages them to join a vibrant community in an
 :doc:`expanding ecosystem <basics/ecosystem>`.  Users and developers are
 always welcome and encouraged to use or contribute to the |cyclus| project. 
 
-The |Cyclus| project repository is located at http://github.com/cyclus/cyclus.
+The |Cyclus| project repository is located at http://github.com/cyclus/cyclus
 
-Want to try out |Cyclus|?  Head to the :doc:`Quick Start <user/install>`. 
+Project repository is located at http://github.com/cyclus/cyclus
 
-project repository is located at http://github.com/cyclus/cyclus.
+Quick Start
+-----------
+:doc:`Install Cyclus <user/install>`
 
 News
 -----
