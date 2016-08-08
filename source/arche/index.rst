@@ -37,8 +37,10 @@ To get started please follow the instructions in :doc:`hello_world`.
 Installation
 -------------
 
-Install Cyclus via the instructions on `Github
-<https://github.com/cyclus/cyclus>`_.
+.. toctree::
+    :maxdepth: 1
+
+    ../user/install
 
 Hello World
 -----------
