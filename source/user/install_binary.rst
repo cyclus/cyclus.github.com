@@ -73,12 +73,17 @@ Debian package
 *********************
 
 Those installation proccedure assume that you are using Ubuntu (LTS) 14.04 or
-Ubuntu 16.04. This method as only been tested on those ubuntu version.
+16.04. This method as only been tested on those ubuntu version.
 
 1. Install cyclus dependencies:
   .. code-block:: bash 
 
         $ sudo apt-get install libtcmalloc-minimal4 libboost-filesystem-dev libboost-program-options-dev libboost-serialization-dev libhdf5-dev libxml++2.6-dev coinor-libcbc-dev
+  
+  WARNING: This dependency list is ONLY correct for the deb binary installation,
+  MORE depednecies are require for a installation from the source. If you
+  need/want more information about dependencies installation please read you
+  `dependencies installation documentations <put_a_link_there>`_.
 
 2. Dowmload the |Cyclus| debian installation  package corresponding to your
    ubuntu version `14.04
