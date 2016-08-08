@@ -17,25 +17,54 @@ none correspond to your needs please feel free to contact us using the `Cyclus
 User mailing list <https://groups.google.com/forum/#!forum/cyclus-users>`_, we
 will try our best to find the best solution corresponding to your needs.
 
-* :doc:`Cyclist and the Cloud <tutorial/install_launch_cyclist>`: Recommanded
-  for users who want a graphical user interface to build or analyze simulations
-  or do not want to run simulations directly on their machine. *Require* few
-  tehcnical skills* (After installation, skip to Step 4 "Try a Tutorial").
+* :doc:`Cyclist and the Cloud <tutorial/install_launch_cyclist>`: (After
+  installation, skip to Step 4 "`Try a Tutorial!`_" ) 
+
+  - *Require few technical skills*, 
+  
+  - Recommended for: 
+ 
+    - users wanting a graphical interface to build or analyze simulations, 
+      
+    - users not wanting to run simulations directly on their machine,
+      
+    - quick the |Cyclus| capabilities discovery. 
+
+
 
 * :doc:`Binary installation on Linux (via Debian or Conda) <install_binary>`:
-  Recommanded for users who want to run simulations directly on their machine
-  (without internet). *Requires familiarity with Linux.*
 
-* :doc:`Virtualbox <virtualbox>`: Recommanded for Windows users. *Requires
-  familiarity with Linux.*
+  - *Requires familiarity with Linux.*
+  
+  - Recommended for users wanting to run simulations locally (without internet). 
+
+
+
+* :doc:`Virtualbox <virtualbox>`:
+  
+  - *Requires familiarity with Linux.*
+  
+  - Recommended for Windows users.
+
+
 
 * :doc:`Install Stable From Source (via Tarball) <install_tarball>`:
-  Recommanded for users who want to modify existing archetypes (aka developers).
-  *Requires programation/compilation skills.*
+  
+  - *Requires programation/compilation skills.*
+  
+  - Recommended for users wants to modify existing archetypes (aka developers).
+
+
 
 * :doc:`Install Develop from Source <../kernel/build_from_source>`: (via
-  Repository) For developers or users who require the bleeding edge version of
-  |Cyclus|. *Requires programation/compilation skills.*
+  Repository) 
+  
+  - *Requires programation/compilation skills.*
+  
+  - For developers or users who require the bleeding edge version of |Cyclus|. 
+
+
+
 
 2. Run Unit Tests
 -----------------
@@ -55,7 +84,7 @@ will try our best to find the best solution corresponding to your needs.
 
    $ cyclus ~/path/to/cycamore/input/recycle.xml
 
-4. Try a Tutorial!
+4. _`Try a Tutorial!`
 ------------------
 To become familiar with the capabilities of |Cyclus|, read the :doc:`User's Guide<index>` and possibly the :doc:`Archetype Developer's Guide <../arche/index>`, or  work your way through the tutorials.
 
