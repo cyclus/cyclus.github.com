@@ -4,41 +4,28 @@ Conda is a cross platform, user space package manager aimed at simplifying the
 installation of open source software.  The |cyclus| project uses conda to distribute 
 pre-built cyclus and cycamore binaries.
 
-Fresh Install
+Cyclus support two kind of binary installation:
+.. contents::
+
+Conda Install
 -------------
-If you are new to conda or do not have conda already installed on your system, 
-please follow these steps to install |cyclus|.
-Basic installation instructions for Conda can be found 
-`here <http://docs.continuum.io/anaconda/install.html>`_. 
 
-1. Download and Install Miniconda
+1a. if you don't have conda you can find `here <install_conda.rst>`_ basic
+instruction to install it and prepare it for cyclus, if you choise to do so
+please directly jump to step 2.
 
-    * Go to the `miniconda downloads page <http://conda.pydata.org/miniconda.html>`_
-      and get the version approriate to your system.
-    * Install this to the ``~/miniconda`` directory.  For example, you would 
-      use a command similar the following:
+1b. You have conda already installed on your system, make sure that the
+|Cyclus| binstar organization is part of your channels.  Please edit the
+``channels`` section of your :file:`~/.condarc` to include the URL
+``https://conda.binstar.org/cyclus``.  For example, 
 
-      .. code-block:: bash 
+.. code-block:: yaml
 
-          $ bash Miniconda-3.5.2-Linux-x86_64.sh -b -p ~/miniconda
+	channels:
+	  - https://conda.binstar.org/cyclus 
+	  - defaults
 
-    * Finally, add the ``~/miniconda/bin`` directory to your ``PATH`` either 
-      in your current environment or in your ``.bashrc`` or both.
-
-      .. code-block:: bash 
-
-          $ export PATH="${HOME}/miniconda/bin:${PATH}"
-
-2. Configure conda to look for |cyclus|
-
-    * Download this :download:`condarc` file and save it as ``~/.condarc``.  If 
-      you'd prefer to do this from the command line, type:
-
-      .. code-block:: bash 
-
-          $ curl -L http://fuelcycle.org/_downloads/condarc >> ~/.condarc
-
-3. Install |Cyclus| and Cycamore
+2. Install |Cyclus| and Cycamore
 
     * Now that conda is installed and ready, installing |Cyclus| is as simple as:
 
@@ -49,43 +36,30 @@ Basic installation instructions for Conda can be found
       Note that installing cycamore will also install cyclus since cyclus is one 
       of cycamore's dependencies.
 
-4. Install Cyclist (optional)
+3. To ensure to good installation of Cyclus and Cycamore, you can run the cyclus
+   and cycamore unit test:
 
-    * Now that cyclus is installed and ready, installing the graphical user interface is 
-      simple as:
+      .. code-block:: bash 
+    
+          $ cyclus_unit_test
 
+The answer in your terminal should look like (if not you might have an issue):
+
+
+      .. code-block:: bash 
+    
+          $ cycamore_unit_test
+
+The answer in your terminal should look like (if not you might have an issue):
+
+4. Furthermore, you may also optionally install Cyclist, the graphical user
+   interface tool for cyclus databases. This can be done with the following:
+      
       .. code-block:: bash 
     
           $ conda install cyclist --yes
 
 And that is it! 
 
-Already Have Conda?
--------------------
-If you already have conda installed, installing |Cyclus| is even easier.
-You simply need to make sure that the |Cyclus| binstar organization is part of 
-your channels.  Please edit the ``channels`` section of your :file:`~/.condarc`
-to include the URL ``https://conda.binstar.org/cyclus``.  For example, 
-
-.. code-block:: yaml
-
-	channels:
-	  - https://conda.binstar.org/cyclus 
-	  - defaults
-
-Once this is done, install |Cyclus| with the following comand.
-
-.. code-block:: bash 
-    
-    $ conda install cycamore --yes
-
-Note that installing cycamore will also install cyclus since cyclus is one 
-of cycamore's dependencies.  Furthermore, you may also optionally install Cyclist,
-the graphical user interface tool for cyclus databases. This can be done 
-with the following:
-
-.. code-block:: bash 
-    
-    $ conda install cyclist --yes
 
 Happy simulating!
