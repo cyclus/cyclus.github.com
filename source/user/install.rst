@@ -1,23 +1,41 @@
 Getting Started with |Cyclus| 
 ==============================
+
 |Cyclus| can be run on Linux or Mac OSX. It cannot be run on Windows except by using Linux in a Virtualbox.
 
-To model fuel cycles, you will need to install two things: first the main codebase (called  :doc:`Cyclus <../basics/index>`), and then a set of fuel-cycle specific archetypes (called :doc:`Cycamore <index>`).  
+To model fuel cycles, you will need to install two things: first the main
+codebase (called :doc:`Cyclus <../basics/index>`), and then a set of fuel-cycle
+specific archetypes (called :doc:`Cycamore <index>`).  
 
 
 1. Install |Cyclus| and Cycamore
 ---------------------------------
-The following methods of installation are listed in order of increasing sophistication. Choose the option that best fits your needs.
 
-*  :doc:`Cyclist and the Cloud <tutorial/install_launch_cyclist>`: For users who want a graphical user interface to build or analyze simulations or do not want to run simulations directly on their machine. (After installation, skip to Step 4 "Try a Tutorial").
+The following methods of installation are listed in order of increasing
+sophistication. Choose the option that best fits your needs, if you feel like
+none correspond to your needs please feel free to contact us using the `Cyclus
+User mailing list <https://groups.google.com/forum/#!forum/cyclus-users>`_, we
+will try our best to find the best solution corresponding to your needs.
 
-* :doc:`Install as a Binary <install_binary>`: (via Debian or Conda) For users who want to run simulations directly on their machine (without internet).
+* :doc:`Cyclist and the Cloud <tutorial/install_launch_cyclist>`: Recommanded
+  for users who want a graphical user interface to build or analyze simulations
+  or do not want to run simulations directly on their machine. *Require* few
+  tehcnical skills* (After installation, skip to Step 4 "Try a Tutorial").
 
-* :doc:`Virtualbox <virtualbox>`: For Windows users. Requires familiarity with Linux.
+* :doc:`Binary installation on Linux (via Debian or Conda) <install_binary>`:
+  Recommanded for users who want to run simulations directly on their machine
+  (without internet). *Requires familiarity with Linux.*
 
-* :doc:`Install Stable From Source <install_tarball>`: (via Tarball) For users who want to modify existing archetypes (aka developers).
+* :doc:`Virtualbox <virtualbox>`: Recommanded for Windows users. *Requires
+  familiarity with Linux.*
 
-* :doc:`Install Develop from Source <../kernel/build_from_source>`: (via Repository) For developers or users who require the bleeding edge version of |Cyclus|.
+* :doc:`Install Stable From Source (via Tarball) <install_tarball>`:
+  Recommanded for users who want to modify existing archetypes (aka developers).
+  *Requires programation/compilation skills.*
+
+* :doc:`Install Develop from Source <../kernel/build_from_source>`: (via
+  Repository) For developers or users who require the bleeding edge version of
+  |Cyclus|. *Requires programation/compilation skills.*
 
 2. Run Unit Tests
 -----------------
