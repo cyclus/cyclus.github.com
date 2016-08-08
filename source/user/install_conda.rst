@@ -1,12 +1,12 @@
 Installing Conda for cyclus
 ====================
 
-We are not supporting |conda| software, for more detailled information about
-|conda| and  basic installation instructions for Conda please visit `here
+We are not supporting conda software, for more detailled information about
+conda and  basic installation instructions for Conda please visit `here
 <http://docs.continuum.io/anaconda/install.html>`_. 
 
 If do not have conda already installed on your system, please follow these steps
-to install |conda|.
+to install conda.
 
 1. Download and Install Miniconda
 
