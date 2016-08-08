@@ -6,12 +6,10 @@ Conda is a cross platform, user space package manager aimed at simplifying the
 installation of open source software.  The |cyclus| project uses conda to distribute 
 pre-built cyclus and cycamore binaries.
 
-Cyclus support two kind of binary installation:
+Cyclus support two binary installations:
 
 #. `Conda`_
 #. `Debian package`_
-
-
 
 *********************
 Conda
@@ -42,8 +40,8 @@ Conda
       Note that installing cycamore will also install cyclus since cyclus is one 
       of cycamore's dependencies.
 
-3. To ensure to good installation of Cyclus and Cycamore, you can run the cyclus
-   and cycamore unit test:
+3. To ensure to proper installation of Cyclus and Cycamore, you can run the
+   cyclus and cycamore unit test:
 
       .. code-block:: bash 
     
@@ -99,7 +97,7 @@ Those installation proccedure assume that you are using Ubuntu (LTS) 14.04 or
 
   Please replace the 'CYCLUS_DEB_PACKAGE_MANE.deb' by its proper name.
 
-4. check the installation by running the |Cyclus| unit test:
+4. Check the |Cyclus| installation by running the |Cyclus| unit test:
   .. code-block:: bash 
   
         $ cyclus_unit_test
@@ -107,16 +105,18 @@ Those installation proccedure assume that you are using Ubuntu (LTS) 14.04 or
   The answer in your terminal should look like (if not you might have an issue):
 
 
-5. Dowmload the Cycamore debian installation  package corresponding to your ubuntu version `14.04 <>` or `16.04 <>`.
+5. Dowmload the Cycamore debian installation  package corresponding to your
+   ubuntu version `14.04 <>` or `16.04 <>`.
 
 6. Install the package running:
 
   .. code-block:: bash 
 
         $ sudo dpkg -i CYCAMORE_DEB_PACKAGE_MANE.deb
-    Please replace the 'CYCAMORE_DEB_PACKAGE_MANE.deb' by its proper name.
+  
+  Please replace the 'CYCAMORE_DEB_PACKAGE_MANE.deb' by its proper name.
 
-7. check the installation by running the Cycamore unit test:
+7. Check the Cycamore installation by running the Cycamore unit test:
   .. code-block:: bash 
   
         $ cycamore_unit_test
