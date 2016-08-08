@@ -1,5 +1,6 @@
-Installing |Cyclus| with Conda
+Getting Started with |Cyclus| 
 ==============================
+<<<<<<< 701d5cacf1f2e0e7f09056a7754098055a03064e
 Conda is a cross platform, user space package manager aimed at simplifying the
 installation of open source software.  The |cyclus| project uses conda to distribute
 pre-built cyclus and cycamore binaries.
@@ -10,61 +11,47 @@ If you are new to conda or do not have conda already installed on your system,
 please follow these steps to install |cyclus|.
 Basic installation instructions for Conda can be found
 `here <http://docs.continuum.io/anaconda/install.html>`_.
+|Cyclus| can be run on Linux or Mac OSX. It cannot be run on Windows except by using Linux in a Virtualbox.
 
-1. Download and Install Miniconda
+To model fuel cycles, you will need to install two things: first the main codebase (called  :doc:`Cyclus <../basics/index>`), and then a set of fuel-cycle specific archetypes (called :doc:`Cycamore <index>`).  
 
-    * Go to the `miniconda downloads page <http://conda.pydata.org/miniconda.html>`_
-      and get the version approriate to your system.
-    * Install this to the ``~/miniconda`` directory.  For example, you would
-      use a command similar the following:
+1. Install |Cyclus| and Cycamore
+---------------------------------
+The following methods of installation are listed in order of increasing sophistication. Choose the option that best fits your needs.
 
-      .. code-block:: bash
+*  :doc:`Cyclist and the Cloud <tutorial/install_launch_cyclist>`: For users who want a graphical user interface to build or analyze simulations or do not want to run simulations directly on their machine. (After installation, skip to Step 4 "Try a Tutorial").
 
-          $ bash Miniconda-Latest-Linux-x86_64.sh -b -p ~/miniconda
+* :doc:`Install as a Binary <install_binary>`: (via Debian or Conda) For users who want to run simulations directly on their machine (without internet).
 
-    * Finally, add the ``~/miniconda/bin`` directory to your ``PATH`` either
-      in your current environment or in your ``.bashrc`` or both.
+* :doc:`Virtualbox <virtualbox>`: For Windows users. Requires familiarity with Linux.
 
-      .. code-block:: bash
+* :doc:`Install Stable From Source <install_tarball>`: (via Tarball) For users who want to modify existing archetypes (aka developers).
 
-          $ export PATH="${HOME}/miniconda/bin:${PATH}"
 
-2. Configure conda to look for |cyclus|
+* :doc:`Install Develop from Source <../kernel/build_from_source>`: (via Repository) For developers or users who require the bleeding edge version of |Cyclus|.
 
-    * Download this :download:`condarc` file and save it as ``~/.condarc``.  If
-      you'd prefer to do this from the command line, type:
-
-      .. code-block:: bash
-
-          $ curl -L http://fuelcycle.org/_downloads/condarc >> ~/.condarc
-
-3. Install |Cyclus| and Cycamore
-
-    * Now that conda is installed and ready, installing |Cyclus| is as simple as:
-
-      .. code-block:: bash
-
-          $ conda install --yes cyclus cycamore
-
-And that is it!
-
-Already Have Conda?
--------------------
-If you already have conda installed, installing |Cyclus| is even easier.
-You simply need to make sure that conda-forge is part of
-your channels.  Please edit the ``channels`` section of your :file:`~/.condarc`
-to include the ``conda-forge`` channel.  For example,
-
-.. code-block:: yaml
-
-	channels:
-      - conda-forge
-	  - defaults
-
-Once this is done, install |Cyclus| with the following comand.
+2. Run Unit Tests
+-----------------
+(Cyclist users skip this step). Unit tests will verify that the installation was successful. They should report that all tests have passed (or been disabled).
 
 .. code-block:: bash
 
-    $ conda install --yes cyclus cycamore
+   $ cyclus_unit_tests
+   $ cycamore_unit_tests
 
-Happy simulating!
+   
+3. Run Cyclus with a Sample XML File
+------------------------------------
+(Cyclist users skip this step). Try running |Cyclus| for yourself. The result will be a :doc:`database <dbdoc>` named cyclus.sqlite.  Load the sqlite file into Cyclist to visualize data, or use your favorite sqlite browser to peruse.
+
+.. code-block:: bash
+
+   $ cyclus ~/path/to/cycamore/input/recycle.xml
+
+4. Try a Tutorial!
+------------------
+To become familiar with the capabilities of |Cyclus|, read the :doc:`User's Guide<index>` and possibly the :doc:`Archetype Developer's Guide <../arche/index>`, or  work your way through the tutorials.
+
+* :doc:`Cyclus User Tutorial <tutorial/index>`
+* :doc:`Archetype Developer Tutorial  <../arche/tutorial/index>`
+>>>>>>> Clean install docs (#200)
