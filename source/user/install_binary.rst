@@ -10,7 +10,7 @@ Cyclus support two kind of binary installation:
 Conda Install
 -------------
 
-1a. if you don't have conda you can find `here <install_conda.rst>`_ basic
+1a. if you don't have conda you can find `here <./install_conda.rst>`_ basic
 instruction to install it and prepare it for cyclus, if you choise to do so
 please directly jump to step 2.
 
@@ -25,9 +25,7 @@ please directly jump to step 2.
 	  - https://conda.binstar.org/cyclus 
 	  - defaults
 
-2. Install |Cyclus| and Cycamore
-
-    * Now that conda is installed and ready, installing |Cyclus| is as simple as:
+2. Install |Cyclus| and Cycamore: now that conda is installed and ready, installing |Cyclus| is as simple as:
 
       .. code-block:: bash 
     
@@ -43,14 +41,14 @@ please directly jump to step 2.
     
           $ cyclus_unit_test
 
-The answer in your terminal should look like (if not you might have an issue):
+  The answer in your terminal should look like (if not you might have an issue):
 
 
       .. code-block:: bash 
     
           $ cycamore_unit_test
 
-The answer in your terminal should look like (if not you might have an issue):
+  The answer in your terminal should look like (if not you might have an issue):
 
 4. Furthermore, you may also optionally install Cyclist, the graphical user
    interface tool for cyclus databases. This can be done with the following:
