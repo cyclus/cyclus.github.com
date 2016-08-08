@@ -54,4 +54,3 @@ To become familiar with the capabilities of |Cyclus|, read the :doc:`User's Guid
 
 * :doc:`Cyclus User Tutorial <tutorial/index>`
 * :doc:`Archetype Developer Tutorial  <../arche/tutorial/index>`
->>>>>>> Clean install docs (#200)
