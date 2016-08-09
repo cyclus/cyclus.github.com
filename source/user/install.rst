@@ -56,7 +56,7 @@ will try our best to find the best solution corresponding to your needs.
 
 
 
-* :doc:`Install Develop from Source <../kernel/build_from_source>`: (via
+* :doc:`Install Develop from Source <install_from_git>`: (via
   Repository) 
   
   - *Requires programation/compilation skills, basic understanding of Git/GitHub.*
