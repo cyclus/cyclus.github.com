@@ -72,7 +72,8 @@ Debian package
 *********************
 
 Those installation procedure assume that you are using Ubuntu (LTS) 14.04 or
-16.04. This method as only been tested on those ubuntu version.
+16.04. This method as only been tested on those ubuntu version. This
+installation procedure assumes that you have a root access to you computer.
 
 1. Install cyclus dependencies:
   .. code-block:: bash 
