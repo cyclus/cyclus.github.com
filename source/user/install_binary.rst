@@ -2,14 +2,15 @@
 Installing |Cyclus| with binaries
 ###########
 
-Conda is a cross platform, user space package manager aimed at simplifying the
-installation of open source software. The |Cyclus| project uses conda to
-distribute pre-built |Cyclus| and Cycamore binaries.
-
 |Cyclus| support two binary installations:
 
 #. `Conda`_
 #. `Debian package`_
+
+Conda is a cross platform, user space package manager aimed at simplifying the
+installation of open source software. The |Cyclus| project uses conda to
+distribute pre-built |Cyclus| and Cycamore binaries.
+
 
 *********************
 Conda
