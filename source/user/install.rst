@@ -40,7 +40,7 @@ will try our best to find the best solution corresponding to your needs.
 
 
 
-* :doc:`Binary installation on Linux (via Debian or Conda) <install_binary>`:
+* :doc:`Binary installation on Linux (via Debian package or Conda) <install_binary>`:
 
   - *Requires familiarity with Linux.*
   
@@ -67,7 +67,7 @@ will try our best to find the best solution corresponding to your needs.
 * :doc:`Install Develop from Source <../kernel/build_from_source>`: (via
   Repository) 
   
-  - *Requires programation/compilation skills.*
+  - *Requires programation/compilation skills, basic understanding of Git/GitHub.*
   
   - For developers or users who require the bleeding edge version of |Cyclus|. 
 
