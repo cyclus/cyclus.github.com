@@ -1,8 +1,8 @@
 Installing |Cyclus| using a Tarball
 ====================================
 Installing Cyclus is a two steps process. First one need to get and compile the
-|Cyclus| core and then the Cyclus Additionnal Model, Cycamore, which provide the
-different faiclities such the reactor, the fuel fabrication facility, the
+|Cyclus| core and then the Cyclus Additional Modules, Cycamore, which provide the
+different facilities such the reactor, the fuel fabrication facility, the
 storage...
 
 ***********************
