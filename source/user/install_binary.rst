@@ -7,6 +7,15 @@ Installing |Cyclus| with binaries
 #. `Conda`_
 #. `Debian package`_
 
+The Debian package is package aimed at simplifying the installation of open
+source software. It contains all the file required to use a specific software,
+as well as many different information about it: maintainer, description,
+version, dependencies(other softwares or libraries require to use it).  The
+|Cyclus| team provides pre-built |Cyclus| and Cycamore Debian package to
+simplify the user installation. Those package are available for LTS Ubuntu
+version 14.04 and 16.04. It might work on other Linux system, but it at only
+been tested on the 2 Ubuntu version mention previously.
+
 Conda is a cross platform, user space package manager aimed at simplifying the
 installation of open source software. The |Cyclus| project uses conda to
 distribute pre-built |Cyclus| and Cycamore binaries.
