@@ -1,6 +1,10 @@
 Installing |Cyclus| from the source
 ------------------------------------
 
+This installation guide assumes that you have all the |Cyclus| dependencies
+already installaed. If not please verfy, that you have properly install all
+`Cyclus dependencies <Dependencies>`_.
+
 Default installation
 ..........................
 
@@ -65,4 +69,4 @@ installation flag. The otherwise identical process would look like:
 
 .. code-block:: bash
 
-    .../cyclus/cyclus$  python install.py --coin_root=path/to/coin
+    .../cyclus$  python install.py --coin_root=path/to/coin

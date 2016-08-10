@@ -1,5 +1,10 @@
-Installing |Cyclus| from the source
+Installing Cycamore from the source
 ------------------------------------
+
+This installation guide assumes that you have all the Cycamore dependencies
+already installaed (including |Cyclus|). If not please verfy, that you have
+properly install all `Cycamore dependencies <Dependencies>`_.
+
 
 Default installation
 ..........................
@@ -31,11 +36,11 @@ flag:
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``--uninstall``                           | uninstall                                                                                        |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--no-update``                           | do not update the hash in version.cc                                                             |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``--clean-build``                         | attempt to remove the build directory before building                                            |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``-j THREADS, --threads``                 | THREADS the number of threads to use in the make step                                            |
++--------------------------------------------+--------------------------------------------------------------------------------------------------+
+|  ``--test``                                | run tests after  building                                                                        |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``--prefix PREFIX``                       | the relative path to the installation directory                                                  |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -43,7 +48,7 @@ flag:
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``--build-only``                          | only build the package, do not install                                                           |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--test``                                | run tests after  building                                                                        |
+|  ``--cyclus_root``                         | the relative path to the Cyclus directory                                                        |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``--coin_root COIN_ROOT``                 | the relative path to the Coin-OR libraries directory                                             |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -65,4 +70,4 @@ installation flag. The otherwise identical process would look like:
 
 .. code-block:: bash
 
-    .../cyclus/cyclus$  python install.py --coin_root=path/to/coin
+    .../cycamore$  python install.py --coin_root=path/to/coin
