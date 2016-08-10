@@ -6,7 +6,7 @@ different facilities such the reactor, the fuel fabrication facility, the
 storage...
 
 
-.. content::
+.. contents::
 
 ***********************
 Install Cyclus
@@ -45,7 +45,7 @@ new page with the list or do we link to the Git release ???)**
 
 
 ***********************
-Run unit test:
+Run unit test
 ***********************
 
 .. include:: unit_test.rst
