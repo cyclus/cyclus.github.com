@@ -71,7 +71,7 @@ will try our best to find the best solution corresponding to your needs.
 
 (Cyclist users skip this step). 
 
-.. include:: unit_test_and_tutorial_link.rst
+.. include:: unit_test.rst
 
 3. Run Cyclus with a Sample XML File
 ------------------------------------

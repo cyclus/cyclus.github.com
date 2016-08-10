@@ -56,7 +56,7 @@ Conda
     .. code-block:: bash 
   
         $ conda install cyclist --yes
-#.  .. include:: unit_test_and_tutorial_link.rst
+#.  .. include:: unit_test.rst
 
 
 
@@ -103,7 +103,7 @@ installation procedure assumes that you have a root access to you computer.
   
     Please replace the 'CYCAMORE_DEB_PACKAGE_MANE.deb' by its proper name.
 
-#.  .. include::  unit_test_and_tutorial_link.rst
+#.  .. include::  unit_test.rst
   
   
   
