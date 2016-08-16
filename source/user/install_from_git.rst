@@ -1,4 +1,4 @@
-Installing |Cyclus| using a |Cyclus| GitHub repository
+Installing |Cyclus| using the GitHub repository
 ====================================
 Installing Cyclus is a two steps process. First one need to get and compile the
 |Cyclus| core and then the Cyclus Additional Modules, Cycamore, which provide the
