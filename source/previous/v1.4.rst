@@ -93,7 +93,9 @@ Bug fixes:
 `Cymetric <https://github.com/cyclus/cymetric>`_
 --------------------------------------------------
 
-TODO
+* Added new metrics: full list `here <http://fuelcycle.org/user/cymetric/api/metrics.html>`_
+* Added a new directory with cymetric usage examples
+* Separated out all archetype-specific metrics from the main metrics
 
 Summary
 =======
