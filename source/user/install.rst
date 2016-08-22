@@ -48,7 +48,7 @@ will try our best to find the best solution corresponding to your needs.
 
 
 
-* :doc:`Install Stable From Source (via Tarball) <install_tarball>`:
+* :doc:`Install Stable From Source (via Tarball) <install_from_tarball>`:
   
   - *Requires programation/compilation skills.*
   
@@ -68,16 +68,14 @@ will try our best to find the best solution corresponding to your needs.
 
 2. Run Unit Tests
 -----------------
-(Cyclist users skip this step). Unit tests will verify that the installation was successful. They should report that all tests have passed (or been disabled).
 
-.. code-block:: bash
+(Cyclist users skip this step). 
 
-   $ cyclus_unit_tests
-   $ cycamore_unit_tests
+.. include:: unit_test.rst
 
-   
 3. Run Cyclus with a Sample XML File
 ------------------------------------
+
 (Cyclist users skip this step). Try running |Cyclus| for yourself. The result will be a :doc:`database <dbdoc>` named cyclus.sqlite.  Load the sqlite file into Cyclist to visualize data, or use your favorite sqlite browser to peruse.
 
 .. code-block:: bash
