@@ -1,13 +1,48 @@
-Installing Cycamore from the source
-------------------------------------
+###########
+Cyclus Installation Guide
+###########
 
-This installation guide assumes that you have all the Cycamore dependencies
-already installaed (including |Cyclus|). If not please verfy, that you have
-properly install all `Cycamore dependencies <Dependencies>`_.
+Cyclus uses the CMake cross platform bailed-generator as a build system. TO
+simplify the usage of cmake to build Cyclus from source, a python script is
+provided with the source.
 
+.. contents:: Table of Contents
+
+******************************
+Dependencies
+******************************
+
+In order to facilitate future compatibility with multiple platforms,
+Cyclus is built using `CMake`_. A full list of the Cyclus package
+dependencies is shown below:
+
+====================   ==================
+Package                Minimum Version
+====================   ==================
+`CMake`                2.8
+`boost`                1.46.1
+`libxml2`              2
+`libxml++`             2.36
+`python`               2.7 or 3.3+
+`sqlite3`              3.7.10
+`HDF5`                 1.8.4
+`Coin-Cbc`             2.5
+====================   ==================
+
+You can find `here <DEPENDENCIES.rst>`_  help to install those dependencies for
+the major supported system.
+
+******************************
+Installation
+******************************
+
+Before going further on the installation procedure be sure you have installed
+all the required dependencies listed above. You can also find `there
+<DEPENDENCIES.rst>`_ instruction to install those dependencies depending of the
+system you are working on.
 
 Default installation
-..........................
+------------------------
 
 Run the install script:
 
@@ -25,8 +60,7 @@ You need to had ``~/.local/bin`` to the bottom of your ``$PATH``:
   echo 'export PATH="$HOME/.local/bin:$PATH' >> .bashrc
 
 Custom Cyclus installation
-..........................
-
+---------------------------
 The installation using the install script can be customized using the following
 flag:
 
@@ -37,11 +71,11 @@ flag:
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``--uninstall``                           | uninstall                                                                                        |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
+|  ``--no-update``                           | do not update the hash in version.cc                                                             |
++--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``--clean-build``                         | attempt to remove the build directory before building                                            |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``-j THREADS, --threads``                 | THREADS the number of threads to use in the make step                                            |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--test``                                | run tests after  building                                                                        |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``--prefix PREFIX``                       | the relative path to the installation directory                                                  |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -49,7 +83,7 @@ flag:
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``--build-only``                          | only build the package, do not install                                                           |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--cyclus_root``                         | the relative path to the Cyclus directory                                                        |
+|  ``--test``                                | run tests after  building                                                                        |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``--coin_root COIN_ROOT``                 | the relative path to the Coin-OR libraries directory                                             |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -71,4 +105,67 @@ installation flag. The otherwise identical process would look like:
 
 .. code-block:: bash
 
-    .../cycamore$  python install.py --coin_root=path/to/coin
+    .../cyclus$  python install.py --coin_root=path/to/coin
+
+
+CMake Cyclus installation
+---------------------------
+
+If you are ``CMake`` aficionado you can also install Cyclus without using the
+install.py python script and use directly ``cmake`` which should look like:
+
+
+.. code-block:: bash
+
+  mkdir bld
+  cd build
+  cmake .. -DCMAKE_INSTALL_PREFIX=~/.local/
+  make
+  make install
+
+As usual you can custom you cmake installation using the proper cmake flag.
+All cmake variable can be listed using: ``cmake -LAH``.
+The main variable used are:
+
+#. ``COIN_ROOT_DIR`` set Coin-OT library directory 
+#. ``BOOST_ROOT``    set Boost liraries directory
+#. ``HDF5_ROOT``     set HDF5 root directory
+#. ``HDF5_LIBRARIES`` set HDF5 libraries path
+#. ``HDF5_LIBRARY_DIRS`` set HDF5 library directory
+#. ``HDF5_INCLUDE_DIRS`` set HDF5 include directory
+
+All variable can be set using ``-DMY_VARIABLE=MY_VARIABLES_VALUE``.
+
+
+******************************
+Running Tests
+******************************
+
+Installing Cyclus will also install a test driver (i.e., an executable of all of
+our tests). We strongly recommend after installing a fresh install of Cyclus, or
+any modification on the source code to rerun those tests in order to insure the
+proper functioning of Cyclus. You can run the tests yourself via:
+
+.. code-block:: bash
+
+    $ cyclus_unit_tests
+
+******************************
+Running Cyclus
+******************************
+
+You can find instructions for writing an input file for cyclus from `Cyclus User
+Guide`_ or use sample input files from `Cycamore Repo`_. Assuming you have some
+file `input.xml`, you can run Cyclus via:
+
+.. code-block:: bash
+
+    $ cyclus path/to/input.xml
+
+For a more detailed explanation, checkout the user guide.
+
+.. _`Cyclus Homepage`: http://fuelcycle.org/
+.. _`Cyclus User Guide`: http://fuelcycle.org/user/index.html
+.. _`Cyclus repo`: https://github.com/cyclus/cyclus
+.. _`Cycamore Repo`: https://github.com/cyclus/cycamore
+
