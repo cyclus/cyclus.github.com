@@ -36,9 +36,9 @@ Conda
 
         .. code-block:: yaml
 
-        channels:
-          - https://conda.binstar.org/cyclus 
-          - defaults
+           channels:
+             - https://conda.binstar.org/cyclus 
+             - defaults
 
 2.  Install |Cyclus| and Cycamore: now that Conda is installed and ready,
     installing |Cyclus| is as simple as:

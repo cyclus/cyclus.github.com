@@ -4,4 +4,5 @@ build
 *~
 *.pyc
 gh-build
-source/arche/dbtypes.jssource/extern/CYCLUS_INSTALL.rst
+source/arche/dbtypes.js
+*/CYCLUS_INSTALL.rst
