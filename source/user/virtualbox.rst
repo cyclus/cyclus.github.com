@@ -6,7 +6,7 @@ A native Windows installation is not currently explicitly supported. However, a
 Virtual Machine image can be downloaded that includes a pre-installation of all
 of these dependencies as well as a pre-installation of |Cyclus| and Cycamore. If
 you do not have access to a Linux or Unix (MacOS) machine, please follow these
-three steps:
+steps:
 
 #. Install `VirtualBox <https://www.virtualbox.org/>`_
 #. Download `cyclus_user_environment.ova

@@ -1,11 +1,10 @@
-Installing |Cyclus| from the source
-------------------------------------
+Installing |Cyclus| from Source
+-------------------------------
 
-This installation guide assumes that you have all the |Cyclus| dependencies
-already installaed. If not please verfy, that you have properly install all
-`Cyclus dependencies <Dependencies>`_.
+This installation guide assumes that you have all of the |Cyclus|
+`dependencies <put_a_link_here>`_ already installed.
 
-Default installation
+Default Installation
 ..........................
 
 Run the install script:
@@ -15,18 +14,18 @@ Run the install script:
   python install.py
 
 
-If you successfully followed the instruction above cyclus binary have been
-generated and be placed in the  ``.local/`` in your home directory. 
-You need to had ``~/.local/bin`` to the bottom of your ``$PATH``:
+If you successfully followed the instruction above, the |Cyclus| binary has
+been generated and placed in the ``.local/`` directory. 
+Now add ``~/.local/bin`` to the bottom of your ``$PATH``:
 
 .. code-block:: bash
-  $> echo 'export PATH="$HOME/.local/bin:$PATH' >> .bashrc
+  echo 'export PATH="$HOME/.local/bin:$PATH' >> .bashrc
 
-Custom Cyclus installation
+Custom Cyclus Installation
 ..........................
 
 The installation using the install script can be customized using the following
-flag:
+flags:
 
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``-h, --help``                            | show the help message and exit                                                                   |
@@ -39,7 +38,7 @@ flag:
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``--clean-build``                         | attempt to remove the build directory before building                                            |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``-j THREADS, --threads``                 | THREADS the number of threads to use in the make step                                            |
+|  ``-j THREADS``                            | THREADS the number of threads to use in the make step                                            |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``--prefix PREFIX``                       | the relative path to the installation directory                                                  |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -64,7 +63,7 @@ flag:
 
 
 For example, if you have installed coin-Cbc from source or otherwise have it
-installed in a non-standard location, you should make use of the coinRoot
+installed in a non-standard location, you should make use of the coin_root
 installation flag. The otherwise identical process would look like:
 
 .. code-block:: bash
