@@ -17,6 +17,8 @@ Each ``region`` block has the following sections in any order:
 Example
 +++++++
 
+**XML:**
+
 .. code-block:: xml
 
   <region>
@@ -39,6 +41,8 @@ Example
          ... data for this institution goes here
     </institution>
   </region>
+
+**JSON:**
 
 
 This example introduces two region agents.  The first has the name
@@ -68,7 +72,13 @@ contents of the ``GrowthRegion`` section are defined by the author of the
       }
 
 
-This is what the example above would look like if written in JSON.
+This example introduces two region agents.  The first has the name
+`MyHomeRegion`, and is configured from the :term:`archetype` with the name (or
+alias) `NullRegion`.  The author of the ``NullRegion`` archetype has defined
+no archetype-specific data.  The second has the name ``MyNeighborRegion`` and
+is based on the archetype with the name (or alias) `GrowthRegion`.  The
+contents of the ``GrowthRegion`` section are defined by the author of the
+`GrowthRegion` archetype.
 
 
 .. rst-class:: html-toggle

@@ -3,7 +3,7 @@ CEP 3 - |Cyclus| Release Procedure
 
 :CEP: 3
 :Title: |Cyclus| Release Procedure
-:Last-Modified: 2015-05-01
+:Last-Modified: 2016-05-04
 :Author: Anthony Scopatz and Matthew Gidden
 :Status: Accepted
 :Type: Process
@@ -29,7 +29,6 @@ stable.)  The projects that are under the release manager's purview are:
 
 * `Cyclus`_ 
 * `Cycamore`_ 
-* `Cycstub`_
 * `Cymetric`_
 
 The projects which are not yet under the release managers purview are:
@@ -111,7 +110,7 @@ Release Candidate Process
 
 #. Review the current state of documentation and make approriate updates.
 
-#. Update any new database types in ``cyclus.github.com/source/arche/dbtypes.js``
+#. Update any new database types in ``cyclus/share/dbtypes.json``
 
 #. Finish the release candidate process
 
@@ -138,7 +137,6 @@ Release Process
       $ cd /path/to/release/utils
       $ export CYCLUS_DIR=/path/to/cyclus
       $ export CYCAMORE_DIR=/path/to/cycamore
-      $ export CYCSTUB_DIR=/path/to/cycstub
       $ ./maintenence.sh -r -v X.X.X # X.X.X is *this* version
 
 #. Commit all changes for all projects
@@ -290,10 +288,11 @@ Gtest's natural evolution cycle, please download the latest release of Google Te
 and follow `the fused source directions here`_.  If we go too long without doing this, 
 it could be very painful to update.
 
-**Verify & Update API Stability:** Since |Cyclus| v1.0 we promise API stability. 
-Luckily, we have a tool for keeping track of this mostly automatically.  
-Every release please run the following command to verify that the release 
-branch is stable:
+**Verify & Update API Stability:** Since |Cyclus| v1.0 we promise API
+stability.  Luckily, we have a tool for keeping track of this mostly
+automatically.  In order to check this correctly, you must have a **RELEASE**
+build of Cyclus compiled/installed.  Every release please run the following
+command to verify that the release branch is stable:
 
 .. code-block:: bash
 
@@ -309,7 +308,8 @@ symbols until it this command declares that |cyclus| is stable. It is
 probably best to do this prior to any release candidates if possible.
 
 Once stable and there are no more code changes to be made, add the symbols
-in this release to the database with the following command:
+in this release to the database with the following command (again - make sure
+you are working on a RELEASE build of Cyclus):
 
 .. code-block:: bash
 
@@ -324,17 +324,6 @@ Cycamore
 
 No maintenence required.
 
-Cycstub
---------
-
-Every release the relevant files from |cyclus| should be copied over to |cyclus|.
-Use the following BASH commands to do so:
-
-.. code-block:: bash
-
-   $ cp ~/cyclus/tests/input/stub_example.xml ~/cycstub/input/example.xml && \
-     cp ~/cyclus/stubs/stub_* ~/cycstub/src/
-
 Cymetric
 --------
 
@@ -347,7 +336,6 @@ This document is released under the CC-BY 3.0 license.
 
 .. _Cyclus: https://github.com/cyclus/cyclus
 .. _Cycamore: https://github.com/cyclus/cycamore
-.. _Cycstub: https://github.com/cyclus/cycstub
 .. _Cymetric: https://github.com/cyclus/cymetric
 .. _Cyclist: https://github.com/cyclus/cyclist2
 .. _release: https://github.com/cyclus/release

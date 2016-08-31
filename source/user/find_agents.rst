@@ -42,6 +42,22 @@ section in the input file:
     ...
     </simulation>
 
+
+.. code-block:: json
+
+   {"simulation": {
+      "archetypes": {
+        "spec": {
+          "path": "",
+          "lib": "agents",
+          "name": "KFacility",
+          "alias": "myfac1" },
+        "spec": {
+        }
+      }
+     }
+    }
+
 The ``path`` tag can be omitted if it is empty (as in the case of |Cyclus|'
 default agents library).  If the ``lib`` tag is omitted, it defaults to the
 value of the ``name`` tag. The ``alias`` tag may also be omitted, in which case

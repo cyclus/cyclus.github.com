@@ -27,6 +27,8 @@ each contain the following sections, in the following order:
 Example
 +++++++
 
+**XML:**
+
 .. code-block:: xml
 
     <institution>
@@ -49,6 +51,29 @@ Example
       <config> <NullInst/> </config>
     </institution>
 
+**JSON:**
+
+.. code-block:: json
+
+    {"institution": {
+     "config": {"NullInst": null}, 
+     "initialfacilitylist": {
+      "entry": [
+       {"number": 1, "prototype": "FacilityA"}, 
+       {"number": 1, "prototype": "FacilityB"}
+        ]
+       }, 
+     "name": "SingleInstitution"
+      }
+     }
+
+    {"institution": {
+     "config": {"NullInst": null},
+     "name": "AnotherInstitution"
+     }
+    }
+
+
 
 This example introduces two institution agents (the region section that
 encloses them is not shown).  The first institution has the name
@@ -59,6 +84,7 @@ facility agents, one based on the ``FacilityA`` prototype and another based on
 the ``FacilityB`` prototype.  The second institution has the name
 `AnotherInstitution`, is also configured from the archetype with the name (or
 alias) ``NullInst``.  This institution has no initial facilities.
+
 
 .. code-block:: json
 
@@ -83,6 +109,7 @@ alias) ``NullInst``.  This institution has no initial facilities.
 
 
 This is what the example above would look like if written in JSON.
+
 
 .. rst-class:: html-toggle
 

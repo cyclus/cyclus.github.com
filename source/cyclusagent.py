@@ -6,11 +6,12 @@ For example,
     .. cyclus-agent:: tests:TestFacility:TestFacility
 
 """
-from __future__ import print_function
+from __future__ import print_function, unicode_literals
 import sys
 import os.path
 import re
 import time
+import textwrap
 import warnings
 import subprocess
 import xml.dom.minidom
@@ -39,9 +40,14 @@ from sphinx.util.nodes import nested_parse_with_titles
 if sys.version_info[0] == 2:
     STRING_TYPES = (str, unicode, basestring)
     IS_PY3 = False
+    def indent(text, prefix):
+        lines = text.splitlines(True)
+        s = prefix + prefix.join(lines)
+        return s 
 elif sys.version_info[0] >= 3:
     STRING_TYPES = (str,)
     IS_PY3 = True
+    indent = textwrap.indent
 
 def contains_resbuf(type_str):
     bufs = ('cyclus::toolkit::ResBuf',
@@ -161,7 +167,7 @@ def _type(cpp, given=None):
     return default_types[cpp]
 
 
-def buildsample(cpptype, schematype=None, uitype=None, names=None, units=None):
+def build_xml_sample(cpptype, schematype=None, uitype=None, names=None, units=None):
     schematype = prepare_type(cpptype, schematype)
     uitype = prepare_type(cpptype, uitype)
     names = prepare_type(cpptype, names)
@@ -183,8 +189,8 @@ def buildsample(cpptype, schematype=None, uitype=None, names=None, units=None):
     elif t in ['std::list', 'std::set', 'std::vector']:
         name = 'list' if names[0] is None else names[0]
         impl += '<{0}>'.format(name)
-        impl += buildsample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
-        impl += buildsample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
+        impl += build_xml_sample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
+        impl += build_xml_sample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
         impl += '...'
         impl += '</{0}>'.format(name)
     elif t == 'std::map':
@@ -204,12 +210,12 @@ def buildsample(cpptype, schematype=None, uitype=None, names=None, units=None):
             valnames = names[2]
         impl += '<{0}>'.format(name)
         impl += '<{0}>'.format(itemname)
-        impl += buildsample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
-        impl += buildsample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
+        impl += build_xml_sample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
+        impl += build_xml_sample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
         impl += '</{0}>'.format(itemname)
         impl += '<{0}>'.format(itemname)
-        impl += buildsample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
-        impl += buildsample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
+        impl += build_xml_sample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
+        impl += build_xml_sample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
         impl += '</{0}>'.format(itemname)
         impl += '...'
         impl += '</{0}>'.format(name)
@@ -224,19 +230,110 @@ def buildsample(cpptype, schematype=None, uitype=None, names=None, units=None):
         if names[2] is not None:
             secondname = names[2]
         impl += '<{0}>'.format(name)
-        impl += buildsample(cpptype[1], schematype[1], uitype[1], firstname, units[1])
-        impl += buildsample(cpptype[2], schematype[2], uitype[2], secondname, units[2])
+        impl += build_xml_sample(cpptype[1], schematype[1], uitype[1], firstname, units[1])
+        impl += build_xml_sample(cpptype[2], schematype[2], uitype[2], secondname, units[2])
         impl += '</{0}>'.format(name)
     else:
         msg = 'Unsupported type {1}'.format(t)
         raise RuntimeError(msg)
 
-
     s = xml.dom.minidom.parseString(impl)
-    s = s.toprettyxml(indent='    ')
-    lines = s.splitlines()
-    lines = lines[1:] # remove initial xml version tag
-    return '\n'.join(lines)
+    s = s.toprettyxml(indent='  ')
+    _, lines = s.split("\n", 1)
+    return lines
+
+def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=None, default=None):
+    schematype = prepare_type(cpptype, schematype)
+    uitype = prepare_type(cpptype, uitype)
+    names = prepare_type(cpptype, names)
+    units = prepare_type(cpptype, units)
+
+    impl = ''
+    t = cpptype if isinstance(cpptype, STRING_TYPES) else cpptype[0]
+    if t in PRIMITIVES:
+        name = 'val'
+        if names is not None:
+            name = names
+        d_type = _type(t, schematype or uitype)
+        d_type = uitype if uitype in special_uitypes else d_type
+
+        defstr = json.dumps(default) if isinstance(default, STRING_TYPES) else default
+
+        if default is None or defstr == '"null"':
+            defstr = '"<required>"' 
+
+        if isinstance(units, STRING_TYPES):
+            impl += '{{"{0}": {1}}}  # {2}, {3}'.format(name, defstr, d_type, units)
+        else:
+            impl += '{{"{0}": {1}}}  # {2}'.format(name, defstr, d_type)
+    elif t in ['std::list', 'std::set', 'std::vector']:
+        name = 'list' if names[0] is None else names[0]
+        impl += '{{"{0}":'.format(name)
+        x = build_json_sample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
+        pre, post = x.split(':', 1)
+        post, _ = post.rsplit('}', 1)
+        impl += indent(pre + ': [\n', "  ")
+        impl += indent(post.rstrip() + ",\n", '  ')
+        impl += indent(post.rstrip() + ",\n", '  ')
+        impl += indent('...\n', '  ')
+        impl += ']}}'
+    elif t == 'std::map':
+        name = 'map'
+        if isinstance(names[0], STRING_TYPES):
+            names[0] = [names[0], None]
+        elif names[0] is None:
+            names[0] = [name, None]
+        if names[0][0] is not None:
+            name = names[0][0]
+        itemname = 'item' if names[0][1] is None else names[0][1]
+        keynames = 'key' if isinstance(cpptype[1], STRING_TYPES) else ['key']
+        if names[1] is not None:
+            keynames = names[1]
+        valnames = 'val' if isinstance(cpptype[2], STRING_TYPES) else ['val']
+        if names[1] is not None:
+            valnames = names[2]
+        impl += '{{"{0}": {{\n'.format(name)
+        impl += indent('"{0}": [{{\n'.format(itemname), '  ')
+        x = build_json_sample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
+        pre, post = x.split('{', 1)
+        post, _ = post.rsplit('}', 1)
+        impl += indent(post.rstrip() + ',\n', '    ')
+        y = build_json_sample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
+        pre, post = y.split('{', 1)
+        post, _, _ = post.rpartition('}')
+        impl += indent(post + '},\n', '    ')
+        pre, post = x.split('{', 1)
+        post, _ = post.rsplit('}', 1)
+        impl += indent('{' + post.rstrip() + ',\n', '    ')
+        pre, post = y.split('{', 1)
+        post, _, _ = post.rpartition('}')
+        impl += indent(post + '},\n', '    ')        
+        impl += indent('...\n', '  ')
+        impl += ']}}'
+    elif t == 'std::pair':
+        name = 'pair'
+        if names[0] is not None:
+            name = names[0]
+        firstname = 'first' if isinstance(cpptype[1], STRING_TYPES) else ['first']
+        if names[1] is not None:
+            firstname = names[1]
+        secondname = 'second' if isinstance(cpptype[2], STRING_TYPES) else ['second']
+        if names[2] is not None:
+            secondname = names[2]
+        x = build_json_sample(cpptype[1], schematype[1], uitype[1], firstname, units[1])
+        impl += '{{"{0}": {{\n'.format(name)
+        pre, post = x.split('{', 1)
+        post, _ = post.rsplit('}', 1)
+        impl += indent(post.rstrip() + ',\n', '  ')
+        y = build_json_sample(cpptype[2], schematype[2], uitype[2], secondname, units[2])
+        pre, post = y.split('{', 1)
+        post, _, _ = post.rpartition('}')
+        impl += indent(post.rstrip() + '\n', '  ')
+        impl += "  " + '}\n}'
+    else:
+        msg = 'Unsupported type {1}'.format(t)
+        raise RuntimeError(msg)
+    return impl
 
 class CyclusAgent(Directive):
     """The cyclus-agent directive, which is based on constructing a list of 
@@ -377,8 +474,8 @@ class CyclusAgent(Directive):
                 self.lines.append(ind + ':{0}: {1}'.format(key, val))
             self.lines.append('')
 
-            self.lines += ['', ind + '.. code-block:: xml', '']
-            schemalines = buildsample(t, schematype, uitype, labels, units).split('\n')
+            self.lines += [ind + '**XML:**', '', ind + '.. code-block:: xml', '']
+            schemalines = build_xml_sample(t, schematype, uitype, labels, units).split('\n')
             previndent = ''
             for l in schemalines:
                 if len(l.strip()) > 0:
@@ -387,6 +484,18 @@ class CyclusAgent(Directive):
                     self.lines.append(ind + '    ' + l)
                     previndent = ' ' * (len(l) - len(l.lstrip()))
             self.lines.append('')
+
+            self.lines += [ind + '**JSON:**', '', ind + '.. code-block:: yaml', '']
+            schemalines = build_json_sample(t, schematype, uitype, labels, units, default=info.get('default', 'null')).split('\n')
+            previndent = ''
+            for l in schemalines:
+                if len(l.strip()) > 0:
+                    if l.strip() == '...':
+                        l = previndent + l.strip()
+                    self.lines.append(ind + '    ' + l)
+                    previndent = ' ' * (len(l) - len(l.lstrip()))
+            self.lines.append('')
+
 
 
     def append_schema(self):
@@ -439,3 +548,8 @@ class CyclusAgent(Directive):
 def setup(app):
     app.add_directive('cyclus-agent', CyclusAgent)
 
+if __name__ == "__main__":
+    t = ["std::vector", "double"]
+    #t = 'double'
+    s = build_json_sample(t, default=[42.0])
+    print(s)

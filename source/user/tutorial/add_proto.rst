@@ -200,7 +200,7 @@ Activity: Set the Maximum Inventory of Feed at the Reactor
 
 1. Open the configuration form for the "EnrichPlant"
 2. Chnage to "User Level: 1
-3. Find the "Maximum Feed Inventory" entry and set it to: 100000
+3. Find the "Maximum Feed Inventory" entry and set it to: 1000000
 
 .. image:: enrich-max-inv-annotated.png
     :align: center

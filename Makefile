@@ -20,53 +20,52 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) $(G
 # the i18n builder cannot share the environment and doctrees with the others
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) $(GH_SOURCE_DIR)
 
-.PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext
+.PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex \
+	 latexpdf text man changes linkcheck doctest gettext
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  gh-preview  to build HTML in directory $BUILDDIR for testing"
-	@echo "  gh-revert   to cleanup HTML build in directory $BUILDDIR after testing"
-	@echo "  gh-publish  final build and push from source branch to master branch"
-	@echo "  html        to make standalone HTML files"
-	@echo "  html-docker to make standalone HTML files inside a docker container"
-	@echo "  dirhtml     to make HTML files named index.html in directories"
-	@echo "  singlehtml  to make a single large HTML file"
-	@echo "  pickle      to make pickle files"
-	@echo "  json        to make JSON files"
-	@echo "  htmlhelp    to make HTML files and a HTML help project"
-	@echo "  qthelp      to make HTML files and a qthelp project"
-	@echo "  devhelp     to make HTML files and a Devhelp project"
-	@echo "  epub        to make an epub"
-	@echo "  latex       to make LaTeX files, you can set PAPER=a4 or PAPER=letter"
-	@echo "  latexpdf    to make LaTeX files and run them through pdflatex"
-	@echo "  text        to make text files"
-	@echo "  man         to make manual pages"
-	@echo "  texinfo     to make Texinfo files"
-	@echo "  info        to make Texinfo files and run them through makeinfo"
-	@echo "  gettext     to make PO message catalogs"
-	@echo "  changes     to make an overview of all changed/added/deprecated items"
-	@echo "  linkcheck   to check all external links for integrity"
-	@echo "  doctest     to run all doctests embedded in the documentation (if enabled)"
-
-html-docker gh-preview-docker:
-	docker run -w /cyclus.github.com -v $(PWD):/cyclus.github.com cyclus/fuelcycle.org-deps bash -c "make gh-preview && chmod -R 777 gh-build"
+	@echo "  gh-preview        to build HTML in directory $BUILDDIR for testing"
+	@echo "  gh-revert         to cleanup HTML build in directory $BUILDDIR after testing"
+	@echo "  gh-publish        to build final version and push from source branch to master branch"
+	@echo "  gh-publish-only   to push from source branch to master branch, assuming already built"
+	@echo "  docker-html       to use docker to build HTML in directory $BUILDDIR for testing"
+	@echo "  docker-gh-publish to use docker to build final version and push from source branch to master branch"
+	@echo "  serve             build+serve html files using Python's SimpleHTTPServer"
+	@echo "  serve-only        serve pre-built html files using Python's SimpleHTTPServer"
+	@echo "  dirhtml           to make HTML files named index.html in directories"
+	@echo "  singlehtml        to make a single large HTML file"
+	@echo "  pickle            to make pickle files"
+	@echo "  json              to make JSON files"
+	@echo "  htmlhelp          to make HTML files and a HTML help project"
+	@echo "  qthelp            to make HTML files and a qthelp project"
+	@echo "  devhelp           to make HTML files and a Devhelp project"
+	@echo "  epub              to make an epub"
+	@echo "  latex             to make LaTeX files, you can set PAPER=a4 or PAPER=letter"
+	@echo "  latexpdf          to make LaTeX files and run them through pdflatex"
+	@echo "  text              to make text files"
+	@echo "  man               to make manual pages"
+	@echo "  texinfo           to make Texinfo files"
+	@echo "  info              to make Texinfo files and run them through makeinfo"
+	@echo "  gettext           to make PO message catalogs"
+	@echo "  changes           to make an overview of all changed/added/deprecated items"
+	@echo "  linkcheck         to check all external links for integrity"
+	@echo "  doctest           to run all doctests embedded in the documentation (if enabled)"
 
 gh-clean gh-revert clean:
 	-rm -rf $(BUILDDIR)
 
 gh-preview html:
-	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)
+	PYTHONDONTWRITEBYTECODE="TRUE" $(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)
 	sed -i.bak 's/function top_offset([$$]node){ return [$$]node\[0\].getBoundingClientRect().top; }/function top_offset($$node){ return (typeof $$node[0] === "undefined") ? 0 : $$node[0].getBoundingClientRect().top; }/' ./gh-build/_static/cloud.js
 	sed -i.bak 's/  if (state == "collapsed"){/  if (typeof state === "undefined") {\n	var state = "uncollapsed";\n  };\n  if (state == "collapsed"){/' ./gh-build/_static/cloud.js
 	rm ./gh-build/_static/*.bak
 	cp $(BUILDDIR)/cep/cep0.html $(BUILDDIR)/cep/index.html
-	cp source/arche/dbtypes.js $(BUILDDIR)/arche/
+	cp `cyclus --install-path`/share/cyclus/dbtypes.json $(BUILDDIR)/arche/
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)."
 
-gh-publish:
-	make clean
-	make html
+gh-publish-only:
 	git checkout $(GH_PUBLISH_BRANCH)
 	git checkout $(GH_SOURCE_BRANCH) -- $(GH_SOURCE_DIR)
 	git reset HEAD 
@@ -74,8 +73,27 @@ gh-publish:
 	rsync -a $(BUILDDIR)/.* .
 	git add `(cd $(BUILDDIR); find . -type f; cd ..)`
 	rm -rf $(GH_SOURCE_DIR) $(BUILDDIR)
-	git commit -m "Generated $(GH_PUBLISH_BRANCH) for `git log $(GH_SOURCE_BRANCH) -1 --pretty=short --abbrev-commit`" && git push $(GH_UPSTREAM_REPO) $(GH_PUBLISH_BRANCH)
+	git commit -m "Generated $(GH_PUBLISH_BRANCH) for `git log $(GH_SOURCE_BRANCH) -1 --pretty=short --abbrev-commit`" && git push --force $(GH_UPSTREAM_REPO) $(GH_PUBLISH_BRANCH)
 	git checkout $(GH_SOURCE_BRANCH)
+
+gh-publish:
+	make clean
+	make html
+	make gh-publish-only
+
+docker-gh-preview docker-html:
+	docker run -w /cyclus.github.com -v $(PWD):/cyclus.github.com cyclus/fuelcycle.org-deps bash -c "make gh-preview && chmod -R 777 $(BUILDDIR)"
+
+docker-gh-publish:
+	make clean
+	make docker-html
+	make gh-publish-only
+
+serve: html
+	cd $(BUILDDIR) && python -m http.server
+
+serve-only:
+	cd $(BUILDDIR) && python -m http.server
 
 htmlclean cleanhtml: clean html
 

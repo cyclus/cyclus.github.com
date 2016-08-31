@@ -9,6 +9,8 @@ yet supported, please let us know and we'll get to it as soon as possible!
 
 **Description of fields:**
 
+:id: enum identifier (value) for database type in the ``cyclus::DbTypes`` enum.
+:name: enum name for database type in the ``cyclus::DbTypes`` enum.
 :C++ type: the cooresponding C++ type.
 :shape rank: the maximum rank (length) of the ``shape`` vector.
 :backend: the database backend type.
@@ -46,60 +48,68 @@ yet supported, please let us know and we'll get to it as soon as possible!
     <script type="text/javascript" src="../_static/pivot/pivot.min.js"></script>
     <script type="text/javascript" src="../_static/pivot/jquery_pivot.js"></script>
 
-    <script type="text/javascript" src="dbtypes.js"></script>
-    
     <script type="text/javascript">
-    function setupPivot(input){
-      input.callbacks = {afterUpdateResults: function(){
-        $('#results > table').dataTable({
-          "sDom": "<'row'<'span6'l><'span6'f>>t<'row'<'span6'i><'span6'p>>",
-          "iDisplayLength": -1,
-          "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
-          "sPaginationType": "bootstrap",
-          "oLanguage": {
-            "sLengthMenu": "_MENU_ records per page"
-          }
-        });
-      }};
-      $('#pivot-display').pivot_display('setup', input);
-    };
+    var dbdata = []
+    $.getJSON("/arche/dbtypes.json", function(json) {
+        dbdata = json;
+    
+        function setupPivot(input){
+          input.callbacks = {afterUpdateResults: function(){
+            $('#results > table').dataTable({
+              "sDom": "<'row'<'span6'l><'span6'f>>t<'row'<'span6'i><'span6'p>>",
+              "iDisplayLength": -1,
+              "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+              "sPaginationType": "bootstrap",
+              "oLanguage": {
+                "sLengthMenu": "_MENU_ records per page"
+              }
+            });
+          }};
+          $('#pivot-display').pivot_display('setup', input);
+        };
 
-    $(document).ready(function() {
-        fields =[{name: "C++ type",   type: 'string',  filterable: true,
-                  displayFunction: function(value){
-                    return '<div style="font-family:Courier,monospace;">' + 
-                           value + '</div>';}},
-                 {name: 'shape rank', type: 'integer', filterable: true},
-                 {name: 'backend',    type: 'string',  filterable: true, 
-                  columnLabelable: true},
-                 {name: 'version',    type: 'string',  filterable: true, 
-                  columnLabelable: true},
-                 {name: 'supported',  type: 'integer', filterable: true,
-                  rowLabelable: true, summarizable: 'sum',
-                  displayFunction: function(value){
-                    if (value)
-                      return '<div style="text-align:center;' +
-                             'background-color:#c8e8b0">Yes</div>';
-                    else
-                      return '<div style="text-align:center;' + 
-                             'background-color:#fcf1df">No</div>';
-                    }
-                  }
-                 ];
+        $(document).ready(function() {
+            fields =[{name: 'id',         type: 'integer', filterable: true},
+                     {name: 'name',       type: 'string',  filterable: true,
+                      displayFunction: function(value){
+                        return '<div style="font-family:Courier,monospace;">' + 
+                               value + '</div>';}},
+                     {name: "C++ type",   type: 'string',  filterable: true,
+                      displayFunction: function(value){
+                        return '<div style="font-family:Courier,monospace;">' + 
+                               value + '</div>';}},
+                     {name: 'shape rank', type: 'integer', filterable: true},
+                     {name: 'backend',    type: 'string',  filterable: true, 
+                      columnLabelable: true},
+                     {name: 'version',    type: 'string',  filterable: true, 
+                      columnLabelable: true},
+                     {name: 'supported',  type: 'integer', filterable: true,
+                      rowLabelable: true, summarizable: 'sum',
+                      displayFunction: function(value){
+                        if (value)
+                          return '<div style="text-align:center;' +
+                                 'background-color:#c8e8b0">Yes</div>';
+                        else
+                          return '<div style="text-align:center;' + 
+                                 'background-color:#fcf1df">No</div>';
+                        }
+                      }
+                     ];
 
-        setupPivot({json: dbdata, fields: fields,
-                    filters: {version: "v1.2"}, 
-                    rowLabels: ["C++ type", "shape rank"], 
-                    columnLabels: ["backend"],
-                    summaries: ["supported_sum"]});
+            setupPivot({json: dbdata, fields: fields,
+                        filters: {version: "v1.2"}, 
+                        rowLabels: ["C++ type"], 
+                        columnLabels: ["backend"],
+                        summaries: ["supported_sum"]});
 
-        // prevent dropdown from closing after selection
-        $('.stop-propagation').click(function(event){
-          event.stopPropagation();
+            // prevent dropdown from closing after selection
+            $('.stop-propagation').click(function(event){
+              event.stopPropagation();
+            });
         });
     });
-    </script>
 
+    </script>
     <div class="subnav" style="position:static;">
       <ul class="nav nav-pills">
         <li class="dropdown">

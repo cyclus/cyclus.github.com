@@ -50,7 +50,12 @@ branch, you may always run::
 Or if you have docker, you can forget about the other dependencies and just
 run::
 
-    make html-docker
+    make docker-html
+
+
+There are docker targets in the makefile for doing everything related to the
+site - building, previewing, and publishing.  See the ``Docker`` section below
+for more details.
 
 Best practice workflow for contributing to site changes
 --------------------------------------------------------
@@ -137,7 +142,38 @@ Best practice for managing a pull request
 
    ``make gh-publish``
 
+Docker
+-------
+
+The ``make docker-...`` targets require the cyclus/fuelcycle.org-deps docker image
+which can be retrieved/updated by running::
+
+    docker pull cyclus/fuelcycle.org-deps
+
+Occasionally (i.e. for a Cyclus release) the image will need to be updated.
+This can be done by::
+
+    cd docker/fuelcycle.org-deps
+
+    # update the image the fuelcycle.org image depends on
+    docker pull cyclus/cymetric   
+
+    # rebuild the image
+    docker build -t cyclus/fuelcycle.org-deps . 
+
+    # push the new image to docker-hub
+    docker push cyclus/fuelcycle.org-deps
+
 .. _Sphinx: http://sphinx-doc.org/
 .. _sphinxcontrib-bibtex: http://sphinxcontrib-bibtex.readthedocs.org/en/latest/index.html
 .. _sphinxcontrib-blockdiag: http://blockdiag.com/en/blockdiag/sphinxcontrib.html
 .. _cyclus: https://fuelcycle.org/
+
+Remote Execution
+=================
+
+The website has functionality for allowing visitors to submit and run Cyclus
+simulations in the cloud.  Files and instructions for deploying/updating the
+remote execution back-end functionality are in the ``misc/fuelcycle.org``
+directory of the http://github.com/rwcarlsen/cloudlus repository.
+
