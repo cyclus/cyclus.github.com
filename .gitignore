@@ -6,3 +6,6 @@ build
 gh-build
 source/arche/dbtypes.js
 */CYCLUS_INSTALL.rst
+*/CYCLUS_DEPENDENCIES.rst
+source/user/CYCLUS_DEPENDENCIES.rst
+source/user/CYCLUS_INSTALL.rst

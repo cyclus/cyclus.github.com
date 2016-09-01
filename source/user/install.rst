@@ -30,13 +30,13 @@ will identify the best approach for you.
 
   - *Requires few computational skills* 
   
-  - Recommended for: 
+  - **Recommended** for: 
  
-    - users wanting a graphical interface to build or analyze simulations
+    - users wanting **a graphical interface** to build or analyze simulations
       
-    - users not wanting to run simulations directly on their machine
+    - users not wanting to **run simulations on the cloud**,
       
-    - quick introduction to the capabilities of |Cyclus|
+    - **quick introduction** to the |Cyclus| capabilities.
 
 
 
@@ -44,7 +44,7 @@ will identify the best approach for you.
 
   - *Requires familiarity with Linux*
   
-  - Recommended for users wanting to run simulations locally (without internet)
+  - **Recommended** for users wanting to **run locally their simulations**  (without internet)
 
 
 
@@ -52,7 +52,7 @@ will identify the best approach for you.
   
   - *Requires familiarity with Linux*
   
-  - Recommended for Windows users
+  - **Recommended for Windows users.**
 
 
 
@@ -60,7 +60,7 @@ will identify the best approach for you.
   
   - *Requires programming skills/familiarity with compiling code* 
   
-  - Recommended for users wanting to modify existing archetypes (aka developers)
+  - **Recommended** for users wanting to **modify existing archetypes** (aka developers)
 
 
 
@@ -68,7 +68,7 @@ will identify the best approach for you.
   
   - *Requires programming skills/familiarity with compiling code, basic understanding of Git/GitHub*
   
-  - For developers or users who require the bleeding edge version of |Cyclus|.
+  - **Recommended** for developers or users who **require the bleeding edge version** of |Cyclus|. 
 
 
 
