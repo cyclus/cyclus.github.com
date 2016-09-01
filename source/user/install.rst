@@ -46,15 +46,12 @@ Basic installation instructions for Conda can be found
 
           $ conda install --yes cyclus cycamore
 
-      Note that installing cycamore will also install cyclus since cyclus is one
-      of cycamore's dependencies.
-
 And that is it!
 
 Already Have Conda?
 -------------------
 If you already have conda installed, installing |Cyclus| is even easier.
-You simply need to make sure that the |Cyclus| binstar organization is part of
+You simply need to make sure that conda-forge is part of
 your channels.  Please edit the ``channels`` section of your :file:`~/.condarc`
 to include the ``conda-forge`` channel.  For example,
 
@@ -68,9 +65,6 @@ Once this is done, install |Cyclus| with the following comand.
 
 .. code-block:: bash
 
-    $ conda install cycamore --yes
-
-Note that installing cycamore will also install cyclus since cyclus is one
-of cycamore's dependencies.
+    $ conda install --yes cyclus cycamore
 
 Happy simulating!
