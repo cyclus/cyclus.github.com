@@ -59,14 +59,14 @@ in a library file with a name such as `libsimpleSource.so`, in the standard
 
     {
     "archetypes": {
-      "spec": {
+      "spec": [ { 
         "path": "my/custom/path",
         "lib": "myAgentCollection",
         "alias": "ReactorAgent" },
-      "spec": {"name": "simpleSource" },
-      "spec": {"name": "simpleRegion" },
-      "spec": {"name": "simpleInst" }
-    }
+       {"name": "simpleSource" },
+       {"name": "simpleRegion" },
+       {"name": "simpleInst" }
+      ]
     }
 
 
