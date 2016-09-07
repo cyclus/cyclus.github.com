@@ -1,12 +1,11 @@
-Installing Cycamore from the source
-------------------------------------
+Installing Cycamore from Source
+-------------------------------
 
-This installation guide assumes that you have all the Cycamore dependencies
-already installaed (including |Cyclus|). If not please verfy, that you have
-properly install all `Cycamore dependencies <Dependencies>`_.
+This installation guide assumes that you have all the
+`Cycamore dependencies <Dependencies>`_ already installed (including |Cyclus|).
 
 
-Default installation
+Default Installation
 ..........................
 
 Run the install script:
@@ -16,16 +15,16 @@ Run the install script:
   python install.py
 
 
-If you successfully followed the instruction above cyclus binary have been
-generated and be placed in the  ``.local/`` in your home directory. 
-You need to had ``~/.local/bin`` to the bottom of your ``$PATH``:
+If you successfully followed the instructions above, the Cycamore binary has
+been generated and placed in the  ``.local/`` directory.
+You need to add ``~/.local/bin`` to the bottom of your ``$PATH``:
 
 .. code-block:: bash
   
   echo 'export PATH="$HOME/.local/bin:$PATH' >> .bashrc
 
-Custom Cyclus installation
-..........................
+Custom Cycamore Installation
+.............................
 
 The installation using the install script can be customized using the following
 flag:
@@ -39,7 +38,7 @@ flag:
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``--clean-build``                         | attempt to remove the build directory before building                                            |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``-j THREADS, --threads``                 | THREADS the number of threads to use in the make step                                            |
+|  ``-j THREADS``                            | THREADS the number of threads to use in the make step                                            |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
 |  ``--test``                                | run tests after  building                                                                        |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -66,7 +65,7 @@ flag:
 
 
 For example, if you have installed coin-Cbc from source or otherwise have it
-installed in a non-standard location, you should make use of the coinRoot
+installed in a non-standard location, you should make use of the coin_root
 installation flag. The otherwise identical process would look like:
 
 .. code-block:: bash

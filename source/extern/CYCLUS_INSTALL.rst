@@ -2,7 +2,7 @@
 Cyclus Installation Guide
 ###########
 
-Cyclus uses the CMake cross platform bailed-generator as a build system. TO
+Cyclus uses the CMake cross platform bailed-generator as a build system. To
 simplify the usage of cmake to build Cyclus from source, a python script is
 provided with the source.
 
@@ -12,9 +12,7 @@ provided with the source.
 Dependencies
 ******************************
 
-In order to facilitate future compatibility with multiple platforms,
-Cyclus is built using `CMake`_. A full list of the Cyclus package
-dependencies is shown below:
+A full list of the Cyclus package dependencies is shown below:
 
 ====================   ==================
 Package                Minimum Version
@@ -64,39 +62,55 @@ Custom Cyclus installation
 The installation using the install script can be customized using the following
 flag:
 
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``-h, --help``                            | show the help message and exit                                                                   |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--build_dir BUILD_DIR``                 | where to place the build directory                                                               |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--uninstall``                           | uninstall                                                                                        |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--no-update``                           | do not update the hash in version.cc                                                             |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--clean-build``                         | attempt to remove the build directory before building                                            |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``-j THREADS, --threads``                 | THREADS the number of threads to use in the make step                                            |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--prefix PREFIX``                       | the relative path to the installation directory                                                  |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--config-only``                         | only configure the package, do not build or install                                              |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--build-only``                          | only build the package, do not install                                                           |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--test``                                | run tests after  building                                                                        |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--coin_root COIN_ROOT``                 | the relative path to the Coin-OR libraries directory                                             |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--boost_root BOOST_ROOT``               | the relative path to the Boost libraries directory                                               |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--hdf5_root HDF5_ROOT``                 | the path to the HDF5 libraries directory                                                         |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--cmake_prefix_path CMAKE_PREFIX_PATH`` | the cmake prefix path for use with FIND_PACKAGE, FIND_PATH, FIND_PROGRAM, or FIND_LIBRARY macros |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``--build_type BUILD_TYPE``               | change the CMAKE_BUILD_TYPE                                                                      |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
-|  ``-D VAR``                                |  Set environment variable(s).                                                                    |
-+--------------------------------------------+--------------------------------------------------------------------------------------------------+
+.. list-table::
+
+  * - ``-h, --help``                              
+    - show the help message and exit                                                                   
+
+  * - ``--build_dir BUILD_DIR``                   
+    - where to place the build directory                                                               
+
+  * - ``--uninstall``                             
+    - uninstall                                                                                        
+
+  * - ``--no-update``                             
+    - do not update the hash in version.cc                                                             
+
+  * - ``--clean-build``                           
+    - attempt to remove the build directory before building                                            
+
+  * - ``-j THREADS, --threads``                   
+    - THREADS the number of threads to use in the make step                                            
+
+  * - ``--prefix PREFIX``                         
+    - the relative path to the installation directory                                                  
+
+  * - ``--config-only``                           
+    - only configure the package, do not build or install                                              
+
+  * - ``--build-only``                            
+    - only build the package, do not install                                                           
+
+  * - ``--test``                                  
+    - run tests after  building                                                                        
+
+  * - ``--coin_root COIN_ROOT``                   
+    - the relative path to the Coin-OR libraries directory                                             
+
+  * - ``--boost_root BOOST_ROOT``                 
+    - the relative path to the Boost libraries directory                                               
+
+  * - ``--hdf5_root HDF5_ROOT``                   
+    - the path to the HDF5 libraries directory                                                         
+
+  * - ``--cmake_prefix_path CMAKE_PREFIX_PATH``   
+    - the cmake prefix path for use with FIND_PACKAGE, FIND_PATH, FIND_PROGRAM, or FIND_LIBRARY macros 
+
+  * - ``--build_type BUILD_TYPE``                 
+    - change the CMAKE_BUILD_TYPE                                                                      
+
+  * - ``-D VAR``                                  
+    - set environment variable(s).                                                                    
 
 
 For example, if you have installed coin-Cbc from source or otherwise have it
@@ -127,12 +141,25 @@ As usual you can custom you cmake installation using the proper cmake flag.
 All cmake variable can be listed using: ``cmake -LAH``.
 The main variable used are:
 
-#. ``COIN_ROOT_DIR`` set Coin-OT library directory 
-#. ``BOOST_ROOT``    set Boost liraries directory
-#. ``HDF5_ROOT``     set HDF5 root directory
-#. ``HDF5_LIBRARIES`` set HDF5 libraries path
-#. ``HDF5_LIBRARY_DIRS`` set HDF5 library directory
-#. ``HDF5_INCLUDE_DIRS`` set HDF5 include directory
+.. list-table::
+
+  * - ``COIN_ROOT_DIR`` 
+    - set Coin-OT library directory 
+
+  * - ``BOOST_ROOT``    
+    - set Boost liraries directory
+
+  * - ``HDF5_ROOT``     
+    - set HDF5 root directory
+
+  * - ``HDF5_LIBRARIES`` 
+    - set HDF5 libraries path
+
+  * - ``HDF5_LIBRARY_DIRS`` 
+    - set HDF5 library directory
+
+  * - ``HDF5_INCLUDE_DIRS`` 
+    - set HDF5 include directory
 
 All variable can be set using ``-DMY_VARIABLE=MY_VARIABLES_VALUE``.
 
@@ -150,19 +177,6 @@ proper functioning of Cyclus. You can run the tests yourself via:
 
     $ cyclus_unit_tests
 
-******************************
-Running Cyclus
-******************************
-
-You can find instructions for writing an input file for cyclus from `Cyclus User
-Guide`_ or use sample input files from `Cycamore Repo`_. Assuming you have some
-file `input.xml`, you can run Cyclus via:
-
-.. code-block:: bash
-
-    $ cyclus path/to/input.xml
-
-For a more detailed explanation, checkout the user guide.
 
 .. _`Cyclus Homepage`: http://fuelcycle.org/
 .. _`Cyclus User Guide`: http://fuelcycle.org/user/index.html

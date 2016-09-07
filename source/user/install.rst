@@ -14,7 +14,7 @@ Basic installation instructions for Conda can be found
 
 To model fuel cycles, you will need to install two things: first the main
 codebase (called :doc:`Cyclus <../basics/index>`), and then a set of fuel-cycle
-specific archetypes (called :doc:`Cycamore <index>`).  
+specific archetypes (called :doc:`Cycamore <cycamoreagents>`).  
 
 1. Install |Cyclus| and Cycamore
 ---------------------------------
@@ -23,53 +23,52 @@ The following methods of installation are listed in order of increasing
 sophistication. Choose the option that best fits your needs, if you feel like
 none correspond to your needs please feel free to contact us using the `Cyclus
 User mailing list <https://groups.google.com/forum/#!forum/cyclus-users>`_, we
-will try our best to find the best solution corresponding to your needs.
+will identify the best approach for you.
 
 * :doc:`Cyclist and the Cloud <tutorial/install_launch_cyclist>`: (After
   installation, skip to Step 4 "`Try a Tutorial!`_" ) 
 
-  - *Require few technical skills*, 
+  - *Requires few computational skills* 
   
   - Recommended for: 
  
-    - users wanting a graphical interface to build or analyze simulations, 
+    - users wanting a graphical interface to build or analyze simulations
       
-    - users not wanting to run simulations directly on their machine,
+    - users not wanting to run simulations directly on their machine
       
-    - quick the |Cyclus| capabilities discovery. 
+    - quick introduction to the capabilities of |Cyclus|
 
 
 
 * :doc:`Binary installation on Linux (via Debian package or Conda) <install_binary>`:
 
-  - *Requires familiarity with Linux.*
+  - *Requires familiarity with Linux*
   
-  - Recommended for users wanting to run simulations locally (without internet). 
+  - Recommended for users wanting to run simulations locally (without internet)
 
 
 
 * :doc:`Virtualbox <virtualbox>`:
   
-  - *Requires familiarity with Linux.*
+  - *Requires familiarity with Linux*
   
-  - Recommended for Windows users.
+  - Recommended for Windows users
 
 
 
 * :doc:`Install Stable From Source (via Tarball) <install_from_tarball>`:
   
-  - *Requires programation/compilation skills.*
+  - *Requires programming skills/familiarity with compiling code* 
   
-  - Recommended for users wants to modify existing archetypes (aka developers).
+  - Recommended for users wanting to modify existing archetypes (aka developers)
 
 
 
-* :doc:`Install Develop from Source <install_from_git>`: (via
-  Repository) 
+* :doc:`Install Develop from Source (via Repository) <install_from_git>`:  
   
-  - *Requires programation/compilation skills, basic understanding of Git/GitHub.*
+  - *Requires programming skills/familiarity with compiling code, basic understanding of Git/GitHub*
   
-  - For developers or users who require the bleeding edge version of |Cyclus|. 
+  - For developers or users who require the bleeding edge version of |Cyclus|.
 
 
 
