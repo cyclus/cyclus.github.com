@@ -62,7 +62,9 @@ Get the Source Code from the Git Repo
 Compiling Cycamore
 ==================
 
-.. include:: install_cycamore_from_source.rst
+.. include:: CYCAMORE_INSTALL.rst
+   :start-line: 36
+   :end-line: 166
 
 
 

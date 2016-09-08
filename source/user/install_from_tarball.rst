@@ -61,7 +61,9 @@ Download the most recent stable version of Cycamore source (either .zip or .gz):
 Compiling Cycamore
 ==================
 
-.. include:: install_cycamore_from_source.rst
+.. include:: CYCAMORE_INSTALL.rst
+   :start-line: 36
+   :end-line: 166
 
 
 
