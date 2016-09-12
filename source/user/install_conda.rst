@@ -10,25 +10,22 @@ to install conda.
 
 1. Download and Install Miniconda
 
-    * Go to the `miniconda downloads page <http://conda.pydata.org/miniconda.html>`_
+* Go to the `miniconda downloads page <http://conda.pydata.org/miniconda.html>`_
       and get the version approriate to your system.
-    * Install this to the ``~/miniconda`` directory.  For example, you would 
+    * Install this to the ``~/miniconda`` directory.  For example, you would
       use a command similar the following:
 
-      .. code-block:: bash 
+      .. code-block:: bash
 
-          $ bash Miniconda-3.5.2-Linux-x86_64.sh -b -p ~/miniconda
+          $ bash Miniconda-Latest-Linux-x86_64.sh -b -p ~/miniconda
 
-    * Finally, add the ``~/miniconda/bin`` directory to your ``PATH`` either 
+    * Finally, add the ``~/miniconda/bin`` directory to your ``PATH`` either
       in your current environment or in your ``.bashrc`` or both.
 
-      .. code-block:: bash 
-
-          $ export PATH="${HOME}/miniconda/bin:${PATH}"
 
 2. Configure conda to look for |cyclus|
 
-    * Download this :download:`condarc` file and save it as ``~/.condarc``.  If 
+    * Download this :download:`condarc` file and save it as ``~/.condarc``.  If
       you'd prefer to do this from the command line, type:
 
       .. code-block:: bash 

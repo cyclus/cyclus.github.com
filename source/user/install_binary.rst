@@ -25,31 +25,27 @@ version 14.04 and 16.04 (though they may also work on other Linux systems).
 Conda
 *********************
 
-1.  a.  If you don't have Conda, follow the
-    :doc:`basic Conda installation instructions <install_conda>` to prepare it
-	 for cyclus, then skip to step 2.
+1.  a.  If you don't have Conda, follow the :doc:`basic Conda installation
+        instructions <install_conda>` to prepare it for cyclus, then skip to step 2.
 
-    b.  You have Conda already installed on your system, make sure that the
-        |Cyclus| binstar organization is part of your channels.  Edit the
-        ``channels`` section of your :file:`~/.condarc` to include the URL
-        ``https://conda.binstar.org/cyclus``.  For example, 
+    b.  If you already have conda installed, installing |Cyclus| is even easier.
+        You simply need to make sure that conda-forge is part of your channels.
+        Please edit the ``channels`` section of your :file:`~/.condarc` to include
+        the ``conda-forge`` channel.  For example,
 
         .. code-block:: yaml
 
-           channels:
-             - https://conda.binstar.org/cyclus 
-             - defaults
+            channels:
+              - conda-forge
+              - defaults
+      
+2.  Once this is done, install |Cyclus| with the following comand.
 
-2.  Install |Cyclus| and Cycamore: now that Conda is installed and ready,
-    installing |Cyclus| is as simple as:
-  
-    .. code-block:: bash 
-  
-       $ conda install cycamore --yes
+    .. code-block:: bash
 
-    Note that installing Cycamore will also install |Cyclus| since |Cyclus|
-    is one of Cycamore's dependencies.
+       $ conda install --yes cyclus cycamore
 
+       
 #.  .. include:: unit_test.rst
 
 
