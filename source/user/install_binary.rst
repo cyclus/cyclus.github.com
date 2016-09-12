@@ -39,7 +39,7 @@ Conda
               - conda-forge
               - defaults
       
-2.  Once this is done, install |Cyclus| with the following comand.
+2.  Once this is done, install |Cyclus|  and Cycamore with the following comand.
 
     .. code-block:: bash
 
