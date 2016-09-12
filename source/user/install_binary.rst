@@ -1,6 +1,6 @@
-###########
+#################################
 Installing |Cyclus| with Binaries
-###########
+#################################
 
 |Cyclus| supports two binary installations:
 
@@ -50,12 +50,6 @@ Conda
     Note that installing Cycamore will also install |Cyclus| since |Cyclus|
     is one of Cycamore's dependencies.
 
-3.  Furthermore, you may also optionally install Cyclist, the graphical user
-    interface tool for |Cyclus| databases. This can be done with the following:
-      
-    .. code-block:: bash 
-  
-        $ conda install cyclist --yes
 #.  .. include:: unit_test.rst
 
 

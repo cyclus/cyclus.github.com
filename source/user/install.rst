@@ -90,7 +90,7 @@ will identify the best approach for you.
    $ cyclus ~/path/to/cycamore/input/recycle.xml
 
 4. _`Try a Tutorial!`
-------------------
+---------------------
 To become familiar with the capabilities of |Cyclus|, read the :doc:`User's Guide<index>` and possibly the :doc:`Archetype Developer's Guide <../arche/index>`, or  work your way through the tutorials.
 
 * :doc:`Cyclus User Tutorial <tutorial/index>`
