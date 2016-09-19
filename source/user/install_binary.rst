@@ -61,7 +61,7 @@ installation procedure also assumes that you have root access to you computer.
 #. Install |Cyclus| dependencies:
   .. code-block:: bash 
 
-        $ sudo apt-get install libtcmalloc-minimal4 libboost-filesystem-dev libboost-program-options-dev libboost-serialization-dev libhdf5-dev libxml++2.6-dev coinor-libcbc-dev
+    $ sudo apt-get install libtcmalloc-minimal4 libboost-filesystem-dev libboost-program-options-dev libboost-serialization-dev libhdf5-dev libxml++2.6-dev coinor-libcbc-dev
   
   WARNING: This dependency list is ONLY correct for the debian binary
   installation, additional dependencies are required for to install from source.
@@ -76,9 +76,9 @@ installation procedure also assumes that you have root access to you computer.
 
 #.  Install the package by running:
 
-     .. code-block:: bash 
+    .. code-block:: bash 
 
-        $ sudo dpkg -i CYCLUS_DEB_PACKAGE_MANE.deb
+      $ sudo dpkg -i CYCLUS_DEB_PACKAGE_MANE.deb
 
     where the actual filename is inserted in place of 'CYCLUS_DEB_PACKAGE_MANE.deb'.
 
@@ -93,7 +93,7 @@ installation procedure also assumes that you have root access to you computer.
   
     where the actual filename is inserted in place of 'CYCAMORE_DEB_PACKAGE_MANE.deb'.
 
-#.  .. include::  unit_test.rst
+.. include::  unit_test.rst
   
   
   

@@ -4,8 +4,8 @@ To ensure the proper installation of |Cyclus| and Cycamore, you can run the
 
   .. code-block:: bash 
 
-     $ cyclus_unit_tests
-     $ cycamore_unit_tests
+    $ cyclus_unit_tests
+    $ cycamore_unit_tests
 
  
 
