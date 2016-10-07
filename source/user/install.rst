@@ -1,16 +1,5 @@
 Getting Started with |Cyclus| 
 ==============================
-Conda is a cross platform, user space package manager aimed at simplifying the
-installation of open source software.  The |cyclus| project uses conda to distribute
-pre-built cyclus and cycamore binaries.
-
-Fresh Install
--------------
-If you are new to conda or do not have conda already installed on your system,
-please follow these steps to install |cyclus|.
-Basic installation instructions for Conda can be found
-`here <http://docs.continuum.io/anaconda/install.html>`_.
-|Cyclus| can be run on Linux or Mac OSX. It cannot be run on Windows except by using Linux in a Virtualbox.
 
 To model fuel cycles, you will need to install two things: first the main
 codebase (called :doc:`Cyclus <../basics/index>`), and then a set of fuel-cycle
@@ -34,7 +23,7 @@ will identify the best approach for you.
  
     - users wanting **a graphical interface** to build or analyze simulations
       
-    - users not wanting to **run simulations on the cloud**,
+    - users wanting to **run simulations in the cloud**,
       
     - **quick introduction** to the |Cyclus| capabilities.
 
@@ -44,7 +33,7 @@ will identify the best approach for you.
 
   - *Requires familiarity with Linux*
   
-  - **Recommended** for users wanting to **run locally their simulations**  (without internet)
+  - **Recommended** for users wanting to **run simulations locally**  (without internet)
 
 
 
@@ -52,7 +41,7 @@ will identify the best approach for you.
   
   - *Requires familiarity with Linux*
   
-  - **Recommended for Windows users.**
+  - **Required for Windows users**
 
 
 
@@ -76,14 +65,16 @@ will identify the best approach for you.
 2. Run Unit Tests
 -----------------
 
-(Cyclist users skip this step). 
+(Cyclist users skip this step)
 
 .. include:: unit_test.rst
 
 3. Run Cyclus with a Sample XML File
 ------------------------------------
 
-(Cyclist users skip this step). Try running |Cyclus| for yourself. The result will be a :doc:`database <dbdoc>` named cyclus.sqlite.  Load the sqlite file into Cyclist to visualize data, or use your favorite sqlite browser to peruse.
+(Cyclist users skip this step)
+
+Try running |Cyclus| for yourself. The result will be a :doc:`database <dbdoc>` named cyclus.sqlite.  Use the drop down menu to load the sqlite file into Cyclist for data visualization, or use your favorite sqlite browser to peruse.
 
 .. code-block:: bash
 

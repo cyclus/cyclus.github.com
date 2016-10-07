@@ -1,5 +1,5 @@
 To ensure the proper installation of |Cyclus| and Cycamore, you can run the
-|Cyclus| and cycamore unit tests, they should report that **all tests** have
+|Cyclus| and Cycamore unit tests, they should report that **all tests** have
 **passed** (or been disabled):
 
   .. code-block:: bash 
