@@ -17,49 +17,34 @@ will identify the best approach for you.
 * :doc:`Cyclist and the Cloud <tutorial/install_launch_cyclist>`: (After
   installation, skip to Step 4 "`Try a Tutorial!`_" ) 
 
-  - *Requires few computational skills* 
-  
+  - *Requires few computational skills*  
   - **Recommended** for: 
- 
+
     - users wanting **a graphical interface** to build or analyze simulations
-      
     - users wanting to **run simulations in the cloud**,
-      
     - **quick introduction** to the |Cyclus| capabilities.
-
-
 
 * :doc:`Binary installation on Linux (via Debian package or Conda) <install_binary>`:
 
   - *Requires familiarity with Linux*
-  
   - **Recommended** for users wanting to **run simulations locally**  (without internet)
-
-
 
 * :doc:`Virtualbox <virtualbox>`:
   
   - *Requires familiarity with Linux*
-  
   - **Required for Windows users**
-
 
 
 * :doc:`Install Stable From Source (via Tarball) <install_from_tarball>`:
   
   - *Requires programming skills/familiarity with compiling code* 
-  
-  - **Recommended** for users wanting to **modify existing archetypes** (aka developers)
-
-
+  - **Recommended** for users wanting to **modify existing archetypes** or **write new archetypes** (aka developers)
 
 * :doc:`Install Develop from Source (via Repository) <install_from_git>`:  
   
   - *Requires programming skills/familiarity with compiling code, basic understanding of Git/GitHub*
-  
   - **Recommended** for developers or users who **require the bleeding edge version** of |Cyclus|. 
-
-
+  - **Required** for developers who wish to **contribute to kernel development** of |Cyclus|.
 
 
 2. Run Unit Tests
