@@ -39,9 +39,9 @@ Get the Source Code from the Git Repo
 Compiling Cyclus
 ================
 
-.. include:: CYCLUS_INSTALL.rst
-   :start-line: 36
-   :end-line: 138
+.. include:: test_INSTALL.rst
+   :start-after: .. include_start
+   :end-before: .. include_end
 
 
 
