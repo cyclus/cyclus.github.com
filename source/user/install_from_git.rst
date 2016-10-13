@@ -15,8 +15,8 @@ Dependencies
 --------------
 
 .. include:: CYCLUS_DEPENDENCIES.rst
-   :start-line: 19
-   :end-line: 34
+   :start-after: .. include_start
+   :end-before: .. include_end
 
 Instruction to install those dependencies on the major platform can be found
 :doc:`here <CYCLUS_DEPENDENCIES>`.
@@ -39,7 +39,7 @@ Get the Source Code from the Git Repo
 Compiling Cyclus
 ================
 
-.. include:: test_INSTALL.rst
+.. include:: CYCLUS_INSTALL.rst
    :start-after: .. include_start
    :end-before: .. include_end
 
@@ -63,8 +63,8 @@ Compiling Cycamore
 ==================
 
 .. include:: CYCAMORE_INSTALL.rst
-   :start-line: 36
-   :end-line: 166
+   :start-after: .. include_start
+   :end-before: .. include_end
 
 
 
