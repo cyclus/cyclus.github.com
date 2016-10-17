@@ -33,7 +33,7 @@ Project repository is located at http://github.com/cyclus/cyclus
 
 Quick Start
 -----------
-:doc:`Install Cyclus <user/install>`
+:doc:`Get started with Cyclus <user/install>`
 
 News
 -----
