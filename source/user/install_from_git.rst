@@ -19,7 +19,7 @@ Dependencies
    :end-before: .. website_include_end
 
 Instruction to install those dependencies on the major platform can be found
-:doc:`here <CYCLUS_DEPENDENCIES>`.
+:doc:`here <DEPENDENCIES>`.
 
 
 
