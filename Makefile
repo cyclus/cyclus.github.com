@@ -57,7 +57,7 @@ gh-clean gh-revert clean:
 
 gh-preview html:
 	wget -N https://raw.githubusercontent.com/cyclus/cyclus/v1.4.0-release/INSTALL.rst -O source/user/CYCLUS_INSTALL.rst
-	wget -N https://raw.githubusercontent.com/cyclus/cyclus/v1.4.0-release/DEPENDENCIES.rst -O source/user/CYCLUS_DEPENDENCIES.rst
+	wget -N https://raw.githubusercontent.com/cyclus/cyclus/v1.4.0-release/DEPENDENCIES.rst -O source/user/DEPENDENCIES.rst
 	sed -i 's/\`here\ \<DEPENDENCIES\.rst\>`\_/:doc:\`here\ \<CYCLUS_DEPENDENCIES\>\`/g' source/user/CYCLUS_INSTALL.rst
 	
 	wget -N https://raw.githubusercontent.com/cyclus/cycamore/v1.4.0-release/INSTALL.rst -O source/user/CYCAMORE_INSTALL.rst

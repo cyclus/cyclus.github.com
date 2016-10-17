@@ -14,7 +14,7 @@ nuclear fuel cycle facilities such the reactor, fuel fabrication facility, stora
 Dependencies
 --------------
 
-.. include:: CYCLUS_DEPENDENCIES.rst
+.. include:: DEPENDENCIES.rst
    :start-after: .. website_include_start
    :end-before: .. website_include_end
 

@@ -14,7 +14,7 @@ Installing Cyclus is a two steps process. First one need to get and compile the
 Dependencies
 --------------
 
-.. include:: CYCLUS_DEPENDENCIES.rst
+.. include:: DEPENDENCIES.rst
    :start-after: .. website_include_start
    :end-before: .. website_include_end
 
