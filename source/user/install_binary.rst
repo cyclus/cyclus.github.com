@@ -61,9 +61,9 @@ installation procedure also assumes that you have root access to you computer.
 
 #. Download the |Cyclus| Debian installation package corresponding to your
    Ubuntu version (`14.04
-   <http://dory.fuelcycle.org:4848/ubuntu.14.04/cyclus_1.4.0.deb>`_ or
+   <http://dory.fuelcycle.org:4848/ubuntu/14.04/cyclus_1.4.0.deb>`_ or
    `16.04
-   <http://dory.fuelcycle.org:4848/ubuntu.16.04/cyclus_1.4.0.deb>`_).
+   <http://dory.fuelcycle.org:4848/ubuntu/16.04/cyclus_1.4.0.deb>`_).
 
 #. Install the package by running:
 
@@ -73,9 +73,9 @@ installation procedure also assumes that you have root access to you computer.
 
 #. Download the Cycamore Debian installation package corresponding to your
    Ubuntu version (`14.04
-   <http://dory.fuelcycle.org:4848/ubunutu.14.04/cycamore_1.4.0.deb>`_ or
+   <http://dory.fuelcycle.org:4848/ubuntu/14.04/cycamore_1.4.0.deb>`_ or
    `16.04
-   <http://dory.fuelcycle.org:4848/ubuntu.16.04/cycamore_1.4.0.deb>`_).
+   <http://dory.fuelcycle.org:4848/ubuntu/16.04/cycamore_1.4.0.deb>`_).
 
 #. Install the package by running:
 
