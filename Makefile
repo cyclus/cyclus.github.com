@@ -56,6 +56,12 @@ gh-clean gh-revert clean:
 	-rm -rf $(BUILDDIR)
 
 gh-preview html:
+	wget -N https://raw.githubusercontent.com/cyclus/cyclus/v1.4.0-release/INSTALL.rst -O source/user/CYCLUS_INSTALL.rst
+	wget -N https://raw.githubusercontent.com/cyclus/cyclus/v1.4.0-release/DEPENDENCIES.rst -O source/user/CYCLUS_DEPENDENCIES.rst
+	sed -i 's/\`here\ \<DEPENDENCIES\.rst\>`\_/:doc:\`here\ \<CYCLUS_DEPENDENCIES\>\`/g' source/user/CYCLUS_INSTALL.rst
+	
+	wget -N https://raw.githubusercontent.com/cyclus/cycamore/v1.4.0-release/INSTALL.rst -O source/user/CYCAMORE_INSTALL.rst
+	
 	PYTHONDONTWRITEBYTECODE="TRUE" $(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)
 	sed -i.bak 's/function top_offset([$$]node){ return [$$]node\[0\].getBoundingClientRect().top; }/function top_offset($$node){ return (typeof $$node[0] === "undefined") ? 0 : $$node[0].getBoundingClientRect().top; }/' ./gh-build/_static/cloud.js
 	sed -i.bak 's/  if (state == "collapsed"){/  if (typeof state === "undefined") {\n	var state = "uncollapsed";\n  };\n  if (state == "collapsed"){/' ./gh-build/_static/cloud.js
