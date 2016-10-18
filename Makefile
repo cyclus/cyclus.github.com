@@ -12,7 +12,8 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = ./gh-build
-FC_BRANCH     = master
+GIT_BRANCH    = master
+GIT_FORK      = cyclus
 
 
 # Internal variables.
@@ -58,11 +59,11 @@ gh-clean gh-revert clean:
 	-rm -rf $(BUILDDIR)
 
 gh-preview html:
-	wget -N https://raw.githubusercontent.com/cyclus/cyclus/${FC_BRANCH}/INSTALL.rst -O source/user/CYCLUS_INSTALL.rst
-	wget -N https://raw.githubusercontent.com/cyclus/cyclus/${FC_BRANCH}/DEPENDENCIES.rst -O source/user/DEPENDENCIES.rst
+	wget -N https://raw.githubusercontent.com/${GIT_FORK}/cyclus/${GIT_BRANCH}/INSTALL.rst -O source/user/CYCLUS_INSTALL.rst
+	wget -N https://raw.githubusercontent.com/${GIT_FORK}/cyclus/${GIT_BRANCH}/DEPENDENCIES.rst -O source/user/DEPENDENCIES.rst
 	sed -i s/\`here\ \<DEPENDENCIES\.rst\>\`\_/:doc:\`here\ \<DEPENDENCIES\>\`/g source/user/CYCLUS_INSTALL.rst
 	
-	wget -N https://raw.githubusercontent.com/cyclus/cycamore/${FC_BRANCH}/INSTALL.rst -O source/user/CYCAMORE_INSTALL.rst
+	wget -N https://raw.githubusercontent.com/${GIT_FORK}/cycamore/${GIT_BRANCH}/INSTALL.rst -O source/user/CYCAMORE_INSTALL.rst
 	
 	PYTHONDONTWRITEBYTECODE="TRUE" $(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)
 	sed -i.bak 's/function top_offset([$$]node){ return [$$]node\[0\].getBoundingClientRect().top; }/function top_offset($$node){ return (typeof $$node[0] === "undefined") ? 0 : $$node[0].getBoundingClientRect().top; }/' ./gh-build/_static/cloud.js
