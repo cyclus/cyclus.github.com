@@ -23,3 +23,15 @@ install Cyclist using the following steps:
 1. Download `this package <http://cnergdata.engr.wisc.edu/cyclus/cyclist/cyclist-1.0.deb>`_.
 2. Find the downloaded file and double-click to start the install.
 3. Once complete search for the Cyclist application and start it.
+
+
+
+**Try a Tutorial!**
+
+To become familiar with the capabilities of |Cyclus|, read the :doc:`User's
+Guide<index>` and possibly the :doc:`Archetype Developer's Guide
+<../arche/index>`, or  work your way through the tutorials.
+
+* :doc:`Cyclus User Tutorial <index>`
+* :doc:`Archetype Developer Tutorial  <../../arche/tutorial/index>`
+
