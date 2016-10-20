@@ -15,10 +15,6 @@
 
 .. raw:: html
 
-    <div style="text-align:center;">
-    <h2><a href="https://github.com/cyclus/cyclus/releases/tag/1.0.0">
-    v1.0.0 has been released!</a></h2><br></div>
-
 |cyclus| is the next-generation agent-based nuclear :doc:`fuel cycle simulator
 <basics/fcs_background>`, providing flexibility to users and developers
 through a :term:`dynamic resource exchange` solver and :term:`plug-in`,
@@ -33,19 +29,30 @@ always welcome and encouraged to use or contribute to the |cyclus| project.
 
 The |Cyclus| project repository is located at http://github.com/cyclus/cyclus.
 
+News
+-----
+
+**August 13, 2015:** :doc:`Cyclus included in FY2016 workscopes for the NEUP program <news/fy16neup>`
+
+**July 21-24, 2015:** Joint workshop with CLASS_ project held in Madison, WI
+
+**June 10, 2015:** First Cyclus :doc:`user tutorial <user/tutorial/index>` and :doc:`developer tutorial <arche/tutorial/index>` are held at the 2015 ANS Annual Meeting in San Antonio, TX 
+
+**June 7, 2015:** :doc:`Cyclus v1.3.1 is released <previous/v1.3>`
+
 Learn More
 ----------
 
 .. toctree::
     :maxdepth: 1
 
-    basics/main
-    user/main
-    module/main
-    kernel/main
+    basics/index
+    user/index
+    arche/index
+    kernel/index
     cep/cep0
-    previous/main
-    cite/main
+    previous/index
+    cite/index
 
 .. _try-it:
 
@@ -65,7 +72,7 @@ this page.  It contains all submitted jobs - their status, output, and database
 * Clicking on the Status link shows the simulation output - useful for
   diagnosing failures.
 
-* For completed jobs, download the database in a tar file by clicking the
+* For completed jobs, download the database in a zip file by clicking the
   Results link. You can check out :doc:`user/dbdoc` for information on working
   with the data.
 
@@ -87,8 +94,9 @@ this page.  It contains all submitted jobs - their status, output, and database
 
         function submitJob() {
             var text = $('#infile-box').val();
-            $.post(server + "/job/submit-infile", text, function(data) {
-                $('#jobid').text(data);
+            $.post(server + "/api/v1/job-infile", text, function(data) {
+                var resp = JSON.parse(data)
+                $('#jobid').text(resp.Id);
                 $('#dashboard').load(server + "/dashboard");
             })
         }
@@ -114,7 +122,7 @@ Contact Us
 
 * `Developers' mailing list and forum <https://groups.google.com/forum/#!forum/cyclus-dev>`_
 
-* Project PI, Paul Wilson: wilsonp AT engr.wisc.edu
+* Project PI, Paul Wilson: paul.wilson AT wisc.edu
 
 * Project Lead, Anthony Scopatz:  scopatz AT gmail.com
 
@@ -123,9 +131,15 @@ Contributors
 
 * Robert Carlsen
 
+* Denia Djokic
+
+* Robert Flanagan
+
 * `Matthew Gidden <http://mattgidden.com/>`_
 
 * `Kathryn (Katy) Huff <http://katyhuff.github.io/>`_
+
+* `Meghan McGarry <http://cnerg.github.io/people/mcgarry.html>`_
 
 * `Arrielle Opotowsky <http://cnerg.github.io/people/opotowsky.html>`_
 
@@ -135,7 +149,9 @@ Contributors
 
 * Zach Welch
 
-* Paul Wilson
+* `Paul Wilson <http://cnerg.github.io/people/pphw.html>`_
+
+* John Xia
 
 Acknowledgments
 ----------------
@@ -159,4 +175,8 @@ Support for this research has included funding received from:
     .. image :: astatic/crest.png
         :height: 100 px
 
+    .. image :: astatic/nnsa.png
+        :height: 100 px
 
+
+.. _CLASS: https://forge.in2p3.fr/projects/classforge

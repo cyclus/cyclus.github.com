@@ -47,6 +47,7 @@ Index
     PA - 3 - Release Procedure - Scopatz <cep3>
     PD - 4 - Attribution of Code Products in the |Cyclus| Ecosystem - Huff <cep4>
     PL - 5 - Archetype Development Best Practices - Gidden <cep5>
+    PD - 6 - Cyclus Pull Request Style Guide - Gidden <cep6>
 
 *Standard CEPs*
 
@@ -59,6 +60,9 @@ Index
     SA - 20 - Time Step Execution Stack - Gidden <cep20>
     SA - 21 - Agent Identification and Discovery - Carlsen <cep21>
     SL - 22 - Logging Methodology and Implementation - Gidden <cep22>
+    SA - 23 - Defining Time Step Length, High Noon for Blue Moon - Scopatz <cep23>
+    SA - 24 - Default Preferences - Gidden <cep24>
+    SA - 25 - Preference Adjustment Process - Gidden <cep25>
 
 Key
 ---

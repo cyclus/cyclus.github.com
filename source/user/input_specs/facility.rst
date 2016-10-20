@@ -17,6 +17,8 @@ Each ``facility`` block has the follwoing sections in any order:
 Example
 +++++++
 
+**XML:**
+
 .. code-block:: xml
 
   <facility>
@@ -38,6 +40,25 @@ Example
     </config>
   </facility>
 
+**JSON:**
+
+.. code-block:: json
+
+    {"facility": {
+      "config": {
+       "Sink": "(... archetype-specific input for a `Sink` archetype)"}, 
+      "name": "LongTermStorage"
+     }
+    }
+ 
+    {"facility": {
+     "config": {
+      "RecipeReactor": "(... archetype-specific input for a `RecipeReactor` archetype)"}, 
+     "lifetime": 720, 
+     "name": "PBMR"
+     }
+    }
+
 
 This example introduces two facility prototypes.  The first has the name
 `LongTermStorage`, and is configured from the :term:`archetype` with the name
@@ -46,6 +67,31 @@ author of the `Sink` archetype.  The second has the name ``PBMR``, has a
 lifetime of 720 time steps (60 years) and is based on the archetype with the
 name (or alias) `RecipeReactor`.  The contents of the ``RecipeReactor``
 section are defined by the author of the `RecipeReactor` archetype.
+
+
+.. code-block:: json
+
+     {
+      "facility": {
+        "name": "LongTermStorage",
+        "config": {
+        "sink": "... archetype-specific input for a `Sink` archetype" }
+        }
+      }
+
+
+     {
+      "facility": {
+        "name": "PBMR",
+        "lifetime": 720,
+        "config": {
+        "RecipeReactor": "... archetype-specific input for a `RecipeReactor` archetype" }
+        }
+      }
+
+
+This is what the example above would look like if written in JSON.
+
 
 .. rst-class:: html-toggle
 

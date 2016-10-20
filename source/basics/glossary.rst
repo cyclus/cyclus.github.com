@@ -26,7 +26,7 @@ Glossary of Cyclus Terms
   dynamic resource exchange
 
     the methodology that governs time step behavior in |cyclus| -- see
-    :doc:`Dynamic Resource Exchange <../module/dre>`
+    :doc:`Dynamic Resource Exchange <../arche/dre>`
 
   plug-in  
 
@@ -146,3 +146,10 @@ Glossary of Cyclus Terms
 
     A particular kind of resource that combines a :term:`composition` and a
     mass to be exchanged
+
+  entity
+
+    The kind of the archetype. Usually this is either region, institution, 
+    or facility. For agents that are not specifically one of these kinds
+    still inherit from the ``Agent`` class the term archetype is used.
+    Otherwise the entity is unknown.

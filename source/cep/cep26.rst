@@ -84,8 +84,8 @@ rejected.
 
 Specification \& Implementation
 ===============================
-To accomplish the methodology proposed will require some changes to the API within 
-the dynamic resource exchance. 
+To accomplish the methodology proposed here will require some changes to the API within 
+the dynamic resource exchance and the cyclus core code. 
 
 1. Bids will need to be able to hold a unit cost. The API will need to support developers 
    accessing and setting this cost. 
@@ -138,4 +138,4 @@ This document is released under the CC-BY 3.0 license.
 References and Footnotes
 ========================
 
-.. .. [1] https://github.com/cyclus/cyclus/pull/1122
+.. .. [1] https://github.com/cyclus/cyclus/pull/1293

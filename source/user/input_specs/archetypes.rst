@@ -54,6 +54,25 @@ defined in :doc:`../find_agents`.  For example, `simpleSource` will be found
 in a library file with a name such as `libsimpleSource.so`, in the standard
 |Cyclus| archetype path.
 
+
+.. code-block:: json
+
+    {
+    "archetypes": {
+      "spec": [ { 
+        "path": "my/custom/path",
+        "lib": "myAgentCollection",
+        "alias": "ReactorAgent" },
+       {"name": "simpleSource" },
+       {"name": "simpleRegion" },
+       {"name": "simpleInst" }
+      ]
+    }
+
+
+This is what the example above would look like if written in JSON.
+
+
 .. rst-class:: html-toggle
 
 Grammar Definition
