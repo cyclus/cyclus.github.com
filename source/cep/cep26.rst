@@ -84,7 +84,7 @@ rejected.
 
 Specification \& Implementation
 ===============================
-To accomplish the memthodology proposed will require some changes to the API within 
+To accomplish the methodology proposed will require some changes to the API within 
 the dynamic resource exchance. 
 
 1. Bids will need to be able to hold a unit cost. The API will need to support developers 
