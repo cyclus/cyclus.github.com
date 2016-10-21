@@ -84,12 +84,51 @@ rejected.
 
 Specification \& Implementation
 ===============================
+To accomplish the methodology proposed here will require some changes to the API within 
+the dynamic resource exchance and the cyclus core code. 
 
+1. Bids will need to be able to hold a unit cost. The API will need to support developers 
+   accessing and setting this cost. 
+2. Update Requests to contain a max-unit-cost instead of a preference. 
+3. The current greedy solver will need to be updated or replaced to accomodate the 
+   change from preference to unit cost. 
+4. Updating all of the existing archetypes within the Cyclus core and Cycamore to 
+   support this change. 
+
+The first change will be to add the ability for bids to hold a unit cost value. The 
+implimentation of this will be simple as it will mirror the implimentation of the 
+preference attribute of requests. Therefore all of the techniques used there can be 
+once again used here. Going foward the request max cost will still be the default 
+cost for a request-bid arc. 
+
+Additionally the change from preference to unit cost on the request is primarily a 
+nomenclature change. Therefore this update will be simple. The majority of the 
+work required will be updating all calls of this function currently in use 
+throughout the many archetypes and cyclus core code.  
+
+Once Bids and Requests have their own unit costs, updating the default solver for cyclus 
+will be done to perform a global optimization of the entire trade system each 
+timestep. This can be done by collecting all of the possible request-bid pairs. 
+These pairs will be constructed by determining if the bid in the arc has a 
+unit cost associated with it. If this is the case that unit cost will be used 
+for the pair. If there is no bid unit cost however, the max-unit-cost of the 
+request will be used to define the pairing. 
+
+Once the pairs have been created, the solver can sort the value of their unit cost 
+from smallest to largest, therefore minimizing the total cost of the system.
+
+This change represents a fundamental change to the behavior of the cyclus simulator. As 
+mentioned there will be several changed to the cyclus core code due to this change. We 
+will aimed to update all of these locations with the new code as well as documentation 
+to help developers update their software and to support future developers using Cyclus. 
 
 Backwards Compatibility
 =======================
+It is our goal to ensure that the cyclus core, and the cycamore archetypes will be 
+updated to be inline with this CEP. Unfortunately any third party archetypes will 
+need to be updated by those parties. 
 
-No backwards incompatibilities are introduced with this CEP.
+It is our aim that this change function as a staged point for a Cyclus 2.0 release. 
 
 Document History
 ================
@@ -99,4 +138,4 @@ This document is released under the CC-BY 3.0 license.
 References and Footnotes
 ========================
 
-.. .. [1] https://github.com/cyclus/cyclus/pull/1122
+.. .. [1] https://github.com/cyclus/cyclus/pull/1293
