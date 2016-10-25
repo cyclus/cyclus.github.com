@@ -47,6 +47,7 @@ will identify the best approach for you.
 
 
 2. Run Cyclus with a Sample XML File
+-------------------------------------
 
 (Cyclist users skip this step)
 
