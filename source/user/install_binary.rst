@@ -44,3 +44,4 @@ Happy simulating!
 
 .. _Anaconda: https://www.continuum.io/downloads
 .. _miniconda: http://conda.pydata.org/miniconda.html
+.. _`dependency installation documentation`: DEPENDENCIES.html

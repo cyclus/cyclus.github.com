@@ -72,3 +72,5 @@ Run unit test
 ***********************
 
 .. include:: unit_test.rst
+
+.. _`for installing those dependencies for the major supported systems`: DEPENDENCIES.html
