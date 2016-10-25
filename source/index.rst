@@ -147,6 +147,8 @@ Contributors
 
 * `Meghan McGarry <http://cnerg.github.io/people/mcgarry.html>`_
 
+* `Baptiste Mouginot <http://cnerg.github.com/people/bam.html>`_
+
 * `Arrielle Opotowsky <http://cnerg.github.io/people/opotowsky.html>`_
 
 * Olzhas Rakhimov
