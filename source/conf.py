@@ -66,7 +66,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Cyclus'
-copyright = (u'2012-2014, University of Wisconsin Computational Nuclear '
+copyright = (u'2012-2016, University of Wisconsin Computational Nuclear '
               'Engineering Research Group')
 
 # The version info for the project you're documenting, acts as replacement for
