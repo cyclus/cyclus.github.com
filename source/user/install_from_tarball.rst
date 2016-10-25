@@ -34,7 +34,7 @@ Download the most recent stable version of Cyclus source (either .zip or .gz):
   - `cyclus.1.3.1.zip  <https://github.com/cyclus/cyclus/archive/1.3.1.zip>`_
   - `cyclus.1.3.1.tar.gz  <https://github.com/cyclus/cyclus/archive/1.3.1.tar.gz>`_
 
-(`Previous versions <https://github.com/cyclus/cyclus/releases>`_ of |Cyclus|)
+(`Previous versions of Cyclus <https://github.com/cyclus/cyclus/releases>`_ )
 
 Compiling Cyclus
 ================
@@ -44,9 +44,9 @@ Compiling Cyclus
 
 
 
---------------
+----------------
 Install Cycamore
---------------
+----------------
 
 Get the Tarball
 ================
@@ -55,7 +55,7 @@ Download the most recent stable version of Cycamore source (either .zip or .gz):
   - `cycamore.1.3.1.zip  <https://github.com/cyclus/cycamore/archive/1.3.1.zip>`_
   - `cycamore.1.3.1.tar.gz  <https://github.com/cyclus/cycamore/archive/1.3.1.tar.gz>`_
 
-(`Previous versions <https://github.com/cyclus/cycamore/releases>`_ of Cycamore)
+(`Previous versions of Cycamore <https://github.com/cyclus/cycamore/releases>`_ )
 
 
 Compiling Cycamore

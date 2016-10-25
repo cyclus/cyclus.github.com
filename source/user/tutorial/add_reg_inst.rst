@@ -47,9 +47,11 @@ Activity: Add Initial Facilities
 +++++++++++++++++++++++++++++++++
 
 1. Add one uranium mine to the initial facility list of this institution by selecting:
-     * Prototype: U mine
-     * Number: 1
-   and press the "Add" button.
+
+  * Prototype: U mine
+  * Number: 1
+
+  and press the "Add" button.
 
 .. image:: inst-add-mine.png
     :align: center

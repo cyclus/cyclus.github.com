@@ -69,23 +69,27 @@ Activity: Add an enrichment facility
 
 1. Drag the cycamore Enrichmnent archetype from the ribbon to the fuel cycle design pane.
 2. Double-click to add the following configuration:
-     * Name: MyEnrichPlant
-     * Feed Commodity: U-ore
-   Notice that when you specify the feed commodity as "U-ore", a line is
-   automatically drawn to indicate possible trading of material between the mine
-   and the enrichment facility.
+
+  * Name: MyEnrichPlant
+  * Feed Commodity: U-ore
+
+  Notice that when you specify the feed commodity as "U-ore", a line is
+  automatically drawn to indicate possible trading of material between the mine
+  and the enrichment facility.
 
 .. image:: u-ore-enrich.png
     :align: center
     :alt: Uranium ore can now flow from the mine to the enrichment facility.
 
-
 3. Use what you learned above to add two new commodities:
-     * Fresh-UOX-Fuel
-     * Enrich-Tails
+
+  * Fresh-UOX-Fuel
+  * Enrich-Tails
+
 4. Modify the Enrichment facility to use these commodities:
-     * Product Commodity: Fresh-UOX-Fuel
-     * Tails Commodity: Enrich-Tails
+
+  * Product Commodity: Fresh-UOX-Fuel
+  * Tails Commodity: Enrich-Tails
 
 .. image:: enrich-commods.png
     :align: center
@@ -142,28 +146,34 @@ For each of the following prototypes, drag it into the fuel cycle design pane
 and configure it with the following information.
 
 1. Reactor
-     * Name: ALWR
-     * Fresh Fuel Commodity List: Fresh-UOX-Fuel
-     * Fresh Fuel Recipe List:
-         * Fresh-UOX-Fuel-4: create a recipe with a mass basis with 4% U-235 *(you'll need to add this)*
-     * Spent Fuel Commodity List: Used-UOX-Fuel *(you'll need to add this)*
-     * Spent Fuel Recipe List:
-         * Used-UOX-Fuel-4: create a recipe with a mass basis with:
-               * 1% U-235, 94% U-238, 1% Pu-239, 4% Cs-137 *(you'll need to add this)*
-     * Assembly Mass: 33000 kg
-     * Number of Assemblies per Batch: 1
-     * Number of Assemblies in Core: 3
-     * Cycle Length: 11
-     * Refueling Outage Duration: 1
+
+  * Name: ALWR
+  * Fresh Fuel Commodity List: Fresh-UOX-Fuel
+  * Fresh Fuel Recipe List:
+
+    * Fresh-UOX-Fuel-4: create a recipe with a mass basis with 4% U-235 *(you'll need to add this)*
+
+  * Spent Fuel Commodity List: Used-UOX-Fuel *(you'll need to add this)*
+  * Spent Fuel Recipe List:
+  * Used-UOX-Fuel-4: create a recipe with a mass basis with:
+
+    * 1% U-235, 94% U-238, 1% Pu-239, 4% Cs-137 *(you'll need to add this)*
+
+  * Assembly Mass: 33000 kg
+  * Number of Assemblies per Batch: 1
+  * Number of Assemblies in Core: 3
+  * Cycle Length: 11
+  * Refueling Outage Duration: 1
 
 .. image:: rxtr-complete.png
     :align: center
     :alt: Complete reactor configurationn showing spent fuel recipe.
 
 2. Repository (using the Sink module)
-   * Change the niche to "repository"
-    * Name: UndergroundFacility
-    * Input commodity: Used-UOX-Fuel
+
+  * Change the niche to "repository"
+  * Name: UndergroundFacility
+  * Input commodity: Used-UOX-Fuel
 
 .. image:: repo-complete.png
     :align: center
