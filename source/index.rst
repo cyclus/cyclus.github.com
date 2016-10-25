@@ -13,7 +13,6 @@
 
     </div>
 
-.. raw:: html
 
 |cyclus| is the next-generation agent-based nuclear :doc:`fuel cycle simulator
 <basics/fcs_background>`, providing flexibility to users and developers

@@ -18,9 +18,11 @@ understanding of the features that matter the most.
    from the data.
 3. Fields: These represent the columns of data in each table and can be used
    for a variety of roles in the views:
-     * define which data will be plotted on axes
-     * aggregate and group data together according to the fields
-     * filter or select subsets of data
+
+  * define which data will be plotted on axes
+  * aggregate and group data together according to the fields
+  * filter or select subsets of data
+
 4. Filters: TBD!!
 
 Activity: Examine Your First Data Exploration Session

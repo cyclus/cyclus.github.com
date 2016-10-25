@@ -28,10 +28,10 @@ Major features
 Since v1.1,
 
 * Cyclus: 95 commits resulted in 644 changed files encompassing a net 2347
-line insertions(+) and 397 deletions(-).
+  line insertions(+) and 397 deletions(-).
 
-* Cycamore: 33 commits resulted in 15 changed files encompassing a net 93
-line insertions(+) and 91 deletions(-).
+* Cycamore: 33 commits resulted in 15 changed files encompassing a net 93 line
+  insertions(+) and 91 deletions(-).
 
 Contributors
 ============

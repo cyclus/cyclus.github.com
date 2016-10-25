@@ -44,9 +44,9 @@ Compiling Cyclus
 
 
 
---------------
+----------------
 Install Cycamore
---------------
+----------------
 
 Get the Tarball
 ================
