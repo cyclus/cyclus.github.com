@@ -14,12 +14,12 @@ Installing Cyclus is a two steps process. First one need to get and compile the
 Dependencies
 --------------
 
-.. include:: CYCLUS_DEPENDENCIES.rst
-   :start-after: .. include_start
-   :end-before: .. include_end
+.. include:: DEPENDENCIES.rst
+   :start-after: .. website_include_start
+   :end-before: .. website_include_end
 
 Instruction to install those dependencies on the major platform can be found
-:doc:`here <CYCLUS_DEPENDENCIES>`.
+:doc:`here <DEPENDENCIES>`.
 
 
 
@@ -39,8 +39,8 @@ Download the most recent stable version of Cyclus source (either .zip or .gz):
 Compiling Cyclus
 ================
 .. include:: CYCLUS_INSTALL.rst
-   :start-after: .. include_start
-   :end-before: .. include_end
+   :start-after: .. website_include_start
+   :end-before: .. website_include_end
 
 
 
@@ -62,8 +62,8 @@ Compiling Cycamore
 ==================
 
 .. include:: CYCAMORE_INSTALL.rst
-   :start-after: .. include_start
-   :end-before: .. include_end
+   :start-after: .. website_include_start
+   :end-before: .. website_include_end
 
 
 

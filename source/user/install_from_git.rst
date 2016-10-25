@@ -14,12 +14,12 @@ nuclear fuel cycle facilities such the reactor, fuel fabrication facility, stora
 Dependencies
 --------------
 
-.. include:: CYCLUS_DEPENDENCIES.rst
-   :start-after: .. include_start
-   :end-before: .. include_end
+.. include:: DEPENDENCIES.rst
+   :start-after: .. website_include_start
+   :end-before: .. website_include_end
 
 Instruction to install those dependencies on the major platform can be found
-:doc:`here <CYCLUS_DEPENDENCIES>`.
+:doc:`here <DEPENDENCIES>`.
 
 
 
@@ -40,8 +40,8 @@ Compiling Cyclus
 ================
 
 .. include:: CYCLUS_INSTALL.rst
-   :start-after: .. include_start
-   :end-before: .. include_end
+   :start-after: .. website_include_start
+   :end-before: .. website_include_end
 
 
 
@@ -63,8 +63,8 @@ Compiling Cycamore
 ==================
 
 .. include:: CYCAMORE_INSTALL.rst
-   :start-after: .. include_start
-   :end-before: .. include_end
+   :start-after: .. website_include_start
+   :end-before: .. website_include_end
 
 
 
