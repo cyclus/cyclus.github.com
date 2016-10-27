@@ -104,7 +104,9 @@ cost for a request-bid arc.
 Additionally the change from preference to unit cost on the request is primarily a 
 nomenclature change. Therefore this update will be simple. The majority of the 
 work required will be updating all calls of this function currently in use 
-throughout the many archetypes and cyclus core code.  
+throughout the many archetypes and cyclus core code. It is important to note that 
+preference will still exist on requests and bids but will not be the primary metric 
+for the greedy solver (it will function as more a tie breaker). 
 
 Once Bids and Requests have their own unit costs, updating the default solver for cyclus 
 will be done to perform a global optimization of the entire trade system each 
@@ -115,7 +117,20 @@ for the pair. If there is no bid unit cost however, the max-unit-cost of the
 request will be used to define the pairing. 
 
 Once the pairs have been created, the solver can sort the value of their unit cost 
-from smallest to largest, therefore minimizing the total cost of the system.
+from smallest to largest, therefore minimizing the total cost of the system. 
+
+An additional change to the greedy solver is being proposed. To allow for more 
+flexibility in the way the system is optimized, minimizing unit cost will be only 
+one method for global optimization. Additionally, maximizing throughput (i.e. larger 
+bids are handled first) and preference will be options for the greedy solver. 
+Each of these can also be used in conjuction with each other. For example, if two 
+request-bid arcs have the same unit cost, these two arcs can be sorted by mass or 
+preference. It will also be possible to choose maximization and minimazation for 
+each of the discussed metrics (unit cost, throughput, preference). 
+
+It should be possible for this sorting to be done in any order the user desires. 
+This will be setup through the cyclus input file, but the default value will be 
+unit cost > mass > preference.    
 
 This change represents a fundamental change to the behavior of the cyclus simulator. As 
 mentioned there will be several changed to the cyclus core code due to this change. We 
