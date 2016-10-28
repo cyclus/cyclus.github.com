@@ -1,7 +1,7 @@
 
 .. _testing:
 
-Testing and Debuging Archetypes
+Testing and Debugging Archetypes
 ================================
 
 Overview
