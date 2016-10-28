@@ -9,7 +9,7 @@ specific archetypes (called :doc:`Cycamore <cycamoreagents>`).
 ---------------------------------
 
 The following methods of installation are listed in order of increasing
-sophistication. Choose the option that best fits your needs, if you feel like
+sophistication, choose the option that best fits your needs. If you feel like
 none correspond to your needs please feel free to contact us using the `Cyclus
 User mailing list <https://groups.google.com/forum/#!forum/cyclus-users>`_, we
 will identify the best approach for you.
@@ -20,8 +20,8 @@ will identify the best approach for you.
   - **Recommended** for: 
 
     - users wanting **a graphical interface** to build or analyze simulations
-    - users wanting to **run simulations in the cloud**,
-    - **quick introduction** to the |Cyclus| capabilities.
+    - users wanting to **run simulations in the cloud**
+    - **quick introduction** to the |Cyclus| capabilities
 
 * :doc:`Binary installation on Linux (via Debian package or Conda) <install_binary>`:
 
@@ -42,8 +42,8 @@ will identify the best approach for you.
 * :doc:`Install Develop from Source (via Repository) <install_from_git>`:  
   
   - *Requires programming skills/familiarity with compiling code, basic understanding of Git/GitHub*
-  - **Recommended** for developers or users who **require the bleeding edge version** of |Cyclus|. 
-  - **Required** for developers who wish to **contribute to kernel development** of |Cyclus|.
+  - **Recommended** for developers or users who **require the bleeding edge version** of |Cyclus|
+  - **Required** for developers who wish to **contribute to kernel development** of |Cyclus|
 
 
 2. Run Cyclus with a Sample XML File
