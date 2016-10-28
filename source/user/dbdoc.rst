@@ -99,7 +99,7 @@ step for each sub-buffer for each nuclide.
 
 * **AgentId** (int): ID of the agent holding the inventory 
 
-* **Time** (int): time step this inventory was in the given agent.
+* **Time** (int): Time Step this inventory was in the given agent.
 
 * **InventoryName** (string): Name of the internal sub inventory/buffer of
   this material.  This (usually) corresponds to the archetype state variable
