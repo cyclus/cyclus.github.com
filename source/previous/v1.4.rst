@@ -8,9 +8,9 @@ Cyclus 1.4.0 Release
 :Contact: https://groups.google.com/forum/#!forum/cyclus-dev
 
 The Cyclus core team is excited to announce the latest stable version of the
-cyclus ecosystem!
+Cyclus ecosystem!
 
-Major features
+Major Features
 ==============
 
 Compatibility:
@@ -61,7 +61,7 @@ Bug fixes:
 
 * Fixed invalid memory access bugs affecting newer and mac compilers.
 
-* xinclude substitutions in input files are now procesed for the input file
+* xinclude substitutions in input files are now processed for the input file
   stored in output databases - rather than storing the incomplete, partial
   input file.
 
