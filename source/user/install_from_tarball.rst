@@ -2,8 +2,8 @@
 Installing |Cyclus| using a Tarball
 ===================================
 
-Installing Cyclus is a two steps process. First one need to get and compile the
-|Cyclus| core and then the Cyclus Additional Modules (*Cycamore*), which provide the nuclear fuel cycle facilities such as the reactor, fuel fabrication facility, storage, etc.
+Installing Cyclus is a two step process. First one needs to get and compile the
+|Cyclus| core, then the Cyclus Additional Modules (*Cycamore*), which provide the nuclear fuel cycle facilities such as the reactor, fuel fabrication facility, storage, etc.
 
 
 .. contents::
@@ -18,7 +18,7 @@ Dependencies
    :start-after: .. website_include_start
    :end-before: .. website_include_end
 
-Instruction to install those dependencies on the major platform can be found
+Instructions to install dependencies on the major platforms can be found
 :doc:`here <DEPENDENCIES>`.
 
 
@@ -42,6 +42,9 @@ Compiling Cyclus
    :start-after: .. website_include_start
    :end-before: .. website_include_end
 
+If you were successful then Cyclus has been installed and you can skip down to Installing Cycamore!
+
+Alternative instructions are also available for doing a :doc:`Custom Installation <install_custom>`.
 
 
 ----------------
@@ -68,7 +71,7 @@ Compiling Cycamore
 
 
 ***********************
-Run unit test
+Run the Unit Tests
 ***********************
 
 .. include:: unit_test.rst

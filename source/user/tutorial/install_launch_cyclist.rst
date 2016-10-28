@@ -8,14 +8,14 @@ install Cyclist using the following steps:
 
 1. Download `this Windows installer <http://cnergdata.engr.wisc.edu/cyclus/cyclist/Cyclist-1.0.msi>`_.
 2. Find the downloaded file and double-click to start the install.
-3. Once complete go the the "Start" menu and type "Cyclist"
+3. Once complete go the the "Start" menu and type "Cyclist".
 4. Click on the icon to start Cyclist.
 
 **Mac OSX**
 
 1. Download `this Mac OSX installer <http://cnergdata.engr.wisc.edu/cyclus/cyclist/Cyclist-1.0.dmg>`_.
-2. Find the downloaded file and double-click to start the install.
-3. Once complete go the the "Start" menu and type "Cyclist"
+2. Click OK when asked to open the .dmg file.
+3. Drag the cyclist icon to the Desktop folder icon.
 4. Click on the icon to start Cyclist.
 
 **Linux (Ubuntu/Debian)**
@@ -29,9 +29,6 @@ install Cyclist using the following steps:
 **Try a Tutorial!**
 
 To become familiar with the capabilities of |Cyclus|, read the :doc:`User's
-Guide<index>` and possibly the :doc:`Archetype Developer's Guide
-<../../arche/index>`, or  work your way through the tutorials.
+Guide<index>` or work your way through the  :doc:`Cyclus User Tutorial <index>`.
 
-* :doc:`Cyclus User Tutorial <index>`
-* :doc:`Archetype Developer Tutorial  <../../arche/tutorial/index>`
 

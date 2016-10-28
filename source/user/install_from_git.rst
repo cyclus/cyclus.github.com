@@ -2,8 +2,9 @@
 Installing |Cyclus| Using the GitHub Repository
 ================================================
 Installing Cyclus is a two step process. First get and compile the
-|Cyclus| core and then the Cyclus Additional Modules (Cycamore), which provides
-nuclear fuel cycle facilities such the reactor, fuel fabrication facility, storage, etc.
+|Cyclus| core, then get and compile the Cyclus Additional Modules (Cycamore),
+which provides nuclear fuel cycle facilities such the reactor, fuel fabrication
+facility, storage, etc.
 
 
 .. contents::
@@ -18,7 +19,7 @@ Dependencies
    :start-after: .. website_include_start
    :end-before: .. website_include_end
 
-Instruction to install those dependencies on the major platform can be found
+Instructions on how to install those dependencies on the major platforms can be found
 :doc:`here <DEPENDENCIES>`.
 
 
@@ -43,6 +44,9 @@ Compiling Cyclus
    :start-after: .. website_include_start
    :end-before: .. website_include_end
 
+If you were successful then Cyclus has been installed and you can skip down to Installing Cycamore!
+
+Alternative instructions are also available for doing a :doc:`Custom Installation <install_custom>`.
 
 
 ----------------
@@ -74,4 +78,3 @@ Run the Unit Tests
 
 .. include:: unit_test.rst
 
-.. _`for installing those dependencies for the major supported systems`: DEPENDENCIES.html
