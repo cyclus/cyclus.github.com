@@ -12,6 +12,16 @@ tag, and has the following sections in any order:
 
   * simhandle (optional, once) - a user-defined identifier for this simulation
 
+  * explicit_inventory (optional, once) - boolean specifying whether or not to
+    create the :ref:`ExplicitInventory <explicit-inv-table>` table in the
+    database.  Because this significantly impacts simulation performance, it
+    is deactivated by default.
+
+  * explicit_inventory_compact (optional, once) - boolean specifying whether
+    or not to create the :ref:`ExplicitInventoryCompact
+    <explicit-inv-compact-table>` table in the database.  Because this
+    significantly impacts simulation performance, it is deactivated by default.
+
   * dt (optional, once) - the duration of a single time step in seconds.  If
     omitted, a default value of 1/12 of a year is used (i.e. 2,629,846
     seconds).
@@ -101,6 +111,15 @@ Grammar Definition
       <optional>
         <element name="decay"> <text/> </element>
       </optional>
+      <optional> 
+        <element name="dt"><data type="nonNegativeInteger"/></element> 
+      </optional>
+      <optional>
+        <element name="explicit_inventory"> <data type="boolean"/> </element>
+      </optional>
+      <optional>
+        <element name="explicit_inventory_compact"> <data type="boolean"/> </element>
+      </optional>
       <optional>
         <element name="solver"> 
           <interleave>
@@ -126,6 +145,11 @@ Grammar Definition
             </element></optional>
             <optional>
               <element name="allow_exclusive_orders">
+                <data type="boolean" />
+              </element>
+            </optional>
+            <optional><!--deprecated. @TODO remove in release 1.5 -->
+              <element name="exclusive_orders_only">
                 <data type="boolean" />
               </element>
             </optional>

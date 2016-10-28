@@ -18,6 +18,10 @@ cycamore itself.
 
 .. cyclus-agent:: :cycamore:FuelFab
 
+.. cyclus-agent:: :cycamore:Storage
+
+.. cyclus-agent:: :cycamore:Mixer
+
 .. cyclus-agent:: :cycamore:DeployInst
 
 .. cyclus-agent:: :cycamore:ManagerInst

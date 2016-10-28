@@ -81,6 +81,69 @@ tables.
   is also zero. If the resource came from another via combining this is the
   second parent's ResourceId.
 
+.. _explicit-inv-table:
+
+ExplicitInventory Table
+------------------------
+
+This is an optional table that can be activated by setting
+``<explicit_inventory>true</explicit_inventory>`` in the ``<control>`` section
+of the input file.  By default, it is disabled and will not be created in the
+database.  Note there is a significant runtime performance penalty for
+activating this table.  This table provides the material inventory of each
+agent at each time step subdivided by internal buffers (e.g.
+``cyclus::toolkit::ResBuf``).  There is one row for each agent on each time
+step for each sub-buffer for each nuclide.
+
+* **SimId** (uuid)
+
+* **AgentId** (int): ID of the agent holding the inventory 
+
+* **Time** (int): time step this inventory was in the given agent.
+
+* **InventoryName** (string): Name of the internal sub inventory/buffer of
+  this material.  This (usually) corresponds to the archetype state variable
+  names for each ResBuf.
+
+* **NucId** (int): Nuclide identifier in ``zzzaaammmm`` form.
+
+* **Quantity** (double): Amount in kg of the given nuclide in the specified
+  sub-inventory for the given agent on the given time step.
+
+.. _explicit-inv-compact-table:
+
+ExplicitInventoryCompact Table
+-------------------------------
+
+This is an optional table that can be activated by setting
+``<explicit_inventory_compact>true</explicit_inventory_compact>`` in the
+``<control>`` section of the input file.  By default, it is disabled and will
+not be created in the database.  Note there is a significant runtime
+performance penalty for activating this table.  This table provides the
+material inventory of each agent at each time step subdivided by internal
+buffers (e.g.  ``cyclus::toolkit::ResBuf``).  There is one row for each agent
+on each time step for each sub-buffer.  The fractional composition for each
+nuclide are stored as a single value in the native format of the Cyclus
+backend used to create the database.  The sqlite backend, for example, stores
+this data as an xml string from a boost-serialized ``std::map<int, double>``
+(i.e. NucId-frac pairs).
+
+* **SimId** (uuid)
+
+* **AgentId** (int): ID of the agent holding the inventory 
+
+* **Time** (int): time step this inventory was in the given agent.
+
+* **InventoryName** (string): Name of the internal sub inventory/buffer of
+  this material.  This (usually) corresponds to the archetype state variable
+  names for each ResBuf.
+
+* **Quantity** (double): Amount in kg of the given material composition in
+  this sub-inventory for the given agent on the given time step.
+
+* **Composition** (int): Cyclus backend-specific format for a ``std::map<int,
+  double>`` object.
+
 Compositions Table
 --------------------
 
@@ -174,6 +237,23 @@ were decommissioned in the simulation.
 * **ExitTime** (int): The time step when the agent was decommissioned and
   exited the simulation.
 
+.. _agent-version-table:
+
+AgentVersion Table
+------------------
+
+This lists the version of each agent/archetype used in the simulation. Due to
+backwards compatibility, this is in its own, new table instead of the
+AgentEntry table.  There is one entry in this table for each archetype used in
+each simulation.
+
+* **SimId** (uuid)
+
+* **Spec** (string): Archetype spec - same as the Spec field in the AgentEntry
+  table.
+
+* **Version** (string): The version string provided by the archetype.
+
 Transactions Table
 -------------------
 
@@ -246,6 +326,20 @@ parameters and |cyclus| dependency version information.
 * **LibXML2Version** (string)
  
 * **CoinCBCVersion** (string)
+
+InfoExplicitInv Table
+-------------------
+
+Each simulation gets one row in this table.
+
+* **SimId** (uuid)
+
+* **RecordInventory** (bool): True (or 1) if the ExplicitInventory table was
+  or should be activated for the simulation.
+
+* **RecordInventoryCompact** (bool): True (or 1) if the
+  ExplicitInventoryCompact table was or should be activated for the
+  simulation.
 
 Finish Table
 -------------------
