@@ -102,11 +102,11 @@ Summary
 
 Since v1.3.0,
 
-* Cyclus: 265 commits resulting in  155 files changed, 15488 insertions(+), 5738 deletions(-)
+ * Cyclus: 709 commits resulting in  188 files changed, 19768 insertions(+), 6293 deletions(-)
 
-* Cycamore: 131 commits resulting in  61 files changed, 3185 insertions(+), 1530 deletions(-)
+ * Cycamore: 158 commits resulting in  70 files changed, 4674 insertions(+), 2070 deletions(-)
 
-* Cymetric: 35 commits resulting in  38 files changed, 1357 insertions(+), 1398 deletions(-)
+ * Cymetric: 35 commits resulting in  38 files changed, 1357 insertions(+), 1398 deletions(-)
 
 Contributors
 ============
