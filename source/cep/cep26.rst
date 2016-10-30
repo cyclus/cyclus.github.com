@@ -86,44 +86,58 @@ rejected.
 
 Specification \& Implementation
 ===============================
-To accomplish the methodology proposed here will require some changes to the API within
-the dynamic resource exchange and the Cyclus core code.
+To accomplish the methodology proposed here will require some changes to the API within 
+the dynamic resource exchance and the cyclus core code. 
 
-1. Bids will need to be able to hold a unit cost. The API will need to support developers
-   accessing and setting this cost.
-2. Update Requests to contain a max-unit-cost instead of a preference.
-3. The current solvers will need to be updated or replaced to accommodate the
-   change from preference to unit cost.
-4. Updating all of the existing archetypes within the Cyclus core and Cycamore to
-   support this change.
+1. Bids will need to be able to hold a unit cost. The API will need to support developers 
+   accessing and setting this cost. 
+2. Update Requests to contain a max-unit-cost instead of a preference. 
+3. The current greedy solver will need to be updated or replaced to accomodate the 
+   change from preference to unit cost. 
+4. Updating all of the existing archetypes within the Cyclus core and Cycamore to 
+   support this change. 
 
-The first change will be to add the ability for bids to hold a unit cost value. The
-implementation of this will be simple as it will mirror the implementation of the
-current preference attribute of requests.
-Going forward the request max cost will still be the default
-cost for a request-bid arc.
+The first change will be to add the ability for bids to hold a unit cost value. The 
+implimentation of this will be simple as it will mirror the implimentation of the 
+preference attribute of requests. Therefore all of the techniques used there can be 
+once again used here. Going foward the request max cost will still be the default 
+cost for a request-bid arc. 
 
-Additionally the change from preference to unit cost on the request is primarily a
-nomenclature change. Therefore this update will be simple. The majority of the
-work required will be updating all calls of this function currently in use
-throughout the many archetypes and Cyclus core code.
+Additionally the change from preference to unit cost on the request is primarily a 
+nomenclature change. Therefore this update will be simple. The majority of the 
+work required will be updating all calls of this function currently in use 
+throughout the many archetypes and cyclus core code. It is important to note that 
+preference will still exist on requests and bids but will not be the primary metric 
+for the greedy solver (it will function as more a tie breaker). 
 
-Once Bids and Requests have their own unit costs, updating the default solver for Cyclus
-will be done to perform a global optimization of the entire trade system each
-time step. This can be done by collecting all of the possible Request-Bid arcs.
-These arcs will be constructed by determining if the bid in the arc has a
-unit cost associated with it. If this is the case that unit cost will be used
-for the pair. If there is no bid unit cost however, the max-unit-cost of the
-request will be used.
+Once Bids and Requests have their own unit costs, updating the default solver for cyclus 
+will be done to perform a global optimization of the entire trade system each 
+timestep. This can be done by collecting all of the possible request-bid pairs. 
+These pairs will be constructed by determining if the bid in the arc has a 
+unit cost associated with it. If this is the case that unit cost will be used 
+for the pair. If there is no bid unit cost however, the max-unit-cost of the 
+request will be used to define the pairing. 
 
-Once the arcs have been created, the DRE solver can sort the value of all unit costs
-from smallest to largest, therefore minimizing the total cost of the whole system.
+Once the pairs have been created, the solver can sort the value of their unit cost 
+from smallest to largest, therefore minimizing the total cost of the system. 
 
-This change represents a fundamental modification to the behavior of the Cyclus simulator. As
-mentioned there will be several changes to the Cyclus core code due to this conceptual
-difference. We
-will aim to update all of the call sites to conform to the new API. Updates to documentation
-will also be forthcoming.
+An additional change to the greedy solver is being proposed. To allow for more 
+flexibility in the way the system is optimized, minimizing unit cost will be only 
+one method for global optimization. Additionally, maximizing throughput (i.e. larger 
+bids are handled first) and preference will be options for the greedy solver. 
+Each of these can also be used in conjuction with each other. For example, if two 
+request-bid arcs have the same unit cost, these two arcs can be sorted by mass or 
+preference. It will also be possible to choose maximization and minimazation for 
+each of the discussed metrics (unit cost, throughput, preference). 
+
+It should be possible for this sorting to be done in any order the user desires. 
+This will be setup through the cyclus input file, but the default value will be 
+unit cost > mass > preference.    
+
+This change represents a fundamental change to the behavior of the cyclus simulator. As 
+mentioned there will be several changed to the cyclus core code due to this change. We 
+will aimed to update all of these locations with the new code as well as documentation 
+to help developers update their software and to support future developers using Cyclus. 
 
 Backwards Compatibility
 =======================
