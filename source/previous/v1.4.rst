@@ -43,13 +43,22 @@ Features:
 
   - ``std::list<std::pair<int, int> >``
   - ``std::map<std::string, std::pair<std::string, std::vector<double> > >``
+  - ``std::vector<std::pair<std::pair<double, double>, std:map<std::string, double > > > >``
+
 
 * ``cycpp`` now supports the ``internal`` annotation for state variables
   allowing them to be persisted in the database, but not visible in the input
   file or GUI.
 
 * Adding 2 new variables allowing to adjust the caculation tolerance:
-  ``tolerance_generic`` and ``tolerance_generivc``.
+  ``tolerance_generic`` and ``tolerance_generic``.
+
+* Building stubs archetypes now requires C++11.
+  
+* More effective hdf5 backend generation by using an AST setup with various
+  nodes and blocks of nodes
+
+* Generate lastest version in dbtypes.json upon install
 
 Bug fixes:
 
@@ -72,6 +81,7 @@ Bug fixes:
 
 * ``cyclus::toolkit::ResBuf`` is no longer experimental.
 
+* Fix bad types in ``dbtypes.json``
 
 `Cycamore <https://github.com/cyclus/cycamore>`_
 --------------------------------------------------
