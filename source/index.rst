@@ -37,6 +37,8 @@ Quick Start
 News
 -----
 
+**October 31, 2015:** :doc:`Cyclus v1.4.0 is released <previous/v1.4>`
+
 **August 13, 2015:** :doc:`Cyclus included in FY2016 workscopes for the NEUP program <news/fy16neup>`
 
 **July 21-24, 2015:** Joint workshop with CLASS_ project held in Madison, WI
