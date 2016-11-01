@@ -37,7 +37,7 @@ Quick Start
 News
 -----
 
-**October 31, 2015:** :doc:`Cyclus v1.4.0 is released <previous/v1.4>`
+**NOvember 1, 2016:** :doc:`Cyclus v1.4.1 is released <previous/v1.4>`
 
 **August 13, 2015:** :doc:`Cyclus included in FY2016 workscopes for the NEUP program <news/fy16neup>`
 
@@ -140,11 +140,17 @@ Contributors
 
 * Denia Djokic
 
+* Royal Elmore
+
 * Robert Flanagan
 
 * `Matthew Gidden <http://mattgidden.com/>`_
 
+* Ryan Hodge
+
 * `Kathryn (Katy) Huff <http://katyhuff.github.io/>`_
+
+* Jenny Littell
 
 * `Meghan McGarry <http://cnerg.github.io/people/mcgarry.html>`_
 
@@ -155,6 +161,8 @@ Contributors
 * Olzhas Rakhimov
 
 * `Anthony Scopatz <http://scopatz.com/>`_
+
+* Steve Skutnik
 
 * Zach Welch
 
