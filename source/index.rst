@@ -140,6 +140,8 @@ Contributors
 
 * Denia Djokic
 
+* Royal Elmore
+
 * Robert Flanagan
 
 * `Matthew Gidden <http://mattgidden.com/>`_
