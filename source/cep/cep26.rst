@@ -161,6 +161,9 @@ need to be updated by those parties.
 
 It is our aim that this change functions as a staging point for a Cyclus 2.0 release.
 
+The current behaviour of the greedy solver will be recoverable by the user if they set
+the sorting metrics to be ``average requester pref (max), quantity (min)``.
+
 Document History
 ================
 
