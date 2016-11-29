@@ -162,8 +162,8 @@ dynamic resource exchange and then used in the same way as the standard metrics
 above.
 
 This change represents a fundamental modification to the behavior of the cyclus
-simulator. As mentioned there will be several changed to the cyclus core code due
-to this change. We will aimed to update all of these locations with the new code
+simulator. As mentioned there will be several alterations to the cyclus core code.
+We will aimed to update all of these locations with the new code
 as well as documentation to help developers update their software and to support
 future developers using Cyclus.
 
