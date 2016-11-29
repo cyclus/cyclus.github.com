@@ -135,7 +135,7 @@ As a motivating feature, these changes also increase the flexibility of the
 greedy solver interface. Namely, it will grant users the ability to specify
 the way the system is optimized. The above mechanism for primarily
 minimizing cost is only one method for global optimization. This proposal
-idetifies three primary, orthoganal metrics that the greedy solver will jointly
+identifies three primary, orthoganal metrics that the greedy solver will jointly
 solve:
 
 * unit cost (min)
