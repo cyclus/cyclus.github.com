@@ -82,9 +82,10 @@ all of the arcs by minimizing or maximizing each each metric in order of a user 
 precedence, and then will finally perform a single greedy solve on the sorted arcs.
 
 The set of standard available metrics will include the quantity, preference, and
-unit cost. The benefit of providing the unit costs is that it they are directly
-and linearly comparable to one another and are part of the everyday, quantitative
-experience of most humans. Additionally, costs provide a mechanism for resolving
+unit cost. The benefit of providing the unit costs is that they are directly
+and linearly comparable to one another. Moreover they more commonly used to make
+quantitative comparisons than preferences.
+Additionally, costs provide a mechanism for resolving
 request objectives (price limit or maximum cost) and bid objectives (offer price).
 If an offer price is less than or equal to the request price limit, the request-bid
 can be created.  Otherwise the request-bid arc will be rejected.
