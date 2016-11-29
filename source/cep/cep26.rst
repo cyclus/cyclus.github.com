@@ -153,7 +153,7 @@ to set the ordering of these metrics in the input file.  Furthermore, they will
 also be allowed to modify the flag for whether to maximize or minimize each
 metric. Such a change would enable a much broader set of use cases to be simulated
 according to the users needs. It will also allow the exploration of a vareity
-of DRE effects based on what precendce differences.
+of DRE effects based on precedence changes.
 This will be setup through the cyclus input file, but the default ordering will be
 ``unit cost (min), quantity (min), preference (max)``.
 
