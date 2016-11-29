@@ -12,11 +12,13 @@ CEP 26 - Replace Preference with Unit Cost
 
 Abstract
 ========
-
-This CEP proposes to remove the concept of preferences in the DRE. Unit cost
-will replace preference in the Cyclus resource exchange interface. The DRE
-will minimize these unit costs directly, rather than the current minimization
-of quantity divided by preference.
+This CEP proposes to enable broader user customization of the DRE by opening
+up the Cyclus resource exchange interface to many metrics of interest. The DRE will
+no longer solely
+attempt to minimize quantity divided by preference, but rather be capable of
+minimizng or maximizing many metrics jointly. Different DRE solvers may
+choose which metrics to include. Along with this new interface will come a
+new implementation of the Greedy solver that makes use of all metrics.
 
 Motivation
 ==========
@@ -72,13 +74,17 @@ leaving the agnostic reactor unfueled.
 As a concept, the current formulation of preferences seems poorly defined and therefore
 difficult to explain or intuit. As shown above, this can lead to incorrect and unanticipated
 results. From here, an attempt can either be made to patch the preference system with
-further constraints or it can be replaced with a more intuitive and directly relevant
-concept.
+further constraints or it can be replaced with a more customizable, and thus more intuitive and
+directly relevant, concept.
 
-We propose that minimizing unit cost over all arcs for a commodity is a more natural
-system. This is because the costs are directly and linearly comparable to one another
-and are part of the everyday, quantitative experience of most humans. Additionally,
-it provides a mechanism for resolving request objectives (price limit or maximum cost)
+We propose a system that will allow the computation of many potential metrics, will sort
+all of the arcs by minimizing or maximizing each each metric in order of a user given
+precedence, and then will finally perform a single greedy solve on the sorted arcs.
+
+The set of standard available metrics will include the unit cost for a resource.
+The benefit of providing the unit costs is that it they are directly and linearly comparable
+to one another and are part of the everyday, quantitative experience of most humans. Additionally,
+costs provide a mechanism for resolving request objectives (price limit or maximum cost)
 and bid objectives (offer price). If an offer price is less than or equal to the request
 price limit, the request-bid can be created.  Otherwise the request-bid arc will be
 rejected.
@@ -87,7 +93,7 @@ rejected.
 Specification \& Implementation
 ===============================
 To accomplish the methodology proposed here will require changes to the API within
-the dynamic resource exchange and the cyclus core code.
+the dynamic resource exchange and the cyclus core code. At a minimum,
 
 1. Bids will need to be able to hold a unit cost. The API will need to support
    developers accessing and setting this cost.
@@ -98,15 +104,16 @@ the dynamic resource exchange and the cyclus core code.
    support this change.
 
 The first change will be to add the ability for bids to hold a unit cost value. The
-implementation of this will be simple as it will mirror the implementation of the
-current preference attribute of requests.
-Going forward the request max cost will still be the default
-cost for a request-bid arc.
+implementation of this may be simple as it will mirror the implementation of the
+current preference attribute of requests. Going forward the request max cost will still be
+the default cost for a request-bid arc. However, this may also be accomplished in a
+more generic fashion by allowing arbitrary metrics, of which unit cost is only one.
 
-The addition of the unit cost on the request is simple.
+The addition of the unit cost on the request may also be simple.
 The majority of the
 work required will be updating all ressource exchange calls currently in use
-throughout the many archetypes and Cyclus core code.
+throughout the many archetypes and Cyclus core code.  Similarly, this could be
+extended to a framework for arbitrary metrics, of which unit cost is only one.
 
 Once Bids and Requests have their own unit costs, updating the default solver for
 Cyclus will be done to perform a global optimization of the entire trade system each
@@ -114,7 +121,8 @@ time step. This can be done by collecting all of the possible Request-Bid arcs.
 These arcs will be constructed by determining if the bid in the arc has a
 unit cost associated with it. If this is the case that unit cost will be used
 for the pair. If there is no bid unit cost however, the max-unit-cost of the
-request will be used.
+request will be used. Again, if a metric framework approach is taken, resolution will
+take place via a generic interface, of which cost is only one metric.
 
 Once the arcs have been created, the DRE solver can sort the value of all unit costs
 from smallest to largest, quantities from either lowest-to-highest (current behavior)
@@ -126,7 +134,7 @@ As a motivating feature, these changes also increase the flexibility of the
 greedy solver interface. Namely, it will grant users the ability to specify
 the way the system is optimized. The above mechanism for primarily
 minimizing cost is only one method for global optimization. This proposal
-idetifies three primary, orthoganal metric that the greedy solver will jointly
+idetifies three primary, orthoganal metrics that the greedy solver will jointly
 solve:
 
 * unit cost (min)
@@ -148,6 +156,10 @@ of DRE effects based on what precendce differences.
 This will be setup through the cyclus input file, but the default ordering will be
 ``unit cost (min), quantity (min), preference (max)``.
 
+Furthermore, in a framework setting, additional metrics can be registered with the
+dynamic resource exchange and then used in the same way as the standard metrics
+above.
+
 This change represents a fundamental change to the behavior of the cyclus simulator. As
 mentioned there will be several changed to the cyclus core code due to this change. We
 will aimed to update all of these locations with the new code as well as documentation
@@ -162,7 +174,8 @@ need to be updated by those parties.
 It is our aim that this change functions as a staging point for a Cyclus 2.0 release.
 
 The current behaviour of the greedy solver will be recoverable by the user if they set
-the sorting metrics to be ``average requester pref (max), quantity (min)``.
+the sorting metrics to be ``average requester pref (max), quantity over preference (min)``.
+These two metrics will be added for backwards compatability.
 
 Document History
 ================
