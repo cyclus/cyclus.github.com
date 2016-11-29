@@ -142,7 +142,7 @@ solve:
 * quantity (min)
 * preference (max)
 
-Each of these can also be used in conjuction with each other or without ths
+Each of these can also be used in conjuction with each other or without the
 others. For example, if two
 request-bid arcs have the same unit cost, these two arcs can be sorted by mass or
 preference. It will also be possible to choose maximization and minimization for
