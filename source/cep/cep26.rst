@@ -33,8 +33,8 @@ There are several fundamental issues with preferences as an optimization variabl
    represent negative costs (subsidies).
 4. The preference adjustment phase cannot guarantee validity of adjustments because
    there is not a uniform preference scaling between requesters.
-5. Preferences do not support a consistent way for request preferences and bid costs
-   to be resolved. Thus to-date, bid costs have been avoided and discouraged.
+5. Preferences do not support a consistent way for other metrics to be resolved into
+   request preferences. Thus to-date, other metrics have been avoided and discouraged.
 
 The failure of preferences as an optimization variable can be shown with the following
 simple system. Consider an exchange graph with two requesters and one bidder for a single
