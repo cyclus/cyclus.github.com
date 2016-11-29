@@ -1,8 +1,8 @@
-CEP 26 - Replace Preference with Unit Cost
-*****************************************************
+CEP 26 - Generalize the DRE to Optimize Multiple Metrics
+********************************************************
 
 :CEP: 26
-:Title: Replace Preference with Unit Cost
+:Title: Generalize the DRE to Optimize Multiple Metrics
 :Last-Modified: 2016-10-19
 :Author: Robert Flanagan \& Anthony Scopatz
 :Status: Draft
