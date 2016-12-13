@@ -8,9 +8,9 @@ Cyclus 1.5.0 Release
 :Contact: https://groups.google.com/forum/#!forum/cyclus-dev
 
 The Cyclus core team is excited to announce the latest stable version of the
-cyclus ecosystem!
+Cyclus ecosystem!
 
-Major features
+Major Features
 ==============
 
 Compatibility:
