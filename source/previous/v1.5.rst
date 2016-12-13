@@ -1,16 +1,16 @@
-.. _1.4.0:
+.. _1.5.0:
 
 ==================================
-Cyclus 1.4.0 Release
+Cyclus 1.5.0 Release
 ==================================
 :Author: Cyclus Developers
 :Website: http://fuelcycle.org/
 :Contact: https://groups.google.com/forum/#!forum/cyclus-dev
 
 The Cyclus core team is excited to announce the latest stable version of the
-Cyclus ecosystem!
+cyclus ecosystem!
 
-Major Features
+Major features
 ==============
 
 Compatibility:
@@ -33,7 +33,7 @@ Features:
   database that can be enabled via input file.
 
 * Implemented custom time step duration that can be set in the input
-  file (i.e. CEP 23).  
+  file (i.e. CEP 23).
 
 * Agents/archetypes now can provide their own versions that are recorded in
   the :ref:`AgentVersion <agent-version-table>` table in the database for
@@ -54,11 +54,13 @@ Features:
   ``tolerance_generic`` and ``tolerance_generic``.
 
 * Building stubs archetypes now requires C++11.
-  
+
 * More effective hdf5 backend generation by using an AST setup with various
   nodes and blocks of nodes
 
 * Generate lastest version in dbtypes.json upon install
+
+* Now generate a Python library allowing Cymetric to be full Python 
 
 Bug fixes:
 
@@ -83,6 +85,7 @@ Bug fixes:
 
 * Fix bad types in ``dbtypes.json``
 
+
 `Cycamore <https://github.com/cyclus/cycamore>`_
 --------------------------------------------------
 
@@ -97,7 +100,7 @@ Bug fixes:
   material quantities.
 
 * All Cycamore archetypes now uses the ``tolerance_resource`` for all the buffer
-  ``Pop``.
+   ``Pop``.
 
 
 `Cymetric <https://github.com/cyclus/cymetric>`_
@@ -106,17 +109,20 @@ Bug fixes:
 * Added new metrics: full list `here <http://fuelcycle.org/user/cymetric/api/metrics.html>`_
 * Added a new directory with cymetric usage examples
 * Separated out all archetype-specific metrics from the main metrics
+* Is now full Python
+
 
 Summary
 =======
 
 Since v1.3.0,
 
- * Cyclus: 709 commits resulting in  188 files changed, 19768 insertions(+), 6293 deletions(-)
+* Cyclus: 865 commits resulting in  213 files changed, 23823 insertions(+), 6436 deletions(-)
 
- * Cycamore: 158 commits resulting in  70 files changed, 4674 insertions(+), 2070 deletions(-)
+* Cycamore: 177 commits resulting in  71 files changed, 4389 insertions(+), 2077 deletions(-)
 
- * Cymetric: 35 commits resulting in  38 files changed, 1357 insertions(+), 1398 deletions(-)
+* Cymetric: 65 commits resulting in  58 files changed, 1490 insertions(+), 4220 deletions(-)
+
 
 Contributors
 ============

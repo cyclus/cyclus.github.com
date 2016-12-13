@@ -11,7 +11,7 @@ The following are release notes for and links to previously released versions of
 .. toctree::
     :maxdepth: 1
 
-    v1.4
+    v1.5
     v1.3
     v1.2
     v1.1
@@ -20,11 +20,16 @@ The following are release notes for and links to previously released versions of
     v0.3
     v0.2
 
+Note: As official 1.4.0 release has been skipped, all the release notes of 1.4.0
+have been included in the 1.5.0.
+
 .. rst-class:: centered
 
 ========= ========== ================ ==============
 Version   Date       Zip              Tar
 ========= ========== ================ ==============
+1.5.0     2016-12-13 `zip 1.5.0`_     `tar 1.5.0`_
+1.5.0     2016-12-13 `zip 1.5.0-rc1`_ `tar 1.5.0-rc1`_
 1.4.1     2016-11-01 `zip 1.4.1`_     `tar 1.4.1`_
 1.4.0     2016-10-31 `zip 1.4.0`_     `tar 1.4.0`_
 1.4.0-rc3 2016-09-14 `zip 1.4.0-rc3`_ `tar 1.4.0-rc3`_
@@ -58,6 +63,10 @@ Version   Date       Zip              Tar
 0.1       2012-03-27 `zip 0.1`_       `tar 0.1`_
 ========= ========== ================ ==============
 
+.. _zip 1.5.0: https://github.com/cyclus/cyclus/archive/1.5.0.zip
+.. _tar 1.5.0: https://github.com/cyclus/cyclus/archive/1.5.0.tar.gz
+.. _zip 1.5.0-rc1: https://github.com/cyclus/cyclus/archive/1.5.0-rc1.zip
+.. _tar 1.5.0-rc1: https://github.com/cyclus/cyclus/archive/1.5.0-rc1.tar.gz
 .. _zip 1.4.1: https://github.com/cyclus/cyclus/archive/1.4.1.zip
 .. _tar 1.4.1: https://github.com/cyclus/cyclus/archive/1.4.1.tar.gz
 .. _zip 1.4.0: https://github.com/cyclus/cyclus/archive/1.4.0.zip
