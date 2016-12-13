@@ -37,7 +37,7 @@ Quick Start
 News
 -----
 
-**NOvember 1, 2016:** :doc:`Cyclus v1.4.1 is released <previous/v1.4>`
+**December 13, 2016:** :doc:`Cyclus v1.5.0 is released <previous/v1.5>`
 
 **August 13, 2015:** :doc:`Cyclus included in FY2016 workscopes for the NEUP program <news/fy16neup>`
 
