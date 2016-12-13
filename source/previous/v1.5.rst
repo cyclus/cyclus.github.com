@@ -50,8 +50,8 @@ Features:
   allowing them to be persisted in the database, but not visible in the input
   file or GUI.
 
-* Adding 2 new variables allowing to adjust the caculation tolerance:
-  ``tolerance_generic`` and ``tolerance_generic``.
+* Adding 2 new variables to allow adjustments to the caculation tolerance:
+  ``tolerance`` and ``tolerance_generic``.
 
 * Building stubs archetypes now requires C++11.
 
@@ -99,8 +99,7 @@ Bug fixes:
   The supplying of mixed material is constrained by available inventory of mixed
   material quantities.
 
-* All Cycamore archetypes now uses the ``tolerance_resource`` for all the buffer
-   ``Pop``.
+* All Cycamore archetypes now uses the ``tolerance_resource`` for all the buffer ``Pop``.
 
 
 `Cymetric <https://github.com/cyclus/cymetric>`_
@@ -129,16 +128,16 @@ Contributors
 The following people contributed to this release of Cyclus.  A "*" by their
 name indicates a first time contributor.  Names follow alphabetically, 
 
-* Anthony Scopatz
-* Arrielle Opotowsky
-* Baptiste Mouginot*
-* Jenny Littell*
-* Katy Huff
-* Matthew Gidden
-* Meghan McGarry
-* Paul Wilson
 * Robert Carlsen
 * Robert Flanagan
+* Matthew Gidden
 * Ryan Hodge*
+* Katy Huff
+* Jenny Littell*
+* Meghan McGarry
+* Baptiste Mouginot*
+* Arrielle Opotowsky
+* Anthony Scopatz
 * Steve Skutnik*
+* Paul Wilson
 
