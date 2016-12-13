@@ -13,7 +13,6 @@
 
     </div>
 
-.. raw:: html
 
 |cyclus| is the next-generation agent-based nuclear :doc:`fuel cycle simulator
 <basics/fcs_background>`, providing flexibility to users and developers
@@ -27,10 +26,18 @@ developers and encourages them to join a vibrant community in an
 :doc:`expanding ecosystem <basics/ecosystem>`.  Users and developers are
 always welcome and encouraged to use or contribute to the |cyclus| project. 
 
-The |Cyclus| project repository is located at http://github.com/cyclus/cyclus.
+The |Cyclus| project repository is located at http://github.com/cyclus/cyclus
+
+Project repository is located at http://github.com/cyclus/cyclus
+
+Quick Start
+-----------
+:doc:`Get started with Cyclus <user/install>`
 
 News
 -----
+
+**December 13, 2016:** :doc:`Cyclus v1.5.0 is released <previous/v1.5>`
 
 **August 13, 2015:** :doc:`Cyclus included in FY2016 workscopes for the NEUP program <news/fy16neup>`
 
@@ -133,19 +140,29 @@ Contributors
 
 * Denia Djokic
 
+* Royal Elmore
+
 * Robert Flanagan
 
 * `Matthew Gidden <http://mattgidden.com/>`_
 
+* Ryan Hodge
+
 * `Kathryn (Katy) Huff <http://katyhuff.github.io/>`_
 
+* Jenny Littell
+
 * `Meghan McGarry <http://cnerg.github.io/people/mcgarry.html>`_
+
+* `Baptiste Mouginot <http://cnerg.github.com/people/bam.html>`_
 
 * `Arrielle Opotowsky <http://cnerg.github.io/people/opotowsky.html>`_
 
 * Olzhas Rakhimov
 
 * `Anthony Scopatz <http://scopatz.com/>`_
+
+* Steve Skutnik
 
 * Zach Welch
 
