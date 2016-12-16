@@ -29,7 +29,8 @@ Installing |Cyclus| with Binaries
 #. Download the Cycamore Debian installation package corresponding to your Ubuntu version (`14.04
    <http://dory.fuelcycle.org:4848/ubuntu/14.04/cycamore_latest.deb>`_ or
    `16.04
-   <http://dory.fuelcycle.org:4848/ubuntu/16.04/cycamore_latest.deb>`_)..
+   <http://dory.fuelcycle.org:4848/ubuntu/16.04/cycamore_latest.deb>`_). You can
+   download previous/different version `here <http://dory.fuelcycle.org:4848/ubuntu/>`_.
 
 #. Install the package by running:
 
