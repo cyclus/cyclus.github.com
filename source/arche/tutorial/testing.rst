@@ -126,10 +126,10 @@ After unit tests, the next step to take is testing your archetype in an actual
 simulation. You can find more on the :ref:`testing` page. 
 
 One of the best ways to learn is by example. The Cycamore repository has
-`examples <https://github.com/cyclus/cycamore/tree/develop/tests>`_ of running
-regression tests that include the full execution stack -- read an input file,
-run a simulation, and test an output file. There are also `examples
+`examples of running regression tests <https://github.com/cyclus/cycamore/tree/develop/tests>`_ 
+that include the full execution stack -- read an input file,
+run a simulation, and test an output file. There are also `examples of integration tests
 <https://github.com/cyclus/cycamore/blob/develop/src/enrichment_tests.cc#L54>`_
-of integration tests that utilize the new `MockSim
+that utilize the new `MockSim
 <http://fuelcycle.org/arche/testing.html?highlight=mocksim#testing-resource-exchange>`_
 testing feature in Cyclus.

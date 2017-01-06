@@ -5,3 +5,7 @@ build
 *.pyc
 gh-build
 source/arche/dbtypes.js
+source/user/CYCLUS_INSTALL.rst
+source/user/CYCAMORE_INSTALL.rst
+source/user/DEPENDENCIES.rst
+source/user/CYCAMORE_DEPS.rst
