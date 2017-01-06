@@ -44,10 +44,10 @@ if len(h) != 0:
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.pngmath', 'sphinx.ext.autodoc', 
+extensions = ['sphinx.ext.pngmath', 'sphinx.ext.autodoc',
               'sphinx.ext.autosummary',
               'numpydoc',
-              'cyclusagent', 'cloud_sptheme.ext.table_styling', 
+              'cyclusagent', 'cloud_sptheme.ext.table_styling',
               'sphinxcontrib.bibtex']
 
 numpydoc_show_class_members = False
@@ -97,7 +97,7 @@ if len(verout) != 0:
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = []
+exclude_patterns = ['python/blank.rst']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None
@@ -291,11 +291,11 @@ texinfo_documents = [
 #texinfo_show_urls = 'footnote'
 
 rst_epilog = """
-.. |cyclus| raw:: html 
+.. |cyclus| raw:: html
 
        <span style="font-variant:small-caps;">Cyclus</span>
 
-.. |Cyclus| raw:: html 
+.. |Cyclus| raw:: html
 
        <span style="font-variant:small-caps;">Cyclus</span>
 """

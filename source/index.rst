@@ -24,7 +24,7 @@ simulation <fuel cycle simulator>` while providing a low barrier to entry for
 new users and agent developers. |Cyclus| engages with potential module
 developers and encourages them to join a vibrant community in an
 :doc:`expanding ecosystem <basics/ecosystem>`.  Users and developers are
-always welcome and encouraged to use or contribute to the |cyclus| project. 
+always welcome and encouraged to use or contribute to the |cyclus| project.
 
 The |Cyclus| project repository is located at http://github.com/cyclus/cyclus
 
@@ -45,7 +45,7 @@ News
 
 **July 21-24, 2015:** Joint workshop with CLASS_ project held in Madison, WI
 
-**June 10, 2015:** First Cyclus :doc:`user tutorial <user/tutorial/index>` and :doc:`developer tutorial <arche/tutorial/index>` are held at the 2015 ANS Annual Meeting in San Antonio, TX 
+**June 10, 2015:** First Cyclus :doc:`user tutorial <user/tutorial/index>` and :doc:`developer tutorial <arche/tutorial/index>` are held at the 2015 ANS Annual Meeting in San Antonio, TX
 
 **June 7, 2015:** :doc:`Cyclus v1.3.1 is released <previous/v1.3>`
 
@@ -59,6 +59,7 @@ Learn More
     user/index
     arche/index
     kernel/index
+    python/index
     cep/cep0
     previous/index
     cite/index
@@ -98,7 +99,7 @@ this page.  It contains all submitted jobs - their status, output, and database
     <div id="dashboard"></div>
     <br>
 
-    <script> 
+    <script>
         var server = "http://cycrun.fuelcycle.org"
 
         function submitJob() {
@@ -181,7 +182,7 @@ Support for this research has included funding received from:
 
     .. image :: astatic/neup_logo_large.png
         :height: 100 px
- 
+
     .. image :: astatic/AnlLogo.png
         :height: 100 px
 
