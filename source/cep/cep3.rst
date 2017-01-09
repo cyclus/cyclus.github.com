@@ -110,8 +110,6 @@ Release Candidate Process
 
 #. Review the current state of documentation and make approriate updates.
 
-#. Update any new database types in ``cyclus/share/dbtypes.json``
-
 #. Finish the release candidate process
 
     - make sure all commits in the ``release`` branch also are in ``develop``
@@ -120,12 +118,14 @@ Release Process
 ---------------
 
 #. Make sure every local |cyclus| project repository is up to date with its
-   ``master``, ``develop``, and ``vX.X.X-release`` branches on ``upstream``
+   ``master``, ``develop``, and ``vX.X.X-release`` branches on ``upstream``.
 
-#. Bump the version in ``cyclus/src/version.h``, ``cycamore/src/version.h``, and
+#. Bump the version in ``cyclus/src/version.h.in``,
+   ``cycamore/src/cycamore_version.h.in``, and
    ``cymetric/setup.py``; commit the changes
 
-#. Perform maintainence tasks for all projects
+#. Perform maintenance tasks for all projects. The maintenance depends on `PyNe
+   <https://github.com/pyne/pyne.git>`_and Doxygen.
 
     - they are described in detail below, *but* the ``maintenence.sh`` utility
       in ``release/utils`` will do this automatically for you
@@ -139,7 +139,7 @@ Release Process
       $ export CYCAMORE_DIR=/path/to/cycamore
       $ ./maintenence.sh -r -v X.X.X # X.X.X is *this* version
 
-#. Commit all changes for all projects
+#. Commit all changes for all projects.
 
     .. code-block:: bash
 
@@ -147,7 +147,7 @@ Release Process
       $ git checkout vX.X.X-release
       $ git commit -am "final release commit after maintenence"
 
-#. Update all develop branches
+#. Update all develop branches.
 
     .. code-block:: bash
 
@@ -156,7 +156,7 @@ Release Process
       $ git merge --no-ff vX.X.X-release
       $ git push upstream develop
 
-#. *Locally* tag the repository for *each* of the projects
+#. *Locally* tag the repository for *each* of the projects.
 
     .. code-block:: bash
 
@@ -165,7 +165,7 @@ Release Process
       $ git merge --no-ff vX.X.X-release
       $ git tag -a -m "Cyclus project release X.X.X, see http://fuelcycle.org/previous/vX.X.X.html for release notes" X.X.X
 
-#. Draft release notes
+#. Draft release notes.
 
     - the ``make_release_notes.sh`` utility in ``release/utils`` will help
       provide a template
@@ -181,7 +181,7 @@ Release Process
     - add the release notes as ``cyclus.github.com/source/previous/vX.X.X.rst``
       with appropriate updates to ``index.rst`` in that directory
 
-#. Update the API docs
+#. Update the API docs.
 
     - the ``api_docs.sh`` utility in ``release/utils`` will do this
       automatically for you
@@ -193,28 +193,7 @@ Release Process
       $ export CYCAMORE_DIR=/path/to/cycamore
       $ ./api_docs.sh X.X.X # X.X.X is *this* version
 
-#. Upload the conda packages
-
-    - the ``upload_conda.sh`` utility in ``release/utils`` will do this
-      automatically for you
-
-    .. note::
-
-       You must be associated with the account at http://binstar.org/cyclus/cyclus.
-	   
-    .. note::
-
-       You may be prompted for your binstar user name and password.
-
-    .. code-block:: bash
-
-      $ cd /path/to/release/utils
-      $ export CYCLUS_DIR=/path/to/cyclus
-      $ export CYCAMORE_DIR=/path/to/cycamore
-      $ export CYMETRIC_DIR=/path/to/cymetric
-      $ ./conda_upload.sh X.X.X # X.X.X is *this* version
-
-#. Update the ``master`` branch of all projects and clean up
+#. Update the ``master`` branch of all projects and clean up.
 
     .. code-block:: bash
 
@@ -222,7 +201,7 @@ Release Process
       $ git push upstream X.X.X master
       $ git push upstream --delete vX.X.X-release
 
-#. Manually visit the github.com page for each project and mark the tags as releases
+#. Manually visit the github.com page for each project and mark the tags as releases.
 
     - This can be updated one day to use the Github `release API
       <https://developer.github.com/v3/repos/releases/#create-a-release>`_
@@ -232,7 +211,7 @@ Release Process
     - This can be updated one day to use the Figshare `API
       <http://api.figshare.com/docs/intro.html>`_
 
-#. Update website release information 
+#. Update website release information.
 
     - on the front page (``source/index.rst``)
     - DOIs (``source/cite/index.rst``) 
@@ -242,6 +221,8 @@ Release Process
 
 
 #. Commit all changes to ``cyclus.github.com`` and ``make gh-publish`` 
+
+#. Update Dory Cyclus/Cycamore version and relaunch Dory worker.
 
 #. Send out an email to `cyclus-dev` and `cyclus-users` to announce the release!
 
