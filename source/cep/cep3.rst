@@ -222,7 +222,22 @@ Release Process
 
 #. Commit all changes to ``cyclus.github.com`` and ``make gh-publish`` 
 
-#. Update Dory Cyclus/Cycamore version and relaunch Dory worker.
+#. Update Dory Cyclus/Cycamore version and relaunch Dory worker. To do this you
+   need a acces to the dory server, the go toolchain as well as cde installed on
+   your computer.
+    
+   .. code-block:: bash
+      $ git clone https://github.com/rwcarlsen/cloudlus.git
+      $ cd cloudlus
+      $ go install ./cmd/cloudlus
+      $ cd misc/fuelcycle.org
+      $ make
+      $ ssh dory.fuelcycle.org ‘mv cyc-cde.tar.gz cyc-cde.tar.gz_bkp’
+      $ scp cyc-cde.tar.gz dory:fuelcycle.org:./
+      $ ssh dory.fuelcycle.org
+      $ ps -fe | grep cloudlus | grep work | grep ':80' | cut -d" " -f6 | xargs kill -9
+      $ rm -rf worker-*
+      $ ./launch.sh 2
 
 #. Send out an email to `cyclus-dev` and `cyclus-users` to announce the release!
 
