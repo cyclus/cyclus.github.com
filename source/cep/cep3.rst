@@ -206,6 +206,8 @@ Release Process
     - This can be updated one day to use the Github `release API
       <https://developer.github.com/v3/repos/releases/#create-a-release>`_
 
+#. Update Conda-forge
+
 #. Create a DOI. See :doc:`CEP4 <./cep4>` for details.
 
     - This can be updated one day to use the Figshare `API
