@@ -207,6 +207,19 @@ Release Process
       <https://developer.github.com/v3/repos/releases/#create-a-release>`_
 
 #. Update Conda-forge
+    - For each project, find the corresponding feedstock repository in the
+      conda-forge organization on github. For example, cyclus' feedstock is at
+      https://github.com/conda-forge/cyclus-feedstock
+
+    - In each project's feedstok, open up a PR which updates the
+      `recipe/meta.yaml` file with the new version number and the new SHA-256
+      value of the new version's tarball. See conda-forge documentation for more
+      or ask the feedstock maintainers for help. 
+
+    - Note that each feedstock must be accepted and the package uploaded to
+      anaconda.org (automatic) prior to accepting updates for the next feedstock
+      dependency. For example, cyclus must be fully updated before cycamore.
+
 
 #. Create a DOI. See :doc:`CEP4 <./cep4>` for details.
 
@@ -229,12 +242,13 @@ Release Process
    your computer.
     
    .. code-block:: bash
+
       $ git clone https://github.com/rwcarlsen/cloudlus.git
       $ cd cloudlus
       $ go install ./cmd/cloudlus
       $ cd misc/fuelcycle.org
       $ make
-      $ ssh dory.fuelcycle.org ‘mv cyc-cde.tar.gz cyc-cde.tar.gz_bkp’
+      $ ssh dory.fuelcycle.org 'mv cyc-cde.tar.gz cyc-cde.tar.gz_bkp'
       $ scp cyc-cde.tar.gz dory:fuelcycle.org:./
       $ ssh dory.fuelcycle.org
       $ ps -fe | grep cloudlus | grep work | grep ':80' | cut -d" " -f6 | xargs kill -9
