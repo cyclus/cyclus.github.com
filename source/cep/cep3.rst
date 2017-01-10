@@ -139,6 +139,26 @@ Release Process
       $ export CYCAMORE_DIR=/path/to/cycamore
       $ ./maintenence.sh -r -v X.X.X # X.X.X is *this* version
 
+    .. note:: 
+
+          If mainteance script fails because of an ABI failure that are cause by
+          a compiler update, you might want to accept them and procceed with the
+          release with those. to do so you need to generate the new symbols and
+          commit them:
+          
+          #. First make sure those change can be ignore by email the dev-list
+          
+          #. if the dev-list agreed to those changes, update the symbol and
+             commit the new one:
+
+          .. code-block:: bash
+            
+                $ cd $CYCLUS_DIR/release
+                $ ./smbchk.py --update -t X.X.X # X.X.X is *this* version
+                $ git add symbols.json
+                $ git commit -m "Describe here all the change on the ABI"
+
+
 #. Commit all changes for all projects.
 
     .. code-block:: bash
