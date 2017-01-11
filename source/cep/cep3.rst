@@ -124,7 +124,7 @@ Release Process
    ``cycamore/src/cycamore_version.h.in``, and
    ``cymetric/setup.py``; commit the changes
 
-#. Perform maintenance tasks for all projects. The maintenance depends on `PyNe
+#. Perform maintenance tasks for all projects. The maintenance depends on `PyNE
    <https://github.com/pyne/pyne.git>`_and Doxygen.
 
     - they are described in detail below, *but* the ``maintenence.sh`` utility
@@ -228,9 +228,11 @@ Release Process
     - This can be updated one day to use the Github `release API
       <https://developer.github.com/v3/repos/releases/#create-a-release>`_
 
+
 #. Update Conda-forge
-    - For each project, find the corresponding feedstock repository in the
-      conda-forge organization on github. For example, cyclus' feedstock is at
+ 
+     - For each project, find the corresponding feedstock repository in the
+       conda-forge organization on github. For example, cyclus' feedstock is at
       https://github.com/conda-forge/cyclus-feedstock
 
     - In each project's feedstok, open up a PR which updates the
