@@ -141,14 +141,16 @@ Release Process
 
     .. note:: 
 
-          If mainteance script fails because of an ABI failure that are cause by
-          a compiler update, you might want to accept them and procceed with the
-          release with those. to do so you need to generate the new symbols and
+          If maintenance script fails because of an ABI failure that is caused by
+          a compiler update (or other similar change caused by reasons other
+          than code changes), you might want to accept them and procceed with the
+          release with those. To do so you need to generate the new symbols and
           commit them:
           
-          #. First make sure those change can be ignore by email the dev-list
+          #. First make sure those changes can be ignored by emailing for
+             discussion/approval the dev-list
           
-          #. if the dev-list agreed to those changes, update the symbol and
+          #. if the dev-list agrees to those changes, update the symbols and
              commit the new one:
 
           .. code-block:: bash
@@ -257,9 +259,13 @@ Release Process
 
 #. Commit all changes to ``cyclus.github.com`` and ``make gh-publish`` 
 
-#. Update Dory Cyclus/Cycamore version and relaunch Dory worker. To do this you
-   need a acces to the dory server, the go toolchain as well as cde installed on
-   your computer.
+#. Update 'Dory''s ``Cyclus``/``Cycamore`` version and relaunch ``Dory`` worker.
+   To do this you need a acces to the ``Dory`` server (if you don't please
+   contact an administrator), the ``go`` toolchain as well as ``cde`` installed
+   on your computer. Also, the release version of ``Cyclus`` and ``Cycamore``
+   have to be compiled on you system and both executable and lib have to be on
+   the default paths. Please refer to the :doc:`source installation
+   <../user/install_from_git>` if you need.
     
    .. code-block:: bash
 
@@ -274,6 +280,7 @@ Release Process
       $ ps -fe | grep cloudlus | grep work | grep ':80' | cut -d" " -f6 | xargs kill -9
       $ rm -rf worker-*
       $ ./launch.sh 2
+
 
 #. Send out an email to `cyclus-dev` and `cyclus-users` to announce the release!
 
