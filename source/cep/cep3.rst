@@ -261,7 +261,7 @@ Release Process
 
 #. Commit all changes to ``cyclus.github.com`` and ``make gh-publish`` 
 
-#. Update 'Dory''s ``Cyclus``/``Cycamore`` version and relaunch ``Dory`` worker.
+#. Update ``Dory``'s ``Cyclus``/``Cycamore`` version and relaunch ``Dory`` worker.
    To do this you need a acces to the ``Dory`` server (if you don't please
    contact an administrator), the ``go`` toolchain as well as ``cde`` installed
    on your computer. Also, the release version of ``Cyclus`` and ``Cycamore``
