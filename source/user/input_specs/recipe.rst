@@ -36,6 +36,12 @@ A ``recipe`` block has the following sections in the following order:
 
 Example
 +++++++
+This example defines two material compositions.  The first has the name
+``commod_recipe``, is defined using mass fractions, and contains a single
+nuclide of H-1.  The second recipe is named ``natU_recipe``, is defined using
+atom fractions, and contains two nuclides: 0.7% of the atoms are U-235 and
+99.3% of the atoms are U-238.
+
 
 **XML:**
 
@@ -61,41 +67,46 @@ Example
     </nuclide>
   </recipe>
 
+
 **JSON:**
 
 .. code-block:: json
 
      {
-      "recipe": {
-        "name": "proton_recipe",
-        "basis": "mass",
-        "nuclide": {
-          "id": "H1",
-          "comp": 1 } 
-        }
+      "recipe": [
+        {"name": "proton_recipe",
+         "basis": "mass",
+         "nuclide": {"id": "H1", "comp": 1}
+        },
+        {"name": "natU_recipe",
+         "basis": "atom",
+         "nuclide": [
+            {"id": "U235", "comp": 0.007},
+            {"id": "U238", "comp": 0.993}
+            ]
+         }
+        ]
       }
 
 
-     {
-      "recipe": {
-        "name": "natU_recipe",
-        "basis": "atom",
-        "nuclide": {
-          "id": "U235",
-          "comp": 0.007 },
-        "nuclide": {
-          "id": "U238",
-          "comp": 0.993 }
-        }
+**Python:**
+
+.. code-block:: python
+
+     {"recipe": [
+        {"name": "proton_recipe",
+         "basis": "mass",
+         "nuclide": {"id": "H1", "comp": 1},
+        },
+        {"name": "natU_recipe",
+         "basis": "atom",
+         "nuclide": [
+            {"id": "U235", "comp": 0.007},
+            {"id": "U238", "comp": 0.993},
+            ],
+         },
+        ],
       }
-
-This example defines two material compositions.  The first has the name
-`commod_recipe`, is defined using mass fractions, and contains a single
-nuclide of H-1.  The second recipe is named `natU_recipe`, is defined using
-atom fractions, and contains two nuclides: 0.7% of the atoms are U-235 and
-99.3% of the atoms are U-238.
-
-
 
 .. rst-class:: html-toggle
 

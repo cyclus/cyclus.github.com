@@ -28,6 +28,18 @@ Here is an example of a XML code block.
      <body>We have released Cyclus v1.0 for everyone to use.</body>
   </note>
 
+In this example, a section named ``note`` includes four other sections named
+``to``, ``from``, ``heading``, and ``body``, respectively.
+
+The set of tags for any given project, and their relationship to each other in
+the hierarchy, is referred to as a grammar.  In addition to defining which
+tags exist, the grammar defines how many times each tag must or may exist
+in a given section.  A tag may be completely optional, required one or more
+times, or allowed to appear as many times as the user desires.
+
+Although XML grammars are designed to be self-documenting, comments can be
+inserted into XML files anywhere using the ``<!-- comment here -->`` syntax,
+as shown above.
 
 
 A Brief Introduction to JSON
@@ -48,53 +60,28 @@ Here is the same code block using JSON.
     }
 
 
-In this example, a section named ``note`` includes four other sections named
-``to``, ``from``, ``heading``, and ``body``, respectively.
-
-The set of tags for any given project, and their relationship to each other in
-the hierarchy, is referred to as a grammar.  In addition to defining which
-tags exist, the grammar defines how many times each tag must or may exist
-in a given section.  A tag may be completely optional, required one or more
-times, or allowed to appear as many times as the user desires.
-
-Although XML grammars are designed to be self-documenting, comments can be
-inserted into XML files anywhere using the ``<!-- comment here -->`` syntax,
-as shown above.
-
-
 A Brief Introduction to Python
 ------------------------------------
 `Python`_ is a fully featured dynamic programming language. It hosts a wide variety of
-primitives built in to the language and
-JSON was created to replace XML with a more user friendly language. It was designed to be a simpler and easier to use markup language. It does this by cutting out unnecessary parts of the XML language, such as closing tags. One area where JSON excels is that it is a data-oriented language, compared to XML, which is document-oriented.
+primitives built in to the language as well as powerful 3rd part libraries. Python
+input files allow for the computation of mathematical expressions in the input file
+itself. Static, proecomputed values are not required (as with XML and JSON).
 
-Here is the same code block using JSON.
+Here is the same code block using Python.
 
-.. code-block:: json
+.. code-block:: python
 
-    {
-      "note": {
-        "to": "Matt",
-        "from": "Anthony",
+    {"note": {
+        "to": "Matt",       # message recipient
+        "from": "Anthony",  # message sender
         "heading": "Cyclus released today",
-        "body": "We have released Cyclus v1.0 for everyone to use."
-      }
+        "body": "We have released Cyclus v1.0 for everyone to use.",
+        }
     }
 
 
-In this example, a section named ``note`` includes four other sections named
-``to``, ``from``, ``heading``, and ``body``, respectively.
-
-The set of tags for any given project, and their relationship to each other in
-the hierarchy, is referred to as a grammar.  In addition to defining which
-tags exist, the grammar defines how many times each tag must or may exist
-in a given section.  A tag may be completely optional, required one or more
-times, or allowed to appear as many times as the user desires.
-
-Although XML grammars are designed to be self-documenting, comments can be
-inserted into XML files anywhere using the ``<!-- comment here -->`` syntax,
-as shown above.
-
+In this example, a dictionary with a  ``note`` key is has a dictionary vary that includes
+four other keys named ``to``, ``from``, ``heading``, and ``body`` respectively.
 
 
 The |Cyclus| Input File
@@ -118,6 +105,22 @@ contains all data for a simulation.
       "simulation": {
           "… simulation data will go here …"
     }
+
+**Python:**
+
+.. code-block:: python
+
+    # Python input files will look for a variable named
+    # simulation, Simulation, or SIMULATION. It's value should be a
+    # dictionary with a single "simulation" key.
+    simulation = {"simulation": {...}}
+
+    # Alternitavely, the simualtion variable can also be a Python function or
+    # callable that returns a simulation dictionary. This function should not
+    # take any arguments.
+    def simulation():
+        return {"simulation": {...}}
+
 
 Although not all sections are required, the following sections may appear in
 any order in the input file:
