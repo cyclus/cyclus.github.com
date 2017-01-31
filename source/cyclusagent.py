@@ -1,7 +1,7 @@
-"""This module adds a reST directive to sphinx that generates cyclus agent 
-documentation based on its annotations and schema. The user simply specifies 
-the normal cyclus agent spec for the agent that they wish to document. 
-For example, 
+"""This module adds a reST directive to sphinx that generates cyclus agent
+documentation based on its annotations and schema. The user simply specifies
+the normal cyclus agent spec for the agent that they wish to document.
+For example,
 
     .. cyclus-agent:: tests:TestFacility:TestFacility
 
@@ -26,7 +26,7 @@ except ImportError:
 
 from docutils import io, nodes, statemachine, utils
 try:
-    from docutils.utils.error_reporting import ErrorString  # the new way 
+    from docutils.utils.error_reporting import ErrorString  # the new way
 except ImportError:
     from docutils.error_reporting import ErrorString        # the old way
 from docutils.parsers.rst import Directive, convert_directive_function
@@ -43,7 +43,7 @@ if sys.version_info[0] == 2:
     def indent(text, prefix):
         lines = text.splitlines(True)
         s = prefix + prefix.join(lines)
-        return s 
+        return s
 elif sys.version_info[0] >= 3:
     STRING_TYPES = (str,)
     IS_PY3 = True
@@ -132,13 +132,13 @@ default_types = {
     'boost::uuids::uuid': 'token',
     # UI types
     'nuclide': 'string',
-    'commodity': 'string', 
-    'incommodity': 'string', 
-    'outcommodity': 'string', 
-    'range': None, 
-    'combobox': None, 
-    'facility': None, 
-    'prototype': 'string', 
+    'commodity': 'string',
+    'incommodity': 'string',
+    'outcommodity': 'string',
+    'range': None,
+    'combobox': None,
+    'facility': None,
+    'prototype': 'string',
     'recipe': 'string',
     'none': None,
     None: None,
@@ -242,6 +242,7 @@ def build_xml_sample(cpptype, schematype=None, uitype=None, names=None, units=No
     _, lines = s.split("\n", 1)
     return lines
 
+
 def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=None, default=None):
     schematype = prepare_type(cpptype, schematype)
     uitype = prepare_type(cpptype, uitype)
@@ -260,7 +261,7 @@ def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=N
         defstr = json.dumps(default) if isinstance(default, STRING_TYPES) else default
 
         if default is None or defstr == '"null"':
-            defstr = '"<required>"' 
+            defstr = '"<required>"'
 
         if isinstance(units, STRING_TYPES):
             impl += '{{"{0}": {1}}}  # {2}, {3}'.format(name, defstr, d_type, units)
@@ -307,7 +308,7 @@ def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=N
         impl += indent('{' + post.rstrip() + ',\n', '    ')
         pre, post = y.split('{', 1)
         post, _, _ = post.rpartition('}')
-        impl += indent(post + '},\n', '    ')        
+        impl += indent(post + '},\n', '    ')
         impl += indent('...\n', '  ')
         impl += ']}}'
     elif t == 'std::pair':
@@ -335,8 +336,121 @@ def build_json_sample(cpptype, schematype=None, uitype=None, names=None, units=N
         raise RuntimeError(msg)
     return impl
 
+
+def build_py_sample(cpptype, schematype=None, uitype=None, names=None, units=None, default=None):
+    schematype = prepare_type(cpptype, schematype)
+    uitype = prepare_type(cpptype, uitype)
+    names = prepare_type(cpptype, names)
+    units = prepare_type(cpptype, units)
+
+    impl = ''
+    t = cpptype if isinstance(cpptype, STRING_TYPES) else cpptype[0]
+    if t in PRIMITIVES:
+        name = 'val'
+        if names is not None:
+            name = names
+        d_type = _type(t, schematype or uitype)
+        d_type = uitype if uitype in special_uitypes else d_type
+
+        if isinstance(default, STRING_TYPES):
+            defstr = repr(default)
+        elif t == 'bool':
+            defstr = bool(default)
+        else:
+            defstr = default
+
+        required = False
+        if default is None or defstr == 'None':
+            if t == 'int':
+                defstr = '0'
+            elif t == 'float' or t == 'double':
+                defstr = '0.0'
+            elif t == 'bool':
+                defstr = 'False'
+            else:
+                defstr = '""'
+            required = True
+
+        if isinstance(units, STRING_TYPES):
+            impl += '{{"{0}": {1}}}  # {2}, {3}'.format(name, defstr, d_type, units)
+        else:
+            impl += '{{"{0}": {1}}}  # {2}'.format(name, defstr, d_type)
+        if required:
+            impl += ', required'
+        else:
+            impl += ', optional'
+    elif t in ['std::list', 'std::set', 'std::vector']:
+        name = 'list' if names[0] is None else names[0]
+        impl += '{{"{0}":'.format(name)
+        x = build_py_sample(cpptype[1], schematype[1], uitype[1], names[1], units[1])
+        pre, post = x.split(':', 1)
+        post, _ = post.rsplit('}', 1)
+        impl += indent(pre + ': [\n', "  ")
+        impl += indent(post.rstrip() + ",\n", '  ')
+        impl += indent(post.rstrip() + ",\n", '  ')
+        impl += indent('...\n', '  ')
+        impl += ']}}'
+    elif t == 'std::map':
+        name = 'map'
+        if isinstance(names[0], STRING_TYPES):
+            names[0] = [names[0], None]
+        elif names[0] is None:
+            names[0] = [name, None]
+        if names[0][0] is not None:
+            name = names[0][0]
+        itemname = 'item' if names[0][1] is None else names[0][1]
+        keynames = 'key' if isinstance(cpptype[1], STRING_TYPES) else ['key']
+        if names[1] is not None:
+            keynames = names[1]
+        valnames = 'val' if isinstance(cpptype[2], STRING_TYPES) else ['val']
+        if names[1] is not None:
+            valnames = names[2]
+        impl += '{{"{0}": {{\n'.format(name)
+        impl += indent('"{0}": [{{\n'.format(itemname), '  ')
+        x = build_py_sample(cpptype[1], schematype[1], uitype[1], keynames, units[1])
+        pre, post = x.split('{', 1)
+        post, _ = post.rsplit('}', 1)
+        impl += indent(post.rstrip() + ',\n', '    ')
+        y = build_py_sample(cpptype[2], schematype[2], uitype[2], valnames, units[2])
+        pre, post = y.split('{', 1)
+        post, _, _ = post.rpartition('}')
+        impl += indent(post + '},\n', '    ')
+        pre, post = x.split('{', 1)
+        post, _ = post.rsplit('}', 1)
+        impl += indent('{' + post.rstrip() + ',\n', '    ')
+        pre, post = y.split('{', 1)
+        post, _, _ = post.rpartition('}')
+        impl += indent(post + '},\n', '    ')
+        impl += indent('...\n', '  ')
+        impl += ']}}'
+    elif t == 'std::pair':
+        name = 'pair'
+        if names[0] is not None:
+            name = names[0]
+        firstname = 'first' if isinstance(cpptype[1], STRING_TYPES) else ['first']
+        if names[1] is not None:
+            firstname = names[1]
+        secondname = 'second' if isinstance(cpptype[2], STRING_TYPES) else ['second']
+        if names[2] is not None:
+            secondname = names[2]
+        x = build_py_sample(cpptype[1], schematype[1], uitype[1], firstname, units[1])
+        impl += '{{"{0}": {{\n'.format(name)
+        pre, post = x.split('{', 1)
+        post, _ = post.rsplit('}', 1)
+        impl += indent(post.rstrip() + ',\n', '  ')
+        y = build_py_sample(cpptype[2], schematype[2], uitype[2], secondname, units[2])
+        pre, post = y.split('{', 1)
+        post, _, _ = post.rpartition('}')
+        impl += indent(post.rstrip() + '\n', '  ')
+        impl += "  " + '}\n}'
+    else:
+        msg = 'Unsupported type {1}'.format(t)
+        raise RuntimeError(msg)
+    return impl
+
+
 class CyclusAgent(Directive):
-    """The cyclus-agent directive, which is based on constructing a list of 
+    """The cyclus-agent directive, which is based on constructing a list of
     of string lines of restructured text and then parsing it into its own node.
     """
     required_arguments = 1
@@ -411,7 +525,7 @@ class CyclusAgent(Directive):
         return val['index']
 
     def append_statevars(self):
-        vars = OrderedDict(sorted(self.annotations.get('vars', {}).items(), 
+        vars = OrderedDict(sorted(self.annotations.get('vars', {}).items(),
                            key=self._sort_statevars))
         if len(vars) == 0:
             return
@@ -431,7 +545,7 @@ class CyclusAgent(Directive):
 
             alias = info.get('alias', name)
             if isinstance(alias, STRING_TYPES):
-                name = alias 
+                name = alias
             elif isinstance(alias[0], STRING_TYPES):
                 name = alias[0]
             else:
@@ -455,7 +569,7 @@ class CyclusAgent(Directive):
             # add docs
             ind = " " * 4
             if 'doc' in info:
-                doc = ind + info['doc'].replace('\n', '\n'+ind) 
+                doc = ind + info['doc'].replace('\n', '\n'+ind)
                 lines += doc.splitlines()
                 lines.append('')
 
@@ -496,7 +610,16 @@ class CyclusAgent(Directive):
                     previndent = ' ' * (len(l) - len(l.lstrip()))
             self.lines.append('')
 
-
+            self.lines += [ind + '**Python:**', '', ind + '.. code-block:: python', '']
+            schemalines = build_py_sample(t, schematype, uitype, labels, units, default=info.get('default', None)).split('\n')
+            previndent = ''
+            for l in schemalines:
+                if len(l.strip()) > 0:
+                    if l.strip() == '...':
+                        l = previndent + l.strip()
+                    self.lines.append(ind + '    ' + l)
+                    previndent = ' ' * (len(l) - len(l.lstrip()))
+            self.lines.append('')
 
     def append_schema(self):
         header = 'XML Input Schema'
