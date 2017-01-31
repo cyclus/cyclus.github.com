@@ -4,7 +4,7 @@
 Event Loop (``cyclus.events``)
 ********************************************************************************
 
-.. automodule:: cyclus.event
+.. automodule:: cyclus.events
     :members:
     :undoc-members:
     :inherited-members:
