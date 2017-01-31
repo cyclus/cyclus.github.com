@@ -1,4 +1,3 @@
-
 Understanding the Database
 ============================
 
@@ -57,7 +56,7 @@ tables.
 * **Type** (string): One of "Material" or "Product".  These two types of
   resources have different internal state stored in different tables.  If the
   type is "Product", then the internal state can be found in the ``Products``
-  table. If it is Material, then it is in the ``Compositions`` table. 
+  table. If it is Material, then it is in the ``Compositions`` table.
 
 * **TimeCreated** (int): The simulation time step at which this resource state
   came into existence.
@@ -69,7 +68,7 @@ tables.
   resources.
 
 * **QualId** (int): Used to identify the corresponding internal-state
-  entry (or entries) in the ``Products`` or ``Compositions`` table depending 
+  entry (or entries) in the ``Products`` or ``Compositions`` table depending
   on the resource's type.
 
 * **Parent1** (int): If a resource was newly created, this is zero. If this
@@ -97,7 +96,7 @@ step for each sub-buffer for each nuclide.
 
 * **SimId** (uuid)
 
-* **AgentId** (int): ID of the agent holding the inventory 
+* **AgentId** (int): ID of the agent holding the inventory
 
 * **Time** (int): Time Step this inventory was in the given agent.
 
@@ -130,7 +129,7 @@ this data as an xml string from a boost-serialized ``std::map<int, double>``
 
 * **SimId** (uuid)
 
-* **AgentId** (int): ID of the agent holding the inventory 
+* **AgentId** (int): ID of the agent holding the inventory
 
 * **Time** (int): time step this inventory was in the given agent.
 
@@ -298,9 +297,9 @@ parameters and |cyclus| dependency version information.
 
 * **ParentSimId** (uuid): The SimId for this simulation's parent. Zero if this
   simulation has no parent.
- 
+
 * **ParentType** (string): One of:
-    
+
     - "init" for simulations that are not based on any other simulation.
 
     - "restart" for simulations that were restarted another simulation's
@@ -308,28 +307,28 @@ parameters and |cyclus| dependency version information.
 
     - "branch" for simulations that were started from a perturbed state of
       another simulation's snapshot.
- 
+
 * **BranchTime** (int): Zero if this was not a restarted or branched
   simulation. Otherwise, the time step of the ParentSim at which the
   restart/branch occurred.
- 
+
 * **CyclusVersion** (string): Version of |cyclus| used to run this simulation.
- 
+
 * **CyclusVersionDescribe** (string): Detailed |cyclus| version info (with commit hash)
- 
+
 * **SqliteVersion** (string)
- 
+
 * **Hdf5Version** (string)
- 
+
 * **BoostVersion** (string)
- 
+
 * **LibXML2Version** (string)
- 
+
 * **CoinCBCVersion** (string)
 
-InfoExplicitInv Table
--------------------
 
+InfoExplicitInv Table
+----------------------
 Each simulation gets one row in this table.
 
 * **SimId** (uuid)
@@ -341,9 +340,9 @@ Each simulation gets one row in this table.
   ExplicitInventoryCompact table was or should be activated for the
   simulation.
 
+
 Finish Table
 -------------------
-
 Each simulation gets one row/entry in this table.
 
 * **SimId** (uuid)
@@ -353,16 +352,16 @@ Each simulation gets one row/entry in this table.
 
 * **EndTime** (int): The time step at which the simulation ended.
 
+
 InputFiles Table
 -------------------
-
 * **SimId** (uuid)
 
 * **Data** (blob): A dump of the entire input file used for this simulation.
 
+
 DecomSchedule Table
 --------------------
-
 When agents are scheduled to be decommissioned in the simulation, the details
 are recorded in this table.  Note that this table contains an entry for each
 scheduling regardless of whether or not it actually occurred; if a simulation
@@ -415,7 +414,7 @@ times in this table are candidates for simulation restart/branching.
 Debugging
 ----------
 
-If |Cyclus| was run in debugging mode then the database will then contain 
+If |Cyclus| was run in debugging mode then the database will then contain
 the following two extra tables:
 
 * **DebugRequests**: record of every resource request made in the simulation.

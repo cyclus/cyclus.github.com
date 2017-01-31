@@ -39,7 +39,7 @@ News
 
 **December 13, 2016:** :doc:`Cyclus v1.5.0 is released <previous/v1.5>`
 
-**July 6-8, 2016:** :doc:`Technical workshop on Dynamic Fuel Cycle>` in Paris, France
+**July 6-8, 2016:** Technical workshop on Dynamic Fuel Cycle in Paris, France
 
 **August 13, 2015:** :doc:`Cyclus included in FY2016 workscopes for the NEUP program <news/fy16neup>`
 
@@ -48,6 +48,12 @@ News
 **June 10, 2015:** First Cyclus :doc:`user tutorial <user/tutorial/index>` and :doc:`developer tutorial <arche/tutorial/index>` are held at the 2015 ANS Annual Meeting in San Antonio, TX
 
 **June 7, 2015:** :doc:`Cyclus v1.3.1 is released <previous/v1.3>`
+
+.. toctree::
+    :maxdepth: 1
+
+    news/fy16neup
+
 
 Learn More
 ----------

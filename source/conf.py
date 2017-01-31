@@ -44,7 +44,7 @@ if len(h) != 0:
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.pngmath', 'sphinx.ext.autodoc',
+extensions = ['sphinx.ext.imgmath', 'sphinx.ext.autodoc',
               'sphinx.ext.autosummary',
               'numpydoc',
               'cyclusagent', 'cloud_sptheme.ext.table_styling',
@@ -74,7 +74,8 @@ copyright = (u'2012-2016, University of Wisconsin Computational Nuclear '
 # built documents.
 verout = ""
 try:
-    verout = subprocess.check_output('cyclus --version', shell=True).split()
+    verout = subprocess.check_output('cyclus --version', shell=True,
+                                     universal_newlines=True).split()
 except OSError:
     warnings.warn("WARNING: Continuing without cyclus - will not include "
                   "agents in output", RuntimeWarning)

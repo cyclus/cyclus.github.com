@@ -34,12 +34,12 @@ Installing |Cyclus| with Binaries
 
 #. Install the package by running:
 
-   .. code-block:: bash 
+   .. code-block:: bash
 
       $ sudo dpkg -i cycamore_latest.deb
-  
+
 #. .. include::  unit_test.rst
-  
+
 Happy simulating!
 
 .. _Anaconda: https://www.continuum.io/downloads

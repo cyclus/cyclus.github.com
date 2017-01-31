@@ -1,7 +1,7 @@
 Cymetric API
 ============
 The following modules make up the cymetric package.  Note that most of the
-important stuff you can get directly from ``cymetric`` without needing to import 
+important stuff you can get directly from ``cymetric`` without needing to import
 the module.  For example, the following two imports are the same:
 
 .. code-block:: python
@@ -15,7 +15,6 @@ the module.  For example, the following two imports are the same:
 .. toctree::
     :maxdepth: 1
 
-    typesystem
     schemas
     metrics
     root_metrics
@@ -27,6 +26,5 @@ the module.  For example, the following two imports are the same:
 .. toctree::
     :maxdepth: 1
 
-    cyclus
     main
     tools
