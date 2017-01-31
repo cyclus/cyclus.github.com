@@ -8,7 +8,7 @@ method developments purposes.
 Consortium for Verification Technology
 --------------------------------------
 
-.. figure:: http://cvt.engin.umich.edu/wp-content/uploads/sites/173/2014/10/CVT-logo-250pix1.png
+.. figure:: ../astatic/CVT-logo-250pix1.png
     :align: right
     :width: 100
 
