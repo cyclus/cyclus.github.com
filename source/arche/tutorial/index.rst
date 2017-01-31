@@ -29,15 +29,13 @@ This tutorial has the following steps:
     testing
     input_files
 
-.. ::
+Given enough time, the following extra topics may be covered:
 
-   Given enough time, the following extra topics may be covered:
+.. toctree::
+    :maxdepth: 1
 
-   .. toctree::
-       :maxdepth: 1
-
-       cyclist
-       dre
+    cyclist
+    dre
 
 .. note::
 
