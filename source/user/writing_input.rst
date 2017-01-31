@@ -1,7 +1,7 @@
 Writing a |Cyclus| Input File
 =============================
 This section will provide an introduction to creating a valid input file for
-|Cyclus| by hand.  Because |Cyclus| uses both XML and JSON, input files have clearly defined
+|Cyclus| by hand.  Because |Cyclus| uses XML, JSON, or Python, input files have clearly defined
 sections, or blocks, that can be automatically validated for correctness.
 
 Work is underway to provide a drag-and-drop graphical user interface to
@@ -49,7 +49,7 @@ Here is the same code block using JSON.
 
 
 In this example, a section named ``note`` includes four other sections named
-``to``, ``from``, ``heading``, and ``body``, respectively.  
+``to``, ``from``, ``heading``, and ``body``, respectively.
 
 The set of tags for any given project, and their relationship to each other in
 the hierarchy, is referred to as a grammar.  In addition to defining which
@@ -60,6 +60,41 @@ times, or allowed to appear as many times as the user desires.
 Although XML grammars are designed to be self-documenting, comments can be
 inserted into XML files anywhere using the ``<!-- comment here -->`` syntax,
 as shown above.
+
+
+A Brief Introduction to Python
+------------------------------------
+`Python`_ is a fully featured dynamic programming language. It hosts a wide variety of
+primitives built in to the language and
+JSON was created to replace XML with a more user friendly language. It was designed to be a simpler and easier to use markup language. It does this by cutting out unnecessary parts of the XML language, such as closing tags. One area where JSON excels is that it is a data-oriented language, compared to XML, which is document-oriented.
+
+Here is the same code block using JSON.
+
+.. code-block:: json
+
+    {
+      "note": {
+        "to": "Matt",
+        "from": "Anthony",
+        "heading": "Cyclus released today",
+        "body": "We have released Cyclus v1.0 for everyone to use."
+      }
+    }
+
+
+In this example, a section named ``note`` includes four other sections named
+``to``, ``from``, ``heading``, and ``body``, respectively.
+
+The set of tags for any given project, and their relationship to each other in
+the hierarchy, is referred to as a grammar.  In addition to defining which
+tags exist, the grammar defines how many times each tag must or may exist
+in a given section.  A tag may be completely optional, required one or more
+times, or allowed to appear as many times as the user desires.
+
+Although XML grammars are designed to be self-documenting, comments can be
+inserted into XML files anywhere using the ``<!-- comment here -->`` syntax,
+as shown above.
+
 
 
 The |Cyclus| Input File
@@ -74,9 +109,9 @@ contains all data for a simulation.
    <simulation>
      ... simulation data will go here ...
    </simulation>
- 
-**JSON:** 
- 
+
+**JSON:**
+
 .. code-block:: json
 
     {
@@ -101,14 +136,14 @@ any order in the input file:
 Including XML Files
 --------------------
 One feature of XML is that you are able to include external XML files inside of
-your current document. This lets you reuse common parts of your input file that 
+your current document. This lets you reuse common parts of your input file that
 do not change across multiple simulations. To enable XML include semantics
-the attribute ``xmlns:xi="http://www.w3.org/2001/XInclude"`` *must* be added to the 
-``<simulation>`` tag. Then to include an external 
+the attribute ``xmlns:xi="http://www.w3.org/2001/XInclude"`` *must* be added to the
+``<simulation>`` tag. Then to include an external
 file use the ``<xi:include href="path/to/file" />`` tag where you want the included
 file to go.
 
-A common inclusion pattern is to have a recipe book of materials in one file 
+A common inclusion pattern is to have a recipe book of materials in one file
 and then include this in your simulation.
 
 **input.xml:**
@@ -117,8 +152,8 @@ and then include this in your simulation.
 
     <simulation xmlns:xi="http://www.w3.org/2001/XInclude">
       ...
-      <xi:include href="recipebook.xml" /> 
-      ... 
+      <xi:include href="recipebook.xml" />
+      ...
     </simulation>
 
 **recipebook.xml:**
