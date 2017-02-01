@@ -47,7 +47,7 @@ Hello World
 
 .. toctree::
     :maxdepth: 1
-    
+
     hello_world
     tour
 
@@ -59,16 +59,16 @@ Tutorial
 
 .. toctree::
     :maxdepth: 1
-    
+
     tutorial/index
 
-Building, Installing and Testing
-++++++++++++++++++++++++++++++++
+Building, Installing and Testing [C++]
+++++++++++++++++++++++++++++++++++++++
 
 .. toctree::
     :maxdepth: 1
 
-    cmake    
+    cmake
     cycpp
     testing
 
@@ -77,7 +77,7 @@ Interfacing with the |Cyclus| Kernel
 
 .. toctree::
     :maxdepth: 1
-    
+
     timestep
     resources
     dre

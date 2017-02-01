@@ -18,13 +18,22 @@ The list of phases in order is:
 * :ref:`tock` (agent)
 * :ref:`decom` (kernel)
 
-Agent phases are invoked using a method call of the same name, e.g., 
+Agent phases are invoked using a method call of the same name, e.g.,
+
+**C++:**
 
 .. code-block:: c++
 
     virtual void MyAgent::Tick() {
       // perform agent-phase Tick's work
     }
+
+**Python:**
+
+.. code-block:: python
+
+    def tick(self):
+        # perform agent-phase tick's work, no return value
 
 Importantly, the order in which agents' agent-phase methods are invoked is *not
 guaranteed*. In other words, the execution of any given phase is conceptually
@@ -40,6 +49,8 @@ support approximately 1-month time steps), then they should throw an
 exception as early as possible (i.e. in their constructor).  The time step
 duration can be queried from an the simulation context:
 
+**C++:**
+
 .. code-block:: c++
 
     virtual void MyAgent::Tick() {
@@ -47,6 +58,15 @@ duration can be queried from an the simulation context:
         double discharge_qty = discharge_rate * context()->dt();
         ...
     }
+
+**Python:**
+
+.. code-block:: python
+
+    def tick(self):
+        ...
+        discharge_qty = self.discharge_rate * self.context.dt
+        ...
 
 .. _build:
 
