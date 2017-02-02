@@ -259,22 +259,23 @@ get material bids implementation would then be:
 White Box Examples
 +++++++++++++++++++
 Consider a case where a facility's bid depends on the type of the requester's
-``cyclus::Agent``, and the bidder determines its offer based on the requester's
+``Agent``, and the bidder determines its offer based on the requester's
 interface:
+
+**C++:**
 
 .. code-block:: c++
 
     cyclus::Material::Ptr FooFac::SpecialFooOffer() {
       std::string recipe = "recipe";
       double quantity = 10;
-      Material::Ptr target =
-          Material::CreateUntracked(quantity, context()->GetRecipe(recipe));
+      Material::Ptr target = Material::CreateUntracked(quantity,
+                                                       context()->GetRecipe(recipe));
       return target;
     };
 
-    virtual std::set<cyclus::BidPortfolio<cyclus::Material>::Ptr>
-      FooFac::GetMatlBids(
-        cyclus::CommodMap<cyclus::Material>::type& commod_requests) {
+    virtual std::set<cyclus::BidPortfolio<cyclus::Material>::Ptr> FooFac::GetMatlBids(
+                                cyclus::CommodMap<cyclus::Material>::type& commod_requests) {
       using cyclus::BidPortfolio;
       using cyclus::Material;
       using cyclus::Request;
@@ -286,16 +287,16 @@ interface:
       std::vector<Request<Material>*>::iterator it;
       for (it = requests.begin(); it != requests.end(); ++it) {
         Material::Ptr offer;
-	Agent* agent = it->requester();
-	FooFac* cast = dynamic_cast<FooFac*>(agent);
-	if (cast != NULL) {
-	    offer = cast->SpecialFooOffer(); // get a special response that the requester wants
-	} else {
-	    double qty = it->quantity();
-      	    std::string recipe = "some_other_recipe";
-      	    Material::Ptr offer = Material::CreateUntracked(qty, context()->GetRecipe(recipe));
-	}
-	port->AddBid(*it, offer, this);
+        Agent* agent = it->requester();
+        FooFac* cast = dynamic_cast<FooFac*>(agent);
+        if (cast != NULL) {
+          offer = cast->SpecialFooOffer(); // get a special response that the requester wants
+        } else {
+          double qty = it->quantity();
+          std::string recipe = "some_other_recipe";
+          Material::Ptr offer = Material::CreateUntracked(qty, context()->GetRecipe(recipe));
+        }
+        port->AddBid(*it, offer, this);
       }
 
       std::set<BidPortfolio<Material>::Ptr> ports;
@@ -303,29 +304,54 @@ interface:
       return ports;
     }
 
+
+**Python:**
+
+.. code-block:: python
+
+    from cyclus.typesystem import ts
+
+    def special_foo_offer(self):
+        recipe = self.context.get_recipe("recipe")
+        target = ts.Material.create_untracked(10, recipe)
+        return target
+
+    def get_material_bids(self, requests):
+        reqs = requests["FuelA"]
+        bids = []
+        for req in reqs:
+            if isinstance(req.requester, FooFac):
+                offer = self.special_foo_offer()
+            else:
+                qty = req.quantity
+                recipe = self.context.get_recipe("some_other_recipe")
+                offer = ts.Material.create_untracked(qty, recipe)
+            bids.append(req)
+        return {"bids": bids}
+
+
 .. _adj:
 
 Preference Adjustment Phase
 ---------------------------
-
 In the Preference Adjustment (PA) phase, requesters are allowed to view which
 bids were matched to their requests, and adjust their preference for the given
-bid-request pairing. Querying is provided through the ``cyclus::Trader`` and
-``cyclus::Agent`` interfaces' ``Adjust*Prefs`` for a given resource type, e.g.,
-``AdjustMaterialPrefs``.
+bid-request pairing. Querying is provided through the ``Agent`` interface, so all cyclus
+archetypes may adjust preferences. The "adjust prefs: functions are based on a given resource
+type, e.g. ``AdjustMaterialPrefs`` (C++) or ``adjust_material_prefs()`` (Python).
 
 Preferences are used by resource exchange solvers to inform their solution
 method. The default preference for all bids is zero. Agents will only utilize
 the PA phase if there is a reason to update preferences over the default
 provided in their original request.
 
-Preferences can be adjusted by both the original ``cyclus::Trader`` placing
-requests as well as any parent ``cyclus::Agent``\s, with the trader adjusting
+Preferences can be adjusted by both the original ``Trader`` placing
+requests as well as any parent ``Agent`` instances, with the trader adjusting
 first and the most senior parent adjusting last. In the supported
 Region-Institution-Facility agent relationship, Facilities adjust first,
 followed by Institution and Region parent agents. The calling chain is shown in
-Figure 1, with the orange box representing a call through the ``cyclus::Trader``
-interface and a green box representing the ``cyclus::Agent`` interface.
+Figure 1, with the orange box representing a call through the ``Trader``
+interface and a green box representing the ``Agent`` interface.
 
 .. figure:: dre-1.svg
     :align: center
@@ -355,127 +381,198 @@ interface and a green box representing the ``cyclus::Agent`` interface.
 
 Black Box Examples
 ++++++++++++++++++
-
 For example, suppose that an agent prefers potential trades in which the bidder
-has the same parent agent as it does. A valid ``AdjustMatlPrefs`` implementation
+has the same parent agent as it does. A valid adjust material preferences implementation
 would then be:
 
+**C++:**
+
 .. code-block:: c++
 
-    virtual void FooFac::AdjustMatlPrefs(
-        cyclus::PrefMap<cyclus::Material>::type& prefs) {
+    virtual void FooFac::AdjustMatlPrefs(cyclus::PrefMap<cyclus::Material>::type& prefs) {
       cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
       for (pmit = prefs.begin(); pmit != prefs.end(); ++pmit) {
         std::map<Bid<Material>*, double>::iterator mit;
         Request<Material>* req = pmit->first;
-	for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
+        for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
           Bid<Material>* bid = mit->first;
-	  if (parent() == bid->bidder()->manager()->parent())
-	    mit->second += 1; // bump pref if parents are equal
-	}
+          if (parent() == bid->bidder()->manager()->parent())
+            mit->second += 1; // bump pref if parents are equal
+        }
       }
     }
 
-Alternatively, a ``cyclus::Institution`` managing a ``cyclus::Facility`` could
-adjust preferences as follows
+
+**Python:**
+
+.. code-block:: python
+
+    def adjust_material_prefs(self, prefs):
+        """The adjustment methods have a single argument which is a prefernce dictionary.
+        It maps (Request, Bid) tuples to float valued prefernces.  For example::
+
+            prefs = {
+                (Request1, Bid1): 1.0,
+                (Request1, Bid2): 2.0,
+                (Request2, Bid3): 1.0,
+                }
+
+        This function may return None or a dictionary of the same form. Note that the
+        return value does not need to have all of the same keys as were passed in. Rather,
+        it can return only those request-bid pairs that it actually wants to update.
+        """
+        # If you don't want to do any prefernce adjustment, just return None.
+        return None
+
+        # Otherwise we can loop though and update those that matter.
+        updates = {}
+        for (req, bid), pref in prefs.items():
+            # favor bids if the parents are the same
+            if self.parent_id == bid.bidder.parent_id:
+                updates[req, bid] = pref + 1.0
+        return updates
+
+
+Alternatively, an ``Institution`` managing a ``Facility`` could
+adjust preferences as follows:
+
+**C++:**
 
 .. code-block:: c++
 
-    virtual void FooInst::AdjustMatlPrefs(
-        cyclus::PrefMap<cyclus::Material>::type& prefs) {
+    virtual void FooInst::AdjustMatlPrefs(cyclus::PrefMap<cyclus::Material>::type& prefs) {
       cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
       for (pmit = prefs.begin(); pmit != prefs.end(); ++pmit) {
         std::map<Bid<Material>*, double>::iterator mit;
         Request<Material>* req = pmit->first;
-	for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
+        for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
           Bid<Material>* bid = mit->first;
-	  Agent* you = bid->bidder()->manager()->parent();
-	  Agent* me = this;
-	  if (me == you)
-	    mit->second += 1; // bump pref if the parent is me (institutions are equal)
-	}
+          Agent* you = bid->bidder()->manager()->parent();
+          Agent* me = this;
+         if (me == you)
+           mit->second += 1; // bump pref if the parent is me (institutions are equal)
+        }
       }
     }
 
-Finally, a ``cyclus::Region`` managing a ``cyclus::Institution`` could adjust
+
+**Python:**
+
+.. code-block:: python
+
+    def adjust_material_prefs(self, prefs):
+        updates = {}
+        for (req, bid), pref in prefs.items():
+            if self.id == bid.bidder.parent_id:
+                updates[req, bid] = pref + 1.0
+        return updates
+
+
+Finally, a ``Region`` managing a ``Institution`` could adjust
 preferences as
 
+**C++:**
+
 .. code-block:: c++
 
-    virtual void FooRegion::AdjustMatlPrefs(
-        cyclus::PrefMap<cyclus::Material>::type& prefs) {
+    virtual void FooRegion::AdjustMatlPrefs(cyclus::PrefMap<cyclus::Material>::type& prefs) {
       cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
       for (pmit = prefs.begin(); pmit != prefs.end(); ++pmit) {
         std::map<Bid<Material>*, double>::iterator mit;
         Request<Material>* req = pmit->first;
-	for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
+        for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
           Bid<Material>* bid = mit->first;
-	  Agent* you = bid->bidder()->manager()->parent()->parent();
-	  Agent* me = this;
-	  if (me == you)
-	    mit->second += 1; // bump pref if the grandparent is me (regions are equal)
-	}
+          Agent* you = bid->bidder()->manager()->parent()->parent();
+          Agent* me = this;
+          if (me == you)
+            mit->second += 1; // bump pref if the grandparent is me (regions are equal)
+        }
       }
     }
+
+
+**Python:**
+
+.. code-block:: python
+
+    def adjust_material_prefs(self, prefs):
+        updates = {}
+        for (req, bid), pref in prefs.items():
+            if self.id == bid.bidder.parent.parent_id:
+                updates[req, bid] = pref + 1.0
+        return updates
+
 
 
 White Box Examples
 ++++++++++++++++++
-
 Consider a scenario in which preferences will only be adjusted if the requester
 and bidder are of the same type:
 
+**C++:**
+
 .. code-block:: c++
 
-    virtual void FooFac::AdjustMatlPrefs(
-        cyclus::PrefMap<cyclus::Material>::type& prefs) {
+    virtual void FooFac::AdjustMatlPrefs(cyclus::PrefMap<cyclus::Material>::type& prefs) {
       cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
       for (pmit = prefs.begin(); pmit != prefs.end(); ++pmit) {
         Request<Material>* req = pmit->first;
-	FooFac* cast = dynamic_cast<FooFac*>(req->requester()->manager());
-	if (cast != NULL) {
-  	  for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
-            mit->second = pref + 10; // we like this guy!
-	  }
+        FooFac* cast = dynamic_cast<FooFac*>(req->requester()->manager());
+        if (cast != NULL) {
+          for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
+            mit->second = pref + 10; // we like this trader!
+          }
         }
       }
     }
+
+
+**Python:**
+
+.. code-block:: python
+
+    def adjust_material_prefs(self, prefs):
+        updates = {}
+        for (req, bid), pref in prefs.items():
+            if not isinstance(req.requester, FooFac):
+                continue
+            updates[req, bid] = pref + 10.0  # we like this trader
+        return updates
+
 
 .. _solve:
 
 Solution Phase
 --------------
-
 The Solution Phase is straightforward from a module developer point of
 view. Given requests, bids for those requests, and preferences for each
-request-bid pairing, a ``cyclus::ExchangeSolver`` selects request-bid pairs to
+request-bid pairing, a ``ExchangeSolver`` selects request-bid pairs to
 satisfy and the quantity each resource to assign to each satisfied request-bid
 pairing. The solution times and actual pairings will depend on the concrete
-solver that is employed by the |cyclus| kernel. At present, only the
-``cyclus::GreedySolver`` is available.
+solver that is employed by the |cyclus| kernel.
 
 .. _trade:
 
 Trade Execution Phase
 ---------------------
-
 When satisfactory request-bid pairings are determined, a final communication is
 executed for each bidder and requester during the Trade Execution Phase. Bidders
-are notified of their winning bids through the ``cyclus::Trader`` ``Get*Trades``
-member function (e.g. ``GetMatlTrades``), and requesters are provided their
-satisfied requests through the ``cyclus::Trader`` ``Accept*Trades`` member
-function (e.g. ``AcceptMatlTrades``).
+are notified of their winning bids through the ``Trader`` "get trades"
+functions (e.g. ``GetMatlTrades()`` in C++ and ``get_material_trades()`` in Python),
+and requesters are provided their
+satisfied requests through the ``Trader`` "accept trades"
+functions (e.g. ``AcceptMatlTrades()`` in C++ and ``accept_material_trades()`` in Python).
 
-Traders can implement a ``TradeResponse`` function that provides a
-``cyclus::Material::Ptr`` given a ``cyclus::Trade``. It can then implement its
+By convention in C++, traders can implement a ``TradeResponse()`` function that provides a
+``Material::Ptr`` given a ``Trade``. It can then implement its
 Trader interface as follows:
+
+**C++:**
 
 .. code-block:: c++
 
-    void FooFac::GetMatlTrades(
-      const std::vector< cyclus::Trade<cyclus::Material> >& trades,
-      std::vector<std::pair<cyclus::Trade<cyclus::Material>,
-      cyclus::Material::Ptr> >& responses) {
+    void FooFac::GetMatlTrades(const std::vector< cyclus::Trade<cyclus::Material> >& trades,
+                               std::vector<std::pair<cyclus::Trade<cyclus::Material>, cyclus::Material::Ptr> >& responses) {
       using cyclus::Material;
       using cyclus::Trade;
 
@@ -487,37 +584,73 @@ Trader interface as follows:
       }
     }
 
-Similarly, Traders can implement an ``AcceptTrade`` function that accepts a
-``cyclus::Material::Ptr`` given a ``cyclus::Trade``. It can then implement its
+**Python:**
+
+.. code-block:: python
+
+    import cyclus.typesystem as ts
+
+    def get_material_trades(self, trades):
+        """In Python, the get trades functions take a single trades aregument and
+        should return a responses dict.  The trades is list of Trade objects, see the
+        cyclus.typesystem docs for more information.
+
+        The reponses should be a dict whose keys are these trades and whose values
+        are tracked resource instances. For example, Materials.
+        """
+        # here we respond with what the trade request was.
+        responses = {}
+        for trade in trades:
+            mat = ts.Material.create(self, trade.amt, trade.request.target.comp())
+            responses[trade] = mat
+        return responses
+
+
+Similarly, Traders can implement an "accept trade" function that accepts a
+the resources from a ``Trade``. It can then implement its
 Trader interface as follows:
+
+**C++:**
 
 .. code-block:: c++
 
-    void FooFac::AcceptMatlTrades(
-      const std::vector< std::pair<cyclus::Trade<cyclus::Material>,
-      cyclus::Material::Ptr> >& responses) {
-      std::vector< std::pair<cyclus::Trade<cyclus::Material>,
-          cyclus::Material::Ptr> >::const_iterator it;
+    void FooFac::AcceptMatlTrades(const std::vector< std::pair<cyclus::Trade<cyclus::Material>, cyclus::Material::Ptr> >& responses) {
+      std::vector< std::pair<cyclus::Trade<cyclus::Material>, cyclus::Material::Ptr> >::const_iterator it;
       for (it = responses.begin(); it != responses.end(); ++it) {
         AcceptTrade(it->second);
       }
     }
 
+
+**Python:**
+
+.. code-block:: python
+
+    def accept_material_trades(self, responses):
+        """In the Python interface, this accepts a responses dict that has the same format as
+        the responses returned from get_material_trades() above. That is, responses maps
+        Trades to Materials. This function is responsible for storing these traded materails
+        somewhere in the agent's inventories. This is the end of the dynamic resource
+        exchange and so this function shouldn't return anything.
+        """
+        for mat in responses.values():
+            self.inventory.push(mat)
+
+
 The implementation logic for each of these functions is determined by how each
 individual agent handles their resource inventories. Accordingly, their
 implementation will be unique to each agent. Some initial examples can be found
-in the ``cyclus::Source`` and ``cyclus::Sink`` agents, where ``cyclus::Source``
-implements ``GetMatlTrades`` as a bidder and ``cyclus::Sink`` implements
-``AcceptMatlTrades`` as a requester.
+in the ``Source`` and ``Sink`` agents, where ``Source``
+implements ``GetMatlTrades()`` or ``get_material_trades()`` as a bidder and ``Sink``
+implements ``AcceptMatlTrades()`` or ``accept_material_trades()`` as a requester.
 
 .. _examples:
 
 Examples
 --------
 
-Mixin-based Trader Behavior
-+++++++++++++++++++++++++++
-
+Mixin-based Trader Behavior [C++]
++++++++++++++++++++++++++++++++++
 Trader behavior can be specialized based on mixins that an archetype uses. For
 example, consider an interface that helps determines preferences based on
 the equality of the parent of a ``cyclus::Agent``.
@@ -536,29 +669,24 @@ from ``PrefGetter`` can then implement its preference adjustment as follows:
 
 .. code-block:: c++
 
-    virtual void FooFac::AdjustMatlPrefs(
-        cyclus::PrefMap<cyclus::Material>::type& prefs) {
-
+    virtual void FooFac::AdjustMatlPrefs(cyclus::PrefMap<cyclus::Material>::type& prefs) {
       cyclus::PrefMap<cyclus::Material>::type::iterator pmit;
       for (pmit = prefs.begin(); pmit != prefs.end(); ++pmit) {
-
         std::map<Bid<Material>*, double>::iterator mit;
         Request<Material>* req = pmit->first;
-	cyclus::Agent* reqagent = req->requester()->manager();
-	for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
-
+        cyclus::Agent* reqagent = req->requester()->manager();
+        for (mit = pmit->second.begin(); mit != pmit->second.end(); ++mit) {
           Bid<Material>* bid = mit->first;
-	  cyclus::Agent* bidagent = bid->bidder()->manager();
-	  PrefGetter* pg_cast = dynamic_cast<PrefGetter*>(bidagent);
-
-	  if (pg_cast != NULL) {
-	    // special behavior for the mixin
-	    mit->second = cast->GetPref(reqagent->parent(),
-	                                bidagent->parent());
-	  } else {
-	    mit->second = 0; // choose any (reasonable) default behavior
-	  }
-	}
+          cyclus::Agent* bidagent = bid->bidder()->manager();
+          PrefGetter* pg_cast = dynamic_cast<PrefGetter*>(bidagent);
+          if (pg_cast != NULL) {
+            // special behavior for the mixin
+            mit->second = cast->GetPref(reqagent->parent(),
+                                        bidagent->parent());
+          } else {
+            mit->second = 0; // choose any (reasonable) default behavior
+          }
+        }
       }
     }
 
@@ -578,12 +706,15 @@ from ``PrefGetter`` can then implement its preference adjustment as follows:
 
 .. _white_box:
 
-Non-Black Box Behavior
-+++++++++++++++++++++++++++
+Non-Black Box Behavior [C++]
+++++++++++++++++++++++++++++
+
+.. note:: The Python interface can trivially handle non-black box behavior for
+          Python agents by using ``isinstance()`` on any agent.
 
 Cyclus provides a simulation framework that supports black-box entity
 interaction, i.e., any entity in the simulation can interact with any other
-entity through its ``cyclus::Agent`` interface. However, there is nothing
+entity through its ``Agent`` interface. However, there is nothing
 stopping an archetype developer from implementing logic that is specific to a
 implemented archetype.
 
@@ -620,16 +751,16 @@ A provider of material can then implement its ``GetMatlBids`` as follows:
       std::vector<Request<Material>*>::iterator it;
       for (it = requests.begin(); it != requests.end(); ++it) {
         Material::Ptr offer;
-	Agent* agent = it->requester();
-	TradeInformer* cast = dynamic_cast<TradeInformer*>(agent);
-	if (cast != NULL) {
-	    offer = cast->IdealMatl(inventory); // inventory is a state variable ResBuf
-	} else {
-	    double qty = it->quantity();
-      	    std::string recipe = "recipe";
-      	    Material::Ptr offer = Material::CreateUntracked(qty, context()->GetRecipe(recipe));
-	}
-	port->AddBid(*it, offer, this);
+        Agent* agent = it->requester();
+        TradeInformer* cast = dynamic_cast<TradeInformer*>(agent);
+        if (cast != NULL) {
+          offer = cast->IdealMatl(inventory); // inventory is a state variable ResBuf
+        } else {
+          double qty = it->quantity();
+          std::string recipe = "recipe";
+          Material::Ptr offer = Material::CreateUntracked(qty, context()->GetRecipe(recipe));
+        }
+        port->AddBid(*it, offer, this);
       }
 
       std::set<BidPortfolio<Material>::Ptr> ports;
@@ -639,6 +770,5 @@ A provider of material can then implement its ``GetMatlBids`` as follows:
 
 Further Reading
 ---------------
-
 For a more in depth (and historical) discussion, see `CEP 18
 <http://fuelcycle.org/cep/cep18.html>`_.
