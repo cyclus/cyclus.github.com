@@ -2,21 +2,20 @@
 
 Dynamic Resource Exchange
 =========================
-
 The Dynamic Resource Exchange (DRE) is the heart of a |cyclus| simulation time
-step. Every ``cyclus::Trader`` that is registered with the ``cyclus::Context``
-are automatically included in the exchange. |cyclus| agents can either implement
-the ``cyclus::Trader`` interface as a mixin or can be composed of one or more
-``cyclus::Trader``\ s. Note that ``cyclus::Facility`` derives the
-``cyclus::Trader`` interface, therefore all agents that derive from
-``cyclus::Facility`` also get the interface.
+step. Every ``Trader`` that is registered with the ``Context``
+is automatically included in the exchange. |cyclus| agents can either implement
+the ``Trader`` interface as a mixin or can be composed of one or more
+traders. Note that the ``Facility`` class derives the
+``Trader`` interface, and therefore all agents that derive from
+``Facility`` are also traders.
 
-At any given time step, there is a separate ``cyclus::ResourceExchange`` 
-instance for each concrete ``cyclus::Resource`` of which the kernel is
-aware. For example, there is an exchange for ``cyclus::Material``\ s and another
-for ``cyclus::Product``\ s.
+On each time step, there is a separate ``ResourceExchange``
+instance for each concrete ``Resource`` (i.e. ``Materials`` and ``Products``) of which
+the kernel is aware. For example, there is an exchange for ``Material``
+resources and another for ``Product`` resources.
 
-The DRE is comprised of five phases:
+The DRE is comprised of five phases which execure in series:
 
 * :ref:`rfb`
 * :ref:`rrfb`
@@ -29,15 +28,14 @@ The DRE is comprised of five phases:
 
 Request For Bids Phase
 ----------------------
-
 In the Request for Bids (RFB) phase, the exchange queries all registered traders
 regarding their demand for a given resource type. Querying is provided through
-the ``cyclus::Trader`` interface's ``Get*Requests`` for a given resource type,
-e.g., ``GetMatlRequests``.
+the ``Trader`` interface's "get requests" for a given resource type,
+e.g., ``GetMatlRequests()`` (C++) or ``get_material_requests()`` (Python) functions.
 
-Requests are modeled as collections of ``cyclus::RequestPortfolio``\ s, where each
-portfolio includes a collection of ``cyclus::Request``\ s and a collection of
-``cyclus::CapacityConstraint``\ s. A portfolio is sufficiently met if one or more
+Requests are modeled as collections of ``RequestPortfolio`` instances, where each
+portfolio includes a collection of ``Request`` objects and a collection of
+``CapacityConstraint`` objects. A portfolio is sufficiently met if one or more
 of its constituent requests are met and all of its constraints are satisfied.
 
 A request provides a target resource, a commodity, and a preference for that
@@ -46,15 +44,16 @@ conversion function that can convert a potential resource into the units of the
 capacity (see :ref:`rrfb` for a more detailed example).
 
 For example, consider a facility of type ``FooFac`` that needs 5 kg fuel,
-which is a ``cyclus::Material`` resource type. It knows of two commodities in
+where the fuel is represented by a ``Material`` resource. It knows of two commodities in
 the simulation that meet its demand, ``FuelA`` and ``FuelB``, and it prefers
-``FuelA`` over ``FuelB``. A valid ``GetMatlRequests`` implementation would then
+``FuelA`` over ``FuelB``. A valid get material request implementation would then
 be:
+
+**C++:**
 
 .. code-block:: c++
 
-    virtual std::set<cyclus::RequestPortfolio<cyclus::Material>::Ptr>
-        FooFac::GetMatlRequests() {
+    virtual std::set<cyclus::RequestPortfolio<cyclus::Material>::Ptr> FooFac::GetMatlRequests() {
       using cyclus::RequestPortfolio;
       using cyclus::Material;
       using cyclus::CapacityConstraint;
@@ -62,16 +61,16 @@ be:
       double request_qty = 10; // kg
       std::string recipeA = "recipeA";
       std::string commoda = "FuelA";
-      Material::Ptr targetA = 
-          Material::CreateUntracked(request_qty, context()->GetRecipe(recipeA));
+      Material::Ptr targetA = Material::CreateUntracked(request_qty,
+                                                        context()->GetRecipe(recipeA));
 
       std::string recipeB = "recipeB";
       std::string commodB = "FuelB";
-      Material::Ptr targetB = 
-          Material::CreateUntracked(request_qty, context()->GetRecipe(recipeB));
-      
+      Material::Ptr targetB = Material::CreateUntracked(request_qty,
+                                                        context()->GetRecipe(recipeB));
+
       CapacityConstraint<Material> cc(request_qty);
-      
+
       RequestPortfolio<Material>::Ptr port(new RequestPortfolio<Material>());
       port->AddRequest(targeta, this, commodA);
       port->AddRequest(targetb, this, commodB);
@@ -79,22 +78,61 @@ be:
 
       std::set<RequestPortfolio<Material>::Ptr> ports();
       ports.insert(port);
-      return ports;  
+      return ports;
     }
+
+**Python:**
+
+.. code-block:: python
+
+    import cyclus.typesystem as ts
+
+    def get_material_requests(self):
+        request_qty = 10.0  # kg
+        # Material Target A
+        recipe_a = self.context().get_recipe("recipeA")
+        target_a = ts.Material.create_untracked(request_qty, recipe_a)
+        # Material Target B
+        recipe_b = self.context().get_recipe("recipeB")
+        target_b = ts.Material.create_untracked(request_qty, recipe_b)
+        # commodity mapping to request target
+        commods = {"FuelA": target_a, "FuelB": target_b}
+
+        # The Python interface allow you to return a few different structures,
+        # depending on your needs.  In its simplest form, if you do not not have
+        # any capacity constraints, you can just return the commoditer mapping!
+        return commods
+
+        # If you do have a capacity constraint, you need to provide a portfolio
+        # dict. This is simply a dict with two keys: "commodities" and "constraints".
+        # The "commodities" value is the same as above. The "constraints" value is
+        # either a float or an iterable of floats.
+        # single constraint:
+        port = {"commodities": commods, "constraints": request_qty}
+        return port
+        # many constraints:
+        port = {"commodities": commods, "constraints": [request_qty, request_qty*2]}
+        return port
+
+        # lastly, if you need to return many portfolios, simply return a list of
+        # portfolio dictionaries!
+        ports = [{"commodities": {"FuelA": target_a}, "constraints": request_qty},
+                 {"commodities": {"FuelB": target_b}, "constraints": request_qty}]
+        return ports
+
 
 .. _rrfb:
 
 Response to Request For Bids Phase
 ----------------------------------
-
 In the Response to Request for Bids (RRFB) phase, the exchange queries all
 registered traders regarding their supply for a given resource type. Querying is
-provided through the ``cyclus::Trader`` interface's ``Get*Bids`` for a given
-resource type, e.g., ``GetMatlBids``.
+provided through the ``Trader`` interface's "get bids" for a given
+resource type, e.g. ``GetMatlBids()`` (C++) or ``get_material_bids()`` (Python).
 
-Bids are modeled as collections of ``cyclus::BidPortfolio``\ s, where each
-portfolio includes a collection of ``cyclus::Bid``\ s and a collection of
-``cyclus::CapacityConstraint``\ s. A portfolio is not violated if any of its
+Bids are modeled as collections of ``BidPortfolio``, where each
+portfolio includes a collection of ``Bid`` objects and a collection of
+``CapacityConstraint`` objectss. A portfolio is not violated if any of its
 constituent bids are connected to their requests and all of its constraints are
 satisfied.
 
@@ -103,11 +141,12 @@ offering in response to the request.
 
 Black Box Examples
 ++++++++++++++++++
-
 Consider a facility of type ``FooFac`` that has 10 kg of fuel of commodity type
 ``FuelA`` that it can provide. Furthermore, consider that its capacity to
 fulfill orders is constrained by the total amount of a given nuclide. A valid
-``GetMatlBids`` implementation would then be:
+get material bids implementation would then be:
+
+**C++:**
 
 .. code-block:: c++
 
@@ -115,20 +154,17 @@ fulfill orders is constrained by the total amount of a given nuclide. A valid
      public:
       NucConverter(int nuc) : nuc_(nuc) {};
 
-      virtual double convert(
-          cyclus::Material::Ptr m,
-      	  cyclus::Arc const * a = NULL,
-      	  cyclus::ExchangeTranslationContext<cyclus::Material> const * ctx = NULL) const {
+      virtual double convert(cyclus::Material::Ptr m, cyclus::Arc const * a = NULL,
+                             cyclus::ExchangeTranslationContext<cyclus::Material> const * ctx = NULL) const {
         cyclus::MatQuery mq(m);
-  	return mq.mass(nuc_);
+        return mq.mass(nuc_);
       }
 
      private:
-      int nuc_; 
+      int nuc_;
     };
 
-    virtual std::set<cyclus::BidPortfolio<cyclus::Material>::Ptr>
-      FooFac::GetMatlBids(
+    virtual std::set<cyclus::BidPortfolio<cyclus::Material>::Ptr> FooFac::GetMatlBids(
         cyclus::CommodMap<cyclus::Material>::type& commod_requests) {
       using cyclus::BidPortfolio;
       using cyclus::CapacityConstraint;
@@ -144,14 +180,15 @@ fulfill orders is constrained by the total amount of a given nuclide. A valid
       for (it = requests.begin(); it != requests.end(); ++it) {
         std::string recipe = "recipe";
         std::string commod = "Fuel";
-        for (it = requests.begin(); it != requests.end(); ++it) {      
-          Material::Ptr offer = 
-              Material::CreateUntracked(request_qty, context()->GetRecipe(recipe));
-	port->AddBid(*it, offer, this);
+        for (it = requests.begin(); it != requests.end(); ++it) {
+          Material::Ptr offer = Material::CreateUntracked(request_qty,
+                                                          context()->GetRecipe(recipe));
+          port->AddBid(*it, offer, this);
+        }
       }
 
       // add a custom constraint for Pu-239
-      int pu = 932390000; // Pu-239 
+      int pu = 932390000; // Pu-239
       Converter<Material>::Ptr conv(new NucConverter(pu));
       double max_pu = 8.0; // 1 Signifigant Quantity of Pu-239
       CapacityConstraint<Material> constr(max_pu, conv);
@@ -162,9 +199,65 @@ fulfill orders is constrained by the total amount of a given nuclide. A valid
       return ports;
     }
 
+
+**Python:**
+
+.. code-block:: python
+
+    # Note that the Python interface does not yet support custom constraint functions.
+    # these are fairly rare in practice and is a forth coming feature.
+    import cyclus.typesystem as ts
+
+    def get_material_bids(self, requests):
+        """This function takes as input a requests dictionary, which maps
+        commodity names to tuples of Request instances. For example::
+
+            requests = {
+                "FuelA": (MaterialRequest1, MaterialRequest2),
+                "FuelB": (MaterialRequest3, MaterialRequest4),
+                }
+
+        For more information on MaterialRequests and ProductRequests, please see
+        the cyclus.typesystem docs.
+        """
+        # Like with get_material_requests(), many potential bid structures can be returned
+        # depending on you need. If the commodity that you trade in wasn't requested this
+        # time step, you can just return None.
+        if 'FuelA' not in requests:
+            return
+
+        # Alternitavely, you may return a bid portfolio. Let's start by constructing the
+        # bids. If you don't want to offer a bid that is different than the request,
+        # you can just provide the requests. The bids are then a list of the request objects
+        reqs = requests['FuelA']
+        bids = [req for req in reqs]
+        # Or if you do want to offer something different than the request, the bids list
+        # list contains dictionaries with "request" and "offer" keys
+        recipe_comp = self.context.get_recipe(self.recipe_name)
+        bids = []
+        for req in reqs:
+            qty = min(req.target.quantity, self.capacity)
+            mat = ts.Material.create_untracked(qty, recipe_comp)
+            bids.append({'request': req, 'offer': mat})
+        # now that we have the bids, we can add this to a bid portfolio dict, which
+        # contains a "bids" key.
+        port = {"bids": bids}
+        return port
+
+        # if you need to add capcity constraint(s), also include a "constraints" key
+        # in the bids portfolio dict.
+        port = {"bids": bids, "constraints": self.capacity}
+        return port
+
+        # Of course you may also return many bid portfolios by putting the many
+        # dicts in the above form in a list.
+        ports = [{"bids": bids[::2], "constraints": self.capacity},
+                 {"bids": bids[1::2], "constraints": self.capacity}]
+        return ports
+
+
 White Box Examples
 +++++++++++++++++++
-
 Consider a case where a facility's bid depends on the type of the requester's
 ``cyclus::Agent``, and the bidder determines its offer based on the requester's
 interface:
@@ -174,7 +267,7 @@ interface:
     cyclus::Material::Ptr FooFac::SpecialFooOffer() {
       std::string recipe = "recipe";
       double quantity = 10;
-      Material::Ptr target = 
+      Material::Ptr target =
           Material::CreateUntracked(quantity, context()->GetRecipe(recipe));
       return target;
     };
@@ -197,11 +290,11 @@ interface:
 	FooFac* cast = dynamic_cast<FooFac*>(agent);
 	if (cast != NULL) {
 	    offer = cast->SpecialFooOffer(); // get a special response that the requester wants
-	} else { 
-	    double qty = it->quantity();     
+	} else {
+	    double qty = it->quantity();
       	    std::string recipe = "some_other_recipe";
       	    Material::Ptr offer = Material::CreateUntracked(qty, context()->GetRecipe(recipe));
-	}	    
+	}
 	port->AddBid(*it, offer, this);
       }
 
@@ -257,7 +350,7 @@ interface and a green box representing the ``cyclus::Agent`` interface.
         color = green
 	Region; Institution;
 	}
-      }    
+      }
 
 
 Black Box Examples
@@ -279,7 +372,7 @@ would then be:
           Bid<Material>* bid = mit->first;
 	  if (parent() == bid->bidder()->manager()->parent())
 	    mit->second += 1; // bump pref if parents are equal
-	} 
+	}
       }
     }
 
@@ -300,7 +393,7 @@ adjust preferences as follows
 	  Agent* me = this;
 	  if (me == you)
 	    mit->second += 1; // bump pref if the parent is me (institutions are equal)
-	} 
+	}
       }
     }
 
@@ -321,7 +414,7 @@ preferences as
 	  Agent* me = this;
 	  if (me == you)
 	    mit->second += 1; // bump pref if the grandparent is me (regions are equal)
-	} 
+	}
       }
     }
 
@@ -430,12 +523,12 @@ example, consider an interface that helps determines preferences based on
 the equality of the parent of a ``cyclus::Agent``.
 
 .. code-block:: c++
- 
+
   class PrefGetter {
    public:
     double GetPref(cyclus::Agent* mine, cyclus::Agent* yours) {
        return (mine == yours) ? 1 : 0.5;
-    } 
+    }
   };
 
 A trader who then wants behavior based on whether a bidder's manager inherits
@@ -460,12 +553,12 @@ from ``PrefGetter`` can then implement its preference adjustment as follows:
 
 	  if (pg_cast != NULL) {
 	    // special behavior for the mixin
-	    mit->second = cast->GetPref(reqagent->parent(), 
-	                                bidagent->parent()); 
+	    mit->second = cast->GetPref(reqagent->parent(),
+	                                bidagent->parent());
 	  } else {
 	    mit->second = 0; // choose any (reasonable) default behavior
 	  }
-	} 
+	}
       }
     }
 
@@ -495,17 +588,17 @@ stopping an archetype developer from implementing logic that is specific to a
 implemented archetype.
 
 For example, take a facility that informs a trader what composition of material
-it wants given another facility's inventory. 
+it wants given another facility's inventory.
 
 .. code-block:: c++
- 
+
   class TradeInformer: public cyclus::Facility {
    public:
     #pragma cyclus
 
     cyclus::Material::Ptr IdealMatl(const cyclus::toolkit::ResBuf& buffer) {
        // provide whatever implementation is desired
-    } 
+    }
   };
 
 A provider of material can then implement its ``GetMatlBids`` as follows:
@@ -531,11 +624,11 @@ A provider of material can then implement its ``GetMatlBids`` as follows:
 	TradeInformer* cast = dynamic_cast<TradeInformer*>(agent);
 	if (cast != NULL) {
 	    offer = cast->IdealMatl(inventory); // inventory is a state variable ResBuf
-	} else { 
-	    double qty = it->quantity();     
+	} else {
+	    double qty = it->quantity();
       	    std::string recipe = "recipe";
       	    Material::Ptr offer = Material::CreateUntracked(qty, context()->GetRecipe(recipe));
-	}	    
+	}
 	port->AddBid(*it, offer, this);
       }
 
