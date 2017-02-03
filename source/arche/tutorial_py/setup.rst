@@ -1,110 +1,146 @@
-Setup a New Project Based on Cycstub
+Setup a New Project
 ==============================================
-
 In this lesson, we will:
 
-1. Do the tasks the the Cyclus Archetype Hello World!
-2. Clean up the file system for the single storage facility
-3. Install the storage facility 
-4. Run an input file that uses the new storage facility
+1. Clean up the file system for the single storage facility
+2. Install the storage facility
+3. Run an input file that uses the new storage facility
 
-Follow the Hello Cyclus! Instructions
----------------------------------------------------
+Make a New Project
+-------------------
+First let's start by making a tutorial example project with an ``agents.py`` file.
 
-Follow all of the steps of :ref:`hello_world`.
+.. code-block:: console
+
+    ~ $ mkdir -p tutorial/tut
+    ~ $ cd tutorial/tut
+    ~/tuorial/tut $ touch __init__.py agents.py
+
 
 Make a Storage Facility
 ------------------------------------------
+Next, make a new facility by editing the ``agents.py`` file to look like the following:
 
-Next, make a new facility by copying the facility archetype from the Hello World! tutorial. 
+**~/tutorial/tut/agents.py:**
 
-Start by making sure you are in the correct directory
+.. code-block:: python
 
-.. code-block:: console
+    from cyclus.agents import Facility
 
-    $ cd ~/tutorial
 
-Then make the new archetype, updating all the files as needed
+    class Storage(Facility):
+        """My storage facility."""
 
-.. note::
-
-    If you are on a Mac, replace all instances of ``sed -i`` with ``sed -i ''``.
-
-.. code-block:: console
-
-    $ for file in `ls src/tutorial_facility*`; do cp "${file}" "${file/tutorial_facility/storage}"; done
-    $ sed -i "s/tutorial_facility/storage/g" src/storage*
-    $ sed -i "s/TutorialFacility/Storage/g" src/storage*
-    $ sed -i "s/TUTORIAL_FACILITY/STORAGE/g" src/storage*
-
-Finally, open -``src/CMakeLists.txt`` with your favorite text editor and add the
-following line to the end of it
-
-.. code-block:: bash
-
-    install_cyclus_standalone("Storage" "storage" "tutorial")
+        def tick(self):
+            print("Hello,")
+            print("World!")
 
 
 Install and Test
 ----------------------------------
+To install the tutorial project, we'll need to have a ``setup.py`` file in the
+root tutorial directory. Create one that looks like:
 
-Install the tutorial project
+**~/tutorial/setup.py:**
+
+.. code-block:: python
+
+    #!/usr/bin/env python
+    from distutils.core import setup
+
+
+    VERSION = '0.0.1'
+    setup_kwargs = {
+        "version": VERSION,
+        "description": 'My Cyclus tutorial',
+        "author": 'Just Me',
+        }
+
+    if __name__ == '__main__':
+        setup(
+            name='tut',
+            packages=['tut'],
+            scripts=['xo'],
+            **setup_kwargs
+            )
+
+
+Now we can install the tutorial project via,
 
 .. code-block:: console
 
-    $ ./install.py
+    ~ $ cd tutorial
+    ~/tutorial $ python setup.py install --user
 
-Run the unit tests
 
-.. code-block:: console
-
-    $ Storage_unit_tests
-
-Make a new input file that is a copy of the test input file 
+Let's now make an exmaple input file in a special ``input`` directory:
 
 .. code-block:: console
 
-    $ cp input/example.xml input/storage.xml
+    ~ $ cd tutorial
+    ~/tutorial $ mkdir -p input
+    ~/tutorial $ touch input/storage.py
 
-Then change every instance of ``TutorialFacility`` with ``Storage``. This can be
-done by hand or on the command line with
+Now open up the ``input/storage.`` input file and edit it to look like:
+
+.. code-block:: python
+
+    SIMULATION = {
+     'simulation': {
+      'archetypes': {
+       'spec': [
+        {'lib': 'tut.agents', 'name': 'Storage'},
+        {'lib': 'agents', 'name': 'NullInst'},
+        {'lib': 'agents', 'name': 'NullRegion'},
+       ],
+      },
+      'control': {'duration': 10, 'startmonth': 1, 'startyear': 2000},
+      'facility': {'config': {'Storage': None}, 'name': 'OneFacility'},
+      'region': {
+       'config': {'NullRegion': None},
+       'institution': {
+        'config': {'NullInst': None},
+        'initialfacilitylist': {'entry': {'number': 1, 'prototype': 'OneFacility'},},
+        'name': 'OneInst',
+       },
+       'name': 'OneRegion',
+      },
+     },
+    }
+
+
+Test the input file by running Cyclus:
 
 .. code-block:: console
 
-    $ sed -i "s/TutorialFacility/Storage/g" input/storage.xml
-
-Test the input file by running Cyclus
-
-.. code-block:: console
-
-    $ cyclus -v 2 input/storage.xml
-                  :                                                               
-              .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
-            CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)  
+    $ cyclus -v 2 input/storage.py
+                  :
+              .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q
+            CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)
             CCCCCCCCCCCCCl       __O|/O___O|/O_OO|/O__O|/O__O|/O____________O|/O__
          CCCCCCf     iCCCLCC     /////////////////////////////////////////////////
-         iCCCt  ;;;;;.  CCCC                                                      
-        CCCC  ;;;;;;;;;. CClL.                          c                         
-       CCCC ,;;       ;;: CCCC  ;                   : CCCCi                       
-        CCC ;;         ;;  CC   ;;:                CCC`   `C;                     
-      lCCC ;;              CCCC  ;;;:             :CC .;;. C;   ;    :   ;  :;;   
-      CCCC ;.              CCCC    ;;;,           CC ;    ; Ci  ;    :   ;  :  ;  
-       iCC :;               CC       ;;;,        ;C ;       CC  ;    :   ; .      
-      CCCi ;;               CCC        ;;;.      .C ;       tf  ;    :   ;  ;.    
-      CCC  ;;               CCC          ;;;;;;; fC :       lC  ;    :   ;    ;:  
-       iCf ;;               CC         :;;:      tC ;       CC  ;    :   ;     ;  
-      fCCC :;              LCCf      ;;;:         LC :.  ,: C   ;    ;   ; ;   ;  
-      CCCC  ;;             CCCC    ;;;:           CCi `;;` CC.  ;;;; :;.;.  ; ,;  
-        CCl ;;             CC    ;;;;              CCC    CCL                     
-       tCCC  ;;        ;; CCCL  ;;;                  tCCCCC.                      
-        CCCC  ;;     :;; CCCCf  ;                     ,L                          
-         lCCC   ;;;;;;  CCCL                                                      
-         CCCCCC  :;;  fCCCCC                                                      
-          . CCCC     CCCC .                                                       
-           .CCCCCCCCCCCCCi                                                        
-              iCCCCCLCf                                                           
-               .  C. ,                                                            
-                  :                                                               
+         iCCCt  ;;;;;.  CCCC
+        CCCC  ;;;;;;;;;. CClL.                          c
+       CCCC ,;;       ;;: CCCC  ;                   : CCCCi
+        CCC ;;         ;;  CC   ;;:                CCC`   `C;
+      lCCC ;;              CCCC  ;;;:             :CC .;;. C;   ;    :   ;  :;;
+      CCCC ;.              CCCC    ;;;,           CC ;    ; Ci  ;    :   ;  :  ;
+       iCC :;               CC       ;;;,        ;C ;       CC  ;    :   ; .
+      CCCi ;;               CCC        ;;;.      .C ;       tf  ;    :   ;  ;.
+      CCC  ;;               CCC          ;;;;;;; fC :       lC  ;    :   ;    ;:
+       iCf ;;               CC         :;;:      tC ;       CC  ;    :   ;     ;
+      fCCC :;              LCCf      ;;;:         LC :.  ,: C   ;    ;   ; ;   ;
+      CCCC  ;;             CCCC    ;;;:           CCi `;;` CC.  ;;;; :;.;.  ; ,;
+        CCl ;;             CC    ;;;;              CCC    CCL
+       tCCC  ;;        ;; CCCL  ;;;                  tCCCCC.
+        CCCC  ;;     :;; CCCCf  ;                     ,L
+         lCCC   ;;;;;;  CCCL
+         CCCCCC  :;;  fCCCCC
+          . CCCC     CCCC .
+           .CCCCCCCCCCCCCi
+              iCCCCCLCf
+               .  C. ,
+                  :
     INFO1(core  ):Simulation set to run from start=0 to end=10
     INFO1(core  ):Beginning simulation
     INFO1(tutori):Hello
