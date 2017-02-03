@@ -651,6 +651,10 @@ Examples
 
 Mixin-based Trader Behavior [C++]
 +++++++++++++++++++++++++++++++++
+
+.. note:: The Python interface can easily handle mix-in behavior for
+          Python agents via subclassing and using ``super()`` on any agent.
+
 Trader behavior can be specialized based on mixins that an archetype uses. For
 example, consider an interface that helps determines preferences based on
 the equality of the parent of a ``cyclus::Agent``.
