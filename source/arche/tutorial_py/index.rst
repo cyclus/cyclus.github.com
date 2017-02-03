@@ -2,7 +2,7 @@ Archetype Development Tutorial [Python]
 =======================================
 In this tutorial, we will work through a number of steps for creating a
 Facility archetype for Cyclus.  This tutorial assumes that the learner is
-already reasonably familiar with programming in C++ and with the primary
+already reasonably familiar with programming in Python and with the primary
 vocabulary of Cyclus.  We also assume that the learner has a Github account.
 
 Overview
@@ -26,17 +26,3 @@ This tutorial has the following steps:
     toolkit
     testing
     input_files
-
-Given enough time, the following extra topics may be covered:
-
-.. toctree::
-    :maxdepth: 1
-
-    cyclist
-    dre
-
-.. note::
-
-    If you ever see an error like ``ERROR(core ):SQL error [INSERT INTO
-    AgentState...`` simply remove the output database with ``$ rm
-    cyclus.sqlite`` and rerun the simulation
