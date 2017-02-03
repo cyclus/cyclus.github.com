@@ -1,5 +1,5 @@
-Archetype Development Tutorial
-===============================
+Archetype Development Tutorial [C++]
+====================================
 In this tutorial, we will work through a number of steps for creating a
 Facility archetype for Cyclus.  This tutorial assumes that the learner is
 already reasonably familiar with programming in C++ and with the primary

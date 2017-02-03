@@ -42,7 +42,7 @@ Installation
 
     ../user/install
 
-Hello World [C++]
+Hello World
 -----------------
 
 .. toctree::
@@ -50,13 +50,6 @@ Hello World [C++]
 
     hello_world_cpp
     tour_cpp
-
-Hello World [Python]
----------------------
-
-.. toctree::
-    :maxdepth: 1
-
     hello_world_py
 
 
@@ -69,7 +62,8 @@ Tutorial
 .. toctree::
     :maxdepth: 1
 
-    tutorial/index
+    tutorial_cpp/index
+    tutorial_py/index
 
 Building, Installing and Testing [C++]
 ++++++++++++++++++++++++++++++++++++++
