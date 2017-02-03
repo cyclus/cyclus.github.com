@@ -42,14 +42,23 @@ Installation
 
     ../user/install
 
-Hello World
------------
+Hello World [C++]
+-----------------
 
 .. toctree::
     :maxdepth: 1
 
-    hello_world
-    tour
+    hello_world_cpp
+    tour_cpp
+
+Hello World [Python]
+---------------------
+
+.. toctree::
+    :maxdepth: 1
+
+    hello_world_py
+
 
 Writing Agents & Modules
 ------------------------
@@ -89,7 +98,6 @@ Interfacing with the |Cyclus| Kernel
 
 A Word About Style
 ++++++++++++++++++
-
 Having a consistent style in your code is important. Python has a great style
 guide encapsulated in `PEP8 <http://legacy.python.org/dev/peps/pep-0008/>`_. As
 our code base is mostly C++, the kernel development team follows the `Google C++
