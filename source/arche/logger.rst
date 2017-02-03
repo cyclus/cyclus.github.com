@@ -15,7 +15,7 @@ provide this functionality.  The Logger class should generally not be accessed
 directly.  The macro returns a string stream object that can be used exactly
 as `std::cout` for printing output.  Streamed in content is flushed to stdout
 as soon as execution passes beyond the terminating semi-colon of the log
-statement.  
+statement.
 
 A brief description of when to use which log level is given with the LogLevel
 enum doxygen documentation. The following is a summary:
@@ -43,7 +43,7 @@ enum doxygen documentation. The following is a summary:
 Developers working on agents set the LOG prefix argument to a unique
 archetype/agent-specific identifier (up to 6 characters long).  This will allow
 developers to more easily filter the logger output in order to isolate
-information most relevant to their work. 
+information most relevant to their work.
 
 This macro does a check on the given LogLevel 'level' argument; if the
 specified level is not higher than or equal to the report-level cutoff, the
@@ -51,8 +51,10 @@ macro does nothing, limiting the performance impact of logging statements.
 
 .. warning::
 
-  Do NOT place any state-changing expressions with the LOG 
-  macro as they may not run if the report level excludes the specified LogLevel.  
+  Do NOT place any state-changing expressions with the LOG
+  macro as they may not run if the report level excludes the specified LogLevel.
+
+.. note:: The Python interface should use the Python standard library logging system.
 
 Examples
 --------
@@ -65,11 +67,11 @@ Examples
 
     LOG(LEV_ERROR, "prefix") << "This is my error statement. "
                              << "and more info...";
-    
+
     LOG(LEV_DEBUG2, "prefix") << "This is my first debug statement. "
-                              << "and more info...";  
+                              << "and more info...";
     LOG(LEV_DEBUG1, "prefix") << "This is another debug statement. "
-                              << "and more info...";  
+                              << "and more info...";
   }
 
 The command-line specified verbosity is used to determine the logger
@@ -86,9 +88,9 @@ executed. An example of what NOT to do follows:
 
 .. code-block:: cpp
 
-  LOG(LEV_DEBUG2, "module name") << "The expression myobject.setName(newname): " 
-                                 << myobject.setName(newname) 
-                                 << " might not ever execute" 
-                                 << " depending on the verbosity level."; 
+  LOG(LEV_DEBUG2, "module name") << "The expression myobject.setName(newname): "
+                                 << myobject.setName(newname)
+                                 << " might not ever execute"
+                                 << " depending on the verbosity level.";
 
 
