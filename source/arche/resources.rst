@@ -1,4 +1,3 @@
-
 Resources
 ==========
 
@@ -27,16 +26,27 @@ resource objects (including creation) are tracked and recorded in the
 database.  Because of this, agents should handle resources carefully.  For
 more details about this, see :ref:`tracked-untracked`.
 
-All resource objects are created and managed as pointer types. For
+In C++, all resource objects are created and managed as pointer types. For
 convenience, each of the classes related to resources have a special pointer
-type defined:
+type defined. In Python, they each have their own class that this available
+in the ``cyclus.typesystem`` module.
+
+**C++:**
 
 .. code-block:: c++
 
     cyclus::Resource::Ptr r;
     cyclus::Product::Ptr p;
     cyclus::Material::Ptr m;
-    cyclus::Composition::Ptr c;
+
+**Python:**
+
+.. code-block:: python
+
+    import cyclus.typesystem as ts
+    ts.Resource
+    ts.Product
+    ts.Material
 
 These pointer types should be always be used instead of plain class instances
 or raw pointers.  The following sections describe basic creation and
@@ -44,6 +54,8 @@ manipulation of resource objects.  The |Cyclus| kernel deals with resources in
 terms of the ``cyclus::Resource`` superclass.  So it will sometimes be
 necessary to cast down to the appropriate resource subclass.  |Cyclus| provides
 an overloaded ResCast function for casting convenience:
+
+**C++*:*
 
 .. code-block:: c++
 
@@ -55,13 +67,17 @@ an overloaded ResCast function for casting convenience:
     ...
     std::vector<cyclus::Product::Ptr> ps = cyclus::ResCast<Product>(rs);
 
+In Python, the situation is much simpler and you should only need to use ``Product`` and
+``Material`` directly. They both inherit from ``Resource``.
+
+
 Product Resources
 -------------------
 
 Products in |Cyclus| have a quantity (no particular units) and a quality.
-The quality is a ``std::string`` that describes what the product is.  A
-product's quality might be "apples", "kg apples", "man-hours", etc.  Product
-resources with different qualities may NOT be combined together.  
+The quality is a ``std::string`` (C++) or ``str`` (Python) that describes what
+the product is. A product's quality might be "apples", "kg apples", etc. Product
+resources with different qualities may NOT be combined together.
 
 There are 3 basic operations that can be performed on product resources
 (examples follow):
@@ -69,6 +85,8 @@ There are 3 basic operations that can be performed on product resources
 * Create
 * Extract
 * Absorb
+
+**C++:**
 
 .. code-block:: c++
 
@@ -83,14 +101,31 @@ There are 3 basic operations that can be performed on product resources
     p1->Absorb(p2);
     // p2 now has 0 grapes. p1 has 100 grapes.
 
+
+**Python:**
+
+.. code-block:: python
+
+    # create a "grapes" product holding 100 grapes.
+    p1 = ts.Product.create(100, "grapes")
+
+    # extract 7 grapes from p1
+    p2 = p1.extract(7)
+    # p1 now has 93 grapes
+
+    # combine p2 back into p1
+    p1.absorb(p2)
+    # p2 now has 0 grapes. p1 has 100 grapes.
+
+
 Material Resources
 -------------------
-
 Materials in |Cyclus| have a mass and an associated nuclide composition.  The
-composition is represented by a  ``cyclus::Composition`` object.  Material
+composition is represented by a  ``cyclus::Composition`` object (C++) or dict of
+nuclide keys (str or int), float values (Python).  Material
 quantity is always represented in units of kg. Agents can either create a
 composition manually (see the *Compositions* section below) or acquire one from
-their ``cyclus::Context`` which holds all recipes defined as part of the
+their Context which holds all recipes defined as part of the
 simulation input.
 
 There are 4 basic operations that can be performed on material resources
@@ -101,6 +136,8 @@ There are 4 basic operations that can be performed on material resources
 * Absorb
 * Transmute
 * Decay (EXPERIMENTAL) - which is a special case of the Transmute operation
+
+**C++:**
 
 .. code-block:: c++
 
@@ -126,17 +163,46 @@ There are 4 basic operations that can be performed on material resources
     // decay composition m1 up to the current time step (EXPERIMENTAL)
     m1->Decay(); // EXPERIMENTAL
 
+**Python:**
+
+.. code-block:: python
+
+    c1 = self.context.get_recipe("nat_u")
+    c2 = self.context.get_recipe("enriched_u")
+
+    # create a 100 kg material from the nat_u recipe defined in the input file
+    m1 = ts.Material.create(self, 100, c1)
+
+    # extract 1 kg of enriched U from m1
+    m2 = m1.extract_comp(1, c2)
+    # mass of m1 is now 99 kg and its composition has changed
+
+    # extract 1 kg from m1 of whatever composition it is
+    m3 = m1.ExtractQty(1)
+    # mass of m1 is now 98 kg and its composition. m1 and m3 have the same composition
+
+    # combine m2 and m3 back into m1
+    m1.absorb(m2)
+    m1.absorb(m3)
+    # m2 and m3 now have mass 0 kg. m1 has mass 100 kg with its original nat_u composition
+
+    # decay composition m1 up to the current time step (EXPERIMENTAL)
+    m1.decay()  # EXPERIMENTAL
+
+
 .. warning::
 
     Decay functionality as currently implemented is experimental and may not
     be correct.
 
-Compositions
-++++++++++++++
+Compositions in C++
+++++++++++++++++++++
 
 A ``cyclus::Composition`` is a massless, immutable nuclide composition.
 Because it is immutable, a mutable ``cyclus::CompMap`` must be populated in
 order to create a composition:
+
+**C++:**
 
 .. code-block:: c++
 
@@ -160,11 +226,31 @@ compositions from equivalent ``cyclus::CompMap`` objects.  Reusing
 ``cyclus::Composition`` objects helps avoid duplicate records in the
 database and redundant decay calculations.
 
+
+Compositions in Python
++++++++++++++++++++++++
+Compositions in Python are much simplier than in C++. They are represented by a simple
+dict of nuclides to values. When a Material is created, you have to declare whether
+the composition has a mass or atom basis.  By default it has a mass basis, though
+you may pass in the string ``"atom"`` to obtain an atom basis.
+
+**Python:**
+
+.. code-block:: python
+
+    # 5% U235, 95% U238 by mass
+    m = {922350000: 5, 922380000: 95}
+    mat_mass = ts.Material.create_untracked(10, m)
+
+    # 5% U235, 95% U238 by atom fraction
+    a = {"U235": 5, "U238": 95}
+    mat_atom = ts.Material.create_untracked(10, a, basis="atom")
+
+
 .. _resource-ids:
 
 Resource IDs
 ---------------
-
 Every resource object has 3 different IDs.  One of them, the ``qual_id``, is
 generally not of use to agent developers and can be ignored.  The other two
 serve two different purposes, and it is important to understand their
@@ -183,6 +269,8 @@ difference:
   resource objects need to be associated with some other information.
 
 Here are some examples of how these IDs work:
+
+**C++:**
 
 .. code-block:: c++
 
@@ -209,6 +297,34 @@ Here are some examples of how these IDs work:
     rsrc_labels[p2->obj_id()] = "fruit";
     ...
 
+**Python:**
+
+.. code-block:: python
+
+    # p1 gets new separate state_id and obj_id
+    p1 = ts.Product.create(self, 10, "bananas")
+
+    # p1 gets new state_id and keeps same obj_id
+    # p2 gets new separate state_id and obj_id
+    p2 = p1.extract_qty(3)
+
+    # p1 gets new state_id and keeps same obj_id
+    # p2 gets new state_id and keeps same obj_id
+    p1.absorb(p2)
+
+    # no new resource object is created, p1 and p1_dup point to same resource object.
+    # In Python this is just an increase in the refcount anyway.
+    # p1 keeps same state_id and same obj_id
+    # p1 and p1_dup have idential state_id's
+    # p1 and p1_dup have idential obj_id's
+    p1_dup = p1
+
+    # want to associate some label with resource objects? Use the obj_id.
+    rsrc_labels = {}
+    rsrc_labels[p1.obj_id] = "fruit"
+    rsrc_labels[p2.obj_id] = "fruit"
+    ...
+
 .. warning::
 
     When associating information with resources like the ``rsrc_labels``
@@ -216,11 +332,11 @@ Here are some examples of how these IDs work:
     ``std::map<cyclus::Resource::Ptr, std::string>``).  Pointers are unstable
     and change across simulation snapshot+restart.
 
+
 .. _tracked-untracked:
 
 Tracked and Untracked Resources
 ---------------------------------
-
 All changes to normal resource objects (including creation, splitting,
 trasmutation, etc.) are tracked and recorded in the database.  By default, all
 resources are **tracked resources**.  Because of this, agents should handle
@@ -239,6 +355,8 @@ Just like the functions for creating trakced resources, there are
 corresponding function for creating both untracked materials and untracked
 products:
 
+**C++:**
+
 .. code-block:: c++
 
     cyclus::Composition::Ptr c = context()->GetRecipe("enriched_u");
@@ -250,6 +368,21 @@ products:
     cyclus::Product::Ptr p1 = cyclus::Product::CreateUntracked(100, "grapes");
 
     // nothing about m1 and p1 will ever be recorded in the output data.
+
+
+**Python:**
+
+.. code-block:: python
+
+    c = self.context.get_recipe("enriched_u")
+
+    # create an untracked 100 kg material from c (the enriched_u recipe)
+    m1 = ts.Material.create_untracked(100, c)
+
+    # create an untracked "grapes" product holding 100 grapes.
+    p1 = ts.Product.create_untracked(100, "grapes")
+
+    # nothing about m1 and p1 will ever be recorded in the output data.
 
 .. warning::
 

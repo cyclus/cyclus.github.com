@@ -20,7 +20,7 @@ In addition to the unambiguous specification (as defined in
 elsewhere in the file.  If an alias is defined, it is the **only way** to
 refer to that archetype in other locations.
 
-Example 
+Example
 ++++++++
 
 .. code-block:: xml
@@ -54,12 +54,13 @@ defined in :doc:`../find_agents`.  For example, `simpleSource` will be found
 in a library file with a name such as `libsimpleSource.so`, in the standard
 |Cyclus| archetype path.
 
+This is what the example above would look like if written in JSON.
 
 .. code-block:: json
 
     {
     "archetypes": {
-      "spec": [ { 
+      "spec": [ {
         "path": "my/custom/path",
         "lib": "myAgentCollection",
         "alias": "ReactorAgent" },
@@ -67,11 +68,19 @@ in a library file with a name such as `libsimpleSource.so`, in the standard
        {"name": "simpleRegion" },
        {"name": "simpleInst" }
       ]
-    }
+    }}
 
+And similarly, in Python:
 
-This is what the example above would look like if written in JSON.
+.. code-block:: python
 
+    {"archetypes": {"spec": [
+        {"path": "my/custom/path", "lib": "myAgentCollection", "alias": "ReactorAgent"},
+        {"name": "simpleSource"},
+        {"name": "simpleRegion"},
+        {"name": "simpleInst" },
+        ]
+    }}
 
 .. rst-class:: html-toggle
 
@@ -80,9 +89,9 @@ Grammar Definition
 
 .. code-block:: xml
 
-  <element name="archetypes"> 
+  <element name="archetypes">
     <oneOrMore>
-      <element name="spec"> 
+      <element name="spec">
         <optional><element name="path"><text/></element></optional>
         <optional><element name="lib"><text/></element></optional>
         <element name="name"><text/></element>

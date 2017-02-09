@@ -16,6 +16,13 @@ Each ``region`` block has the following sections in any order:
 
 Example
 +++++++
+This example introduces two region agents.  The first has the name
+`MyHomeRegion`, and is configured from the :term:`archetype` with the name (or
+alias) `NullRegion`.  The author of the ``NullRegion`` archetype has defined
+no archetype-specific data.  The second has the name ``MyNeighborRegion`` and
+is based on the archetype with the name (or alias) `GrowthRegion`.  The
+contents of the ``GrowthRegion`` section are defined by the author of the
+`GrowthRegion` archetype.
 
 **XML:**
 
@@ -32,8 +39,8 @@ Example
 
   <region>
     <name>MyNeighborRegion</name>
-    <config> 
-      <GrowthRegion> 
+    <config>
+      <GrowthRegion>
          ... archetype-specific input for a `GrowthRegion` archetype
       </GrowthRegion>
     </config>
@@ -42,43 +49,39 @@ Example
     </institution>
   </region>
 
+
 **JSON:**
-
-
-This example introduces two region agents.  The first has the name
-`MyHomeRegion`, and is configured from the :term:`archetype` with the name (or
-alias) `NullRegion`.  The author of the ``NullRegion`` archetype has defined
-no archetype-specific data.  The second has the name ``MyNeighborRegion`` and
-is based on the archetype with the name (or alias) `GrowthRegion`.  The
-contents of the ``GrowthRegion`` section are defined by the author of the
-`GrowthRegion` archetype.
 
 .. code-block:: json
 
      {
-      "region": {
-        "name": "MyHomeRegion",
-        "config": { },
-        "institution": "... data for this institution goes here" }
+      "region": [
+        {"name": "MyHomeRegion",
+         "config": { },
+         "institution": "... data for this institution goes here"}
+         },
+        {"name": "MyNeighborRegion",
+         "config": {"GrowthRegion": "... archetype-specific input for a GrowthRegion archetype"},
+         "institution": "... data for this institution goes here"}
+        ]
       }
 
 
-     {
-      "region": {
-        "name": "MyNeighborRegion",
-        "config": {
-          "GrowthRegion": "... archetype-specific input for a `GrowthRegion` archetype" },
-        "institution": "... data for this institution goes here" }
+**Python:**
+
+.. code-block:: python
+
+     {"region": [
+        {"name": "MyHomeRegion",
+         "config": { },
+         "institution": "... data for this institution goes here"},
+         },
+        {"name": "MyNeighborRegion",
+         "config": {"GrowthRegion": "... archetype-specific input for a GrowthRegion archetype"},
+         "institution": "... data for this institution goes here"},
+        ],
       }
 
-
-This example introduces two region agents.  The first has the name
-`MyHomeRegion`, and is configured from the :term:`archetype` with the name (or
-alias) `NullRegion`.  The author of the ``NullRegion`` archetype has defined
-no archetype-specific data.  The second has the name ``MyNeighborRegion`` and
-is based on the archetype with the name (or alias) `GrowthRegion`.  The
-contents of the ``GrowthRegion`` section are defined by the author of the
-`GrowthRegion` archetype.
 
 
 .. rst-class:: html-toggle
@@ -87,7 +90,7 @@ Grammar Definition
 ++++++++++++++++++
 
 .. code-block:: xml
-   
+
     <element name="region"> <interleave>
       <element name="name"> <text/> </element>
       <optional>
