@@ -3,8 +3,8 @@
 Database Types
 ==============
 
-Here is a listing of all supported data types that the various backends have 
-implemented, by |cyclus| version number. If your agents need a type that is not 
+Here is a listing of all supported data types that the various backends have
+implemented, by |cyclus| version number. If your agents need a type that is not
 yet supported, please let us know and we'll get to it as soon as possible!
 
 **Description of fields:**
@@ -29,7 +29,7 @@ yet supported, please let us know and we'll get to it as soon as possible!
 
     <style>
     p {
-      font-size: 100%; 
+      font-size: 100%;
     }
 
     img {
@@ -52,7 +52,7 @@ yet supported, please let us know and we'll get to it as soon as possible!
     var dbdata = []
     $.getJSON("/arche/dbtypes.json", function(json) {
         dbdata = json;
-    
+
         function setupPivot(input){
           input.callbacks = {afterUpdateResults: function(){
             $('#results > table').dataTable({
@@ -72,16 +72,16 @@ yet supported, please let us know and we'll get to it as soon as possible!
             fields =[{name: 'id',         type: 'integer', filterable: true},
                      {name: 'name',       type: 'string',  filterable: true,
                       displayFunction: function(value){
-                        return '<div style="font-family:Courier,monospace;">' + 
+                        return '<div style="font-family:Courier,monospace;">' +
                                value + '</div>';}},
                      {name: "C++ type",   type: 'string',  filterable: true,
                       displayFunction: function(value){
-                        return '<div style="font-family:Courier,monospace;">' + 
+                        return '<div style="font-family:Courier,monospace;">' +
                                value + '</div>';}},
                      {name: 'shape rank', type: 'integer', filterable: true},
-                     {name: 'backend',    type: 'string',  filterable: true, 
+                     {name: 'backend',    type: 'string',  filterable: true,
                       columnLabelable: true},
-                     {name: 'version',    type: 'string',  filterable: true, 
+                     {name: 'version',    type: 'string',  filterable: true,
                       columnLabelable: true},
                      {name: 'supported',  type: 'integer', filterable: true,
                       rowLabelable: true, summarizable: 'sum',
@@ -90,15 +90,15 @@ yet supported, please let us know and we'll get to it as soon as possible!
                           return '<div style="text-align:center;' +
                                  'background-color:#c8e8b0">Yes</div>';
                         else
-                          return '<div style="text-align:center;' + 
+                          return '<div style="text-align:center;' +
                                  'background-color:#fcf1df">No</div>';
                         }
                       }
                      ];
 
             setupPivot({json: dbdata, fields: fields,
-                        filters: {version: "v1.2"}, 
-                        rowLabels: ["C++ type"], 
+                        filters: {version: "v1.2"},
+                        rowLabels: ["C++ type"],
                         columnLabels: ["backend"],
                         summaries: ["supported_sum"]});
 

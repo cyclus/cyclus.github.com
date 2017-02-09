@@ -1,10 +1,11 @@
-Errors and Warnings
-===================
-
+Errors and Warnings [C++]
+=========================
 Module developers may also leverage the |Cyclus| error and warning system
 within the code that they write. These are useful for failing gracefully from
 undefined behavior or to signal that code is still experimental and under
 development.
+
+.. note:: Python agents should just use the Python error and warning system.
 
 Errors
 ------
@@ -23,7 +24,7 @@ live within the ``cyclus`` namespace and subclass from ``std::exception``.
 .. table:: **Table I.** Cyclus Error Classes
     :widths: 1 9
     :column-alignment: left left
-    :column-wrapping: true true 
+    :column-wrapping: true true
     :column-dividers: none single none
 
     =============== ==============================================================
@@ -31,7 +32,7 @@ live within the ``cyclus`` namespace and subclass from ``std::exception``.
     =============== ==============================================================
     Error           Base error for |Cyclus|.
     ValueError      For values that are too big, too small, etc.
-    KeyError        For failed retrieval/insertion of key-based data into/from 
+    KeyError        For failed retrieval/insertion of key-based data into/from
                     data structures.
     StateError      For failed object state expectations.
     IOError         For failed reading/writing to files, network connections, etc.
@@ -75,7 +76,7 @@ warning that was given.  All warnings are issued through the
 .. table:: **Table II.** Cyclus Warnings
     :widths: 3 7
     :column-alignment: left left
-    :column-wrapping: true true 
+    :column-wrapping: true true
     :column-dividers: none single none
 
     =========================== =================================================
@@ -83,22 +84,22 @@ warning that was given.  All warnings are issued through the
     =========================== =================================================
     WARNING                     Basic warning for |Cyclus|.
     VALUE_WARNING               For values that are too big, too small, etc.
-    KEY_WARNING                 For unexpected retrieval/insertion of key-based 
+    KEY_WARNING                 For unexpected retrieval/insertion of key-based
                                 data into/from data structures.
     STATE_WARNING               For unexpected object state.
-    IO_WARNING                  For unexpected reading/writing to files, network 
+    IO_WARNING                  For unexpected reading/writing to files, network
                                 connections, etc.
     CAST_WARNING                For unexpected casts.
-    VALIDATION_WARNING          For validating files received via I/O or for 
-                                indicating that the software has not been 
+    VALIDATION_WARNING          For validating files received via I/O or for
+                                indicating that the software has not been
                                 properly benchmarked.
     DEPRECATION_WARNING         For features, behaviors, or APIs that are no
-                                longer supported. Expect removal in future 
+                                longer supported. Expect removal in future
                                 releases.
-    PENDING_DEPRECATION_WARNING For features, behaviors, or APIs that are 
+    PENDING_DEPRECATION_WARNING For features, behaviors, or APIs that are
                                 candidates for future deprecation.
-    EXPERIMENTAL_WARNING        For features, behaviors, or APIs that are not 
-                                considered stable. Reasons for instability may 
+    EXPERIMENTAL_WARNING        For features, behaviors, or APIs that are not
+                                considered stable. Reasons for instability may
                                 include a lack of benchmarking, uncertainty about
                                 future needs, or known future API changes.
     =========================== =================================================
@@ -107,7 +108,7 @@ warning that was given.  All warnings are issued through the
 
     <br />
 
-Revisiting the reactor error example from above, we could have issued a 
+Revisiting the reactor error example from above, we could have issued a
 warning instead.
 
 **Warning example:**
@@ -121,7 +122,7 @@ warning instead.
 
 Warnings have a number of advantages over errors.  The first is that since
 they do not stop the process they are fast to issue. They are also a great way
-for communicating with users the expectations of using your module. 
+for communicating with users the expectations of using your module.
 
 Warnings also have two command line options that users can provide which
 modify their behavior.  The first is ``--warn-limit``.  This changes the

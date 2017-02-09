@@ -1,7 +1,5 @@
-
 Initialization and Restart
 ============================
-
 |Cyclus| has built-in functionality for simulation snapshotting and restart.
 All simulations are initialized from the database.  In order to support
 running from XML input files, the |Cyclus| kernel translates the input file

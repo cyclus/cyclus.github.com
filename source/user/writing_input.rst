@@ -1,7 +1,7 @@
 Writing a |Cyclus| Input File
 =============================
 This section will provide an introduction to creating a valid input file for
-|Cyclus| by hand.  Because |Cyclus| uses both XML and JSON, input files have clearly defined
+|Cyclus| by hand.  Because |Cyclus| uses XML, JSON, or Python, input files have clearly defined
 sections, or blocks, that can be automatically validated for correctness.
 
 Work is underway to provide a drag-and-drop graphical user interface to
@@ -28,6 +28,18 @@ Here is an example of a XML code block.
      <body>We have released Cyclus v1.0 for everyone to use.</body>
   </note>
 
+In this example, a section named ``note`` includes four other sections named
+``to``, ``from``, ``heading``, and ``body``, respectively.
+
+The set of tags for any given project, and their relationship to each other in
+the hierarchy, is referred to as a grammar.  In addition to defining which
+tags exist, the grammar defines how many times each tag must or may exist
+in a given section.  A tag may be completely optional, required one or more
+times, or allowed to appear as many times as the user desires.
+
+Although XML grammars are designed to be self-documenting, comments can be
+inserted into XML files anywhere using the ``<!-- comment here -->`` syntax,
+as shown above.
 
 
 A Brief Introduction to JSON
@@ -48,18 +60,28 @@ Here is the same code block using JSON.
     }
 
 
-In this example, a section named ``note`` includes four other sections named
-``to``, ``from``, ``heading``, and ``body``, respectively.  
+A Brief Introduction to Python
+------------------------------------
+`Python`_ is a fully featured dynamic programming language. It hosts a wide variety of
+primitives built in to the language as well as powerful 3rd part libraries. Python
+input files allow for the computation of mathematical expressions in the input file
+itself. Static, proecomputed values are not required (as with XML and JSON).
 
-The set of tags for any given project, and their relationship to each other in
-the hierarchy, is referred to as a grammar.  In addition to defining which
-tags exist, the grammar defines how many times each tag must or may exist
-in a given section.  A tag may be completely optional, required one or more
-times, or allowed to appear as many times as the user desires.
+Here is the same code block using Python.
 
-Although XML grammars are designed to be self-documenting, comments can be
-inserted into XML files anywhere using the ``<!-- comment here -->`` syntax,
-as shown above.
+.. code-block:: python
+
+    {"note": {
+        "to": "Matt",       # message recipient
+        "from": "Anthony",  # message sender
+        "heading": "Cyclus released today",
+        "body": "We have released Cyclus v1.0 for everyone to use.",
+        }
+    }
+
+
+In this example, a dictionary with a  ``note`` key is has a dictionary vary that includes
+four other keys named ``to``, ``from``, ``heading``, and ``body`` respectively.
 
 
 The |Cyclus| Input File
@@ -74,15 +96,31 @@ contains all data for a simulation.
    <simulation>
      ... simulation data will go here ...
    </simulation>
- 
-**JSON:** 
- 
+
+**JSON:**
+
 .. code-block:: json
 
     {
       "simulation": {
           "… simulation data will go here …"
     }
+
+**Python:**
+
+.. code-block:: python
+
+    # Python input files will look for a variable named
+    # simulation, Simulation, or SIMULATION. It's value should be a
+    # dictionary with a single "simulation" key.
+    simulation = {"simulation": {...}}
+
+    # Alternitavely, the simualtion variable can also be a Python function or
+    # callable that returns a simulation dictionary. This function should not
+    # take any arguments.
+    def simulation():
+        return {"simulation": {...}}
+
 
 Although not all sections are required, the following sections may appear in
 any order in the input file:
@@ -101,14 +139,14 @@ any order in the input file:
 Including XML Files
 --------------------
 One feature of XML is that you are able to include external XML files inside of
-your current document. This lets you reuse common parts of your input file that 
+your current document. This lets you reuse common parts of your input file that
 do not change across multiple simulations. To enable XML include semantics
-the attribute ``xmlns:xi="http://www.w3.org/2001/XInclude"`` *must* be added to the 
-``<simulation>`` tag. Then to include an external 
+the attribute ``xmlns:xi="http://www.w3.org/2001/XInclude"`` *must* be added to the
+``<simulation>`` tag. Then to include an external
 file use the ``<xi:include href="path/to/file" />`` tag where you want the included
 file to go.
 
-A common inclusion pattern is to have a recipe book of materials in one file 
+A common inclusion pattern is to have a recipe book of materials in one file
 and then include this in your simulation.
 
 **input.xml:**
@@ -117,8 +155,8 @@ and then include this in your simulation.
 
     <simulation xmlns:xi="http://www.w3.org/2001/XInclude">
       ...
-      <xi:include href="recipebook.xml" /> 
-      ... 
+      <xi:include href="recipebook.xml" />
+      ...
     </simulation>
 
 **recipebook.xml:**
