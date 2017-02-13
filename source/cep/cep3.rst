@@ -110,8 +110,6 @@ Release Candidate Process
 
 #. Review the current state of documentation and make approriate updates.
 
-#. Update any new database types in ``cyclus/share/dbtypes.json``
-
 #. Finish the release candidate process
 
     - make sure all commits in the ``release`` branch also are in ``develop``
@@ -120,12 +118,14 @@ Release Process
 ---------------
 
 #. Make sure every local |cyclus| project repository is up to date with its
-   ``master``, ``develop``, and ``vX.X.X-release`` branches on ``upstream``
+   ``master``, ``develop``, and ``vX.X.X-release`` branches on ``upstream``.
 
-#. Bump the version in ``cyclus/src/version.h``, ``cycamore/src/version.h``, and
+#. Bump the version in ``cyclus/src/version.h.in``,
+   ``cycamore/src/cycamore_version.h.in``, and
    ``cymetric/setup.py``; commit the changes
 
-#. Perform maintainence tasks for all projects
+#. Perform maintenance tasks for all projects. The maintenance depends on `PyNE
+   <https://github.com/pyne/pyne.git>`_and Doxygen.
 
     - they are described in detail below, *but* the ``maintenence.sh`` utility
       in ``release/utils`` will do this automatically for you
@@ -139,7 +139,29 @@ Release Process
       $ export CYCAMORE_DIR=/path/to/cycamore
       $ ./maintenence.sh -r -v X.X.X # X.X.X is *this* version
 
-#. Commit all changes for all projects
+    .. note:: 
+
+          If maintenance script fails because of an ABI failure that is caused by
+          a compiler update (or other similar change caused by reasons other
+          than code changes), you might want to accept them and procceed with the
+          release with those. To do so you need to generate the new symbols and
+          commit them:
+          
+          #. First make sure those changes can be ignored by emailing for
+             discussion/approval the dev-list
+          
+          #. if the dev-list agrees to those changes, update the symbols and
+             commit the new one:
+
+          .. code-block:: bash
+            
+                $ cd $CYCLUS_DIR/release
+                $ ./smbchk.py --update -t X.X.X # X.X.X is *this* version
+                $ git add symbols.json
+                $ git commit -m "Describe here all the change on the ABI"
+
+
+#. Commit all changes for all projects.
 
     .. code-block:: bash
 
@@ -147,7 +169,7 @@ Release Process
       $ git checkout vX.X.X-release
       $ git commit -am "final release commit after maintenence"
 
-#. Update all develop branches
+#. Update all develop branches.
 
     .. code-block:: bash
 
@@ -156,7 +178,7 @@ Release Process
       $ git merge --no-ff vX.X.X-release
       $ git push upstream develop
 
-#. *Locally* tag the repository for *each* of the projects
+#. *Locally* tag the repository for *each* of the projects.
 
     .. code-block:: bash
 
@@ -165,7 +187,7 @@ Release Process
       $ git merge --no-ff vX.X.X-release
       $ git tag -a -m "Cyclus project release X.X.X, see http://fuelcycle.org/previous/vX.X.X.html for release notes" X.X.X
 
-#. Draft release notes
+#. Draft release notes.
 
     - the ``make_release_notes.sh`` utility in ``release/utils`` will help
       provide a template
@@ -181,7 +203,7 @@ Release Process
     - add the release notes as ``cyclus.github.com/source/previous/vX.X.X.rst``
       with appropriate updates to ``index.rst`` in that directory
 
-#. Update the API docs
+#. Update the API docs.
 
     - the ``api_docs.sh`` utility in ``release/utils`` will do this
       automatically for you
@@ -193,28 +215,7 @@ Release Process
       $ export CYCAMORE_DIR=/path/to/cycamore
       $ ./api_docs.sh X.X.X # X.X.X is *this* version
 
-#. Upload the conda packages
-
-    - the ``upload_conda.sh`` utility in ``release/utils`` will do this
-      automatically for you
-
-    .. note::
-
-       You must be associated with the account at http://binstar.org/cyclus/cyclus.
-	   
-    .. note::
-
-       You may be prompted for your binstar user name and password.
-
-    .. code-block:: bash
-
-      $ cd /path/to/release/utils
-      $ export CYCLUS_DIR=/path/to/cyclus
-      $ export CYCAMORE_DIR=/path/to/cycamore
-      $ export CYMETRIC_DIR=/path/to/cymetric
-      $ ./conda_upload.sh X.X.X # X.X.X is *this* version
-
-#. Update the ``master`` branch of all projects and clean up
+#. Update the ``master`` branch of all projects and clean up.
 
     .. code-block:: bash
 
@@ -222,28 +223,80 @@ Release Process
       $ git push upstream X.X.X master
       $ git push upstream --delete vX.X.X-release
 
-#. Manually visit the github.com page for each project and mark the tags as releases
+#. Manually visit the github.com page for each project and mark the tags as releases.
 
     - This can be updated one day to use the Github `release API
       <https://developer.github.com/v3/repos/releases/#create-a-release>`_
+
+
+#. Update Conda-forge
+ 
+     - For each project, find the corresponding feedstock repository in the
+       conda-forge organization on github. For example, cyclus' feedstock is at
+      https://github.com/conda-forge/cyclus-feedstock
+
+    - In each project's feedstok, open up a PR which updates the
+      `recipe/meta.yaml` file with the new version number and the new SHA-256
+      value of the new version's tarball. See conda-forge documentation for more
+      or ask the feedstock maintainers for help. 
+
+    - Note that each feedstock must be accepted and the package uploaded to
+      anaconda.org (automatic) prior to accepting updates for the next feedstock
+      dependency. For example, cyclus must be fully updated before cycamore.
+
 
 #. Create a DOI. See :doc:`CEP4 <./cep4>` for details.
 
     - This can be updated one day to use the Figshare `API
       <http://api.figshare.com/docs/intro.html>`_
 
-#. Update website release information 
+#. Update website release information.
 
     - on the front page (``source/index.rst``)
     - DOIs (``source/cite/index.rst``) 
     - release notes (``source/previous/index.rst``), remember both the release
       notes and the zip/tar URLs!
     - layout template (``source/atemplates/layout.html``) of the website
+    - install from tarball instruction
+      (``source/user/install_from_tarball.rst``)
 
 
 #. Commit all changes to ``cyclus.github.com`` and ``make gh-publish`` 
 
 #. Send out an email to `cyclus-dev` and `cyclus-users` to announce the release!
+
+   
+.. This part has been commented, as it is required for the website, but the
+   person in charge of the release might not have the proper access to update the
+   Dory worker.  This should be automated when a merge is done on the master branch
+   a CI-hook should update the dory cloudlus server and relaunch the worker.
+   Moreover the cloudlus server is not directly related to Cyclus and depend on
+   the UW-Madison community but the website relies on it to host the
+   online cyclus calculation... (see
+   https://github.com/cyclus/cyclus.github.com/pull/227#pullrequestreview-21589660
+   discussion for more details.)
+
+.. #. Update ``Dory``'s ``Cyclus``/``Cycamore`` version and relaunch ``Dory`` worker.
+   To do this you need a acces to the ``Dory`` server (if you don't please
+   contact an administrator), the ``go`` toolchain as well as ``cde`` installed
+   on your computer. Also, the release version of ``Cyclus`` and ``Cycamore``
+   have to be compiled on you system and both executable and lib have to be on
+   the default paths. Please refer to the :doc:`source installation
+   <../user/install_from_git>` if you need.
+.. .. code-block:: bash
+      $ git clone https://github.com/rwcarlsen/cloudlus.git
+      $ cd cloudlus
+      $ go install ./cmd/cloudlus
+      $ cd misc/fuelcycle.org
+      $ make
+      $ ssh dory.fuelcycle.org 'mv cyc-cde.tar.gz cyc-cde.tar.gz_bkp'
+      $ scp cyc-cde.tar.gz dory:fuelcycle.org:./
+      $ ssh dory.fuelcycle.org
+      $ ps -fe | grep cloudlus | grep work | grep ':80' | cut -d" " -f6 | xargs kill -9
+      $ rm -rf worker-*
+      $ ./launch.sh 2
+
+
 
 Maintainence Tasks
 ==================
