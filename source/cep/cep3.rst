@@ -3,8 +3,8 @@ CEP 3 - |Cyclus| Release Procedure
 
 :CEP: 3
 :Title: |Cyclus| Release Procedure
-:Last-Modified: 2016-05-04
-:Author: Anthony Scopatz and Matthew Gidden
+:Last-Modified: 2017-02-13
+:Author: Anthony Scopatz and Matthew Gidden and Baptiste Mouginot
 :Status: Accepted
 :Type: Process
 :Created: 2013-10-25
@@ -125,8 +125,8 @@ Release Process
    ``cymetric/setup.py``; commit the changes
 
 #. Perform maintenance tasks for all projects. The maintenance depends on `PyNE
-   <https://github.com/pyne/pyne.git>`_and Doxygen.
-
+   <https://github.com/pyne/pyne.git>`_ and Doxygen.
+    
     - they are described in detail below, *but* the ``maintenence.sh`` utility
       in ``release/utils`` will do this automatically for you
 
@@ -231,8 +231,8 @@ Release Process
 
 #. Update Conda-forge
  
-     - For each project, find the corresponding feedstock repository in the
-       conda-forge organization on github. For example, cyclus' feedstock is at
+    - For each project, find the corresponding feedstock repository in the
+      conda-forge organization on github. For example, cyclus' feedstock is at
       https://github.com/conda-forge/cyclus-feedstock
 
     - In each project's feedstok, open up a PR which updates the
