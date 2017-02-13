@@ -266,6 +266,15 @@ Release Process
 #. Send out an email to `cyclus-dev` and `cyclus-users` to announce the release!
 
    
+.. This part has been commented, as it is required for the website, but the
+   person in charge of the release might not have the proper access to update the
+   Dory worker.  This should be automated when a merge is done on the master branch
+   a CI-hook should update the dory cloudlus server and relaunch the worker.
+   Moreover the cloudlus server is not directly related to Cyclus and depend on
+   the UW-Madison community but the website relies on it to host the
+   online cyclus calculation... (see
+   https://github.com/cyclus/cyclus.github.com/pull/227#pullrequestreview-21589660
+   discussion for more details.)
 
 .. #. Update ``Dory``'s ``Cyclus``/``Cycamore`` version and relaunch ``Dory`` worker.
    To do this you need a acces to the ``Dory`` server (if you don't please
