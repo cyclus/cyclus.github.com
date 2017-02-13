@@ -257,20 +257,24 @@ Release Process
     - release notes (``source/previous/index.rst``), remember both the release
       notes and the zip/tar URLs!
     - layout template (``source/atemplates/layout.html``) of the website
+    - install from tarball instruction
+      (``source/user/install_from_tarball.rst``)
 
 
 #. Commit all changes to ``cyclus.github.com`` and ``make gh-publish`` 
 
-#. Update ``Dory``'s ``Cyclus``/``Cycamore`` version and relaunch ``Dory`` worker.
+#. Send out an email to `cyclus-dev` and `cyclus-users` to announce the release!
+
+   
+
+.. #. Update ``Dory``'s ``Cyclus``/``Cycamore`` version and relaunch ``Dory`` worker.
    To do this you need a acces to the ``Dory`` server (if you don't please
    contact an administrator), the ``go`` toolchain as well as ``cde`` installed
    on your computer. Also, the release version of ``Cyclus`` and ``Cycamore``
    have to be compiled on you system and both executable and lib have to be on
    the default paths. Please refer to the :doc:`source installation
    <../user/install_from_git>` if you need.
-    
-   .. code-block:: bash
-
+.. .. code-block:: bash
       $ git clone https://github.com/rwcarlsen/cloudlus.git
       $ cd cloudlus
       $ go install ./cmd/cloudlus
@@ -284,7 +288,6 @@ Release Process
       $ ./launch.sh 2
 
 
-#. Send out an email to `cyclus-dev` and `cyclus-users` to announce the release!
 
 Maintainence Tasks
 ==================
