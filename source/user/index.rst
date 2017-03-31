@@ -109,7 +109,20 @@ evaluating their suitability.
     (including random number generation and Gaussian distributions) are defined in
     the `behavior functions
     <https://github.com/mbmcgarry/mbmore/blob/master/src/behavior_functions.h>`_.
-      
+
+- `:mbmore:InteractRegion
+  <https://github.com/mbmcgarry/mbmore/blob/master/src/InteractRegion.h#242>`_
+   A region that allows interaction between child archetypes, designed to model
+   nation-state decisions to pursue nuclear weapons and how decisions of one
+   state influence another. Used with StateInst.
+
+- `:mbmore:StateInst
+  <https://github.com/mbmcgarry/mbmore/blob/master/src/StateInst.h#242>`_
+  A managing institution, representing a nation-state, that models the social,
+  economic and political factors that motivate nation-states to pursue nuclear
+  weapons.  Used with InteractRegion.
+
+    
 - `:mbmore:RandomEnrich
   <https://github.com/mbmcgarry/mbmore/blob/master/src/RandomEnrich.h#242>`_
   Based on cycamore enrichment facility, it can have variable tails assay,
