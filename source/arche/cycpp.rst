@@ -126,6 +126,11 @@ contains a listing of all special keys and their meanings.
                  post-process.
     default      The default value for this variable that is used if otherwise 
                  unspecified. The value must match the type of the variable.
+    internal     ``True`` if this state variable is only for
+                 archetype-internal usage.  Although the variable will still
+                 be persisted in the database and initialized normally (e.g.
+                 with any default), it will not be included in the XML schema
+                 or input file.
     shape        The shape of a variable length datatypes. If present this must
                  be a list of integers whose length (rank) makes sense for this
                  type. Specifying positive values will (depending on the 

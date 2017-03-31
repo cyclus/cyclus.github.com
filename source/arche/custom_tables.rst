@@ -1,10 +1,11 @@
-
 Custom Database Tables
 =======================
 
 Agents are allowed to write their own custom output into the database during
 simulations.  The interface for recording this data is accessible through the
 agent's :term:`context`.  Data may be logged via the Context::NewDatum function:
+
+**C++:**
 
 .. code-block:: c++
 
@@ -22,16 +23,37 @@ agent's :term:`context`.  Data may be logged via the Context::NewDatum function:
     ...
   }
 
+**Python:**
+
+.. code-block:: python
+
+    from cyclus.agents import Facility
+    import cyclus.typesystem as ts
+
+    class MyReactor(Facility):
+
+        def tick(self):
+            ...
+            d = self.context.new_datum("MyReactorData")
+            d.add_val("AgentID", self.id, type=ts.INT)
+            d.add_val("Time", self.context.time, type=ts.INT)
+            d.add_val("WaterUsage", self.monthl_water, type=ts.DOUBLE)
+            d.add_val("OperatingCost", self.monthly_op_cost, type=ts.DOUBLE)
+            d.record()
+            ...
+
 This would create a table in the output database named "MyReactorData". The
 table would get a new row entry every time step with four columns named
-"AgentID", "Time", "WaterUsage" and "OperatingCost".  ``AddVal`` calls can be chained
-any number of times for an arbitrary number of columns.  ``Record`` must be
+"AgentID", "Time", "WaterUsage" and "OperatingCost".  "Add value" calls can be chained
+any number of times for an arbitrary number of columns.  Record must be
 called once for each datum after all values have been added.  Any custom
 tables created in this manner will appear in the output database alongside the
 |cyclus| core tables.  Because there may be several agent instances of a
 single agent class, tables should generally include a column that adds their
 ID; and for similar reasons, it is often desirable to include the simulation
 time as a column in these tables:
+
+**C++:**
 
 .. code-block:: c++
 
@@ -40,6 +62,16 @@ time as a column in these tables:
              ->AddVal("Time", context()->time())
              ->AddVal(...
              ...
+
+**Python:**
+
+.. code-block:: python
+
+    d = self.context.new_datum("MyReactorData")
+    d.add_val("AgentID", self.id, type=ts.INT)
+    d.add_val("Time", self.context.time, type=ts.INT)
+    d.add_val(...
+    ...
 
 Datums with the same table name must have the same schema (e.g. same field
 names and value types). It is the responsibility of the developer to
@@ -53,8 +85,8 @@ enforce this in their code.
    use. For information on which c++ types the backends support, you can check
    :doc:`here <dbtypes>`.
 
-.. note:: If you require a datatype that isn't currently supported, please 
-          ask the kernel developers and they will help as soon as possible. 
+.. note:: If you require a datatype that isn't currently supported, please
+          ask the kernel developers and they will help as soon as possible.
 
 Table Data Shapes
 ------------------
@@ -70,6 +102,8 @@ vector indicates variable length also.  It is an error to pass in a shape
 vector with the wrong rank (number of elements) for that type.  An example of
 using the shape vector follows:
 
+**C++:**
+
 .. code-block:: c++
 
     std::vector<std::string> colors;
@@ -84,15 +118,27 @@ using the shape vector follows:
     context()->NewDatum("DecorPreferences")
              ->AddVal("AgentID", id())
              ->AddVal("Time", context()->time())
-             ->AddVal("FavoritColors", colors, shape)
+             ->AddVal("FavoriteColors", colors, shape)
              ->Record();
+
+**Python:**
+
+.. code-block:: c++
+
+    colors = ["green", "blue", "chartreuse"]
+    shape = [5, 8]
+    d = self.context.new_datum("DecorPreferences")
+    d.add_val("AgentID", self.id, type=ts.INT)
+    d.add_val("Time", self.context.time, type=ts.INT)
+    d.add_val("FavoriteColors", colors, shape, ts.VECTOR_STRING)
+    d.record()
 
 In the example above, the "chartreuse" color is longer than the 8 characters
 specified in the shape.  So it will be truncated to "chartreu" in the
 database. Shape vectors should generally be stored as class member variables
 to avoid excessive memory [de]allocation and should be set correctly from
 construction to destruction of your agent.
-    
+
 Reserved Table Names
 ---------------------
 

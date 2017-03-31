@@ -12,6 +12,16 @@ tag, and has the following sections in any order:
 
   * simhandle (optional, once) - a user-defined identifier for this simulation
 
+  * explicit_inventory (optional, once) - boolean specifying whether or not to
+    create the :ref:`ExplicitInventory <explicit-inv-table>` table in the
+    database.  Because this significantly impacts simulation performance, it
+    is deactivated by default.
+
+  * explicit_inventory_compact (optional, once) - boolean specifying whether
+    or not to create the :ref:`ExplicitInventoryCompact
+    <explicit-inv-compact-table>` table in the database.  Because this
+    significantly impacts simulation performance, it is deactivated by default.
+
   * dt (optional, once) - the duration of a single time step in seconds.  If
     omitted, a default value of 1/12 of a year is used (i.e. 2,629,846
     seconds).
@@ -34,7 +44,7 @@ tag, and has the following sections in any order:
         - preconditioner (optional) - precondition greedy-solved graphs
 
           - choose one of:
-		  
+
 		    - ``greedy``: use an average-preference greedy preconditioner
 
       - ``coin-or``: use the COIN-OR CLP/CBC solver suite
@@ -62,7 +72,7 @@ Example
     <startmonth>11</startmonth>   <!-- start in november -->
     <duration>1200</duration>     <!-- run for 100 years -->
     <dt>86400</dt>                <!-- 1-day time steps -->
-    <decay>lazy</decay>           
+    <decay>lazy</decay>
   </control>
 
 
@@ -77,6 +87,20 @@ Example
         "duration": 1200,
         "dt": 86400,
         "decay": "lazy" }
+      }
+
+
+**Python:**
+
+.. code-block:: python
+
+     {"control": {
+        "startyear": 2007,
+        "startmonth": 11,
+        "duration": 12 * 100,
+        "dt": 86400,
+        "decay": "lazy",
+        }
       }
 
 
@@ -102,7 +126,16 @@ Grammar Definition
         <element name="decay"> <text/> </element>
       </optional>
       <optional>
-        <element name="solver"> 
+        <element name="dt"><data type="nonNegativeInteger"/></element>
+      </optional>
+      <optional>
+        <element name="explicit_inventory"> <data type="boolean"/> </element>
+      </optional>
+      <optional>
+        <element name="explicit_inventory_compact"> <data type="boolean"/> </element>
+      </optional>
+      <optional>
+        <element name="solver">
           <interleave>
             <optional><element name="config">
             <choice>
@@ -126,6 +159,11 @@ Grammar Definition
             </element></optional>
             <optional>
               <element name="allow_exclusive_orders">
+                <data type="boolean" />
+              </element>
+            </optional>
+            <optional><!--deprecated. @TODO remove in release 1.5 -->
+              <element name="exclusive_orders_only">
                 <data type="boolean" />
               </element>
             </optional>

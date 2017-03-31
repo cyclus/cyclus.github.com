@@ -1,8 +1,8 @@
 
 .. _testing:
 
-Testing Agents and Modules
-==========================
+Testing and Debugging Archetypes
+================================
 
 Overview
 --------
@@ -315,6 +315,23 @@ details.
 Debugging
 ----------
 
+If exceptions are being thrown when you try to use your archetype in
+simulations, you can turn off Cyclus' main exception handling/catching by
+setting the environment variable ``CYCLUS_NO_CATCH=1`` when you run cyclus.
+This will prevent exceptions from being caught resulting in a core-dump.  You
+can then use a debugger (e.g. gdb or lldb) to run the failing simulation and
+investigate the source of the crash in more detail.  Something like this:
+
+.. code-block:: bash
+
+    $ CYCLUS_NO_CATCH=1 gdb --args cyclus my-failing-sim.xml
+    
+    GNU gdb (GDB) 7.11
+    Copyright (C) 2016 Free Software Foundation, Inc.
+    ...
+    (gdb) run
+    ...
+
 Cyclus has the ability to dump extra information about a simulation run's
 resource exchange into the database.  This information can be
 particularly helpful for debugging and verifying your archetype's behavior
@@ -352,3 +369,5 @@ The database will then contain two extra tables with several columns each:
 Note that some information about bids can be inferred from corresponding
 requests.  A bid's time, commodity, resource type, and units are all identical
 to those of the corresponding request.
+
+

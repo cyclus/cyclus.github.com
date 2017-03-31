@@ -1,4 +1,3 @@
-
 Understanding the Database
 ============================
 
@@ -30,10 +29,10 @@ the same.  |Cyclus| ships supporting two database formats:
 Below are a few sections that describe the data tables found in the database.
 
 Table Descriptions
-+++++++++++++++++++
+++++++++++++++++++
 
 Resources Table
-----------------
+---------------
 
 Because resources are tracked as immutable objects, every time a resource is
 changed in the simulation (split, combined, transmuted, decayed, etc.), it
@@ -57,7 +56,7 @@ tables.
 * **Type** (string): One of "Material" or "Product".  These two types of
   resources have different internal state stored in different tables.  If the
   type is "Product", then the internal state can be found in the ``Products``
-  table. If it is Material, then it is in the ``Compositions`` table. 
+  table. If it is Material, then it is in the ``Compositions`` table.
 
 * **TimeCreated** (int): The simulation time step at which this resource state
   came into existence.
@@ -69,7 +68,7 @@ tables.
   resources.
 
 * **QualId** (int): Used to identify the corresponding internal-state
-  entry (or entries) in the ``Products`` or ``Compositions`` table depending 
+  entry (or entries) in the ``Products`` or ``Compositions`` table depending
   on the resource's type.
 
 * **Parent1** (int): If a resource was newly created, this is zero. If this
@@ -81,8 +80,71 @@ tables.
   is also zero. If the resource came from another via combining this is the
   second parent's ResourceId.
 
+.. _explicit-inv-table:
+
+ExplicitInventory Table
+-----------------------
+
+This is an optional table that can be activated by setting
+``<explicit_inventory>true</explicit_inventory>`` in the ``<control>`` section
+of the input file.  By default, it is disabled and will not be created in the
+database.  Note there is a significant runtime performance penalty for
+activating this table.  This table provides the material inventory of each
+agent at each time step subdivided by internal buffers (e.g.
+``cyclus::toolkit::ResBuf``).  There is one row for each agent on each time
+step for each sub-buffer for each nuclide.
+
+* **SimId** (uuid)
+
+* **AgentId** (int): ID of the agent holding the inventory
+
+* **Time** (int): Time Step this inventory was in the given agent.
+
+* **InventoryName** (string): Name of the internal sub inventory/buffer of
+  this material.  This (usually) corresponds to the archetype state variable
+  names for each ResBuf.
+
+* **NucId** (int): Nuclide identifier in ``zzzaaammmm`` form.
+
+* **Quantity** (double): Amount in kg of the given nuclide in the specified
+  sub-inventory for the given agent on the given time step.
+
+.. _explicit-inv-compact-table:
+
+ExplicitInventoryCompact Table
+-------------------------------
+
+This is an optional table that can be activated by setting
+``<explicit_inventory_compact>true</explicit_inventory_compact>`` in the
+``<control>`` section of the input file.  By default, it is disabled and will
+not be created in the database.  Note there is a significant runtime
+performance penalty for activating this table.  This table provides the
+material inventory of each agent at each time step subdivided by internal
+buffers (e.g.  ``cyclus::toolkit::ResBuf``).  There is one row for each agent
+on each time step for each sub-buffer.  The fractional composition for each
+nuclide are stored as a single value in the native format of the Cyclus
+backend used to create the database.  The sqlite backend, for example, stores
+this data as an xml string from a boost-serialized ``std::map<int, double>``
+(i.e. NucId-frac pairs).
+
+* **SimId** (uuid)
+
+* **AgentId** (int): ID of the agent holding the inventory
+
+* **Time** (int): time step this inventory was in the given agent.
+
+* **InventoryName** (string): Name of the internal sub inventory/buffer of
+  this material.  This (usually) corresponds to the archetype state variable
+  names for each ResBuf.
+
+* **Quantity** (double): Amount in kg of the given material composition in
+  this sub-inventory for the given agent on the given time step.
+
+* **Composition** (int): Cyclus backend-specific format for a ``std::map<int,
+  double>`` object.
+
 Compositions Table
---------------------
+------------------
 
 A composition consists of one or more nuclides and their respective mass
 fractions.  Each nuclide for a composition gets its own row and have the same
@@ -98,7 +160,7 @@ QualId.
 * **MassFrac** (double): Mass fraction for the nuclide in this composition.
 
 Recipes Table
--------------------
+-------------
 
 * **SimId** (uuid)
 
@@ -108,7 +170,7 @@ Recipes Table
   ``Compositions`` table.
 
 Products Table
-----------------
+--------------
 
 * **SimId** (uuid)
 
@@ -119,7 +181,7 @@ Products Table
   etc.)
 
 ResCreators Table
--------------------
+-----------------
 
 Every time an agent creates a new resource from scratch, that event is
 recorded in this table.
@@ -133,7 +195,7 @@ recorded in this table.
   the ResourceId.
 
 AgentEntry Table
--------------------
+----------------
 
 Each agent that enters and participates in a simulation gets a row in this
 table.
@@ -161,7 +223,7 @@ table.
   simulation.
 
 AgentExit Table
-------------------
+---------------
 
 Due to implementation details in the |cyclus| kernel, this table is separate
 from the ``AgentEntry`` table.  If this table doesn't exist, then no agents
@@ -174,8 +236,25 @@ were decommissioned in the simulation.
 * **ExitTime** (int): The time step when the agent was decommissioned and
   exited the simulation.
 
+.. _agent-version-table:
+
+AgentVersion Table
+------------------
+
+This lists the version of each agent/archetype used in the simulation. Due to
+backwards compatibility, this is in its own, new table instead of the
+AgentEntry table.  There is one entry in this table for each archetype used in
+each simulation.
+
+* **SimId** (uuid)
+
+* **Spec** (string): Archetype spec - same as the Spec field in the AgentEntry
+  table.
+
+* **Version** (string): The version string provided by the archetype.
+
 Transactions Table
--------------------
+------------------
 
 Every single resource transfer between two agents is recorded as a row
 in this table.
@@ -197,7 +276,7 @@ in this table.
 * **Time** (int): The time step at which the resource transfer took place.
 
 Info Table
--------------------
+----------
 
 Each simulation gets a single row in this table describing global simulation
 parameters and |cyclus| dependency version information.
@@ -218,9 +297,9 @@ parameters and |cyclus| dependency version information.
 
 * **ParentSimId** (uuid): The SimId for this simulation's parent. Zero if this
   simulation has no parent.
- 
+
 * **ParentType** (string): One of:
-    
+
     - "init" for simulations that are not based on any other simulation.
 
     - "restart" for simulations that were restarted another simulation's
@@ -228,27 +307,42 @@ parameters and |cyclus| dependency version information.
 
     - "branch" for simulations that were started from a perturbed state of
       another simulation's snapshot.
- 
+
 * **BranchTime** (int): Zero if this was not a restarted or branched
   simulation. Otherwise, the time step of the ParentSim at which the
   restart/branch occurred.
- 
+
 * **CyclusVersion** (string): Version of |cyclus| used to run this simulation.
- 
+
 * **CyclusVersionDescribe** (string): Detailed |cyclus| version info (with commit hash)
- 
+
 * **SqliteVersion** (string)
- 
+
 * **Hdf5Version** (string)
- 
+
 * **BoostVersion** (string)
- 
+
 * **LibXML2Version** (string)
- 
+
 * **CoinCBCVersion** (string)
 
+
+InfoExplicitInv Table
+----------------------
+Each simulation gets one row in this table.
+
+* **SimId** (uuid)
+
+* **RecordInventory** (bool): True (or 1) if the ExplicitInventory table was
+  or should be activated for the simulation.
+
+* **RecordInventoryCompact** (bool): True (or 1) if the
+  ExplicitInventoryCompact table was or should be activated for the
+  simulation.
+
+
 Finish Table
--------------------
+------------
 
 Each simulation gets one row/entry in this table.
 
@@ -259,15 +353,17 @@ Each simulation gets one row/entry in this table.
 
 * **EndTime** (int): The time step at which the simulation ended.
 
+
 InputFiles Table
--------------------
+----------------
 
 * **SimId** (uuid)
 
 * **Data** (blob): A dump of the entire input file used for this simulation.
 
+
 DecomSchedule Table
---------------------
+-------------------
 
 When agents are scheduled to be decommissioned in the simulation, the details
 are recorded in this table.  Note that this table contains an entry for each
@@ -286,7 +382,7 @@ decommissioned.
   been) decommissioned.
 
 BuildSchedule Table
---------------------
+-------------------
 
 When agents are scheduled to be built in the simulation, the details are
 recorded in this table.  Note that this table contains an entry for each
@@ -309,7 +405,7 @@ built.
   been) built and deployed into the simulation.
 
 Snapshots Table
--------------------
+---------------
 
 Every snapshot made during the simulation gets an entry in this table.  All
 times in this table are candidates for simulation restart/branching.
@@ -319,9 +415,9 @@ times in this table are candidates for simulation restart/branching.
 * **Time** (int): The time step a snapshot was taken for this simulation.
 
 Debugging
-----------
+---------
 
-If |Cyclus| was run in debugging mode then the database will then contain 
+If |Cyclus| was run in debugging mode then the database will then contain
 the following two extra tables:
 
 * **DebugRequests**: record of every resource request made in the simulation.
@@ -347,7 +443,7 @@ the following two extra tables:
 
 
 Post Processing
-+++++++++++++++++
++++++++++++++++
 
 We are currently working on developing a post-process step for the database
 that creates a few new tables to assist data analysis and visualization.

@@ -22,7 +22,7 @@ The following are presentations given about |cyclus|:
 
 * `Cyclus: Next Generation Fuel Cycle Simulator <http://dx.doi.org/10.6084/m9.figshare.1278926>`_, presented at the Fuel Cycle Options Campaign meeting, 12/16/14, Las Vegas, NV
 * `Market-Based and System-Wide Fuel Cycle Optimization <http://figshare.com/articles/Market_Based_and_System_Wide_Fuel_Cycle_Optimization/1278937>`_, presented at the Fuel Cycle Options Campaign meeting, 12/16/14, Las Vegas, NV
-   
+
 
 
 |Cyclus| Meetings and Tutorials
@@ -35,7 +35,7 @@ The |Cyclus| community will occasionally hold meetings and tutorials, with docum
     :glob:
 
     meetings/*
-
+    tutorials/*
 
 
 
