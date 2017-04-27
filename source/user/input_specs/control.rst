@@ -44,7 +44,7 @@ tag, and has the following sections in any order:
         - preconditioner (optional) - precondition greedy-solved graphs
 
           - choose one of:
-		  
+
 		    - ``greedy``: use an average-preference greedy preconditioner
 
       - ``coin-or``: use the COIN-OR CLP/CBC solver suite
@@ -72,7 +72,7 @@ Example
     <startmonth>11</startmonth>   <!-- start in november -->
     <duration>1200</duration>     <!-- run for 100 years -->
     <dt>86400</dt>                <!-- 1-day time steps -->
-    <decay>lazy</decay>           
+    <decay>lazy</decay>
   </control>
 
 
@@ -87,6 +87,20 @@ Example
         "duration": 1200,
         "dt": 86400,
         "decay": "lazy" }
+      }
+
+
+**Python:**
+
+.. code-block:: python
+
+     {"control": {
+        "startyear": 2007,
+        "startmonth": 11,
+        "duration": 12 * 100,
+        "dt": 86400,
+        "decay": "lazy",
+        }
       }
 
 
@@ -111,8 +125,8 @@ Grammar Definition
       <optional>
         <element name="decay"> <text/> </element>
       </optional>
-      <optional> 
-        <element name="dt"><data type="nonNegativeInteger"/></element> 
+      <optional>
+        <element name="dt"><data type="nonNegativeInteger"/></element>
       </optional>
       <optional>
         <element name="explicit_inventory"> <data type="boolean"/> </element>
@@ -121,7 +135,7 @@ Grammar Definition
         <element name="explicit_inventory_compact"> <data type="boolean"/> </element>
       </optional>
       <optional>
-        <element name="solver"> 
+        <element name="solver">
           <interleave>
             <optional><element name="config">
             <choice>

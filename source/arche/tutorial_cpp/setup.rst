@@ -5,18 +5,18 @@ In this lesson, we will:
 
 1. Do the tasks the the Cyclus Archetype Hello World!
 2. Clean up the file system for the single storage facility
-3. Install the storage facility 
+3. Install the storage facility
 4. Run an input file that uses the new storage facility
 
 Follow the Hello Cyclus! Instructions
 ---------------------------------------------------
 
-Follow all of the steps of :ref:`hello_world`.
+Follow all of the steps of :ref:`hello_world_cpp`.
 
 Make a Storage Facility
 ------------------------------------------
 
-Next, make a new facility by copying the facility archetype from the Hello World! tutorial. 
+Next, make a new facility by copying the facility archetype from the Hello World! tutorial.
 
 Start by making sure you are in the correct directory
 
@@ -60,7 +60,7 @@ Run the unit tests
 
     $ Storage_unit_tests
 
-Make a new input file that is a copy of the test input file 
+Make a new input file that is a copy of the test input file
 
 .. code-block:: console
 
@@ -78,33 +78,33 @@ Test the input file by running Cyclus
 .. code-block:: console
 
     $ cyclus -v 2 input/storage.xml
-                  :                                                               
-              .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q   
-            CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)  
+                  :
+              .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q
+            CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)
             CCCCCCCCCCCCCl       __O|/O___O|/O_OO|/O__O|/O__O|/O____________O|/O__
          CCCCCCf     iCCCLCC     /////////////////////////////////////////////////
-         iCCCt  ;;;;;.  CCCC                                                      
-        CCCC  ;;;;;;;;;. CClL.                          c                         
-       CCCC ,;;       ;;: CCCC  ;                   : CCCCi                       
-        CCC ;;         ;;  CC   ;;:                CCC`   `C;                     
-      lCCC ;;              CCCC  ;;;:             :CC .;;. C;   ;    :   ;  :;;   
-      CCCC ;.              CCCC    ;;;,           CC ;    ; Ci  ;    :   ;  :  ;  
-       iCC :;               CC       ;;;,        ;C ;       CC  ;    :   ; .      
-      CCCi ;;               CCC        ;;;.      .C ;       tf  ;    :   ;  ;.    
-      CCC  ;;               CCC          ;;;;;;; fC :       lC  ;    :   ;    ;:  
-       iCf ;;               CC         :;;:      tC ;       CC  ;    :   ;     ;  
-      fCCC :;              LCCf      ;;;:         LC :.  ,: C   ;    ;   ; ;   ;  
-      CCCC  ;;             CCCC    ;;;:           CCi `;;` CC.  ;;;; :;.;.  ; ,;  
-        CCl ;;             CC    ;;;;              CCC    CCL                     
-       tCCC  ;;        ;; CCCL  ;;;                  tCCCCC.                      
-        CCCC  ;;     :;; CCCCf  ;                     ,L                          
-         lCCC   ;;;;;;  CCCL                                                      
-         CCCCCC  :;;  fCCCCC                                                      
-          . CCCC     CCCC .                                                       
-           .CCCCCCCCCCCCCi                                                        
-              iCCCCCLCf                                                           
-               .  C. ,                                                            
-                  :                                                               
+         iCCCt  ;;;;;.  CCCC
+        CCCC  ;;;;;;;;;. CClL.                          c
+       CCCC ,;;       ;;: CCCC  ;                   : CCCCi
+        CCC ;;         ;;  CC   ;;:                CCC`   `C;
+      lCCC ;;              CCCC  ;;;:             :CC .;;. C;   ;    :   ;  :;;
+      CCCC ;.              CCCC    ;;;,           CC ;    ; Ci  ;    :   ;  :  ;
+       iCC :;               CC       ;;;,        ;C ;       CC  ;    :   ; .
+      CCCi ;;               CCC        ;;;.      .C ;       tf  ;    :   ;  ;.
+      CCC  ;;               CCC          ;;;;;;; fC :       lC  ;    :   ;    ;:
+       iCf ;;               CC         :;;:      tC ;       CC  ;    :   ;     ;
+      fCCC :;              LCCf      ;;;:         LC :.  ,: C   ;    ;   ; ;   ;
+      CCCC  ;;             CCCC    ;;;:           CCi `;;` CC.  ;;;; :;.;.  ; ,;
+        CCl ;;             CC    ;;;;              CCC    CCL
+       tCCC  ;;        ;; CCCL  ;;;                  tCCCCC.
+        CCCC  ;;     :;; CCCCf  ;                     ,L
+         lCCC   ;;;;;;  CCCL
+         CCCCCC  :;;  fCCCCC
+          . CCCC     CCCC .
+           .CCCCCCCCCCCCCi
+              iCCCCCLCf
+               .  C. ,
+                  :
     INFO1(core  ):Simulation set to run from start=0 to end=10
     INFO1(core  ):Beginning simulation
     INFO1(tutori):Hello

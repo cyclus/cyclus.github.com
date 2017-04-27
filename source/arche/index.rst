@@ -43,13 +43,15 @@ Installation
     ../user/install
 
 Hello World
------------
+-----------------
 
 .. toctree::
     :maxdepth: 1
-    
-    hello_world
-    tour
+
+    hello_world_cpp
+    tour_cpp
+    hello_world_py
+
 
 Writing Agents & Modules
 ------------------------
@@ -59,16 +61,17 @@ Tutorial
 
 .. toctree::
     :maxdepth: 1
-    
-    tutorial/index
 
-Building, Installing and Testing
-++++++++++++++++++++++++++++++++
+    tutorial_cpp/index
+    tutorial_py/index
+
+Building, Installing and Testing [C++]
+++++++++++++++++++++++++++++++++++++++
 
 .. toctree::
     :maxdepth: 1
 
-    cmake    
+    cmake
     cycpp
     testing
 
@@ -77,7 +80,7 @@ Interfacing with the |Cyclus| Kernel
 
 .. toctree::
     :maxdepth: 1
-    
+
     timestep
     resources
     dre
@@ -89,7 +92,6 @@ Interfacing with the |Cyclus| Kernel
 
 A Word About Style
 ++++++++++++++++++
-
 Having a consistent style in your code is important. Python has a great style
 guide encapsulated in `PEP8 <http://legacy.python.org/dev/peps/pep-0008/>`_. As
 our code base is mostly C++, the kernel development team follows the `Google C++
