@@ -29,10 +29,10 @@ the same.  |Cyclus| ships supporting two database formats:
 Below are a few sections that describe the data tables found in the database.
 
 Table Descriptions
-+++++++++++++++++++
+++++++++++++++++++
 
 Resources Table
-----------------
+---------------
 
 Because resources are tracked as immutable objects, every time a resource is
 changed in the simulation (split, combined, transmuted, decayed, etc.), it
@@ -83,7 +83,7 @@ tables.
 .. _explicit-inv-table:
 
 ExplicitInventory Table
-------------------------
+-----------------------
 
 This is an optional table that can be activated by setting
 ``<explicit_inventory>true</explicit_inventory>`` in the ``<control>`` section
@@ -144,7 +144,7 @@ this data as an xml string from a boost-serialized ``std::map<int, double>``
   double>`` object.
 
 Compositions Table
---------------------
+------------------
 
 A composition consists of one or more nuclides and their respective mass
 fractions.  Each nuclide for a composition gets its own row and have the same
@@ -160,7 +160,7 @@ QualId.
 * **MassFrac** (double): Mass fraction for the nuclide in this composition.
 
 Recipes Table
--------------------
+-------------
 
 * **SimId** (uuid)
 
@@ -170,7 +170,7 @@ Recipes Table
   ``Compositions`` table.
 
 Products Table
-----------------
+--------------
 
 * **SimId** (uuid)
 
@@ -181,7 +181,7 @@ Products Table
   etc.)
 
 ResCreators Table
--------------------
+-----------------
 
 Every time an agent creates a new resource from scratch, that event is
 recorded in this table.
@@ -195,7 +195,7 @@ recorded in this table.
   the ResourceId.
 
 AgentEntry Table
--------------------
+----------------
 
 Each agent that enters and participates in a simulation gets a row in this
 table.
@@ -223,7 +223,7 @@ table.
   simulation.
 
 AgentExit Table
-------------------
+---------------
 
 Due to implementation details in the |cyclus| kernel, this table is separate
 from the ``AgentEntry`` table.  If this table doesn't exist, then no agents
@@ -254,7 +254,7 @@ each simulation.
 * **Version** (string): The version string provided by the archetype.
 
 Transactions Table
--------------------
+------------------
 
 Every single resource transfer between two agents is recorded as a row
 in this table.
@@ -276,7 +276,7 @@ in this table.
 * **Time** (int): The time step at which the resource transfer took place.
 
 Info Table
--------------------
+----------
 
 Each simulation gets a single row in this table describing global simulation
 parameters and |cyclus| dependency version information.
@@ -342,7 +342,8 @@ Each simulation gets one row in this table.
 
 
 Finish Table
--------------------
+------------
+
 Each simulation gets one row/entry in this table.
 
 * **SimId** (uuid)
@@ -354,14 +355,16 @@ Each simulation gets one row/entry in this table.
 
 
 InputFiles Table
--------------------
+----------------
+
 * **SimId** (uuid)
 
 * **Data** (blob): A dump of the entire input file used for this simulation.
 
 
 DecomSchedule Table
---------------------
+-------------------
+
 When agents are scheduled to be decommissioned in the simulation, the details
 are recorded in this table.  Note that this table contains an entry for each
 scheduling regardless of whether or not it actually occurred; if a simulation
@@ -379,7 +382,7 @@ decommissioned.
   been) decommissioned.
 
 BuildSchedule Table
---------------------
+-------------------
 
 When agents are scheduled to be built in the simulation, the details are
 recorded in this table.  Note that this table contains an entry for each
@@ -402,7 +405,7 @@ built.
   been) built and deployed into the simulation.
 
 Snapshots Table
--------------------
+---------------
 
 Every snapshot made during the simulation gets an entry in this table.  All
 times in this table are candidates for simulation restart/branching.
@@ -412,7 +415,7 @@ times in this table are candidates for simulation restart/branching.
 * **Time** (int): The time step a snapshot was taken for this simulation.
 
 Debugging
-----------
+---------
 
 If |Cyclus| was run in debugging mode then the database will then contain
 the following two extra tables:
@@ -440,7 +443,7 @@ the following two extra tables:
 
 
 Post Processing
-+++++++++++++++++
++++++++++++++++
 
 We are currently working on developing a post-process step for the database
 that creates a few new tables to assist data analysis and visualization.
