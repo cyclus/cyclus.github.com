@@ -1,10 +1,10 @@
-.. _cyclus_pyapi_main:
+.. _cyclus_pyapi_agents:
 
 ********************************************************************************
-Main Command Line Interface (``cyclus.main``)
+ (``cyclus.agents``)
 ********************************************************************************
 
-.. automodule:: cyclus.main
+.. automodule:: cyclus.agents
     :members:
     :undoc-members:
     :inherited-members:

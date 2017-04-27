@@ -1,10 +1,10 @@
-.. _cyclus_pyapi_main:
+.. _cyclus_pyapi_server:
 
 ********************************************************************************
-Main Command Line Interface (``cyclus.main``)
+Cyclus Server (``cyclus.server``)
 ********************************************************************************
 
-.. automodule:: cyclus.main
+.. automodule:: cyclus.server
     :members:
     :undoc-members:
     :inherited-members:

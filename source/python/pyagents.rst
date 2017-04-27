@@ -1,10 +1,10 @@
-.. _cyclus_pyapi_main:
+.. _cyclus_pyapi_pyagents:
 
 ********************************************************************************
-Main Command Line Interface (``cyclus.main``)
+Agent Archetypes implemented in Python (``cyclus.pyagents``)
 ********************************************************************************
 
-.. automodule:: cyclus.main
+.. automodule:: cyclus.pyagents
     :members:
     :undoc-members:
     :inherited-members:

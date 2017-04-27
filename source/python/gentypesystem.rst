@@ -1,10 +1,10 @@
-.. _cyclus_pyapi_main:
+.. _cyclus_pyapi_gentypesystem:
 
 ********************************************************************************
-Main Command Line Interface (``cyclus.main``)
+Type System Code Generator (``cyclus.gentypesystem``)
 ********************************************************************************
 
-.. automodule:: cyclus.main
+.. automodule:: cyclus.gentypesystem
     :members:
     :undoc-members:
     :inherited-members:

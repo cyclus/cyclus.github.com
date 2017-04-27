@@ -1,10 +1,10 @@
-.. _cyclus_pyapi_main:
+.. _cyclus_pyapi_webapp:
 
 ********************************************************************************
-Main Command Line Interface (``cyclus.main``)
+Client Web Application (``cyclus.webapp``)
 ********************************************************************************
 
-.. automodule:: cyclus.main
+.. automodule:: cyclus.webapp
     :members:
     :undoc-members:
     :inherited-members:
