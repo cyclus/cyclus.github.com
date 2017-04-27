@@ -1,7 +1,7 @@
 .. _cyclus_pyapi_agents:
 
 ********************************************************************************
- (``cyclus.agents``)
+Agent Interface - Region, Institution, and Facility (``cyclus.agents``)
 ********************************************************************************
 
 .. automodule:: cyclus.agents
