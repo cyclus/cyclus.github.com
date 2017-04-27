@@ -140,6 +140,8 @@ default_types = {
     'facility': None,
     'prototype': 'string',
     'recipe': 'string',
+    'inrecipe': 'string',
+    'outrecipe': 'string',
     'none': None,
     None: None,
     '': None,
@@ -148,6 +150,8 @@ default_types = {
 special_uitypes = {
     'nuclide': 'string',
     'recipe': 'string',
+    'inrecipe': 'string',
+    'outrecipe': 'string',
     'prototype': 'string',
     'commodity': 'string',
     'incommodity': 'string',
