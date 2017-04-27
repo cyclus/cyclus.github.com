@@ -6,7 +6,7 @@
 This guide covers the basics of installation, creating simulation input files,
 and running them.  If you haven't already, you should take a look at
 :ref:`Fundamental Concepts in Cyclus <basics-concepts>`.
-     
+
 
 Installing |Cyclus|
 --------------------
@@ -39,9 +39,10 @@ Running Simulations
 --------------------
 
 .. toctree::
-   :maxdepth: 1
+    :maxdepth: 1
 
-   running_sims
+    running_sims
+    server
 
 You can also run a simulation right now from the comfort of your browser :ref:`here
 <try-it>`!
@@ -109,7 +110,7 @@ evaluating their suitability.
     (including random number generation and Gaussian distributions) are defined in
     the `behavior functions
     <https://github.com/mbmcgarry/mbmore/blob/master/src/behavior_functions.h>`_.
-      
+
 - `:mbmore:RandomEnrich
   <https://github.com/mbmcgarry/mbmore/blob/master/src/RandomEnrich.h#242>`_
   Based on cycamore enrichment facility, it can have variable tails assay,
@@ -123,7 +124,7 @@ evaluating their suitability.
   trading can be suppressed before a specified timestep, material requests
   can occur at Every X timestep or at Random timesteps, and quantity
   requested can be varied using a Gaussian distribution function.
- 
+
 **rwc Archetypes** (https://github.com/rwcarlsen/rwc-archetypes)
     This is a collection of miscellaneous archetypes made by Robert Carlsen to
     support optimization work and other side projects:
@@ -154,7 +155,7 @@ evaluating their suitability.
   additional parameter that allows the user to control the frequency with
   which the facility requests material - i.e. the user can tell the
   facility to only request material every Nth time step.
-   
+
 - `:rwc:Storage
   <https://github.com/rwcarlsen/rwc-archetypes/blob/master/storage.h>`_
   This facility is very similar to the Cycamore storage facility, and was
