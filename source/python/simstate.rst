@@ -1,10 +1,10 @@
-.. _cyclus_pyapi_main:
+.. _cyclus_pyapi_simstate:
 
 ********************************************************************************
-Main Command Line Interface (``cyclus.main``)
+Simulation State (``cyclus.simstate``)
 ********************************************************************************
 
-.. automodule:: cyclus.main
+.. automodule:: cyclus.simstate
     :members:
     :undoc-members:
     :inherited-members:

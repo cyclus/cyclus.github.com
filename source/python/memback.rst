@@ -1,10 +1,10 @@
-.. _cyclus_pyapi_main:
+.. _cyclus_pyapi_memback:
 
 ********************************************************************************
-Main Command Line Interface (``cyclus.main``)
+In-memory Backend (``cyclus.memback``)
 ********************************************************************************
 
-.. automodule:: cyclus.main
+.. automodule:: cyclus.memback
     :members:
     :undoc-members:
     :inherited-members:

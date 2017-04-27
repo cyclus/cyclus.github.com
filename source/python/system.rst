@@ -1,10 +1,10 @@
-.. _cyclus_pyapi_main:
+.. _cyclus_pyapi_system:
 
 ********************************************************************************
-Main Command Line Interface (``cyclus.main``)
+System and Platform Specific Tools (``cyclus.system``)
 ********************************************************************************
 
-.. automodule:: cyclus.main
+.. automodule:: cyclus.system
     :members:
     :undoc-members:
     :inherited-members:

@@ -1,10 +1,10 @@
-.. _cyclus_pyapi_main:
+.. _cyclus_pyapi_cycpp:
 
 ********************************************************************************
-Main Command Line Interface (``cyclus.main``)
+Cyclus Preprocessor (``cyclus.cycpp``)
 ********************************************************************************
 
-.. automodule:: cyclus.main
+.. automodule:: cyclus.cycpp
     :members:
     :undoc-members:
     :inherited-members:

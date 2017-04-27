@@ -1,10 +1,10 @@
-.. _cyclus_pyapi_main:
+.. _cyclus_pyapi_nucname:
 
 ********************************************************************************
-Main Command Line Interface (``cyclus.main``)
+Nuclide Naming Functions (``cyclus.nucname``)
 ********************************************************************************
 
-.. automodule:: cyclus.main
+.. automodule:: cyclus.nucname
     :members:
     :undoc-members:
     :inherited-members:

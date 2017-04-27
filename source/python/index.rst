@@ -4,6 +4,17 @@
 =========================
 This covers the Python bindings for |Cyclus| and related utilities.
 
+High-level Python Interface
+---------------------------
+
+.. toctree::
+    :maxdepth: 1
+
+    agents
+    simstate
+    pyagents
+
+
 Low-level Python Wrappers
 -------------------------
 
@@ -13,6 +24,18 @@ Low-level Python Wrappers
     typesystem
     lib
     main
+    nucname
+
+
+Cyclus Server Interface
+-----------------------
+
+.. toctree::
+    :maxdepth: 1
+
+    server
+    actions
+    webapp
 
 
 Python & C++ Interop Modules
@@ -23,6 +46,7 @@ Python & C++ Interop Modules
     :maxdepth: 1
 
     events
+    memback
 
 
 Helpers & Utilities
@@ -32,4 +56,8 @@ Helpers & Utilities
     :glob:
     :maxdepth: 1
 
+    cycpp
+    gentypesystem
     jsoncpp
+    lazyasd
+    system

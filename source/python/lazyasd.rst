@@ -1,10 +1,10 @@
-.. _cyclus_pyapi_main:
+.. _cyclus_pyapi_lazyasd:
 
 ********************************************************************************
-Main Command Line Interface (``cyclus.main``)
+Lazy and Self-destructive Python Tools (``cyclus.lazyasd``)
 ********************************************************************************
 
-.. automodule:: cyclus.main
+.. automodule:: cyclus.lazyasd
     :members:
     :undoc-members:
     :inherited-members:

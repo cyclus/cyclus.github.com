@@ -1,10 +1,10 @@
-.. _cyclus_pyapi_main:
+.. _cyclus_pyapi_actions:
 
 ********************************************************************************
-Main Command Line Interface (``cyclus.main``)
+Asynchronous Actions (``cyclus.actions``)
 ********************************************************************************
 
-.. automodule:: cyclus.main
+.. automodule:: cyclus.actions
     :members:
     :undoc-members:
     :inherited-members:
