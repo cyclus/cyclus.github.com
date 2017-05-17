@@ -44,6 +44,14 @@ Compiling Cyclus
 
 If you were successful then Cyclus has been installed and you can skip down to Installing Cycamore!
 
+If you received an error message concerning the Cyclus Core Version, please use :
+
+.. code-block:: bash
+
+   python install.py --core-version=1.5.0
+
+
+
 Alternative instructions are also available for doing a :doc:`Custom Installation <install_custom>`.
 
 
