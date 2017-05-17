@@ -3,7 +3,7 @@ Dependencies
 
 Building the Cyclus website requires:
 
-1. `Sphinx`_ v1.1.2 or higher
+1. `Sphinx`_ betweeb v1.1.2 v1.5.1 (see [#237](https://github.com/cyclus/cyclus.github.com/issues/237))
 
 2. `sphinxcontrib-bibtex`_ v0.3.0 or higher
 
