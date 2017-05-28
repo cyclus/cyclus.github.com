@@ -95,7 +95,7 @@ A Word About Style
 Having a consistent style in your code is important. Python has a great style
 guide encapsulated in `PEP8 <http://legacy.python.org/dev/peps/pep-0008/>`_. As
 our code base is mostly C++, the kernel development team follows the `Google C++
-Style Guide <http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml>`_
+Style Guide <https://google.github.io/styleguide/cppguide.html>`_
 (GCSG) as closely as possible, and we invite you to as well! A notable (and
 required) exception to the GCSG used in |Cyclus| and Cycamore :term:`archetypes
 <archetype>` is the use of preprocessor-aware private member variables without a
