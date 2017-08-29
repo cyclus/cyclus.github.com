@@ -14,13 +14,13 @@ What is a CEP?
 
 CEP stands for |Cyclus| Enhancement Proposal.  A CEP is a design
 document providing information to the |cyclus| community, or describing
-a new feature or process for |Cyclus| and related prjects in its ecosystem.  
+a new feature or process for |Cyclus| and related projects in its ecosystem.
 The CEP should provide a concise technical specification of the feature and a
 rationale for the feature.
 
 We intend CEPs to be the primary mechanisms for proposing major new
 features, for collecting community input on an issue, and for
-documenting the design decisions that have gone into the |Cyclus| ecosystem.  
+documenting the design decisions that have gone into the |Cyclus| ecosystem.
 The CEP author is responsible for building consensus within the community and
 documenting dissenting opinions.
 
@@ -65,11 +65,11 @@ CEP Workflow
 ---------------
 
 There are several reference in this CEP to the "BDFP". This acronym stands
-for "Benevolent Dictator for the Proposal." In most cases, it is fairly clear 
+for "Benevolent Dictator for the Proposal." In most cases, it is fairly clear
 who this person is (Paul Wilson or Anthony Scopatz).  It is this persons
 responsibility to consider the entire |cyclus| ecosystem when deciding whether
-or not to accept a proposal.  Weighted with this burden, their decision 
-must be adhered to (dictator status), though they will try to do the right 
+or not to accept a proposal.  Weighted with this burden, their decision
+must be adhered to (dictator status), though they will try to do the right
 thing (benevolent).
 
 
@@ -104,7 +104,7 @@ Each CEP must have a champion -- someone who writes the CEP using the
 style and format described below, shepherds the discussions in the
 appropriate forums, and attempts to build community consensus around
 the idea.  The CEP champion (a.k.a. Author) should first attempt to
-ascertain whether the idea is CEP-able.  Posting to the `cyclus-dev`_ 
+ascertain whether the idea is CEP-able.  Posting to the `cyclus-dev`_
 mailing list is the best way to go about this.
 
 Vetting an idea publicly before going as far as writing a CEP is meant
@@ -157,7 +157,7 @@ email new CEP versions to the CEP editors for publication.
 After a CEP number has been assigned, a draft CEP may be discussed further on
 mailing list (getting a CEP number assigned early can be useful for ease of
 reference, especially when multiple draft CEPs are being considered at the
-same time). 
+same time).
 
 Standards Track CEPs consist of two parts, a design document and a
 reference implementation.  It is generally recommended that at least a
@@ -202,7 +202,7 @@ must be a clear and complete description of the proposed enhancement.
 The enhancement must represent a net improvement.  The proposed
 implementation, if applicable, must be solid and must not complicate
 the infrastructure unduly.  Finally, a proposed enhancement must be
-follow |cyclus| best practices in order to be accepted by the BDFP.  
+follow |cyclus| best practices in order to be accepted by the BDFP.
 
 Once a CEP has been accepted, the reference implementation must be
 completed.  When the reference implementation is complete and incorporated
@@ -235,6 +235,11 @@ The possible paths of the status of CEPs are as follows:
 Some Informational and Process CEPs may also have a status of "Active"
 if they are never meant to be completed.  E.g. CEP 1 (this CEP).
 
+**Lazy Consensus:** After 1 month of no objections to the wording of a CEP,
+it may be marked as "Accepted" by lazy consensus. The author, BDFP, and
+the Cyclus community manager are jointly responsible for sending out weekly
+reminders of an unapproved CEP without active discussion.
+
 
 CEP Maintenance
 ---------------
@@ -256,7 +261,7 @@ What belongs in a successful CEP?
 Each CEP should have the following parts:
 
 1. Preamble -- headers containing meta-data about the
-   CEP, including the CEP number, a short descriptive title, the names, 
+   CEP, including the CEP number, a short descriptive title, the names,
    and optionally the contact info for each author, etc.
 
 2. Abstract -- a short (~200 word) description of the technical issue
@@ -267,7 +272,7 @@ Each CEP should have the following parts:
    example) or licensed under the `Open Publication License`_.
 
 4. Specification -- The technical specification should describe the
-   syntax and semantics of any new feature.  
+   syntax and semantics of any new feature.
 
 5. Motivation -- The motivation is critical for CEPs that want to
    change the |cyclus| ecosystem.  It should clearly explain why the
@@ -338,7 +343,7 @@ if the email address is included, and just
     Random J. User
 
 The BDFP field is used to record cases where the final decision to
-approve or reject a CEP rests with someone other than the normal BDFP. 
+approve or reject a CEP rests with someone other than the normal BDFP.
 
 The Type header specifies the type of CEP: Standards Track,
 Informational, or Process.
@@ -419,7 +424,7 @@ decision (it's not like such decisions can't be reversed :).
 CEP Editor Responsibilities & Workflow
 ======================================
 
-A CEP editor must subscribe to the |cyclus| development mailing list.  
+A CEP editor must subscribe to the |cyclus| development mailing list.
 For each new CEP that comes in an editor does the following:
 
 * Read the CEP to check if it is ready: sound and complete.  The ideas
@@ -438,12 +443,12 @@ Once the CEP is ready for the repository, a CEP editor will:
 * Assign a CEP number (almost always just the next available number,
   but sometimes it's a special/joke number, like 666 or 3141).
 
-* Add the CEP to the CEP repository.  
+* Add the CEP to the CEP repository.
 
 * Commit and push the new (or updated) CEP
 
 * Monitor cyclus.github.com to make sure the CEP gets added to the site
-  properly. 
+  properly.
 
 * Send email back to the CEP author with next steps (post to the
   |cyclus| development mailing list).
