@@ -211,7 +211,8 @@ The |cyclus| development team currently supports projects for these concerns:
   time, canonical supply chain entities)
 * `Cycamore`_ - Domain Models
 * `Cymetric`_ -  Analysis & Visualization
-* `Rickshaw`_ - Simulation orchestration.
+* `Cyclist`_ -  Analysis & Visualization (historical)
+* `Rickshaw`_ - Simulation orchestration
 
 The dependency graph for these projects is similar to the graph of the concerns.
 Figure 2 displays this graph along with other projects which implement these concerns.
@@ -308,6 +309,7 @@ References and Footnotes
 .. _Cyclus: https://github.com/cyclus/cyclus
 .. _Cycamore: https://github.com/cyclus/cycamore
 .. _Cymetric: https://github.com/cyclus/cymetric
+.. _Cyclist: https://github.com/cyclus/cyclist
 .. _Rickshaw: https://github.com/ergs/rickshaw
 
 .. bibliography:: cep-0002-1.bib
