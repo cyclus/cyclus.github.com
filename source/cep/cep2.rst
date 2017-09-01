@@ -170,6 +170,27 @@ must handle the case where only DRES models are used.  However, if domain models
 are used and the analysis & visualization is aware of these domain models,
 all DRES parameters are guaranteed to also be present.
 
+Simulation Orchestration
+------------------------
+Simulation campaigns often involve executing multiple instances of the DRE and
+associated analysis and visualization. This may be with the purpose of,
+
+* performing a sensitivity study,
+* running a parameter sweep,
+* sampling from a large option space, or
+* creating a training set for machine learning models.
+
+This execution and analysis is either managed manually or automatically, but it
+is always managed.  Running, analyzing, visualizing, and generating many |cyclus|
+input files is termed here "orchestration." This includes provisioning compute
+resources where these tasks are executed. Data management also falls under the
+purview of simulation orchestration.
+
+Simulation orchestration provides a feedback loop for the |cyclus| ecosystem.
+It both drives the DRE simulator and incorporates the results of previous
+simulations.
+
+
 The |Cyclus| Ecosystem
 ======================
 While many fuel cycle simulators may choose to implement all of the above concerns
@@ -184,17 +205,16 @@ or mixing of multiple concerns, place the code with the most dependent concern.
 For example, if it is not clear if a class belongs with domain models or with the
 resource exchange put it with the domain models to be safe.
 
-The |cyclus| development team currently provides and supports three projects,
-one for each concern:
+The |cyclus| development team currently supports projects for these concerns:
 
 * `Cyclus`_ - Dynamic Resource Exchange Simulation (individual actors, discrete
   time, canonical supply chain entities)
 * `Cycamore`_ - Domain Models
-* `Cyclist`_ -  Analysis & Visualization
+* `Cymetric`_ -  Analysis & Visualization
+* `Rickshaw`_ - Simulation orchestration.
 
 The dependency graph for these projects is similar to the graph of the concerns.
-Figure 2 displays this graph along with other projects which implement or may
-in the future implement this concern ('?').
+Figure 2 displays this graph along with other projects which implement these concerns.
 
 .. figure:: cep-0002-2.svg
     :align: center
@@ -203,7 +223,7 @@ in the future implement this concern ('?').
 
 .. blockdiag code below
 
-    http://interactive.blockdiag.com/?compression=deflate&src=eJyNUbFOwzAQ3fMVJ1dCMCB1bBUFVEzZWBhYEKqu9jWx5Pgi20Fpq_47JklpKha2u_fevXtnHzMATTtsbdyUnttmo9iyhwIcO8onbKiwoYQnkdOkt9zlWaL7IfAUqFNwTAAAe0MuYjTskr5hHz2amPecxS3ZQrxR4NYrgnWnKnQliYGWe2XbMNSni73mumY92o8Wz1yjcfDKmmwYx8_ZxexlLleL5cUVa_Z07jT5oRRP3pRVvH28E392orNf5vD_k1YO7T6YADfwbkKL1hx6_TRaIWZSLpZSTs41If42Rk1iDG8B9w9X-a_Qn2EY0V4xxT92bNNHfebZ6RsduJIm
+    http://interactive.blockdiag.com/?compression=deflate&src=eJyFUstqwzAQvOcrFgV6M_QYY1JI1fZQKIUUeiklyNLGFpW1QZLbJCX_XsV52HESqtNKM7MzWhYA4HcAzVE4F7UJs8JRvZhJMuRgDJYsZj2GL8UCIxaJVqHKaZkN9pRGDA49LuWxMwA5jTaIoMlG3YJccEKH7IgbkaMZsyl6qp1EeFzKUtgCWUvhK2lq3943p5aKqopUx3Lf8oEqoS28kELjO-0O_2PDp1s-GaUd6L-wMYmoyCEkSawVum3B7p0uypAYHZA1D3yVkyvY1cTCmm-9Pk88scKsvPZwA-_a18LodZOlH37MhpyPUs7PhvT8tosmtbzqTk6eW786WaKP373k1wwrzeMOqA401fIr7sPPBaNdGEjujhPLLiG7wC20ndoJ9DEnE9fss6PWcsvoex_urbqn3fwBgOfNqA
 
     {
       default_group_color = none;
@@ -218,22 +238,27 @@ in the future implement this concern ('?').
       group dommod {
         label="Domain Models";
         color = "#F0CA89";
-        Cycamore;
-        Cyder;
-        "Bright(?)";
+        orientation = portrait;
+        Cycamore -- Cyder -- "Bright-lite" -- "Cyborg";
         }
 
       group anlviz {
-        orientation = portrait;
         label="Analysis & Visualization";
         color="#CC89CC";
-        Cyclist;
-        Cycic;
+        CyclusJS -- Cycic;
+        }
+
+      group orc {
+        label="Orchestration";
+        color = "#9befad";
+        Rickshaw;
         }
 
       Cyclus -> Cycamore;
-      Cyclus -> Cyclist ;
-      Cycamore -> Cyclist [folded];
+      Cyclus -> CyclusJS ;
+      Cyborg -> CyclusJS [folded];
+      Cycic -> Rickshaw;
+      Rickshaw -> Cyclus [folded];
     }
 
 Toolkits
@@ -282,7 +307,8 @@ References and Footnotes
 
 .. _Cyclus: https://github.com/cyclus/cyclus
 .. _Cycamore: https://github.com/cyclus/cycamore
-.. _Cyclist: https://github.com/cyclus/cyclist2
+.. _Cymetric: https://github.com/cyclus/cymetric
+.. _Rickshaw: https://github.com/ergs/rickshaw
 
 .. bibliography:: cep-0002-1.bib
    :cited:

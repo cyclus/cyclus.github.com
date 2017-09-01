@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg viewBox="0 0 832 440" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs id="defs_block">
     <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
       <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
@@ -9,40 +9,56 @@
   <title>blockdiag</title>
   <desc />
   <rect fill="none" height="60" style="filter:url(#filter_blur)" width="144" x="56" y="30" />
-  <rect fill="rgb(240,202,137)" height="220" style="filter:url(#filter_blur)" width="144" x="248" y="30" />
-  <rect fill="rgb(204,137,204)" height="60" style="filter:url(#filter_blur)" width="336" x="248" y="270" />
+  <rect fill="rgb(240,202,137)" height="300" style="filter:url(#filter_blur)" width="144" x="248" y="30" />
+  <rect fill="rgb(204,137,204)" height="60" style="filter:url(#filter_blur)" width="336" x="248" y="350" />
+  <rect fill="rgb(155,239,173)" height="60" style="filter:url(#filter_blur)" width="144" x="632" y="350" />
   <path d="M 75 46 L 187 46 A8,8 0 0 1 195 54 L 195 78 A8,8 0 0 1 187 86 L 75 86 A8,8 0 0 1 67 78 L 67 54 A8,8 0 0 1 75 46" fill="rgb(0,0,0)" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
   <path d="M 267 46 L 379 46 A8,8 0 0 1 387 54 L 387 78 A8,8 0 0 1 379 86 L 267 86 A8,8 0 0 1 259 78 L 259 54 A8,8 0 0 1 267 46" fill="rgb(0,0,0)" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
   <path d="M 267 126 L 379 126 A8,8 0 0 1 387 134 L 387 158 A8,8 0 0 1 379 166 L 267 166 A8,8 0 0 1 259 158 L 259 134 A8,8 0 0 1 267 126" fill="rgb(0,0,0)" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
   <path d="M 267 206 L 379 206 A8,8 0 0 1 387 214 L 387 238 A8,8 0 0 1 379 246 L 267 246 A8,8 0 0 1 259 238 L 259 214 A8,8 0 0 1 267 206" fill="rgb(0,0,0)" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
   <path d="M 267 286 L 379 286 A8,8 0 0 1 387 294 L 387 318 A8,8 0 0 1 379 326 L 267 326 A8,8 0 0 1 259 318 L 259 294 A8,8 0 0 1 267 286" fill="rgb(0,0,0)" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
-  <path d="M 459 286 L 571 286 A8,8 0 0 1 579 294 L 579 318 A8,8 0 0 1 571 326 L 459 326 A8,8 0 0 1 451 318 L 451 294 A8,8 0 0 1 459 286" fill="rgb(0,0,0)" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
+  <path d="M 267 366 L 379 366 A8,8 0 0 1 387 374 L 387 398 A8,8 0 0 1 379 406 L 267 406 A8,8 0 0 1 259 398 L 259 374 A8,8 0 0 1 267 366" fill="rgb(0,0,0)" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
+  <path d="M 459 366 L 571 366 A8,8 0 0 1 579 374 L 579 398 A8,8 0 0 1 571 406 L 459 406 A8,8 0 0 1 451 398 L 451 374 A8,8 0 0 1 459 366" fill="rgb(0,0,0)" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
+  <path d="M 651 366 L 763 366 A8,8 0 0 1 771 374 L 771 398 A8,8 0 0 1 763 406 L 651 406 A8,8 0 0 1 643 398 L 643 374 A8,8 0 0 1 651 366" fill="rgb(0,0,0)" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
   <path d="M 72 40 L 184 40 A8,8 0 0 1 192 48 L 192 72 A8,8 0 0 1 184 80 L 72 80 A8,8 0 0 1 64 72 L 64 48 A8,8 0 0 1 72 40" fill="rgb(255,255,255)" stroke="rgb(0,0,0)" />
-  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="110" y="66">Cyclus</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="37" x="128" y="66">Cyclus</text>
   <path d="M 264 40 L 376 40 A8,8 0 0 1 384 48 L 384 72 A8,8 0 0 1 376 80 L 264 80 A8,8 0 0 1 256 72 L 256 48 A8,8 0 0 1 264 40" fill="rgb(255,255,255)" stroke="rgb(0,0,0)" />
-  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="296" y="66">Cycamore</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="49" x="320" y="66">Cycamore</text>
   <path d="M 264 120 L 376 120 A8,8 0 0 1 384 128 L 384 152 A8,8 0 0 1 376 160 L 264 160 A8,8 0 0 1 256 152 L 256 128 A8,8 0 0 1 264 120" fill="rgb(255,255,255)" stroke="rgb(0,0,0)" />
-  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="305" y="146">Cyder</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="31" x="320" y="146">Cyder</text>
   <path d="M 264 200 L 376 200 A8,8 0 0 1 384 208 L 384 232 A8,8 0 0 1 376 240 L 264 240 A8,8 0 0 1 256 232 L 256 208 A8,8 0 0 1 264 200" fill="rgb(255,255,255)" stroke="rgb(0,0,0)" />
-  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="293" y="226">Bright(?)</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="67" x="320" y="226">Bright-lite</text>
   <path d="M 264 280 L 376 280 A8,8 0 0 1 384 288 L 384 312 A8,8 0 0 1 376 320 L 264 320 A8,8 0 0 1 256 312 L 256 288 A8,8 0 0 1 264 280" fill="rgb(255,255,255)" stroke="rgb(0,0,0)" />
-  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="299" y="306">Cyclist</text>
-  <path d="M 456 280 L 568 280 A8,8 0 0 1 576 288 L 576 312 A8,8 0 0 1 568 320 L 456 320 A8,8 0 0 1 448 312 L 448 288 A8,8 0 0 1 456 280" fill="rgb(255,255,255)" stroke="rgb(0,0,0)" />
-  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="497" y="306">Cycic</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="37" x="320" y="306">Cyborg</text>
+  <path d="M 264 360 L 376 360 A8,8 0 0 1 384 368 L 384 392 A8,8 0 0 1 376 400 L 264 400 A8,8 0 0 1 256 392 L 256 368 A8,8 0 0 1 264 360" fill="rgb(255,255,255)" stroke="rgb(0,0,0)" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="49" x="320" y="386">CyclusJS</text>
+  <path d="M 456 360 L 568 360 A8,8 0 0 1 576 368 L 576 392 A8,8 0 0 1 568 400 L 456 400 A8,8 0 0 1 448 392 L 448 368 A8,8 0 0 1 456 360" fill="rgb(255,255,255)" stroke="rgb(0,0,0)" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="31" x="512" y="386">Cycic</text>
+  <path d="M 648 360 L 760 360 A8,8 0 0 1 768 368 L 768 392 A8,8 0 0 1 760 400 L 648 400 A8,8 0 0 1 640 392 L 640 368 A8,8 0 0 1 648 360" fill="rgb(255,255,255)" stroke="rgb(0,0,0)" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="49" x="704" y="386">Rickshaw</text>
   <path d="M 192 60 L 248 60" fill="none" stroke="rgb(0,0,0)" />
   <polygon fill="rgb(0,0,0)" points="255,60 248,56 248,64 255,60" stroke="rgb(0,0,0)" />
   <path d="M 128 80 L 128 100" fill="none" stroke="rgb(0,0,0)" />
   <path d="M 128 100 L 224 100" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 224 100 L 224 260" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 224 260 L 320 260" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 320 260 L 320 272" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="320,279 316,272 324,272 320,279" stroke="rgb(0,0,0)" />
-  <path d="M 384 60 L 416 60" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 416 60 L 416 265" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 320 265 L 416 265" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 320 265 L 320 272" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="320,279 316,272 324,272 320,279" stroke="rgb(0,0,0)" />
-  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="77" y="36">Resource Exchange</text>
-  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="281" y="36">Domain Models</text>
-  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="343" y="276">Analysis &amp; Visualization</text>
+  <path d="M 224 100 L 224 340" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 224 340 L 320 340" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 320 340 L 320 352" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="320,359 316,352 324,352 320,359" stroke="rgb(0,0,0)" />
+  <path d="M 320 80 L 320 120" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 320 160 L 320 200" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 320 240 L 320 280" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 320 320 L 320 352" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="320,359 316,352 324,352 320,359" stroke="rgb(0,0,0)" />
+  <path d="M 384 380 L 448 380" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 576 380 L 632 380" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="639,380 632,376 632,384 639,380" stroke="rgb(0,0,0)" />
+  <path d="M 768 380 L 784 380" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 784 380 L 784 25" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 128 25 L 784 25" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 128 25 L 128 32" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="128,39 124,32 132,32 128,39" stroke="rgb(0,0,0)" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="103" x="128" y="36">Resource Exchange</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="79" x="320" y="36">Domain Models</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="146" x="416" y="356">Analysis &amp; Visualization</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="79" x="704" y="356">Orchestration</text>
 </svg>
