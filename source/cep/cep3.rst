@@ -261,7 +261,7 @@ Release Process
 
 #. Commit all changes to ``cyclus.github.com`` and ``make gh-publish``
 
-#. Send out an email to `cyclus-dev` and `cyclus-users` to announce the release!
+#. Send out an email to ``cyclus-dev`` and ``cyclus-users`` to announce the release!
 
 
 .. This part has been commented, as it is required for the website, but the
