@@ -81,9 +81,8 @@ accompany any new candidate.
 
 The release branch must be quiet and untouched for *2 - 5 days prior* to the
 full release. When the full and final release happens, the ``vX.X.X-release``
-branch is merged into ``master`` and then deleted. All commits in the
-``vX.X.X-release`` branch must have also been merged into the ``develop`` branch
-as they were accepted.
+branch is deleted. All commits in the ``vX.X.X-release`` branch must have also
+been merged into the ``master`` branch as they were accepted.
 
 Project Checklist
 =================
@@ -352,7 +351,7 @@ command to verify that the release branch is stable:
 
 If |cyclus| only has API additions, it is considered stable and the command will
 tell you so. If |cyclus| also has API deletions, then |cyclus| is considered
-unstable and a diff of the symbols will be prinited.
+unstable and a diff of the symbols will be printed.
 **You cannot release |cyclus| if it is unstable!** Please post the diff to
 either the mailing list or the issue tracker and work to resolve the removed
 symbols until it this command declares that |cyclus| is stable. It is
@@ -389,6 +388,6 @@ This document is released under the CC-BY 3.0 license.
 .. _Cycamore: https://github.com/cyclus/cycamore
 .. _Cymetric: https://github.com/cyclus/cymetric
 .. _Rickshaw: https://github.com/ergs/rickshaw
-.. _CyclusJS: https://github.com/cyclus/cyclist
+.. _CyclusJS: https://github.com/cyclus/cyclist2
 .. _release: https://github.com/cyclus/release
 .. _the fused source directions here: https://code.google.com/p/googletest/wiki/V1_6_AdvancedGuide#Fusing_Google_Test_Source_Files
