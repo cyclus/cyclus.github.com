@@ -309,7 +309,7 @@ References and Footnotes
 .. _Cyclus: https://github.com/cyclus/cyclus
 .. _Cycamore: https://github.com/cyclus/cycamore
 .. _Cymetric: https://github.com/cyclus/cymetric
-.. _Cyclist: https://github.com/cyclus/cyclist
+.. _Cyclist: https://github.com/cyclus/cyclist2
 .. _Rickshaw: https://github.com/ergs/rickshaw
 
 .. bibliography:: cep-0002-1.bib
