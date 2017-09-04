@@ -14,6 +14,7 @@ Learn More
 
     tutorial
     tutorial_cli
+    tutorial_py
     api/index
 
 
