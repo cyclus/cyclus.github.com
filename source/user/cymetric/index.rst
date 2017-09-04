@@ -12,11 +12,7 @@ Learn More
 .. toctree::
     :maxdepth: 1
 
-    tutorial
     tutorial_cli
     tutorial_py
     tutorial_metrics
     api/index
-
-
-
