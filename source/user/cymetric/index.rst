@@ -15,6 +15,7 @@ Learn More
     tutorial
     tutorial_cli
     tutorial_py
+    tutorial_metrics
     api/index
 
 

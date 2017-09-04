@@ -1,4 +1,4 @@
-.. _cym_tutorial:
+.. _cym_tutorial_cli:
 
 Cymetric Command Line Tutorial
 ==============================
