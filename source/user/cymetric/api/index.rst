@@ -2,12 +2,11 @@ Cymetric API
 ============
 The following modules make up the cymetric package.  Note that most of the
 important stuff you can get directly from ``cymetric`` without needing to import
-the module.  For example, the following two imports are the same:
+the module.  For example:
 
 .. code-block:: python
 
-    from cymetric import metric           # nice and short
-    from cymetric.metrics import metrics  # where 'metric' really lives
+    from cymetric import metric
 
 
 **Interface Modules:**
@@ -16,10 +15,23 @@ the module.  For example, the following two imports are the same:
     :maxdepth: 1
 
     schemas
-    metrics
-    root_metrics
     evaluator
     execution
+    filters
+    graphs
+
+
+**Metrics Modules:**
+
+.. toctree::
+    :maxdepth: 1
+
+    metrics
+    root_metrics
+    cycamore_root_metrics
+    brightlite_root_metrics
+    fco_metrics
+
 
 **Helper Modules:**
 
@@ -28,3 +40,4 @@ the module.  For example, the following two imports are the same:
 
     main
     tools
+    timeseries
