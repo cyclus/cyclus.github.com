@@ -110,9 +110,9 @@ The above shows how easy it is to incorporate metrics that are computed via
 cymetric. Moreover, |cyclus| databases can be comprised of both `default tables
 <http://fuelcycle.org/user/dbdoc.html#table-descriptions>`_ and  `custom tables
 <http://fuelcycle.org/arche/custom_tables.html>`_. Cymetric also helps you
-bring in data that might come a custom table in a |cyclus| database.  All you
+bring in data that might come as a custom table in a |cyclus| database.  All you
 need to do is use the ``root_metric()`` function somewhere. This simply accepts
-the name of the table.  For example,
+the name of the table. For example,
 
 .. code-block:: python
 
