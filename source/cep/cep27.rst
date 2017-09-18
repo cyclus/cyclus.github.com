@@ -11,7 +11,7 @@ CEP 27 - |Cyclus| Database Restructuring
 
 Abstract
 ============
-This CEP proposes to restructure the |cyclus| output database structure in order to
+This CEP proposes to restructure the |Cyclus| output database structure in order to
 reduce the number of tables and redundancy of data, and ultimately reduce the number
 of ``joins`` required for data analysis. Doing so would reduce the computing time
 for end-user analysis, and allow for a clearer, more concise output database.
@@ -35,7 +35,7 @@ for analysis. This can be done by two methods:
 Additionally, this CEP proposes to store both **Inventories** and **Transactions**
 by default. Either table may be backed out of the other (with additional
 information coming from **Materials** etc). However, this backing out process has proven
-extrodinarily expensive, exploding the number of operations needed to back out non-present
+extraordinarily expensive, exploding the number of operations needed to back out non-present
 by millions to billions. Even for small databases, this has proven prohibitive.
 
 While storing both **Inventories** and **Transactions** may seem inefficient, consider
@@ -46,7 +46,7 @@ that:
 * This is precisely double-entry bookkeeping, as applied to the nuclear fuel cycle.
 
 Double-entry bookkeeping was huge innovation in accounting systems. When implemented
-correctly and without fraud, it leads to a self-consisent system. This enables errors
+correctly and without fraud, it leads to a self-consistent system. This enables errors
 to be discovered and corrected earlier. This CEP argues that |Cyclus| should provide
 the information needed to verify the mass balances, if requested.
 
@@ -292,7 +292,7 @@ write this table (true).
 Merge Info & InfoExplicitInv
 ----------------------------
 We saw little reason to separate the two tables. Combining them is a matter of cleanliness.
-Additionallty, the single **Info** table will have to contain an extra column, **RecordTransactions**.
+Additionally, the single **Info** table will have to contain an extra column, **RecordTransactions**.
 Furthermore, the **RecordInventory** column is no longer needed and will be removed.
 
 Other informational tables may also be merged into the single table.
