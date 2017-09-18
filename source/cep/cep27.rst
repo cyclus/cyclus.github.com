@@ -219,8 +219,34 @@ ResourceType    int(bool)
 Merge ExplicitInventory & ExplicitInventoryCompct
 -------------------------------------------
 The **ExplicitInventory** table and **ExplicitInventoryCompact**
-table should be merged to a single table, called **Inventories**,
-with the following columns:
+table should be merged to a single table, called **Inventories**.
+The current **ExplicitInventory** table and **ExplicitInventoryCompact**
+table has a structure as such:
+============  ==========
+   ExplicitInventory
+------------------------
+Column          Type  
+============  ==========
+Simid           uuid
+Agentid         int
+Time            int
+InventoryName   string
+NucId           int 
+Quantity        double
+============  ==========
+
+============  ==========
+ ExplicitInventoryCompact
+------------------------
+Column          Type  
+============  ==========
+Simid           uuid
+Agentid         int
+Time            int
+InventoryName   string
+Quantity        double
+Composition     map<int,double>
+============  ==========
 
 ============  ==========
         Inventories
@@ -232,7 +258,7 @@ Agentid         int
 Time            int
 InventoryName   string
 Quantity        double
-Composition     map<int,double>
+Composition     int
 ============  ==========
 
 
