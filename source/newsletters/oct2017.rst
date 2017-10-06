@@ -81,21 +81,8 @@ changes were built.
 
 Publications
 ============
-Global 2017
------------
-Anthony Scopatz:
 
-Jin Whan Bae:
-
-INMM 2017
----------
-Meghan B. McGarry: State-Level Decision-Making In Cyclus to Assess Multilateral Enrichment
-
-University Program Review 2017
-------------------------------
-Paul P.H. Wilson: Generation of Observables in Synthetic Satellite Images Using Cyclus
-
-39th ESARDA Symposium
----------------------
-M. Göttsche: An Integrated Nuclear Archaeology Approach to Reconstruct Fissile Material Production Histories 
-
+.. bibliography:: pubs.bib
+   :all:
+   :list: bullet
+   :enumtype: upperroman
