@@ -87,17 +87,3 @@ Anthony Scopatz:
 
 Jin Whan Bae:
 
-
-
-
-
-.. code-block:: bash
-
-  $ cyclus ./path/to/myinput.xml
-
-  $ cyclus -v LEV_DEBUG5 myinput.py
-
-  $ python -m cyclus -v LEV_INFO3 myinput.json
-
-  $ cyclus -v 4 myinput.xml
-
