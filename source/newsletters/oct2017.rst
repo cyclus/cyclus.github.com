@@ -43,8 +43,8 @@ if you'd like to contribute to the software please contact Robert Flanagan at fl
 
 CyCLASS
 -------
-A cyclus module under development that leverages the work of the CLASS methodology. More
-information on CLASS can be found at <TODO: link>.   
+A `cyclus module under development <https://github.com/CNERG/cyCLASS>`_ that leverages the work of the CLASS methodology. More
+information on CLASS can be found `here <https://gitlab.in2p3.fr/sens/CLASS>`_ (registration required).  
 
 Events
 ======
@@ -86,4 +86,16 @@ Global 2017
 Anthony Scopatz:
 
 Jin Whan Bae:
+
+INMM 2017
+---------
+Meghan B. McGarry: State-Level Decision-Making In Cyclus to Assess Multilateral Enrichment
+
+University Program Review 2017
+------------------------------
+Paul P.H. Wilson: Generation of Observables in Synthetic Satellite Images Using Cyclus
+
+39th ESARDA Symposium
+---------------------
+M. Göttsche: An Integrated Nuclear Archaeology Approach to Reconstruct Fissile Material Production Histories 
 
