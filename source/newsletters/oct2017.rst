@@ -43,8 +43,8 @@ if you'd like to contribute to the software please contact Robert Flanagan at fl
 
 CyCLASS
 -------
-A cyclus module under development that leverages the work of the CLASS methodology. More
-information on CLASS can be found at <TODO: link>.   
+A `cyclus module under development <https://github.com/CNERG/cyCLASS>`_ that leverages the work of the CLASS methodology. More
+information on CLASS can be found `here <https://gitlab.in2p3.fr/sens/CLASS>`_ (registration required).  
 
 Events
 ======
@@ -81,9 +81,8 @@ changes were built.
 
 Publications
 ============
-Global 2017
------------
-Anthony Scopatz:
 
-Jin Whan Bae:
-
+.. bibliography:: pubs.bib
+   :all:
+   :list: bullet
+   :enumtype: upperroman
