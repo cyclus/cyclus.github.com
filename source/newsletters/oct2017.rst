@@ -49,15 +49,15 @@ information on CLASS can be found `here <https://gitlab.in2p3.fr/sens/CLASS>`_ (
 MBMore
 ------
 
-A collection of archetypes that support Cyclus work in the Consortium for
-Verification Technology.  One of these archetypes is `CascadeEnrich` that
-incorporates modeling equations for individual centrifuge machines to enable
-the deployment of an enrichment facility that designs an optimal cascade from
-a given number of centrifuges and target enrichment.  The `InteractRegion` and
-`StateInst` archetypes are designed to track the interaction between different
-nation states to estimate a probability that any given state will pursue
-nuclear weapons, based on analysis of historical factors that contribute to
-such a decision.
+A collection of archetypes that support Cyclus work at the University of
+Wisconsin in the Consortium for Verification Technology.  One of these
+archetypes is `CascadeEnrich` that incorporates modeling equations for
+individual centrifuge machines to enable the deployment of an enrichment
+facility that designs an optimal cascade from a given number of centrifuges
+and target enrichment.  The `InteractRegion` and `StateInst` archetypes are
+designed to track the interaction between different nation states to estimate
+a probability that any given state will pursue nuclear weapons, based on
+analysis of historical factors that contribute to such a decision.
 
 
 Events
