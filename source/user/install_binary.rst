@@ -14,10 +14,16 @@ Installing |Cyclus| with Binaries
 
 
 #. Once you have conda installed, installing |Cyclus| and Cycamore is
-   straightforward.
+   straightforward. If you are having issues with certificate verification
+   you may install using the second set of commands to fix these issues. 
 
    .. code-block:: bash
 
+      $ conda install -c conda-forge cycamore
+
+   .. code-block:: bash
+
+      $ conda config --set ssl_verify false
       $ conda install -c conda-forge cycamore
 
 #.  .. include:: unit_test.rst
