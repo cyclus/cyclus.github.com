@@ -114,7 +114,12 @@ div#cyclus.section h1 {
     width: 100%;
 }
 
-div.sphinxlocaltoc ul a, div.sphinxglobaltoc ul a {
+div.sphinxlocaltoc ul a li, div.sphinxglobaltoc ul a li{
     display: inline;
     white-space: normal;
+}
+
+div.sphinxsidebar ul li{
+    margin-left: 20px;
+    list-style: square;
 }
