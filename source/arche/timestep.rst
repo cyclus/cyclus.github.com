@@ -134,6 +134,10 @@ Future decommissions can be scheduled by any :term:`agent` using the
 ``cyclus::Context``'s ``SchedDecom`` member function. A decommission can be
 scheduled for the current time step or any future time step.
 
+Decommissioning occurrs at the end of a time step. Therefore, an agent with a lifetime
+of 1 would be decommissioned on the same time step it was built. The lifetime of an
+agent can be back calculated by `1+exit_time-start_time`.
+
 Further Reading
 ---------------
 

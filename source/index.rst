@@ -28,8 +28,6 @@ always welcome and encouraged to use or contribute to the |cyclus| project.
 
 The |Cyclus| project repository is located at http://github.com/cyclus/cyclus
 
-Project repository is located at http://github.com/cyclus/cyclus
-
 Quick Start
 -----------
 :doc:`Get started with Cyclus <user/install>`
@@ -138,9 +136,7 @@ Contact Us
 
 * `Developers' mailing list and forum <https://groups.google.com/forum/#!forum/cyclus-dev>`_
 
-* Project PI, Paul Wilson: paul.wilson AT wisc.edu
-
-* Project Lead, Anthony Scopatz:  scopatz AT gmail.com
+*  'Developer Call times <http://dev-call.fuelcycle.org>'_: Mondays at 2:00PM 
 
 Contributors
 ------------
@@ -178,6 +174,8 @@ Contributors
 * `Paul Wilson <http://cnerg.github.io/people/pphw.html>`_
 
 * John Xia
+
+* Teddy Bae
 
 Acknowledgments
 ----------------
