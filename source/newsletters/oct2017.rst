@@ -33,7 +33,19 @@ Third Party Modules
 ===================
 CyBorg
 ------
-CyBorg has been given an offical release. <TODO: Information on CyBorg>
+CyBorg has been given an offical release. 
+
+Cyborg uses effective one-group cross-sections for different fuel assembly
+types, initial compositions, and problem-specific burnups
+are automatically interpolated from pre-existing Origen
+reactor data libraries
+
+New reactor libraries can easily be created using SCALE
+
+CyBORG can be built using SCALE shared libraries
+(in principle, can be built without requiring the SCALE source code)
+
+CyBORG v1.0 has been publicly released: http://www.github.com/sskutnik/cyborg
 
 Bright-lite
 -----------
