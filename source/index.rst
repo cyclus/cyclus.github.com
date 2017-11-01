@@ -35,6 +35,8 @@ Quick Start
 News
 -----
 
+**October 6th, 2017:** :doc:`Cyclus Newsletter Fall 2017! <newsletters/oct2017>`
+
 **December 13, 2016:** :doc:`Cyclus v1.5.0 is released <previous/v1.5>`
 
 **July 6-8, 2016:** Technical workshop on Dynamic Fuel Cycle in Paris, France
@@ -51,6 +53,7 @@ News
     :maxdepth: 1
 
     news/fy16neup
+    newsletters/oct2017
 
 
 Learn More

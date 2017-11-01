@@ -1,0 +1,114 @@
+==============================
+Cyclus Newsletter October 2017
+==============================
+
+.. raw:: html
+
+    <div style="text-align:center;"><br /><br />
+
+.. image:: ../logos/logo2_bike.gif
+    :align: center
+    :alt: Cyclus
+
+.. raw:: html
+
+    </div>
+
+
+Greetings! As the fall weather approaches the Cyclus development team wants to give you an update
+on the work being done and updates one things currently in development. 
+
+Developments
+============
+Geolocation
+-----------
+Cyclus modules now have the capability to utilize real values for latitude and
+longitude. This allows developers and users to plot the facilities that Cyclus
+builds at coordinates on mapping tools, such as google maps. This utility is also
+useful for instituions or regions that might be interested in determining where
+facilities should be placed using GIS information. 
+
+
+Third Party Modules
+===================
+CyBorg
+------
+CyBorg has been given an offical release. 
+
+Cyborg uses effective one-group cross-sections for different fuel assembly
+types, initial compositions, and problem-specific burnups
+are automatically interpolated from pre-existing Origen
+reactor data libraries
+
+New reactor libraries can easily be created using SCALE
+
+CyBORG can be built using SCALE shared libraries
+(in principle, can be built without requiring the SCALE source code)
+
+CyBORG v1.0 has been publicly released: http://www.github.com/sskutnik/cyborg
+
+Bright-lite
+-----------
+Bright-lite has been updated to work with the new build system for cyclus. Bright-lite has also been
+mitraged to the BriXsuite organization on github. Development on the module is still continuing
+if you'd like to contribute to the software please contact Robert Flanagan at flanagrr@mailbox.sc.edu. 
+
+CyCLASS
+-------
+A `cyclus module under development <https://github.com/CNERG/cyCLASS>`_ that leverages the work of the CLASS methodology. More
+information on CLASS can be found `here <https://gitlab.in2p3.fr/sens/CLASS>`_ (registration required).
+
+MBMore
+------
+
+A collection of archetypes that support Cyclus work at the University of
+Wisconsin in the Consortium for Verification Technology.  One of these
+archetypes is `CascadeEnrich` that incorporates modeling equations for
+individual centrifuge machines to enable the deployment of an enrichment
+facility that designs an optimal cascade from a given number of centrifuges
+and target enrichment.  The `InteractRegion` and `StateInst` archetypes are
+designed to track the interaction between different nation states to estimate
+a probability that any given state will pursue nuclear weapons, based on
+analysis of historical factors that contribute to such a decision.
+
+
+Events
+======
+
+TWoFCS
+------
+July 19th through the 21st, the ERGS group at the University of South Carolina hosted a
+Technical Workshop on Fuel Cycle Simulation. Several members of the Cyclus community
+were in attendance and presented cyclus related work. Talks involving Cyclus included:
+
+- CyCLASS
+- CyBorg
+- Rickshaw
+
+Additionally, Dr. Yarden Livnat was present at the meeting to talk about visualization
+and how it can be used to support simulation. Dr. Livnat supports Cyclus primarily
+though a NEUP, but was available to get feedback from the attendees.  
+
+Cyclus Developer Meeting
+------------------------
+Following the Technical Workshop on Fuel Cycle Simulation (TWoFCS), several members of the
+cyclus development team met to discuss the current state, and future of Cyclus. Over the
+course of the meeting a list of current use cases and issues were brought up to set a basis
+for where future efforts should be focused. From this base, a list of improvements and
+changes were built. 
+
+- Publish a Python Notebook with demonstration of Cymetric usage
+- Update the database to make the analysis of results easier to accomplish. 
+- Split Cycamore - create a new repository for more advanced modules. 
+- Add python notebook section to website.
+- Create a database for real existing reactors
+- Package in with cyclus a list of recipes common fuel forms
+- Update cyclus tutorial 
+
+Publications
+============
+
+.. bibliography:: pubs.bib
+   :all:
+   :list: bullet
+   :enumtype: upperroman
