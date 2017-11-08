@@ -1,11 +1,20 @@
-
 Getting and Building |Cyclus| From Source
 =========================================
+
+.. warning::
+
+    In the cyclus ecosystem, only versions whose micro or patch number
+    (the third and last number) are zero  are considered **stable**.
+    Other releases where the version number is greater than zero are
+    bugfix and maintainence releases and are considered **unstable**.
+    For example, a release number of ``1.42.0`` is stable, while
+    ``1.42.3`` is unstable.
+
 
 The |Cyclus| Library Suite
 --------------------------
 The |cyclus| ecosystem is composed of two projects:
-  
+
   * |Cyclus| Core, comprising core kernel functionality
   * Cycamore, a physics and other domain module repository
 
@@ -57,7 +66,7 @@ If you are unfamiliar with git, here are some resources:
   * http://www-cs-students.stanford.edu/~blynn/gitmagic/
 
 If you are unfamiliar with GitHub, here are some resources:
-  
+
   * `Github Help`_
 
   * To have your changes integrated into the cyclus/cyclus project, you must
@@ -75,4 +84,4 @@ hesitate to email or join the |Cyclus| users list, which will allow you to conta
 the community of users and developers of |Cyclus|.
 
 * Email the Users' list: cyclus-users@groups.google.com
-* Join the Users' list: https://groups.google.com/forum/?fromgroups#!forum/cyclus-users 
+* Join the Users' list: https://groups.google.com/forum/?fromgroups#!forum/cyclus-users

@@ -5,6 +5,16 @@ To model fuel cycles, you will need to install two things: first the main
 codebase (called :doc:`Cyclus <../basics/index>`), and then a set of fuel-cycle
 specific archetypes (called :doc:`Cycamore <cycamoreagents>`).
 
+.. warning::
+
+    In the cyclus ecosystem, only versions whose micro or patch number
+    (the third and last number) are zero  are considered **stable**.
+    Other releases where the version number is greater than zero are
+    bugfix and maintainence releases and are considered **unstable**.
+    For example, a release number of ``1.42.0`` is stable, while
+    ``1.42.3`` is unstable.
+
+
 1. Install |Cyclus| and Cycamore
 ---------------------------------
 
