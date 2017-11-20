@@ -138,7 +138,7 @@ Best practice for managing a pull request
 
    ``git push upstream source``
 
-7. Republish the pages with the `gh-publish` target.
+7. Republish the pages with the `gh-publish` target.  (**NOTE: for this step, the upstream Cyclus repository *must* be called `upstream`**)
 
    ``make gh-publish``
 
