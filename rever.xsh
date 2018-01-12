@@ -16,13 +16,13 @@ def docs_cleanup():
     rep = ('s/  if (state == "collapsed"){/  if (typeof state === "undefined") {\\n'
            '      var state = "uncollapsed";\\n  };\\n  if (state == "collapsed"){/')
     ![sed -i.bak @(rep) $SPHINX_HOST_DIR/html/_static/cloud.js]
-    rm -rf $SPHINX_HOST_DIR/_static/*.bak
+    rm -f $SPHINX_HOST_DIR/_static/*.bak
     cp $SPHINX_HOST_DIR/html/cep/cep0.html $SPHINX_HOST_DIR/html/cep/index.html
     cp $SPHINX_HOST_DIR/html/_static/dbtypes.json $SPHINX_HOST_DIR/html/arche/
 
 
-$ACTIVITIES = ['version_bump', 'sphinx', 'docs-cleanup'
-               #'tag', 'push_tag',
+$ACTIVITIES = ['version_bump', 'sphinx', 'docs-cleanup', 'ghpages',
+               'tag', 'push_tag',
                ]
 
 $DOCKER_CONDA_DEPS = ['sphinx', 'numpydoc', 'cyclus', 'cycamore', 'cymetric', 'rickshaw',
