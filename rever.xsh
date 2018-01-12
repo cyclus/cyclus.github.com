@@ -11,7 +11,7 @@ $DOCKER_CONDA_DEPS = ['sphinx', 'numpydoc', 'cyclus', 'cycamore', 'cymetric', 'r
 $DOCKER_INSTALL_COMMAND = ''
 
 $VERSION_BUMP_PATTERNS = [
-    ('source/atemplates/layout.html', 'Current version:.*', 'Current version: <b>$VERSION</b>')
+    ('source/atemplates/layout.html', 'Current version:.*', 'Current version: <b>$VERSION</b>'),
     ('source/user/install_from_tarball.rst',
      '- `cyclus-.*\.zip.*',
      '- `cyclus-$VERSION.zip  <https://github.com/cyclus/cyclus/archive/$VERSION.zip>`_'),
