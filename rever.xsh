@@ -8,7 +8,15 @@ $ACTIVITIES = ['version_bump', 'sphinx',
 
 $DOCKER_CONDA_DEPS = ['sphinx', 'numpydoc', 'cyclus', 'cycamore', 'cymetric', 'rickshaw',
                       'sphinxcontrib-bibtex', 'cloud_sptheme', 'curl']
-$DOCKER_INSTALL_COMMAND = 'git clean -fdx'
+$DOCKER_INSTALL_ENVVARS = {'PYTHONDONTWRITEBYTECODE': "TRUE"}
+$DOCKER_INSTALL_COMMAND = (
+    'git clean -fdx && '
+    'curl https://raw.githubusercontent.com/cyclus/cyclus/master/INSTALL.rst -L -o source/user/CYCLUS_INSTALL.rst && '
+    'curl https://raw.githubusercontent.com/cyclus/cyclus/master/DEPENDENCIES.rst -L -o source/user/DEPENDENCIES.rst && '
+    'curl https://raw.githubusercontent.com/cyclus/cycamore/master/INSTALL.rst -L -o source/user/CYCAMORE_INSTALL.rst && '
+    'curl https://raw.githubusercontent.com/cyclus/cycamore/master/DEPENDENCIES.rst -L -o source/user/CYCAMORE_DEPS.rst && '
+    'cp $(cyclus --install-path)/share/cyclus/dbtypes.json source/astatic/'
+)
 
 $VERSION_BUMP_PATTERNS = [
     ('source/atemplates/layout.html', 'Current version:.*', 'Current version: <b>$VERSION</b>'),
