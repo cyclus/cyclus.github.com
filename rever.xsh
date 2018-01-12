@@ -25,13 +25,13 @@ $VERSION_BUMP_PATTERNS = [
      '- `cyclus-$VERSION.zip  <https://github.com/cyclus/cyclus/archive/$VERSION.zip>`_'),
     ('source/user/install_from_tarball.rst',
      '- `cyclus-.*\.tar\.gz.*',
-     '- `cyclus-$VERSION.zip  <https://github.com/cyclus/cyclus/archive/$VERSION.tar.gz>`_'),
+     '- `cyclus-$VERSION.tar.gz  <https://github.com/cyclus/cyclus/archive/$VERSION.tar.gz>`_'),
     ('source/user/install_from_tarball.rst',
      '- `cycamore-.*\.zip.*',
      '- `cycamore-$VERSION.zip  <https://github.com/cyclus/cycamore/archive/$VERSION.zip>`_'),
     ('source/user/install_from_tarball.rst',
      '- `cycamore-.*\.tar\.gz.*',
-     '- `cycamore-$VERSION.zip  <https://github.com/cyclus/cycamore/archive/$VERSION.tar.gz>`_'),
+     '- `cycamore-$VERSION.tar.gz  <https://github.com/cyclus/cycamore/archive/$VERSION.tar.gz>`_'),
 ]
 
 $SPHINX_DOCS_DIR = '$DOCKER_HOME/$PROJECT/source'
