@@ -2,12 +2,12 @@ $PROJECT = 'fuelcycle.org'
 $GITHUB_ORG = 'cyclus'
 $GITHUB_REPO = 'cyclus.github.com'
 
-$ACTIVITIES = ['version_bump',
+$ACTIVITIES = ['version_bump', 'sphinx',
                #'tag', 'push_tag',
                ]
 
 $DOCKER_CONDA_DEPS = ['sphinx', 'numpydoc', 'cyclus', 'cycamore', 'cymetric', 'rickshaw',
-                      'sphinxcontrib-bibtex', 'cloud-sptheme', 'curl']
+                      'sphinxcontrib-bibtex', 'cloud_sptheme', 'curl']
 $DOCKER_INSTALL_COMMAND = ''
 
 $VERSION_BUMP_PATTERNS = [
@@ -25,3 +25,6 @@ $VERSION_BUMP_PATTERNS = [
      '- `cyclus-.*\.tar\.gz.*',
      '- `cyclus-$VERSION.zip  <https://github.com/cyclus/cycamore/archive/$VERSION.tar.gz>`_'),
 ]
+
+$SPHINX_DOCS_DIR = '$DOCKER_HOME/$PROJECT/source'
+$SPHINX_BUILD_DIR = '$DOCKER_HOME/$PROJECT/gh-build'
