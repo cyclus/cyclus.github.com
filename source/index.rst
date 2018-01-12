@@ -33,7 +33,7 @@ Quick Start
 :doc:`Get started with Cyclus <user/install>`
 
 News
------
+----
 
 **October 6th, 2017:** :doc:`Cyclus Newsletter Fall 2017! <newsletters/oct2017>`
 
@@ -139,7 +139,7 @@ Contact Us
 
 * `Developers' mailing list and forum <https://groups.google.com/forum/#!forum/cyclus-dev>`_
 
-* `Developer Call times <http://dev-call.fuelcycle.org>`_: Mondays at 2:00PM 
+* `Developer Call times <http://dev-call.fuelcycle.org>`_: Mondays at 2:00PM
 
 Contributors
 ------------
