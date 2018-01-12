@@ -8,7 +8,7 @@ $ACTIVITIES = ['version_bump', 'sphinx',
 
 $DOCKER_CONDA_DEPS = ['sphinx', 'numpydoc', 'cyclus', 'cycamore', 'cymetric', 'rickshaw',
                       'sphinxcontrib-bibtex', 'cloud_sptheme', 'curl']
-$DOCKER_INSTALL_COMMAND = ''
+$DOCKER_INSTALL_COMMAND = 'git clean -fdx'
 
 $VERSION_BUMP_PATTERNS = [
     ('source/atemplates/layout.html', 'Current version:.*', 'Current version: <b>$VERSION</b>'),
