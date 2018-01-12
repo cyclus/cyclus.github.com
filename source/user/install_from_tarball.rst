@@ -33,7 +33,7 @@ Get the Tarball
 Download the most recent stable version of Cyclus source (either .zip or .gz):
 
 - `cyclus-1.5.3.zip  <https://github.com/cyclus/cyclus/archive/1.5.3.zip>`_
-- `cyclus-1.5.3.zip  <https://github.com/cyclus/cyclus/archive/1.5.3.tar.gz>`_
+- `cyclus-1.5.3.zip  <https://github.com/cyclus/cyclus/archive/1.5.3.zip>`_
 
 (`Previous versions of Cyclus <https://github.com/cyclus/cyclus/releases>`_ )
 
@@ -67,7 +67,7 @@ Get the Tarball
 Download the most recent stable version of Cycamore source (either .zip or .gz):
 
 - `cycamore-1.5.3.zip  <https://github.com/cyclus/cycamore/archive/1.5.3.zip>`_
-- `cycamore-1.5.3.tar.gz  <https://github.com/cyclus/cycamore/archive/1.5.3.tar.gz>`_
+- `cycamore-1.5.3.zip  <https://github.com/cyclus/cycamore/archive/1.5.3.tar.gz>`_
 
 (`Previous versions of Cycamore <https://github.com/cyclus/cycamore/releases>`_ )
 
