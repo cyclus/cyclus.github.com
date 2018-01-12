@@ -1,8 +1,27 @@
+from rever.activity import activity
+
 $PROJECT = 'fuelcycle.org'
 $GITHUB_ORG = 'cyclus'
 $GITHUB_REPO = 'cyclus.github.com'
 
-$ACTIVITIES = ['version_bump', 'sphinx',
+
+@activity(name='docs-cleanup')
+def docs_cleanup():
+    """Cleans up documentation after it has been built"""
+    ![echo $SPHINX_HOST_DIR]
+    rep = ('s/function top_offset([$$]node){ return [$$]node\[0\].getBoundingClientRect().top; }/'
+           'function top_offset($$node){ return (typeof $$node[0] === "undefined") ? 0 : '
+           '$$node[0].getBoundingClientRect().top; }/')
+    ![sed -i.bak @(rep) $SPHINX_HOST_DIR/_static/cloud.js]
+    rep = ('s/  if (state == "collapsed"){/  if (typeof state === "undefined") {\n'
+           '      var state = "uncollapsed";\n  };\n  if (state == "collapsed"){/')
+    ![sed -i.bak @(rep) $SPHINX_HOST_DIR/_static/cloud.js]
+    rm $SPHINX_HOST_DIR/_static/*.bak
+    cp $SPHINX_HOST_DIR/html/cep/cep0.html $SPHINX_HOST_DIR/html/cep/index.html
+    cp $SPHINX_HOST_DIR/html/_static/dbtypes.json $SPHINX_HOST_DIR/html/arche/
+
+
+$ACTIVITIES = ['version_bump', 'sphinx', 'docs-cleanup'
                #'tag', 'push_tag',
                ]
 
