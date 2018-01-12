@@ -6,7 +6,8 @@ $ACTIVITIES = ['version_bump',
                #'tag', 'push_tag',
                ]
 
-$DOCKER_CONDA_DEPS = ['sphinx', 'numpydoc', 'cyclus', 'cycamore', 'cymetric', 'rickshaw']
+$DOCKER_CONDA_DEPS = ['sphinx', 'numpydoc', 'cyclus', 'cycamore', 'cymetric', 'rickshaw',
+                      'sphinxcontrib-bibtex', 'cloud-sptheme', 'curl']
 $DOCKER_INSTALL_COMMAND = ''
 
 $VERSION_BUMP_PATTERNS = [

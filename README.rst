@@ -42,7 +42,7 @@ cyclus.github.com.
 Quickstart
 ----------
 
-If you simply want to build the documentation and are on the source 
+If you simply want to build the documentation and are on the source
 branch, you may always run::
 
     make html
@@ -95,11 +95,11 @@ Best practice workflow for contributing to site changes
    repo `source` branch first.
 
    ::
-   
+
      git fetch upstream
      git rebase upstream/source
      git push origin add_some_info
-   
+
 
 8. Issue a pull request by going to your branch on your fork of the repo and
    clicking the "Pull Request" button.
@@ -157,10 +157,10 @@ This can be done by::
     cd docker/fuelcycle.org-deps
 
     # update the image the fuelcycle.org image depends on
-    docker pull cyclus/cymetric   
+    docker pull cyclus/cymetric
 
     # rebuild the image
-    docker build -t cyclus/fuelcycle.org-deps . 
+    docker build -t cyclus/fuelcycle.org-deps .
 
     # push the new image to docker-hub
     docker push cyclus/fuelcycle.org-deps
