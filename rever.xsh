@@ -55,3 +55,4 @@ $VERSION_BUMP_PATTERNS = [
 
 $SPHINX_DOCS_DIR = '$DOCKER_HOME/$PROJECT/source'
 $SPHINX_BUILD_DIR = '$DOCKER_HOME/$PROJECT/gh-build'
+$GHPAGES_REPO = 'git@github.com:cyclus/cyclus.github.com.git'
