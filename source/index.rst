@@ -139,7 +139,7 @@ Contact Us
 
 * `Developers' mailing list and forum <https://groups.google.com/forum/#!forum/cyclus-dev>`_
 
-* `Developer Call times <http://dev-call.fuelcycle.org>`_: Mondays at 2:00PM
+* `Developer Call times <http://dev-call.fuelcycle.org>`_: Fridays at 3:00PM EST
 
 Contributors
 ------------
