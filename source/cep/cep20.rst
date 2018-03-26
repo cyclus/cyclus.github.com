@@ -178,6 +178,17 @@ with the exception of the core's handling of agent entry/exit
 registration. *Cycamore* modules that deal with agent entry/exit will have to be
 redesigned to incorporate the new execution stack.
 
+New Agent Phase (Post Decommission)
+===================================
+
+An additional agent phase occurs after the decommissioning phase. The 
+purpose of this phase will be to allow agents to react to the events that
+have occured in previous phases of the current time step. 
+
+ 
+
+
+
 Document History
 ================
 
