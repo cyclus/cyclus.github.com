@@ -178,19 +178,31 @@ with the exception of the core's handling of agent entry/exit
 registration. *Cycamore* modules that deal with agent entry/exit will have to be
 redesigned to incorporate the new execution stack.
 
-New Agent Phase (Post Decommission)
+Ammendment 1. Decision Phase (Post Decommission)
 ===================================
 
 An additional agent phase occurs after the decommissioning phase. The 
 purpose of this phase will be to allow agents to react to the events that
 have occured in previous phases of the current time step. 
 
- 
+The order of operations in the previous agent phases is based on agent
+ID, such that agent 1 will execute its tock phase before agent 2. Therefore
+information about the behaviors of agent 2 during the tock phase is not
+available to agent 1 during the tock phase. This additional agent phase fixes
+that problem. 
 
+New information should not be broadcast to the simulation during this
+phase. Agents should only make decisions about their own operation. Building
+and decommissioning facilities can be scheduled during this phase, and these
+actions will occur in the following timestep. 
 
+This ammendment is fully backwards compatible. No current agents require
+this phase. The phase (like tick and tock) are optional to agents. Finally,
+the implementation of this phase will not impact underlying cyclus architecture.  
 
 Document History
 ================
+1. Adding Ammendment 1. Decision Phase (April 2018)
 
 This document is released under the CC-BY 3.0 license.
 
