@@ -17,7 +17,7 @@ progress through phases, including a building phase, a tick phase, a resource
 exchange phase, a tock phase, and a decommissioning phase. Phases are grouped in
 two categories: kernel phases and agent phases. Kernel phases have required or
 guaranteed actions that occur during them, and include the build, exchange, and
-decommission phases. Agent phases include the Tick and Tock phases, and allow
+decommission phases. Agent phases include the Tick, Tock, and Decision phases, and allow
 agents to inspect simulation state and update their own state.
 
 Motivation
@@ -45,7 +45,14 @@ Accordingly, there is a need to standardize what can/should be expected to occur
 in each phase of a given time step. Guarantees should be given to module
 developers that if an entity enters a simulation, that it will experience the
 entire time step on the time step it enters, and if an entity leaves a
-simulation, that it will experience an entire time step on the time it leaves. 
+simulation, that it will experience an entire time step on the time it leaves.
+
+Tick and Tock serve as phases for agents to perform actions. As an action can
+occur in either phase, no one specific phase serves as a good time to make
+decisions based on the state of the simulation. Therefore a user phase specifically
+for decision must occur after the tock phase. Note, this phase exists only for
+agents to make decisions based on that time step. Other actions should
+occur in the Tick and Tock phases. 
 
 Rationale
 =========
@@ -83,11 +90,12 @@ This leads to the following ordering, or *phases*, of time step execution:
 * agents respond to current simulation state (Tick Phase)
 * resource exchange execution (Exchange Phase)
 * agents respond to current simulation state (Tock Phase)
+* agents react to simulation (Decision Phase)
 * agents leave simulation (Decommissioning Phase)
 
 The Building, Exchange, and Decommissioning phases each include critical,
-core-based events, and will be called *Kernel* phases. The Tick and Tock phases
-do not include core-based events, and instead let agents react to previous
+core-based events, and will be called *Kernel* phases. The Tick, Tock, and Decision
+phases do not include core-based events, and instead let agents react to previous
 core-based events and inspect core simulation state. Furthermore, they are
 periods in which agents can update their own state and are accordingly
 considered *Agent* phases. In general, Agent phases *must* bracket *critical*
@@ -178,31 +186,11 @@ with the exception of the core's handling of agent entry/exit
 registration. *Cycamore* modules that deal with agent entry/exit will have to be
 redesigned to incorporate the new execution stack.
 
-Amendment 1. Decision Phase (Post Decommission)
-===================================
 
-An additional agent phase occurs after the decommissioning phase. The 
-purpose of this phase will be to allow agents to react to the events that
-have occurred in previous phases of the current time step. 
-
-The order of operations in the previous agent phases is based on agent
-ID, such that agent 1 will execute its tock phase before agent 2. Therefore
-information about the behaviors of agent 2 during the tock phase is not
-available to agent 1 during the tock phase. This additional agent phase fixes
-that problem. 
-
-New information should not be broadcast to the simulation during this
-phase. Agents should only make decisions about their own operation. Building
-and decommissioning facilities can be scheduled during this phase, and these
-actions will occur in the following timestep. 
-
-This ammndment is fully backwards compatible. No current agents require
-this phase. The phase (like tick and tock) are optional to agents. Finally,
-the implementation of this phase will not impact underlying cyclus architecture.  
 
 Document History
 ================
-1. Adding Ammendment 1. Decision Phase (April 2018) - Author: Robert Flanagan
+1. Adding Decision Phase (April 2018) - Author: Robert Flanagan
 
 This document is released under the CC-BY 3.0 license.
 
