@@ -15,11 +15,11 @@ Cyclus Newsletter May 2018
     </div>
 
 
-Greetings! Warm weather is upon us and the cyclus development team is looking forward to a productive summer. This past fall and spring have been busy for us! But we still have some wonderful things to share. 
+Greetings! Warm weather is upon us and the Cyclus development team is looking forward to a productive summer. This past fall and spring have been busy for us! Accordingly, we still have some wonderful things to share. 
 
 Developments
 ============
-Cyclus has been undergoing a number of changes recently. These changes have not been released in a full version as of yet. However, as they are forth coming the following is a list of changes coming with the next release. 
+Cyclus has been undergoing a number of changes recently. These changes have not been released in a full version as of yet. However, as they are forthcoming the following is a list of changes coming with the next release. 
 
 - New Decision Phase: This phase occurs at the end of a time step and allows agents to make decisions about the operations that occured during the time step. 
 - TimeSeriesRecord Updates: This update allows agents to see the TimeSeriesRecord calls from other agents if they desire.
