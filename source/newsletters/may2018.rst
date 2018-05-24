@@ -40,7 +40,7 @@ News
 ======
 Gyu Tae Park received an undergrad research award for his geopositioning work with Cyclus. Information about the award can be found here. http://arfc.github.io/jekyll/update/2018/04/20/park-ugrad-award/
 
-
+Dr. Paul Whitney from Pacific Northwest National Laboratory visited `CNERG <http://cnerg.engr.wisc.edu>`_ at the University of Wisconsin-Madison as a `Consortium for Verification Technology <https://cvt.engin.umich.edu>`_ Lab Fellow to discuss the use of Cyclus as part of an ongoing effort to simulate misuse and diversion in nuclear fuel cycles.  This use case is similar to the work funded by the CVT project at UW-Madison and Dr. Whitney bring valuable experience with applying machine learning and decision analysis methodologies to this problem.
 
 Publications
 ============
