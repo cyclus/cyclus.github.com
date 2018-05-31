@@ -25,7 +25,7 @@ Cyclus has been undergoing a number of changes recently. These changes have not 
 - TimeSeriesRecord Updates: This update allows agents to see the TimeSeriesRecord calls from other agents if they desire.
 
 Third Party Modules
-===================
+===================	
 D3ploy
 ------
 This package is designed to manage the deployment of facilities automatically based on a increasing demand. It uses autoregressive time series methods to predict future demand and supply from historical data. 
