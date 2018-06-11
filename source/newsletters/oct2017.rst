@@ -108,7 +108,7 @@ changes were built.
 Publications
 ============
 
-.. bibliography:: pubs.bib
+.. bibliography:: pubsoct2017.bib
    :all:
    :list: bullet
    :enumtype: upperroman
