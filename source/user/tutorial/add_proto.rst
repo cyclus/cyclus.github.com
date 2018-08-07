@@ -6,11 +6,11 @@ Concept: Configuring an Archetype to Create a Prototype
 
 While the archetype describes the form of the model used to represent a
 facility, a variety of parameters are generally available to configure the
-specific behavior.   For the example of a reactpr, the developer will probably
+specific behavior.   For the example of a reactor, the developer will probably
 allow the user to define the power level of the reactor, independent of the
 specific model chosen to represent the behavior of the model.  Other common
-reactor paramters are fuel loading parameters such as cycle length and batch
-size. 
+reactor parameters are fuel loading parameters such as cycle length and batch
+size.
 
 In |Cyclus|, when an archetype has been configured with a
 specific set of parameters, it is called a *prototype*.
@@ -31,7 +31,7 @@ archetype.
 *Bonus: From the Source facility's context menu (right-click) choose "Change
 Niche" and type "mine" as the New Niche.  The only purpose of the niche is to
 allow different visualization in the fuel design pane.  Other niches include:
-"fuel fabriaction", "reactor", "abr", "repository", "reprocessing",
+"fuel fabrication", "reactor", "abr", "repository", "reprocessing",
 "separations".*
 
 Your fuel cycle design should now look like this:
@@ -51,167 +51,278 @@ each other through the DRE.  A commodity is therefore nothing more than a
 unique name that is used to define a set of producers and consumers of a
 common resource.  A commodity does not necessarily have a specific
 composition; this will be determined by the agents during the simulation.
+Suppliers then respond to the series of requests with a bid . A bid
+supplies a notion of the quantity and quality of a resource to match a
+request. Sup- pliers may add an arbitrary number of constraints to
+accompany bids. For example, an enriched UOX supplier may be constrained
+by its current inventory of natural uranium or its total capacity to
+provide enrichment in Separative Work Units (SWUs). It attaches such
+constraints to its bids.
 
-Activity: Add a commodity to the mine
-++++++++++++++++++++++++++++++++++++++
+Any potential resource transfer, i.e., a bid or a request, may be
+denoted as exclusive. An exclusive transfer excludes partial fulfillment;
+it must either be met fully or not at all. This mode supports concepts
+such as the trading of individual reactor assemblies. In combination
+with the notion of mutual requests, complex instances of supply and
+demand are en- abled. Finally, requesting facilities, institutions and
+regions may apply preferences to each potential request-bid pairing
+based on the proposed resource transfer. Facilities can apply arbitrary
+complex logic to rank the bids that they have received, whether based on
+the quantity available in each bid or on the quality of each bid, and
+the consequent implications of the physics behavior of that facility. In
+addition, an institution can apply a higher preference to a partner to
+which it is congenial; similarly, a region may negate any transfers of
+material which have a higher uranium enrichment than is allowable.
 
-1. Add a commodity in the commodity list of the main view: "U-ore" (For now,
-   you can ignore the priority setting)
-2. In the configuration window for the mine, select "U-ore" from the Output Commodity dropdown menu
+For example, the flow graph below shows three suppliers (left) and two
+requesters (right), and the potential flows of various commodities among
+them. The second consumer makes two different requests. Meanwhile, the
+second supplier can supply the commodities requested by both consumers
+and has provided two bids accordingly.
 
-.. image:: mine_commod.png
+.. image:: trade.png
     :align: center
-    :alt: A first commodity and its use in the mine.
+    :alt: Commodity trade flowchart
+
+Activity: Create fresh and spent fuel commodities
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Let's build fresh-uox and spent-uox, two of the commodities that will be traded in the simulation. fresh-uox is the fresh 4.0% enriched Uranium Oxide fuel that enters the reactor and spent-uox is the spent Uranium Oxide fuel that leaves the reactor after it is used. Whenever CYCLUS needs to know the composition of a material, it looks at the recipe for that material given in the input file. Until now, "recipe" has been used to refer to fuel recipes, but the "recipe" section of the input file can include the recipe for natural uranium, spent fuel, fresh fuel, or any other material where the isotopic composition needs to be tracked.
+
+First, we can declare the isotopic compostions of fresh and spent fuel. We'll be using simple recipes: fresh fuel is 4.0% U-235 by mass, remainder U-238. Spent fuel is 1.1% U-235, 94.0% U-238, 0.9% Pu-239, and 4.0% Cs-137.
+
+.. raw:: latex
+
+   \begin{gather*}
+   \textrm{Fresh Fuel Compostition}
+   \end{gather*}
+
++---------------------+--------------------+--------------------+
+| Nuclide             | Fresh Ids          |  Mass composition  |
++=====================+====================+====================+
+| :math:`^{235}`\ U   | 92235              | 0.04               |
++---------------------+--------------------+--------------------+
+| :math:`^{238}`\ U   | 92238              | 0.96               |
++---------------------+--------------------+--------------------+
+
+1. Using the table above, place the correct Fresh Ids in the ``fresh_id`` list and the correct mass compositions in the ``fresh_comp`` list.
+
+.. code:: ipython3
+
+    fresh_id = [92235,92238]
+    fresh_comp = [0.04, 0.96]
+
+.. raw:: latex
+
+    \begin{gather*}
+    \textrm{Spent Fuel Composition}
+    \end{gather*}
+
+    +---------------------+--------------------+--------------------+
+    | Nuclide             | Spent ids          |  Mass composition  |
+    +=====================+====================+====================+
+    | :math:`^{235}`\ U   | 92235              | 0.011              |
+    +---------------------+--------------------+--------------------+
+    | :math:`^{238}`\ U   | 92238              | 0.94               |
+    +---------------------+--------------------+--------------------+
+    | :math:`^{239}`\ Pu  | 94239              | 0.009              |
+    +---------------------+--------------------+--------------------+
+    | :math:`^{137}`\ Cs  | 55137              | 0.04               |
+    +---------------------+--------------------+--------------------+
+
+2. Using the table above, place the correct Spent Ids in the ``spent_id`` list and the correct mass compositions in the ``spent_comp`` list.
+
+.. code:: ipython3
+
+    spent_id = [92235, 92238, 94239, 55137]
+    spent_comp = [0.011, 0.94, 0.009, 0.04]
+
+Your completed cell should look like this:
+
+.. code:: ipython3
+
+    fresh_id = [92235,92238]
+    fresh_comp = [0.04, 0.96]
+    spent_id = [92235, 92238, 94239, 55137]
+    spent_comp = [0.011, 0.94, 0.009, 0.04]
+
+3. After this information has been properly placed run the cell and the check cell to check your work!
+
+Activity: Add a Reactor facility
+++++++++++++++++++++++++++++++++
+Now let's model the reactor this fuel will go through! In this simple exam, let's model a single PWR in the United States. It has a power capacity of 1178 MWe, and there is only one of them in the region.
 
 
-Activity: Add an enrichment facility
-+++++++++++++++++++++++++++++++++++++
+.. raw:: html
 
-1. Drag the cycamore Enrichmnent archetype from the ribbon to the fuel cycle design pane.
-2. Double-click to add the following configuration:
+   </div>
 
-  * Name: MyEnrichPlant
-  * Feed Commodity: U-ore
++-------------------------+-----------------------------+-------------------------------+
+| Variable                | Value                       | Purpose                       |
++=========================+=============================+===============================+
+| ``country``             | ``'United States'``         | country of reactor            |
++-------------------------+-----------------------------+-------------------------------+
+| ``reactor_name``        | ``'1178MWe BRAIDWOOD-1'``   | name of reactor               |
++-------------------------+-----------------------------+-------------------------------+
+| ``type_reactor``        | ``'PWR'``                   | type of reactor               |
++-------------------------+-----------------------------+-------------------------------+
+| ``net_elec_capacity``   | ``1178``                    | net electric capacity (MWe)   |
++-------------------------+-----------------------------+-------------------------------+
+| ``operator``            | ``'Exelon'``                | operator of reactor           |
++-------------------------+-----------------------------+-------------------------------+
 
-  Notice that when you specify the feed commodity as "U-ore", a line is
-  automatically drawn to indicate possible trading of material between the mine
-  and the enrichment facility.
+1. Using the table above, let's build our reactor prototype.
+2. To begin, in an empty cell in your IPython notebook, make ``country`` a varible equal to ``United States``.
 
-.. image:: u-ore-enrich.png
-    :align: center
-    :alt: Uranium ore can now flow from the mine to the enrichment facility.
+.. code:: ipython3
 
-3. Use what you learned above to add two new commodities:
+    country = 'United States' # country of reactor
 
-  * Fresh-UOX-Fuel
-  * Enrich-Tails
+3. Now we must name our reactor, make a variable ``reactor_name`` that is equal to ``'1178MWe BRAIDWOOD-1'``
 
-4. Modify the Enrichment facility to use these commodities:
+.. code:: ipython3
 
-  * Product Commodity: Fresh-UOX-Fuel
-  * Tails Commodity: Enrich-Tails
+    reactor_name = '1178MWe BRAIDWOOD-1' # name of reactor
 
-.. image:: enrich-commods.png
-    :align: center
-    :alt: All commodities have been defined for the enrichment facility.
+4. The reactor type is crucial as cycamore has a specific archetype for each type of reactor. These specific reactor types vary based on the cycle time, assembly size, number of assemblies in the core, and the number of assemblies in a batch. In our reactor, we will make the variable ``type_reactor`` equal to ``'PWR'``.
 
-Concept: Material recipes
---------------------------
+.. code:: ipython3
 
-Materials area a fundamental type of resource in |Cyclus|.  Each material
-object consists of a quantity (typically in kg) and a quality, ie. an isotopic
-composition.  The isotopic composition is referred to as a recipe.  Some
-archetypes may want to specify recipes for their input and/or output, as
-a list of isotope with either mass or atom fractions.
+    type_reactor = 'PWR' # type of reactor
 
-Activity: Add a recipe for natural uranium
-+++++++++++++++++++++++++++++++++++++++++++
+5. Set the Reactor Power by calling the variable, ``net_elec_capacity`` and making it equal to ``1178`` in your IPython notebook.
 
-Our enrichment facility will request natural uranium.
+.. code:: ipython3
 
-1. Drag the **Recipe Builder** *tool* into the *workspace* and drop it on an
-   empty location.
+    net_elec_capacity = 1178 # net electric capacity (MWe)
 
-.. image:: recipe-builder-drag.png
-    :align: center
-    :alt: Initial view of the Recipe Builder.
+6. Let's set the ``operator`` of the reactor to ``'Exelon'``
 
-2. Select "Add New Recipe"
-3. Give your recipe a name: Nat-U
-4. Choose either the mass or atom basis.  In this case a mass basis is more straightforward.
-5. Click on the "Add Isotope" button
-6. Enter the information for U-235.  |Cyclus| uses a robust system that allows
-   users to refer to isotopes in a multitude of formats.  For U-235, you can
-   enter either "U-235" or "92235".  The mass fraction is 0.007.
+.. code:: ipython3
 
-.. image:: recipe-natU-235-only.png
-    :align: center
-    :alt: The natural uranium recipe after adding only U-235.
+    operator = 'Exelon'  # operator of reactor
 
-7. Repeat steps 5 & 6 for U-238.
-8. Return to the configuration window for the enrichment plant
-9. Select "Nat-U" recipe as the feed recipe
+7. Your completed cell should look like:
 
-.. image:: recipe-natU-finished-assigned.png
-    :align: center
-    :alt: The natural uranium recipe is complete and assigned to the
-          Enrichment facility's feed recipe.
+.. code:: ipython3
+
+    '''
+    Initialize all variables given from the table.
+    '''
+    country = 'United States' # country of reactor
+    reactor_name = 'BRAIDWOOD-1' # name of reactor
+    type_reactor = 'PWR' # type of reactor
+    net_elec_capacity = 1178 #net electric capacity (MWe)
+    operator = 'Exelon' #operator of reactor
+
+8. When done filling in these values click the `run` button twice.
+
+Saving our a data to a csv file
+We will now save our reactor's information to a csv file named "single_reactor_data.csv". We do not need to complete this step for a cyclus simulation but, for the handling of data we will for this tutorial. Use the ``write.write_csv(header,raw_input, filename)`` function we will save our reactor's data.
+
+.. code:: ipython3
+
+    header = ['Country','Reactor Name','Type','Net Electric Capacity','Operator'] # this is the header of our csv file
+    raw_input = [country,reactor_name,type_reactor,net_elec_capacity,operator] # this is the data we will be inserting into the csv file
+    filename = "single_reactor_data.csv" # this is the filename of the csv file
+
+    write.write_csv(header,raw_input, filename)
 
 
-   
-Activity: Completing your Prototype Configurations
-++++++++++++++++++++++++++++++++++++++++++++++++++
+Activity: Deployments
+++++++++++++++++++++++++++++++++
 
+Now we will set how many mines, enrichment facilities, and repositories are in our region. For now, we'll say that there is one of each facility in our region.
+
++--------------------+---------+-----------------------------------+
+| Variable           | Value   | Purpose                           |
++====================+=========+===================================+
+| ``n_mine``         | 1       | number of mines                   |
++--------------------+---------+-----------------------------------+
+| ``n_enrichment``   | 1       | number of enrichment facilities   |
++--------------------+---------+-----------------------------------+
+| ``n_repository``   | 1       | number of repositories            |
++--------------------+---------+-----------------------------------+
+
+1. Our simple simulation will have one mine. Using the table above, create the variable ``n_mine`` and make it equal to ``1`` in your IPython notebook.
+
+.. code:: ipython3
+
+    n_mine = 1 # number of mines
+
+2. Now, let's make one enrichment facility for our simulation. In your IPython notebook create the variable ``n_enrichment`` and equate it to ``1``.
+
+.. code:: ipython3
+
+    n_mine = 1 # number of mines
+
+3. Now, let's create one repository for our simulation. In your IPython notebook create the variable ``n_repository`` and equate it to ``1``.
+
+    .. code:: ipython3
+
+        n_repository = 1 # number of repositories
+
+4. Your complete cell should look like:
+
+.. code:: ipython3
+
+    n_mine = 1 # number of mines
+    n_enrichment = 1 # number of enrichment facilities
+    n_repository = 1 #number of repositories
+
+5. When ready, click the ``run`` button twice
+
+
+5. Let's add these facilities to the United States by creating ``deployment_data`` and finding the location of the reactor through are ``reactor_data``
+
+.. code:: ipython3
+
+    deployment_data = {}
+    for element in reactor_data.loc[:,'Country'].drop_duplicates():
+        deployment_data[element] = [n_mine,n_enrichment,n_repository]
+    print(deployment_data)
+
+6. Click the ``run`` button once. The output should be:
+
+.. parsed-literal::
+
+    {'United States': [1, 1, 1]}
+
+This output shows us that there is one mine, one enrichment facility, and one repository.
+
+Concept: Material Recipes
+-------------------------
+
+Materials area a fundamental type of resource in Cyclus. Each material object consists of a quantity (typically in kg) and a quality, ie. an isotopic composition. The isotopic composition is referred to as a recipe. Some archetypes may want to specify recipes for their input and/or output, as a list of isotope with either mass or atom fractions.
 For each of the following prototypes, drag it into the fuel cycle design pane
 and configure it with the following information.
 
-1. Reactor
+Activity: Create the fuel recipes
++++++++++++++++++++++++++++++++++
+Now, we must write the fuel recipes for both the fresh and spent fuels.
 
-  * Name: ALWR
-  * Fresh Fuel Commodity List: Fresh-UOX-Fuel
-  * Fresh Fuel Recipe List:
+1. We will use the ``write_recipes`` function to render the fuel compositions as fuel recipes. ``write_recipes`` works by writing our ``fresh`` and ``spent`` nuclide and composition data over a specified template. The input template is a fuel recipe template. We will write over a variable named ``input_temp`` and make it equal to ``'template/recipe_template.xml'``.
 
-    * Fresh-UOX-Fuel-4: create a recipe with a mass basis with 4% U-235 *(you'll need to add this)*
+.. code:: ipython3
 
-  * Spent Fuel Commodity List: Used-UOX-Fuel *(you'll need to add this)*
-  * Spent Fuel Recipe List:
-  * Used-UOX-Fuel-4: create a recipe with a mass basis with:
+    input_temp = 'template/recipe_template.xml'
 
-    * 1% U-235, 94% U-238, 1% Pu-239, 4% Cs-137 *(you'll need to add this)*
+2. Now we must signify the output filename of our output fuel recipe. Create a variable ``output_recipe`` and equate it to ``'1xn-rendered-recipe.xml'``.
 
-  * Assembly Mass: 33000 kg
-  * Number of Assemblies per Batch: 1
-  * Number of Assemblies in Core: 3
-  * Cycle Length: 11
-  * Refueling Outage Duration: 1
+.. code:: ipython3
 
-.. image:: rxtr-complete.png
-    :align: center
-    :alt: Complete reactor configurationn showing spent fuel recipe.
+    output_recipe = '1xn-rendered-recipe.xml'
 
-2. Repository (using the Sink module)
+3. Call the `write.write_recipes` function, with the first two inputs being `fresh` and `spent` and the last two inputs being ``input_temp`` and ``output_recipe``.
 
-  * Change the niche to "repository"
-  * Name: UndergroundFacility
-  * Input commodity: Used-UOX-Fuel
+.. code:: ipython3
 
-.. image:: repo-complete.png
-    :align: center
-    :alt: Complete once through cycle including repo.
+    rendered_recipe = write.write_recipes(fresh,spent,'template/recipe_template.xml','1xn-rendered-recipe.xml')
+
+    with open(rendered_recipe,'r') as recipe:
+        print(recipe.read())
 
 
-Advanced Input Options
-----------------------
-
-In order to streamline input for users, some advanced input quantities are
-hidden by default.  These input quantities will always have default values, so
-users aren't required to set them.  In theory, the archetype developers can
-create many layers with increasing numbers of input quantities.  These deeper
-levels of inputs are accesible using the "User Level" option on each form.
-
-Activity: Set the Reactor Power
-++++++++++++++++++++++++++++++++
-
-1. Open the configuration form for the "ALWR" reactor
-2. Change the "User Level" to 1
-
-.. image:: user-level-1.png
-    :align: center
-    :alt: First look at user level 1 for the reactor
-
-3. Scroll down to find the input for "Power" and set it to 1000 MWe
-
-.. image:: user-level-1-power-annotated.png
-    :align: center
-    :alt: First look at user level 1 for the reactor
-
-Activity: Set the Maximum Inventory of Feed at the Reactor
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-1. Open the configuration form for the "EnrichPlant"
-2. Chnage to "User Level: 1
-3. Find the "Maximum Feed Inventory" entry and set it to: 1000000
-
-.. image:: enrich-max-inv-annotated.png
-    :align: center
-    :alt: First look at user level 1 for the reactor
+Activity: Completing your Prototype Configurations¶
++++++++++++++++++++++++++++++++++++++++++++++++++++
+1. Let's write are region configurations. To write the region configurations, use the ``write`` function and call the ``reactor_data`` and ``deployment_data``, the template ``region_template.xml``, and the name of the output rendered region file, ``1xn-rendered-region.xml``.
+2. To write the Reactor configurations, use the `write` function and call the `reactor_data`, the template `'reactor_template.xml'`, and the name of the output rendered reactor file, `'1xn-rendered-reactor.xml'`.

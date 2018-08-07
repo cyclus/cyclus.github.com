@@ -1,11 +1,10 @@
 |Cyclus| User Tutorial
 ======================
 
-In this tutorial, we will build, run and analyze a fuel cycle scenario using
-Cyclist, the graphical user interface developed specifically for the Cyclus
-fuel cycle simulator.  This tutorial assumes that the learner is already
+In this tutorial, we will build, run and analyze a fuel cycle scenario using the
+|Cyclus| fuel cycle simulator.  This tutorial assumes that the learner is already
 familiar with the purpose of a fuel cycle simulator. This tutorial will
-require an internet connection so that |cyclus| can be run remotely.
+require an internet connection so that |Cyclus| can be run remotely.
 
 Overview
 ---------
@@ -26,12 +25,13 @@ Exercise #1
     :maxdepth: 2
 
     install_launch_cyclist
-    cyclist_tour 
-    sim_parm 
+    ipython_tour
+    sim_parm
     add_arche
     add_proto
     add_reg_inst
     launch_cyclus
+    run_cyclus_native
     data_explorer
     plot_output
 
@@ -51,4 +51,4 @@ on your own, all with the support of the Cyclus development team.
    add_sep
    add_fab
    mod_rxtr
-   add_deploy  
+   add_deploy

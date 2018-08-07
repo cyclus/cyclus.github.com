@@ -35,7 +35,7 @@ Activity: Add an Institution
 3. Drag and drop a *NullInst* into the corral, and open its configuration window.
 4. Name this institution: MyNucCo
 
-Concept: Intial Facilities
+Concept: Initial Facilities
 ---------------------------
 
 All institutions can have a list of initial facilities that are operating when
@@ -95,4 +95,3 @@ You are now ready to generate a full |Cyclus| input file.
 
 1. Click on the "Generate" button in the "Simulation Details" pane.
 2. Choose a file name and save.
-

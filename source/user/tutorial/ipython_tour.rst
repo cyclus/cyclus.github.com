@@ -12,4 +12,3 @@ An IPython notebook has four main areas:
     :align: center
     :width: 100%
     :alt: Annotated view of an IPython notebook upon loading
-

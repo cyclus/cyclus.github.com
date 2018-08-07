@@ -15,26 +15,23 @@ cycle.  For the purpose of this tutorial, the scenario will include:
 More details about each of these facilities will discussed when we are
 required to provide that input.
 
-Activity: Open the Main View
-++++++++++++++++++++++++++++++
 
-To begin a new scenario:
+Activity: Importing the necessary packages
+------------------------------------------
 
-1. Select the **Scenario Builder** tab in the *workspace*.
-2. Drag the **Main View** *tool* and drop it into the *workspace*.
+1. We will need to import a couple of packages to properly run the tutorial. In your IPython notebook, import the necessary packages by copying and pasting the import statements below into the first cell.
 
-.. image:: main_view_annotated.png
-    :align: center
-    :width: 100%
-    :alt: The Simulation Detail pane
+.. code:: ipython3
 
-This view has the following sections:
+    from pyne import nucname
+    import cyutils
+    from cyutils import analysis
+    from cyutils import write
+    from cyutils import economics
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from numpy import isclose
 
-1. Simulation details
-2. Archetype discovery
-3. Commodity List
-4. Archetype ribbon
-5. Fuel cycle design pane
 
 Concept: Simulation Time Steps
 --------------------------------
@@ -63,21 +60,64 @@ We'll return later to the topics of generating, loading and executing an input f
 
 
 Activity: Set Simulation Parameters
-++++++++++++++++++++++++++++++++++++
+------------------------------------
+The top level simulation parameters are shown in the **Simulation Details** table (see below).
 
-The top level simulation parameters are shown in the **Simulation Details** pane (see below).
++-------------------+---------------+---------------------------------+
+| Variable          | Value         | Purpose                         |
++===================+===============+=================================+
+| ``duration``      | ``720``       | length of simulation (months)   |
++-------------------+---------------+---------------------------------+
+| ``start_month``   | ``1``         | start month of simulation       |
++-------------------+---------------+---------------------------------+
+| ``start_year``    | ``2018``      | start year of simulation        |
++-------------------+---------------+---------------------------------+
+| ``decay``         | ``'never'``   | radioactive decay               |
++-------------------+---------------+---------------------------------+
 
-Enter the following data:
+Using this table, let's set the simulation parameters.
 
-1. Duration: 600
-2. First Month: June
-3. First Year: 2015
-4. Decay: Never
-5. Simulation Handle: leave blank for default simulation handle
-6. Description: ANS 2015 Tutorial
+1. We want to set the duration of the simulation to be ``720`` months. In an empty cell in you IPython notebook enter:
 
-.. image:: sim_detail.png
-    :align: center
-    :alt: Annotated view of the Cycic Main View
+.. code:: ipython3
 
+    duration = 720 # length of simulation (months)
 
+2. Now let's set the start month of the simulation to be 1 (January). Under ``duration`` enter:
+
+.. code:: ipython3
+
+    start_month = 1 # start month of simulation
+
+3. Set the start year of the simulation to be 2018. Under ``start_month`` enter:
+
+.. code:: ipython3
+
+    start_year = 2018 # start year of simulation
+
+4. Last but not least, let's set the decay settings to be ``never``. Under ``start_year`` enter:
+
+.. code:: ipython3
+
+    decay = 'never' # radioactive decay
+
+5. Let's put this information into a list. To do so, under ``decay`` enter:
+
+.. code:: ipython3
+
+     simulation_parameters = [duration,start_month,start_year,decay]
+
+Your cell should look like this when complete
+
+.. code:: ipython3
+
+      '''
+      Initialize all variables given from the table.
+      '''
+      duration = 720 # length of simulation (months)
+      start_month = 1 # start month of simulation
+      start_year = 2018 # start year of simulation
+      decay = 'never' # radioactive decay
+      simulation_parameters = [duration,start_month,start_year,decay]
+
+6. When ready, click the ``run`` button on the top of the IPython notebook
