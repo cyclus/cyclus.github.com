@@ -24,7 +24,7 @@ Exercise #1
 .. toctree::
     :maxdepth: 2
 
-    install_launch_cyclist
+    install_launch_cyclus
     ipython_tour
     sim_parm
     add_arche
@@ -33,7 +33,7 @@ Exercise #1
     launch_cyclus
     run_cyclus_native
     data_explorer
-    plot_output
+    add_second_reactor
 
 Exercise #2
 -------------

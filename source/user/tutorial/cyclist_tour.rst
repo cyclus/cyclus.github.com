@@ -12,3 +12,5 @@ An IPython notebook has four main areas:
     :align: center
     :width: 100%
     :alt: Annotated view of an IPython notebook upon loading
+
+The Github Repository that holds this tutorial is at https://github.com/arfc/cyclus-tutorial
