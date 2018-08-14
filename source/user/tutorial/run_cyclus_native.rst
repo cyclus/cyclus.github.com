@@ -21,8 +21,8 @@ run from either the IPython notebook or in the command prompt.
 Activity: Execute your Scenario in an IPython Notebook
 ++++++++++++++++++++++++++++++++++++++++++++
 1. Go to the IPython notebook
-2. Remove any old cyclus output files by: ``!rm singlereactortutorial.sqlite``
-3. Run CYCLUS by: ``!cyclus 1xn-rendered-main-input.xml -o singlereactorill.sqlite``
+2. Remove any old cyclus output files by: ``!rm tutorial.sqlite``
+3. Run CYCLUS by: ``!cyclus input.xml -o tutorial.sqlite``
 
 
 .. image:: cyclus_run.png

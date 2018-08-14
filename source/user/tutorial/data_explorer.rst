@@ -128,96 +128,64 @@ Using the ``analysis.plot_out_flux_cumulative`` function with the inputs:
 
 We receive the plot:
 
-.. image:: isotope_plot.png
+.. image:: isotope_out.png
    :align: center
 
+Activity: Plot the cumulative mass of fresh nuclear fuel that is up in 1178MWe BRAIDWOOD-1
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   Now let's plot the cumulative mass of the fresh nuclear fuel that is
+   put into the 1178MWe BRAIDWOOD-1. Again, let's use
+   ``analysis.plot_in_flux`` which takes the arguments:
+   * cur
+   * facility = ``'1178MWe BRAIDWOOD-1'``
+   * title = ``'Cumulative Isotope Influx of 1178MWe BRAIDWOOD-1'``
+
+.. code:: ipython3
+
+       facility = '1178MWe BRAIDWOOD-1'
+       title = 'Cumulative Isotope Influx of 1178MWe BRAIDWOOD-1'
+       analysis.plot_in_flux(cur, '1178MWe BRAIDWOOD-1','Isotope Influx of 1178MWe BRAIDWOOD-1')
+
+We receive the plot:
+
+.. image:: plot_in_flux.png
+   :align: center
+
+We can also find the total amount [kg] of an isotope that was used/sent
+from a facility using the ``total_isotope_used`` function. For example,
+if we wanted to find out how much :math:`^{235}`\ U and
+:math:`^{238}`\ U was mined from the Uranium Mine, we can call:
+
+.. code:: ipython3
+
+    uranium_mined = analysis.total_isotope_used(cur, 'UraniumMine')
+    print("Total amount of U-235 mined:" + ' '  + str(uranium_mined['U235']) + ' ' + 'kg')
+    print("Total amount of U-238 mined:" + ' '  + str(uranium_mined['U238']) + ' ' + 'kg')
 
 
 
+.. parsed-literal::
 
+   Total amount of U-235 mined: 732797.080292 kg
+   Total amount of U-238 mined: 102332896.35 kg
 
-Activity: Examine Your First Data Exploration Session
-+++++++++++++++++++++++++++++++++++++++++++++++++++++
+Let's say we wanted to see the composition of the spent nuclear fuel
+from the reactor. We could call ``total_isotope_used`` with ``facility``
+= ``'1178MWe BRAIDWOOD-1'`` to find out!
 
-1. Click on the "QuantityInventory" table to selecct it.
-2. Right-click on the "QuantityInventory" table and select "Plot"
+.. code:: ipython3
 
-.. image:: plot-01-01.png
+    facility = '1178MWe BRAIDWOOD-1' # facility of interest
+    snf_comp = analysis.total_isotope_used(cur, facility)
+    snf_comp
+    isotopes = [item[0] for item in snf_comp.items()]
+    masses = [item[1] for item in snf_comp.items()]
+    plt.bar(isotopes,masses)
+    plt.xlabel('Isotopes')
+    plt.ylabel('Total Mass [kg]')
+    plt.title('SNF mass composition')
+
+We receive the plot:
+
+.. image:: snf_comp.png
     :align: center
-    :alt: A blank plot window
-
-3. Select a "Time" as the x-axis by dragging it from the "Fields" pane and
-   dropping it in X-axis entry-box.
-4. Do the same for "Quantity" on the y-axis.
-
-.. image:: plot-01-02.png
-    :align: center
-    :alt: A first inventory plots
-
-This shows a plot of the total inventory in the system as a function of time.
-
-5. Drag the "Protoype" field into the "Group by" entry to see the results
-   split up by the prototype that contained that inventory.
-
-.. image:: plot-01-03.png
-    :align: center
-    :alt: Inventory plots shown by protoype
-
-7. Use the "Axis" menu at the top right of the plot to adjust the y-axis to be logarithmic.
-
-8. Add "NucID" as an addition "Group by" field to see the total mass of each
-   nuclide that was resident in each type of facility in the system as a
-   function of time.
-
-.. image:: plot-01-04.png
-    :align: center
-    :alt: Inventory plots shown by prototype and by nuclide.
-
-This image is becoming somewhat busy, so we can add some filters.
-
-9. Drop the "Prototype" field to the middle of the title bar for the plot.  A
-   new control panel opens on the right to control the filters.  Select only
-   the enrichment plant (EnrichPlant) and the repository (NuclearUnderground).
-
-.. image:: plot-01-05-annotated.png
-    :align: center
-    :alt: Inventory plots with filters to help select data.
-
-10. We can combine this with another filter: drop the "NucID" field in the
-    title bar next to the "Prototype" filter.  Select all the facilities
-    protypes only "U235" and "Pu239" to examine the inventory of fissile
-    material in diferent facilities throughout the system.
-
-.. image:: plot-01-06.png
-    :align: center
-    :alt: Inventory plots with filters to help select data.
-
-11. Notice the fluctations at the beginning! Let's zoom in a little by adding
-    the "Time" field as yet another filter. Notice how it appears as a slider
-    bar with entries for a time window.  Use the sliders, or the text entry to
-    choose a window between time steps 0 and 60 (the first 5 years).
-
-.. image:: plot-01-07.png
-    :align: center
-    :alt: The first 50 years of inventory plots with filters to help select data.
-
-Some observations:
-
-* The enrichment plant began enriching in the first time step and was then
-  able to provide enough fuel for a full core loading in the second time step.
-  At that time we see the inventory of both U-235 and U-238 drop.
-* The enerichment plant's inventory then oscillates as it build up enough
-  material for an additional reactor to come online.  Once all reactors have
-  full core loadings (100 tonnes each), the total reactor inventory reaches
-  eqilibirum.
-* After 1 full core loading cycle (12 time steps), the first material appears
-  at the repository as spent fuel and begins accumulating.
-
-12. Finally, remove "Time" from the x-axis and move "Protoype" from the Group
-    By to the x-axis, select all the nuclides in the filter, and expand the
-    time filter to include the whole simulation.  This has quickly become a
-    bar chart showing the relative nuc8lide amounts in each facility type.
-
-.. image:: plot-01-08.png
-    :align: center
-    :alt: A bar chart comparing nuclide concentrations.

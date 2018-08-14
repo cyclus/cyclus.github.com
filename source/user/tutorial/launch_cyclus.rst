@@ -17,13 +17,14 @@ from the |Cyclus| home page.
 
 Activity: Execute your Scenario in the Cloud
 ++++++++++++++++++++++++++++++++++++++++++++
-1. Find the single_reactor_tutorial.xml file on your computer
-2. Select the Server: http://cycrun.fuelcycle.org
-3. Copy and paste the file's information into the window
-3. Click the "Execute" button
-4. This will launch a job and show you the status in the "Jobs" panel.
 
-.. image:: running-job-annotated.png
+1. Find the your input file (.xml) on your computer
+2. Go to the Server: http://cycrun.fuelcycle.org
+3. Copy and paste the file's information into the window
+3. Click the "Submit" button
+4. This will launch a job and show you the "Job Id"
+
+.. image:: cycrun.png
     :align: center
     :alt: Job status is shown when executing in the cloud
 
@@ -33,12 +34,11 @@ Activity: Retrieve your Results for Analysis
 1. When your simulation in the cloud has finished, it will indicate in the
    Jobs pane.
 
-.. image:: running-job-annotated.png
+.. image:: cycrun_final.png
     :align: center
     :alt: Job status is shown when executing in the cloud
 
-2. Right-click on the job number and select "Load Simulation"
-3. Switch to the "Data Exploration" tab in the *Workspace*.
+2. Right-click on the job number's Output result and download the output file.
 
 Backup: Files for Success
 ++++++++++++++++++++++++++

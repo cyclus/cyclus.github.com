@@ -2,7 +2,8 @@ Adding Regions and Institutions
 ===============================
 
 Concept: Regions & Institutions
----------------------------------
+-------------------------------
+**!!!**
 
 |Cyclus| establishes a hierarchy of agents: Facility agents are operated by
 Institution agents that exist within a Region agent.  This sense of ownership
@@ -18,80 +19,133 @@ in this case, we'll use the simplest options:
   deployed at the start of a simulation.
 * a Null Region (*NullRegion*) that holds a set of Institutions.
 
-Activity: Add an Institution
-++++++++++++++++++++++++++++++
+We have already created the facilities that will act in our simulation, but now we need to create the Institutions and Region that will hold all these facilities together.
+Regions are the location of the facilities within a cyclus simulation and tie together a fuel cycle as they designate what facilities are in the region's fuel cycle. Regions may apply preferences to each potential request-bid pairing based on the proposed resource transfer.
+The basic structure of a region is:
+::
 
-1. Drag the **Institution Corral** into the *workspace* and drop it on an empty location.
-2. This window has an *Archetype Ribbon*, similar to the *Main View*, above
-   the Institution Corral.  Working with Institutions in the Insitution Corral
-   is much like working with Facilities in the Main View.  You can
-   drag-and-drop the archetypes into the corral and then double click to
-   configure them.
+  <region>
+        <name>region_name</name>
+        <config>
+          <NullRegion/>
+        </config>
+        <institution>
+          <initialfacilitylist>
+            <entry>
+              <prototype>protoype_1</prototype>
+              <number>1</number>
+            </entry>
+            </initialfacilitylist>
+        </institution>
+  </region>
 
-.. image:: inst-corral-annotated.png
-    :align: center
-    :alt: Annotated view of the Institution Corral
+Each region block has the following sections in any order:
 
-3. Drag and drop a *NullInst* into the corral, and open its configuration window.
-4. Name this institution: MyNucCo
-
-Concept: Initial Facilities
----------------------------
-
-All institutions can have a list of initial facilities that are operating when
-the simulation begins.  Each of those facilities is based on a Facility
-prototype that has been defined in the *Main View*.  Each facility is added to
-the list by specifying its Prototype and how many to add.
-
-Activity: Add Initial Facilities
-+++++++++++++++++++++++++++++++++
-
-1. Add one uranium mine to the initial facility list of this institution by selecting:
-
-  * Prototype: U mine
-  * Number: 1
-
-  and press the "Add" button.
-
-.. image:: inst-add-mine.png
-    :align: center
-    :alt: A single U mine has been added to this institution.
-
-2. Use the same process to add:
-
-   * EnrichPlant
-
-.. image:: inst-all-added.png
-    :align: center
-    :alt: This institution has a full complement of initial facilities.
+  - ``name`` is the name of the region
+  - ``config`` is the archetype-specific configuration
+  - ``institution`` - an institution agent operating in this region
 
 Activity: Add a Region
-+++++++++++++++++++++++++
+++++++++++++++++++++++
+Let's create region, ``USA``, that contains two institutions, ``Exelon`` and ``United States Nuclear``.
+``Exelon`` is the institution that holds the ``1178MWe BRAIDWOOD-1`` reactor and ``United States Nuclear`` holds the ``UraniumMine``, ``EnrichmentPlant``, and ``NuclearRepository``.
 
-1. Drag the **Region Corral** into the *workspace* and drop it on an empty location.
-2. This window has an *Archetype Ribbon*, similar to the *Main View*, above
-   the Region Corral.  Working with Regions in the Region Corral is much like
-   working with Facilities in the Main View, and with Institutions in the
-   Institution Corral.  You can drag-and-drop the archetypes into the corral
-   and then double click to configure them.
+.. image:: RIF_tutorial.png
 
-.. image:: region-corral-annotated.png
-    :align: center
-    :alt: Annotated view of the Region Corral
+Using the template above and the table below, let's build the region.
 
-3. Drag and drop a *NullRegion* into the corral, and open its configuration window.
-4. Name this institution: Nuclandia
-5. Add our only institution to this region by selecting "MyNucCo" from the
-   drop down box and clicking the "Add Institution" button.
+1. Since their are two institutions, 'Exelon' and ``United States Nuclear`` we will split the region into two parts.
+Let's first build the ``Exelon`` institution. This institution has one ``1178MWe BRAIDWOOD-1`` prototype reactor. Using this information we can write this institution as:
+::
 
-.. image:: region-complete.png
-    :align: center
-    :alt: This simple region has a complete configuration.
+  <region>
+    <name>USA</name>
+    <config>
+      <NullRegion/>
+    </config>
+    <institution>
+      <initialfacilitylist>
+        <entry>
+          <prototype>1178MWe BRAIDWOOD-1</prototype>
+          <number>1</number>
+        </entry>
+        </initialfacilitylist>
+      <name>Exelon </name>
+      <config>
+        <NullInst/>
+      </config>
+    </institution>
+
+2. Now let's build the second institution, ``United States Nuclear``. This institution has one ``UraniumMine`` prototype, ``EnrichmentPlant`` prototype, and one ``NuclearRepository`` prototype. Using this information we can write this institution as:
+::
+
+    <institution>
+        <initialfacilitylist>
+          <entry>
+            <prototype>UraniumMine</prototype>
+            <number>1</number>
+          </entry>
+          <entry>
+            <prototype>EnrichmentPlant</prototype>
+            <number>1</number>
+          </entry>
+          <entry>
+            <prototype>NuclearRepository</prototype>
+            <number>1</number>
+          </entry>
+        </initialfacilitylist>
+        <name>United States Nuclear</name>
+        <config>
+          <NullInst/>
+        </config>
+      </institution>
+
+3. We will close the region section by appending the two sections together and appending a ``</region>`` tag to the end of the section. Once complete, your region prototype should look like:
+::
+
+  <region>
+    <name>USA</name>
+    <config>
+      <NullRegion/>
+    </config>
+    <institution>
+      <initialfacilitylist>
+        <entry>
+          <prototype>1178MWe BRAIDWOOD-1</prototype>
+          <number>1</number>
+        </entry>
+        </initialfacilitylist>
+      <name>Exelon</name>
+      <config>
+        <NullInst/>
+      </config>
+    </institution>
+
+    <institution>
+      <initialfacilitylist>
+        <entry>
+          <prototype>UraniumMine</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>EnrichmentPlant</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>NuclearRepository</prototype>
+          <number>1</number>
+        </entry>
+      </initialfacilitylist>
+      <name>United States Nuclear</name>
+      <config>
+        <NullInst/>
+      </config>
+    </institution>
+  </region>
 
 Activity: Generate (and Save) your Input File
 +++++++++++++++++++++++++++++++++++++++++++++++
 
 You are now ready to generate a full |Cyclus| input file.
 
-1. Click on the "Generate" button in the "Simulation Details" pane.
-2. Choose a file name and save.
+1. Save your input file as 'input_file.xml'

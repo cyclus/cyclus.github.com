@@ -15,28 +15,10 @@ cycle.  For the purpose of this tutorial, the scenario will include:
 More details about each of these facilities will discussed when we are
 required to provide that input.
 
-
-Activity: Importing the necessary packages
-------------------------------------------
-
-1. We will need to import a couple of packages to properly run the tutorial. In your IPython notebook, import the necessary packages by copying and pasting the import statements below into the first cell.
-
-.. code:: ipython3
-
-    from pyne import nucname
-    import cyutils
-    from cyutils import analysis
-    from cyutils import write
-    from cyutils import economics
-    import matplotlib.pyplot as plt
-    import numpy as np
-    from numpy import isclose
-
-
 Concept: Simulation Time Steps
 --------------------------------
 
-|Cyclus| uses a time-step approach to march through time and determine what
+CYCLUS uses a time-step approach to march through time and determine what
 actions are taken by each agent at each point in time.  Each time step
 includes the following phases:
 
@@ -54,14 +36,39 @@ information for all simulations:
 3. Start Year: the first year of the simulation
 4. Decay treatment: Turn off all decay ("never") or allow individual archetypes to implement it
 5. Simulation Handle: An optional unique identifier for this particular simulation.
-6. Description: A brief discription for your benefit.
+6. Description: A brief description for your benefit.
 
 We'll return later to the topics of generating, loading and executing an input file.
 
 
+The simulation control is the first part of the CYCLUS input file and is of the form:
+
+::
+
+    <simulation>
+      <control>
+        <duration>duration_val</duration>
+        <startmonth>start_month_val</startmonth>
+        <startyear>start_year_val</startyear>
+        <decay>decay_val</decay>
+      </control>
+
+
+    </simulation>
+
+The lifetime of a *CYCLUS* simulation is determined by its
+**``duration``**. **``duration``** is the number of months *CYCLUS* will
+model the fuel cycle. *CYCLUS* also intakes the **``start_month``** and
+**``start_year``** of the simulation. The last major parameter of the
+simulation is whether or not we wish to model the
+**```decay`` <http://fuelcycle.org/devdoc/decay.html>`__** of the
+radioactive elements (uranium ore, nuclear fuel, & spent nuclear fuel)
+in the simulation. For simplicity, we will not model decay in this
+tutorial.
+
 Activity: Set Simulation Parameters
 ------------------------------------
-The top level simulation parameters are shown in the **Simulation Details** table (see below).
+Using the simulation control template above and the table below, properly fill the template with the variables listed in the table below in your favorite text editor
 
 +-------------------+---------------+---------------------------------+
 | Variable          | Value         | Purpose                         |
@@ -72,52 +79,36 @@ The top level simulation parameters are shown in the **Simulation Details** tabl
 +-------------------+---------------+---------------------------------+
 | ``start_year``    | ``2018``      | start year of simulation        |
 +-------------------+---------------+---------------------------------+
-| ``decay``         | ``'never'``   | radioactive decay               |
+| ``decay``         | ``never``     | radioactive decay               |
 +-------------------+---------------+---------------------------------+
 
 Using this table, let's set the simulation parameters.
 
-1. We want to set the duration of the simulation to be ``720`` months. In an empty cell in you IPython notebook enter:
+1. To tell CYCLUS that this is the simulation section of the input file, set  the first line of the input file to be:
+::
 
-.. code:: ipython3
+    <simulation>
 
-    duration = 720 # length of simulation (months)
+2. Tab in and place the ``control`` header in as such
 
-2. Now let's set the start month of the simulation to be 1 (January). Under ``duration`` enter:
+::
 
-.. code:: ipython3
+  <simulation>
+    <control>
 
-    start_month = 1 # start month of simulation
+3. After filling in the parameters listed in the table above tab out and close the control and simulation sections as:
 
-3. Set the start year of the simulation to be 2018. Under ``start_month`` enter:
+::
 
-.. code:: ipython3
+    <simulation>
+      <control>
+        <duration>720</duration>
+        <startmonth>1</startmonth>
+        <startyear>2018</startyear>
+        <decay>never</decay>
+      </control>
 
-    start_year = 2018 # start year of simulation
 
-4. Last but not least, let's set the decay settings to be ``never``. Under ``start_year`` enter:
+    </simulation>
 
-.. code:: ipython3
-
-    decay = 'never' # radioactive decay
-
-5. Let's put this information into a list. To do so, under ``decay`` enter:
-
-.. code:: ipython3
-
-     simulation_parameters = [duration,start_month,start_year,decay]
-
-Your cell should look like this when complete
-
-.. code:: ipython3
-
-      '''
-      Initialize all variables given from the table.
-      '''
-      duration = 720 # length of simulation (months)
-      start_month = 1 # start month of simulation
-      start_year = 2018 # start year of simulation
-      decay = 'never' # radioactive decay
-      simulation_parameters = [duration,start_month,start_year,decay]
-
-6. When ready, click the ``run`` button on the top of the IPython notebook
+**Note**: There is two spaces between the end of the control section and end of the simulation section as the simulation section will hold the commodities, facilities, regions, institutions, and recipe information.
