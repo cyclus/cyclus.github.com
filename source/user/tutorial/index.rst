@@ -52,3 +52,11 @@ on your own, all with the support of the Cyclus development team.
    add_fab
    mod_rxtr
    add_deploy
+
+Recap
+-----
+
+.. toctree::
+   :maxdepth: 1
+
+   cyclus_tutorial_recap 
