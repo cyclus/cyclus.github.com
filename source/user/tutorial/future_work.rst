@@ -3,7 +3,7 @@ Future work
 
 Work needs to be made on files:
   - Prior typos found and fixed but many more may remain
-  - install_launch_cyclist.rst
+  - install_launch_cyclus.rst
     - Links to cyclus download need to be made available as current links are to cyclist download
   - Undefined substitution referenced: "Cyclus" on many files
   - add_reg_inst.html
@@ -23,4 +23,3 @@ Symbol Table
   +-------------+------------------+------+
   | **!!!**     | More content needed     |
   +-------------+------------------+------+
-  

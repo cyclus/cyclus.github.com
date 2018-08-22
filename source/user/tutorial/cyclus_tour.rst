@@ -8,7 +8,7 @@ An IPython notebook has four main areas:
 * A vertical blue line that shows what cell you're currently active in
 * A **Stop** button that stops running the cell you're in
 
-.. image:: ipython_.png
+.. image:: ipython_tour.png
     :align: center
     :width: 100%
     :alt: Annotated view of an IPython notebook upon loading

@@ -10,7 +10,7 @@ Concept: Cyclus Output file
 =========================================
 *CYCLUS* creates a .sqlite file as its output. SQL is a database file
 type that consists of a series of tables. A few functions have been
-included in ``analysis.py`` to pull information from the sqlite
+included in ``analysis.py``, a file in downloaded github repository of this tutorial, to pull information from the sqlite
 database and create figures.
 
 An sqlite database can be opened and its

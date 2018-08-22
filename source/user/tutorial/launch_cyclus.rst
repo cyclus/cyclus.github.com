@@ -21,8 +21,8 @@ Activity: Execute your Scenario in the Cloud
 1. Find the your input file (.xml) on your computer
 2. Go to the Server: http://cycrun.fuelcycle.org
 3. Copy and paste the file's information into the window
-3. Click the "Submit" button
-4. This will launch a job and show you the "Job Id"
+4. Click the "Submit" button
+5. This will launch a job and show you the "Job Id"
 
 .. image:: cycrun.png
     :align: center
