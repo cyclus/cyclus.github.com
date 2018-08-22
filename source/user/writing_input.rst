@@ -62,7 +62,7 @@ Here is the same code block using JSON.
 
 A Brief Introduction to Python
 ------------------------------------
-`Python`_ is a fully featured dynamic programming language. It hosts a wide variety of
+Python is a fully featured dynamic programming language. It hosts a wide variety of
 primitives built in to the language as well as powerful 3rd part libraries. Python
 input files allow for the computation of mathematical expressions in the input file
 itself. Static, proecomputed values are not required (as with XML and JSON).
