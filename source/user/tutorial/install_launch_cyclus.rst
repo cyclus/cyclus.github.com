@@ -4,14 +4,14 @@ Installing and Launching Cyclist
 For this tutorial, we only require the Cyclist user interface.  You can
 install Cyclist using the following steps:
 
-**Windows** **???**
+**Windows**
 
 1. Download `this Windows installer <http://cnergdata.engr.wisc.edu/cyclus/cyclist/Cyclist-1.0.msi>`_. **???**
 2. Find the downloaded file and double-click to start the install.
 3. Once complete go the the "Start" menu and type "Cyclist".
 4. Click on the icon to start Cyclist.
 
-**Mac OSX** **???**
+**Mac OSX**
 
 1. Download `this Mac OSX installer <http://cnergdata.engr.wisc.edu/cyclus/cyclist/Cyclist-1.0.dmg>`_. **???**
 2. Click OK when asked to open the .dmg file.

@@ -97,7 +97,7 @@ subset of archetypes will be used in this particular scenario.
 The archetypes we will use in our simulation include:
 
 -  Source: ``UraniumMine``, source of u-ore
--  Enrichment: ``EnrichmentPlant``,enriches u-ore into fresh-uox and outputs tails
+-  Enrichment: ``EnrichmentPlant``, enriches u-ore into fresh-uox and outputs tails
 -  Reactor: ``1178MWe BRAIDWOOD-1``
 -  Sink: ``NuclearRepository``, holds the spent-uox and tails
 

@@ -1,5 +1,5 @@
 Concept: Commodities
-----------------------
+--------------------
 
 |Cyclus| exchanges resources between facilities using a market-like mechanism
 called the dynamic resource exchange (DRE).  The concept of a commodity is
@@ -44,8 +44,8 @@ and has provided two bids accordingly.
 Activity: Create fresh and spent fuel commodities
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Let's build ``u-ore``, ``fresh-uox``,\ ``spent-uox``, and ``tails``,
-four commodities that will be traded in the simulation. ``u-ore`` is the
+Let's build ``u-ore``, ``fresh-uox``, ``spent-uox``, and ``tails``,
+four commodities that will be traded in our simulation. ``u-ore`` is the
 natural uranium that is mined, tails is the tails from the
 enrichment process, ``fresh-uox`` is the fresh 4.0% enriched Uranium Oxide fuel
 that enters the reactor, and ``spent-uox`` is the spent Uranium Oxide
@@ -148,7 +148,7 @@ Once complete append the commodities section under the archetypes section.
 Concept: Recipes
 ----------------
 
-Recipes are the isotropic compostion of a certain commodity. For
+Recipes are the isotropic composition of a certain commodity. For
 example, u-ore has an isotropic composition of 0.711% uranium-235 and
 99.284% uranium-238. The recipe section of a CYCLUS input file is
 located at the bottom and is of the form:
@@ -325,7 +325,7 @@ Let's take a look at the ``fresh-uox`` fuel recipe:
     :alt: Fuel recipe for fresh-uox
 
 Concept: Configuring an Archetype to Create a Prototype
----------------------------------------------------------
+-------------------------------------------------------
 
 One of the features of *CYCLUS* is its ability to switch between
 different models of the facilities within the fuel cycle. These models,
@@ -351,7 +351,7 @@ specific set of parameters, it is called a *prototype*.
 
 
 Activity: Configure your first prototype
-+++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++
 
 Now let's model the reactor this fuel will go through! In this simple exam, let's model a single PWR in the United States. It has a power capacity of 1178 MWe, and there is only one of them in the region.
 The template for the reactor is given below:

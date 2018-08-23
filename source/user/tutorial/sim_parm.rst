@@ -16,7 +16,7 @@ More details about each of these facilities will discussed when we are
 required to provide that input.
 
 Concept: Simulation Time Steps
---------------------------------
+------------------------------
 
 CYCLUS uses a time-step approach to march through time and determine what
 actions are taken by each agent at each point in time.  Each time step
