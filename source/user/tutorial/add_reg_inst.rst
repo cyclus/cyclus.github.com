@@ -66,6 +66,8 @@ Where:
 * ``number``: the number of the prototype initially in the institution
 * ``name``: name of the institution.
 
+There can be multiple ``entry`` blocks.
+
 Putting it all together, a complete region template is of the form:
 
 ::
@@ -91,7 +93,7 @@ Putting it all together, a complete region template is of the form:
 
 Concept: Institution
 -----------------------------------------------------------------------
-In *CYCLUS* input files, each institution block defines an agent that
+In |CYCLUS| input files, each institution block defines an agent that
 acts as an institution in the simulation. An institution block can only
 appear within a region block. Each institution block has the following
 sections in any order:
@@ -115,9 +117,10 @@ that each contain the following sections, in the following order:
 The example below
 introduces two institution agents (the region section that encloses them
 is not shown). The first institution has the name *SingleInstitution*,
-and is configured from the archetype with the name (or alias)
-*NullInst*. The ``NullInst``has no defined archetype-specific data.
-This agent begins the simulation with two
+and is configured from the archetype with the name
+``NullInst``. 
+The ``NullInst`` has no defined archetype-specific data.
+This institution begins the simulation with two
 facility agents, one based on the ``FacilityA`` prototype and another
 based on the ``FacilityB`` prototype. The second institution has the
 name *AnotherInstitution*, is also configured from the archetype with
