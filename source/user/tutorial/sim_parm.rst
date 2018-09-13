@@ -71,11 +71,11 @@ The simulation control is the first part of the CYCLUS input file and is of the 
     </simulation>
 
 The lifetime of a *CYCLUS* simulation is determined by its
-**duration**. **duration``** is the number of months *CYCLUS* will
-model the fuel cycle. *CYCLUS* also intakes the **``start_month``** and
-**``start_year``** of the simulation. The last major parameter of the
+**duration**. **duration** is the number of months *CYCLUS* will
+model the fuel cycle. *CYCLUS* also intakes the **start_month** and
+**start_year** of the simulation. The last major parameter of the
 simulation is whether or not we wish to model the
-**`decay <http://fuelcycle.org/devdoc/decay.html>`__** of the
+`decay <http://fuelcycle.org/devdoc/decay.html>`__ of the
 radioactive elements (uranium ore, nuclear fuel, & spent nuclear fuel)
 in the simulation. For simplicity, we will not model decay in this
 tutorial.
