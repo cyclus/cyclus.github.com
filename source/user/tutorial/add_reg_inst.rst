@@ -82,7 +82,7 @@ the institution. The final template is of the form:
        </institution>
     </region>
 
-Concept: Institution - Institution agents (at least one required in each Region)
+Concept: Institution
 -----------------------------------------------------------------------
 In *CYCLUS* input files, each institution block defines an agent that
 acts as an institution in the simulation. An institution block can only
@@ -305,7 +305,7 @@ Let's first build the ``Exelon`` institution. This institution has one ``1178MWe
     </institution>
   </region>
 
-Activity: Generate (and Save) your Input File
+Activity: Save your Input File
 +++++++++++++++++++++++++++++++++++++++++++++++
 
 You are now ready to generate a full |Cyclus| input file.
