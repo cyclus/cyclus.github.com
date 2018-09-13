@@ -328,7 +328,7 @@ Let's take a look at the ``fresh-uox`` fuel recipe:
     :align: center
     :alt: Fuel recipe for fresh-uox
 
-Concept: Archetype configuration to Prototype
+Concept: Archetype configuration
 -------------------------------------------------------
 
 One of the features of |CYCLUS| is its ability to switch between
