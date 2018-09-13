@@ -40,7 +40,7 @@ and provides two bids accordingly.
     :align: center
     :alt: Commodity trade flowchart
 
-Activity: Create fresh and spent fuel commodities
+Activity: Create fuel commodities
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Let's build ``u-ore``, ``fresh-uox``, ``spent-uox``, and ``tails``,
@@ -88,7 +88,7 @@ resource exchange.
 spent-uox, and tails.
 
 
-Activity: Building the commodities section
+Activity: Building commodities
 ++++++++++++++++++++++++++++++++++++++++++
 
 Using the table below and the commodities template above, fill out the commodities
@@ -328,7 +328,7 @@ Let's take a look at the ``fresh-uox`` fuel recipe:
     :align: center
     :alt: Fuel recipe for fresh-uox
 
-Concept: Configuring an Archetype to Create a Prototype
+Concept: Archetype configuration to Prototype
 -------------------------------------------------------
 
 One of the features of |CYCLUS| is its ability to switch between
