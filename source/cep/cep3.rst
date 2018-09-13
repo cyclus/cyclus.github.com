@@ -3,7 +3,7 @@ CEP 3 - |Cyclus| Release Procedure
 
 :CEP: 3
 :Title: |Cyclus| Release Procedure
-:Last-Modified: 2017-09-01
+:Last-Modified: 2017-11-06
 :Author: Anthony Scopatz and Matthew Gidden and Baptiste Mouginot
 :Status: Accepted
 :Type: Process
@@ -33,6 +33,17 @@ The projects which are not yet under the release managers purview are:
 
 * `Rickshaw`_
 * `CyclusJS`_
+
+
+.. note::
+
+    The following full release process only applies to MAJOR and MINOR
+    release number changes. MICRO or PATCH releases may be performed
+    with a version bump and a git tag alone. This is to enable fast turn
+    arounds for bug fixes and binary package creation (ie deb or conda).
+    Therefore versions with a non-zero MICRO number should be considered
+    relatively unstable.
+
 
 Release Candidates (Tags & Branches)
 ====================================

@@ -114,7 +114,8 @@ div#cyclus.section h1 {
     width: 100%;
 }
 
-div.sphinxlocaltoc ul a, div.sphinxglobaltoc ul a {
+div.sphinxlocaltoc ul a, div.sphinxglobaltoc ul a{
     display: inline;
     white-space: normal;
+    word-wrap: normal;
 }

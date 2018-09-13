@@ -33,7 +33,8 @@ except OSError:
     warnings.warn('WARNING: Continuing without cypp.py!!!', RuntimeWarning)
 
 if len(h) != 0:
-    fname = [x[10:].strip() for x in h.splitlines() if x.startswith('filename:')][0]
+    fname = [x[10:].strip()
+             for x in h.splitlines() if x.startswith('filename:')][0]
     sys.path.insert(1, os.path.dirname(fname))
 
 
@@ -44,7 +45,7 @@ if len(h) != 0:
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.imgmath', 'sphinx.ext.autodoc',
+extensions = ['sphinx.ext.mathjax', 'sphinx.ext.autodoc',
               'sphinx.ext.autosummary',
               'numpydoc',
               'cyclusagent', 'cloud_sptheme.ext.table_styling',
@@ -67,7 +68,7 @@ master_doc = 'index'
 # General information about the project.
 project = u'Cyclus'
 copyright = (u'2012-2016, University of Wisconsin Computational Nuclear '
-              'Engineering Research Group')
+             'Engineering Research Group')
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -145,7 +146,7 @@ html_theme_options = {
     'externalrefs': False,
     'stickysidebar': False,
     'highlighttoc': False,
-    }
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 html_theme_path = ['_theme', csp.get_theme_dir()]
@@ -220,21 +221,21 @@ htmlhelp_basename = 'cyclusdoc'
 # -- Options for LaTeX output --------------------------------------------------
 
 latex_elements = {
-# The paper size ('letterpaper' or 'a4paper').
-#'papersize': 'letterpaper',
+    # The paper size ('letterpaper' or 'a4paper').
+    # 'papersize': 'letterpaper',
 
-# The font size ('10pt', '11pt' or '12pt').
-#'pointsize': '10pt',
+    # The font size ('10pt', '11pt' or '12pt').
+    # 'pointsize': '10pt',
 
-# Additional stuff for the LaTeX preamble.
-#'preamble': '',
+    # Additional stuff for the LaTeX preamble.
+    # 'preamble': '',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'Cyclus.tex', u'Cyclus Documentation',
-   u'Cyclus Developer', 'manual'),
+    ('index', 'Cyclus.tex', u'Cyclus Documentation',
+     u'Cyclus Developer', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -277,9 +278,9 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'Cyclus', u'Cyclus Documentation',
-   u'Cyclus Developers', 'Cyclus', 'One line description of project.',
-   'Miscellaneous'),
+    ('index', 'Cyclus', u'Cyclus Documentation',
+     u'Cyclus Developers', 'Cyclus', 'One line description of project.',
+     'Miscellaneous'),
 ]
 
 # Documents to append as an appendix to all manuals.

@@ -15,31 +15,10 @@ cycle.  For the purpose of this tutorial, the scenario will include:
 More details about each of these facilities will discussed when we are
 required to provide that input.
 
-Activity: Open the Main View
-++++++++++++++++++++++++++++++
-
-To begin a new scenario:
-
-1. Select the **Scenario Builder** tab in the *workspace*.
-2. Drag the **Main View** *tool* and drop it into the *workspace*.
-
-.. image:: main_view_annotated.png
-    :align: center
-    :width: 100%
-    :alt: The Simulation Detail pane
-
-This view has the following sections:
-
-1. Simulation details
-2. Archetype discovery
-3. Commodity List
-4. Archetype ribbon
-5. Fuel cycle design pane
-
 Concept: Simulation Time Steps
---------------------------------
+------------------------------
 
-|Cyclus| uses a time-step approach to march through time and determine what
+CYCLUS uses a time-step approach to march through time and determine what
 actions are taken by each agent at each point in time.  Each time step
 includes the following phases:
 
@@ -57,27 +36,79 @@ information for all simulations:
 3. Start Year: the first year of the simulation
 4. Decay treatment: Turn off all decay ("never") or allow individual archetypes to implement it
 5. Simulation Handle: An optional unique identifier for this particular simulation.
-6. Description: A brief discription for your benefit.
+6. Description: A brief description for your benefit.
 
 We'll return later to the topics of generating, loading and executing an input file.
 
 
+The simulation control is the first part of the CYCLUS input file and is of the form:
+
+::
+
+    <simulation>
+      <control>
+        <duration>duration_val</duration>
+        <startmonth>start_month_val</startmonth>
+        <startyear>start_year_val</startyear>
+        <decay>decay_val</decay>
+      </control>
+
+
+    </simulation>
+
+The lifetime of a *CYCLUS* simulation is determined by its
+**``duration``**. **``duration``** is the number of months *CYCLUS* will
+model the fuel cycle. *CYCLUS* also intakes the **``start_month``** and
+**``start_year``** of the simulation. The last major parameter of the
+simulation is whether or not we wish to model the
+**```decay`` <http://fuelcycle.org/devdoc/decay.html>`__** of the
+radioactive elements (uranium ore, nuclear fuel, & spent nuclear fuel)
+in the simulation. For simplicity, we will not model decay in this
+tutorial.
+
 Activity: Set Simulation Parameters
-++++++++++++++++++++++++++++++++++++
+------------------------------------
+Using the simulation control template above and the table below, properly fill the template with the variables listed in the table below in your favorite text editor
 
-The top level simulation parameters are shown in the **Simulation Details** pane (see below).
++-------------------+---------------+---------------------------------+
+| Variable          | Value         | Purpose                         |
++===================+===============+=================================+
+| ``duration``      | ``720``       | length of simulation (months)   |
++-------------------+---------------+---------------------------------+
+| ``start_month``   | ``1``         | start month of simulation       |
++-------------------+---------------+---------------------------------+
+| ``start_year``    | ``2018``      | start year of simulation        |
++-------------------+---------------+---------------------------------+
+| ``decay``         | ``never``     | radioactive decay               |
++-------------------+---------------+---------------------------------+
 
-Enter the following data:
+Using this table, let's set the simulation parameters.
 
-1. Duration: 600
-2. First Month: June
-3. First Year: 2015
-4. Decay: Never
-5. Simulation Handle: leave blank for default simulation handle
-6. Description: ANS 2015 Tutorial
+1. To tell CYCLUS that this is the simulation section of the input file, set  the first line of the input file to be:
+::
 
-.. image:: sim_detail.png
-    :align: center
-    :alt: Annotated view of the Cycic Main View
+    <simulation>
+
+2. Tab in and place the ``control`` header in as such
+
+::
+
+  <simulation>
+    <control>
+
+3. After filling in the parameters listed in the table above tab out and close the control and simulation sections as:
+
+::
+
+    <simulation>
+      <control>
+        <duration>720</duration>
+        <startmonth>1</startmonth>
+        <startyear>2018</startyear>
+        <decay>never</decay>
+      </control>
 
 
+    </simulation>
+
+**Note**: There is two spaces between the end of the control section and end of the simulation section as the simulation section will hold the commodities, facilities, regions, institutions, and recipe information.

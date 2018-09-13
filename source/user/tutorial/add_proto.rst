@@ -1,48 +1,5 @@
-Adding Prototypes to your Simulation
-====================================
-
-Concept: Configuring an Archetype to Create a Prototype
----------------------------------------------------------
-
-While the archetype describes the form of the model used to represent a
-facility, a variety of parameters are generally available to configure the
-specific behavior.   For the example of a reactpr, the developer will probably
-allow the user to define the power level of the reactor, independent of the
-specific model chosen to represent the behavior of the model.  Other common
-reactor paramters are fuel loading parameters such as cycle length and batch
-size. 
-
-In |Cyclus|, when an archetype has been configured with a
-specific set of parameters, it is called a *prototype*.
-
-
-Activity: Configure your first prototype
-+++++++++++++++++++++++++++++++++++++++++
-
-The first facility in our fuel cycle will be a mine, using the Cycamore Source
-archetype.
-
-1. Drag the cycamore Source archetype from the ribbon to the fuel cycle design pane.
-2. Right-click on the Source facility to show its context menu, and choose
-   "Facility Documentation".  Close the documentation when finished.
-3. Double click on the Source facility that you just dropped to open its configuration window.
-4. Choose a name for your Source prototype, e.g. "U Mine".
-
-*Bonus: From the Source facility's context menu (right-click) choose "Change
-Niche" and type "mine" as the New Niche.  The only purpose of the niche is to
-allow different visualization in the fuel design pane.  Other niches include:
-"fuel fabriaction", "reactor", "abr", "repository", "reprocessing",
-"separations".*
-
-Your fuel cycle design should now look like this:
-
-.. image:: first_proto.png
-    :align: center
-    :alt: Fuel cycle design pane showing first prototype.
-
-
 Concept: Commodities
-----------------------
+--------------------
 
 |Cyclus| exchanges resources between facilities using a market-like mechanism
 called the dynamic resource exchange (DRE).  The concept of a commodity is
@@ -51,167 +8,631 @@ each other through the DRE.  A commodity is therefore nothing more than a
 unique name that is used to define a set of producers and consumers of a
 common resource.  A commodity does not necessarily have a specific
 composition; this will be determined by the agents during the simulation.
+Suppliers then respond to the series of requests with a bid . A bid
+supplies a notion of the quantity and quality of a resource to match a
+request. Sup- pliers may add an arbitrary number of constraints to
+accompany bids. For example, an enriched UOX supplier may be constrained
+by its current inventory of natural uranium or its total capacity to
+provide enrichment in Separative Work Units (SWUs). It attaches such
+constraints to its bids.
 
-Activity: Add a commodity to the mine
-++++++++++++++++++++++++++++++++++++++
+Any potential resource transfer, i.e., a bid or a request, may be
+denoted as exclusive. An exclusive transfer excludes partial fulfillment;
+it must either be met fully or not at all. This mode supports concepts
+such as the trading of individual reactor assemblies. In combination
+with the notion of mutual requests, complex instances of supply and
+demand are en- abled. Finally, requesting facilities, institutions and
+regions may apply preferences to each potential request-bid pairing
+based on the proposed resource transfer. Facilities can apply arbitrary
+complex logic to rank the bids that they have received, whether based on
+the quantity available in each bid or on the quality of each bid, and
+the consequent implications of the physics behavior of that facility. In
+addition, an institution can apply a higher preference to a partner to
+which it is congenial; similarly, a region may negate any transfers of
+material which have a higher uranium enrichment than is allowable.
 
-1. Add a commodity in the commodity list of the main view: "U-ore" (For now,
-   you can ignore the priority setting)
-2. In the configuration window for the mine, select "U-ore" from the Output Commodity dropdown menu
+For example, the flow graph below shows three suppliers (left) and two
+requesters (right), and the potential flows of various commodities among
+them. The second consumer makes two different requests. Meanwhile, the
+second supplier can supply the commodities requested by both consumers
+and has provided two bids accordingly.
 
-.. image:: mine_commod.png
+.. image:: trade.png
     :align: center
-    :alt: A first commodity and its use in the mine.
+    :alt: Commodity trade flowchart
+
+Activity: Create fresh and spent fuel commodities
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Let's build ``u-ore``, ``fresh-uox``, ``spent-uox``, and ``tails``,
+four commodities that will be traded in our simulation. ``u-ore`` is the
+natural uranium that is mined, tails is the tails from the
+enrichment process, ``fresh-uox`` is the fresh 4.0% enriched Uranium Oxide fuel
+that enters the reactor, and ``spent-uox`` is the spent Uranium Oxide
+fuel that leaves the reactor after it is used. Whenever *CYCLUS* needs
+to know the isotopic composition of a material, it looks at the recipe for that
+material given in the input file. Until now, "recipe" has been used to
+refer to fuel recipes, but the "recipe" section of the input file can
+include the recipe for natural uranium, spent fuel, fresh fuel, or any
+other material where the isotopic composition needs to be tracked.
+
+The commodities section is located right under the ``archetype`` section
+and is of the form:
+
+::
+
+    <commodity>
+        <name>com1</name>
+        <solution_priority>1.0</solution_priority>
+      </commodity>
+      <commodity>
+        <name>com2</name>
+        <solution_priority>1.0</solution_priority>
+      </commodity>
+      <commodity>
+        <name>com3</name>
+        <solution_priority>1.0</solution_priority>
+      </commodity>
+      <commodity>
+        <name>com4</name>
+        <solution_priority>1.0</solution_priority>
+      </commodity>
+
+where name is the name of the commodity and solution priority is a
+number that defines the relative priority for resolution in the dynamic
+resource exchange. We will model four commodities: u-ore, fresh-uox,
+spent-uox, and tails.
 
 
-Activity: Add an enrichment facility
-+++++++++++++++++++++++++++++++++++++
+Activity: Building the commodities section
+++++++++++++++++++++++++++++++++++++++++++
 
-1. Drag the cycamore Enrichmnent archetype from the ribbon to the fuel cycle design pane.
-2. Double-click to add the following configuration:
+Using the table below and the commodities template above, fill out the commodities
+template.
 
-  * Name: MyEnrichPlant
-  * Feed Commodity: U-ore
++-------------+-------------+---------------------+
+| Commodity   | Name        | Solution Priority   |
++=============+=============+=====================+
+| com1        | u-ore       | 1.0                 |
++-------------+-------------+---------------------+
+| com2        | fresh-uox   | 1.0                 |
++-------------+-------------+---------------------+
+| com3        | spent-uox   | 1.0                 |
++-------------+-------------+---------------------+
+| com4        | tails       | 1.0                 |
++-------------+-------------+---------------------+
 
-  Notice that when you specify the feed commodity as "U-ore", a line is
-  automatically drawn to indicate possible trading of material between the mine
-  and the enrichment facility.
+1. Let's start with ``u-ore``. In the ``<name>`` line replace ``com1`` with ``u-ore``.
+::
 
-.. image:: u-ore-enrich.png
+    <commodity>
+        <name>u-ore</name>
+
+2. In the ``<solution_priority>`` section replace ``val1`` with ``1.0``.
+::
+
+    <commodity>
+        <name>u-ore</name>
+        <solution_priority>1.0</solution_priority>
+
+3. Now, finalize this commodity by closing it with ``</commodity>``. Your ``u-ore`` commodity section should be:
+::
+
+    <commodity>
+        <name>u-ore</name>
+        <solution_priority>1.0</solution_priority>
+      </commodity>
+
+4. Repeat this process for the other three commodities. Your final result should look like:
+::
+
+  <commodity>
+      <name>u-ore</name>
+      <solution_priority>1.0</solution_priority>
+    </commodity>
+    <commodity>
+      <name>fresh-uox</name>
+      <solution_priority>1.0</solution_priority>
+    </commodity>
+    <commodity>
+      <name>tails</name>
+      <solution_priority>1.0</solution_priority>
+    </commodity>
+    <commodity>
+      <name>spent-uox</name>
+      <solution_priority>1.0</solution_priority>
+  </commodity>
+
+Once complete append the commodities section under the archetypes section.
+
+Concept: Recipes
+----------------
+
+Recipes are the isotropic composition of a certain commodity. For
+example, u-ore has an isotropic composition of 0.711% uranium-235 and
+99.284% uranium-238. The recipe section of a CYCLUS input file is
+located at the bottom and is of the form:
+
+::
+
+     <recipe>
+      <name>nat-u</name>
+      <basis>mass</basis>
+      <nuclide>
+        <id>92235</id>
+        <comp>0.00711</comp>
+      </nuclide>
+      <nuclide>
+        <id>92238</id>
+        <comp>0.99289</comp>
+      </nuclide>
+     </recipe>
+
+where ``id`` is the Nuc Id of the isotope and ``comp`` is the
+composition of that isotope in the commodity.
+
+First, we can declare the isotopic compositions of the fresh and spent
+fuel. We'll be using simple recipes: fresh fuel is 4.0% U-235 by mass,
+remainder U-238. Spent fuel is 1.1% U-235, 94.0% U-238, 0.9% Pu-239, and
+4.0% Cs-137.
+
+Activity: Creating a Recipe
+++++++++++++++++++++++++++++
+
+
+Using the tables below, fill out the recipe
+template for natural uranium, fresh fuel, and spent fuel.
+
++---------------------+--------------------+--------------------+
+| Natural Uranium Composition                                   |
++---------------------+--------------------+--------------------+
+| Nuclide             | Spent ids          |  Mass composition  |
++=====================+====================+====================+
+| :math:`^{235}`\ U   | 92235              | 0.00711            |
++---------------------+--------------------+--------------------+
+| :math:`^{238}`\ U   | 92238              | 0.99289            |
++---------------------+--------------------+--------------------+
+
++---------------------+--------------------+--------------------+
+| Fresh Fuel Composition                                        |
++---------------------+--------------------+--------------------+
+| Nuclide             | Spent ids          |  Mass composition  |
++=====================+====================+====================+
+| :math:`^{235}`\ U   | 92235              | 0.04               |
++---------------------+--------------------+--------------------+
+| :math:`^{238}`\ U   | 92238              | 0.96               |
++---------------------+--------------------+--------------------+
+
++---------------------+--------------------+--------------------+
+| Spent Fuel Composition                                        |
++---------------------+--------------------+--------------------+
+| Nuclide             | Spent ids          |  Mass composition  |
++=====================+====================+====================+
+| :math:`^{235}`\ U   | 92235              | 0.011              |
++---------------------+--------------------+--------------------+
+| :math:`^{238}`\ U   | 92238              | 0.94               |
++---------------------+--------------------+--------------------+
+| :math:`^{239}`\ Pu  | 94239              | 0.009              |
++---------------------+--------------------+--------------------+
+| :math:`^{137}`\ Cs  | 55137              | 0.04               |
++---------------------+--------------------+--------------------+
+
+1. Let's start with the Natural Uranium recipe. Start by placing the ``<recipe>`` tag as the header to signify that this is a recipe and tab in and place the fill ``<name>`` tag such as:
+::
+
+  <recipe>
+    <name>nat-u</name>
+
+2. To signify that the composition of this recipe is in terms of Mass, fill the ``<basis>`` tag with ``mass``.
+::
+
+  <recipe>
+    <name>nat-u</name>
+    <basis>mass</basis>
+
+3. To add a nuclide to this recipe, call the ``nuclide`` tag, tab in, add the ``<id>`` and ``<comp>`` tags:
+::
+
+  <recipe>
+    <name>nat-u</name>
+    <basis>mass</basis>
+    <nuclide>
+      <id>id1</id>
+      <comp>comp1</comp>
+    </nuclide>
+
+4. We will fill the ``<id>`` tag with the Uranium-235 ``Nuc Id``, ``92235``, and fill the composition tag with its mass composition, ``0.00711``.
+::
+
+  <recipe>
+    <name>nat-u</name>
+    <basis>mass</basis>
+    <nuclide>
+      <id>92235</id>
+      <comp>0.00711</comp>
+    </nuclide>
+
+5. Following the same procedure, we can add Uranium-238 to this recipe such as:
+::
+
+  <recipe>
+    <name>nat-u</name>
+    <basis>mass</basis>
+    <nuclide>
+      <id>92235</id>
+      <comp>0.00711</comp>
+    </nuclide>
+    <nuclide>
+      <id>92238</id>
+      <comp>0.99289</comp>
+      </nuclide>
+  </recipe>
+
+6. After closing this recipe with the ``</recipe>`` tag, we can add other recipes. The recipe section of this tutorial is placed below.
+::
+
+  <recipe>
+      <name>nat-u</name>
+      <basis>mass</basis>
+      <nuclide>
+        <id>92235</id>
+        <comp>0.00711</comp>
+      </nuclide>
+      <nuclide>
+        <id>92238</id>
+        <comp>0.99289</comp>
+      </nuclide>
+    </recipe>
+
+    <recipe>
+      <name>fresh-uox</name>
+      <basis>mass</basis>
+      <nuclide>
+        <id>92235</id>
+        <comp>0.04</comp>
+      </nuclide>
+      <nuclide>
+        <id>92238</id>
+        <comp>0.96</comp>
+      </nuclide>
+    </recipe>
+
+    <recipe>
+      <name>spent-uox</name>
+      <basis>mass</basis>
+      <nuclide>
+        <id>92235</id>
+        <comp>0.011</comp>
+      </nuclide>
+      <nuclide>
+        <id>92238</id>
+        <comp>0.94</comp>
+      </nuclide>
+      <nuclide>
+        <id>94239</id>
+        <comp>0.009</comp>
+      </nuclide>
+      <nuclide>
+        <id>55137</id>
+        <comp>0.04</comp>
+      </nuclide>
+    </recipe>
+
+Let's take a look at the ``fresh-uox`` fuel recipe:
+
+.. image:: fuel_com.png
     :align: center
-    :alt: Uranium ore can now flow from the mine to the enrichment facility.
+    :alt: Fuel recipe for fresh-uox
 
-3. Use what you learned above to add two new commodities:
+Concept: Configuring an Archetype to Create a Prototype
+-------------------------------------------------------
 
-  * Fresh-UOX-Fuel
-  * Enrich-Tails
+One of the features of *CYCLUS* is its ability to switch between
+different models of the facilities within the fuel cycle. These models,
+called **archetypes**, may change how the facility interacts with other
+facilities or how the physics of the facility are represented. For
+example, reactor archetypes determine the reactor's fresh and spent fuel
+compositions and how the reactor experiences fuel burn-up. A very simple
+reactor archetypes might only input the reactors fuel recipes and their
+compositions. A more complex model may tabulate reactor performance and
+physics parameters, and interpolate its input and output recipes. The
+most complex model could perform a full depletion calculation each time
+new fuel enters the reactor. A simple set of archetypes have been
+created in `Cycamore <http://fuelcycle.org/user/cycamoreagents.html>`__.While the archetype describes the form of the model used to represent a
+facility, a variety of parameters are generally available to configure the
+specific behavior.   For the example of a reactor, the developer will probably
+allow the user to define the power level of the reactor, independent of the
+specific model chosen to represent the behavior of the model.  Other common
+reactor parameters are fuel loading parameters such as cycle length and batch
+size.
 
-4. Modify the Enrichment facility to use these commodities:
-
-  * Product Commodity: Fresh-UOX-Fuel
-  * Tails Commodity: Enrich-Tails
-
-.. image:: enrich-commods.png
-    :align: center
-    :alt: All commodities have been defined for the enrichment facility.
-
-Concept: Material recipes
---------------------------
-
-Materials area a fundamental type of resource in |Cyclus|.  Each material
-object consists of a quantity (typically in kg) and a quality, ie. an isotopic
-composition.  The isotopic composition is referred to as a recipe.  Some
-archetypes may want to specify recipes for their input and/or output, as
-a list of isotope with either mass or atom fractions.
-
-Activity: Add a recipe for natural uranium
-+++++++++++++++++++++++++++++++++++++++++++
-
-Our enrichment facility will request natural uranium.
-
-1. Drag the **Recipe Builder** *tool* into the *workspace* and drop it on an
-   empty location.
-
-.. image:: recipe-builder-drag.png
-    :align: center
-    :alt: Initial view of the Recipe Builder.
-
-2. Select "Add New Recipe"
-3. Give your recipe a name: Nat-U
-4. Choose either the mass or atom basis.  In this case a mass basis is more straightforward.
-5. Click on the "Add Isotope" button
-6. Enter the information for U-235.  |Cyclus| uses a robust system that allows
-   users to refer to isotopes in a multitude of formats.  For U-235, you can
-   enter either "U-235" or "92235".  The mass fraction is 0.007.
-
-.. image:: recipe-natU-235-only.png
-    :align: center
-    :alt: The natural uranium recipe after adding only U-235.
-
-7. Repeat steps 5 & 6 for U-238.
-8. Return to the configuration window for the enrichment plant
-9. Select "Nat-U" recipe as the feed recipe
-
-.. image:: recipe-natU-finished-assigned.png
-    :align: center
-    :alt: The natural uranium recipe is complete and assigned to the
-          Enrichment facility's feed recipe.
+In |Cyclus|, when an archetype has been configured with a
+specific set of parameters, it is called a *prototype*.
 
 
-   
-Activity: Completing your Prototype Configurations
-++++++++++++++++++++++++++++++++++++++++++++++++++
+Activity: Configure your first prototype
+++++++++++++++++++++++++++++++++++++++++
 
-For each of the following prototypes, drag it into the fuel cycle design pane
-and configure it with the following information.
+Now let's model the reactor this fuel will go through! In this simple exam, let's model a single PWR in the United States. It has a power capacity of 1178 MWe, and there is only one of them in the region.
+The template for the reactor is given below:
+::
 
-1. Reactor
+    <facility>
+      <name>Reactor</name>
+      <config>
+        <Reactor>
+          <fuel_incommods> <val>[VALUE]/val> </fuel_incommods>
+          <fuel_inrecipes> <val>[VALUE]</val> </fuel_inrecipes>
+          <fuel_outcommods> <val>[VALUE]</val> </fuel_outcommods>
+          <fuel_outrecipes> <val>[VALUE]</val> </fuel_outrecipes>
+          <cycle_time>[VALUE]</cycle_time>
+          <refuel_time>[VALUE]</refuel_time>
+          <assem_size>[VALUE]</assem_size>
+          <n_assem_core>[VALUE]</n_assem_core>
+          <n_assem_batch>[VALUE]</n_assem_batch>
+          <power_cap>[VALUE]</power_cap>
+        </Reactor>
+      </config>
+    </facility>
 
-  * Name: ALWR
-  * Fresh Fuel Commodity List: Fresh-UOX-Fuel
-  * Fresh Fuel Recipe List:
+Where ``fuel_incommods`` is the input fuel commodity, ``fuel_inrecipes`` is the input fuel recipe, ``fuel_outcommods`` is the output fuel commodity, and ``fuel_outrecipes`` is the output fuel recipe.
+``cycle_time`` is amount of time the reactor operates between fuel outages, ``refuel_time`` is the amount of time to refuel the cycle during an outage, ``assem_size`` is the size of an assembly, ``n_assem_core`` is how many assemblies are in the core, and ``n_assem_batch`` is how many batches of assemblies exist in the core.
+``power_cap`` is the amount of electricity the reactor generates.
 
-    * Fresh-UOX-Fuel-4: create a recipe with a mass basis with 4% U-235 *(you'll need to add this)*
+Using the template above and the table below, generate the input reactor prototype for this reactor.
 
-  * Spent Fuel Commodity List: Used-UOX-Fuel *(you'll need to add this)*
-  * Spent Fuel Recipe List:
-  * Used-UOX-Fuel-4: create a recipe with a mass basis with:
++-----------------------+---------------------------+
+| Variable              | Value                     |
++=======================+===========================+
+| ``name``              | ``1178MWe BRAIDWOOD-1``   |
++-----------------------+---------------------------+
+| ``Archetype``         | ``Reactor``               |
++-----------------------+---------------------------+
+| ``fuel_incommods``    | ``fresh-uox``             |
++-----------------------+---------------------------+
+| ``fuel_inrecipes``    | ``fresh-uox``             |
++-----------------------+---------------------------+
+| ``fuel_outcommods``   | ``spent-uox``             |
++-----------------------+---------------------------+
+| ``fuel_outrecipes``   | ``spent-uox``             |
++-----------------------+---------------------------+
+| ``cycle_time``        | 18                        |
++-----------------------+---------------------------+
+| ``refuel_time``       | 1                         |
++-----------------------+---------------------------+
+| ``assem_size``        | ``33000``                 |
++-----------------------+---------------------------+
+| ``n_assem_core``      | ``1``                     |
++-----------------------+---------------------------+
+| ``n_assem_batch``     | ``3``                     |
++-----------------------+---------------------------+
+| ``power_cap``         | ``1178``                  |
++-----------------------+---------------------------+
 
-    * 1% U-235, 94% U-238, 1% Pu-239, 4% Cs-137 *(you'll need to add this)*
+Once completed, your prototype should look like:
 
-  * Assembly Mass: 33000 kg
-  * Number of Assemblies per Batch: 1
-  * Number of Assemblies in Core: 3
-  * Cycle Length: 11
-  * Refueling Outage Duration: 1
+::
 
-.. image:: rxtr-complete.png
-    :align: center
-    :alt: Complete reactor configurationn showing spent fuel recipe.
+    <facility>
+        <name>1178MWe BRAIDWOOD-1</name>
+        <config>
+          <Reactor>
+            <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
+            <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
+            <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
+            <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+            <cycle_time>18</cycle_time>
+            <refuel_time>1</refuel_time>
+            <assem_size>33000</assem_size>
+            <n_assem_core>3</n_assem_core>
+            <n_assem_batch>1</n_assem_batch>
+            <power_cap>1178</power_cap>
+          </Reactor>
+        </config>
+      </facility>
 
-2. Repository (using the Sink module)
-
-  * Change the niche to "repository"
-  * Name: UndergroundFacility
-  * Input commodity: Used-UOX-Fuel
-
-.. image:: repo-complete.png
-    :align: center
-    :alt: Complete once through cycle including repo.
+Once complete, append this facility under the commodity section of your input file.
 
 
-Advanced Input Options
-----------------------
 
-In order to streamline input for users, some advanced input quantities are
-hidden by default.  These input quantities will always have default values, so
-users aren't required to set them.  In theory, the archetype developers can
-create many layers with increasing numbers of input quantities.  These deeper
-levels of inputs are accesible using the "User Level" option on each form.
+Activity: Creating the Source
++++++++++++++++++++++++++++++
+Our source, ``UraniumMine``, will provide the natural uranium ore for our enrichment facility.
+This facility takes two inputs, ``name`` and ``outcommd``. Using the Source Archetype and the table below, create the UraniumMine prototype.
 
-Activity: Set the Reactor Power
-++++++++++++++++++++++++++++++++
++-----------------------+---------------------------+
+| Variable              | Value                     |
++=======================+===========================+
+| ``name``              | ``UraniumMine``           |
++-----------------------+---------------------------+
+| ``Archetype``         | ``Source``                |
++-----------------------+---------------------------+
+| ``out_commod``        | ``fresh-uox``             |
++-----------------------+---------------------------+
 
-1. Open the configuration form for the "ALWR" reactor
-2. Change the "User Level" to 1
+1. The Sink Archetype is of the form:
+::
 
-.. image:: user-level-1.png
-    :align: center
-    :alt: First look at user level 1 for the reactor
+  <facility>
+    <name>name</name>
+    <config>
+      <Source>
+        <outcommod>outcommod</outcommod>
+      </Source>
+    </config>
+  </facility>
 
-3. Scroll down to find the input for "Power" and set it to 1000 MWe
+2. Filling in the variables ``name``, ``Archetype``, and ``out_commod`` as ``UraniumMine``, ``Source``, and ``fresh-uox`` leads to:
+::
 
-.. image:: user-level-1-power-annotated.png
-    :align: center
-    :alt: First look at user level 1 for the reactor
+  <facility>
+    <name>UraniumMine</name>
+    <config>
+      <Source>
+        <outcommod>u-ore</outcommod>
+      </Source>
+    </config>
+  </facility>
 
-Activity: Set the Maximum Inventory of Feed at the Reactor
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Once complete, append this facility under the commodity section of your input file.
 
-1. Open the configuration form for the "EnrichPlant"
-2. Chnage to "User Level: 1
-3. Find the "Maximum Feed Inventory" entry and set it to: 1000000
 
-.. image:: enrich-max-inv-annotated.png
-    :align: center
-    :alt: First look at user level 1 for the reactor
+Activity: Creating the Enrichment facility
+++++++++++++++++++++++++++++++++++++++++++
+The enrichment facility, ``EnrichmentPlant`` will intake the natural ``u-ore`` from ``UraniumMine`` and create ``fresh-uox`` and ``tails`` as its products.
+The enrichment facility archetype is:
+::
+
+  <facility>
+    <name>enrichment_plant_name</name>
+    <config>
+      <Archetype>
+        <feed_commod>feed_commodity</feed_commod>
+        <feed_recipe>feed_recipe</feed_recipe>
+        <product_commod>product_commodity</product_commod>
+        <tails_commod>tails_commodity</tails_commod>
+        <max_feed_inventory>1000000</max_feed_inventory>
+      </Archetype>
+    </config>
+  </facility>
+
+Using the template above and the table below, generate the input reactor prototype for this enrichment facility.
+
++-------------------------+---------------------------+
+| Variable                | Value                     |
++=========================+===========================+
+| ``name``                | ``EnrichmentPlant``       |
++-------------------------+---------------------------+
+| ``Archetype``           | ``Enrichment``            |
++-------------------------+---------------------------+
+| ``feed_commod``         | ``u-ore``                 |
++-------------------------+---------------------------+
+| ``feed_recipe``         | ``nat-u``                 |
++-------------------------+---------------------------+
+| ``product_commod``      | ``fresh-uox``             |
++-------------------------+---------------------------+
+| ``tails_commod``        | ``tails``                 |
++-------------------------+---------------------------+
+| ``max_feed_inventory``  | 1000000                   |
++-------------------------+---------------------------+
+
+
+1. After filling in these variables, your enrichment facility prototype will look like:
+::
+
+  <facility>
+    <name>EnrichmentPlant</name>
+    <config>
+      <Enrichment>
+        <feed_commod>u-ore</feed_commod>
+        <feed_recipe>nat-u</feed_recipe>
+        <product_commod>fresh-uox</product_commod>
+        <tails_commod>tails</tails_commod>
+        <max_feed_inventory>1000000</max_feed_inventory>
+      </Enrichment>
+    </config>
+  </facility>
+
+Once complete, append this facility under the Source prototype of your input file.
+
+Activity: Creating the Sink facility
+++++++++++++++++++++++++++++++++++++
+Our sink, ``NuclearRepository``, will store the ``spent-uox`` and ``tails`` after their use in the fuel cycle. Using the Sink Archetype and the table below, create the UraniumMine prototype.
+
++-------------------------+---------------------------+
+| Variable                | Value                     |
++=========================+===========================+
+| ``name``                | ``NuclearRepository``     |
++-------------------------+---------------------------+
+| ``Archetype``           | ``Sink``                  |
++-------------------------+---------------------------+
+| ``val``                 | ``spent-uox``             |
++-------------------------+---------------------------+
+| ``val``                 | ``tails``                 |
++-------------------------+---------------------------+
+
+The sink facility archetype is:
+::
+
+  <facility>
+    <name>Sink_name</name>
+    <config>
+      <Sink>
+        <in_commods>
+          <val>input_commodity</val>
+          <val>input_commodity</val>
+        </in_commods>
+      </Sink>
+    </config>
+  </facility>
+
+1. After filling in these variables, your enrichment facility prototype will look like:
+::
+
+  <facility>
+    <name>NuclearRepository</name>
+    <config>
+      <Sink>
+        <in_commods>
+          <val>spent-uox</val>
+          <val>tails</val>
+        </in_commods>
+      </Sink>
+    </config>
+  </facility>
+
+Once complete, append this facility under the Reactor prototype of your input file.
+The facility section of your input file should be of the form:
+::
+
+  <facility>
+    <name>UraniumMine</name>
+    <config>
+      <Source>
+        <outcommod>u-ore</outcommod>
+      </Source>
+    </config>
+  </facility>
+
+  <facility>
+    <name>EnrichmentPlant</name>
+    <config>
+      <Enrichment>
+        <feed_commod>u-ore</feed_commod>
+        <feed_recipe>nat-u</feed_recipe>
+        <product_commod>fresh-uox</product_commod>
+        <tails_commod>tails</tails_commod>
+        <max_feed_inventory>1000000</max_feed_inventory>
+      </Enrichment>
+    </config>
+  </facility>
+
+  <facility>
+    <name>1178MWe BRAIDWOOD-1</name>
+    <config>
+      <Reactor>
+        <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
+        <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
+        <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
+        <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+        <cycle_time>18</cycle_time>
+        <refuel_time>1</refuel_time>
+        <assem_size>33000</assem_size>
+        <n_assem_core>3</n_assem_core>
+        <n_assem_batch>1</n_assem_batch>
+        <power_cap>1178</power_cap>
+      </Reactor>
+    </config>
+  </facility>
+
+  <facility>
+    <name>NuclearRepository</name>
+    <config>
+      <Sink>
+        <in_commods>
+          <val>spent-uox</val>
+          <val>tails</val>
+        </in_commods>
+      </Sink>
+    </config>
+  </facility>
