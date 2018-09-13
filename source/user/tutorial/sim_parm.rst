@@ -31,11 +31,25 @@ includes the following phases:
 Users do not have to manage these phases, but must provide the following
 information for all simulations:
 
-1. Duration: the number of months to be simulated
-2. Start Month: the first month of the simulation
-3. Start Year: the first year of the simulation
-4. Decay treatment: Turn off all decay ("never") allow individual archetypes to implement it, 
-5. Simulation Handle (<simulation>):  An optional unique identifier for this particular simulation.
+1. <simulation>:  The simulation handle contains all the parameters in the simulation.
+
+2. <duration>: the number of months to be simulated
+
+3. <startmonth>: the first month of the simulation (e.g.: 1 for January)
+
+4. <startyear>: the first year of the simulation
+
+5. <decay>:The Cyclus kernel has built-in experimental support for `Decay <http://fuelcycle.org/devdoc/decay.html>`_ calculations. Materials store the time since their last decay and agents are free to invoke the decay function on them as desired to decay them to the current simulation time. Cyclus can operate in 3 decay modes, with 1 additional mode likely to be added in a future release:
+
+- 'never' if all decay is turned off
+- 'manual', meaning it is only on if the individual archetype decays their own inventory
+- 'lazy', which will compute decay only when archetypes fetch a particular composition.
+- 'periodic' (future) automatically decays all materials in a simulation with some fixed frequency. 
+
+There are other `optional parameters <http://fuelcycle.org/user/input_specs/control.html>`_ that
+could be given but are not in the scope of this tutorial.
+
+
 6. Description: A brief description of your simulation.
 
 We'll return later to the topics of generating, loading and executing an input file.
@@ -67,7 +81,7 @@ in the simulation. For simplicity, we will not model decay in this
 tutorial.
 
 Activity: Set Simulation Parameters
-------------------------------------
+-----------------------------------
 Using the simulation control template above and the table below, properly fill the template with the variables listed in the table below in your favorite text editor
 
 +-------------------+---------------+---------------------------------+
