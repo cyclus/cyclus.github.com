@@ -34,9 +34,9 @@ information for all simulations:
 1. Duration: the number of months to be simulated
 2. Start Month: the first month of the simulation
 3. Start Year: the first year of the simulation
-4. Decay treatment: Turn off all decay ("never") or allow individual archetypes to implement it
-5. Simulation Handle: An optional unique identifier for this particular simulation.
-6. Description: A brief description for your benefit.
+4. Decay treatment: Turn off all decay ("never") allow individual archetypes to implement it, 
+5. Simulation Handle (<simulation>):  An optional unique identifier for this particular simulation.
+6. Description: A brief description of your simulation.
 
 We'll return later to the topics of generating, loading and executing an input file.
 
@@ -57,11 +57,11 @@ The simulation control is the first part of the CYCLUS input file and is of the 
     </simulation>
 
 The lifetime of a *CYCLUS* simulation is determined by its
-**``duration``**. **``duration``** is the number of months *CYCLUS* will
+**duration**. **duration``** is the number of months *CYCLUS* will
 model the fuel cycle. *CYCLUS* also intakes the **``start_month``** and
 **``start_year``** of the simulation. The last major parameter of the
 simulation is whether or not we wish to model the
-**```decay`` <http://fuelcycle.org/devdoc/decay.html>`__** of the
+**`decay <http://fuelcycle.org/devdoc/decay.html>`__** of the
 radioactive elements (uranium ore, nuclear fuel, & spent nuclear fuel)
 in the simulation. For simplicity, we will not model decay in this
 tutorial.

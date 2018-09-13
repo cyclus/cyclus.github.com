@@ -1,8 +1,8 @@
-Understanding and Adding Archetypes to Your Scenario
-++++++++++++++++++++++++++++++++++++++++++++++++++++
+Understanding Archetypes 
+++++++++++++++++++++++++
 
 Concept: Archetypes
-=========================================
+===================
 
 One of the principal features of |Cyclus| is the ability for users to easily
 switch between different models of fuel cycle facilities.  Models may differ
@@ -10,8 +10,8 @@ in the way they choose to represent the physics of the facility, or in the way
 they choose for the facility to interact with other facilities, or both. In
 |Cyclus|, we call each of these different models an :term:`archetype`.
 
-Archetype Example: Reactor Fidelity
-------------------------------------
+Archetype Example
+-----------------
 
 The easiest way for most fuel cycle analysts to understand the difference
 between archetypes is through the example of a reactor model.
