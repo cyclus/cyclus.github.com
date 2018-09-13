@@ -2,29 +2,28 @@ Concept: Commodities
 --------------------
 
 |Cyclus| exchanges resources between facilities using a market-like mechanism
-called the dynamic resource exchange (DRE).  The concept of a commodity is
+called the **dynamic resource exchange (DRE)**.  The concept of a commodity is
 uses to simply indicate which facilities may be interested in trading with
-each other through the DRE.  A commodity is therefore nothing more than a
+each other through the DRE.  **A commodity is therefore nothing more than a
 unique name that is used to define a set of producers and consumers of a
-common resource.  A commodity does not necessarily have a specific
+common resource**.  A commodity does not necessarily have a specific
 composition; this will be determined by the agents during the simulation.
 Suppliers then respond to the series of requests with a bid . A bid
 supplies a notion of the quantity and quality of a resource to match a
-request. Sup- pliers may add an arbitrary number of constraints to
+request. Suppliers may add an arbitrary number of constraints to
 accompany bids. For example, an enriched UOX supplier may be constrained
 by its current inventory of natural uranium or its total capacity to
-provide enrichment in Separative Work Units (SWUs). It attaches such
-constraints to its bids.
+provide enrichment in Separative Work Units (SWUs).
 
-Any potential resource transfer, i.e., a bid or a request, may be
-denoted as exclusive. An exclusive transfer excludes partial fulfillment;
-it must either be met fully or not at all. This mode supports concepts
+Any potential resource transfer (i.e., a bid or a request) may be
+denoted as exclusive. **An exclusive transfer excludes partial fulfillment;
+it must either be met fully or not at all**. This mode supports concepts
 such as the trading of individual reactor assemblies. In combination
 with the notion of mutual requests, complex instances of supply and
-demand are en- abled. Finally, requesting facilities, institutions and
-regions may apply preferences to each potential request-bid pairing
+demand are enabled. Finally, requesting facilities, institutions and
+regions may apply **preferences** to each potential request-bid pairing
 based on the proposed resource transfer. Facilities can apply arbitrary
-complex logic to rank the bids that they have received, whether based on
+complex logic to **rank the bids** that they have received, whether based on
 the quantity available in each bid or on the quality of each bid, and
 the consequent implications of the physics behavior of that facility. In
 addition, an institution can apply a higher preference to a partner to
@@ -32,10 +31,10 @@ which it is congenial; similarly, a region may negate any transfers of
 material which have a higher uranium enrichment than is allowable.
 
 For example, the flow graph below shows three suppliers (left) and two
-requesters (right), and the potential flows of various commodities among
+requesters (right), and the potential flows of various commodities between
 them. The second consumer makes two different requests. Meanwhile, the
 second supplier can supply the commodities requested by both consumers
-and has provided two bids accordingly.
+and provides two bids accordingly.
 
 .. image:: trade.png
     :align: center
@@ -45,14 +44,16 @@ Activity: Create fresh and spent fuel commodities
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Let's build ``u-ore``, ``fresh-uox``, ``spent-uox``, and ``tails``,
-four commodities that will be traded in our simulation. ``u-ore`` is the
-natural uranium that is mined, tails is the tails from the
-enrichment process, ``fresh-uox`` is the fresh 4.0% enriched Uranium Oxide fuel
-that enters the reactor, and ``spent-uox`` is the spent Uranium Oxide
-fuel that leaves the reactor after it is used. Whenever *CYCLUS* needs
+four commodities that will be traded in our simulation.
+* ``u-ore`` : natural uranium that is mined
+* ``tails`` : waste from the enrichment process
+* ``fresh-uox``: fresh 4.0% enriched Uranium Oxide fuel that enters the reactor
+* ``spent-uox``: spent Uranium Oxide fuel that leaves the reactor after depletion
+
+Whenever |CYCLUS| needs
 to know the isotopic composition of a material, it looks at the recipe for that
-material given in the input file. Until now, "recipe" has been used to
-refer to fuel recipes, but the "recipe" section of the input file can
+material given in the input file. Until now, ``recipe`` has been used to
+refer to fuel recipes, but the ``recipe`` section of the input file can
 include the recipe for natural uranium, spent fuel, fresh fuel, or any
 other material where the isotopic composition needs to be tracked.
 
@@ -78,9 +79,12 @@ and is of the form:
         <solution_priority>1.0</solution_priority>
       </commodity>
 
-where name is the name of the commodity and solution priority is a
-number that defines the relative priority for resolution in the dynamic
-resource exchange. We will model four commodities: u-ore, fresh-uox,
+where:
+* name: name of the commodity
+* solution priority: number defining the relative priority for resolution in the dynamic
+resource exchange.
+
+ We will model four commodities: u-ore, fresh-uox,
 spent-uox, and tails.
 
 
@@ -148,7 +152,7 @@ Once complete append the commodities section under the archetypes section.
 Concept: Recipes
 ----------------
 
-Recipes are the isotropic composition of a certain commodity. For
+Recipes are the isotopic composition of a certain material. For
 example, u-ore has an isotropic composition of 0.711% uranium-235 and
 99.284% uranium-238. The recipe section of a CYCLUS input file is
 located at the bottom and is of the form:
@@ -168,8 +172,8 @@ located at the bottom and is of the form:
       </nuclide>
      </recipe>
 
-where ``id`` is the Nuc Id of the isotope and ``comp`` is the
-composition of that isotope in the commodity.
+where ``id`` is the Nuc Id of the isotope in form ZZAAA and ``comp`` is the
+composition of that isotope in the recipe.
 
 First, we can declare the isotopic compositions of the fresh and spent
 fuel. We'll be using simple recipes: fresh fuel is 4.0% U-235 by mass,
@@ -327,18 +331,21 @@ Let's take a look at the ``fresh-uox`` fuel recipe:
 Concept: Configuring an Archetype to Create a Prototype
 -------------------------------------------------------
 
-One of the features of *CYCLUS* is its ability to switch between
+One of the features of |CYCLUS| is its ability to switch between
 different models of the facilities within the fuel cycle. These models,
 called **archetypes**, may change how the facility interacts with other
 facilities or how the physics of the facility are represented. For
 example, reactor archetypes determine the reactor's fresh and spent fuel
-compositions and how the reactor experiences fuel burn-up. A very simple
-reactor archetypes might only input the reactors fuel recipes and their
-compositions. A more complex model may tabulate reactor performance and
-physics parameters, and interpolate its input and output recipes. The
-most complex model could perform a full depletion calculation each time
-new fuel enters the reactor. A simple set of archetypes have been
-created in `Cycamore <http://fuelcycle.org/user/cycamoreagents.html>`__.While the archetype describes the form of the model used to represent a
+compositions and how the reactor experiences fuel burn-up. A reactor
+model can have three varying fidelity levels:
+* A very simple model that uses recipe to deplete fuel
+* A more complex model may tabulate reactor performance and
+physics parameters, and interpolate its input and output recipes.
+* The most complex model could perform a full depletion calculation each time
+new fuel enters the reactor.
+
+A simple set of archetypes have been created in `Cycamore <http://fuelcycle.org/user/cycamoreagents.html>`__. 
+While the archetype describes the form of the model used to represent a
 facility, a variety of parameters are generally available to configure the
 specific behavior.   For the example of a reactor, the developer will probably
 allow the user to define the power level of the reactor, independent of the
@@ -353,7 +360,7 @@ specific set of parameters, it is called a *prototype*.
 Activity: Configure your first prototype
 ++++++++++++++++++++++++++++++++++++++++
 
-Now let's model the reactor this fuel will go through! In this simple exam, let's model a single PWR in the United States. It has a power capacity of 1178 MWe, and there is only one of them in the region.
+Now let's model the reactor this fuel will go through! In this simple example, let's model a single PWR in the United States. It has a power capacity of 1178 MWe, and there is only one of them in the region.
 The template for the reactor is given below:
 ::
 
@@ -375,9 +382,17 @@ The template for the reactor is given below:
       </config>
     </facility>
 
-Where ``fuel_incommods`` is the input fuel commodity, ``fuel_inrecipes`` is the input fuel recipe, ``fuel_outcommods`` is the output fuel commodity, and ``fuel_outrecipes`` is the output fuel recipe.
-``cycle_time`` is amount of time the reactor operates between fuel outages, ``refuel_time`` is the amount of time to refuel the cycle during an outage, ``assem_size`` is the size of an assembly, ``n_assem_core`` is how many assemblies are in the core, and ``n_assem_batch`` is how many batches of assemblies exist in the core.
-``power_cap`` is the amount of electricity the reactor generates.
+Where:
+* ``fuel_incommods``: input fuel commodity
+* ``fuel_inrecipes``" input fuel recipe
+* ``fuel_outcommods``: output fuel commodity
+* ``fuel_outrecipes``: output fuel recipe.
+* ``cycle_time``: amount of time the reactor operates between refueling outages
+* ``refuel_time``: duration of refueling outage
+* ``assem_size``" size of a single assembly
+* ``n_assem_core`` : number of assemblies in the core
+* ``n_assem_batch``: number of batches replaced per refueling.
+* ``power_cap``: amount of electricity the reactor generates.
 
 Using the template above and the table below, generate the input reactor prototype for this reactor.
 
@@ -450,7 +465,7 @@ This facility takes two inputs, ``name`` and ``outcommd``. Using the Source Arch
 | ``out_commod``        | ``fresh-uox``             |
 +-----------------------+---------------------------+
 
-1. The Sink Archetype is of the form:
+1. The template for the Source archetype is of the form:
 ::
 
   <facility>
@@ -480,7 +495,7 @@ Once complete, append this facility under the commodity section of your input fi
 Activity: Creating the Enrichment facility
 ++++++++++++++++++++++++++++++++++++++++++
 The enrichment facility, ``EnrichmentPlant`` will intake the natural ``u-ore`` from ``UraniumMine`` and create ``fresh-uox`` and ``tails`` as its products.
-The enrichment facility archetype is:
+The template for the Enrichment archetype is of the form:
 ::
 
   <facility>
@@ -517,7 +532,7 @@ Using the template above and the table below, generate the input reactor prototy
 +-------------------------+---------------------------+
 
 
-1. After filling in these variables, your enrichment facility prototype will look like:
+After filling in these variables, your enrichment facility prototype will look like:
 ::
 
   <facility>
@@ -537,7 +552,9 @@ Once complete, append this facility under the Source prototype of your input fil
 
 Activity: Creating the Sink facility
 ++++++++++++++++++++++++++++++++++++
-Our sink, ``NuclearRepository``, will store the ``spent-uox`` and ``tails`` after their use in the fuel cycle. Using the Sink Archetype and the table below, create the UraniumMine prototype.
+Our sink, ``NuclearRepository``, will store the ``spent-uox`` and ``tails`` after
+their use in the fuel cycle. Using the Sink Archetype template and the table below,
+create the UraniumMine prototype.
 
 +-------------------------+---------------------------+
 | Variable                | Value                     |
