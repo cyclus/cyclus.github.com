@@ -45,6 +45,7 @@ Activity: Create fuel commodities
 
 Let's build ``u-ore``, ``fresh-uox``, ``spent-uox``, and ``tails``,
 four commodities that will be traded in our simulation.
+
 * ``u-ore`` : natural uranium that is mined
 * ``tails`` : waste from the enrichment process
 * ``fresh-uox``: fresh 4.0% enriched Uranium Oxide fuel that enters the reactor
@@ -80,12 +81,12 @@ and is of the form:
       </commodity>
 
 where:
+
 * name: name of the commodity
 * solution priority: number defining the relative priority for resolution in the dynamic
-resource exchange.
+  resource exchange.
 
- We will model four commodities: u-ore, fresh-uox,
-spent-uox, and tails.
+ We will model four commodities: u-ore, fresh-uox, spent-uox, and tails.
 
 
 Activity: Building commodities
@@ -338,11 +339,12 @@ facilities or how the physics of the facility are represented. For
 example, reactor archetypes determine the reactor's fresh and spent fuel
 compositions and how the reactor experiences fuel burn-up. A reactor
 model can have three varying fidelity levels:
+
 * A very simple model that uses recipe to deplete fuel
 * A more complex model may tabulate reactor performance and
-physics parameters, and interpolate its input and output recipes.
+  physics parameters, and interpolate its input and output recipes.
 * The most complex model could perform a full depletion calculation each time
-new fuel enters the reactor.
+  new fuel enters the reactor.
 
 A simple set of archetypes have been created in `Cycamore <http://fuelcycle.org/user/cycamoreagents.html>`__. 
 While the archetype describes the form of the model used to represent a
@@ -383,6 +385,7 @@ The template for the reactor is given below:
     </facility>
 
 Where:
+
 * ``fuel_incommods``: input fuel commodity
 * ``fuel_inrecipes``" input fuel recipe
 * ``fuel_outcommods``: output fuel commodity
