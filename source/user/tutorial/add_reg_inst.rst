@@ -4,12 +4,11 @@ Adding Regions and Institutions
 Concept: Regions & Institutions
 -------------------------------
 
-|Cyclus| establishes a hierarchy of agents: Facility agents are operated by
-Institution agents that exist within a Region agent.  This sense of ownership
-and coarse "geolocation" allow for modifications of the interaction behavior
-among agents.  For example, two facilities who trade in the same commodity,
-but that exist in different regions may be disallowed from participating in a
-trade.
+|Cyclus| establishes a hierarchy of agents: Facility agents are managed by
+Institution agents that exist within a Region agent.  This series of ownership
+allow for control of the interaction behavior
+between agents.  For example, two facilities 
+may not be allowed to trade if they are in two different regions.
 
 Every |Cyclus| simulation needs at least one Region and one Institution, and
 in this case, we'll use the simplest options:
@@ -21,7 +20,6 @@ in this case, we'll use the simplest options:
 Concept: Regions
 ----------------
 
-Regions are the location of the facilties within a cyclus simulation.
 Regions tie together a fuel cycle as they designate what facilities are
 in the region's fuel cycle. Regions may apply preferences to each
 potential request-bid pairing based on the proposed resource transfer.
@@ -38,7 +36,12 @@ The basic structure of a region is:
 
     </region>
 
-Where ``name`` is the name of the region. In between the two empty
+Where:
+
+* ``name``: name of the region
+* ``config``: Region archetype to use
+
+In between the two empty
 spaces is where the institution and facility information goes. The
 institution block is the form:
 
@@ -57,9 +60,13 @@ institution block is the form:
         </config>
       </institution>
 
-Where ``prototype`` is the prototype that is in the region, ``number``
-is the amount of prototypes in the institution, ``name`` is the name of
-the institution. The final template is of the form:
+Where:
+
+* ``prototype``:  prototype that is initially in the region
+* ``number``: the number of the prototype initially in the institution
+* ``name``: name of the institution.
+
+Putting it all together, a complete region template is of the form:
 
 ::
 
@@ -89,11 +96,11 @@ acts as an institution in the simulation. An institution block can only
 appear within a region block. Each institution block has the following
 sections in any order:
 
--  ``name`` (required once) - a name for the prototype
--  ``lifetime`` (optional once) - a non-negative integer indicating the
+-  ``name`` (required, once) - a name for the prototype
+-  ``lifetime`` (optional, once) - a non-negative integer indicating the
    number of time steps that this region agent will be active in the
    simulation
--  ``config`` (required once) - the archetype-specific configuration
+-  ``config`` (required, once) - the archetype-specific configuration
 -  ``initialfacilitylist`` (optional, may appear multiple times) - a
    list of facility agents operating at the beginning of the simulation
 
@@ -105,35 +112,49 @@ that each contain the following sections, in the following order:
 -  ``number`` - the number of such facilities that are operating at the
    beginning of the simulation
 
-The example below introduces two institution agents. This example
+The example below
 introduces two institution agents (the region section that encloses them
 is not shown). The first institution has the name *SingleInstitution*,
 and is configured from the archetype with the name (or alias)
-*NullInst*. The author of the ``NullInst`` archetype has defined no
-archetype-specific data. This agent begins the simulation with two
+*NullInst*. The ``NullInst``has no defined archetype-specific data.
+This agent begins the simulation with two
 facility agents, one based on the ``FacilityA`` prototype and another
 based on the ``FacilityB`` prototype. The second institution has the
 name *AnotherInstitution*, is also configured from the archetype with
 the name (or alias) ``NullInst``. This institution has no initial
 facilities.
 
+
+::
+
+      <institution>
+        <initialfacilitylist>
+          <entry>
+            <prototype>FacilityA</prototype>
+            <number>1</number>
+          </entry>
+          <entry>
+            <prototype>FacilityB</prototype>
+            <number>1</number>
+          </entry>
+          </initialfacilitylist>
+        <name>SingleInstitution</name>
+        <config>
+          <NullInst/>
+        </config>
+      </institution>
+
+      <institution>
+        <name>AnotherInstitution</name>
+        <config>
+          <NullInst/>
+        </config>
+      </institution>
+
 Activity: Write the Region template
 +++++++++++++++++++++++++++++++++++
 
-Using the table below, let's create the region section of our input file.
-
-
-+----------------------+---------------------------+
-| Variable             | Value                     |
-+======================+===========================+
-| ``name``             | ``USA``                   |
-+----------------------+---------------------------+
-| ``prototype``        | ``1178MWe BRAIDWOOD-1``   |
-+----------------------+---------------------------+
-| ``number``           | ``1``                     |
-+----------------------+---------------------------+
-| ``fuel_inrecipes``   | ``tails``                 |
-+----------------------+---------------------------+
+Using the template below, let's create the region section of our input file.
 
 ::
 
@@ -203,10 +224,6 @@ Activity: Save your input file
 
 Save your input file as ``cyclus_intro_file.xml``
 
-  - ``name`` is the name of the region
-  - ``config`` is the archetype-specific configuration
-  - ``institution`` - an institution agent operating in this region
-
 Activity: Add a Region
 ++++++++++++++++++++++
 Let's create region, ``USA``, that contains two institutions, ``Exelon`` and ``United States Nuclear``.
@@ -216,8 +233,8 @@ Let's create region, ``USA``, that contains two institutions, ``Exelon`` and ``U
 
 Using the template above and the table below, let's build the region.
 
-1. Since their are two institutions, 'Exelon' and ``United States Nuclear`` we will split the region into two parts.
-Let's first build the ``Exelon`` institution. This institution has one ``1178MWe BRAIDWOOD-1`` prototype reactor. Using this information we can write this institution as:
+1. Since there are two institutions, ``Exelon`` and ``United States Nuclear``, we will split the region into two parts.
+Let's first build the ``Exelon`` institution. This institution has one ``1178MWe BRAIDWOOD-1`` prototype. Using this information we can write this institution as:
 ::
 
   <region>
@@ -232,7 +249,7 @@ Let's first build the ``Exelon`` institution. This institution has one ``1178MWe
           <number>1</number>
         </entry>
         </initialfacilitylist>
-      <name>Exelon </name>
+      <name>Exelon</name>
       <config>
         <NullInst/>
       </config>
