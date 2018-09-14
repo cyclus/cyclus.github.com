@@ -103,12 +103,14 @@ Using this table, let's set the simulation parameters.
 
     <simulation>
 
-2. Tab in and place the ``control`` header in as such
+2. Place the ``control`` header in as such
 
 ::
 
   <simulation>
     <control>
+
+If you would like, you can space or tab the ``control`` header over for personal ease of reading the file but it is not necessary.
 
 3. After filling in the parameters listed in the table above tab out and close the control and simulation sections as:
 
