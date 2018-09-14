@@ -26,7 +26,7 @@ We will now use this to add the institution for ``DeployInst``.
 Using the prototype facilities already created, the new institution should
 look like the following:
 
-::
+.. code-block:: xml
 
     <institution>
       <name>ExampleInstitution</name>

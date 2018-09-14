@@ -41,8 +41,8 @@ First, a *cursor* that points to the sqlite file is created to the output file. 
     output_filename = 'singlereactortutorial.sqlite'
     cur = analysis.cursor(output_filename)
 
-Activity: How much :math:`^{235}`\ U is left?
-+++++++++++++++++++++++++++++++++++++++++++++
+Activity: Track Uranium
++++++++++++++++++++++++
 
 Now let's see how much :math:`^{235}`\ U left the 1178MWe BRAIDWOOD-1? To find out,
 lets use the ``total_isotope_traded`` function! The
@@ -93,8 +93,8 @@ Using the table above, let's find out how much :math:`^{235}`\ U left the 1178MW
     107448.0
 
 
-Activity: Plot the cumulative SNF mass
-++++++++++++++++++++++++++++++++++++++
+Activity: Plot SNF Mass
++++++++++++++++++++++++
 Now let's plot the cumulative mass of the spent nuclear fuel that is
 taken out of the 1178MWe BRAIDWOOD-1. Again, let's use the handy
 ``analysis.plot_out_flux_cumulative``\ function which takes input
@@ -131,8 +131,8 @@ We receive the plot:
 .. image:: isotope_out.png
    :align: center
 
-Activity: Plot the cumulative fresh fuel mass
-+++++++++++++++++++++++++++++++++++++++++++++
+Activity: Plot Fresh Fuel Mass
+++++++++++++++++++++++++++++++
    Now let's plot the cumulative mass of the fresh nuclear fuel that is
    put into the 1178MWe BRAIDWOOD-1. Again, let's use
    ``analysis.plot_in_flux`` which takes the arguments:

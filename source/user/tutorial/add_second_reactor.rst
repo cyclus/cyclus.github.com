@@ -7,8 +7,8 @@ cycle time of 15 months, assembly size of 30160, and power capacity 1000
 MWe. Using this information, let's construct the facility input section
 of this reactor.
 
-Activity: Creating a second reactor prototype
-+++++++++++++++++++++++++++++++++++++++++++++
+Activity: Second Reactor
+++++++++++++++++++++++++
 
 Using the reactor facility archetype and the table below, create the reactor
 prototype.
@@ -44,7 +44,7 @@ prototype.
 +-----------------------+---------------------------+
 
 Once complete, your reactor prototype should look like:
-::
+.. code-block:: xml
 
   <facility>
     <name>1000We Lightwater-1</name>
@@ -75,17 +75,17 @@ our CYCLUS input file. To do so, go to the ``entry`` header under the
 ``initialfacilitylist`` section of the region block of the input file
 and add
 
-::
+.. code-block:: xml
 
   <entry>
     <prototype>1000We Lightwater-1</prototype>
     <number>1</number>
   </entry>
 
-below the ``1178MWe BRAIDWOOD-1`` entry block. The Reactor's section
+below the ``1178MWe BRAIDWOOD-1`` entry block. The Reactor section
 of the region block should now look like,
 
-::
+.. code-block:: xml
 
     <region>
         <name>USA</name>
