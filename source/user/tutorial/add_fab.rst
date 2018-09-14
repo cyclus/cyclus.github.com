@@ -6,8 +6,8 @@ fissile material with so-called "filler" material in an attempt to match
 neutronics of the
 requested material. More details about the archetype and the state
 variables are in the 
-:doc:`cycamore archetype documentation
-<user/cycamoreagents.rst>` page.
+`cycamore archetype documentation
+<../cycamoreagents.html>`_ page.
 
 The following is the input template for ``Cycamore::FuelFab``
 archetype.
