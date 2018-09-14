@@ -31,7 +31,7 @@ which it is congenial; similarly, a region may negate any transfers of
 material which have a higher uranium enrichment than is allowable.
 
 For example, the flow graph below shows three suppliers (left) and two
-requesters (right), and the potential flows of various commodities between
+requesters (right), and the potential flows of various commodities among
 them. The second consumer makes two different requests. Meanwhile, the
 second supplier can supply the commodities requested by both consumers
 and provides two bids accordingly.
@@ -61,7 +61,7 @@ other material where the isotopic composition needs to be tracked.
 The commodities section is located right under the ``archetype`` section
 and is of the form:
 
-::
+.. code-block:: XML
 
     <commodity>
         <name>com1</name>
@@ -108,20 +108,26 @@ template.
 +-------------+-------------+---------------------+
 
 1. Let's start with ``u-ore``. In the ``<name>`` line replace ``com1`` with ``u-ore``.
-::
+
+.. code-block:: XML
+
 
     <commodity>
         <name>u-ore</name>
 
 2. In the ``<solution_priority>`` section replace ``val1`` with ``1.0``.
-::
+
+.. code-block:: XML
+
 
     <commodity>
         <name>u-ore</name>
         <solution_priority>1.0</solution_priority>
 
 3. Now, finalize this commodity by closing it with ``</commodity>``. Your ``u-ore`` commodity section should be:
-::
+
+.. code-block:: XML
+
 
     <commodity>
         <name>u-ore</name>
@@ -129,7 +135,8 @@ template.
       </commodity>
 
 4. Repeat this process for the other three commodities. Your final result should look like:
-::
+
+.. code-block:: XML
 
   <commodity>
       <name>u-ore</name>
@@ -153,12 +160,14 @@ Once complete append the commodities section under the archetypes section.
 Concept: Recipes
 ----------------
 
+Most commodities are materials, which have a quantity and an
+isotopic composition.
 Recipes are the isotopic composition of a certain material. For
 example, u-ore has an isotropic composition of 0.711% uranium-235 and
 99.284% uranium-238. The recipe section of a CYCLUS input file is
 located at the bottom and is of the form:
 
-::
+.. code-block:: XML
 
      <recipe>
       <name>nat-u</name>
@@ -223,20 +232,23 @@ template for natural uranium, fresh fuel, and spent fuel.
 +---------------------+--------------------+--------------------+
 
 1. Let's start with the Natural Uranium recipe. Start by placing the ``<recipe>`` tag as the header to signify that this is a recipe and tab in and place the fill ``<name>`` tag such as:
-::
+
+.. code-block:: XML
 
   <recipe>
     <name>nat-u</name>
 
 2. To signify that the composition of this recipe is in terms of Mass, fill the ``<basis>`` tag with ``mass``.
-::
+
+.. code-block:: XML
 
   <recipe>
     <name>nat-u</name>
     <basis>mass</basis>
 
 3. To add a nuclide to this recipe, call the ``nuclide`` tag, tab in, add the ``<id>`` and ``<comp>`` tags:
-::
+
+.. code-block:: XML
 
   <recipe>
     <name>nat-u</name>
@@ -247,7 +259,8 @@ template for natural uranium, fresh fuel, and spent fuel.
     </nuclide>
 
 4. We will fill the ``<id>`` tag with the Uranium-235 ``Nuc Id``, ``92235``, and fill the composition tag with its mass composition, ``0.00711``.
-::
+
+.. code-block:: XML
 
   <recipe>
     <name>nat-u</name>
@@ -258,7 +271,8 @@ template for natural uranium, fresh fuel, and spent fuel.
     </nuclide>
 
 5. Following the same procedure, we can add Uranium-238 to this recipe such as:
-::
+
+.. code-block:: XML
 
   <recipe>
     <name>nat-u</name>
@@ -274,7 +288,8 @@ template for natural uranium, fresh fuel, and spent fuel.
   </recipe>
 
 6. After closing this recipe with the ``</recipe>`` tag, we can add other recipes. The recipe section of this tutorial is placed below.
-::
+
+.. code-block:: XML
 
   <recipe>
       <name>nat-u</name>
@@ -364,7 +379,8 @@ Activity: Configure your first prototype
 
 Now let's model the reactor this fuel will go through! In this simple example, let's model a single PWR in the United States. It has a power capacity of 1178 MWe, and there is only one of them in the region.
 The template for the reactor is given below:
-::
+
+.. code-block:: XML
 
     <facility>
       <name>Reactor</name>
@@ -429,7 +445,7 @@ Using the template above and the table below, generate the input reactor prototy
 
 Once completed, your prototype should look like:
 
-::
+.. code-block:: XML
 
     <facility>
         <name>1178MWe BRAIDWOOD-1</name>
@@ -469,7 +485,8 @@ This facility takes two inputs, ``name`` and ``outcommd``. Using the Source Arch
 +-----------------------+---------------------------+
 
 1. The template for the Source archetype is of the form:
-::
+
+.. code-block:: XML
 
   <facility>
     <name>name</name>
@@ -481,7 +498,8 @@ This facility takes two inputs, ``name`` and ``outcommd``. Using the Source Arch
   </facility>
 
 2. Filling in the variables ``name``, ``Archetype``, and ``out_commod`` as ``UraniumMine``, ``Source``, and ``fresh-uox`` leads to:
-::
+
+.. code-block:: XML
 
   <facility>
     <name>UraniumMine</name>
@@ -499,7 +517,8 @@ Activity: Creating the Enrichment facility
 ++++++++++++++++++++++++++++++++++++++++++
 The enrichment facility, ``EnrichmentPlant`` will intake the natural ``u-ore`` from ``UraniumMine`` and create ``fresh-uox`` and ``tails`` as its products.
 The template for the Enrichment archetype is of the form:
-::
+
+.. code-block:: XML
 
   <facility>
     <name>enrichment_plant_name</name>
@@ -536,7 +555,8 @@ Using the template above and the table below, generate the input reactor prototy
 
 
 After filling in these variables, your enrichment facility prototype will look like:
-::
+
+.. code-block:: XML
 
   <facility>
     <name>EnrichmentPlant</name>
@@ -572,7 +592,8 @@ create the UraniumMine prototype.
 +-------------------------+---------------------------+
 
 The sink facility archetype is:
-::
+
+.. code-block:: XML
 
   <facility>
     <name>Sink_name</name>
@@ -587,7 +608,8 @@ The sink facility archetype is:
   </facility>
 
 1. After filling in these variables, your enrichment facility prototype will look like:
-::
+
+.. code-block:: XML
 
   <facility>
     <name>NuclearRepository</name>
@@ -603,7 +625,8 @@ The sink facility archetype is:
 
 Once complete, append this facility under the Reactor prototype of your input file.
 The facility section of your input file should be of the form:
-::
+
+.. code-block:: XML
 
   <facility>
     <name>UraniumMine</name>

@@ -25,7 +25,7 @@ in the region's fuel cycle. Regions may apply preferences to each
 potential request-bid pairing based on the proposed resource transfer.
 The basic structure of a region is:
 
-::
+.. code-block:: XML
 
     <region>
       <name>Region_name</name>
@@ -45,7 +45,7 @@ In between the two empty
 spaces is where the institution and facility information goes. The
 institution block is the form:
 
-::
+.. code-block:: XML
 
       <institution>
         <initialfacilitylist>
@@ -70,7 +70,7 @@ There can be multiple ``entry`` blocks.
 
 Putting it all together, a complete region template is of the form:
 
-::
+.. code-block:: XML
 
     <region>
       <name>Region_name</name>
@@ -127,8 +127,7 @@ name *AnotherInstitution*, is also configured from the archetype with
 the name (or alias) ``NullInst``. This institution has no initial
 facilities.
 
-
-::
+.. code-block:: XML
 
       <institution>
         <initialfacilitylist>
@@ -159,7 +158,7 @@ Activity: Write the Region template
 
 Using the template below, let's create the region section of our input file.
 
-::
+.. code-block:: XML
 
     <region>
       <name>[VALUE]</name>
@@ -197,7 +196,7 @@ template.
 | ``name``        | ``United States Nuclear``   | ``1``    |
 +-----------------+-----------------------------+----------+
 
-::
+.. code-block:: XML
 
     <institution>
         <initialfacilitylist>
@@ -238,7 +237,8 @@ Using the template above and the table below, let's build the region.
 
 1. Since there are two institutions, ``Exelon`` and ``United States Nuclear``, we will split the region into two parts.
 Let's first build the ``Exelon`` institution. This institution has one ``1178MWe BRAIDWOOD-1`` prototype. Using this information we can write this institution as:
-::
+
+.. code-block:: XML
 
   <region>
     <name>USA</name>
@@ -259,7 +259,8 @@ Let's first build the ``Exelon`` institution. This institution has one ``1178MWe
     </institution>
 
 2. Now let's build the second institution, ``United States Nuclear``. This institution has one ``UraniumMine`` prototype, ``EnrichmentPlant`` prototype, and one ``NuclearRepository`` prototype. Using this information we can write this institution as:
-::
+
+.. code-block:: XML
 
     <institution>
         <initialfacilitylist>
@@ -283,7 +284,8 @@ Let's first build the ``Exelon`` institution. This institution has one ``1178MWe
       </institution>
 
 3. We will close the region section by appending the two sections together and appending a ``</region>`` tag to the end of the section. Once complete, your region prototype should look like:
-::
+
+.. code-block:: XML
 
   <region>
     <name>USA</name>
