@@ -12,7 +12,7 @@ variables are in the
 The following is the input template for ``Cycamore::FuelFab``
 archetype.
 
-::
+.. code-block:: XML
 
   <facility>
     <name>fuelfab</name>
@@ -46,8 +46,7 @@ plutonium and natural uranium into MOX fuel:
 
 Filling in the template, the input block looks like:
 
-
-::
+.. code-block:: XML
 
   <facility>
     <name>fuelfab</name>
