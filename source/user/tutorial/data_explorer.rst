@@ -22,9 +22,9 @@ open and view the tables.
 .. image:: sql1.png
     :align: center
 
-This a view of the tables within the database
-(using DB browser for SQLite). However, to view the data within these
-tables, switch to the Browse Data tab: And select the table of interest.
+This is a view of the tables within the database
+(using DB browser for SQLite). To view the data within these
+tables, switch to the **Browse Data** tab and select the table of interest.
 Some tables have data that may need to be manipulated or used alongside
 other data in other tables, which is why using a python script is often
 ideal.
@@ -32,17 +32,17 @@ ideal.
 .. image:: sql2.png
     :align: center
 
-First, a cursor that points to the sqlite file is created to the output file. A cursor points to the cyclus output file you wish to use and its commonly used when running analysis functions as it 'bookmarks' the file you wish to analyze.
+First, a *cursor* that points to the sqlite file is created to the output file. A *cursor* points to the cyclus output file you wish to use and its commonly used when running analysis functions as it 'bookmarks' the file you wish to analyze.
 
-1. To make a cursor, use the ``analysis.cursor(output_filename)`` function where output_filename is the output filename of the cyclus output file.
+1. To make a cursor, use the ``analysis.cursor(output_filename)`` function where output_filename is name of the cyclus output file.
 
 .. code:: ipython3
 
     output_filename = 'singlereactortutorial.sqlite'
     cur = analysis.cursor(output_filename)
 
-Activity: How much :math:`^{235}`\ U left the 1178MWe BRAIDWOOD-1?
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Activity: How much :math:`^{235}`\ U is left?
++++++++++++++++++++++++++++++++++++++++++++++
 
 Now let's see how much :math:`^{235}`\ U left the 1178MWe BRAIDWOOD-1? To find out,
 lets use the ``total_isotope_traded`` function! The
@@ -65,7 +65,7 @@ lets use the ``total_isotope_traded`` function! The
 | ``nucid``      | ``922350000``               | nuclide id                       |
 +----------------+-----------------------------+----------------------------------+
 
-Using the table above, let's find out how much :math: `^{235}`\ U left the 1178MWe BRAIDWOOD-1?
+Using the table above, let's find out how much :math:`^{235}`\ U left the 1178MWe BRAIDWOOD-1?
 1. In your IPython notebook create the variables:
 
 * ``facility`` that is equal to ``'1178MWe BRAIDWOOD-1'``
@@ -82,7 +82,7 @@ Using the table above, let's find out how much :math: `^{235}`\ U left the 1178M
 
 2. When ready, click the ``run`` button.
 
-3. As you see the answer was:
+3. As you see the answer is:
 
 .. parsed-literal::
 
@@ -93,8 +93,8 @@ Using the table above, let's find out how much :math: `^{235}`\ U left the 1178M
     107448.0
 
 
-Activity: Plot the cumulative mass of the spent nuclear fuel that is taken out of the 1178MWe BRAIDWOOD-1
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Activity: Plot the cumulative SNF mass
+++++++++++++++++++++++++++++++++++++++
 Now let's plot the cumulative mass of the spent nuclear fuel that is
 taken out of the 1178MWe BRAIDWOOD-1. Again, let's use the handy
 ``analysis.plot_out_flux_cumulative``\ function which takes input
@@ -124,18 +124,19 @@ Using the ``analysis.plot_out_flux_cumulative`` function with the inputs:
 
     facility = '1178MWe BRAIDWOOD-1'
     title = 'Cumulative Isotope Outflux of 1178MWe BRAIDWOOD-1'
-    analysis.plot_out_flux_cumulative(cur, facility,title)
+    analysis.plot_out_flux_cumulative(cur, facility, title)
 
 We receive the plot:
 
 .. image:: isotope_out.png
    :align: center
 
-Activity: Plot the cumulative mass of fresh nuclear fuel that is up in 1178MWe BRAIDWOOD-1
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Activity: Plot the cumulative fresh fuel mass
++++++++++++++++++++++++++++++++++++++++++++++
    Now let's plot the cumulative mass of the fresh nuclear fuel that is
    put into the 1178MWe BRAIDWOOD-1. Again, let's use
    ``analysis.plot_in_flux`` which takes the arguments:
+
    * cur
    * facility = ``'1178MWe BRAIDWOOD-1'``
    * title = ``'Cumulative Isotope Influx of 1178MWe BRAIDWOOD-1'``
@@ -144,7 +145,7 @@ Activity: Plot the cumulative mass of fresh nuclear fuel that is up in 1178MWe B
 
        facility = '1178MWe BRAIDWOOD-1'
        title = 'Cumulative Isotope Influx of 1178MWe BRAIDWOOD-1'
-       analysis.plot_in_flux(cur, '1178MWe BRAIDWOOD-1','Isotope Influx of 1178MWe BRAIDWOOD-1')
+       analysis.plot_in_flux(cur, facility, title)
 
 We receive the plot:
 
