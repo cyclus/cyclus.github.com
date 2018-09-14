@@ -8,7 +8,7 @@ Reactor Modifications
 
 Add additional entries for:
 
-* Fresh Fuel Commodity: Fresh-MOX-Fuel**
+* Fresh Fuel Commodity: Fresh-MOX-Fuel **
 * Fresh Fuel Recipe: Fresh-UOX-Fuel
 * Spent Fuel Commidity: Used-MOX-Fuel
 * Used Fuel Recipe: Used-MOX-Fuel-4
@@ -17,8 +17,8 @@ Add additional entries for:
 fuel fabrication facility do its best to match that recipe by blending streams
 of Pu with natural U.
 
-Under user level 1, we'll add 2 entries for the "Fresh Fuel Preference List,
-one for each requested commodity.  Since we want to prefer MOX fuel, the
+Under user level 1, add 2 entries for the "Fresh Fuel Preference List,
+one for each requested commodity.  Since MOX fuel is preferred, the
 preference for MOX should be 2 times higher than that or UOX.  Perhaps:
 
 * MOX = 2
@@ -26,5 +26,5 @@ preference for MOX should be 2 times higher than that or UOX.  Perhaps:
 
 Repository Modifications
 --------------------------
-One change is required for the repository which is to change its accepted commodity to only Separated-Waste.
+Change the accepted commodity for the repository to be Separated-Waste.
 
