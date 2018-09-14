@@ -1,7 +1,7 @@
 Adding a Stream Mixing Fuel Fabrication Facility
 ==================================================
 
-The cycamore FuelFab archetype uses equivalence type method to mix streams of
+The cycamore FuelFab archetype uses the equivalence type method to mix streams of
 fissile material with so-called "filler" material in an attempt to match 
 neutronics of the
 requested material. More details about the archetype and the state
