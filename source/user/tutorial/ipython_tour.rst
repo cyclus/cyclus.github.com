@@ -27,7 +27,7 @@ A Jupyter notebook has four main areas:
     :width: 100%
     :alt: Annotated view of an Jupyter notebook upon loading
 
-Execute your Scenario in an Jupyter Notebook
+Jupyter Notebook Scenario Execution 
 --------------------------------------------
 1. Go to the Jupyter notebook
 2. Remove any old cyclus output files by: ``!rm tutorial.sqlite``
