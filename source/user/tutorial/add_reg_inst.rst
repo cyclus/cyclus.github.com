@@ -348,3 +348,9 @@ Activity: Save your Input File
 You are now ready to generate a full |Cyclus| input file.
 
 1. Save your input file as 'cyclus_intro_file.xml'
+
+
+Check: Full Input File
++++++++++++++++++++++++++++++++++++++++++++++++
+`Full input file
+<full_input.html>`_
