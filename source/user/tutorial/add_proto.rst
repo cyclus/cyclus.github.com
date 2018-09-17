@@ -40,11 +40,13 @@ and provides two bids accordingly.
     :align: center
     :alt: Commodity trade flowchart
 
-Activity: Create fuel commodities
+Activity: Create fuel commodities (optional)
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Let's build ``u-ore``, ``fresh-uox``, ``spent-uox``, and ``tails``,
-four commodities that will be traded in our simulation.
+four commodities that will be traded in our simulation. Note that
+this part is **optional**, and is only needed if the user wants
+to specify the solution priority of each commodity.
 
 * ``u-ore`` : natural uranium that is mined
 * ``tails`` : waste from the enrichment process
@@ -183,7 +185,16 @@ located at the bottom and is of the form:
      </recipe>
 
 where ``id`` is the Nuc Id of the isotope in form ZZAAA and ``comp`` is the
-composition of that isotope in the recipe.
+composition of that isotope in the recipe. Other isotope formats are
+also acceptable. For example, U-235 can be expressed as:
+
+* 922350000 (ZZAAAMMMM)
+* 92235 (ZZAAA)
+* U235 (name)
+* U-235 (name)
+
+For more details, reference the `Recipe definition
+<../input_specs/recipe.html>`_ page.
 
 First, we can declare the isotopic compositions of the fresh and spent
 fuel. We'll be using simple recipes: fresh fuel is 4.0% U-235 by mass,
@@ -343,6 +354,12 @@ Let's take a look at the ``fresh-uox`` fuel recipe:
 .. image:: fuel_com.png
     :align: center
     :alt: Fuel recipe for fresh-uox
+
+|
+|
+|
+|
+
 
 Concept: Archetype configuration
 -------------------------------------------------------
@@ -622,6 +639,10 @@ The sink facility archetype is:
       </Sink>
     </config>
   </facility>
+
+
+Check: Complete Facility block
+++++++++++++++++++++++++++++++++++++++++
 
 Once complete, append this facility under the Reactor prototype of your input file.
 The facility section of your input file should be of the form:
