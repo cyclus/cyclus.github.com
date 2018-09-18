@@ -1,15 +1,14 @@
 Adding a second reactor
 =======================
 
-
 We will now add a second reactor, ``1000We Lightwater-1``, to our
 simulation. This reactor will have a lifetime of 360 months (30 years),
 cycle time of 15 months, assembly size of 30160, and power capacity 1000
 MWe. Using this information, let's construct the facility input section
 of this reactor.
 
-Activity: Creating the second reactor prototype
-+++++++++++++++++++++++++++++++++++++++++++++++
+Activity: Second Reactor
+++++++++++++++++++++++++
 
 Using the reactor facility archetype and the table below, create the reactor
 prototype.
@@ -45,7 +44,7 @@ prototype.
 +-----------------------+---------------------------+
 
 Once complete, your reactor prototype should look like:
-::
+.. code-block:: xml
 
   <facility>
     <name>1000We Lightwater-1</name>
@@ -76,16 +75,17 @@ our CYCLUS input file. To do so, go to the ``entry`` header under the
 ``initialfacilitylist`` section of the region block of the input file
 and add
 
-::
+.. code-block:: xml
 
   <entry>
     <prototype>1000We Lightwater-1</prototype>
     <number>1</number>
   </entry>
 
-The Reactor's section of the region block should now look like,
+below the ``1178MWe BRAIDWOOD-1`` entry block. The Reactor section
+of the region block should now look like,
 
-::
+.. code-block:: xml
 
     <region>
         <name>USA</name>
@@ -109,11 +109,19 @@ The Reactor's section of the region block should now look like,
           </config>
         </institution>
 
+
+    </region>
+
+Note: the blank space between ``</institution>`` and ``</region>`` is
+for additional institutions in the future.
+
 Save your input file as input_file2.xml and run the cyclus simulation.
 
 Activity: Analysis
 ++++++++++++++++++
 
+Following what we've done in `Data Exploration <data_explorer.html>`_,
+we will now analyze the output:
 
 .. code:: ipython3
 
@@ -132,16 +140,16 @@ Activity: Analysis
 .. image:: output_83_0.png
 
 
-Ask:
-----
+Ask
+---
 
 -  Why does 'Cumulative Isotope Outflux of 'Lightwater-1' plot only go
    for 360 months ?
 -  Why is there a spike in isotope outflux at the end of the lifetime of
    the 'Lightwater-1' ?
 
-Share:
-------
+Share
+-----
 
 -  What are some other reactor differences between this plot and the
    'Cumulative Isotope Outflux of '1178MWe BRAIDWOOD-1' reactor.
@@ -154,7 +162,7 @@ Nuclear Waste Repository. To plot, use the
 
    <div class="alert alert-info">
 
-**Interactive Input** Using the table below, create the following
+Using the table below, create the following
 variables. Include appropriate comments.
 
 .. raw:: html
