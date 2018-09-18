@@ -353,4 +353,4 @@ You are now ready to generate a full |Cyclus| input file.
 Check: Full Input File
 +++++++++++++++++++++++++++++++++++++++++++++++
 `Full input file
-<full_input.html>`_
+<full_input_1.html>`_
