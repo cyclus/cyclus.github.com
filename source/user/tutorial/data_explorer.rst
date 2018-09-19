@@ -8,7 +8,7 @@ understanding of the features that matter the most.
 
 Concept: Cyclus Output file
 =========================================
-*CYCLUS* creates a .sqlite file as its output. SQL is a database file
+*CYCLUS* creates a .sqlite file as its output. SQLite is a database file
 type that consists of a series of tables. A few functions have been
 included in ``analysis.py``, a file in downloaded the github repository of this tutorial, to pull information from the sqlite
 database and create figures.
@@ -22,15 +22,11 @@ open and view the tables.
 Analyze the results:
 ~~~~~~~~~~~~~~~~~~~~
 
-*CYCLUS* creates a .sqlite file as its output. SQL is a database file
+*CYCLUS* creates a .sqlite file as its output. SQLite is a database file
 type that consists of a series of tables. A few functions have been
 included in cyutils.analysis.py to pull information from the sqlite
 database and create figures. An sqlite database can be opened and its
-contents viewed, but these database browsers often aren't helpful.
-Importing the data into an external function and manipulating it would
-provide more useful information. However, it can still be helpful to
-open and view the tables. This a view of the tables within the database
-(using DB browser for SQLite). However, to view the data within these
+contents viewed, but these database browsers often aren't appropriate for serious data analysis. Importing the data into an external function and manipulating it would provide more useful information. However, it can still be helpful to open and view the tables. This a view of the tables within the database (using DB browser for SQLite). However, to view the data within these
 tables, switch to the Browse Data tab: And select the table of interest.
 Some tables have data that may need to be manipulated or used alongside
 other data in other tables, which is why using a python script is often
@@ -764,7 +760,7 @@ comments.
 Second reactor facility template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: xml
 
           <facility>
             <name>1000We Lightwater-1</name>
@@ -793,7 +789,7 @@ our CYCLUS input file. To do so, go to the ``entry`` header under the
 ``initialfacilitylist`` section of the region block of the input file
 and add
 
-::
+.. code-block:: xml
 
                 <entry>
                   <prototype>1000We Lightwater-1</prototype>
@@ -802,7 +798,7 @@ and add
 
 The Reactor's section of the region block should now look like,
 
-::
+.. code-block:: xml
 
     <region>
             <name>USA</name>
