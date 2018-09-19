@@ -1,4 +1,3 @@
-
 An Introduction to Data Exploration
 =====================================
 
