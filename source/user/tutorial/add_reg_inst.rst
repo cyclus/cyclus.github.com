@@ -32,7 +32,10 @@ The basic structure of a region is:
       <config>
         <NullRegion/>
       </config>
-
+      <institution>
+      ...
+      ...
+      </institution>
 
     </region>
 
@@ -41,8 +44,8 @@ Where:
 * ``name``: name of the region
 * ``config``: Region archetype to use
 
-In between the two empty
-spaces is where the institution and facility information goes. The
+In between the two dotted lines
+is where the institution and facility information goes. The
 institution block is the form:
 
 .. code-block:: XML
@@ -177,6 +180,7 @@ Using the template below, let's create the region section of our input file.
           <NullInst/>
         </config>
       </institution>
+    </region>
 
 Now the next part of the region template is the other facilities in the
 region's fuel cycle. In our example, these facilities are
@@ -196,29 +200,38 @@ template.
 | ``name``        | ``United States Nuclear``   | ``1``    |
 +-----------------+-----------------------------+----------+
 
+
+Check: Complete Region block
++++++++++++++++++++++++++++++++++++
+
 .. code-block:: XML
 
+  <region>
+    <name>region1</name>
+    <config>
+      <NullRegion/>
+    </config>
     <institution>
-        <initialfacilitylist>
-          <entry>
-            <prototype>UraniumMine</prototype>
-            <number>1</number>
-          </entry>
-          <entry>
-            <prototype>EnrichmentPlant</prototype>
-            <number>1</number>
-          </entry>
-          <entry>
-            <prototype>NuclearRepository</prototype>
-            <number>1</number>
-          </entry>
-        </initialfacilitylist>
-        <name>United States Nuclear</name>
-        <config>
-          <NullInst/>
-        </config>
-      </institution>
-    </region>
+      <initialfacilitylist>
+        <entry>
+          <prototype>UraniumMine</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>EnrichmentPlant</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>NuclearRepository</prototype>
+          <number>1</number>
+        </entry>
+      </initialfacilitylist>
+      <name>United States Nuclear</name>
+      <config>
+        <NullInst/>
+      </config>
+    </institution>
+  </region>
 
 
 Activity: Save your input file
@@ -226,8 +239,10 @@ Activity: Save your input file
 
 Save your input file as ``cyclus_intro_file.xml``
 
-Activity: Add a Region
+
+Activity: Add an extra insitution into the Region
 ++++++++++++++++++++++
+Having multiple insitutions help organize facilities and their affiliation.
 Let's create region, ``USA``, that contains two institutions, ``Exelon`` and ``United States Nuclear``.
 ``Exelon`` is the institution that holds the ``1178MWe BRAIDWOOD-1`` reactor and ``United States Nuclear`` holds the ``UraniumMine``, ``EnrichmentPlant``, and ``NuclearRepository``.
 
@@ -333,3 +348,9 @@ Activity: Save your Input File
 You are now ready to generate a full |Cyclus| input file.
 
 1. Save your input file as 'cyclus_intro_file.xml'
+
+
+Check: Full Input File
++++++++++++++++++++++++++++++++++++++++++++++++
+`Full input file
+<full_input_1.html>`_
