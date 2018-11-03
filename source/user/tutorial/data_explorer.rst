@@ -22,12 +22,10 @@ open and view the tables.
 Analyze the results:
 ~~~~~~~~~~~~~~~~~~~~
 
-*CYCLUS* creates a .sqlite file as its output. SQLite is a database file
-type that consists of a series of tables. A few functions have been
-included in cyutils.analysis.py to pull information from the sqlite
-database and create figures. An sqlite database can be opened and its
-contents viewed, but these database browsers often aren't appropriate for serious data analysis. Importing the data into an external function and manipulating it would provide more useful information. However, it can still be helpful to open and view the tables. This a view of the tables within the database (using DB browser for SQLite). However, to view the data within these
-tables, switch to the Browse Data tab: And select the table of interest.
+
+This is a view of the tables within the database
+(using DB browser for SQLite). To view the data within these
+tables, switch to the **Browse Data** tab and select the table of interest.
 Some tables have data that may need to be manipulated or used alongside
 other data in other tables, which is why using a python script is often
 ideal.
@@ -48,7 +46,9 @@ ideal.
     Usage: python write_input.py [csv][init_date] [duration] [output_file_name]
 
 
-First, a cursor that points to the sqlite file is created:
+First, a *cursor* that points to the sqlite file is created to the output file. A *cursor* points to the cyclus output file you wish to use and its commonly used when running analysis functions as it 'bookmarks' the file you wish to analyze.
+
+1. To make a cursor, use the ``analysis.cursor(output_filename)`` function where output_filename is name of the cyclus output file.
 
 .. code:: ipython3
 
@@ -118,6 +118,9 @@ Simulation Time Info
 .. image:: output_6_2.png
 
 
+Activity: Track Uranium
++++++++++++++++++++++++
+
 Total mass traded
 ^^^^^^^^^^^^^^^^^
 
@@ -150,6 +153,14 @@ variables. Include appropriate comments.
 | ``nucid``      | ``922350000``               | nuclide id                       |
 +----------------+-----------------------------+----------------------------------+
 
+
+Using the table above, let's find out how much :math:`^{235}`\ U left the 1178MWe BRAIDWOOD-1?
+1. In your IPython notebook create the variables:
+
+* ``facility`` that is equal to ``'1178MWe BRAIDWOOD-1'``
+* ``flux`` that is equal to ``'out'``
+* ``nucid``  that is equal to ``922350000``
+
 .. code:: ipython3
 
     cur = cur # cursor to CYCLUS output file
@@ -159,6 +170,10 @@ variables. Include appropriate comments.
     print('Total amount of U235 that left the '+ str(facility) +' reactor:')
     analysis.total_isotope_traded(cur,facility,flux,nucid)
 
+
+2. When ready, click the ``run`` button.
+
+3. As you see the answer is:
 
 .. parsed-literal::
 
@@ -173,6 +188,9 @@ variables. Include appropriate comments.
 
 
 
+
+Activity: Plot SNF Mass
++++++++++++++++++++++++
 Now let's plot the cumulative mass of the spent nuclear fuel that is
 taken out of the 1178MWe BRAIDWOOD-1. Again, let's use the handy
 ``analysis.plot_out_flux_cumulative``\ function which takes input
@@ -206,116 +224,25 @@ variables. Include appropriate comments.
     plt.rcParams['legend.fontsize'] = 12
     facility = '1178MWe BRAIDWOOD-1'
     title = 'Cumulative Isotope Outflux of 1178MWe BRAIDWOOD-1'
-    analysis.plot_out_flux_cumulative(cur, facility,title)
+    analysis.plot_out_flux_cumulative(cur, facility, title)
 
 
 
-.. image:: output_10_0.png
+Activity: Plot Fresh Fuel Mass
+++++++++++++++++++++++++++++++
+   Now let's plot the cumulative mass of the fresh nuclear fuel that is
+   put into the 1178MWe BRAIDWOOD-1. Again, let's use
+   ``analysis.plot_in_flux`` which takes the arguments:
 
-
-Since it is difficult to see the amount of U-235, Cs-137, and Pu-239 in
-the above plot, let's plot those three isotopes individually. First we
-will gather a cumulative mass series of all the isotopes that went
-through the reactor via the ``cumulative_mass_timeseries`` function.
-This function intakes cur, facility, flux direction.
-
-.. raw:: html
-
-   <div class="alert alert-info">
-
-**Interactive Input** Using the table below, create the following
-variables. Include appropriate comments.
-
-.. raw:: html
-
-   </div>
-
-+----------------+-----------------------------+----------------------------------+
-| Variable       | Value                       | Purpose                          |
-+================+=============================+==================================+
-| ``cur``        | ``cur``                     | cursor to *CYCLUS* output file   |
-+----------------+-----------------------------+----------------------------------+
-| ``facility``   | ``'1178MWe BRAIDWOOD-1'``   | facility of interest             |
-+----------------+-----------------------------+----------------------------------+
-| ``flux``       | ``'Out'``                   | flux direction                   |
-+----------------+-----------------------------+----------------------------------+
+   * cur
+   * facility = ``'1178MWe BRAIDWOOD-1'``
+   * title = ``'Cumulative Isotope Influx of 1178MWe BRAIDWOOD-1'``
 
 .. code:: ipython3
 
-    reactor_output_series = analysis.cumulative_mass_timeseries(cur, facility='1178MWe BRAIDWOOD-1', flux='out')
-    nuclides = [item[0] for item in reactor_output_series.items()]
-    masses = [item[1][0] for item in reactor_output_series.items()]
-    times = [item[1][1] for item in reactor_output_series.items()]
-
-
-Now, let's sort the list of nuclide mass series from highest to lowest
-to plot the lowest cumualtive mass at the top of the stackplot
-
-.. code:: ipython3
-
-    masstime = analysis.cumulative_mass_timeseries(cur, facility='1178MWe BRAIDWOOD-1', flux='out')
-    nuclides = [item[0] for item in reactor_output_series.items()]
-    masses = [item[1][0] for item in reactor_output_series.items()]
-    times = [item[1][1] for item in reactor_output_series.items()]
-    mass_sort = sorted(reactor_output_series.items(), key=lambda e: e[
-        1][0][-1], reverse=True)
-    nuclides = [item[0] for item in mass_sort]
-    masses = [item[1][0] for item in mass_sort]
-    print('List of nuclides that left the reactor:')
-    print(nuclides)
-    #print('List of nuclides mass series that left the reactor:')
-	#print(masses) #output is quite long
-
-
-.. parsed-literal::
-
-    List of nuclides that left the reactor:
-    ['U238', 'Cs137', 'U235', 'Pu239']
-
-
-By using the nuclide list, we can select the nuclides we wish to plot
-
-.. code:: ipython3
-
-    cs137 = masses[1]
-    u235 = masses[2]
-    pu239 = masses[3]
-    masses = masses[1:]
-    nuclides = nuclides[1:]
-    plt.stackplot(times[0], masses, labels=nuclides)
-    plt.legend(loc='upper left')
-    plt.title(title)
-    plt.xlabel('time [months]')
-    plt.ylabel('mass [kg]')
-    plt.xlim(left=0.0)
-    plt.ylim(bottom=0.0)
-    plt.show()
-
-
-
-.. image:: output_16_0.png
-
-
-In cyclus, facilities are defined by their ``agent_id``. For example if
-the simulation has a fleet of reactors, we can find out what the
-``agent_id`` of the reactors in the simulation are
-
-.. raw:: html
-
-   <div class="alert alert-info">
-
-**Interactive Input** In the cell below use type
-``archetype = 'Reactor'`` and then run the cell.
-
-.. raw:: html
-
-   </div>
-
-.. code:: ipython3
-
-    archetype = 'Reactor'
-    print('The agent_id for' + ' ' + archetype + ' ' +'' + 'is:')
-    analysis.agent_ids(cur,archetype='Reactor')
+       facility = '1178MWe BRAIDWOOD-1'
+       title = 'Cumulative Isotope Influx of 1178MWe BRAIDWOOD-1'
+       analysis.plot_in_flux(cur, facility, title)
 
 
 
