@@ -24,15 +24,6 @@ none correspond to your needs please feel free to contact us using the `Cyclus
 User mailing list <https://groups.google.com/forum/#!forum/cyclus-users>`_, we
 will identify the best approach for you.
 
-* :doc:`Cyclist and the Cloud <tutorial/install_launch_cyclist>`:
-
-  - *Requires few computational skills*
-  - **Recommended** for:
-
-    - users wanting **a graphical interface** to build or analyze simulations
-    - users wanting to **run simulations in the cloud**
-    - **quick introduction** to the |Cyclus| capabilities
-
 * :doc:`Binary installation on Linux (via Debian package or Conda) <install_binary>`:
 
   - *Requires familiarity with Linux*
