@@ -1,8 +1,8 @@
-Understanding and Adding Archetypes to Your Scenario
-++++++++++++++++++++++++++++++++++++++++++++++++++++
+Understanding Archetypes 
+++++++++++++++++++++++++
 
 Concept: Archetypes
-=========================================
+===================
 
 One of the principal features of |Cyclus| is the ability for users to easily
 switch between different models of fuel cycle facilities.  Models may differ
@@ -10,8 +10,8 @@ in the way they choose to represent the physics of the facility, or in the way
 they choose for the facility to interact with other facilities, or both. In
 |Cyclus|, we call each of these different models an :term:`archetype`.
 
-Archetype Example: Reactor Fidelity
-------------------------------------
+Archetype Example
+-----------------
 
 The easiest way for most fuel cycle analysts to understand the difference
 between archetypes is through the example of a reactor model.
@@ -22,8 +22,8 @@ between archetypes is through the example of a reactor model.
   recipe, and that all the material that it then ships as used fuel will match
   its prescribed output recipe.  This will probably run the fastest.
 * A more sophisticated reactor archetype uses some form of tabulated data to
-  determine both performance characteristics and used fuel discharge
-  composition.  It could be as simple as interpolating between a set of
+  determine both **performance characteristics** and **used fuel discharge
+  composition**.  It could be as simple as interpolating between a set of
   possible input recipes and then using that interpolation on a set of
   corresponding output recipes.  A more complex version of such an archetype
   could even have tabulated reactor physics parameters for more fidelity.
@@ -45,20 +45,20 @@ simple models and are useful for tutorials such as this, and as a standard way
 to model facilities that may be at the peripheral of a problem.  The Cycamore
 facility archetypes are:
 
-* **Source:** This generic source of material may fill the role of any
+* **Source:** `Source <http://fuelcycle.org/user/cycamoreagents.html#cycamore-source>`_ is a generic source of material may fill the role of any
   facility that produces fresh material.  Depending on how much of the fuel
   cycle a user wants to model explicitly, this could fill the role of a uranium
-  mine, an enrichment facility, a fuel fabrication facility, etc.
-* **Enrichment:** This facility archetype implements the standard equations for
+  mine, an enrichment facility, a fuel fabrication facility, etc. The inventory size and throughput both default to infinite. Supplies material results in corresponding decrease in inventory, and when the inventory size reaches zero, the source can provide no more material.
+* **Enrichment:** `Enrichment <http://fuelcycle.org/user/cycamoreagents.html#cycamore-enrichment>`_ is a facility archetype implements the standard equations for
   enrichment of U-235 in U-238, with a constrained total enrichment capacity.
-* **Reactor:** This facility archetype uses simple fuel recipes for a reactor
+* **Reactor:** `Reactor <http://fuelcycle.org/user/cycamoreagents.html#cycamore-reactor>`_ is a facility archetype uses simple fuel recipes for a reactor
   that reloads batches of assemblies at regular intervals.
-* **Separations:** This facility archetype takes a number of input streams and
+* **Separations:** `Separations <http://fuelcycle.org/user/cycamoreagents.html#cycamore-separations>`_ is a facility archetype takes a number of input streams and
   separates all the isotopes into a number of output streams.
-* **FuelFab:** This facility archetype mixes streams of fissile and
+* **FuelFab:** `FuelFab <http://fuelcycle.org/user/cycamoreagents.html#cycamore-fuelfab>`_ is a facility archetype mixes streams of fissile and
   fissionable material in order to best approximate a given recipe using the
   d-factor approach.
-* **Sink:** This generic sink of material may fill the role of any facility
+* **Sink:** `Sink <http://fuelcycle.org/user/cycamoreagents.html#cycamore-sink>`_ is a generic sink of material may fill the role of any facility
   that permanently holds used nuclear material.  Depending on how much of the
   fuel cycle a user wants to model explicitly, this could fill the role of a
   geologic repository, an interim storage facility, etc.
@@ -276,6 +276,30 @@ The Source archetype is of the form:
     </config>
   </facility>
 
+Optional parameters:
+
+outrecipe: default = ''''
+    Name of composition recipe that this source provides regardless of requested composition. If empty, source creates and provides whatever compositions are requested
+
+::
+
+        <outrecipe>[outrecipe]</outrecipe>
+
+
+
+inventory_size: default = 1e+299, range: [0.0, 1e+299]
+    Total amount of material this source has remaining. Every trade decreases this value by the supplied material quantity. When it reaches zero, the source cannot provide any more material.
+
+::
+
+        <inventory_size>[double ( kg )]</inventory_size>
+
+throughput: default=1e+299,range: [0.0, 1e+299]
+    Amount of commodity that can be supplied at each time step
+
+::
+
+        <throughput>[double ( kg/(time step) )]</throughput>
 
 
 Concept: Enrichment Archetype
@@ -292,10 +316,53 @@ The Enrichment archetype is of the form:
             <feed_recipe>feed_recipe</feed_recipe>
             <product_commod>product_commodity</product_commod>
             <tails_commod>tails_commodity</tails_commod>
-            <max_feed_inventory>1000000</max_feed_inventory>
           </Enrichment>
         </config>
       </facility>
+
+Optional parameters:
+
+max_feed_inventory: default = 1e+299, range: [0.0, 1e+299]
+  Maximum total inventory of natural uranium in the enrichment facility (kg)
+
+::
+
+          <max_feed_inventory>1000000</max_feed_inventory 
+
+tails_assay: default=0.003, range: [0.0, 0.003]
+  Tails assay from the enrichment process
+
+::
+
+          <tails_assay>[double]</tails_assay> 
+
+initial_feed: default = 0
+  Amount of natural uranium stored at the enrichment facility at the beginning of the simulation (kg)
+
+::
+
+          <initial_feed>[double]</initial_feed> 
+
+max_enrich: default = 1.0, range: [0.0,1.0]
+  maximum allowed weight fraction of U235 in product
+
+::
+     
+          <max_enrich>[double]</max_enrich> 
+
+order_prefs: default = 1, userlevel: 10
+  Turn on preference ordering for input material so that EF chooses higher U235 content first
+
+::
+
+          <order_prefs>[boolean]</order_prefs> 
+
+swu_capacity: default = 1e+299, range: [0.0, 1e+299]
+  Separative work unit (SWU) capacity of enrichment facility (kgSWU/timestep)
+
+::
+
+          <swu_capacity>[double]</swu_capacity> 
 
 Concept: Reactor Archetype
 ==========================
@@ -344,3 +411,39 @@ The Sink archetype is of the form:
       </Sink>
     </config>
   </facility>
+
+Optional parameters:
+
+in_commod_prefs: default=[], range: [None, [1e-299, 1e+299]]
+  Commodities that the sink facility accepts
+
+::
+
+      <in_commod_prefs>
+          <val>[double]</val>
+          <val>[double]</val>
+      </in_commod_prefs>
+
+recipe_name: default=””
+  Name of recipe to use for material requests, where the default (empty string) is to accept everything
+
+::
+
+      <recipe_name>[inrecipe]</recipe_name
+
+
+max_inv_size: default=1e+299, range: [0.0, 1e+299]
+  Total maximum inventory size of sink facility
+
+::
+
+      <max_inv_size>[double]</max_inv_size>
+
+capacity: default = 1e+299, range: [0.0, 1e+299]
+  capacity the sink facility can accept at each time step
+  
+::
+
+      <capacity>[double]</capacity>
+
+

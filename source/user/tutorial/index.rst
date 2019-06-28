@@ -4,9 +4,7 @@
 In this tutorial, we will build, run and analyze a fuel cycle scenario using
 |Cyclus|, a nuclear fuel cycle simulator.  This tutorial assumes that the learner is already
 familiar with the purpose of a nuclear fuel cycle simulator. This tutorial will
-require an internet connection so that |Cyclus| can be run remotely. To run this tutorial in an
-IPython notebook, git clone this git `repository
-<https://github.com/arfc/cyclus-tutorial.org/>`_ to your computer.
+require an internet connection so that |Cyclus| can be run remotely.
 
 Overview
 ---------
