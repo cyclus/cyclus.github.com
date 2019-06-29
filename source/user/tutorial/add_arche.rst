@@ -58,7 +58,7 @@ facility archetypes are:
 * **FuelFab:** `FuelFab <http://fuelcycle.org/user/cycamoreagents.html#cycamore-fuelfab>`_ is a facility archetype mixes streams of fissile and
   fissionable material in order to best approximate a given recipe using the
   d-factor approach.
-* **Sink:** `Sink <http://fuelcycle.org/user/cycamoreagents.html#cycamore-sink>`_ is a generic sink of material may fill the role of any facility
+* **Sink:** `Sink <http://fuelcycle.org/user/cycamoreagents.html#cycamore-sink>`_ is a generic sink of material that may fill the role of any facility
   that permanently holds used nuclear material.  Depending on how much of the
   fuel cycle a user wants to model explicitly, this could fill the role of a
   geologic repository, an interim storage facility, etc.
