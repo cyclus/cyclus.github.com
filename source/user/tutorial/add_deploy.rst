@@ -58,7 +58,7 @@ look like the following:
 
 The above institution will create 1 ``UOX_Source`` and ``MOX_Source`` facility on
 time step 1. The next time step will deploy the ``1178MWe BRAIDWOOD-1`` reactor
-prototype. And finally at time step 3 the ``1000We Lightwater-1`` will be deployed.
+prototype. And finally, at time step 3, the ``1000We Lightwater-1`` will be deployed.
 
 **ExampleInstitution** is a placeholder for your institution name, and in this scenario
 only one of each prototype will be deployed since ``n_build`` has a value of 1 for each. 

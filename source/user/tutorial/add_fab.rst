@@ -1,7 +1,7 @@
 Adding a Stream Mixing Fuel Fabrication Facility
 ==================================================
 
-The cycamore FuelFab archetype uses the equivalence type method to mix streams of
+The cycamore FuelFab archetype uses the _equivalence method_ to mix streams of
 fissile material with so-called "filler" material in an attempt to match 
 neutronics of the
 requested material. More details about the archetype and the state
@@ -18,10 +18,14 @@ archetype.
     <name>fuelfab</name>
     <config>
       <FuelFab>
-        <fill_commods> <val>_______</val> </fill_commods>
+        <fill_commods> 
+            <val>_______</val> 
+        </fill_commods>
         <fill_recipe>_______</fill_recipe>
         <fill_size>_______</fill_size>
-        <fiss_commods><val>_______</val></fiss_commods>
+        <fiss_commods>
+            <val>_______</val>
+        </fiss_commods>
         <fiss_size>_______</fiss_size>
         <spectrum>_______</spectrum>
         <outcommod>_______</outcommod>
@@ -35,8 +39,8 @@ The following configuration will be for a
 MOX fuel fabrication plant that mixes separated 
 plutonium and natural uranium into MOX fuel:
 
-* Filler stream commodity: U-ore
-* Filler stream recipe: Nat-U
+* Filler stream commodity: ``u-ore``
+* Filler stream recipe: ``nat-u``
 * Filler stream inventory capacity: 1000 tonnes
 * Fissile stream commodity: Separated-Fissile
 * Fissile stream inventory capacity: 5 tonnes

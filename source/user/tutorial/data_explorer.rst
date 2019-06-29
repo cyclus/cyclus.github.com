@@ -8,15 +8,15 @@ understanding of the features that matter the most.
 
 Concept: Cyclus Output file
 =========================================
-*CYCLUS* creates a .sqlite file as its output. SQLite is a database file
+*CYCLUS* creates an SQLite (``.sqlite``) database file as its output. SQLite is a database file
 type that consists of a series of tables. A few functions have been
 included in ``analysis.py``, a file in downloaded the github repository of this tutorial, to pull information from the sqlite
 database and create figures.
 
-An sqlite database can be opened and its
-contents viewed, but these database browsers often aren't helpful.
-Importing the data into an external function and manipulating it would
-provide more useful information. However, it can still be helpful to
+An sqlite database can be opened by viewers like ``sqlitebrowser`` or ``sqliteman``,
+but these database browsers aren't intended for powerful analysis.
+Importing the data into an external function and analyzing it
+is a more powerful approach. However, it can still be helpful to
 open and view the tables.
 
 Analyze the results:

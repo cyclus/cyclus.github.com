@@ -1,4 +1,4 @@
-Using Cyclus with the Cloud
+Using Cyclus in the Cloud
 =================================
 
 Choosing Where to Run

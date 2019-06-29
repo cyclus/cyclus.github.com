@@ -18,7 +18,7 @@ required to provide that input.
 Concept: Simulation Time Steps
 ------------------------------
 
-CYCLUS uses a time-step approach to march through time and determine what
+|Cyclus| uses a time-step approach to march through time and determine what
 actions are taken by each agent at each point in time.  Each time step
 includes the following phases:
 
@@ -55,9 +55,10 @@ could be given but are not in the scope of this tutorial.
 We'll return later to the topics of generating, loading and executing an input file.
 
 
-The simulation control is the first part of the CYCLUS input file and is of the form:
+The Cyclus input file begins with the ``<simulation>`` tag and ends with the ``</simulation>`` tag.
+Within this space, the ``<control>`` block is the first section of the CYCLUS input file and is of the form:
 
-::
+.. code-block:: XML
 
     <simulation>
       <control>
@@ -67,11 +68,10 @@ The simulation control is the first part of the CYCLUS input file and is of the 
         <decay>decay_val</decay>
       </control>
 
-
     </simulation>
 
 The lifetime of a *CYCLUS* simulation is determined by its
-**duration**. **duration** is the number of months *CYCLUS* will
+**duration**, the number of months *CYCLUS* will
 model the fuel cycle. *CYCLUS* also intakes the **start_month** and
 **start_year** of the simulation. The last major parameter of the
 simulation is whether or not we wish to model the
@@ -82,7 +82,8 @@ tutorial.
 
 Activity: Set Simulation Parameters
 -----------------------------------
-Using the simulation control template above and the table below, properly fill the template with the variables listed in the table below in your favorite text editor
+Using the simulation control template above and the table below, properly fill the template 
+with the variables listed in the table below in your favorite text editor.
 
 +-------------------+---------------+---------------------------------+
 | Variable          | Value         | Purpose                         |
@@ -99,22 +100,22 @@ Using the simulation control template above and the table below, properly fill t
 Using this table, let's set the simulation parameters.
 
 1. To tell CYCLUS that this is the simulation section of the input file, set  the first line of the input file to be:
-::
+.. code-block:: XML
 
     <simulation>
 
 2. Place the ``control`` header in as such
 
-::
+.. code-block:: XML
 
   <simulation>
     <control>
 
-If you would like, you can space or tab the ``control`` header over for personal ease of reading the file but it is not necessary.
+Adding spaces or tabs to indent the ``control`` header improves ease of reading. 
 
-3. After filling in the parameters listed in the table above tab out and close the control and simulation sections as:
+3. After filling in the parameters listed in the table above, close the control and simulation sections as:
 
-::
+.. code-block:: XML
 
     <simulation>
       <control>

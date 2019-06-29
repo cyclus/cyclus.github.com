@@ -1,7 +1,6 @@
 Working with Cyclus in on your machine
 ======================================
 
-
 Choosing Where to Run
 ---------------------
 

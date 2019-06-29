@@ -53,14 +53,14 @@ to specify the solution priority of each commodity.
 * ``fresh-uox``: fresh 4.0% enriched Uranium Oxide fuel that enters the reactor
 * ``spent-uox``: spent Uranium Oxide fuel that leaves the reactor after depletion
 
-Whenever |CYCLUS| needs
+When |CYCLUS| needs
 to know the isotopic composition of a material, it looks at the recipe for that
 material given in the input file. Until now, ``recipe`` has been used to
 refer to fuel recipes, but the ``recipe`` section of the input file can
-include the recipe for natural uranium, spent fuel, fresh fuel, or any
-other material where the isotopic composition needs to be tracked.
+describe any isotopic vector (e.g. natural uranium, spent fuel, fresh fuel, or any
+other material whose isotopic composition needs to be tracked.)
 
-The commodities section is located right under the ``archetype`` section
+The commodities section is located below the ``archetype`` section
 and is of the form:
 
 .. code-block:: XML
@@ -113,7 +113,6 @@ template.
 
 .. code-block:: XML
 
-
     <commodity>
         <name>u-ore</name>
 
@@ -129,7 +128,6 @@ template.
 3. Now, finalize this commodity by closing it with ``</commodity>``. Your ``u-ore`` commodity section should be:
 
 .. code-block:: XML
-
 
     <commodity>
         <name>u-ore</name>
@@ -157,7 +155,7 @@ template.
       <solution_priority>1.0</solution_priority>
   </commodity>
 
-Once complete append the commodities section under the archetypes section.
+Once complete, append the commodities section under the archetypes section.
 
 Concept: Recipes
 ----------------
@@ -165,8 +163,8 @@ Concept: Recipes
 Most commodities are materials, which have a quantity and an
 isotopic composition.
 Recipes are the isotopic composition of a certain material. For
-example, u-ore has an isotropic composition of 0.711% uranium-235 and
-99.284% uranium-238. The recipe section of a CYCLUS input file is
+example, u-ore has an isotropic composition of 0.711% :math:`^{235}`\ U and
+99.284% :math:`^{238}`\ U. The recipe section of a CYCLUS input file is
 located at the bottom and is of the form:
 
 .. code-block:: XML
@@ -186,7 +184,7 @@ located at the bottom and is of the form:
 
 where ``id`` is the Nuc Id of the isotope in form ZZAAA and ``comp`` is the
 composition of that isotope in the recipe. Other isotope formats are
-also acceptable. For example, U-235 can be expressed as:
+also acceptable. For example, :math:`^{235}`\ U can be expressed as:
 
 * 922350000 (ZZAAAMMMM)
 * 92235 (ZZAAA)
@@ -197,9 +195,9 @@ For more details, reference the `Recipe definition
 <../input_specs/recipe.html>`_ page.
 
 First, we can declare the isotopic compositions of the fresh and spent
-fuel. We'll be using simple recipes: fresh fuel is 4.0% U-235 by mass,
-remainder U-238. Spent fuel is 1.1% U-235, 94.0% U-238, 0.9% Pu-239, and
-4.0% Cs-137.
+fuel. We'll be using simple recipes: fresh fuel is 4.0% :math:`^{235}`\ U by mass,
+remainder U-238. Spent fuel is 1.1% :math:`^{235}`\ U, 94.0% :math:`^{238}`\ U, 0.9% :math:`^{239}`\ Pu, and
+4.0% :math:`^{137}`\ Cs.
 
 Activity: Creating a Recipe
 ++++++++++++++++++++++++++++

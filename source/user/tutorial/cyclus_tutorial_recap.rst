@@ -4,7 +4,7 @@ Cyclus Tutorial Recap
 Basic Tutorial Input
 --------------------
 
-::
+.. code-block:: XML
 
   <simulation>
     <control>
