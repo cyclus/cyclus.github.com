@@ -53,9 +53,9 @@ facility archetypes are:
   enrichment of U-235 in U-238, with a constrained total enrichment capacity.
 * **Reactor:** `Reactor <http://fuelcycle.org/user/cycamoreagents.html#cycamore-reactor>`_ is a facility archetype which uses fresh and spent fuel recipes to model fuel transmutation.
   that reloads batches of assemblies at regular intervals.
-* **Separations:** `Separations <http://fuelcycle.org/user/cycamoreagents.html#cycamore-separations>`_ is a facility archetype takes a number of input streams and
+* **Separations:** `Separations <http://fuelcycle.org/user/cycamoreagents.html#cycamore-separations>`_ is a facility archetype that receives one or more material streams and
   separates all the isotopes into a number of output streams.
-* **FuelFab:** `FuelFab <http://fuelcycle.org/user/cycamoreagents.html#cycamore-fuelfab>`_ is a facility archetype mixes streams of fissile and
+* **FuelFab:** `FuelFab <http://fuelcycle.org/user/cycamoreagents.html#cycamore-fuelfab>`_ is a facility archetype that mixes streams of fissile and
   fissionable material in order to best approximate a given recipe using the
   d-factor approach.
 * **Sink:** `Sink <http://fuelcycle.org/user/cycamoreagents.html#cycamore-sink>`_ is a generic sink of material that may fill the role of any facility
@@ -71,22 +71,22 @@ Since archetypes can change without having to reinstall |Cyclus|, there is
 the ability to automatically discover which archetypes are available.
 
 1. Go to the `archetypes
-<http://fuelcycle.org/user/cycamoreagents.html?highlight=source#cycamore-source webpage>`_ webpage and take a full look at the archetypes
+<http://fuelcycle.org/user/cycamoreagents.html?highlight=source#cycamore-source webpage>`_ webpage and read about the available archetypes
 
-2. Ask what archetypes can you see yourself using in your research?
+2. What archetypes can you see yourself using in your research?
 
-3. Take a look at the reactor archetype and review its input arguments. Think about how you would change the ``cycle_time`` and ``refuel_time`` of a reactor.
+3. Review the input parameters of the `Reactor <http://fuelcycle.org/user/cycamoreagents.html#cycamore-reactor>`_  archetype. How would you customize the ``cycle_time`` and ``refuel_time`` of a reactor to represent a real-world nuclear power plant?
 
-Concept: Third-Party Archetypes¶
+Concept: Third-Party Archetypes
 =========================================
-`Third-Party <http://fuelcycle.org/user/index.html?highlight=third-party>`_ Archetypes are archetypes that have been made in addition to the initial archetypes that are available in Cycamore. Popular Third-Party Archetypes are:
+`Third-Party <http://fuelcycle.org/user/index.html?highlight=third-party>`_ Archetypes complement the initial archetypes available in Cycamore and are not necessarily maintained by the Cyclus core development team.  Popular Third-Party Archetypes are:
 
 * Bright-lite
 * Cyborg
 * Mbmore Archetypes
 * rwc Archetypes
 
-You can see the `archetype developer <http://fuelcycle.org/arche/tutorial/input_files.html>`_ tutorial for more information on making your own Archetypes
+Review the `archetype developer tutorial <http://fuelcycle.org/arche/tutorial/input_files.html>`_ for more information on making your own Archetypes.
 
 Activity: Adding archetypes
 -----------------------------
@@ -96,14 +96,15 @@ subset of archetypes will be used in this particular scenario.
 
 The archetypes we will use in our simulation include:
 
--  Source: ``UraniumMine``, source of u-ore
--  Enrichment: ``EnrichmentPlant``, enriches u-ore into fresh-uox and outputs tails
--  Reactor: ``1178MWe BRAIDWOOD-1``
--  Sink: ``NuclearRepository``, holds the spent-uox and tails
+-  Source: ``UraniumMine``, supplies natural uranium, a commodity we will call ``u-ore``
+-  Enrichment: ``EnrichmentPlant``, enriches ``u-ore`` into fresh uranium oxide fuel (``fresh-uox``) and ``tails``
+-  Reactor: ``1178MWe BRAIDWOOD-1`` receives `fresh-uox` and produces `spent-uox`
+-  Sink: ``NuclearRepository``, receives and stores the ``spent-uox`` and ``tails``
 
-The archetype section is located under the simulation control section and takes the form:
+A user identifies the simulation archetypes in the archetype block of the Cyclus input file. 
+The archetype block is located after the simulation control block and takes the form:
 
-::
+.. code-block:: XML
 
     <archetypes>
         <spec>
@@ -142,9 +143,9 @@ properly fill the template with the variables listed in the table below.
 +-------------+------------------+----------------------------+
 
 
-Archetype solution
-------------------
-::
+Archetype Block Template
+------------------------
+.. code-block:: XML
 
       <archetypes>
         <spec>
@@ -164,8 +165,8 @@ Archetype solution
           <name>arch4</name>
         </spec>
 
-Once complete, your Archetypes block should be:
-::
+Once complete, your Archetypes block should look like:
+.. code-block:: XML
 
   <archetypes>
       <spec>
@@ -205,7 +206,7 @@ properly fill the template with the variables listed in the table below.
 | ``arch7``   | ``NullInst``     | Name of archetype          |
 +-------------+------------------+----------------------------+
 
-::
+.. code-block:: XML
 
         <spec>
           <lib>lib6</lib>
@@ -218,7 +219,7 @@ properly fill the template with the variables listed in the table below.
       </archetypes>
 
 Once complete, your `agent` Archetypes block should be:
-::
+.. code-block:: XML
 
         <spec>
           <lib>agents</lib>
@@ -232,7 +233,7 @@ Once complete, your `agent` Archetypes block should be:
 
 Since these are all archetypes, no matter what library their from, we must append the two archetype sections such as:
 
-::
+.. code-block:: XML
 
       <archetypes>
         <spec>
@@ -265,7 +266,7 @@ Concept: Source Archetype
 =========================
 The Source facility acts as a source of material with a fixed throughput (per time step) capacity and a lifetime capacity defined by a total inventory size. It offers its material as a single commodity. If a composition recipe is specified, it provides that single material composition to requesters. If unspecified, the source provides materials with the exact requested compositions. The inventory size and throughput both default to infinite. Supplies material results in corresponding decrease in inventory, and when the inventory size reaches zero, the source can provide no more material.
 The Source archetype is of the form:
-::
+.. code-block:: XML
 
   <facility>
     <name>Source</name>
@@ -278,10 +279,10 @@ The Source archetype is of the form:
 
 Optional parameters:
 
-outrecipe: default = ''''
-    Name of composition recipe that this source provides regardless of requested composition. If empty, source creates and provides whatever compositions are requested
+outrecipe: 
+    Name of the isotopic composition of the material that this source provides regardless of the requested composition. If empty, the Source creates and provides whatever composition is requested.
 
-::
+.. code-block:: XML
 
         <outrecipe>[outrecipe]</outrecipe>
 
@@ -290,12 +291,12 @@ outrecipe: default = ''''
 inventory_size: default = 1e+299, range: [0.0, 1e+299]
     Total amount of material this source has remaining. Every trade decreases this value by the supplied material quantity. When it reaches zero, the source cannot provide any more material.
 
-::
+.. code-block:: xml
 
         <inventory_size>[double ( kg )]</inventory_size>
 
 throughput: default=1e+299,range: [0.0, 1e+299]
-    Amount of commodity that can be supplied at each time step
+    Amount (kg) of the commodity that the Source can supply at each time step
 
 ::
 
@@ -304,9 +305,12 @@ throughput: default=1e+299,range: [0.0, 1e+299]
 
 Concept: Enrichment Archetype
 ==============================
-The Enrichment facility is a simple agent that enriches natural uranium in a Cyclus simulation. It does not explicitly compute the physical enrichment process, rather it calculates the SWU required to convert an source uranium recipe (i.e. natural uranium) into a requested enriched recipe (i.e. 4% enriched uranium), given the natural uranium inventory constraint and its SWU capacity constraint.
+The Enrichment facility is a simple agent that enriches natural uranium in a Cyclus simulation. It does not 
+explicitly compute the physical enrichment process, rather it calculates the SWU required to convert an 
+incoming isotopic vector (i.e. natural uranium) into a requested enriched recipe (i.e. 4% enriched uranium), 
+given the natural uranium inventory constraint and its SWU capacity constraint.
 The Enrichment archetype is of the form:
-::
+.. code-block:: XML
 
       <facility>
         <name>EnrichmentPlant</name>
@@ -325,64 +329,88 @@ Optional parameters:
 max_feed_inventory: default = 1e+299, range: [0.0, 1e+299]
   Maximum total inventory of natural uranium in the enrichment facility (kg)
 
-::
+.. code-block:: XML
 
           <max_feed_inventory>1000000</max_feed_inventory 
 
 tails_assay: default=0.003, range: [0.0, 0.003]
   Tails assay from the enrichment process
 
-::
+.. code-block:: XML
 
           <tails_assay>[double]</tails_assay> 
 
 initial_feed: default = 0
   Amount of natural uranium stored at the enrichment facility at the beginning of the simulation (kg)
 
-::
+.. code-block:: XML
 
           <initial_feed>[double]</initial_feed> 
 
 max_enrich: default = 1.0, range: [0.0,1.0]
   maximum allowed weight fraction of U235 in product
 
-::
+.. code-block:: XML
      
           <max_enrich>[double]</max_enrich> 
 
 order_prefs: default = 1, userlevel: 10
   Turn on preference ordering for input material so that EF chooses higher U235 content first
 
-::
+.. code-block:: XML
 
           <order_prefs>[boolean]</order_prefs> 
 
 swu_capacity: default = 1e+299, range: [0.0, 1e+299]
   Separative work unit (SWU) capacity of enrichment facility (kgSWU/timestep)
 
-::
+.. code-block:: XML
 
           <swu_capacity>[double]</swu_capacity> 
 
 Concept: Reactor Archetype
 ==========================
-Reactor is a simple, general reactor based on static compositional transformations to model fuel burnup. The user specifies a set of input fuels and corresponding burnt compositions that fuel is transformed to when it is discharged from the core. No incremental transmutation takes place. Rather, at the end of an operational cycle, the batch being discharged from the core is instantaneously transmuted from its original fresh fuel composition into its spent fuel form.
+The Reactor is a simple, general reactor based on static compositional transformations to model fuel burnup. 
+The user specifies a set of fresh fuel compositions the Reactor accepts and corresponding spent fuel 
+compositions the reactor discharged from the core. No incremental transmutation takes place. Rather, 
+at the end of an operational cycle, the batch being discharged from the core is instantaneously transmuted 
+from its original fresh fuel composition into its spent fuel form.
 
-Each fuel is identified by a specific input commodity and has an associated input recipe (nuclide composition), output recipe, output commidity, and preference. The preference identifies which input fuels are preferred when requesting. Changes in these preferences can be specified as a function of time using the pref_change variables. Changes in the input-output recipe compositions can also be specified as a function of time using the recipe_change variables.
+Each fuel is identified by a specific input commodity and has an associated input recipe (nuclide composition), 
+output recipe, output commodity, and preference. The preference identifies which input fuels are preferred 
+when requesting. Changes in these preferences can be specified as a function of time using the pref_change
+variables. Changes in the input-output recipe compositions can also be specified as a function of time using 
+the recipe_change variables.
 
-The reactor treats fuel as individual assemblies that are never split, combined or otherwise treated in any non-discrete way. Fuel is requested in full-or-nothing assembly sized quanta. If real-world assembly modeling is unnecessary, parameters can be adjusted (e.g. n_assem_core, assem_size, n_assem_batch). At the end of every cycle, a full batch is discharged from the core consisting of n_assem_batch assemblies of assem_size kg. The reactor also has a specifiable refueling time period following the end of each cycle at the end of which it will resume operation on the next cycle if it has enough fuel for a full core; otherwise it waits until it has enough fresh fuel assemblies.
-When the reactor reaches the end of its lifetime, it will discharge all material from its core and trade away all its spent fuel as quickly as possible. Full decommissioning will be delayed until all spent fuel is gone. If the reactor has a full core when it is decommissioned (i.e. is mid-cycle) when the reactor is decommissioned, half (rounded up to nearest int) of its assemblies are transmuted to their respective burnt compositions.
+The reactor treats fuel as individual assemblies. Fuel is requested in assembly sized quanta. If real-world
+assembly modeling is unnecessary, parameters can be adjusted (e.g. ``n_assem_core``, ``assem_size``, 
+``n_assem_batch``). At the end of every cycle, a full batch is discharged from the core consisting of
+``n_assem_batch`` assemblies of ``assem_size`` kg. The reactor also has a specifiable refueling time 
+period following the end of each cycle at the end of which it will resume operation on the next cycle if it 
+has enough fuel for a full core; otherwise it waits until it has enough fresh fuel assemblies.
+When the reactor reaches the end of its lifetime, it will discharge all material from its core and trade away all its 
+spent fuel as quickly as possible. Full decommissioning will be delayed until all spent fuel is gone. If the reactor 
+has a full core when it is decommissioned (i.e. is mid-cycle) when the reactor is decommissioned, half (rounded 
+up to nearest int) of its assemblies are transmuted to their respective burnt compositions.
 The Reactor archetype is of the form:
-::
+.. code-block:: XML
 
   <facility>
     <name>reactor_name</name>
     <config>
       <Reactor>
-        <fuel_incommods> <val>input_fuel_commodity</val> </fuel_incommods>
-        <fuel_inrecipes> <val>input_fuel_recipe</val> </fuel_inrecipes>
-        <fuel_outcommods> <val>output_fuel_commodity</val> </fuel_outcommods>
-        <fuel_outrecipes> <val>output_fuel_recipe</val> </fuel_outrecipes>
+        <fuel_incommods> 
+            <val>input_fuel_commodity</val> 
+        </fuel_incommods>
+        <fuel_inrecipes> 
+            <val>input_fuel_recipe</val> 
+        </fuel_inrecipes>
+        <fuel_outcommods> 
+            <val>output_fuel_commodity</val> 
+        </fuel_outcommods>
+        <fuel_outrecipes> 
+            <val>output_fuel_recipe</val> 
+        </fuel_outrecipes>
         <cycle_time>18</cycle_time>
         <refuel_time>1</refuel_time>
         <assem_size>33000</assem_size>
@@ -396,9 +424,12 @@ The Reactor archetype is of the form:
 Concept: Sink Archetype
 =======================
 
-A sink facility that accepts materials and products with a fixed throughput (per time step) capacity and a lifetime capacity defined by a total inventory size. The inventory size and throughput capacity both default to infinite. If a recipe is provided, it will request material with that recipe. Requests are made for any number of specified commodities.
-The Sink archetype is of the form:
-::
+A sink facility that accepts materials and products with a fixed throughput (per time step) capacity and a lifetime 
+capacity defined by a total inventory size. The inventory size and throughput capacity both default to infinite. If a 
+recipe is provided, it will request material with that recipe. Requests are made for any number of specified 
+commodities.
+The Sink archetype section is of the form:
+.. code-block:: xml
 
   <facility>
     <name>Sink_name</name>
@@ -427,7 +458,7 @@ in_commod_prefs: default=[], range: [None, [1e-299, 1e+299]]
 recipe_name: default=””
   Name of recipe to use for material requests, where the default (empty string) is to accept everything
 
-::
+.. code-block:: XML
 
       <recipe_name>[inrecipe]</recipe_name
 
@@ -435,14 +466,14 @@ recipe_name: default=””
 max_inv_size: default=1e+299, range: [0.0, 1e+299]
   Total maximum inventory size of sink facility
 
-::
+.. code-block:: XML
 
       <max_inv_size>[double]</max_inv_size>
 
 capacity: default = 1e+299, range: [0.0, 1e+299]
   capacity the sink facility can accept at each time step
   
-::
+.. code-block:: XML
 
       <capacity>[double]</capacity>
 
