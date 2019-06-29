@@ -127,4 +127,4 @@ If you would like, you can space or tab the ``control`` header over for personal
 
     </simulation>
 
-**Note**: There is two spaces between the end of the control section and end of the simulation section as the simulation section will hold the commodities, facilities, regions, institutions, and recipe information.
+**Note**: There are two blank lines between the end of the control section and end of the simulation section. This ection of the simulation block will hold the rest of the simulation parameter blocks (commodities, facilities, regions, institutions, and recipe blocks).
