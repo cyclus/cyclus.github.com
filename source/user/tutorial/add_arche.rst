@@ -48,7 +48,7 @@ facility archetypes are:
 * **Source:** `Source <http://fuelcycle.org/user/cycamoreagents.html#cycamore-source>`_ is a generic source of material may fill the role of any
   facility that produces fresh material.  Depending on how much of the fuel
   cycle a user wants to model explicitly, this could fill the role of a uranium
-  mine, an enrichment facility, a fuel fabrication facility, etc. The inventory size and throughput both default to infinite. Supplies material results in corresponding decrease in inventory, and when the inventory size reaches zero, the source can provide no more material.
+  mine, an enrichment facility, a fuel fabrication facility, etc. The Source facility produces resources at a user-specified rate and may be limited to a user-specified total inventory.
 * **Enrichment:** `Enrichment <http://fuelcycle.org/user/cycamoreagents.html#cycamore-enrichment>`_ is a facility archetype that implements the standard equations for
   enrichment of U-235 in U-238, with a constrained total enrichment capacity.
 * **Reactor:** `Reactor <http://fuelcycle.org/user/cycamoreagents.html#cycamore-reactor>`_ is a facility archetype which uses fresh and spent fuel recipes to model fuel transmutation.
