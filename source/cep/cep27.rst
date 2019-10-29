@@ -26,7 +26,7 @@ feature inside multiple archetypes.
 .. _agent-spec-docs:
 
 Agent Spec
-===========
+==========
 
 Agents will be uniquely identified by 3 components together referred to as an
 "agent spec":
