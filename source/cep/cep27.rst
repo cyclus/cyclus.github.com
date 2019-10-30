@@ -5,7 +5,7 @@ CEP 27 - Agent Toolkit Capabilities
 :Title: Agent Toolkit Capabilities
 :Last-Modified: 2019-10-28
 :Author: Baptiste Mouginot <mouginot.baptiste@gmail.com>
-:Status: Pending
+:Status: Active
 :Type: Standards Track
 :Created: Baptiste Mouginot 
 
@@ -25,72 +25,71 @@ feature inside multiple archetypes.
 
 .. _agent-spec-docs:
 
-Agent Spec
-==========
+Toolkit Implementation
+======================
 
-Agents will be uniquely identified by 3 components together referred to as an
-"agent spec":
+The |Cyclus| toolkit will contain 3 different files: i2 for the definition of
+the snippet class element (``cpp`` and header) that allows to use the
+capabilities, and optionally to register its values in the output database, a
+snippet simplifying the integration of the feature in a newly develop
+archetypes.
 
-1. path: e.g. ``my/module/path``
+The snippet file with then be included in the header part of the archetypes
+class declaration as": ``#include toolkit/my_snippet.cycpp.h``
 
-   A slash-delimited, valid filesystem path relative to CYCLUS_PATH (see
-   Module Discovery below).
+(The use of the ``cycpp.h`` has been chosen to allow syntax highlighting and
+inform developers that this is not a standard C++ header)
+The snippet file, will contain all the declaration of all the variable required
+to use the capabilities class:
 
-2. library: e.g. ``MyModule``
+- the definition of the capability class as a member variable
 
-   Name of the compiled shared object library file without the "lib" prefix
-   and without the file extension. If empty, is expanded to the agent class.
-   The example above would correspond to a library file named "libMyModule.so"
-   (linux), "libMyModule.dylib" (darwin), etc.
+- (optional) if the capability requires/allows variable input from users,
+  standard |Cyclus| member variable declaration with variable ``#pragma`` is
+  required. In addition, to the standard variable declaration and the
+  ``#pragma`` the method also require a ``std::vector<int>
+  cycpp_shape_myvariable0`` to be declared for each of the decorated variable.
+  ``cycpp preprocessor`` is not able at the time to add them automatically for
+  included files.
 
-3. agent class: e.g. ``MyAgent``
+The main interest of this include method would be to insure consistency across
+archetypes using the same toolkit capability requiring user input.i, avoiding 1
+set of input syntax per archetypes for the same capability.
 
-   The name of the agent's c++ class as compiled into the shared library file.
+If the toolkit features needs to capabilities to write in the output database a
+``RecordSnippet(Agent* agent)`` method will be implemented to avoid
+multiplication of implementation in the archetypes.
 
-An agent spec also has a single-string form composed of the three components
-separated by colons::
 
-    [path]:[library]:[agent-class]
-    
-    e.g. "my/module/path:MyModule:MyAgent"
+Archetypes Integration
+======================
 
-Example linux agent specs with corresponding filepath expansions::
+When the capability is integrated in an Archetype the following implementation
+have to be done:
 
-    my/path:MyModule:MyAgent -> my/path/libMyModule.so
-    my/path::MyAgent         -> my/path/libMyAgent.so
-    :MyModule:MyAgent        -> libMyModule.so
-    ::MyAgent                -> libMyAgent.so
+1. Include the snippet in the class header core: ``#include
+   toolkit/my_snippet.cycpp,h``
 
-Module Discovery
-================
+2. Add the proper default initialisation of the variable required for the
+   snippet
 
-When running a simulation, |Cyclus| will search the following candidate
-directories (in order) for each given agent spec:
+3. In the ``Archetype::EnterNotify()``, assign the Snippet with value
+   corresponding to the user input.
 
-1. Each colon-separated directory in the CYCLUS_PATH environment variable.
+4. (optional) If required, call the ``RecordSnippet()`` method when necessary during the
+   Archetype operation.
 
-2. The default |cyclus| module install directory: ``[install-dir]/lib/cyclus``.
+Class member vs Inheritance
+===========================
 
-|Cyclus| will check for the library by building consecutive paths with the
-following composition::
+The main issue with inheriting of the capability class is that one will need to
+also modify the archetype class declaration in addition to simply including the
+snippet at the right place.
 
-    [candidate-dir]/[path]/lib[library][extension]
+This may also lead to confusion, as one can believe that the user input value
+for variable are passed in the constructor of the class and might lead the
+develop to skip the assignation of the value in the inherited class in the
+``EnterNotify``...
 
-|Cyclus| uses the first matching shared library file found and assumes the
-specified agent class exists inside it.
-
-Conventions
-============
-
-The path should consist of only alpha-numeric characters, slashes,
-underscores, and dashes. **No** spaces.  If there are resource files that must
-be installed with the shared library file, the library and resources should be
-placed in their own directory.
-
-The shared library name should consist of only alpha-numeric characters,
-slashes, underscores.  **No** spaces. If the shared library only has a
-single agent in it, the library should be the same as the agent class.  For
-example, if my agent was named ``MyAgent``, then the library file should be
-named ``libMyAgent.so`` on a linux system.  This allows the defaults to
-prevent stuttering in the agent's module spec.
+Otherwise behavior would be similar.
 
