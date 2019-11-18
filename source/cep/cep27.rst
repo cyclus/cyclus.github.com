@@ -27,16 +27,18 @@ in the implementation and the usage, across multiple archetypes.
 Toolkit Implementation
 ======================
 
-Each |Cyclus| toolkit component will contain 3 different files: 2 for the definition of the
-snippet C++ class (``cpp`` and header) that allows the use of the capabilities, and
-optionally to register its values in the output database, a snippet simplifying
-the integration of the feature in a newly develop archetypes.
+Each |Cyclus| toolkit component will contain 3 different files:
+- 2 for the definition of the snippet C++ class (``cpp`` and header) that allows
+  the use of the capabilities, and optionally to register its values in the
+  output database,
+- a snippet definition file used to simplify the implementation and ensure
+  consistency accross its integration in the different archetypes.
 
-The snippet file with then be included in the header part of the archetypes
+The snippet definition file will then be included in the header part of the archetypes
 class declaration as: ``#include toolkit/my_snippet.cycpp.h``
-
 (The use of the ``cycpp.h`` has been chosen to allow syntax highlighting and
 inform developers that this is not a standard C++ header)
+
 The snippet file, will contain the declaration of all the variables required
 to use the capabilities class:
 
@@ -72,8 +74,8 @@ have to be done:
 2. Add the proper default initialization of the variable required for the
    snippet.
 
-3. In the ``Archetype::EnterNotify()``, assign the Snippet with value
-   corresponding to the user input.
+3. In the ``Archetype::EnterNotify()``, initialise the toolkit class member
+   variables with variables.
 
 4. (optional) If required, call the ``RecordSnippet()`` method when necessary during the
    Archetype operation.
@@ -91,4 +93,57 @@ develop to skip the assignation of the value in the inherited class in the
 ``EnterNotify``...
 
 Otherwise behavior would be very similar.
+
+Exemple:
+========
+
+``toolkit/my_snippet.cycpp.h``:
+.. highlight:: c
+    cyclus::toolkit::Position coordinates;
+    
+    #pragma cyclus var { \
+        "default": 0.0, \
+        "uilabel": "Geographical latitude in degrees as a double", \
+        "doc": "Latitude of the agent's geographical position. The value should " \
+           "be expressed in degrees as a double." }
+    double latitude;
+    // required for compilation but not added by the cycpp preprocessor...
+    std::vector<int> cycpp_shape_latitude;
+
+    #pragma cyclus var { \
+           "default": 0.0, \
+           "uilabel": "Geographical longitude in degrees as a double", \
+           "doc": "Longitude of the agent's geographical position. The value should" \
+           "be expressed in degrees as a double." }
+    double longitude;
+    // required for compilation but not added by the cycpp preprocessor...
+    std::vector<int> cycpp_shape_longitude;
+
+
+``my_archetype_example.h``:
+.. highlight:: c
+    class fun_archetype : public cyclus::facility{
+        public:
+        [...]
+        private:
+        [...]
+        #include "toolkit/my_snippet.cycpp.h"
+
+``my_archetype_example.cpp``:
+.. highlight:: c
+    fun_archetype::fun_archetype(cyclus::Context* ctx): 
+        cyclus::facility(ctx),
+        var1(0.0),
+        var2(0.0),
+        ...,
+        coordinates(0,0), //coordinates constructor (toolkit feature class)
+        longitude(0), //snippet variables added with "my_snippet.cycpp.h"
+        latitude(0) //snippet variables added with "my_snippet.cycpp.h"
+    {}
+    [..]
+    void Storage::EnterNotify() {
+        coordinates.set_position(latitude, longitude);
+        coordinates.RecordPosition(this);
+        [...]
+        }
 
