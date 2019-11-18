@@ -100,7 +100,7 @@ Exemple:
 ``toolkit/my_snippet.cycpp.h``:
 .. highlight:: c
     cyclus::toolkit::Position coordinates;
-    
+
     #pragma cyclus var { \
         "default": 0.0, \
         "uilabel": "Geographical latitude in degrees as a double", \
@@ -131,7 +131,7 @@ Exemple:
 
 ``my_archetype_example.cpp``:
 .. highlight:: c
-    fun_archetype::fun_archetype(cyclus::Context* ctx): 
+    fun_archetype::fun_archetype(cyclus::Context* ctx):
         cyclus::facility(ctx),
         var1(0.0),
         var2(0.0),
