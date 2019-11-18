@@ -13,27 +13,27 @@ CEP 27 - Agent Toolkit Capabilities
 Abstract
 ========
 
-|Cyclus| toolkit is designed to easily implement specific capabilities in newly
+The |Cyclus| toolkit is designed to easily implement specific capabilities in newly
 developed archetypes, such as trading policy, commodity producers... To add
 characteristics to archetypes such as Position or Metadata, the actual
-implementation method is very verbosy where in each archetypes one need to add
-the inew specification in the header, assign it and use it in the cpp file,
-without guaranty on the consistency in the variables naming and implementation
+implementation method is very verbose, where in each archetypes one needs to add
+the new specification in the header, assign it and use it in the cpp file,
+with no guarantee on the consistency in the variable naming and implementation
 across multiple archetypes.
-This CEP explains how to use snippets would simplify and maintain consistency
+This CEP explains how to use snippets to simplify and maintain consistency
 in the implementation and the usage, across multiple archetypes.
 
 
 Toolkit Implementation
 ======================
 
-The |Cyclus| toolkit will contain 3 different files: 2 for the definition of the
-snippet C++ class (``cpp`` and header) that allows to use the capabilities, and
+Each |Cyclus| toolkit component will contain 3 different files: 2 for the definition of the
+snippet C++ class (``cpp`` and header) that allows the use of the capabilities, and
 optionally to register its values in the output database, a snippet simplifying
 the integration of the feature in a newly develop archetypes.
 
 The snippet file with then be included in the header part of the archetypes
-class declaration as": ``#include toolkit/my_snippet.cycpp.h``
+class declaration as: ``#include toolkit/my_snippet.cycpp.h``
 
 (The use of the ``cycpp.h`` has been chosen to allow syntax highlighting and
 inform developers that this is not a standard C++ header)
@@ -51,11 +51,11 @@ to use the capabilities class:
   included files.
 
 
-The main interest of this include method would be to insure consistency across
+The main purpose of this include method would be to ensure consistency across
 archetypes using the same toolkit capability requiring user input, avoiding 1
 set of input syntax per archetypes for the same capability.
 
-If the toolkit features needs to capabilities to write in the output database a
+If the toolkit features needs the capabilities to write in the output database a
 ``RecordSnippet(Agent* agent)`` method will be implemented to avoid
 multiplication of implementation in the archetypes.
 
@@ -69,7 +69,7 @@ have to be done:
 1. Include the snippet in the class header core: ``#include
    toolkit/my_snippet.cycpp,h``.
 
-2. Add the proper default initialisation of the variable required for the
+2. Add the proper default initialization of the variable required for the
    snippet.
 
 3. In the ``Archetype::EnterNotify()``, assign the Snippet with value
