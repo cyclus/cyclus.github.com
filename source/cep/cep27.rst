@@ -1,5 +1,5 @@
-CEP 27 - Agent Toolkit Capabilities
-***********************************
+CEP 27 - Toolkit Capabilities Injection into an Archetype
+*********************************************************
 
 :CEP: 27
 :Title: Agent Toolkit Capabilities
