@@ -47,9 +47,10 @@ to use the capabilities class:
 - (optional) if the capability requires/allows variable input from users,
   standard |Cyclus| member variable declaration with variable ``#pragma`` is
   required. In addition, to the standard variable declaration and the
-  ``#pragma`` the method also require a ``std::vector<int> cycpp_shape_myvariable`` 
-  to be declared for each of the decorated variable. (``cycpp preprocessor`` is not able 
-  at the time to add them automatically for included files.)
+  ``#pragma`` the method also require a ``std::vector<int>
+  cycpp_shape_myvariable`` to be declared for each of the decorated variable
+  that are in the `toolkit/my_snippet.cycpp.h` file. (``cycpp preprocessor`` is
+  not able at the time to add them automatically for included files.)
 
 
 The main purpose of this include method would be to ensure consistency across
