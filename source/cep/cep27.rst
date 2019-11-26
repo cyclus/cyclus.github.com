@@ -14,11 +14,11 @@ Abstract
 ========
 
 The |Cyclus| toolkit is designed to easily implement specific capabilities in
-newly developed archetypes, such as trading policy, commodity producers... To
-add characteristics to archetypes such as Position or Metadata, the actual
+newly developed archetypes, such as trading policy, commodity producers. To
+add characteristics to archetypes such as `Position` or `Metadata`, the actual
 implementation method is very verbose, where in each archetypes one needs to add
 the new specification in the arcehtype header, then assign it and use it in the
-cpp file, with no guarantee on the consistency in the variable naming and
+cpp file, and the developer must ensure the consistency in the variable naming and
 implementation across multiple archetypes.
 This CEP explains how to use snippets to simplify and maintain consistency
 in the implementation and the usage, across multiple archetypes.
@@ -93,7 +93,7 @@ develop to skip the assignation of the value in the inherited class in the
 
 Otherwise behavior would be very similar.
 
-Exemple:
+Example:
 ========
 
 ``toolkit/my_snippet.cycpp.h``:
@@ -145,4 +145,3 @@ Exemple:
         coordinates.RecordPosition(this);
         [...]
         }
-
