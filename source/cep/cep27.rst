@@ -130,6 +130,7 @@ Without Inheritance:
         private:
         [...]
         #include "toolkit/my_snippet.cycpp.h"
+    }
 
 ``my_archetype_example.cpp``:
 .. highlight:: c
@@ -148,8 +149,9 @@ Without Inheritance:
         coordinates.RecordPosition(this);
         [...]
         }
-Wit Inheritance:
---------------------
+
+With Inheritance:
+-----------------
 ``toolkit/my_snippet.cycpp.h``:
 .. highlight:: c
     #pragma cyclus var { \
@@ -178,6 +180,7 @@ Wit Inheritance:
         private:
         [...]
         #include "toolkit/my_snippet.cycpp.h"
+    }
 
 ``my_archetype_example.cpp``:
 .. highlight:: c
