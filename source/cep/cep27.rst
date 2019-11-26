@@ -97,6 +97,9 @@ Otherwise behavior would be very similar.
 Example:
 ========
 
+
+Without Inheritance:
+--------------------
 ``toolkit/my_snippet.cycpp.h``:
 .. highlight:: c
     cyclus::toolkit::Position coordinates;
@@ -118,7 +121,6 @@ Example:
     double longitude;
     // required for compilation but not added by the cycpp preprocessor...
     std::vector<int> cycpp_shape_longitude;
-
 
 ``my_archetype_example.h``:
 .. highlight:: c
@@ -144,5 +146,54 @@ Example:
     void Storage::EnterNotify() {
         coordinates.set_position(latitude, longitude);
         coordinates.RecordPosition(this);
+        [...]
+        }
+Wit Inheritance:
+--------------------
+``toolkit/my_snippet.cycpp.h``:
+.. highlight:: c
+    #pragma cyclus var { \
+        "default": 0.0, \
+        "uilabel": "Geographical latitude in degrees as a double", \
+        "doc": "Latitude of the agent's geographical position. The value should " \
+           "be expressed in degrees as a double." }
+    double latitude;
+    // required for compilation but not added by the cycpp preprocessor...
+    std::vector<int> cycpp_shape_latitude;
+
+    #pragma cyclus var { \
+           "default": 0.0, \
+           "uilabel": "Geographical longitude in degrees as a double", \
+           "doc": "Longitude of the agent's geographical position. The value should" \
+           "be expressed in degrees as a double." }
+    double longitude;
+    // required for compilation but not added by the cycpp preprocessor...
+    std::vector<int> cycpp_shape_longitude;
+
+``my_archetype_example.h``:
+.. highlight:: c
+    class fun_archetype : public cyclus::facility, public Position {
+        public:
+        [...]
+        private:
+        [...]
+        #include "toolkit/my_snippet.cycpp.h"
+
+``my_archetype_example.cpp``:
+.. highlight:: c
+    fun_archetype::fun_archetype(cyclus::Context* ctx):
+        cyclus::facility(ctx),
+        var1(0.0),
+        var2(0.0),
+        ...,
+        coordinates(0,0), //coordinates constructor (toolkit feature class)
+        longitude(0), //snippet variables added with "my_snippet.cycpp.h"
+        latitude(0), //snippet variables added with "my_snippet.cycpp.h"
+        Position(0, 0)
+    {}
+    [..]
+    void Storage::EnterNotify() {
+        this.set_position(latitude, longitude);
+        this.RecordPosition(this);
         [...]
         }
