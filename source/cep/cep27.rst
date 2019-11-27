@@ -17,7 +17,7 @@ The |Cyclus| toolkit is designed to easily implement specific capabilities in
 newly developed archetypes, such as a trading policy, commodity producers, etc.
 To add characteristics to archetypes such as `Position` or `Metadata`, the
 actual implementation method is very verbose. It relies on adding the new
-specification in the arcehtype header, assignng it and use it in the cpp
+specification in the arcehtype header, assigning it and use it in the cpp
 file. The developers have to manually ensure the consistency in the variable naming and
 implementation across multiple archetypes/files.
 This CEP explains introduces the concept of snippets to simplify and maintain consistency
