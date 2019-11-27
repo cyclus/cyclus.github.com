@@ -14,12 +14,12 @@ Abstract
 ========
 
 The |Cyclus| toolkit is designed to easily implement specific capabilities in
-newly developed archetypes, such as a trading policy, commodity producers, etc. To
-add characteristics to archetypes such as `Position` or `Metadata`, the actual
-implementation method is very verbose, where in each archetypes one needs to add
-the new specification in the arcehtype header, then assign it and use it in the
-cpp file, and the developer must ensure the consistency in the variable naming and
-implementation across multiple archetypes.
+newly developed archetypes, such as a trading policy, commodity producers, etc.
+To add characteristics to archetypes such as `Position` or `Metadata`, the
+actual implementation method is very verbose. It relies on adding the new
+specification in the arcehtype header, assignng it and use it in the cpp
+file. The developers have to manually ensure the consistency in the variable naming and
+implementation across multiple archetypes/files.
 This CEP explains introduces the concept of snippets to simplify and maintain consistency
 in the implementation and the usage, across multiple archetypes.
 
@@ -123,7 +123,9 @@ Without Inheritance:
 
 ``my_archetype_example.h``:
 .. highlight:: c
-    class fun_archetype : public cyclus::facility{
+    #include 'toolkit/Position.h'
+    
+     class fun_archetype : public cyclus::facility{
         public:
         [...]
         private:
@@ -163,6 +165,8 @@ With Inheritance:
 
 ``my_archetype_example.h``:
 .. highlight:: c
+    #include 'toolkit/Position.h'
+    
     class fun_archetype : public cyclus::facility, public Position {
         public:
         [...]
