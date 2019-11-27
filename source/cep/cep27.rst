@@ -35,7 +35,7 @@ Each |Cyclus| toolkit component will contain 3 different files:
   consistency accross its integration in the different archetypes.
 
 The snippet definition file will be included in the ``private`` section of the
-archetype header as: ``#include toolkit/my_snippet.cycpp.h``. (The use of the
+archetype header as: ``#include toolkit/my_feature_snippet.cycpp.h``. (The use of the
 ``cycpp.h`` has been chosen to allow syntax highlighting and inform developers
 that this is not a standard C++ header.)
 
@@ -51,7 +51,7 @@ to use the capabilities class:
   required. In addition, to the standard variable declaration and the
   ``#pragma`` the method also require a ``std::vector<int>
   cycpp_shape_myvariable`` to be declared for each of the decorated variable
-  that are in the `toolkit/my_snippet.cycpp.h` file. (``cycpp preprocessor`` is
+  that are in the `toolkit/my_feature_snippet.cycpp.h` file. (``cycpp preprocessor`` is
   not able at the time to add them automatically for included files.)
 
 
@@ -70,13 +70,16 @@ Archetypes Integration
 When the capability is integrated in an Archetype the following implementations
 have to be done:
 
-1. Include the snippet in the class header core: 
-   ``#include toolkit/my_snippet.cycpp,h``.
+1. Include toolkit class header in in the class header:
+   ``#include 'toolkit/my_feature.h'``.
 
-2. (optional) In the ``Archetype::EnterNotify()``, initialise the toolkit class member
+2. Include the snippet in the class header core: 
+   ``#include toolkit/my_feature_snippet.cycpp,h``.
+
+3. (optional) In the ``Archetype::EnterNotify()``, initialise the toolkit class member
    variables with variables.
 
-3. (optional) If required, call the ``RecordSnippet()`` method when necessary during the
+4. (optional) If required, call the ``RecordSnippet()`` method when necessary during the
    Archetype operation.
 
 
@@ -99,7 +102,7 @@ Example:
 
 Without Inheritance:
 --------------------
-``toolkit/my_snippet.cycpp.h``:
+``toolkit/my_feature_snippet.cycpp.h``:
 .. highlight:: c
     cyclus::toolkit::Position coordinates(0,0);
 
@@ -130,7 +133,7 @@ Without Inheritance:
         [...]
         private:
         [...]
-        #include "toolkit/my_snippet.cycpp.h"
+        #include "toolkit/my_feature_snippet.cycpp.h"
     }
 
 ``my_archetype_example.cpp``:
@@ -143,7 +146,7 @@ Without Inheritance:
 
 With Inheritance:
 -----------------
-``toolkit/my_snippet.cycpp.h``:
+``toolkit/my_feature_snippet.cycpp.h``:
 .. highlight:: c
     #pragma cyclus var { \
         "default": 0.0, \
@@ -172,7 +175,7 @@ With Inheritance:
         [...]
         private:
         [...]
-        #include "toolkit/my_snippet.cycpp.h"
+        #include "toolkit/my_feature_snippet.cycpp.h"
     }
 
 ``my_archetype_example.cpp``:
