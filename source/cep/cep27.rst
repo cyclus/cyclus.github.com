@@ -44,6 +44,8 @@ to use the capabilities class:
 
 - the definition of the capability class as a member variable.
 
+- initialisation of the added variables.
+
 - (optional) if the capability requires/allows variable input from users,
   standard |Cyclus| member variable declaration with variable ``#pragma`` is
   required. In addition, to the standard variable declaration and the
@@ -71,13 +73,10 @@ have to be done:
 1. Include the snippet in the class header core: 
    ``#include toolkit/my_snippet.cycpp,h``.
 
-2. Add the proper default initialization of the variable required for the
-   snippet.
-
-3. (optional) In the ``Archetype::EnterNotify()``, initialise the toolkit class member
+2. (optional) In the ``Archetype::EnterNotify()``, initialise the toolkit class member
    variables with variables.
 
-4. (optional) If required, call the ``RecordSnippet()`` method when necessary during the
+3. (optional) If required, call the ``RecordSnippet()`` method when necessary during the
    Archetype operation.
 
 
@@ -102,14 +101,14 @@ Without Inheritance:
 --------------------
 ``toolkit/my_snippet.cycpp.h``:
 .. highlight:: c
-    cyclus::toolkit::Position coordinates;
+    cyclus::toolkit::Position coordinates(0,0);
 
     #pragma cyclus var { \
         "default": 0.0, \
         "uilabel": "Geographical latitude in degrees as a double", \
         "doc": "Latitude of the agent's geographical position. The value should " \
            "be expressed in degrees as a double." }
-    double latitude;
+    double latitude = 0;
     // required for compilation but not added by the cycpp preprocessor...
     std::vector<int> cycpp_shape_latitude;
 
@@ -118,7 +117,7 @@ Without Inheritance:
            "uilabel": "Geographical longitude in degrees as a double", \
            "doc": "Longitude of the agent's geographical position. The value should" \
            "be expressed in degrees as a double." }
-    double longitude;
+    double longitude = 0;
     // required for compilation but not added by the cycpp preprocessor...
     std::vector<int> cycpp_shape_longitude;
 
@@ -134,17 +133,7 @@ Without Inheritance:
 
 ``my_archetype_example.cpp``:
 .. highlight:: c
-    fun_archetype::fun_archetype(cyclus::Context* ctx):
-        cyclus::facility(ctx),
-        var1(0.0),
-        var2(0.0),
-        ...,
-        coordinates(0,0), //coordinates constructor (toolkit feature class)
-        longitude(0), //snippet variables added with "my_snippet.cycpp.h"
-        latitude(0) //snippet variables added with "my_snippet.cycpp.h"
-    {}
-    [..]
-    void Storage::EnterNotify() {
+    void fun_archetype::EnterNotify() {
         coordinates.set_position(latitude, longitude);
         coordinates.RecordPosition(this);
         [...]
@@ -159,7 +148,7 @@ With Inheritance:
         "uilabel": "Geographical latitude in degrees as a double", \
         "doc": "Latitude of the agent's geographical position. The value should " \
            "be expressed in degrees as a double." }
-    double latitude;
+    double latitude = 0;
     // required for compilation but not added by the cycpp preprocessor...
     std::vector<int> cycpp_shape_latitude;
 
@@ -168,7 +157,7 @@ With Inheritance:
            "uilabel": "Geographical longitude in degrees as a double", \
            "doc": "Longitude of the agent's geographical position. The value should" \
            "be expressed in degrees as a double." }
-    double longitude;
+    double longitude = 0;
     // required for compilation but not added by the cycpp preprocessor...
     std::vector<int> cycpp_shape_longitude;
 
@@ -184,18 +173,7 @@ With Inheritance:
 
 ``my_archetype_example.cpp``:
 .. highlight:: c
-    fun_archetype::fun_archetype(cyclus::Context* ctx):
-        cyclus::facility(ctx),
-        var1(0.0),
-        var2(0.0),
-        ...,
-        coordinates(0,0), //coordinates constructor (toolkit feature class)
-        longitude(0), //snippet variables added with "my_snippet.cycpp.h"
-        latitude(0), //snippet variables added with "my_snippet.cycpp.h"
-        Position(0, 0)
-    {}
-    [..]
-    void Storage::EnterNotify() {
+    void fun_archetype::EnterNotify() {
         this.set_position(latitude, longitude);
         this.RecordPosition(this);
         [...]
