@@ -133,19 +133,20 @@ Release Process
    ``cymetric/setup.py``; commit the changes
 
 #. Perform maintenance tasks for all projects. The maintenance depends on `PyNE
-   <https://github.com/pyne/pyne.git>`_ and Doxygen.
+   <https://github.com/pyne/pyne.git>`_ and Doxygen. Maintenance files can be
+   found `here<https://github.com/cyclus/release>`_.
 
-    - they are described in detail below, *but* the ``maintenence.sh`` utility
+    - they are described in detail below, *but* the ``maintenance.sh`` utility
       in ``release/utils`` will do this automatically for you
 
-    - make sure to have your ``rs.cred`` file (see ``maintenence.sh``'s help)
+    - make sure to have your ``rs.cred`` file (see ``maintenance.sh``'s help)
 
     .. code-block:: bash
 
       $ cd /path/to/release/utils
       $ export CYCLUS_DIR=/path/to/cyclus
       $ export CYCAMORE_DIR=/path/to/cycamore
-      $ ./maintenence.sh -r -v X.X.X # X.X.X is *this* version
+      $ ./maintenance.sh -r -v X.X.X # X.X.X is *this* version
 
     .. note::
 
