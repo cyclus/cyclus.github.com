@@ -10,7 +10,8 @@ The following are release notes for and links to previously released versions of
 
 .. toctree::
     :maxdepth: 1
-
+    
+    v1.5.5
     v1.5
     v1.3
     v1.2
@@ -28,6 +29,7 @@ have been included in the 1.5.0.
 ========= ========== ================ ==============
 Version   Date       Zip              Tar
 ========= ========== ================ ==============
+1.5.5     2019-01-14 `zip 1.5.5`_     `tar 1.5.5`_
 1.5.0     2016-12-13 `zip 1.5.0`_     `tar 1.5.0`_
 1.5.0     2016-12-13 `zip 1.5.0-rc1`_ `tar 1.5.0-rc1`_
 1.4.1     2016-11-01 `zip 1.4.1`_     `tar 1.4.1`_
@@ -63,6 +65,8 @@ Version   Date       Zip              Tar
 0.1       2012-03-27 `zip 0.1`_       `tar 0.1`_
 ========= ========== ================ ==============
 
+.. _zip 1.5.5: https://github.com/cyclus/cyclus/archive/1.5.5.zip
+.. _tar 1.5.5: https://github.com/cyclus/cyclus/arcive/1.5.5.tar.gz
 .. _zip 1.5.0: https://github.com/cyclus/cyclus/archive/1.5.0.zip
 .. _tar 1.5.0: https://github.com/cyclus/cyclus/archive/1.5.0.tar.gz
 .. _zip 1.5.0-rc1: https://github.com/cyclus/cyclus/archive/1.5.0-rc1.zip
