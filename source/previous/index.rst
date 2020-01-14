@@ -30,7 +30,6 @@ have been included in the 1.5.0.
 Version   Date       Zip              Tar
 ========= ========== ================ ==============
 1.5.5     2019-01-14 `zip 1.5.5`_     `tar 1.5.5`_
-1.5.5     2019-01-14 `zip 1.5.5-rc1`_ `tar 1.5.5-rc1`_
 1.5.0     2016-12-13 `zip 1.5.0`_     `tar 1.5.0`_
 1.5.0     2016-12-13 `zip 1.5.0-rc1`_ `tar 1.5.0-rc1`_
 1.4.1     2016-11-01 `zip 1.4.1`_     `tar 1.4.1`_
@@ -68,8 +67,6 @@ Version   Date       Zip              Tar
 
 .. _zip 1.5.5: https://github.com/cyclus/cyclus/archive/1.5.5zip
 .. _tar 1.5.5: https://github.com/cyclus/cyclus/arcive/1.5.5.tar.gz
-.. _zip 1.5.5-rc1: https://github.com/cyclus/cyclus/archive/1.5.5-rc1.zip
-.. _tar 1.5.5-rc1: https://github.com/cyclus/cyclus/archive/1.5.5-rc1.tar.gz
 .. _zip 1.5.0: https://github.com/cyclus/cyclus/archive/1.5.0.zip
 .. _tar 1.5.0: https://github.com/cyclus/cyclus/archive/1.5.0.tar.gz
 .. _zip 1.5.0-rc1: https://github.com/cyclus/cyclus/archive/1.5.0-rc1.zip
