@@ -79,7 +79,6 @@ name indicates a first time contributor.  Names follow alphabetically,
 
 * Anna Caldwell-Overdier *
 * Baptiste Mouginot
-* gwenchee
 * Gwendolyn Chee
 * Jordan Stomps *
 * Paul Wilson
