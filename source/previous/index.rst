@@ -65,7 +65,7 @@ Version   Date       Zip              Tar
 0.1       2012-03-27 `zip 0.1`_       `tar 0.1`_
 ========= ========== ================ ==============
 
-.. _zip 1.5.5: https://github.com/cyclus/cyclus/archive/1.5.5zip
+.. _zip 1.5.5: https://github.com/cyclus/cyclus/archive/1.5.5.zip
 .. _tar 1.5.5: https://github.com/cyclus/cyclus/arcive/1.5.5.tar.gz
 .. _zip 1.5.0: https://github.com/cyclus/cyclus/archive/1.5.0.zip
 .. _tar 1.5.0: https://github.com/cyclus/cyclus/archive/1.5.0.tar.gz
