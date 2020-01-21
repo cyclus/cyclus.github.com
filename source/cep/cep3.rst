@@ -247,7 +247,8 @@ Release Process
 
     - In each project's feedstok, open up a PR which updates the
       `recipe/meta.yaml` file with the new version number and the new SHA-256
-      value of the new version's tarball. See conda-forge documentation for more
+      value of the new version's tarball (Note: the above scripts may
+      automatically create a new PR). See conda-forge documentation for more
       or ask the feedstock maintainers for help.
 
     - Note that each feedstock must be accepted and the package uploaded to
