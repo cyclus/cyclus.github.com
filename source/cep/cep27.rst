@@ -17,8 +17,8 @@ The |Cyclus| toolkit is designed to easily implement specific capabilities in
 newly developed archetypes, such as a trading policy, commodity producers, etc.
 To add characteristics to archetypes such as `Position` or `Metadata`, the
 actual implementation method is very verbose. It relies on adding the new
-specification in the arcehtype header, assigning it and use it in the cpp
-file. The developers have to manually ensure the consistency in the variable naming and
+specification in the archetype header, assigning it and use it in the cpp
+file. The developers have to manually ensure the consistency in variable naming and
 implementation across multiple archetypes/files.
 This CEP explains introduces the concept of snippets to simplify and maintain consistency
 in the implementation and the usage, across multiple archetypes.
@@ -44,7 +44,7 @@ to use the capabilities class:
 
 - the definition of the capability class as a member variable.
 
-- initialisation of the added variables.
+- initialization of the added variables.
 
 - (optional) if the capability requires/allows variable input from users,
   standard |Cyclus| member variable declaration with variable ``#pragma`` is
