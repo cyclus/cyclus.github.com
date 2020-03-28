@@ -128,24 +128,26 @@ Release Process
 #. Make sure every local |cyclus| project repository is up to date with its
    ``master``, and ``vX.X.X-release`` branches on ``upstream``.
 
-#. Bump the version in ``cyclus/src/version.h.in``,
+#. Bump the version in ``cyclus/src/version.h.in`` and ``cyclus/cyclus/__init__.py``,
    ``cycamore/src/cycamore_version.h.in``, and
    ``cymetric/setup.py``; commit the changes
 
 #. Perform maintenance tasks for all projects. The maintenance depends on `PyNE
-   <https://github.com/pyne/pyne.git>`_ and Doxygen.
+   <https://github.com/pyne/pyne.git>`_ and Doxygen. Maintenance files can be
+   found `here
+   <https://github.com/cyclus/release>`_.
 
-    - they are described in detail below, *but* the ``maintenence.sh`` utility
+    - they are described in detail below, *but* the ``maintenance.sh`` utility
       in ``release/utils`` will do this automatically for you
 
-    - make sure to have your ``rs.cred`` file (see ``maintenence.sh``'s help)
+    - make sure to have your ``rs.cred`` file (see ``maintenance.sh``'s help)
 
     .. code-block:: bash
 
       $ cd /path/to/release/utils
       $ export CYCLUS_DIR=/path/to/cyclus
       $ export CYCAMORE_DIR=/path/to/cycamore
-      $ ./maintenence.sh -r -v X.X.X # X.X.X is *this* version
+      $ ./maintenance.sh -r -v X.X.X # X.X.X is *this* version
 
     .. note::
 
@@ -230,11 +232,11 @@ Release Process
       $ cd /path/to/project
       $ git push upstream X.X.X master
       $ git push upstream --delete vX.X.X-release
+      
+#. Manually visit the github.com page for each project and draft/publish a new release.
 
-#. Manually visit the github.com page for each project and mark the tags as releases.
-
-    - This can be updated one day to use the Github `release API
-      <https://developer.github.com/v3/repos/releases/#create-a-release>`_
+    - See instructions `here
+      <https://help.github.com/en/github/administering-a-repository/creating-releases>`_
 
 
 #. Update Conda-forge
