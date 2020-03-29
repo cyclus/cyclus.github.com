@@ -831,7 +831,7 @@ careful when using this pragma :).</p>
 
 <dl class="attribute">
 <dt id="cyclus.cycpp.InitFromCopyFilter.res_impl">
-<code class="descname">res_impl</code><em class="property"> = {'cyclus::toolkit::ResourceBuff': '{var}.set_capacity(m-&gt;{var}.capacity());\n', 'cyclus::toolkit::ResMap': '{var}.obj_ids(m-&gt;obj_ids());\n', 'cyclus::toolkit::ResBuf': '{var}.capacity(m-&gt;{var}.capacity());\n'}</em><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.res_impl" title="Permalink to this definition">¶</a></dt>
+<code class="descname">res_impl</code><em class="property"> = {'cyclus::toolkit::ResMap': '{var}.obj_ids(m-&gt;obj_ids());\n', 'cyclus::toolkit::ResourceBuff': '{var}.set_capacity(m-&gt;{var}.capacity());\n', 'cyclus::toolkit::ResBuf': '{var}.capacity(m-&gt;{var}.capacity());\n'}</em><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.res_impl" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -915,7 +915,7 @@ generation:
 
 <dl class="attribute">
 <dt id="cyclus.cycpp.InitFromDbFilter.res_impl">
-<code class="descname">res_impl</code><em class="property"> = {'cyclus::toolkit::ResourceBuff': '{var}.set_capacity({capacity});\n', 'cyclus::toolkit::ResMap': '{var}.obj_ids(qr.GetVal&lt;{tstr}&gt;(&quot;{var}&quot;))\n;', 'cyclus::toolkit::ResBuf': '{var}.capacity({capacity});\n'}</em><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.res_impl" title="Permalink to this definition">¶</a></dt>
+<code class="descname">res_impl</code><em class="property"> = {'cyclus::toolkit::ResMap': '{var}.obj_ids(qr.GetVal&lt;{tstr}&gt;(&quot;{var}&quot;))\n;', 'cyclus::toolkit::ResourceBuff': '{var}.set_capacity({capacity});\n', 'cyclus::toolkit::ResBuf': '{var}.capacity({capacity});\n'}</em><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.res_impl" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -998,7 +998,7 @@ generation:
 
 <dl class="attribute">
 <dt id="cyclus.cycpp.InitInvFilter.res_impl">
-<code class="descname">res_impl</code><em class="property"> = {'cyclus::toolkit::ResourceBuff': '{var}.PushAll(inv[&quot;{var}&quot;]);\n', 'cyclus::toolkit::ResMap': '{var}.ResValues(inv[&quot;{var}&quot;]);\n', 'cyclus::toolkit::ResBuf': '{var}.Push(inv[&quot;{var}&quot;]);\n'}</em><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.res_impl" title="Permalink to this definition">¶</a></dt>
+<code class="descname">res_impl</code><em class="property"> = {'cyclus::toolkit::ResMap': '{var}.ResValues(inv[&quot;{var}&quot;]);\n', 'cyclus::toolkit::ResourceBuff': '{var}.PushAll(inv[&quot;{var}&quot;]);\n', 'cyclus::toolkit::ResBuf': '{var}.Push(inv[&quot;{var}&quot;]);\n'}</em><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.res_impl" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1029,7 +1029,7 @@ from preprocessor line marker directives.</p>
 <a class="reference external" href="http://gcc.gnu.org/onlinedocs/cpp/Preprocessor-Output.html">http://gcc.gnu.org/onlinedocs/cpp/Preprocessor-Output.html</a></p>
 <dl class="attribute">
 <dt id="cyclus.cycpp.LinemarkerFilter.allowed_flags">
-<code class="descname">allowed_flags</code><em class="property"> = {'2', '1'}</em><a class="headerlink" href="#cyclus.cycpp.LinemarkerFilter.allowed_flags" title="Permalink to this definition">¶</a></dt>
+<code class="descname">allowed_flags</code><em class="property"> = {'1', '2'}</em><a class="headerlink" href="#cyclus.cycpp.LinemarkerFilter.allowed_flags" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1183,7 +1183,7 @@ annotations dict.</p>
 
 <dl class="attribute">
 <dt id="cyclus.cycpp.PragmaCyclusErrorFilter.directives">
-<code class="descname">directives</code><em class="property"> = frozenset({'impl', 'def', 'exec', 'decl', 'var', 'note'})</em><a class="headerlink" href="#cyclus.cycpp.PragmaCyclusErrorFilter.directives" title="Permalink to this definition">¶</a></dt>
+<code class="descname">directives</code><em class="property"> = frozenset({'impl', 'var', 'decl', 'note', 'def', 'exec'})</em><a class="headerlink" href="#cyclus.cycpp.PragmaCyclusErrorFilter.directives" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1273,7 +1273,7 @@ In either case, this is followed by: for k, v in F.items(): D[k] = v</p>
 #pragma cyclus [def|decl|impl] schema [classname]</p>
 <dl class="attribute">
 <dt id="cyclus.cycpp.SchemaFilter.alltypes">
-<code class="descname">alltypes</code><em class="property"> = frozenset({'unsignedShort', 'gMonthDay', 'NMTOKENS', 'IDREF', 'normalizedString', 'NMTOKEN', 'gDay', 'NOTATION', 'integer', 'language', 'ENTITIES', 'date', 'IDREFS', 'unsignedByte', 'NCName', 'long', 'anySimpleType', 'boolean', 'token', 'anyType', 'ENTITY', 'int', 'unsignedInt', 'ID', 'unsignedLong', 'gMonth', 'base64Binary', 'negativeInteger', 'QName', 'string', 'nonPositiveInteger', 'byte', 'gYear', 'hexBinary', 'gYearMonth', 'duration', 'short', 'positiveInteger', 'double', 'decimal', 'anyURI', 'time', 'float', 'nonNegativeInteger', 'dateTime', 'Name'})</em><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.alltypes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">alltypes</code><em class="property"> = frozenset({'language', 'positiveInteger', 'ID', 'boolean', 'QName', 'anySimpleType', 'anyType', 'string', 'duration', 'IDREFS', 'dateTime', 'token', 'NOTATION', 'NMTOKEN', 'IDREF', 'decimal', 'gYear', 'normalizedString', 'unsignedInt', 'hexBinary', 'negativeInteger', 'short', 'nonNegativeInteger', 'date', 'unsignedShort', 'gMonth', 'ENTITIES', 'float', 'gYearMonth', 'NMTOKENS', 'unsignedByte', 'gMonthDay', 'ENTITY', 'int', 'anyURI', 'byte', 'integer', 'Name', 'unsignedLong', 'nonPositiveInteger', 'long', 'time', 'base64Binary', 'double', 'gDay', 'NCName'})</em><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.alltypes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1288,7 +1288,7 @@ In either case, this is followed by: for k, v in F.items(): D[k] = v</p>
 
 <dl class="attribute">
 <dt id="cyclus.cycpp.SchemaFilter.default_types">
-<code class="descname">default_types</code><em class="property"> = {'boost::uuids::uuid': 'token', '': None, 'std::string': 'string', 'recipe': None, 'facility': None, 'combobox': None, 'incommodity': None, 'outcommodity': None, 'bool': 'boolean', 'range': None, 'double': 'double', 'float': 'float', 'inrecipe': None, 'int': 'int', 'none': None, 'prototype': None, 'outrecipe': None, None: None, 'cyclus::Blob': 'string', 'commodity': None, 'nuclide': 'string'}</em><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.default_types" title="Permalink to this definition">¶</a></dt>
+<code class="descname">default_types</code><em class="property"> = {'': None, 'inrecipe': None, None: None, 'std::string': 'string', 'boost::uuids::uuid': 'token', 'none': None, 'range': None, 'nuclide': 'string', 'bool': 'boolean', 'commodity': None, 'combobox': None, 'float': 'float', 'outcommodity': None, 'incommodity': None, 'recipe': None, 'cyclus::Blob': 'string', 'prototype': None, 'int': 'int', 'double': 'double', 'outrecipe': None, 'facility': None}</em><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.default_types" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1423,7 +1423,7 @@ In either case, this is followed by: for k, v in F.items(): D[k] = v</p>
 
 <dl class="attribute">
 <dt id="cyclus.cycpp.SnapshotFilter.res_exprs">
-<code class="descname">res_exprs</code><em class="property"> = {'cyclus::toolkit::ResourceBuff': None, 'cyclus::toolkit::ResMap': '{var}.obj_ids()', 'cyclus::toolkit::ResBuf': None}</em><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.res_exprs" title="Permalink to this definition">¶</a></dt>
+<code class="descname">res_exprs</code><em class="property"> = {'cyclus::toolkit::ResMap': '{var}.obj_ids()', 'cyclus::toolkit::ResourceBuff': None, 'cyclus::toolkit::ResBuf': None}</em><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.res_exprs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1506,7 +1506,7 @@ In either case, this is followed by: for k, v in F.items(): D[k] = v</p>
 
 <dl class="attribute">
 <dt id="cyclus.cycpp.SnapshotInvFilter.res_impl">
-<code class="descname">res_impl</code><em class="property"> = {'cyclus::toolkit::ResourceBuff': 'invs[&quot;{var}&quot;] = {var}.PopN({var}.count());\n{var}.PushAll(invs[&quot;{var}&quot;]);\n', 'cyclus::toolkit::ResMap': 'invs[&quot;{var}&quot;] = {var}.ResValues();\n', 'cyclus::toolkit::ResBuf': 'invs[&quot;{var}&quot;] = {var}.PopNRes({var}.count());\n{var}.Push(invs[&quot;{var}&quot;]);\n'}</em><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.res_impl" title="Permalink to this definition">¶</a></dt>
+<code class="descname">res_impl</code><em class="property"> = {'cyclus::toolkit::ResMap': 'invs[&quot;{var}&quot;] = {var}.ResValues();\n', 'cyclus::toolkit::ResourceBuff': 'invs[&quot;{var}&quot;] = {var}.PopN({var}.count());\n{var}.PushAll(invs[&quot;{var}&quot;]);\n', 'cyclus::toolkit::ResBuf': 'invs[&quot;{var}&quot;] = {var}.PopNRes({var}.count());\n{var}.Push(invs[&quot;{var}&quot;]);\n'}</em><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.res_impl" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1588,7 +1588,7 @@ The name argument here is provided for debugging &amp; reporting purposes.</p>
 
 <dl class="attribute">
 <dt id="cyclus.cycpp.StateAccumulator.known_templates">
-<code class="descname">known_templates</code><em class="property"> = {'std::list': ('T',), 'std::map': ('Key', 'T'), 'cyclus::toolkit::ResBuf': ('T',), 'cyclus::toolkit::ResMap': ('K', 'R'), 'std::vector': ('T',), 'std::pair': ('T1', 'T2'), 'std::set': ('T',)}</em><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.known_templates" title="Permalink to this definition">¶</a></dt>
+<code class="descname">known_templates</code><em class="property"> = {'std::pair': ('T1', 'T2'), 'std::map': ('Key', 'T'), 'std::vector': ('T',), 'cyclus::toolkit::ResMap': ('K', 'R'), 'std::set': ('T',), 'std::list': ('T',), 'cyclus::toolkit::ResBuf': ('T',)}</em><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.known_templates" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -1598,7 +1598,7 @@ The name argument here is provided for debugging &amp; reporting purposes.</p>
 
 <dl class="attribute">
 <dt id="cyclus.cycpp.StateAccumulator.supported_types">
-<code class="descname">supported_types</code><em class="property"> = {'cyclus::toolkit::ResourceBuff', 'cyclus::Material', 'std::string', 'cyclus::toolkit::ResBuf', 'boost::uuids::uuid', 'double', 'cyclus::Blob', 'bool', ('cyclus::toolkit::ResBuf', 'cyclus::Resource'), 'float', ('cyclus::toolkit::ResBuf', 'cyclus::Product'), 'int', 'cyclus::toolkit::ResMap', ('cyclus::toolkit::ResBuf', 'cyclus::Material'), 'cyclus::Resource', 'cyclus::Product'}</em><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.supported_types" title="Permalink to this definition">¶</a></dt>
+<code class="descname">supported_types</code><em class="property"> = {'cyclus::Resource', 'cyclus::Material', 'std::string', ('cyclus::toolkit::ResBuf', 'cyclus::Product'), 'boost::uuids::uuid', 'cyclus::toolkit::ResourceBuff', ('cyclus::toolkit::ResBuf', 'cyclus::Material'), 'bool', 'float', 'cyclus::toolkit::ResBuf', ('cyclus::toolkit::ResBuf', 'cyclus::Resource'), 'cyclus::Blob', 'cyclus::Product', 'int', 'double', 'cyclus::toolkit::ResMap'}</em><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.supported_types" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
