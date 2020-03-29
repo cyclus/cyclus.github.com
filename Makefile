@@ -79,7 +79,7 @@ gh-preview html:
 
 gh-publish-only:
 	git fetch $(GH_UPSTREAM_REPO)
-	git checkout -b $(GH_PUBLISH_BRANCH) $(GH_UPSTREAM_REPO)/$(GH_PUBLISH_BRANCH)
+	git checkout -B $(GH_PUBLISH_BRANCH) $(GH_UPSTREAM_REPO)/$(GH_PUBLISH_BRANCH)
 	git checkout $(GH_SOURCE_BRANCH) -- $(GH_SOURCE_DIR)
 	git reset HEAD
 	rsync -a $(BUILDDIR)/* .
