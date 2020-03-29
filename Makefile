@@ -78,7 +78,9 @@ gh-preview html:
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)."
 
 gh-publish-only:
-	git checkout $(GH_PUBLISH_BRANCH)
+	git fetch $(GH_UPSTREAM_REPO)
+	git branch -Df $(GH_PUBLISH_BRANCH)
+	git checkout -b $(GH_PUBLISH_BRANCH) $(GH_UPSTREAM_REPO)/$(GH_PUBLISH_BRANCH)
 	git checkout $(GH_SOURCE_BRANCH) -- $(GH_SOURCE_DIR)
 	git reset HEAD
 	rsync -a $(BUILDDIR)/* .
