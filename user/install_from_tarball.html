@@ -89,20 +89,20 @@ if(ga_enabled){
 <span style="font-variant:small-caps;">Cyclus</span> core, then the Cyclus Additional Modules (<em>Cycamore</em>), which provide the nuclear fuel cycle facilities such as the reactor, fuel fabrication facility, storage, etc.</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#dependencies" id="id5">Dependencies</a></li>
-<li><a class="reference internal" href="#install-cyclus" id="id6">Install Cyclus</a><ul>
-<li><a class="reference internal" href="#get-the-tarball" id="id7">Get the Tarball</a></li>
-<li><a class="reference internal" href="#compiling-cyclus" id="id8">Compiling Cyclus</a><ul>
-<li><a class="reference internal" href="#default-installation" id="id9">Default Installation</a></li>
+<li><a class="reference internal" href="#dependencies" id="id3">Dependencies</a></li>
+<li><a class="reference internal" href="#install-cyclus" id="id4">Install Cyclus</a><ul>
+<li><a class="reference internal" href="#get-the-tarball" id="id5">Get the Tarball</a></li>
+<li><a class="reference internal" href="#compiling-cyclus" id="id6">Compiling Cyclus</a><ul>
+<li><a class="reference internal" href="#default-installation" id="id7">Default Installation</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#install-cycamore" id="id10">Install Cycamore</a><ul>
-<li><a class="reference internal" href="#id2" id="id11">Get the Tarball</a></li>
-<li><a class="reference internal" href="#compiling-cycamore" id="id12">Compiling Cycamore</a><ul>
-<li><a class="reference internal" href="#id4" id="id13">Default Installation</a><ul>
-<li><a class="reference internal" href="#run-the-unit-tests" id="id14">Run the Unit Tests</a></li>
+<li><a class="reference internal" href="#install-cycamore" id="id8">Install Cycamore</a><ul>
+<li><a class="reference internal" href="#id1" id="id9">Get the Tarball</a></li>
+<li><a class="reference internal" href="#compiling-cycamore" id="id10">Compiling Cycamore</a><ul>
+<li><a class="reference internal" href="#id2" id="id11">Default Installation</a><ul>
+<li><a class="reference internal" href="#run-the-unit-tests" id="id12">Run the Unit Tests</a></li>
 </ul>
 </li>
 </ul>
@@ -112,7 +112,7 @@ if(ga_enabled){
 </ul>
 </div>
 <div class="section" id="dependencies">
-<h2><a class="toc-backref" href="#id5">Dependencies</a><a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Dependencies</a><a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
 <p>In order to facilitate future compatibility with multiple platforms,
 Cyclus is built using <code class="docutils literal"><span class="pre">CMake</span></code>. A full list of the Cyclus package
 dependencies is shown below:</p>
@@ -157,24 +157,24 @@ dependencies is shown below:</p>
 <a class="reference internal" href="DEPENDENCIES.html"><span class="doc">here</span></a>.</p>
 </div>
 <div class="section" id="install-cyclus">
-<h2><a class="toc-backref" href="#id6">Install Cyclus</a><a class="headerlink" href="#install-cyclus" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Install Cyclus</a><a class="headerlink" href="#install-cyclus" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="get-the-tarball">
-<h3><a class="toc-backref" href="#id7">Get the Tarball</a><a class="headerlink" href="#get-the-tarball" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Get the Tarball</a><a class="headerlink" href="#get-the-tarball" title="Permalink to this headline">¶</a></h3>
 <p>Download the most recent stable version of Cyclus source (either .zip or .gz):</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/cyclus/cyclus/archive/1.5.3.zip">cyclus-1.5.3.zip</a></li>
-<li><a class="reference external" href="https://github.com/cyclus/cyclus/archive/1.5.3.zip">cyclus-1.5.3.zip</a></li>
+<li><a class="reference external" href="https://github.com/cyclus/cyclus/archive/1.5.5.zip">cyclus-1.5.5.zip</a></li>
+<li><a class="reference external" href="https://github.com/cyclus/cyclus/archive/1.5.5.tar.gz">cyclus-1.5.5.tar.gz</a></li>
 </ul>
 <p>(<a class="reference external" href="https://github.com/cyclus/cyclus/releases">Previous versions of Cyclus</a> )</p>
 </div>
 <div class="section" id="compiling-cyclus">
-<h3><a class="toc-backref" href="#id8">Compiling Cyclus</a><a class="headerlink" href="#compiling-cyclus" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Compiling Cyclus</a><a class="headerlink" href="#compiling-cyclus" title="Permalink to this headline">¶</a></h3>
 <p>Before going further with the installation procedure be sure you have installed
 all the required dependencies listed above. We have provided detailed
 instructions for <a class="reference external" href="DEPENDENCIES.rst">installing dependencies</a> for the major supported
 systems.</p>
 <div class="section" id="default-installation">
-<h4><a class="toc-backref" href="#id9">Default Installation</a><a class="headerlink" href="#default-installation" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id7">Default Installation</a><a class="headerlink" href="#default-installation" title="Permalink to this headline">¶</a></h4>
 <p>Run the install script:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>python install.py
 </pre></div>
@@ -204,22 +204,22 @@ You need to add <code class="docutils literal"><span class="pre">~/.local/bin</s
 </div>
 </div>
 <div class="section" id="install-cycamore">
-<h2><a class="toc-backref" href="#id10">Install Cycamore</a><a class="headerlink" href="#install-cycamore" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id2">
-<h3><a class="toc-backref" href="#id11">Get the Tarball</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h2><a class="toc-backref" href="#id8">Install Cycamore</a><a class="headerlink" href="#install-cycamore" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3><a class="toc-backref" href="#id9">Get the Tarball</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Download the most recent stable version of Cycamore source (either .zip or .gz):</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/cyclus/cycamore/archive/1.5.3.zip">cycamore-1.5.3.zip</a></li>
-<li><a class="reference external" href="https://github.com/cyclus/cycamore/archive/1.5.3.tar.gz">cycamore-1.5.3.zip</a></li>
+<li><a class="reference external" href="https://github.com/cyclus/cycamore/archive/1.5.5.zip">cycamore-1.5.5.zip</a></li>
+<li><a class="reference external" href="https://github.com/cyclus/cycamore/archive/1.5.5.tar.gz">cycamore-1.5.5.tar.gz</a></li>
 </ul>
 <p>(<a class="reference external" href="https://github.com/cyclus/cycamore/releases">Previous versions of Cycamore</a> )</p>
 </div>
 <div class="section" id="compiling-cycamore">
-<h3><a class="toc-backref" href="#id12">Compiling Cycamore</a><a class="headerlink" href="#compiling-cycamore" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">Compiling Cycamore</a><a class="headerlink" href="#compiling-cycamore" title="Permalink to this headline">¶</a></h3>
 <p>Before going further with the installation procedure, be sure you have installed
 <a class="reference external" href="http://github.com/cyclus/cyclus">Cyclus</a>.</p>
-<div class="section" id="id4">
-<h4><a class="toc-backref" href="#id13">Default Installation</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id2">
+<h4><a class="toc-backref" href="#id11">Default Installation</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p>Run the install script:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>python install.py
 </pre></div>
@@ -227,7 +227,7 @@ You need to add <code class="docutils literal"><span class="pre">~/.local/bin</s
 <p>If you successfully followed the instructions above, then the Cycamore library
 has been generated and placed in <code class="docutils literal"><span class="pre">.local/</span></code> in your home directory.</p>
 <div class="section" id="run-the-unit-tests">
-<h5><a class="toc-backref" href="#id14">Run the Unit Tests</a><a class="headerlink" href="#run-the-unit-tests" title="Permalink to this headline">¶</a></h5>
+<h5><a class="toc-backref" href="#id12">Run the Unit Tests</a><a class="headerlink" href="#run-the-unit-tests" title="Permalink to this headline">¶</a></h5>
 <p>To ensure the proper installation of <span style="font-variant:small-caps;">Cyclus</span> and Cycamore, you can run the
 <span style="font-variant:small-caps;">Cyclus</span> and Cycamore unit tests, they should report that <strong>all tests</strong> have
 <strong>passed</strong> (or been disabled):</p>
@@ -263,9 +263,9 @@ $ cycamore_unit_tests
 </ul>
 </li>
 <li><a class="reference internal" href="#install-cycamore">Install Cycamore</a><ul>
-<li><a class="reference internal" href="#id2">Get the Tarball</a></li>
+<li><a class="reference internal" href="#id1">Get the Tarball</a></li>
 <li><a class="reference internal" href="#compiling-cycamore">Compiling Cycamore</a><ul>
-<li><a class="reference internal" href="#id4">Default Installation</a><ul>
+<li><a class="reference internal" href="#id2">Default Installation</a><ul>
 <li><a class="reference internal" href="#run-the-unit-tests">Run the Unit Tests</a></li>
 </ul>
 </li>
@@ -319,7 +319,7 @@ $ cycamore_unit_tests
 <script type="text/javascript">$('#searchbox').show(0);</script>
     <h3>Get Cyclus</h3>
     <br>
-    Current version: <b>1.5.3</b>
+    Current version: <b>1.5.5</b>
     <br><br>
     Install:
     <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>

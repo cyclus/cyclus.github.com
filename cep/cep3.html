@@ -161,7 +161,7 @@ wait until post-release to be merged into <code class="docutils literal"><span c
 accidentally getting released early.</p>
 <p>Everything that is in the release branch must also be part of <code class="docutils literal"><span class="pre">master</span></code>.
 Graphically,</p>
-<div class="figure align-center" id="id4">
+<div class="figure align-center" id="id5">
 <img alt="../_images/cep-0003-1.svg" src="../_images/cep-0003-1.svg" /><p class="caption"><span class="caption-text"><strong>Figure 1:</strong> Branch hierarchy under release.</span></p>
 </div>
 <div class="admonition note">
@@ -217,21 +217,22 @@ completing this milestone.</p>
 <li><p class="first">Make sure every local <span style="font-variant:small-caps;">Cyclus</span> project repository is up to date with its
 <code class="docutils literal"><span class="pre">master</span></code>, and <code class="docutils literal"><span class="pre">vX.X.X-release</span></code> branches on <code class="docutils literal"><span class="pre">upstream</span></code>.</p>
 </li>
-<li><p class="first">Bump the version in <code class="docutils literal"><span class="pre">cyclus/src/version.h.in</span></code>,
+<li><p class="first">Bump the version in <code class="docutils literal"><span class="pre">cyclus/src/version.h.in</span></code> and <code class="docutils literal"><span class="pre">cyclus/cyclus/__init__.py</span></code>,
 <code class="docutils literal"><span class="pre">cycamore/src/cycamore_version.h.in</span></code>, and
 <code class="docutils literal"><span class="pre">cymetric/setup.py</span></code>; commit the changes</p>
 </li>
-<li><p class="first">Perform maintenance tasks for all projects. The maintenance depends on <a class="reference external" href="https://github.com/pyne/pyne.git">PyNE</a> and Doxygen.</p>
+<li><p class="first">Perform maintenance tasks for all projects. The maintenance depends on <a class="reference external" href="https://github.com/pyne/pyne.git">PyNE</a> and Doxygen. Maintenance files can be
+found <a class="reference external" href="https://github.com/cyclus/release">here</a>.</p>
 <blockquote>
 <div><ul class="simple">
-<li>they are described in detail below, <em>but</em> the <code class="docutils literal"><span class="pre">maintenence.sh</span></code> utility
+<li>they are described in detail below, <em>but</em> the <code class="docutils literal"><span class="pre">maintenance.sh</span></code> utility
 in <code class="docutils literal"><span class="pre">release/utils</span></code> will do this automatically for you</li>
-<li>make sure to have your <code class="docutils literal"><span class="pre">rs.cred</span></code> file (see <code class="docutils literal"><span class="pre">maintenence.sh</span></code>&#8216;s help)</li>
+<li>make sure to have your <code class="docutils literal"><span class="pre">rs.cred</span></code> file (see <code class="docutils literal"><span class="pre">maintenance.sh</span></code>&#8216;s help)</li>
 </ul>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /path/to/release/utils
 $ <span class="nb">export</span> <span class="nv">CYCLUS_DIR</span><span class="o">=</span>/path/to/cyclus
 $ <span class="nb">export</span> <span class="nv">CYCAMORE_DIR</span><span class="o">=</span>/path/to/cycamore
-$ ./maintenence.sh -r -v X.X.X <span class="c1"># X.X.X is *this* version</span>
+$ ./maintenance.sh -r -v X.X.X <span class="c1"># X.X.X is *this* version</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -327,10 +328,10 @@ $ git push upstream --delete vX.X.X-release
 </div>
 </div></blockquote>
 </li>
-<li><p class="first">Manually visit the github.com page for each project and mark the tags as releases.</p>
+<li><p class="first">Manually visit the github.com page for each project and draft/publish a new release.</p>
 <blockquote>
 <div><ul class="simple">
-<li>This can be updated one day to use the Github <a class="reference external" href="https://developer.github.com/v3/repos/releases/#create-a-release">release API</a></li>
+<li>See instructions <a class="reference external" href="https://help.github.com/en/github/administering-a-repository/creating-releases">here</a></li>
 </ul>
 </div></blockquote>
 </li>
@@ -525,7 +526,7 @@ file.  Commit this and add it to the repo.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
     <h3>Get Cyclus</h3>
     <br>
-    Current version: <b>1.5.3</b>
+    Current version: <b>1.5.5</b>
     <br><br>
     Install:
     <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
