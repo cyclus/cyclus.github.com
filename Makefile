@@ -86,8 +86,8 @@ gh-publish-only:
 	rsync -a $(BUILDDIR)/.* .
 	git add -f `(cd $(BUILDDIR); find . -type f; cd ..)`
 	rm -rf $(GH_SOURCE_DIR) $(BUILDDIR)
-	#git commit -m "Generated $(GH_PUBLISH_BRANCH) for `git log $(GH_SOURCE_BRANCH) -1 --pretty=short --abbrev-commit`" && git push --force $(GH_UPSTREAM_REPO) $(GH_PUBLISH_BRANCH)
-	#git checkout $(GH_SOURCE_BRANCH)
+	git commit -m "Generated $(GH_PUBLISH_BRANCH) for `git log $(GH_SOURCE_BRANCH) -1 --pretty=short --abbrev-commit`" && git push --force $(GH_UPSTREAM_REPO) $(GH_PUBLISH_BRANCH)
+	git checkout $(GH_SOURCE_BRANCH)
 
 gh-publish:
 	make clean
