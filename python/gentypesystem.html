@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Type System Code Generator (cyclus.gentypesystem) &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="JSON C++ (cyclus.jsoncpp)" href="jsoncpp.html" />
+    <link rel="prev" title="Cyclus Preprocessor (cyclus.cycpp)" href="cycpp.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="jsoncpp.html" title="JSON C++ (cyclus.jsoncpp)"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cycpp.html" title="Cyclus Preprocessor (cyclus.cycpp)"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cyclus.gentypesystem">
+<span id="type-system-code-generator-cyclus-gentypesystem"></span><span id="cyclus-pyapi-gentypesystem"></span><h1>Type System Code Generator (<code class="docutils literal"><span class="pre">cyclus.gentypesystem</span></code>)<a class="headerlink" href="#module-cyclus.gentypesystem" title="Permalink to this headline">¶</a></h1>
+<p>Generates Cyclus Type System bindings.</p>
+<p>Module history:</p>
+<ul class="simple">
+<li>2016-10-12: scopatz: This file used to be called genapi.py in cymetric.</li>
+</ul>
+<dl class="class">
+<dt id="cyclus.gentypesystem.Indenter">
+<em class="property">class </em><code class="descclassname">cyclus.gentypesystem.</code><code class="descname">Indenter</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.Indenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles indentations.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.gentypesystem.TypeSystem">
+<em class="property">class </em><code class="descclassname">cyclus.gentypesystem.</code><code class="descname">TypeSystem</code><span class="sig-paren">(</span><em>table</em>, <em>cycver</em>, <em>rawver=None</em>, <em>cpp_typesystem='cpp_typesystem'</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.TypeSystem" title="Permalink to this definition">¶</a></dt>
+<dd><p>A type system for cyclus code generation.</p>
+<dl class="method">
+<dt id="cyclus.gentypesystem.TypeSystem.classname">
+<code class="descname">classname</code><span class="sig-paren">(</span><em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.TypeSystem.classname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a version of the type name suitable for use in a class name.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.gentypesystem.TypeSystem.convert_to_cpp">
+<code class="descname">convert_to_cpp</code><span class="sig-paren">(</span><em>x</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.TypeSystem.convert_to_cpp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a Python variable to C++.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x</strong> : str</p>
+<blockquote>
+<div><p>variable name</p>
+</div></blockquote>
+<p><strong>t</strong> : str</p>
+<blockquote>
+<div><p>variable type</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>decl</strong> : str</p>
+<blockquote>
+<div><p>Declarations needed for conversion, may be many lines.</p>
+</div></blockquote>
+<p><strong>body</strong> : str</p>
+<blockquote>
+<div><p>Actual conversion implementation, may be many lines.</p>
+</div></blockquote>
+<p><strong>rtn</strong> : str</p>
+<blockquote class="last">
+<div><p>Return expression.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.gentypesystem.TypeSystem.convert_to_py">
+<code class="descname">convert_to_py</code><span class="sig-paren">(</span><em>x</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.TypeSystem.convert_to_py" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a C++ variable to python.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x</strong> : str</p>
+<blockquote>
+<div><p>variable name</p>
+</div></blockquote>
+<p><strong>t</strong> : str</p>
+<blockquote>
+<div><p>variable type</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>decl</strong> : str</p>
+<blockquote>
+<div><p>Declarations needed for conversion, may be many lines.</p>
+</div></blockquote>
+<p><strong>body</strong> : str</p>
+<blockquote>
+<div><p>Actual conversion implementation, may be many lines.</p>
+</div></blockquote>
+<p><strong>rtn</strong> : str</p>
+<blockquote class="last">
+<div><p>Return expression.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.gentypesystem.TypeSystem.cython_cpp_name">
+<code class="descname">cython_cpp_name</code><span class="sig-paren">(</span><em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.TypeSystem.cython_cpp_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the C++ name of the type, eg INT -&gt; cpp_typesystem.INT.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.gentypesystem.TypeSystem.cython_type">
+<code class="descname">cython_type</code><span class="sig-paren">(</span><em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.TypeSystem.cython_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Cython spelling of the type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.gentypesystem.TypeSystem.funcname">
+<code class="descname">funcname</code><span class="sig-paren">(</span><em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.TypeSystem.funcname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a version of the type name suitable for use in a function name.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.gentypesystem.TypeSystem.hold_any_to_py">
+<code class="descname">hold_any_to_py</code><span class="sig-paren">(</span><em>x</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.TypeSystem.hold_any_to_py" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an expression for converting a hold_any object to Python.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.gentypesystem.TypeSystem.new_py_inst">
+<code class="descname">new_py_inst</code><span class="sig-paren">(</span><em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.TypeSystem.new_py_inst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the new instance for the type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.gentypesystem.TypeSystem.nptype">
+<code class="descname">nptype</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.TypeSystem.nptype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the numpy type for a normal form element.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.gentypesystem.TypeSystem.py_to_any">
+<code class="descname">py_to_any</code><span class="sig-paren">(</span><em>a</em>, <em>val</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.TypeSystem.py_to_any" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an expression for assigning a Python object (val) to an any
+object (a).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.gentypesystem.TypeSystem.var_to_cpp">
+<code class="descname">var_to_cpp</code><span class="sig-paren">(</span><em>x</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.TypeSystem.var_to_cpp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an expression for converting a Python object to C++.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.gentypesystem.TypeSystem.var_to_py">
+<code class="descname">var_to_py</code><span class="sig-paren">(</span><em>x</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.TypeSystem.var_to_py" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an expression for converting an object to Python.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.gentypesystem.code_gen">
+<code class="descclassname">cyclus.gentypesystem.</code><code class="descname">code_gen</code><span class="sig-paren">(</span><em>ts</em>, <em>ns</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.code_gen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates code given a type system and a namespace.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.gentypesystem.cpp_typesystem">
+<code class="descclassname">cyclus.gentypesystem.</code><code class="descname">cpp_typesystem</code><span class="sig-paren">(</span><em>ts</em>, <em>ns</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.cpp_typesystem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the Cython header that wraps the Cyclus type system.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.gentypesystem.main">
+<code class="descclassname">cyclus.gentypesystem.</code><code class="descname">main</code><span class="sig-paren">(</span><em>argv=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Entry point into the code generation. Accepts list of command line arguments.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.gentypesystem.parse_args">
+<code class="descclassname">cyclus.gentypesystem.</code><code class="descname">parse_args</code><span class="sig-paren">(</span><em>argv</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.parse_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses typesystem arguments for code generation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.gentypesystem.parse_template">
+<code class="descclassname">cyclus.gentypesystem.</code><code class="descname">parse_template</code><span class="sig-paren">(</span><em>s</em>, <em>open_brace='&lt;'</em>, <em>close_brace='&gt;'</em>, <em>separator='</em>, <em>'</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.parse_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a string &#8211; which may represent a template specialization &#8211;
+and returns the corresponding type. Mostly cribbed from xdress.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.gentypesystem.safe_output">
+<code class="descclassname">cyclus.gentypesystem.</code><code class="descname">safe_output</code><span class="sig-paren">(</span><em>cmd</em>, <em>shell=False</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.safe_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks that a command successfully runs with/without shell=True.
+Returns the output.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.gentypesystem.setup">
+<code class="descclassname">cyclus.gentypesystem.</code><code class="descname">setup</code><span class="sig-paren">(</span><em>ns</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensure that we are ready to perform code generation. Returns typesystem.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.gentypesystem.split_template_args">
+<code class="descclassname">cyclus.gentypesystem.</code><code class="descname">split_template_args</code><span class="sig-paren">(</span><em>s</em>, <em>open_brace='&lt;'</em>, <em>close_brace='&gt;'</em>, <em>separator='</em>, <em>'</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.split_template_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a string with template specialization and returns a list
+of the argument values as strings. Mostly cribbed from xdress.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.gentypesystem.typesystem_pxd">
+<code class="descclassname">cyclus.gentypesystem.</code><code class="descname">typesystem_pxd</code><span class="sig-paren">(</span><em>ts</em>, <em>ns</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.typesystem_pxd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the Cython wrapper header for the Cyclus type system.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.gentypesystem.typesystem_pyx">
+<code class="descclassname">cyclus.gentypesystem.</code><code class="descname">typesystem_pyx</code><span class="sig-paren">(</span><em>ts</em>, <em>ns</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.gentypesystem.typesystem_pyx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the Cython wrapper for the Cyclus type system.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="cycpp.html"
+                          title="Previous page">&larr; Cyclus Preprocessor (<code class="docutils literal"><span class="pre">cyclus.cycpp</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="jsoncpp.html"
+                          title="Next page">&rarr; JSON C++ (<code class="docutils literal"><span class="pre">cyclus.jsoncpp</span></code>)</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="jsoncpp.html" title="JSON C++ (cyclus.jsoncpp)"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cycpp.html" title="Cyclus Preprocessor (cyclus.cycpp)"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

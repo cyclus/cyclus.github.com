@@ -1,0 +1,820 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CEP 19 - Cyclus Input Procedure Updates &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CEP 20 - Time Step Execution Stack" href="cep20.html" />
+    <link rel="prev" title="CEP 18 - Dynamic Resource Exchange Procedure" href="cep18.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep20.html" title="CEP 20 - Time Step Execution Stack"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep18.html" title="CEP 18 - Dynamic Resource Exchange Procedure"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cep-19-cyclus-input-procedure-updates">
+<h1>CEP 19 - <span style="font-variant:small-caps;">Cyclus</span> Input Procedure Updates<a class="headerlink" href="#cep-19-cyclus-input-procedure-updates" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">CEP:</th><td class="field-body">19</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Title:</th><td class="field-body"><span style="font-variant:small-caps;">Cyclus</span> Input Procedure Updates</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Last-Modified:</th><td class="field-body">2013-10-16</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">Dr. Tony Scopes &amp; Robby Flanny</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status:</th><td class="field-body">Withdrawn</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Created:</th><td class="field-body">2013-10-16</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This CEP proposes to update the <span style="font-variant:small-caps;">Cyclus</span> input paradigm and the module schemas such that
+they enable a wider variety of tools. This CEP was written with two types of tools in mind:
+graphical user interfaces and large scale parameter investigations. The goal of this
+CEP is to give the input scheme the descriptive power it needs to provide users and module
+developers with an elegent and clear method of building <span style="font-variant:small-caps;">Cyclus</span> input files.</p>
+<p>The first major change is to develop a suite of patterns for use by <span style="font-variant:small-caps;">Cyclus</span> module schema.
+These patterns are meant to richly representing module input fields. These patterns will be a
+collection of elements that provide sufficient metadata needed by the two use cases listed
+above. For instance, one such additional element is &#8216;tooltip&#8217;.</p>
+<p>The second change is the addition of an interface to modules. This interface will be used in
+conjuction with the current &#8216;schema()&#8217; member function. This function will be called &#8216;default_inputs()&#8217;
+and return an xml input file snippit for the facility with default values in all input fields.</p>
+</div>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>CycIC (and other less useful interfaces) requires this new suite of patterns to provide users with
+a better experience. For example integrated module documentation is part of this proposal. In addition,
+many elements of the pattern will also be useful for parametric sweeps.</p>
+</div>
+<div class="section" id="specification-implementation">
+<h2>Specification &amp; Implementation<a class="headerlink" href="#specification-implementation" title="Permalink to this headline">¶</a></h2>
+<p>The following patterns are proposed to be added to the master <span style="font-variant:small-caps;">Cyclus</span> schema.</p>
+<div class="section" id="tooltip">
+<h3>Tooltip<a class="headerlink" href="#tooltip" title="Permalink to this headline">¶</a></h3>
+<p>Tooltip elements is a short string of text that the developer can add to an input field that will
+show when a user scrolls over this field in the graphical user interface. This is an optional field.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;tooltip&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;tooltip&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="nt">/&gt;</span>
+   <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="help">
+<h3>Help<a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h3>
+<p>Help elements will provide a more thorough explaination of the input field, it can be accessed through the
+graphical user interface. This is an optional field.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;help&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;help&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="units">
+<h3>Units<a class="headerlink" href="#units" title="Permalink to this headline">¶</a></h3>
+<p>Units elements apply information to an input field that indicate to the user what units are attached to the
+value in this field.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;units&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;units&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="user-level">
+<h3>User Level<a class="headerlink" href="#user-level" title="Permalink to this headline">¶</a></h3>
+<p>User level elements allow developers to set the user level of a specific input field. This value ranges
+from 0 to 10 with 0 being simple inputs and 10 being very advanced inputs. This is an optional field
+and if left blank the value will be set to zero by the graphical user interface.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;userLevel&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;userLevel&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;choice&gt;</span>
+      <span class="nt">&lt;value&gt;</span>0<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;value&gt;</span>1<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;value&gt;</span>2<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;value&gt;</span>3<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;value&gt;</span>4<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;value&gt;</span>5<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;value&gt;</span>6<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;value&gt;</span>7<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;value&gt;</span>8<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;value&gt;</span>9<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;value&gt;</span>10<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/choice&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="vary">
+<h3>Vary<a class="headerlink" href="#vary" title="Permalink to this headline">¶</a></h3>
+<p>The &#8216;vary&#8217; element is a special boolean element that allows a <span style="font-variant:small-caps;">Cyclus</span> user to set wether the input
+field it is attached to can be varied for a parametric study. This flag is optional and can take
+the values &#8220;true&#8221;, &#8220;false&#8221;, &#8220;1&#8221;, &#8220;0&#8221;.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;vary&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;vary&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;boolean&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sampling-function">
+<h3>Sampling Function<a class="headerlink" href="#sampling-function" title="Permalink to this headline">¶</a></h3>
+<p>Sampling function is an element that goes with the vary element. If the vary element is set to true
+a sampling function is required to provide the sampling behavior for the element. This is a string
+input that represents the mathematical expression of the sampling function. This is an optional flag.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;samplingFunction&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;samplingFunction&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="field-types">
+<h3>Field Types<a class="headerlink" href="#field-types" title="Permalink to this headline">¶</a></h3>
+<p>The field types used for input fields are listed below. In general they are associated with a
+specific data type. In addition there are several field types that are categorical. This
+implies that the field has discrete values for which it can take.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;floatField&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;floatField&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;interleave&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;value&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;lower&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;upper&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;userLevel&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;vary&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;samplingFunction&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;tooltip&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;help&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;units&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+    <span class="nt">&lt;/interleave&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+
+<span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;intField&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;intField&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;interleave&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;value&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;int&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;lower&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;int&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;upper&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;int&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;userLevel&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;vary&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;samplingFunction&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;tooltip&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;help&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;units&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+    <span class="nt">&lt;/interleave&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+
+<span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;boolField&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;boolField&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;interleave&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;value&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;boolean&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;lower&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;boolean&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;upper&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;boolean&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;userLevel&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;vary&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;samplingFunction&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;tooltip&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;help&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;units&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+    <span class="nt">&lt;/interleave&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+
+<span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;stringField&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;stringField&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;interleave&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;value&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;userLevel&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;vary&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;samplingFunction&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;tooltip&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;help&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;units&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+    <span class="nt">&lt;/interleave&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+
+<span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;blobField&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;blobField&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;interleave&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;value&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;base64Binary&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;userLevel&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;vary&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;samplingFunction&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;tooltip&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;help&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;units&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+    <span class="nt">&lt;/interleave&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+
+<span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;categoricalBlobField&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;categoricalBlobField&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;interleave&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;value&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;base64Binary&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;list&gt;</span>
+          <span class="nt">&lt;oneOrMore&gt;</span>
+            <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;base64Binary&quot;</span> <span class="nt">/&gt;</span>
+          <span class="nt">&lt;/oneOrMore&gt;</span>
+        <span class="nt">&lt;/list&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;userLevel&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;vary&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;samplingFunction&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;tooltip&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;help&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;units&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+    <span class="nt">&lt;/interleave&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+
+<span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;categoricalStringField&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;categoricalStringField&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;interleave&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;value&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;list&gt;</span>
+          <span class="nt">&lt;oneOrMore&gt;</span>
+            <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="nt">/&gt;</span>
+          <span class="nt">&lt;/oneOrMore&gt;</span>
+        <span class="nt">&lt;/list&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;userLevel&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;vary&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;samplingFunction&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;tooltip&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;help&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;units&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+    <span class="nt">&lt;/interleave&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+
+<span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;categoricalIntField&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;categoricalIntField&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;interleave&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;value&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;int&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;list&gt;</span>
+          <span class="nt">&lt;oneOrMore&gt;</span>
+            <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;int&quot;</span> <span class="nt">/&gt;</span>
+          <span class="nt">&lt;/oneOrMore&gt;</span>
+        <span class="nt">&lt;/list&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;userLevel&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;vary&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;samplingFunction&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;tooltip&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;help&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;units&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+    <span class="nt">&lt;/interleave&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+
+<span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;categoricalFloatField&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;categoricalFloatField&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;interleave&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;value&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;list&gt;</span>
+          <span class="nt">&lt;oneOrMore&gt;</span>
+            <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span> <span class="nt">/&gt;</span>
+          <span class="nt">&lt;/oneOrMore&gt;</span>
+        <span class="nt">&lt;/list&gt;</span>
+      <span class="nt">&lt;/element&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;userLevel&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;vary&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;samplingFunction&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;tooltip&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;help&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+      <span class="nt">&lt;optional&gt;</span>
+        <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;units&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/optional&gt;</span>
+    <span class="nt">&lt;/interleave&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="cycic-specific-tags">
+<h2>Cycic Specific Tags<a class="headerlink" href="#cycic-specific-tags" title="Permalink to this headline">¶</a></h2>
+<p>In order to facilitate loading <span style="font-variant:small-caps;">Cyclus</span> scenarios that were previously built with CycIC
+some additional fields are proposed to be added to the xml grammar. These fields will
+hold information on how to display the graphical parts of the simulation.</p>
+<p>This portion of the xml file will not be read by <span style="font-variant:small-caps;">Cyclus</span>, and should have no impact on
+the <span style="font-variant:small-caps;">Cyclus</span> core code.</p>
+<div class="section" id="top-level-information">
+<h3>Top level Information<a class="headerlink" href="#top-level-information" title="Permalink to this headline">¶</a></h3>
+<p>Here the name of the CycIC simulation, a description, and some comments about it
+can be saved.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;cycicSimulation&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;cycicSimulation&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;comments&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;oneOrMore&gt;</span>
+      <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;facilityCircle&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/oneOrMore&gt;</span>
+    <span class="nt">&lt;oneOrMore&gt;</span>
+      <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;marketCircle&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/oneOrMore&gt;</span>
+    <span class="nt">&lt;oneOrMore&gt;</span>
+      <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;regionShape&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/oneOrMore&gt;</span>
+    <span class="nt">&lt;oneOrMore&gt;</span>
+      <span class="nt">&lt;ref</span> <span class="na">name=</span><span class="s">&quot;institutionShape&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/oneOrMore&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="facility-circles">
+<h3>Facility Circles<a class="headerlink" href="#facility-circles" title="Permalink to this headline">¶</a></h3>
+<p>Here the initital proposal is to save the x and y locations of the facilities so that
+they may be loaded in the proper place.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;facilityCircle&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;facilityCircle&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;xPosition&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;xPosition&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="market-circles">
+<h3>Market Circles<a class="headerlink" href="#market-circles" title="Permalink to this headline">¶</a></h3>
+<p>Here the initital proposal is to save the x and y locations of the markets so that
+they may be loaded in the proper place.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;marketCircle&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;marketCircle&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;xPosition&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;xPosition&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="region-shapes">
+<h3>Region Shapes<a class="headerlink" href="#region-shapes" title="Permalink to this headline">¶</a></h3>
+<p>Here the initital proposal is to save the x and y locations of the region nodes so that
+they may be loaded in the proper place.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;regionShape&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;regionShape&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;xPosition&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;xPosition&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="institution-shapes">
+<h3>Institution Shapes<a class="headerlink" href="#institution-shapes" title="Permalink to this headline">¶</a></h3>
+<p>Here the initital proposal is to save the x and y locations of the institution
+nodes so that they may be loaded in the proper place.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;regionShape&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;regionShape&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;xPosition&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+    <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;xPosition&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/element&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/define&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="document-history">
+<h2>Document History<a class="headerlink" href="#document-history" title="Permalink to this headline">¶</a></h2>
+<p>This document is released under the CC-BY 3.0 license.</p>
+</div>
+<div class="section" id="references-and-footnotes">
+<h2>References and Footnotes<a class="headerlink" href="#references-and-footnotes" title="Permalink to this headline">¶</a></h2>
+<p class="rubric">References</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">CEP 19 - <span style="font-variant:small-caps;">Cyclus</span> Input Procedure Updates</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#motivation">Motivation</a></li>
+<li><a class="reference internal" href="#specification-implementation">Specification &amp; Implementation</a><ul>
+<li><a class="reference internal" href="#tooltip">Tooltip</a></li>
+<li><a class="reference internal" href="#help">Help</a></li>
+<li><a class="reference internal" href="#units">Units</a></li>
+<li><a class="reference internal" href="#user-level">User Level</a></li>
+<li><a class="reference internal" href="#vary">Vary</a></li>
+<li><a class="reference internal" href="#sampling-function">Sampling Function</a></li>
+<li><a class="reference internal" href="#field-types">Field Types</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cycic-specific-tags">Cycic Specific Tags</a><ul>
+<li><a class="reference internal" href="#top-level-information">Top level Information</a></li>
+<li><a class="reference internal" href="#facility-circles">Facility Circles</a></li>
+<li><a class="reference internal" href="#market-circles">Market Circles</a></li>
+<li><a class="reference internal" href="#region-shapes">Region Shapes</a></li>
+<li><a class="reference internal" href="#institution-shapes">Institution Shapes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#document-history">Document History</a></li>
+<li><a class="reference internal" href="#references-and-footnotes">References and Footnotes</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="cep18.html"
+                          title="Previous page">&larr; CEP 18 - Dynamic Resource Exchange Procedure</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="cep20.html"
+                          title="Next page">&rarr; CEP 20 - Time Step Execution Stack</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep20.html" title="CEP 20 - Time Step Execution Stack"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep18.html" title="CEP 18 - Dynamic Resource Exchange Procedure"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

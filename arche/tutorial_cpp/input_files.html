@@ -1,0 +1,503 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Making Input Files &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Archetype Development Tutorial [Python]" href="../tutorial_py/index.html" />
+    <link rel="prev" title="Adding a Test" href="testing.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../tutorial_py/index.html" title="Archetype Development Tutorial [Python]"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="testing.html" title="Adding a Test"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Archetype Development Tutorial [C++]</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="making-input-files">
+<h1>Making Input Files<a class="headerlink" href="#making-input-files" title="Permalink to this headline">¶</a></h1>
+<p>In this lesson, we will:</p>
+<ol class="arabic simple">
+<li>Make a basic input file</li>
+<li>Run the file and analyze output</li>
+<li>Make a more interesting input file</li>
+<li>Run the file and analyze output</li>
+</ol>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Cyclus uses XML as its input file format, and there is an extensive guide to
+making input files on the <a class="reference external" href="http://fuelcycle.org/user/writing_input.html">website</a>. Rather than getting into the
+details of how to write input files, this lesson will focus instead on the
+minimum information needed to get up and running with the Storage archetype.</p>
+</div>
+<div class="section" id="make-a-basic-input-file">
+<h2>Make a Basic Input File<a class="headerlink" href="#make-a-basic-input-file" title="Permalink to this headline">¶</a></h2>
+<p>The goal of this basic input file is to create the following facility set up.</p>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="../../_images/simple_cycle.svg"><img alt="../../_images/simple_cycle.svg" src="../../_images/simple_cycle.svg" width="80%" /></a>
+<p class="caption"><span class="caption-text"><strong>Figure:</strong> The target &#8220;cycle&#8221;.</span></p>
+</div>
+<p>Let&#8217;s start with very simple dynamics, where the <code class="docutils literal"><span class="pre">Source</span></code> can send one unit of
+fuel per time step, the <code class="docutils literal"><span class="pre">Sink</span></code> can take one unit of fuel per time step, and
+the <code class="docutils literal"><span class="pre">Storage</span></code> stores fuel for one time step.</p>
+<p>First, make a new input file</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cp input/storage.xml input/basic.xml
+</pre></div>
+</div>
+<p>and open it with your favorite text editor.</p>
+<div class="section" id="add-a-recipe">
+<h3>Add a Recipe<a class="headerlink" href="#add-a-recipe" title="Permalink to this headline">¶</a></h3>
+<p>In this example, material is being transferred between facilities. As in real
+life, in Cyclus, material must have some composition. For this example, we can
+use an LEU-like composition.</p>
+<p>Add the following lines to the bottom of the input file (but before the close
+tag &lt;/simulation&gt; )</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;recipe&gt;</span>
+  <span class="nt">&lt;name&gt;</span>LEU<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;basis&gt;</span>mass<span class="nt">&lt;/basis&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>U235<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>5<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>U238<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>95<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+<span class="nt">&lt;/recipe&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-new-archetypes">
+<h3>Adding New Archetypes<a class="headerlink" href="#adding-new-archetypes" title="Permalink to this headline">¶</a></h3>
+<p>We need to add a <code class="docutils literal"><span class="pre">Source</span></code> archetype and a <code class="docutils literal"><span class="pre">Sink</span></code> archetype, which we can
+find in the <code class="docutils literal"><span class="pre">agents</span></code> library of Cyclus. To do so, add the following lines to
+the <code class="docutils literal"><span class="pre">&lt;archetypes/&gt;</span></code> block of your input file.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;spec&gt;&lt;lib&gt;</span>agents<span class="nt">&lt;/lib&gt;&lt;name&gt;</span>Source<span class="nt">&lt;/name&gt;&lt;/spec&gt;</span>
+<span class="nt">&lt;spec&gt;&lt;lib&gt;</span>agents<span class="nt">&lt;/lib&gt;&lt;name&gt;</span>Sink<span class="nt">&lt;/name&gt;&lt;/spec&gt;</span>
+</pre></div>
+</div>
+<p>The full block should now look like</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;archetypes&gt;</span>
+  <span class="nt">&lt;spec&gt;&lt;path&gt;</span>tutorial<span class="nt">&lt;/path&gt;&lt;lib&gt;</span>Storage<span class="nt">&lt;/lib&gt;&lt;name&gt;</span>Storage<span class="nt">&lt;/name&gt;&lt;/spec&gt;</span>
+  <span class="nt">&lt;spec&gt;&lt;path&gt;</span>tutorial<span class="nt">&lt;/path&gt;&lt;lib&gt;</span>TutorialRegion<span class="nt">&lt;/lib&gt;&lt;name&gt;</span>TutorialRegion<span class="nt">&lt;/name&gt;&lt;/spec&gt;</span>
+  <span class="nt">&lt;spec&gt;&lt;path&gt;</span>tutorial<span class="nt">&lt;/path&gt;&lt;lib&gt;</span>TutorialInst<span class="nt">&lt;/lib&gt;&lt;name&gt;</span>TutorialInst<span class="nt">&lt;/name&gt;&lt;/spec&gt;</span>
+  <span class="nt">&lt;spec&gt;&lt;lib&gt;</span>agents<span class="nt">&lt;/lib&gt;&lt;name&gt;</span>Source<span class="nt">&lt;/name&gt;&lt;/spec&gt;</span>
+  <span class="nt">&lt;spec&gt;&lt;lib&gt;</span>agents<span class="nt">&lt;/lib&gt;&lt;name&gt;</span>Sink<span class="nt">&lt;/name&gt;&lt;/spec&gt;</span>
+<span class="nt">&lt;/archetypes&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-prototypes">
+<h3>Adding Prototypes<a class="headerlink" href="#adding-prototypes" title="Permalink to this headline">¶</a></h3>
+<p>A configured archetype is called a <em>prototype</em> in Cyclus parlance. You can read
+how to on the <a class="reference internal" href="../../user/cyclusagents.html#cyclus-archetypes"><span class="std std-ref">Cyclus Archetypes</span></a> and <a class="reference internal" href="../../user/cycamoreagents.html#cycamore-archetypes"><span class="std std-ref">Cycamore Archetypes</span></a>
+pages.</p>
+<div class="section" id="source">
+<h4>Source<a class="headerlink" href="#source" title="Permalink to this headline">¶</a></h4>
+<p>Beginning with the Cyclus <a class="reference external" href="http://fuelcycle.org/user/cyclusagents.html#agents-source">Source</a>, you must, at
+minimum, supply an entry for <code class="docutils literal"><span class="pre">&lt;commod/&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;capacity/&gt;</span></code>. This prototype
+will also include a <code class="docutils literal"><span class="pre">&lt;recipe_name/&gt;</span></code> entry. In this example, you want the
+source facility to supply one unit of fuel per time step and you want it to be
+connected to the <code class="docutils literal"><span class="pre">incommod</span></code> of the Storage prototype. Finally, let&#8217;s name the
+Source &#8220;FuelSource&#8221;.</p>
+<p>Accordingly, add the following lines after the Storage prototype</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>FuelSource<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Source&gt;</span>
+      <span class="nt">&lt;capacity&gt;</span>1<span class="nt">&lt;/capacity&gt;</span>
+      <span class="nt">&lt;recipe_name&gt;</span>LEU<span class="nt">&lt;/recipe_name&gt;</span>
+      <span class="nt">&lt;commod&gt;</span>fuel<span class="nt">&lt;/commod&gt;</span>
+    <span class="nt">&lt;/Source&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sink">
+<h4>Sink<a class="headerlink" href="#sink" title="Permalink to this headline">¶</a></h4>
+<p>Similarly, the Cyclus <a class="reference external" href="http://fuelcycle.org/user/cyclusagents.html#agents-sink">Sink</a>, you must, at
+minimum, supply an entry in the <code class="docutils literal"><span class="pre">&lt;in_commod/&gt;</span></code> tag and a <code class="docutils literal"><span class="pre">&lt;capacity/&gt;</span></code>. We
+want a similar structure to the Source prototype, i.e., connection to the
+Storage prototype and a demand for one unit of fuel per time step. We can also
+name this Sink prototype &#8220;FuelSink&#8221;.</p>
+<p>Accordingly, add the following lines after the Storage prototype</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>FuelSink<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Sink&gt;</span>
+      <span class="nt">&lt;capacity&gt;</span>1<span class="nt">&lt;/capacity&gt;</span>
+      <span class="nt">&lt;in_commods&gt;</span>
+        <span class="nt">&lt;val&gt;</span>stored_fuel<span class="nt">&lt;/val&gt;</span>
+      <span class="nt">&lt;/in_commods&gt;</span>
+     <span class="nt">&lt;/Sink&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="storage">
+<h4>Storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h4>
+<p>The Storage prototype is fine as it is. If you don&#8217;t like the name
+<code class="docutils literal"><span class="pre">OneFacility</span></code>, however, you are free to replace it with something more fitting
+like <code class="docutils literal"><span class="pre">FuelStorage</span></code>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure to replace <code class="docutils literal"><span class="pre">OneFacility</span></code> everywhere though!</p>
+</div>
+</div>
+<div class="section" id="region-institution">
+<h4>Region &amp; Institution<a class="headerlink" href="#region-institution" title="Permalink to this headline">¶</a></h4>
+<p>Deployment for facility agents must be declared in the input file. In order for
+our source and sink to be deployed at the beginning of the simulation, they must
+be added to the <code class="docutils literal"><span class="pre">&lt;initialfacilitylist/&gt;</span></code>. Accordingly, add the following lines
+below the <code class="docutils literal"><span class="pre">OneFacility</span></code> entry. Note that order here does not matter.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;entry&gt;</span>
+  <span class="nt">&lt;prototype&gt;</span>FuelSink<span class="nt">&lt;/prototype&gt;</span>
+  <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="nt">&lt;/entry&gt;</span>
+<span class="nt">&lt;entry&gt;</span>
+  <span class="nt">&lt;prototype&gt;</span>FuelSource<span class="nt">&lt;/prototype&gt;</span>
+  <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="nt">&lt;/entry&gt;</span>
+</pre></div>
+</div>
+<p>So now, the full region and institution configuration should look something like</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;region&gt;</span>
+  <span class="nt">&lt;name&gt;</span>OneRegion<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;TutorialRegion</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+  <span class="nt">&lt;institution&gt;</span>
+    <span class="nt">&lt;name&gt;</span>OneInst<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;initialfacilitylist&gt;</span>
+      <span class="nt">&lt;entry&gt;</span>
+        <span class="nt">&lt;prototype&gt;</span>OneFacility<span class="nt">&lt;/prototype&gt;</span>
+        <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+      <span class="nt">&lt;/entry&gt;</span>
+      <span class="nt">&lt;entry&gt;</span>
+        <span class="nt">&lt;prototype&gt;</span>FuelSink<span class="nt">&lt;/prototype&gt;</span>
+        <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+      <span class="nt">&lt;/entry&gt;</span>
+      <span class="nt">&lt;entry&gt;</span>
+        <span class="nt">&lt;prototype&gt;</span>FuelSource<span class="nt">&lt;/prototype&gt;</span>
+        <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+      <span class="nt">&lt;/entry&gt;</span>
+    <span class="nt">&lt;/initialfacilitylist&gt;</span>
+    <span class="nt">&lt;config&gt;</span>
+      <span class="nt">&lt;TutorialInst</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/config&gt;</span>
+  <span class="nt">&lt;/institution&gt;</span>
+<span class="nt">&lt;/region&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="run-the-basic-file">
+<h2>Run the Basic File<a class="headerlink" href="#run-the-basic-file" title="Permalink to this headline">¶</a></h2>
+<p>Run the file with a slightly higher verbosity</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cyclus -v <span class="m">4</span> input/basic.xml
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You&#8217;ll get more helpful information for this run by upping the verbosity
+from <code class="docutils literal"><span class="pre">3</span></code> to <code class="docutils literal"><span class="pre">4</span></code>.</p>
+</div>
+<p>What output do you see? Are things working as expected?</p>
+<p>You should see something like the following for a single time step</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">INFO1(core  ):Current time: 5</span>
+<span class="go">INFO2(core  ):  Beginning Tick for time: 5</span>
+<span class="go">INFO2(Storag):  Quantity to be requested: 7 kg.</span>
+<span class="go">INFO2(Storag):  Quantity to be offered: 1 kg.</span>
+<span class="go">INFO3(Sink  ):    FuelSink will request 1 kg of stored_fuel.</span>
+<span class="go">INFO3(Source):    FuelSource will offer 1 kg of fuel.</span>
+<span class="go">INFO2(core  ):  Beginning DRE for time: 5</span>
+<span class="go">INFO3(buypol):    policy input (agent OneFacility-12): requesting 7 kg via 1 request(s)</span>
+<span class="go">INFO3(buypol):      - one 7 kg request of fuel</span>
+<span class="go">INFO3(selpol):    policy output (agent OneFacility-12): bidding out 1 kg</span>
+<span class="go">INFO3(selpol):      - bid 1 kg on a request for stored_fuel</span>
+<span class="go">INFO3(selpol):    policy output (agent OneFacility-12):  sending 1 kg of stored_fuel</span>
+<span class="go">INFO3(buypol):    policy input (agent OneFacility-12): got 1 kg of fuel</span>
+<span class="go">INFO2(core  ):  Beginning Tock for time: 5</span>
+<span class="go">INFO2(Storag):  The total inventory at time 5 is 1 kg of material.</span>
+<span class="go">INFO3(Sink  ):    FuelSink is holding 5 units of material at the close of month 5.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="make-a-more-interesting-input-file">
+<h2>Make a More Interesting Input File<a class="headerlink" href="#make-a-more-interesting-input-file" title="Permalink to this headline">¶</a></h2>
+<p>The previous scenario employed very simple dynamics. A unit of material was sent
+from the Source to Storage every time step. After the first time step, a unit of
+material was also sent from Storage to the Sink every time step, having been
+stored for the interim period.</p>
+<p>This consistent flow occurred because, given the storage time <span class="math">\(t_s\)</span>,
+capacity <span class="math">\(c\)</span>, and throughput <span class="math">\(\tau\)</span>, the following relation is true</p>
+<div class="math">
+\[t_s &lt; min(c, \tau)\]</div>
+<p>What happens when <span class="math">\(t_s &gt; min(c, \tau)\)</span>? Let&#8217;s find out!</p>
+<p>First, make a new input file</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cp input/basic.xml input/interesting.xml
+</pre></div>
+</div>
+<p>and open it with your favorite text editor.</p>
+<p>Update the Storage config block to look like</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;config&gt;</span>
+  <span class="nt">&lt;Storage&gt;</span>
+    <span class="nt">&lt;throughput&gt;</span>10<span class="nt">&lt;/throughput&gt;</span>
+    <span class="nt">&lt;storage_time&gt;</span>5<span class="nt">&lt;/storage_time&gt;</span>
+    <span class="nt">&lt;incommod&gt;</span>fuel<span class="nt">&lt;/incommod&gt;</span>
+    <span class="nt">&lt;outcommod&gt;</span>stored_fuel<span class="nt">&lt;/outcommod&gt;</span>
+    <span class="nt">&lt;capacity&gt;</span>2<span class="nt">&lt;/capacity&gt;</span>
+  <span class="nt">&lt;/Storage&gt;</span>
+<span class="nt">&lt;/config&gt;</span>
+</pre></div>
+</div>
+<p>Note that now we have <span class="math">\(t_s = 5\)</span> and <span class="math">\(c = 2\)</span>.</p>
+</div>
+<div class="section" id="run-the-interesting-file">
+<h2>Run the Interesting File<a class="headerlink" href="#run-the-interesting-file" title="Permalink to this headline">¶</a></h2>
+<p>Run the file</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cyclus -v <span class="m">4</span> input/interesting.xml
+</pre></div>
+</div>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<p>Answer the following questions</p>
+<ul class="simple">
+<li>When do trades occur? Why?</li>
+<li>How much material is in the Sink at the end of the simulation? Why?</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>Exercise<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Play with the all of the simulation parameters and get a feel for the various
+dynamics of this scenario.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Making Input Files</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#make-a-basic-input-file">Make a Basic Input File</a><ul>
+<li><a class="reference internal" href="#add-a-recipe">Add a Recipe</a></li>
+<li><a class="reference internal" href="#adding-new-archetypes">Adding New Archetypes</a></li>
+<li><a class="reference internal" href="#adding-prototypes">Adding Prototypes</a><ul>
+<li><a class="reference internal" href="#source">Source</a></li>
+<li><a class="reference internal" href="#sink">Sink</a></li>
+<li><a class="reference internal" href="#storage">Storage</a></li>
+<li><a class="reference internal" href="#region-institution">Region &amp; Institution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#run-the-basic-file">Run the Basic File</a></li>
+<li><a class="reference internal" href="#make-a-more-interesting-input-file">Make a More Interesting Input File</a></li>
+<li><a class="reference internal" href="#run-the-interesting-file">Run the Interesting File</a><ul>
+<li><a class="reference internal" href="#exercise">Exercise</a></li>
+<li><a class="reference internal" href="#id3">Exercise</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="testing.html"
+                          title="Previous page">&larr; Adding a Test</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="../tutorial_py/index.html"
+                          title="Next page">&rarr; Archetype Development Tutorial [Python]</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../tutorial_py/index.html" title="Archetype Development Tutorial [Python]"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="testing.html" title="Adding a Test"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Archetype Development Tutorial [C++]</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

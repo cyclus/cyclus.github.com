@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CEP 21 - Agent Identification and Discovery &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CEP 22 - Logging Methodology and Implementation" href="cep22.html" />
+    <link rel="prev" title="CEP 20 - Time Step Execution Stack" href="cep20.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep22.html" title="CEP 22 - Logging Methodology and Implementation"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep20.html" title="CEP 20 - Time Step Execution Stack"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cep-21-agent-identification-and-discovery">
+<h1>CEP 21 - Agent Identification and Discovery<a class="headerlink" href="#cep-21-agent-identification-and-discovery" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">CEP:</th><td class="field-body">21</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Title:</th><td class="field-body">Agent Identification and Distribution</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Last-Modified:</th><td class="field-body">2014-05-05</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">Robert Carlsen &lt;<a class="reference external" href="mailto:rwcarlsen&#37;&#52;&#48;gmail&#46;com">rwcarlsen<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status:</th><td class="field-body">Accepted</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Created:</th><td class="field-body">Robert Carlsen</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+<p><span style="font-variant:small-caps;">Cyclus</span> is designed to have plugin modules that can be easily distributed and
+installed.  A &#8220;module&#8221; is a shared library containing one or more compiled
+<span style="font-variant:small-caps;">Cyclus</span> agents.  Agents within mouldes must be uniquely identifiable and
+discoverable by both users managing their <span style="font-variant:small-caps;">Cyclus</span> installation and by the
+<span style="font-variant:small-caps;">Cyclus</span> kernel itself.  A user wishing to use certain modules must install them
+in a desired location and then identify specific agents in them to <span style="font-variant:small-caps;">Cyclus</span>.
+This CEP explains where modules can/should be installed and how <span style="font-variant:small-caps;">Cyclus</span> finds
+and identifies agents in them.</p>
+</div>
+<div class="section" id="agent-spec">
+<span id="agent-spec-docs"></span><h2>Agent Spec<a class="headerlink" href="#agent-spec" title="Permalink to this headline">¶</a></h2>
+<p>Agents will be uniquely identified by 3 components together referred to as an
+&#8220;agent spec&#8221;:</p>
+<ol class="arabic">
+<li><p class="first">path: e.g. <code class="docutils literal"><span class="pre">my/module/path</span></code></p>
+<p>A slash-delimited, valid filesystem path relative to CYCLUS_PATH (see
+Module Discovery below).</p>
+</li>
+<li><p class="first">library: e.g. <code class="docutils literal"><span class="pre">MyModule</span></code></p>
+<p>Name of the compiled shared object library file without the &#8220;lib&#8221; prefix
+and without the file extension. If empty, is expanded to the agent class.
+The example above would correspond to a library file named &#8220;libMyModule.so&#8221;
+(linux), &#8220;libMyModule.dylib&#8221; (darwin), etc.</p>
+</li>
+<li><p class="first">agent class: e.g. <code class="docutils literal"><span class="pre">MyAgent</span></code></p>
+<p>The name of the agent&#8217;s c++ class as compiled into the shared library file.</p>
+</li>
+</ol>
+<p>An agent spec also has a single-string form composed of the three components
+separated by colons:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">path</span><span class="p">]:[</span><span class="n">library</span><span class="p">]:[</span><span class="n">agent</span><span class="o">-</span><span class="n">class</span><span class="p">]</span>
+
+<span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="s2">&quot;my/module/path:MyModule:MyAgent&quot;</span>
+</pre></div>
+</div>
+<p>Example linux agent specs with corresponding filepath expansions:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">my</span><span class="o">/</span><span class="n">path</span><span class="p">:</span><span class="n">MyModule</span><span class="p">:</span><span class="n">MyAgent</span> <span class="o">-&gt;</span> <span class="n">my</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">libMyModule</span><span class="o">.</span><span class="n">so</span>
+<span class="n">my</span><span class="o">/</span><span class="n">path</span><span class="p">::</span><span class="n">MyAgent</span>         <span class="o">-&gt;</span> <span class="n">my</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">libMyAgent</span><span class="o">.</span><span class="n">so</span>
+<span class="p">:</span><span class="n">MyModule</span><span class="p">:</span><span class="n">MyAgent</span>        <span class="o">-&gt;</span> <span class="n">libMyModule</span><span class="o">.</span><span class="n">so</span>
+<span class="p">::</span><span class="n">MyAgent</span>                <span class="o">-&gt;</span> <span class="n">libMyAgent</span><span class="o">.</span><span class="n">so</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="module-discovery">
+<h2>Module Discovery<a class="headerlink" href="#module-discovery" title="Permalink to this headline">¶</a></h2>
+<p>When running a simulation, <span style="font-variant:small-caps;">Cyclus</span> will search the following candidate
+directories (in order) for each given agent spec:</p>
+<ol class="arabic simple">
+<li>Each colon-separated directory in the CYCLUS_PATH environment variable.</li>
+<li>The default <span style="font-variant:small-caps;">Cyclus</span> module install directory: <code class="docutils literal"><span class="pre">[install-dir]/lib/cyclus</span></code>.</li>
+</ol>
+<p><span style="font-variant:small-caps;">Cyclus</span> will check for the library by building consecutive paths with the
+following composition:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">candidate</span><span class="o">-</span><span class="nb">dir</span><span class="p">]</span><span class="o">/</span><span class="p">[</span><span class="n">path</span><span class="p">]</span><span class="o">/</span><span class="n">lib</span><span class="p">[</span><span class="n">library</span><span class="p">][</span><span class="n">extension</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><span style="font-variant:small-caps;">Cyclus</span> uses the first matching shared library file found and assumes the
+specified agent class exists inside it.</p>
+</div>
+<div class="section" id="conventions">
+<h2>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h2>
+<p>The path should consist of only alpha-numeric characters, slashes,
+underscores, and dashes. <strong>No</strong> spaces.  If there are resource files that must
+be installed with the shared library file, the library and resources should be
+placed in their own directory.</p>
+<p>The shared library name should consist of only alpha-numeric characters,
+slashes, underscores.  <strong>No</strong> spaces. If the shared library only has a
+single agent in it, the library should be the same as the agent class.  For
+example, if my agent was named <code class="docutils literal"><span class="pre">MyAgent</span></code>, then the library file should be
+named <code class="docutils literal"><span class="pre">libMyAgent.so</span></code> on a linux system.  This allows the defaults to
+prevent stuttering in the agent&#8217;s module spec.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">CEP 21 - Agent Identification and Discovery</a><ul>
+<li><a class="reference internal" href="#abstract">Abstract</a></li>
+<li><a class="reference internal" href="#agent-spec">Agent Spec</a></li>
+<li><a class="reference internal" href="#module-discovery">Module Discovery</a></li>
+<li><a class="reference internal" href="#conventions">Conventions</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="cep20.html"
+                          title="Previous page">&larr; CEP 20 - Time Step Execution Stack</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="cep22.html"
+                          title="Next page">&rarr; CEP 22 - Logging Methodology and Implementation</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep22.html" title="CEP 22 - Logging Methodology and Implementation"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep20.html" title="CEP 20 - Time Step Execution Stack"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

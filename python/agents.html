@@ -1,0 +1,1432 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Agent Interface - Region, Institution, and Facility (cyclus.agents) &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Simulation State (cyclus.simstate)" href="simstate.html" />
+    <link rel="prev" title="Cyclus Python Interface" href="index.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="simstate.html" title="Simulation State (cyclus.simstate)"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="Cyclus Python Interface"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cyclus.agents">
+<span id="agent-interface-region-institution-and-facility-cyclus-agents"></span><span id="cyclus-pyapi-agents"></span><h1>Agent Interface - Region, Institution, and Facility (<code class="docutils literal"><span class="pre">cyclus.agents</span></code>)<a class="headerlink" href="#module-cyclus.agents" title="Permalink to this headline">¶</a></h1>
+<p>A Python interface for Agents and their subclasses.</p>
+<dl class="class">
+<dt id="cyclus.agents.Agent">
+<em class="property">class </em><code class="descclassname">cyclus.agents.</code><code class="descname">Agent</code><a class="headerlink" href="#cyclus.agents.Agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Python Agent that is subclassable into any kind of agent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ctx</strong> : cyclus.lib.Context</p>
+<blockquote class="last">
+<div><p>The simulation execution context.  You don&#8217;t normally
+need to call the initilaizer.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="cyclus.agents.Agent.adjust_material_prefs">
+<code class="descname">adjust_material_prefs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.adjust_material_prefs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Product preferences adjustment.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.adjust_product_prefs">
+<code class="descname">adjust_product_prefs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.adjust_product_prefs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Product preferences adjustment.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.ancestor_of">
+<code class="descname">ancestor_of</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.ancestor_of" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this agent is an ancestor of an other agent (i.e., resides
+above an other agent in the family tree).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.annotations">
+<code class="descname">annotations</code><a class="headerlink" href="#cyclus.agents.Agent.annotations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agent annotations.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.annotations_json">
+<code class="descname">annotations_json</code><a class="headerlink" href="#cyclus.agents.Agent.annotations_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.build">
+<code class="descname">build</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the agent enters the smiulation as an active participant and
+is only ever called once.  Agents should NOT register for services (such
+as ticks/tocks and resource exchange) in this function. If agents implement
+this function, they must call their superclass&#8217; Build function at the
+BEGINING of their Build function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.build_notify">
+<code class="descname">build_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.build_notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a new child of this agent has just been built. It is possible
+for this function to be called before the simulation has started when
+initially existing agents are being setup.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.children">
+<code class="descname">children</code><a class="headerlink" href="#cyclus.agents.Agent.children" title="Permalink to this definition">¶</a></dt>
+<dd><p>A frozen set of the children of this agent.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.children_str">
+<code class="descname">children_str</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.children_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns recursively generated string of the parent-child tree.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.context">
+<code class="descname">context</code><a class="headerlink" href="#cyclus.agents.Agent.context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this agent&#8217;s simulation context.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.decendent_of">
+<code class="descname">decendent_of</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.decendent_of" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this agent is an decendent of an other agent (i.e., resides
+above an other agent in the family tree).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.decom_notify">
+<code class="descname">decom_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.decom_notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a new child of this agent is about to be decommissioned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.decomission">
+<code class="descname">decomission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.decomission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decommissions the agent, removing it from the simulation. Results in
+destruction of the agent object. If agents write their own decommission()
+function, they must call their superclass&#8217; decommission function at the
+END of their decommission() function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.enter_notify">
+<code class="descname">enter_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.enter_notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called to give the agent an opportunity to register for services (e.g.
+ticks/tocks and resource exchange).  Note that this may be called more
+than once, and so agents should track their registrations carefully. If
+agents implement this function, they must call their superclass&#8217;s
+EnterNotify function at the BEGINNING of their EnterNotify function.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.enter_time">
+<code class="descname">enter_time</code><a class="headerlink" href="#cyclus.agents.Agent.enter_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time step at which this agent&#8217;s Build function was called
+(-1 if the agent has never been built).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.entity">
+<code class="descname">entity</code><em class="property"> = 'archetype'</em><a class="headerlink" href="#cyclus.agents.Agent.entity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.exit_time">
+<code class="descname">exit_time</code><a class="headerlink" href="#cyclus.agents.Agent.exit_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default time step at which this agent will exit the
+simulation (-1 if the agent has an infinite lifetime).</p>
+<p>Decomissioning happens at the end of a time step. With a lifetime of 1, we
+expect an agent to go through only 1 entire time step. In this case, the
+agent should be decommissioned on the same time step it was
+created. Therefore, for agents with non-infinite lifetimes, the exit_time
+will be the enter time plus its lifetime less 1.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.id">
+<code class="descname">id</code><a class="headerlink" href="#cyclus.agents.Agent.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent instance&#8217;s unique ID within a simulation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.in_family_tree">
+<code class="descname">in_family_tree</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.in_family_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this agent is in the parent-child family tree of an
+other agent.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.infile_to_db">
+<code class="descname">infile_to_db</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.infile_to_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of InfileToDb(InfileTree*, DbInit) that should
+work for all subclasses. Users should not need to call this ever.
+However, brave users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.init_from_agent">
+<code class="descname">init_from_agent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.init_from_agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of InitFrom(Agent) that should work for all
+subclasses. Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.init_from_dict">
+<code class="descname">init_from_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.init_from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>An initializer that reads state varaible values from a dictionary.
+This is used when InitFrom(QueryableBackend) is called.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.init_inv">
+<code class="descname">init_inv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.init_inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>An initializer that sets up inventories.
+This is used when InitInv(Inventories&amp;) is called.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.kind">
+<code class="descname">kind</code><a class="headerlink" href="#cyclus.agents.Agent.kind" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string that describes the agent subclass (e.g. Region,
+Facility, etc.)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.lifetime">
+<code class="descname">lifetime</code><a class="headerlink" href="#cyclus.agents.Agent.lifetime" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of time steps this agent operates between building and
+decommissioning (-1 if the agent has an infinite lifetime)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.niche">
+<code class="descname">niche</code><em class="property"> = None</em><a class="headerlink" href="#cyclus.agents.Agent.niche" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.parent">
+<code class="descname">parent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns parent of this agent.  Returns None if the agent has no parent.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.parent_id">
+<code class="descname">parent_id</code><a class="headerlink" href="#cyclus.agents.Agent.parent_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The id for this agent&#8217;s parent or -1 if this agent has no parent.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.prototype">
+<code class="descname">prototype</code><a class="headerlink" href="#cyclus.agents.Agent.prototype" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent&#8217;s prototype.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.schema">
+<code class="descname">schema</code><a class="headerlink" href="#cyclus.agents.Agent.schema" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8220;The class schema based on the state variables.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.snapshot">
+<code class="descname">snapshot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of Snapshot(DbInit) that should
+work for all subclasses.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.snapshot_inv">
+<code class="descname">snapshot_inv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.snapshot_inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of SnapshotInv() that reports the current
+state of the inventories.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.spec">
+<code class="descname">spec</code><a class="headerlink" href="#cyclus.agents.Agent.spec" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent&#8217;s spec.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.tooltip">
+<code class="descname">tooltip</code><em class="property"> = None</em><a class="headerlink" href="#cyclus.agents.Agent.tooltip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Agent.tree_strs">
+<code class="descname">tree_strs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.tree_strs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of children strings representing the parent-child tree
+at the node for Agent m.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.userlevel">
+<code class="descname">userlevel</code><em class="property"> = 0</em><a class="headerlink" href="#cyclus.agents.Agent.userlevel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Agent.version">
+<code class="descname">version</code><a class="headerlink" href="#cyclus.agents.Agent.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Property that represents version of this archetype. Overwrite this to return
+a custom version string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.agents.Facility">
+<em class="property">class </em><code class="descclassname">cyclus.agents.</code><code class="descname">Facility</code><a class="headerlink" href="#cyclus.agents.Facility" title="Permalink to this definition">¶</a></dt>
+<dd><p>Python Facility that is subclassable into a facility archetype.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ctx</strong> : cyclus.lib.Context</p>
+<blockquote class="last">
+<div><p>The simulation execution context.  You don&#8217;t normally
+need to call the initilaizer.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="cyclus.agents.Facility.accept_material_trades">
+<code class="descname">accept_material_trades</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.accept_material_trades" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for accepting materials from a trade deal.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.accept_product_trades">
+<code class="descname">accept_product_trades</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.accept_product_trades" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for accepting products from a trade deal.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.adjust_material_prefs">
+<code class="descname">adjust_material_prefs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.adjust_material_prefs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Product preferences adjustment.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.adjust_product_prefs">
+<code class="descname">adjust_product_prefs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.adjust_product_prefs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Product preferences adjustment.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.ancestor_of">
+<code class="descname">ancestor_of</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.ancestor_of" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this agent is an ancestor of an other agent (i.e., resides
+above an other agent in the family tree).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.annotations">
+<code class="descname">annotations</code><a class="headerlink" href="#cyclus.agents.Facility.annotations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agent annotations.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.annotations_json">
+<code class="descname">annotations_json</code><a class="headerlink" href="#cyclus.agents.Facility.annotations_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.build">
+<code class="descname">build</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the agent enters the smiulation as an active participant and
+is only ever called once.  Agents should NOT register for services (such
+as ticks/tocks and resource exchange) in this function. If agents implement
+this function, they must call their superclass&#8217; Build function at the
+BEGINING of their Build function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.build_notify">
+<code class="descname">build_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.build_notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a new child of this agent has just been built. It is possible
+for this function to be called before the simulation has started when
+initially existing agents are being setup.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.check_decomission_condition">
+<code class="descname">check_decomission_condition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.check_decomission_condition" title="Permalink to this definition">¶</a></dt>
+<dd><p>facilities over write this method if a condition must be met
+before their destructors can be called. Return True means that
+the facility is ready for decomission. False prevents decomission.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.children">
+<code class="descname">children</code><a class="headerlink" href="#cyclus.agents.Facility.children" title="Permalink to this definition">¶</a></dt>
+<dd><p>A frozen set of the children of this agent.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.children_str">
+<code class="descname">children_str</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.children_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns recursively generated string of the parent-child tree.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.context">
+<code class="descname">context</code><a class="headerlink" href="#cyclus.agents.Facility.context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this agent&#8217;s simulation context.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.decendent_of">
+<code class="descname">decendent_of</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.decendent_of" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this agent is an decendent of an other agent (i.e., resides
+above an other agent in the family tree).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.decom_notify">
+<code class="descname">decom_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.decom_notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a new child of this agent is about to be decommissioned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.decomission">
+<code class="descname">decomission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.decomission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decommissions the agent, removing it from the simulation. Results in
+destruction of the agent object. If agents write their own decommission()
+function, they must call their superclass&#8217; decommission function at the
+END of their decommission() function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.enter_notify">
+<code class="descname">enter_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.enter_notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called to give the agent an opportunity to register for services (e.g.
+ticks/tocks and resource exchange).  Note that this may be called more
+than once, and so agents should track their registrations carefully. If
+agents implement this function, they must call their superclass&#8217;s
+EnterNotify function at the BEGINNING of their EnterNotify function.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.enter_time">
+<code class="descname">enter_time</code><a class="headerlink" href="#cyclus.agents.Facility.enter_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time step at which this agent&#8217;s Build function was called
+(-1 if the agent has never been built).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.entity">
+<code class="descname">entity</code><em class="property"> = 'facility'</em><a class="headerlink" href="#cyclus.agents.Facility.entity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.exit_time">
+<code class="descname">exit_time</code><a class="headerlink" href="#cyclus.agents.Facility.exit_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default time step at which this agent will exit the
+simulation (-1 if the agent has an infinite lifetime).</p>
+<p>Decomissioning happens at the end of a time step. With a lifetime of 1, we
+expect an agent to go through only 1 entire time step. In this case, the
+agent should be decommissioned on the same time step it was
+created. Therefore, for agents with non-infinite lifetimes, the exit_time
+will be the enter time plus its lifetime less 1.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.get_material_bids">
+<code class="descname">get_material_bids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.get_material_bids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns material bids for this agent on this time step.
+This may be overridden is subclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.get_material_requests">
+<code class="descname">get_material_requests</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.get_material_requests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns material requests for this agent on this time step.
+This is meant to be overridden is subclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.get_material_trades">
+<code class="descname">get_material_trades</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.get_material_trades" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation for responding to material trades.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.get_product_bids">
+<code class="descname">get_product_bids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.get_product_bids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns product bids for this agent on this time step.
+This may be overridden is subclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.get_product_requests">
+<code class="descname">get_product_requests</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.get_product_requests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns product requests for this agent on this time step.
+This is meant to be overridden is subclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.get_product_trades">
+<code class="descname">get_product_trades</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.get_product_trades" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation for responding to product trades.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.id">
+<code class="descname">id</code><a class="headerlink" href="#cyclus.agents.Facility.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent instance&#8217;s unique ID within a simulation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.in_family_tree">
+<code class="descname">in_family_tree</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.in_family_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this agent is in the parent-child family tree of an
+other agent.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.infile_to_db">
+<code class="descname">infile_to_db</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.infile_to_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of InfileToDb(InfileTree*, DbInit) that should
+work for all subclasses. Users should not need to call this ever.
+However, brave users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.init_from_agent">
+<code class="descname">init_from_agent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.init_from_agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of InitFrom(Agent) that should work for all
+subclasses. Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.init_from_dict">
+<code class="descname">init_from_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.init_from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>An initializer that reads state varaible values from a dictionary.
+This is used when InitFrom(QueryableBackend) is called.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.init_inv">
+<code class="descname">init_inv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.init_inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>An initializer that sets up inventories.
+This is used when InitInv(Inventories&amp;) is called.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.kind">
+<code class="descname">kind</code><a class="headerlink" href="#cyclus.agents.Facility.kind" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string that describes the agent subclass (e.g. Region,
+Facility, etc.)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.lifetime">
+<code class="descname">lifetime</code><a class="headerlink" href="#cyclus.agents.Facility.lifetime" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of time steps this agent operates between building and
+decommissioning (-1 if the agent has an infinite lifetime)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.niche">
+<code class="descname">niche</code><em class="property"> = None</em><a class="headerlink" href="#cyclus.agents.Facility.niche" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.parent">
+<code class="descname">parent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns parent of this agent.  Returns None if the agent has no parent.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.parent_id">
+<code class="descname">parent_id</code><a class="headerlink" href="#cyclus.agents.Facility.parent_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The id for this agent&#8217;s parent or -1 if this agent has no parent.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.prototype">
+<code class="descname">prototype</code><a class="headerlink" href="#cyclus.agents.Facility.prototype" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent&#8217;s prototype.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.schema">
+<code class="descname">schema</code><a class="headerlink" href="#cyclus.agents.Facility.schema" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8220;The class schema based on the state variables.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.snapshot">
+<code class="descname">snapshot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of Snapshot(DbInit) that should
+work for all subclasses.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.snapshot_inv">
+<code class="descname">snapshot_inv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.snapshot_inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of SnapshotInv() that reports the current
+state of the inventories.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.spec">
+<code class="descname">spec</code><a class="headerlink" href="#cyclus.agents.Facility.spec" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent&#8217;s spec.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.tick">
+<code class="descname">tick</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.tick" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is called each time step and is meant to be
+overlaoded in the subclass.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.tock">
+<code class="descname">tock</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.tock" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is called each time step and is meant to be
+overlaoded in the subclass.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.tooltip">
+<code class="descname">tooltip</code><em class="property"> = None</em><a class="headerlink" href="#cyclus.agents.Facility.tooltip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Facility.tree_strs">
+<code class="descname">tree_strs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.tree_strs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of children strings representing the parent-child tree
+at the node for Agent m.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.userlevel">
+<code class="descname">userlevel</code><em class="property"> = 0</em><a class="headerlink" href="#cyclus.agents.Facility.userlevel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Facility.version">
+<code class="descname">version</code><a class="headerlink" href="#cyclus.agents.Facility.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Property that represents version of this archetype. Overwrite this to return
+a custom version string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.agents.Institution">
+<em class="property">class </em><code class="descclassname">cyclus.agents.</code><code class="descname">Institution</code><a class="headerlink" href="#cyclus.agents.Institution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Python Institution that is subclassable into a institution archetype.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ctx</strong> : cyclus.lib.Context</p>
+<blockquote class="last">
+<div><p>The simulation execution context.  You don&#8217;t normally
+need to call the initilaizer.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="cyclus.agents.Institution.adjust_material_prefs">
+<code class="descname">adjust_material_prefs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.adjust_material_prefs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Product preferences adjustment.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.adjust_product_prefs">
+<code class="descname">adjust_product_prefs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.adjust_product_prefs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Product preferences adjustment.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.ancestor_of">
+<code class="descname">ancestor_of</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.ancestor_of" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this agent is an ancestor of an other agent (i.e., resides
+above an other agent in the family tree).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.annotations">
+<code class="descname">annotations</code><a class="headerlink" href="#cyclus.agents.Institution.annotations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agent annotations.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.annotations_json">
+<code class="descname">annotations_json</code><a class="headerlink" href="#cyclus.agents.Institution.annotations_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.build">
+<code class="descname">build</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the agent enters the smiulation as an active participant and
+is only ever called once.  Agents should NOT register for services (such
+as ticks/tocks and resource exchange) in this function. If agents implement
+this function, they must call their superclass&#8217; Build function at the
+BEGINING of their Build function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.build_notify">
+<code class="descname">build_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.build_notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a new child of this agent has just been built. It is possible
+for this function to be called before the simulation has started when
+initially existing agents are being setup.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.children">
+<code class="descname">children</code><a class="headerlink" href="#cyclus.agents.Institution.children" title="Permalink to this definition">¶</a></dt>
+<dd><p>A frozen set of the children of this agent.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.children_str">
+<code class="descname">children_str</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.children_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns recursively generated string of the parent-child tree.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.context">
+<code class="descname">context</code><a class="headerlink" href="#cyclus.agents.Institution.context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this agent&#8217;s simulation context.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.decendent_of">
+<code class="descname">decendent_of</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.decendent_of" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this agent is an decendent of an other agent (i.e., resides
+above an other agent in the family tree).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.decom_notify">
+<code class="descname">decom_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.decom_notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a new child of this agent is about to be decommissioned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.decomission">
+<code class="descname">decomission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.decomission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decommissions the agent, removing it from the simulation. Results in
+destruction of the agent object. If agents write their own decommission()
+function, they must call their superclass&#8217; decommission function at the
+END of their decommission() function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.enter_notify">
+<code class="descname">enter_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.enter_notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called to give the agent an opportunity to register for services (e.g.
+ticks/tocks and resource exchange).  Note that this may be called more
+than once, and so agents should track their registrations carefully. If
+agents implement this function, they must call their superclass&#8217;s
+EnterNotify function at the BEGINNING of their EnterNotify function.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.enter_time">
+<code class="descname">enter_time</code><a class="headerlink" href="#cyclus.agents.Institution.enter_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time step at which this agent&#8217;s Build function was called
+(-1 if the agent has never been built).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.entity">
+<code class="descname">entity</code><em class="property"> = 'institution'</em><a class="headerlink" href="#cyclus.agents.Institution.entity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.exit_time">
+<code class="descname">exit_time</code><a class="headerlink" href="#cyclus.agents.Institution.exit_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default time step at which this agent will exit the
+simulation (-1 if the agent has an infinite lifetime).</p>
+<p>Decomissioning happens at the end of a time step. With a lifetime of 1, we
+expect an agent to go through only 1 entire time step. In this case, the
+agent should be decommissioned on the same time step it was
+created. Therefore, for agents with non-infinite lifetimes, the exit_time
+will be the enter time plus its lifetime less 1.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.id">
+<code class="descname">id</code><a class="headerlink" href="#cyclus.agents.Institution.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent instance&#8217;s unique ID within a simulation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.in_family_tree">
+<code class="descname">in_family_tree</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.in_family_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this agent is in the parent-child family tree of an
+other agent.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.infile_to_db">
+<code class="descname">infile_to_db</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.infile_to_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of InfileToDb(InfileTree*, DbInit) that should
+work for all subclasses. Users should not need to call this ever.
+However, brave users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.init_from_agent">
+<code class="descname">init_from_agent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.init_from_agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of InitFrom(Agent) that should work for all
+subclasses. Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.init_from_dict">
+<code class="descname">init_from_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.init_from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>An initializer that reads state varaible values from a dictionary.
+This is used when InitFrom(QueryableBackend) is called.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.init_inv">
+<code class="descname">init_inv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.init_inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>An initializer that sets up inventories.
+This is used when InitInv(Inventories&amp;) is called.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.kind">
+<code class="descname">kind</code><a class="headerlink" href="#cyclus.agents.Institution.kind" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string that describes the agent subclass (e.g. Region,
+Facility, etc.)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.lifetime">
+<code class="descname">lifetime</code><a class="headerlink" href="#cyclus.agents.Institution.lifetime" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of time steps this agent operates between building and
+decommissioning (-1 if the agent has an infinite lifetime)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.niche">
+<code class="descname">niche</code><em class="property"> = None</em><a class="headerlink" href="#cyclus.agents.Institution.niche" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.parent">
+<code class="descname">parent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns parent of this agent.  Returns None if the agent has no parent.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.parent_id">
+<code class="descname">parent_id</code><a class="headerlink" href="#cyclus.agents.Institution.parent_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The id for this agent&#8217;s parent or -1 if this agent has no parent.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.prototype">
+<code class="descname">prototype</code><a class="headerlink" href="#cyclus.agents.Institution.prototype" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent&#8217;s prototype.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.schema">
+<code class="descname">schema</code><a class="headerlink" href="#cyclus.agents.Institution.schema" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8220;The class schema based on the state variables.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.snapshot">
+<code class="descname">snapshot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of Snapshot(DbInit) that should
+work for all subclasses.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.snapshot_inv">
+<code class="descname">snapshot_inv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.snapshot_inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of SnapshotInv() that reports the current
+state of the inventories.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.spec">
+<code class="descname">spec</code><a class="headerlink" href="#cyclus.agents.Institution.spec" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent&#8217;s spec.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.tick">
+<code class="descname">tick</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.tick" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is called each time step and is meant to be
+overlaoded in the subclass.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.tock">
+<code class="descname">tock</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.tock" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is called each time step and is meant to be
+overlaoded in the subclass.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.tooltip">
+<code class="descname">tooltip</code><em class="property"> = None</em><a class="headerlink" href="#cyclus.agents.Institution.tooltip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Institution.tree_strs">
+<code class="descname">tree_strs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.tree_strs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of children strings representing the parent-child tree
+at the node for Agent m.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.userlevel">
+<code class="descname">userlevel</code><em class="property"> = 0</em><a class="headerlink" href="#cyclus.agents.Institution.userlevel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Institution.version">
+<code class="descname">version</code><a class="headerlink" href="#cyclus.agents.Institution.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Property that represents version of this archetype. Overwrite this to return
+a custom version string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.agents.Region">
+<em class="property">class </em><code class="descclassname">cyclus.agents.</code><code class="descname">Region</code><a class="headerlink" href="#cyclus.agents.Region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Python Region that is subclassable into a region archetype.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ctx</strong> : cyclus.lib.Context</p>
+<blockquote class="last">
+<div><p>The simulation execution context.  You don&#8217;t normally
+need to call the initilaizer.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="cyclus.agents.Region.adjust_material_prefs">
+<code class="descname">adjust_material_prefs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.adjust_material_prefs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Product preferences adjustment.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.adjust_product_prefs">
+<code class="descname">adjust_product_prefs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.adjust_product_prefs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Product preferences adjustment.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.ancestor_of">
+<code class="descname">ancestor_of</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.ancestor_of" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this agent is an ancestor of an other agent (i.e., resides
+above an other agent in the family tree).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.annotations">
+<code class="descname">annotations</code><a class="headerlink" href="#cyclus.agents.Region.annotations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agent annotations.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.annotations_json">
+<code class="descname">annotations_json</code><a class="headerlink" href="#cyclus.agents.Region.annotations_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.build">
+<code class="descname">build</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the agent enters the smiulation as an active participant and
+is only ever called once.  Agents should NOT register for services (such
+as ticks/tocks and resource exchange) in this function. If agents implement
+this function, they must call their superclass&#8217; Build function at the
+BEGINING of their Build function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.build_notify">
+<code class="descname">build_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.build_notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a new child of this agent has just been built. It is possible
+for this function to be called before the simulation has started when
+initially existing agents are being setup.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.children">
+<code class="descname">children</code><a class="headerlink" href="#cyclus.agents.Region.children" title="Permalink to this definition">¶</a></dt>
+<dd><p>A frozen set of the children of this agent.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.children_str">
+<code class="descname">children_str</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.children_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns recursively generated string of the parent-child tree.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.context">
+<code class="descname">context</code><a class="headerlink" href="#cyclus.agents.Region.context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this agent&#8217;s simulation context.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.decendent_of">
+<code class="descname">decendent_of</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.decendent_of" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this agent is an decendent of an other agent (i.e., resides
+above an other agent in the family tree).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.decom_notify">
+<code class="descname">decom_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.decom_notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a new child of this agent is about to be decommissioned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.decomission">
+<code class="descname">decomission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.decomission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decommissions the agent, removing it from the simulation. Results in
+destruction of the agent object. If agents write their own decommission()
+function, they must call their superclass&#8217; decommission function at the
+END of their decommission() function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.enter_notify">
+<code class="descname">enter_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.enter_notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called to give the agent an opportunity to register for services (e.g.
+ticks/tocks and resource exchange).  Note that this may be called more
+than once, and so agents should track their registrations carefully. If
+agents implement this function, they must call their superclass&#8217;s
+EnterNotify function at the BEGINNING of their EnterNotify function.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.enter_time">
+<code class="descname">enter_time</code><a class="headerlink" href="#cyclus.agents.Region.enter_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time step at which this agent&#8217;s Build function was called
+(-1 if the agent has never been built).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.entity">
+<code class="descname">entity</code><em class="property"> = 'region'</em><a class="headerlink" href="#cyclus.agents.Region.entity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.exit_time">
+<code class="descname">exit_time</code><a class="headerlink" href="#cyclus.agents.Region.exit_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default time step at which this agent will exit the
+simulation (-1 if the agent has an infinite lifetime).</p>
+<p>Decomissioning happens at the end of a time step. With a lifetime of 1, we
+expect an agent to go through only 1 entire time step. In this case, the
+agent should be decommissioned on the same time step it was
+created. Therefore, for agents with non-infinite lifetimes, the exit_time
+will be the enter time plus its lifetime less 1.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.id">
+<code class="descname">id</code><a class="headerlink" href="#cyclus.agents.Region.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent instance&#8217;s unique ID within a simulation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.in_family_tree">
+<code class="descname">in_family_tree</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.in_family_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this agent is in the parent-child family tree of an
+other agent.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.infile_to_db">
+<code class="descname">infile_to_db</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.infile_to_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of InfileToDb(InfileTree*, DbInit) that should
+work for all subclasses. Users should not need to call this ever.
+However, brave users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.init_from_agent">
+<code class="descname">init_from_agent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.init_from_agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of InitFrom(Agent) that should work for all
+subclasses. Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.init_from_dict">
+<code class="descname">init_from_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.init_from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>An initializer that reads state varaible values from a dictionary.
+This is used when InitFrom(QueryableBackend) is called.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.init_inv">
+<code class="descname">init_inv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.init_inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>An initializer that sets up inventories.
+This is used when InitInv(Inventories&amp;) is called.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.kind">
+<code class="descname">kind</code><a class="headerlink" href="#cyclus.agents.Region.kind" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string that describes the agent subclass (e.g. Region,
+Facility, etc.)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.lifetime">
+<code class="descname">lifetime</code><a class="headerlink" href="#cyclus.agents.Region.lifetime" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of time steps this agent operates between building and
+decommissioning (-1 if the agent has an infinite lifetime)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.niche">
+<code class="descname">niche</code><em class="property"> = None</em><a class="headerlink" href="#cyclus.agents.Region.niche" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.parent">
+<code class="descname">parent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns parent of this agent.  Returns None if the agent has no parent.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.parent_id">
+<code class="descname">parent_id</code><a class="headerlink" href="#cyclus.agents.Region.parent_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The id for this agent&#8217;s parent or -1 if this agent has no parent.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.prototype">
+<code class="descname">prototype</code><a class="headerlink" href="#cyclus.agents.Region.prototype" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent&#8217;s prototype.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.schema">
+<code class="descname">schema</code><a class="headerlink" href="#cyclus.agents.Region.schema" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8220;The class schema based on the state variables.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.snapshot">
+<code class="descname">snapshot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of Snapshot(DbInit) that should
+work for all subclasses.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.snapshot_inv">
+<code class="descname">snapshot_inv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.snapshot_inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic version of SnapshotInv() that reports the current
+state of the inventories.
+Users should not need to call this ever. However, brave
+users may choose to override it in exceptional cases.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.spec">
+<code class="descname">spec</code><a class="headerlink" href="#cyclus.agents.Region.spec" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent&#8217;s spec.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.tick">
+<code class="descname">tick</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.tick" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is called each time step and is meant to be
+overlaoded in the subclass.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.tock">
+<code class="descname">tock</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.tock" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is called each time step and is meant to be
+overlaoded in the subclass.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.tooltip">
+<code class="descname">tooltip</code><em class="property"> = None</em><a class="headerlink" href="#cyclus.agents.Region.tooltip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.agents.Region.tree_strs">
+<code class="descname">tree_strs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.tree_strs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of children strings representing the parent-child tree
+at the node for Agent m.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.userlevel">
+<code class="descname">userlevel</code><em class="property"> = 0</em><a class="headerlink" href="#cyclus.agents.Region.userlevel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.agents.Region.version">
+<code class="descname">version</code><a class="headerlink" href="#cyclus.agents.Region.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Property that represents version of this archetype. Overwrite this to return
+a custom version string.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="index.html"
+                          title="Previous page">&larr; <span style="font-variant:small-caps;">Cyclus</span> Python Interface</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="simstate.html"
+                          title="Next page">&rarr; Simulation State (<code class="docutils literal"><span class="pre">cyclus.simstate</span></code>)</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="simstate.html" title="Simulation State (cyclus.simstate)"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="Cyclus Python Interface"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Understanding and Adding Archetypes to Your Scenario &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Adding Prototypes to your Simulation" href="add_proto.html" />
+    <link rel="prev" title="Starting a New Scenario" href="sim_parm.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_proto.html" title="Adding Prototypes to your Simulation"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="sim_parm.html" title="Starting a New Scenario"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="understanding-and-adding-archetypes-to-your-scenario">
+<h1>Understanding and Adding Archetypes to Your Scenario<a class="headerlink" href="#understanding-and-adding-archetypes-to-your-scenario" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="concept-archetypes">
+<h2>Concept: Archetypes<a class="headerlink" href="#concept-archetypes" title="Permalink to this headline">¶</a></h2>
+<p>One of the principal features of <span style="font-variant:small-caps;">Cyclus</span> is the ability for users to easily
+switch between different models of fuel cycle facilities.  Models may differ
+in the way they choose to represent the physics of the facility, or in the way
+they choose for the facility to interact with other facilities, or both. In
+<span style="font-variant:small-caps;">Cyclus</span>, we call each of these different models an <a class="reference internal" href="../../basics/glossary.html#term-archetype"><span class="xref std std-term">archetype</span></a>.</p>
+<div class="section" id="archetype-example-reactor-fidelity">
+<h3>Archetype Example: Reactor Fidelity<a class="headerlink" href="#archetype-example-reactor-fidelity" title="Permalink to this headline">¶</a></h3>
+<p>The easiest way for most fuel cycle analysts to understand the difference
+between archetypes is through the example of a reactor model.</p>
+<ul class="simple">
+<li>The simplest possible reactor archetype uses the concept of fixed input and
+output recipes to define the transmutation of material.  Such a reactor
+might assume that all material that it receives matches its desired input
+recipe, and that all the material that it then ships as used fuel will match
+its prescribed output recipe.  This will probably run the fastest.</li>
+<li>A more sophisticated reactor archetype uses some form of tabulated data to
+determine both performance characteristics and used fuel discharge
+composition.  It could be as simple as interpolating between a set of
+possible input recipes and then using that interpolation on a set of
+corresponding output recipes.  A more complex version of such an archetype
+could even have tabulated reactor physics paramters for more fidelity.</li>
+<li>The most sophisticated reactor archetype may actually be a wrapper for fuel
+depletion software, and perform a full depletion calculation each time new
+fuel arrives at the reactor.  This will probably take the most computer time
+to complete.</li>
+</ul>
+<p>Assuming that such archetypes are available, the user is welcome to choose
+which archetype to use, based on the modeling fidelity they are interested in
+and/or the performance requirements they have for their simulations.</p>
+</div>
+<div class="section" id="cycamore-the-cyclus-additional-module-repository">
+<h3>Cycamore: The <span style="font-variant:small-caps;">Cyclus</span> Additional Module Repository<a class="headerlink" href="#cycamore-the-cyclus-additional-module-repository" title="Permalink to this headline">¶</a></h3>
+<p>The <span style="font-variant:small-caps;">Cyclus</span> team has developed a simple standard set of archetypes to support
+basic fuel cycle modeling situations.  In most cases they implement very
+simple models and are useful for tutorials such as this, and as a standard way
+to model facilities that may be at the peripheral of a problem.  The Cycamore
+facility archetypes are:</p>
+<ul class="simple">
+<li><strong>Source:</strong> This generic source of material may fill the role of any
+facility that produces fresh material.  Depending on how much of the fuel
+cycle a user wants to model explicity, this could fill the role of a uranium
+mine, an enrichment facility, a fuel fabrication facility, etc.</li>
+<li><strong>Enrichment:</strong> This facility archetype implements the standard equations for
+enrichment of U-235 in U-238, with a constrained total enrichment capacity.</li>
+<li><strong>Reactor:</strong> This facility archetype uses simple fuel recipes for a reactor
+that reloads batches of assemblies at regular intervals.</li>
+<li><strong>Separations:</strong> This facility archetype takes a number of input streams and
+separates all the isotopes into a number of output streams.</li>
+<li><strong>FuelFab:</strong> This facility archetype mixes streams of fissile and
+fissionable material in order to best approximate a given recipe using the
+d-factor approach.</li>
+<li><strong>Sink:</strong> This generic sink of material may fill the role of any facility
+that permanently holds used nuclear material.  Depending on how much of the
+fuel cycle a user wants to model explicitly, this could fill the role of a
+geologic repository, an interim storage facility, etc.</li>
+</ul>
+</div>
+<div class="section" id="activity-discover-the-available-archetypes">
+<h3>Activity: Discover the Available Archetypes<a class="headerlink" href="#activity-discover-the-available-archetypes" title="Permalink to this headline">¶</a></h3>
+<p>Since archetypes can change without having to resinstall <span style="font-variant:small-caps;">Cyclus</span>, there is
+the ability to automatically discover which archetypes are available.</p>
+<ol class="arabic simple">
+<li>Press the &#8220;Discover Archetypes&#8221; button to update the archetypes available to you.</li>
+</ol>
+<img alt="View of archetype discovery pane." class="align-center" src="../../_images/disc_arche.png" />
+<ol class="arabic simple" start="2">
+<li>Select the &#8220;Add Archetype to Simulation&#8221; drop-down box to see which
+archetypes are available.</li>
+</ol>
+</div>
+<div class="section" id="activity-select-archetypes-to-use-in-this-scneario">
+<h3>Activity: Select Archetypes to Use in this Scneario<a class="headerlink" href="#activity-select-archetypes-to-use-in-this-scneario" title="Permalink to this headline">¶</a></h3>
+<p>After discovering which archetypes are available on your system, you are able to select which
+subset of archetypes will be used in this particular scenario.</p>
+<ol class="arabic simple">
+<li>For this scenario, select each of these archetypes from the drop down box.</li>
+</ol>
+<ul class="simple">
+<li><em>cycamore Source</em>: to act as the mine</li>
+<li><em>cycamore Enrichment</em>: to act as the enrichment facility</li>
+<li><em>cycamore Reactor</em>: to act as the LWR</li>
+<li><em>cycamore Sink</em>: to act as the geoligic respository</li>
+</ul>
+<p>Notice how these now appear in the window on the right.</p>
+<a class="reference internal image-reference" href="../../_images/arche_ribbon.png"><img alt="View of archetype ribbon after adding archetypes" class="align-center" src="../../_images/arche_ribbon.png" style="width: 100%;" /></a>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Understanding and Adding Archetypes to Your Scenario</a><ul>
+<li><a class="reference internal" href="#concept-archetypes">Concept: Archetypes</a><ul>
+<li><a class="reference internal" href="#archetype-example-reactor-fidelity">Archetype Example: Reactor Fidelity</a></li>
+<li><a class="reference internal" href="#cycamore-the-cyclus-additional-module-repository">Cycamore: The <span style="font-variant:small-caps;">Cyclus</span> Additional Module Repository</a></li>
+<li><a class="reference internal" href="#activity-discover-the-available-archetypes">Activity: Discover the Available Archetypes</a></li>
+<li><a class="reference internal" href="#activity-select-archetypes-to-use-in-this-scneario">Activity: Select Archetypes to Use in this Scneario</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="sim_parm.html"
+                          title="Previous page">&larr; Starting a New Scenario</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="add_proto.html"
+                          title="Next page">&rarr; Adding Prototypes to your Simulation</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_proto.html" title="Adding Prototypes to your Simulation"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="sim_parm.html" title="Starting a New Scenario"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

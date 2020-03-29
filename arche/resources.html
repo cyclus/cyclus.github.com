@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Resources &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dynamic Resource Exchange" href="dre.html" />
+    <link rel="prev" title="Time Step Execution" href="timestep.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="dre.html" title="Dynamic Resource Exchange"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="timestep.html" title="Time Step Execution"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="resources">
+<h1>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h1>
+<p>One of the defining features of <span style="font-variant:small-caps;">Cyclus</span> among other fuel cycle simulators is
+the treatment of resources/materials as discrete, quantized objects that can
+be traded and tracked throughout the simulation.</p>
+<p>A primary motivation for discrete and quantized materials is the ability to
+study the flow of material and the attribution of those materials through
+prior ownership.  One example is that of a nuclear fuel assembly.  A nuclear
+fuel assembly for a given reactor has a clear definition of material
+properties (including mass) can be treated as a single unit.</p>
+<p>The <span style="font-variant:small-caps;">Cyclus</span> core provides two types of Resources that can be used/manipulated
+by agents:</p>
+<ul class="simple">
+<li>Material - a generic material object comprised of a mass and nuclide
+composition.</li>
+<li>Product - a general resource comprised of a quantity of a custom specified
+quality/units.</li>
+</ul>
+<p>Conceptually, a resource can be anything that might be an interesting traded
+item (e.g., electricity, money, or workers).  By default, all changes to
+resource objects (including creation) are tracked and recorded in the
+database.  Because of this, agents should handle resources carefully.  For
+more details about this, see <a class="reference internal" href="#tracked-untracked"><span class="std std-ref">Tracked and Untracked Resources</span></a>.</p>
+<p>In C++, all resource objects are created and managed as pointer types. For
+convenience, each of the classes related to resources have a special pointer
+type defined. In Python, they each have their own class that this available
+in the <code class="docutils literal"><span class="pre">cyclus.typesystem</span></code> module.</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">cyclus</span><span class="o">::</span><span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">r</span><span class="p">;</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Product</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">p</span><span class="p">;</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="kn">as</span> <span class="nn">ts</span>
+<span class="n">ts</span><span class="o">.</span><span class="n">Resource</span>
+<span class="n">ts</span><span class="o">.</span><span class="n">Product</span>
+<span class="n">ts</span><span class="o">.</span><span class="n">Material</span>
+</pre></div>
+</div>
+<p>These pointer types should be always be used instead of plain class instances
+or raw pointers.  The following sections describe basic creation and
+manipulation of resource objects.  The <span style="font-variant:small-caps;">Cyclus</span> kernel deals with resources in
+terms of the <code class="docutils literal"><span class="pre">cyclus::Resource</span></code> superclass.  So it will sometimes be
+necessary to cast down to the appropriate resource subclass.  <span style="font-variant:small-caps;">Cyclus</span> provides
+an overloaded ResCast function for casting convenience:</p>
+<p><a href="#id1"><span class="problematic" id="id2">**</span></a>C++*:*</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// r is a Material object stored in a cyclus::Resource::Ptr var</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span> <span class="o">=</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">ResCast</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+
+<span class="c1">// ResCast works on vectors too</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span><span class="o">&gt;</span> <span class="n">rs</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Product</span><span class="o">::</span><span class="n">Ptr</span><span class="o">&gt;</span> <span class="n">ps</span> <span class="o">=</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">ResCast</span><span class="o">&lt;</span><span class="n">Product</span><span class="o">&gt;</span><span class="p">(</span><span class="n">rs</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In Python, the situation is much simpler and you should only need to use <code class="docutils literal"><span class="pre">Product</span></code> and
+<code class="docutils literal"><span class="pre">Material</span></code> directly. They both inherit from <code class="docutils literal"><span class="pre">Resource</span></code>.</p>
+<div class="section" id="product-resources">
+<h2>Product Resources<a class="headerlink" href="#product-resources" title="Permalink to this headline">¶</a></h2>
+<p>Products in <span style="font-variant:small-caps;">Cyclus</span> have a quantity (no particular units) and a quality.
+The quality is a <code class="docutils literal"><span class="pre">std::string</span></code> (C++) or <code class="docutils literal"><span class="pre">str</span></code> (Python) that describes what
+the product is. A product&#8217;s quality might be &#8220;apples&#8221;, &#8220;kg apples&#8221;, etc. Product
+resources with different qualities may NOT be combined together.</p>
+<p>There are 3 basic operations that can be performed on product resources
+(examples follow):</p>
+<ul class="simple">
+<li>Create</li>
+<li>Extract</li>
+<li>Absorb</li>
+</ul>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// create a &quot;grapes&quot; product holding 100 grapes.</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Product</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Product</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s">&quot;grapes&quot;</span><span class="p">);</span>
+
+<span class="c1">// extract 7 grapes from p1</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Product</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">Extract</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="c1">// p1 now has 93 grapes</span>
+
+<span class="c1">// combine p2 back into p1</span>
+<span class="n">p1</span><span class="o">-&gt;</span><span class="n">Absorb</span><span class="p">(</span><span class="n">p2</span><span class="p">);</span>
+<span class="c1">// p2 now has 0 grapes. p1 has 100 grapes.</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># create a &quot;grapes&quot; product holding 100 grapes.</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">Product</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;grapes&quot;</span><span class="p">)</span>
+
+<span class="c1"># extract 7 grapes from p1</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="c1"># p1 now has 93 grapes</span>
+
+<span class="c1"># combine p2 back into p1</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">absorb</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+<span class="c1"># p2 now has 0 grapes. p1 has 100 grapes.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="material-resources">
+<h2>Material Resources<a class="headerlink" href="#material-resources" title="Permalink to this headline">¶</a></h2>
+<p>Materials in <span style="font-variant:small-caps;">Cyclus</span> have a mass and an associated nuclide composition.  The
+composition is represented by a  <code class="docutils literal"><span class="pre">cyclus::Composition</span></code> object (C++) or dict of
+nuclide keys (str or int), float values (Python).  Material
+quantity is always represented in units of kg. Agents can either create a
+composition manually (see the <em>Compositions</em> section below) or acquire one from
+their Context which holds all recipes defined as part of the
+simulation input.</p>
+<p>There are 4 basic operations that can be performed on material resources
+(examples follow):</p>
+<ul class="simple">
+<li>Create</li>
+<li>Extract [Qty/Comp]</li>
+<li>Absorb</li>
+<li>Transmute</li>
+<li>Decay (EXPERIMENTAL) - which is a special case of the Transmute operation</li>
+</ul>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">cyclus</span><span class="o">::</span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetRecipe</span><span class="p">(</span><span class="s">&quot;nat_u&quot;</span><span class="p">);</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetRecipe</span><span class="p">(</span><span class="s">&quot;enriched_u&quot;</span><span class="p">);</span>
+
+<span class="c1">// create a 100 kg material from the nat_u recipe defined in the input file</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m1</span> <span class="o">=</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">c1</span><span class="p">);</span>
+
+<span class="c1">// extract 1 kg of enriched U from m1</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m2</span> <span class="o">=</span> <span class="n">m1</span><span class="o">-&gt;</span><span class="n">ExtractComp</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">c2</span><span class="p">);</span>
+<span class="c1">// mass of m1 is now 99 kg and its composition has changed</span>
+
+<span class="c1">// extract 1 kg from m1 of whatever composition it is</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m3</span> <span class="o">=</span> <span class="n">m1</span><span class="o">-&gt;</span><span class="n">ExtractQty</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="c1">// mass of m1 is now 98 kg and its composition. m1 and m3 have the same composition</span>
+
+<span class="c1">// combine m2 and m3 back into m1</span>
+<span class="n">m1</span><span class="o">-&gt;</span><span class="n">Absorb</span><span class="p">(</span><span class="n">m2</span><span class="p">);</span>
+<span class="n">m1</span><span class="o">-&gt;</span><span class="n">Absorb</span><span class="p">(</span><span class="n">m3</span><span class="p">);</span>
+<span class="c1">// m2 and m3 now have mass 0 kg. m1 has mass 100 kg with its original nat_u composition</span>
+
+<span class="c1">// decay composition m1 up to the current time step (EXPERIMENTAL)</span>
+<span class="n">m1</span><span class="o">-&gt;</span><span class="n">Decay</span><span class="p">();</span> <span class="c1">// EXPERIMENTAL</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">get_recipe</span><span class="p">(</span><span class="s2">&quot;nat_u&quot;</span><span class="p">)</span>
+<span class="n">c2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">get_recipe</span><span class="p">(</span><span class="s2">&quot;enriched_u&quot;</span><span class="p">)</span>
+
+<span class="c1"># create a 100 kg material from the nat_u recipe defined in the input file</span>
+<span class="n">m1</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">c1</span><span class="p">)</span>
+
+<span class="c1"># extract 1 kg of enriched U from m1</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">extract_comp</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">c2</span><span class="p">)</span>
+<span class="c1"># mass of m1 is now 99 kg and its composition has changed</span>
+
+<span class="c1"># extract 1 kg from m1 of whatever composition it is</span>
+<span class="n">m3</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">ExtractQty</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># mass of m1 is now 98 kg and its composition. m1 and m3 have the same composition</span>
+
+<span class="c1"># combine m2 and m3 back into m1</span>
+<span class="n">m1</span><span class="o">.</span><span class="n">absorb</span><span class="p">(</span><span class="n">m2</span><span class="p">)</span>
+<span class="n">m1</span><span class="o">.</span><span class="n">absorb</span><span class="p">(</span><span class="n">m3</span><span class="p">)</span>
+<span class="c1"># m2 and m3 now have mass 0 kg. m1 has mass 100 kg with its original nat_u composition</span>
+
+<span class="c1"># decay composition m1 up to the current time step (EXPERIMENTAL)</span>
+<span class="n">m1</span><span class="o">.</span><span class="n">decay</span><span class="p">()</span>  <span class="c1"># EXPERIMENTAL</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Decay functionality as currently implemented is experimental and may not
+be correct.</p>
+</div>
+<div class="section" id="compositions-in-c">
+<h3>Compositions in C++<a class="headerlink" href="#compositions-in-c" title="Permalink to this headline">¶</a></h3>
+<p>A <code class="docutils literal"><span class="pre">cyclus::Composition</span></code> is a massless, immutable nuclide composition.
+Because it is immutable, a mutable <code class="docutils literal"><span class="pre">cyclus::CompMap</span></code> must be populated in
+order to create a composition:</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">cyclus</span><span class="o">::</span><span class="n">CompMap</span> <span class="n">m</span><span class="p">;</span>
+<span class="n">m</span><span class="p">[</span><span class="mi">922350000</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">m</span><span class="p">[</span><span class="mi">922380000</span><span class="p">]</span> <span class="o">=</span> <span class="mi">95</span><span class="p">;</span>
+
+<span class="c1">// 5% U235, 95% U238 by mass</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Composition</span><span class="o">::</span><span class="n">CreateFromMass</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+
+<span class="c1">// 5% U235, 95% U238 by atom fraction</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Composition</span><span class="o">::</span><span class="n">CreateFromAtom</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Note that the <code class="docutils literal"><span class="pre">cyclus::CompMap</span></code> above has no notion of mass.  Only the
+relative nuclide ratios matter.  Also notable is that <code class="docutils literal"><span class="pre">c1</span></code> and <code class="docutils literal"><span class="pre">c2</span></code> in the
+above example have different compositions.</p>
+<p>Because compositions are immutable, it is desirable for performance and
+database space reasons to avoid as much as possible creating multiple
+compositions from equivalent <code class="docutils literal"><span class="pre">cyclus::CompMap</span></code> objects.  Reusing
+<code class="docutils literal"><span class="pre">cyclus::Composition</span></code> objects helps avoid duplicate records in the
+database and redundant decay calculations.</p>
+</div>
+<div class="section" id="compositions-in-python">
+<h3>Compositions in Python<a class="headerlink" href="#compositions-in-python" title="Permalink to this headline">¶</a></h3>
+<p>Compositions in Python are much simplier than in C++. They are represented by a simple
+dict of nuclides to values. When a Material is created, you have to declare whether
+the composition has a mass or atom basis.  By default it has a mass basis, though
+you may pass in the string <code class="docutils literal"><span class="pre">&quot;atom&quot;</span></code> to obtain an atom basis.</p>
+<p><strong>Python:</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># 5% U235, 95% U238 by mass</span>
+<span class="n">m</span> <span class="o">=</span> <span class="p">{</span><span class="mi">922350000</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">922380000</span><span class="p">:</span> <span class="mi">95</span><span class="p">}</span>
+<span class="n">mat_mass</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">create_untracked</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+
+<span class="c1"># 5% U235, 95% U238 by atom fraction</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;U235&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;U238&quot;</span><span class="p">:</span> <span class="mi">95</span><span class="p">}</span>
+<span class="n">mat_atom</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">create_untracked</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s2">&quot;atom&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="resource-ids">
+<span id="id3"></span><h2>Resource IDs<a class="headerlink" href="#resource-ids" title="Permalink to this headline">¶</a></h2>
+<p>Every resource object has 3 different IDs.  One of them, the <code class="docutils literal"><span class="pre">qual_id</span></code>, is
+generally not of use to agent developers and can be ignored.  The other two
+serve two different purposes, and it is important to understand their
+difference:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">state_id</span></code>: A unique identifier associated with the entire state of the
+resource object.  Any time a resource&#8217;s state changes in any way (mass,
+composition, etc.) this ID will be updated to a new, unique value
+associated with the new state.  When recording resource-related information
+to the database in custom tables, this ID should generally be used.</li>
+<li><code class="docutils literal"><span class="pre">obj_id</span></code>: A unique identifier associated with the resource object
+instance.  This ID does not ever change for the life of a resource instance.
+Only newly created resource objects get new obj_id&#8217;s.  This ID should be
+used when using resources as std::map keys and in other data structures when
+resource objects need to be associated with some other information.</li>
+</ul>
+<p>Here are some examples of how these IDs work:</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">cyclus</span><span class="o">::</span><span class="n">Product</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Product</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s">&quot;bananas&quot;</span><span class="p">);</span>
+<span class="c1">// p1 gets new separate state_id and obj_id</span>
+
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Product</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">ExtractQty</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="c1">// p1 gets new state_id and keeps same obj_id</span>
+<span class="c1">// p2 gets new separate state_id and obj_id</span>
+
+<span class="n">p1</span><span class="o">-&gt;</span><span class="n">Absorb</span><span class="p">(</span><span class="n">p2</span><span class="p">);</span>
+<span class="c1">// p1 gets new state_id and keeps same obj_id</span>
+<span class="c1">// p2 gets new state_id and keeps same obj_id</span>
+
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Product</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">p1_dup</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span>
+<span class="c1">// no new resource object is created, p1 and p1_dup point to same resource object</span>
+<span class="c1">// p1 keeps same state_id and same obj_id</span>
+<span class="c1">// p1 and p1_dup have idential state_id&#39;s</span>
+<span class="c1">// p1 and p1_dup have idential obj_id&#39;s</span>
+
+<span class="c1">// want to associate some label with resource objects? - use the obj_id:</span>
+<span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">rsrc_labels</span><span class="p">;</span>
+<span class="n">rsrc_labels</span><span class="p">[</span><span class="n">p1</span><span class="o">-&gt;</span><span class="n">obj_id</span><span class="p">()]</span> <span class="o">=</span> <span class="s">&quot;fruit&quot;</span><span class="p">;</span>
+<span class="n">rsrc_labels</span><span class="p">[</span><span class="n">p2</span><span class="o">-&gt;</span><span class="n">obj_id</span><span class="p">()]</span> <span class="o">=</span> <span class="s">&quot;fruit&quot;</span><span class="p">;</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># p1 gets new separate state_id and obj_id</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">Product</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;bananas&quot;</span><span class="p">)</span>
+
+<span class="c1"># p1 gets new state_id and keeps same obj_id</span>
+<span class="c1"># p2 gets new separate state_id and obj_id</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="n">extract_qty</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># p1 gets new state_id and keeps same obj_id</span>
+<span class="c1"># p2 gets new state_id and keeps same obj_id</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">absorb</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+
+<span class="c1"># no new resource object is created, p1 and p1_dup point to same resource object.</span>
+<span class="c1"># In Python this is just an increase in the refcount anyway.</span>
+<span class="c1"># p1 keeps same state_id and same obj_id</span>
+<span class="c1"># p1 and p1_dup have idential state_id&#39;s</span>
+<span class="c1"># p1 and p1_dup have idential obj_id&#39;s</span>
+<span class="n">p1_dup</span> <span class="o">=</span> <span class="n">p1</span>
+
+<span class="c1"># want to associate some label with resource objects? Use the obj_id.</span>
+<span class="n">rsrc_labels</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">rsrc_labels</span><span class="p">[</span><span class="n">p1</span><span class="o">.</span><span class="n">obj_id</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;fruit&quot;</span>
+<span class="n">rsrc_labels</span><span class="p">[</span><span class="n">p2</span><span class="o">.</span><span class="n">obj_id</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;fruit&quot;</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">When associating information with resources like the <code class="docutils literal"><span class="pre">rsrc_labels</span></code>
+example above, you should <strong>NEVER</strong> use pointers (e.g.
+<code class="docutils literal"><span class="pre">std::map&lt;cyclus::Resource::Ptr,</span> <span class="pre">std::string&gt;</span></code>).  Pointers are unstable
+and change across simulation snapshot+restart.</p>
+</div>
+</div>
+<div class="section" id="tracked-and-untracked-resources">
+<span id="tracked-untracked"></span><h2>Tracked and Untracked Resources<a class="headerlink" href="#tracked-and-untracked-resources" title="Permalink to this headline">¶</a></h2>
+<p>All changes to normal resource objects (including creation, splitting,
+trasmutation, etc.) are tracked and recorded in the database.  By default, all
+resources are <strong>tracked resources</strong>.  Because of this, agents should handle
+resources carefully, being conscious of mass conservation among other things.
+Anything done with resources is recorded in the database as having <em>actually</em>
+happened in the simulation.  If a new resource is created, it is instantly
+recorded in the database as being a part of an agent&#8217;s real/actual inventory.
+Placeholder or &#8220;dummy&#8221; resources can also be created if necessary.  No
+information about these resources is recorded in the simulation database and
+they are referred to as <strong>untracked resources</strong>.  An agent&#8217;s most common (and
+likely only) need for untracked resources occurs when communicating details
+about a desired/available resources for requests/bids during resource
+exchange.  Here untracked resources fulfill a communication roll only.</p>
+<p>Just like the functions for creating trakced resources, there are
+corresponding function for creating both untracked materials and untracked
+products:</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">cyclus</span><span class="o">::</span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetRecipe</span><span class="p">(</span><span class="s">&quot;enriched_u&quot;</span><span class="p">);</span>
+
+<span class="c1">// create an untracked 100 kg material from c (the enriched_u recipe)</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m1</span> <span class="o">=</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">CreateUntracked</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+
+<span class="c1">// create an untracked &quot;grapes&quot; product holding 100 grapes.</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Product</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Product</span><span class="o">::</span><span class="n">CreateUntracked</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="s">&quot;grapes&quot;</span><span class="p">);</span>
+
+<span class="c1">// nothing about m1 and p1 will ever be recorded in the output data.</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">get_recipe</span><span class="p">(</span><span class="s2">&quot;enriched_u&quot;</span><span class="p">)</span>
+
+<span class="c1"># create an untracked 100 kg material from c (the enriched_u recipe)</span>
+<span class="n">m1</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">create_untracked</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="c1"># create an untracked &quot;grapes&quot; product holding 100 grapes.</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">Product</span><span class="o">.</span><span class="n">create_untracked</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;grapes&quot;</span><span class="p">)</span>
+
+<span class="c1"># nothing about m1 and p1 will ever be recorded in the output data.</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">When a need for placeholder, dummy, or otherwise untracked
+resource arises, use &#8220;untracked&#8221; resources.  Do NOT create tracked
+resources to use in resource exchange requests and bids.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Resources</a><ul>
+<li><a class="reference internal" href="#product-resources">Product Resources</a></li>
+<li><a class="reference internal" href="#material-resources">Material Resources</a><ul>
+<li><a class="reference internal" href="#compositions-in-c">Compositions in C++</a></li>
+<li><a class="reference internal" href="#compositions-in-python">Compositions in Python</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#resource-ids">Resource IDs</a></li>
+<li><a class="reference internal" href="#tracked-and-untracked-resources">Tracked and Untracked Resources</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="timestep.html"
+                          title="Previous page">&larr; Time Step Execution</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="dre.html"
+                          title="Next page">&rarr; Dynamic Resource Exchange</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="dre.html" title="Dynamic Resource Exchange"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="timestep.html" title="Time Step Execution"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

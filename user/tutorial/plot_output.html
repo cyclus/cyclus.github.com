@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Advanced Data Exploration Topics &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Getting Started on Recycle" href="add_arche_commod_recipe.html" />
+    <link rel="prev" title="An Introduction to Data Exploration" href="data_explorer.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_arche_commod_recipe.html" title="Getting Started on Recycle"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="data_explorer.html" title="An Introduction to Data Exploration"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="advanced-data-exploration-topics">
+<h1>Advanced Data Exploration Topics<a class="headerlink" href="#advanced-data-exploration-topics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="cyclus-specific-views">
+<h2><span style="font-variant:small-caps;">Cyclus</span>-specific Views<a class="headerlink" href="#cyclus-specific-views" title="Permalink to this headline">¶</a></h2>
+<p>The previous session allowed you to explore data in conventional views.  The
+Flow view has been designed specifically for <span style="font-variant:small-caps;">Cyclus</span> to visualize the amount
+of material flowing between pairs or collections of facilities.</p>
+<ol class="arabic simple">
+<li>Drag the &#8220;Prototypes&#8221; table into the workspace.</li>
+<li>From the &#8220;Tools&#8221; menu, click on &#8220;Flow&#8221;</li>
+</ol>
+<img alt="Setting up for a flow view" class="align-center" src="../../_images/flow-01-01.png" />
+<ol class="arabic simple" start="3">
+<li>Select the &#8220;ALWR&#8221; prototype in the Prototypes table, and drag it to the
+Material Flow view and drop it on the vertical line under &#8220;Sender&#8221;.</li>
+<li>Repeat this process to drop &#8220;NuclearUnderground&#8221; on the &#8220;Receiver&#8221;.</li>
+<li>Change the &#8220;Time&#8221; in the Material Flow from a single time (1) step to a
+range (1-50).</li>
+</ol>
+<img alt="First flow in a flow view." class="align-center" src="../../_images/flow-01-02.png" />
+<p>This shows the total amount of material that flowed from all ALWR agents to
+all NuclearUnderground agents during the time from 0-50 time steps.</p>
+<ol class="arabic simple" start="6">
+<li>When hovering the mouse over the ALWR block, a small chart icon appears.
+Click it to see details in the strip chart below.</li>
+</ol>
+<img alt="Adding the strip chart in a flow iew" class="align-center" src="../../_images/flow-01-03.png" />
+<ol class="arabic simple" start="7">
+<li>Notice that the first 50 time steps of that strip chart are highlighted in
+gray. You can slide it to the left and right to see how the total, shown at
+the top, changes.</li>
+</ol>
+<img alt="Moving window in a flow view" class="align-center" src="../../_images/flow-01-04-annotated.png" />
+<ol class="arabic simple" start="8">
+<li>You can add additional flows, e.g. by dragging the EnrichPlant to the
+Sender column.  Turn on the chart data for the EnrichPlant and compare to
+the ALWRs, noting the accumulation of depleted uranium tails at the
+enrichment plant.</li>
+</ol>
+<img alt="Two flows in a flow view" class="align-center" src="../../_images/flow-01-05.png" />
+</div>
+<div class="section" id="table-to-loading-custom-tables">
+<h2>Table to Loading Custom Tables<a class="headerlink" href="#table-to-loading-custom-tables" title="Permalink to this headline">¶</a></h2>
+<p>Be default, Cyclist only loads the most common tables, but you are able to
+load any table that is in the database.</p>
+<ol class="arabic simple">
+<li>Select &#8220;Datatable&#8221; from the &#8220;Data&#8221; menu.</li>
+<li>Choose the database that was loaded for this session and click on &#8220;Connect:&#8221;</li>
+</ol>
+<img alt="Adding a new datatable" class="align-center" src="../../_images/timeseries-01.png" />
+<ol class="arabic simple" start="3">
+<li>Scroll down to find the &#8220;TimeSeriesPower&#8221; and click &#8220;Ok&#8221;.  Note that it
+adds this table to the tool bar on the left.</li>
+</ol>
+<img alt="A new datatable has been added." class="align-center" src="../../_images/timeseries-02.png" />
+<ol class="arabic simple" start="4">
+<li>As a custom table, you need to tell Cyclist a little more about this
+data. Select the TimeSeriesPower table and right-click on the &#8220;Time&#8221; field,
+choosing IntTime.</li>
+<li>Right-click on the TimeSeriesPower Table and select &#8220;Plot&#8221;.</li>
+<li>Drag the &#8220;Time&#8221; field to the x-axis and the &#8220;Value&#8221; field to the y-axis.</li>
+</ol>
+<img alt="A plot of reactor power vs time." class="align-center" src="../../_images/timeseries-03.png" />
+<p>Here we can see the periodic refueling outages of the reactors, with each one
+offline for 1 month of each year.  They are not synchronized because sthere
+were delays in starting the reactors due to constraints in the acquisition of
+U ore by the EnrichPlant.</p>
+<ol class="arabic simple" start="7">
+<li>Right-click on the &#8220;AgentID&#8221; field and select &#8220;Dimension&#8221;.  Then drag this
+field first to the &#8220;Group By&#8221; box and also to become a filter at the top of
+the plot.</li>
+</ol>
+<img alt="Power curves for each reactor" class="align-center" src="../../_images/timeseries-04-annotated.png" />
+<ol class="arabic simple" start="8">
+<li>Turn on &amp; off different agents to compare their profiles.</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Advanced Data Exploration Topics</a><ul>
+<li><a class="reference internal" href="#cyclus-specific-views"><span style="font-variant:small-caps;">Cyclus</span>-specific Views</a></li>
+<li><a class="reference internal" href="#table-to-loading-custom-tables">Table to Loading Custom Tables</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="data_explorer.html"
+                          title="Previous page">&larr; An Introduction to Data Exploration</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="add_arche_commod_recipe.html"
+                          title="Next page">&rarr; Getting Started on Recycle</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_arche_commod_recipe.html" title="Getting Started on Recycle"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="data_explorer.html" title="An Introduction to Data Exploration"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

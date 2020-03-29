@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Starting a New Scenario &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Understanding and Adding Archetypes to Your Scenario" href="add_arche.html" />
+    <link rel="prev" title="A Tour of the Cyclist User Interface" href="cyclist_tour.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_arche.html" title="Understanding and Adding Archetypes to Your Scenario"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cyclist_tour.html" title="A Tour of the Cyclist User Interface"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="starting-a-new-scenario">
+<h1>Starting a New Scenario<a class="headerlink" href="#starting-a-new-scenario" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="problem-definition">
+<h2>Problem Definition<a class="headerlink" href="#problem-definition" title="Permalink to this headline">¶</a></h2>
+<p>We will start with a new scenario representing a simplified once-through fuel
+cycle.  For the purpose of this tutorial, the scenario will include:</p>
+<ul class="simple">
+<li>mine of natural uranium</li>
+<li>enrichment facility producing 4% enriched uranium oxide fuel</li>
+<li>LWR reactor consuming fresh fuel and producing used fuel</li>
+<li>repository to house all spent fuel</li>
+</ul>
+<p>More details about each of these facilities will discussed when we are
+required to provide that input.</p>
+<div class="section" id="activity-open-the-main-view">
+<h3>Activity: Open the Main View<a class="headerlink" href="#activity-open-the-main-view" title="Permalink to this headline">¶</a></h3>
+<p>To begin a new scenario:</p>
+<ol class="arabic simple">
+<li>Select the <strong>Scenario Builder</strong> tab in the <em>workspace</em>.</li>
+<li>Drag the <strong>Main View</strong> <em>tool</em> and drop it into the <em>workspace</em>.</li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/main_view_annotated.png"><img alt="The Simulation Detail pane" class="align-center" src="../../_images/main_view_annotated.png" style="width: 100%;" /></a>
+<p>This view has the following sections:</p>
+<ol class="arabic simple">
+<li>Simulation details</li>
+<li>Archetype discovery</li>
+<li>Commodity List</li>
+<li>Archetype ribbon</li>
+<li>Fuel cycle design pane</li>
+</ol>
+</div>
+</div>
+<div class="section" id="concept-simulation-time-steps">
+<h2>Concept: Simulation Time Steps<a class="headerlink" href="#concept-simulation-time-steps" title="Permalink to this headline">¶</a></h2>
+<p><span style="font-variant:small-caps;">Cyclus</span> uses a time-step approach to march through time and determine what
+actions are taken by each agent at each point in time.  Each time step
+includes the following phases:</p>
+<ul class="simple">
+<li>new agents may enter the system (deployment)</li>
+<li>each agent prepares for exchange of material</li>
+<li>agents engage in material trades</li>
+<li>each agent acts after the exchange of material</li>
+<li>agents may leave the system (decommissioning)</li>
+</ul>
+<p>Users do not have to manage these phases, but must provide the following
+information for all simulations:</p>
+<ol class="arabic simple">
+<li>Duration: the number of months to be simulated</li>
+<li>Start Month: the first month of the simulation</li>
+<li>Start Year: the first year of the simulation</li>
+<li>Decay treatment: Turn off all decay (&#8220;never&#8221;) or allow individual archetypes to implement it</li>
+<li>Simulation Handle: An optional unique identifier for this particular simulation.</li>
+<li>Description: A brief discription for your benefit.</li>
+</ol>
+<p>We&#8217;ll return later to the topics of generating, loading and executing an input file.</p>
+<div class="section" id="activity-set-simulation-parameters">
+<h3>Activity: Set Simulation Parameters<a class="headerlink" href="#activity-set-simulation-parameters" title="Permalink to this headline">¶</a></h3>
+<p>The top level simulation parameters are shown in the <strong>Simulation Details</strong> pane (see below).</p>
+<p>Enter the following data:</p>
+<ol class="arabic simple">
+<li>Duration: 600</li>
+<li>First Month: June</li>
+<li>First Year: 2015</li>
+<li>Decay: Never</li>
+<li>Simulation Handle: leave blank for default simulation handle</li>
+<li>Description: ANS 2015 Tutorial</li>
+</ol>
+<img alt="Annotated view of the Cycic Main View" class="align-center" src="../../_images/sim_detail.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Starting a New Scenario</a><ul>
+<li><a class="reference internal" href="#problem-definition">Problem Definition</a><ul>
+<li><a class="reference internal" href="#activity-open-the-main-view">Activity: Open the Main View</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#concept-simulation-time-steps">Concept: Simulation Time Steps</a><ul>
+<li><a class="reference internal" href="#activity-set-simulation-parameters">Activity: Set Simulation Parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="cyclist_tour.html"
+                          title="Previous page">&larr; A Tour of the Cyclist User Interface</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="add_arche.html"
+                          title="Next page">&rarr; Understanding and Adding Archetypes to Your Scenario</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_arche.html" title="Understanding and Adding Archetypes to Your Scenario"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cyclist_tour.html" title="A Tour of the Cyclist User Interface"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

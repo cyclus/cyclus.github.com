@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Writing a Cyclus Input File &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Control - Simulation Control (required once)" href="input_specs/control.html" />
+    <link rel="prev" title="Installing a Cyclus VirtualBox" href="virtualbox.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="input_specs/control.html" title="Control - Simulation Control (required once)"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="virtualbox.html" title="Installing a Cyclus VirtualBox"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="writing-a-cyclus-input-file">
+<h1>Writing a <span style="font-variant:small-caps;">Cyclus</span> Input File<a class="headerlink" href="#writing-a-cyclus-input-file" title="Permalink to this headline">¶</a></h1>
+<p>This section will provide an introduction to creating a valid input file for
+<span style="font-variant:small-caps;">Cyclus</span> by hand.  Because <span style="font-variant:small-caps;">Cyclus</span> uses XML, JSON, or Python, input files have clearly defined
+sections, or blocks, that can be automatically validated for correctness.</p>
+<p>Work is underway to provide a drag-and-drop graphical user interface to
+facilitate building <span style="font-variant:small-caps;">Cyclus</span> input files in the future.</p>
+<div class="section" id="a-brief-introduction-to-xml">
+<h2>A Brief Introduction to XML<a class="headerlink" href="#a-brief-introduction-to-xml" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.w3schools.com/xml/default.asp">XML</a> stands for EXtensible Markup Language, and was designed to provide
+structure to data in a generic way by grouping the data between starting and
+ending &#8220;tags&#8221;.  The tags used to provide that structure are not defined
+universally, but each project can invent their own language for those tags.
+The data that lies between a pair starting and ending tags may be additional
+sections defined by other tags.</p>
+<p>Here is an example of a XML code block.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;note&gt;</span>
+   <span class="nt">&lt;to&gt;</span>Matt<span class="nt">&lt;/to&gt;</span>          <span class="c">&lt;!-- message recipient --&gt;</span>
+   <span class="nt">&lt;from&gt;</span>Anthony<span class="nt">&lt;/from&gt;</span>   <span class="c">&lt;!-- message sender --&gt;</span>
+   <span class="nt">&lt;heading&gt;</span>Cyclus released today<span class="nt">&lt;/heading&gt;</span>
+   <span class="nt">&lt;body&gt;</span>We have released Cyclus v1.0 for everyone to use.<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/note&gt;</span>
+</pre></div>
+</div>
+<p>In this example, a section named <code class="docutils literal"><span class="pre">note</span></code> includes four other sections named
+<code class="docutils literal"><span class="pre">to</span></code>, <code class="docutils literal"><span class="pre">from</span></code>, <code class="docutils literal"><span class="pre">heading</span></code>, and <code class="docutils literal"><span class="pre">body</span></code>, respectively.</p>
+<p>The set of tags for any given project, and their relationship to each other in
+the hierarchy, is referred to as a grammar.  In addition to defining which
+tags exist, the grammar defines how many times each tag must or may exist
+in a given section.  A tag may be completely optional, required one or more
+times, or allowed to appear as many times as the user desires.</p>
+<p>Although XML grammars are designed to be self-documenting, comments can be
+inserted into XML files anywhere using the <code class="docutils literal"><span class="pre">&lt;!--</span> <span class="pre">comment</span> <span class="pre">here</span> <span class="pre">--&gt;</span></code> syntax,
+as shown above.</p>
+</div>
+<div class="section" id="a-brief-introduction-to-json">
+<h2>A Brief Introduction to JSON<a class="headerlink" href="#a-brief-introduction-to-json" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.json.org/">JSON</a> stands for JavaScript Object Notation, and is similar in many ways to XML. JSON was created to replace XML with a more user friendly language. It was designed to be a simpler and easier to use markup language. It does this by cutting out unnecessary parts of the XML language, such as closing tags. One area where JSON excels is that it is a data-oriented language, compared to XML, which is document-oriented.</p>
+<p>Here is the same code block using JSON.</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;note&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;to&quot;</span><span class="p">:</span> <span class="s2">&quot;Matt&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;from&quot;</span><span class="p">:</span> <span class="s2">&quot;Anthony&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;heading&quot;</span><span class="p">:</span> <span class="s2">&quot;Cyclus released today&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;body&quot;</span><span class="p">:</span> <span class="s2">&quot;We have released Cyclus v1.0 for everyone to use.&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="a-brief-introduction-to-python">
+<h2>A Brief Introduction to Python<a class="headerlink" href="#a-brief-introduction-to-python" title="Permalink to this headline">¶</a></h2>
+<p><a href="#id1"><span class="problematic" id="id2">`Python`_</span></a> is a fully featured dynamic programming language. It hosts a wide variety of
+primitives built in to the language as well as powerful 3rd part libraries. Python
+input files allow for the computation of mathematical expressions in the input file
+itself. Static, proecomputed values are not required (as with XML and JSON).</p>
+<p>Here is the same code block using Python.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;note&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="s2">&quot;Matt&quot;</span><span class="p">,</span>       <span class="c1"># message recipient</span>
+    <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="s2">&quot;Anthony&quot;</span><span class="p">,</span>  <span class="c1"># message sender</span>
+    <span class="s2">&quot;heading&quot;</span><span class="p">:</span> <span class="s2">&quot;Cyclus released today&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="s2">&quot;We have released Cyclus v1.0 for everyone to use.&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example, a dictionary with a  <code class="docutils literal"><span class="pre">note</span></code> key is has a dictionary vary that includes
+four other keys named <code class="docutils literal"><span class="pre">to</span></code>, <code class="docutils literal"><span class="pre">from</span></code>, <code class="docutils literal"><span class="pre">heading</span></code>, and <code class="docutils literal"><span class="pre">body</span></code> respectively.</p>
+</div>
+<div class="section" id="the-cyclus-input-file">
+<h2>The <span style="font-variant:small-caps;">Cyclus</span> Input File<a class="headerlink" href="#the-cyclus-input-file" title="Permalink to this headline">¶</a></h2>
+<p>Every <span style="font-variant:small-caps;">Cyclus</span> input file must have exactly one <code class="docutils literal"><span class="pre">simulation</span></code> section that
+contains all data for a simulation.</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;simulation&gt;</span>
+  ... simulation data will go here ...
+<span class="nt">&lt;/simulation&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;simulation&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;… simulation data will go here …&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Python input files will look for a variable named</span>
+<span class="c1"># simulation, Simulation, or SIMULATION. It&#39;s value should be a</span>
+<span class="c1"># dictionary with a single &quot;simulation&quot; key.</span>
+<span class="n">simulation</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;simulation&quot;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">}}</span>
+
+<span class="c1"># Alternitavely, the simualtion variable can also be a Python function or</span>
+<span class="c1"># callable that returns a simulation dictionary. This function should not</span>
+<span class="c1"># take any arguments.</span>
+<span class="k">def</span> <span class="nf">simulation</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;simulation&quot;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>Although not all sections are required, the following sections may appear in
+any order in the input file:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="input_specs/control.html"><code class="docutils literal"><span class="pre">Control</span></code> - Simulation Control (required once)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_specs/commodity.html"><code class="docutils literal"><span class="pre">Commodity</span></code> - Commodity Priority  (optional, may appear multiple times)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_specs/archetypes.html"><code class="docutils literal"><span class="pre">Archetypes</span></code> - List of available agent archetypes (required once)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_specs/facility.html"><code class="docutils literal"><span class="pre">Facility</span></code> - Facility Prototypes (at least one required)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_specs/region.html"><code class="docutils literal"><span class="pre">Region</span></code> - Region agents (at least one required)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_specs/inst.html"><code class="docutils literal"><span class="pre">Institution</span></code> - Institution agents (at least one required in each <code class="docutils literal"><span class="pre">Region</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_specs/recipe.html"><code class="docutils literal"><span class="pre">Recipe</span></code> - Recipe Definition (optional, may appear multiple times)</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="including-xml-files">
+<h2>Including XML Files<a class="headerlink" href="#including-xml-files" title="Permalink to this headline">¶</a></h2>
+<p>One feature of XML is that you are able to include external XML files inside of
+your current document. This lets you reuse common parts of your input file that
+do not change across multiple simulations. To enable XML include semantics
+the attribute <code class="docutils literal"><span class="pre">xmlns:xi=&quot;http://www.w3.org/2001/XInclude&quot;</span></code> <em>must</em> be added to the
+<code class="docutils literal"><span class="pre">&lt;simulation&gt;</span></code> tag. Then to include an external
+file use the <code class="docutils literal"><span class="pre">&lt;xi:include</span> <span class="pre">href=&quot;path/to/file&quot;</span> <span class="pre">/&gt;</span></code> tag where you want the included
+file to go.</p>
+<p>A common inclusion pattern is to have a recipe book of materials in one file
+and then include this in your simulation.</p>
+<p><strong>input.xml:</strong></p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;simulation</span> <span class="na">xmlns:xi=</span><span class="s">&quot;http://www.w3.org/2001/XInclude&quot;</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;xi:include</span> <span class="na">href=</span><span class="s">&quot;recipebook.xml&quot;</span> <span class="nt">/&gt;</span>
+  ...
+<span class="nt">&lt;/simulation&gt;</span>
+</pre></div>
+</div>
+<p><strong>recipebook.xml:</strong></p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;recipe&gt;</span>
+  <span class="nt">&lt;name&gt;</span>proton_recipe<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;basis&gt;</span>mass<span class="nt">&lt;/basis&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>010010000<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>1<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+<span class="nt">&lt;/recipe&gt;</span>
+
+<span class="nt">&lt;recipe&gt;</span>
+  <span class="nt">&lt;name&gt;</span>natU_recipe<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;basis&gt;</span>atom<span class="nt">&lt;/basis&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>922350000<span class="nt">&lt;/id&gt;&lt;comp&gt;</span>0.007<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>922380000<span class="nt">&lt;/id&gt;&lt;comp&gt;</span>0.993<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+<span class="nt">&lt;/recipe&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Writing a <span style="font-variant:small-caps;">Cyclus</span> Input File</a><ul>
+<li><a class="reference internal" href="#a-brief-introduction-to-xml">A Brief Introduction to XML</a></li>
+<li><a class="reference internal" href="#a-brief-introduction-to-json">A Brief Introduction to JSON</a></li>
+<li><a class="reference internal" href="#a-brief-introduction-to-python">A Brief Introduction to Python</a></li>
+<li><a class="reference internal" href="#the-cyclus-input-file">The <span style="font-variant:small-caps;">Cyclus</span> Input File</a></li>
+<li><a class="reference internal" href="#including-xml-files">Including XML Files</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="virtualbox.html"
+                          title="Previous page">&larr; Installing a <span style="font-variant:small-caps;">Cyclus</span> VirtualBox</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="input_specs/control.html"
+                          title="Next page">&rarr; <code class="docutils literal"><span class="pre">Control</span></code> - Simulation Control (required once)</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="input_specs/control.html" title="Control - Simulation Control (required once)"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="virtualbox.html" title="Installing a Cyclus VirtualBox"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

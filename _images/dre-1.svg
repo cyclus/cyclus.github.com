@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg viewBox="0 0 278 385" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc />
+  <rect fill="rgb(0,128,0)" height="210" style="filter:url(#filter_blur)" width="166" x="56" y="30" />
+  <rect fill="rgb(243,152,0)" height="95" style="filter:url(#filter_blur)" width="166" x="56" y="260" />
+  <rect fill="rgb(0,0,0)" height="75" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="150" x="67" y="46" />
+  <rect fill="rgb(0,0,0)" height="75" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="150" x="67" y="161" />
+  <rect fill="rgb(0,0,0)" height="75" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="150" x="67" y="276" />
+  <rect fill="rgb(255,255,255)" height="75" stroke="rgb(0,0,0)" width="150" x="64" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="121" y="83">Region</text>
+  <rect fill="rgb(255,255,255)" height="75" stroke="rgb(0,0,0)" width="150" x="64" y="155" />
+  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="106" y="198">Institution</text>
+  <rect fill="rgb(255,255,255)" height="75" stroke="rgb(0,0,0)" width="150" x="64" y="270" />
+  <text fill="rgb(0,0,0)" font-family="sansserif" font-size="11" font-style="normal" font-weight="normal" x="88" y="313">Facility (Trader)</text>
+  <path d="M 139 123 L 139 155" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="139,116 135,123 143,123 139,116" stroke="rgb(0,0,0)" />
+  <path d="M 139 238 L 139 270" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="139,231 135,238 143,238 139,231" stroke="rgb(0,0,0)" />
+</svg>

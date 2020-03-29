@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Guide for Reviewing Pull Requests &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Building Cyclus With Conda" href="build_with_conda.html" />
+    <link rel="prev" title="Guide for Contributing to Cyclus" href="contributing_to_cyclus.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="build_with_conda.html" title="Building Cyclus With Conda"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="contributing_to_cyclus.html" title="Guide for Contributing to Cyclus"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Kernel Developer Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="guide-for-reviewing-pull-requests">
+<h1>Guide for Reviewing Pull Requests<a class="headerlink" href="#guide-for-reviewing-pull-requests" title="Permalink to this headline">¶</a></h1>
+<p><span style="font-variant:small-caps;">Cyclus</span> depends on a community of contributors.  Bug fixes and new features
+(and archetypes!) are added by submitting a pull request on github.  The new
+code is then reviewed by other <span style="font-variant:small-caps;">Cyclus</span> developers to confirm that the code
+meets all requirements for style and stability before being added to the code
+base.  You do not need to be an expert  <span style="font-variant:small-caps;">Cyclus</span> developer to contribute by
+reviewing pull requests! In fact, reviewing other people&#8217;s code is a great way
+to learn the code base! Below we offer a rough guide to how to review a pull
+request.</p>
+<div class="section" id="maintaining-a-collegial-atmosphere">
+<h2>Maintaining a Collegial Atmosphere<a class="headerlink" href="#maintaining-a-collegial-atmosphere" title="Permalink to this headline">¶</a></h2>
+<p>A collegial (as opposed to an adversarial) atmosphere is critical to the success
+of an open-source software project.  Imagine how it will feel for a new
+person to appear out of the blue wanting to contribute to Cyclus. Let’s not
+drive them away!</p>
+<ul class="simple">
+<li>Contributing is ideally all rainbows and butterflies (only positive
+interactions)</li>
+<li>Thank people for contributing</li>
+<li>Timely feedback engenders enthusiasm and future contributions</li>
+<li>There is no need for adversarial comments, even (especially) when there is
+disagreement</li>
+<li>We never know who may be lurking and thinking about contributing in the future</li>
+<li>To understand what makes good and bad communities, follow or contribute to
+other open-source projects</li>
+</ul>
+</div>
+<div class="section" id="should-i-review-this-pull-request-pr">
+<h2>Should I Review This Pull Request (PR)?<a class="headerlink" href="#should-i-review-this-pull-request-pr" title="Permalink to this headline">¶</a></h2>
+<p>Am I ready to do a review on my own?</p>
+<ul class="simple">
+<li>It’s ok for multiple people to review PRs, so don’t feel like you can’t
+review if someone else already is</li>
+<li>Take responsibility for your reviewing - do not expect that someone else
+will re-review YOUR review</li>
+<li>If you are not 100% comfortable, then complete your review and say “I have
+completed my review and will merge this in 2 days if there are no further
+comments.” This gives more experienced reviewers the opportunity to look at
+it if they choose to</li>
+<li>A good exercise for learning your way around the code base is to start from
+cyclus.cc and follow the trail of code execution as a simulation is
+initialized and executed - to get a rough sort of callgraph in your head</li>
+</ul>
+<p>How do I feel about the purpose of this PR?</p>
+<ul class="simple">
+<li>I like it/am interested: Do the review</li>
+<li>Don’t care: Still do the review</li>
+<li>I dislike it/disagree with it:  Initiate a broader discussion about whether
+the PR is appropriate</li>
+</ul>
+</div>
+<div class="section" id="start-reviews-by-looking-for-hard-stops">
+<h2>Start Reviews by Looking for Hard Stops<a class="headerlink" href="#start-reviews-by-looking-for-hard-stops" title="Permalink to this headline">¶</a></h2>
+<p>Start a review with the obvious stuff, so that if there are major problems then
+the coder can fix them before you do the detailed review:</p>
+<ul class="simple">
+<li>Does it pass
+<a class="reference external" href="http://cyclus-ci.fuelcycle.org/dashboard">continuous integration</a> tests (CI)?</li>
+<li>Does it build and pass tests on my machine? (ie. nosetests, cyclus_unit_tests)</li>
+<li>Have new unit tests been added to confirm the functionality of the proposed
+change?</li>
+<li>Does it adhere to the style guide?</li>
+<li>Is there documentation explaining the new features? (Sometimes documentation
+will need to be added to both the code itself and the cyclus website,
+especially in the case of new tools for developers to use. Then you should
+expect to see two pull requests)</li>
+<li>Can I understand what is being changed right away by looking at the
+documentation and the API, or from just the new tests?</li>
+</ul>
+<p>Do I understand why this PR is being added?</p>
+<ul class="simple">
+<li>Do not merge code you do not understand; instead, use the API to figure out
+what the code is doing</li>
+<li>Never assume the person who opened the PR knew what they were doing</li>
+<li>If you still can’t figure it out - put inline comment to ask why it is done
+this way</li>
+<li>Fixing bugs should always take precedence over adding features</li>
+<li>Feature PRs should have a much higher standard to be merged</li>
+</ul>
+</div>
+<div class="section" id="getting-into-the-details">
+<h2>Getting Into The Details<a class="headerlink" href="#getting-into-the-details" title="Permalink to this headline">¶</a></h2>
+<p>Does the general use case for this PR match its API and implementation?</p>
+<ul class="simple">
+<li>Imagine there are two approaches to solving the problem: if option A was
+chosen, what was option B and why is A the preferred option.  The chosen
+option should balance performance with the use-case most likely to come up</li>
+<li>For example, bitwise operations are very confusing (but are very fast).  If
+you don’t need it for performance, readability and clarity are more important</li>
+<li>The majority of the Cyclus code base should be easier to read/maintain rather
+than faster in the absence of concrete need for speed</li>
+</ul>
+<p>Is there sufficient test coverage (more than just &#8220;are there tests&#8221;)?</p>
+<ul class="simple">
+<li>Start with tests - if there are insufficient tests then you should not do the
+code review until the tests are added</li>
+<li>If there are enough tests then they can show the reviewer what the goal of
+the PR is</li>
+<li>In most cases, every line of code should be tested (except for test code,
+which would be infinitely recursive), but not necessarily every code pathway
+(not every combination must be tested)</li>
+<li>If there is a conditional code, there should be tests for both outcomes of
+the conditional</li>
+<li>If there are very obscure corner-case tests that are missing, do not close
+the pull request</li>
+</ul>
+<p>Is there a reasonable use case that would fail given this implementation?</p>
+<ul class="simple">
+<li>Make sure you can’t think of a way to make the code fail. If you can, there
+needs to be a test for this, and there likely needs to be a code modification</li>
+<li>This is most likely to occur in a PR with very few tests (writing the tests
+naturally help the coder to identify many of these cases)</li>
+</ul>
+<p>Is the code implemented cleanly?</p>
+<ul class="simple">
+<li>Are there &#8220;easy&#8221; optimizations (e.g. variable allocation outside of a well-
+used loop)?</li>
+<li>Are the data structures you’re using the right ones? (ie. sets have unique
+elements while vectors have ordered elements)</li>
+<li>For loops vs while loops</li>
+<li>Premature optimization is not always good (you don’t know <em>a priori</em> where
+the sticking points will be, and optimization often reduces maintainability)</li>
+</ul>
+</div>
+<div class="section" id="more-best-practices">
+<h2>More Best Practices<a class="headerlink" href="#more-best-practices" title="Permalink to this headline">¶</a></h2>
+<p>Cover the full gamut of <a class="reference external" href="https://software-carpentry.org">Software Carpentry</a>
+best practices. And remember:</p>
+<ul class="simple">
+<li>Is there sufficient documentation?</li>
+<li>Style Guide adherence is not a personal critique.  It is designed to keep
+code maintainable.  Don’t be offended.  Everyone hates something in the style
+guide, but a common standard is necessary</li>
+<li>Google C++ style guide says Never Abbreviate. Cyclus has historical reasons
+for some abbreviations, but new abbreviations are strongly discouraged absent
+justification</li>
+<li>Communally agreed upon departures from the existing style guide should be
+documented</li>
+</ul>
+<p>Remember, if there is <em>anything</em> in the pull request that you don&#8217;t understand,
+don&#8217;t merge it!  Educate yourself using the API docs, ask questions, or request
+an explanation from the coder.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Guide for Reviewing Pull Requests</a><ul>
+<li><a class="reference internal" href="#maintaining-a-collegial-atmosphere">Maintaining a Collegial Atmosphere</a></li>
+<li><a class="reference internal" href="#should-i-review-this-pull-request-pr">Should I Review This Pull Request (PR)?</a></li>
+<li><a class="reference internal" href="#start-reviews-by-looking-for-hard-stops">Start Reviews by Looking for Hard Stops</a></li>
+<li><a class="reference internal" href="#getting-into-the-details">Getting Into The Details</a></li>
+<li><a class="reference internal" href="#more-best-practices">More Best Practices</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="contributing_to_cyclus.html"
+                          title="Previous page">&larr; Guide for Contributing to <span style="font-variant:small-caps;">Cyclus</span></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="build_with_conda.html"
+                          title="Next page">&rarr; Building <span style="font-variant:small-caps;">Cyclus</span> With Conda</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="build_with_conda.html" title="Building Cyclus With Conda"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="contributing_to_cyclus.html" title="Guide for Contributing to Cyclus"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Kernel Developer Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

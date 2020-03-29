@@ -1,0 +1,2058 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Cyclus Preprocessor (cyclus.cycpp) &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Type System Code Generator (cyclus.gentypesystem)" href="gentypesystem.html" />
+    <link rel="prev" title="In-memory Backend (cyclus.memback)" href="memback.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="gentypesystem.html" title="Type System Code Generator (cyclus.gentypesystem)"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="memback.html" title="In-memory Backend (cyclus.memback)"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cyclus.cycpp">
+<span id="cyclus-preprocessor-cyclus-cycpp"></span><span id="cyclus-pyapi-cycpp"></span><h1>Cyclus Preprocessor (<code class="docutils literal"><span class="pre">cyclus.cycpp</span></code>)<a class="headerlink" href="#module-cyclus.cycpp" title="Permalink to this headline">¶</a></h1>
+<p>The cyclus preprocessor.</p>
+<p>cycpp is a 3-pass preprocessor which adds reflection-like semantics to cyclus
+agents. This is needed to provide a high-level, user-facing API to cyclus.
+Code that uses cycpp is entirely valid C++ code and will compile normally even
+without first running it through the cycpp. This is because cycpp relies on
+custom #pragma decoration to annotate or inject into the code. These pragmas
+are skipped - by definition - by the C preprocessor and the C/C++ compiler.</p>
+<p>The three passes of cycpp are:</p>
+<ol class="arabic simple">
+<li>run cpp normally to canonize all other preprocessor directives,</li>
+<li>accumulate annotations for agents and state variables, and</li>
+<li>generate code based on annotations.</li>
+</ol>
+<p>All decorators have the following form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#pragma cyclus &lt;decorator name&gt; [args]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">#pragma</span> <span class="pre">cyclus</span></code> portion is a flag so that <em>only</em> cycpp consumes this
+#directive. This is followed by the actual <code class="docutils literal"><span class="pre">&lt;decorator</span> <span class="pre">name&gt;</span></code> which tells
+cycpp what to do with this pragma. Lastly, optional arguments may be passed to
+this decorator but all options <em>must</em> be on the same logical line as the
+directive.  How the arguments are interpreted is a function of the decorators
+themselves.  Most of them are simple Python statements or expressions. See the
+following handy table!</p>
+<p><strong>Decorator Arguments:</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">var:</th><td class="field-body">Add the following C++ statement as an Agent&#8217;s state variable. There is
+one argument which must be a Python expression that evaluates to
+a dictionary or other Mapping.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">exec:</th><td class="field-body">Executes arbitrary python code that is passed in as the arguments and
+loads this into the context. This is useful for importing handy modules,
+declaring variables for later use, or any of the other things that Python
+is great for. Any variables defined here are kept in a separate
+namespace from the classes.  Since this gives you direct access to the
+Python interpreter, try to be a little careful.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">note:</th><td class="field-body">Merges the argument (which like with var must evalutae to a dict) with the
+current class level annotations. Enrties here overwrite previous entries.</td>
+</tr>
+</tbody>
+</table>
+<p>cycpp is implemented entirely in this file and with tools from the Python standard
+library. It requires Python 2.7+ or Python 3.3+ to run.</p>
+<dl class="class">
+<dt id="cyclus.cycpp.AccessFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">AccessFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AccessFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for setting the current access control flag.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.AccessFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AccessFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.AccessFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AccessFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.AccessFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('\\s*(public|private|protected)\\s*', re.DOTALL)</em><a class="headerlink" href="#cyclus.cycpp.AccessFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.AccessFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AccessFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverts state transformation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.AccessFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AccessFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.AliasFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">AliasFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AliasFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for managing alias (de-)scoping.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.AliasFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AliasFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.AliasFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AliasFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.AliasFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('a^')</em><a class="headerlink" href="#cyclus.cycpp.AliasFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.AliasFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AliasFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.AliasFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AliasFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a transformation given this.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.AnnotationsFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">AnnotationsFilter</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AnnotationsFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for handling annotations() code generation:
+#pragma cyclus [def|decl|impl] annotations [classname]</p>
+<dl class="method">
+<dt id="cyclus.cycpp.AnnotationsFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AnnotationsFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.AnnotationsFilter.def_template">
+<code class="descname">def_template</code><em class="property"> = '\n{ind}{virt}{rtn} {ns}{methodname}({args}){sep}\n'</em><a class="headerlink" href="#cyclus.cycpp.AnnotationsFilter.def_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.AnnotationsFilter.impl">
+<code class="descname">impl</code><span class="sig-paren">(</span><em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AnnotationsFilter.impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.AnnotationsFilter.in_class_decl">
+<code class="descname">in_class_decl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AnnotationsFilter.in_class_decl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.AnnotationsFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AnnotationsFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.AnnotationsFilter.methodargs">
+<code class="descname">methodargs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AnnotationsFilter.methodargs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.AnnotationsFilter.methodname">
+<code class="descname">methodname</code><em class="property"> = 'annotations'</em><a class="headerlink" href="#cyclus.cycpp.AnnotationsFilter.methodname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.AnnotationsFilter.methodrtn">
+<code class="descname">methodrtn</code><em class="property"> = 'Json::Value'</em><a class="headerlink" href="#cyclus.cycpp.AnnotationsFilter.methodrtn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.AnnotationsFilter.pragmaname">
+<code class="descname">pragmaname</code><em class="property"> = 'annotations'</em><a class="headerlink" href="#cyclus.cycpp.AnnotationsFilter.pragmaname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.AnnotationsFilter.re_template">
+<code class="descname">re_template</code><em class="property"> = '\\s*#\\s*pragma\\s+cyclus\\s*?(\\s+def\\s+|\\s+decl\\s+|\\s+impl\\s+|\\s*?)?(?:\\s*?{0}\\s*?)(\\s+?(?:[\\w:\\.]+)?)?'</em><a class="headerlink" href="#cyclus.cycpp.AnnotationsFilter.re_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.AnnotationsFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('a^')</em><a class="headerlink" href="#cyclus.cycpp.AnnotationsFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.AnnotationsFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AnnotationsFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.AnnotationsFilter.shapes_impl">
+<code class="descname">shapes_impl</code><span class="sig-paren">(</span><em>ctx</em>, <em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AnnotationsFilter.shapes_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.AnnotationsFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.AnnotationsFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.ClassAndSuperclassFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">ClassAndSuperclassFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ClassAndSuperclassFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>This accumulates superclass information as well as class information.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.ClassAndSuperclassFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ClassAndSuperclassFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.ClassAndSuperclassFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ClassAndSuperclassFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.ClassAndSuperclassFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('(?:\\s*template\\s*&lt;[\\s\\w,]*&gt;)?\\s*(?:class|struct)\\s+(\\w+)(\\s*:[\n\\s\\w,:]+)?\\s*', re.DOTALL)</em><a class="headerlink" href="#cyclus.cycpp.ClassAndSuperclassFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.ClassAndSuperclassFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ClassAndSuperclassFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.ClassAndSuperclassFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ClassAndSuperclassFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.ClassFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">ClassFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ClassFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for picking out class names.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.ClassFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ClassFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.ClassFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ClassFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.ClassFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('(?:\\s*template\\s*&lt;[\\s\\w,]*&gt;)?\\s*(?:class|struct)\\s+(\\w+)(\\s*:[\n\\s\\w,:]+)?\\s*', re.DOTALL)</em><a class="headerlink" href="#cyclus.cycpp.ClassFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.ClassFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ClassFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.ClassFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ClassFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.CloneFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">CloneFilter</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CloneFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for handling Clone() code generation:
+#pragma cyclus [def|decl|impl] clone [classname]</p>
+<dl class="method">
+<dt id="cyclus.cycpp.CloneFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CloneFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.CloneFilter.def_template">
+<code class="descname">def_template</code><em class="property"> = '\n{ind}{virt}{rtn} {ns}{methodname}({args}){sep}\n'</em><a class="headerlink" href="#cyclus.cycpp.CloneFilter.def_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CloneFilter.impl">
+<code class="descname">impl</code><span class="sig-paren">(</span><em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CloneFilter.impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CloneFilter.in_class_decl">
+<code class="descname">in_class_decl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CloneFilter.in_class_decl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CloneFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CloneFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CloneFilter.methodargs">
+<code class="descname">methodargs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CloneFilter.methodargs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.CloneFilter.methodname">
+<code class="descname">methodname</code><em class="property"> = 'Clone'</em><a class="headerlink" href="#cyclus.cycpp.CloneFilter.methodname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.CloneFilter.methodrtn">
+<code class="descname">methodrtn</code><em class="property"> = 'cyclus::Agent*'</em><a class="headerlink" href="#cyclus.cycpp.CloneFilter.methodrtn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.CloneFilter.pragmaname">
+<code class="descname">pragmaname</code><em class="property"> = 'clone'</em><a class="headerlink" href="#cyclus.cycpp.CloneFilter.pragmaname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.CloneFilter.re_template">
+<code class="descname">re_template</code><em class="property"> = '\\s*#\\s*pragma\\s+cyclus\\s*?(\\s+def\\s+|\\s+decl\\s+|\\s+impl\\s+|\\s*?)?(?:\\s*?{0}\\s*?)(\\s+?(?:[\\w:\\.]+)?)?'</em><a class="headerlink" href="#cyclus.cycpp.CloneFilter.re_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.CloneFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('a^')</em><a class="headerlink" href="#cyclus.cycpp.CloneFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CloneFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CloneFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CloneFilter.shapes_impl">
+<code class="descname">shapes_impl</code><span class="sig-paren">(</span><em>ctx</em>, <em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CloneFilter.shapes_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CloneFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CloneFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.CodeGenerator">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">CodeGenerator</code><span class="sig-paren">(</span><em>context</em>, <em>superclasses</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CodeGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>The CodeGenerator class is the pass 3 state machine.</p>
+<p>This represents the file as code is being injected into it.  At the end of
+the traversal this final stage it will built up a brand new file for pass
+3. It manages both the code insertion pragmas and other bits of C++ syntax
+as needed to determine locality. It works by passing each statement through
+a sequence of filters, and injects code based on the directive and the
+state.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.CodeGenerator.classname">
+<code class="descname">classname</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CodeGenerator.classname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current, fully-expanded class name.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CodeGenerator.ensure_class_context">
+<code class="descname">ensure_class_context</code><span class="sig-paren">(</span><em>classname</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CodeGenerator.ensure_class_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensures that the context for the class at heand is well-formed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CodeGenerator.generate">
+<code class="descname">generate</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CodeGenerator.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify the existing statements list by incoprorating, modifying, or
+ignoring this statement, which is partitioned from the next statement by
+sep.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CodeGenerator.includeloc">
+<code class="descname">includeloc</code><span class="sig-paren">(</span><em>statement=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CodeGenerator.includeloc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current location of the file from includes as a string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CodeGenerator.scoped_classname">
+<code class="descname">scoped_classname</code><span class="sig-paren">(</span><em>classname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CodeGenerator.scoped_classname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.CodeGeneratorFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">CodeGeneratorFilter</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CodeGeneratorFilter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="cyclus.cycpp.CodeGeneratorFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CodeGeneratorFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.CodeGeneratorFilter.def_template">
+<code class="descname">def_template</code><em class="property"> = '\n{ind}{virt}{rtn} {ns}{methodname}({args}){sep}\n'</em><a class="headerlink" href="#cyclus.cycpp.CodeGeneratorFilter.def_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CodeGeneratorFilter.in_class_decl">
+<code class="descname">in_class_decl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CodeGeneratorFilter.in_class_decl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CodeGeneratorFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CodeGeneratorFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CodeGeneratorFilter.methodargs">
+<code class="descname">methodargs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CodeGeneratorFilter.methodargs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.CodeGeneratorFilter.re_template">
+<code class="descname">re_template</code><em class="property"> = '\\s*#\\s*pragma\\s+cyclus\\s*?(\\s+def\\s+|\\s+decl\\s+|\\s+impl\\s+|\\s*?)?(?:\\s*?{0}\\s*?)(\\s+?(?:[\\w:\\.]+)?)?'</em><a class="headerlink" href="#cyclus.cycpp.CodeGeneratorFilter.re_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.CodeGeneratorFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('a^')</em><a class="headerlink" href="#cyclus.cycpp.CodeGeneratorFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CodeGeneratorFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CodeGeneratorFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CodeGeneratorFilter.shapes_impl">
+<code class="descname">shapes_impl</code><span class="sig-paren">(</span><em>ctx</em>, <em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CodeGeneratorFilter.shapes_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.CodeGeneratorFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.CodeGeneratorFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.DecorationFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">DecorationFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.DecorationFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract class for annotation accumulation.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.DecorationFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.DecorationFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.DecorationFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.DecorationFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.DecorationFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('a^')</em><a class="headerlink" href="#cyclus.cycpp.DecorationFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.DecorationFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.DecorationFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverts state transformation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.DecorationFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.DecorationFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a transformation given this.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.DefaultPragmaFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">DefaultPragmaFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.DefaultPragmaFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for handling default pragma code generation:
+#pragma cyclus [def|decl|impl]</p>
+<dl class="method">
+<dt id="cyclus.cycpp.DefaultPragmaFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.DefaultPragmaFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.DefaultPragmaFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.DefaultPragmaFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.DefaultPragmaFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('\\s*#\\s*pragma\\s+cyclus(\\s+def|\\s+decl|\\s+impl)?\\s*$', re.DOTALL)</em><a class="headerlink" href="#cyclus.cycpp.DefaultPragmaFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.DefaultPragmaFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.DefaultPragmaFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.DefaultPragmaFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.DefaultPragmaFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.ExecFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">ExecFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ExecFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for executing arbitrary python code in the exec pragma and
+adding the results to the context.  This pragma has the form:</p>
+<blockquote>
+<div>#pragma cyclus exec &lt;code&gt;</div></blockquote>
+<p>Any Python statement(s) are valid as part of the code block. Be a little
+careful when using this pragma :).</p>
+<dl class="method">
+<dt id="cyclus.cycpp.ExecFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ExecFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.ExecFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ExecFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.ExecFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('#\\s*pragma\\s+cyclus\\s+exec\\s+(.*)')</em><a class="headerlink" href="#cyclus.cycpp.ExecFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.ExecFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ExecFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverts state transformation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.ExecFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ExecFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.Filter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">Filter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.Filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>A basic, no-op filter.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.Filter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.Filter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.Filter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.Filter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.Filter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('a^')</em><a class="headerlink" href="#cyclus.cycpp.Filter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.Filter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.Filter.revert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverts state transformation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.Filter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.Filter.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a transformation given this.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.InfileToDbFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">InfileToDbFilter</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for handling InfileToDb() code generation:
+#pragma cyclus [def|decl|impl] infiletodb [classname]</p>
+<dl class="method">
+<dt id="cyclus.cycpp.InfileToDbFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InfileToDbFilter.def_template">
+<code class="descname">def_template</code><em class="property"> = '\n{ind}{virt}{rtn} {ns}{methodname}({args}){sep}\n'</em><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.def_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InfileToDbFilter.impl">
+<code class="descname">impl</code><span class="sig-paren">(</span><em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InfileToDbFilter.in_class_decl">
+<code class="descname">in_class_decl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.in_class_decl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InfileToDbFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InfileToDbFilter.methodargs">
+<code class="descname">methodargs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.methodargs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InfileToDbFilter.methodname">
+<code class="descname">methodname</code><em class="property"> = 'InfileToDb'</em><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.methodname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InfileToDbFilter.methodrtn">
+<code class="descname">methodrtn</code><em class="property"> = 'void'</em><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.methodrtn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InfileToDbFilter.pragmaname">
+<code class="descname">pragmaname</code><em class="property"> = 'infiletodb'</em><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.pragmaname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InfileToDbFilter.re_template">
+<code class="descname">re_template</code><em class="property"> = '\\s*#\\s*pragma\\s+cyclus\\s*?(\\s+def\\s+|\\s+decl\\s+|\\s+impl\\s+|\\s*?)?(?:\\s*?{0}\\s*?)(\\s+?(?:[\\w:\\.]+)?)?'</em><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.re_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InfileToDbFilter.read_list">
+<code class="descname">read_list</code><span class="sig-paren">(</span><em>member</em>, <em>alias</em>, <em>t</em>, <em>uitype=None</em>, <em>ind='  '</em>, <em>idx=None</em>, <em>path=''</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.read_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InfileToDbFilter.read_map">
+<code class="descname">read_map</code><span class="sig-paren">(</span><em>member</em>, <em>alias</em>, <em>t</em>, <em>uitype=None</em>, <em>ind='  '</em>, <em>idx=None</em>, <em>path=''</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.read_map" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InfileToDbFilter.read_member">
+<code class="descname">read_member</code><span class="sig-paren">(</span><em>member</em>, <em>alias</em>, <em>t</em>, <em>uitype=None</em>, <em>ind='  '</em>, <em>idx=None</em>, <em>path=''</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.read_member" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InfileToDbFilter.read_pair">
+<code class="descname">read_pair</code><span class="sig-paren">(</span><em>member</em>, <em>alias</em>, <em>t</em>, <em>uitype=None</em>, <em>ind='  '</em>, <em>idx=None</em>, <em>path=''</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.read_pair" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InfileToDbFilter.read_primitive">
+<code class="descname">read_primitive</code><span class="sig-paren">(</span><em>member</em>, <em>alias</em>, <em>t</em>, <em>uitype=None</em>, <em>ind='  '</em>, <em>idx=None</em>, <em>path=''</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.read_primitive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InfileToDbFilter.read_set">
+<code class="descname">read_set</code><span class="sig-paren">(</span><em>member</em>, <em>alias</em>, <em>t</em>, <em>uitype=None</em>, <em>ind='  '</em>, <em>idx=None</em>, <em>path=''</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.read_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InfileToDbFilter.read_vector">
+<code class="descname">read_vector</code><span class="sig-paren">(</span><em>member</em>, <em>alias</em>, <em>t</em>, <em>uitype=None</em>, <em>ind='  '</em>, <em>idx=None</em>, <em>path=''</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.read_vector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InfileToDbFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('a^')</em><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InfileToDbFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InfileToDbFilter.shapes_impl">
+<code class="descname">shapes_impl</code><span class="sig-paren">(</span><em>ctx</em>, <em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.shapes_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InfileToDbFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InfileToDbFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.InitFromCopyFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">InitFromCopyFilter</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for handling copy-constructor-like InitFrom() code generation:
+#pragma cyclus [def|decl|impl] initfromcopy [classname]</p>
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromCopyFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitFromCopyFilter.def_template">
+<code class="descname">def_template</code><em class="property"> = '\n{ind}{virt}{rtn} {ns}{methodname}({args}){sep}\n'</em><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.def_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromCopyFilter.impl">
+<code class="descname">impl</code><span class="sig-paren">(</span><em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromCopyFilter.in_class_decl">
+<code class="descname">in_class_decl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.in_class_decl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromCopyFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromCopyFilter.methodargs">
+<code class="descname">methodargs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.methodargs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitFromCopyFilter.methodname">
+<code class="descname">methodname</code><em class="property"> = 'InitFrom'</em><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.methodname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitFromCopyFilter.methodrtn">
+<code class="descname">methodrtn</code><em class="property"> = 'void'</em><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.methodrtn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitFromCopyFilter.pragmaname">
+<code class="descname">pragmaname</code><em class="property"> = 'initfromcopy'</em><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.pragmaname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitFromCopyFilter.re_template">
+<code class="descname">re_template</code><em class="property"> = '\\s*#\\s*pragma\\s+cyclus\\s*?(\\s+def\\s+|\\s+decl\\s+|\\s+impl\\s+|\\s*?)?(?:\\s*?{0}\\s*?)(\\s+?(?:[\\w:\\.]+)?)?'</em><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.re_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitFromCopyFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('a^')</em><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitFromCopyFilter.res_impl">
+<code class="descname">res_impl</code><em class="property"> = {'cyclus::toolkit::ResBuf': '{var}.capacity(m-&gt;{var}.capacity());\n', 'cyclus::toolkit::ResMap': '{var}.obj_ids(m-&gt;obj_ids());\n', 'cyclus::toolkit::ResourceBuff': '{var}.set_capacity(m-&gt;{var}.capacity());\n'}</em><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.res_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromCopyFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromCopyFilter.shapes_impl">
+<code class="descname">shapes_impl</code><span class="sig-paren">(</span><em>ctx</em>, <em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.shapes_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromCopyFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromCopyFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.InitFromDbFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">InitFromDbFilter</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for handling db-constructor-like InitFrom() code
+generation:
+#pragma cyclus [def|decl|impl] initfromdb [classname]</p>
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromDbFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitFromDbFilter.def_template">
+<code class="descname">def_template</code><em class="property"> = '\n{ind}{virt}{rtn} {ns}{methodname}({args}){sep}\n'</em><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.def_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromDbFilter.impl">
+<code class="descname">impl</code><span class="sig-paren">(</span><em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromDbFilter.in_class_decl">
+<code class="descname">in_class_decl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.in_class_decl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromDbFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromDbFilter.methodargs">
+<code class="descname">methodargs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.methodargs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitFromDbFilter.methodname">
+<code class="descname">methodname</code><em class="property"> = 'InitFrom'</em><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.methodname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitFromDbFilter.methodrtn">
+<code class="descname">methodrtn</code><em class="property"> = 'void'</em><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.methodrtn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitFromDbFilter.pragmaname">
+<code class="descname">pragmaname</code><em class="property"> = 'initfromdb'</em><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.pragmaname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitFromDbFilter.re_template">
+<code class="descname">re_template</code><em class="property"> = '\\s*#\\s*pragma\\s+cyclus\\s*?(\\s+def\\s+|\\s+decl\\s+|\\s+impl\\s+|\\s*?)?(?:\\s*?{0}\\s*?)(\\s+?(?:[\\w:\\.]+)?)?'</em><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.re_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitFromDbFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('a^')</em><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitFromDbFilter.res_impl">
+<code class="descname">res_impl</code><em class="property"> = {'cyclus::toolkit::ResBuf': '{var}.capacity({capacity});\n', 'cyclus::toolkit::ResMap': '{var}.obj_ids(qr.GetVal&lt;{tstr}&gt;(&quot;{var}&quot;))\n;', 'cyclus::toolkit::ResourceBuff': '{var}.set_capacity({capacity});\n'}</em><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.res_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromDbFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromDbFilter.shapes_impl">
+<code class="descname">shapes_impl</code><span class="sig-paren">(</span><em>ctx</em>, <em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.shapes_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitFromDbFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitFromDbFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.InitInvFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">InitInvFilter</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitInvFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for handling InitInv() code generation:
+#pragma cyclus [def|decl|impl] initinv [classname]</p>
+<dl class="method">
+<dt id="cyclus.cycpp.InitInvFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitInvFilter.def_template">
+<code class="descname">def_template</code><em class="property"> = '\n{ind}{virt}{rtn} {ns}{methodname}({args}){sep}\n'</em><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.def_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitInvFilter.impl">
+<code class="descname">impl</code><span class="sig-paren">(</span><em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitInvFilter.in_class_decl">
+<code class="descname">in_class_decl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.in_class_decl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitInvFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitInvFilter.methodargs">
+<code class="descname">methodargs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.methodargs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitInvFilter.methodname">
+<code class="descname">methodname</code><em class="property"> = 'InitInv'</em><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.methodname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitInvFilter.methodrtn">
+<code class="descname">methodrtn</code><em class="property"> = 'void'</em><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.methodrtn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitInvFilter.pragmaname">
+<code class="descname">pragmaname</code><em class="property"> = 'initinv'</em><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.pragmaname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitInvFilter.re_template">
+<code class="descname">re_template</code><em class="property"> = '\\s*#\\s*pragma\\s+cyclus\\s*?(\\s+def\\s+|\\s+decl\\s+|\\s+impl\\s+|\\s*?)?(?:\\s*?{0}\\s*?)(\\s+?(?:[\\w:\\.]+)?)?'</em><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.re_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitInvFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('a^')</em><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.InitInvFilter.res_impl">
+<code class="descname">res_impl</code><em class="property"> = {'cyclus::toolkit::ResBuf': '{var}.Push(inv[&quot;{var}&quot;]);\n', 'cyclus::toolkit::ResMap': '{var}.ResValues(inv[&quot;{var}&quot;]);\n', 'cyclus::toolkit::ResourceBuff': '{var}.PushAll(inv[&quot;{var}&quot;]);\n'}</em><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.res_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitInvFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitInvFilter.shapes_impl">
+<code class="descname">shapes_impl</code><span class="sig-paren">(</span><em>ctx</em>, <em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.shapes_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.InitInvFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.InitInvFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.LinemarkerFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">LinemarkerFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.LinemarkerFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for computing the current source code line
+from preprocessor line marker directives.</p>
+<blockquote>
+<div># linenum filename [flags]</div></blockquote>
+<p>This is useful for debugging. See the cpp for more info:
+<a class="reference external" href="http://gcc.gnu.org/onlinedocs/cpp/Preprocessor-Output.html">http://gcc.gnu.org/onlinedocs/cpp/Preprocessor-Output.html</a></p>
+<dl class="attribute">
+<dt id="cyclus.cycpp.LinemarkerFilter.allowed_flags">
+<code class="descname">allowed_flags</code><em class="property"> = {'1', '2'}</em><a class="headerlink" href="#cyclus.cycpp.LinemarkerFilter.allowed_flags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.LinemarkerFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.LinemarkerFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.LinemarkerFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.LinemarkerFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.LinemarkerFilter.last_was_linemarker">
+<code class="descname">last_was_linemarker</code><em class="property"> = False</em><a class="headerlink" href="#cyclus.cycpp.LinemarkerFilter.last_was_linemarker" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.LinemarkerFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('\\s*#\\s+(\\d+)\\s+&quot;(.*?)&quot;(\\s+\\d+)*?', re.DOTALL)</em><a class="headerlink" href="#cyclus.cycpp.LinemarkerFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.LinemarkerFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.LinemarkerFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.LinemarkerFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.LinemarkerFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.NamespaceAliasFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">NamespaceAliasFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NamespaceAliasFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for accumumating namespace renames.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.NamespaceAliasFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NamespaceAliasFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.NamespaceAliasFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NamespaceAliasFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.NamespaceAliasFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('\\s*namespace\\s+(\\w+)\\s*=\\s*([\\w:]+)\\s*')</em><a class="headerlink" href="#cyclus.cycpp.NamespaceAliasFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.NamespaceAliasFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NamespaceAliasFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.NamespaceAliasFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NamespaceAliasFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.NamespaceFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">NamespaceFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NamespaceFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for accumumating namespace encapsulations.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.NamespaceFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NamespaceFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.NamespaceFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NamespaceFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.NamespaceFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('\\s*namespace(\\s+\\w*)?\\s*[^=]*', re.DOTALL)</em><a class="headerlink" href="#cyclus.cycpp.NamespaceFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.NamespaceFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NamespaceFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.NamespaceFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NamespaceFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.NoteDecorationFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">NoteDecorationFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NoteDecorationFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for handling annotation decoration of the form:</p>
+<blockquote>
+<div>#pragma cyclus note &lt;dict&gt;</div></blockquote>
+<p>This evals the contents of dict and merges them in as the class-level
+annotations dict.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.NoteDecorationFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NoteDecorationFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.NoteDecorationFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NoteDecorationFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.NoteDecorationFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('\\s*#\\s*pragma\\s+cyclus\\s+note\\s+(.*)')</em><a class="headerlink" href="#cyclus.cycpp.NoteDecorationFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.NoteDecorationFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NoteDecorationFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverts state transformation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.NoteDecorationFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NoteDecorationFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.NoteDecorationFilter.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>old</em>, <em>new</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.NoteDecorationFilter.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the new annotations dictionary into the old one in-place recursively.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.PragmaCyclusErrorFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">PragmaCyclusErrorFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.PragmaCyclusErrorFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for handling invalid #pragma cyclus. This should be the last filter.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.PragmaCyclusErrorFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.PragmaCyclusErrorFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.PragmaCyclusErrorFilter.directives">
+<code class="descname">directives</code><em class="property"> = frozenset({'exec', 'impl', 'var', 'decl', 'def', 'note'})</em><a class="headerlink" href="#cyclus.cycpp.PragmaCyclusErrorFilter.directives" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.PragmaCyclusErrorFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.PragmaCyclusErrorFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.PragmaCyclusErrorFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('\\s*#\\s*pragma\\s+cyclus(.*)')</em><a class="headerlink" href="#cyclus.cycpp.PragmaCyclusErrorFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.PragmaCyclusErrorFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.PragmaCyclusErrorFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverts state transformation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.PragmaCyclusErrorFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.PragmaCyclusErrorFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.Proxy">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">Proxy</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.Proxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>A proxy object for scoping purposes.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.Proxy.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None.  Remove all items from D.<a class="headerlink" href="#cyclus.cycpp.Proxy.clear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.Proxy.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>k</em><span class="optional">[</span>, <em>d</em><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; D[k] if k in D, else d.  d defaults to None.<a class="headerlink" href="#cyclus.cycpp.Proxy.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.Proxy.items">
+<code class="descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; a set-like object providing a view on D's items<a class="headerlink" href="#cyclus.cycpp.Proxy.items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.Proxy.keys">
+<code class="descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; a set-like object providing a view on D's keys<a class="headerlink" href="#cyclus.cycpp.Proxy.keys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.Proxy.pop">
+<code class="descname">pop</code><span class="sig-paren">(</span><em>k</em><span class="optional">[</span>, <em>d</em><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; v, remove specified key and return the corresponding value.<a class="headerlink" href="#cyclus.cycpp.Proxy.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>If key is not found, d is returned if given, otherwise KeyError is raised.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.Proxy.popitem">
+<code class="descname">popitem</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; (k, v), remove and return some (key, value) pair<a class="headerlink" href="#cyclus.cycpp.Proxy.popitem" title="Permalink to this definition">¶</a></dt>
+<dd><p>as a 2-tuple; but raise KeyError if D is empty.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.Proxy.setdefault">
+<code class="descname">setdefault</code><span class="sig-paren">(</span><em>k</em><span class="optional">[</span>, <em>d</em><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; D.get(k,d), also set D[k]=d if k not in D<a class="headerlink" href="#cyclus.cycpp.Proxy.setdefault" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.Proxy.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="optional">[</span><em>E</em>, <span class="optional">]</span><em>**F</em><span class="sig-paren">)</span> &#x2192; None.  Update D from mapping/iterable E and F.<a class="headerlink" href="#cyclus.cycpp.Proxy.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>If E present and has a .keys() method, does:     for k in E: D[k] = E[k]
+If E present and lacks .keys() method, does:     for (k, v) in E: D[k] = v
+In either case, this is followed by: for k, v in F.items(): D[k] = v</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.Proxy.values">
+<code class="descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; an object providing a view on D's values<a class="headerlink" href="#cyclus.cycpp.Proxy.values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.SchemaFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">SchemaFilter</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SchemaFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for handling schema() code generation:
+#pragma cyclus [def|decl|impl] schema [classname]</p>
+<dl class="attribute">
+<dt id="cyclus.cycpp.SchemaFilter.alltypes">
+<code class="descname">alltypes</code><em class="property"> = frozenset({'gYear', 'unsignedByte', 'base64Binary', 'duration', 'time', 'token', 'anyURI', 'string', 'gMonth', 'decimal', 'float', 'NMTOKENS', 'unsignedShort', 'nonNegativeInteger', 'date', 'dateTime', 'short', 'integer', 'unsignedLong', 'NCName', 'byte', 'double', 'boolean', 'language', 'nonPositiveInteger', 'hexBinary', 'NOTATION', 'gDay', 'ID', 'QName', 'long', 'anyType', 'Name', 'unsignedInt', 'ENTITY', 'IDREF', 'int', 'NMTOKEN', 'negativeInteger', 'IDREFS', 'ENTITIES', 'anySimpleType', 'normalizedString', 'gYearMonth', 'gMonthDay', 'positiveInteger'})</em><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.alltypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SchemaFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SchemaFilter.def_template">
+<code class="descname">def_template</code><em class="property"> = '\n{ind}{virt}{rtn} {ns}{methodname}({args}){sep}\n'</em><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.def_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SchemaFilter.default_types">
+<code class="descname">default_types</code><em class="property"> = {'range': None, 'none': None, 'inrecipe': None, 'commodity': None, 'outcommodity': None, '': None, 'incommodity': None, 'cyclus::Blob': 'string', 'outrecipe': None, 'int': 'int', 'prototype': None, 'combobox': None, 'boost::uuids::uuid': 'token', 'nuclide': 'string', None: None, 'double': 'double', 'recipe': None, 'std::string': 'string', 'float': 'float', 'facility': None, 'bool': 'boolean'}</em><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.default_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SchemaFilter.impl">
+<code class="descname">impl</code><span class="sig-paren">(</span><em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SchemaFilter.in_class_decl">
+<code class="descname">in_class_decl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.in_class_decl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SchemaFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SchemaFilter.methodargs">
+<code class="descname">methodargs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.methodargs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SchemaFilter.methodname">
+<code class="descname">methodname</code><em class="property"> = 'schema'</em><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.methodname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SchemaFilter.methodrtn">
+<code class="descname">methodrtn</code><em class="property"> = 'std::string'</em><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.methodrtn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SchemaFilter.pragmaname">
+<code class="descname">pragmaname</code><em class="property"> = 'schema'</em><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.pragmaname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SchemaFilter.re_template">
+<code class="descname">re_template</code><em class="property"> = '\\s*#\\s*pragma\\s+cyclus\\s*?(\\s+def\\s+|\\s+decl\\s+|\\s+impl\\s+|\\s*?)?(?:\\s*?{0}\\s*?)(\\s+?(?:[\\w:\\.]+)?)?'</em><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.re_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SchemaFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('a^')</em><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SchemaFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SchemaFilter.shapes_impl">
+<code class="descname">shapes_impl</code><span class="sig-paren">(</span><em>ctx</em>, <em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.shapes_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SchemaFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SchemaFilter.xml_from_ctx">
+<code class="descname">xml_from_ctx</code><span class="sig-paren">(</span><em>ctx</em>, <em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.xml_from_ctx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an XML string for an agent.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.SnapshotFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">SnapshotFilter</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for handling copy-constructor-like InitFrom() code generation:
+#pragma cyclus [def|decl|impl] snapshot [classname]</p>
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SnapshotFilter.def_template">
+<code class="descname">def_template</code><em class="property"> = '\n{ind}{virt}{rtn} {ns}{methodname}({args}){sep}\n'</em><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.def_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotFilter.impl">
+<code class="descname">impl</code><span class="sig-paren">(</span><em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotFilter.in_class_decl">
+<code class="descname">in_class_decl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.in_class_decl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotFilter.methodargs">
+<code class="descname">methodargs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.methodargs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SnapshotFilter.methodname">
+<code class="descname">methodname</code><em class="property"> = 'Snapshot'</em><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.methodname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SnapshotFilter.methodrtn">
+<code class="descname">methodrtn</code><em class="property"> = 'void'</em><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.methodrtn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SnapshotFilter.pragmaname">
+<code class="descname">pragmaname</code><em class="property"> = 'snapshot'</em><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.pragmaname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SnapshotFilter.re_template">
+<code class="descname">re_template</code><em class="property"> = '\\s*#\\s*pragma\\s+cyclus\\s*?(\\s+def\\s+|\\s+decl\\s+|\\s+impl\\s+|\\s*?)?(?:\\s*?{0}\\s*?)(\\s+?(?:[\\w:\\.]+)?)?'</em><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.re_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SnapshotFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('a^')</em><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SnapshotFilter.res_exprs">
+<code class="descname">res_exprs</code><em class="property"> = {'cyclus::toolkit::ResBuf': None, 'cyclus::toolkit::ResMap': '{var}.obj_ids()', 'cyclus::toolkit::ResourceBuff': None}</em><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.res_exprs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotFilter.shapes_impl">
+<code class="descname">shapes_impl</code><span class="sig-paren">(</span><em>ctx</em>, <em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.shapes_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.SnapshotInvFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">SnapshotInvFilter</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for handling SnapshotInv() code generation:
+#pragma cyclus [def|decl|impl] snapshotinv [classname]</p>
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotInvFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SnapshotInvFilter.def_template">
+<code class="descname">def_template</code><em class="property"> = '\n{ind}{virt}{rtn} {ns}{methodname}({args}){sep}\n'</em><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.def_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotInvFilter.impl">
+<code class="descname">impl</code><span class="sig-paren">(</span><em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotInvFilter.in_class_decl">
+<code class="descname">in_class_decl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.in_class_decl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotInvFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotInvFilter.methodargs">
+<code class="descname">methodargs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.methodargs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SnapshotInvFilter.methodname">
+<code class="descname">methodname</code><em class="property"> = 'SnapshotInv'</em><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.methodname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SnapshotInvFilter.methodrtn">
+<code class="descname">methodrtn</code><em class="property"> = 'cyclus::Inventories'</em><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.methodrtn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SnapshotInvFilter.pragmaname">
+<code class="descname">pragmaname</code><em class="property"> = 'snapshotinv'</em><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.pragmaname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SnapshotInvFilter.re_template">
+<code class="descname">re_template</code><em class="property"> = '\\s*#\\s*pragma\\s+cyclus\\s*?(\\s+def\\s+|\\s+decl\\s+|\\s+impl\\s+|\\s*?)?(?:\\s*?{0}\\s*?)(\\s+?(?:[\\w:\\.]+)?)?'</em><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.re_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SnapshotInvFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('a^')</em><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.SnapshotInvFilter.res_impl">
+<code class="descname">res_impl</code><em class="property"> = {'cyclus::toolkit::ResBuf': 'invs[&quot;{var}&quot;] = {var}.PopNRes({var}.count());\n{var}.Push(invs[&quot;{var}&quot;]);\n', 'cyclus::toolkit::ResMap': 'invs[&quot;{var}&quot;] = {var}.ResValues();\n', 'cyclus::toolkit::ResourceBuff': 'invs[&quot;{var}&quot;] = {var}.PopN({var}.count());\n{var}.PushAll(invs[&quot;{var}&quot;]);\n'}</em><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.res_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotInvFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotInvFilter.shapes_impl">
+<code class="descname">shapes_impl</code><span class="sig-paren">(</span><em>ctx</em>, <em>ind='  '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.shapes_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.SnapshotInvFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.SnapshotInvFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.StateAccumulator">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">StateAccumulator</code><a class="headerlink" href="#cyclus.cycpp.StateAccumulator" title="Permalink to this definition">¶</a></dt>
+<dd><p>The StateAccumulator class is the pass 2 state machine.</p>
+<p>This represents the state of the file as it is being traversed.
+At the end of the traversal this will have acquired all of the information
+needed for pass 2. It manages both the decorators and other needed bits
+of C++ syntax. It works by passing each statement through a sequence of
+filters, and builds up or destroys context as it goes.</p>
+<p>This class also functions as a typesystem for the types it sees.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.StateAccumulator.accumulate">
+<code class="descname">accumulate</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.accumulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify the existing state by incoprorating the statement, which is
+partitioned from the next statement by sep.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.StateAccumulator.canonize_class">
+<code class="descname">canonize_class</code><span class="sig-paren">(</span><em>cls</em>, <em>_usens=True</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.canonize_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>This canonizes a classname.  The class name need not be the current
+class whose scope we are in, but may be any class whatsoever. Returns
+None if the class could not be canonized.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.StateAccumulator.canonize_shape">
+<code class="descname">canonize_shape</code><span class="sig-paren">(</span><em>ann_dict</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.canonize_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>This canonizes a shape. We take a look at the current shape, and
+standardize its format if necessary. We append -1&#8217;s to the shape if
+its length does not match our expected length. Returns the new shape
+or raises an error if the given shape was longer than expected.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.StateAccumulator.canonize_type">
+<code class="descname">canonize_type</code><span class="sig-paren">(</span><em>t</em>, <em>name='&lt;member variable&gt;'</em>, <em>statement=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.canonize_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the canonical form for a type given the current state.
+This should not be called for types other than state variables.
+The name argument here is provided for debugging &amp; reporting purposes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.StateAccumulator.classname">
+<code class="descname">classname</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.classname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current, fully-expanded class name.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.StateAccumulator.ensure_class_context">
+<code class="descname">ensure_class_context</code><span class="sig-paren">(</span><em>classname</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.ensure_class_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensures that the context for the class at heand is well-formed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.StateAccumulator.includeloc">
+<code class="descname">includeloc</code><span class="sig-paren">(</span><em>statement=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.includeloc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current location of the file from includes as a string.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.StateAccumulator.known_templates">
+<code class="descname">known_templates</code><em class="property"> = {'std::set': ('T',), 'cyclus::toolkit::ResBuf': ('T',), 'cyclus::toolkit::ResMap': ('K', 'R'), 'std::vector': ('T',), 'std::list': ('T',), 'std::pair': ('T1', 'T2'), 'std::map': ('Key', 'T')}</em><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.known_templates" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.StateAccumulator.scopz">
+<code class="descname">scopz</code><em class="property"> = '::'</em><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.scopz" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.StateAccumulator.supported_types">
+<code class="descname">supported_types</code><em class="property"> = {('cyclus::toolkit::ResBuf', 'cyclus::Material'), ('cyclus::toolkit::ResBuf', 'cyclus::Resource'), ('cyclus::toolkit::ResBuf', 'cyclus::Product'), 'cyclus::Resource', 'int', 'boost::uuids::uuid', 'cyclus::toolkit::ResourceBuff', 'cyclus::Product', 'cyclus::Material', 'cyclus::toolkit::ResBuf', 'cyclus::toolkit::ResMap', 'double', 'std::string', 'cyclus::Blob', 'bool', 'float'}</em><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.supported_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.TypedefFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">TypedefFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.TypedefFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for handling typedef as aliases. Note that in-line compound
+typedefs of structs and unions are not supported.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.TypedefFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.TypedefFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.TypedefFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.TypedefFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.TypedefFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('\\s*typedef\\s+(.*?\\s+.*)\\s*$')</em><a class="headerlink" href="#cyclus.cycpp.TypedefFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.TypedefFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.TypedefFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.TypedefFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.TypedefFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.UsingFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">UsingFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.UsingFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for accumumating using aliases.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.UsingFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.UsingFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.UsingFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.UsingFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.UsingFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('\\s*using\\s+(?!namespace\\s+)([\\w:]+)\\s*')</em><a class="headerlink" href="#cyclus.cycpp.UsingFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.UsingFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.UsingFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.UsingFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.UsingFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.UsingNamespaceFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">UsingNamespaceFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.UsingNamespaceFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for accumumating using namespace statement.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.UsingNamespaceFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.UsingNamespaceFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.UsingNamespaceFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.UsingNamespaceFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.UsingNamespaceFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('\\s*using\\s+namespace\\s+([\\w:]*)\\s*')</em><a class="headerlink" href="#cyclus.cycpp.UsingNamespaceFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.UsingNamespaceFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.UsingNamespaceFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.UsingNamespaceFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.UsingNamespaceFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.VarDeclarationFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">VarDeclarationFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.VarDeclarationFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>State varible declaration.  Only operates if state.var_annotations is
+not None. Access for member variable must be public.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.VarDeclarationFilter.canonize_alias">
+<code class="descname">canonize_alias</code><span class="sig-paren">(</span><em>t</em>, <em>name</em>, <em>alias=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.VarDeclarationFilter.canonize_alias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the default alias structure for a C++ type for with the given state
+variable name.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.VarDeclarationFilter.canonize_tooltip">
+<code class="descname">canonize_tooltip</code><span class="sig-paren">(</span><em>t</em>, <em>name</em>, <em>tooltip=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.VarDeclarationFilter.canonize_tooltip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the default tooltip structure for a C++ type for with the given state
+variable name.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.VarDeclarationFilter.canonize_uilabel">
+<code class="descname">canonize_uilabel</code><span class="sig-paren">(</span><em>t</em>, <em>name</em>, <em>uilabel=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.VarDeclarationFilter.canonize_uilabel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the default uilabel structure for a C++ type for with the given state
+variable name.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.VarDeclarationFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.VarDeclarationFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.VarDeclarationFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.VarDeclarationFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.VarDeclarationFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('(.*\\w+.*?)\\s+(\\w+)')</em><a class="headerlink" href="#cyclus.cycpp.VarDeclarationFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.VarDeclarationFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.VarDeclarationFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverts state transformation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.VarDeclarationFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.VarDeclarationFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.VarDeclarationFilter.transform_pass2">
+<code class="descname">transform_pass2</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.VarDeclarationFilter.transform_pass2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.VarDeclarationFilter.transform_pass3">
+<code class="descname">transform_pass3</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.VarDeclarationFilter.transform_pass3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.cycpp.VarDecorationFilter">
+<em class="property">class </em><code class="descclassname">cyclus.cycpp.</code><code class="descname">VarDecorationFilter</code><span class="sig-paren">(</span><em>machine=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.VarDecorationFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for handling state variable decoration of the form:</p>
+<blockquote>
+<div>#pragma cyclus var &lt;dict&gt;</div></blockquote>
+<p>This evals the contents of dict and puts them in state.var_annotations, to be
+consumed by the next match with VarDeclarationFilter.</p>
+<dl class="method">
+<dt id="cyclus.cycpp.VarDecorationFilter.ctxstr">
+<code class="descname">ctxstr</code><span class="sig-paren">(</span><em>classname=None</em>, <em>varname=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.VarDecorationFilter.ctxstr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.VarDecorationFilter.isvalid">
+<code class="descname">isvalid</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.VarDecorationFilter.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a statement is valid for this fliter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.cycpp.VarDecorationFilter.regex">
+<code class="descname">regex</code><em class="property"> = re.compile('\\s*#\\s*pragma\\s+cyclus\\s+var\\s+(.*)')</em><a class="headerlink" href="#cyclus.cycpp.VarDecorationFilter.regex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.VarDecorationFilter.revert">
+<code class="descname">revert</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.VarDecorationFilter.revert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverts state transformation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.cycpp.VarDecorationFilter.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>statement</em>, <em>sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.VarDecorationFilter.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.cycpp.accumulate_state">
+<code class="descclassname">cyclus.cycpp.</code><code class="descname">accumulate_state</code><span class="sig-paren">(</span><em>canon</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.accumulate_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a canonical C++ source file and separates it out into statements
+which are fed into a state accumulator. The state is returned.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.cycpp.ensure_startswith_newlinehash">
+<code class="descclassname">cyclus.cycpp.</code><code class="descname">ensure_startswith_newlinehash</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.ensure_startswith_newlinehash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="cyclus.cycpp.escape_xml">
+<code class="descclassname">cyclus.cycpp.</code><code class="descname">escape_xml</code><span class="sig-paren">(</span><em>s</em>, <em>ind='    '</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.escape_xml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Escapes xml string s, prettifies it and puts in c++ string lit form.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.cycpp.generate_code">
+<code class="descclassname">cyclus.cycpp.</code><code class="descname">generate_code</code><span class="sig-paren">(</span><em>orig</em>, <em>context</em>, <em>superclasses</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.generate_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a canonical C++ source file and separates it out into statements
+which are fed into a code generator. The new file is returned.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.cycpp.insert_line_directives">
+<code class="descclassname">cyclus.cycpp.</code><code class="descname">insert_line_directives</code><span class="sig-paren">(</span><em>newfile</em>, <em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.insert_line_directives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inserts line directives based on diff of original file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.cycpp.main">
+<code class="descclassname">cyclus.cycpp.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="cyclus.cycpp.outter_split">
+<code class="descclassname">cyclus.cycpp.</code><code class="descname">outter_split</code><span class="sig-paren">(</span><em>s</em>, <em>open_brace='('</em>, <em>close_brace=')'</em>, <em>separator='</em>, <em>'</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.outter_split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a string and only split the outter most level.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.cycpp.parent_classes">
+<code class="descclassname">cyclus.cycpp.</code><code class="descname">parent_classes</code><span class="sig-paren">(</span><em>classname</em>, <em>pdict</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.parent_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="cyclus.cycpp.parent_intersection">
+<code class="descclassname">cyclus.cycpp.</code><code class="descname">parent_intersection</code><span class="sig-paren">(</span><em>classname</em>, <em>queryset</em>, <em>superclasses</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.parent_intersection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all elements in query_set which are parents of classname and not
+parents of any other class in query_set</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.cycpp.parse_arg">
+<code class="descclassname">cyclus.cycpp.</code><code class="descname">parse_arg</code><span class="sig-paren">(</span><em>s</em>, <em>open_brace='&lt;'</em>, <em>close_brace='&gt;'</em>, <em>separator='</em>, <em>'</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.parse_arg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a string containing one or more c++ template args and returns a
+list of the argument types as strings.</p>
+<p>This is called by parse_template to handle the inner portion of the
+template braces.  For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parse_arg</span><span class="p">(</span><span class="s1">&#39;int, double&#39;</span><span class="p">)</span>
+<span class="go">[&#39;int&#39;, &#39;double&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parse_arg</span><span class="p">(</span><span class="s1">&#39;std::map&lt;int, double&gt;&#39;</span><span class="p">)</span>
+<span class="go">[[&#39;std::map&#39;, &#39;int&#39;, &#39;double&#39;]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parse_arg</span><span class="p">(</span><span class="s1">&#39;int, std::map&lt;int, double&gt;&#39;</span><span class="p">)</span>
+<span class="go">[&#39;int&#39;, [&#39;std::map&#39;, &#39;int&#39;, &#39;double&#39;]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.cycpp.parse_template">
+<code class="descclassname">cyclus.cycpp.</code><code class="descname">parse_template</code><span class="sig-paren">(</span><em>s</em>, <em>open_brace='&lt;'</em>, <em>close_brace='&gt;'</em>, <em>separator='</em>, <em>'</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.parse_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a string &#8211; which may represent a template specialization &#8211; and
+returns the corresponding type.</p>
+<p>It calls parse_arg to return the type(s) for any template arguments the
+type may have. For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parse_template</span><span class="p">(</span><span class="s1">&#39;std::map&lt;int, double&gt;&#39;</span><span class="p">)</span>
+<span class="go">[&#39;std::map&#39;, &#39;int&#39;, &#39;double&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parse_template</span><span class="p">(</span><span class="s1">&#39;std::map&lt;int, std::map&lt;int, std::map&lt;int, int&gt; &gt; &gt;&#39;</span><span class="p">)</span>
+<span class="go">[&#39;std::map&#39;, &#39;int&#39;, [&#39;std::map&#39;, &#39;int&#39;, [&#39;std::map&#39;, &#39;int&#39;, &#39;int&#39;]]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.cycpp.prepare_type">
+<code class="descclassname">cyclus.cycpp.</code><code class="descname">prepare_type</code><span class="sig-paren">(</span><em>cpptype</em>, <em>othertype</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.prepare_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates othertype to conform to the length of cpptype using None&#8217;s.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.cycpp.preprocess_file">
+<code class="descclassname">cyclus.cycpp.</code><code class="descname">preprocess_file</code><span class="sig-paren">(</span><em>filename</em>, <em>includes=()</em>, <em>cpp_path='cpp'</em>, <em>cpp_args=('-xc++'</em>, <em>'-pipe'</em>, <em>'-E'</em>, <em>'-DCYCPP')</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.preprocess_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Preprocess a file using cpp.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>filename</strong> : str</p>
+<blockquote>
+<div><p>Name of the file you want to preprocess.</p>
+</div></blockquote>
+<p><strong>includes</strong> : list</p>
+<blockquote>
+<div><p>A list of all include directories to tell the preprocessor about</p>
+</div></blockquote>
+<p><strong>cpp_path</strong> : str, optional</p>
+<p><strong>cpp_args</strong> : str, optional</p>
+<blockquote class="last">
+<div><p>Refer to the documentation of parse_file for the meaning of these
+arguments.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>This was forked from pycparser: <a class="reference external" href="https://github.com/eliben/pycparser">https://github.com/eliben/pycparser</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.cycpp.type_to_str">
+<code class="descclassname">cyclus.cycpp.</code><code class="descname">type_to_str</code><span class="sig-paren">(</span><em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.cycpp.type_to_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="memback.html"
+                          title="Previous page">&larr; In-memory Backend (<code class="docutils literal"><span class="pre">cyclus.memback</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="gentypesystem.html"
+                          title="Next page">&rarr; Type System Code Generator (<code class="docutils literal"><span class="pre">cyclus.gentypesystem</span></code>)</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="gentypesystem.html" title="Type System Code Generator (cyclus.gentypesystem)"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="memback.html" title="In-memory Backend (cyclus.memback)"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

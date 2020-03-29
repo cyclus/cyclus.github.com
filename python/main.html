@@ -1,0 +1,483 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Main Command Line Interface (cyclus.main) &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Nuclide Naming Functions (cyclus.nucname)" href="nucname.html" />
+    <link rel="prev" title="Cyclus Library Bindings (cyclus.lib)" href="lib.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="nucname.html" title="Nuclide Naming Functions (cyclus.nucname)"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lib.html" title="Cyclus Library Bindings (cyclus.lib)"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cyclus.main">
+<span id="main-command-line-interface-cyclus-main"></span><span id="cyclus-pyapi-main"></span><h1>Main Command Line Interface (<code class="docutils literal"><span class="pre">cyclus.main</span></code>)<a class="headerlink" href="#module-cyclus.main" title="Permalink to this headline">¶</a></h1>
+<p>Main Cyclus CLI entry point.</p>
+<dl class="class">
+<dt id="cyclus.main.AgentAnnotations">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">AgentAnnotations</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>const=None</em>, <em>default=None</em>, <em>type=None</em>, <em>choices=None</em>, <em>required=False</em>, <em>help=None</em>, <em>metavar=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.AgentAnnotations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays an agent annotations</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.AgentListing">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">AgentListing</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>const=None</em>, <em>default=None</em>, <em>type=None</em>, <em>choices=None</em>, <em>required=False</em>, <em>help=None</em>, <em>metavar=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.AgentListing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays an agent listing</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.AgentSchema">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">AgentSchema</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>const=None</em>, <em>default=None</em>, <em>type=None</em>, <em>choices=None</em>, <em>required=False</em>, <em>help=None</em>, <em>metavar=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.AgentSchema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays an agent schema</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.AgentVersion">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">AgentVersion</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>const=None</em>, <em>default=None</em>, <em>type=None</em>, <em>choices=None</em>, <em>required=False</em>, <em>help=None</em>, <em>metavar=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.AgentVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays an agent version</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.AllAgentListing">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">AllAgentListing</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.AllAgentListing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays all known cyclus agents</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.BuildPath">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">BuildPath</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.BuildPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the Cyclus Build Path</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.CMakeModulePath">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">CMakeModulePath</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.CMakeModulePath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the Cyclus CMake Module Path</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.CyclusPath">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">CyclusPath</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.CyclusPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the Cyclus Path</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.CyclusVersion">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">CyclusVersion</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.CyclusVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the cyclus version</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.IncludePath">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">IncludePath</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.IncludePath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the Cyclus Include Path</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.InfileConverterAction">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">InfileConverterAction</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>const=None</em>, <em>default=None</em>, <em>type=None</em>, <em>choices=None</em>, <em>required=False</em>, <em>help=None</em>, <em>metavar=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.InfileConverterAction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.InstallPath">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">InstallPath</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.InstallPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the Cyclus Install Path</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.JsonToPy">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">JsonToPy</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>const=None</em>, <em>default=None</em>, <em>type=None</em>, <em>choices=None</em>, <em>required=False</em>, <em>help=None</em>, <em>metavar=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.JsonToPy" title="Permalink to this definition">¶</a></dt>
+<dd><p>converts JSON to Python</p>
+<dl class="method">
+<dt id="cyclus.main.JsonToPy.converter">
+<code class="descname">converter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.JsonToPy.converter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a JSON string into an equivalent Python string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.main.JsonToPy.name">
+<code class="descname">name</code><em class="property"> = 'json_to_py'</em><a class="headerlink" href="#cyclus.main.JsonToPy.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.JsonToXml">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">JsonToXml</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>const=None</em>, <em>default=None</em>, <em>type=None</em>, <em>choices=None</em>, <em>required=False</em>, <em>help=None</em>, <em>metavar=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.JsonToXml" title="Permalink to this definition">¶</a></dt>
+<dd><p>converts JSON to XML</p>
+<dl class="method">
+<dt id="cyclus.main.JsonToXml.converter">
+<code class="descname">converter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.JsonToXml.converter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a JSON string into an equivalent XML string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.main.JsonToXml.name">
+<code class="descname">name</code><em class="property"> = 'json_to_xml'</em><a class="headerlink" href="#cyclus.main.JsonToXml.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.Metadata">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">Metadata</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.Metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays all known cyclus agents</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.NoAgent">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">NoAgent</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.NoAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables agent logging</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.NoMem">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">NoMem</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.NoMem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables mem logging</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.NucData">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">NucData</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.NucData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the Nuclear data Path</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.PyToJson">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">PyToJson</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>const=None</em>, <em>default=None</em>, <em>type=None</em>, <em>choices=None</em>, <em>required=False</em>, <em>help=None</em>, <em>metavar=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.PyToJson" title="Permalink to this definition">¶</a></dt>
+<dd><p>converts Python to JSON</p>
+<dl class="method">
+<dt id="cyclus.main.PyToJson.converter">
+<code class="descname">converter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.PyToJson.converter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a Python string into an equivalent JSON string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.main.PyToJson.name">
+<code class="descname">name</code><em class="property"> = 'py_to_json'</em><a class="headerlink" href="#cyclus.main.PyToJson.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.PyToXml">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">PyToXml</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>const=None</em>, <em>default=None</em>, <em>type=None</em>, <em>choices=None</em>, <em>required=False</em>, <em>help=None</em>, <em>metavar=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.PyToXml" title="Permalink to this definition">¶</a></dt>
+<dd><p>converts Python to XML</p>
+<dl class="method">
+<dt id="cyclus.main.PyToXml.converter">
+<code class="descname">converter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.PyToXml.converter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a Python string into an equivalent XML string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.main.PyToXml.name">
+<code class="descname">name</code><em class="property"> = 'py_to_xml'</em><a class="headerlink" href="#cyclus.main.PyToXml.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.Restart">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">Restart</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>const=None</em>, <em>default=None</em>, <em>type=None</em>, <em>choices=None</em>, <em>required=False</em>, <em>help=None</em>, <em>metavar=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.Restart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restart action for cyclus. Not supported.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.RngSchema">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">RngSchema</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.RngSchema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays path to the rng schema</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.Schema">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">Schema</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.Schema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays cyclus schema</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.Verbosity">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">Verbosity</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>const=None</em>, <em>default=None</em>, <em>type=None</em>, <em>choices=None</em>, <em>required=False</em>, <em>help=None</em>, <em>metavar=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.Verbosity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets versbosity level</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.WarnAsError">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">WarnAsError</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.WarnAsError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets warning to be errors</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.WarnLimit">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">WarnLimit</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>const=None</em>, <em>default=None</em>, <em>type=None</em>, <em>choices=None</em>, <em>required=False</em>, <em>help=None</em>, <em>metavar=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.WarnLimit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets warning limit</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.XmlToJson">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">XmlToJson</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>const=None</em>, <em>default=None</em>, <em>type=None</em>, <em>choices=None</em>, <em>required=False</em>, <em>help=None</em>, <em>metavar=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.XmlToJson" title="Permalink to this definition">¶</a></dt>
+<dd><p>converts XML to JSON</p>
+<dl class="method">
+<dt id="cyclus.main.XmlToJson.converter">
+<code class="descname">converter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.XmlToJson.converter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts an XML string into an equivalent JSON string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.main.XmlToJson.name">
+<code class="descname">name</code><em class="property"> = 'xml_to_json'</em><a class="headerlink" href="#cyclus.main.XmlToJson.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.XmlToPy">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">XmlToPy</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>const=None</em>, <em>default=None</em>, <em>type=None</em>, <em>choices=None</em>, <em>required=False</em>, <em>help=None</em>, <em>metavar=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.XmlToPy" title="Permalink to this definition">¶</a></dt>
+<dd><p>converts XML to Python</p>
+<dl class="method">
+<dt id="cyclus.main.XmlToPy.converter">
+<code class="descname">converter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.XmlToPy.converter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts an XML string into an equivalent Python string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.main.XmlToPy.name">
+<code class="descname">name</code><em class="property"> = 'xml_to_py'</em><a class="headerlink" href="#cyclus.main.XmlToPy.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.main.ZeroArgAction">
+<em class="property">class </em><code class="descclassname">cyclus.main.</code><code class="descname">ZeroArgAction</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.ZeroArgAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>An action with no arguments.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.main.main">
+<code class="descclassname">cyclus.main.</code><code class="descname">main</code><span class="sig-paren">(</span><em>args=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main function for Cyclus CLI</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.main.make_agent_ctx">
+<code class="descclassname">cyclus.main.</code><code class="descname">make_agent_ctx</code><span class="sig-paren">(</span><em>spec</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.make_agent_ctx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contsructs and agent and returns the agent and the context.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.main.make_parser">
+<code class="descclassname">cyclus.main.</code><code class="descname">make_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.make_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes the Cyclus CLI parser.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.main.run_simulation">
+<code class="descclassname">cyclus.main.</code><code class="descname">run_simulation</code><span class="sig-paren">(</span><em>ns</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.run_simulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the simulation when we recieve an input file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.main.set_schema_path">
+<code class="descclassname">cyclus.main.</code><code class="descname">set_schema_path</code><span class="sig-paren">(</span><em>ns</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.set_schema_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the schema path on the namespace.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="lib.html"
+                          title="Previous page">&larr; Cyclus Library Bindings (<code class="docutils literal"><span class="pre">cyclus.lib</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="nucname.html"
+                          title="Next page">&rarr; Nuclide Naming Functions (<code class="docutils literal"><span class="pre">cyclus.nucname</span></code>)</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="nucname.html" title="Nuclide Naming Functions (cyclus.nucname)"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lib.html" title="Cyclus Library Bindings (cyclus.lib)"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

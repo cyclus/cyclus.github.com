@@ -1,0 +1,560 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Testing and Debugging Archetypes &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Time Step Execution" href="timestep.html" />
+    <link rel="prev" title="Using the Cyclus Preprocessor" href="cycpp.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="timestep.html" title="Time Step Execution"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cycpp.html" title="Using the Cyclus Preprocessor"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="testing-and-debugging-archetypes">
+<span id="testing"></span><h1>Testing and Debugging Archetypes<a class="headerlink" href="#testing-and-debugging-archetypes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Writing <a class="reference external" href="http://en.wikipedia.org/wiki/Unit_testing">unit tests</a> for your
+module is a prerequisite for its addition to any <span style="font-variant:small-caps;">Cyclus</span> library, but it&#8217;s
+really a <a class="reference external" href="http://software-carpentry.org/v4/test/unit.html">good idea anyway</a>.</p>
+<p><span style="font-variant:small-caps;">Cyclus</span> makes use of the <a class="reference external" href="http://code.google.com/p/googletest/">Google Test</a> framework. The <a class="reference external" href="https://code.google.com/p/googletest/wiki/Primer">primer</a> is recommended as an
+introduction to the fundamental concepts of unit testing with Google Test.
+Seriously, if you&#8217;re unfamiliar with unit testing or Google Test, check out
+the primer.</p>
+</div>
+<div class="section" id="unit-tests-out-of-the-box">
+<h2>Unit Tests Out of the Box<a class="headerlink" href="#unit-tests-out-of-the-box" title="Permalink to this headline">¶</a></h2>
+<p>The <span style="font-variant:small-caps;">Cyclus</span> dev team provides a number of unit tests for free (as in
+beer). Really! You can unit test your <a class="reference internal" href="../basics/glossary.html#term-archetype"><span class="xref std std-term">archetype</span></a> immediately to confirm
+some basic functionality with the <a class="reference internal" href="../basics/glossary.html#term-cyclus-kernel"><span class="xref std std-term">cyclus kernel</span></a>. We provide basic unit
+tests for any class that inherits from one of:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">cyclus::Agent</span></code></li>
+<li><code class="docutils literal"><span class="pre">cyclus::Facility</span></code></li>
+<li><code class="docutils literal"><span class="pre">cyclus::Institution</span></code></li>
+<li><code class="docutils literal"><span class="pre">cyclus::Region</span></code></li>
+</ul>
+<p>Note that <code class="docutils literal"><span class="pre">cyclus::Agent</span></code> is the base class for any object that acts as an
+<a class="reference internal" href="../basics/glossary.html#term-agent"><span class="xref std std-term">agent</span></a> in the simulation, so every archetype can invoke those unit tests.</p>
+<p>In order to get the provided unit tests in your archetype&#8217;s tests, a few extra
+lines must be added to your <code class="docutils literal"><span class="pre">*_tests.cc</span></code> file. For instance, the
+<code class="docutils literal"><span class="pre">TutorialFacility</span></code> in the <a class="reference internal" href="hello_world_py.html#hello-world"><span class="std std-ref">Hello, Cyclus! [Python]</span></a> example with the file structure
+outline in <a class="reference internal" href="cmake.html#cmake-build"><span class="std std-ref">Building Modules with CMake</span></a> adds the following lines to
+<code class="docutils literal"><span class="pre">tutorial_facility_tests.cc</span></code> to get all of the free <code class="docutils literal"><span class="pre">cyclus::Agent</span></code> and
+<code class="docutils literal"><span class="pre">cyclus::Facility</span></code> unit tests:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#include &quot;tutorial_facility.h&quot;</span>
+<span class="c1">#include &quot;facility_tests.h&quot;</span>
+<span class="c1">#include &quot;agent_tests.h&quot;</span>
+
+<span class="c1">#ifndef CYCLUS_AGENT_TESTS_CONNECTED</span>
+<span class="nb">int</span> <span class="n">ConnectAgentTests</span><span class="p">();</span>
+<span class="n">static</span> <span class="nb">int</span> <span class="n">cyclus_agent_tests_connected</span> <span class="o">=</span> <span class="n">ConnectAgentTests</span><span class="p">();</span>
+<span class="c1">#define CYCLUS_AGENT_TESTS_CONNECTED cyclus_agent_tests_connected</span>
+<span class="c1">#endif // CYCLUS_AGENT_TESTS_CONNECTED</span>
+
+<span class="n">cyclus</span><span class="p">::</span><span class="n">Agent</span><span class="o">*</span> <span class="n">TutorialFacilityConstructor</span><span class="p">(</span><span class="n">cyclus</span><span class="p">::</span><span class="n">Context</span><span class="o">*</span> <span class="n">ctx</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">new</span> <span class="n">TutorialFacility</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">INSTANTIATE_TEST_CASE_P</span><span class="p">(</span><span class="n">TutorialFac</span><span class="p">,</span> <span class="n">FacilityTests</span><span class="p">,</span>
+                        <span class="p">::</span><span class="n">testing</span><span class="p">::</span><span class="n">Values</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TutorialFacilityConstructor</span><span class="p">));</span>
+
+<span class="n">INSTANTIATE_TEST_CASE_P</span><span class="p">(</span><span class="n">TutorialFac</span><span class="p">,</span> <span class="n">AgentTests</span><span class="p">,</span>
+                        <span class="p">::</span><span class="n">testing</span><span class="p">::</span><span class="n">Values</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TutorialFacilityConstructor</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>The above lines can be specialized to your case by replacing <code class="docutils literal"><span class="pre">TutorialFac</span></code> with
+an appropriate moniker (anything that uniquely identifies your unit test
+name). Also, if you&#8217;re subclassing from <code class="docutils literal"><span class="pre">cyclus::Institution</span></code> or
+<code class="docutils literal"><span class="pre">cyclus::Region</span></code>, replace all instances of facility in the above example with
+the institution or region, respectively.</p>
+</div>
+<div class="section" id="unit-test-example">
+<h2>Unit Test Example<a class="headerlink" href="#unit-test-example" title="Permalink to this headline">¶</a></h2>
+<p>Now we will provide an example of a very simple <a class="reference internal" href="../basics/glossary.html#term-archetype"><span class="xref std std-term">archetype</span></a> that keeps
+track of how many <a class="reference internal" href="../basics/glossary.html#term-tick"><span class="xref std std-term">ticks</span></a> it has experienced. We&#8217;ll call it
+<code class="docutils literal"><span class="pre">TickTracker</span></code>.</p>
+<p>This tutorial assumes that you have a directory setup like that described in
+<a class="reference internal" href="hello_world_py.html#hello-world"><span class="std std-ref">Hello, Cyclus! [Python]</span></a>, namely that there is a <cite>src</cite> directory in which
+<a class="reference internal" href="../basics/glossary.html#term-archetype"><span class="xref std std-term">archetype</span></a> source files are housed and a <cite>install.py</cite> file that will
+install them on your system.</p>
+<p>Make a file called <code class="docutils literal"><span class="pre">tick_tracker.h</span></code> in the <code class="docutils literal"><span class="pre">src</span></code> directory that has the
+following lines:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;cyclus.h&quot;</span><span class="cp"></span>
+
+<span class="k">class</span> <span class="nc">TickTracker</span> <span class="o">:</span> <span class="k">public</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Facility</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="n">TickTracker</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Context</span><span class="o">*</span> <span class="n">ctx</span><span class="p">);</span>
+
+  <span class="cp">#pragma cyclus</span>
+
+  <span class="c1">/// increments n_ticks</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Tick</span><span class="p">();</span>
+
+  <span class="c1">/// no-op</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Tock</span><span class="p">()</span> <span class="p">{};</span>
+
+  <span class="c1">/// query now many ticks the agent has experienced</span>
+  <span class="kr">inline</span> <span class="kt">int</span> <span class="nf">n_ticks</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">n_ticks_</span><span class="p">;}</span>
+
+ <span class="k">private</span><span class="o">:</span>
+  <span class="kt">int</span> <span class="n">n_ticks_</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Next, make a file called <code class="docutils literal"><span class="pre">tick_tracker.cc</span></code> in the <code class="docutils literal"><span class="pre">src</span></code> directory that has the
+following lines:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;tick_tracker.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// we have to call the base cyclus::Facility class&#39; constructor</span>
+<span class="c1">// with a context argument</span>
+<span class="n">TickTracker</span><span class="o">::</span><span class="n">TickTracker</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Context</span><span class="o">*</span> <span class="n">ctx</span><span class="p">)</span> <span class="o">:</span> <span class="n">n_ticks_</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Facility</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span> <span class="p">{};</span>
+
+<span class="c1">// tick experienced!</span>
+<span class="kt">void</span> <span class="n">TickTracker</span><span class="o">::</span><span class="n">Tick</span><span class="p">()</span> <span class="p">{</span><span class="n">n_ticks_</span><span class="o">++</span><span class="p">;}</span>
+</pre></div>
+</div>
+<p>Now, make a file called <code class="docutils literal"><span class="pre">tick_tracker_tests.cc</span></code> in the <code class="docutils literal"><span class="pre">src</span></code> directory that
+has the following lines:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="c1">// gtest deps</span>
+<span class="cp">#include</span> <span class="cpf">&lt;gtest/gtest.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// cyclus deps</span>
+<span class="cp">#include</span> <span class="cpf">&quot;facility_tests.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;agent_tests.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;test_context.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// our deps</span>
+<span class="cp">#include</span> <span class="cpf">&quot;tick_tracker.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// write a unit test of our own</span>
+<span class="n">TEST</span><span class="p">(</span><span class="n">TickTracker</span><span class="p">,</span> <span class="n">track_ticks</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cyclus</span><span class="o">::</span><span class="n">TestContext</span> <span class="n">ctx</span><span class="p">;</span>
+  <span class="n">TickTracker</span> <span class="nf">fac</span><span class="p">(</span><span class="n">ctx</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
+  <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">fac</span><span class="p">.</span><span class="n">n_ticks</span><span class="p">());</span>
+  <span class="n">fac</span><span class="p">.</span><span class="n">Tick</span><span class="p">();</span>
+  <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">fac</span><span class="p">.</span><span class="n">n_ticks</span><span class="p">());</span>
+  <span class="n">fac</span><span class="p">.</span><span class="n">Tick</span><span class="p">();</span>
+  <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">fac</span><span class="p">.</span><span class="n">n_ticks</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="c1">// get all the basic unit tests</span>
+<span class="cp">#ifndef CYCLUS_AGENT_TESTS_CONNECTED</span>
+<span class="kt">int</span> <span class="n">ConnectAgentTests</span><span class="p">();</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="n">cyclus_agent_tests_connected</span> <span class="o">=</span> <span class="n">ConnectAgentTests</span><span class="p">();</span>
+<span class="cp">#define CYCLUS_AGENT_TESTS_CONNECTED cyclus_agent_tests_connected</span>
+<span class="cp">#endif </span><span class="c1">// CYCLUS_AGENT_TESTS_CONNECTED</span>
+
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Agent</span><span class="o">*</span> <span class="n">TickTrackerConstructor</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Context</span><span class="o">*</span> <span class="n">ctx</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">TickTracker</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">INSTANTIATE_TEST_CASE_P</span><span class="p">(</span><span class="n">TicTrac</span><span class="p">,</span> <span class="n">FacilityTests</span><span class="p">,</span>
+                        <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">Values</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TickTrackerConstructor</span><span class="p">));</span>
+
+<span class="n">INSTANTIATE_TEST_CASE_P</span><span class="p">(</span><span class="n">TicTrac</span><span class="p">,</span> <span class="n">AgentTests</span><span class="p">,</span>
+                        <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">Values</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TickTrackerConstructor</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Add the following lines to the <code class="docutils literal"><span class="pre">src/CMakeLists.txt</span></code> file:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">INSTALL_CYCLUS_STANDALONE</span><span class="p">(</span><span class="s2">&quot;TickTracker&quot;</span> <span class="s2">&quot;tick_tracker&quot;</span> <span class="s2">&quot;tutorial&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we&#8217;re ready to install the <code class="docutils literal"><span class="pre">TickTracker</span></code> module and run its tests. If you
+haven&#8217;t already, now is a good time to add the <code class="docutils literal"><span class="pre">$CYCLUS_INSTALL_PATH</span></code> to your
+<code class="docutils literal"><span class="pre">PATH</span></code> environment variable (<span style="font-variant:small-caps;">Cyclus</span>&#8216; <code class="docutils literal"><span class="pre">install.py</span></code> defaults to
+<code class="docutils literal"><span class="pre">~/.local</span></code>). Next, from your top level directory (where your <code class="docutils literal"><span class="pre">install.py</span></code>
+file is), run:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./install.py
+$ TickTracker_unit_tests
+</pre></div>
+</div>
+<p>Which results in:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">==========</span><span class="p">]</span> <span class="n">Running</span> <span class="mi">8</span> <span class="n">tests</span> <span class="kn">from</span> <span class="mi">3</span> <span class="n">test</span> <span class="n">cases</span><span class="o">.</span>
+<span class="p">[</span><span class="o">----------</span><span class="p">]</span> <span class="n">Global</span> <span class="n">test</span> <span class="n">environment</span> <span class="nb">set</span><span class="o">-</span><span class="n">up</span><span class="o">.</span>
+<span class="p">[</span><span class="o">----------</span><span class="p">]</span> <span class="mi">1</span> <span class="n">test</span> <span class="kn">from</span> <span class="nn">TickTracker</span>
+<span class="p">[</span> <span class="n">RUN</span>      <span class="p">]</span> <span class="n">TickTracker</span><span class="o">.</span><span class="n">track_ticks</span>
+<span class="p">[</span>       <span class="n">OK</span> <span class="p">]</span> <span class="n">TickTracker</span><span class="o">.</span><span class="n">track_ticks</span> <span class="p">(</span><span class="mi">19</span> <span class="n">ms</span><span class="p">)</span>
+<span class="p">[</span><span class="o">----------</span><span class="p">]</span> <span class="mi">1</span> <span class="n">test</span> <span class="kn">from</span> <span class="nn">TickTracker</span> <span class="p">(</span><span class="mi">20</span> <span class="n">ms</span> <span class="n">total</span><span class="p">)</span>
+
+<span class="p">[</span><span class="o">----------</span><span class="p">]</span> <span class="mi">5</span> <span class="n">tests</span> <span class="kn">from</span> <span class="nn">TicTrac</span><span class="o">/</span><span class="n">AgentTests</span>
+<span class="p">[</span> <span class="n">RUN</span>      <span class="p">]</span> <span class="n">TicTrac</span><span class="o">/</span><span class="n">AgentTests</span><span class="o">.</span><span class="n">Clone</span><span class="o">/</span><span class="mi">0</span>
+<span class="p">[</span>       <span class="n">OK</span> <span class="p">]</span> <span class="n">TicTrac</span><span class="o">/</span><span class="n">AgentTests</span><span class="o">.</span><span class="n">Clone</span><span class="o">/</span><span class="mi">0</span> <span class="p">(</span><span class="mi">8</span> <span class="n">ms</span><span class="p">)</span>
+<span class="p">[</span> <span class="n">RUN</span>      <span class="p">]</span> <span class="n">TicTrac</span><span class="o">/</span><span class="n">AgentTests</span><span class="o">.</span><span class="n">Print</span><span class="o">/</span><span class="mi">0</span>
+<span class="p">[</span>       <span class="n">OK</span> <span class="p">]</span> <span class="n">TicTrac</span><span class="o">/</span><span class="n">AgentTests</span><span class="o">.</span><span class="n">Print</span><span class="o">/</span><span class="mi">0</span> <span class="p">(</span><span class="mi">9</span> <span class="n">ms</span><span class="p">)</span>
+<span class="p">[</span> <span class="n">RUN</span>      <span class="p">]</span> <span class="n">TicTrac</span><span class="o">/</span><span class="n">AgentTests</span><span class="o">.</span><span class="n">Schema</span><span class="o">/</span><span class="mi">0</span>
+<span class="p">[</span>       <span class="n">OK</span> <span class="p">]</span> <span class="n">TicTrac</span><span class="o">/</span><span class="n">AgentTests</span><span class="o">.</span><span class="n">Schema</span><span class="o">/</span><span class="mi">0</span> <span class="p">(</span><span class="mi">9</span> <span class="n">ms</span><span class="p">)</span>
+<span class="p">[</span> <span class="n">RUN</span>      <span class="p">]</span> <span class="n">TicTrac</span><span class="o">/</span><span class="n">AgentTests</span><span class="o">.</span><span class="n">Annotations</span><span class="o">/</span><span class="mi">0</span>
+<span class="p">[</span>       <span class="n">OK</span> <span class="p">]</span> <span class="n">TicTrac</span><span class="o">/</span><span class="n">AgentTests</span><span class="o">.</span><span class="n">Annotations</span><span class="o">/</span><span class="mi">0</span> <span class="p">(</span><span class="mi">15</span> <span class="n">ms</span><span class="p">)</span>
+<span class="p">[</span> <span class="n">RUN</span>      <span class="p">]</span> <span class="n">TicTrac</span><span class="o">/</span><span class="n">AgentTests</span><span class="o">.</span><span class="n">GetAgentType</span><span class="o">/</span><span class="mi">0</span>
+<span class="p">[</span>       <span class="n">OK</span> <span class="p">]</span> <span class="n">TicTrac</span><span class="o">/</span><span class="n">AgentTests</span><span class="o">.</span><span class="n">GetAgentType</span><span class="o">/</span><span class="mi">0</span> <span class="p">(</span><span class="mi">8</span> <span class="n">ms</span><span class="p">)</span>
+<span class="p">[</span><span class="o">----------</span><span class="p">]</span> <span class="mi">5</span> <span class="n">tests</span> <span class="kn">from</span> <span class="nn">TicTrac</span><span class="o">/</span><span class="n">AgentTests</span> <span class="p">(</span><span class="mi">49</span> <span class="n">ms</span> <span class="n">total</span><span class="p">)</span>
+
+<span class="p">[</span><span class="o">----------</span><span class="p">]</span> <span class="mi">2</span> <span class="n">tests</span> <span class="kn">from</span> <span class="nn">TicTrac</span><span class="o">/</span><span class="n">FacilityTests</span>
+<span class="p">[</span> <span class="n">RUN</span>      <span class="p">]</span> <span class="n">TicTrac</span><span class="o">/</span><span class="n">FacilityTests</span><span class="o">.</span><span class="n">Tick</span><span class="o">/</span><span class="mi">0</span>
+<span class="p">[</span>       <span class="n">OK</span> <span class="p">]</span> <span class="n">TicTrac</span><span class="o">/</span><span class="n">FacilityTests</span><span class="o">.</span><span class="n">Tick</span><span class="o">/</span><span class="mi">0</span> <span class="p">(</span><span class="mi">9</span> <span class="n">ms</span><span class="p">)</span>
+<span class="p">[</span> <span class="n">RUN</span>      <span class="p">]</span> <span class="n">TicTrac</span><span class="o">/</span><span class="n">FacilityTests</span><span class="o">.</span><span class="n">Tock</span><span class="o">/</span><span class="mi">0</span>
+<span class="p">[</span>       <span class="n">OK</span> <span class="p">]</span> <span class="n">TicTrac</span><span class="o">/</span><span class="n">FacilityTests</span><span class="o">.</span><span class="n">Tock</span><span class="o">/</span><span class="mi">0</span> <span class="p">(</span><span class="mi">8</span> <span class="n">ms</span><span class="p">)</span>
+<span class="p">[</span><span class="o">----------</span><span class="p">]</span> <span class="mi">2</span> <span class="n">tests</span> <span class="kn">from</span> <span class="nn">TicTrac</span><span class="o">/</span><span class="n">FacilityTests</span> <span class="p">(</span><span class="mi">17</span> <span class="n">ms</span> <span class="n">total</span><span class="p">)</span>
+
+<span class="p">[</span><span class="o">----------</span><span class="p">]</span> <span class="n">Global</span> <span class="n">test</span> <span class="n">environment</span> <span class="n">tear</span><span class="o">-</span><span class="n">down</span>
+<span class="p">[</span><span class="o">==========</span><span class="p">]</span> <span class="mi">8</span> <span class="n">tests</span> <span class="kn">from</span> <span class="mi">3</span> <span class="n">test</span> <span class="n">cases</span> <span class="n">ran</span><span class="o">.</span> <span class="p">(</span><span class="mi">86</span> <span class="n">ms</span> <span class="n">total</span><span class="p">)</span>
+<span class="p">[</span>  <span class="n">PASSED</span>  <span class="p">]</span> <span class="mi">8</span> <span class="n">tests</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="testing-resource-exchange">
+<h2>Testing Resource Exchange<a class="headerlink" href="#testing-resource-exchange" title="Permalink to this headline">¶</a></h2>
+<p>One of the most important things to test is your archetype&#8217;s resource exchange
+behavior.  Does it request/receive the right kinds of material?  Does it offer/sell
+resources at the right time?  One of the best ways to test this is to actually
+run a simulation with your archetype.  Cyclus comes with a mock simulation
+environment that makes it easy to write these kinds of tests in a way that
+works well with gtest.</p>
+<p><code class="docutils literal"><span class="pre">MockSim</span></code> is a helper for running full simulations entirely in-code without
+having to deal with input files, output database files, and other pieces of
+the full Cyclus stack.  All you have to do is initialize a MockSim indicating
+the archetype you want to test and the simulation duration.  Then add any
+number of sources and/or sinks to transact with your agent.  They can have
+specific recipes (or not) and their deployment and lifetime (before
+decommissioning) can be specified too.  Here is an example using the
+agents:Source archetype in Cyclus as the tested agent:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// Define a composition to use as a simulation recipe.</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">CompMap</span> <span class="n">m</span><span class="p">;</span>
+<span class="n">m</span><span class="p">[</span><span class="mi">922350000</span><span class="p">]</span> <span class="o">=</span> <span class="mf">.05</span><span class="p">;</span>
+<span class="n">m</span><span class="p">[</span><span class="mi">922380000</span><span class="p">]</span> <span class="o">=</span> <span class="mf">.95</span><span class="p">;</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">fresh</span> <span class="o">=</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Composition</span><span class="o">::</span><span class="n">CreateFromMass</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+
+<span class="c1">// Define our archetype xml configuration.</span>
+<span class="c1">// This is the info that goes</span>
+<span class="c1">// &quot;&lt;config&gt;&lt;[archetype-name]&gt;here&lt;/[archetype-name]&gt;&lt;/config&gt;&quot;</span>
+<span class="c1">// in the input file.</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">config</span> <span class="o">=</span>
+    <span class="s">&quot;&lt;commod&gt;enriched_u&lt;/commod&gt;&quot;</span>
+    <span class="s">&quot;&lt;recipe_name&gt;fresh_fuel&lt;/recipe_name&gt;&quot;</span>
+    <span class="s">&quot;&lt;capacity&gt;10&lt;/capacity&gt;&quot;</span><span class="p">;</span>
+
+<span class="c1">// Create and run a 10 time step mock simulation</span>
+<span class="kt">int</span> <span class="n">dur</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">MockSim</span> <span class="n">sim</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">AgentSpec</span><span class="p">(</span><span class="s">&quot;:agents:Source&quot;</span><span class="p">),</span> <span class="n">config</span><span class="p">,</span> <span class="n">dur</span><span class="p">);</span>
+<span class="n">sim</span><span class="p">.</span><span class="n">AddRecipe</span><span class="p">(</span><span class="s">&quot;fresh_fuel&quot;</span><span class="p">,</span> <span class="n">fresh</span><span class="p">);</span> <span class="c1">// with one composition recipe</span>
+<span class="n">sim</span><span class="p">.</span><span class="n">AddSink</span><span class="p">(</span><span class="s">&quot;enriched_u&quot;</span><span class="p">)</span> <span class="c1">// and one sink facility</span>
+    <span class="p">.</span><span class="n">recipe</span><span class="p">(</span><span class="s">&quot;fresh_fuel&quot;</span><span class="p">)</span> <span class="c1">// requesting a particular recipe</span>
+    <span class="p">.</span><span class="n">capacity</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// with a 5 kg per time step receiving limit</span>
+    <span class="p">.</span><span class="n">Finalize</span><span class="p">();</span> <span class="c1">// (don&#39;t forget to call this for each source/sink you add)</span>
+
+<span class="n">sim</span><span class="p">.</span><span class="n">AddSink</span><span class="p">(</span><span class="s">&quot;enriched_u&quot;</span><span class="p">)</span> <span class="c1">// And another sink facility</span>
+        <span class="c1">// requesting no particular recipe</span>
+        <span class="c1">// and with infinite capacity</span>
+    <span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">// that isn&#39;t built until the 3rd timestep.</span>
+    <span class="p">.</span><span class="n">Finalize</span><span class="p">();</span>
+<span class="kt">int</span> <span class="n">agent_id</span> <span class="o">=</span> <span class="n">sim</span><span class="p">.</span><span class="n">Run</span><span class="p">();</span> <span class="c1">// capture the ID of the agent being tested</span>
+</pre></div>
+</div>
+<p>The parameters that can be set (or not) for each source/sink are:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">recipe(std::string</span> <span class="pre">r)</span></code>: The recipe to request/provide. Default is none -
+sources provide requested material, sinks take anything.</li>
+<li><code class="docutils literal"><span class="pre">capacity(double</span> <span class="pre">cap)</span></code>: The per time step throughput/capacity limit for
+the source/sink. Default is infinite.</li>
+<li><code class="docutils literal"><span class="pre">start(int</span> <span class="pre">t)</span></code>: Time the source/sink is initially built. Default is time
+step zero.</li>
+<li><code class="docutils literal"><span class="pre">lifetime(int)</span></code>: The number of time steps the source/sink is deployed
+until automatic decommissioning. Default is infinite (never decommissioned).</li>
+</ul>
+<p>For more details, you can read the <a class="reference external" href="http://fuelcycle.org/cyclus/api/classcyclus_1_1MockSim.html">MockSim API docs</a>.
+Querying simulation results can be accomplished by getting a reference to the
+in-memory database generated.  Not all data that is present in normal
+full-stack simulations is available.  However, most of the key core tables are
+fully available.  Namely the Transactions, Composition, Resources,
+ResCreators, AgentEntry, and AgentExit tables are available.  Any
+custom-tables created by the tested archetype will also be available.  Here is
+a sample query and test you might write using the gtest framework:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// return all transactions where our source facility is the sender</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Cond</span><span class="o">&gt;</span> <span class="n">conds</span><span class="p">;</span>
+<span class="n">conds</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;SenderId&quot;</span><span class="p">,</span> <span class="s">&quot;==&quot;</span><span class="p">,</span> <span class="n">agent_id</span><span class="p">);</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">QueryResult</span> <span class="n">qr</span> <span class="o">=</span> <span class="n">sim</span><span class="p">.</span><span class="n">db</span><span class="p">().</span><span class="n">Query</span><span class="p">(</span><span class="s">&quot;Transactions&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">conds</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">n_trans</span> <span class="o">=</span> <span class="n">qr</span><span class="p">.</span><span class="n">rows</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="n">EXPECT_EQ</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_trans</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;expected 10 transactions, got &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">n_trans</span><span class="p">;</span>
+
+<span class="c1">// reconstruct the material object for the first transaction</span>
+<span class="kt">int</span> <span class="n">res_id</span> <span class="o">=</span> <span class="n">qr</span><span class="p">.</span><span class="n">GetVal</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;ResourceId&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span> <span class="o">=</span> <span class="n">sim</span><span class="p">.</span><span class="n">GetMaterial</span><span class="p">(</span><span class="n">res_id</span><span class="p">);</span>
+<span class="n">EXPECT_DOUBLE_EQ</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">quantity</span><span class="p">());</span>
+
+<span class="c1">// confirm composition is as expected</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">MatQuery</span> <span class="n">mq</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+<span class="n">EXPECT_DOUBLE_EQ</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">mq</span><span class="p">.</span><span class="n">mass</span><span class="p">(</span><span class="mi">922350000</span><span class="p">));</span>
+<span class="n">EXPECT_DOUBLE_EQ</span><span class="p">(</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">mq</span><span class="p">.</span><span class="n">mass</span><span class="p">(</span><span class="mi">922380000</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>You can read API documentation for the <a class="reference external" href="http://fuelcycle.org/cyclus/api/classcyclus_1_1QueryableBackend.html">queryable database</a> and
+<a class="reference external" href="http://fuelcycle.org/cyclus/api/classcyclus_1_1QueryResult.html">query results</a> for more
+details.</p>
+</div>
+<div class="section" id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
+<p>If exceptions are being thrown when you try to use your archetype in
+simulations, you can turn off Cyclus&#8217; main exception handling/catching by
+setting the environment variable <code class="docutils literal"><span class="pre">CYCLUS_NO_CATCH=1</span></code> when you run cyclus.
+This will prevent exceptions from being caught resulting in a core-dump.  You
+can then use a debugger (e.g. gdb or lldb) to run the failing simulation and
+investigate the source of the crash in more detail.  Something like this:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nv">CYCLUS_NO_CATCH</span><span class="o">=</span><span class="m">1</span> gdb --args cyclus my-failing-sim.xml
+
+GNU gdb <span class="o">(</span>GDB<span class="o">)</span> <span class="m">7</span>.11
+Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2016</span> Free Software Foundation, Inc.
+...
+<span class="o">(</span>gdb<span class="o">)</span> run
+...
+</pre></div>
+</div>
+<p>Cyclus has the ability to dump extra information about a simulation run&#8217;s
+resource exchange into the database.  This information can be
+particularly helpful for debugging and verifying your archetype&#8217;s behavior
+with respect to resource exchange.  To turn on this debugging, simply run
+cyclus with the environment variable <code class="docutils literal"><span class="pre">CYCLUS_DEBUG_DRE</span></code> set to any non-empty
+value:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nv">CYCLUS_DEBUG_DRE</span><span class="o">=</span><span class="m">1</span> cyclus my-sim.xml
+</pre></div>
+</div>
+<p>The database will then contain two extra tables with several columns each:</p>
+<ul class="simple">
+<li><strong>DebugRequests</strong>: record of every resource request made in the simulation.<ul>
+<li><code class="docutils literal"><span class="pre">SimId</span></code>:  simulation UUID</li>
+<li><code class="docutils literal"><span class="pre">Time</span></code>:  time step of the request</li>
+<li><code class="docutils literal"><span class="pre">ReqId</span></code>, simulation-unique identifier for this request</li>
+<li><code class="docutils literal"><span class="pre">RequesterID</span></code>: ID of the requesting agent</li>
+<li><code class="docutils literal"><span class="pre">Commodity</span></code>: the commodity of the request</li>
+<li><code class="docutils literal"><span class="pre">Preference</span></code>: agent&#8217;s preference for this particular request</li>
+<li><code class="docutils literal"><span class="pre">Exclusive</span></code>: true (non-zero) if this request is all-or-nothing (integral)</li>
+<li><code class="docutils literal"><span class="pre">ResType</span></code>: resource type (e.g. &#8220;Material&#8221;, &#8220;Product&#8221;)</li>
+<li><code class="docutils literal"><span class="pre">Quantity</span></code>: amount of the request</li>
+<li><code class="docutils literal"><span class="pre">ResUnits</span></code>: units of the request (e.g. kg)</li>
+</ul>
+</li>
+<li><strong>DebugBids</strong>: record of every resource bid made in the simulation.<ul>
+<li><code class="docutils literal"><span class="pre">SimId</span></code>: simulation UUID</li>
+<li><code class="docutils literal"><span class="pre">ReqId</span></code>: simulation-unique identifier for the bid&#8217;s request</li>
+<li><code class="docutils literal"><span class="pre">BidderId</span></code>: ID of the the bidding agent</li>
+<li><code class="docutils literal"><span class="pre">BidQuantity</span></code>: amount of thd bid</li>
+<li><code class="docutils literal"><span class="pre">Exclusive</span></code>: true(non-zero) if this request is all-or-nothing (integral)</li>
+</ul>
+</li>
+</ul>
+<p>Note that some information about bids can be inferred from corresponding
+requests.  A bid&#8217;s time, commodity, resource type, and units are all identical
+to those of the corresponding request.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Testing and Debugging Archetypes</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#unit-tests-out-of-the-box">Unit Tests Out of the Box</a></li>
+<li><a class="reference internal" href="#unit-test-example">Unit Test Example</a></li>
+<li><a class="reference internal" href="#testing-resource-exchange">Testing Resource Exchange</a></li>
+<li><a class="reference internal" href="#debugging">Debugging</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="cycpp.html"
+                          title="Previous page">&larr; Using the Cyclus Preprocessor</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="timestep.html"
+                          title="Next page">&rarr; Time Step Execution</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="timestep.html" title="Time Step Execution"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cycpp.html" title="Using the Cyclus Preprocessor"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

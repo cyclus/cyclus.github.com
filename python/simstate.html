@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Simulation State (cyclus.simstate) &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Agent Interface - Region, Institution, and Facility (cyclus.agents)" href="agents.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="agents.html" title="Agent Interface - Region, Institution, and Facility (cyclus.agents)"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cyclus.simstate">
+<span id="simulation-state-cyclus-simstate"></span><span id="cyclus-pyapi-simstate"></span><h1>Simulation State (<code class="docutils literal"><span class="pre">cyclus.simstate</span></code>)<a class="headerlink" href="#module-cyclus.simstate" title="Permalink to this headline">¶</a></h1>
+<p>Tools for representing and driving the simulation.</p>
+<dl class="class">
+<dt id="cyclus.simstate.SimState">
+<em class="property">class </em><code class="descclassname">cyclus.simstate.</code><code class="descname">SimState</code><span class="sig-paren">(</span><em>input_file=None</em>, <em>input_format=None</em>, <em>output_path=None</em>, <em>memory_backend=False</em>, <em>registry=True</em>, <em>schema_path=None</em>, <em>flat_schema=False</em>, <em>frequency=0.001</em>, <em>repeating_actions=None</em>, <em>heartbeat_frequency=5</em>, <em>debug=False</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.simstate.SimState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that represents and drives the simulation state.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>input_file</strong> : str, optional</p>
+<blockquote>
+<div><p>The path to input file or a raw string of the input file.</p>
+</div></blockquote>
+<p><strong>input_format</strong> : str, optional</p>
+<blockquote>
+<div><p>The format that the input file should be read in as, if it is a raw string.</p>
+</div></blockquote>
+<p><strong>output_path</strong> : str or None, optional</p>
+<blockquote>
+<div><p>The path to the file system database, default (if None) is based
+on the input file path.</p>
+</div></blockquote>
+<p><strong>memory_backend</strong> : MemBack, bool, or None, optional</p>
+<blockquote>
+<div><p>An in-memory backend, if specified.</p>
+</div></blockquote>
+<p><strong>registry</strong> : set, bool, or None, optional</p>
+<blockquote>
+<div><p>The initial registry to start the in-memory backend with. Defaults
+is True, which stores all of the tables.</p>
+</div></blockquote>
+<p><strong>schema_path</strong> : str or None, optional:</p>
+<blockquote>
+<div><p>The path to the cyclus master schema.</p>
+</div></blockquote>
+<p><strong>flat_schema</strong> : bool, optional</p>
+<blockquote>
+<div><p>Whether or not to use the flat master simulation schema.</p>
+</div></blockquote>
+<p><strong>frequency</strong> : int or float, optional</p>
+<blockquote>
+<div><p>The amount of time [sec] to sleep for in tight loops, default 1 ms.</p>
+</div></blockquote>
+<p><strong>repeating_actions</strong> : list or None, optional</p>
+<blockquote>
+<div><p>A list of actions that should be added to the queue at the start of
+each timestep when the cyclus.events.loop() is called. If this is
+None, a new empty list is instantiated.</p>
+</div></blockquote>
+<p><strong>heartbeat_frequency</strong> : float or int, optional</p>
+<blockquote>
+<div><p>The frequency with which to send heartbeat events.</p>
+</div></blockquote>
+<p><strong>debug</strong> : bool, optional</p>
+<blockquote class="last">
+<div><p>Whether the simulation should provide debugging information.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#cyclus.simstate.SimState.send_queue" title="cyclus.simstate.SimState.send_queue"><code class="xref py py-obj docutils literal"><span class="pre">send_queue</span></code></a></td>
+<td>A queue for sending data over the TCP server.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#cyclus.simstate.SimState.action_queue" title="cyclus.simstate.SimState.action_queue"><code class="xref py py-obj docutils literal"><span class="pre">action_queue</span></code></a></td>
+<td>A queue for pending actions.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#cyclus.simstate.SimState.monitor_queue" title="cyclus.simstate.SimState.monitor_queue"><code class="xref py py-obj docutils literal"><span class="pre">monitor_queue</span></code></a></td>
+<td>A queue for pending monitoring actions.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>rec</td>
+<td>(Recorder or None) A recorder instance, available after load.</td>
+</tr>
+<tr class="row-even"><td>file_backend</td>
+<td>(FullBackend or None) A file system based backend that is attached to the output path.</td>
+</tr>
+<tr class="row-odd"><td>si</td>
+<td>(SimInit or None) The main simulation initializer object that then can be used to drive the simulation.</td>
+</tr>
+<tr class="row-even"><td>loop</td>
+<td>(event loop or None) The Python event loop the current simulation is running under.</td>
+</tr>
+<tr class="row-odd"><td>executor</td>
+<td>(Executor or None,) The Python Executor that the simulation should use when running as a server. This is typically a thread pool.</td>
+</tr>
+<tr class="row-even"><td>tasks</td>
+<td>(dict) A str-keyed dictionary mapping to current tasks that may be shared among many actions.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="cyclus.simstate.SimState.action_queue">
+<code class="descname">action_queue</code><a class="headerlink" href="#cyclus.simstate.SimState.action_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>A queue for pending actions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.simstate.SimState.load">
+<code class="descname">load</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.simstate.SimState.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the simulation.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.simstate.SimState.monitor_queue">
+<code class="descname">monitor_queue</code><a class="headerlink" href="#cyclus.simstate.SimState.monitor_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>A queue for pending monitoring actions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.simstate.SimState.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.simstate.SimState.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts running the simulation.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.simstate.SimState.send_queue">
+<code class="descname">send_queue</code><a class="headerlink" href="#cyclus.simstate.SimState.send_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>A queue for sending data over the TCP server. This is
+not instantiated until it is first accessed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.simstate.ensure_close_dynamic_modules">
+<code class="descclassname">cyclus.simstate.</code><code class="descname">ensure_close_dynamic_modules</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.simstate.ensure_close_dynamic_modules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensures that the dynamic module library is closed at the end of
+the process.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.simstate.get_schema_path">
+<code class="descclassname">cyclus.simstate.</code><code class="descname">get_schema_path</code><span class="sig-paren">(</span><em>flat_schema=False</em>, <em>schema_path=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.simstate.get_schema_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the schema path based on the given schema path an the flatness.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="agents.html"
+                          title="Previous page">&larr; Agent Interface - Region, Institution, and Facility (<code class="docutils literal"><span class="pre">cyclus.agents</span></code>)</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="agents.html" title="Agent Interface - Region, Institution, and Facility (cyclus.agents)"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

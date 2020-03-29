@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Time Step Execution &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Resources" href="resources.html" />
+    <link rel="prev" title="Testing and Debugging Archetypes" href="testing.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="resources.html" title="Resources"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="testing.html" title="Testing and Debugging Archetypes"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="time-step-execution">
+<h1>Time Step Execution<a class="headerlink" href="#time-step-execution" title="Permalink to this headline">¶</a></h1>
+<p>A <span style="font-variant:small-caps;">Cyclus</span> simulation is composed of discrete time steps, and each time step is
+subdivided into phases. Phases come in two flavors: kernel phases and agent
+phases. Kernel phases include actions that have either been registered to occur
+with the <span style="font-variant:small-caps;">Cyclus</span> kernel (e.g., building a new facility agent) or are driven by
+the <span style="font-variant:small-caps;">Cyclus</span> kernel (e.g., the Resource Exchange). Agent phases are points
+within a given time step that allow agents to query the current simulation
+environment and perform any agent-specific actions, such as scheduling a new
+agent to be built or scheduling a current agent to be decommissioned.</p>
+<p>The list of phases in order is:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#build"><span class="std std-ref">Build Phase</span></a> (kernel)</li>
+<li><a class="reference internal" href="#tick"><span class="std std-ref">Tick Phase</span></a> (agent)</li>
+<li><a class="reference internal" href="#exchng"><span class="std std-ref">Dynamic Resource Exchange Phase</span></a> (kernel)</li>
+<li><a class="reference internal" href="#tock"><span class="std std-ref">Tock Phase</span></a> (agent)</li>
+<li><a class="reference internal" href="#decom"><span class="std std-ref">Decommission Phase</span></a> (kernel)</li>
+</ul>
+<p>Agent phases are invoked using a method call of the same name, e.g.,</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">virtual</span> <span class="kt">void</span> <span class="n">MyAgent</span><span class="o">::</span><span class="n">Tick</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// perform agent-phase Tick&#39;s work</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># perform agent-phase tick&#39;s work, no return value</span>
+</pre></div>
+</div>
+<p>Importantly, the order in which agents&#8217; agent-phase methods are invoked is <em>not
+guaranteed</em>. In other words, the execution of any given phase is conceptually
+occurring <em>simultaneously among agents</em>.</p>
+<p>The duration of a time step can be set to custom values by users when running
+simulations.  Archetypes must be coded with this in mind.  One easy method for
+supporting arbitrary time step duration is to make all time-related quantities
+and configuration in the archetype operate on a per-time-step basis (e.g.
+reactor cycle length measured in time steps instead of days or months).  If
+archetypes do have constraints on the time step duration (e.g. they only
+support approximately 1-month time steps), then they should throw an
+exception as early as possible (i.e. in their constructor).  The time step
+duration can be queried from an the simulation context:</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">virtual</span> <span class="kt">void</span> <span class="n">MyAgent</span><span class="o">::</span><span class="n">Tick</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="kt">double</span> <span class="n">discharge_qty</span> <span class="o">=</span> <span class="n">discharge_rate</span> <span class="o">*</span> <span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">dt</span><span class="p">();</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="n">discharge_qty</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">discharge_rate</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">dt</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<div class="section" id="build-phase">
+<span id="build"></span><h2>Build Phase<a class="headerlink" href="#build-phase" title="Permalink to this headline">¶</a></h2>
+<p>In the Build phase, agents that have been scheduled to be built are entered into
+the simulation. The entry process includes creating the agent (cloning from a
+<a class="reference internal" href="../basics/glossary.html#term-prototype"><span class="xref std std-term">prototype</span></a>), connecting it with the <a class="reference internal" href="../basics/glossary.html#term-parent-agent"><span class="xref std std-term">parent agent</span></a> that originally
+registered the build, and calling its <code class="docutils literal"><span class="pre">Build</span></code> virtual member function. The
+parent is informed that a new child has been built via the <code class="docutils literal"><span class="pre">cyclus::Agent</span></code>&#8216;s
+<code class="docutils literal"><span class="pre">BuildNotify</span></code> member function.</p>
+<p>Future builds can be scheduled by any <a class="reference internal" href="../basics/glossary.html#term-agent"><span class="xref std std-term">agent</span></a> using the
+<code class="docutils literal"><span class="pre">cyclus::Context</span></code>&#8216;s <code class="docutils literal"><span class="pre">SchedBuild</span></code> member function. A build cannot be
+scheduled for the current time step, but a build can be scheduled for any
+future time step.</p>
+</div>
+<div class="section" id="tick-phase">
+<span id="tick"></span><h2>Tick Phase<a class="headerlink" href="#tick-phase" title="Permalink to this headline">¶</a></h2>
+<p>The Tick phase allows agents to analyze the current status of the simulation
+(e.g., the current number of built facilities) and perform any actions they so
+choose <em>before</em> the execution of the Resource Exchange. For example, an agent
+could schedule to build a new child agent or perform some process on its
+available inventory of resources.</p>
+</div>
+<div class="section" id="dynamic-resource-exchange-phase">
+<span id="exchng"></span><h2>Dynamic Resource Exchange Phase<a class="headerlink" href="#dynamic-resource-exchange-phase" title="Permalink to this headline">¶</a></h2>
+<p>The Dynamic Resource Exchange phase is a <a class="reference internal" href="../basics/glossary.html#term-kernel-phase"><span class="xref std std-term">kernel phase</span></a> in which the
+supply and demand of resources is queried, solved, and the trading thereof is
+executed. The supply and demand of each concrete resource type
+(e.g. <code class="docutils literal"><span class="pre">cyclus::Material</span></code> and <code class="docutils literal"><span class="pre">cyclus::Product</span></code>) are solved for
+independently. A full discussion of this phase is provided in <a class="reference internal" href="dre.html#dre"><span class="std std-ref">Dynamic Resource Exchange</span></a>.</p>
+</div>
+<div class="section" id="tock-phase">
+<span id="tock"></span><h2>Tock Phase<a class="headerlink" href="#tock-phase" title="Permalink to this headline">¶</a></h2>
+<p>The Tock phase allows agents to analyze the current status of the simulation
+(e.g., the current number of built facilities) and perform any actions they so
+choose <em>after</em> the execution of the Resource Exchange. For example, an agent
+could schedule to decommission a child agent or perform some process on its
+available inventory of resources.</p>
+</div>
+<div class="section" id="decommission-phase">
+<span id="decom"></span><h2>Decommission Phase<a class="headerlink" href="#decommission-phase" title="Permalink to this headline">¶</a></h2>
+<p>In the Decommission phase, agents that have been scheduled to be decommissioned
+are removed from the simulation. The removal process includes informing the
+<a class="reference internal" href="../basics/glossary.html#term-parent-agent"><span class="xref std std-term">parent agent</span></a> that one of its children is being decommissioned and
+calling the child agent&#8217;s <code class="docutils literal"><span class="pre">Decommission</span></code> function. The parent is informed that
+a child is being decommissioned via the <code class="docutils literal"><span class="pre">cyclus::Agent</span></code>&#8216;s <code class="docutils literal"><span class="pre">DecomNotify</span></code>
+member function.</p>
+<p>Future decommissions can be scheduled by any <a class="reference internal" href="../basics/glossary.html#term-agent"><span class="xref std std-term">agent</span></a> using the
+<code class="docutils literal"><span class="pre">cyclus::Context</span></code>&#8216;s <code class="docutils literal"><span class="pre">SchedDecom</span></code> member function. A decommission can be
+scheduled for the current time step or any future time step.</p>
+<p>Decommissioning occurrs at the end of a time step. Therefore, an agent with a lifetime
+of 1 would be decommissioned on the same time step it was built. The lifetime of an
+agent can be back calculated by <cite>1+exit_time-start_time</cite>.</p>
+</div>
+<div class="section" id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<p>For a more in depth (and historical) discussion, see <a class="reference external" href="http://fuelcycle.org/cep/cep20.html">CEP 20</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Time Step Execution</a><ul>
+<li><a class="reference internal" href="#build-phase">Build Phase</a></li>
+<li><a class="reference internal" href="#tick-phase">Tick Phase</a></li>
+<li><a class="reference internal" href="#dynamic-resource-exchange-phase">Dynamic Resource Exchange Phase</a></li>
+<li><a class="reference internal" href="#tock-phase">Tock Phase</a></li>
+<li><a class="reference internal" href="#decommission-phase">Decommission Phase</a></li>
+<li><a class="reference internal" href="#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="testing.html"
+                          title="Previous page">&larr; Testing and Debugging Archetypes</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="resources.html"
+                          title="Next page">&rarr; Resources</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="resources.html" title="Resources"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="testing.html" title="Testing and Debugging Archetypes"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

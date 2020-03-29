@@ -1,0 +1,442 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Cymetric Command Line Tutorial &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Python Interface" href="tutorial_py.html" />
+    <link rel="prev" title="Cymetric" href="index.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_py.html" title="Python Interface"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="Cymetric"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Cymetric</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cymetric-command-line-tutorial">
+<span id="cym-tutorial-cli"></span><h1>Cymetric Command Line Tutorial<a class="headerlink" href="#cymetric-command-line-tutorial" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial describes how to use cymetric from the command line.</p>
+<p>Cymetric is an extension of <span style="font-variant:small-caps;">Cyclus</span>, so it is assumed that <span style="font-variant:small-caps;">Cyclus</span> is already
+installed on your system. (If not, please visit <a class="reference external" href="http://fuelcycle.org/kernel/build_from_source.html">Getting and Building Cyclus
+from Source</a>.) Cymetric
+installation instructions are available on <a class="reference external" href="https://github.com/cyclus/cymetric">GitHub</a>.</p>
+<p>Cymetric operates by reading data from a <span style="font-variant:small-caps;">Cyclus</span> database, computing metrics,
+and writing those metrics back to the database. This way, previously seen
+metrics are stored for later retrieval. The dependencies between metrics are
+automatically computed and evaluated.</p>
+<p>Without further ado, let&#8217;s dive in!</p>
+<div class="section" id="command-line-usage">
+<h2>Command Line Usage<a class="headerlink" href="#command-line-usage" title="Permalink to this headline">¶</a></h2>
+<p>Cymetric ships with a command line utility, just called <code class="docutils literal"><span class="pre">cymetric</span></code>.
+The command line tool is useful for quick feedback. It can show a list of
+tables in a database or execute some code using a database, e.g., evaluating
+a metric or quickly checking a plot.</p>
+<p>Since cymetric is wholly dependent on <span style="font-variant:small-caps;">Cyclus</span> databases, you must supply a
+database as an argument on the command line. This will look something like the
+following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cymetric database -flags
+</pre></div>
+</div>
+<p>We&#8217;ll be using <code class="docutils literal"><span class="pre">test.h5</span></code> and <code class="docutils literal"><span class="pre">test.sqlite</span></code> as our example databases here.
+The sections below explain the flags for use on the command line.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Please note that cymetric may not work on the command line within its own directory.</p>
+</div>
+<div class="section" id="table-listing-l">
+<h3>Table Listing: <code class="docutils literal"><span class="pre">-l</span></code><a class="headerlink" href="#table-listing-l" title="Permalink to this headline">¶</a></h3>
+<p>The first switch here, lowercase-L <code class="docutils literal"><span class="pre">-l</span></code>, simply lists the tables in the
+database.  Note that this may list more tables in the database than are
+strictly part of the <span style="font-variant:small-caps;">Cyclus</span> interface, because of the need for <span style="font-variant:small-caps;">Cyclus</span> to
+store metadata. Don&#8217;t be alarmed. Listing the current tables is easy:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cymetric test.h5 -l
+AgentEntry
+AgentStateAgent
+AgentStateInventories
+AgentState_agents_NullRegionInfo
+...
+BlobKeys
+BlobVals
+BuildSchedule
+Compositions
+DecayMode
+Finish
+Info
+InputFiles
+MaterialInfo
+NextIds
+Prototypes
+Recipes
+ResCreators
+Resources
+Snapshots
+StringKeys
+StringVals
+Transactions
+XMLPPInfo
+</pre></div>
+</div>
+<p>Metrics that are generated will show up in this listing after they have been
+computed. All of the core <span style="font-variant:small-caps;">Cyclus</span> tables are denoted as root metrics, and they
+are listed here too. To understand the core tables included in a <span style="font-variant:small-caps;">Cyclus</span>
+database, please review the page <a class="reference external" href="http://fuelcycle.org/user/dbdoc.html">Understanding the Database</a>.</p>
+</div>
+<div class="section" id="code-execution-e">
+<h3>Code Execution: <code class="docutils literal"><span class="pre">-e</span></code><a class="headerlink" href="#code-execution-e" title="Permalink to this headline">¶</a></h3>
+<p>Cymetric allows you to execute arbitrary code on metrics from the command line
+with the <code class="docutils literal"><span class="pre">-e</span></code> flag. The code that you pass in is pure Python. Every metric
+and root <span style="font-variant:small-caps;">Cyclus</span> table are assigned automatically to variable names that you
+can use. Indexing the table variables will return the metric as a <a class="reference external" href="http://pandas.pydata.org/">pandas</a> DataFrame. For example, to print the
+<code class="docutils literal"><span class="pre">AgentEntry</span></code> table, we would write <code class="docutils literal"><span class="pre">AgentEntry[:]</span></code> to get the table and
+<code class="docutils literal"><span class="pre">print(AgentEntry[:])</span></code> to display it after the <code class="docutils literal"><span class="pre">-e</span></code> flag:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cymetric test.h5 -e <span class="s2">&quot;print(AgentEntry[:])&quot;</span>
+                                  SimId  AgentId      Kind                    Spec          Prototype  ParentId  Lifetime  EnterTime
+<span class="m">0</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">11</span>    Region      :agents:NullRegion       SingleRegion        -1        -1          <span class="m">0</span>
+<span class="m">1</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">12</span>      Inst    :cycamore:DeployInst  SingleInstitution        <span class="m">11</span>        -1          <span class="m">0</span>
+<span class="m">2</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">13</span>  Facility        :cycamore:Source         UOX_Source        <span class="m">12</span>        -1          <span class="m">1</span>
+<span class="m">3</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">14</span>  Facility        :cycamore:Source         MOX_Source        <span class="m">12</span>        -1          <span class="m">1</span>
+<span class="m">4</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">15</span>  Facility  :cycamore:BatchReactor           Reactor1        <span class="m">12</span>        -1          <span class="m">1</span>
+<span class="m">5</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">16</span>  Facility  :cycamore:BatchReactor           Reactor2        <span class="m">12</span>        -1          <span class="m">2</span>
+<span class="m">6</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">17</span>  Facility  :cycamore:BatchReactor           Reactor3        <span class="m">12</span>        -1          <span class="m">3</span>
+
+<span class="o">[</span><span class="m">7</span> rows x <span class="m">8</span> columns<span class="o">]</span>
+</pre></div>
+</div>
+<p>Indexing a metric with an empty slice (<code class="docutils literal"><span class="pre">[:]</span></code>), none (<code class="docutils literal"><span class="pre">[None]</span></code>), or an ellipsis
+(<code class="docutils literal"><span class="pre">[...]</span></code>) will return the full metric. However, you can also index by condition
+filters on the column names. The column names of the metric are thus also available for
+use.  For example, let&#8217;s just grab all of the facilities out of the entry table:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cymetric test.h5 -e <span class="s2">&quot;print(AgentEntry[Kind == &#39;Facility&#39;])&quot;</span>
+                                  SimId  AgentId      Kind                    Spec   Prototype  ParentId  Lifetime  EnterTime
+<span class="m">0</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">13</span>  Facility        :cycamore:Source  UOX_Source        <span class="m">12</span>        -1          <span class="m">1</span>
+<span class="m">1</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">14</span>  Facility        :cycamore:Source  MOX_Source        <span class="m">12</span>        -1          <span class="m">1</span>
+<span class="m">2</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">15</span>  Facility  :cycamore:BatchReactor    Reactor1        <span class="m">12</span>        -1          <span class="m">1</span>
+<span class="m">3</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">16</span>  Facility  :cycamore:BatchReactor    Reactor2        <span class="m">12</span>        -1          <span class="m">2</span>
+<span class="m">4</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">17</span>  Facility  :cycamore:BatchReactor    Reactor3        <span class="m">12</span>        -1          <span class="m">3</span>
+
+<span class="o">[</span><span class="m">5</span> rows x <span class="m">8</span> columns<span class="o">]</span>
+</pre></div>
+</div>
+<p>Separate the conditions by commas (<code class="docutils literal"><span class="pre">,</span></code>) to apply multiple filters at the same
+time:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cymetric test.h5 -e <span class="s2">&quot;print(AgentEntry[Kind == &#39;Facility&#39;, AgentId &gt; 14])&quot;</span>
+                                  SimId  AgentId      Kind                    Spec Prototype  ParentId  Lifetime  EnterTime
+<span class="m">0</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">15</span>  Facility  :cycamore:BatchReactor  Reactor1        <span class="m">12</span>        -1          <span class="m">1</span>
+<span class="m">1</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">16</span>  Facility  :cycamore:BatchReactor  Reactor2        <span class="m">12</span>        -1          <span class="m">2</span>
+<span class="m">2</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">17</span>  Facility  :cycamore:BatchReactor  Reactor3        <span class="m">12</span>        -1          <span class="m">3</span>
+
+<span class="o">[</span><span class="m">3</span> rows x <span class="m">8</span> columns<span class="o">]</span>
+</pre></div>
+</div>
+<p>Because code execution is just pure Python, we can do <em>anything</em> that we would be
+able to do in Python. Suppose that we have a <code class="docutils literal"><span class="pre">Materials</span></code> metric with a <code class="docutils literal"><span class="pre">Mass</span></code>
+column. We can compute this metric, pull the column out, multiply it by 42,
+save the result to a variable, and then print this variable all via the following.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cymetric test.h5 -e <span class="s2">&quot;mass = Materials[:][&#39;Mass&#39;] * 42; print(mass)&quot;</span>
+<span class="m">0</span>      <span class="m">0</span>.000000
+<span class="m">1</span>      <span class="m">0</span>.000000
+<span class="m">2</span>      <span class="m">0</span>.000000
+<span class="m">3</span>      <span class="m">0</span>.000000
+<span class="m">4</span>      <span class="m">0</span>.000000
+<span class="m">5</span>      <span class="m">0</span>.000000
+<span class="m">6</span>      <span class="m">0</span>.000000
+<span class="m">7</span>      <span class="m">0</span>.000000
+<span class="m">8</span>      <span class="m">0</span>.000000
+<span class="m">9</span>      <span class="m">0</span>.000000
+<span class="m">10</span>     <span class="m">4</span>.790314
+<span class="m">11</span>     <span class="m">0</span>.007370
+<span class="m">12</span>     <span class="m">0</span>.066327
+<span class="m">13</span>     <span class="m">0</span>.368486
+<span class="m">14</span>    <span class="m">33</span>.064222
+...
+<span class="m">462</span>     <span class="m">0</span>.493771
+<span class="m">463</span>     <span class="m">0</span>.313213
+<span class="m">464</span>     <span class="m">0</span>.350812
+<span class="m">465</span>     <span class="m">0</span>.228541
+<span class="m">466</span>    <span class="m">40</span>.917474
+<span class="m">467</span>     <span class="m">0</span>.030567
+<span class="m">468</span>     <span class="m">0</span>.011288
+<span class="m">469</span>     <span class="m">0</span>.238031
+<span class="m">470</span>     <span class="m">0</span>.092571
+<span class="m">471</span>     <span class="m">0</span>.081648
+<span class="m">472</span>     <span class="m">0</span>.034441
+<span class="m">473</span>     <span class="m">0</span>.002762
+<span class="m">474</span>     <span class="m">0</span>.008074
+<span class="m">475</span>     <span class="m">0</span>.000965
+<span class="m">476</span>     <span class="m">0</span>.002827
+Name: Mass, Length: <span class="m">477</span>, dtype: float64
+</pre></div>
+</div>
+<p>As a convenience, the following Python modules are available in the execution context
+under standard aliases. This prevents you from having to import them manually yourself.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="60%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Module</th>
+<th class="head">Alias</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">cymetric</span></code></td>
+<td><code class="docutils literal"><span class="pre">cym</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">numpy</span></code></td>
+<td><code class="docutils literal"><span class="pre">np</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">pandas</span></code></td>
+<td><code class="docutils literal"><span class="pre">pd</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">uuid</span></code></td>
+<td><code class="docutils literal"><span class="pre">uuid</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">matplotlib</span></code></td>
+<td><code class="docutils literal"><span class="pre">matplotlib</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">matplotlib.pyplot</span></code></td>
+<td><code class="docutils literal"><span class="pre">plt</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>This let&#8217;s you do neat things such as plot the metrics right from the command line.
+For example,</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cymetric test.h5 -e <span class="s2">&quot;Materials[ResourceId == 15].plot(x=&#39;NucId&#39;, y=&#39;Mass&#39;, kind=&#39;bar&#39;); plt.show()&quot;</span>
+</pre></div>
+</div>
+<p>Will pop up with the following figure:</p>
+<img alt="../../_images/tut_nucid_mass.png" src="../../_images/tut_nucid_mass.png" />
+</div>
+<div class="section" id="to-write-or-not-to-write-write-and-no-write">
+<h3>To write or not to write: <code class="docutils literal"><span class="pre">--write</span></code> and <code class="docutils literal"><span class="pre">--no-write</span></code><a class="headerlink" href="#to-write-or-not-to-write-write-and-no-write" title="Permalink to this headline">¶</a></h3>
+<p>Cymetric automatically writes an evaluated metric to the database. There are
+some scenarios when you may not want this to happen. For example, you might
+want your script to do many metric calculations and save the results elsewhere;
+in this case, writing to the database is unneccessary. While writing is the
+default functionality when you use the <code class="docutils literal"><span class="pre">-e</span></code> flag, the lack of writing
+can be accomplished with the <code class="docutils literal"><span class="pre">--no-write</span></code> flag. In the example below, the
+table will not be written to the database:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cymetric test.h5 --no-write -e <span class="s2">&quot;Materials[:]&quot;</span>
+</pre></div>
+</div>
+<p>Since cymetric looks up an already evaluated metric in the database,
+overwriting an existing table with a new one might be desired. This is where
+the <code class="docutils literal"><span class="pre">--write</span></code> flag is useful:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cymetric test.h5 --write -e <span class="s2">&quot;Materials[:]&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Cymetric Command Line Tutorial</a><ul>
+<li><a class="reference internal" href="#command-line-usage">Command Line Usage</a><ul>
+<li><a class="reference internal" href="#table-listing-l">Table Listing: <code class="docutils literal"><span class="pre">-l</span></code></a></li>
+<li><a class="reference internal" href="#code-execution-e">Code Execution: <code class="docutils literal"><span class="pre">-e</span></code></a></li>
+<li><a class="reference internal" href="#to-write-or-not-to-write-write-and-no-write">To write or not to write: <code class="docutils literal"><span class="pre">--write</span></code> and <code class="docutils literal"><span class="pre">--no-write</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="index.html"
+                          title="Previous page">&larr; Cymetric</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="tutorial_py.html"
+                          title="Next page">&rarr; Python Interface</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_py.html" title="Python Interface"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="Cymetric"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Cymetric</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

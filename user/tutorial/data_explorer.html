@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>An Introduction to Data Exploration &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Advanced Data Exploration Topics" href="plot_output.html" />
+    <link rel="prev" title="Working with Cyclus in the Cloud" href="launch_cyclus.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="plot_output.html" title="Advanced Data Exploration Topics"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="launch_cyclus.html" title="Working with Cyclus in the Cloud"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="an-introduction-to-data-exploration">
+<h1>An Introduction to Data Exploration<a class="headerlink" href="#an-introduction-to-data-exploration" title="Permalink to this headline">¶</a></h1>
+<p>The &#8220;Data Exploration&#8221; tab in Cyclist provides a way to fluidly explore the
+data that arises from a <span style="font-variant:small-caps;">Cyclus</span> simulation. A variety of views can be
+manipulated in a straightforward and interactive way to develop a thorough
+understanding of the features that matter the most.</p>
+<img alt="Introduction to the data exploration view." class="align-center" src="../../_images/data-explore-annotated.png" />
+<ol class="arabic simple">
+<li>Simulations: A user can load multiple simulations and easily work with
+multiple simulations, either switching between them or viewing them side-by-side.</li>
+<li>Tables: This highlights the most important output tables, both those that
+are the raw outpu of <span style="font-variant:small-caps;">Cyclus</span> and some derived tables.  A user can draw
+data from these tables into the different views to create a visual story
+from the data.</li>
+<li>Fields: These represent the columns of data in each table and can be used
+for a variety of roles in the views:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>define which data will be plotted on axes</li>
+<li>aggregate and group data together according to the fields</li>
+<li>filter or select subsets of data</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Filters: TBD!!</li>
+</ol>
+<div class="section" id="activity-examine-your-first-data-exploration-session">
+<h2>Activity: Examine Your First Data Exploration Session<a class="headerlink" href="#activity-examine-your-first-data-exploration-session" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Click on the &#8220;QuantityInventory&#8221; table to selecct it.</li>
+<li>Right-click on the &#8220;QuantityInventory&#8221; table and select &#8220;Plot&#8221;</li>
+</ol>
+<img alt="A blank plot window" class="align-center" src="../../_images/plot-01-01.png" />
+<ol class="arabic simple" start="3">
+<li>Select a &#8220;Time&#8221; as the x-axis by dragging it from the &#8220;Fields&#8221; pane and
+dropping it in X-axis entry-box.</li>
+<li>Do the same for &#8220;Quantity&#8221; on the y-axis.</li>
+</ol>
+<img alt="A first inventory plots" class="align-center" src="../../_images/plot-01-02.png" />
+<p>This shows a plot of the total inventory in the system as a function of time.</p>
+<ol class="arabic simple" start="5">
+<li>Drag the &#8220;Protoype&#8221; field into the &#8220;Group by&#8221; entry to see the results
+split up by the prototype that contained that inventory.</li>
+</ol>
+<img alt="Inventory plots shown by protoype" class="align-center" src="../../_images/plot-01-03.png" />
+<ol class="arabic simple" start="7">
+<li>Use the &#8220;Axis&#8221; menu at the top right of the plot to adjust the y-axis to be logarithmic.</li>
+<li>Add &#8220;NucID&#8221; as an addition &#8220;Group by&#8221; field to see the total mass of each
+nuclide that was resident in each type of facility in the system as a
+function of time.</li>
+</ol>
+<img alt="Inventory plots shown by prototype and by nuclide." class="align-center" src="../../_images/plot-01-04.png" />
+<p>This image is becoming somewhat busy, so we can add some filters.</p>
+<ol class="arabic simple" start="9">
+<li>Drop the &#8220;Prototype&#8221; field to the middle of the title bar for the plot.  A
+new control panel opens on the right to control the filters.  Select only
+the enrichment plant (EnrichPlant) and the repository (NuclearUnderground).</li>
+</ol>
+<img alt="Inventory plots with filters to help select data." class="align-center" src="../../_images/plot-01-05-annotated.png" />
+<ol class="arabic simple" start="10">
+<li>We can combine this with another filter: drop the &#8220;NucID&#8221; field in the
+title bar next to the &#8220;Prototype&#8221; filter.  Select all the facilities
+protypes only &#8220;U235&#8221; and &#8220;Pu239&#8221; to examine the inventory of fissile
+material in diferent facilities throughout the system.</li>
+</ol>
+<img alt="Inventory plots with filters to help select data." class="align-center" src="../../_images/plot-01-06.png" />
+<ol class="arabic simple" start="11">
+<li>Notice the fluctations at the beginning! Let&#8217;s zoom in a little by adding
+the &#8220;Time&#8221; field as yet another filter. Notice how it appears as a slider
+bar with entries for a time window.  Use the sliders, or the text entry to
+choose a window between time steps 0 and 60 (the first 5 years).</li>
+</ol>
+<img alt="The first 50 years of inventory plots with filters to help select data." class="align-center" src="../../_images/plot-01-07.png" />
+<p>Some observations:</p>
+<ul class="simple">
+<li>The enrichment plant began enriching in the first time step and was then
+able to provide enough fuel for a full core loading in the second time step.
+At that time we see the inventory of both U-235 and U-238 drop.</li>
+<li>The enerichment plant&#8217;s inventory then oscillates as it build up enough
+material for an additional reactor to come online.  Once all reactors have
+full core loadings (100 tonnes each), the total reactor inventory reaches
+eqilibirum.</li>
+<li>After 1 full core loading cycle (12 time steps), the first material appears
+at the repository as spent fuel and begins accumulating.</li>
+</ul>
+<ol class="arabic simple" start="12">
+<li>Finally, remove &#8220;Time&#8221; from the x-axis and move &#8220;Protoype&#8221; from the Group
+By to the x-axis, select all the nuclides in the filter, and expand the
+time filter to include the whole simulation.  This has quickly become a
+bar chart showing the relative nuc8lide amounts in each facility type.</li>
+</ol>
+<img alt="A bar chart comparing nuclide concentrations." class="align-center" src="../../_images/plot-01-08.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">An Introduction to Data Exploration</a><ul>
+<li><a class="reference internal" href="#activity-examine-your-first-data-exploration-session">Activity: Examine Your First Data Exploration Session</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="launch_cyclus.html"
+                          title="Previous page">&larr; Working with Cyclus in the Cloud</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="plot_output.html"
+                          title="Next page">&rarr; Advanced Data Exploration Topics</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="plot_output.html" title="Advanced Data Exploration Topics"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="launch_cyclus.html" title="Working with Cyclus in the Cloud"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

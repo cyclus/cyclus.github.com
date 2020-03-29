@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CEP 2 - Separation of Concerns in the Cyclus Ecosystem &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CEP 3 - Cyclus Release Procedure" href="cep3.html" />
+    <link rel="prev" title="CEP 1 - CEP Purpose and Guidelines" href="cep1.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep3.html" title="CEP 3 - Cyclus Release Procedure"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep1.html" title="CEP 1 - CEP Purpose and Guidelines"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cep-2-separation-of-concerns-in-the-cyclus-ecosystem">
+<h1>CEP 2 - Separation of Concerns in the <span style="font-variant:small-caps;">Cyclus</span> Ecosystem<a class="headerlink" href="#cep-2-separation-of-concerns-in-the-cyclus-ecosystem" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">CEP:</th><td class="field-body">2</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Title:</th><td class="field-body">Separation of Concerns in the <span style="font-variant:small-caps;">Cyclus</span> Ecosystem, or Where Do I Put My Code?</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Last-Modified:</th><td class="field-body">2017-09-01</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">Anthony Scopatz, Matthew Gidden</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status:</th><td class="field-body">Accepted</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Process</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Created:</th><td class="field-body">2013-08-05</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+<p>The purpose of this CEP is to clearly delineate the purpose &#8211; technical and
+cultural &#8211; of the various projects which make up the <span style="font-variant:small-caps;">Cyclus</span> ecosystem.
+Projects, for purposes here, are unique entities which have independent lifetimes
+and central concerns. Many projects may try to tackle the same concern but no
+single project may tackle more than one concern.  Concerns, like projects, may
+be dependent upon one another.</p>
+<p>The central concerns in the <span style="font-variant:small-caps;">Cyclus</span> ecosystem are
+<strong>dynamic resource exchange simulation</strong> (DRES),  <strong>domain models</strong> (DM),
+<strong>analysis &amp; visualization</strong> (A&amp;V), and <strong>simulation orchestration</strong> (ORC).</p>
+</div>
+<div class="section" id="concerns">
+<h2>Concerns<a class="headerlink" href="#concerns" title="Permalink to this headline">¶</a></h2>
+<p>A rich fuel cycle simulator solution has four primary organizational pieces that
+must have robust implementations.  These pieces are a mechanism for solving for
+resource exchange in the fuel cycle, relevant and interesting  models for the
+domains of interest (physics, economics, policy, etc.), a
+programmatic method for parsing, slicing, aggregating, and displaying
+simulation results, and a mechanism for executing and collecting many simulations.
+As an effectively designed suite of software, these concerns
+should be completely separated from one another
+and interact only through well-defined interfaces <a class="footnote-reference" href="#id5" id="id1">[1]</a>.  This
+independence allows both users and developers to reason about each concern
+without needing to consider upstream effects.  Coupled with a stable interface
+or API, this independence also allows users and developers to ignore downstream
+effects in most cases.</p>
+<p>The domain model concern is dependent only on the resource exchange concern.
+However, the analysis &amp; visualization concern is directly dependent on both the
+resource exchange and the domain model concerns.  These relationships may be seen
+in Figure 1.</p>
+<div class="figure align-center" id="id8">
+<img alt="../_images/cep-0002-1.svg" src="../_images/cep-0002-1.svg" /><p class="caption"><span class="caption-text"><strong>Figure 1:</strong> Dependencies Between Concerns</span></p>
+</div>
+<div class="section" id="dynamic-resource-exchange-simulation">
+<h3>Dynamic Resource Exchange Simulation<a class="headerlink" href="#dynamic-resource-exchange-simulation" title="Permalink to this headline">¶</a></h3>
+<p>The dynamic resource exchange simulation concern is the basis for all other fuel
+cycle concerns.  This dictates and manages how resources flow through a system and
+the time paradigm used to model the system.  A number of possible representations of
+system elements exist.  Two main options stand out: 1) <em>individual-based</em> models in
+which every actor receives its own instance, and 2) <em>fleet-based</em> models where
+like actors are grouped together and act identically.  Resource exchange may be
+implemented using a strict <em>agent-based</em> modeling <a class="footnote-reference" href="#id6" id="id2">[2]</a> approach or strict
+<em>system dynamics</em> methods <a class="footnote-reference" href="#id7" id="id3">[3]</a>.  However, these two paradigms are not restrictive
+and implementations may pull from a variety of algorithms as needed.</p>
+<p>Furthermore, the choice of how to represent time evolution may fall into one
+of the following categories:</p>
+<ul class="simple">
+<li><strong>Equilibrium</strong> - initial transients are ignored or discarded in favor of a steady
+state solution.</li>
+<li><strong>Quasi-static</strong> - initial transients are computed but natural time (sec, min, etc)
+are replaced with an easier to compute number of passes through a given
+actor.</li>
+<li><strong>Discrete time</strong> - natural time is implemented but discretized to some minimum
+and constant dt.</li>
+<li><strong>Adaptive time</strong> - natural time is implemented and discretized, but the value of
+dt may change from time step to time step, allowing for finer resolution only
+when needed.</li>
+<li><strong>Continuous time</strong> - natural time is implemented as a continuous variable.</li>
+</ul>
+<p>It is important to note that this concern is a solely mathematical endeavor and
+should not implement any domain-specific calculations. However, the
+implementation may be <em>domain-aware</em> in that it may know about certain sub-type
+specializations.  For example, materials and U.S. Dollars are both sub-types of
+resources. Still, the dynamic resource exchange simulation concern is not
+allowed to discriminate between any of these specializations nor perform
+domain-specific computations (such as transmuting a material or pricing a
+derivative).</p>
+<p>This concern is responsible for housing general archetypes that allow for
+general, dynamic simulation of supply chain networks in a resource-neutral
+manner. Supply chain network models require, at minimum, three types of entities
+(i.e., nodes) <a class="reference internal" href="#bazaraa2011linear" id="id4">[BJS11]</a>:</p>
+<ul class="simple">
+<li>Sources (supply nodes)</li>
+<li>Storage (transshipment nodes)</li>
+<li>Sinks (demand nodes)</li>
+</ul>
+<p>In addition to enabling such basic simulations, the dynamic resource exchange
+simulation concern is also responsible for all optimizations of the fuel cycle.
+This includes optimizing resource exchange between multiple actors as well as
+finding the initial conditions which optimize a value function subject to some
+constraints.</p>
+</div>
+<div class="section" id="domain-models">
+<h3>Domain Models<a class="headerlink" href="#domain-models" title="Permalink to this headline">¶</a></h3>
+<p>The purpose of the domain models concern is to provide interesting, accurate, and
+relevant models of various aspects of the fuel cycle.  These aspects are often the
+technical meat of the fuel cycle analysis.  However, they may be mathematically
+separated from resource exchange.  This concern ensures that those mathematical
+separations remain distinct in the software.  There are a number of domain models
+which are pertinent to fuel cycle calculations:</p>
+<ul class="simple">
+<li>Physics</li>
+<li>Chemistry</li>
+<li>Health Physics</li>
+<li>Economics</li>
+<li>Public Policy</li>
+<li>and more!</li>
+</ul>
+<p>The implementation of specific domain computations should rely on the system dynamics
+for all systematic flow and timing needs.  The implementation of the domain
+calculations should be completely separated from the system dynamics concern.
+This establishes a clean interface between these two concerns.</p>
+<p>For example, take an enrichment facility which is asked to compute product and tails
+enrichments.  In the initialization of this calculation, the dynamic resource
+exchange simulation concern hands off the simulation time (t), the time delta (dt),
+and the initial feed material to the underlying physics model.  The physics model
+then computes the desired outputs without further interaction with the resource
+exchange model.  Lastly, the outputs are returned to the DRES model.</p>
+</div>
+<div class="section" id="analysis-visualization">
+<h3>Analysis &amp; Visualization<a class="headerlink" href="#analysis-visualization" title="Permalink to this headline">¶</a></h3>
+<p>The purpose of the analysis &amp; visualization concern is to supply aggregation and
+introspection into the simulation outputs.  The analysis may take place at both
+high and low levels, common aggregations should be easy to perform, and static
+and interactive visualization should be provided as a mechanism for easy human
+consumption.  All post-processing of simulation data falls under this concern.</p>
+<p>The analysis &amp; visualization concern is dependent directly on both the dynamic
+resource exchange simulation concern and the domain models concern.  This is because
+meaningful inspection of simulation data requires parameters from both concerns.
+Note that these dependencies are independent.  The analysis &amp; visualization tools
+must handle the case where only DRES models are used.  However, if domain models
+are used and the analysis &amp; visualization is aware of these domain models,
+all DRES parameters are guaranteed to also be present.</p>
+</div>
+<div class="section" id="simulation-orchestration">
+<h3>Simulation Orchestration<a class="headerlink" href="#simulation-orchestration" title="Permalink to this headline">¶</a></h3>
+<p>Simulation campaigns often involve executing multiple instances of the DRE and
+associated analysis and visualization. This may be with the purpose of,</p>
+<ul class="simple">
+<li>performing a sensitivity study,</li>
+<li>running a parameter sweep,</li>
+<li>sampling from a large option space, or</li>
+<li>creating a training set for machine learning models.</li>
+</ul>
+<p>This execution and analysis is either managed manually or automatically, but it
+is always managed.  Running, analyzing, visualizing, and generating many <span style="font-variant:small-caps;">Cyclus</span>
+input files is termed here &#8220;orchestration.&#8221; This includes provisioning compute
+resources where these tasks are executed. Data management also falls under the
+purview of simulation orchestration.</p>
+<p>Simulation orchestration provides a feedback loop for the <span style="font-variant:small-caps;">Cyclus</span> ecosystem.
+It both drives the DRE simulator and incorporates the results of previous
+simulations.</p>
+</div>
+</div>
+<div class="section" id="the-cyclus-ecosystem">
+<h2>The <span style="font-variant:small-caps;">Cyclus</span> Ecosystem<a class="headerlink" href="#the-cyclus-ecosystem" title="Permalink to this headline">¶</a></h2>
+<p>While many fuel cycle simulators may choose to implement all of the above concerns
+in a single project, each concern in the <span style="font-variant:small-caps;">Cyclus</span> ecosystem is implemented in
+its own project.  Many projects may satisfy the needs of a concern.  However, no
+project may try to address multiple concerns. This provides a clear guideline
+for which projects should accept which kinds of code.</p>
+<p>If for some reason ambiguities exist, first attempt to refactor the code at hand
+with these concerns in mind.  If this fails because of a fundamental ambiguity
+or mixing of multiple concerns, place the code with the most dependent concern.
+For example, if it is not clear if a class belongs with domain models or with the
+resource exchange put it with the domain models to be safe.</p>
+<p>The <span style="font-variant:small-caps;">Cyclus</span> development team currently supports projects for these concerns:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/cyclus/cyclus">Cyclus</a> - Dynamic Resource Exchange Simulation (individual actors, discrete
+time, canonical supply chain entities)</li>
+<li><a class="reference external" href="https://github.com/cyclus/cycamore">Cycamore</a> - Domain Models</li>
+<li><a class="reference external" href="https://github.com/cyclus/cymetric">Cymetric</a> -  Analysis &amp; Visualization</li>
+<li><a class="reference external" href="https://github.com/cyclus/cyclist2">Cyclist</a> -  Analysis &amp; Visualization (historical)</li>
+<li><a class="reference external" href="https://github.com/ergs/rickshaw">Rickshaw</a> - Simulation orchestration</li>
+</ul>
+<p>The dependency graph for these projects is similar to the graph of the concerns.
+Figure 2 displays this graph along with other projects which implement these concerns.</p>
+<div class="figure align-center" id="id9">
+<img alt="../_images/cep-0002-2.svg" src="../_images/cep-0002-2.svg" /><p class="caption"><span class="caption-text"><strong>Figure 2:</strong> Dependencies Between Projects is <span style="font-variant:small-caps;">Cyclus</span> Ecosystem.</span></p>
+</div>
+<div class="section" id="toolkits">
+<h3>Toolkits<a class="headerlink" href="#toolkits" title="Permalink to this headline">¶</a></h3>
+<p>In any real system, there is glue code which holds the projects together in a
+cohesive manner.  A collection of such utilities is called a <em>toolkit</em>.  While
+toolkits are critically important to well functioning software their components
+are united only in that &#8220;should be useful.&#8221;  There need not be underlying concept
+tying them together.  For this reason, toolkits are not a top-level concern on
+par with resource exchange, domain models, and analysis &amp; visualization.</p>
+<p>Instead, each project may have its own toolkit which contains utilities that
+corresponds most closely with its concern.  The toolkit provides a layer on top of
+the concern implementation.  Thus the toolkit will be aware of other parts of the
+project but the concern implementation should not call into elements from the toolkit.</p>
+<p>For example, resources are part of the primary concern of <span style="font-variant:small-caps;">Cyclus</span>.  Thus
+a ResourceBuffer class would be part of the <span style="font-variant:small-caps;">Cyclus</span> toolkit.  This is because
+resource exchange can be implemented without a ResourceBuffer but such a class
+is useful to provide to domain model developers.  Furthermore, the buffer
+applies to all resources is not specific to any domain. Thus this class should be
+included next to the resource exchange implementation.</p>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Many other ecosystems and projects model the fuel cycle and make their own choices
+about how to separate &#8211; or not &#8211; the concerns of resource exchange, domain models,
+and analysis and visualization.  The <span style="font-variant:small-caps;">Cyclus</span> ecosystem places all concerns in
+separate projects.  This allows a high degree of modularity between software and
+developers.  Such an ecosystem enables experts to contribute their specific
+knowledge base in a way that is independent from other parts of the ecosystem
+while simultaneously integrating well with the rest of the ecosystem.  Finally,
+this document provides instructions on where to implement tasks based on the task&#8217;s
+primary concern.</p>
+</div>
+<div class="section" id="document-history">
+<h2>Document History<a class="headerlink" href="#document-history" title="Permalink to this headline">¶</a></h2>
+<p>This document is released under the CC-BY 3.0 license.</p>
+</div>
+<div class="section" id="references-and-footnotes">
+<h2>References and Footnotes<a class="headerlink" href="#references-and-footnotes" title="Permalink to this headline">¶</a></h2>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Separation_of_concerns">http://en.wikipedia.org/wiki/Separation_of_concerns</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Agent-based_model">http://en.wikipedia.org/wiki/Agent-based_model</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/System_dynamics">http://en.wikipedia.org/wiki/System_dynamics</a></td></tr>
+</tbody>
+</table>
+<p id="bibtex-bibliography-cep/cep2-0"><table class="docutils citation" frame="void" id="bazaraa2011linear" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[BJS11]</a></td><td>Mokhtar&nbsp;S Bazaraa, John&nbsp;J Jarvis, and Hanif&nbsp;D Sherali. <em>Linear programming and network flows</em>. John Wiley &amp; Sons, 2011.</td></tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">CEP 2 - Separation of Concerns in the <span style="font-variant:small-caps;">Cyclus</span> Ecosystem</a><ul>
+<li><a class="reference internal" href="#abstract">Abstract</a></li>
+<li><a class="reference internal" href="#concerns">Concerns</a><ul>
+<li><a class="reference internal" href="#dynamic-resource-exchange-simulation">Dynamic Resource Exchange Simulation</a></li>
+<li><a class="reference internal" href="#domain-models">Domain Models</a></li>
+<li><a class="reference internal" href="#analysis-visualization">Analysis &amp; Visualization</a></li>
+<li><a class="reference internal" href="#simulation-orchestration">Simulation Orchestration</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-cyclus-ecosystem">The <span style="font-variant:small-caps;">Cyclus</span> Ecosystem</a><ul>
+<li><a class="reference internal" href="#toolkits">Toolkits</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#summary">Summary</a></li>
+<li><a class="reference internal" href="#document-history">Document History</a></li>
+<li><a class="reference internal" href="#references-and-footnotes">References and Footnotes</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="cep1.html"
+                          title="Previous page">&larr; CEP 1 - CEP Purpose and Guidelines</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="cep3.html"
+                          title="Next page">&rarr; CEP 3 - <span style="font-variant:small-caps;">Cyclus</span> Release Procedure</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep3.html" title="CEP 3 - Cyclus Release Procedure"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep1.html" title="CEP 1 - CEP Purpose and Guidelines"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

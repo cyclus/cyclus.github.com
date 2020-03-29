@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Radioactive Decay in Cyclus &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The (Experimental) Cyclus Toolkit" href="toolkit.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="dynamic_loading.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="toolkit.html" title="The (Experimental) Cyclus Toolkit"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="dynamic_loading.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="radioactive-decay-in-cyclus">
+<h1>Radioactive Decay in <span style="font-variant:small-caps;">Cyclus</span><a class="headerlink" href="#radioactive-decay-in-cyclus" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Decay in <span style="font-variant:small-caps;">Cyclus</span> is experimental.</p>
+</div>
+<p>Radioactive decay of a group of isotopes over time can be described by the
+following first order differential equation:</p>
+<div class="math">
+\[\frac{d}{dt}\mathbf{N(\mathit{t})}=\textrm{A}\: \mathbf{N(\mathit{t})}\]</div>
+<p>where the vector <cite>N(t)</cite> contains the number density of all the
+isotopes being considered at time <cite>t</cite>, and A is called the decay
+matrix.  The solution to this differential equation can be expressed in terms
+of a matrix exponential:</p>
+<div class="math">
+\[\mathbf{N(\mathit{to+\Delta t})}=e^{\Delta t \textrm{A}}\: \mathbf{N(\mathit{to})}\]</div>
+<p>The decay method currently implemented in <span style="font-variant:small-caps;">Cyclus</span> computes this matrix
+exponential solution at any given time using a series approximation known as
+the Uniformization Method.  This implementation was written by Kerry Dunn, and
+is explained in more detail below.</p>
+<div class="section" id="the-uniformization-method">
+<h2>The Uniformization Method<a class="headerlink" href="#the-uniformization-method" title="Permalink to this headline">¶</a></h2>
+<p>The Uniformization Method is essentially a modification of the truncated Taylor
+Series expansion of the matrix exponential solution, which can be described by
+the following summation:</p>
+<div class="math">
+\[\mathbf{N(\mathit{to+\Delta t})}\approx \sum_{k=0}^{p}\frac{\left (\Delta t \right )^k}{k!}\: \textrm{A}^k\: \mathbf{N(\mathit{to})}\]</div>
+<p>The primary disadvantage of using this Taylor Series expansion to compute the
+matrix exponential solution is that it can be subject to cancellation error as
+a result of summing terms with alternating signs.  These terms with alternating
+signs occur because the diagonal elements in the decay matrix that represent
+the decay constants are all negative.  Therefore, in order to eliminate the
+potential for cancellation error, the decay matrix must be modified so that it
+no longer contains these negative elements.  This modification process is known
+as the uniformization technique.</p>
+<p>The first step in applying the uniformization technique is to define
+<cite>alpha</cite> to be equal to the absolute value of the maximum diagonal
+element of <cite>A</cite>:</p>
+<div class="math">
+\[\alpha=max_i\left | {a_i}_i \right |\]</div>
+<p>Then, given <cite>alpha</cite>, the next step is to redefine the matrix
+exponential solution using a different matrix <cite>P</cite>:</p>
+<div class="math">
+\[\textrm{P}=\frac{1}{\alpha}\textrm{A}+\textrm{I}\]</div>
+<p>where I is the identity matrix.  Note that <cite>P</cite> is completely non-negative, so a
+Taylor Series expansion of this matrix exponential is not subject to the same
+cancellation error that occurs with the original decay matrix.  By replacing <cite>A</cite>
+with <cite>P</cite>, the matrix exponential solution can now be expressed by the following
+summation:</p>
+<div class="math">
+\[\mathbf{N(\mathit{to+\Delta t})}=e^{-\alpha \Delta t}\: e^{\Delta t (\alpha \textrm{P})}\: \mathbf{N(\mathit{to})}\approx e^{-\alpha \Delta t}\sum_{k=0}^{p}\frac{\left (\Delta t \right )^k}{k!}\: (\alpha \textrm{P})^k\: \mathbf{N(\mathit{to})}\]</div>
+<p>Note that this modified Taylor Series expansion can also be expressed in terms
+of the original matrix A by substituting the definition for <cite>P</cite>:</p>
+<div class="math">
+\[\mathbf{N(\mathit{to+\Delta t})}\approx e^{-\alpha\Delta t}\sum_{k=0}^{p}\frac{\left (\Delta t \right )^k}{k!}\: (\textrm{A}+\alpha \textrm{I})^k\: \mathbf{N(\mathit{to})}\]</div>
+</div>
+<div class="section" id="implementation-in-cyclus">
+<h2>Implementation in <span style="font-variant:small-caps;">Cyclus</span><a class="headerlink" href="#implementation-in-cyclus" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="adding-new-isotopes">
+<h2>Adding New Isotopes<a class="headerlink" href="#adding-new-isotopes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="limitations">
+<h3>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h3>
+<p>When adding a new isotope, the most important thing to take into account is its
+half-life or decay constant.  The isotope with the smallest half-life, or
+largest decay constant, will be the limiting factor for the time scale over
+which <span style="font-variant:small-caps;">Cyclus</span> can decay _all_ materials in one step.  This occurs because the
+Uniformization Method requires the computation of an exponential term, which is
+limited by the size of a long double on the system being used to run <span style="font-variant:small-caps;">Cyclus</span>.
+To determine the maximum time scale that will be valid for a particular group
+of isotopes, the following equation can be used:</p>
+<div class="math">
+\[{t_{max} = \frac{ln(\textrm{LDBL\_MAX})}{min(\lambda)}}\]</div>
+<p>where <cite>LDBL_MAX</cite> is the size of a long double and <span class="math">\(\lambda\)</span> is the
+largest decay constant of the group of isotopes being considered.</p>
+<p>As an example, suppose that the isotope with the smallest half-life being
+considered is Cm-232.  This particular isotope has a decay constant of 1.5532
+nuclei per year.  If the size of a long double is limited to LDBL_MAX =
+1.18973e+4932, then all materials can only be decayed for a maximum of 7311
+years.  Adding any isotopes with a half-life smaller than Cm-232 would result
+in an even lower maximum time scale.</p>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Cleve Moler and Charles van Loan, &#8220;Nineteen Dubious Ways to Compute the
+Exponential of a Matrix, Twenty-Five Years Later,&#8221; <em>SIAM Review</em>, <em>45</em>,
+3-49 (2003)</li>
+<li>Erwin Muller, Frederik Reitsma and Paulus P. Kruger, &#8220;A Stable Nuclide
+Transmutation Procedure Free of Numerical Roundoff,&#8221; <em>PHYSOR 2006</em>, September
+10-14, Vancouver, Canada (2006)</li>
+<li>R. B. Sidje and W. J. Stewart, &#8220;A numerical study of large sparse matrix
+exponentials arising in Markov chains,&#8221; <em>Computational Statistics &amp; Data
+Analysis</em>, <em>29</em>, 345-368 (1999)</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Radioactive Decay in <span style="font-variant:small-caps;">Cyclus</span></a><ul>
+<li><a class="reference internal" href="#the-uniformization-method">The Uniformization Method</a></li>
+<li><a class="reference internal" href="#implementation-in-cyclus">Implementation in <span style="font-variant:small-caps;">Cyclus</span></a></li>
+<li><a class="reference internal" href="#adding-new-isotopes">Adding New Isotopes</a><ul>
+<li><a class="reference internal" href="#limitations">Limitations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="dynamic_loading.html"
+                          title="Previous page">&larr; &lt;no title&gt;</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="toolkit.html"
+                          title="Next page">&rarr; The (Experimental) Cyclus Toolkit</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="toolkit.html" title="The (Experimental) Cyclus Toolkit"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="dynamic_loading.html" title="&lt;no title&gt;"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

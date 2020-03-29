@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Errors and Warnings [C++] &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Logging" href="logger.html" />
+    <link rel="prev" title="Custom Database Tables" href="custom_tables.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="logger.html" title="Logging"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="custom_tables.html" title="Custom Database Tables"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="errors-and-warnings-c">
+<h1>Errors and Warnings [C++]<a class="headerlink" href="#errors-and-warnings-c" title="Permalink to this headline">¶</a></h1>
+<p>Module developers may also leverage the <span style="font-variant:small-caps;">Cyclus</span> error and warning system
+within the code that they write. These are useful for failing gracefully from
+undefined behavior or to signal that code is still experimental and under
+development.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Python agents should just use the Python error and warning system.</p>
+</div>
+<div class="section" id="errors">
+<h2>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h2>
+<p><span style="font-variant:small-caps;">Cyclus</span> uses <a class="reference external" href="http://www.cplusplus.com/doc/tutorial/exceptions/">standard C++ execptions</a> to throw and catch
+errors. However, whenever you <code class="docutils literal"><span class="pre">#include</span> <span class="pre">&quot;cyclus.h&quot;</span></code> or <code class="docutils literal"><span class="pre">#include</span>
+<span class="pre">&quot;error.h&quot;</span></code> you have access to a suite of exceptions that the kernel itself
+knows about.  <a class="reference internal" href="#errors-table-1"><span class="std std-ref">Table I. Cyclus Error Classes</span></a> displays all of the <span style="font-variant:small-caps;">Cyclus</span> errors which
+live within the <code class="docutils literal"><span class="pre">cyclus</span></code> namespace and subclass from <code class="docutils literal"><span class="pre">std::exception</span></code>.</p>
+<table border="1" class="colwidths-given styled-table centered docutils" id="id1">
+<span id="errors-table-1"></span><caption><span class="caption-text"><strong>Table I.</strong> Cyclus Error Classes</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="left-align no-left-divider single-right-divider head">Error</th>
+<th class="left-align single-left-divider no-right-divider head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider">Error</td>
+<td class="left-align single-left-divider no-right-divider">Base error for <span style="font-variant:small-caps;">Cyclus</span>.</td>
+</tr>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">ValueError</td>
+<td class="left-align single-left-divider no-right-divider">For values that are too big, too small, etc.</td>
+</tr>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider">KeyError</td>
+<td class="left-align single-left-divider no-right-divider">For failed retrieval/insertion of key-based data into/from
+data structures.</td>
+</tr>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">StateError</td>
+<td class="left-align single-left-divider no-right-divider">For failed object state expectations.</td>
+</tr>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider">IOError</td>
+<td class="left-align single-left-divider no-right-divider">For failed reading/writing to files, network connections, etc.</td>
+</tr>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">CastError</td>
+<td class="left-align single-left-divider no-right-divider">For failed casts that shouldn&#8217;t.</td>
+</tr>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider">ValidationError</td>
+<td class="left-align single-left-divider no-right-divider">For validating files received via I/O or for indicating that
+the software has not been properly benchmarked.</td>
+</tr>
+</tbody>
+</table>
+<br /><p>For example, if a reactor finds itself with a negative flux in its <code class="docutils literal"><span class="pre">Tock()</span></code>
+function then it could choose to throw either a ValueError or a StateError.
+If the flux happened to be a state variable a StateError would be more
+appropriate. This would be implemented as follows:</p>
+<p><strong>Error example:</strong></p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">Reactor</span><span class="o">::</span><span class="n">Tock</span><span class="p">(</span><span class="kt">int</span> <span class="n">time</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">flux</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="k">throw</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">StateError</span><span class="p">(</span><span class="s">&quot;negative fluxes are impossible!&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="warnings">
+<h2>Warnings<a class="headerlink" href="#warnings" title="Permalink to this headline">¶</a></h2>
+<p>Along with errors, there are corresponding non-terminal warning messages that
+modules may issue. These print messages to <code class="docutils literal"><span class="pre">sdterr</span></code> along with the kind of
+warning that was given.  All warnings are issued through the
+<code class="docutils literal"><span class="pre">cyclus::Warn&lt;T&gt;()</span></code> function.  This functions is templated on the
+<code class="docutils literal"><span class="pre">cyclus::Warnings</span></code> enum whose values and meanings may be seen in
+<a class="reference internal" href="#errors-table-2"><span class="std std-ref">Table II. Cyclus Warnings</span></a>.</p>
+<table border="1" class="colwidths-given styled-table centered docutils" id="id2">
+<span id="errors-table-2"></span><caption><span class="caption-text"><strong>Table II.</strong> Cyclus Warnings</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="left-align no-left-divider single-right-divider head">Warnings</th>
+<th class="left-align single-left-divider no-right-divider head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider">WARNING</td>
+<td class="left-align single-left-divider no-right-divider">Basic warning for <span style="font-variant:small-caps;">Cyclus</span>.</td>
+</tr>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">VALUE_WARNING</td>
+<td class="left-align single-left-divider no-right-divider">For values that are too big, too small, etc.</td>
+</tr>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider">KEY_WARNING</td>
+<td class="left-align single-left-divider no-right-divider">For unexpected retrieval/insertion of key-based
+data into/from data structures.</td>
+</tr>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">STATE_WARNING</td>
+<td class="left-align single-left-divider no-right-divider">For unexpected object state.</td>
+</tr>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider">IO_WARNING</td>
+<td class="left-align single-left-divider no-right-divider">For unexpected reading/writing to files, network
+connections, etc.</td>
+</tr>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">CAST_WARNING</td>
+<td class="left-align single-left-divider no-right-divider">For unexpected casts.</td>
+</tr>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider">VALIDATION_WARNING</td>
+<td class="left-align single-left-divider no-right-divider">For validating files received via I/O or for
+indicating that the software has not been
+properly benchmarked.</td>
+</tr>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">DEPRECATION_WARNING</td>
+<td class="left-align single-left-divider no-right-divider">For features, behaviors, or APIs that are no
+longer supported. Expect removal in future
+releases.</td>
+</tr>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider">PENDING_DEPRECATION_WARNING</td>
+<td class="left-align single-left-divider no-right-divider">For features, behaviors, or APIs that are
+candidates for future deprecation.</td>
+</tr>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">EXPERIMENTAL_WARNING</td>
+<td class="left-align single-left-divider no-right-divider">For features, behaviors, or APIs that are not
+considered stable. Reasons for instability may
+include a lack of benchmarking, uncertainty about
+future needs, or known future API changes.</td>
+</tr>
+</tbody>
+</table>
+<br /><p>Revisiting the reactor error example from above, we could have issued a
+warning instead.</p>
+<p><strong>Warning example:</strong></p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">Reactor</span><span class="o">::</span><span class="n">Tock</span><span class="p">(</span><span class="kt">int</span> <span class="n">time</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">flux</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">cyclus</span><span class="o">::</span><span class="n">Warn</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">STATE_WARNING</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;negative fluxes are impossible!&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Warnings have a number of advantages over errors.  The first is that since
+they do not stop the process they are fast to issue. They are also a great way
+for communicating with users the expectations of using your module.</p>
+<p>Warnings also have two command line options that users can provide which
+modify their behavior.  The first is <code class="docutils literal"><span class="pre">--warn-limit</span></code>.  This changes the
+maximum number of times a warning of each kind will be issued before further
+warnings are suppressed.  This defaults to 1.  A value of zero means to
+suppress all warnings and a very large number will print them all.  For
+example, if the user wished to print the first 42 warnings of each kind they
+would call <span style="font-variant:small-caps;">Cyclus</span> as follows:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cyclus --warn-limit <span class="m">42</span> ...
+</pre></div>
+</div>
+<p>The second command line argument that alters warning behavior is
+<code class="docutils literal"><span class="pre">--warn-as-error</span></code>.  This turns all warnings into corresponding error types
+and throws the error.  This is useful for ensuring that only stable code is
+executed or to help uncover what is causing a warning to be thrown.  It takes
+no arguments:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cyclus --warn-as-error ...
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Errors and Warnings [C++]</a><ul>
+<li><a class="reference internal" href="#errors">Errors</a></li>
+<li><a class="reference internal" href="#warnings">Warnings</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="custom_tables.html"
+                          title="Previous page">&larr; Custom Database Tables</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="logger.html"
+                          title="Next page">&rarr; Logging</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="logger.html" title="Logging"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="custom_tables.html" title="Custom Database Tables"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

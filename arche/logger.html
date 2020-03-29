@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Logging &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Archetype Command Line Interface" href="cli.html" />
+    <link rel="prev" title="Errors and Warnings [C++]" href="errors.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cli.html" title="Archetype Command Line Interface"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="errors.html" title="Errors and Warnings [C++]"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="logging">
+<span id="id1"></span><h1>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>LOG<span class="o">(</span>LogLevel level, std::string prefix<span class="o">)</span>
+</pre></div>
+</div>
+<p>Built-in logging functionality has been provided to aid debugging.  To use the
+logger, you must include the <em>Logger.h</em> header file. <cite>std::cout</cite> statements
+should be generally avoided.  The <cite>LOG(level, prefix)</cite> macro should be used
+for all logging/debugging needs.  The LOG macro uses the Logger class to
+provide this functionality.  The Logger class should generally not be accessed
+directly.  The macro returns a string stream object that can be used exactly
+as <cite>std::cout</cite> for printing output.  Streamed in content is flushed to stdout
+as soon as execution passes beyond the terminating semi-colon of the log
+statement.</p>
+<p>A brief description of when to use which log level is given with the LogLevel
+enum doxygen documentation. The following is a summary:</p>
+<blockquote>
+<div><ul class="simple">
+<li>LEV_ERROR: Use for errors that require model code or input file
+modification/fixing (use extremely sparingly)</li>
+<li>LEV_WARN: Use to report questionable simulation state (use extremely
+sparingly)</li>
+<li>LEV_INFO1: Information helpful for simulation users and developers alike -
+least verbose.</li>
+<li>LEV_INFO[2, 3, 4]</li>
+<li>LEV_INFO5: Information helpful for simulation users and developers alike -
+most verbose.</li>
+<li>LEV_DEBUG1: debugging information - least verbose</li>
+<li>LEV_DEBUG[2, 3, 4]</li>
+<li>LEV_DEBUG5: debugging information - most verbose</li>
+</ul>
+</div></blockquote>
+<p>Developers working on agents set the LOG prefix argument to a unique
+archetype/agent-specific identifier (up to 6 characters long).  This will allow
+developers to more easily filter the logger output in order to isolate
+information most relevant to their work.</p>
+<p>This macro does a check on the given LogLevel &#8216;level&#8217; argument; if the
+specified level is not higher than or equal to the report-level cutoff, the
+macro does nothing, limiting the performance impact of logging statements.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Do NOT place any state-changing expressions with the LOG
+macro as they may not run if the report level excludes the specified LogLevel.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Python interface should use the Python standard library logging system.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;Logger.h&quot;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">myfunc</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_ERROR</span><span class="p">,</span> <span class="s">&quot;prefix&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;This is my error statement. &quot;</span>
+                           <span class="o">&lt;&lt;</span> <span class="s">&quot;and more info...&quot;</span><span class="p">;</span>
+
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG2</span><span class="p">,</span> <span class="s">&quot;prefix&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;This is my first debug statement. &quot;</span>
+                            <span class="o">&lt;&lt;</span> <span class="s">&quot;and more info...&quot;</span><span class="p">;</span>
+  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG1</span><span class="p">,</span> <span class="s">&quot;prefix&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;This is another debug statement. &quot;</span>
+                            <span class="o">&lt;&lt;</span> <span class="s">&quot;and more info...&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The command-line specified verbosity is used to determine the logger
+report-cutoff.  Available levels are described in the LogLevel enum.  In the
+above example if the command line verbosity were set to <em>LEV_DEBUG1</em>, the
+first and third statements would print, while the second would not. Output
+would be something like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ERROR</span> <span class="p">(</span><span class="n">prefix</span><span class="p">):</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">my</span> <span class="n">error</span> <span class="n">statement</span><span class="o">.</span> <span class="ow">and</span> <span class="n">more</span> <span class="n">info</span><span class="o">...</span>
+<span class="n">DEBUG1</span><span class="p">(</span><span class="n">prefix</span><span class="p">):</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">another</span> <span class="n">debug</span> <span class="n">statement</span><span class="o">.</span> <span class="ow">and</span> <span class="n">more</span> <span class="n">info</span><span class="o">...</span>
+</pre></div>
+</div>
+<p>Any expression placed with a log statement that is not printed will not be
+executed. An example of what NOT to do follows:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG2</span><span class="p">,</span> <span class="s">&quot;module name&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The expression myobject.setName(newname): &quot;</span>
+                               <span class="o">&lt;&lt;</span> <span class="n">myobject</span><span class="p">.</span><span class="n">setName</span><span class="p">(</span><span class="n">newname</span><span class="p">)</span>
+                               <span class="o">&lt;&lt;</span> <span class="s">&quot; might not ever execute&quot;</span>
+                               <span class="o">&lt;&lt;</span> <span class="s">&quot; depending on the verbosity level.&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Logging</a><ul>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="errors.html"
+                          title="Previous page">&larr; Errors and Warnings [C++]</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="cli.html"
+                          title="Next page">&rarr; Archetype Command Line Interface</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cli.html" title="Archetype Command Line Interface"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="errors.html" title="Errors and Warnings [C++]"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

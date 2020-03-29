@@ -1,0 +1,1452 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Cyclus Library Bindings (cyclus.lib) &#8212; Home</title>
+    
+    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '(999999.999999)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Main Command Line Interface (cyclus.main)" href="main.html" />
+    <link rel="prev" title="Cyclus Type System (cyclus.typesystem)" href="typesystem.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="main.html" title="Main Command Line Interface (cyclus.main)"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="typesystem.html" title="Cyclus Type System (cyclus.typesystem)"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cyclus.lib">
+<span id="cyclus-library-bindings-cyclus-lib"></span><span id="cyclus-pyapi-lib"></span><h1>Cyclus Library Bindings (<code class="docutils literal"><span class="pre">cyclus.lib</span></code>)<a class="headerlink" href="#module-cyclus.lib" title="Permalink to this headline">¶</a></h1>
+<p>Python wrapper for cyclus.</p>
+<dl class="class">
+<dt id="cyclus.lib.Agent">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">Agent</code><a class="headerlink" href="#cyclus.lib.Agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>The abstract base class used by all types of agents
+that live and interact in a simulation.</p>
+<dl class="method">
+<dt id="cyclus.lib.Agent.ancestor_of">
+<code class="descname">ancestor_of</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.ancestor_of" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this agent is an ancestor of an other agent (i.e., resides
+above an other agent in the family tree).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Agent.annotations">
+<code class="descname">annotations</code><a class="headerlink" href="#cyclus.lib.Agent.annotations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agent annotations.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Agent.children">
+<code class="descname">children</code><a class="headerlink" href="#cyclus.lib.Agent.children" title="Permalink to this definition">¶</a></dt>
+<dd><p>A frozen set of the children of this agent.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Agent.children_str">
+<code class="descname">children_str</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.children_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns recursively generated string of the parent-child tree.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Agent.context">
+<code class="descname">context</code><a class="headerlink" href="#cyclus.lib.Agent.context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this agent&#8217;s simulation context.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Agent.decendent_of">
+<code class="descname">decendent_of</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.decendent_of" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this agent is an decendent of an other agent (i.e., resides
+above an other agent in the family tree).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Agent.decomission">
+<code class="descname">decomission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.decomission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decommissions the agent, removing it from the simulation. Results in
+destruction of the agent object. If agents write their own decommission()
+function, they must call their superclass&#8217; decommission function at the
+END of their decommission() function.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Agent.enter_time">
+<code class="descname">enter_time</code><a class="headerlink" href="#cyclus.lib.Agent.enter_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time step at which this agent&#8217;s Build function was called
+(-1 if the agent has never been built).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Agent.exit_time">
+<code class="descname">exit_time</code><a class="headerlink" href="#cyclus.lib.Agent.exit_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default time step at which this agent will exit the
+simulation (-1 if the agent has an infinite lifetime).</p>
+<p>Decomissioning happens at the end of a time step. With a lifetime of 1, we
+expect an agent to go through only 1 entire time step. In this case, the
+agent should be decommissioned on the same time step it was
+created. Therefore, for agents with non-infinite lifetimes, the exit_time
+will be the enter time plus its lifetime less 1.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Agent.id">
+<code class="descname">id</code><a class="headerlink" href="#cyclus.lib.Agent.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent instance&#8217;s unique ID within a simulation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Agent.in_family_tree">
+<code class="descname">in_family_tree</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.in_family_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this agent is in the parent-child family tree of an
+other agent.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Agent.kind">
+<code class="descname">kind</code><a class="headerlink" href="#cyclus.lib.Agent.kind" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string that describes the agent subclass (e.g. Region,
+Facility, etc.)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Agent.lifetime">
+<code class="descname">lifetime</code><a class="headerlink" href="#cyclus.lib.Agent.lifetime" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of time steps this agent operates between building and
+decommissioning (-1 if the agent has an infinite lifetime)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Agent.parent">
+<code class="descname">parent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns parent of this agent.  Returns None if the agent has no parent.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Agent.parent_id">
+<code class="descname">parent_id</code><a class="headerlink" href="#cyclus.lib.Agent.parent_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The id for this agent&#8217;s parent or -1 if this agent has no parent.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Agent.prototype">
+<code class="descname">prototype</code><a class="headerlink" href="#cyclus.lib.Agent.prototype" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent&#8217;s prototype.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Agent.schema">
+<code class="descname">schema</code><a class="headerlink" href="#cyclus.lib.Agent.schema" title="Permalink to this definition">¶</a></dt>
+<dd><p>An agent&#8217;s xml rng schema for initializing from input files. All
+concrete agents should override this function. This must validate the same
+xml input that the InfileToDb function receives.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Agent.spec">
+<code class="descname">spec</code><a class="headerlink" href="#cyclus.lib.Agent.spec" title="Permalink to this definition">¶</a></dt>
+<dd><p>The agent&#8217;s spec.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Agent.tree_strs">
+<code class="descname">tree_strs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.tree_strs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of children strings representing the parent-child tree
+at the node for Agent m.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Agent.version">
+<code class="descname">version</code><a class="headerlink" href="#cyclus.lib.Agent.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agent version string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.AgentSpec">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">AgentSpec</code><a class="headerlink" href="#cyclus.lib.AgentSpec" title="Permalink to this definition">¶</a></dt>
+<dd><p>AgentSpec C++ wrapper</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>spec</strong> : str or None, optional</p>
+<blockquote>
+<div><p>This repesents either the full string form of the spec or
+just the path.</p>
+</div></blockquote>
+<p><strong>lib</strong> : str or None, optional</p>
+<p><strong>agent</strong> : str or None, optional</p>
+<p class="last"><strong>alias</strong> : str or None, optional</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="cyclus.lib.AgentSpec.agent">
+<code class="descname">agent</code><a class="headerlink" href="#cyclus.lib.AgentSpec.agent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.AgentSpec.alias">
+<code class="descname">alias</code><a class="headerlink" href="#cyclus.lib.AgentSpec.alias" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.AgentSpec.lib">
+<code class="descname">lib</code><a class="headerlink" href="#cyclus.lib.AgentSpec.lib" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.AgentSpec.path">
+<code class="descname">path</code><a class="headerlink" href="#cyclus.lib.AgentSpec.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.AgentSpec.sanatize">
+<code class="descname">sanatize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.AgentSpec.sanatize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.ColumnInfo">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">ColumnInfo</code><a class="headerlink" href="#cyclus.lib.ColumnInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Python wrapper for ColumnInfo</p>
+<dl class="attribute">
+<dt id="cyclus.lib.ColumnInfo.col">
+<code class="descname">col</code><a class="headerlink" href="#cyclus.lib.ColumnInfo.col" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.ColumnInfo.dbtype">
+<code class="descname">dbtype</code><a class="headerlink" href="#cyclus.lib.ColumnInfo.dbtype" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.ColumnInfo.index">
+<code class="descname">index</code><a class="headerlink" href="#cyclus.lib.ColumnInfo.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.ColumnInfo.shape">
+<code class="descname">shape</code><a class="headerlink" href="#cyclus.lib.ColumnInfo.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.ColumnInfo.table">
+<code class="descname">table</code><a class="headerlink" href="#cyclus.lib.ColumnInfo.table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.Context">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">Context</code><a class="headerlink" href="#cyclus.lib.Context" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simulation context provides access to necessary simulation-global
+functions and state. All code that writes to the output database, needs to
+know simulation time, creates/builds facilities, and/or uses loaded
+composition recipes will need a context pointer. In general, all global
+state should be accessed through a simulation context.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>timer</strong> : Timer, optional</p>
+<blockquote>
+<div><p>An instance of the timer class.</p>
+</div></blockquote>
+<p><strong>recorder</strong> : Recorder, optional</p>
+<blockquote>
+<div><p>An instance of the recorder class.</p>
+</div></blockquote>
+<p><strong>init</strong> : bool, optional</p>
+<blockquote class="last">
+<div><p>Whether or not to initialize a new context object.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<ul class="last simple">
+<li>The context takes ownership of and manages the lifetime/destruction
+of all agents constructed with it (including Cloned agents). Agents should
+generally NEVER be allocated on the stack.</li>
+<li>The context takes ownership of the solver and will manage its
+destruction.</li>
+</ul>
+</div>
+<dl class="method">
+<dt id="cyclus.lib.Context.del_agent">
+<code class="descname">del_agent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.del_agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destructs and cleans up an agent (and it&#8217;s children recursively).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Context.dt">
+<code class="descname">dt</code><a class="headerlink" href="#cyclus.lib.Context.dt" title="Permalink to this definition">¶</a></dt>
+<dd><p>The length of timer per time step, in seconds.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Context.get_recipe">
+<code class="descname">get_recipe</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.get_recipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a registered recipe. This is intended for retrieving
+compositions loaded from an input file(s) at the start of a
+simulation and NOT for communicating compositions between facilities
+during the simulation. You must provide the basis as either &#8220;mass&#8221; or
+&#8220;atom&#8221;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Context.new_datum">
+<code class="descname">new_datum</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.new_datum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a new datum instance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Context.schedule_build">
+<code class="descname">schedule_build</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.schedule_build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Schedules the named prototype to be built for the specified parent at
+timestep t. The default t=-1 results in the build being scheduled for the
+next build phase (i.e. the start of the next timestep).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Context.schedule_decom">
+<code class="descname">schedule_decom</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.schedule_decom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Schedules the given Agent to be decommissioned at the specified timestep
+t. The default t=-1 results in the decommission being scheduled for the
+next decommission phase (i.e. the end of the current timestep).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Context.sim_id">
+<code class="descname">sim_id</code><a class="headerlink" href="#cyclus.lib.Context.sim_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The simulation ID.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Context.time">
+<code class="descname">time</code><a class="headerlink" href="#cyclus.lib.Context.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The simulation time step number.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.Datum">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">Datum</code><a class="headerlink" href="#cyclus.lib.Datum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Datum class.</p>
+<dl class="method">
+<dt id="cyclus.lib.Datum.add_val">
+<code class="descname">add_val</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Datum.add_val" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds Datum value to current record as the corresponding cyclus data type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>field</strong> : str or bytes</p>
+<blockquote>
+<div><p>The column name.</p>
+</div></blockquote>
+<p><strong>value</strong> : object</p>
+<blockquote>
+<div><p>Value in table column, optional</p>
+</div></blockquote>
+<p><strong>shape</strong> : list or tuple of ints</p>
+<blockquote>
+<div><p>Length of value.</p>
+</div></blockquote>
+<p><strong>type</strong> : dbtype or norm type</p>
+<blockquote>
+<div><p>Data type as defined by cyclus typesystem</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>self</strong> : Datum</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Datum.record">
+<code class="descname">record</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Datum.record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Records the Datum.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Datum.title">
+<code class="descname">title</code><a class="headerlink" href="#cyclus.lib.Datum.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>The datum name.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.DbInit">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">DbInit</code><a class="headerlink" href="#cyclus.lib.DbInit" title="Permalink to this definition">¶</a></dt>
+<dd><p>DbInit provides an interface for agents to record data to the output db that
+automatically injects the agent&#8217;s id and current timestep alongside all
+recorded data.  The prefix &#8216;AgentState&#8217; + [spec] (e.g. MyReactor) is also added
+to the datum title.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>free</strong> : bool, optional</p>
+<blockquote class="last">
+<div><p>Whether or not to free the C++ instance on deallocation.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="cyclus.lib.DbInit.new_datum">
+<code class="descname">new_datum</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.DbInit.new_datum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a new datum to be used exactly as the Context.new_datum() method.
+Users must not add fields to the datum that are automatically injected:
+&#8216;SimId&#8217;, &#8216;AgentId&#8217;, and &#8216;SimTime&#8217;.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.DynamicModule">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">DynamicModule</code><a class="headerlink" href="#cyclus.lib.DynamicModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dynamic Module wrapper class.</p>
+<dl class="method">
+<dt id="cyclus.lib.DynamicModule.close_all">
+<code class="descname">close_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.DynamicModule.close_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes all dynamic modules.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.DynamicModule.exists">
+<code class="descname">exists</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.DynamicModule.exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests whether an agent spec exists.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.DynamicModule.make">
+<code class="descname">make</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.DynamicModule.make" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a newly constructed agent for the given module spec.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>rtn</strong> : Agent</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.DynamicModule.path">
+<code class="descname">path</code><a class="headerlink" href="#cyclus.lib.DynamicModule.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.Env">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">Env</code><a class="headerlink" href="#cyclus.lib.Env" title="Permalink to this definition">¶</a></dt>
+<dd><p>Environment wrapper class.</p>
+<p>An environment utility to help locate files and find environment
+settings. The environment for a given simulation can be accessed via the
+simulation&#8217;s Context.</p>
+<dl class="attribute">
+<dt id="cyclus.lib.Env.allow_milps">
+<code class="descname">allow_milps</code><a class="headerlink" href="#cyclus.lib.Env.allow_milps" title="Permalink to this definition">¶</a></dt>
+<dd><p>whether or not Cyclus should allow Mixed-Integer Linear Programs
+The default depends on a compile time option DEFAULT_ALLOW_MILPS, but
+may be specified at run time with the ALLOW_MILPS environment variable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Env.build_path">
+<code class="descname">build_path</code><a class="headerlink" href="#cyclus.lib.Env.build_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Cyclus build path.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Env.cyclus_path">
+<code class="descname">cyclus_path</code><a class="headerlink" href="#cyclus.lib.Env.cyclus_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>A tuple of strings representing where cyclus searches for
+modules.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Env.env_delimiter">
+<code class="descname">env_delimiter</code><a class="headerlink" href="#cyclus.lib.Env.env_delimiter" title="Permalink to this definition">¶</a></dt>
+<dd><p>the correct environment variable delimiter based on the file
+system.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Env.find_module">
+<code class="descname">find_module</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Env.find_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the full path to a module by searching through default
+install and CYCLUS_PATH directories.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Env.get">
+<code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Env.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains an environment variable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Env.install_path">
+<code class="descname">install_path</code><a class="headerlink" href="#cyclus.lib.Env.install_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Cyclus install path.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Env.nuc_data">
+<code class="descname">nuc_data</code><a class="headerlink" href="#cyclus.lib.Env.nuc_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>The nuc_data path.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Env.path_base">
+<code class="descname">path_base</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Env.path_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Effectively basename</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Env.path_delimiter">
+<code class="descname">path_delimiter</code><a class="headerlink" href="#cyclus.lib.Env.path_delimiter" title="Permalink to this definition">¶</a></dt>
+<dd><p>the correct path delimiter based on the file
+system.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Env.rng_schema">
+<code class="descname">rng_schema</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Env.rng_schema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current rng schema.  Uses CYCLUS_RNG_SCHEMA env var
+if set; otherwise uses the default install location. If using the
+default ocation, set flat=True for the default flat schema.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Env.set_nuc_data_path">
+<code class="descname">set_nuc_data_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Env.set_nuc_data_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes the path to the cyclus_nuc_data.h5 file</p>
+<p>By default, it is assumed to be located in the path given by
+GetInstallPath()/share; however, paths in environment variable
+CYCLUS_NUC_DATA are checked first.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.FullBackend">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">FullBackend</code><a class="headerlink" href="#cyclus.lib.FullBackend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Full backend cyclus database interface.</p>
+<dl class="method">
+<dt id="cyclus.lib.FullBackend.query">
+<code class="descname">query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.FullBackend.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Queries a database table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>table</strong> : str</p>
+<blockquote>
+<div><p>The table name.</p>
+</div></blockquote>
+<p><strong>conds</strong> : iterable, optional</p>
+<blockquote>
+<div><p>A list of conditions.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>results</strong> : pd.DataFrame</p>
+<blockquote class="last">
+<div><p>Pandas DataFrame the represents the table</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.FullBackend.schema">
+<code class="descname">schema</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.FullBackend.schema" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.FullBackend.tables">
+<code class="descname">tables</code><a class="headerlink" href="#cyclus.lib.FullBackend.tables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the set of tables present in the database.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.Hdf5Back">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">Hdf5Back</code><a class="headerlink" href="#cyclus.lib.Hdf5Back" title="Permalink to this definition">¶</a></dt>
+<dd><p>HDF5 backend cyclus database interface.</p>
+<dl class="method">
+<dt id="cyclus.lib.Hdf5Back.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Hdf5Back.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes the backend, flushing it in the process.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Hdf5Back.flush">
+<code class="descname">flush</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Hdf5Back.flush" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flushes the database to disk.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Hdf5Back.name">
+<code class="descname">name</code><a class="headerlink" href="#cyclus.lib.Hdf5Back.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Hdf5Back.query">
+<code class="descname">query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Hdf5Back.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Queries a database table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>table</strong> : str</p>
+<blockquote>
+<div><p>The table name.</p>
+</div></blockquote>
+<p><strong>conds</strong> : iterable, optional</p>
+<blockquote>
+<div><p>A list of conditions.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>results</strong> : pd.DataFrame</p>
+<blockquote class="last">
+<div><p>Pandas DataFrame the represents the table</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Hdf5Back.schema">
+<code class="descname">schema</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Hdf5Back.schema" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Hdf5Back.tables">
+<code class="descname">tables</code><a class="headerlink" href="#cyclus.lib.Hdf5Back.tables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the set of tables present in the database.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.InfileTree">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">InfileTree</code><a class="headerlink" href="#cyclus.lib.InfileTree" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class for extracting information from a given XML parser</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>free</strong> : bool, optional</p>
+<blockquote class="last">
+<div><p>Whether or not to free the C++ instance on deallocation.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="cyclus.lib.InfileTree.from_parser">
+<code class="descname">from_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.InfileTree.from_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes an input file tree from an XML parser.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>parser</strong> : XMLParser</p>
+<blockquote class="last">
+<div><p>An XMLParser instance.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.InfileTree.nmatches">
+<code class="descname">nmatches</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.InfileTree.nmatches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Investigates the current status and returns the number of elements
+matching a query.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>query</strong> : str</p>
+<blockquote>
+<div><p>The XML path to count.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>n</strong> : int</p>
+<blockquote class="last">
+<div><p>The number of query matches.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.InfileTree.optional_query">
+<code class="descname">optional_query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.InfileTree.optional_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>A query method for optional parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>query</strong> : str</p>
+<blockquote>
+<div><p>The XML path to test if it exists.</p>
+</div></blockquote>
+<p><strong>default</strong> : any type</p>
+<blockquote class="last">
+<div><p>The default value to return if the XML path does not exist in
+the tree. The type of the return value (str, bool, int, etc)
+is determined by the type of the default.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.InfileTree.query">
+<code class="descname">query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.InfileTree.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>A query method for required parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>path</strong> : str</p>
+<blockquote>
+<div><p>The XML path to test if it exists.</p>
+</div></blockquote>
+<p><strong>dbtype</strong> : str or int</p>
+<blockquote>
+<div><p>Represents primitive type in type system. Note that only
+primitive types are queryable, by design, and not all primitive types.
+Blobs and UUIDs are not included because they cannot be lexically cast.</p>
+</div></blockquote>
+<p><strong>index</strong> : int, optional</p>
+<blockquote class="last">
+<div><p>The instance to query.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.InfileTree.subtree">
+<code class="descname">subtree</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.InfileTree.subtree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Populates a child infile based on a query and index.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>query</strong> : str</p>
+<blockquote>
+<div><p>The XML path to test if it exists.</p>
+</div></blockquote>
+<p><strong>index</strong> : int, optional</p>
+<blockquote>
+<div><p>The index of the queried element, default 0.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>sub</strong> : InfileTree</p>
+<blockquote class="last">
+<div><p>A sub-tree repreresenting the query and the index.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.Logger">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">Logger</code><a class="headerlink" href="#cyclus.lib.Logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>A logging tool providing finer grained control over standard output
+for debugging and other purposes.</p>
+<dl class="attribute">
+<dt id="cyclus.lib.Logger.no_agent">
+<code class="descname">no_agent</code><a class="headerlink" href="#cyclus.lib.Logger.no_agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set whether or not agent/agent log entries should be printed</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Logger.no_mem">
+<code class="descname">no_mem</code><a class="headerlink" href="#cyclus.lib.Logger.no_mem" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Logger.report_level">
+<code class="descname">report_level</code><a class="headerlink" href="#cyclus.lib.Logger.report_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use to get/set the (global) log level report cutoff.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Logger.to_log_level">
+<code class="descname">to_log_level</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Logger.to_log_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a string into a corresponding LogLevel value.</p>
+<p>For strings that do not correspond to any particular LogLevel enum value
+the method returns the LogLevel value <cite>LEV_ERROR</cite>.  This method is
+primarily intended for translating command line verbosity argument(s) in
+appropriate report levels.  LOG(level) statements</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Logger.to_string">
+<code class="descname">to_string</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Logger.to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a LogLevel enum value into a corrsponding string.</p>
+<p>For a level argments that have no corresponding string value, the string
+<cite>BAD_LEVEL</cite> is returned.  This method is primarily intended for translating
+LOG(level) statement levels into appropriate strings for output to stdout.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.Recorder">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">Recorder</code><a class="headerlink" href="#cyclus.lib.Recorder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cyclus recorder interface.</p>
+<dl class="method">
+<dt id="cyclus.lib.Recorder.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Recorder.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes the recorder.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Recorder.dump_count">
+<code class="descname">dump_count</code><a class="headerlink" href="#cyclus.lib.Recorder.dump_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>The frequency of recording.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Recorder.flush">
+<code class="descname">flush</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Recorder.flush" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flushes the recorder to disk.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Recorder.inject_sim_id">
+<code class="descname">inject_sim_id</code><a class="headerlink" href="#cyclus.lib.Recorder.inject_sim_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether or not to inject the simulation id into the tables.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Recorder.new_datum">
+<code class="descname">new_datum</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Recorder.new_datum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a new datum instance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Recorder.register_backend">
+<code class="descname">register_backend</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Recorder.register_backend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registers a backend with the recorder.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Recorder.sim_id">
+<code class="descname">sim_id</code><a class="headerlink" href="#cyclus.lib.Recorder.sim_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The simulation id of the recorder.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.SimInit">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">SimInit</code><a class="headerlink" href="#cyclus.lib.SimInit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles initialization of a simulation from the output database. After
+calling Init, Restart, or Branch, the initialized Context, Timer, and
+Recorder can be retrieved.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>recorder</strong> : Recorder</p>
+<blockquote>
+<div><p>The recorder class for the simulation.</p>
+</div></blockquote>
+<p><strong>backend</strong> : QueryableBackend</p>
+<blockquote class="last">
+<div><p>A backend to use for this simulation.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="cyclus.lib.SimInit.context">
+<code class="descname">context</code><a class="headerlink" href="#cyclus.lib.SimInit.context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the initialized context. Note that either Init, Restart, or Branch
+must be called first.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.SimInit.timer">
+<code class="descname">timer</code><a class="headerlink" href="#cyclus.lib.SimInit.timer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the initialized timer. Note that either Init, Restart,
+or Branch must be called first.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.SqliteBack">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">SqliteBack</code><a class="headerlink" href="#cyclus.lib.SqliteBack" title="Permalink to this definition">¶</a></dt>
+<dd><p>SQLite backend cyclus database interface.</p>
+<dl class="method">
+<dt id="cyclus.lib.SqliteBack.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.SqliteBack.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes the backend, flushing it in the process.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.SqliteBack.flush">
+<code class="descname">flush</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.SqliteBack.flush" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flushes the database to disk.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.SqliteBack.name">
+<code class="descname">name</code><a class="headerlink" href="#cyclus.lib.SqliteBack.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.SqliteBack.query">
+<code class="descname">query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.SqliteBack.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Queries a database table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>table</strong> : str</p>
+<blockquote>
+<div><p>The table name.</p>
+</div></blockquote>
+<p><strong>conds</strong> : iterable, optional</p>
+<blockquote>
+<div><p>A list of conditions.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>results</strong> : pd.DataFrame</p>
+<blockquote class="last">
+<div><p>Pandas DataFrame the represents the table</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.SqliteBack.schema">
+<code class="descname">schema</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.SqliteBack.schema" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.SqliteBack.tables">
+<code class="descname">tables</code><a class="headerlink" href="#cyclus.lib.SqliteBack.tables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the set of tables present in the database.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.Timer">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">Timer</code><a class="headerlink" href="#cyclus.lib.Timer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Controls simulation timestepping and inter-timestep phases.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>init</strong> : bool, optional</p>
+<blockquote class="last">
+<div><p>Whether or not we should initialize a new C++ Timer instance.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="cyclus.lib.Timer.run_sim">
+<code class="descname">run_sim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Timer.run_sim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the simulation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.XMLFileLoader">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">XMLFileLoader</code><a class="headerlink" href="#cyclus.lib.XMLFileLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles initialization of a database with information from
+a cyclus xml input file.</p>
+<p>Create a new loader reading from the xml simulation input file and writing
+to and initializing the backends in the recorder. The recorder must
+already have the backend registered. schema_file identifies the master
+xml rng schema used to validate the input file. The format specifies the
+input file format from one of: &#8220;none&#8221;, &#8220;xml&#8221;, &#8220;json&#8221;, or &#8220;py&#8221;.</p>
+<dl class="method">
+<dt id="cyclus.lib.XMLFileLoader.load_sim">
+<code class="descname">load_sim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.XMLFileLoader.load_sim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load an entire simulation from the inputfile.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.XMLFlatLoader">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">XMLFlatLoader</code><a class="headerlink" href="#cyclus.lib.XMLFlatLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles initialization of a database with information from
+a cyclus xml input file.</p>
+<p>Create a new loader reading from the xml simulation input file and writing
+to and initializing the backends in the recorder. The recorder must
+already have the backend registered. schema_file identifies the master
+xml rng schema used to validate the input file. The format specifies the
+input file format from one of: &#8220;none&#8221;, &#8220;xml&#8221;, &#8220;json&#8221;, or &#8220;py&#8221;.</p>
+<p class="rubric">Notes</p>
+<p>This is not a subclass of the XMLFileLoader Python bindings, even
+though the C++ class is a subclass in C++. Rather, they are duck
+typed by exposing the same interface. This makes handling the
+instance pointers in Cython a little easier.</p>
+<dl class="method">
+<dt id="cyclus.lib.XMLFlatLoader.load_sim">
+<code class="descname">load_sim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.XMLFlatLoader.load_sim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load an entire simulation from the inputfile.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cyclus.lib.XMLParser">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">XMLParser</code><a class="headerlink" href="#cyclus.lib.XMLParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>A helper class to hold xml file data and provide automatic
+validation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>filename</strong> : str, optional</p>
+<blockquote>
+<div><p>Path to file to load.</p>
+</div></blockquote>
+<p><strong>format</strong> : str, optional</p>
+<blockquote>
+<div><p>The format to read in as: &#8220;none&#8221;, &#8220;xml&#8221;, &#8220;json&#8221;, or &#8220;py&#8221;. Applies to either
+filename or raw, if given.</p>
+</div></blockquote>
+<p><strong>raw</strong> : str, optional</p>
+<blockquote class="last">
+<div><p>XML string to load.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.boost_version">
+<code class="descclassname">cyclus.lib.</code><code class="descname">boost_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.boost_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boost version.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.coincbc_version">
+<code class="descclassname">cyclus.lib.</code><code class="descname">coincbc_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.coincbc_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coin CBC version.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.coinclp_version">
+<code class="descclassname">cyclus.lib.</code><code class="descname">coinclp_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.coinclp_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coin CLP version.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.core_version">
+<code class="descclassname">cyclus.lib.</code><code class="descname">core_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.core_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cyclus core version.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.describe_version">
+<code class="descclassname">cyclus.lib.</code><code class="descname">describe_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.describe_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Describes the Cyclus version.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.discover_metadata_in_cyclus_path">
+<code class="descclassname">cyclus.lib.</code><code class="descname">discover_metadata_in_cyclus_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.discover_metadata_in_cyclus_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Discover archetype metadata in cyclus path. Returns a Jason.Value
+object.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.discover_specs">
+<code class="descclassname">cyclus.lib.</code><code class="descname">discover_specs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.discover_specs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Discover archetype specifications for a path and library.
+Returns a set of strings.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.discover_specs_in_cyclus_path">
+<code class="descclassname">cyclus.lib.</code><code class="descname">discover_specs_in_cyclus_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.discover_specs_in_cyclus_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Discover archetype specifications that live recursively in CYCLUS_PATH
+directories. Returns a set of strings.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.get_warn_as_error">
+<code class="descclassname">cyclus.lib.</code><code class="descname">get_warn_as_error</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.get_warn_as_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current value for wether warnings should be treated
+as errors.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.get_warn_limit">
+<code class="descclassname">cyclus.lib.</code><code class="descname">get_warn_limit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.get_warn_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current warning limit.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.hdf5_version">
+<code class="descclassname">cyclus.lib.</code><code class="descname">hdf5_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.hdf5_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>HDF5 version.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.json_to_py">
+<code class="descclassname">cyclus.lib.</code><code class="descname">json_to_py</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.json_to_py" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a JSON string into an equivalent Python string</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.json_to_xml">
+<code class="descclassname">cyclus.lib.</code><code class="descname">json_to_xml</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.json_to_xml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a JSON string into an equivalent XML string</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.load_string_from_file">
+<code class="descclassname">cyclus.lib.</code><code class="descname">load_string_from_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.load_string_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads an XML file from a path or from a string and a format (&#8216;xml&#8217;, &#8216;json&#8217;, or &#8216;py&#8217;).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.make_py_agent">
+<code class="descclassname">cyclus.lib.</code><code class="descname">make_py_agent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.make_py_agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a new Python agent instance.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.normalize_bid_portfolio">
+<code class="descclassname">cyclus.lib.</code><code class="descname">normalize_bid_portfolio</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.normalize_bid_portfolio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalizes a bid portfolio into a standard Python form, ready to be traded.
+Note that this does not include the bidder object.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.normalize_request_portfolio">
+<code class="descclassname">cyclus.lib.</code><code class="descname">normalize_request_portfolio</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.normalize_request_portfolio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalizes a request portfolio into a standard Python form, ready to be traded.
+Note that this does not include the requester object.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.py_init_hooks">
+<code class="descclassname">cyclus.lib.</code><code class="descname">py_init_hooks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.py_init_hooks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes Cyclus-internal Python hooks. This is called
+automatically when cyclus is imported. Users should not need to call
+this function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.py_to_json">
+<code class="descclassname">cyclus.lib.</code><code class="descname">py_to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.py_to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a Python string into an equivalent JSON string</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.py_to_xml">
+<code class="descclassname">cyclus.lib.</code><code class="descname">py_to_xml</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.py_to_xml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a Python string into an equivalent XML string</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.set_warn_as_error">
+<code class="descclassname">cyclus.lib.</code><code class="descname">set_warn_as_error</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.set_warn_as_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets whether warnings should be treated as errors.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.set_warn_limit">
+<code class="descclassname">cyclus.lib.</code><code class="descname">set_warn_limit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.set_warn_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the warning limit.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.sqlite3_version">
+<code class="descclassname">cyclus.lib.</code><code class="descname">sqlite3_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.sqlite3_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>SQLite3 version.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.version">
+<code class="descclassname">cyclus.lib.</code><code class="descname">version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns string of the cyclus version and its dependencies.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.xml2_version">
+<code class="descclassname">cyclus.lib.</code><code class="descname">xml2_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.xml2_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>libxml 2 version.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.xml_to_json">
+<code class="descclassname">cyclus.lib.</code><code class="descname">xml_to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.xml_to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts an XML string into an equivalent JSON string</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.xml_to_py">
+<code class="descclassname">cyclus.lib.</code><code class="descname">xml_to_py</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.xml_to_py" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts an XML string into an equivalent Python string</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.xmlpp_version">
+<code class="descclassname">cyclus.lib.</code><code class="descname">xmlpp_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.xmlpp_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>libxml++ version.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
+        </a></p>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="typesystem.html"
+                          title="Previous page">&larr; Cyclus Type System (<code class="docutils literal"><span class="pre">cyclus.typesystem</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="main.html"
+                          title="Next page">&rarr; Main Command Line Interface (<code class="docutils literal"><span class="pre">cyclus.main</span></code>)</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.3</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="main.html" title="Main Command Line Interface (cyclus.main)"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="typesystem.html" title="Cyclus Type System (cyclus.typesystem)"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 29, 2020.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
