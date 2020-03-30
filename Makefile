@@ -78,13 +78,13 @@ gh-preview html:
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)."
 
 gh-publish-only:
-	git checkout $(GH_PUBLISH_BRANCH)
-	git checkout $(GH_SOURCE_BRANCH) -- $(GH_SOURCE_DIR)
+	git fetch $(GH_UPSTREAM_REPO)
+	git checkout -B $(GH_PUBLISH_BRANCH) $(GH_UPSTREAM_REPO)/$(GH_PUBLISH_BRANCH)
 	git reset HEAD
 	rsync -a $(BUILDDIR)/* .
 	rsync -a $(BUILDDIR)/.* .
-	git add `(cd $(BUILDDIR); find . -type f; cd ..)`
-	rm -rf $(GH_SOURCE_DIR) $(BUILDDIR)
+	git add -f `(cd $(BUILDDIR); find . -type f; cd ..)`
+	rm -rf  $(BUILDDIR)
 	git commit -m "Generated $(GH_PUBLISH_BRANCH) for `git log $(GH_SOURCE_BRANCH) -1 --pretty=short --abbrev-commit`" && git push --force $(GH_UPSTREAM_REPO) $(GH_PUBLISH_BRANCH)
 	git checkout $(GH_SOURCE_BRANCH)
 
@@ -217,4 +217,3 @@ doctest:
 install:
 	rsync -a $(BUILDDIR)build/html/* .
 	rm -rf $(BUILDDIR)build/html/*
-
