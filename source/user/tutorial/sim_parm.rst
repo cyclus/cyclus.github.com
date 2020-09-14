@@ -128,4 +128,4 @@ Adding spaces or tabs to indent the ``control`` header improves ease of reading.
 
     </simulation>
 
-**Note**: There are two blank lines between the end of the control section and end of the simulation section. This ection of the simulation block will hold the rest of the simulation parameter blocks (commodities, facilities, regions, institutions, and recipe blocks).
+**Note**: There are two blank lines between the end of the control section and end of the simulation section. This section of the simulation block will hold the rest of the simulation parameter blocks (commodities, facilities, regions, institutions, and recipe blocks).

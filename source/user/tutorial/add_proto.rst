@@ -347,12 +347,15 @@ template for natural uranium, fresh fuel, and spent fuel.
       </nuclide>
     </recipe>
 
+Once complete, append this facility under the commodity section of your input file.
+
+
 Let's take a look at the ``fresh-uox`` fuel recipe:
 
 .. image:: fuel_com.png
     :align: center
     :alt: Fuel recipe for fresh-uox
-
+The recipe name ``fresh-uox`` is specified, as are the isotope nuclide IDs and the corresponding mass fraction of each nuclide. The ``fresh-uox`` is composed of 4% U-235 and 96% U-238.
 |
 |
 |
@@ -400,7 +403,7 @@ The template for the reactor is given below:
     <facility>
       <name>Reactor</name>
       <config>
-        <Reactor>
+        <Archetype>
           <fuel_incommods> <val>[VALUE]/val> </fuel_incommods>
           <fuel_inrecipes> <val>[VALUE]</val> </fuel_inrecipes>
           <fuel_outcommods> <val>[VALUE]</val> </fuel_outcommods>
@@ -428,7 +431,7 @@ Where:
 * ``n_assem_batch``: number of batches replaced per refueling.
 * ``power_cap``: amount of electricity the reactor generates.
 
-Using the template above and the table below, generate the input reactor prototype for this reactor.
+Using the template above and the table below, create the Reactor prototype.
 
 +-----------------------+---------------------------+
 | Variable              | Value                     |
@@ -451,9 +454,9 @@ Using the template above and the table below, generate the input reactor prototy
 +-----------------------+---------------------------+
 | ``assem_size``        | ``33000``                 |
 +-----------------------+---------------------------+
-| ``n_assem_core``      | ``1``                     |
+| ``n_assem_core``      | ``3``                     |
 +-----------------------+---------------------------+
-| ``n_assem_batch``     | ``3``                     |
+| ``n_assem_batch``     | ``1``                     |
 +-----------------------+---------------------------+
 | ``power_cap``         | ``1178``                  |
 +-----------------------+---------------------------+
@@ -480,7 +483,7 @@ Once completed, your prototype should look like:
         </config>
       </facility>
 
-Once complete, append this facility under the commodity section of your input file.
+Once complete, append this facility under the recipe section of your input file.
 
 
 
@@ -506,7 +509,7 @@ This facility takes two inputs, ``name`` and ``outcommd``. Using the Source Arch
   <facility>
     <name>name</name>
     <config>
-      <Source>
+      <Archetype>
         <outcommod>outcommod</outcommod>
       </Source>
     </config>
@@ -525,7 +528,7 @@ This facility takes two inputs, ``name`` and ``outcommd``. Using the Source Arch
     </config>
   </facility>
 
-Once complete, append this facility under the commodity section of your input file.
+Once complete, append this facility under the recipe section and above the Rector prototype of your input file.
 
 
 Activity: Creating the Enrichment facility
@@ -548,7 +551,7 @@ The template for the Enrichment archetype is of the form:
     </config>
   </facility>
 
-Using the template above and the table below, generate the input reactor prototype for this enrichment facility.
+Using the template above and the table below, generate the input enrichment facility prototype.
 
 +-------------------------+---------------------------+
 | Variable                | Value                     |
@@ -613,7 +616,7 @@ The sink facility archetype is:
   <facility>
     <name>Sink_name</name>
     <config>
-      <Sink>
+      <Archetype>
         <in_commods>
           <val>input_commodity</val>
           <val>input_commodity</val>
@@ -622,7 +625,7 @@ The sink facility archetype is:
     </config>
   </facility>
 
-1. After filling in these variables, your enrichment facility prototype will look like:
+1. After filling in these variables, your sink facility prototype will look like:
 
 .. code-block:: XML
 
@@ -638,11 +641,11 @@ The sink facility archetype is:
     </config>
   </facility>
 
+Once complete, append this facility under the Reactor prototype of your input file.
 
 Check: Complete Facility block
 ++++++++++++++++++++++++++++++++++++++++
 
-Once complete, append this facility under the Reactor prototype of your input file.
 The facility section of your input file should be of the form:
 
 .. code-block:: XML
