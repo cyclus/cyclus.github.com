@@ -1,7 +1,7 @@
 Updating the Reactor and Repository
 =====================================
 
-Our Advanced Light Water Reactors will flexibly switch between UOX and MOX fuel based on their availability.
+We can add in Advanced Light Water Reactors that will flexibly switch between UOX and MOX fuel based on their availability. This protoype uses the same template as the other reactors with a few additional entries.  
 
 Reactor Modifications
 ----------------------
@@ -24,7 +24,7 @@ preference for MOX should be 2 times higher than that or UOX.  Perhaps:
 
 Repository Modifications
 --------------------------
-Change the accepted commodity for the repository to be Separated-Waste.
+Add an accepted commodity for the repository to be Separated-Waste.
 
 
 .. rubric:: Footnotes
