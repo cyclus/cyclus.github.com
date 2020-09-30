@@ -443,7 +443,7 @@ This facility takes two inputs, ``name`` and ``outcommd``. Using the Source Arch
 +-----------------------+---------------------------+
 | ``Archetype``         | ``Source``                |
 +-----------------------+---------------------------+
-| ``out_commod``        | ``fresh-uox``             |
+| ``out_commod``        | ``u-ore``                 |
 +-----------------------+---------------------------+
 
 1. The template for the Source archetype is of the form:

@@ -123,53 +123,6 @@ Where:
 
 In between the two dotted lines
 is where the institution and facility information goes. The
-institution block is the form:
-
-.. code-block:: XML
-
-      <institution>
-        <initialfacilitylist>
-          <entry>
-            <prototype>Prototype_name</prototype>
-            <number>number_of_prototype_names</number>
-          </entry>
-          </initialfacilitylist>
-        <name>Inst_name</name>
-        <config>
-          <NullInst/>
-        </config>
-      </institution>
-
-Where:
-
-* ``prototype``:  prototype that is initially in the region
-* ``number``: the number of the prototype initially in the institution
-* ``name``: name of the institution.
-
-There can be multiple ``entry`` blocks.
-
-Putting it all together, a complete region template is of the form:
-
-.. code-block:: XML
-
-    <region>
-      <name>Region_name</name>
-      <config>
-        <NullRegion/>
-      </config>
-        <institution>
-          <initialfacilitylist>
-              <entry>
-                <prototype>Prototype_name</prototype>
-                <number>number_of_prototype_names</number>
-              </entry>
-          </initialfacilitylist>
-        <name>Inst_name</name>
-        <config>
-          <NullInst/>
-        </config>
-       </institution>
-    </region>
 
 Concept: Institution
 -----------------------------------------------------------------------
@@ -193,6 +146,26 @@ that each contain the following sections, in the following order:
    the input file
 -  ``number`` - the number of such facilities that are operating at the
    beginning of the simulation
+
+Put together, the institution block is the form:
+
+.. code-block:: XML
+
+      <institution>
+        <initialfacilitylist>
+          <entry>
+            <prototype>Prototype_name</prototype>
+            <number>number_of_prototype_names</number>
+          </entry>
+          </initialfacilitylist>
+        <name>Inst_name</name>
+        <config>
+          <NullInst/>
+        </config>
+      </institution>
+
+There can be multiple ``entry`` blocks within the same institution.
+
 
 The example below
 introduces two institution agents (the region section that encloses them
@@ -232,6 +205,29 @@ facilities.
           <NullInst/>
         </config>
       </institution>
+
+Putting it all together, a complete region template is of the form:
+
+.. code-block:: XML
+
+    <region>
+      <name>Region_name</name>
+      <config>
+        <NullRegion/>
+      </config>
+        <institution>
+          <initialfacilitylist>
+              <entry>
+                <prototype>Prototype_name</prototype>
+                <number>number_of_prototype_names</number>
+              </entry>
+          </initialfacilitylist>
+        <name>Inst_name</name>
+        <config>
+          <NullInst/>
+        </config>
+       </institution>
+    </region>
 
 Activity: Write the Region template
 +++++++++++++++++++++++++++++++++++
