@@ -108,16 +108,16 @@ The archetype block is located after the simulation control block and takes the 
 
     <archetypes>
         <spec>
-          <lib>cycamore</lib>
+          <lib>lib1</lib>
           <name>arch_1</name>
         </spec>
         <spec>
-          <lib>cycamore</lib>
+          <lib>lib2</lib>
           <name>arch_2</name>
         </spec>
     </archetypes>
 
-where ``lib`` is the library in which the archetype came from and name is
+where ``lib`` is the library in which the archetype came from and ``name`` is
 the archetype name. Let's build our archetypes!
 Using the template below and the table below,
 properly fill the template with the variables listed in the table below.
@@ -166,6 +166,7 @@ Archetype Block Template
         </spec>
 
 Once complete, your Archetypes block should look like:
+
 .. code-block:: XML
 
   <archetypes>

@@ -10,7 +10,7 @@ cycle.  For the purpose of this tutorial, the scenario will include:
 * mine of natural uranium
 * enrichment facility producing 4% enriched uranium oxide fuel
 * LWR reactor consuming fresh fuel and producing used fuel
-* repository to house all spent fuel
+* repository to house all spent fuel and waste
 
 More details about each of these facilities will discussed when we are
 required to provide that input.
@@ -100,6 +100,7 @@ with the variables listed in the table below in your favorite text editor.
 Using this table, let's set the simulation parameters.
 
 1. To tell CYCLUS that this is the simulation section of the input file, set  the first line of the input file to be:
+
 .. code-block:: XML
 
     <simulation>

@@ -65,7 +65,7 @@ and is of the form:
 
 .. code-block:: XML
 
-    <commodity>
+      <commodity>
         <name>com1</name>
         <solution_priority>1.0</solution_priority>
       </commodity>
@@ -113,7 +113,7 @@ template.
 
 .. code-block:: XML
 
-    <commodity>
+      <commodity>
         <name>u-ore</name>
 
 2. In the ``<solution_priority>`` section replace ``val1`` with ``1.0``.
@@ -121,7 +121,7 @@ template.
 .. code-block:: XML
 
 
-    <commodity>
+      <commodity>
         <name>u-ore</name>
         <solution_priority>1.0</solution_priority>
 
@@ -129,7 +129,7 @@ template.
 
 .. code-block:: XML
 
-    <commodity>
+      <commodity>
         <name>u-ore</name>
         <solution_priority>1.0</solution_priority>
       </commodity>
@@ -138,7 +138,7 @@ template.
 
 .. code-block:: XML
 
-  <commodity>
+    <commodity>
       <name>u-ore</name>
       <solution_priority>1.0</solution_priority>
     </commodity>
@@ -153,7 +153,7 @@ template.
     <commodity>
       <name>spent-uox</name>
       <solution_priority>1.0</solution_priority>
-  </commodity>
+    </commodity>
 
 Once complete, append the commodities section under the archetypes section.
 
@@ -300,7 +300,7 @@ template for natural uranium, fresh fuel, and spent fuel.
 
 .. code-block:: XML
 
-  <recipe>
+    <recipe>
       <name>nat-u</name>
       <basis>mass</basis>
       <nuclide>
@@ -356,10 +356,6 @@ Let's take a look at the ``fresh-uox`` fuel recipe:
     :align: center
     :alt: Fuel recipe for fresh-uox
 The recipe name ``fresh-uox`` is specified, as are the isotope nuclide IDs and the corresponding mass fraction of each nuclide. The ``fresh-uox`` is composed of 4% U-235 and 96% U-238.
-|
-|
-|
-|
 
 
 Concept: Archetype configuration
@@ -395,6 +391,7 @@ Concept: Source Prototype
 =========================
 The Source facility acts as a source of material with a fixed throughput (per time step) capacity and a lifetime capacity defined by a total inventory size. It offers its material as a single commodity. If a composition recipe is specified, it provides that single material composition to requesters. If unspecified, the source provides materials with the exact requested compositions. The inventory size and throughput both default to infinite. Supplies material results in corresponding decrease in inventory, and when the inventory size reaches zero, the source can provide no more material.
 The Source archetype is of the form:
+
 .. code-block:: XML
 
   <facility>
@@ -427,7 +424,7 @@ inventory_size: default = 1e+299, range: [0.0, 1e+299]
 throughput: default=1e+299,range: [0.0, 1e+299]
     Amount (kg) of the commodity that the Source can supply at each time step
 
-::
+.. code-block:: xml
 
         <throughput>[double ( kg/(time step) )]</throughput>
 
@@ -472,7 +469,7 @@ This facility takes two inputs, ``name`` and ``outcommd``. Using the Source Arch
     </config>
   </facility>
 
-Once complete, append this facility under the recipe section of your input file.
+Once complete, append this facility under the commodity section of your input file.
 
 Concept: Enrichment Prototype
 ==============================
@@ -481,6 +478,7 @@ explicitly compute the physical enrichment process, rather it calculates the SWU
 incoming isotopic vector (i.e. natural uranium) into a requested enriched recipe (i.e. 4% enriched uranium), 
 given the natural uranium inventory constraint and its SWU capacity constraint.
 The Enrichment archetype is of the form:
+
 .. code-block:: XML
 
       <facility>
@@ -625,6 +623,7 @@ spent fuel as quickly as possible. Full decommissioning will be delayed until al
 has a full core when it is decommissioned (i.e. is mid-cycle) when the reactor is decommissioned, half (rounded 
 up to nearest int) of its assemblies are transmuted to their respective burnt compositions.
 The Reactor archetype is of the form:
+
 .. code-block:: XML
 
   <facility>
@@ -666,7 +665,7 @@ The template for the reactor is given below:
       <name>Reactor</name>
       <config>
         <Archetype>
-          <fuel_incommods> <val>[VALUE]/val> </fuel_incommods>
+          <fuel_incommods> <val>[VALUE]</val> </fuel_incommods>
           <fuel_inrecipes> <val>[VALUE]</val> </fuel_inrecipes>
           <fuel_outcommods> <val>[VALUE]</val> </fuel_outcommods>
           <fuel_outrecipes> <val>[VALUE]</val> </fuel_outrecipes>
@@ -710,9 +709,9 @@ Using the template above and the table below, create the Reactor prototype.
 +-----------------------+---------------------------+
 | ``fuel_outrecipes``   | ``spent-uox``             |
 +-----------------------+---------------------------+
-| ``cycle_time``        | 18                        |
+| ``cycle_time``        | ``18``                    |
 +-----------------------+---------------------------+
-| ``refuel_time``       | 1                         |
+| ``refuel_time``       | ``1``                     |
 +-----------------------+---------------------------+
 | ``assem_size``        | ``33000``                 |
 +-----------------------+---------------------------+
@@ -756,6 +755,7 @@ capacity defined by a total inventory size. The inventory size and throughput ca
 recipe is provided, it will request material with that recipe. Requests are made for any number of specified 
 commodities.
 The Sink archetype section is of the form:
+
 .. code-block:: xml
 
   <facility>
@@ -775,7 +775,7 @@ Optional parameters:
 in_commod_prefs: default=[], range: [None, [1e-299, 1e+299]]
   Commodities that the sink facility accepts
 
-::
+.. code-block:: XML
 
       <in_commod_prefs>
           <val>[double]</val>
@@ -838,7 +838,7 @@ The sink facility archetype is:
     </config>
   </facility>
 
-1. After filling in these variables, your sink facility prototype will look like:
+After filling in these variables, your sink facility prototype will look like:
 
 .. code-block:: XML
 

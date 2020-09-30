@@ -24,6 +24,8 @@ library.
 
 Using the template and table below,
 properly fill the template with the variables listed in the table below.
+In the template, the dots represent the archetypes already defined in the 
+simulation.
 
 +-------------+------------------+----------------------------+
 | Variable    | Value            | Purpose                    |
@@ -38,7 +40,9 @@ properly fill the template with the variables listed in the table below.
 +-------------+------------------+----------------------------+
 
 .. code-block:: XML
-
+      <archetypes>
+        ...
+        ...
         <spec>
           <lib>lib6</lib>
           <name>arch6</name>
@@ -50,8 +54,11 @@ properly fill the template with the variables listed in the table below.
       </archetypes>
 
 Once complete, your `agent` Archetypes block should be:
-.. code-block:: XML
 
+.. code-block:: XML
+      <archetypes>
+        ...
+        ...
         <spec>
           <lib>agents</lib>
           <name>NullRegion</name>
@@ -62,7 +69,8 @@ Once complete, your `agent` Archetypes block should be:
         </spec>
       </archetypes>
 
-Since these are all archetypes, no matter what library their from, we must append the two archetype sections such as:
+Since these are all archetypes, no matter what library they're from, we must append the `agent` archetype block 
+into the arechtype block that we already have. This results in the full archetype block:
 
 .. code-block:: XML
 
@@ -122,7 +130,7 @@ Where:
 * ``config``: Region archetype to use
 
 In between the two dotted lines
-is where the institution and facility information goes. The
+is where the institution and facility information goes.
 
 Concept: Institution
 -----------------------------------------------------------------------
@@ -157,7 +165,7 @@ Put together, the institution block is the form:
             <prototype>Prototype_name</prototype>
             <number>number_of_prototype_names</number>
           </entry>
-          </initialfacilitylist>
+        </initialfacilitylist>
         <name>Inst_name</name>
         <config>
           <NullInst/>
@@ -192,7 +200,7 @@ facilities.
             <prototype>FacilityB</prototype>
             <number>1</number>
           </entry>
-          </initialfacilitylist>
+        </initialfacilitylist>
         <name>SingleInstitution</name>
         <config>
           <NullInst/>
@@ -339,7 +347,7 @@ Let's first build the ``Exelon`` institution. This institution has one ``1178MWe
           <prototype>1178MWe BRAIDWOOD-1</prototype>
           <number>1</number>
         </entry>
-        </initialfacilitylist>
+      </initialfacilitylist>
       <name>Exelon</name>
       <config>
         <NullInst/>
@@ -350,7 +358,7 @@ Let's first build the ``Exelon`` institution. This institution has one ``1178MWe
 
 .. code-block:: XML
 
-    <institution>
+      <institution>
         <initialfacilitylist>
           <entry>
             <prototype>UraniumMine</prototype>
@@ -386,7 +394,7 @@ Let's first build the ``Exelon`` institution. This institution has one ``1178MWe
           <prototype>1178MWe BRAIDWOOD-1</prototype>
           <number>1</number>
         </entry>
-        </initialfacilitylist>
+      </initialfacilitylist>
       <name>Exelon</name>
       <config>
         <NullInst/>

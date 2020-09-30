@@ -3,7 +3,7 @@ Adding a second reactor
 
 We will now add a second reactor, ``1000We Lightwater-1``, to our
 simulation. This reactor will have a lifetime of 360 months (30 years),
-cycle time of 15 months, assembly size of 30160, and power capacity 1000
+cycle time of 15 months, assembly size of 30160 kg, and power capacity 1000
 MWe. Using this information, let's construct the facility input section
 of this reactor.
 
