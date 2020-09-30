@@ -44,6 +44,7 @@ prototype.
 +-----------------------+---------------------------+
 
 Once complete, your reactor prototype should look like:
+
 .. code-block:: xml
 
   <facility>

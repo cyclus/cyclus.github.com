@@ -120,7 +120,7 @@ Basic Tutorial Input
                 <number>1</number>
               </entry>
               </initialfacilitylist>
-            <name>Exelon Reactors</name>
+            <name>Exelon</name>
             <config>
               <NullInst/>
             </config>
@@ -342,7 +342,7 @@ Add a Second Reactor Input
                 <number>1</number>
               </entry>
             </initialfacilitylist>
-            <name>Exelon Reactors</name>
+            <name>Exelon</name>
             <config>
               <NullInst/>
             </config>
@@ -684,7 +684,7 @@ Separations Input
                 <number>1</number>
               </entry>
             </initialfacilitylist>
-            <name>Exelon Reactors</name>
+            <name>Exelon</name>
             <config>
               <NullInst/>
             </config>

@@ -102,6 +102,29 @@
       </nuclide>
     </recipe>
 
+
+  <facility>
+    <name>UraniumMine</name>
+    <config>
+      <Source>
+        <outcommod>u-ore</outcommod>
+      </Source>
+    </config>
+  </facility>
+  
+  <facility>
+    <name>EnrichmentPlant</name>
+    <config>
+      <Enrichment>
+        <feed_commod>u-ore</feed_commod>
+        <feed_recipe>nat-u</feed_recipe>
+        <product_commod>fresh-uox</product_commod>
+        <tails_commod>tails</tails_commod>
+        <max_feed_inventory>1000000</max_feed_inventory>
+      </Enrichment>
+    </config>
+  </facility>
+  
   <facility>
     <name>1178MWe BRAIDWOOD-1</name>
     <config>
@@ -120,16 +143,6 @@
     </config>
   </facility>
 
-
-  <facility>
-    <name>UraniumMine</name>
-    <config>
-      <Source>
-        <outcommod>u-ore</outcommod>
-      </Source>
-    </config>
-  </facility>
-
   <facility>
     <name>NuclearRepository</name>
     <config>
@@ -139,20 +152,6 @@
           <val>tails</val>
         </in_commods>
       </Sink>
-    </config>
-  </facility>
-
-
-  <facility>
-    <name>EnrichmentPlant</name>
-    <config>
-      <Enrichment>
-        <feed_commod>u-ore</feed_commod>
-        <feed_recipe>nat-u</feed_recipe>
-        <product_commod>fresh-uox</product_commod>
-        <tails_commod>tails</tails_commod>
-        <max_feed_inventory>1000000</max_feed_inventory>
-      </Enrichment>
     </config>
   </facility>
 
