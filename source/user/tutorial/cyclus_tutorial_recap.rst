@@ -120,7 +120,7 @@ Basic Tutorial Input
                 <number>1</number>
               </entry>
               </initialfacilitylist>
-            <name>Exelon Reactors</name>
+            <name>Exelon</name>
             <config>
               <NullInst/>
             </config>
@@ -306,7 +306,7 @@ Add a Second Reactor Input
               <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
               <cycle_time>15</cycle_time>
               <refuel_time>1</refuel_time>
-              <assem_size>33000</assem_size>
+              <assem_size>30160</assem_size>
               <n_assem_core>3</n_assem_core>
               <n_assem_batch>1</n_assem_batch>
               <power_cap>1000</power_cap>
@@ -342,7 +342,7 @@ Add a Second Reactor Input
                 <number>1</number>
               </entry>
             </initialfacilitylist>
-            <name>Exelon Reactors</name>
+            <name>Exelon</name>
             <config>
               <NullInst/>
             </config>
@@ -466,6 +466,7 @@ Separations Input
           <name>NullInst</name>
         </spec>
       </archetypes>
+
       <commodity>
           <name>u-ore</name>
           <solution_priority>1.0</solution_priority>
@@ -487,10 +488,17 @@ Separations Input
           <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
-            <name>fresh-mox</name>
-            <solution_priority>1.0</solution_priority>
+          <name>fresh-mox</name>
+          <solution_priority>1.0</solution_priority>
       </commodity>
-
+      <commodity>
+          <name>separated-fissile</name>
+          <solution_priority>1.0</solution_priority>
+      </commodity>
+      <commodity>
+          <name>separated-waste</name>
+          <solution_priority>1.0</solution_priority>
+      </commodity>
 
         <facility>
           <name>UraniumMine</name>
@@ -556,15 +564,15 @@ Separations Input
           <config>
             <Separations>
                <feed_commods>
-                 <!--val>used-mox-fuel</val-->
+                 <val>used-mox-fuel</val>
                  <val>spent-uox</val>
                </feed_commods>
                <feed_commod_prefs>
-                 <!--val>1.0</val-->
+                 <val>1.0</val>
                  <val>1.0</val>
                </feed_commod_prefs>
-               <feedbuf_size>1E100</feedbuf_size>
-               <throughput>1E100</throughput>
+               <feedbuf_size>1000e+3</feedbuf_size>
+               <throughput>80e+3</throughput>
                <leftover_commod>separated-waste</leftover_commod>
                <streams>
                 <item>
@@ -590,7 +598,7 @@ Separations Input
                 <val>u-ore</val>
               </fill_commods>
               <fill_recipe>nat-u</fill_recipe>
-              <fill_size>1e+60</fill_size>
+              <fill_size>1000e+3</fill_size>
               <fiss_commod_prefs>
                 <val>1</val>
               </fiss_commod_prefs>
@@ -600,7 +608,7 @@ Separations Input
               <fiss_size>5e+4</fiss_size>
               <outcommod>fresh-mox</outcommod>
               <spectrum>thermal</spectrum>
-              <throughput>1e+60</throughput>
+              <throughput>2e+3</throughput>
             </FuelFab>
           </config>
           <name>uox-mox-fuel-fab</name>
@@ -636,7 +644,7 @@ Separations Input
               <assem_size>33000</assem_size>
               <n_assem_core>3</n_assem_core>
               <n_assem_batch>1</n_assem_batch>
-              <power_cap>1100</power_cap>
+              <power_cap>1000</power_cap>
             </Reactor>
           </config>
         </facility>
@@ -676,7 +684,7 @@ Separations Input
                 <number>1</number>
               </entry>
             </initialfacilitylist>
-            <name>Exelon Reactors</name>
+            <name>Exelon</name>
             <config>
               <NullInst/>
             </config>

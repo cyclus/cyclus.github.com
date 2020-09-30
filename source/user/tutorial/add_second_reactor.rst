@@ -34,7 +34,7 @@ prototype.
 +-----------------------+---------------------------+
 | ``refuel_time``       | ``1``                     |
 +-----------------------+---------------------------+
-| ``assem_size``        | ``33000``                 |
+| ``assem_size``        | ``30160``                 |
 +-----------------------+---------------------------+
 | ``n_assem_core``      | ``3``                     |
 +-----------------------+---------------------------+
@@ -44,6 +44,7 @@ prototype.
 +-----------------------+---------------------------+
 
 Once complete, your reactor prototype should look like:
+
 .. code-block:: xml
 
   <facility>
@@ -57,7 +58,7 @@ Once complete, your reactor prototype should look like:
         <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
         <cycle_time>15</cycle_time>
         <refuel_time>1</refuel_time>
-        <assem_size>33000</assem_size>
+        <assem_size>30160</assem_size>
         <n_assem_core>3</n_assem_core>
         <n_assem_batch>1</n_assem_batch>
         <power_cap>1000</power_cap>

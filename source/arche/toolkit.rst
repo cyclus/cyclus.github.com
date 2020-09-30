@@ -166,8 +166,8 @@ composable, agent-managed state variables:
 * ``cyclus::toolkit::SupplyDemandManager``: an interface for querying the supply
   and demand on commodities
 
-  Geographic Informasion System (GIS) Class [C++]
-  +++++++++++++++++++++++++++++++++++++++++++++++
+Geographic Informasion System (GIS) Class [C++]
++++++++++++++++++++++++++++++++++++++++++++++++
   The ``cyclus::toolkit::GIS`` class provide an option to add geographic coordinates
   of its friend classes. Haversine distance calculations between two facilities or
   agents with GIS coordinates can be performed as well.
