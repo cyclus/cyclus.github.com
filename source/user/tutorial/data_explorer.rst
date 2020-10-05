@@ -1,14 +1,14 @@
 An Introduction to Data Exploration
 =====================================
 
-The ``analysis`` package provides a way to fluidly explore the
+Cymetric provides a way to fluidly explore the
 data that arises from a |cyclus| simulation. A variety of metrics, plots, and information can be
 manipulated and viewed in a straightforward and interactive way to develop a thorough
 understanding of the features that matter the most.
 
 Concept: Cyclus Output file
 =========================================
-*CYCLUS* creates an SQLite (``.sqlite``) database file as its output. SQLite is a database file
+|Cyclus| creates an SQLite (``.sqlite``) database file as its output. SQLite is a database file
 type that consists of a series of tables. A few functions have been
 included in ``analysis.py``, a file in downloaded the github repository of this tutorial, to pull information from the sqlite
 database and create figures.
