@@ -203,7 +203,7 @@ Basic Tutorial Input
 Add a Second Reactor Input
 --------------------------
 
-::
+.. code-block:: XML
 
   <simulation>
     <control>
@@ -423,7 +423,7 @@ Add a Second Reactor Input
 Separations Input
 -----------------
 
-::
+.. code-block:: XML
 
   <simulation>
     <control>

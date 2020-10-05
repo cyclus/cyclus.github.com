@@ -5,7 +5,7 @@ The separations facility will request all the commodities in its Feed
 Commodity List, and separate them into any number of streams, plus a waste
 stream. 
 
-Te following is the input tamplate for ``Cycamore::Separations`` archetype.
+The following is the input template for ``Cycamore::Separations`` archetype:
 
 .. code-block:: XML
 
@@ -52,7 +52,7 @@ Te following is the input tamplate for ``Cycamore::Separations`` archetype.
     * 99% of all Pu (94000) will go into that stream
 * all other material will go to Separated-Waste
 
-Filling in the template, the imput block looks like:
+Filling in the template, the input block looks like:
 
 .. code-block:: XML
 
