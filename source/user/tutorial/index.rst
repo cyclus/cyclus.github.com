@@ -25,7 +25,6 @@ Exercise #1
     :maxdepth: 2
 
     install_launch_cyclus
-    ipython_tour
     sim_parm
     add_arche
     add_proto
