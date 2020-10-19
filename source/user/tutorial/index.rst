@@ -31,7 +31,6 @@ Exercise #1
     add_reg_inst
     launch_cyclus
     run_cyclus_native
-    data_explorer
     add_second_reactor
 
 Exercise #2
