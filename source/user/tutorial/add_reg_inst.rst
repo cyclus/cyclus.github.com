@@ -134,7 +134,7 @@ is where the institution and facility information goes.
 
 Concept: Institution
 -----------------------------------------------------------------------
-In |CYCLUS| input files, each institution block defines an agent that
+In |Cyclus| input files, each institution block defines an agent that
 acts as an institution in the simulation. An institution block can only
 appear within a region block. Each institution block has the following
 sections in any order:

@@ -53,7 +53,7 @@ to specify the solution priority of each commodity.
 * ``fresh-uox``: fresh 4.0% enriched Uranium Oxide fuel that enters the reactor
 * ``spent-uox``: spent Uranium Oxide fuel that leaves the reactor after depletion
 
-When |CYCLUS| needs
+When |Cyclus|needs
 to know the isotopic composition of a material, it looks at the recipe for that
 material given in the input file. Until now, ``recipe`` has been used to
 refer to fuel recipes, but the ``recipe`` section of the input file can
@@ -164,7 +164,7 @@ Most commodities are materials, which have a quantity and an
 isotopic composition.
 Recipes are the isotopic composition of a certain material. For
 example, u-ore has an isotropic composition of 0.711% :math:`^{235}`\ U and
-99.284% :math:`^{238}`\ U. The recipe section of a CYCLUS input file is
+99.284% :math:`^{238}`\ U. The recipe section of a |Cyclus| input file is
 located at the bottom and is of the form:
 
 .. code-block:: XML
@@ -361,7 +361,7 @@ The recipe name ``fresh-uox`` is specified, as are the isotope nuclide IDs and t
 Concept: Archetype configuration
 -------------------------------------------------------
 
-One of the features of |CYCLUS| is its ability to switch between
+One of the features of |Cyclus| is its ability to switch between
 different models of the facilities within the fuel cycle. These models,
 called **archetypes**, may change how the facility interacts with other
 facilities or how the physics of the facility are represented. For
@@ -473,7 +473,7 @@ Once complete, append this facility under the commodity section of your input fi
 
 Concept: Enrichment Prototype
 ==============================
-The Enrichment facility is a simple agent that enriches natural uranium in a Cyclus simulation. It does not 
+The Enrichment facility is a simple agent that enriches natural uranium in a |Cyclus| simulation. It does not 
 explicitly compute the physical enrichment process, rather it calculates the SWU required to convert an 
 incoming isotopic vector (i.e. natural uranium) into a requested enriched recipe (i.e. 4% enriched uranium), 
 given the natural uranium inventory constraint and its SWU capacity constraint.

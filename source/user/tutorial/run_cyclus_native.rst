@@ -1,4 +1,4 @@
-Working with Cyclus in on your machine
+Working with |Cyclus| in on your machine
 ======================================
 
 Choosing Where to Run
@@ -16,7 +16,7 @@ run from either the IPython notebook or in the command prompt:
 
 .. image:: cyclus_in_IP.png
     :align: center
-    :alt: Running CYCLUS in an IPython Notebook
+    :alt: Running |Cyclus| in an IPython Notebook
 
 
 Brief Introduction to Jupyter Notebook
@@ -44,25 +44,12 @@ A Jupyter notebook has four main areas:
 Jupyter Notebook Scenario Execution 
 --------------------------------------------
 1. Go to the Jupyter notebook, making sure you are in the same folder as the input file
-2. Remove any old cyclus output files by: ``!rm tutorial.sqlite``
-3. Run CYCLUS by: ``!cyclus input.xml -o tutorial.sqlite``
+2. Remove any old |Cyclus| output files by: ``!rm tutorial.sqlite``
+3. Run |Cyclus| by: ``!cyclus input.xml -o tutorial.sqlite``
 
 .. image:: cyclus_in_IP.png
     :align: center
-    :alt: Running CYCLUS in an IPython Notebook
-
-
-Activity: Execute your Scenario in an IPython Notebook
-++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-1. Go to the IPython notebook
-2. Remove any old cyclus output files by: ``!rm tutorial_singlerx.sqlite``
-3. Run CYCLUS by: ``!cyclus cyclus_intro_file.xml -o tutorial_singlerx.sqlite``
-
-
-.. image:: cyclus_run.png
-    :align: center
-    :alt: Job status is shown when executing CYCLUS
+    :alt: Running |Cyclus| in an IPython Notebook
 
 
 Activity: Retrieve your Results for Analysis

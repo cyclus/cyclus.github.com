@@ -73,7 +73,7 @@ Activity: Second reactor Institution
 ++++++++++++++++++++++++++++++++++++
 
 We must add this second reactor into the region and facility section of
-our CYCLUS input file. To do so, go to the ``entry`` header under the
+our |Cyclus| input file. To do so, go to the ``entry`` header under the
 ``initialfacilitylist`` section of the region block of the input file
 and add
 
@@ -117,5 +117,5 @@ of the region block should now look like,
 Note: the blank space between ``</institution>`` and ``</region>`` is
 for additional institutions in the future.
 
-Save your input file as input_file2.xml and run the cyclus simulation.
+Save your input file as input_file2.xml and run the |Cyclus| simulation.
 
