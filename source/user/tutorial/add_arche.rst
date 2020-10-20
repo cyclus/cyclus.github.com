@@ -187,4 +187,8 @@ Once complete, your Archetypes block should look like:
         <name>Sink</name>
       </spec>
       <spec>
-Once complete, append the archetypes section under the control section of input file. 
+Once complete, append the archetypes section under the control section of input file [#f1].
+
+.. rubric:: Footnotes
+
+.. [#f1] The exact order of the sections in a |Cyclus| input file are of minor consequence. The ``control`` sequence must go first, but the other sequences can go in any order that makes sense to the user. The tradiational organization of an input file is: control, archetypes, commodities, facilities, regions/insitutions, and recipes. 
