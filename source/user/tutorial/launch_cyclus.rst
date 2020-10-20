@@ -4,6 +4,7 @@ Using Cyclus in the Cloud
 Choosing Where to Run
 -----------------------
 For this tutorial, there are 2 options for places to run the Cyclus simulation. 
+
 1. Our cloud resource where Cyclus is installed. 
 2. A `Jupyter Notebook <http://fuelcycle.org/user/tutorial/run_cyclus_native.html>`_ 
 in the local machine where you have Cyclus installed. 
@@ -15,7 +16,7 @@ machine is that you don't have to install the entire |Cyclus| toolset on your
 local machine.   
 
 For this tutorial, the cloud resource has been made available at
-cycrun.fuelcycle.org.  This is the same resources that is used to run |Cyclus|
+`<cycrun.fuelcycle.org>`_.  This is the same resources that is used to run |Cyclus|
 from the |Cyclus| home page. If it is desired to run |Cyclus| on your local 
 machine, then this section of the tutorial can be skipped. 
 
