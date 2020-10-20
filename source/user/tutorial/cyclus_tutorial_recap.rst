@@ -1,5 +1,8 @@
 Cyclus Tutorial Recap
 =====================
+Below are complete input files for each of the exercises performed in this
+tutorial. 
+
 
 Basic Tutorial Input
 --------------------

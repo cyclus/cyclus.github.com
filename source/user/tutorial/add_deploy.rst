@@ -1,8 +1,11 @@
 Deploying New Facilities
 ==========================
 
-It's time to make this scenario more interesting with a transition.  This will
-require an institution that is able to deploy additional facilities, the
+Often in fuel cycle analysis, transition scenarios are considered. How does the 
+commissioning and decommissioning of reactors afftect electrity production or 
+material transactions. Transition analysis will
+require an institution that is able to deploy additional facilities at given time 
+steps: the
 cycamore DeployInst.  This is the simplest institution that is able to deploy
 new facilities, in which the user simply defines the times at which new agents
 should be deployed as copies of available prototypes.
