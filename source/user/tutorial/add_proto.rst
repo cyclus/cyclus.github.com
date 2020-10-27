@@ -165,7 +165,7 @@ isotopic composition.
 Recipes are the isotopic composition of a certain material. For
 example, u-ore has an isotropic composition of 0.711% :math:`^{235}`\ U and
 99.284% :math:`^{238}`\ U. The recipe section of a |Cyclus| input file is
-located at the bottom and is of the form:
+typically located at the end of the input and is of the form:
 
 .. code-block:: XML
 
@@ -469,7 +469,7 @@ This facility takes two inputs, ``name`` and ``outcommd``. Using the Source Arch
     </config>
   </facility>
 
-Once complete, append this facility under the commodity section of your input file.
+Once complete, append this facility under the commodity section and before the recipe section of your input file.
 
 Concept: Enrichment Prototype
 ==============================
