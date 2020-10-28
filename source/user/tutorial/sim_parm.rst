@@ -10,7 +10,7 @@ cycle.  For the purpose of this tutorial, the scenario will include:
 * mine of natural uranium
 * enrichment facility producing 4% enriched uranium oxide fuel
 * LWR reactor consuming fresh fuel and producing used fuel
-* repository to house all spent fuel
+* repository to house all spent fuel and waste
 
 More details about each of these facilities will discussed when we are
 required to provide that input.
@@ -39,7 +39,7 @@ information for all simulations:
 
 4. <startyear>: the first year of the simulation
 
-5. <decay>:The Cyclus kernel has built-in experimental support for `Decay <http://fuelcycle.org/devdoc/decay.html>`_ calculations. Materials store the time since their last decay and agents are free to invoke the decay function on them as desired to decay them to the current simulation time. Cyclus can operate in 3 decay modes, with 1 additional mode likely to be added in a future release:
+5. <decay>:The |Cyclus| kernel has built-in experimental support for `Decay <http://fuelcycle.org/devdoc/decay.html>`_ calculations. Materials store the time since their last decay and agents are free to invoke the decay function on them as desired to decay them to the current simulation time. Cyclus can operate in 3 decay modes, with 1 additional mode likely to be added in a future release:
 
 - 'never' if all decay is turned off
 - 'manual', meaning it is only on if the individual archetype decays their own inventory
@@ -55,7 +55,7 @@ could be given but are not in the scope of this tutorial.
 We'll return later to the topics of generating, loading and executing an input file.
 
 
-The Cyclus input file begins with the ``<simulation>`` tag and ends with the ``</simulation>`` tag.
+The |Cyclus| input file begins with the ``<simulation>`` tag and ends with the ``</simulation>`` tag.
 Within this space, the ``<control>`` block is the first section of the CYCLUS input file and is of the form:
 
 .. code-block:: XML
@@ -70,9 +70,9 @@ Within this space, the ``<control>`` block is the first section of the CYCLUS in
 
     </simulation>
 
-The lifetime of a *CYCLUS* simulation is determined by its
-**duration**, the number of months *CYCLUS* will
-model the fuel cycle. *CYCLUS* also intakes the **start_month** and
+The lifetime of a |Cyclus| simulation is determined by its
+**duration**, the number of months |Cyclus| will
+model the fuel cycle. |Cyclus| also intakes the **start_month** and
 **start_year** of the simulation. The last major parameter of the
 simulation is whether or not we wish to model the
 `decay <http://fuelcycle.org/devdoc/decay.html>`__ of the
@@ -99,7 +99,8 @@ with the variables listed in the table below in your favorite text editor.
 
 Using this table, let's set the simulation parameters.
 
-1. To tell CYCLUS that this is the simulation section of the input file, set  the first line of the input file to be:
+1. To tell |Cyclus| that this is the simulation section of the input file, set  the first line of the input file to be:
+
 .. code-block:: XML
 
     <simulation>

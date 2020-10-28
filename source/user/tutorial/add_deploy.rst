@@ -1,17 +1,31 @@
 Deploying New Facilities
 ==========================
 
-It's time to make this scenario more interesting with a transition.  This will
-require an institution that is able to deploy additional facilities, the
-cycamore DeployInst.  This is the simplest institution that is able to deploy
+Often in fuel cycle analysis, transition scenarios are considered. How does the 
+commissioning and decommissioning of reactors afftect electrity production or 
+material transactions. Transition analysis will
+require an institution that is able to deploy additional facilities at given time 
+steps: the ``cycamore DeployInst`` archetype.  This is the simplest institution 
+that is able to deploy
 new facilities, in which the user simply defines the times at which new agents
 should be deployed as copies of available prototypes.
 
-In this case, we will keep the original institution and add another
+In this case, we will keep the current institutions and add another
 institution that will deploy more facilities over time.
 
 Activity: Add a New Institution
 --------------------------------
+The ``DeployInst`` archetype must be added to the ``<archetypes>`` block 
+of the input file: 
+
+.. code-block:: xml
+
+    <archetypes>
+      ...
+      ...
+      <spec> <lib>cycamore</lib><name>DeployInst</name> </spec>
+    </archetypes>
+
 
 **Recall:** in `Adding a Second Reactor <add_second_reactor.html>`_ we left
 a blank spot in between our ``</institution>`` and ``</region>`` handles.
@@ -33,8 +47,8 @@ look like the following:
       <config>
         <DeployInst>
           <prototypes>
-            <val>UOX_Source</val>
-            <val>MOX_Source</val>
+            <val>UraniumMine</val>
+            <val>fuelfab</val>
             <val>1178MWe BRAIDWOOD-1</val>
             <val>1000We Lightwater-1</val>
           </prototypes>
@@ -56,9 +70,9 @@ look like the following:
       </config>
     </institution>
 
-The above institution will create 1 ``UOX_Source`` and ``MOX_Source`` facility on
+The above institution will create 1 ``UraniumMine`` and 1 ``fuelfab`` facility on
 time step 1. The next time step will deploy the ``1178MWe BRAIDWOOD-1`` reactor
 prototype. And finally, at time step 3, the ``1000We Lightwater-1`` will be deployed.
 
 **ExampleInstitution** is a placeholder for your institution name, and in this scenario
-only one of each prototype will be deployed since ``n_build`` has a value of 1 for each. 
+only one of each prototype will be deployed since ``n_build`` has a value of 1 for each.

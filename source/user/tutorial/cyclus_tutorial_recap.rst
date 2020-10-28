@@ -1,5 +1,8 @@
 Cyclus Tutorial Recap
 =====================
+Below are complete input files for each of the exercises performed in this
+tutorial. 
+
 
 Basic Tutorial Input
 --------------------
@@ -203,7 +206,7 @@ Basic Tutorial Input
 Add a Second Reactor Input
 --------------------------
 
-::
+.. code-block:: XML
 
   <simulation>
     <control>
@@ -423,7 +426,7 @@ Add a Second Reactor Input
 Separations Input
 -----------------
 
-::
+.. code-block:: XML
 
   <simulation>
     <control>

@@ -25,14 +25,12 @@ Exercise #1
     :maxdepth: 2
 
     install_launch_cyclus
-    ipython_tour
     sim_parm
     add_arche
     add_proto
     add_reg_inst
     launch_cyclus
     run_cyclus_native
-    data_explorer
     add_second_reactor
 
 Exercise #2

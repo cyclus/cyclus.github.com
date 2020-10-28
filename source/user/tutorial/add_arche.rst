@@ -108,16 +108,16 @@ The archetype block is located after the simulation control block and takes the 
 
     <archetypes>
         <spec>
-          <lib>cycamore</lib>
+          <lib>lib1</lib>
           <name>arch_1</name>
         </spec>
         <spec>
-          <lib>cycamore</lib>
+          <lib>lib2</lib>
           <name>arch_2</name>
         </spec>
     </archetypes>
 
-where ``lib`` is the library in which the archetype came from and name is
+where ``lib`` is the library in which the archetype came from and ``name`` is
 the archetype name. Let's build our archetypes!
 Using the template below and the table below,
 properly fill the template with the variables listed in the table below.
@@ -166,6 +166,7 @@ Archetype Block Template
         </spec>
 
 Once complete, your Archetypes block should look like:
+
 .. code-block:: XML
 
   <archetypes>
@@ -186,4 +187,8 @@ Once complete, your Archetypes block should look like:
         <name>Sink</name>
       </spec>
       <spec>
-Once complete, append the archetypes section under the control section of input file. 
+Once complete, append the archetypes section under the control section of input file [#f1].
+
+.. rubric:: Footnotes
+
+.. [#f1] The exact order of the sections in a |Cyclus| input file are of minor consequence. The ``control`` sequence must go first, but the other sequences can go in any order that makes sense to the user. The tradiational organization of an input file is: control, archetypes, commodities, facilities, regions/insitutions, and recipes. 

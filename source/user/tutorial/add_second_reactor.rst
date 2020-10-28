@@ -1,9 +1,10 @@
 Adding a second reactor
 =======================
 
-We will now add a second reactor, ``1000We Lightwater-1``, to our
+Simple simulations can easily be expanded into more complex problems. To demonstrate this, 
+we will now add a second reactor, ``1000We Lightwater-1``, to our
 simulation. This reactor will have a lifetime of 360 months (30 years),
-cycle time of 15 months, assembly size of 30160, and power capacity 1000
+cycle time of 15 months, assembly size of 30160 kg, and power capacity 1000
 MWe. Using this information, let's construct the facility input section
 of this reactor.
 
@@ -72,7 +73,7 @@ Activity: Second reactor Institution
 ++++++++++++++++++++++++++++++++++++
 
 We must add this second reactor into the region and facility section of
-our CYCLUS input file. To do so, go to the ``entry`` header under the
+our |Cyclus| input file. To do so, go to the ``entry`` header under the
 ``initialfacilitylist`` section of the region block of the input file
 and add
 
@@ -116,85 +117,5 @@ of the region block should now look like,
 Note: the blank space between ``</institution>`` and ``</region>`` is
 for additional institutions in the future.
 
-Save your input file as input_file2.xml and run the cyclus simulation.
+Save your input file as input_file2.xml and run the |Cyclus| simulation.
 
-Activity: Analysis
-++++++++++++++++++
-
-Following what we've done in `Data Exploration <data_explorer.html>`_,
-we will now analyze the output:
-
-.. code:: ipython3
-
-    cur = analysis.cursor('cyclus.sqlite')
-
-.. code:: ipython3
-
-    plt.rcParams['figure.figsize'] = [10, 8]
-    plt.rcParams['legend.fontsize'] = 12
-    facility = '1000We Lightwater-1'
-    title = 'Cumulative Isotope Outflux of 1000 MWe Lightwater-1'
-    analysis.plot_out_flux_cumulative(cur, facility,title)
-
-
-
-.. image:: output_83_0.png
-
-
-Ask
----
-
--  Why does 'Cumulative Isotope Outflux of 'Lightwater-1' plot only go
-   for 360 months ?
--  Why is there a spike in isotope outflux at the end of the lifetime of
-   the 'Lightwater-1' ?
-
-Share
------
-
--  What are some other reactor differences between this plot and the
-   'Cumulative Isotope Outflux of '1178MWe BRAIDWOOD-1' reactor.
-
-Let's take a look at the total mass of spent nuclear fuel stored at the
-Nuclear Waste Repository. To plot, use the
-``analysis.plot_in_flux_cumulative(cur, facility, title)`` function.
-
-.. raw:: html
-
-   <div class="alert alert-info">
-
-Using the table below, create the following
-variables. Include appropriate comments.
-
-.. raw:: html
-
-   </div>
-
-+----------------+----------------------------------------------------+------------------------+
-| Variable       | Value                                              | Purpose                |
-+================+====================================================+========================+
-| ``facility``   | ``'NuclearRepository'``                            | facility of interest   |
-+----------------+----------------------------------------------------+------------------------+
-| ``title``      | ``'Cumulative Isotope Inventory of Repository'``   | title of plot          |
-+----------------+----------------------------------------------------+------------------------+
-
-.. code:: ipython3
-
-    facility = 'NuclearRepository' # facility of interest
-    title  = 'Cumulative Isotope Inventory of Repository'  # title of plot
-
-    analysis.plot_commodities(cur,archetype='sink',facility_commodity=['tails','spent-uox'],title = 'Sink storage',
-                              filename='sink_two',is_cum=True,is_outflux=False)
-    from IPython.display import Image
-    Image(filename='sink_two.png')
-
-
-
-
-.. image:: output_86_0.png
-
-
-
-As seen in the above plot, the rate at which ``tails`` and ``spent-uox``
-is stored at the ``Sink`` decreases considably around the year 2050 as
-the ``Lightwater-1`` reactor shuts down in the year 2048.
