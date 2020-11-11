@@ -110,8 +110,8 @@ of the region block should now look like,
             <NullInst/>
           </config>
         </institution>
-
-
+    ...
+    ...
     </region>
 
 Note: the blank space between ``</institution>`` and ``</region>`` is

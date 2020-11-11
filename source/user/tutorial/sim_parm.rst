@@ -54,7 +54,9 @@ could be given but are not in the scope of this tutorial.
 
 We'll return later to the topics of generating, loading and executing an input file.
 
-
+A |Cyclus| input file can be written in `multiple formats <https://fuelcycle.org/user/writing_input.rst>`, 
+including XML, JSON, and python. This tutorial
+will walk through how to build an XML input. 
 The |Cyclus| input file begins with the ``<simulation>`` tag and ends with the ``</simulation>`` tag.
 Within this space, the ``<control>`` block is the first section of the CYCLUS input file and is of the form:
 
@@ -67,7 +69,8 @@ Within this space, the ``<control>`` block is the first section of the CYCLUS in
         <startyear>start_year_val</startyear>
         <decay>decay_val</decay>
       </control>
-
+    ...
+    ...
     </simulation>
 
 The lifetime of a |Cyclus| simulation is determined by its
@@ -125,8 +128,8 @@ Adding spaces or tabs to indent the ``control`` header improves ease of reading.
         <startyear>2018</startyear>
         <decay>never</decay>
       </control>
-
-
+    ...
+    ...
     </simulation>
 
 **Note**: There are two blank lines between the end of the control section and end of the simulation section. This section of the simulation block will hold the rest of the simulation parameter blocks (commodities, facilities, regions, institutions, and recipe blocks).

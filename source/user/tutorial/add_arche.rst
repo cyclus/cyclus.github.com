@@ -89,7 +89,7 @@ Concept: Third-Party Archetypes
 Review the `archetype developer tutorial <http://fuelcycle.org/arche/tutorial/input_files.html>`_ for more information on making your own Archetypes.
 
 Activity: Adding archetypes
------------------------------
+===========================
 
 After discovering which archetypes are available, we will select which
 subset of archetypes will be used in this particular scenario.
@@ -164,12 +164,14 @@ Archetype Block Template
           <lib>lib4</lib>
           <name>arch4</name>
         </spec>
+      </archetypes>
+
 
 Once complete, your Archetypes block should look like:
 
 .. code-block:: XML
 
-  <archetypes>
+    <archetypes>
       <spec>
         <lib>cycamore</lib>
         <name>Enrichment</name>
@@ -186,7 +188,7 @@ Once complete, your Archetypes block should look like:
         <lib>cycamore</lib>
         <name>Sink</name>
       </spec>
-      <spec>
+    </archetypes>
 Once complete, append the archetypes section under the control section of input file [#f1].
 
 .. rubric:: Footnotes

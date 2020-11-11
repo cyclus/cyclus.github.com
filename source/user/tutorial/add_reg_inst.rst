@@ -238,7 +238,7 @@ Putting it all together, a complete region template is of the form:
     </region>
 
 Activity: Write the Region template
-+++++++++++++++++++++++++++++++++++
+-----------------------------------
 
 Using the template below, let's create the region section of our input file.
 
@@ -316,13 +316,13 @@ Check: Complete Region block
 
 
 Activity: Save your input file
-++++++++++++++++++++++++++++++
+------------------------------
 
 Save your input file as ``cyclus_intro_file.xml``
 
 
 Activity: Add an extra insitution into the Region
-++++++++++++++++++++++
+-------------------------------------------------
 Having multiple insitutions help organize facilities and their affiliation.
 Let's create region, ``USA``, that contains two institutions, ``Exelon`` and ``United States Nuclear``.
 ``Exelon`` is the institution that holds the ``1178MWe BRAIDWOOD-1`` reactor and ``United States Nuclear`` holds the ``UraniumMine``, ``EnrichmentPlant``, and ``NuclearRepository``.
@@ -424,7 +424,7 @@ Let's first build the ``Exelon`` institution. This institution has one ``1178MWe
   </region>
 
 Activity: Save your Input File
-+++++++++++++++++++++++++++++++++++++++++++++++
+------------------------------
 
 You are now ready to generate a full |Cyclus| input file.
 

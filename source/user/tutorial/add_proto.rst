@@ -1,5 +1,8 @@
+Understanding Commodities
+-------------------------
+
 Concept: Commodities
---------------------
+++++++++++++++++++++
 
 |Cyclus| exchanges resources between facilities using a market-like mechanism
 called the **dynamic resource exchange (DRE)**.  The concept of a commodity is
@@ -53,7 +56,7 @@ to specify the solution priority of each commodity.
 * ``fresh-uox``: fresh 4.0% enriched Uranium Oxide fuel that enters the reactor
 * ``spent-uox``: spent Uranium Oxide fuel that leaves the reactor after depletion
 
-When |Cyclus|needs
+When |Cyclus| needs
 to know the isotopic composition of a material, it looks at the recipe for that
 material given in the input file. Until now, ``recipe`` has been used to
 refer to fuel recipes, but the ``recipe`` section of the input file can
@@ -157,8 +160,11 @@ template.
 
 Once complete, append the commodities section under the archetypes section.
 
+Understanding Recipes
+---------------------
+
 Concept: Recipes
-----------------
+++++++++++++++++
 
 Most commodities are materials, which have a quantity and an
 isotopic composition.
@@ -358,8 +364,11 @@ Let's take a look at the ``fresh-uox`` fuel recipe:
 The recipe name ``fresh-uox`` is specified, as are the isotope nuclide IDs and the corresponding mass fraction of each nuclide. The ``fresh-uox`` is composed of 4% U-235 and 96% U-238.
 
 
+Understanding Prototypes
+------------------------
+
 Concept: Archetype configuration
--------------------------------------------------------
+++++++++++++++++++++++++++++++++
 
 One of the features of |Cyclus| is its ability to switch between
 different models of the facilities within the fuel cycle. These models,
@@ -388,7 +397,7 @@ In |Cyclus|, when an archetype has been configured with a
 specific set of parameters, it is called a *prototype*.
 
 Concept: Source Prototype
-=========================
++++++++++++++++++++++++++
 The Source facility acts as a source of material with a fixed throughput (per time step) capacity and a lifetime capacity defined by a total inventory size. It offers its material as a single commodity. If a composition recipe is specified, it provides that single material composition to requesters. If unspecified, the source provides materials with the exact requested compositions. The inventory size and throughput both default to infinite. Supplies material results in corresponding decrease in inventory, and when the inventory size reaches zero, the source can provide no more material.
 The Source archetype is of the form:
 
@@ -472,7 +481,7 @@ This facility takes two inputs, ``name`` and ``outcommd``. Using the Source Arch
 Once complete, append this facility under the commodity section and before the recipe section of your input file.
 
 Concept: Enrichment Prototype
-==============================
++++++++++++++++++++++++++++++
 The Enrichment facility is a simple agent that enriches natural uranium in a |Cyclus| simulation. It does not 
 explicitly compute the physical enrichment process, rather it calculates the SWU required to convert an 
 incoming isotopic vector (i.e. natural uranium) into a requested enriched recipe (i.e. 4% enriched uranium), 
@@ -599,7 +608,7 @@ Once complete, append this facility under the Source prototype of your input fil
 
 
 Concept: Reactor Prototype
-==========================
+++++++++++++++++++++++++++
 The Reactor is a simple, general reactor based on static compositional transformations to model fuel burnup. 
 The user specifies a set of fresh fuel compositions the Reactor accepts and corresponding spent fuel 
 compositions the reactor discharged from the core. No incremental transmutation takes place. Rather, 
@@ -748,7 +757,7 @@ Once complete, append this facility under the Enrichment facility of your input 
 
 
 Concept: Sink Prototype
-=======================
++++++++++++++++++++++++
 
 A sink facility that accepts materials and products with a fixed throughput (per time step) capacity and a lifetime 
 capacity defined by a total inventory size. The inventory size and throughput capacity both default to infinite. If a 
