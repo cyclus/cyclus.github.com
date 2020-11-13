@@ -54,10 +54,10 @@ could be given but are not in the scope of this tutorial.
 
 We'll return later to the topics of generating, loading and executing an input file.
 
-A |Cyclus| input file can be written in `multiple formats <https://fuelcycle.org/user/writing_input.rst>`, 
+A |Cyclus| input file can be written in `multiple formats <https://fuelcycle.org/user/writing_input.rst>`_, 
 including XML, JSON, and python. This tutorial
 will walk through how to build an XML input. 
-The |Cyclus| input file begins with the ``<simulation>`` tag and ends with the ``</simulation>`` tag.
+The XML |Cyclus| input file begins with the ``<simulation>`` tag and ends with the ``</simulation>`` tag.
 Within this space, the ``<control>`` block is the first section of the CYCLUS input file and is of the form:
 
 .. code-block:: XML

@@ -189,7 +189,7 @@ Once complete, your Archetypes block should look like:
         <name>Sink</name>
       </spec>
     </archetypes>
-Once complete, append the archetypes section under the control section of input file [#f1].
+Once complete, append the archetypes section under the control section of input file [#f1]_.
 
 .. rubric:: Footnotes
 

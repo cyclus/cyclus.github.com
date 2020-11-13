@@ -27,6 +27,7 @@ Exercise #1
     install_launch_cyclus
     sim_parm
     add_arche
+    add_commod_recipe
     add_proto
     add_reg_inst
     launch_cyclus
