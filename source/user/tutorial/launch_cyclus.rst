@@ -49,4 +49,6 @@ Retrieve your Results for Analysis
 Backup: Files for Success
 ++++++++++++++++++++++++++
 
-If your run did not succeed, you can retrieve correct input and output files `here`
+If your run did not succeed, you can retrieve correct input and output files `here 
+<https://doi.org/10.5281/zenodo.4289161>`_ This link contains input and 
+output files for each of the examples in this tutorial.

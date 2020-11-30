@@ -10,6 +10,7 @@ The following is the input template for ``Cycamore::Separations`` archetype:
 .. code-block:: XML
 
    <facility>
+     <name>SeparationsFacility</name>
      <config>
        <Separations>
          <feed_commods>
@@ -57,6 +58,7 @@ Filling in the template, the input block looks like:
 .. code-block:: XML
 
    <facility>
+     <name>SeparationsFacility</name>
      <config>
        <Separations>
          <feed_commods>

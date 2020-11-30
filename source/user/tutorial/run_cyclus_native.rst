@@ -63,4 +63,6 @@ how to use Cymetric can be found in the `GitHub <https://github.com/cyclus/cymet
 Backup: Files for Success
 +++++++++++++++++++++++++
 
-In case your run did not succeed, you can retrieve correct input and output files `here`
+In case your run did not succeed, you can retrieve correct input and output files `here 
+<https://doi.org/10.5281/zenodo.4289161>`_. This link contains input and output files 
+for each of the examples in this tutotial.
