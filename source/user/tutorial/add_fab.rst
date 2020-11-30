@@ -15,7 +15,7 @@ archetype:
 .. code-block:: XML
 
   <facility>
-    <name>fuelfab</name>
+    <name>FuelFab</name>
     <config>
       <FuelFab>
         <fill_commods> 
@@ -53,7 +53,7 @@ Filling in the template, the input block looks like:
 .. code-block:: XML
 
   <facility>
-    <name>fuelfab</name>
+    <name>FuelFab</name>
     <config>
       <FuelFab>
         <fill_commods> <val>U-ore</val> </fill_commods>

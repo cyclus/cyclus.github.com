@@ -48,7 +48,7 @@ look like the following:
         <DeployInst>
           <prototypes>
             <val>UraniumMine</val>
-            <val>fuelfab</val>
+            <val>FuelFab</val>
             <val>1178MWe BRAIDWOOD-1</val>
             <val>1000We Lightwater-1</val>
           </prototypes>
@@ -70,7 +70,7 @@ look like the following:
       </config>
     </institution>
 
-The above institution will create 1 ``UraniumMine`` and 1 ``fuelfab`` facility on
+The above institution will create 1 ``UraniumMine`` and 1 ``FuelFab`` facility on
 time step 1. The next time step will deploy the ``1178MWe BRAIDWOOD-1`` reactor
 prototype. And finally, at time step 3, the ``1000We Lightwater-1`` will be deployed.
 
