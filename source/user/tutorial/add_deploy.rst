@@ -73,6 +73,13 @@ look like the following:
 The above institution will create 1 ``UraniumMine`` and 1 ``FuelFab`` facility on
 time step 1. The next time step will deploy the ``1178MWe BRAIDWOOD-1`` reactor
 prototype. And finally, at time step 3, the ``1000We Lightwater-1`` will be deployed.
+This institution block goes inside the Region block, with the previously created 
+insitutions blocks. 
 
 **ExampleInstitution** is a placeholder for your institution name, and in this scenario
 only one of each prototype will be deployed since ``n_build`` has a value of 1 for each.
+
+This example is now complete. Save your file as the desired file name (with ``.xml`` 
+extension) and run your code through |Cyclus|. If your simulation runs into errors, 
+sample files can be found `here <https://doi.org/10.5281/zenodo.4299079>`_ under 
+``input_deployinst.xml`` or ``ouput_deployinst.sqlite``.

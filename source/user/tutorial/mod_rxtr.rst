@@ -33,8 +33,8 @@ Activity: Save your Input File
 --------------------
 The input for this example is now complete. Save your input file as 'recycle_input.xml'. If 
 your simulation runs into errors, sample files can be found `here 
-<https://doi.org/10.5281/zenodo.4289161>`_ under 'input_recycle.xml' 
-or 'ouput_recycle.sqlite'.
+<https://doi.org/10.5281/zenodo.4299079>`_ under ``input_recycle.xml`` 
+or ``ouput_recycle.sqlite``.
 
 
 .. rubric:: Footnotes
