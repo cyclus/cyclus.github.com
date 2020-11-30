@@ -67,7 +67,7 @@ facility archetypes are:
 Activity: Discover the Available Archetypes
 ===========================================
 If using |Cyclus| on your machine, the archetypes available to you are only those that have been downloaded. 
-To check which archetypes are downloaded on your machine. run the command ``cyclus -a`` from your terminal.
+To check which archetypes are downloaded on your machine run the command ``cyclus -a`` from your terminal.
 
 If you are not ruuning |Cyclus| on your machine, the archetypes available to you include those in Cycamore, which 
 can be found on the `archetypes

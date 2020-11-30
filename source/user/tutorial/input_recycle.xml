@@ -98,7 +98,7 @@
   </recipe>
   
   <recipe>
-    <name>used_moxox</name>
+    <name>used_mox</name>
     <basis>mass</basis>
     <nuclide>
       <id>92235</id>
@@ -263,7 +263,7 @@
   </facility>
 
   <facility>
-    <name>fuelfab</name>
+    <name>FuelFab</name>
     <config>
       <FuelFab>
         <fill_commods>
@@ -301,7 +301,7 @@
 	  <number>1</number>
 	</entry>
 	<entry>
-	  <prototype>fuelfab</prototype>
+	  <prototype>FuelFab</prototype>
 	  <number>1</number>
 	</entry>
 	<entry>
