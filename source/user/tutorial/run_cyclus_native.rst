@@ -65,5 +65,5 @@ Backup: Files for Success
 
 If your run did not succeed, you can retrieve correct input and output files `here 
 <https://doi.org/10.5281/zenodo.4289161>`_ under 'input_oncethrough.xml' 
-or 'ouput_oncethrough.xml'. This link contains input and 
+or 'ouput_oncethrough.sqlite'. This link contains input and 
 output files for each of the examples in this tutorial.

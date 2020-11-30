@@ -119,5 +119,5 @@ for additional institutions in the future.
 
 Save your input file as input_file2.xml and run the |Cyclus| simulation.
 If your simulation runs into errors, sample files can be found `here 
-https://doi.org/10.5281/zenodo.4289161>`_ under `input_secondreactor.xml` 
-or `ouput_secondreactor.xml`
+<https://doi.org/10.5281/zenodo.4289161>`_ under 'input_secondreactor.xml' 
+or 'ouput_secondreactor.sqlite'.
