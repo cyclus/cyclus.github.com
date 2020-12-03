@@ -66,16 +66,15 @@ facility archetypes are:
 
 Activity: Discover the Available Archetypes
 ===========================================
+If using |Cyclus| on your machine, the archetypes available to you are only those that have been downloaded. 
+To check which archetypes are downloaded on your machine run the command ``cyclus -a`` from your terminal.
 
-Since archetypes can change without having to reinstall |Cyclus|, there is
-the ability to automatically discover which archetypes are available.
+If you are not running |Cyclus| on your machine, the archetypes available to you include those in Cycamore, which 
+can be found on the `archetypes
+<http://fuelcycle.org/user/cycamoreagents.html?highlight=source#cycamore-source webpage>`_ webpage.
 
-1. Go to the `archetypes
-<http://fuelcycle.org/user/cycamoreagents.html?highlight=source#cycamore-source webpage>`_ webpage and read about the available archetypes
 
-2. What archetypes can you see yourself using in your research?
-
-3. Review the input parameters of the `Reactor <http://fuelcycle.org/user/cycamoreagents.html#cycamore-reactor>`_  archetype. How would you customize the ``cycle_time`` and ``refuel_time`` of a reactor to represent a real-world nuclear power plant?
+What archetypes can you see yourself using in your research?
 
 Concept: Third-Party Archetypes
 =========================================
@@ -89,7 +88,7 @@ Concept: Third-Party Archetypes
 Review the `archetype developer tutorial <http://fuelcycle.org/arche/tutorial/input_files.html>`_ for more information on making your own Archetypes.
 
 Activity: Adding archetypes
------------------------------
+===========================
 
 After discovering which archetypes are available, we will select which
 subset of archetypes will be used in this particular scenario.
@@ -164,12 +163,14 @@ Archetype Block Template
           <lib>lib4</lib>
           <name>arch4</name>
         </spec>
+      </archetypes>
+
 
 Once complete, your Archetypes block should look like:
 
 .. code-block:: XML
 
-  <archetypes>
+    <archetypes>
       <spec>
         <lib>cycamore</lib>
         <name>Enrichment</name>
@@ -186,8 +187,8 @@ Once complete, your Archetypes block should look like:
         <lib>cycamore</lib>
         <name>Sink</name>
       </spec>
-      <spec>
-Once complete, append the archetypes section under the control section of input file [#f1].
+    </archetypes>
+Once complete, append the archetypes section under the control section of input file [#f1]_.
 
 .. rubric:: Footnotes
 

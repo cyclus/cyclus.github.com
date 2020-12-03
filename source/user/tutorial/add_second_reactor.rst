@@ -110,12 +110,14 @@ of the region block should now look like,
             <NullInst/>
           </config>
         </institution>
-
-
+    ...
+    ...
     </region>
 
 Note: the blank space between ``</institution>`` and ``</region>`` is
 for additional institutions in the future.
 
 Save your input file as input_file2.xml and run the |Cyclus| simulation.
-
+If your simulation runs into errors, sample files can be found `here 
+<https://doi.org/10.5281/zenodo.4299079>`_ under ``input_secondreactor.xml`` 
+or ``ouput_secondreactor.sqlite``.

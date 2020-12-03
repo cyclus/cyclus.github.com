@@ -49,7 +49,7 @@ Retrieve your Results for Analysis
 Backup: Files for Success
 ++++++++++++++++++++++++++
 
-If your run did not succeed, you can retrieve these files to continue:
-
-* `Successful input file <http://cnergdata.engr.wisc.edu/cyclus/cyclist/tutorial/cycic-tutorial.xml>`_
-* `Successful output db file <http://cnergdata.engr.wisc.edu/cyclus/cyclist/tutorial/cycic-tutorial.sqlite>`_
+If your run did not succeed, you can retrieve correct input and output files `here 
+<https://doi.org/10.5281/zenodo.4299079>`_ under ``input_oncethrough.xml`` 
+or ``ouput_oncethrough.sqlite``. This link contains input and 
+output files for each of the examples in this tutorial.
