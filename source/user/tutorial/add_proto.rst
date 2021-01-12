@@ -4,7 +4,7 @@ Understanding Prototypes
 Concept: Archetype configuration
 ++++++++++++++++++++++++++++++++
 
-One of the features of |Cyclus| is its ability to switch between
+One key feature of |Cyclus| is its ability to switch between
 different models of the facilities within the fuel cycle. These models,
 called **archetypes**, may change how the facility interacts with other
 facilities or how the physics of the facility are represented. For
@@ -28,11 +28,19 @@ reactor parameters are fuel loading parameters such as cycle length and batch
 size.
 
 In |Cyclus|, when an archetype has been configured with a
-specific set of parameters, it is called a *prototype*.
+specific set of parameters, it is called a **prototype**.
 
 Concept: Source Prototype
 +++++++++++++++++++++++++
-The Source facility acts as a source of material with a fixed throughput (per time step) capacity and a lifetime capacity defined by a total inventory size. It offers its material as a single commodity. If a composition recipe is specified, it provides that single material composition to requesters. If unspecified, the source provides materials with the exact requested compositions. The inventory size and throughput both default to infinite. Supplies material results in corresponding decrease in inventory, and when the inventory size reaches zero, the source can provide no more material.
+The Source facility acts as a source of material with a fixed throughput (per 
+time step) capacity and a lifetime capacity defined by a total inventory size. 
+It offers its material as a single commodity. If a composition recipe is 
+specified, it provides that single material composition to requesters. If 
+unspecified, the source provides materials with the exact requested compositions. 
+The inventory size and throughput both default to infinite. Supplies material 
+results in corresponding decrease in inventory, and when the inventory size 
+reaches zero, the source can provide no more material.
+
 The Source archetype is of the form:
 
 .. code-block:: XML
@@ -49,7 +57,9 @@ The Source archetype is of the form:
 Optional parameters:
 
 outrecipe: 
-    Name of the isotopic composition of the material that this source provides regardless of the requested composition. If empty, the Source creates and provides whatever composition is requested.
+    Name of the isotopic composition of the material that this source provides 
+    regardless of the requested composition. If empty, the Source creates and 
+    provides whatever composition is requested.
 
 .. code-block:: XML
 
@@ -58,7 +68,9 @@ outrecipe:
 
 
 inventory_size: default = 1e+299, range: [0.0, 1e+299]
-    Total amount of material this source has remaining. Every trade decreases this value by the supplied material quantity. When it reaches zero, the source cannot provide any more material.
+    Total amount of material this source has remaining. Every trade decreases 
+    this value by the supplied material quantity. When it reaches zero, the 
+    source cannot provide any more material.
 
 .. code-block:: xml
 
@@ -74,7 +86,8 @@ throughput: default=1e+299,range: [0.0, 1e+299]
 Activity: Configure the Source prototype
 ++++++++++++++++++++++++++++++++++++++++
 Our source, ``UraniumMine``, will provide the natural uranium ore for our enrichment facility.
-This facility takes two inputs, ``name`` and ``outcommd``. Using the Source Archetype and the table below, create the UraniumMine prototype.
+This facility takes two inputs, ``name`` and ``outcommd``. Using the Source 
+Archetype and the table below, create the UraniumMine prototype.
 
 +-----------------------+---------------------------+
 | Variable              | Value                     |
@@ -99,7 +112,8 @@ This facility takes two inputs, ``name`` and ``outcommd``. Using the Source Arch
     </config>
   </facility>
 
-2. Filling in the variables ``name``, ``Archetype``, and ``out_commod`` as ``UraniumMine``, ``Source``, and ``fresh-uox`` leads to:
+2. Filling in the variables ``name``, ``Archetype``, and ``out_commod`` as 
+``UraniumMine``, ``Source``, and ``fresh-uox`` leads to:
 
 .. code-block:: XML
 
@@ -182,7 +196,8 @@ swu_capacity: default = 1e+299, range: [0.0, 1e+299]
 
 Activity: Creating the Enrichment Prototype
 +++++++++++++++++++++++++++++++++++++++++++
-The enrichment facility, ``EnrichmentPlant`` will intake the natural ``u-ore`` from ``UraniumMine`` and create ``fresh-uox`` and ``tails`` as its products.
+The enrichment facility, ``EnrichmentPlant`` will intake the natural ``u-ore`` 
+from ``UraniumMine`` and create ``fresh-uox`` and ``tails`` as its products.
 The template for the Enrichment archetype is of the form:
 
 .. code-block:: XML
@@ -299,7 +314,9 @@ The Reactor archetype is of the form:
 Activity: Creating the Reactor Prototype
 ++++++++++++++++++++++++++++++++++++++++
 
-Now let's model the reactor this fuel will go through! In this simple example, let's model a single PWR in the United States. It has a power capacity of 1178 MWe, and there is only one of them in the region.
+Now let's model the reactor this fuel will go through! In this simple example, 
+let's model a single PWR in the United States. It has a power capacity of 1178 
+MWe, and there is only one of them in the region.
 The template for the reactor is given below:
 
 .. code-block:: XML

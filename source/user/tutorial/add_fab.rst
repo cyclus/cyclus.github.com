@@ -9,7 +9,7 @@ variables are in the
 `cycamore archetype documentation
 <../cycamoreagents.html>`_ page.
 
-The following is the input template for ``Cycamore::FuelFab``
+The following is the input template for the ``Cycamore::FuelFab``
 archetype:
 
 .. code-block:: XML

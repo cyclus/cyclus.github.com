@@ -5,13 +5,13 @@ Concept: Commodities
 ++++++++++++++++++++
 
 |Cyclus| exchanges resources between facilities using a market-like mechanism
-called the **dynamic resource exchange (DRE)**.  The concept of a commodity is
-uses to simply indicate which facilities may be interested in trading with
-each other through the DRE.  **A commodity is therefore nothing more than a
+called the **dynamic resource exchange (DRE)**.  The concept of a **commodity** is
+used to simply indicate which facilities may be interested in trading with
+each other through the DRE.  A commodity is therefore nothing more than a
 unique name that is used to define a set of producers and consumers of a
-common resource**.  A commodity does not necessarily have a specific
+common resource.  A commodity does not necessarily have a specific
 composition; this will be determined by the agents during the simulation.
-Suppliers then respond to the series of requests with a bid. A bid
+Suppliers then respond to the series of requests with a **bid**. A bid
 supplies a notion of the quantity and quality of a resource to match a
 request. Suppliers may add an arbitrary number of constraints to
 accompany bids. For example, an enriched UOX supplier may be constrained
@@ -19,11 +19,13 @@ by its current inventory of natural uranium or its total capacity to
 provide enrichment in Separative Work Units (SWUs).
 
 Any potential resource transfer (i.e., a bid or a request) may be
-denoted as exclusive. **An exclusive transfer excludes partial fulfillment;
-it must either be met fully or not at all**. This mode supports concepts
+denoted as **exclusive**. An exclusive transfer excludes partial fulfillment;
+it must either be met fully or not at all. This mode supports concepts
 such as the trading of individual reactor assemblies. In combination
 with the notion of mutual requests, complex instances of supply and
-demand are enabled. Finally, requesting facilities, institutions and
+demand are enabled. 
+
+Finally, requesting facilities, institutions and
 regions may apply **preferences** to each potential request-bid pairing
 based on the proposed resource transfer. Facilities can apply arbitrary
 complex logic to **rank the bids** that they have received, whether based on
@@ -47,7 +49,7 @@ Activity: Create fuel commodities (optional)
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Let's build ``u-ore``, ``fresh-uox``, ``spent-uox``, and ``tails``,
-four commodities that will be traded in our simulation. Note that
+the four commodities available for trade in our simulation. Note that
 this part is **optional**, and is only needed if the user wants
 to specify the solution priority of each commodity.
 
@@ -63,8 +65,8 @@ refer to fuel recipes, but the ``recipe`` section of the input file can
 describe any isotopic vector (e.g. natural uranium, spent fuel, fresh fuel, or any
 other material whose isotopic composition needs to be tracked.)
 
-The commodities section is located below the ``archetype`` section
-and is of the form:
+The commodities section follows the ``archetype`` section
+and takes the form:
 
 .. code-block:: XML
 
@@ -247,14 +249,17 @@ template for natural uranium, fresh fuel, and spent fuel.
 | :math:`^{137}`\ Cs  | 55137              | 0.04               |
 +---------------------+--------------------+--------------------+
 
-1. Let's start with the Natural Uranium recipe. Start by placing the ``<recipe>`` tag as the header to signify that this is a recipe and tab in and place the fill ``<name>`` tag such as:
+1. Let's start with the Natural Uranium recipe. Start by placing the ``<recipe>`` 
+tag as the header to signify that this is a recipe and tab in and place the fill 
+``<name>`` tag such as:
 
 .. code-block:: XML
 
   <recipe>
     <name>nat-u</name>
 
-2. To signify that the composition of this recipe is in terms of Mass, fill the ``<basis>`` tag with ``mass``.
+2. To signify that the composition of this recipe is in terms of Mass, fill the 
+``<basis>`` tag with ``mass``.
 
 .. code-block:: XML
 
@@ -262,7 +267,8 @@ template for natural uranium, fresh fuel, and spent fuel.
     <name>nat-u</name>
     <basis>mass</basis>
 
-3. To add a nuclide to this recipe, call the ``nuclide`` tag, tab in, add the ``<id>`` and ``<comp>`` tags:
+3. To add a nuclide to this recipe, call the ``nuclide`` tag, tab in, add the 
+``<id>`` and ``<comp>`` tags:
 
 .. code-block:: XML
 
@@ -274,7 +280,8 @@ template for natural uranium, fresh fuel, and spent fuel.
       <comp>comp1</comp>
     </nuclide>
 
-4. We will fill the ``<id>`` tag with the uranium-235 ``Nuc Id``, ``92235``, and fill the composition tag with its mass composition, ``0.00711``.
+4. We will fill the ``<id>`` tag with the uranium-235 ``Nuc Id``, ``92235``, and 
+fill the composition tag with its mass composition, ``0.00711``.
 
 .. code-block:: XML
 
@@ -303,7 +310,8 @@ template for natural uranium, fresh fuel, and spent fuel.
       </nuclide>
   </recipe>
 
-6. After closing this recipe with the ``</recipe>`` tag, we can add other recipes. The recipe section of this tutorial is placed below.
+6. After closing this recipe with the ``</recipe>`` tag, we can add other recipes. 
+The recipe section of this tutorial is placed below.
 
 .. code-block:: XML
 
@@ -362,4 +370,5 @@ Let's take a look at the ``fresh-uox`` fuel recipe:
 .. image:: fuel_com.png
     :align: center
     :alt: Fuel recipe for fresh-uox
-The recipe name ``fresh-uox`` is specified, as are the isotope nuclide IDs and the corresponding mass fraction of each nuclide. The ``fresh-uox`` is composed of 4% U-235 and 96% U-238.
+The recipe name ``fresh-uox`` is specified, as are the isotope nuclide IDs and the 
+corresponding mass fraction of each nuclide. The ``fresh-uox`` is composed of 4% U-235 and 96% U-238.

@@ -1,7 +1,9 @@
 Updating the Reactor and Repository
 =====================================
 
-We can add in Advanced Light Water Reactors that will flexibly switch between UOX and MOX fuel based on their availability. This protoype uses the same template as the other reactors with a few additional entries.  
+We can add in Advanced Light Water Reactors that will flexibly switch between 
+UOX and MOX fuel based on their availability. This protoype uses the same 
+template as the other reactors with a few additional entries.  
 
 Reactor Modifications
 ----------------------
@@ -39,4 +41,5 @@ or ``ouput_recycle.sqlite``.
 
 .. rubric:: Footnotes
 
-.. [#f1] Note that we are using the UOX recipe for the MOX recipe in order to have our fuel fabrication facility do its best to match that recipe by blending streams of Pu with natural U.
+.. [#f1] Note that we are using the UOX recipe for the MOX recipe in order to have 
+our fuel fabrication facility do its best to match that recipe by blending streams of Pu with natural U.

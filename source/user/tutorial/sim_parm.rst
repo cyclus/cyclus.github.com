@@ -39,7 +39,12 @@ information for all simulations:
 
 4. <startyear>: the first year of the simulation
 
-5. <decay>:The |Cyclus| kernel has built-in experimental support for `Decay <http://fuelcycle.org/devdoc/decay.html>`_ calculations. Materials store the time since their last decay and agents are free to invoke the decay function on them as desired to decay them to the current simulation time. |Cyclus| can operate in 3 decay modes, with 1 additional mode likely to be added in a future release:
+5. <decay>:The |Cyclus| kernel has built-in experimental support for 
+`Decay <http://fuelcycle.org/devdoc/decay.html>`_ calculations. Materials 
+store the time since their last decay and agents are free to invoke the 
+decay function on them as desired to decay them to the current simulation 
+time. |Cyclus| can operate in 3 decay modes, with 1 additional mode 
+likely to be added in a future release:
 
 - 'never', all decay is turned off
 - 'manual', meaning it is only on if the individual archetype decays their own inventory
@@ -102,7 +107,8 @@ with the variables listed in the table below in your favorite text editor.
 
 Using this table, let's set the simulation parameters.
 
-1. To tell |Cyclus| that this is the simulation section of the input file, set  the first line of the input file to be:
+1. To tell |Cyclus| that this is the simulation section of the input file, 
+set  the first line of the input file to be:
 
 .. code-block:: XML
 
@@ -132,4 +138,7 @@ Adding spaces or tabs to indent the ``control`` header improves ease of reading.
     ...
     </simulation>
 
-**Note**: There are two blank lines between the end of the control section and end of the simulation section. This section of the simulation block will hold the rest of the simulation parameter blocks (commodities, facilities, regions, institutions, and recipe blocks).
+**Note**: There are two blank lines between the end of the control section and 
+end of the simulation section. This section of the simulation block will hold 
+the rest of the simulation parameter blocks (commodities, facilities, regions, 
+institutions, and recipe blocks).
