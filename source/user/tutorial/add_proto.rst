@@ -245,7 +245,7 @@ Concept: Reactor Prototype
 ++++++++++++++++++++++++++
 The Reactor is a simple, general reactor based on static compositional transformations to model fuel burnup. 
 The user specifies a set of fresh fuel compositions the Reactor accepts and corresponding spent fuel 
-compositions the reactor discharged from the core. No incremental transmutation takes place. Rather, 
+compositions the reactor discharges from the core. No incremental transmutation takes place. Rather, 
 at the end of an operational cycle, the batch being discharged from the core is instantaneously transmuted 
 from its original fresh fuel composition into its spent fuel form.
 
@@ -255,7 +255,7 @@ when requesting. Changes in these preferences can be specified as a function of 
 variables. Changes in the input-output recipe compositions can also be specified as a function of time using 
 the recipe_change variables.
 
-The reactor treats fuel as individual assemblies. Fuel is requested in assembly sized quanta. If real-world
+The reactor treats fuel as individual assemblies. Fuel is requested in assembly-sized quanta. If real-world
 assembly modeling is unnecessary, parameters can be adjusted (e.g. ``n_assem_core``, ``assem_size``, 
 ``n_assem_batch``). At the end of every cycle, a full batch is discharged from the core consisting of
 ``n_assem_batch`` assemblies of ``assem_size`` kg. The reactor also has a specifiable refueling time 

@@ -1,7 +1,7 @@
-A Tour of the Cyclus User Interface with IPython Notebook
+A Tour of the Cyclus User Interface with Jupyter Notebook
 =========================================================
 
-An IPython notebook has four main areas:
+A Jupyter notebook has four main areas:
 
 * A **Run** button that runs the cell you're in
 * A **Up and Down** buttons that move the cell up or down

@@ -7,7 +7,7 @@ Problem Definition
 We will start with a new scenario representing a simplified once-through fuel
 cycle.  For the purpose of this tutorial, the scenario will include:
 
-* mine of natural uranium
+* mine producing natural uranium
 * enrichment facility producing 4% enriched uranium oxide fuel
 * LWR reactor consuming fresh fuel and producing used fuel
 * repository to house all spent fuel and waste
@@ -39,12 +39,12 @@ information for all simulations:
 
 4. <startyear>: the first year of the simulation
 
-5. <decay>:The |Cyclus| kernel has built-in experimental support for `Decay <http://fuelcycle.org/devdoc/decay.html>`_ calculations. Materials store the time since their last decay and agents are free to invoke the decay function on them as desired to decay them to the current simulation time. Cyclus can operate in 3 decay modes, with 1 additional mode likely to be added in a future release:
+5. <decay>:The |Cyclus| kernel has built-in experimental support for `Decay <http://fuelcycle.org/devdoc/decay.html>`_ calculations. Materials store the time since their last decay and agents are free to invoke the decay function on them as desired to decay them to the current simulation time. |Cyclus| can operate in 3 decay modes, with 1 additional mode likely to be added in a future release:
 
-- 'never' if all decay is turned off
+- 'never', all decay is turned off
 - 'manual', meaning it is only on if the individual archetype decays their own inventory
 - 'lazy', which will compute decay only when archetypes fetch a particular composition.
-- 'periodic' (future) automatically decays all materials in a simulation with some fixed frequency. 
+- 'periodic' (future), automatically decays all materials in a simulation with some fixed frequency. 
 
 There are other `optional parameters <http://fuelcycle.org/user/input_specs/control.html>`_ that
 could be given but are not in the scope of this tutorial.
@@ -55,7 +55,7 @@ could be given but are not in the scope of this tutorial.
 We'll return later to the topics of generating, loading and executing an input file.
 
 A |Cyclus| input file can be written in `multiple formats <https://fuelcycle.org/user/writing_input.rst>`_, 
-including XML, JSON, and python. This tutorial
+including XML, JSON, and Python. This tutorial
 will walk through how to build an XML input. 
 The XML |Cyclus| input file begins with the ``<simulation>`` tag and ends with the ``</simulation>`` tag.
 Within this space, the ``<control>`` block is the first section of the CYCLUS input file and is of the form:

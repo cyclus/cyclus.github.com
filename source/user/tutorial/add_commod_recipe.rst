@@ -11,7 +11,7 @@ each other through the DRE.  **A commodity is therefore nothing more than a
 unique name that is used to define a set of producers and consumers of a
 common resource**.  A commodity does not necessarily have a specific
 composition; this will be determined by the agents during the simulation.
-Suppliers then respond to the series of requests with a bid . A bid
+Suppliers then respond to the series of requests with a bid. A bid
 supplies a notion of the quantity and quality of a resource to match a
 request. Suppliers may add an arbitrary number of constraints to
 accompany bids. For example, an enriched UOX supplier may be constrained
@@ -54,7 +54,7 @@ to specify the solution priority of each commodity.
 * ``u-ore`` : natural uranium that is mined
 * ``tails`` : waste from the enrichment process
 * ``fresh-uox``: fresh 4.0% enriched Uranium Oxide fuel that enters the reactor
-* ``spent-uox``: spent Uranium Oxide fuel that leaves the reactor after depletion
+* ``spent-uox``: spent uranium oxide fuel that leaves the reactor after depletion
 
 When |Cyclus| needs
 to know the isotopic composition of a material, it looks at the recipe for that
@@ -190,9 +190,10 @@ typically located at the end of the input and is of the form:
 
 where ``id`` is the Nuc Id of the isotope in form ZZAAA and ``comp`` is the
 composition of that isotope in the recipe. Other isotope formats are
-also acceptable. For example, :math:`^{235}`\ U can be expressed as:
+also acceptable, such as those used by ``pyne <http://pyne.io/theorymanual/nucname.html>``_. 
+For example, :math:`^{235}`\ U can be expressed as:
 
-* 922350000 (ZZAAAMMMM)
+* 922350000 (ZZAAASSSS)
 * 92235 (ZZAAA)
 * U235 (name)
 * U-235 (name)
@@ -273,7 +274,7 @@ template for natural uranium, fresh fuel, and spent fuel.
       <comp>comp1</comp>
     </nuclide>
 
-4. We will fill the ``<id>`` tag with the Uranium-235 ``Nuc Id``, ``92235``, and fill the composition tag with its mass composition, ``0.00711``.
+4. We will fill the ``<id>`` tag with the uranium-235 ``Nuc Id``, ``92235``, and fill the composition tag with its mass composition, ``0.00711``.
 
 .. code-block:: XML
 
@@ -285,7 +286,7 @@ template for natural uranium, fresh fuel, and spent fuel.
       <comp>0.00711</comp>
     </nuclide>
 
-5. Following the same procedure, we can add Uranium-238 to this recipe such as:
+5. Following the same procedure, we can add uranium-238 to this recipe such as:
 
 .. code-block:: XML
 

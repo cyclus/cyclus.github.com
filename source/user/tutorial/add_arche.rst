@@ -48,7 +48,7 @@ facility archetypes are:
 * **Source:** `Source <http://fuelcycle.org/user/cycamoreagents.html#cycamore-source>`_ is a generic source of material may fill the role of any
   facility that produces fresh material.  Depending on how much of the fuel
   cycle a user wants to model explicitly, this could fill the role of a uranium
-  mine, an enrichment facility, a fuel fabrication facility, etc. The Source facility produces resources at a user-specified rate and may be limited to a user-specified total inventory.
+  mine, an enrichment facility, a fuel fabrication facility, import of a commodity from outside simulated facilities, etc. The Source facility produces resources at a user-specified rate and may be limited to a user-specified total inventory.
 * **Enrichment:** `Enrichment <http://fuelcycle.org/user/cycamoreagents.html#cycamore-enrichment>`_ is a facility archetype that implements the standard equations for
   enrichment of U-235 in U-238, with a constrained total enrichment capacity.
 * **Reactor:** `Reactor <http://fuelcycle.org/user/cycamoreagents.html#cycamore-reactor>`_ is a facility archetype which uses fresh and spent fuel recipes to model fuel transmutation.
@@ -61,7 +61,7 @@ facility archetypes are:
 * **Sink:** `Sink <http://fuelcycle.org/user/cycamoreagents.html#cycamore-sink>`_ is a generic sink of material that may fill the role of any facility
   that permanently holds used nuclear material.  Depending on how much of the
   fuel cycle a user wants to model explicitly, this could fill the role of a
-  geologic repository, an interim storage facility, etc.
+  geologic repository, an interim storage facility, export of a commodity from outside simulated facilities, etc.
 
 
 Activity: Discover the Available Archetypes
@@ -78,7 +78,7 @@ What archetypes can you see yourself using in your research?
 
 Concept: Third-Party Archetypes
 =========================================
-`Third-Party <http://fuelcycle.org/user/index.html?highlight=third-party>`_ Archetypes complement the initial archetypes available in Cycamore and are not necessarily maintained by the Cyclus core development team.  Popular Third-Party Archetypes are:
+`Third-Party <http://fuelcycle.org/user/index.html#=third-party>`_ Archetypes complement the initial archetypes available in Cycamore and are not necessarily maintained by the |Cyclus| core development team.  Popular Third-Party Archetypes are:
 
 * Bright-lite
 * Cyborg
@@ -100,7 +100,7 @@ The archetypes we will use in our simulation include:
 -  ``cycamore Reactor``: to act as the LWR
 -  ``cycamore Sink``: to act as the geological repository. 
 
-A user identifies the simulation archetypes in the archetype block of the Cyclus input file. 
+A user identifies the simulation archetypes in the archetype block of the |Cyclus| input file. 
 The archetype block is located after the simulation control block and takes the form:
 
 .. code-block:: XML
