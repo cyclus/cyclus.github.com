@@ -1,9 +1,6 @@
 Understanding Prototypes
 ------------------------
 
-Concept: Archetype configuration
-++++++++++++++++++++++++++++++++
-
 One key feature of |Cyclus| is its ability to switch between
 different models of the facilities within the fuel cycle. These models,
 called **archetypes**, may change how the facility interacts with other
