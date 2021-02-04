@@ -192,10 +192,10 @@ typically located at the end of the input and is of the form:
 
 where ``id`` is the Nuc Id of the isotope in form ZZAAA and ``comp`` is the
 composition of that isotope in the recipe. Other isotope formats are
-also acceptable, such as those used by ``pyne <http://pyne.io/theorymanual/nucname.html>``_. 
+also acceptable, such as those used by `pyne <http://pyne.io/theorymanual/nucname.html>`_. 
 For example, :math:`^{235}`\ U can be expressed as:
 
-* 922350000 (ZZAAASSSS)
+* 922350000 (ZZAAAMMMM)
 * 92235 (ZZAAA)
 * U235 (name)
 * U-235 (name)
