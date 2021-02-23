@@ -7,7 +7,7 @@ Concept: Commodities
 |Cyclus| exchanges resources between facilities using a market-like mechanism
 called the **dynamic resource exchange (DRE)**.  The concept of a **commodity** is
 used to simply indicate which facilities may be interested in trading with
-each other through the DRE.  A commodity is therefore nothing more than a
+each other through the DRE. A commodity is therefore nothing more than a
 unique name that is used to define a set of producers and consumers of a
 common resource.  A commodity does not necessarily have a specific
 composition; this will be determined by the agents during the simulation.
@@ -36,7 +36,7 @@ which it is congenial; similarly, a region may negate any transfers of
 material which have a higher uranium enrichment than is allowable.
 
 For example, the flow graph below shows three suppliers (left) and two
-requesters (right), and the potential flows of various commodities among
+consumers (right), and the potential flows of various commodities among
 them. The second consumer makes two different requests. Meanwhile, the
 second supplier can supply the commodities requested by both consumers
 and provides two bids accordingly.
@@ -114,12 +114,14 @@ template.
 | com4        | tails       | 1.0                 |
 +-------------+-------------+---------------------+
 
-1. Let's start with ``u-ore``. In the ``<name>`` line replace ``com1`` with ``u-ore``.
+1. Let's start with ``u-ore``. In the ``<name>`` line replace ``com1`` with ``u-ore``
+inside a ``commodity`` block.
 
 .. code-block:: XML
 
       <commodity>
         <name>u-ore</name>
+      </commodity>
 
 2. In the ``<solution_priority>`` section replace ``val1`` with ``1.0``.
 
@@ -129,17 +131,11 @@ template.
       <commodity>
         <name>u-ore</name>
         <solution_priority>1.0</solution_priority>
-
-3. Now, finalize this commodity by closing it with ``</commodity>``. Your ``u-ore`` commodity section should be:
-
-.. code-block:: XML
-
-      <commodity>
-        <name>u-ore</name>
-        <solution_priority>1.0</solution_priority>
       </commodity>
 
-4. Repeat this process for the other three commodities. Your final result should look like:
+
+
+3. Repeat this process for the other three commodities. Your final result should look like:
 
 .. code-block:: XML
 
@@ -195,7 +191,7 @@ composition of that isotope in the recipe. Other isotope formats are
 also acceptable, such as those used by `pyne <http://pyne.io/theorymanual/nucname.html>`_. 
 For example, :math:`^{235}`\ U can be expressed as:
 
-* 922350000 (ZZAAAMMMM)
+* 922350 (ZZAAAM)
 * 92235 (ZZAAA)
 * U235 (name)
 * U-235 (name)
@@ -249,14 +245,15 @@ template for natural uranium, fresh fuel, and spent fuel.
 | :math:`^{137}`\ Cs  | 55137              | 0.04               |
 +---------------------+--------------------+--------------------+
 
-1. Let's start with the Natural Uranium recipe. Start by placing the ``<recipe>`` 
-tag as the header to signify that this is a recipe and tab in and place the fill 
+1. Let's start with the Natural Uranium recipe. Start by placing a ``<recipe>`` 
+block to signify that this is a recipe and tab in and place the fill 
 ``<name>`` tag such as:
 
 .. code-block:: XML
 
   <recipe>
     <name>nat-u</name>
+  </recipe>
 
 2. To signify that the composition of this recipe is in terms of Mass, fill the 
 ``<basis>`` tag with ``mass``.
@@ -266,6 +263,7 @@ tag as the header to signify that this is a recipe and tab in and place the fill
   <recipe>
     <name>nat-u</name>
     <basis>mass</basis>
+  </recipe>
 
 3. To add a nuclide to this recipe, call the ``nuclide`` tag, tab in, add the 
 ``<id>`` and ``<comp>`` tags:
@@ -279,6 +277,7 @@ tag as the header to signify that this is a recipe and tab in and place the fill
       <id>id1</id>
       <comp>comp1</comp>
     </nuclide>
+  </recipe>
 
 4. We will fill the ``<id>`` tag with the uranium-235 ``Nuc Id``, ``92235``, and 
 fill the composition tag with its mass composition, ``0.00711``.
@@ -292,6 +291,7 @@ fill the composition tag with its mass composition, ``0.00711``.
       <id>92235</id>
       <comp>0.00711</comp>
     </nuclide>
+  </recipe>
 
 5. Following the same procedure, we can add uranium-238 to this recipe such as:
 
@@ -310,7 +310,7 @@ fill the composition tag with its mass composition, ``0.00711``.
       </nuclide>
   </recipe>
 
-6. After closing this recipe with the ``</recipe>`` tag, we can add other recipes. 
+6. We can add other recipes in separate ``recipe`` blocks. 
 The recipe section of this tutorial is placed below.
 
 .. code-block:: XML
