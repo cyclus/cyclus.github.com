@@ -57,7 +57,7 @@ facility archetypes are:
   enrichment of U-235 in U-238, with a constrained total enrichment capacity.
 * **Reactor:** `Reactor <http://fuelcycle.org/user/cycamoreagents.html#cycamore-reactor>`_ 
   is a facility archetype which uses fresh and spent fuel recipes to model fuel transmutation.
-  that reloads batches of assemblies at regular intervals.
+  Fuel is modeled as batches and assemblies that are reloaded at regular intervals.
 * **Separations:** `Separations <http://fuelcycle.org/user/cycamoreagents.html#cycamore-separations>`_ 
   is a facility archetype that receives one or more material streams and
   separates all the isotopes into a number of output streams.
@@ -69,7 +69,7 @@ facility archetypes are:
   sink of material that may fill the role of any facility
   that permanently holds used nuclear material.  Depending on how much of the
   fuel cycle a user wants to model explicitly, this could fill the role of a
-  geologic repository, an interim storage facility, export of a commodity from outside simulated facilities, etc.
+  geologic repository, an interim storage facility, export of a commodity to outside simulated facilities, etc.
 
 
 Activity: Discover the Available Archetypes

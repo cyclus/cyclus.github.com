@@ -45,15 +45,11 @@ Jupyter Notebook Scenario Execution
 --------------------------------------------
 1. Go to the Jupyter notebook, making sure you are in the same folder as the input file
 2. Remove any old |Cyclus| output files by: ``!rm tutorial.sqlite``
-3. Run |Cyclus| by: ``!cyclus input.xml -o tutorial.sqlite``
+3. Run |Cyclus| by: ``!cyclus input.xml -o tutorial_singlerx.sqlite``
 
 .. image:: cyclus_in_IP.png
     :align: center
     :alt: Running |Cyclus| in an IPython Notebook
-
-
-Activity: Retrieve your Results for Analysis
-++++++++++++++++++++++++++++++++++++++++++++
 
 When your simulation has finished, a file of the name ``tutorial_singlerx.sqlite`` 
 will be in your file folder. Your Jupyter Notebook can then be used with 
@@ -66,6 +62,6 @@ Backup: Files for Success
 +++++++++++++++++++++++++
 
 If your run did not succeed, you can retrieve correct input and output files `here 
-<https://doi.org/10.5281/zenodo.4299079>`_ under ``input_oncethrough.xml`` 
+<https://doi.org/10.5281/zenodo.4557613>`_ under ``input_oncethrough.xml`` 
 or ``ouput_oncethrough.sqlite``. This link contains input and 
 output files for each of the examples in this tutorial.

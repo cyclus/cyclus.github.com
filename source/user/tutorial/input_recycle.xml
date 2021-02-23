@@ -162,7 +162,7 @@
 	<fuel_inrecipes> <val>fresh_uox</val> </fuel_inrecipes>
 	<fuel_outcommods> <val>spent_uox</val> </fuel_outcommods>
 	<fuel_outrecipes> <val>spent_uox</val> </fuel_outrecipes>
-	<cycle_time>15</cycle_time>
+	<cycle_time>12</cycle_time>
 	<refuel_time>1</refuel_time>
 	<assem_size>30160</assem_size>
 	<n_assem_core>3</n_assem_core>

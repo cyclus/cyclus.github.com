@@ -14,7 +14,7 @@ should be deployed as copies of available prototypes.
 In this case, we will keep the current institutions and add another
 institution that will deploy more facilities over time.
 
-Concept: DeployInst
+Example: DeployInst
 --------------------------------
 The ``DeployInst`` archetype must be added to the ``<archetypes>`` block 
 of the input file: 
@@ -85,7 +85,7 @@ template.
 +-------------+-------------+---------------------+
 | 1178MWe BRAIDWOOD-1   | 2           | 1         |
 +-------------+-------------+---------------------+
-| 1000<We Lightwater-1  | 3           | 1         |
+| 1000MWe Lightwater-1  | 3           | 1         |
 +-------------+-------------+---------------------+
 
 Using the prototype facilities already created, the new institution should
@@ -132,5 +132,5 @@ only one of each prototype will be deployed since ``n_build`` has a value of 1 f
 
 This example is now complete. Save your file as the desired file name (with ``.xml`` 
 extension) and run your code through |Cyclus|. If your simulation runs into errors, 
-sample files can be found `here <https://doi.org/10.5281/zenodo.4299079>`_ under 
+sample files can be found `here <https://doi.org/10.5281/zenodo.4557613>`_ under 
 ``input_deployinst.xml`` or ``ouput_deployinst.sqlite``.

@@ -4,7 +4,7 @@ Adding a second reactor
 Simple simulations can easily be expanded into more complex problems. To demonstrate this, 
 we will now add a second reactor, ``1000We Lightwater-1``, to our
 simulation. This reactor will have a lifetime of 360 months (30 years),
-cycle time of 15 months, assembly size of 30160 kg, and power capacity 1000
+cycle time of 12 months, assembly size of 30160 kg, and power capacity 1000
 MWe. Using this information, let's construct the facility input section
 of this reactor.
 
@@ -31,7 +31,7 @@ prototype.
 +-----------------------+---------------------------+
 | ``fuel_outrecipes``   | ``spent-uox``             |
 +-----------------------+---------------------------+
-| ``cycle_time``        | ``15``                    |
+| ``cycle_time``        | ``12``                    |
 +-----------------------+---------------------------+
 | ``refuel_time``       | ``1``                     |
 +-----------------------+---------------------------+
@@ -57,7 +57,7 @@ Once complete, your reactor prototype should look like:
         <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
         <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
         <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
-        <cycle_time>15</cycle_time>
+        <cycle_time>12</cycle_time>
         <refuel_time>1</refuel_time>
         <assem_size>30160</assem_size>
         <n_assem_core>3</n_assem_core>
@@ -110,8 +110,8 @@ of the region block should now look like,
             <NullInst/>
           </config>
         </institution>
-    ...
-    ...
+
+
     </region>
 
 Note: the blank space between ``</institution>`` and ``</region>`` is
@@ -119,5 +119,5 @@ for additional institutions in the future.
 
 Save your input file as input_file2.xml and run the |Cyclus| simulation.
 If your simulation runs into errors, sample files can be found `here 
-<https://doi.org/10.5281/zenodo.4299079>`_ under ``input_secondreactor.xml`` 
+<https://doi.org/10.5281/zenodo.4557613>`_ under ``input_secondreactor.xml`` 
 or ``ouput_secondreactor.sqlite``.
