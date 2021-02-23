@@ -27,7 +27,7 @@ size.
 In |Cyclus|, when an archetype has been configured with a
 specific set of parameters, it is called a **prototype**.
 
-Concept: Source Prototype
+Example: Source Prototype
 +++++++++++++++++++++++++
 The Source facility acts as a source of material with a fixed throughput (per 
 time step) capacity and a lifetime capacity defined by a total inventory size. 
@@ -125,7 +125,7 @@ Archetype and the table below, create the UraniumMine prototype.
 
 Once complete, append this facility under the commodity section and before the recipe section of your input file.
 
-Concept: Enrichment Prototype
+Example: Enrichment Prototype
 +++++++++++++++++++++++++++++
 The Enrichment facility is a simple agent that enriches natural uranium in a |Cyclus| simulation. It does not 
 explicitly compute the physical enrichment process, rather it calculates the SWU required to convert an 
@@ -253,7 +253,7 @@ After filling in these variables, your enrichment facility prototype will look l
 Once complete, append this facility under the Source prototype of your input file.
 
 
-Concept: Reactor Prototype
+Example: Reactor Prototype
 ++++++++++++++++++++++++++
 The Reactor is a simple, general reactor based on static compositional transformations to model fuel burnup. 
 The user specifies a set of fresh fuel compositions the Reactor accepts and corresponding spent fuel 
@@ -404,7 +404,7 @@ Once completed, your prototype should look like:
 Once complete, append this facility under the Enrichment facility of your input file.
 
 
-Concept: Sink Prototype
+Example: Sink Prototype
 +++++++++++++++++++++++
 
 A sink facility that accepts materials and products with a fixed throughput (per time step) capacity and a lifetime 
