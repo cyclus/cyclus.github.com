@@ -19,8 +19,8 @@ in this case, we'll use the simplest options:
 
 Defining these is done in the archetypes section of the code. This is done 
 in a similar manner as the other archetypes previously defined, except regions
-and insitutions come from the ``agents`` library, rather than the ``cycamore``
-library.
+and insitutions used in this tutorial come from the ``agents`` library, rather 
+than the ``cycamore`` library.
 
 Using the template and table below,
 properly fill the template with the variables listed in the table below.
@@ -69,8 +69,9 @@ Once complete, your `agent` Archetypes block should be:
         </spec>
       </archetypes>
 
-Since these are all archetypes, no matter what library they're from, we must append the `agent` archetype block 
-into the arechtype block that we already have. This results in the full archetype block:
+Since these are all archetypes, no matter what library they're from, we must append 
+these two``spec`` blocks into the the arechtype block that we already have. This 
+results in the full archetype block:
 
 .. code-block:: XML
 
@@ -223,18 +224,18 @@ Putting it all together, a complete region template is of the form:
       <config>
         <NullRegion/>
       </config>
-        <institution>
-          <initialfacilitylist>
-              <entry>
-                <prototype>Prototype_name</prototype>
-                <number>number_of_prototype_names</number>
-              </entry>
-          </initialfacilitylist>
+      <institution>
+        <initialfacilitylist>
+          <entry>
+            <prototype>Prototype_name</prototype>
+              <number>number_of_prototype_names</number>
+          </entry>
+        </initialfacilitylist>
         <name>Inst_name</name>
         <config>
           <NullInst/>
         </config>
-       </institution>
+      </institution>
     </region>
 
 Activity: Write the Region template
