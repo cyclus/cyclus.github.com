@@ -17,7 +17,7 @@ progress through phases, including a building phase, a tick phase, a resource
 exchange phase, a tock phase, and a decommissioning phase. Phases are grouped in
 two categories: kernel phases and agent phases. Kernel phases have required or
 guaranteed actions that occur during them, and include the build, exchange, and
-decommission phases. Agent phases include the Tick and Tock phases, and allow
+decommission phases. Agent phases include the Tick, Tock, and Decision phases, and allow
 agents to inspect simulation state and update their own state.
 
 Motivation
@@ -45,7 +45,14 @@ Accordingly, there is a need to standardize what can/should be expected to occur
 in each phase of a given time step. Guarantees should be given to module
 developers that if an entity enters a simulation, that it will experience the
 entire time step on the time step it enters, and if an entity leaves a
-simulation, that it will experience an entire time step on the time it leaves. 
+simulation, that it will experience an entire time step on the time it leaves.
+
+Tick and Tock serve as phases for agents to perform actions. As an action can
+occur in either phase, no one specific phase serves as a good time to make
+decisions based on the state of the simulation. Therefore a user phase specifically
+for decision must occur after the tock phase. Note, this phase exists only for
+agents to make decisions based on that time step. Other actions should
+occur in the Tick and Tock phases. 
 
 Rationale
 =========
@@ -83,11 +90,12 @@ This leads to the following ordering, or *phases*, of time step execution:
 * agents respond to current simulation state (Tick Phase)
 * resource exchange execution (Exchange Phase)
 * agents respond to current simulation state (Tock Phase)
+* agents react to simulation (Decision Phase)
 * agents leave simulation (Decommissioning Phase)
 
 The Building, Exchange, and Decommissioning phases each include critical,
-core-based events, and will be called *Kernel* phases. The Tick and Tock phases
-do not include core-based events, and instead let agents react to previous
+core-based events, and will be called *Kernel* phases. The Tick, Tock, and Decision
+phases do not include core-based events, and instead let agents react to previous
 core-based events and inspect core simulation state. Furthermore, they are
 periods in which agents can update their own state and are accordingly
 considered *Agent* phases. In general, Agent phases *must* bracket *critical*
@@ -178,8 +186,11 @@ with the exception of the core's handling of agent entry/exit
 registration. *Cycamore* modules that deal with agent entry/exit will have to be
 redesigned to incorporate the new execution stack.
 
+
+
 Document History
 ================
+1. Adding Decision Phase (April 2018) - Author: Robert Flanagan
 
 This document is released under the CC-BY 3.0 license.
 
