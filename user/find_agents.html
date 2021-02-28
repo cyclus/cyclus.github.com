@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Archetype Identification and Discovery &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -93,13 +107,13 @@ specification that includes:</p>
 </ul>
 <p>The agents available for running simulations depend on which agent libraries
 have been installed on your system.  <span style="font-variant:small-caps;">Cyclus</span> ships with a default library
-named &#8220;agents&#8221; containing a few simple archetypes</p>
+named “agents” containing a few simple archetypes</p>
 <ul class="simple">
 <li>Source</li>
 <li>Sink</li>
 <li>NullInst</li>
 <li>KFacility</li>
-<li>...and others...</li>
+<li>…and others…</li>
 </ul>
 <p>All archetypes used in a simulation must be defined in the <code class="docutils literal"><span class="pre">archetypes</span></code>
 section in the input file:</p>
@@ -138,7 +152,7 @@ section in the input file:</p>
  <span class="p">}</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">path</span></code> tag can be omitted if it is empty (as in the case of <span style="font-variant:small-caps;">Cyclus</span>&#8216;
+<p>The <code class="docutils literal"><span class="pre">path</span></code> tag can be omitted if it is empty (as in the case of <span style="font-variant:small-caps;">Cyclus</span>’
 default agents library).  If the <code class="docutils literal"><span class="pre">lib</span></code> tag is omitted, it defaults to the
 value of the <code class="docutils literal"><span class="pre">name</span></code> tag. The <code class="docutils literal"><span class="pre">alias</span></code> tag may also be omitted, in which case
 it defaults to the value in the <code class="docutils literal"><span class="pre">name</span></code> tag.  If multiple archetypes have the
@@ -164,7 +178,7 @@ environment variable.  For example:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CYCLUS_PATH</span><span class="o">=</span>my/agent/lib/dir:/my/other/agent/dir
 </pre></div>
 </div>
-<p>Directories specified in your <code class="docutils literal"><span class="pre">CYCLUS_PATH</span></code> are searched <em>before</em> <span style="font-variant:small-caps;">Cyclus</span>&#8216;
+<p>Directories specified in your <code class="docutils literal"><span class="pre">CYCLUS_PATH</span></code> are searched <em>before</em> <span style="font-variant:small-caps;">Cyclus</span>’
 default search directories. <code class="docutils literal"><span class="pre">CYCLUS_PATH</span></code> directories mark the <em>starting
 points</em> for archetype specifications.  This meaning that the path portion of an
 agent specification is appended to the CYCLUS_PATH directories.  For example
@@ -190,7 +204,7 @@ using the above defined <code class="docutils literal"><span class="pre">CYCLUS_
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Archetype Identification and Discovery</a><ul>
@@ -274,6 +288,23 @@ using the above defined <code class="docutils literal"><span class="pre">CYCLUS_
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -302,7 +333,7 @@ using the above defined <code class="docutils literal"><span class="pre">CYCLUS_
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 29, 2020.
+      Last updated on Feb 27, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

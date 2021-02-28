@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>CEP 17 - Resource Tracking and Interfaces Re-Re-Redo &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -138,20 +152,20 @@ together is desirable.</p>
 This limited tracking is problematic for certain kinds of output
 analysis.  Examples:</p>
 <ol class="arabic simple">
-<li>The meaning of &#8220;inventory&#8221; for agents that transmute materials is
+<li>The meaning of “inventory” for agents that transmute materials is
 ill-defined.  To calculate the inventory of a reactor faciltiy, an
 analysis of present data would show fresh fuel coming in, and spent fuel
 coming out.  The aggregation of transactions to a specific point in time
-would not be the reactor&#8217;s current inventory.  Rather it would be the
-reactor&#8217;s inventory plus the difference between fresh and spent fuel
+would not be the reactor’s current inventory.  Rather it would be the
+reactor’s inventory plus the difference between fresh and spent fuel
 processed until that point in time. The same problem exists with decay.</li>
 <li>We cannot determine if a resource was ever handled inappropriately (e.g.
 non-proliferation analysis) internally within an agent.</li>
-<li>We are unable to determine &#8220;source&#8221; agents that create material and what
+<li>We are unable to determine “source” agents that create material and what
 they created.</li>
 <li>There is no mass-conservation-safe way to transmute a material (i.e.
 change its nuclide composition) outside of destroying and simultaneously
-creating new material objects (which isn&#8217;t mass-conservations-safe).</li>
+creating new material objects (which isn’t mass-conservations-safe).</li>
 <li>When resources are split and combined, there is no way to recall this
 heritage.  Tracing paths of certain material objects is not possible.
 Analyzing the contribution of agent X to the flow of isotope Y through
@@ -160,7 +174,7 @@ agent Z is not possible.</li>
 <p>The above deficiencies are used as drivers for designing/implementing a more
 thorough resource tracking infrastructure.</p>
 <p>Additionally, some materials will exist in the simulation that are not
-&#8220;part&#8221; of the simulation and should not be recorded in the ouptut.  Some of
+“part” of the simulation and should not be recorded in the ouptut.  Some of
 these materials will be objects representing what agents are
 offering/requesting.  A new implementation must accomodate this
 requirement.</p>
@@ -178,13 +192,13 @@ class, some belong to the composition class. And some can only be answered
 by using information from both.  Another reason to use wrapper classes is
 that sometimes a user/dev might want to manipulate compositions, and other
 times they will want to manipulate materials - and many of those
-queries/operations have significant overlap that we don&#8217;t want duplicated
-on both classes&#8217; implementations nor interfaces.  Another reason is to help
+queries/operations have significant overlap that we don’t want duplicated
+on both classes’ implementations nor interfaces.  Another reason is to help
 the classes be more modular/maintainable for the core developers.  Some
 basic material/composition query/manipulation wrapper(s) can be made
-setting the stage for the further development of a &#8220;toolkit&#8221; for dealing
+setting the stage for the further development of a “toolkit” for dealing
 with materials and compositions.  External developers can easily create
-toolkits for others to use that don&#8217;t even need to be a part of the <span style="font-variant:small-caps;">Cyclus</span>
+toolkits for others to use that don’t even need to be a part of the <span style="font-variant:small-caps;">Cyclus</span>
 core. This makes it easier to ensure that material/composition inner
 workings remain pure and correct despite rapid or significant changes to
 the kitchen-sink API that will likely evolve.</p>
@@ -192,8 +206,8 @@ the kitchen-sink API that will likely evolve.</p>
 <div class="section" id="specification">
 <h2>Specification<a class="headerlink" href="#specification" title="Permalink to this headline">¶</a></h2>
 <p>A reference implementation exists for both the <span style="font-variant:small-caps;">Cyclus</span> core and cycamore.
-These reside at <a class="reference external" href="https://github.com/rwcarlsen/cyclus">https://github.com/rwcarlsen/cyclus</a> (&#8220;res&#8221; branch) and
-<a class="reference external" href="https://github.com/rwcarlsen/cycamore">https://github.com/rwcarlsen/cycamore</a> (&#8220;res&#8221; branch) respectively.  Further
+These reside at <a class="reference external" href="https://github.com/rwcarlsen/cyclus">https://github.com/rwcarlsen/cyclus</a> (“res” branch) and
+<a class="reference external" href="https://github.com/rwcarlsen/cycamore">https://github.com/rwcarlsen/cycamore</a> (“res” branch) respectively.  Further
 implementation details can be found there.</p>
 <div class="section" id="data-tracking">
 <h3>Data Tracking<a class="headerlink" href="#data-tracking" title="Permalink to this headline">¶</a></h3>
@@ -201,7 +215,7 @@ implementation details can be found there.</p>
 corresponding state), we track:</p>
 <ul class="simple">
 <li>Creation of a resource. Parentless resources are implicitly defined as
-&#8220;newly created&#8221;</li>
+“newly created”</li>
 <li>Transmutation of a material resource within an agent (Resource,
 ResourceHeritage, Compositions, GenericResource tables). The transmuted
 resource has the prev resource as its only parent.  This helps address
@@ -217,7 +231,7 @@ never okay for a resource to be destructed or thrown-away unless it is
 being stored permanently. The new changes should make it more obvious to
 agent developers how enforce correct, measurable mass-conservation.</p>
 <p>This proposed tracking provides orthogonality between resource
-handling/operations and resource ownership.  Resource operations don&#8217;t
+handling/operations and resource ownership.  Resource operations don’t
 know/care about who is splitting/combining/transmuting/creating them.  This
 orthogonality, I believe, is a good feature because: it simplifies the
 resource APIs, decouples transaction and resource manipulation and data
@@ -234,7 +248,7 @@ will break the ability to unambiguously determine agent inventories.</p>
 <h3>Output Schema<a class="headerlink" href="#output-schema" title="Permalink to this headline">¶</a></h3>
 <p>All recorded data will stay the same except for the tables listed below:</p>
 <ul class="simple">
-<li>[TableName] ([new/modified/removed]): [field1], [field2], ...</li>
+<li>[TableName] ([new/modified/removed]): [field1], [field2], …</li>
 </ul>
 <ul class="simple">
 <li>Resource (modified): ID, Time, Type, Quantity, StateID, Parent1, Parent2</li>
@@ -247,14 +261,14 @@ will break the ability to unambiguously determine agent inventories.</p>
 compositions because we can record all material composition amounts in a
 canonical unit (i.e. kg).  GenericResources, however, are
 expected/anticipated to have different unit types along with their
-differing &#8220;quality&#8221; field values.</em></p>
+differing “quality” field values.</em></p>
 </div>
 <div class="section" id="resources-material-api">
 <h3>Resources/Material API<a class="headerlink" href="#resources-material-api" title="Permalink to this headline">¶</a></h3>
 <p>The Material and Composition classes will be designed to provide only the
 minimal interface to support basic manipulation and tracking required by the
 <span style="font-variant:small-caps;">Cyclus</span> core.  All more complex operations will be implemented in helper
-classes (like MatQuery). A summary of each of these classes&#8217; new role and
+classes (like MatQuery). A summary of each of these classes’ new role and
 its public interfaces are described below.</p>
 <div class="section" id="resource-class">
 <h4>Resource class<a class="headerlink" href="#resource-class" title="Permalink to this headline">¶</a></h4>
@@ -272,7 +286,7 @@ resources to be transacted in a simulation.</p>
 
   <span class="c1">/// returns the unique id corresponding to this resource and its current</span>
   <span class="c1">/// state.</span>
-  <span class="k">const</span> <span class="kt">int</span> <span class="nf">id</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="k">const</span> <span class="kt">int</span> <span class="n">id</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
 
   <span class="c1">/// assigns a new, unique id to this resource and its state.</span>
   <span class="kt">void</span> <span class="nf">BumpId</span><span class="p">();</span>
@@ -280,30 +294,30 @@ resources to be transacted in a simulation.</p>
   <span class="c1">/// returns an id representing the specific resource implementation&#39;s</span>
   <span class="c1">/// internal state.  Any change to the state_id should be accompanied by a</span>
   <span class="c1">/// call to BumpId.</span>
-  <span class="k">virtual</span> <span class="kt">int</span> <span class="nf">state_id</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="kt">int</span> <span class="n">state_id</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-  <span class="k">virtual</span> <span class="k">const</span> <span class="n">ResourceType</span> <span class="nf">type</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="n">ResourceType</span> <span class="n">type</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
   <span class="c1">/// returns an untracked (not part of the simulation) copy of the resource.</span>
-  <span class="k">virtual</span> <span class="n">Ptr</span> <span class="nf">Clone</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="n">Ptr</span> <span class="n">Clone</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="c1">// the clone method implementations should set tracked_ = false.</span>
 
   <span class="c1">/// records the resource&#39;s state to the output database.  This method should</span>
   <span class="c1">/// generally / NOT record data accessible via the Resource class public</span>
   <span class="c1">/// methods (e.g.  / state_id, units, type, quantity)</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Record</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Record</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
   <span class="c1">/// Returns the units this resource is based in.</span>
   <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
   <span class="c1">/// returns the quantity of this resource with dimensions as specified by</span>
   <span class="c1">/// units().</span>
-  <span class="k">virtual</span> <span class="kt">double</span> <span class="nf">quantity</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="kt">double</span> <span class="n">quantity</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
   <span class="c1">/// splits the resource and returns the extracted portion as a new resource</span>
   <span class="c1">/// object.  Allows for things like ResourceBuff and market matching to</span>
   <span class="c1">/// split offers/requests of arbitrary resource implementation type.</span>
-  <span class="k">virtual</span> <span class="n">Ptr</span> <span class="nf">ExtractRes</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="n">Ptr</span> <span class="n">ExtractRes</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
 <span class="p">};</span>
 
@@ -323,7 +337,7 @@ transmute (change material composition - e.g. fission by reactor), absorb
 handling/manipulation will be performed using these operations - and all
 operations performed will be recorded. Usage examples:</p>
 <ul class="simple">
-<li>A mining facility that &#8220;creates&#8221; new material</li>
+<li>A mining facility that “creates” new material</li>
 </ul>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">nat_u</span> <span class="o">=</span> <span class="p">...</span>
 <span class="kt">double</span> <span class="n">qty</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
@@ -367,22 +381,22 @@ operations performed will be recorded. Usage examples:</p>
 
   <span class="k">virtual</span> <span class="o">~</span><span class="n">Material</span><span class="p">();</span>
 
-  <span class="k">static</span> <span class="n">Ptr</span> <span class="nf">Create</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
-  <span class="k">static</span> <span class="n">Ptr</span> <span class="nf">CreateUntracked</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
+  <span class="k">static</span> <span class="n">Ptr</span> <span class="n">Create</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
+  <span class="k">static</span> <span class="n">Ptr</span> <span class="n">CreateUntracked</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
 
-  <span class="k">virtual</span> <span class="kt">int</span> <span class="nf">state_id</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="kt">int</span> <span class="n">state_id</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
 
-  <span class="k">virtual</span> <span class="k">const</span> <span class="n">ResourceType</span> <span class="nf">type</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="n">ResourceType</span> <span class="n">type</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
 
   <span class="k">virtual</span> <span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">Clone</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
 
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Record</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Record</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
 
   <span class="c1">/// returns &quot;kg&quot;</span>
   <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
 
   <span class="c1">/// returns the mass of this material in kg.</span>
-  <span class="k">virtual</span> <span class="kt">double</span> <span class="nf">quantity</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="kt">double</span> <span class="n">quantity</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
 
   <span class="k">virtual</span> <span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">ExtractRes</span><span class="p">(</span><span class="kt">double</span> <span class="n">qty</span><span class="p">);</span>
 
@@ -396,7 +410,7 @@ operations performed will be recorded. Usage examples:</p>
 
   <span class="kt">void</span> <span class="nf">Decay</span><span class="p">(</span><span class="kt">int</span> <span class="n">curr_time</span><span class="p">);</span>
 
-  <span class="k">static</span> <span class="kt">void</span> <span class="nf">DecayAll</span><span class="p">(</span><span class="kt">int</span> <span class="n">curr_time</span><span class="p">);</span>
+  <span class="k">static</span> <span class="kt">void</span> <span class="n">DecayAll</span><span class="p">(</span><span class="kt">int</span> <span class="n">curr_time</span><span class="p">);</span>
 
   <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">comp</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
 <span class="p">};</span>
@@ -414,24 +428,24 @@ like: bananas, man-hours, water, buying power, etc.</p>
   <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">GenericResource</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
   <span class="k">static</span> <span class="k">const</span> <span class="n">ResourceType</span> <span class="n">kType</span><span class="p">;</span>
 
-  <span class="k">static</span> <span class="n">Ptr</span> <span class="nf">Create</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">quality</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">);</span>
-  <span class="k">static</span> <span class="n">Ptr</span> <span class="nf">CreateUntracked</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">quality</span><span class="p">,</span>
+  <span class="k">static</span> <span class="n">Ptr</span> <span class="n">Create</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">quality</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">);</span>
+  <span class="k">static</span> <span class="n">Ptr</span> <span class="n">CreateUntracked</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">quality</span><span class="p">,</span>
                              <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">);</span>
 
   <span class="c1">/// not needed/no meaning for generic resources</span>
-  <span class="k">virtual</span> <span class="kt">int</span> <span class="nf">state_id</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="k">virtual</span> <span class="kt">int</span> <span class="n">state_id</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
   <span class="p">};</span>
 
   <span class="c1">/// Returns the concrete type of this resource</span>
-  <span class="k">virtual</span> <span class="k">const</span> <span class="n">ResourceType</span> <span class="nf">type</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="n">ResourceType</span> <span class="n">type</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">kType</span><span class="p">;</span>
   <span class="p">};</span>
 
   <span class="c1">/// Returns a reference to a newly allocated copy of this resource</span>
   <span class="k">virtual</span> <span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">Clone</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
 
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Record</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="p">};</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Record</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="p">};</span>
 
   <span class="c1">/// Returns the total quantity of this resource in its base unit</span>
   <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
@@ -439,7 +453,7 @@ like: bananas, man-hours, water, buying power, etc.</p>
   <span class="p">};</span>
 
   <span class="c1">/// Returns the total quantity of this resource in its base unit</span>
-  <span class="k">virtual</span> <span class="kt">double</span> <span class="nf">quantity</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="k">virtual</span> <span class="kt">double</span> <span class="n">quantity</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">quantity_</span><span class="p">;</span>
   <span class="p">};</span>
 
@@ -475,7 +489,7 @@ or a previously decayed-from composition.</p>
 <p>Note that previously, composition creation/modification involved a notion
 of equivalence via threshold comparison to facilitate reduced
 memory/storage burdens.  This proposal discards this idea in favor of
-defining equivalence trivially as &#8220;the same object in memory&#8221; or pointer
+defining equivalence trivially as “the same object in memory” or pointer
 equality.  Some discussion regarding this can be found in comments here:
 <a class="reference external" href="https://github.com/cyclus/cyclus/issues/484">https://github.com/cyclus/cyclus/issues/484</a>.  Of particular concern w.r.t.
 the previous equivalence notion is this:</p>
@@ -498,8 +512,8 @@ or other places.</p>
  <span class="k">public</span><span class="o">:</span>
   <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Composition</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
 
-  <span class="k">static</span> <span class="n">Ptr</span> <span class="nf">CreateAtom</span><span class="p">(</span><span class="n">CompMap</span> <span class="n">v</span><span class="p">);</span>
-  <span class="k">static</span> <span class="n">Ptr</span> <span class="nf">CreateMass</span><span class="p">(</span><span class="n">CompMap</span> <span class="n">v</span><span class="p">);</span>
+  <span class="k">static</span> <span class="n">Ptr</span> <span class="n">CreateAtom</span><span class="p">(</span><span class="n">CompMap</span> <span class="n">v</span><span class="p">);</span>
+  <span class="k">static</span> <span class="n">Ptr</span> <span class="n">CreateMass</span><span class="p">(</span><span class="n">CompMap</span> <span class="n">v</span><span class="p">);</span>
 
   <span class="kt">int</span> <span class="nf">id</span><span class="p">();</span>
   <span class="k">const</span> <span class="n">CompMap</span><span class="o">&amp;</span> <span class="n">atom_vect</span><span class="p">();</span>
@@ -522,14 +536,14 @@ functionality introduced by &#64;katyhuff will be preserved. The current
 (pre-proposal) Material::Diff and Material::ApplyThreshold methods will become
 public functions that operate on CompMap types.  Other common
 composition manipulation functions will live here.  They will operate on
-CompMap&#8217;s because Composition&#8217;s themselves are immutable.  Resource
+CompMap’s because Composition’s themselves are immutable.  Resource
 and Composition classes will use these methods where appropriate instead of
 their own, internal versions. This namespace is intended to grow organically as
 needed.</p>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">cyclus</span> <span class="p">{</span>
 <span class="k">namespace</span> <span class="n">compmath</span> <span class="p">{</span>
 
-<span class="n">CompMap</span> <span class="n">Add</span><span class="p">(</span><span class="k">const</span> <span class="n">CompMap</span><span class="o">&amp;</span> <span class="n">v1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">qty1</span><span class="p">,</span>
+<span class="n">CompMap</span> <span class="nf">Add</span><span class="p">(</span><span class="k">const</span> <span class="n">CompMap</span><span class="o">&amp;</span> <span class="n">v1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">qty1</span><span class="p">,</span>
                       <span class="k">const</span> <span class="n">CompMap</span><span class="o">&amp;</span> <span class="n">v2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">qty2</span><span class="p">);</span>
 
 <span class="c1">/// previously Material::Diff</span>
@@ -585,7 +599,7 @@ designed to grow organically as needed.</p>
 </div>
 <div class="section" id="other-changes">
 <h3>Other Changes<a class="headerlink" href="#other-changes" title="Permalink to this headline">¶</a></h3>
-<p>The RecipeLibrary&#8217;s role of composition decay management has been shifted into
+<p>The RecipeLibrary’s role of composition decay management has been shifted into
 the Composition class.  <em>The decay lineage tracking functionality introduced by
 Matt Gidden has been effectively preserved.</em>  RecipeLibrary now is only
 responsible for loading recipes from xml input and serving them up simulation
@@ -634,8 +648,8 @@ RecipeLibrary interface becomes:</p>
 <div class="section" id="backwards-compatibility">
 <h2>Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Permalink to this headline">¶</a></h2>
 <p>Most backwards incompatible changes are unambiguously described by the
-reference implementation at <a class="reference external" href="https://github.com/rwcarlsen/cycamore">https://github.com/rwcarlsen/cycamore</a> (&#8220;res&#8221;
-branch). Existing modules will need to be updated to use the new API&#8217;s.  These
+reference implementation at <a class="reference external" href="https://github.com/rwcarlsen/cycamore">https://github.com/rwcarlsen/cycamore</a> (“res”
+branch). Existing modules will need to be updated to use the new API’s.  These
 changes are fairly straight forward and include:</p>
 <ul class="simple">
 <li>Material queries will have to be modified to use MatQuery class.</li>
@@ -654,8 +668,8 @@ throw-away/create material.</li>
 <ul class="simple">
 <li>The current (before this CEP) <span style="font-variant:small-caps;">Cyclus</span> core does not correctly record
 decayed compositions in the output database. This makes comparing
-simulation output size and performance with that of this CEP&#8217;s proposed
-changes not exactly &#8220;fair&#8221;.</li>
+simulation output size and performance with that of this CEP’s proposed
+changes not exactly “fair”.</li>
 </ul>
 </div>
 <div class="section" id="backends-and-performance">
@@ -673,7 +687,7 @@ reference:</p>
 <li>2200 decay calculations</li>
 <li>~28,000,000 resource object state changes recorded (with CEP implemented)</li>
 </ul>
-<p><span style="font-variant:small-caps;">Cyclus</span> was built with CMake&#8217;s &#8220;RELEASE&#8221; mode.  Results reported are
+<p><span style="font-variant:small-caps;">Cyclus</span> was built with CMake’s “RELEASE” mode.  Results reported are
 approximate and specific to my office computer.</p>
 <p>Without proposed changes (decayed compositions are not recorded - current bug):</p>
 <table border="1" class="docutils">
@@ -765,7 +779,7 @@ here <a class="reference external" href="https://github.com/cyclus/cyclus/issues
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">CEP 17 - Resource Tracking and Interfaces Re-Re-Redo</a><ul>
@@ -872,6 +886,23 @@ here <a class="reference external" href="https://github.com/cyclus/cyclus/issues
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -900,7 +931,7 @@ here <a class="reference external" href="https://github.com/cyclus/cyclus/issues
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 29, 2020.
+      Last updated on Feb 27, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

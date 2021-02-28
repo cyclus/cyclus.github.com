@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>CEP 1 - CEP Purpose and Guidelines &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -137,7 +151,7 @@ Informational CEPs or follow their advice.</li>
 proposes a change to (or an event in) a process.  Process CEPs are
 like Standards Track CEPs but apply to areas other than the <span style="font-variant:small-caps;">Cyclus</span>
 code development.  They may propose an implementation, but not to
-<span style="font-variant:small-caps;">Cyclus</span>&#8216;s codebase; they often require community consensus; unlike
+<span style="font-variant:small-caps;">Cyclus</span>’s codebase; they often require community consensus; unlike
 Informational CEPs, they are more than recommendations, and users
 are typically not free to ignore them.  Examples include
 procedures, guidelines, changes to the decision-making process, and
@@ -148,9 +162,9 @@ Any meta-CEP is also considered a Process CEP.</li>
 <div class="section" id="cep-workflow">
 <h2>CEP Workflow<a class="headerlink" href="#cep-workflow" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="cyclus-s-bdfp">
-<h3><span style="font-variant:small-caps;">Cyclus</span>&#8216;s BDFP<a class="headerlink" href="#cyclus-s-bdfp" title="Permalink to this headline">¶</a></h3>
-<p>There are several reference in this CEP to the &#8220;BDFP&#8221;. This acronym stands
-for &#8220;Benevolent Dictator for the Proposal.&#8221; In most cases, it is fairly clear
+<h3><span style="font-variant:small-caps;">Cyclus</span>’s BDFP<a class="headerlink" href="#cyclus-s-bdfp" title="Permalink to this headline">¶</a></h3>
+<p>There are several reference in this CEP to the “BDFP”. This acronym stands
+for “Benevolent Dictator for the Proposal.” In most cases, it is fairly clear
 who this person is (Paul Wilson or Anthony Scopatz).  It is this persons
 responsibility to consider the entire <span style="font-variant:small-caps;">Cyclus</span> ecosystem when deciding whether
 or not to accept a proposal.  Weighted with this burden, their decision
@@ -174,13 +188,13 @@ details.  The current editors are:</p>
 <h3>Submitting a CEP<a class="headerlink" href="#submitting-a-cep" title="Permalink to this headline">¶</a></h3>
 <p>The CEP process begins with a new idea for <span style="font-variant:small-caps;">Cyclus</span>.  It is highly
 recommended that a single CEP contain a single key proposal or new
-idea. Small enhancements or patches often don&#8217;t need
+idea. Small enhancements or patches often don’t need
 a CEP and can be injected into the <span style="font-variant:small-caps;">Cyclus</span> development workflow with a
 patch submission to the <span style="font-variant:small-caps;">Cyclus</span> <a class="reference external" href="https://github.com/cyclus/cyclus">issue tracker</a>. The more focused the
 CEP, the more successful it tends to be.  The CEP editors reserve the
 right to reject CEP proposals if they appear too unfocused or too
 broad.  If in doubt, split your CEP into several well-focused ones.</p>
-<p>Each CEP must have a champion &#8211; someone who writes the CEP using the
+<p>Each CEP must have a champion – someone who writes the CEP using the
 style and format described below, shepherds the discussions in the
 appropriate forums, and attempts to build community consensus around
 the idea.  The CEP champion (a.k.a. Author) should first attempt to
@@ -207,13 +221,13 @@ in CEP style as described below, else it will be sent back without further
 regard until proper formatting rules are followed (although minor errors
 will be corrected by the editors).</p>
 <p>If the CEP editors approve, they will assign the CEP a number, label it
-as Standards Track, Informational, or Process, give it status &#8220;Draft&#8221;,
+as Standards Track, Informational, or Process, give it status “Draft”,
 and create and check-in the initial draft of the CEP.  The CEP editors
 will not unreasonably deny a CEP.  Reasons for denying CEP status
 include duplication of effort, being technically unsound, not
 providing proper motivation or addressing backwards compatibility, or
 not in keeping with the <span style="font-variant:small-caps;">Cyclus</span> philosophy.  The BDFP can be consulted
-during the approval phase, and is the final arbiter of the draft&#8217;s
+during the approval phase, and is the final arbiter of the draft’s
 CEP-ability.</p>
 <p>Developers with git push privileges for the <a class="reference external" href="https://github.com/cyclus/cyclus.github.com/tree/source/source/cep">CEP repository</a> may claim
 CEP numbers directly by creating and committing a new CEP. When doing so,
@@ -254,7 +268,7 @@ giving them a chance to make revisions.</p>
 <p>The final authority for CEP approval is the BDFP. However, whenever a new
 CEP is put forward, any core developer that believes they are suitably
 experienced to make the final decision on that CEP may offer to serve as
-the BDFP&#8217;s delegate (or &#8220;CEP czar&#8221;) for that CEP. If their self-nomination
+the BDFP’s delegate (or “CEP czar”) for that CEP. If their self-nomination
 is accepted by the other core developers and the BDFP, then they will have
 the authority to approve (or reject) that CEP. This process happens most
 frequently with CEPs where the BDFP has granted in principle approval for
@@ -262,7 +276,7 @@ frequently with CEPs where the BDFP has granted in principle approval for
 before the CEP can be accepted.</p>
 <p>If the final decision on a CEP is to be made by a delegate rather than
 directly by the normal BDFP, this will be recorded by including the
-&#8220;BDFP&#8221; header in the CEP.</p>
+“BDFP” header in the CEP.</p>
 <p>For a CEP to be accepted it must meet certain minimum criteria.  It
 must be a clear and complete description of the proposed enhancement.
 The enhancement must represent a net improvement.  The proposed
@@ -271,14 +285,14 @@ the infrastructure unduly.  Finally, a proposed enhancement must be
 follow <span style="font-variant:small-caps;">Cyclus</span> best practices in order to be accepted by the BDFP.</p>
 <p>Once a CEP has been accepted, the reference implementation must be
 completed.  When the reference implementation is complete and incorporated
-into the main source code repository, the status will be changed to &#8220;Final&#8221;.</p>
-<p>A CEP can also be assigned status &#8220;Deferred&#8221;.  The CEP author or an
+into the main source code repository, the status will be changed to “Final”.</p>
+<p>A CEP can also be assigned status “Deferred”.  The CEP author or an
 editor can assign the CEP this status when no progress is being made
 on the CEP.  Once a CEP is deferred, a CEP editor can re-assign it
 to draft status.</p>
-<p>A CEP can also be &#8220;Rejected&#8221;.  Perhaps after all is said and done it
+<p>A CEP can also be “Rejected”.  Perhaps after all is said and done it
 was not a good idea.  It is still important to have a record of this
-fact. The &#8220;Withdrawn&#8221; status is similar - it means that the CEP author
+fact. The “Withdrawn” status is similar - it means that the CEP author
 themselves has decided that the CEP is actually a bad idea, or has
 accepted that a competing proposal is a better alternative.</p>
 <p>When a CEP is Accepted, Rejected or Withdrawn, the CEP should be updated
@@ -290,10 +304,10 @@ obsolete.  This is intended for Informational CEPs, where version 2 of
 an API can replace version 1.</p>
 <p>The possible paths of the status of CEPs are as follows:</p>
 <img alt="../_images/cep-0001-1.png" src="../_images/cep-0001-1.png" />
-<p>Some Informational and Process CEPs may also have a status of &#8220;Active&#8221;
+<p>Some Informational and Process CEPs may also have a status of “Active”
 if they are never meant to be completed.  E.g. CEP 1 (this CEP).</p>
 <p><strong>Lazy Consensus:</strong> After 1 month of no objections to the wording of a CEP,
-it may be marked as &#8220;Accepted&#8221; by lazy consensus. The author, BDFP, and
+it may be marked as “Accepted” by lazy consensus. The author, BDFP, and
 the Cyclus community manager are jointly responsible for sending out weekly
 reminders of an unapproved CEP without active discussion.</p>
 </div>
@@ -312,27 +326,27 @@ these cases will depend on the nature and purpose of the CEP being updated.</p>
 <h2>What belongs in a successful CEP?<a class="headerlink" href="#what-belongs-in-a-successful-cep" title="Permalink to this headline">¶</a></h2>
 <p>Each CEP should have the following parts:</p>
 <ol class="arabic">
-<li><p class="first">Preamble &#8211; headers containing meta-data about the
+<li><p class="first">Preamble – headers containing meta-data about the
 CEP, including the CEP number, a short descriptive title, the names,
 and optionally the contact info for each author, etc.</p>
 </li>
-<li><p class="first">Abstract &#8211; a short (~200 word) description of the technical issue
+<li><p class="first">Abstract – a short (~200 word) description of the technical issue
 being addressed.</p>
 </li>
-<li><p class="first">Copyright/public domain &#8211; Each CEP must either be explicitly
+<li><p class="first">Copyright/public domain – Each CEP must either be explicitly
 labeled as placed in the public domain (see this CEP as an
 example) or licensed under the <a class="reference external" href="http://www.opencontent.org/openpub/">Open Publication License</a>.</p>
 </li>
-<li><p class="first">Specification &#8211; The technical specification should describe the
+<li><p class="first">Specification – The technical specification should describe the
 syntax and semantics of any new feature.</p>
 </li>
-<li><p class="first">Motivation &#8211; The motivation is critical for CEPs that want to
+<li><p class="first">Motivation – The motivation is critical for CEPs that want to
 change the <span style="font-variant:small-caps;">Cyclus</span> ecosystem.  It should clearly explain why the
 existing language specification is inadequate to address the
 problem that the CEP solves.  CEP submissions without sufficient
 motivation may be rejected outright.</p>
 </li>
-<li><p class="first">Rationale &#8211; The rationale fleshes out the specification by
+<li><p class="first">Rationale – The rationale fleshes out the specification by
 describing what motivated the design and why particular design
 decisions were made.  It should describe alternate designs that
 were considered and related work, e.g. how the feature is supported
@@ -341,19 +355,19 @@ in other languages.</p>
 community and discuss important objections or concerns raised
 during discussion.</p>
 </li>
-<li><p class="first">Backwards Compatibility &#8211; All CEPs that introduce major backwards
+<li><p class="first">Backwards Compatibility – All CEPs that introduce major backwards
 incompatibilities must include a section describing these
 incompatibilities and their severity.  The CEP must explain how the
 author proposes to deal with these incompatibilities.  CEP
 submissions without a sufficient backwards compatibility treatise
 may be rejected outright.</p>
 </li>
-<li><p class="first">Reference Implementation &#8211; The reference implementation must be
-completed before any CEP is given status &#8220;Final&#8221;, but it need not
+<li><p class="first">Reference Implementation – The reference implementation must be
+completed before any CEP is given status “Final”, but it need not
 be completed before the CEP is accepted.  While there is merit
 to the approach of reaching consensus on the specification and
-rationale before writing code, the principle of &#8220;rough consensus
-and running code&#8221; is still useful when it comes to resolving many
+rationale before writing code, the principle of “rough consensus
+and running code” is still useful when it comes to resolving many
 discussions of API details.</p>
 <p>The final implementation must include test code and documentation
 appropriate for <span style="font-variant:small-caps;">Cyclus</span>.</p>
@@ -363,7 +377,7 @@ appropriate for <span style="font-variant:small-caps;">Cyclus</span>.</p>
 <div class="section" id="cep-header-preamble">
 <h2>CEP Header Preamble<a class="headerlink" href="#cep-header-preamble" title="Permalink to this headline">¶</a></h2>
 <p>Each CEP must begin with a header preamble.  The headers
-must appear in the following order.  Headers marked with &#8220;*&#8221; are
+must appear in the following order.  Headers marked with “*” are
 optional and are described below.  All other headers are required.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="n">CEP</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">cep</span> <span class="n">number</span><span class="o">&gt;</span>
   <span class="n">Title</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">cep</span> <span class="n">title</span><span class="o">&gt;</span>
@@ -416,43 +430,43 @@ obsolete.</p>
 <div class="section" id="auxiliary-files">
 <h2>Auxiliary Files<a class="headerlink" href="#auxiliary-files" title="Permalink to this headline">¶</a></h2>
 <p>CEPs may include auxiliary files such as diagrams.  Such files must be
-named <code class="docutils literal"><span class="pre">cep-XXXX-Y.ext</span></code>, where &#8220;XXXX&#8221; is the CEP number, &#8220;Y&#8221; is a
-serial number (starting at 1), and &#8220;ext&#8221; is replaced by the actual
-file extension (e.g. &#8220;png&#8221;).</p>
+named <code class="docutils literal"><span class="pre">cep-XXXX-Y.ext</span></code>, where “XXXX” is the CEP number, “Y” is a
+serial number (starting at 1), and “ext” is replaced by the actual
+file extension (e.g. “png”).</p>
 </div>
 <div class="section" id="reporting-cep-bugs-or-submitting-cep-updates">
 <h2>Reporting CEP Bugs, or Submitting CEP Updates<a class="headerlink" href="#reporting-cep-bugs-or-submitting-cep-updates" title="Permalink to this headline">¶</a></h2>
 <p>How you report a bug, or submit a CEP update depends on several
 factors, such as the maturity of the CEP, the preferences of the CEP
 author, and the nature of your comments.  For the early draft stages
-of the CEP, it&#8217;s probably best to send your comments and changes
+of the CEP, it’s probably best to send your comments and changes
 directly to the CEP author.  For more mature, or finished CEPs you may
 want to submit corrections to the <span style="font-variant:small-caps;">Cyclus</span> <a class="reference external" href="https://github.com/cyclus/cyclus">issue tracker</a> so that your
-changes don&#8217;t get lost.  If the CEP author is a <span style="font-variant:small-caps;">Cyclus</span> developer, assign the
+changes don’t get lost.  If the CEP author is a <span style="font-variant:small-caps;">Cyclus</span> developer, assign the
 bug/patch to them, otherwise assign it to a CEP editor.</p>
 <p>When in doubt about where to send your changes, please check first
 with the CEP author and/or a CEP editor.</p>
 <p>CEP authors with git push privileges for the CEP repository can update the
-CEPs themselves by using &#8220;git push&#8221; to submit their changes.</p>
+CEPs themselves by using “git push” to submit their changes.</p>
 </div>
 <div class="section" id="transferring-cep-ownership">
 <h2>Transferring CEP Ownership<a class="headerlink" href="#transferring-cep-ownership" title="Permalink to this headline">¶</a></h2>
 <p>It occasionally becomes necessary to transfer ownership of CEPs to a
 new champion.  In general, it is preferable to retain the original author as
-a co-author of the transferred CEP, but that&#8217;s really up to the
+a co-author of the transferred CEP, but that’s really up to the
 original author.  A good reason to transfer ownership is because the
 original author no longer has the time or interest in updating it or
 following through with the CEP process, or has fallen off the face of
 the earth (i.e. is unreachable or not responding to email).  A bad
-reason to transfer ownership is because the author doesn&#8217;t agree with the
+reason to transfer ownership is because the author doesn’t agree with the
 direction of the CEP.  One aim of the CEP process is to try to build
-consensus around a CEP, but if that&#8217;s not possible, an author can always
+consensus around a CEP, but if that’s not possible, an author can always
 submit a competing CEP.</p>
 <p>If you are interested in assuming ownership of a CEP, send a message
 asking to take over, addressed to both the original author and the <span style="font-variant:small-caps;">Cyclus</span>
-mailing list.  If the original author doesn&#8217;t respond to
+mailing list.  If the original author doesn’t respond to
 email in a timely manner, the CEP editors will make a unilateral
-decision (it&#8217;s not like such decisions can&#8217;t be reversed :).</p>
+decision (it’s not like such decisions can’t be reversed :).</p>
 </div>
 <div class="section" id="cep-editor-responsibilities-workflow">
 <h2>CEP Editor Responsibilities &amp; Workflow<a class="headerlink" href="#cep-editor-responsibilities-workflow" title="Permalink to this headline">¶</a></h2>
@@ -460,17 +474,17 @@ decision (it&#8217;s not like such decisions can&#8217;t be reversed :).</p>
 For each new CEP that comes in an editor does the following:</p>
 <ul class="simple">
 <li>Read the CEP to check if it is ready: sound and complete.  The ideas
-must make technical sense, even if they don&#8217;t seem likely to be
+must make technical sense, even if they don’t seem likely to be
 accepted.</li>
 <li>The title should accurately describe the content.</li>
 <li>Edit the CEP for language (spelling, grammar, sentence structure, etc.).</li>
 </ul>
-<p>If the CEP isn&#8217;t ready, an editor will send it back to the author for
+<p>If the CEP isn’t ready, an editor will send it back to the author for
 revision, with specific instructions.</p>
 <p>Once the CEP is ready for the repository, a CEP editor will:</p>
 <ul class="simple">
 <li>Assign a CEP number (almost always just the next available number,
-but sometimes it&#8217;s a special/joke number, like 666 or 3141).</li>
+but sometimes it’s a special/joke number, like 666 or 3141).</li>
 <li>Add the CEP to the CEP repository.</li>
 <li>Commit and push the new (or updated) CEP</li>
 <li>Monitor cyclus.github.com to make sure the CEP gets added to the site
@@ -482,7 +496,7 @@ properly.</li>
 to the <span style="font-variant:small-caps;">Cyclus</span> codebase.  The CEP editors monitor the various repositories
 for CEP changes, and correct any structure, grammar, spelling, or
 markup mistakes they see.</p>
-<p>CEP editors don&#8217;t pass judgment on CEPs.  They merely do the
+<p>CEP editors don’t pass judgment on CEPs.  They merely do the
 administrative &amp; editorial part (which is generally a low volume task).</p>
 </div>
 <div class="section" id="document-history">
@@ -511,14 +525,14 @@ for retrieving older revisions, and can also be browsed via HTTP here:
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">CEP 1 - CEP Purpose and Guidelines</a><ul>
 <li><a class="reference internal" href="#what-is-a-cep">What is a CEP?</a></li>
 <li><a class="reference internal" href="#cep-types">CEP Types</a></li>
 <li><a class="reference internal" href="#cep-workflow">CEP Workflow</a><ul>
-<li><a class="reference internal" href="#cyclus-s-bdfp"><span style="font-variant:small-caps;">Cyclus</span>&#8216;s BDFP</a></li>
+<li><a class="reference internal" href="#cyclus-s-bdfp"><span style="font-variant:small-caps;">Cyclus</span>’s BDFP</a></li>
 <li><a class="reference internal" href="#cep-editors">CEP Editors</a></li>
 <li><a class="reference internal" href="#submitting-a-cep">Submitting a CEP</a></li>
 <li><a class="reference internal" href="#cep-review-resolution">CEP Review &amp; Resolution</a></li>
@@ -612,6 +626,23 @@ for retrieving older revisions, and can also be browsed via HTTP here:
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -640,7 +671,7 @@ for retrieving older revisions, and can also be browsed via HTTP here:
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 29, 2020.
+      Last updated on Feb 27, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Cyclus User Tutorial &#8212; Home</title>
-    
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,13 +26,28 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Installing and Launching Cyclist" href="install_launch_cyclist.html" />
+    <link rel="next" title="Installing and Launching Cyclus" href="install_launch_cyclus.html" />
     <link rel="prev" title="Cyclus Server" href="../server.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
 var ga_enabled = !$.cookie('disable-ga');
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -64,7 +78,7 @@ if(ga_enabled){
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="install_launch_cyclist.html" title="Installing and Launching Cyclist"
+          <a href="install_launch_cyclus.html" title="Installing and Launching Cyclus"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../server.html" title="Cyclus Server"
@@ -85,9 +99,8 @@ if(ga_enabled){
   <div class="section" id="cyclus-user-tutorial">
 <h1><span style="font-variant:small-caps;">Cyclus</span> User Tutorial<a class="headerlink" href="#cyclus-user-tutorial" title="Permalink to this headline">¶</a></h1>
 <p>In this tutorial, we will build, run and analyze a fuel cycle scenario using
-Cyclist, the graphical user interface developed specifically for the Cyclus
-fuel cycle simulator.  This tutorial assumes that the learner is already
-familiar with the purpose of a fuel cycle simulator. This tutorial will
+<span style="font-variant:small-caps;">Cyclus</span>, a nuclear fuel cycle simulator.  This tutorial assumes that the learner is already
+familiar with the purpose of a nuclear fuel cycle simulator. This tutorial will
 require an internet connection so that <span style="font-variant:small-caps;">Cyclus</span> can be run remotely.</p>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
@@ -104,40 +117,66 @@ exercise is to demonstrate a more complete set of current capabilities.</li>
 <h2>Exercise #1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="install_launch_cyclist.html">Installing and Launching Cyclist</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cyclist_tour.html">A Tour of the Cyclist User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_launch_cyclus.html">Installing and Launching Cyclus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sim_parm.html">Starting a New Scenario</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="sim_parm.html#problem-definition">Problem Definition</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sim_parm.html#concept-simulation-time-steps">Concept: Simulation Time Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sim_parm.html#activity-set-simulation-parameters">Activity: Set Simulation Parameters</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="add_arche.html">Understanding and Adding Archetypes to Your Scenario</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="add_arche.html">Understanding Archetypes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="add_arche.html#concept-archetypes">Concept: Archetypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_arche.html#activity-discover-the-available-archetypes">Activity: Discover the Available Archetypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_arche.html#concept-third-party-archetypes">Concept: Third-Party Archetypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_arche.html#activity-adding-archetypes">Activity: Adding archetypes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="add_proto.html">Adding Prototypes to your Simulation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="add_proto.html#concept-configuring-an-archetype-to-create-a-prototype">Concept: Configuring an Archetype to Create a Prototype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="add_proto.html#concept-commodities">Concept: Commodities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="add_proto.html#concept-material-recipes">Concept: Material recipes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="add_proto.html#advanced-input-options">Advanced Input Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_commod_recipe.html">Understanding Commodities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="add_commod_recipe.html#concept-commodities">Concept: Commodities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_commod_recipe.html#activity-create-fuel-commodities-optional">Activity: Create fuel commodities (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_commod_recipe.html#activity-building-commodities">Activity: Building commodities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="add_commod_recipe.html#understanding-recipes">Understanding Recipes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="add_commod_recipe.html#concept-recipes">Concept: Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_commod_recipe.html#activity-creating-a-recipe">Activity: Creating a Recipe</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="add_proto.html">Understanding Prototypes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="add_proto.html#example-source-prototype">Example: Source Prototype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_proto.html#activity-configure-the-source-prototype">Activity: Configure the Source prototype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_proto.html#example-enrichment-prototype">Example: Enrichment Prototype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_proto.html#activity-creating-the-enrichment-prototype">Activity: Creating the Enrichment Prototype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_proto.html#example-reactor-prototype">Example: Reactor Prototype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_proto.html#activity-creating-the-reactor-prototype">Activity: Creating the Reactor Prototype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_proto.html#example-sink-prototype">Example: Sink Prototype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_proto.html#activity-creating-the-sink-prototype">Activity: Creating the Sink Prototype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_proto.html#check-complete-facility-block">Check: Complete Facility block</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="add_reg_inst.html">Adding Regions and Institutions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="add_reg_inst.html#concept-regions-institutions">Concept: Regions &amp; Institutions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="add_reg_inst.html#concept-intial-facilities">Concept: Intial Facilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_reg_inst.html#concept-regions">Concept: Regions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_reg_inst.html#concept-institution">Concept: Institution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_reg_inst.html#activity-write-the-region-template">Activity: Write the Region template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_reg_inst.html#activity-save-your-input-file">Activity: Save your input file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_reg_inst.html#activity-add-an-extra-insitution-into-the-region">Activity: Add an extra insitution into the Region</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_reg_inst.html#id1">Activity: Save your Input File</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="launch_cyclus.html">Working with Cyclus in the Cloud</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="launch_cyclus.html">Using <span style="font-variant:small-caps;">Cyclus</span> in the Cloud</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="launch_cyclus.html#choosing-where-to-run">Choosing Where to Run</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="data_explorer.html">An Introduction to Data Exploration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_explorer.html#activity-examine-your-first-data-exploration-session">Activity: Examine Your First Data Exploration Session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_cyclus_native.html">Working with <span style="font-variant:small-caps;">Cyclus</span> in on your machine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="run_cyclus_native.html#choosing-where-to-run">Choosing Where to Run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_cyclus_native.html#brief-introduction-to-jupyter-notebook">Brief Introduction to Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_cyclus_native.html#jupyter-notebook-scenario-execution">Jupyter Notebook Scenario Execution</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="plot_output.html">Advanced Data Exploration Topics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="plot_output.html#cyclus-specific-views"><span style="font-variant:small-caps;">Cyclus</span>-specific Views</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_output.html#table-to-loading-custom-tables">Table to Loading Custom Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_second_reactor.html">Adding a second reactor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="add_second_reactor.html#activity-second-reactor">Activity: Second Reactor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_second_reactor.html#activity-second-reactor-institution">Activity: Second reactor Institution</a></li>
 </ul>
 </li>
 </ul>
@@ -159,6 +198,14 @@ on your own, all with the support of the Cyclus development team.</p>
 </ul>
 </div>
 </div>
+<div class="section" id="recap">
+<h2>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cyclus_tutorial_recap.html">Cyclus Tutorial Recap</a></li>
+</ul>
+</div>
+</div>
 </div>
 
 
@@ -169,13 +216,14 @@ on your own, all with the support of the Cyclus development team.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a><ul>
 <li><a class="reference internal" href="#overview">Overview</a></li>
 <li><a class="reference internal" href="#exercise-1">Exercise #1</a></li>
 <li><a class="reference internal" href="#exercise-2">Exercise #2</a></li>
+<li><a class="reference internal" href="#recap">Recap</a></li>
 </ul>
 </li>
 </ul>
@@ -188,8 +236,8 @@ on your own, all with the support of the Cyclus development team.</p>
   </div>
   <div class="sphinxnext">
     <h4>Next page</h4>
-    <p class="topless"><a href="install_launch_cyclist.html"
-                          title="Next page">&rarr; Installing and Launching Cyclist</a></p>
+    <p class="topless"><a href="install_launch_cyclus.html"
+                          title="Next page">&rarr; Installing and Launching Cyclus</a></p>
   </div>
   <div class="sphinxlocaltoc">
   <h3>Useful Pages</h3>
@@ -255,6 +303,23 @@ on your own, all with the support of the Cyclus development team.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -269,7 +334,7 @@ on your own, all with the support of the Cyclus development team.</p>
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="install_launch_cyclist.html" title="Installing and Launching Cyclist"
+          <a href="install_launch_cyclus.html" title="Installing and Launching Cyclus"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../server.html" title="Cyclus Server"
@@ -283,7 +348,7 @@ on your own, all with the support of the Cyclus development team.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 29, 2020.
+      Last updated on Feb 27, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

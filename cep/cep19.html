@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>CEP 19 - Cyclus Input Procedure Updates &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -114,9 +128,9 @@ developers with an elegent and clear method of building <span style="font-varian
 <p>The first major change is to develop a suite of patterns for use by <span style="font-variant:small-caps;">Cyclus</span> module schema.
 These patterns are meant to richly representing module input fields. These patterns will be a
 collection of elements that provide sufficient metadata needed by the two use cases listed
-above. For instance, one such additional element is &#8216;tooltip&#8217;.</p>
+above. For instance, one such additional element is ‘tooltip’.</p>
 <p>The second change is the addition of an interface to modules. This interface will be used in
-conjuction with the current &#8216;schema()&#8217; member function. This function will be called &#8216;default_inputs()&#8217;
+conjuction with the current ‘schema()’ member function. This function will be called ‘default_inputs()’
 and return an xml input file snippit for the facility with default values in all input fields.</p>
 </div>
 <div class="section" id="motivation">
@@ -191,9 +205,9 @@ and if left blank the value will be set to zero by the graphical user interface.
 </div>
 <div class="section" id="vary">
 <h3>Vary<a class="headerlink" href="#vary" title="Permalink to this headline">¶</a></h3>
-<p>The &#8216;vary&#8217; element is a special boolean element that allows a <span style="font-variant:small-caps;">Cyclus</span> user to set wether the input
+<p>The ‘vary’ element is a special boolean element that allows a <span style="font-variant:small-caps;">Cyclus</span> user to set wether the input
 field it is attached to can be varied for a parametric study. This flag is optional and can take
-the values &#8220;true&#8221;, &#8220;false&#8221;, &#8220;1&#8221;, &#8220;0&#8221;.</p>
+the values “true”, “false”, “1”, “0”.</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;vary&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;vary&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">&quot;boolean&quot;</span> <span class="nt">/&gt;</span>
@@ -671,7 +685,7 @@ nodes so that they may be loaded in the proper place.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">CEP 19 - <span style="font-variant:small-caps;">Cyclus</span> Input Procedure Updates</a><ul>
@@ -776,6 +790,23 @@ nodes so that they may be loaded in the proper place.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -804,7 +835,7 @@ nodes so that they may be loaded in the proper place.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 29, 2020.
+      Last updated on Feb 27, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

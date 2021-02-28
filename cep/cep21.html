@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>CEP 21 - Agent Identification and Discovery &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -107,7 +121,7 @@ if(ga_enabled){
 <div class="section" id="abstract">
 <h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
 <p><span style="font-variant:small-caps;">Cyclus</span> is designed to have plugin modules that can be easily distributed and
-installed.  A &#8220;module&#8221; is a shared library containing one or more compiled
+installed.  A “module” is a shared library containing one or more compiled
 <span style="font-variant:small-caps;">Cyclus</span> agents.  Agents within mouldes must be uniquely identifiable and
 discoverable by both users managing their <span style="font-variant:small-caps;">Cyclus</span> installation and by the
 <span style="font-variant:small-caps;">Cyclus</span> kernel itself.  A user wishing to use certain modules must install them
@@ -118,20 +132,20 @@ and identifies agents in them.</p>
 <div class="section" id="agent-spec">
 <span id="agent-spec-docs"></span><h2>Agent Spec<a class="headerlink" href="#agent-spec" title="Permalink to this headline">¶</a></h2>
 <p>Agents will be uniquely identified by 3 components together referred to as an
-&#8220;agent spec&#8221;:</p>
+“agent spec”:</p>
 <ol class="arabic">
 <li><p class="first">path: e.g. <code class="docutils literal"><span class="pre">my/module/path</span></code></p>
 <p>A slash-delimited, valid filesystem path relative to CYCLUS_PATH (see
 Module Discovery below).</p>
 </li>
 <li><p class="first">library: e.g. <code class="docutils literal"><span class="pre">MyModule</span></code></p>
-<p>Name of the compiled shared object library file without the &#8220;lib&#8221; prefix
+<p>Name of the compiled shared object library file without the “lib” prefix
 and without the file extension. If empty, is expanded to the agent class.
-The example above would correspond to a library file named &#8220;libMyModule.so&#8221;
-(linux), &#8220;libMyModule.dylib&#8221; (darwin), etc.</p>
+The example above would correspond to a library file named “libMyModule.so”
+(linux), “libMyModule.dylib” (darwin), etc.</p>
 </li>
 <li><p class="first">agent class: e.g. <code class="docutils literal"><span class="pre">MyAgent</span></code></p>
-<p>The name of the agent&#8217;s c++ class as compiled into the shared library file.</p>
+<p>The name of the agent’s c++ class as compiled into the shared library file.</p>
 </li>
 </ol>
 <p>An agent spec also has a single-string form composed of the three components
@@ -176,7 +190,7 @@ slashes, underscores.  <strong>No</strong> spaces. If the shared library only ha
 single agent in it, the library should be the same as the agent class.  For
 example, if my agent was named <code class="docutils literal"><span class="pre">MyAgent</span></code>, then the library file should be
 named <code class="docutils literal"><span class="pre">libMyAgent.so</span></code> on a linux system.  This allows the defaults to
-prevent stuttering in the agent&#8217;s module spec.</p>
+prevent stuttering in the agent’s module spec.</p>
 </div>
 </div>
 
@@ -188,7 +202,7 @@ prevent stuttering in the agent&#8217;s module spec.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">CEP 21 - Agent Identification and Discovery</a><ul>
@@ -275,6 +289,23 @@ prevent stuttering in the agent&#8217;s module spec.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -303,7 +334,7 @@ prevent stuttering in the agent&#8217;s module spec.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 29, 2020.
+      Last updated on Feb 27, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

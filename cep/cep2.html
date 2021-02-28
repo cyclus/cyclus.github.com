@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>CEP 2 - Separation of Concerns in the Cyclus Ecosystem &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -106,8 +120,8 @@ if(ga_enabled){
 </table>
 <div class="section" id="abstract">
 <h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
-<p>The purpose of this CEP is to clearly delineate the purpose &#8211; technical and
-cultural &#8211; of the various projects which make up the <span style="font-variant:small-caps;">Cyclus</span> ecosystem.
+<p>The purpose of this CEP is to clearly delineate the purpose – technical and
+cultural – of the various projects which make up the <span style="font-variant:small-caps;">Cyclus</span> ecosystem.
 Projects, for purposes here, are unique entities which have independent lifetimes
 and central concerns. Many projects may try to tackle the same concern but no
 single project may tackle more than one concern.  Concerns, like projects, may
@@ -241,7 +255,7 @@ associated analysis and visualization. This may be with the purpose of,</p>
 </ul>
 <p>This execution and analysis is either managed manually or automatically, but it
 is always managed.  Running, analyzing, visualizing, and generating many <span style="font-variant:small-caps;">Cyclus</span>
-input files is termed here &#8220;orchestration.&#8221; This includes provisioning compute
+input files is termed here “orchestration.” This includes provisioning compute
 resources where these tasks are executed. Data management also falls under the
 purview of simulation orchestration.</p>
 <p>Simulation orchestration provides a feedback loop for the <span style="font-variant:small-caps;">Cyclus</span> ecosystem.
@@ -280,7 +294,7 @@ Figure 2 displays this graph along with other projects which implement these con
 <p>In any real system, there is glue code which holds the projects together in a
 cohesive manner.  A collection of such utilities is called a <em>toolkit</em>.  While
 toolkits are critically important to well functioning software their components
-are united only in that &#8220;should be useful.&#8221;  There need not be underlying concept
+are united only in that “should be useful.”  There need not be underlying concept
 tying them together.  For this reason, toolkits are not a top-level concern on
 par with resource exchange, domain models, and analysis &amp; visualization.</p>
 <p>Instead, each project may have its own toolkit which contains utilities that
@@ -298,13 +312,13 @@ included next to the resource exchange implementation.</p>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>Many other ecosystems and projects model the fuel cycle and make their own choices
-about how to separate &#8211; or not &#8211; the concerns of resource exchange, domain models,
+about how to separate – or not – the concerns of resource exchange, domain models,
 and analysis and visualization.  The <span style="font-variant:small-caps;">Cyclus</span> ecosystem places all concerns in
 separate projects.  This allows a high degree of modularity between software and
 developers.  Such an ecosystem enables experts to contribute their specific
 knowledge base in a way that is independent from other parts of the ecosystem
 while simultaneously integrating well with the rest of the ecosystem.  Finally,
-this document provides instructions on where to implement tasks based on the task&#8217;s
+this document provides instructions on where to implement tasks based on the task’s
 primary concern.</p>
 </div>
 <div class="section" id="document-history">
@@ -349,7 +363,7 @@ primary concern.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">CEP 2 - Separation of Concerns in the <span style="font-variant:small-caps;">Cyclus</span> Ecosystem</a><ul>
@@ -447,6 +461,23 @@ primary concern.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -475,7 +506,7 @@ primary concern.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 29, 2020.
+      Last updated on Feb 27, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

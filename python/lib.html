@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Cyclus Library Bindings (cyclus.lib) &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -118,7 +132,7 @@ above an other agent in the family tree).</p>
 <dl class="attribute">
 <dt id="cyclus.lib.Agent.context">
 <code class="descname">context</code><a class="headerlink" href="#cyclus.lib.Agent.context" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this agent&#8217;s simulation context.</p>
+<dd><p>Returns this agent’s simulation context.</p>
 </dd></dl>
 
 <dl class="method">
@@ -129,18 +143,18 @@ above an other agent in the family tree).</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="cyclus.lib.Agent.decomission">
-<code class="descname">decomission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.decomission" title="Permalink to this definition">¶</a></dt>
+<dt id="cyclus.lib.Agent.decommission">
+<code class="descname">decommission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.decommission" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decommissions the agent, removing it from the simulation. Results in
 destruction of the agent object. If agents write their own decommission()
-function, they must call their superclass&#8217; decommission function at the
+function, they must call their superclass’ decommission function at the
 END of their decommission() function.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="cyclus.lib.Agent.enter_time">
 <code class="descname">enter_time</code><a class="headerlink" href="#cyclus.lib.Agent.enter_time" title="Permalink to this definition">¶</a></dt>
-<dd><p>The time step at which this agent&#8217;s Build function was called
+<dd><p>The time step at which this agent’s Build function was called
 (-1 if the agent has never been built).</p>
 </dd></dl>
 
@@ -149,7 +163,7 @@ END of their decommission() function.</p>
 <code class="descname">exit_time</code><a class="headerlink" href="#cyclus.lib.Agent.exit_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>The default time step at which this agent will exit the
 simulation (-1 if the agent has an infinite lifetime).</p>
-<p>Decomissioning happens at the end of a time step. With a lifetime of 1, we
+<p>Decommissioning happens at the end of a time step. With a lifetime of 1, we
 expect an agent to go through only 1 entire time step. In this case, the
 agent should be decommissioned on the same time step it was
 created. Therefore, for agents with non-infinite lifetimes, the exit_time
@@ -159,7 +173,7 @@ will be the enter time plus its lifetime less 1.</p>
 <dl class="attribute">
 <dt id="cyclus.lib.Agent.id">
 <code class="descname">id</code><a class="headerlink" href="#cyclus.lib.Agent.id" title="Permalink to this definition">¶</a></dt>
-<dd><p>The agent instance&#8217;s unique ID within a simulation.</p>
+<dd><p>The agent instance’s unique ID within a simulation.</p>
 </dd></dl>
 
 <dl class="method">
@@ -184,6 +198,11 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="cyclus.lib.Agent.lifetime_force">
+<code class="descname">lifetime_force</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.lifetime_force" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="cyclus.lib.Agent.parent">
 <code class="descname">parent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.parent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns parent of this agent.  Returns None if the agent has no parent.</p>
@@ -192,19 +211,19 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 <dl class="attribute">
 <dt id="cyclus.lib.Agent.parent_id">
 <code class="descname">parent_id</code><a class="headerlink" href="#cyclus.lib.Agent.parent_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>The id for this agent&#8217;s parent or -1 if this agent has no parent.</p>
+<dd><p>The id for this agent’s parent or -1 if this agent has no parent.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="cyclus.lib.Agent.prototype">
 <code class="descname">prototype</code><a class="headerlink" href="#cyclus.lib.Agent.prototype" title="Permalink to this definition">¶</a></dt>
-<dd><p>The agent&#8217;s prototype.</p>
+<dd><p>The agent’s prototype.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="cyclus.lib.Agent.schema">
 <code class="descname">schema</code><a class="headerlink" href="#cyclus.lib.Agent.schema" title="Permalink to this definition">¶</a></dt>
-<dd><p>An agent&#8217;s xml rng schema for initializing from input files. All
+<dd><p>An agent’s xml rng schema for initializing from input files. All
 concrete agents should override this function. This must validate the same
 xml input that the InfileToDb function receives.</p>
 </dd></dl>
@@ -212,7 +231,7 @@ xml input that the InfileToDb function receives.</p>
 <dl class="attribute">
 <dt id="cyclus.lib.Agent.spec">
 <code class="descname">spec</code><a class="headerlink" href="#cyclus.lib.Agent.spec" title="Permalink to this definition">¶</a></dt>
-<dd><p>The agent&#8217;s spec.</p>
+<dd><p>The agent’s spec.</p>
 </dd></dl>
 
 <dl class="method">
@@ -349,7 +368,7 @@ destruction.</li>
 <dl class="method">
 <dt id="cyclus.lib.Context.del_agent">
 <code class="descname">del_agent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.del_agent" title="Permalink to this definition">¶</a></dt>
-<dd><p>Destructs and cleans up an agent (and it&#8217;s children recursively).</p>
+<dd><p>Destructs and cleans up an agent (and it’s children recursively).</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -364,8 +383,8 @@ destruction.</li>
 <dd><p>Retrieve a registered recipe. This is intended for retrieving
 compositions loaded from an input file(s) at the start of a
 simulation and NOT for communicating compositions between facilities
-during the simulation. You must provide the basis as either &#8220;mass&#8221; or
-&#8220;atom&#8221;.</p>
+during the simulation. You must provide the basis as either “mass” or
+“atom”.</p>
 </dd></dl>
 
 <dl class="method">
@@ -459,8 +478,8 @@ next decommission phase (i.e. the end of the current timestep).</p>
 <dt id="cyclus.lib.DbInit">
 <em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">DbInit</code><a class="headerlink" href="#cyclus.lib.DbInit" title="Permalink to this definition">¶</a></dt>
 <dd><p>DbInit provides an interface for agents to record data to the output db that
-automatically injects the agent&#8217;s id and current timestep alongside all
-recorded data.  The prefix &#8216;AgentState&#8217; + [spec] (e.g. MyReactor) is also added
+automatically injects the agent’s id and current timestep alongside all
+recorded data.  The prefix ‘AgentState’ + [spec] (e.g. MyReactor) is also added
 to the datum title.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -479,7 +498,7 @@ to the datum title.</p>
 <code class="descname">new_datum</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.DbInit.new_datum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a new datum to be used exactly as the Context.new_datum() method.
 Users must not add fields to the datum that are automatically injected:
-&#8216;SimId&#8217;, &#8216;AgentId&#8217;, and &#8216;SimTime&#8217;.</p>
+‘SimId’, ‘AgentId’, and ‘SimTime’.</p>
 </dd></dl>
 
 </dd></dl>
@@ -508,7 +527,12 @@ Users must not add fields to the datum that are automatically injected:
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>rtn</strong> : Agent</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ctx</strong> : Context</p>
+<p><strong>spec</strong> : AgentSpec or str</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>rtn</strong> : Agent</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -527,7 +551,7 @@ Users must not add fields to the datum that are automatically injected:
 <dd><p>Environment wrapper class.</p>
 <p>An environment utility to help locate files and find environment
 settings. The environment for a given simulation can be accessed via the
-simulation&#8217;s Context.</p>
+simulation’s Context.</p>
 <dl class="attribute">
 <dt id="cyclus.lib.Env.allow_milps">
 <code class="descname">allow_milps</code><a class="headerlink" href="#cyclus.lib.Env.allow_milps" title="Permalink to this definition">¶</a></dt>
@@ -906,6 +930,41 @@ LOG(level) statement levels into appropriate strings for output to stdout.</p>
 </dd></dl>
 
 <dl class="class">
+<dt id="cyclus.lib.Position">
+<em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">Position</code><a class="headerlink" href="#cyclus.lib.Position" title="Permalink to this definition">¶</a></dt>
+<dd><p>a basic class that stores the geographic location
+in latitude and longitude and follows the ISO 6709 standard.
+Longitude and Latitude is stored as seconds of degrees.
+This allows the coordinate elements such as degrees,
+minutes, and seconds to “remain on the integral portion of values, with the
+exception of decimal of seconds, avoiding loss of precision.” This is
+calculated by multiplying decimal degrees by 3600.
+example: 05.2169 -&gt; 18780.84</p>
+<dl class="method">
+<dt id="cyclus.lib.Position.distance">
+<code class="descname">distance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Position.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the distance between this object and another position.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Position.latitude">
+<code class="descname">latitude</code><a class="headerlink" href="#cyclus.lib.Position.latitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cyclus.lib.Position.longitude">
+<code class="descname">longitude</code><a class="headerlink" href="#cyclus.lib.Position.longitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cyclus.lib.Position.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Position.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the latitude and/or longitude</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="cyclus.lib.Recorder">
 <em class="property">class </em><code class="descclassname">cyclus.lib.</code><code class="descname">Recorder</code><a class="headerlink" href="#cyclus.lib.Recorder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cyclus recorder interface.</p>
@@ -1087,7 +1146,7 @@ a cyclus xml input file.</p>
 to and initializing the backends in the recorder. The recorder must
 already have the backend registered. schema_file identifies the master
 xml rng schema used to validate the input file. The format specifies the
-input file format from one of: &#8220;none&#8221;, &#8220;xml&#8221;, &#8220;json&#8221;, or &#8220;py&#8221;.</p>
+input file format from one of: “none”, “xml”, “json”, or “py”.</p>
 <dl class="method">
 <dt id="cyclus.lib.XMLFileLoader.load_sim">
 <code class="descname">load_sim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.XMLFileLoader.load_sim" title="Permalink to this definition">¶</a></dt>
@@ -1105,7 +1164,7 @@ a cyclus xml input file.</p>
 to and initializing the backends in the recorder. The recorder must
 already have the backend registered. schema_file identifies the master
 xml rng schema used to validate the input file. The format specifies the
-input file format from one of: &#8220;none&#8221;, &#8220;xml&#8221;, &#8220;json&#8221;, or &#8220;py&#8221;.</p>
+input file format from one of: “none”, “xml”, “json”, or “py”.</p>
 <p class="rubric">Notes</p>
 <p>This is not a subclass of the XMLFileLoader Python bindings, even
 though the C++ class is a subclass in C++. Rather, they are duck
@@ -1134,7 +1193,7 @@ validation.</p>
 </div></blockquote>
 <p><strong>format</strong> : str, optional</p>
 <blockquote>
-<div><p>The format to read in as: &#8220;none&#8221;, &#8220;xml&#8221;, &#8220;json&#8221;, or &#8220;py&#8221;. Applies to either
+<div><p>The format to read in as: “none”, “xml”, “json”, or “py”. Applies to either
 filename or raw, if given.</p>
 </div></blockquote>
 <p><strong>raw</strong> : str, optional</p>
@@ -1154,6 +1213,18 @@ filename or raw, if given.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="cyclus.lib.call_listeners">
+<code class="descclassname">cyclus.lib.</code><code class="descname">call_listeners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.call_listeners" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls the time series listener functions of cyclus agents.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.capsule_agent_to_py">
+<code class="descclassname">cyclus.lib.</code><code class="descname">capsule_agent_to_py</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.capsule_agent_to_py" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an agent from its id</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="cyclus.lib.coincbc_version">
 <code class="descclassname">cyclus.lib.</code><code class="descname">coincbc_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.coincbc_version" title="Permalink to this definition">¶</a></dt>
 <dd><p>Coin CBC version.</p>
@@ -1169,6 +1240,12 @@ filename or raw, if given.</p>
 <dt id="cyclus.lib.core_version">
 <code class="descclassname">cyclus.lib.</code><code class="descname">core_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.core_version" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cyclus core version.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.dbopen">
+<code class="descclassname">cyclus.lib.</code><code class="descname">dbopen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.dbopen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens a Cyclus database.</p>
 </dd></dl>
 
 <dl class="function">
@@ -1232,7 +1309,7 @@ as errors.</p>
 <dl class="function">
 <dt id="cyclus.lib.load_string_from_file">
 <code class="descclassname">cyclus.lib.</code><code class="descname">load_string_from_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.load_string_from_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loads an XML file from a path or from a string and a format (&#8216;xml&#8217;, &#8216;json&#8217;, or &#8216;py&#8217;).</p>
+<dd><p>Loads an XML file from a path or from a string and a format (‘xml’, ‘json’, or ‘py’).</p>
 </dd></dl>
 
 <dl class="function">
@@ -1256,9 +1333,25 @@ Note that this does not include the requester object.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="cyclus.lib.py_init_hooks">
-<code class="descclassname">cyclus.lib.</code><code class="descname">py_init_hooks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.py_init_hooks" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initializes Cyclus-internal Python hooks. This is called
+<dt id="cyclus.lib.py_append_init_tab">
+<code class="descclassname">cyclus.lib.</code><code class="descname">py_append_init_tab</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.py_append_init_tab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes Cyclus-internal Python import table. This is called
+automatically when cyclus is imported. Users should not need to call
+this function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.py_import_call_init">
+<code class="descclassname">cyclus.lib.</code><code class="descname">py_import_call_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.py_import_call_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls Cyclus-internal Python imports. This is called
+automatically when cyclus is imported. Users should not need to call
+this function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.py_import_init">
+<code class="descclassname">cyclus.lib.</code><code class="descname">py_import_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.py_import_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes Cyclus-internal Python imports. This is called
 automatically when cyclus is imported. Users should not need to call
 this function.</p>
 </dd></dl>
@@ -1273,6 +1366,32 @@ this function.</p>
 <dt id="cyclus.lib.py_to_xml">
 <code class="descclassname">cyclus.lib.</code><code class="descname">py_to_xml</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.py_to_xml" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts a Python string into an equivalent XML string</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cyclus.lib.record_time_series">
+<code class="descclassname">cyclus.lib.</code><code class="descname">record_time_series</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.record_time_series" title="Permalink to this definition">¶</a></dt>
+<dd><p>Python hook into RecordTimeSeries for Python archetypes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>tstype</strong> : int or string</p>
+<blockquote>
+<div><p>Time series type flag; POWER, ENRICH_SWU, etc or the string flag.</p>
+</div></blockquote>
+<p><strong>agent</strong> : object</p>
+<blockquote>
+<div><p>Python agent, usually self when called by an archetype.</p>
+</div></blockquote>
+<p><strong>value</strong> : float</p>
+<blockquote class="last">
+<div><p>The value being recorded in the time series.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -1408,6 +1527,23 @@ this function.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -1436,7 +1572,7 @@ this function.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 29, 2020.
+      Last updated on Feb 27, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

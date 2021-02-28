@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>CEP 18 - Dynamic Resource Exchange Procedure &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -127,7 +141,7 @@ simulation during the <strong>resolve</strong> step, which occurs after the <str
 before the <strong>tock</strong> for each timestep.</p>
 <p>Markets are communicated with through Messages. Communication to Markets utilize
 the Transaction class to define whether the communication is an <strong>offer</strong> or
-<strong>request</strong> for the Market&#8217;s commodity. Communication is initialized by
+<strong>request</strong> for the Market’s commodity. Communication is initialized by
 Facilities, but there is no <span style="font-variant:small-caps;">Cyclus</span> core support for this operation. Individual
 derived Facilities (e.g., the Sink and Source in Cycamore)
 define this functionality during their <strong>HandleTick</strong> functions. This
@@ -153,7 +167,7 @@ reasons, is that the Transaction class is ambiguous with respect to proposed
 offers, requests, and matched offers and requests. This ambiguity can be
 addressed during a refactor to provide clarity to future developers. Third,
 there is no defined structure to the market-facility interaction. This
-interaction is the core purpose of <span style="font-variant:small-caps;">Cyclus</span>&#8216; Dynamic Resource Exchange concern,
+interaction is the core purpose of <span style="font-variant:small-caps;">Cyclus</span>’ Dynamic Resource Exchange concern,
 but users and developers are required to define their own interactions (e.g.,
 sending offers during the tick phase). The original conception of the tick-tock
 paradigm was to define a notion of time before the resource exchange (i.e., a
@@ -161,7 +175,7 @@ pre-step) and after the resource exchange (i.e., a post-step). The current
 implementation includes the resource exchange concern during both of these
 phases, complicating the process and mixing concerns. Finally, there is no
 response mechanism for facilities to delineate between resources of a given
-commodity. The current implementation places this concern upon the market&#8217;s
+commodity. The current implementation places this concern upon the market’s
 resolution algorithm, rather than on the facility via some communication
 mechanism, again muddying the concerns associated with the resource exchange.</p>
 </div>
@@ -226,7 +240,7 @@ reactor that chooses to requests fuel assemblies, of which they request many.</p
 (as nodes) is shown.</p>
 <p>The second phase allows suppliers to <strong>respond</strong> to the set of consumption
 portfolios, and is termed the <strong>Response to Request for Bids</strong> (RRFB) phase
-(analogous to Julka&#8217;s Reply to Request for Quote phase). Each consumption
+(analogous to Julka’s Reply to Request for Quote phase). Each consumption
 portfolio is comprised of requests for some set of commodities, and suppliers of
 those commodities are allowed to respond to demand. Suppliers, like consumers,
 are allowed to offer the null set of isotopics.</p>
@@ -254,7 +268,7 @@ orders, but is constrained by the total SWUs it can provide.</p>
 supplies (as nodes) is shown.</p>
 <p>The final phase of the information gathering procedure allows consumer
 facilities to adjust their set of preferences and for managers of consumer
-facilities to affect the consumer&#8217;s set of preferences, as described in the
+facilities to affect the consumer’s set of preferences, as described in the
 remaining sections. Accordingly, the last phase is termed the <strong>Preference
 Adjustment</strong> (PA) phase. Preference adjustments can occur in response to the set
 of responses provided by producer facilities. Consider the example of a reactor
@@ -297,7 +311,7 @@ commodities, and some may be both. Supplier agents are provided agency by being
 able to communicate to the market-resolution mechanism a variety of production
 capacity constraints in second phase of the information gathering
 methodology. Consumer agents are provided agency by being able to assign
-preferences among possible suppliers based on the supplier&#8217;s quality of
+preferences among possible suppliers based on the supplier’s quality of
 product. Because this agency is encapsulated for each agent, it is possible to
 define strategies that can be attached or detached to the agents at
 run-time. Such strategies are an example of the Strategy design pattern
@@ -322,7 +336,7 @@ arise in real life where an institution has the capability to service its own
 facilities, but choose to use an outside provider because of either cost or time
 constraints. Such a situation is allowed in this framework as well. It is not
 clear how such a relationship should be instantiated and to what degree
-institutions should be allowed to affect their managed facilities&#8217;
+institutions should be allowed to affect their managed facilities’
 preferences. This issue lies squarely in the realm of simulation design
 decisions, part of the <strong>art</strong> of simulation. Accordingly, the strategy of
 affecting preferences is encapsulated within the full preference allocation
@@ -399,7 +413,7 @@ tests in the <a class="reference external" href="https://github.com/gidden/cyclu
 information regarding the players (i.e., requesters and suppliers) as well as
 information regarding requests and bids. The ResourceExchange initiates the
 various phases and updates the context state. As currently envisioned, an
-exchange and context&#8217;s lifetime is the single resolution of the exchange at a
+exchange and context’s lifetime is the single resolution of the exchange at a
 given time. The exchange is populated with traders as known by the wider
 simulation context. Both the ExchangeContext and ResourceExchange are templated
 on the Resource being exchanged, as was the case above. An overview of the
@@ -446,7 +460,7 @@ Requester, preferences are allowed to be perturbed, which looks nominally like:<
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">/// @brief allows a trader and its parents to adjust any preferences in the</span>
 <span class="c1">/// system</span>
 <span class="kt">void</span> <span class="nf">DoAdjustment</span><span class="p">(</span><span class="n">Trader</span><span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">typename</span> <span class="n">PrefMap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&amp;</span> <span class="n">prefs</span> <span class="o">=</span> <span class="n">ex_ctx_</span><span class="p">.</span><span class="n">Prefs</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+  <span class="k">typename</span> <span class="nc">PrefMap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&amp;</span> <span class="n">prefs</span> <span class="o">=</span> <span class="n">ex_ctx_</span><span class="p">.</span><span class="n">Prefs</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
   <span class="n">Model</span><span class="o">*</span> <span class="n">m</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">Model</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
   <span class="k">while</span> <span class="p">(</span><span class="n">m</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">cyclus</span><span class="o">::</span><span class="n">AdjustPrefs</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">prefs</span><span class="p">);</span>
@@ -466,7 +480,7 @@ Requester, preferences are allowed to be perturbed, which looks nominally like:<
 <h3>ExchangeGraph<a class="headerlink" href="#exchangegraph" title="Permalink to this headline">¶</a></h3>
 <p>An ExchangeGraph is a graph representation of a resource exchange. It provides a
 resource-free representation of the exchange, i.e., the quality-specific
-constraint and preference values are &#8220;baked in&#8221;. By the nature of the
+constraint and preference values are “baked in”. By the nature of the
 supplier/requester setup, the graph is bipartite, thus there is a notion of U
 (left) and V (right) nodes, and arcs strictly connect a U node to a V
 node. Constraints are defined along arcs, where each u-v node pair is associated
@@ -477,7 +491,7 @@ with a constraining value. Preferences are also defined along arcs.</p>
 <p>The ExchangeTranslator is an object responsible for translating a given
 ExchangeContext into an ExchangeGraph, and has a pretty simple interface:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="n">ExchangePair</span> <span class="p">{</span>
+<span class="k">struct</span> <span class="nc">ExchangePair</span> <span class="p">{</span>
    <span class="n">Request</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Ptr</span> <span class="n">r</span><span class="p">;</span> <span class="c1">// request</span>
    <span class="n">Bid</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Ptr</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// bid</span>
    <span class="kt">double</span> <span class="n">p</span><span class="p">;</span> <span class="c1">// percent of bid to give</span>
@@ -533,7 +547,7 @@ requests</li>
 <p id="bibtex-bibliography-cep/cep18-0"><table class="docutils citation" frame="void" id="julka-agent-based-2002" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[JSK02]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> N.&nbsp;Julka, R.&nbsp;Srinivasan, and I.&nbsp;Karimi. Agent-based supply chain management-1: framework. <em>Computers &amp; Chemical Engineering</em>, 26(12):1755–1769, 2002. URL: <a class="reference external" href="http://www.sciencedirect.com/science/article/pii/S0098135402001503">http://www.sciencedirect.com/science/article/pii/S0098135402001503</a>.</td></tr>
+<tr><td class="label">[JSK02]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> N.&nbsp;Julka, R.&nbsp;Srinivasan, and I.&nbsp;Karimi. Agent-based supply chain management-1: framework. <em>Computers &amp; Chemical Engineering</em>, 26(12):1755–1769, 2002. URL: <a class="reference external" href="http://www.sciencedirect.com/science/article/pii/S0098135402001503">http://www.sciencedirect.com/science/article/pii/S0098135402001503</a> (visited on 2013-01-14).</td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="vlissides-design-1995" rules="none">
@@ -554,7 +568,7 @@ requests</li>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">CEP 18 - Dynamic Resource Exchange Procedure</a><ul>
@@ -665,6 +679,23 @@ requests</li>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -693,7 +724,7 @@ requests</li>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 29, 2020.
+      Last updated on Feb 27, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

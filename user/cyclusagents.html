@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Cyclus Archetypes &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -119,8 +133,8 @@ if(ga_enabled){
 </div>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">recipe_name:</th><td class="field-body"><p class="first"><code class="docutils literal"><span class="pre">std::string</span></code>, optional (default=&#8221;&#8221;), shape=[-1]</p>
-<p>Recipe name for source facility&#8217;s commodity.If empty, source supplies material with requested compositions.</p>
+<tr class="field-even field"><th class="field-name">recipe_name:</th><td class="field-body"><p class="first"><code class="docutils literal"><span class="pre">std::string</span></code>, optional (default=””), shape=[-1]</p>
+<p>Recipe name for source facility’s commodity.If empty, source supplies material with requested compositions.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -175,8 +189,8 @@ if(ga_enabled){
 <ul class="simple">
 <li><strong>Full Archetype Name</strong>: cyclus::Source</li>
 <li><strong>Simulation Entity Type</strong>: facility</li>
-<li><strong>Interfaces</strong>: [&#8216;cyclus::Facility&#8217;]</li>
-<li><strong>All Interfaces</strong>: [&#8216;cyclus::Agent&#8217;, &#8216;cyclus::Facility&#8217;, &#8216;cyclus::Ider&#8217;, &#8216;cyclus::StateWrangler&#8217;, &#8216;cyclus::TimeListener&#8217;, &#8216;cyclus::Trader&#8217;]</li>
+<li><strong>Interfaces</strong>: [‘cyclus::Facility’]</li>
+<li><strong>All Interfaces</strong>: [‘cyclus::Agent’, ‘cyclus::Facility’, ‘cyclus::Ider’, ‘cyclus::StateWrangler’, ‘cyclus::TimeListener’, ‘cyclus::Trader’]</li>
 </ul>
 </div>
 <div class="section" id="xml-input-schema">
@@ -236,7 +250,7 @@ if(ga_enabled){
 </div>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">recipe_name:</th><td class="field-body"><p class="first"><code class="docutils literal"><span class="pre">std::string</span></code>, optional (default=&#8221;&#8221;), shape=[-1]</p>
+<tr class="field-even field"><th class="field-name">recipe_name:</th><td class="field-body"><p class="first"><code class="docutils literal"><span class="pre">std::string</span></code>, optional (default=””), shape=[-1]</p>
 <p>Name of recipe to request.If empty, sink requests material no particular composition.</p>
 <p><strong>XML:</strong></p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;recipe_name&gt;</span>[recipe]<span class="nt">&lt;/recipe_name&gt;</span>
@@ -300,8 +314,8 @@ if(ga_enabled){
 <ul class="simple">
 <li><strong>Full Archetype Name</strong>: cyclus::Sink</li>
 <li><strong>Simulation Entity Type</strong>: facility</li>
-<li><strong>Interfaces</strong>: [&#8216;cyclus::Facility&#8217;]</li>
-<li><strong>All Interfaces</strong>: [&#8216;cyclus::Agent&#8217;, &#8216;cyclus::Facility&#8217;, &#8216;cyclus::Ider&#8217;, &#8216;cyclus::StateWrangler&#8217;, &#8216;cyclus::TimeListener&#8217;, &#8216;cyclus::Trader&#8217;]</li>
+<li><strong>Interfaces</strong>: [‘cyclus::Facility’]</li>
+<li><strong>All Interfaces</strong>: [‘cyclus::Agent’, ‘cyclus::Facility’, ‘cyclus::Ider’, ‘cyclus::StateWrangler’, ‘cyclus::TimeListener’, ‘cyclus::Trader’]</li>
 </ul>
 </div>
 <div class="section" id="id4">
@@ -335,14 +349,14 @@ if(ga_enabled){
 <hr class="docutils" />
 <div class="section" id="agents-nullregion">
 <h2>:agents:<strong>NullRegion</strong><a class="headerlink" href="#agents-nullregion" title="Permalink to this headline">¶</a></h2>
-<p>A region that owns the simulation&#8217;s institutions but exhibits null behavior. No parameters are given when using the null region.</p>
+<p>A region that owns the simulation’s institutions but exhibits null behavior. No parameters are given when using the null region.</p>
 <div class="section" id="id5">
 <h3>Other Info<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><strong>Full Archetype Name</strong>: cyclus::NullRegion</li>
 <li><strong>Simulation Entity Type</strong>: region</li>
-<li><strong>Interfaces</strong>: [&#8216;cyclus::Region&#8217;]</li>
-<li><strong>All Interfaces</strong>: [&#8216;cyclus::Agent&#8217;, &#8216;cyclus::Ider&#8217;, &#8216;cyclus::Region&#8217;, &#8216;cyclus::StateWrangler&#8217;, &#8216;cyclus::TimeListener&#8217;]</li>
+<li><strong>Interfaces</strong>: [‘cyclus::Region’]</li>
+<li><strong>All Interfaces</strong>: [‘cyclus::Agent’, ‘cyclus::Ider’, ‘cyclus::Region’, ‘cyclus::StateWrangler’, ‘cyclus::TimeListener’]</li>
 </ul>
 </div>
 <div class="section" id="id6">
@@ -361,8 +375,8 @@ if(ga_enabled){
 <ul class="simple">
 <li><strong>Full Archetype Name</strong>: cyclus::NullInst</li>
 <li><strong>Simulation Entity Type</strong>: institution</li>
-<li><strong>Interfaces</strong>: [&#8216;cyclus::Institution&#8217;]</li>
-<li><strong>All Interfaces</strong>: [&#8216;cyclus::Agent&#8217;, &#8216;cyclus::Ider&#8217;, &#8216;cyclus::Institution&#8217;, &#8216;cyclus::StateWrangler&#8217;, &#8216;cyclus::TimeListener&#8217;]</li>
+<li><strong>Interfaces</strong>: [‘cyclus::Institution’]</li>
+<li><strong>All Interfaces</strong>: [‘cyclus::Agent’, ‘cyclus::Ider’, ‘cyclus::Institution’, ‘cyclus::StateWrangler’, ‘cyclus::TimeListener’]</li>
 </ul>
 </div>
 <div class="section" id="id8">
@@ -407,7 +421,7 @@ if(ga_enabled){
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">recipe_name:</th><td class="field-body"><p class="first"><code class="docutils literal"><span class="pre">std::string</span></code>, shape=[50]</p>
-<p>recipe name for the k-facility&#8217;s in-commodity</p>
+<p>recipe name for the k-facility’s in-commodity</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -520,7 +534,7 @@ if(ga_enabled){
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">k_factor_in:</th><td class="field-body"><p class="first"><code class="docutils literal"><span class="pre">double</span></code>, shape=[-1]</p>
-<p>conversion factor that governs the behavior of the k-facility&#8217;s input commodity capacity</p>
+<p>conversion factor that governs the behavior of the k-facility’s input commodity capacity</p>
 <p><strong>XML:</strong></p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;k_factor_in&gt;</span>[double]<span class="nt">&lt;/k_factor_in&gt;</span>
 </pre></div>
@@ -536,7 +550,7 @@ if(ga_enabled){
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">k_factor_out:</th><td class="field-body"><p class="first"><code class="docutils literal"><span class="pre">double</span></code>, shape=[-1]</p>
-<p>conversion factor that governs the behavior of the k-facility&#8217;s output commodity capacity</p>
+<p>conversion factor that governs the behavior of the k-facility’s output commodity capacity</p>
 <p><strong>XML:</strong></p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;k_factor_out&gt;</span>[double]<span class="nt">&lt;/k_factor_out&gt;</span>
 </pre></div>
@@ -559,8 +573,8 @@ if(ga_enabled){
 <ul class="simple">
 <li><strong>Full Archetype Name</strong>: cyclus::KFacility</li>
 <li><strong>Simulation Entity Type</strong>: facility</li>
-<li><strong>Interfaces</strong>: [&#8216;cyclus::Facility&#8217;]</li>
-<li><strong>All Interfaces</strong>: [&#8216;cyclus::Agent&#8217;, &#8216;cyclus::Facility&#8217;, &#8216;cyclus::Ider&#8217;, &#8216;cyclus::StateWrangler&#8217;, &#8216;cyclus::TimeListener&#8217;, &#8216;cyclus::Trader&#8217;]</li>
+<li><strong>Interfaces</strong>: [‘cyclus::Facility’]</li>
+<li><strong>All Interfaces</strong>: [‘cyclus::Agent’, ‘cyclus::Facility’, ‘cyclus::Ider’, ‘cyclus::StateWrangler’, ‘cyclus::TimeListener’, ‘cyclus::Trader’]</li>
 </ul>
 </div>
 <div class="section" id="id11">
@@ -751,7 +765,7 @@ if(ga_enabled){
 </pre></div>
 </div>
 <p><strong>Python:</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;hunt_factor&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>  <span class="c1"># boolean, optional</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;hunt_factor&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>  <span class="c1"># boolean, optional</span>
 </pre></div>
 </div>
 </td>
@@ -799,7 +813,7 @@ if(ga_enabled){
 </pre></div>
 </div>
 <p><strong>Python:</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;dead&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>  <span class="c1"># boolean, optional</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;dead&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>  <span class="c1"># boolean, optional</span>
 </pre></div>
 </div>
 </td>
@@ -832,7 +846,7 @@ if(ga_enabled){
 </pre></div>
 </div>
 <p><strong>Python:</strong></p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;birth_and_death&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>  <span class="c1"># boolean, optional</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;birth_and_death&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>  <span class="c1"># boolean, optional</span>
 </pre></div>
 </div>
 </td>
@@ -845,8 +859,8 @@ if(ga_enabled){
 <ul class="simple">
 <li><strong>Full Archetype Name</strong>: cyclus::Predator</li>
 <li><strong>Simulation Entity Type</strong>: facility</li>
-<li><strong>Interfaces</strong>: [&#8216;cyclus::Facility&#8217;]</li>
-<li><strong>All Interfaces</strong>: [&#8216;cyclus::Agent&#8217;, &#8216;cyclus::Facility&#8217;, &#8216;cyclus::Ider&#8217;, &#8216;cyclus::StateWrangler&#8217;, &#8216;cyclus::TimeListener&#8217;, &#8216;cyclus::Trader&#8217;]</li>
+<li><strong>Interfaces</strong>: [‘cyclus::Facility’]</li>
+<li><strong>All Interfaces</strong>: [‘cyclus::Agent’, ‘cyclus::Facility’, ‘cyclus::Ider’, ‘cyclus::StateWrangler’, ‘cyclus::TimeListener’, ‘cyclus::Trader’]</li>
 </ul>
 </div>
 <div class="section" id="id14">
@@ -978,7 +992,7 @@ if(ga_enabled){
 </pre></div>
 </div>
 <p><strong>Python:</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;dead&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>  <span class="c1"># boolean, optional</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;dead&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>  <span class="c1"># boolean, optional</span>
 </pre></div>
 </div>
 </td>
@@ -1027,7 +1041,7 @@ if(ga_enabled){
 </pre></div>
 </div>
 <p><strong>Python:</strong></p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;birth_and_death&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span>  <span class="c1"># boolean, optional</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;birth_and_death&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>  <span class="c1"># boolean, optional</span>
 </pre></div>
 </div>
 </td>
@@ -1040,8 +1054,8 @@ if(ga_enabled){
 <ul class="simple">
 <li><strong>Full Archetype Name</strong>: cyclus::Prey</li>
 <li><strong>Simulation Entity Type</strong>: facility</li>
-<li><strong>Interfaces</strong>: [&#8216;cyclus::Facility&#8217;]</li>
-<li><strong>All Interfaces</strong>: [&#8216;cyclus::Agent&#8217;, &#8216;cyclus::Facility&#8217;, &#8216;cyclus::Ider&#8217;, &#8216;cyclus::StateWrangler&#8217;, &#8216;cyclus::TimeListener&#8217;, &#8216;cyclus::Trader&#8217;]</li>
+<li><strong>Interfaces</strong>: [‘cyclus::Facility’]</li>
+<li><strong>All Interfaces</strong>: [‘cyclus::Agent’, ‘cyclus::Facility’, ‘cyclus::Ider’, ‘cyclus::StateWrangler’, ‘cyclus::TimeListener’, ‘cyclus::Trader’]</li>
 </ul>
 </div>
 <div class="section" id="id17">
@@ -1090,7 +1104,7 @@ if(ga_enabled){
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Cyclus Archetypes</a><ul>
@@ -1213,6 +1227,23 @@ if(ga_enabled){
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -1241,7 +1272,7 @@ if(ga_enabled){
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 29, 2020.
+      Last updated on Feb 27, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

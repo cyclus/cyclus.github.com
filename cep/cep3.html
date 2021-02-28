@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>CEP 3 - Cyclus Release Procedure &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -117,7 +131,7 @@ all of the following tasks are implemented.  Therefore, their judgment for the
 placement of issues and code stability must be adhered to.</p>
 <p>The <span style="font-variant:small-caps;">Cyclus</span> ecosystem has a few projects which are all released together.
 (This may change in the future a development diverges and the core becomes more
-stable.)  The projects that are under the release manager&#8217;s purview are:</p>
+stable.)  The projects that are under the release manager’s purview are:</p>
 <ul class="simple">
 <li><a class="reference external" href="https://github.com/cyclus/cyclus">Cyclus</a></li>
 <li><a class="reference external" href="https://github.com/cyclus/cycamore">Cycamore</a></li>
@@ -142,7 +156,7 @@ relatively unstable.</p>
 <h2>Release Candidates (Tags &amp; Branches)<a class="headerlink" href="#release-candidates-tags-branches" title="Permalink to this headline">¶</a></h2>
 <p>At the beginning of a release, a special branch for <em>each</em> project should be
 made off of <code class="docutils literal"><span class="pre">master</span></code> named <code class="docutils literal"><span class="pre">vX.X.X-release</span></code>. Note the <em>v</em> at the beginning. Each
-project should have the initial version of of it&#8217;s release branch <em>tagged</em> as
+project should have the initial version of of it’s release branch <em>tagged</em> as
 <code class="docutils literal"><span class="pre">X.X.X-rc1</span></code>, the first release candidate.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -150,7 +164,7 @@ project should have the initial version of of it&#8217;s release branch <em>tagg
 while tag names lack this prefix (<code class="docutils literal"><span class="pre">X.X.X-rcX</span></code>).</p>
 </div>
 <p>Release candidates serve as an official proving ground for the release. Upon
-creation, an announcement should be made to the developer&#8217;s list, and users of
+creation, an announcement should be made to the developer’s list, and users of
 the project should be encouraged to test them out in order to bugs/other issues.</p>
 <p>Any required changes must be pull requested from a topical branch into the
 <em>release</em> branch.  After this has been accepted, the topical branch must be
@@ -169,12 +183,12 @@ Graphically,</p>
 <p class="last">Any commits merged into the release branch must <em>also</em> be merged into
 <code class="docutils literal"><span class="pre">master</span></code>. It is common practice for the release manager to request the
 reviewer pull requests to merge the topical branch into <code class="docutils literal"><span class="pre">master</span></code>
-as well. However, it is the ultimate release manager&#8217;s responsibility to
+as well. However, it is the ultimate release manager’s responsibility to
 make sure <code class="docutils literal"><span class="pre">master</span></code> is kept up to date with the <code class="docutils literal"><span class="pre">release</span></code> branch.</p>
 </div>
 <p>If changes are made to the release branch, a new candidate must be issued after
 <em>2 - 5 days</em>. Every time a new release candidate comes out the <code class="docutils literal"><span class="pre">vX.X.X-release</span></code>
-must be tagged with the name <code class="docutils literal"><span class="pre">X.X.X-rcX</span></code>. A developer&#8217;s list annoucement must
+must be tagged with the name <code class="docutils literal"><span class="pre">X.X.X-rcX</span></code>. A developer’s list annoucement must
 accompany any new candidate.</p>
 <p>The release branch must be quiet and untouched for <em>2 - 5 days prior</em> to the
 full release. When the full and final release happens, the <code class="docutils literal"><span class="pre">vX.X.X-release</span></code>
@@ -194,8 +208,8 @@ operation should be enacted in order.</p>
 <ol class="arabic">
 <li><p class="first">Review <strong>ALL</strong> issues and pull requests, reassigning or closing them as needed.</p>
 </li>
-<li><p class="first">Ensure that all issues/PRs in this release&#8217;s milestone have been closed.
-Moving them to the next release&#8217;s milestone is a perfectly valid strategy for
+<li><p class="first">Ensure that all issues/PRs in this release’s milestone have been closed.
+Moving them to the next release’s milestone is a perfectly valid strategy for
 completing this milestone.</p>
 </li>
 <li><p class="first">Initiate the release candidate process (see above)</p>
@@ -227,7 +241,7 @@ found <a class="reference external" href="https://github.com/cyclus/release">her
 <div><ul class="simple">
 <li>they are described in detail below, <em>but</em> the <code class="docutils literal"><span class="pre">maintenance.sh</span></code> utility
 in <code class="docutils literal"><span class="pre">release/utils</span></code> will do this automatically for you</li>
-<li>make sure to have your <code class="docutils literal"><span class="pre">rs.cred</span></code> file (see <code class="docutils literal"><span class="pre">maintenance.sh</span></code>&#8216;s help)</li>
+<li>make sure to have your <code class="docutils literal"><span class="pre">rs.cred</span></code> file (see <code class="docutils literal"><span class="pre">maintenance.sh</span></code>’s help)</li>
 </ul>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /path/to/release/utils
 $ <span class="nb">export</span> <span class="nv">CYCLUS_DIR</span><span class="o">=</span>/path/to/cyclus
@@ -339,11 +353,11 @@ $ git push upstream --delete vX.X.X-release
 <blockquote>
 <div><ul class="simple">
 <li>For each project, find the corresponding feedstock repository in the
-conda-forge organization on github. For example, cyclus&#8217; feedstock is at
+conda-forge organization on github. For example, cyclus’ feedstock is at
 <a class="reference external" href="https://github.com/conda-forge/cyclus-feedstock">https://github.com/conda-forge/cyclus-feedstock</a></li>
-<li>In each project&#8217;s feedstok, open up a PR which updates the
+<li>In each project’s feedstok, open up a PR which updates the
 <cite>recipe/meta.yaml</cite> file with the new version number and the new SHA-256
-value of the new version&#8217;s tarball. See conda-forge documentation for more
+value of the new version’s tarball. See conda-forge documentation for more
 or ask the feedstock maintainers for help.</li>
 <li>Note that each feedstock must be accepted and the package uploaded to
 anaconda.org (automatic) prior to accepting updates for the next feedstock
@@ -390,7 +404,7 @@ at least as often as every micro release.</p>
 <div class="section" id="cyclus">
 <h3><span style="font-variant:small-caps;">Cyclus</span><a class="headerlink" href="#cyclus" title="Permalink to this headline">¶</a></h3>
 <p><strong>Update PyNE:</strong>  PyNE source code is included and shipped as part of <span style="font-variant:small-caps;">Cyclus</span>. As pyne
-evolves, we&#8217;ll want to have our version evolve as well. Here are the steps to do so.
+evolves, we’ll want to have our version evolve as well. Here are the steps to do so.
 These assume that in your HOME dir there are both the pyne and <span style="font-variant:small-caps;">Cyclus</span> repos.  Remember
 to check in the changes afterwards.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/pyne
@@ -409,7 +423,7 @@ $ nuc_data_make -o cyclus_nuc_data.h5 <span class="se">\</span>
 <p>Once the file is generated it must be put onto rackspace.</p>
 <p><strong>Update Gtest:</strong> We include a copy of the fused Gtest source code within our
 source tree located in the <code class="docutils literal"><span class="pre">tests/GoogleTest</span></code> directory.  To keep up with
-Gtest&#8217;s natural evolution cycle, please download the latest release of Google Tests
+Gtest’s natural evolution cycle, please download the latest release of Google Tests
 and follow <a class="reference external" href="https://code.google.com/p/googletest/wiki/V1_6_AdvancedGuide#Fusing_Google_Test_Source_Files">the fused source directions here</a>.  If we go too long without doing this,
 it could be very painful to update.</p>
 <p><strong>Verify &amp; Update API Stability:</strong> Since <span style="font-variant:small-caps;">Cyclus</span> v1.0 we promise API
@@ -461,7 +475,7 @@ file.  Commit this and add it to the repo.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">CEP 3 - <span style="font-variant:small-caps;">Cyclus</span> Release Procedure</a><ul>
@@ -559,6 +573,23 @@ file.  Commit this and add it to the repo.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -587,7 +618,7 @@ file.  Commit this and add it to the repo.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 29, 2020.
+      Last updated on Feb 27, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

@@ -1,0 +1,661 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Understanding Commodities &#8212; Home</title>
+    <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '(1.5.5)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="../../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Understanding Prototypes" href="add_proto.html" />
+    <link rel="prev" title="Understanding Archetypes" href="add_arche.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_proto.html" title="Understanding Prototypes"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_arche.html" title="Understanding Archetypes"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="understanding-commodities">
+<h1>Understanding Commodities<a class="headerlink" href="#understanding-commodities" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="concept-commodities">
+<h2>Concept: Commodities<a class="headerlink" href="#concept-commodities" title="Permalink to this headline">¶</a></h2>
+<p><span style="font-variant:small-caps;">Cyclus</span> exchanges resources between facilities using a market-like mechanism
+called the <strong>dynamic resource exchange (DRE)</strong>.  The concept of a <strong>commodity</strong> is
+used to simply indicate which facilities may be interested in trading with
+each other through the DRE. A commodity is therefore nothing more than a
+unique name that is used to define a set of producers and consumers of a
+common resource.  A commodity does not necessarily have a specific
+composition; this will be determined by the agents during the simulation.
+Suppliers then respond to the series of requests with a <strong>bid</strong>. A bid
+supplies a notion of the quantity and quality of a resource to match a
+request. Suppliers may add an arbitrary number of constraints to
+accompany bids. For example, an enriched UOX supplier may be constrained
+by its current inventory of natural uranium or its total capacity to
+provide enrichment in Separative Work Units (SWUs).</p>
+<p>Any potential resource transfer (i.e., a bid or a request) may be
+denoted as <strong>exclusive</strong>. An exclusive transfer excludes partial fulfillment;
+it must either be met fully or not at all. This mode supports concepts
+such as the trading of individual reactor assemblies. In combination
+with the notion of mutual requests, complex instances of supply and
+demand are enabled.</p>
+<p>Finally, requesting facilities, institutions and
+regions may apply <strong>preferences</strong> to each potential request-bid pairing
+based on the proposed resource transfer. Facilities can apply arbitrary
+complex logic to <strong>rank the bids</strong> that they have received, whether based on
+the quantity available in each bid or on the quality of each bid, and
+the consequent implications of the physics behavior of that facility. In
+addition, an institution can apply a higher preference to a partner to
+which it is congenial; similarly, a region may negate any transfers of
+material which have a higher uranium enrichment than is allowable.</p>
+<p>For example, the flow graph below shows three suppliers (left) and two
+consumers (right), and the potential flows of various commodities among
+them. The second consumer makes two different requests. Meanwhile, the
+second supplier can supply the commodities requested by both consumers
+and provides two bids accordingly.</p>
+<img alt="Commodity trade flowchart" class="align-center" src="../../_images/trade.png" />
+</div>
+<div class="section" id="activity-create-fuel-commodities-optional">
+<h2>Activity: Create fuel commodities (optional)<a class="headerlink" href="#activity-create-fuel-commodities-optional" title="Permalink to this headline">¶</a></h2>
+<p>Let’s build <code class="docutils literal"><span class="pre">u-ore</span></code>, <code class="docutils literal"><span class="pre">fresh-uox</span></code>, <code class="docutils literal"><span class="pre">spent-uox</span></code>, and <code class="docutils literal"><span class="pre">tails</span></code>,
+the four commodities available for trade in our simulation. Note that
+this part is <strong>optional</strong>, and is only needed if the user wants
+to specify the solution priority of each commodity.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">u-ore</span></code> : natural uranium that is mined</li>
+<li><code class="docutils literal"><span class="pre">tails</span></code> : waste from the enrichment process</li>
+<li><code class="docutils literal"><span class="pre">fresh-uox</span></code>: fresh 4.0% enriched Uranium Oxide fuel that enters the reactor</li>
+<li><code class="docutils literal"><span class="pre">spent-uox</span></code>: spent uranium oxide fuel that leaves the reactor after depletion</li>
+</ul>
+<p>When <span style="font-variant:small-caps;">Cyclus</span> needs
+to know the isotopic composition of a material, it looks at the recipe for that
+material given in the input file. Until now, <code class="docutils literal"><span class="pre">recipe</span></code> has been used to
+refer to fuel recipes, but the <code class="docutils literal"><span class="pre">recipe</span></code> section of the input file can
+describe any isotopic vector (e.g. natural uranium, spent fuel, fresh fuel, or any
+other material whose isotopic composition needs to be tracked.)</p>
+<p>The commodities section follows the <code class="docutils literal"><span class="pre">archetype</span></code> section
+and takes the form:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;commodity&gt;</span>
+  <span class="nt">&lt;name&gt;</span>com1<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;solution_priority&gt;</span>1.0<span class="nt">&lt;/solution_priority&gt;</span>
+<span class="nt">&lt;/commodity&gt;</span>
+<span class="nt">&lt;commodity&gt;</span>
+  <span class="nt">&lt;name&gt;</span>com2<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;solution_priority&gt;</span>1.0<span class="nt">&lt;/solution_priority&gt;</span>
+<span class="nt">&lt;/commodity&gt;</span>
+<span class="nt">&lt;commodity&gt;</span>
+  <span class="nt">&lt;name&gt;</span>com3<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;solution_priority&gt;</span>1.0<span class="nt">&lt;/solution_priority&gt;</span>
+<span class="nt">&lt;/commodity&gt;</span>
+<span class="nt">&lt;commodity&gt;</span>
+  <span class="nt">&lt;name&gt;</span>com4<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;solution_priority&gt;</span>1.0<span class="nt">&lt;/solution_priority&gt;</span>
+<span class="nt">&lt;/commodity&gt;</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li>name: name of the commodity</li>
+<li>solution priority: number defining the relative priority for resolution in the dynamic
+resource exchange.</li>
+</ul>
+<blockquote>
+<div>We will model four commodities: u-ore, fresh-uox, spent-uox, and tails.</div></blockquote>
+</div>
+<div class="section" id="activity-building-commodities">
+<h2>Activity: Building commodities<a class="headerlink" href="#activity-building-commodities" title="Permalink to this headline">¶</a></h2>
+<p>Using the table below and the commodities template above, fill out the commodities
+template.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="28%" />
+<col width="45%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Commodity</th>
+<th class="head">Name</th>
+<th class="head">Solution Priority</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>com1</td>
+<td>u-ore</td>
+<td>1.0</td>
+</tr>
+<tr class="row-odd"><td>com2</td>
+<td>fresh-uox</td>
+<td>1.0</td>
+</tr>
+<tr class="row-even"><td>com3</td>
+<td>spent-uox</td>
+<td>1.0</td>
+</tr>
+<tr class="row-odd"><td>com4</td>
+<td>tails</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<p>1. Let’s start with <code class="docutils literal"><span class="pre">u-ore</span></code>. In the <code class="docutils literal"><span class="pre">&lt;name&gt;</span></code> line replace <code class="docutils literal"><span class="pre">com1</span></code> with <code class="docutils literal"><span class="pre">u-ore</span></code>
+inside a <code class="docutils literal"><span class="pre">commodity</span></code> block.</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;commodity&gt;</span>
+  <span class="nt">&lt;name&gt;</span>u-ore<span class="nt">&lt;/name&gt;</span>
+<span class="nt">&lt;/commodity&gt;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>In the <code class="docutils literal"><span class="pre">&lt;solution_priority&gt;</span></code> section replace <code class="docutils literal"><span class="pre">val1</span></code> with <code class="docutils literal"><span class="pre">1.0</span></code>.</li>
+</ol>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;commodity&gt;</span>
+  <span class="nt">&lt;name&gt;</span>u-ore<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;solution_priority&gt;</span>1.0<span class="nt">&lt;/solution_priority&gt;</span>
+<span class="nt">&lt;/commodity&gt;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>Repeat this process for the other three commodities. Your final result should look like:</li>
+</ol>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;commodity&gt;</span>
+  <span class="nt">&lt;name&gt;</span>u-ore<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;solution_priority&gt;</span>1.0<span class="nt">&lt;/solution_priority&gt;</span>
+<span class="nt">&lt;/commodity&gt;</span>
+<span class="nt">&lt;commodity&gt;</span>
+  <span class="nt">&lt;name&gt;</span>fresh-uox<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;solution_priority&gt;</span>1.0<span class="nt">&lt;/solution_priority&gt;</span>
+<span class="nt">&lt;/commodity&gt;</span>
+<span class="nt">&lt;commodity&gt;</span>
+  <span class="nt">&lt;name&gt;</span>tails<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;solution_priority&gt;</span>1.0<span class="nt">&lt;/solution_priority&gt;</span>
+<span class="nt">&lt;/commodity&gt;</span>
+<span class="nt">&lt;commodity&gt;</span>
+  <span class="nt">&lt;name&gt;</span>spent-uox<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;solution_priority&gt;</span>1.0<span class="nt">&lt;/solution_priority&gt;</span>
+<span class="nt">&lt;/commodity&gt;</span>
+</pre></div>
+</div>
+<p>Once complete, append the commodities section under the archetypes section.</p>
+</div>
+</div>
+<div class="section" id="understanding-recipes">
+<h1>Understanding Recipes<a class="headerlink" href="#understanding-recipes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="concept-recipes">
+<h2>Concept: Recipes<a class="headerlink" href="#concept-recipes" title="Permalink to this headline">¶</a></h2>
+<p>Most commodities are materials, which have a quantity and an
+isotopic composition.
+Recipes are the isotopic composition of a certain material. For
+example, u-ore has an isotropic composition of 0.711% <span class="math">\(^{235}\)</span>U and
+99.284% <span class="math">\(^{238}\)</span>U. The recipe section of a <span style="font-variant:small-caps;">Cyclus</span> input file is
+typically located at the end of the input and is of the form:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;recipe&gt;</span>
+ <span class="nt">&lt;name&gt;</span>nat-u<span class="nt">&lt;/name&gt;</span>
+ <span class="nt">&lt;basis&gt;</span>mass<span class="nt">&lt;/basis&gt;</span>
+ <span class="nt">&lt;nuclide&gt;</span>
+   <span class="nt">&lt;id&gt;</span>92235<span class="nt">&lt;/id&gt;</span>
+   <span class="nt">&lt;comp&gt;</span>0.00711<span class="nt">&lt;/comp&gt;</span>
+ <span class="nt">&lt;/nuclide&gt;</span>
+ <span class="nt">&lt;nuclide&gt;</span>
+   <span class="nt">&lt;id&gt;</span>92238<span class="nt">&lt;/id&gt;</span>
+   <span class="nt">&lt;comp&gt;</span>0.99289<span class="nt">&lt;/comp&gt;</span>
+ <span class="nt">&lt;/nuclide&gt;</span>
+<span class="nt">&lt;/recipe&gt;</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal"><span class="pre">id</span></code> is the Nuc Id of the isotope in form ZZAAA and <code class="docutils literal"><span class="pre">comp</span></code> is the
+composition of that isotope in the recipe. Other isotope formats are
+also acceptable, such as those used by <a class="reference external" href="http://pyne.io/theorymanual/nucname.html">pyne</a>.
+For example, <span class="math">\(^{235}\)</span>U can be expressed as:</p>
+<ul class="simple">
+<li>922350 (ZZAAAM)</li>
+<li>92235 (ZZAAA)</li>
+<li>U235 (name)</li>
+<li>U-235 (name)</li>
+</ul>
+<p>For more details, reference the <a class="reference external" href="../input_specs/recipe.html">Recipe definition</a> page.</p>
+<p>First, we can declare the isotopic compositions of the fresh and spent
+fuel. We’ll be using simple recipes: fresh fuel is 4.0% <span class="math">\(^{235}\)</span>U by mass,
+remainder U-238. Spent fuel is 1.1% <span class="math">\(^{235}\)</span>U, 94.0% <span class="math">\(^{238}\)</span>U, 0.9% <span class="math">\(^{239}\)</span>Pu, and
+4.0% <span class="math">\(^{137}\)</span>Cs.</p>
+</div>
+<div class="section" id="activity-creating-a-recipe">
+<h2>Activity: Creating a Recipe<a class="headerlink" href="#activity-creating-a-recipe" title="Permalink to this headline">¶</a></h2>
+<p>Using the tables below, fill out the recipe
+template for natural uranium, fresh fuel, and spent fuel.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3">Natural Uranium Composition</th>
+</tr>
+<tr class="row-even"><th class="head">Nuclide</th>
+<th class="head">Spent ids</th>
+<th class="head">Mass composition</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td><span class="math">\(^{235}\)</span>U</td>
+<td>92235</td>
+<td>0.00711</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(^{238}\)</span>U</td>
+<td>92238</td>
+<td>0.99289</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3">Fresh Fuel Composition</th>
+</tr>
+<tr class="row-even"><th class="head">Nuclide</th>
+<th class="head">Spent ids</th>
+<th class="head">Mass composition</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td><span class="math">\(^{235}\)</span>U</td>
+<td>92235</td>
+<td>0.04</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(^{238}\)</span>U</td>
+<td>92238</td>
+<td>0.96</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3">Spent Fuel Composition</th>
+</tr>
+<tr class="row-even"><th class="head">Nuclide</th>
+<th class="head">Spent ids</th>
+<th class="head">Mass composition</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td><span class="math">\(^{235}\)</span>U</td>
+<td>92235</td>
+<td>0.011</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(^{238}\)</span>U</td>
+<td>92238</td>
+<td>0.94</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(^{239}\)</span>Pu</td>
+<td>94239</td>
+<td>0.009</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(^{137}\)</span>Cs</td>
+<td>55137</td>
+<td>0.04</td>
+</tr>
+</tbody>
+</table>
+<p>1. Let’s start with the Natural Uranium recipe. Start by placing a <code class="docutils literal"><span class="pre">&lt;recipe&gt;</span></code>
+block to signify that this is a recipe and tab in and place the fill
+<code class="docutils literal"><span class="pre">&lt;name&gt;</span></code> tag such as:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;recipe&gt;</span>
+  <span class="nt">&lt;name&gt;</span>nat-u<span class="nt">&lt;/name&gt;</span>
+<span class="nt">&lt;/recipe&gt;</span>
+</pre></div>
+</div>
+<p>2. To signify that the composition of this recipe is in terms of Mass, fill the
+<code class="docutils literal"><span class="pre">&lt;basis&gt;</span></code> tag with <code class="docutils literal"><span class="pre">mass</span></code>.</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;recipe&gt;</span>
+  <span class="nt">&lt;name&gt;</span>nat-u<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;basis&gt;</span>mass<span class="nt">&lt;/basis&gt;</span>
+<span class="nt">&lt;/recipe&gt;</span>
+</pre></div>
+</div>
+<p>3. To add a nuclide to this recipe, call the <code class="docutils literal"><span class="pre">nuclide</span></code> tag, tab in, add the
+<code class="docutils literal"><span class="pre">&lt;id&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;comp&gt;</span></code> tags:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;recipe&gt;</span>
+  <span class="nt">&lt;name&gt;</span>nat-u<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;basis&gt;</span>mass<span class="nt">&lt;/basis&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>id1<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>comp1<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+<span class="nt">&lt;/recipe&gt;</span>
+</pre></div>
+</div>
+<p>4. We will fill the <code class="docutils literal"><span class="pre">&lt;id&gt;</span></code> tag with the uranium-235 <code class="docutils literal"><span class="pre">Nuc</span> <span class="pre">Id</span></code>, <code class="docutils literal"><span class="pre">92235</span></code>, and
+fill the composition tag with its mass composition, <code class="docutils literal"><span class="pre">0.00711</span></code>.</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;recipe&gt;</span>
+  <span class="nt">&lt;name&gt;</span>nat-u<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;basis&gt;</span>mass<span class="nt">&lt;/basis&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>92235<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>0.00711<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+<span class="nt">&lt;/recipe&gt;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li>Following the same procedure, we can add uranium-238 to this recipe such as:</li>
+</ol>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;recipe&gt;</span>
+  <span class="nt">&lt;name&gt;</span>nat-u<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;basis&gt;</span>mass<span class="nt">&lt;/basis&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>92235<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>0.00711<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>92238<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>0.99289<span class="nt">&lt;/comp&gt;</span>
+    <span class="nt">&lt;/nuclide&gt;</span>
+<span class="nt">&lt;/recipe&gt;</span>
+</pre></div>
+</div>
+<p>6. We can add other recipes in separate <code class="docutils literal"><span class="pre">recipe</span></code> blocks.
+The recipe section of this tutorial is placed below.</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;recipe&gt;</span>
+  <span class="nt">&lt;name&gt;</span>nat-u<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;basis&gt;</span>mass<span class="nt">&lt;/basis&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>92235<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>0.00711<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>92238<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>0.99289<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+<span class="nt">&lt;/recipe&gt;</span>
+
+<span class="nt">&lt;recipe&gt;</span>
+  <span class="nt">&lt;name&gt;</span>fresh-uox<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;basis&gt;</span>mass<span class="nt">&lt;/basis&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>92235<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>0.04<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>92238<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>0.96<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+<span class="nt">&lt;/recipe&gt;</span>
+
+<span class="nt">&lt;recipe&gt;</span>
+  <span class="nt">&lt;name&gt;</span>spent-uox<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;basis&gt;</span>mass<span class="nt">&lt;/basis&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>92235<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>0.011<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>92238<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>0.94<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>94239<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>0.009<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+  <span class="nt">&lt;nuclide&gt;</span>
+    <span class="nt">&lt;id&gt;</span>55137<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;comp&gt;</span>0.04<span class="nt">&lt;/comp&gt;</span>
+  <span class="nt">&lt;/nuclide&gt;</span>
+<span class="nt">&lt;/recipe&gt;</span>
+</pre></div>
+</div>
+<p>Once complete, append this facility under the commodity section of your input file.</p>
+<p>Let’s take a look at the <code class="docutils literal"><span class="pre">fresh-uox</span></code> fuel recipe:</p>
+<img alt="Fuel recipe for fresh-uox" class="align-center" src="../../_images/fuel_com.png" />
+<p>The recipe name <code class="docutils literal"><span class="pre">fresh-uox</span></code> is specified, as are the isotope nuclide IDs and the
+corresponding mass fraction of each nuclide. The <code class="docutils literal"><span class="pre">fresh-uox</span></code> is composed of 4% U-235 and 96% U-238.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Understanding Commodities</a><ul>
+<li><a class="reference internal" href="#concept-commodities">Concept: Commodities</a></li>
+<li><a class="reference internal" href="#activity-create-fuel-commodities-optional">Activity: Create fuel commodities (optional)</a></li>
+<li><a class="reference internal" href="#activity-building-commodities">Activity: Building commodities</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#understanding-recipes">Understanding Recipes</a><ul>
+<li><a class="reference internal" href="#concept-recipes">Concept: Recipes</a></li>
+<li><a class="reference internal" href="#activity-creating-a-recipe">Activity: Creating a Recipe</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="add_arche.html"
+                          title="Previous page">&larr; Understanding Archetypes</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="add_proto.html"
+                          title="Next page">&rarr; Understanding Prototypes</a></p>
+  </div>
+  <div class="sphinxlocaltoc">
+  <h3>Useful Pages</h3>
+    <ul><li><ul>
+    <li><a href="/user/install.html">Install Cyclus</a></li>
+    <li><a href="/user/index.html">User Guide</a></li>
+    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
+    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
+    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
+     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
+    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
+    <li><a href="/basics/glossary.html">Glossary</a></li>
+    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
+    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
+      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
+    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
+    </ul></li></ul>
+  </div>
+    
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <h3>Get Cyclus</h3>
+    <br>
+    Current version: <b>1.5.5</b>
+    <br><br>
+    Install:
+    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
+    Get the Source:
+    <ul><li><ul>
+          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
+          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
+          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
+    </ul></li></ul>
+    <h3>Acknowledgements</h3>
+    The Cyclus project has received support from:
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <br />
+
+    In addition, some of the students working on Cyclus have received support from:
+    <br />
+    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/AnlLogo.png" height=100px></a>
+    <a href="http://www.nrc.gov" target="_blank"><img src="../../_static/USNRC.png" height=100px></a>
+    <br />
+    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
+    <br />
+    <a href="http://www.nsf.gov" target="_blank"><img src="../../_static/nsf_logo.png" height=100px></a>
+    <a href="http://www.wisc.edu" target="_blank"><img src="../../_static/crest.png" height=100px></a>
+    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/nnsa.png" width=150px></a>
+
+
+
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_proto.html" title="Understanding Prototypes"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_arche.html" title="Understanding Archetypes"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 27, 2021.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

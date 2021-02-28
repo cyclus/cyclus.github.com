@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Adding State Variables &#8212; Home</title>
-    
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -93,12 +107,12 @@ if(ga_enabled){
 <p>The Cyclus Python interface preprocessor provides a <code class="docutils literal"><span class="pre">typesystem</span></code> module that help define
 variables that are state variables for an archetype. These state vars also allow convenient
 annotations.</p>
-<p>First, we&#8217;ll add the maximum monthly transfer capacity, called <code class="docutils literal"><span class="pre">throughput</span></code>.
+<p>First, we’ll add the maximum monthly transfer capacity, called <code class="docutils literal"><span class="pre">throughput</span></code>.
 Open the file <code class="docutils literal"><span class="pre">tutorial/tut/agents.py</span></code> in your text editor.
 Immediately after the storage class name, add the following:</p>
 <p><strong>~/tutorial/tut/agents.py:</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cyclus.agents</span> <span class="kn">import</span> <span class="n">Facility</span>
-<span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="kn">as</span> <span class="nn">ts</span>
+<span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
 
 
 <span class="k">class</span> <span class="nc">Storage</span><span class="p">(</span><span class="n">Facility</span><span class="p">):</span>
@@ -116,10 +130,10 @@ Immediately after the storage class name, add the following:</p>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now, we&#8217;ll add variables for the minimum amount of time that material is
+<p>Now, we’ll add variables for the minimum amount of time that material is
 stored and the input/output commodity names.</p>
 <p><strong>~/tutorial/tut/agents.py:</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Storage</span><span class="p">(</span><span class="n">Facility</span><span class="p">):</span>
@@ -203,13 +217,13 @@ the special typesystem class attributes .</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">~/tutorial $ rm cyclus.sqlite</span>
 </pre></div>
 </div>
-<p>Now, we&#8217;ll change that input file.  Open the file <code class="docutils literal"><span class="pre">input/storage.py</span></code> in
+<p>Now, we’ll change that input file.  Open the file <code class="docutils literal"><span class="pre">input/storage.py</span></code> in
 your text editor, and find the prototype configuration for the single facility
-named &#8220;OneFacility&#8221; that looks like this.</p>
+named “OneFacility” that looks like this.</p>
 <p><strong>~/tutorial/input/storage.py:</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="c1"># ...</span>
-<span class="s1">&#39;facility&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;config&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Storage&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">},</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;OneFacility&#39;</span><span class="p">}</span>
+<span class="s1">&#39;facility&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;config&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Storage&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;OneFacility&#39;</span><span class="p">}</span>
 <span class="c1"># ...</span>
 <span class="p">}</span>
 </pre></div>
@@ -297,7 +311,7 @@ named &#8220;OneFacility&#8221; that looks like this.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Adding State Variables</a><ul>
@@ -383,6 +397,23 @@ named &#8220;OneFacility&#8221; that looks like this.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -412,7 +443,7 @@ named &#8220;OneFacility&#8221; that looks like this.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 29, 2020.
+      Last updated on Feb 27, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

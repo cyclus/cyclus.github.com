@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Using the Cyclus Preprocessor &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -96,11 +110,11 @@ agents conform to the <span style="font-variant:small-caps;">Cyclus</span> kerne
 <ul class="simple">
 <li>Even when using the preprocessor, agents are still completely valid C++
 and may be compiled without running <code class="docutils literal"><span class="pre">cycpp</span></code> - though they probably
-won&#8217;t do the correct thing in a simulation.</li>
+won’t do the correct thing in a simulation.</li>
 <li>If your module is compiled with the CMake macros found in UseCyclus,
 <code class="docutils literal"><span class="pre">cycpp</span></code> is run automatically for you on all relevant files.</li>
 </ul>
-<p>Without further ado, let&#8217;s dive in!</p>
+<p>Without further ado, let’s dive in!</p>
 </td><td style="width:300px;"><a class="reference internal image-reference" href="../_images/pennyfarthing-jack.jpg"><img alt="../_images/pennyfarthing-jack.jpg" class="align-center" src="../_images/pennyfarthing-jack.jpg" style="width: 300px;" /></a>
 </td></tr>
 </table><div class="section" id="pragma-cyclus">
@@ -128,7 +142,7 @@ because they are what is written to and read from the database, they may be
 specified in the input file and have an associated schema, and they define the
 public interface for the agent.</p>
 <p>Thus, the most important annotation directive is the <strong>state variable
-directive</strong>.  This must be written within the agent&#8217;s class declaration and
+directive</strong>.  This must be written within the agent’s class declaration and
 applies to the next member variable declaration that it sees. This directive
 not only defines the annotations for a variable, but also declares it as being
 a state variable.  It has the following signature:</p>
@@ -152,8 +166,8 @@ meaning. Furthermore, there are two keys - <code class="docutils literal"><span 
 C++ type that is allowed by the database backend that is being used.  For a listing of
 valid types please refer to the <a class="reference internal" href="dbtypes.html"><span class="doc">Database Types</span></a> page. <a class="reference internal" href="#cycpp-table-1"><span class="std std-ref">Table I. Special State Variable Annotations</span></a>
 contains a listing of all special keys and their meanings.</p>
-<table border="1" class="colwidths-given styled-table centered docutils" id="id1">
-<span id="cycpp-table-1"></span><caption><span class="caption-text"><strong>Table I.</strong> Special State Variable Annotations</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<span id="cycpp-table-1"></span><table border="1" class="colwidths-given styled-table centered docutils" id="id1">
+<caption><span class="caption-text"><strong>Table I.</strong> Special State Variable Annotations</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="10%" />
 <col width="90%" />
@@ -237,8 +251,8 @@ the UI input form.</td>
 currently supported types are; incommodity, outcommodity,
 commodity, range, combobox, facility, prototype, recipe, nuclide,
 and none.
-For &#8216;nuclide&#8217; when the type is an int, the values will be read in
-from the input file in human readable string format (&#8216;U-235&#8217;) and
+For ‘nuclide’ when the type is an int, the values will be read in
+from the input file in human readable string format (‘U-235’) and
 automatically converted to results of <code class="docutils literal"><span class="pre">pyne::nucname::id()</span></code>
 (922350000) in the database and on the archetype.</td>
 </tr>
@@ -274,8 +288,8 @@ This is a string.</td>
 <tr class="row-odd"><td class="left-align no-left-divider single-right-divider">infiletodb</td>
 <td class="left-align single-left-divider no-right-divider">Code snippets to use in the <code class="docutils literal"><span class="pre">InfileToDb()</span></code> function
 for this state variable instead of using code generation.
-This is a dictionary of string values with the two keys &#8216;read&#8217;
-and &#8216;write&#8217; which represent reading values from the input file
+This is a dictionary of string values with the two keys ‘read’
+and ‘write’ which represent reading values from the input file
 writing them out to the database respectively.</td>
 </tr>
 <tr class="row-even"><td class="left-align no-left-divider single-right-divider">schema</td>
@@ -320,8 +334,8 @@ For example,</p>
 <p>Unlike state variables, agent annotations only have a few special members.  One of
 this is <code class="docutils literal"><span class="pre">vars</span></code> which contains the state variable annotations!
 <a class="reference internal" href="#cycpp-table-2"><span class="std std-ref">Table II. Special Agent Annotations</span></a> contains a listing of all special keys and their meaning.</p>
-<table border="1" class="colwidths-given styled-table centered docutils" id="id2">
-<span id="cycpp-table-2"></span><caption><span class="caption-text"><strong>Table II.</strong> Special Agent Annotations</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<span id="cycpp-table-2"></span><table border="1" class="colwidths-given styled-table centered docutils" id="id2">
+<caption><span class="caption-text"><strong>Table II.</strong> Special Agent Annotations</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="10%" />
 <col width="90%" />
@@ -343,11 +357,11 @@ this is <code class="docutils literal"><span class="pre">vars</span></code> whic
 <td class="left-align single-left-divider no-right-divider">The kind of archetype that this is based on which class it
 inherits from. If this inherits from <code class="docutils literal"><span class="pre">cyclus::Region</span></code>,
 <code class="docutils literal"><span class="pre">cyclus::Institution</span></code>, or <code class="docutils literal"><span class="pre">cyclus::Facility</span></code> then this
-will be the string &#8216;region&#8217;, &#8216;institution&#8217;, or &#8216;facility&#8217;
+will be the string ‘region’, ‘institution’, or ‘facility’
 respecively. If the class inherits from <code class="docutils literal"><span class="pre">cyclus::Agent</span></code> but
 does not inherit from the previous three then this will be
-the string &#8216;archetype&#8217;. In the class does not even inherit
-from <code class="docutils literal"><span class="pre">cyclus::Agent</span></code>, then this will be &#8216;unknown&#8217;.
+the string ‘archetype’. In the class does not even inherit
+from <code class="docutils literal"><span class="pre">cyclus::Agent</span></code>, then this will be ‘unknown’.
 <strong>READ ONLY.</strong> <em>New in version 1.1.1.</em></td>
 </tr>
 <tr class="row-odd"><td class="left-align no-left-divider single-right-divider">parents</td>
@@ -441,7 +455,7 @@ categories:</p>
 <li><strong>Implementation (impl) directives</strong>.</li>
 </ol>
 <p>The <code class="docutils literal"><span class="pre">decl</span></code> directives generate only the member function declaration and must
-be used from within the public part of the agent&#8217;s class declaration.  The
+be used from within the public part of the agent’s class declaration.  The
 <code class="docutils literal"><span class="pre">def</span></code> generate the member function definition in its entirety including the
 function signature.  These may be used either in the class declaration or in
 the source file (<code class="docutils literal"><span class="pre">*.cc</span></code>, <code class="docutils literal"><span class="pre">*.cpp</span></code>, etc.).  The <code class="docutils literal"><span class="pre">impl</span></code> directives generate
@@ -479,8 +493,8 @@ function.</p>
 </div>
 <p><a class="reference internal" href="#cycpp-table-3"><span class="std std-ref">Table III. Member Function Flags and Their C++ Signatures</span></a> contains a listing of all available function flags and their
 associated C++ information.</p>
-<table border="1" class="colwidths-given styled-table centered docutils" id="id3">
-<span id="cycpp-table-3"></span><caption><span class="caption-text"><strong>Table III.</strong> Member Function Flags and Their C++ Signatures</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<span id="cycpp-table-3"></span><table border="1" class="colwidths-given styled-table centered docutils" id="id3">
+<caption><span class="caption-text"><strong>Table III.</strong> Member Function Flags and Their C++ Signatures</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="10%" />
 <col width="60%" />
@@ -533,7 +547,7 @@ associated C++ information.</p>
 </tbody>
 </table>
 <br /><hr class="docutils" />
-<p>Lastly, the agent&#8217;s classname may be optionally passed the to the directive.
+<p>Lastly, the agent’s classname may be optionally passed the to the directive.
 This is most useful in source files for the definition directives. This is
 because such directives typically lack the needed class scope.  For example,
 for the snapshot definition of <code class="docutils literal"><span class="pre">MyAgent</span></code> living in <code class="docutils literal"><span class="pre">mynamespace</span></code> we would
@@ -598,8 +612,8 @@ and namespace boundaries.</p>
 <p>Because the annotations are dictionaries, the scoping is performed with the
 Python scoping operator (<code class="docutils literal"><span class="pre">.</span></code>) rather than the C++ scoping operator (<code class="docutils literal"><span class="pre">::</span></code>).
 For example, consider the case where we have a <code class="docutils literal"><span class="pre">Spy</span></code> class that lives in the
-<code class="docutils literal"><span class="pre">mi6</span></code> namespace.  Also in the namespace is the spy&#8217;s <code class="docutils literal"><span class="pre">Friend</span></code>.
-Furthermore, somewhere out in global scope lives the Spy&#8217;s arch-nemesis class
+<code class="docutils literal"><span class="pre">mi6</span></code> namespace.  Also in the namespace is the spy’s <code class="docutils literal"><span class="pre">Friend</span></code>.
+Furthermore, somewhere out in global scope lives the Spy’s arch-nemesis class
 <code class="docutils literal"><span class="pre">Enemy</span></code>.</p>
 <p>The first rule of scoping is that two state variables on the same class
 share the same scope.  Thus they can directly refer to each other.</p>
@@ -620,7 +634,7 @@ dictionary that was previously defined.  They fo not take on the C++ default val
 This is why we could look up <code class="docutils literal"><span class="pre">id['default']</span></code>.</p>
 <p>The second rule of scoping is that you are allowed to look into the annotations
 of other classes.  However, to do so you must specifiy the class you are looking
-into.  Looking at our spy&#8217;s friend</p>
+into.  Looking at our spy’s friend</p>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">mi6</span> <span class="p">{</span>
 <span class="k">class</span> <span class="nc">Friend</span> <span class="p">{</span>
   <span class="cp">#pragma cyclus var {&quot;doc&quot;: &quot;Normally helps {0}&quot;.format(Spy.name[&#39;default&#39;])}</span>
@@ -629,12 +643,12 @@ into.  Looking at our spy&#8217;s friend</p>
 <span class="p">};</span> <span class="c1">// namespace mi6</span>
 </pre></div>
 </div>
-<p>Here, to access the annotations for Spy&#8217;s name we had to use <code class="docutils literal"><span class="pre">Spy.name</span></code>,
+<p>Here, to access the annotations for Spy’s name we had to use <code class="docutils literal"><span class="pre">Spy.name</span></code>,
 drilling into the Spy class. Inspecting in this way is not limited by C++
 access control (public, private, or protected).</p>
 <p>Lastly, if the agent we are trying to inspect lives in a completely different
-namespace, we must first drill into that namespace. For example, the spy&#8217;s
-main enemy is not part of <code class="docutils literal"><span class="pre">mi6</span></code>.  Thus to access the spy&#8217;s name annotations,
+namespace, we must first drill into that namespace. For example, the spy’s
+main enemy is not part of <code class="docutils literal"><span class="pre">mi6</span></code>.  Thus to access the spy’s name annotations,
 the enemy must write <code class="docutils literal"><span class="pre">mi6.Spy.name</span></code>. For example:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Enemy</span> <span class="p">{</span>
     <span class="cp">#pragma cyclus var {&#39;default&#39;: mi6.Spy.name[&#39;default&#39;]}</span>
@@ -710,7 +724,7 @@ state variable. This may be easily done by supplying the state variable annotati
 keys <code class="docutils literal"><span class="pre">schema</span></code> and <code class="docutils literal"><span class="pre">infiletodb</span></code>. These allow you to inject code snippets
 pertaining to the state variable without interfering with the rest of the
 code generation.</p>
-<p>For example, let&#8217;s say that we have an integer state variable called
+<p>For example, let’s say that we have an integer state variable called
 <code class="docutils literal"><span class="pre">material_identifier</span></code> that we know always should be even.  This name is
 a bit long to make users type in, so we would prefer to expose this in the
 input file as <code class="docutils literal"><span class="pre">matid</span></code>.  The RNG snippet that you would use for the <code class="docutils literal"><span class="pre">schema</span></code>
@@ -772,7 +786,7 @@ in much the same way.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Using the Cyclus Preprocessor</a><ul>
@@ -867,6 +881,23 @@ in much the same way.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -895,7 +926,7 @@ in much the same way.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 29, 2020.
+      Last updated on Feb 27, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
