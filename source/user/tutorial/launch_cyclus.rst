@@ -17,7 +17,7 @@ machine is that you don't have to install the entire |Cyclus| toolset on your
 local machine.   
 
 For this tutorial, the cloud resource has been made available at
-`<cycrun.fuelcycle.org>`_.  This is the same resources that is used to run |Cyclus|
+`<https://cycrun.fuelcycle.org>`_.  This is the same resources that is used to run |Cyclus|
 from the |Cyclus| home page. If it is desired to run |Cyclus| on your local 
 machine, then this section of the tutorial can be skipped. 
 
