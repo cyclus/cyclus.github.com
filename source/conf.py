@@ -68,8 +68,9 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Cyclus'
-copyright = (u'2012-{0}, University of Wisconsin Computational Nuclear '
-             'Engineering Research Group'.format(datetime.datetime.now().year)
+copyyear = str(datetime.datetime.now().year)
+copyright = (u'2012-' + copyyear + ', University of Wisconsin Computational Nuclear '
+             'Engineering Research Group')
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
