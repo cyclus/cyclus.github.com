@@ -18,7 +18,7 @@ required to provide that input.
 Concept: Simulation Time Steps
 ------------------------------
 
-A |Cyclus| input file can be written in `multiple formats <https://fuelcycle.org/user/writing_input.rst>`_, 
+A |Cyclus| input file can be written in `multiple formats <https://fuelcycle.org/user/writing_input.html>`_, 
 including XML, JSON, and Python. That page also walks through the 
 basic structure for each type of input file. This tutorial will walk through 
 how to build an XML input. 
