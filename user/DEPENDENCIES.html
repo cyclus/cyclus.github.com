@@ -312,6 +312,19 @@ sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.5 <sp
 </pre></div>
 </div>
 </div></blockquote>
+<p>Even if you only have a single python installation, you may have to use update-alternatives to point python at the correct version to avoid build errors.</p>
+<p>Check your current python version with the following command:</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span></span>python --version
+</pre></div>
+</div>
+</div></blockquote>
+<p>Then make Ubuntu aware of your current python version. Run the following command, using the python version you just checked. The following command uses version python3.8 as an example and will fail if you do not replace 3.8 with your own version number.</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span></span>sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 <span class="m">2</span>
+</pre></div>
+</div>
+</div></blockquote>
 <div class="section" id="cython-note">
 <h4>Cython Note<a class="headerlink" href="#cython-note" title="Permalink to this headline">¶</a></h4>
 <p>If you get an error related to an old Cython version, then this may be
@@ -521,7 +534,7 @@ sudo make install
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Feb 27, 2021.
+      Last updated on Mar 24, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
