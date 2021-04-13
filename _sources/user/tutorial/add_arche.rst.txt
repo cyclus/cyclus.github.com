@@ -204,8 +204,4 @@ Once complete, append the archetypes section under the control section of input 
 
 .. rubric:: Footnotes
 
-.. [#f1] The exact order of the sections in a |Cyclus| input file are of minor
-consequence. The ``control`` sequence must go first, but the other sequences
- can go in any order that makes sense to the user. The traditional organization
-  of an input file is: control, archetypes, commodities, facilities,
-   regions/institutions, and recipes. 
+.. [#f1] The exact order of the sections in a |Cyclus| input file are of minor consequence. The ``control`` sequence must go first, but the other sequences can go in any order that makes sense to the user. The traditional organization  of an input file is: control, archetypes, commodities, facilities,   regions/institutions, and recipes. 

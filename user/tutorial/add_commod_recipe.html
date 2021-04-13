@@ -255,7 +255,7 @@ inside a <code class="docutils literal"><span class="pre">commodity</span></code
 <span class="nt">&lt;/commodity&gt;</span>
 </pre></div>
 </div>
-<p>Once complete, append the commodities section under the archetypes section.</p>
+<p>Once complete, append the commodities section under the archetypes section <a class="footnote-reference" href="#f1" id="id1">[1]</a>.</p>
 </div>
 </div>
 <div class="section" id="understanding-recipes">
@@ -492,11 +492,18 @@ The recipe section of this tutorial is placed below.</p>
 <span class="nt">&lt;/recipe&gt;</span>
 </pre></div>
 </div>
-<p>Once complete, append this facility under the commodity section of your input file.</p>
+<p>Once complete, append this facility under the commodity section of your input file <a class="footnote-reference" href="#f1" id="id2">[1]</a>.</p>
 <p>Let’s take a look at the <code class="docutils literal"><span class="pre">fresh-uox</span></code> fuel recipe:</p>
 <img alt="Fuel recipe for fresh-uox" class="align-center" src="../../_images/fuel_com.png" />
 <p>The recipe name <code class="docutils literal"><span class="pre">fresh-uox</span></code> is specified, as are the isotope nuclide IDs and the
 corresponding mass fraction of each nuclide. The <code class="docutils literal"><span class="pre">fresh-uox</span></code> is composed of 4% U-235 and 96% U-238.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> The exact order of the sections in a <span style="font-variant:small-caps;">Cyclus</span> input file are of minor consequence. The <code class="docutils literal"><span class="pre">control</span></code> sequence must go first, but the other sequences can go in any order that makes sense to the user. The traditional organization  of an input file is: control, archetypes, commodities, facilities,   regions/institutions, and recipes.</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -645,7 +652,7 @@ corresponding mass fraction of each nuclide. The <code class="docutils literal">
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 24, 2021.
+      Last updated on Apr 13, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

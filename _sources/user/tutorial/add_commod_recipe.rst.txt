@@ -156,7 +156,7 @@ inside a ``commodity`` block.
       <solution_priority>1.0</solution_priority>
     </commodity>
 
-Once complete, append the commodities section under the archetypes section.
+Once complete, append the commodities section under the archetypes section [#f1]_.
 
 Understanding Recipes
 ---------------------
@@ -362,7 +362,7 @@ The recipe section of this tutorial is placed below.
       </nuclide>
     </recipe>
 
-Once complete, append this facility under the commodity section of your input file.
+Once complete, append this facility under the commodity section of your input file [#f1]_.
 
 
 Let's take a look at the ``fresh-uox`` fuel recipe:
@@ -372,3 +372,6 @@ Let's take a look at the ``fresh-uox`` fuel recipe:
     :alt: Fuel recipe for fresh-uox
 The recipe name ``fresh-uox`` is specified, as are the isotope nuclide IDs and the 
 corresponding mass fraction of each nuclide. The ``fresh-uox`` is composed of 4% U-235 and 96% U-238.
+
+.. rubric:: Footnotes
+.. [#f1] The exact order of the sections in a |Cyclus| input file are of minor consequence. The ``control`` sequence must go first, but the other sequences can go in any order that makes sense to the user. The traditional organization  of an input file is: control, archetypes, commodities, facilities,   regions/institutions, and recipes. 
