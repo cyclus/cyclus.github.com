@@ -373,4 +373,5 @@ Let's take a look at the ``fresh-uox`` fuel recipe:
 The recipe name ``fresh-uox`` is specified, as are the isotope nuclide IDs and the 
 corresponding mass fraction of each nuclide. The ``fresh-uox`` is composed of 4% U-235 and 96% U-238.
 
+.. rubric:: Footnotes
 .. [#f1] The exact order of the sections in a |Cyclus| input file are of minor consequence. The ``control`` sequence must go first, but the other sequences can go in any order that makes sense to the user. The traditional organization  of an input file is: control, archetypes, commodities, facilities,   regions/institutions, and recipes. 
