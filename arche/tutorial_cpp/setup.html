@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Setup a New Project Based on Cycstub &#8212; Home</title>
+    
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,24 +27,9 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -65,7 +51,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -114,7 +100,7 @@ if(ga_enabled){
 <h2>Make a Storage Facility<a class="headerlink" href="#make-a-storage-facility" title="Permalink to this headline">¶</a></h2>
 <p>Next, make a new facility by copying the facility archetype from the Hello World! tutorial.</p>
 <p>Start by making sure you are in the correct directory</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> ~/tutorial
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ~/tutorial
 </pre></div>
 </div>
 <p>Then make the new archetype, updating all the files as needed</p>
@@ -122,10 +108,10 @@ if(ga_enabled){
 <p class="first admonition-title">Note</p>
 <p class="last">If you are on a Mac, replace all instances of <code class="docutils literal"><span class="pre">sed</span> <span class="pre">-i</span></code> with <code class="docutils literal"><span class="pre">sed</span> <span class="pre">-i</span> <span class="pre">''</span></code>.</p>
 </div>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="k">for</span> file <span class="k">in</span> <span class="sb">`</span>ls src/tutorial_facility*<span class="sb">`</span><span class="p">;</span> <span class="k">do</span> cp <span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="si">}</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="p">/tutorial_facility/storage</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span> <span class="k">done</span>
-<span class="gp">$ </span>sed -i <span class="s2">&quot;s/tutorial_facility/storage/g&quot;</span> src/storage*
-<span class="gp">$ </span>sed -i <span class="s2">&quot;s/TutorialFacility/Storage/g&quot;</span> src/storage*
-<span class="gp">$ </span>sed -i <span class="s2">&quot;s/TUTORIAL_FACILITY/STORAGE/g&quot;</span> src/storage*
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="k">for</span> file in <span class="sb">`</span>ls src/tutorial_facility*<span class="sb">`</span><span class="p">;</span> <span class="k">do</span> cp <span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="si">}</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="p">/tutorial_facility/storage</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span> <span class="k">done</span>
+<span class="gp">$</span> sed -i <span class="s2">&quot;s/tutorial_facility/storage/g&quot;</span> src/storage*
+<span class="gp">$</span> sed -i <span class="s2">&quot;s/TutorialFacility/Storage/g&quot;</span> src/storage*
+<span class="gp">$</span> sed -i <span class="s2">&quot;s/TUTORIAL_FACILITY/STORAGE/g&quot;</span> src/storage*
 </pre></div>
 </div>
 <p>Finally, open -<code class="docutils literal"><span class="pre">src/CMakeLists.txt</span></code> with your favorite text editor and add the
@@ -137,24 +123,24 @@ following line to the end of it</p>
 <div class="section" id="install-and-test">
 <h2>Install and Test<a class="headerlink" href="#install-and-test" title="Permalink to this headline">¶</a></h2>
 <p>Install the tutorial project</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./install.py
 </pre></div>
 </div>
 <p>Run the unit tests</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>Storage_unit_tests
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> Storage_unit_tests
 </pre></div>
 </div>
 <p>Make a new input file that is a copy of the test input file</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cp input/example.xml input/storage.xml
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cp input/example.xml input/storage.xml
 </pre></div>
 </div>
 <p>Then change every instance of <code class="docutils literal"><span class="pre">TutorialFacility</span></code> with <code class="docutils literal"><span class="pre">Storage</span></code>. This can be
 done by hand or on the command line with</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>sed -i <span class="s2">&quot;s/TutorialFacility/Storage/g&quot;</span> input/storage.xml
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sed -i <span class="s2">&quot;s/TutorialFacility/Storage/g&quot;</span> input/storage.xml
 </pre></div>
 </div>
 <p>Test the input file by running Cyclus</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus -v <span class="m">2</span> input/storage.xml
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cyclus -v <span class="m">2</span> input/storage.xml
 <span class="go">              :</span>
 <span class="go">          .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q</span>
 <span class="go">        CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)</span>
@@ -221,7 +207,7 @@ done by hand or on the command line with</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        </a></p><div class="sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Setup a New Project Based on Cycstub</a><ul>
@@ -307,23 +293,6 @@ done by hand or on the command line with</p>
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -353,7 +322,7 @@ done by hand or on the command line with</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

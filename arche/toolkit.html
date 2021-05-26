@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>The (Experimental) Cyclus Toolkit &#8212; Home</title>
+    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,24 +27,9 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -65,7 +51,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -138,7 +124,7 @@ following ways:</p>
 </div>
 <p><strong>Python:</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cyclus.agents</span> <span class="kn">import</span> <span class="n">Facility</span>
-<span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
+<span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="kn">as</span> <span class="nn">ts</span>
 
 <span class="k">class</span> <span class="nc">MyFacility</span><span class="p">(</span><span class="n">Facility</span><span class="p">):</span>
     <span class="c1"># Option 1: minimum required class attribute</span>
@@ -186,7 +172,7 @@ in one of the following ways:</p>
 </div>
 <p><strong>Python:</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cyclus.agents</span> <span class="kn">import</span> <span class="n">Facility</span>
-<span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
+<span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="kn">as</span> <span class="nn">ts</span>
 
 <span class="k">class</span> <span class="nc">MyFacility</span><span class="p">(</span><span class="n">Facility</span><span class="p">):</span>
     <span class="c1"># Option 1: minimum required annotation</span>
@@ -233,25 +219,26 @@ provided by the <code class="docutils literal"><span class="pre">cyclus::toolkit
 <p>There are a number of interfaces provided in the <span style="font-variant:small-caps;">Cyclus</span> toolkit that can be
 used as either as <a class="reference external" href="http://en.wikipedia.org/wiki/Mixin">mixins</a> or as
 composable, agent-managed state variables:</p>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">cyclus::toolkit::Builder</span></code>: an interface for adding information about agents
-that can be built by the manager</li>
-<li><code class="docutils literal"><span class="pre">cyclus::toolkit::BuildingManager</span></code>: an interface for making build decisions
-based on supply, demand, and agents that can be built</li>
-<li><code class="docutils literal"><span class="pre">cyclus::toolkit::CommodityProducer</span></code>: an interface for adding information
-about commodities that can be produced by the manager</li>
-<li><code class="docutils literal"><span class="pre">cyclus::toolkit::CommodityProducerManager</span></code>: an interface that allows an
-agent to query a collection of <code class="docutils literal"><span class="pre">cyclus::toolkit::CommodityProducers</span></code></li>
-<li><code class="docutils literal"><span class="pre">cyclus::toolkit::SupplyDemandManager</span></code>: an interface for querying the supply
-and demand on commodities</li>
-</ul>
-</div>
-<div class="section" id="geographic-informasion-system-gis-class-c">
-<h2>Geographic Informasion System (GIS) Class [C++]<a class="headerlink" href="#geographic-informasion-system-gis-class-c" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>The <code class="docutils literal"><span class="pre">cyclus::toolkit::GIS</span></code> class provide an option to add geographic coordinates
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">cyclus::toolkit::Builder</span></code>: an interface for adding information about agents
+that can be built by the manager</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">cyclus::toolkit::BuildingManager</span></code>: an interface for making build decisions
+based on supply, demand, and agents that can be built</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">cyclus::toolkit::CommodityProducer</span></code>: an interface for adding information
+about commodities that can be produced by the manager</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">cyclus::toolkit::CommodityProducerManager</span></code>: an interface that allows an
+agent to query a collection of <code class="docutils literal"><span class="pre">cyclus::toolkit::CommodityProducers</span></code></p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">cyclus::toolkit::SupplyDemandManager</span></code>: an interface for querying the supply
+and demand on commodities</p>
+<p>The <code class="docutils literal"><span class="pre">cyclus::toolkit::GIS</span></code> class provide an option to add geographic coordinates
 of its friend classes. Haversine distance calculations between two facilities or
-agents with GIS coordinates can be performed as well.</div></blockquote>
+agents with GIS coordinates can be performed as well.</p>
+</li>
+</ul>
 </div>
 </div>
 
@@ -263,7 +250,7 @@ agents with GIS coordinates can be performed as well.</div></blockquote>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        </a></p><div class="sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">The (Experimental) Cyclus Toolkit</a><ul>
@@ -274,7 +261,6 @@ agents with GIS coordinates can be performed as well.</div></blockquote>
 <li><a class="reference internal" href="#commodity-recipe-context-c">Commodity Recipe Context [C++]</a></li>
 <li><a class="reference internal" href="#symbolic-functions-c">Symbolic Functions [C++]</a></li>
 <li><a class="reference internal" href="#agent-managed-classes-c">Agent Managed Classes [C++]</a></li>
-<li><a class="reference internal" href="#geographic-informasion-system-gis-class-c">Geographic Informasion System (GIS) Class [C++]</a></li>
 </ul>
 </li>
 </ul>
@@ -354,23 +340,6 @@ agents with GIS coordinates can be performed as well.</div></blockquote>
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -399,7 +368,7 @@ agents with GIS coordinates can be performed as well.</div></blockquote>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

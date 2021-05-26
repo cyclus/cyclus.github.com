@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Understanding the Database &#8212; Home</title>
+    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,24 +27,9 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -65,7 +51,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -98,16 +84,16 @@ if(ga_enabled){
             
   <div class="section" id="understanding-the-database">
 <h1>Understanding the Database<a class="headerlink" href="#understanding-the-database" title="Permalink to this headline">¶</a></h1>
-<p>A single database can store multiple simulations’ results. In order for this to
+<p>A single database can store multiple simulations&#8217; results. In order for this to
 work, every table in the database has a SimId column that identifies which
 simulation each row belongs to.  In order to robustly analyze the data, all
-processing should be simulation-ID-aware.  Because simulation ID’s are UUID’s,
+processing should be simulation-ID-aware.  Because simulation ID&#8217;s are UUID&#8217;s,
 databases can be safely merged without conflicts.</p>
 <p><span style="font-variant:small-caps;">Cyclus</span> supports multiple database formats.  While each format is allowed to
 store information in its own way, the overall table structure in databases is
 the same.  <span style="font-variant:small-caps;">Cyclus</span> ships supporting two database formats:</p>
 <ul>
-<li><p class="first"><a class="reference external" href="http://sqlite.org/index.html">SQLite</a> (“.sqlite” extension) - <span style="font-variant:small-caps;">Cyclus</span>’
+<li><p class="first"><a class="reference external" href="http://sqlite.org/index.html">SQLite</a> (&#8221;.sqlite&#8221; extension) - <span style="font-variant:small-caps;">Cyclus</span>&#8216;
 default database format. Some useful viewers:</p>
 <blockquote>
 <div><ul class="simple">
@@ -118,7 +104,7 @@ Firefox Add-on (windows, mac, and linux)</li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first"><a class="reference external" href="http://www.hdfgroup.org/HDF5/">HDF5</a> (“.h5” extension). Some useful
+<li><p class="first"><a class="reference external" href="http://www.hdfgroup.org/HDF5/">HDF5</a> (&#8221;.h5&#8221; extension). Some useful
 viewers:</p>
 <blockquote>
 <div><ul class="simple">
@@ -138,11 +124,11 @@ viewers:</p>
 changed in the simulation (split, combined, transmuted, decayed, etc.), it
 gets a new entry in the Resources table.  The heritage of resources is also
 tracked.  If two resources are combined into a new one, then the new resource
-entry will have the ID’s of the other two in its “Parent1” and “Parent2”
+entry will have the ID&#8217;s of the other two in its &#8220;Parent1&#8221; and &#8220;Parent2&#8221;
 columns.  The Resources table effectively encodes a heritage tree for all
 resources.  It is interesting to note that the Resources table does not encode
 any information about where a resource is.  This information can be inferred
-by corroborating Resource ID’s with the <code class="docutils literal"><span class="pre">ResCreators</span></code> and <code class="docutils literal"><span class="pre">Transactions</span></code>
+by corroborating Resource ID&#8217;s with the <code class="docutils literal"><span class="pre">ResCreators</span></code> and <code class="docutils literal"><span class="pre">Transactions</span></code>
 tables.</p>
 <ul class="simple">
 <li><strong>SimId</strong> (uuid)</li>
@@ -150,26 +136,26 @@ tables.</p>
 <a class="reference internal" href="../arche/resources.html#resource-ids"><span class="std std-ref">Resource IDs</span></a> for more details.</li>
 <li><strong>ObjId</strong> (int): A resources object id (obj_id) as it existed during the
 simulation simulation.  See <a class="reference internal" href="../arche/resources.html#resource-ids"><span class="std std-ref">Resource IDs</span></a> for more details.</li>
-<li><strong>Type</strong> (string): One of “Material” or “Product”.  These two types of
+<li><strong>Type</strong> (string): One of &#8220;Material&#8221; or &#8220;Product&#8221;.  These two types of
 resources have different internal state stored in different tables.  If the
-type is “Product”, then the internal state can be found in the <code class="docutils literal"><span class="pre">Products</span></code>
+type is &#8220;Product&#8221;, then the internal state can be found in the <code class="docutils literal"><span class="pre">Products</span></code>
 table. If it is Material, then it is in the <code class="docutils literal"><span class="pre">Compositions</span></code> table.</li>
 <li><strong>TimeCreated</strong> (int): The simulation time step at which this resource state
 came into existence.</li>
-<li><strong>Quantity</strong> (double): Amount of the resource in “kg” for Material
+<li><strong>Quantity</strong> (double): Amount of the resource in &#8220;kg&#8221; for Material
 resources.  Amount in terms of the specific quality for Product resources.</li>
-<li><strong>Units</strong> (string): “kg” for all Material resources, “NONE” for Product
+<li><strong>Units</strong> (string): &#8220;kg&#8221; for all Material resources, &#8220;NONE&#8221; for Product
 resources.</li>
 <li><strong>QualId</strong> (int): Used to identify the corresponding internal-state
 entry (or entries) in the <code class="docutils literal"><span class="pre">Products</span></code> or <code class="docutils literal"><span class="pre">Compositions</span></code> table depending
-on the resource’s type.</li>
+on the resource&#8217;s type.</li>
 <li><strong>Parent1</strong> (int): If a resource was newly created, this is zero. If this
 resource came from another via is transmutation, combining, or splitting,
 or decay then this is the parent ResourceId</li>
 <li><strong>Parent2</strong> (int): If a resource was newly created, this is zero. If this
 resource came from another via transmutation, decay, or splitting, Parent2
 is also zero. If the resource came from another via combining this is the
-second parent’s ResourceId.</li>
+second parent&#8217;s ResourceId.</li>
 </ul>
 </div>
 <div class="section" id="explicitinventory-table">
@@ -249,7 +235,7 @@ entries in the <code class="docutils literal"><span class="pre">Resources</span>
 <li><strong>SimId</strong> (uuid)</li>
 <li><strong>QualId</strong> (int): Key to associate this quality with one or more entries in
 the <code class="docutils literal"><span class="pre">Resources</span></code> table.</li>
-<li><strong>Quality</strong> (string): Describes a product’s quality (e.g. “bananas”, “KWh”,
+<li><strong>Quality</strong> (string): Describes a product&#8217;s quality (e.g. &#8220;bananas&#8221;, &#8220;KWh&#8221;,
 etc.)</li>
 </ul>
 </div>
@@ -272,11 +258,11 @@ table.</p>
 <ul class="simple">
 <li><strong>SimId</strong> (uuid)</li>
 <li><strong>AgentId</strong> (int): Every agent in a simulation gets its own, unique ID.</li>
-<li><strong>Kind</strong> (string): One of “Region”, “Inst”, “Facility”, or “Agent”.</li>
+<li><strong>Kind</strong> (string): One of &#8220;Region&#8221;, &#8220;Inst&#8221;, &#8220;Facility&#8221;, or &#8220;Agent&#8221;.</li>
 <li><strong>Spec</strong> (string): The single-string of the <a class="reference internal" href="find_agents.html"><span class="doc">agent specification</span></a>.</li>
 <li><strong>Prototype</strong> (string): The prototype name, as defined in the input file,
 that was used to create this agent.</li>
-<li><strong>ParentId</strong> (int): The AgentId of this agent’s parent - the agent that
+<li><strong>ParentId</strong> (int): The AgentId of this agent&#8217;s parent - the agent that
 built/created this agent.</li>
 <li><strong>Lifetime</strong> (int): Number of time steps an agent is designed to operate
 over.  <code class="docutils literal"><span class="pre">-1</span></code> indicates an infinite lifetime.  Note that depending on how
@@ -289,7 +275,7 @@ simulation.</li>
 <div class="section" id="agentexit-table">
 <h3>AgentExit Table<a class="headerlink" href="#agentexit-table" title="Permalink to this headline">¶</a></h3>
 <p>Due to implementation details in the <span style="font-variant:small-caps;">Cyclus</span> kernel, this table is separate
-from the <code class="docutils literal"><span class="pre">AgentEntry</span></code> table.  If this table doesn’t exist, then no agents
+from the <code class="docutils literal"><span class="pre">AgentEntry</span></code> table.  If this table doesn&#8217;t exist, then no agents
 were decommissioned in the simulation.</p>
 <ul class="simple">
 <li><strong>SimId</strong> (uuid)</li>
@@ -336,7 +322,7 @@ parameters and <span style="font-variant:small-caps;">Cyclus</span> dependency v
 </li>
 <li><p class="first"><strong>Handle</strong> (string): A custom user-specified value from the input file
 allowing for convenient identification of simulations in a database (because
-the simulation uuid’s are not very memorable by mere mortals).</p>
+the simulation uuid&#8217;s are not very memorable by mere mortals).</p>
 </li>
 <li><p class="first"><strong>InitialYear</strong> (int): The year in which time step zero occurs.</p>
 </li>
@@ -346,17 +332,17 @@ the simulation uuid’s are not very memorable by mere mortals).</p>
 it is possible a simulation to terminate early before running its entire
 duration (see the <code class="docutils literal"><span class="pre">Finish</span></code> table section).</p>
 </li>
-<li><p class="first"><strong>ParentSimId</strong> (uuid): The SimId for this simulation’s parent. Zero if this
+<li><p class="first"><strong>ParentSimId</strong> (uuid): The SimId for this simulation&#8217;s parent. Zero if this
 simulation has no parent.</p>
 </li>
 <li><p class="first"><strong>ParentType</strong> (string): One of:</p>
 <blockquote>
 <div><ul class="simple">
-<li>“init” for simulations that are not based on any other simulation.</li>
-<li>“restart” for simulations that were restarted another simulation’s
+<li>&#8220;init&#8221; for simulations that are not based on any other simulation.</li>
+<li>&#8220;restart&#8221; for simulations that were restarted another simulation&#8217;s
 snapshot.</li>
-<li>“branch” for simulations that were started from a perturbed state of
-another simulation’s snapshot.</li>
+<li>&#8220;branch&#8221; for simulations that were started from a perturbed state of
+another simulation&#8217;s snapshot.</li>
 </ul>
 </div></blockquote>
 </li>
@@ -434,7 +420,7 @@ ended before time reached the scheduled time, the agent would not have been
 built.</p>
 <ul class="simple">
 <li><strong>SimId</strong> (uuid)</li>
-<li><strong>ParentId</strong> (piintd): The Id of the agent that will become this new agent’s
+<li><strong>ParentId</strong> (piintd): The Id of the agent that will become this new agent&#8217;s
 parent.</li>
 <li><strong>Prototype</strong> (string): The name of the agent prototype that will be used to
 generate the new agent.  This corresponds to the prototypes defined in an
@@ -464,16 +450,16 @@ the following two extra tables:</p>
 <li><code class="docutils literal"><span class="pre">ReqId</span></code>, simulation-unique identifier for this request</li>
 <li><code class="docutils literal"><span class="pre">RequesterID</span></code>: ID of the requesting agent</li>
 <li><code class="docutils literal"><span class="pre">Commodity</span></code>: the commodity of the request</li>
-<li><code class="docutils literal"><span class="pre">Preference</span></code>: agent’s preference for this particular request</li>
+<li><code class="docutils literal"><span class="pre">Preference</span></code>: agent&#8217;s preference for this particular request</li>
 <li><code class="docutils literal"><span class="pre">Exclusive</span></code>: true (non-zero) if this request is all-or-nothing (integral)</li>
-<li><code class="docutils literal"><span class="pre">ResType</span></code>: resource type (e.g. “Material”, “Product”)</li>
+<li><code class="docutils literal"><span class="pre">ResType</span></code>: resource type (e.g. &#8220;Material&#8221;, &#8220;Product&#8221;)</li>
 <li><code class="docutils literal"><span class="pre">Quantity</span></code>: amount of the request</li>
 <li><code class="docutils literal"><span class="pre">ResUnits</span></code>: units of the request (e.g. kg)</li>
 </ul>
 </li>
 <li><strong>DebugBids</strong>: record of every resource bid made in the simulation.<ul>
 <li><code class="docutils literal"><span class="pre">SimId</span></code>: simulation UUID</li>
-<li><code class="docutils literal"><span class="pre">ReqId</span></code>: simulation-unique identifier for the bid’s request</li>
+<li><code class="docutils literal"><span class="pre">ReqId</span></code>: simulation-unique identifier for the bid&#8217;s request</li>
 <li><code class="docutils literal"><span class="pre">BidderId</span></code>: ID of the the bidding agent</li>
 <li><code class="docutils literal"><span class="pre">BidQuantity</span></code>: amount of thd bid</li>
 <li><code class="docutils literal"><span class="pre">Exclusive</span></code>: true(non-zero) if this request is all-or-nothing (integral)</li>
@@ -499,7 +485,7 @@ Below is a summary of them.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        </a></p><div class="sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Understanding the Database</a><ul>
@@ -605,23 +591,6 @@ Below is a summary of them.</p>
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -650,7 +619,7 @@ Below is a summary of them.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

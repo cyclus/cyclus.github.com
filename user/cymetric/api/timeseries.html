@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>cymetric.timeseries - Timeseries &#8212; Home</title>
+    
     <link rel="stylesheet" href="../../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,24 +27,9 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../../../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -65,7 +51,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -98,168 +84,8 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-cymetric.timeseries">
-<span id="cymetric-timeseries-timeseries"></span><span id="cym-timeseries"></span><h1><a class="reference internal" href="#module-cymetric.timeseries" title="cymetric.timeseries"><code class="xref py py-mod docutils literal"><span class="pre">cymetric.timeseries</span></code></a> - Timeseries<a class="headerlink" href="#module-cymetric.timeseries" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="cymetric.timeseries.get_deployment">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">get_deployment</code><span class="sig-paren">(</span><em>evaler</em>, <em>facilities=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.get_deployment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a simple time series with deployment schedule of the selected facilities.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
-<p class="last"><strong>facilities</strong> :  of the facility</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="cymetric.timeseries.get_power">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">get_power</code><span class="sig-paren">(</span><em>evaler</em>, <em>facilities=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.get_power" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shape the reduced Power Data Frame into a simple time serie. Applying
-facilities selection when required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
-<p class="last"><strong>facilities</strong> :  of the facility</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="cymetric.timeseries.get_retirement">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">get_retirement</code><span class="sig-paren">(</span><em>evaler</em>, <em>facilities=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.get_retirement" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a simple time series with retirement schedule of the selected facilities.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
-<p class="last"><strong>facilities</strong> :  of the facility</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="cymetric.timeseries.inventories">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">inventories</code><span class="sig-paren">(</span><em>evaler</em>, <em>facilities=()</em>, <em>nucs=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.inventories" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shape the reduced inventory Data Frame into a simple time serie. Applying
-nuclides/facilities selection when required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
-<p><strong>facilities</strong> :  of the facility</p>
-<p class="last"><strong>nucs</strong> :  of nuclide to select.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="cymetric.timeseries.inventories_activity">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">inventories_activity</code><span class="sig-paren">(</span><em>evaler</em>, <em>facilities=()</em>, <em>nucs=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.inventories_activity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a simple time series of the decay heat of the inventory in the selcted
-facilities. Applying nuclides selection when required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
-<p><strong>facilities</strong> :  of the facility</p>
-<p class="last"><strong>nucs</strong> :  of nuclide to select.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="cymetric.timeseries.inventories_decayheat">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">inventories_decayheat</code><span class="sig-paren">(</span><em>evaler</em>, <em>facilities=()</em>, <em>nucs=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.inventories_decayheat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a simple time series of the decay heat of the inventory in the selcted
-facilities. Applying nuclides selection when required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
-<p><strong>facilities</strong> :  of the facility</p>
-<p class="last"><strong>nucs</strong> :  of nuclide to select.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="cymetric.timeseries.transactions">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">transactions</code><span class="sig-paren">(</span><em>evaler</em>, <em>senders=()</em>, <em>receivers=()</em>, <em>commodities=()</em>, <em>nucs=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.transactions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shape the reduced transation Data Frame into a simple time serie. Applying nuclides selection when required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
-<p><strong>senders</strong> :  of the sending facility</p>
-<p><strong>receivers</strong> :  of the receiving facility</p>
-<p><strong>commodities</strong> :  of the commodity exchanged</p>
-<p class="last"><strong>nucs</strong> :  of nuclide to select.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="cymetric.timeseries.transactions_activity">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">transactions_activity</code><span class="sig-paren">(</span><em>evaler</em>, <em>senders=()</em>, <em>receivers=()</em>, <em>commodities=()</em>, <em>nucs=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.transactions_activity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shape the reduced transation Data Frame into a simple time serie. Applying nuclides selection when required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
-<p><strong>senders</strong> :  of the sending facility</p>
-<p><strong>receivers</strong> :  of the receiving facility</p>
-<p><strong>commodities</strong> :  of the commodity exchanged</p>
-<p class="last"><strong>nucs</strong> :  of nuclide to select.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="cymetric.timeseries.transactions_decayheat">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">transactions_decayheat</code><span class="sig-paren">(</span><em>evaler</em>, <em>senders=()</em>, <em>receivers=()</em>, <em>commodities=()</em>, <em>nucs=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.transactions_decayheat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shape the reduced transation Data Frame into a simple time serie. Applying nuclides selection when required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
-<p><strong>senders</strong> :  of the sending facility</p>
-<p><strong>receivers</strong> :  of the receiving facility</p>
-<p><strong>commodities</strong> :  of the commodity exchanged</p>
-<p class="last"><strong>nucs</strong> :  of nuclide to select.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
+  <div class="section" id="cymetric-timeseries-timeseries">
+<span id="cym-timeseries"></span><h1><code class="xref py py-mod docutils literal"><span class="pre">cymetric.timeseries</span></code> - Timeseries<a class="headerlink" href="#cymetric-timeseries-timeseries" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
@@ -345,23 +171,6 @@ facilities. Applying nuclides selection when required.</p>
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -392,7 +201,7 @@ facilities. Applying nuclides selection when required.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

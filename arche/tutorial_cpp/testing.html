@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Adding a Test &#8212; Home</title>
+    
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,24 +27,9 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -65,7 +51,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -114,7 +100,7 @@ lesson focuses on <em>unit tests</em>.</p>
 <p>Cyclus uses the <a class="reference external" href="https://code.google.com/p/googletest/wiki/Primer">GoogleTest</a>
 testing framework. Using the stubs, Cyclus automatically provides you with some
 basic archetype unit tests, specifically those that are in</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>Storage_unit_tests
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> Storage_unit_tests
 <span class="go">...</span>
 <span class="go">[----------] 8 tests from TutorialFac/AgentTests</span>
 <span class="go">...</span>
@@ -152,7 +138,7 @@ and find the test for the <code class="docutils literal"><span class="pre">Tock(
 <span class="n">facility</span><span class="o">-&gt;</span><span class="n">input</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">NewBlankMaterial</span><span class="p">(</span><span class="n">qty</span><span class="p">));</span>
 </pre></div>
 </div>
-<p>You can then test the test’s initial condition</p>
+<p>You can then test the test&#8217;s initial condition</p>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">EXPECT_DOUBLE_EQ</span><span class="p">(</span><span class="n">facility</span><span class="o">-&gt;</span><span class="n">input</span><span class="p">.</span><span class="n">quantity</span><span class="p">(),</span> <span class="n">qty</span><span class="p">);</span>
 <span class="n">EXPECT_DOUBLE_EQ</span><span class="p">(</span><span class="n">facility</span><span class="o">-&gt;</span><span class="n">inventory</span><span class="p">.</span><span class="n">quantity</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
 </pre></div>
@@ -179,8 +165,8 @@ and find the test for the <code class="docutils literal"><span class="pre">Tock(
 </pre></div>
 </div>
 <p>Finally, build and test, same as it ever was</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
-<span class="gp">$ </span>Storage_unit_tests
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./install.py
+<span class="gp">$</span> Storage_unit_tests
 </pre></div>
 </div>
 </div>
@@ -200,7 +186,7 @@ for your test?</p>
 simulation. You can find more on the <a class="reference internal" href="../testing.html#testing"><span class="std std-ref">Testing and Debugging Archetypes</span></a> page.</p>
 <p>One of the best ways to learn is by example. The Cycamore repository has
 <a class="reference external" href="https://github.com/cyclus/cycamore/tree/develop/tests">examples of running regression tests</a>
-that include the full execution stack – read an input file,
+that include the full execution stack &#8211; read an input file,
 run a simulation, and test an output file. There are also <a class="reference external" href="https://github.com/cyclus/cycamore/blob/develop/src/enrichment_tests.cc#L54">examples of integration tests</a>
 that utilize the new <a class="reference external" href="http://fuelcycle.org/arche/testing.html?highlight=mocksim#testing-resource-exchange">MockSim</a>
 testing feature in Cyclus.</p>
@@ -215,7 +201,7 @@ testing feature in Cyclus.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        </a></p><div class="sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Adding a Test</a><ul>
@@ -302,23 +288,6 @@ testing feature in Cyclus.</p>
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -348,7 +317,7 @@ testing feature in Cyclus.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

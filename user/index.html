@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Cyclus User Guide &#8212; Home</title>
+    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,24 +27,9 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -65,7 +51,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -98,7 +84,7 @@ if(ga_enabled){
   <div class="section" id="cyclus-user-guide">
 <h1><span style="font-variant:small-caps;">Cyclus</span> User Guide<a class="headerlink" href="#cyclus-user-guide" title="Permalink to this headline">¶</a></h1>
 <p>This guide covers the basics of installation, creating simulation input files,
-and running them.  If you haven’t already, you should take a look at
+and running them.  If you haven&#8217;t already, you should take a look at
 <a class="reference internal" href="../basics/concepts.html#basics-concepts"><span class="std std-ref">Fundamental Concepts in Cyclus</span></a>.</p>
 <div class="section" id="installing-cyclus">
 <h2>Installing <span style="font-variant:small-caps;">Cyclus</span><a class="headerlink" href="#installing-cyclus" title="Permalink to this headline">¶</a></h2>
@@ -229,7 +215,7 @@ support optimization work and other side projects:</dd>
 This archetype allows the user to specify an arbitrary power capacity
 time series that the institution will automatically deploy power
 generating facilities (of multiple types) to match. It uses a look-ahead
-mechanism to see if its chosen deployments were not “good” and adjusts
+mechanism to see if its chosen deployments were not &#8220;good&#8221; and adjusts
 its deployment decisions accordingly. This archetype currently requires
 rwcarlsen/cyclus#restart branch of Cyclus to work.</li>
 <li><a class="reference external" href="https://github.com/rwcarlsen/rwc-archetypes/blob/master/fleet_reactor.h">:rwc:FleetReactor</a>
@@ -238,7 +224,7 @@ unit.  Like the Cycamore reactor, it just uses static, user-specified
 compositions for fresh and spent fuel. Refueling is incremental -
 occuring every time step. It is approximately a continuous flow fleet
 model much like the way system-dynamics simulators represent facilities.
-It “pretends” to be many reactors to the Cyclus kernel - allowing other
+It &#8220;pretends&#8221; to be many reactors to the Cyclus kernel - allowing other
 agents to deploy/decommission single-reactor units, but these
 single-reactors just adjust the size/capacity of the homogenous fleet.</li>
 <li><a class="reference external" href="https://github.com/rwcarlsen/rwc-archetypes/blob/master/pattern_sink.h">:rwc:PatternSink</a>
@@ -248,7 +234,7 @@ which the facility requests material - i.e. the user can tell the
 facility to only request material every Nth time step.</li>
 <li><a class="reference external" href="https://github.com/rwcarlsen/rwc-archetypes/blob/master/storage.h">:rwc:Storage</a>
 This facility is very similar to the Cycamore storage facility, and was
-originally created before Cycamore’s existed. It has slightly more
+originally created before Cycamore&#8217;s existed. It has slightly more
 careful handling of discrete material objects (e.g. not ever splitting
 them) and is a bit more sophisticated with respect to resource exchange
 for offering/bidding its inventory. It would be good to use
@@ -288,7 +274,7 @@ storage archetype.</li>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        </a></p><div class="sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><span style="font-variant:small-caps;">Cyclus</span> User Guide</a><ul>
@@ -382,23 +368,6 @@ storage archetype.</li>
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -426,7 +395,7 @@ storage archetype.</li>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

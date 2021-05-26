@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Setup a New Project &#8212; Home</title>
+    
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,24 +27,9 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -65,7 +51,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -107,7 +93,7 @@ if(ga_enabled){
 </ol>
 <div class="section" id="make-a-new-project">
 <h2>Make a New Project<a class="headerlink" href="#make-a-new-project" title="Permalink to this headline">¶</a></h2>
-<p>First let’s start by making a tutorial example project with an <code class="docutils literal"><span class="pre">agents.py</span></code> file.</p>
+<p>First let&#8217;s start by making a tutorial example project with an <code class="docutils literal"><span class="pre">agents.py</span></code> file.</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">~ $ mkdir -p tutorial/tut</span>
 <span class="go">~ $ cd tutorial/tut</span>
 <span class="go">~/tuorial/tut $ touch __init__.py agents.py</span>
@@ -125,14 +111,14 @@ if(ga_enabled){
     <span class="sd">&quot;&quot;&quot;My storage facility.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello,&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;World!&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Hello,&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;World!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="install-and-test">
 <h2>Install and Test<a class="headerlink" href="#install-and-test" title="Permalink to this headline">¶</a></h2>
-<p>To install the tutorial project, we’ll need to have a <code class="docutils literal"><span class="pre">setup.py</span></code> file in the
+<p>To install the tutorial project, we&#8217;ll need to have a <code class="docutils literal"><span class="pre">setup.py</span></code> file in the
 root tutorial directory. Create one that looks like:</p>
 <p><strong>~/tutorial/setup.py:</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
@@ -160,7 +146,7 @@ root tutorial directory. Create one that looks like:</p>
 <span class="go">~/tutorial $ python setup.py install --user</span>
 </pre></div>
 </div>
-<p>Let’s now make an exmaple input file in a special <code class="docutils literal"><span class="pre">input</span></code> directory:</p>
+<p>Let&#8217;s now make an exmaple input file in a special <code class="docutils literal"><span class="pre">input</span></code> directory:</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">~ $ cd tutorial</span>
 <span class="go">~/tutorial $ mkdir -p input</span>
 <span class="go">~/tutorial $ touch input/storage.py</span>
@@ -177,11 +163,11 @@ root tutorial directory. Create one that looks like:</p>
    <span class="p">],</span>
   <span class="p">},</span>
   <span class="s1">&#39;control&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;duration&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;startmonth&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;startyear&#39;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">},</span>
-  <span class="s1">&#39;facility&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;config&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Storage&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;OneFacility&#39;</span><span class="p">},</span>
+  <span class="s1">&#39;facility&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;config&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Storage&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">},</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;OneFacility&#39;</span><span class="p">},</span>
   <span class="s1">&#39;region&#39;</span><span class="p">:</span> <span class="p">{</span>
-   <span class="s1">&#39;config&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;NullRegion&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+   <span class="s1">&#39;config&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;NullRegion&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">},</span>
    <span class="s1">&#39;institution&#39;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s1">&#39;config&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;NullInst&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+    <span class="s1">&#39;config&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;NullInst&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">},</span>
     <span class="s1">&#39;initialfacilitylist&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;entry&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;number&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;prototype&#39;</span><span class="p">:</span> <span class="s1">&#39;OneFacility&#39;</span><span class="p">},},</span>
     <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;OneInst&#39;</span><span class="p">,</span>
    <span class="p">},</span>
@@ -192,7 +178,7 @@ root tutorial directory. Create one that looks like:</p>
 </pre></div>
 </div>
 <p>Test the input file by running Cyclus:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus -v <span class="m">2</span> input/storage.py
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cyclus -v <span class="m">2</span> input/storage.py
 <span class="go">              :</span>
 <span class="go">          .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q</span>
 <span class="go">        CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)</span>
@@ -259,7 +245,7 @@ root tutorial directory. Create one that looks like:</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        </a></p><div class="sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Setup a New Project</a><ul>
@@ -345,23 +331,6 @@ root tutorial directory. Create one that looks like:</p>
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -391,7 +360,7 @@ root tutorial directory. Create one that looks like:</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

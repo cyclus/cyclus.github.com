@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Time Step Execution &#8212; Home</title>
+    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,24 +27,9 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -65,7 +51,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -126,7 +112,7 @@ agent to be built or scheduling a current agent to be decommissioned.</p>
     <span class="c1"># perform agent-phase tick&#39;s work, no return value</span>
 </pre></div>
 </div>
-<p>Importantly, the order in which agents’ agent-phase methods are invoked is <em>not
+<p>Importantly, the order in which agents&#8217; agent-phase methods are invoked is <em>not
 guaranteed</em>. In other words, the execution of any given phase is conceptually
 occurring <em>simultaneously among agents</em>.</p>
 <p>The duration of a time step can be set to custom values by users when running
@@ -159,10 +145,10 @@ duration can be queried from an the simulation context:</p>
 the simulation. The entry process includes creating the agent (cloning from a
 <a class="reference internal" href="../basics/glossary.html#term-prototype"><span class="xref std std-term">prototype</span></a>), connecting it with the <a class="reference internal" href="../basics/glossary.html#term-parent-agent"><span class="xref std std-term">parent agent</span></a> that originally
 registered the build, and calling its <code class="docutils literal"><span class="pre">Build</span></code> virtual member function. The
-parent is informed that a new child has been built via the <code class="docutils literal"><span class="pre">cyclus::Agent</span></code>’s
+parent is informed that a new child has been built via the <code class="docutils literal"><span class="pre">cyclus::Agent</span></code>&#8216;s
 <code class="docutils literal"><span class="pre">BuildNotify</span></code> member function.</p>
 <p>Future builds can be scheduled by any <a class="reference internal" href="../basics/glossary.html#term-agent"><span class="xref std std-term">agent</span></a> using the
-<code class="docutils literal"><span class="pre">cyclus::Context</span></code>’s <code class="docutils literal"><span class="pre">SchedBuild</span></code> member function. A build cannot be
+<code class="docutils literal"><span class="pre">cyclus::Context</span></code>&#8216;s <code class="docutils literal"><span class="pre">SchedBuild</span></code> member function. A build cannot be
 scheduled for the current time step, but a build can be scheduled for any
 future time step.</p>
 </div>
@@ -195,13 +181,13 @@ available inventory of resources.</p>
 <p>In the Decommission phase, agents that have been scheduled to be decommissioned
 are removed from the simulation. The removal process includes informing the
 <a class="reference internal" href="../basics/glossary.html#term-parent-agent"><span class="xref std std-term">parent agent</span></a> that one of its children is being decommissioned and
-calling the child agent’s <code class="docutils literal"><span class="pre">Decommission</span></code> function. The parent is informed that
-a child is being decommissioned via the <code class="docutils literal"><span class="pre">cyclus::Agent</span></code>’s <code class="docutils literal"><span class="pre">DecomNotify</span></code>
+calling the child agent&#8217;s <code class="docutils literal"><span class="pre">Decommission</span></code> function. The parent is informed that
+a child is being decommissioned via the <code class="docutils literal"><span class="pre">cyclus::Agent</span></code>&#8216;s <code class="docutils literal"><span class="pre">DecomNotify</span></code>
 member function.</p>
 <p>Future decommissions can be scheduled by any <a class="reference internal" href="../basics/glossary.html#term-agent"><span class="xref std std-term">agent</span></a> using the
-<code class="docutils literal"><span class="pre">cyclus::Context</span></code>’s <code class="docutils literal"><span class="pre">SchedDecom</span></code> member function. A decommission can be
+<code class="docutils literal"><span class="pre">cyclus::Context</span></code>&#8216;s <code class="docutils literal"><span class="pre">SchedDecom</span></code> member function. A decommission can be
 scheduled for the current time step or any future time step.</p>
-<p>Decommissioning occurs at the end of a time step. Therefore, an agent with a lifetime
+<p>Decommissioning occurrs at the end of a time step. Therefore, an agent with a lifetime
 of 1 would be decommissioned on the same time step it was built. The lifetime of an
 agent can be back calculated by <cite>1+exit_time-start_time</cite>.</p>
 </div>
@@ -219,7 +205,7 @@ agent can be back calculated by <cite>1+exit_time-start_time</cite>.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        </a></p><div class="sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Time Step Execution</a><ul>
@@ -308,23 +294,6 @@ agent can be back calculated by <cite>1+exit_time-start_time</cite>.</p>
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -353,7 +322,7 @@ agent can be back calculated by <cite>1+exit_time-start_time</cite>.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

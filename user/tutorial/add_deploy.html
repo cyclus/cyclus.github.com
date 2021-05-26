@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Deploying New Facilities &#8212; Home</title>
+    
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,28 +27,13 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Cyclus Tutorial Recap" href="cyclus_tutorial_recap.html" />
+    <link rel="next" title="Cycamore Archetypes" href="../cycamoreagents.html" />
     <link rel="prev" title="Updating the Reactor and Repository" href="mod_rxtr.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
 var ga_enabled = !$.cookie('disable-ga');
@@ -65,7 +51,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -78,7 +64,7 @@ if(ga_enabled){
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="cyclus_tutorial_recap.html" title="Cyclus Tutorial Recap"
+          <a href="../cycamoreagents.html" title="Cycamore Archetypes"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="mod_rxtr.html" title="Updating the Reactor and Repository"
@@ -99,106 +85,23 @@ if(ga_enabled){
             
   <div class="section" id="deploying-new-facilities">
 <h1>Deploying New Facilities<a class="headerlink" href="#deploying-new-facilities" title="Permalink to this headline">¶</a></h1>
-<p>Often in fuel cycle analysis, transition scenarios are considered. These ask
-questins like: “How does the
-commissioning and decommissioning of reactors affect electrity production or
-material transactions?”. Transition analysis will
-require an institution that can deploy additional facilities at given time
-steps: the <code class="docutils literal"><span class="pre">cycamore</span> <span class="pre">DeployInst</span></code> archetype.  This is the simplest institution
-that can deploy
+<p>It&#8217;s time to make this scenario more interesting with a transition.  This will
+require an institution that is able to deploy additional facilities, the
+cycamore DeployInst.  This is the simplest institution that is able to deploy
 new facilities, in which the user simply defines the times at which new agents
 should be deployed as copies of available prototypes.</p>
-<p>In this case, we will keep the current institutions and add another
+<p>In this case, we will keep the original institution and add another
 institution that will deploy more facilities over time.</p>
-<div class="section" id="example-deployinst">
-<h2>Example: DeployInst<a class="headerlink" href="#example-deployinst" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">DeployInst</span></code> archetype must be added to the <code class="docutils literal"><span class="pre">&lt;archetypes&gt;</span></code> block
-of the input file:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;archetypes&gt;</span>
-  ...
-  ...
-  <span class="nt">&lt;spec&gt;</span> <span class="nt">&lt;lib&gt;</span>cycamore<span class="nt">&lt;/lib&gt;&lt;name&gt;</span>DeployInst<span class="nt">&lt;/name&gt;</span> <span class="nt">&lt;/spec&gt;</span>
-<span class="nt">&lt;/archetypes&gt;</span>
-</pre></div>
-</div>
-<p><strong>Recall:</strong> in <a class="reference external" href="add_second_reactor.html">Adding a Second Reactor</a> we left
-a blank spot in between our <code class="docutils literal"><span class="pre">&lt;/institution&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;/region&gt;</span></code> handles.
-We will now use this to add the institution for <code class="docutils literal"><span class="pre">DeployInst</span></code>.</p>
-<p><code class="docutils literal"><span class="pre">DeployInst</span></code> takes the form:</p>
-<p>where:</p>
-<ul class="simple">
-<li>prototype: Ordered list of prototypes to build</li>
-<li>build_times: Time step on which to deploy agents given in prototype list</li>
-<li>n_build: Number of each prototype given in prototype list to build</li>
-</ul>
 <div class="section" id="activity-add-a-new-institution">
-<h3>Activity: Add a New Institution<a class="headerlink" href="#activity-add-a-new-institution" title="Permalink to this headline">¶</a></h3>
-<p>Using the table below and the DeployInst template above, fill out the commodities
-template.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="28%" />
-<col width="28%" />
-<col width="45%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head" colspan="3">Prototype             | build_times | n_build</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td colspan="3">UraniumMine           | 1           | 1</td>
-</tr>
-<tr class="row-odd"><td colspan="3">FuelFab               | 1           | 1</td>
-</tr>
-<tr class="row-even"><td colspan="3">1178MWe BRAIDWOOD-1   | 2           | 1</td>
-</tr>
-<tr class="row-odd"><td colspan="3">1000MWe Lightwater-1  | 3           | 1</td>
-</tr>
-</tbody>
-</table>
-<p>Using the prototype facilities already created, the new institution should
-look like the following:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;institution&gt;</span>
-  <span class="nt">&lt;name&gt;</span>ExampleInstitution<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;config&gt;</span>
-    <span class="nt">&lt;DeployInst&gt;</span>
-      <span class="nt">&lt;prototypes&gt;</span>
-        <span class="nt">&lt;val&gt;</span>UraniumMine<span class="nt">&lt;/val&gt;</span>
-        <span class="nt">&lt;val&gt;</span>FuelFab<span class="nt">&lt;/val&gt;</span>
-        <span class="nt">&lt;val&gt;</span>1178MWe BRAIDWOOD-1<span class="nt">&lt;/val&gt;</span>
-        <span class="nt">&lt;val&gt;</span>1000We Lightwater-1<span class="nt">&lt;/val&gt;</span>
-      <span class="nt">&lt;/prototypes&gt;</span>
-
-      <span class="nt">&lt;build_times&gt;</span>
-        <span class="nt">&lt;val&gt;</span>1<span class="nt">&lt;/val&gt;</span>
-        <span class="nt">&lt;val&gt;</span>1<span class="nt">&lt;/val&gt;</span>
-        <span class="nt">&lt;val&gt;</span>2<span class="nt">&lt;/val&gt;</span>
-        <span class="nt">&lt;val&gt;</span>3<span class="nt">&lt;/val&gt;</span>
-      <span class="nt">&lt;/build_times&gt;</span>
-
-      <span class="nt">&lt;n_build&gt;</span>
-        <span class="nt">&lt;val&gt;</span>1<span class="nt">&lt;/val&gt;</span>
-        <span class="nt">&lt;val&gt;</span>1<span class="nt">&lt;/val&gt;</span>
-        <span class="nt">&lt;val&gt;</span>1<span class="nt">&lt;/val&gt;</span>
-        <span class="nt">&lt;val&gt;</span>1<span class="nt">&lt;/val&gt;</span>
-      <span class="nt">&lt;/n_build&gt;</span>
-    <span class="nt">&lt;/DeployInst&gt;</span>
-  <span class="nt">&lt;/config&gt;</span>
-<span class="nt">&lt;/institution&gt;</span>
-</pre></div>
-</div>
-<p>The above institution will create 1 <code class="docutils literal"><span class="pre">UraniumMine</span></code> and 1 <code class="docutils literal"><span class="pre">FuelFab</span></code> facility on
-time step 1. The next time step will deploy the <code class="docutils literal"><span class="pre">1178MWe</span> <span class="pre">BRAIDWOOD-1</span></code> reactor
-prototype. And finally, at time step 3, the <code class="docutils literal"><span class="pre">1000We</span> <span class="pre">Lightwater-1</span></code> will be deployed.
-This institution block goes inside the Region block, with the previously created
-insitutions blocks.</p>
-<p><strong>ExampleInstitution</strong> is a placeholder for your institution name, and in this scenario
-only one of each prototype will be deployed since <code class="docutils literal"><span class="pre">n_build</span></code> has a value of 1 for each.</p>
-<p>This example is now complete. Save your file as the desired file name (with <code class="docutils literal"><span class="pre">.xml</span></code>
-extension) and run your code through <span style="font-variant:small-caps;">Cyclus</span>. If your simulation runs into errors,
-sample files can be found <a class="reference external" href="https://doi.org/10.5281/zenodo.4557613">here</a> under
-<code class="docutils literal"><span class="pre">input_deployinst.xml</span></code> or <code class="docutils literal"><span class="pre">ouput_deployinst.sqlite</span></code>.</p>
-</div>
+<h2>Activity: Add a New Institution<a class="headerlink" href="#activity-add-a-new-institution" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Open the Insitution Corral</li>
+<li>Drag a DeployInst into the Corral and name it BetterNucCo</li>
+<li>Request the following deployments
+* every 60 time steps deploy a new reactor, starting at time step 61
+* every 120 time steps deploy 2 new separations facilities starting at time step</li>
+<li>Add this new institution to the Nuclandia region</li>
+</ol>
 </div>
 </div>
 
@@ -210,14 +113,11 @@ sample files can be found <a class="reference external" href="https://doi.org/10
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        </a></p><div class="sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Deploying New Facilities</a><ul>
-<li><a class="reference internal" href="#example-deployinst">Example: DeployInst</a><ul>
 <li><a class="reference internal" href="#activity-add-a-new-institution">Activity: Add a New Institution</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -230,8 +130,8 @@ sample files can be found <a class="reference external" href="https://doi.org/10
   </div>
   <div class="sphinxnext">
     <h4>Next page</h4>
-    <p class="topless"><a href="cyclus_tutorial_recap.html"
-                          title="Next page">&rarr; Cyclus Tutorial Recap</a></p>
+    <p class="topless"><a href="../cycamoreagents.html"
+                          title="Next page">&rarr; Cycamore Archetypes</a></p>
   </div>
   <div class="sphinxlocaltoc">
   <h3>Useful Pages</h3>
@@ -297,23 +197,6 @@ sample files can be found <a class="reference external" href="https://doi.org/10
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -328,7 +211,7 @@ sample files can be found <a class="reference external" href="https://doi.org/10
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="cyclus_tutorial_recap.html" title="Cyclus Tutorial Recap"
+          <a href="../cycamoreagents.html" title="Cycamore Archetypes"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="mod_rxtr.html" title="Updating the Reactor and Repository"
@@ -343,7 +226,7 @@ sample files can be found <a class="reference external" href="https://doi.org/10
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

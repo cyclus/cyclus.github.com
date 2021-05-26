@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>An Introduction to Data Exploration &#8212; Home</title>
+    
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,27 +27,14 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Advanced Data Exploration Topics" href="plot_output.html" />
+    <link rel="prev" title="Working with Cyclus in the Cloud" href="launch_cyclus.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
 var ga_enabled = !$.cookie('disable-ga');
 if(ga_enabled){
@@ -63,7 +51,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -75,8 +63,16 @@ if(ga_enabled){
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="plot_output.html" title="Advanced Data Exploration Topics"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="launch_cyclus.html" title="Working with Cyclus in the Cloud"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../../index.html">Home</a> &#187;</li>
- 
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li> 
       </ul>
     </div>
     </div>
@@ -89,488 +85,97 @@ if(ga_enabled){
             
   <div class="section" id="an-introduction-to-data-exploration">
 <h1>An Introduction to Data Exploration<a class="headerlink" href="#an-introduction-to-data-exploration" title="Permalink to this headline">¶</a></h1>
-<p>Cymetric provides a way to fluidly explore the
-data that arises from a <span style="font-variant:small-caps;">Cyclus</span> simulation. A variety of metrics, plots, and information can be
-manipulated and viewed in a straightforward and interactive way to develop a thorough
+<p>The &#8220;Data Exploration&#8221; tab in Cyclist provides a way to fluidly explore the
+data that arises from a <span style="font-variant:small-caps;">Cyclus</span> simulation. A variety of views can be
+manipulated in a straightforward and interactive way to develop a thorough
 understanding of the features that matter the most.</p>
-<div class="section" id="concept-cyclus-output-file">
-<h2>Concept: Cyclus Output file<a class="headerlink" href="#concept-cyclus-output-file" title="Permalink to this headline">¶</a></h2>
-<p><span style="font-variant:small-caps;">Cyclus</span> creates an SQLite (<code class="docutils literal"><span class="pre">.sqlite</span></code>) database file as its output. SQLite is a database file
-type that consists of a series of tables. A few functions have been
-included in <code class="docutils literal"><span class="pre">analysis.py</span></code>, a file in downloaded the github repository of this tutorial, to pull information from the sqlite
-database and create figures.</p>
-<p>An sqlite database can be opened by viewers like <code class="docutils literal"><span class="pre">sqlitebrowser</span></code> or <code class="docutils literal"><span class="pre">sqliteman</span></code>,
-but these database browsers aren’t intended for powerful analysis.
-Importing the data into an external function and analyzing it
-is a more powerful approach. However, it can still be helpful to
-open and view the tables.</p>
-<div class="section" id="analyze-the-results">
-<h3>Analyze the results:<a class="headerlink" href="#analyze-the-results" title="Permalink to this headline">¶</a></h3>
-<p>This is a view of the tables within the database
-(using DB browser for SQLite). To view the data within these
-tables, switch to the <strong>Browse Data</strong> tab and select the table of interest.
-Some tables have data that may need to be manipulated or used alongside
-other data in other tables, which is why using a python script is often
-ideal.</p>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyne</span> <span class="kn">import</span> <span class="n">nucname</span>
-<span class="kn">import</span> <span class="nn">write</span> <span class="k">as</span> <span class="nn">write</span>
-<span class="kn">import</span> <span class="nn">analysis</span> <span class="k">as</span> <span class="nn">analysis</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">isclose</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">python</span> <span class="n">write_input</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="n">csv</span><span class="p">][</span><span class="n">init_date</span><span class="p">]</span> <span class="p">[</span><span class="n">duration</span><span class="p">]</span> <span class="p">[</span><span class="n">output_file_name</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>First, a <em>cursor</em> that points to the sqlite file is created to the output file. A <em>cursor</em> points to the cyclus output file you wish to use and its commonly used when running analysis functions as it ‘bookmarks’ the file you wish to analyze.</p>
+<img alt="Introduction to the data exploration view." class="align-center" src="../../_images/data-explore-annotated.png" />
 <ol class="arabic simple">
-<li>To make a cursor, use the <code class="docutils literal"><span class="pre">analysis.cursor(output_filename)</span></code> function where output_filename is name of the cyclus output file.</li>
+<li>Simulations: A user can load multiple simulations and easily work with
+multiple simulations, either switching between them or viewing them side-by-side.</li>
+<li>Tables: This highlights the most important output tables, both those that
+are the raw outpu of <span style="font-variant:small-caps;">Cyclus</span> and some derived tables.  A user can draw
+data from these tables into the different views to create a visual story
+from the data.</li>
+<li>Fields: These represent the columns of data in each table and can be used
+for a variety of roles in the views:</li>
 </ol>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">cursor</span><span class="p">(</span><span class="s1">&#39;cyclus.sqlite&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="simulation-time-info">
-<h2>Simulation Time Info<a class="headerlink" href="#simulation-time-info" title="Permalink to this headline">¶</a></h2>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">init_year</span><span class="p">,</span> <span class="n">init_month</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">timestep</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">simulation_timesteps</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Start year:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">init_year</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Start month:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">init_month</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Duration of simulation months:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">duration</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;List of timesteps:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">timestep</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span> <span class="o">+</span><span class="s1">&#39; . . . &#39;</span>  <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">timestep</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Start</span> <span class="n">year</span><span class="p">:</span><span class="mi">2018</span>
-<span class="n">Start</span> <span class="n">month</span><span class="p">:</span><span class="mi">1</span>
-<span class="n">Duration</span> <span class="n">of</span> <span class="n">simulation</span> <span class="n">months</span><span class="p">:</span><span class="mi">720</span>
-<span class="n">List</span> <span class="n">of</span> <span class="n">timesteps</span><span class="p">:[</span> <span class="mf">0.</span>  <span class="mf">1.</span>  <span class="mf">2.</span><span class="p">]</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">[</span> <span class="mf">716.</span>  <span class="mf">717.</span>  <span class="mf">718.</span><span class="p">]</span>
-</pre></div>
-</div>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="c1"># prints maximum required sfr fuel throughput per timestep</span>
-<span class="n">fuel</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT time, sum(quantity) FROM transactions &#39;</span>
-                       <span class="s1">&#39;INNER JOIN resources ON resources.resourceid = &#39;</span>
-                       <span class="s1">&#39;transactions.resourceid WHERE commodity = &quot;fresh-uox&quot;&#39;</span>
-                       <span class="s1">&#39; GROUP BY time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-
-<span class="n">fresh_uox</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fuel</span><span class="p">)</span>
-<span class="n">fuel_transaction</span> <span class="o">=</span> <span class="p">[</span><span class="n">fuel</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">fuel</span> <span class="ow">in</span> <span class="n">fresh_uox</span><span class="p">]</span>
-<span class="n">fuel_timestep</span> <span class="o">=</span> <span class="p">[</span><span class="n">fuel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">fuel</span> <span class="ow">in</span> <span class="n">fresh_uox</span><span class="p">]</span>
-
-<span class="n">maximum_fuel_moved</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fuel</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum amount of fresh-uox moved: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">maximum_fuel_moved</span><span class="p">))</span>
-
-<span class="n">first_fuel_transaction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fuel</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Amount of fresh-uox moved at first timestep: &#39;</span> <span class="o">+</span>  <span class="nb">str</span><span class="p">(</span><span class="n">first_fuel_transaction</span><span class="p">))</span>
-<span class="c1">#print(max(analysis.simulation_timesteps(fuel, duration, True)))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fuel_timestep</span><span class="p">,</span><span class="n">fuel_transaction</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (months)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Mass of Fresh-uox moved (kg)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Fresh-uox transaction timeseries&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Maximum</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">fresh</span><span class="o">-</span><span class="n">uox</span> <span class="n">moved</span><span class="p">:</span> <span class="mf">99000.0</span>
-<span class="n">Amount</span> <span class="n">of</span> <span class="n">fresh</span><span class="o">-</span><span class="n">uox</span> <span class="n">moved</span> <span class="n">at</span> <span class="n">first</span> <span class="n">timestep</span><span class="p">:</span> <span class="mf">99000.0</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;Fresh-uox transaction timeseries&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="user/tutorial/output_6_2.png" src="user/tutorial/output_6_2.png" />
-<p>How much <span class="math">\(^{235}\)</span>U left the 1178MWe BRAIDWOOD-1? To find out,
-lets use the <code class="docutils literal"><span class="pre">total_isotope_traded</span></code> function! The
-<code class="docutils literal"><span class="pre">total_isotope_traded</span></code> takes three input arguments: - cur (cursor to
-<em>CYCLUS</em> output file) - facility (facility of interest) - flux
-(direction of isotope transaction) - nucid (nuclide id)</p>
-<div class="alert alert-info"><p><strong>Interactive Input</strong> Using the table below, create the following
-variables. Include appropriate comments.</p>
-</div><table border="1" class="docutils">
-<colgroup>
-<col width="20%" />
-<col width="37%" />
-<col width="43%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Variable</th>
-<th class="head">Value</th>
-<th class="head">Purpose</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">cur</span></code></td>
-<td><code class="docutils literal"><span class="pre">cur</span></code></td>
-<td>cursor to <em>CYCLUS</em> output file</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">facility</span></code></td>
-<td><code class="docutils literal"><span class="pre">'1178MWe</span> <span class="pre">BRAIDWOOD-1'</span></code></td>
-<td>facility of interest</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">flux</span></code></td>
-<td><code class="docutils literal"><span class="pre">'out'</span></code></td>
-<td>isotope transaction direction</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">nucid</span></code></td>
-<td><code class="docutils literal"><span class="pre">922350000</span></code></td>
-<td>nuclide id</td>
-</tr>
-</tbody>
-</table>
-<p>Using the table above, let’s find out how much <span class="math">\(^{235}\)</span>U left the 1178MWe BRAIDWOOD-1?
-1. In your IPython notebook create the variables:</p>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">facility</span></code> that is equal to <code class="docutils literal"><span class="pre">'1178MWe</span> <span class="pre">BRAIDWOOD-1'</span></code></li>
-<li><code class="docutils literal"><span class="pre">flux</span></code> that is equal to <code class="docutils literal"><span class="pre">'out'</span></code></li>
-<li><code class="docutils literal"><span class="pre">nucid</span></code>  that is equal to <code class="docutils literal"><span class="pre">922350000</span></code></li>
-</ul>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span> <span class="c1"># cursor to CYCLUS output file</span>
-<span class="n">facility</span> <span class="o">=</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span> <span class="c1"># facility of interest</span>
-<span class="n">flux</span> <span class="o">=</span> <span class="s1">&#39;out&#39;</span> <span class="c1"># isotope transaction direction</span>
-<span class="n">nucid</span> <span class="o">=</span> <span class="mi">922350000</span> <span class="c1"># nuclide id</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total amount of U235 that left the &#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">facility</span><span class="p">)</span> <span class="o">+</span><span class="s1">&#39; reactor:&#39;</span><span class="p">)</span>
-<span class="n">analysis</span><span class="o">.</span><span class="n">total_isotope_traded</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">facility</span><span class="p">,</span><span class="n">flux</span><span class="p">,</span><span class="n">nucid</span><span class="p">)</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li>When ready, click the <code class="docutils literal"><span class="pre">run</span></code> button.</li>
-<li>As you see the answer is:</li>
-</ol>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Total</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">U235</span> <span class="n">that</span> <span class="n">left</span> <span class="n">the</span> <span class="mi">1178</span><span class="n">MWe</span> <span class="n">BRAIDWOOD</span><span class="o">-</span><span class="mi">1</span> <span class="n">reactor</span><span class="p">:</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">13431.0</span>
-</pre></div>
-</div>
-<p>Now let’s plot the cumulative mass of the spent nuclear fuel that is
-taken out of the 1178MWe BRAIDWOOD-1. Again, let’s use the handy
-<code class="docutils literal"><span class="pre">analysis.plot_out_flux_cumulative</span></code>function which takes input
-arguments: - cur (cursor to <em>CYCLUS</em> output file) - facility (facility
-of interest) - title (title of plot)</p>
-<div class="alert alert-info"><p><strong>Interactive Input</strong> Using the table below, create the following
-variables. Include appropriate comments.</p>
-</div><table border="1" class="docutils">
-<colgroup>
-<col width="15%" />
-<col width="54%" />
-<col width="31%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Variable</th>
-<th class="head">Value</th>
-<th class="head">Purpose</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">cur</span></code></td>
-<td><code class="docutils literal"><span class="pre">cur</span></code></td>
-<td>cursor to <em>CYCLUS</em> output file</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">facility</span></code></td>
-<td><code class="docutils literal"><span class="pre">'1178MWe</span> <span class="pre">BRAIDWOOD-1'</span></code></td>
-<td>facility of interest</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">title</span></code></td>
-<td><code class="docutils literal"><span class="pre">'Cumulative</span> <span class="pre">Isotope</span> <span class="pre">Outflux</span> <span class="pre">of</span> <span class="pre">1178MWe</span> <span class="pre">BRAIDWOOD-1'</span></code></td>
-<td>title of plot</td>
-</tr>
-</tbody>
-</table>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
-<span class="n">facility</span> <span class="o">=</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span>
-<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Cumulative Isotope Outflux of 1178MWe BRAIDWOOD-1&#39;</span>
-<span class="n">analysis</span><span class="o">.</span><span class="n">plot_out_flux_cumulative</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">facility</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
-</pre></div>
-</div>
 <blockquote>
-<div><p>Now let’s plot the cumulative mass of the fresh nuclear fuel that is
-put into the 1178MWe BRAIDWOOD-1. Again, let’s use
-<code class="docutils literal"><span class="pre">analysis.plot_in_flux</span></code> which takes the arguments:</p>
-<ul class="simple">
-<li>cur</li>
-<li>facility = <code class="docutils literal"><span class="pre">'1178MWe</span> <span class="pre">BRAIDWOOD-1'</span></code></li>
-<li>title = <code class="docutils literal"><span class="pre">'Cumulative</span> <span class="pre">Isotope</span> <span class="pre">Influx</span> <span class="pre">of</span> <span class="pre">1178MWe</span> <span class="pre">BRAIDWOOD-1'</span></code></li>
+<div><ul class="simple">
+<li>define which data will be plotted on axes</li>
+<li>aggregate and group data together according to the fields</li>
+<li>filter or select subsets of data</li>
 </ul>
 </div></blockquote>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">facility</span> <span class="o">=</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span>
-<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Cumulative Isotope Influx of 1178MWe BRAIDWOOD-1&#39;</span>
-<span class="n">analysis</span><span class="o">.</span><span class="n">plot_in_flux</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">facility</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">agent_id</span> <span class="k">for</span> <span class="n">Reactor</span> <span class="ow">is</span><span class="p">:</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;21&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>In cyclus, facilities are defined by their <code class="docutils literal"><span class="pre">prototype_id</span></code>. For example
-if the simualtion had 20 different reactors, we could still find a
-certain one via its <code class="docutils literal"><span class="pre">prototype_id</span></code>.</p>
-<div class="alert alert-info"><p><strong>Interactive Input</strong> In the cell below use type, find the prototype_id
-of the <code class="docutils literal"><span class="pre">'1178MWe</span> <span class="pre">BRAIDWOOD-1'</span></code> reactor by making variable called:
-<code class="docutils literal"><span class="pre">facility</span></code> and making it equal to <code class="docutils literal"><span class="pre">'1178MWe</span> <span class="pre">BRAIDWOOD-1'</span></code> and then
-run the cell.</p>
-</div><div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">facility</span> <span class="o">=</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The prototype_ids for&#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">facility</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span><span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="s1">&#39;are:&#39;</span><span class="p">)</span>
-<span class="n">analysis</span><span class="o">.</span><span class="n">prototype_id</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">facility</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">prototype_ids</span> <span class="k">for</span> <span class="mi">1178</span><span class="n">MWe</span> <span class="n">BRAIDWOOD</span><span class="o">-</span><span class="mi">1</span> <span class="n">are</span><span class="p">:</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;21&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Let’s find out what the <code class="docutils literal"><span class="pre">prototype_id</span></code> for the <code class="docutils literal"><span class="pre">'UraniumMine'</span></code> in
-our simulation is.</p>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">facility</span> <span class="o">=</span> <span class="s1">&#39;UraniumMine&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The prototype_ids for&#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">facility</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span><span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="s1">&#39;are:&#39;</span><span class="p">)</span>
-<span class="n">analysis</span><span class="o">.</span><span class="n">prototype_id</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">facility</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">prototype_ids</span> <span class="k">for</span> <span class="n">UraniumMine</span> <span class="n">are</span><span class="p">:</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;23&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>We can use these agent_ids and prototype_ids to find out more
-information on these facilities. For example, let’s say we wanted to
-find out how much <code class="docutils literal"><span class="pre">'fresh-uox'</span></code> goes through the
-<code class="docutils literal"><span class="pre">'1178MWe</span> <span class="pre">BRAIDWOOD-1'</span></code> reactor? We can use the
-<code class="docutils literal"><span class="pre">facility_commodity_flux</span></code> function to find out.</p>
-<div class="alert alert-info"><p><strong>Interactive Input</strong> Using the table below, create the following
-variables. Include appropriate comments.</p>
-</div><table border="1" class="docutils">
-<colgroup>
-<col width="33%" />
-<col width="25%" />
-<col width="42%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Variable</th>
-<th class="head">Value</th>
-<th class="head">Purpose</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">cur</span></code></td>
-<td><code class="docutils literal"><span class="pre">cur</span></code></td>
-<td>cursor to <em>CYCLUS</em> output file</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">agentids</span></code></td>
-<td><code class="docutils literal"><span class="pre">[21]</span></code></td>
-<td><code class="docutils literal"><span class="pre">agent_id</span></code> of reactor</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">facility_commodities</span></code></td>
-<td><code class="docutils literal"><span class="pre">['fresh-uox']</span></code></td>
-<td>commodity of interest</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">is_cum</span></code></td>
-<td>True</td>
-<td>cumulative of commodity amount</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">is_outflux</span></code></td>
-<td>False</td>
-<td>Influx of commodity into reactor</td>
-</tr>
-</tbody>
-</table>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">facility_commodity_flux</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">agentids</span><span class="o">=</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span><span class="n">facility_commodities</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fresh-uox&#39;</span><span class="p">],</span><span class="n">is_cum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">is_outflux</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>As seen above, the <code class="docutils literal"><span class="pre">facility_commodity_flux</span></code> function returns a
-dictionary of the cumulative amount of <code class="docutils literal"><span class="pre">fresh-uox</span></code> fuel that enters
-the reactor over time. We can make this dictionary non-cumulative by
-setting <code class="docutils literal"><span class="pre">is_cum</span> <span class="pre">=</span> <span class="pre">False</span></code> as seen below.</p>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">facility_commodity_flux</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">agentids</span><span class="o">=</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span><span class="n">facility_commodities</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fresh-uox&#39;</span><span class="p">],</span><span class="n">is_cum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">is_outflux</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">facility_commodity_flux</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">agentids</span><span class="o">=</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span><span class="n">facility_commodities</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fresh-uox&#39;</span><span class="p">],</span><span class="n">is_cum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">is_outflux</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>As expected, the only time that <code class="docutils literal"><span class="pre">fresh-uox</span></code> enters the reactor is at
-times where the reactor is being refueled.</p>
-<p>Now, let’s plot the storage of the sink over time to see what
-commodities are stored in the sink.</p>
-<p>Let’s take a look at the total mass of spent nuclear fuel stored at the
-Nuclear Waste Repository. To plot, use the
-<code class="docutils literal"><span class="pre">analysis.plot_in_flux_cumulative(cur,</span> <span class="pre">facility,</span> <span class="pre">title)</span></code> function.</p>
-<div class="alert alert-info"><p><strong>Interactive Input</strong> Using the table below, create the following
-variables. Include appropriate comments.</p>
-</div><table border="1" class="docutils">
-<colgroup>
-<col width="17%" />
-<col width="57%" />
-<col width="26%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Variable</th>
-<th class="head">Value</th>
-<th class="head">Purpose</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">facility</span></code></td>
-<td><code class="docutils literal"><span class="pre">'NuclearRepository'</span></code></td>
-<td>facility of interest</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">title</span></code></td>
-<td><code class="docutils literal"><span class="pre">'Cumulative</span> <span class="pre">Isotope</span> <span class="pre">Inventory</span> <span class="pre">of</span> <span class="pre">Repository'</span></code></td>
-<td>title of plot</td>
-</tr>
-</tbody>
-</table>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">facility</span> <span class="o">=</span> <span class="s1">&#39;NuclearRepository&#39;</span> <span class="c1"># facility of interest</span>
-<span class="n">title</span>  <span class="o">=</span> <span class="s1">&#39;Cumulative Isotope Inventory of Repository&#39;</span>  <span class="c1"># title of plot</span>
-
-<span class="n">analysis</span><span class="o">.</span><span class="n">plot_commodities</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">archetype</span><span class="o">=</span><span class="s1">&#39;sink&#39;</span><span class="p">,</span><span class="n">facility_commodity</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tails&#39;</span><span class="p">,</span><span class="s1">&#39;spent-uox&#39;</span><span class="p">],</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Sink storage&#39;</span><span class="p">,</span>
-                          <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;sink&#39;</span><span class="p">,</span><span class="n">is_cum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">is_outflux</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;sink.png&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="user/tutorial/output_31_0.png" src="user/tutorial/output_31_0.png" />
-<p>Now let’s plot the cumulative mass of the spent nuclear fuel that is
-mined from the Uranium mine. To plot the outflux of a facility, use the
-analysis.plot_out_flux_cumulative(cur,sender,plot title) function.</p>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">plot_out_flux_cumulative</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s1">&#39;UraniumMine&#39;</span><span class="p">,</span><span class="s1">&#39;Cumulative Isotope Outflux of Uranium Mine&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="user/tutorial/output_33_0.png" src="user/tutorial/output_33_0.png" />
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">plot_out_flux_cumulative</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span><span class="p">,</span><span class="s1">&#39;Cumulative Isotope Outflux of 1178MWe BRAIDWOOD-1&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="user/tutorial/output_34_0.png" src="user/tutorial/output_34_0.png" />
-<p>Now let’s plot the mass series and cumulative mass of the fresh nuclear
-fuel that is received by the 1178MWe BRAIDWOOD-1.</p>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">plot_in_flux</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span><span class="p">,</span><span class="s1">&#39;Isotope Influx of 1178MWe BRAIDWOOD-1&#39;</span><span class="p">)</span>
-<span class="n">analysis</span><span class="o">.</span><span class="n">plot_in_flux_cumulative</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span><span class="p">,</span><span class="s1">&#39;Cumulative Isotope Influx of 1178MWe BRAIDWOOD-1&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="user/tutorial/output_36_0.png" src="user/tutorial/output_36_0.png" />
-<img alt="user/tutorial/output_36_1.png" src="user/tutorial/output_36_1.png" />
-<p>We can also find the total amount [kg] of an isotope that was used/sent
-from a facility using the <code class="docutils literal"><span class="pre">total_isotope_used</span></code> function. For example,
-if we wanted to find out how much <span class="math">\(^{235}\)</span>U and
-<span class="math">\(^{238}\)</span>U was mined from the Uranium Mine, we can call:</p>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">uranium_mined</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">total_isotope_used</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s1">&#39;UraniumMine&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total amount of U-235 mined:&quot;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>  <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">uranium_mined</span><span class="p">[</span><span class="s1">&#39;U235&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="s1">&#39;kg&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total amount of U-238 mined:&quot;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>  <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">uranium_mined</span><span class="p">[</span><span class="s1">&#39;U238&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="s1">&#39;kg&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Total</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">U</span><span class="o">-</span><span class="mi">235</span> <span class="n">mined</span><span class="p">:</span> <span class="mf">91599.6350365</span> <span class="n">kg</span>
-<span class="n">Total</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">U</span><span class="o">-</span><span class="mi">238</span> <span class="n">mined</span><span class="p">:</span> <span class="mf">12791612.0438</span> <span class="n">kg</span>
-</pre></div>
-</div>
-<p>Let’s say we wanted to see the composition of the spent nuclear fuel
-from the reactor. We could call <code class="docutils literal"><span class="pre">total_isotope_used</span></code> with <code class="docutils literal"><span class="pre">facility</span></code>
-= <code class="docutils literal"><span class="pre">'1178MWe</span> <span class="pre">BRAIDWOOD-1'</span></code> to find out!</p>
-<div class="alert alert-info"><p><strong>Interactive Input</strong> Using the table below, create the following
-variable. Include appropriate comments.</p>
-</div><table border="1" class="docutils">
-<colgroup>
-<col width="23%" />
-<col width="42%" />
-<col width="35%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Variable</th>
-<th class="head">Value</th>
-<th class="head">Purpose</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">facility</span></code></td>
-<td><code class="docutils literal"><span class="pre">'1178MWe</span> <span class="pre">BRAIDWOOD-1'</span></code></td>
-<td>facility of interest</td>
-</tr>
-</tbody>
-</table>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">facility</span> <span class="o">=</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span> <span class="c1"># facility of interest</span>
-<span class="n">snf_comp</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">total_isotope_used</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">facility</span><span class="p">)</span>
-<span class="n">snf_comp</span>
-<span class="n">isotopes</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">snf_comp</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
-<span class="n">masses</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">snf_comp</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">isotopes</span><span class="p">,</span><span class="n">masses</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Isotopes&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Total Mass [kg]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;SNF mass composition&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;SNF mass composition&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="user/tutorial/output_40_1.png" src="user/tutorial/output_40_1.png" />
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">plot_uranium_utilization</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="user/tutorial/output_41_0.png" src="user/tutorial/output_41_0.png" />
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">fuel_dict</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">fuel_usage_timeseries</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;fresh-uox&#39;</span><span class="p">])</span>
-<span class="n">fuel_dict</span>
-<span class="n">analysis</span><span class="o">.</span><span class="n">stacked_bar_chart</span><span class="p">(</span><span class="n">fuel_dict</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span>
-                  <span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="s1">&#39;Mass[MTHM]&#39;</span><span class="p">,</span>
-                  <span class="s1">&#39;Total Fresh-Uox Fuel Mass vs Time&#39;</span><span class="p">,</span>
-                  <span class="s1">&#39;total_fuel&#39;</span><span class="p">,</span>
-                  <span class="n">init_year</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;total_fuel.png&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="user/tutorial/output_42_0.png" src="user/tutorial/output_42_0.png" />
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="c1"># natural uranium demand</span>
-<span class="kn">import</span> <span class="nn">collections</span>
-<span class="n">nat_u</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">()</span>
-<span class="n">nat_u</span><span class="p">[</span><span class="s1">&#39;nat_u&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">nat_u_timeseries</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
-<span class="n">analysis</span><span class="o">.</span><span class="n">stacked_bar_chart</span><span class="p">(</span><span class="n">nat_u</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span>
-                     <span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="s1">&#39;Natural Uranium Mass&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;Natural Uranium Demand vs Time&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;nat_u&#39;</span><span class="p">,</span> <span class="n">init_year</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;nat_u.png&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="user/tutorial/output_43_0.png" src="user/tutorial/output_43_0.png" />
-</div>
-<div class="section" id="ask-why-is-the-orange-line-steeper-in-slope-than-the-green-line">
-<h2>Ask: Why is the orange line steeper in slope than the green line?<a class="headerlink" href="#ask-why-is-the-orange-line-steeper-in-slope-than-the-green-line" title="Permalink to this headline">¶</a></h2>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">tails</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT time, sum(quantity) FROM transactions &#39;</span>
-                       <span class="s1">&#39;INNER JOIN resources ON resources.resourceid = &#39;</span>
-                       <span class="s1">&#39;transactions.resourceid WHERE commodity = &quot;tails&quot;&#39;</span>
-                       <span class="s1">&#39; GROUP BY time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-
-<span class="n">tails_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fuel</span><span class="p">)</span>
-<span class="n">tails_transaction</span> <span class="o">=</span> <span class="p">[</span><span class="n">tail</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">tail</span> <span class="ow">in</span> <span class="n">tails_array</span><span class="p">]</span>
-<span class="n">tails_timeseries</span> <span class="o">=</span> <span class="p">[</span><span class="n">fuel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">fuel</span> <span class="ow">in</span> <span class="n">tails_array</span><span class="p">]</span>
-
-<span class="n">maximum_fuel_moved</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">tails_array</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum amount of tails moved during one time step: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">maximum_fuel_moved</span><span class="p">))</span>
-
-<span class="n">analysis</span><span class="o">.</span><span class="n">plot_commodities</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">archetype</span><span class="o">=</span><span class="s1">&#39;sink&#39;</span><span class="p">,</span><span class="n">facility_commodity</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tails&#39;</span><span class="p">],</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Tails in Sink&#39;</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;tails&#39;</span><span class="p">,</span><span class="n">is_cum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">is_outflux</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;tails.png&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Maximum</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">tails</span> <span class="n">moved</span> <span class="n">during</span> <span class="n">one</span> <span class="n">time</span> <span class="n">step</span><span class="p">:</span> <span class="mf">99000.0</span>
-</pre></div>
-</div>
-<img alt="user/tutorial/output_45_1.png" src="user/tutorial/output_45_1.png" />
-</div>
-<div class="section" id="decay-heat">
-<h2>Decay heat<a class="headerlink" href="#decay-heat" title="Permalink to this headline">¶</a></h2>
-<p>Using our <code class="docutils literal"><span class="pre">spent</span></code> fuel composition from above, lets see which isotope
-causes the most decay heat!</p>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">plot_reactor_events</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">reactors</span> <span class="o">=</span> <span class="p">[])</span>
-</pre></div>
-</div>
-<img alt="user/tutorial/output_47_0.png" src="user/tutorial/output_47_0.png" />
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">plot_commodity</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">archetype</span><span class="o">=</span><span class="s1">&#39;Sink&#39;</span><span class="p">,</span><span class="n">facility_commodity</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;spent-uox&#39;</span><span class="p">],</span><span class="n">is_outflux</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">is_cum</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;cum_mass_spent-uoxdischarge.png&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="user/tutorial/output_48_0.png" src="user/tutorial/output_48_0.png" />
+<ol class="arabic simple" start="4">
+<li>Filters: TBD!!</li>
+</ol>
+<div class="section" id="activity-examine-your-first-data-exploration-session">
+<h2>Activity: Examine Your First Data Exploration Session<a class="headerlink" href="#activity-examine-your-first-data-exploration-session" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Click on the &#8220;QuantityInventory&#8221; table to selecct it.</li>
+<li>Right-click on the &#8220;QuantityInventory&#8221; table and select &#8220;Plot&#8221;</li>
+</ol>
+<img alt="A blank plot window" class="align-center" src="../../_images/plot-01-01.png" />
+<ol class="arabic simple" start="3">
+<li>Select a &#8220;Time&#8221; as the x-axis by dragging it from the &#8220;Fields&#8221; pane and
+dropping it in X-axis entry-box.</li>
+<li>Do the same for &#8220;Quantity&#8221; on the y-axis.</li>
+</ol>
+<img alt="A first inventory plots" class="align-center" src="../../_images/plot-01-02.png" />
+<p>This shows a plot of the total inventory in the system as a function of time.</p>
+<ol class="arabic simple" start="5">
+<li>Drag the &#8220;Protoype&#8221; field into the &#8220;Group by&#8221; entry to see the results
+split up by the prototype that contained that inventory.</li>
+</ol>
+<img alt="Inventory plots shown by protoype" class="align-center" src="../../_images/plot-01-03.png" />
+<ol class="arabic simple" start="7">
+<li>Use the &#8220;Axis&#8221; menu at the top right of the plot to adjust the y-axis to be logarithmic.</li>
+<li>Add &#8220;NucID&#8221; as an addition &#8220;Group by&#8221; field to see the total mass of each
+nuclide that was resident in each type of facility in the system as a
+function of time.</li>
+</ol>
+<img alt="Inventory plots shown by prototype and by nuclide." class="align-center" src="../../_images/plot-01-04.png" />
+<p>This image is becoming somewhat busy, so we can add some filters.</p>
+<ol class="arabic simple" start="9">
+<li>Drop the &#8220;Prototype&#8221; field to the middle of the title bar for the plot.  A
+new control panel opens on the right to control the filters.  Select only
+the enrichment plant (EnrichPlant) and the repository (NuclearUnderground).</li>
+</ol>
+<img alt="Inventory plots with filters to help select data." class="align-center" src="../../_images/plot-01-05-annotated.png" />
+<ol class="arabic simple" start="10">
+<li>We can combine this with another filter: drop the &#8220;NucID&#8221; field in the
+title bar next to the &#8220;Prototype&#8221; filter.  Select all the facilities
+protypes only &#8220;U235&#8221; and &#8220;Pu239&#8221; to examine the inventory of fissile
+material in diferent facilities throughout the system.</li>
+</ol>
+<img alt="Inventory plots with filters to help select data." class="align-center" src="../../_images/plot-01-06.png" />
+<ol class="arabic simple" start="11">
+<li>Notice the fluctations at the beginning! Let&#8217;s zoom in a little by adding
+the &#8220;Time&#8221; field as yet another filter. Notice how it appears as a slider
+bar with entries for a time window.  Use the sliders, or the text entry to
+choose a window between time steps 0 and 60 (the first 5 years).</li>
+</ol>
+<img alt="The first 50 years of inventory plots with filters to help select data." class="align-center" src="../../_images/plot-01-07.png" />
+<p>Some observations:</p>
+<ul class="simple">
+<li>The enrichment plant began enriching in the first time step and was then
+able to provide enough fuel for a full core loading in the second time step.
+At that time we see the inventory of both U-235 and U-238 drop.</li>
+<li>The enerichment plant&#8217;s inventory then oscillates as it build up enough
+material for an additional reactor to come online.  Once all reactors have
+full core loadings (100 tonnes each), the total reactor inventory reaches
+eqilibirum.</li>
+<li>After 1 full core loading cycle (12 time steps), the first material appears
+at the repository as spent fuel and begins accumulating.</li>
+</ul>
+<ol class="arabic simple" start="12">
+<li>Finally, remove &#8220;Time&#8221; from the x-axis and move &#8220;Protoype&#8221; from the Group
+By to the x-axis, select all the nuclides in the filter, and expand the
+time filter to include the whole simulation.  This has quickly become a
+bar chart showing the relative nuc8lide amounts in each facility type.</li>
+</ol>
+<img alt="A bar chart comparing nuclide concentrations." class="align-center" src="../../_images/plot-01-08.png" />
 </div>
 </div>
 
@@ -582,21 +187,25 @@ causes the most decay heat!</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        </a></p><div class="sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">An Introduction to Data Exploration</a><ul>
-<li><a class="reference internal" href="#concept-cyclus-output-file">Concept: Cyclus Output file</a><ul>
-<li><a class="reference internal" href="#analyze-the-results">Analyze the results:</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#simulation-time-info">Simulation Time Info</a></li>
-<li><a class="reference internal" href="#ask-why-is-the-orange-line-steeper-in-slope-than-the-green-line">Ask: Why is the orange line steeper in slope than the green line?</a></li>
-<li><a class="reference internal" href="#decay-heat">Decay heat</a></li>
+<li><a class="reference internal" href="#activity-examine-your-first-data-exploration-session">Activity: Examine Your First Data Exploration Session</a></li>
 </ul>
 </li>
 </ul>
 
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="launch_cyclus.html"
+                          title="Previous page">&larr; Working with Cyclus in the Cloud</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="plot_output.html"
+                          title="Next page">&rarr; Advanced Data Exploration Topics</a></p>
   </div>
   <div class="sphinxlocaltoc">
   <h3>Useful Pages</h3>
@@ -662,23 +271,6 @@ causes the most decay heat!</p>
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -692,15 +284,23 @@ causes the most decay heat!</p>
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="plot_output.html" title="Advanced Data Exploration Topics"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="launch_cyclus.html" title="Working with Cyclus in the Cloud"
+             >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../../index.html">Home</a> &#187;</li>
- 
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

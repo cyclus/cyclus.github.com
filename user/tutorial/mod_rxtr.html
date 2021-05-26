@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Updating the Reactor and Repository &#8212; Home</title>
+    
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,24 +27,9 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -65,7 +51,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -99,44 +85,30 @@ if(ga_enabled){
             
   <div class="section" id="updating-the-reactor-and-repository">
 <h1>Updating the Reactor and Repository<a class="headerlink" href="#updating-the-reactor-and-repository" title="Permalink to this headline">¶</a></h1>
-<p>We can add in Advanced Light Water Reactors that will flexibly switch between
-UOX and MOX fuel based on their availability. This protoype uses the same
-template as the other reactors with a few additional entries.</p>
+<p>Our ALWRs will flexibly switch between UOX and MOX when avaialble.</p>
 <div class="section" id="reactor-modifications">
 <h2>Reactor Modifications<a class="headerlink" href="#reactor-modifications" title="Permalink to this headline">¶</a></h2>
 <p>Add additional entries for:</p>
 <ul class="simple">
-<li>Fresh Fuel Commodity: Fresh-MOX-Fuel <a class="footnote-reference" href="#f1" id="id1">[1]</a></li>
+<li>Fresh Fuel Commodity: Fresh-MOX-Fuel</li>
 <li>Fresh Fuel Recipe: Fresh-UOX-Fuel</li>
 <li>Spent Fuel Commidity: Used-MOX-Fuel</li>
 <li>Used Fuel Recipe: Used-MOX-Fuel-4</li>
 </ul>
-<p>Under user level 1, add 2 entries for the “Fresh Fuel Preference List,
-one for each requested commodity.  Since MOX fuel is preferred, the
+<p>Note that we are using the UOX recipe for the MOX recipe in order to have our
+fuel fabrication facility do its best to match that recipe by blending streams
+of Pu with natural U.</p>
+<p>Under user level 1, we&#8217;ll add 2 entries for the &#8220;Fresh Fuel Preference List,
+one for each requested commodity.  Since we want to prefer MOX fuel, the
 preference for MOX should be 2 times higher than that or UOX.  Perhaps:</p>
 <ul class="simple">
 <li>MOX = 2</li>
 <li>UOX = 1</li>
 </ul>
-<p>The new reactor must be added to the <code class="docutils literal"><span class="pre">Exelon</span> <span class="pre">Reactors</span></code> institution in the region.</p>
 </div>
 <div class="section" id="repository-modifications">
 <h2>Repository Modifications<a class="headerlink" href="#repository-modifications" title="Permalink to this headline">¶</a></h2>
-<p>Add an accepted commodity for the repository to be Separated-Waste.</p>
-</div>
-<div class="section" id="activity-save-your-input-file">
-<h2>Activity: Save your Input File<a class="headerlink" href="#activity-save-your-input-file" title="Permalink to this headline">¶</a></h2>
-<p>The input for this example is now complete. Save your input file as ‘recycle_input.xml’. If
-your simulation runs into errors, sample files can be found <a class="reference external" href="https://doi.org/10.5281/zenodo.4557613">here</a> under <code class="docutils literal"><span class="pre">input_recycle.xml</span></code>
-or <code class="docutils literal"><span class="pre">ouput_recycle.sqlite</span></code>.</p>
-<p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="f1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Note that we are using the UOX recipe for the MOX recipe in order to have</td></tr>
-</tbody>
-</table>
-<p>our fuel fabrication facility do its best to match that recipe by blending streams of Pu with natural U.</p>
+<p>The repository only needs to change its commodity to accept only Separated-Waste.</p>
 </div>
 </div>
 
@@ -148,13 +120,12 @@ or <code class="docutils literal"><span class="pre">ouput_recycle.sqlite</span><
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        </a></p><div class="sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Updating the Reactor and Repository</a><ul>
 <li><a class="reference internal" href="#reactor-modifications">Reactor Modifications</a></li>
 <li><a class="reference internal" href="#repository-modifications">Repository Modifications</a></li>
-<li><a class="reference internal" href="#activity-save-your-input-file">Activity: Save your Input File</a></li>
 </ul>
 </li>
 </ul>
@@ -234,23 +205,6 @@ or <code class="docutils literal"><span class="pre">ouput_recycle.sqlite</span><
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -280,7 +234,7 @@ or <code class="docutils literal"><span class="pre">ouput_recycle.sqlite</span><
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

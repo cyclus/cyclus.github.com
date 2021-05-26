@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Cyclus 1.2 Release Notes &#8212; Home</title>
+    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,24 +27,9 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -65,7 +51,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -115,16 +101,16 @@ of the cyclus ecosystem! This includes over 125 commits by 5 developers.</p>
 <div class="section" id="major-features">
 <h2>Major features<a class="headerlink" href="#major-features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Added ‘entity’ key to the archetype annotations. This may take on one of the
+<li>Added &#8216;entity&#8217; key to the archetype annotations. This may take on one of the
 following values: region, institution, facility, archetype, or unknown.</li>
-<li>Added further reflection to archetypes by including ‘parents’ and ‘all_parents’
+<li>Added further reflection to archetypes by including &#8216;parents&#8217; and &#8216;all_parents&#8217;
 lists to the metadata.</li>
 <li>Added archetype name to metadata annotations.</li>
 <li>Nicer looking JSON strings.</li>
 <li>Fixed dynamic loading error that was triggered in weird cases on linux.</li>
 <li>The command <code class="docutils literal"><span class="pre">cyclus</span> <span class="pre">-m</span></code> now returns all metadata.</li>
 <li>Added Squash() functions to MatQuery class.</li>
-<li>Added ‘nuclide’ to availible ‘uitypes’.</li>
+<li>Added &#8216;nuclide&#8217; to availible &#8216;uitypes&#8217;.</li>
 <li>Added Extra debugging info via <code class="docutils literal"><span class="pre">CYCLUS_DEBUG_DRE</span></code> environment variable.</li>
 <li>Added new experimental ResBuf class for resource buffering.</li>
 <li>Added optional tails buffer to enrichment class.</li>
@@ -140,7 +126,7 @@ insertions(+) and 91 deletions(-).</li>
 </div>
 <div class="section" id="contributors">
 <h2>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h2>
-<p>The following people contributed to this release of Cyclus.  A “*” by their
+<p>The following people contributed to this release of Cyclus.  A &#8220;*&#8221; by their
 name indicates a first time contributor.  Names follow alphabetically,</p>
 <ul class="simple">
 <li>Robert Carlsen</li>
@@ -165,7 +151,7 @@ name indicates a first time contributor.  Names follow alphabetically,</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        </a></p><div class="sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Cyclus 1.2 Release Notes</a><ul>
@@ -250,23 +236,6 @@ name indicates a first time contributor.  Names follow alphabetically,</p>
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -295,7 +264,7 @@ name indicates a first time contributor.  Names follow alphabetically,</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

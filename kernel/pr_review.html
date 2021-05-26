@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Guide for Reviewing Pull Requests &#8212; Home</title>
+    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,24 +27,9 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -65,7 +51,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -103,7 +89,7 @@ if(ga_enabled){
 code is then reviewed by other <span style="font-variant:small-caps;">Cyclus</span> developers to confirm that the code
 meets all requirements for style and stability before being added to the code
 base.  You do not need to be an expert  <span style="font-variant:small-caps;">Cyclus</span> developer to contribute by
-reviewing pull requests! In fact, reviewing other people’s code is a great way
+reviewing pull requests! In fact, reviewing other people&#8217;s code is a great way
 to learn the code base! Below we offer a rough guide to how to review a pull
 request.</p>
 <div class="section" id="maintaining-a-collegial-atmosphere">
@@ -189,7 +175,7 @@ you don’t need it for performance, readability and clarity are more important<
 <li>The majority of the Cyclus code base should be easier to read/maintain rather
 than faster in the absence of concrete need for speed</li>
 </ul>
-<p>Is there sufficient test coverage (more than just “are there tests”)?</p>
+<p>Is there sufficient test coverage (more than just &#8220;are there tests&#8221;)?</p>
 <ul class="simple">
 <li>Start with tests - if there are insufficient tests then you should not do the
 code review until the tests are added</li>
@@ -212,7 +198,7 @@ naturally help the coder to identify many of these cases)</li>
 </ul>
 <p>Is the code implemented cleanly?</p>
 <ul class="simple">
-<li>Are there “easy” optimizations (e.g. variable allocation outside of a well-
+<li>Are there &#8220;easy&#8221; optimizations (e.g. variable allocation outside of a well-
 used loop)?</li>
 <li>Are the data structures you’re using the right ones? (ie. sets have unique
 elements while vectors have ordered elements)</li>
@@ -236,8 +222,8 @@ justification</li>
 <li>Communally agreed upon departures from the existing style guide should be
 documented</li>
 </ul>
-<p>Remember, if there is <em>anything</em> in the pull request that you don’t understand,
-don’t merge it!  Educate yourself using the API docs, ask questions, or request
+<p>Remember, if there is <em>anything</em> in the pull request that you don&#8217;t understand,
+don&#8217;t merge it!  Educate yourself using the API docs, ask questions, or request
 an explanation from the coder.</p>
 </div>
 </div>
@@ -250,7 +236,7 @@ an explanation from the coder.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        </a></p><div class="sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Guide for Reviewing Pull Requests</a><ul>
@@ -338,23 +324,6 @@ an explanation from the coder.</p>
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -383,7 +352,7 @@ an explanation from the coder.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

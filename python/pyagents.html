@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Agent Archetypes implemented in Python (cyclus.pyagents) &#8212; Home</title>
+    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,24 +27,9 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -64,7 +50,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -136,7 +122,7 @@ above an other agent in the family tree).</p>
 <dd><p>Called when the agent enters the smiulation as an active participant and
 is only ever called once.  Agents should NOT register for services (such
 as ticks/tocks and resource exchange) in this function. If agents implement
-this function, they must call their superclass’ Build function at the
+this function, they must call their superclass&#8217; Build function at the
 BEGINING of their Build function.</p>
 </dd></dl>
 
@@ -163,7 +149,7 @@ initially existing agents are being setup.</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullInst.context">
 <code class="descname">context</code><a class="headerlink" href="#cyclus.pyagents.NullInst.context" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this agent’s simulation context.</p>
+<dd><p>Returns this agent&#8217;s simulation context.</p>
 </dd></dl>
 
 <dl class="method">
@@ -173,13 +159,6 @@ initially existing agents are being setup.</p>
 above an other agent in the family tree).</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="cyclus.pyagents.NullInst.decision">
-<code class="descname">decision</code><a class="headerlink" href="#cyclus.pyagents.NullInst.decision" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function is called each time step and is meant to be
-overlaoded in the subclass.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="cyclus.pyagents.NullInst.decom_notify">
 <code class="descname">decom_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.NullInst.decom_notify" title="Permalink to this definition">¶</a></dt>
@@ -187,11 +166,11 @@ overlaoded in the subclass.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="cyclus.pyagents.NullInst.decommission">
-<code class="descname">decommission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.NullInst.decommission" title="Permalink to this definition">¶</a></dt>
+<dt id="cyclus.pyagents.NullInst.decomission">
+<code class="descname">decomission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.NullInst.decomission" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decommissions the agent, removing it from the simulation. Results in
 destruction of the agent object. If agents write their own decommission()
-function, they must call their superclass’ decommission function at the
+function, they must call their superclass&#8217; decommission function at the
 END of their decommission() function.</p>
 </dd></dl>
 
@@ -201,14 +180,14 @@ END of their decommission() function.</p>
 <dd><p>Called to give the agent an opportunity to register for services (e.g.
 ticks/tocks and resource exchange).  Note that this may be called more
 than once, and so agents should track their registrations carefully. If
-agents implement this function, they must call their superclass’s
+agents implement this function, they must call their superclass&#8217;s
 EnterNotify function at the BEGINNING of their EnterNotify function.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullInst.enter_time">
 <code class="descname">enter_time</code><a class="headerlink" href="#cyclus.pyagents.NullInst.enter_time" title="Permalink to this definition">¶</a></dt>
-<dd><p>The time step at which this agent’s Build function was called
+<dd><p>The time step at which this agent&#8217;s Build function was called
 (-1 if the agent has never been built).</p>
 </dd></dl>
 
@@ -222,7 +201,7 @@ EnterNotify function at the BEGINNING of their EnterNotify function.</p>
 <code class="descname">exit_time</code><a class="headerlink" href="#cyclus.pyagents.NullInst.exit_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>The default time step at which this agent will exit the
 simulation (-1 if the agent has an infinite lifetime).</p>
-<p>Decommissioning happens at the end of a time step. With a lifetime of 1, we
+<p>Decomissioning happens at the end of a time step. With a lifetime of 1, we
 expect an agent to go through only 1 entire time step. In this case, the
 agent should be decommissioned on the same time step it was
 created. Therefore, for agents with non-infinite lifetimes, the exit_time
@@ -232,7 +211,7 @@ will be the enter time plus its lifetime less 1.</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullInst.id">
 <code class="descname">id</code><a class="headerlink" href="#cyclus.pyagents.NullInst.id" title="Permalink to this definition">¶</a></dt>
-<dd><p>The agent instance’s unique ID within a simulation.</p>
+<dd><p>The agent instance&#8217;s unique ID within a simulation.</p>
 </dd></dl>
 
 <dl class="method">
@@ -290,11 +269,6 @@ Facility, etc.)</p>
 decommissioning (-1 if the agent has an infinite lifetime)</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="cyclus.pyagents.NullInst.lifetime_force">
-<code class="descname">lifetime_force</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.NullInst.lifetime_force" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullInst.niche">
 <code class="descname">niche</code><em class="property"> = None</em><a class="headerlink" href="#cyclus.pyagents.NullInst.niche" title="Permalink to this definition">¶</a></dt>
@@ -309,19 +283,19 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullInst.parent_id">
 <code class="descname">parent_id</code><a class="headerlink" href="#cyclus.pyagents.NullInst.parent_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>The id for this agent’s parent or -1 if this agent has no parent.</p>
+<dd><p>The id for this agent&#8217;s parent or -1 if this agent has no parent.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullInst.prototype">
 <code class="descname">prototype</code><a class="headerlink" href="#cyclus.pyagents.NullInst.prototype" title="Permalink to this definition">¶</a></dt>
-<dd><p>The agent’s prototype.</p>
+<dd><p>The agent&#8217;s prototype.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullInst.schema">
 <code class="descname">schema</code><a class="headerlink" href="#cyclus.pyagents.NullInst.schema" title="Permalink to this definition">¶</a></dt>
-<dd><p>“The class schema based on the state variables.</p>
+<dd><p>&#8220;The class schema based on the state variables.</p>
 </dd></dl>
 
 <dl class="method">
@@ -345,19 +319,19 @@ users may choose to override it in exceptional cases.</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullInst.spec">
 <code class="descname">spec</code><a class="headerlink" href="#cyclus.pyagents.NullInst.spec" title="Permalink to this definition">¶</a></dt>
-<dd><p>The agent’s spec.</p>
+<dd><p>The agent&#8217;s spec.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.NullInst.tick">
-<code class="descname">tick</code><a class="headerlink" href="#cyclus.pyagents.NullInst.tick" title="Permalink to this definition">¶</a></dt>
+<code class="descname">tick</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.NullInst.tick" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function is called each time step and is meant to be
 overlaoded in the subclass.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.NullInst.tock">
-<code class="descname">tock</code><a class="headerlink" href="#cyclus.pyagents.NullInst.tock" title="Permalink to this definition">¶</a></dt>
+<code class="descname">tock</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.NullInst.tock" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function is called each time step and is meant to be
 overlaoded in the subclass.</p>
 </dd></dl>
@@ -428,7 +402,7 @@ above an other agent in the family tree).</p>
 <dd><p>Called when the agent enters the smiulation as an active participant and
 is only ever called once.  Agents should NOT register for services (such
 as ticks/tocks and resource exchange) in this function. If agents implement
-this function, they must call their superclass’ Build function at the
+this function, they must call their superclass&#8217; Build function at the
 BEGINING of their Build function.</p>
 </dd></dl>
 
@@ -455,7 +429,7 @@ initially existing agents are being setup.</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullRegion.context">
 <code class="descname">context</code><a class="headerlink" href="#cyclus.pyagents.NullRegion.context" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this agent’s simulation context.</p>
+<dd><p>Returns this agent&#8217;s simulation context.</p>
 </dd></dl>
 
 <dl class="method">
@@ -465,13 +439,6 @@ initially existing agents are being setup.</p>
 above an other agent in the family tree).</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="cyclus.pyagents.NullRegion.decision">
-<code class="descname">decision</code><a class="headerlink" href="#cyclus.pyagents.NullRegion.decision" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function is called each time step and is meant to be
-overlaoded in the subclass.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="cyclus.pyagents.NullRegion.decom_notify">
 <code class="descname">decom_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.NullRegion.decom_notify" title="Permalink to this definition">¶</a></dt>
@@ -479,11 +446,11 @@ overlaoded in the subclass.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="cyclus.pyagents.NullRegion.decommission">
-<code class="descname">decommission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.NullRegion.decommission" title="Permalink to this definition">¶</a></dt>
+<dt id="cyclus.pyagents.NullRegion.decomission">
+<code class="descname">decomission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.NullRegion.decomission" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decommissions the agent, removing it from the simulation. Results in
 destruction of the agent object. If agents write their own decommission()
-function, they must call their superclass’ decommission function at the
+function, they must call their superclass&#8217; decommission function at the
 END of their decommission() function.</p>
 </dd></dl>
 
@@ -493,14 +460,14 @@ END of their decommission() function.</p>
 <dd><p>Called to give the agent an opportunity to register for services (e.g.
 ticks/tocks and resource exchange).  Note that this may be called more
 than once, and so agents should track their registrations carefully. If
-agents implement this function, they must call their superclass’s
+agents implement this function, they must call their superclass&#8217;s
 EnterNotify function at the BEGINNING of their EnterNotify function.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullRegion.enter_time">
 <code class="descname">enter_time</code><a class="headerlink" href="#cyclus.pyagents.NullRegion.enter_time" title="Permalink to this definition">¶</a></dt>
-<dd><p>The time step at which this agent’s Build function was called
+<dd><p>The time step at which this agent&#8217;s Build function was called
 (-1 if the agent has never been built).</p>
 </dd></dl>
 
@@ -514,7 +481,7 @@ EnterNotify function at the BEGINNING of their EnterNotify function.</p>
 <code class="descname">exit_time</code><a class="headerlink" href="#cyclus.pyagents.NullRegion.exit_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>The default time step at which this agent will exit the
 simulation (-1 if the agent has an infinite lifetime).</p>
-<p>Decommissioning happens at the end of a time step. With a lifetime of 1, we
+<p>Decomissioning happens at the end of a time step. With a lifetime of 1, we
 expect an agent to go through only 1 entire time step. In this case, the
 agent should be decommissioned on the same time step it was
 created. Therefore, for agents with non-infinite lifetimes, the exit_time
@@ -524,7 +491,7 @@ will be the enter time plus its lifetime less 1.</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullRegion.id">
 <code class="descname">id</code><a class="headerlink" href="#cyclus.pyagents.NullRegion.id" title="Permalink to this definition">¶</a></dt>
-<dd><p>The agent instance’s unique ID within a simulation.</p>
+<dd><p>The agent instance&#8217;s unique ID within a simulation.</p>
 </dd></dl>
 
 <dl class="method">
@@ -582,11 +549,6 @@ Facility, etc.)</p>
 decommissioning (-1 if the agent has an infinite lifetime)</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="cyclus.pyagents.NullRegion.lifetime_force">
-<code class="descname">lifetime_force</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.NullRegion.lifetime_force" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullRegion.niche">
 <code class="descname">niche</code><em class="property"> = None</em><a class="headerlink" href="#cyclus.pyagents.NullRegion.niche" title="Permalink to this definition">¶</a></dt>
@@ -601,19 +563,19 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullRegion.parent_id">
 <code class="descname">parent_id</code><a class="headerlink" href="#cyclus.pyagents.NullRegion.parent_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>The id for this agent’s parent or -1 if this agent has no parent.</p>
+<dd><p>The id for this agent&#8217;s parent or -1 if this agent has no parent.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullRegion.prototype">
 <code class="descname">prototype</code><a class="headerlink" href="#cyclus.pyagents.NullRegion.prototype" title="Permalink to this definition">¶</a></dt>
-<dd><p>The agent’s prototype.</p>
+<dd><p>The agent&#8217;s prototype.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullRegion.schema">
 <code class="descname">schema</code><a class="headerlink" href="#cyclus.pyagents.NullRegion.schema" title="Permalink to this definition">¶</a></dt>
-<dd><p>“The class schema based on the state variables.</p>
+<dd><p>&#8220;The class schema based on the state variables.</p>
 </dd></dl>
 
 <dl class="method">
@@ -637,19 +599,19 @@ users may choose to override it in exceptional cases.</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.NullRegion.spec">
 <code class="descname">spec</code><a class="headerlink" href="#cyclus.pyagents.NullRegion.spec" title="Permalink to this definition">¶</a></dt>
-<dd><p>The agent’s spec.</p>
+<dd><p>The agent&#8217;s spec.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.NullRegion.tick">
-<code class="descname">tick</code><a class="headerlink" href="#cyclus.pyagents.NullRegion.tick" title="Permalink to this definition">¶</a></dt>
+<code class="descname">tick</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.NullRegion.tick" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function is called each time step and is meant to be
 overlaoded in the subclass.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.NullRegion.tock">
-<code class="descname">tock</code><a class="headerlink" href="#cyclus.pyagents.NullRegion.tock" title="Permalink to this definition">¶</a></dt>
+<code class="descname">tock</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.NullRegion.tock" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function is called each time step and is meant to be
 overlaoded in the subclass.</p>
 </dd></dl>
@@ -730,7 +692,7 @@ above an other agent in the family tree).</p>
 <dd><p>Called when the agent enters the smiulation as an active participant and
 is only ever called once.  Agents should NOT register for services (such
 as ticks/tocks and resource exchange) in this function. If agents implement
-this function, they must call their superclass’ Build function at the
+this function, they must call their superclass&#8217; Build function at the
 BEGINING of their Build function.</p>
 </dd></dl>
 
@@ -748,12 +710,12 @@ initially existing agents are being setup.</p>
 <dd><p>State variable descriptor for double</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="cyclus.pyagents.Sink.check_decommission_condition">
-<code class="descname">check_decommission_condition</code><a class="headerlink" href="#cyclus.pyagents.Sink.check_decommission_condition" title="Permalink to this definition">¶</a></dt>
+<dl class="method">
+<dt id="cyclus.pyagents.Sink.check_decomission_condition">
+<code class="descname">check_decomission_condition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Sink.check_decomission_condition" title="Permalink to this definition">¶</a></dt>
 <dd><p>facilities over write this method if a condition must be met
 before their destructors can be called. Return True means that
-the facility is ready for decommission. False prevents decommission.</p>
+the facility is ready for decomission. False prevents decomission.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -771,7 +733,7 @@ the facility is ready for decommission. False prevents decommission.</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.Sink.context">
 <code class="descname">context</code><a class="headerlink" href="#cyclus.pyagents.Sink.context" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this agent’s simulation context.</p>
+<dd><p>Returns this agent&#8217;s simulation context.</p>
 </dd></dl>
 
 <dl class="method">
@@ -781,13 +743,6 @@ the facility is ready for decommission. False prevents decommission.</p>
 above an other agent in the family tree).</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="cyclus.pyagents.Sink.decision">
-<code class="descname">decision</code><a class="headerlink" href="#cyclus.pyagents.Sink.decision" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function is called each time step and is meant to be
-overlaoded in the subclass.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="cyclus.pyagents.Sink.decom_notify">
 <code class="descname">decom_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Sink.decom_notify" title="Permalink to this definition">¶</a></dt>
@@ -795,11 +750,11 @@ overlaoded in the subclass.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="cyclus.pyagents.Sink.decommission">
-<code class="descname">decommission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Sink.decommission" title="Permalink to this definition">¶</a></dt>
+<dt id="cyclus.pyagents.Sink.decomission">
+<code class="descname">decomission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Sink.decomission" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decommissions the agent, removing it from the simulation. Results in
 destruction of the agent object. If agents write their own decommission()
-function, they must call their superclass’ decommission function at the
+function, they must call their superclass&#8217; decommission function at the
 END of their decommission() function.</p>
 </dd></dl>
 
@@ -809,14 +764,14 @@ END of their decommission() function.</p>
 <dd><p>Called to give the agent an opportunity to register for services (e.g.
 ticks/tocks and resource exchange).  Note that this may be called more
 than once, and so agents should track their registrations carefully. If
-agents implement this function, they must call their superclass’s
+agents implement this function, they must call their superclass&#8217;s
 EnterNotify function at the BEGINNING of their EnterNotify function.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="cyclus.pyagents.Sink.enter_time">
 <code class="descname">enter_time</code><a class="headerlink" href="#cyclus.pyagents.Sink.enter_time" title="Permalink to this definition">¶</a></dt>
-<dd><p>The time step at which this agent’s Build function was called
+<dd><p>The time step at which this agent&#8217;s Build function was called
 (-1 if the agent has never been built).</p>
 </dd></dl>
 
@@ -830,16 +785,16 @@ EnterNotify function at the BEGINNING of their EnterNotify function.</p>
 <code class="descname">exit_time</code><a class="headerlink" href="#cyclus.pyagents.Sink.exit_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>The default time step at which this agent will exit the
 simulation (-1 if the agent has an infinite lifetime).</p>
-<p>Decommissioning happens at the end of a time step. With a lifetime of 1, we
+<p>Decomissioning happens at the end of a time step. With a lifetime of 1, we
 expect an agent to go through only 1 entire time step. In this case, the
 agent should be decommissioned on the same time step it was
 created. Therefore, for agents with non-infinite lifetimes, the exit_time
 will be the enter time plus its lifetime less 1.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.Sink.get_material_bids">
-<code class="descname">get_material_bids</code><a class="headerlink" href="#cyclus.pyagents.Sink.get_material_bids" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_material_bids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Sink.get_material_bids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns material bids for this agent on this time step.
 This may be overridden is subclasses.</p>
 </dd></dl>
@@ -849,15 +804,15 @@ This may be overridden is subclasses.</p>
 <code class="descname">get_material_requests</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Sink.get_material_requests" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.Sink.get_material_trades">
-<code class="descname">get_material_trades</code><a class="headerlink" href="#cyclus.pyagents.Sink.get_material_trades" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_material_trades</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Sink.get_material_trades" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implementation for responding to material trades.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.Sink.get_product_bids">
-<code class="descname">get_product_bids</code><a class="headerlink" href="#cyclus.pyagents.Sink.get_product_bids" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_product_bids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Sink.get_product_bids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns product bids for this agent on this time step.
 This may be overridden is subclasses.</p>
 </dd></dl>
@@ -867,16 +822,16 @@ This may be overridden is subclasses.</p>
 <code class="descname">get_product_requests</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Sink.get_product_requests" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.Sink.get_product_trades">
-<code class="descname">get_product_trades</code><a class="headerlink" href="#cyclus.pyagents.Sink.get_product_trades" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_product_trades</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Sink.get_product_trades" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implementation for responding to product trades.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="cyclus.pyagents.Sink.id">
 <code class="descname">id</code><a class="headerlink" href="#cyclus.pyagents.Sink.id" title="Permalink to this definition">¶</a></dt>
-<dd><p>The agent instance’s unique ID within a simulation.</p>
+<dd><p>The agent instance&#8217;s unique ID within a simulation.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -946,11 +901,6 @@ Facility, etc.)</p>
 decommissioning (-1 if the agent has an infinite lifetime)</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="cyclus.pyagents.Sink.lifetime_force">
-<code class="descname">lifetime_force</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Sink.lifetime_force" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="attribute">
 <dt id="cyclus.pyagents.Sink.max_inv_size">
 <code class="descname">max_inv_size</code><a class="headerlink" href="#cyclus.pyagents.Sink.max_inv_size" title="Permalink to this definition">¶</a></dt>
@@ -971,13 +921,13 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.Sink.parent_id">
 <code class="descname">parent_id</code><a class="headerlink" href="#cyclus.pyagents.Sink.parent_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>The id for this agent’s parent or -1 if this agent has no parent.</p>
+<dd><p>The id for this agent&#8217;s parent or -1 if this agent has no parent.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="cyclus.pyagents.Sink.prototype">
 <code class="descname">prototype</code><a class="headerlink" href="#cyclus.pyagents.Sink.prototype" title="Permalink to this definition">¶</a></dt>
-<dd><p>The agent’s prototype.</p>
+<dd><p>The agent&#8217;s prototype.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -989,7 +939,7 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.Sink.schema">
 <code class="descname">schema</code><a class="headerlink" href="#cyclus.pyagents.Sink.schema" title="Permalink to this definition">¶</a></dt>
-<dd><p>“The class schema based on the state variables.</p>
+<dd><p>&#8220;The class schema based on the state variables.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1013,19 +963,19 @@ users may choose to override it in exceptional cases.</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.Sink.spec">
 <code class="descname">spec</code><a class="headerlink" href="#cyclus.pyagents.Sink.spec" title="Permalink to this definition">¶</a></dt>
-<dd><p>The agent’s spec.</p>
+<dd><p>The agent&#8217;s spec.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.Sink.tick">
-<code class="descname">tick</code><a class="headerlink" href="#cyclus.pyagents.Sink.tick" title="Permalink to this definition">¶</a></dt>
+<code class="descname">tick</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Sink.tick" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function is called each time step and is meant to be
 overlaoded in the subclass.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.Sink.tock">
-<code class="descname">tock</code><a class="headerlink" href="#cyclus.pyagents.Sink.tock" title="Permalink to this definition">¶</a></dt>
+<code class="descname">tock</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Sink.tock" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function is called each time step and is meant to be
 overlaoded in the subclass.</p>
 </dd></dl>
@@ -1061,15 +1011,15 @@ a custom version string.</p>
 <em class="property">class </em><code class="descclassname">cyclus.pyagents.</code><code class="descname">Source</code><a class="headerlink" href="#cyclus.pyagents.Source" title="Permalink to this definition">¶</a></dt>
 <dd><p>A minimum implementation source facility that provides a commodity with
 a given capacity.</p>
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.Source.accept_material_trades">
-<code class="descname">accept_material_trades</code><a class="headerlink" href="#cyclus.pyagents.Source.accept_material_trades" title="Permalink to this definition">¶</a></dt>
+<code class="descname">accept_material_trades</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Source.accept_material_trades" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method for accepting materials from a trade deal.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.Source.accept_product_trades">
-<code class="descname">accept_product_trades</code><a class="headerlink" href="#cyclus.pyagents.Source.accept_product_trades" title="Permalink to this definition">¶</a></dt>
+<code class="descname">accept_product_trades</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Source.accept_product_trades" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method for accepting products from a trade deal.</p>
 </dd></dl>
 
@@ -1122,12 +1072,12 @@ initially existing agents are being setup.</p>
 <dd><p>State variable descriptor for double</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="cyclus.pyagents.Source.check_decommission_condition">
-<code class="descname">check_decommission_condition</code><a class="headerlink" href="#cyclus.pyagents.Source.check_decommission_condition" title="Permalink to this definition">¶</a></dt>
+<dl class="method">
+<dt id="cyclus.pyagents.Source.check_decomission_condition">
+<code class="descname">check_decomission_condition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Source.check_decomission_condition" title="Permalink to this definition">¶</a></dt>
 <dd><p>facilities over write this method if a condition must be met
 before their destructors can be called. Return True means that
-the facility is ready for decommission. False prevents decommission.</p>
+the facility is ready for decomission. False prevents decomission.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -1151,7 +1101,7 @@ the facility is ready for decommission. False prevents decommission.</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.Source.context">
 <code class="descname">context</code><a class="headerlink" href="#cyclus.pyagents.Source.context" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this agent’s simulation context.</p>
+<dd><p>Returns this agent&#8217;s simulation context.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1161,13 +1111,6 @@ the facility is ready for decommission. False prevents decommission.</p>
 above an other agent in the family tree).</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="cyclus.pyagents.Source.decision">
-<code class="descname">decision</code><a class="headerlink" href="#cyclus.pyagents.Source.decision" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function is called each time step and is meant to be
-overlaoded in the subclass.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="cyclus.pyagents.Source.decom_notify">
 <code class="descname">decom_notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Source.decom_notify" title="Permalink to this definition">¶</a></dt>
@@ -1175,11 +1118,11 @@ overlaoded in the subclass.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="cyclus.pyagents.Source.decommission">
-<code class="descname">decommission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Source.decommission" title="Permalink to this definition">¶</a></dt>
+<dt id="cyclus.pyagents.Source.decomission">
+<code class="descname">decomission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Source.decomission" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decommissions the agent, removing it from the simulation. Results in
 destruction of the agent object. If agents write their own decommission()
-function, they must call their superclass’ decommission function at the
+function, they must call their superclass&#8217; decommission function at the
 END of their decommission() function.</p>
 </dd></dl>
 
@@ -1189,14 +1132,14 @@ END of their decommission() function.</p>
 <dd><p>Called to give the agent an opportunity to register for services (e.g.
 ticks/tocks and resource exchange).  Note that this may be called more
 than once, and so agents should track their registrations carefully. If
-agents implement this function, they must call their superclass’s
+agents implement this function, they must call their superclass&#8217;s
 EnterNotify function at the BEGINNING of their EnterNotify function.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="cyclus.pyagents.Source.enter_time">
 <code class="descname">enter_time</code><a class="headerlink" href="#cyclus.pyagents.Source.enter_time" title="Permalink to this definition">¶</a></dt>
-<dd><p>The time step at which this agent’s Build function was called
+<dd><p>The time step at which this agent&#8217;s Build function was called
 (-1 if the agent has never been built).</p>
 </dd></dl>
 
@@ -1210,7 +1153,7 @@ EnterNotify function at the BEGINNING of their EnterNotify function.</p>
 <code class="descname">exit_time</code><a class="headerlink" href="#cyclus.pyagents.Source.exit_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>The default time step at which this agent will exit the
 simulation (-1 if the agent has an infinite lifetime).</p>
-<p>Decommissioning happens at the end of a time step. With a lifetime of 1, we
+<p>Decomissioning happens at the end of a time step. With a lifetime of 1, we
 expect an agent to go through only 1 entire time step. In this case, the
 agent should be decommissioned on the same time step it was
 created. Therefore, for agents with non-infinite lifetimes, the exit_time
@@ -1222,9 +1165,9 @@ will be the enter time plus its lifetime less 1.</p>
 <code class="descname">get_material_bids</code><span class="sig-paren">(</span><em>requests</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Source.get_material_bids" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.Source.get_material_requests">
-<code class="descname">get_material_requests</code><a class="headerlink" href="#cyclus.pyagents.Source.get_material_requests" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_material_requests</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Source.get_material_requests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns material requests for this agent on this time step.
 This is meant to be overridden is subclasses.</p>
 </dd></dl>
@@ -1234,30 +1177,30 @@ This is meant to be overridden is subclasses.</p>
 <code class="descname">get_material_trades</code><span class="sig-paren">(</span><em>trades</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Source.get_material_trades" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.Source.get_product_bids">
-<code class="descname">get_product_bids</code><a class="headerlink" href="#cyclus.pyagents.Source.get_product_bids" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_product_bids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Source.get_product_bids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns product bids for this agent on this time step.
 This may be overridden is subclasses.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.Source.get_product_requests">
-<code class="descname">get_product_requests</code><a class="headerlink" href="#cyclus.pyagents.Source.get_product_requests" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_product_requests</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Source.get_product_requests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns product requests for this agent on this time step.
 This is meant to be overridden is subclasses.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.Source.get_product_trades">
-<code class="descname">get_product_trades</code><a class="headerlink" href="#cyclus.pyagents.Source.get_product_trades" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_product_trades</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Source.get_product_trades" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implementation for responding to product trades.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="cyclus.pyagents.Source.id">
 <code class="descname">id</code><a class="headerlink" href="#cyclus.pyagents.Source.id" title="Permalink to this definition">¶</a></dt>
-<dd><p>The agent instance’s unique ID within a simulation.</p>
+<dd><p>The agent instance&#8217;s unique ID within a simulation.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1315,11 +1258,6 @@ Facility, etc.)</p>
 decommissioning (-1 if the agent has an infinite lifetime)</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="cyclus.pyagents.Source.lifetime_force">
-<code class="descname">lifetime_force</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Source.lifetime_force" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="attribute">
 <dt id="cyclus.pyagents.Source.niche">
 <code class="descname">niche</code><em class="property"> = None</em><a class="headerlink" href="#cyclus.pyagents.Source.niche" title="Permalink to this definition">¶</a></dt>
@@ -1334,13 +1272,13 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.Source.parent_id">
 <code class="descname">parent_id</code><a class="headerlink" href="#cyclus.pyagents.Source.parent_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>The id for this agent’s parent or -1 if this agent has no parent.</p>
+<dd><p>The id for this agent&#8217;s parent or -1 if this agent has no parent.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="cyclus.pyagents.Source.prototype">
 <code class="descname">prototype</code><a class="headerlink" href="#cyclus.pyagents.Source.prototype" title="Permalink to this definition">¶</a></dt>
-<dd><p>The agent’s prototype.</p>
+<dd><p>The agent&#8217;s prototype.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -1352,7 +1290,7 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.Source.schema">
 <code class="descname">schema</code><a class="headerlink" href="#cyclus.pyagents.Source.schema" title="Permalink to this definition">¶</a></dt>
-<dd><p>“The class schema based on the state variables.</p>
+<dd><p>&#8220;The class schema based on the state variables.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1376,19 +1314,19 @@ users may choose to override it in exceptional cases.</p>
 <dl class="attribute">
 <dt id="cyclus.pyagents.Source.spec">
 <code class="descname">spec</code><a class="headerlink" href="#cyclus.pyagents.Source.spec" title="Permalink to this definition">¶</a></dt>
-<dd><p>The agent’s spec.</p>
+<dd><p>The agent&#8217;s spec.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.Source.tick">
-<code class="descname">tick</code><a class="headerlink" href="#cyclus.pyagents.Source.tick" title="Permalink to this definition">¶</a></dt>
+<code class="descname">tick</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Source.tick" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function is called each time step and is meant to be
 overlaoded in the subclass.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="cyclus.pyagents.Source.tock">
-<code class="descname">tock</code><a class="headerlink" href="#cyclus.pyagents.Source.tock" title="Permalink to this definition">¶</a></dt>
+<code class="descname">tock</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.pyagents.Source.tock" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function is called each time step and is meant to be
 overlaoded in the subclass.</p>
 </dd></dl>
@@ -1499,23 +1437,6 @@ a custom version string.</p>
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -1541,7 +1462,7 @@ a custom version string.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

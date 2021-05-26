@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Adding Resource Buffers &#8212; Home</title>
+    
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,24 +27,9 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -65,7 +51,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -129,7 +115,7 @@ as a state variable, so we instead have to use the <code class="docutils literal
 variables we have already applied to the storage class.</p>
 <p><strong>~/tutorial/tut/agents.py:</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cyclus.agents</span> <span class="kn">import</span> <span class="n">Facility</span>
-<span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
+<span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="kn">as</span> <span class="nn">ts</span>
 
 
 <span class="k">class</span> <span class="nc">Storage</span><span class="p">(</span><span class="n">Facility</span><span class="p">):</span>
@@ -140,7 +126,7 @@ variables we have already applied to the storage class.</p>
 </pre></div>
 </div>
 <p>This creates a state variable named <code class="docutils literal"><span class="pre">inventory</span></code> that is based on the
-<code class="docutils literal"><span class="pre">ResBuf</span></code> class.  We’ll explain how buffers
+<code class="docutils literal"><span class="pre">ResBuf</span></code> class.  We&#8217;ll explain how buffers
 work in just a moment.  A ResBuf object and its <code class="docutils literal"><span class="pre">ts.Inventory</span></code> state var has special
 handling by the Python <code class="docutils literal"><span class="pre">Agent</span></code> class from which <code class="docutils literal"><span class="pre">Facility</span></code> inherits. It will not appear
 in the schema and therefore will not appear in the Cycic UI either.</p>
@@ -338,7 +324,7 @@ a certain value. The only way for material to enter the facility is through the
 <code class="docutils literal"><span class="pre">input</span></code> ResBuff.</p>
 <div class="figure align-center" id="id2">
 <img alt="../../_images/storage_capacity1.svg" src="../../_images/storage_capacity1.svg" /><p class="caption"><span class="caption-text"><strong>Figure:</strong> Storage buffers between two time steps. The total capacity is
-represented by the area of all three boxes. The <code class="docutils literal"><span class="pre">input</span></code> buffer’s capacity
+represented by the area of all three boxes. The <code class="docutils literal"><span class="pre">input</span></code> buffer&#8217;s capacity
 must be updated to reflect how much material is in both the <code class="docutils literal"><span class="pre">inventory</span></code>
 and <code class="docutils literal"><span class="pre">output</span></code> buffers. The colored arrows on the right match the material
 flows in the previous figure.</span></p>
@@ -382,7 +368,7 @@ the end of the <code class="docutils literal"><span class="pre">config</span></c
 </div>
 <p>Note that this capacity is smaller than the throughput! What do you think you
 will see in the output logs?</p>
-<p>Try it out (don’t forget to delete the old sqlite file first)!</p>
+<p>Try it out (don&#8217;t forget to delete the old sqlite file first)!</p>
 </div>
 </div>
 </div>
@@ -395,7 +381,7 @@ will see in the output logs?</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        </a></p><div class="sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Adding Resource Buffers</a><ul>
@@ -488,23 +474,6 @@ will see in the output logs?</p>
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -534,7 +503,7 @@ will see in the output logs?</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

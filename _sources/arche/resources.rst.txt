@@ -55,7 +55,7 @@ terms of the ``cyclus::Resource`` superclass.  So it will sometimes be
 necessary to cast down to the appropriate resource subclass.  |Cyclus| provides
 an overloaded ResCast function for casting convenience:
 
-**C++:**
+**C++*:*
 
 .. code-block:: c++
 

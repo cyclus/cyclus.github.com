@@ -1,22 +1,23 @@
 
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Hello, Cyclus! [Python] &#8212; Home</title>
+    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
+        VERSION:     '(999999.999999)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -26,24 +27,9 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-    
-     
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script type="text/javascript" src="../_static/cloud.js"></script>
-    
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -65,7 +51,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body>
+  <body role="document">
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -117,8 +103,8 @@ anf write the following:</p>
 </div>
 <p>And that is it! The above is a fully-functional <span style="font-variant:small-caps;">Cyclus</span> facility.</p>
 <hr class="docutils" />
-<p>Let’s now change the behavior of the MyFacility’s <code class="docutils literal"><span class="pre">tick()</span></code> and
-<code class="docutils literal"><span class="pre">tock()</span></code> methods to print “Hello” and “World” respectively.</p>
+<p>Let&#8217;s now change the behavior of the MyFacility&#8217;s <code class="docutils literal"><span class="pre">tick()</span></code> and
+<code class="docutils literal"><span class="pre">tock()</span></code> methods to print &#8220;Hello&#8221; and &#8220;World&#8221; respectively.</p>
 <p><strong>proj/agents.py:</strong></p>
 <div class="highlight-Python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cyclus.agents</span> <span class="kn">import</span> <span class="n">Facility</span>
 
@@ -126,10 +112,10 @@ anf write the following:</p>
     <span class="sd">&quot;&quot;&quot;My first Cyclus archetype!&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello,&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Hello,&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">tock</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;World!&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;World!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now that we have altered the behavior of the TutorialFacility, reinstall the project
@@ -145,7 +131,7 @@ name section of the spec.</p>
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>Let’s run <span style="font-variant:small-caps;">Cyclus</span> with this example! In the input directory there is
+<p>Let&#8217;s run <span style="font-variant:small-caps;">Cyclus</span> with this example! In the input directory there is
 an <code class="file docutils literal"><span class="pre">example.xml</span></code>. First modify it to point to the archetype we just wrote.
 Running <span style="font-variant:small-caps;">Cyclus</span> on this file with the command
 <code class="docutils literal"><span class="pre">cyclus</span> <span class="pre">input/example.xml</span></code> should produce the following output.</p>
@@ -203,8 +189,8 @@ Output location: cyclus.sqlite
 Simulation ID: 0ae730e0-a9a8-4576-afaa-d1db6399d5a2
 </pre></div>
 </div>
-<p>If you look in the input file you’ll see that the simulation duration was set
-to 10.  This is why “Hello, World!” is printed ten times.</p>
+<p>If you look in the input file you&#8217;ll see that the simulation duration was set
+to 10.  This is why &#8220;Hello, World!&#8221; is printed ten times.</p>
 </div>
 
 
@@ -290,23 +276,6 @@ to 10.  This is why “Hello, World!” is printed ten times.</p>
 
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -335,7 +304,7 @@ to 10.  This is why “Hello, World!” is printed ten times.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Apr 13, 2021.
+      Last updated on May 26, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
