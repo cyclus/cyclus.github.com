@@ -78,7 +78,7 @@ Learn More
 Try It -- Out-of-Service
 ------------------------
 
-The web-based capability to run Cyclus is out of service. Please check out our :doc:`user start guide <user/index>` to get other way to try Cyclus.
+The web-based capability to run Cyclus is out of service. Please check out our :doc:`user start guide <user/index>` to get other ways to try Cyclus.
 Feel free to reach out using our `Users' mailing list and forum <https://groups.google.com/forum/#!forum/cyclus-users>`_ if you need help.
 
 
