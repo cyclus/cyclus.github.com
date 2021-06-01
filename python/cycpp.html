@@ -1043,7 +1043,7 @@ from preprocessor line marker directives.</p>
 <a class="reference external" href="http://gcc.gnu.org/onlinedocs/cpp/Preprocessor-Output.html">http://gcc.gnu.org/onlinedocs/cpp/Preprocessor-Output.html</a></p>
 <dl class="attribute">
 <dt id="cyclus.cycpp.LinemarkerFilter.allowed_flags">
-<code class="descname">allowed_flags</code><em class="property"> = {'2', '1'}</em><a class="headerlink" href="#cyclus.cycpp.LinemarkerFilter.allowed_flags" title="Permalink to this definition">¶</a></dt>
+<code class="descname">allowed_flags</code><em class="property"> = {'1', '2'}</em><a class="headerlink" href="#cyclus.cycpp.LinemarkerFilter.allowed_flags" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1197,7 +1197,7 @@ annotations dict.</p>
 
 <dl class="attribute">
 <dt id="cyclus.cycpp.PragmaCyclusErrorFilter.directives">
-<code class="descname">directives</code><em class="property"> = frozenset({'def', 'impl', 'exec', 'decl', 'var', 'note'})</em><a class="headerlink" href="#cyclus.cycpp.PragmaCyclusErrorFilter.directives" title="Permalink to this definition">¶</a></dt>
+<code class="descname">directives</code><em class="property"> = frozenset({'def', 'decl', 'exec', 'impl', 'var', 'note'})</em><a class="headerlink" href="#cyclus.cycpp.PragmaCyclusErrorFilter.directives" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1287,7 +1287,7 @@ In either case, this is followed by: for k, v in F.items(): D[k] = v</p>
 #pragma cyclus [def|decl|impl] schema [classname]</p>
 <dl class="attribute">
 <dt id="cyclus.cycpp.SchemaFilter.alltypes">
-<code class="descname">alltypes</code><em class="property"> = frozenset({'long', 'NOTATION', 'token', 'unsignedByte', 'double', 'gYearMonth', 'IDREF', 'ENTITIES', 'base64Binary', 'ENTITY', 'nonNegativeInteger', 'anySimpleType', 'positiveInteger', 'ID', 'unsignedInt', 'short', 'hexBinary', 'boolean', 'integer', 'Name', 'dateTime', 'normalizedString', 'NMTOKENS', 'int', 'decimal', 'nonPositiveInteger', 'anyType', 'unsignedLong', 'gMonth', 'string', 'unsignedShort', 'anyURI', 'gMonthDay', 'float', 'time', 'gYear', 'byte', 'language', 'NMTOKEN', 'NCName', 'negativeInteger', 'QName', 'duration', 'gDay', 'IDREFS', 'date'})</em><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.alltypes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">alltypes</code><em class="property"> = frozenset({'nonPositiveInteger', 'float', 'NOTATION', 'nonNegativeInteger', 'byte', 'gYearMonth', 'short', 'date', 'Name', 'ID', 'NCName', 'base64Binary', 'anySimpleType', 'QName', 'anyURI', 'IDREF', 'unsignedLong', 'duration', 'NMTOKEN', 'boolean', 'double', 'hexBinary', 'normalizedString', 'token', 'ENTITY', 'gYear', 'unsignedByte', 'positiveInteger', 'unsignedInt', 'gMonthDay', 'dateTime', 'gDay', 'decimal', 'NMTOKENS', 'negativeInteger', 'unsignedShort', 'time', 'string', 'ENTITIES', 'integer', 'int', 'anyType', 'long', 'language', 'IDREFS', 'gMonth'})</em><a class="headerlink" href="#cyclus.cycpp.SchemaFilter.alltypes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1612,7 +1612,7 @@ The name argument here is provided for debugging &amp; reporting purposes.</p>
 
 <dl class="attribute">
 <dt id="cyclus.cycpp.StateAccumulator.supported_types">
-<code class="descname">supported_types</code><em class="property"> = {'cyclus::toolkit::ResMap', ('cyclus::toolkit::ResBuf', 'cyclus::Material'), ('cyclus::toolkit::ResBuf', 'cyclus::Product'), 'cyclus::Resource', 'float', 'double', 'bool', 'int', 'cyclus::Blob', 'cyclus::Material', 'cyclus::toolkit::ResourceBuff', ('cyclus::toolkit::ResBuf', 'cyclus::Resource'), 'cyclus::toolkit::ResBuf', 'cyclus::Product', 'boost::uuids::uuid', 'std::string'}</em><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.supported_types" title="Permalink to this definition">¶</a></dt>
+<code class="descname">supported_types</code><em class="property"> = {'boost::uuids::uuid', ('cyclus::toolkit::ResBuf', 'cyclus::Material'), 'double', 'std::string', 'float', 'int', 'bool', ('cyclus::toolkit::ResBuf', 'cyclus::Product'), 'cyclus::Resource', ('cyclus::toolkit::ResBuf', 'cyclus::Resource'), 'cyclus::Blob', 'cyclus::Product', 'cyclus::toolkit::ResMap', 'cyclus::toolkit::ResBuf', 'cyclus::toolkit::ResourceBuff', 'cyclus::Material'}</em><a class="headerlink" href="#cyclus.cycpp.StateAccumulator.supported_types" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
