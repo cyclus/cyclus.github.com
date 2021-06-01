@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>cycpp &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -113,7 +127,7 @@ following handy table!</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">var:</th><td class="field-body">Add the following C++ statement as an Agent&#8217;s state variable. There is
+<tr class="field-odd field"><th class="field-name">var:</th><td class="field-body">Add the following C++ statement as an Agent’s state variable. There is
 one argument which must be a Python expression that evaluates to
 a dictionary or other Mapping.</td>
 </tr>
@@ -140,12 +154,12 @@ library. It requires Python 2.7+ or Python 3.3+ to run.</p>
 <dl class="function">
 <dt id="cycpp.prepare_type">
 <code class="descclassname">cycpp.</code><code class="descname">prepare_type</code><span class="sig-paren">(</span><em>cpptype</em>, <em>othertype</em><span class="sig-paren">)</span><a class="headerlink" href="#cycpp.prepare_type" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates othertype to conform to the length of cpptype using None&#8217;s.</p>
+<dd><p>Updates othertype to conform to the length of cpptype using None’s.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="cycpp.preprocess_file">
-<code class="descclassname">cycpp.</code><code class="descname">preprocess_file</code><span class="sig-paren">(</span><em>filename</em>, <em>includes=()</em>, <em>cpp_path='cpp'</em>, <em>cpp_args=('-xc++'</em>, <em>'-pipe'</em>, <em>'-E'</em>, <em>'-DCYCPP')</em><span class="sig-paren">)</span><a class="headerlink" href="#cycpp.preprocess_file" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">cycpp.</code><code class="descname">preprocess_file</code><span class="sig-paren">(</span><em>filename</em>, <em>includes=()</em>, <em>cpp_path='/home/amandabachmann/anaconda3/envs/cyclus-env/bin/x86_64-conda-linux-gnu-cpp'</em>, <em>cpp_args=('-xc++'</em>, <em>'-pipe'</em>, <em>'-E'</em>, <em>'-DCYCPP')</em><span class="sig-paren">)</span><a class="headerlink" href="#cycpp.preprocess_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Preprocess a file using cpp.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -393,7 +407,7 @@ The name argument here is provided for debugging &amp; reporting purposes.</p>
 <dt id="cycpp.StateAccumulator.canonize_shape">
 <code class="descname">canonize_shape</code><span class="sig-paren">(</span><em>ann_dict</em><span class="sig-paren">)</span><a class="headerlink" href="#cycpp.StateAccumulator.canonize_shape" title="Permalink to this definition">¶</a></dt>
 <dd><p>This canonizes a shape. We take a look at the current shape, and
-standardize its format if necessary. We append -1&#8217;s to the shape if
+standardize its format if necessary. We append -1’s to the shape if
 its length does not match our expected length. Returns the new shape
 or raises an error if the given shape was longer than expected.</p>
 </dd></dl>
@@ -552,7 +566,7 @@ which are fed into a code generator. The new file is returned.</p>
 <dl class="function">
 <dt id="cycpp.parse_template">
 <code class="descclassname">cycpp.</code><code class="descname">parse_template</code><span class="sig-paren">(</span><em>s</em>, <em>open_brace='&lt;'</em>, <em>close_brace='&gt;'</em>, <em>separator='</em>, <em>'</em><span class="sig-paren">)</span><a class="headerlink" href="#cycpp.parse_template" title="Permalink to this definition">¶</a></dt>
-<dd><p>Takes a string &#8211; which may represent a template specialization &#8211; and
+<dd><p>Takes a string – which may represent a template specialization – and
 returns the corresponding type.</p>
 <p>It calls parse_arg to return the type(s) for any template arguments the
 type may have. For example:</p>
@@ -679,6 +693,23 @@ parents of any other class in query_set</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -707,7 +738,7 @@ parents of any other class in query_set</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

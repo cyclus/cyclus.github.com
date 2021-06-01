@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Making Input Files &#8212; Home</title>
-    
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -104,13 +118,13 @@ minimum information needed to get up and running with the Storage archetype.</p>
 <p>The goal of this basic input file is to create the following facility set up.</p>
 <div class="figure align-center" id="id4">
 <a class="reference internal image-reference" href="../../_images/simple_cycle.svg"><img alt="../../_images/simple_cycle.svg" src="../../_images/simple_cycle.svg" width="80%" /></a>
-<p class="caption"><span class="caption-text"><strong>Figure:</strong> The target &#8220;cycle&#8221;.</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure:</strong> The target “cycle”.</span></p>
 </div>
-<p>Let&#8217;s start with very simple dynamics, where the <code class="docutils literal"><span class="pre">Source</span></code> can send one unit of
+<p>Let’s start with very simple dynamics, where the <code class="docutils literal"><span class="pre">Source</span></code> can send one unit of
 fuel per time step, the <code class="docutils literal"><span class="pre">Sink</span></code> can take one unit of fuel per time step, and
 the <code class="docutils literal"><span class="pre">Storage</span></code> stores fuel for one time step.</p>
 <p>First, make a new input file</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cp input/storage.xml input/basic.xml
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cp input/storage.xml input/basic.xml
 </pre></div>
 </div>
 <p>and open it with your favorite text editor.</p>
@@ -167,8 +181,8 @@ pages.</p>
 minimum, supply an entry for <code class="docutils literal"><span class="pre">&lt;commod/&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;capacity/&gt;</span></code>. This prototype
 will also include a <code class="docutils literal"><span class="pre">&lt;recipe_name/&gt;</span></code> entry. In this example, you want the
 source facility to supply one unit of fuel per time step and you want it to be
-connected to the <code class="docutils literal"><span class="pre">incommod</span></code> of the Storage prototype. Finally, let&#8217;s name the
-Source &#8220;FuelSource&#8221;.</p>
+connected to the <code class="docutils literal"><span class="pre">incommod</span></code> of the Storage prototype. Finally, let’s name the
+Source “FuelSource”.</p>
 <p>Accordingly, add the following lines after the Storage prototype</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
   <span class="nt">&lt;name&gt;</span>FuelSource<span class="nt">&lt;/name&gt;</span>
@@ -189,7 +203,7 @@ Source &#8220;FuelSource&#8221;.</p>
 minimum, supply an entry in the <code class="docutils literal"><span class="pre">&lt;in_commod/&gt;</span></code> tag and a <code class="docutils literal"><span class="pre">&lt;capacity/&gt;</span></code>. We
 want a similar structure to the Source prototype, i.e., connection to the
 Storage prototype and a demand for one unit of fuel per time step. We can also
-name this Sink prototype &#8220;FuelSink&#8221;.</p>
+name this Sink prototype “FuelSink”.</p>
 <p>Accordingly, add the following lines after the Storage prototype</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
   <span class="nt">&lt;name&gt;</span>FuelSink<span class="nt">&lt;/name&gt;</span>
@@ -207,7 +221,7 @@ name this Sink prototype &#8220;FuelSink&#8221;.</p>
 </div>
 <div class="section" id="storage">
 <h4>Storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h4>
-<p>The Storage prototype is fine as it is. If you don&#8217;t like the name
+<p>The Storage prototype is fine as it is. If you don’t like the name
 <code class="docutils literal"><span class="pre">OneFacility</span></code>, however, you are free to replace it with something more fitting
 like <code class="docutils literal"><span class="pre">FuelStorage</span></code>.</p>
 <div class="admonition warning">
@@ -266,12 +280,12 @@ below the <code class="docutils literal"><span class="pre">OneFacility</span></c
 <div class="section" id="run-the-basic-file">
 <h2>Run the Basic File<a class="headerlink" href="#run-the-basic-file" title="Permalink to this headline">¶</a></h2>
 <p>Run the file with a slightly higher verbosity</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cyclus -v <span class="m">4</span> input/basic.xml
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus -v <span class="m">4</span> input/basic.xml
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">You&#8217;ll get more helpful information for this run by upping the verbosity
+<p class="last">You’ll get more helpful information for this run by upping the verbosity
 from <code class="docutils literal"><span class="pre">3</span></code> to <code class="docutils literal"><span class="pre">4</span></code>.</p>
 </div>
 <p>What output do you see? Are things working as expected?</p>
@@ -305,9 +319,9 @@ stored for the interim period.</p>
 capacity <span class="math">\(c\)</span>, and throughput <span class="math">\(\tau\)</span>, the following relation is true</p>
 <div class="math">
 \[t_s &lt; min(c, \tau)\]</div>
-<p>What happens when <span class="math">\(t_s &gt; min(c, \tau)\)</span>? Let&#8217;s find out!</p>
+<p>What happens when <span class="math">\(t_s &gt; min(c, \tau)\)</span>? Let’s find out!</p>
 <p>First, make a new input file</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cp input/basic.xml input/interesting.xml
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cp input/basic.xml input/interesting.xml
 </pre></div>
 </div>
 <p>and open it with your favorite text editor.</p>
@@ -328,7 +342,7 @@ capacity <span class="math">\(c\)</span>, and throughput <span class="math">\(\t
 <div class="section" id="run-the-interesting-file">
 <h2>Run the Interesting File<a class="headerlink" href="#run-the-interesting-file" title="Permalink to this headline">¶</a></h2>
 <p>Run the file</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cyclus -v <span class="m">4</span> input/interesting.xml
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus -v <span class="m">4</span> input/interesting.xml
 </pre></div>
 </div>
 <div class="section" id="exercise">
@@ -355,7 +369,7 @@ dynamics of this scenario.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Making Input Files</a><ul>
@@ -458,6 +472,23 @@ dynamics of this scenario.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -487,7 +518,7 @@ dynamics of this scenario.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>A Tour of Cycstub &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -91,8 +105,8 @@ three stub archetypes:</p>
 <li><code class="docutils literal"><span class="pre">StubInstitution</span></code></li>
 <li><code class="docutils literal"><span class="pre">StubRegion</span></code></li>
 </ul>
-<p>We will walk through <code class="docutils literal"><span class="pre">StubFacility</span></code>&#8216;s source specifically because its the
-most complicated of the three. Before we begin, though, let&#8217;s get a fresh copy
+<p>We will walk through <code class="docutils literal"><span class="pre">StubFacility</span></code>’s source specifically because its the
+most complicated of the three. Before we begin, though, let’s get a fresh copy
 of Cycstub (or follow along on the <a class="reference external" href="https://github.com/cyclus/cycstub">website</a>).</p>
 <p><strong>Getting cycstub via git:</strong></p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/cyclus/cycstub.git
@@ -106,12 +120,12 @@ $ mv cyclus-cycstub-* cycstub
 $ <span class="nb">cd</span> cycstub
 </pre></div>
 </div>
-<p>Feel free to <code class="docutils literal"><span class="pre">rm</span></code> the cycstub directory when we&#8217;re done (you can always get it
+<p>Feel free to <code class="docutils literal"><span class="pre">rm</span></code> the cycstub directory when we’re done (you can always get it
 back!).</p>
 <div class="section" id="stubfacility">
 <h2>StubFacility<a class="headerlink" href="#stubfacility" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal"><span class="pre">StubFacility</span></code> provides the minimal interface that an <a class="reference internal" href="../basics/glossary.html#term-archetype"><span class="xref std std-term">archetype</span></a>
-that derives from <code class="docutils literal"><span class="pre">cyclus::Facility</span></code> must provide. We&#8217;ll go through both the
+that derives from <code class="docutils literal"><span class="pre">cyclus::Facility</span></code> must provide. We’ll go through both the
 header (<code class="docutils literal"><span class="pre">h</span></code>) and implementation (<code class="docutils literal"><span class="pre">cc</span></code>) files in conjunction, starting at the
 top.</p>
 <p><code class="docutils literal"><span class="pre">stub_facility.h</span></code> has a single <span style="font-variant:small-caps;">Cyclus</span>-based include</p>
@@ -119,7 +133,7 @@ top.</p>
 </pre></div>
 </div>
 <p>which includes most <a class="reference internal" href="../basics/glossary.html#term-cyclus-kernel"><span class="xref std std-term">cyclus kernel</span></a> headers as a convenience for new
-<a class="reference internal" href="../basics/glossary.html#term-archetype-developer"><span class="xref std std-term">archetype developers</span></a>. You&#8217;re more than welcome to
+<a class="reference internal" href="../basics/glossary.html#term-archetype-developer"><span class="xref std std-term">archetype developers</span></a>. You’re more than welcome to
 include the specific kernel headers you need if you require a smaller
 executable.</p>
 <p>Moving on in the header file we come to the class declaration</p>
@@ -150,7 +164,7 @@ does with its <code class="docutils literal"><span class="pre">cyclus::Facility<
 preprocessor to autogenerate many member functions that are required for
 <span style="font-variant:small-caps;">Cyclus</span> features related to initialization and restart capabilities. For a
 further explanation, see <a class="reference internal" href="cycpp.html#cycpp"><span class="std std-ref">Using the Cyclus Preprocessor</span></a>.</p>
-<p>The next line in <code class="docutils literal"><span class="pre">stub_facility.h</span></code> is also related to the preprocessor&#8217;s
+<p>The next line in <code class="docutils literal"><span class="pre">stub_facility.h</span></code> is also related to the preprocessor’s
 ability to help automate some documentation:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus note {&quot;doc&quot;: &quot;A stub facility is provided as a skeleton &quot; \</span>
 <span class="cp">                            &quot;for the design of new facility agents.&quot;}</span>
@@ -179,7 +193,7 @@ levels, which is explained further in <a class="reference internal" href="logger
 <div class="section" id="tick">
 <h3>Tick<a class="headerlink" href="#tick" title="Permalink to this headline">¶</a></h3>
 <p>The declaration</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Tick</span><span class="p">();</span>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">virtual</span> <span class="kt">void</span> <span class="n">Tick</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>and implementation</p>
@@ -192,7 +206,7 @@ levels, which is explained further in <a class="reference internal" href="logger
 <div class="section" id="tock">
 <h3>Tock<a class="headerlink" href="#tock" title="Permalink to this headline">¶</a></h3>
 <p>The declaration</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Tock</span><span class="p">();</span>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">virtual</span> <span class="kt">void</span> <span class="n">Tock</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>and implementation</p>
@@ -213,7 +227,7 @@ levels, which is explained further in <a class="reference internal" href="logger
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">A Tour of Cycstub</a><ul>
@@ -302,6 +316,23 @@ levels, which is explained further in <a class="reference internal" href="logger
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -330,7 +361,7 @@ levels, which is explained further in <a class="reference internal" href="logger
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

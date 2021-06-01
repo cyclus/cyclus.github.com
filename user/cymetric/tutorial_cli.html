@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Cymetric Command Line Tutorial &#8212; Home</title>
-    
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -94,7 +108,7 @@ installation instructions are available on <a class="reference external" href="h
 and writing those metrics back to the database. This way, previously seen
 metrics are stored for later retrieval. The dependencies between metrics are
 automatically computed and evaluated.</p>
-<p>Without further ado, let&#8217;s dive in!</p>
+<p>Without further ado, let’s dive in!</p>
 <div class="section" id="command-line-usage">
 <h2>Command Line Usage<a class="headerlink" href="#command-line-usage" title="Permalink to this headline">¶</a></h2>
 <p>Cymetric ships with a command line utility, just called <code class="docutils literal"><span class="pre">cymetric</span></code>.
@@ -107,7 +121,7 @@ following:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ cymetric database -flags
 </pre></div>
 </div>
-<p>We&#8217;ll be using <code class="docutils literal"><span class="pre">test.h5</span></code> and <code class="docutils literal"><span class="pre">test.sqlite</span></code> as our example databases here.
+<p>We’ll be using <code class="docutils literal"><span class="pre">test.h5</span></code> and <code class="docutils literal"><span class="pre">test.sqlite</span></code> as our example databases here.
 The sections below explain the flags for use on the command line.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -118,7 +132,7 @@ The sections below explain the flags for use on the command line.</p>
 <p>The first switch here, lowercase-L <code class="docutils literal"><span class="pre">-l</span></code>, simply lists the tables in the
 database.  Note that this may list more tables in the database than are
 strictly part of the <span style="font-variant:small-caps;">Cyclus</span> interface, because of the need for <span style="font-variant:small-caps;">Cyclus</span> to
-store metadata. Don&#8217;t be alarmed. Listing the current tables is easy:</p>
+store metadata. Don’t be alarmed. Listing the current tables is easy:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ cymetric test.h5 -l
 AgentEntry
 AgentStateAgent
@@ -175,7 +189,7 @@ can use. Indexing the table variables will return the metric as a <a class="refe
 <p>Indexing a metric with an empty slice (<code class="docutils literal"><span class="pre">[:]</span></code>), none (<code class="docutils literal"><span class="pre">[None]</span></code>), or an ellipsis
 (<code class="docutils literal"><span class="pre">[...]</span></code>) will return the full metric. However, you can also index by condition
 filters on the column names. The column names of the metric are thus also available for
-use.  For example, let&#8217;s just grab all of the facilities out of the entry table:</p>
+use.  For example, let’s just grab all of the facilities out of the entry table:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ cymetric test.h5 -e <span class="s2">&quot;print(AgentEntry[Kind == &#39;Facility&#39;])&quot;</span>
                                   SimId  AgentId      Kind                    Spec   Prototype  ParentId  Lifetime  EnterTime
 <span class="m">0</span>  db805939-c565-404a-9483-adfb3da8b6d2       <span class="m">13</span>  Facility        :cycamore:Source  UOX_Source        <span class="m">12</span>        -1          <span class="m">1</span>
@@ -270,7 +284,7 @@ under standard aliases. This prevents you from having to import them manually yo
 </tr>
 </tbody>
 </table>
-<p>This let&#8217;s you do neat things such as plot the metrics right from the command line.
+<p>This let’s you do neat things such as plot the metrics right from the command line.
 For example,</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ cymetric test.h5 -e <span class="s2">&quot;Materials[ResourceId == 15].plot(x=&#39;NucId&#39;, y=&#39;Mass&#39;, kind=&#39;bar&#39;); plt.show()&quot;</span>
 </pre></div>
@@ -308,7 +322,7 @@ the <code class="docutils literal"><span class="pre">--write</span></code> flag 
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Cymetric Command Line Tutorial</a><ul>
@@ -397,6 +411,23 @@ the <code class="docutils literal"><span class="pre">--write</span></code> flag 
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -426,7 +457,7 @@ the <code class="docutils literal"><span class="pre">--write</span></code> flag 
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

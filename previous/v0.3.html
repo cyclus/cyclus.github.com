@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Cyclus 0.3 Release Notes &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -147,8 +161,8 @@ after over a year of development!  This includes nearly 340 commits by
 <li>fixed some gcsg issues and a typo</li>
 <li>made timer init method not reset previous timer config (e.g. listeners) - this caused confusion and debugging for me in the past</li>
 <li>made timer ticker registering more robust. Search env var dirs before install dirs for dyn modules. change default dyn module install dir to lib/cyclus instead of lib/Agents</li>
-<li>added hard coded version and more robust &#8211;tags flag to git describe for version.</li>
-<li>this should make CI pass... not sure if its what we want, though.</li>
+<li>added hard coded version and more robust –tags flag to git describe for version.</li>
+<li>this should make CI pass… not sure if its what we want, though.</li>
 <li>updated install script with new structure</li>
 <li>made agent test files install to share dir, fixes #559</li>
 <li>docs now in the top level directory, and a little clean up. fixes #602</li>
@@ -162,18 +176,18 @@ after over a year of development!  This includes nearly 340 commits by
 <li>actually adds top level cmake file..</li>
 <li>currently builds cycluscore from top-level directory</li>
 <li>encapsulated stubs namespace in cyclus namespace per gcsg</li>
-<li>redisabled facility tests as that &#8216;s a larger issue than this PR</li>
+<li>redisabled facility tests as that ‘s a larger issue than this PR</li>
 <li>added include guards</li>
 <li>added stub market</li>
 <li>added stub inst and region. updated stub facility.</li>
-<li>removed any stubs that aren&#8217;t facs, regions, insts, or agents</li>
+<li>removed any stubs that aren’t facs, regions, insts, or agents</li>
 <li>updated namespace name to reflect directory name</li>
 <li>made mock fac/inst/region/market classes to be used with testing. added the stub facility in a new stub namespace and related tests.</li>
 <li>added initial stub directory and adjusted cmake files to include their tests.</li>
 <li>moved all dynamic loading into xml_file_loader. Added a method for listing installed/discoverable dynamic modules to env class. added rng schema methods to test agents and removed rng files from them. removed rng installation from cmake module macro. added master and module schema dumping to cyclus binary. added schema agent test (that schema parses). moved heavy stuff out of xml-file-loader constructor. renamed LoadAll to LoadSim.</li>
-<li>i think moving loglevel and the macros into the same namespace encapsulation is more promising... still unable to confirm.</li>
+<li>i think moving loglevel and the macros into the same namespace encapsulation is more promising… still unable to confirm.</li>
 <li>finishes remaining doxygen warnings</li>
-<li>I believe that this will fix the warning stemming from logger.h, but I do not see the warning on my machine, so I can&#8217;t be sure</li>
+<li>I believe that this will fix the warning stemming from logger.h, but I do not see the warning on my machine, so I can’t be sure</li>
 <li>fixed begincode error</li>
 <li>removed verbose linking flag</li>
 <li>fixes build error for macs, moves mac linker flag to top of cmake file to set the flag for all compiled libraries in the build</li>
@@ -181,7 +195,7 @@ after over a year of development!  This includes nearly 340 commits by
 <li>down-selected includes in cyclus.h.  Removed remaining vestiges of converter agents</li>
 <li>create cyclus.h. added missing header install</li>
 <li>as &#64;gonuke suggested, adding a preprocessor directive was the right way to go. tested with coin-2.3 on insam</li>
-<li>removed coin include prefix which causes problems on utk&#8217;s darwin system</li>
+<li>removed coin include prefix which causes problems on utk’s darwin system</li>
 <li>removed unnecessary Config dir. Deleted duplicate (and outdated) LICENSE and README files.</li>
 <li>moved Core source files into base src/ directory.</li>
 <li>moved Testing dir to tests dir. Moved test modules into tests dir. Moved app.cc into new cli dir</li>
@@ -190,7 +204,7 @@ after over a year of development!  This includes nearly 340 commits by
 <li>removed extraneous string var</li>
 <li>adjusted env var setting to append the current var if it was set</li>
 <li>added robustness in the environmental tests by resetting the environment variable and the dynamic loading tests by making sure to delete and close opened library modules.</li>
-<li>test driver now adds the build directory to the cyclus module path. fixes #592. note that this overwrites the global module variable only for the test driver&#8217;s environment.</li>
+<li>test driver now adds the build directory to the cyclus module path. fixes #592. note that this overwrites the global module variable only for the test driver’s environment.</li>
 <li>Remove indirect dependencies</li>
 <li>main now returns 0</li>
 <li>updated readline to use the decode method. the script is now python2/3 compliant. note that I tested with python3.3.</li>
@@ -245,7 +259,7 @@ after over a year of development!  This includes nearly 340 commits by
 <li>removed EM macro and simplified recipe library and changed it to recipe namespace</li>
 <li>fixed segfault issue. fiddled with includes and forward declarations</li>
 <li>everything compiles, but tests segfault</li>
-<li>more work converting core to use context - still doesn&#8217;t compile</li>
+<li>more work converting core to use context - still doesn’t compile</li>
 <li>started outline for a simulation context</li>
 <li>Moving include files to include/cyclus</li>
 <li>changes for making debian packages</li>
@@ -255,13 +269,13 @@ after over a year of development!  This includes nearly 340 commits by
 <li>added missing neg quantity check</li>
 <li>adds comments about composition decay chaining. Remove leftover recipe_lib constructor from debugging</li>
 <li>fixed gcsg names in decay_handler and renamed class to decayer. fixed filename comments in product and improved a couple of guards</li>
-<li>fixes var names and comments to not refer/suggest anything &#8216;vector&#8217; ish w.r.t. CompMap code. Change nextId to next_id</li>
-<li>re-disabled test... need more time to investigate</li>
+<li>fixes var names and comments to not refer/suggest anything ‘vector’ ish w.r.t. CompMap code. Change nextId to next_id</li>
+<li>re-disabled test… need more time to investigate</li>
 <li>added disabled building manager test</li>
 <li>readded disabled tests, which now pass</li>
 <li>removed variable bound introspection from the cbc solver. CI should build without issue now.</li>
 <li>moved variable bound introspection based on a VariablePtr into non member non friend functions in variable.h/cc.</li>
-<li>added some more simple tests for the cbc solver. two have been intentionally disabled because the maximization direction for the objective function does not appear to be working. I have double checked that the optimization direction for maximization is correct (it&#8217;s 1.0) from the coin documentation. I&#8217;ll investigate further.</li>
+<li>added some more simple tests for the cbc solver. two have been intentionally disabled because the maximization direction for the objective function does not appear to be working. I have double checked that the optimization direction for maximization is correct (it’s 1.0) from the coin documentation. I’ll investigate further.</li>
 <li>removed bounded 2 variable test, starting simple with 1 variable</li>
 <li>added a 1 variable test that should pass and a test that uses variable bounds. changed test names to better reflect the testing taxonomy</li>
 <li>made implicit cast a static cast</li>
@@ -285,7 +299,7 @@ after over a year of development!  This includes nearly 340 commits by
 <li>everything compiles except tests</li>
 <li>literal 0 -&gt; 0.0 for fp compares</li>
 <li>abs() -&gt; fabs(), types they are a-changing.</li>
-<li>fixes doc errors, should clear up &#64;gonuke&#8217;s cron job errors</li>
+<li>fixes doc errors, should clear up &#64;gonuke’s cron job errors</li>
 <li>fixes master schema building</li>
 <li>updated test files so cycamore can build</li>
 <li>ran all files in Core dir through astyle for style guide formatting</li>
@@ -314,7 +328,7 @@ after over a year of development!  This includes nearly 340 commits by
 <li>fixed remaining build/run issues</li>
 <li>eliminated super-specific crazy exceptions. Created a few basic exception types to be used throughout cyclus core. Shortened exception class names</li>
 <li>added a test</li>
-<li>hotfix. Anthony&#8217;s namespace merging wiped out my schema building invocation in XMLLoader.</li>
+<li>hotfix. Anthony’s namespace merging wiped out my schema building invocation in XMLLoader.</li>
 <li>fixed header file guards in cyclopts</li>
 <li>fixed line lengths in header files in cyclopts</li>
 <li>fixed line lengths of cyclopts implementation files</li>
@@ -350,7 +364,7 @@ after over a year of development!  This includes nearly 340 commits by
 <li>fixed query engine errors</li>
 <li>updates cyclus core to reflect cyclopts/cyclopts#33</li>
 <li>fixed more error, everything is broken</li>
-<li>&#8216;public, protected, private indent one space&#8217;</li>
+<li>‘public, protected, private indent one space’</li>
 <li>fixes indent errors in DynamicModule.h described in #530.</li>
 <li>added ns to roesources.</li>
 <li>first cyclus ns changes.</li>
@@ -373,9 +387,9 @@ after over a year of development!  This includes nearly 340 commits by
 <li>added shortcut to void* in any.hpp. Simplified hdf5 backend fillBuff</li>
 <li>speed up event class by reserving capacity for event vals</li>
 <li>switched event class to use a tweaked boost::spirit::hold_any allowing non-explicit construction instead of boost::any. 30% performance boost of total inpro_low runtime.</li>
-<li>found out that boost has a installed called bjam. bjam has an option &#8211;layout which can take the form tagged. tagged adds -mt and -&lt;version_number&gt; to a library. if multithreading is on (which it is by default), it must find a library with the -mt tag. I was able to turn off multi threading for it to find the boost libraries installed in filespace/groups/cnerg/cyclus_dependencies. I&#8217;d like to leave the comment there for posterity. this set of commits closes #521.</li>
+<li>found out that boost has a installed called bjam. bjam has an option –layout which can take the form tagged. tagged adds -mt and -&lt;version_number&gt; to a library. if multithreading is on (which it is by default), it must find a library with the -mt tag. I was able to turn off multi threading for it to find the boost libraries installed in filespace/groups/cnerg/cyclus_dependencies. I’d like to leave the comment there for posterity. this set of commits closes #521.</li>
 <li>added a message to determine which libraries were being used</li>
-<li>updated readme&#8217;s boost version</li>
+<li>updated readme’s boost version</li>
 <li>fixed null-padding on strings issue. changed set to group so Anthony is happy.</li>
 <li>changed hdf5 ext to .h5. Hdf5Back constructor takes std::string</li>
 <li>adds better doc comment to hdf5back class. Uncomments the db file deleting line.</li>
@@ -397,7 +411,7 @@ after over a year of development!  This includes nearly 340 commits by
 </div>
 <div class="section" id="contributors">
 <h2>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h2>
-<p>The following people contributed to this release of Cyclus.  A &#8220;*&#8221; by their
+<p>The following people contributed to this release of Cyclus.  A “*” by their
 name indicates a first time contributor.  Names follow alphabetically,</p>
 <ul class="simple">
 <li>Robert Carlsen</li>
@@ -420,7 +434,7 @@ name indicates a first time contributor.  Names follow alphabetically,</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Cyclus 0.3 Release Notes</a><ul>
@@ -510,6 +524,23 @@ name indicates a first time contributor.  Names follow alphabetically,</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -538,7 +569,7 @@ name indicates a first time contributor.  Names follow alphabetically,</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

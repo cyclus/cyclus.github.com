@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Resources &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -116,7 +130,7 @@ in the <code class="docutils literal"><span class="pre">cyclus.typesystem</span>
 </pre></div>
 </div>
 <p><strong>Python:</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="kn">as</span> <span class="nn">ts</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
 <span class="n">ts</span><span class="o">.</span><span class="n">Resource</span>
 <span class="n">ts</span><span class="o">.</span><span class="n">Product</span>
 <span class="n">ts</span><span class="o">.</span><span class="n">Material</span>
@@ -128,7 +142,7 @@ manipulation of resource objects.  The <span style="font-variant:small-caps;">Cy
 terms of the <code class="docutils literal"><span class="pre">cyclus::Resource</span></code> superclass.  So it will sometimes be
 necessary to cast down to the appropriate resource subclass.  <span style="font-variant:small-caps;">Cyclus</span> provides
 an overloaded ResCast function for casting convenience:</p>
-<p><a href="#id1"><span class="problematic" id="id2">**</span></a>C++*:*</p>
+<p><strong>C++:</strong></p>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// r is a Material object stored in a cyclus::Resource::Ptr var</span>
 <span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span> <span class="o">=</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">ResCast</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
 
@@ -144,7 +158,7 @@ an overloaded ResCast function for casting convenience:</p>
 <h2>Product Resources<a class="headerlink" href="#product-resources" title="Permalink to this headline">¶</a></h2>
 <p>Products in <span style="font-variant:small-caps;">Cyclus</span> have a quantity (no particular units) and a quality.
 The quality is a <code class="docutils literal"><span class="pre">std::string</span></code> (C++) or <code class="docutils literal"><span class="pre">str</span></code> (Python) that describes what
-the product is. A product&#8217;s quality might be &#8220;apples&#8221;, &#8220;kg apples&#8221;, etc. Product
+the product is. A product’s quality might be “apples”, “kg apples”, etc. Product
 resources with different qualities may NOT be combined together.</p>
 <p>There are 3 basic operations that can be performed on product resources
 (examples follow):</p>
@@ -296,20 +310,20 @@ you may pass in the string <code class="docutils literal"><span class="pre">&quo
 </div>
 </div>
 <div class="section" id="resource-ids">
-<span id="id3"></span><h2>Resource IDs<a class="headerlink" href="#resource-ids" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>Resource IDs<a class="headerlink" href="#resource-ids" title="Permalink to this headline">¶</a></h2>
 <p>Every resource object has 3 different IDs.  One of them, the <code class="docutils literal"><span class="pre">qual_id</span></code>, is
 generally not of use to agent developers and can be ignored.  The other two
 serve two different purposes, and it is important to understand their
 difference:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">state_id</span></code>: A unique identifier associated with the entire state of the
-resource object.  Any time a resource&#8217;s state changes in any way (mass,
+resource object.  Any time a resource’s state changes in any way (mass,
 composition, etc.) this ID will be updated to a new, unique value
 associated with the new state.  When recording resource-related information
 to the database in custom tables, this ID should generally be used.</li>
 <li><code class="docutils literal"><span class="pre">obj_id</span></code>: A unique identifier associated with the resource object
 instance.  This ID does not ever change for the life of a resource instance.
-Only newly created resource objects get new obj_id&#8217;s.  This ID should be
+Only newly created resource objects get new obj_id’s.  This ID should be
 used when using resources as std::map keys and in other data structures when
 resource objects need to be associated with some other information.</li>
 </ul>
@@ -381,10 +395,10 @@ resources are <strong>tracked resources</strong>.  Because of this, agents shoul
 resources carefully, being conscious of mass conservation among other things.
 Anything done with resources is recorded in the database as having <em>actually</em>
 happened in the simulation.  If a new resource is created, it is instantly
-recorded in the database as being a part of an agent&#8217;s real/actual inventory.
-Placeholder or &#8220;dummy&#8221; resources can also be created if necessary.  No
+recorded in the database as being a part of an agent’s real/actual inventory.
+Placeholder or “dummy” resources can also be created if necessary.  No
 information about these resources is recorded in the simulation database and
-they are referred to as <strong>untracked resources</strong>.  An agent&#8217;s most common (and
+they are referred to as <strong>untracked resources</strong>.  An agent’s most common (and
 likely only) need for untracked resources occurs when communicating details
 about a desired/available resources for requests/bids during resource
 exchange.  Here untracked resources fulfill a communication roll only.</p>
@@ -418,7 +432,7 @@ products:</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">When a need for placeholder, dummy, or otherwise untracked
-resource arises, use &#8220;untracked&#8221; resources.  Do NOT create tracked
+resource arises, use “untracked” resources.  Do NOT create tracked
 resources to use in resource exchange requests and bids.</p>
 </div>
 </div>
@@ -432,7 +446,7 @@ resources to use in resource exchange requests and bids.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Resources</a><ul>
@@ -523,6 +537,23 @@ resources to use in resource exchange requests and bids.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -551,7 +582,7 @@ resources to use in resource exchange requests and bids.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

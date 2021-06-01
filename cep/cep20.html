@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>CEP 20 - Time Step Execution Stack &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -123,7 +137,7 @@ agents to inspect simulation state and update their own state.</p>
 <li>Tock</li>
 </ul>
 <p>Until very recently, only Regions received ticks/tocks from the Timer
-class. They were then expected to pass the Tick/Tock &#8220;message&#8221; to their
+class. They were then expected to pass the Tick/Tock “message” to their
 children, and so on, until all Models received a Tick or Tock. It was pointed
 out recently that this behavior, when mixed with entity entry and exit into/from
 the simulation could produce unexpected behavior, e.g., an entity could
@@ -147,7 +161,7 @@ occur in the Tick and Tock phases.</p>
 </div>
 <div class="section" id="rationale">
 <h2>Rationale<a class="headerlink" href="#rationale" title="Permalink to this headline">¶</a></h2>
-<p>By Law&#8217;s definition <a class="reference internal" href="#law-1999-sma-554952" id="id1">[LK99]</a>, a <span style="font-variant:small-caps;">Cyclus</span> simulation is,
+<p>By Law’s definition <a class="reference internal" href="#law-1999-sma-554952" id="id1">[LK99]</a>, a <span style="font-variant:small-caps;">Cyclus</span> simulation is,
 broadly, a dynamic, discrete-event simulation that uses a fixed-increment time
 advance mechanism. In general, fixed-increment time advance scenarios assume a
 time step (dt), and assume that all events that would happen during a time occur
@@ -167,7 +181,7 @@ in response to these events and to schedule agent entry and exit.</p>
 <p>Because there is a key event that defines agent interaction in a given time
 step, it is necessary to involve all agents in that interaction. Accordingly it
 is necessary that there be an ordering between these two key types of events,
-deviating slightly from Law&#8217;s description of fixed-increment time
+deviating slightly from Law’s description of fixed-increment time
 advance. Specifically, we want to preserve the following invariant: <em>any agent
 that exists in a given time step should be included in the resource exchange,
 or, equivalently, experience the entire time step execution stack</em>.</p>
@@ -197,7 +211,7 @@ phases have a direct ordering. It will, however, from the point of view of
 module development. It is simpler cognitively to think of an agent entering the
 simulation and acting in that time step, rather than entering a simulation at a
 given time and taking its first action in the subsequent time step.</p>
-<p>In the spirit of Law&#8217;s definition of a fixed-increment time advance mechanism,
+<p>In the spirit of Law’s definition of a fixed-increment time advance mechanism,
 there is a final important invariant: <em>there is no guaranteed agent ordering of
 within-phase execution</em>. This invariant allows for:</p>
 <ul class="simple">
@@ -221,7 +235,7 @@ will/should take during the phases. I propose we instead use <em>PreExchange</em
 <em>PostExchange</em>. Wordsmithing and/or other suggestions are welcome.</p>
 <p>The agent entry/exit question is a bit more involved because of the parent-child
 (or manager-managed) relationship agents have in <span style="font-variant:small-caps;">Cyclus</span>. Specifically, the
-entry and exit of agents should be managed by the agent&#8217;s manager. The following
+entry and exit of agents should be managed by the agent’s manager. The following
 provides one possible specification.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">///</span> <span class="nd">@brief</span> <span class="n">execute</span> <span class="n">time</span> <span class="n">step</span> <span class="n">stack</span>
 <span class="k">def</span> <span class="nf">Step</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
@@ -261,7 +275,7 @@ completion of a phase.</p>
 <div class="section" id="backwards-compatibility">
 <h2>Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Permalink to this headline">¶</a></h2>
 <p>The overall <span style="font-variant:small-caps;">Cyclus</span> implementation/framework will remain largely unchanged,
-with the exception of the core&#8217;s handling of agent entry/exit
+with the exception of the core’s handling of agent entry/exit
 registration. <em>Cycamore</em> modules that deal with agent entry/exit will have to be
 redesigned to incorporate the new execution stack.</p>
 </div>
@@ -293,7 +307,7 @@ redesigned to incorporate the new execution stack.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">CEP 20 - Time Step Execution Stack</a><ul>
@@ -383,6 +397,23 @@ redesigned to incorporate the new execution stack.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -411,7 +442,7 @@ redesigned to incorporate the new execution stack.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

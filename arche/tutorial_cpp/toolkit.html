@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Adding Buffers and Policies from the Toolkit &#8212; Home</title>
-    
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -122,7 +136,7 @@ simply have to add the following:</div></blockquote>
 </pre></div>
 </div>
 <p>This creates a state variable named <code class="docutils literal"><span class="pre">inventory</span></code> that is based on the
-<code class="docutils literal"><span class="pre">cyclus::toolkit::ResBuf</span></code> class.  We&#8217;ll explain how buffers and policies
+<code class="docutils literal"><span class="pre">cyclus::toolkit::ResBuf</span></code> class.  We’ll explain how buffers and policies
 work in just a moment.  A ResBuf object has special handling by the
 preprocessor, so it will not appear in the schema and therefore will not
 appear in the Cycic UI either.</p>
@@ -146,7 +160,7 @@ thus do not need a pragma</p>
 </pre></div>
 </div>
 <p>There needs to be a mechansim for keeping track of when materials enter the
-inventory. In order to utilize Cyclus&#8217; sophisticated restart capability, we must
+inventory. In order to utilize Cyclus’ sophisticated restart capability, we must
 choose a data structure that is compatible with the at least one of the Cyclus
 output databases (see <a class="reference internal" href="../dbtypes.html#dbtypes"><span class="std std-ref">Database Types</span></a>). Given that requirement, an appropriate
 data structure is a <a class="reference external" href="http://www.cplusplus.com/reference/list/list/">list</a>. Accordingly, add the
@@ -165,12 +179,12 @@ following</p>
 </pre></div>
 </div>
 <p>Finally, check that everything works by installing and testing</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./install.py
-<span class="gp">$</span> Storage_unit_tests
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
+<span class="gp">$ </span>Storage_unit_tests
 </pre></div>
 </div>
 <p>You can also confirm that everything still works with running the simulation:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cyclus -v <span class="m">3</span> input/storage.xml
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus -v <span class="m">3</span> input/storage.xml
 <span class="go">              :</span>
 <span class="go">          .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q</span>
 <span class="go">        CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)</span>
@@ -275,7 +289,7 @@ simulation. The kernel will let agents know that they are entering a simulation
 via the <code class="docutils literal"><span class="pre">EnterNotify()</span></code> function.</p>
 <p>Add the following to <code class="docutils literal"><span class="pre">src/storage.h</span></code> before the <code class="docutils literal"><span class="pre">Tick()</span></code> function</p>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">/// set up policies and buffers</span>
-<span class="k">virtual</span> <span class="kt">void</span> <span class="nf">EnterNotify</span><span class="p">();</span>
+<span class="k">virtual</span> <span class="kt">void</span> <span class="n">EnterNotify</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>And add the following to <code class="docutils literal"><span class="pre">src/storage.cc</span></code> before the <code class="docutils literal"><span class="pre">Tick()</span></code> function</p>
@@ -344,8 +358,8 @@ condition in 1. is met:</p>
 <div class="section" id="build-and-test">
 <h3>Build and Test<a class="headerlink" href="#build-and-test" title="Permalink to this headline">¶</a></h3>
 <p>Same as it ever was</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./install.py
-<span class="gp">$</span> Storage_unit_tests
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
+<span class="gp">$ </span>Storage_unit_tests
 </pre></div>
 </div>
 </div>
@@ -408,8 +422,8 @@ DRE, it goes in the <code class="docutils literal"><span class="pre">Tick()</spa
 <p class="first admonition-title">Note</p>
 <p class="last">Increase the verbosity from <code class="docutils literal"><span class="pre">2</span></code> to <code class="docutils literal"><span class="pre">3</span></code>.</p>
 </div>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./install.py
-<span class="gp">$</span> cyclus -v <span class="m">3</span> input/storage.xml
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
+<span class="gp">$ </span>cyclus -v <span class="m">3</span> input/storage.xml
 <span class="go">              :</span>
 <span class="go">          .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q</span>
 <span class="go">        CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)</span>
@@ -563,11 +577,11 @@ member is to guarantee that the amount of material in the facility never exceeds
 a certain value. The only way for material to enter the facility is through the
 <code class="docutils literal"><span class="pre">input</span></code> ResBuff via the <code class="docutils literal"><span class="pre">buy_policy</span></code>. The <code class="docutils literal"><span class="pre">MatlBuyPolicy</span></code> sets a maximum
 buy amount based on both its <code class="docutils literal"><span class="pre">throughput</span></code> and the <code class="docutils literal"><span class="pre">capacity</span></code> of the
-connected <code class="docutils literal"><span class="pre">ResBuf</span></code>. Accordingly, you can update the <code class="docutils literal"><span class="pre">input</span></code> buffer&#8217;s
+connected <code class="docutils literal"><span class="pre">ResBuf</span></code>. Accordingly, you can update the <code class="docutils literal"><span class="pre">input</span></code> buffer’s
 capacity before the DRE occurs to achieve this behavior.</p>
 <div class="figure align-center" id="id3">
 <img alt="../../_images/storage_capacity.svg" src="../../_images/storage_capacity.svg" /><p class="caption"><span class="caption-text"><strong>Figure:</strong> Storage buffers between two time steps. The total capacity is
-represented by the area of all three boxes. The <code class="docutils literal"><span class="pre">input</span></code> buffer&#8217;s capacity
+represented by the area of all three boxes. The <code class="docutils literal"><span class="pre">input</span></code> buffer’s capacity
 must be updated to reflect how much material is in both the <code class="docutils literal"><span class="pre">inventory</span></code>
 and <code class="docutils literal"><span class="pre">output</span></code> buffers. The colored arrows on the right match the material
 flows in the previous figure.</span></p>
@@ -598,8 +612,8 @@ implementation file), which updates capacity of the <code class="docutils litera
 <div class="section" id="id1">
 <h3>Build and Test<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Same as it ever was</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./install.py
-<span class="gp">$</span> Storage_unit_tests
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
+<span class="gp">$ </span>Storage_unit_tests
 </pre></div>
 </div>
 </div>
@@ -613,9 +627,9 @@ the end of the <code class="docutils literal"><span class="pre">config</span></c
 </div>
 <p>Note that this capacity is smaller than the throughput! What do you think you
 will see in the output logs?</p>
-<p>Try it out (don&#8217;t forget to delete the old sqlite file first):</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> rm cyclus.sqlite
-<span class="gp">$</span> cyclus -v <span class="m">3</span> input/storage.xml
+<p>Try it out (don’t forget to delete the old sqlite file first):</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>rm cyclus.sqlite
+<span class="gp">$ </span>cyclus -v <span class="m">3</span> input/storage.xml
 <span class="go">              :</span>
 <span class="go">          .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q</span>
 <span class="go">        CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)</span>
@@ -758,7 +772,7 @@ will see in the output logs?</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Adding Buffers and Policies from the Toolkit</a><ul>
@@ -855,6 +869,23 @@ will see in the output logs?</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -884,7 +915,7 @@ will see in the output logs?</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Errors and Warnings [C++] &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -99,8 +113,8 @@ errors. However, whenever you <code class="docutils literal"><span class="pre">#
 <span class="pre">&quot;error.h&quot;</span></code> you have access to a suite of exceptions that the kernel itself
 knows about.  <a class="reference internal" href="#errors-table-1"><span class="std std-ref">Table I. Cyclus Error Classes</span></a> displays all of the <span style="font-variant:small-caps;">Cyclus</span> errors which
 live within the <code class="docutils literal"><span class="pre">cyclus</span></code> namespace and subclass from <code class="docutils literal"><span class="pre">std::exception</span></code>.</p>
-<table border="1" class="colwidths-given styled-table centered docutils" id="id1">
-<span id="errors-table-1"></span><caption><span class="caption-text"><strong>Table I.</strong> Cyclus Error Classes</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<span id="errors-table-1"></span><table border="1" class="colwidths-given styled-table centered docutils" id="id1">
+<caption><span class="caption-text"><strong>Table I.</strong> Cyclus Error Classes</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="10%" />
 <col width="90%" />
@@ -128,7 +142,7 @@ data structures.</td>
 <td class="left-align single-left-divider no-right-divider">For failed reading/writing to files, network connections, etc.</td>
 </tr>
 <tr class="row-odd"><td class="left-align no-left-divider single-right-divider">CastError</td>
-<td class="left-align single-left-divider no-right-divider">For failed casts that shouldn&#8217;t.</td>
+<td class="left-align single-left-divider no-right-divider">For failed casts that shouldn’t.</td>
 </tr>
 <tr class="row-even"><td class="left-align no-left-divider single-right-divider">ValidationError</td>
 <td class="left-align single-left-divider no-right-divider">For validating files received via I/O or for indicating that
@@ -156,8 +170,8 @@ warning that was given.  All warnings are issued through the
 <code class="docutils literal"><span class="pre">cyclus::Warn&lt;T&gt;()</span></code> function.  This functions is templated on the
 <code class="docutils literal"><span class="pre">cyclus::Warnings</span></code> enum whose values and meanings may be seen in
 <a class="reference internal" href="#errors-table-2"><span class="std std-ref">Table II. Cyclus Warnings</span></a>.</p>
-<table border="1" class="colwidths-given styled-table centered docutils" id="id2">
-<span id="errors-table-2"></span><caption><span class="caption-text"><strong>Table II.</strong> Cyclus Warnings</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<span id="errors-table-2"></span><table border="1" class="colwidths-given styled-table centered docutils" id="id2">
+<caption><span class="caption-text"><strong>Table II.</strong> Cyclus Warnings</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="30%" />
 <col width="70%" />
@@ -251,7 +265,7 @@ no arguments:</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Errors and Warnings [C++]</a><ul>
@@ -336,6 +350,23 @@ no arguments:</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -364,7 +395,7 @@ no arguments:</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

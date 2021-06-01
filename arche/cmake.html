@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Building Modules with CMake &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -84,7 +98,7 @@ if(ga_enabled){
             
   <div class="section" id="building-modules-with-cmake">
 <span id="cmake-build"></span><h1>Building Modules with CMake<a class="headerlink" href="#building-modules-with-cmake" title="Permalink to this headline">¶</a></h1>
-<p>If you haven&#8217;t follow the initial example in <a class="reference internal" href="hello_world_py.html#hello-world"><span class="std std-ref">Hello, Cyclus! [Python]</span></a>, you should get
+<p>If you haven’t follow the initial example in <a class="reference internal" href="hello_world_py.html#hello-world"><span class="std std-ref">Hello, Cyclus! [Python]</span></a>, you should get
 the <a class="reference external" href="https://github.com/cyclus/cycstub">Cycstub repo</a> by either <a class="reference external" href="https://github.com/cyclus/cycstub.git">cloning the
 repository</a> or by <a class="reference external" href="https://github.com/cyclus/cycstub/archive/develop.zip">downloading the zip
 file</a> (see
@@ -103,7 +117,7 @@ configurations out of the box</li>
 executed (utilizing the macros in <code class="docutils literal"><span class="pre">UseCyclus.cmake</span></code>)</li>
 </ul>
 <p>The remaining portion of this page covers the various features provided in
-<code class="docutils literal"><span class="pre">UseCyclus.cmake</span></code> and their use in the <code class="docutils literal"><span class="pre">src</span></code> directory&#8217;s <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code>
+<code class="docutils literal"><span class="pre">UseCyclus.cmake</span></code> and their use in the <code class="docutils literal"><span class="pre">src</span></code> directory’s <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code>
 file.</p>
 <div class="section" id="using-usecyclus">
 <h2>Using UseCyclus<a class="headerlink" href="#using-usecyclus" title="Permalink to this headline">¶</a></h2>
@@ -134,7 +148,7 @@ test an <a class="reference internal" href="../basics/glossary.html#term-archety
 </ul>
 </li>
 <li><p class="first"><code class="docutils literal"><span class="pre">lib_dir</span></code>: The install directory relative the <span style="font-variant:small-caps;">Cyclus</span> library installation
-directory. For example, if <code class="docutils literal"><span class="pre">lib_dir</span></code> is blank (i.e. &#8220;&#8221;), the module will be
+directory. For example, if <code class="docutils literal"><span class="pre">lib_dir</span></code> is blank (i.e. “”), the module will be
 installed in <code class="docutils literal"><span class="pre">$CYCLUS_INSTALL_PREFIX/lib/cyclus/</span></code>; if <code class="docutils literal"><span class="pre">lib_dir</span></code> is
 something else, e.g. <code class="docutils literal"><span class="pre">my_module_dir</span></code>, the module will be installed in
 <code class="docutils literal"><span class="pre">$CYCLUS_INSTALL_PREFIX/lib/cyclus/my_module_dir/</span></code>. The value of
@@ -232,7 +246,7 @@ follow up with a call to <code class="docutils literal"><span class="pre">INSTAL
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Building Modules with CMake</a><ul>
@@ -325,6 +339,23 @@ follow up with a call to <code class="docutils literal"><span class="pre">INSTAL
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -353,7 +384,7 @@ follow up with a call to <code class="docutils literal"><span class="pre">INSTAL
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

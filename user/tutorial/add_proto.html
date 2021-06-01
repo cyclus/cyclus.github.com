@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Adding Prototypes to your Simulation &#8212; Home</title>
-    
+    <title>Understanding Prototypes &#8212; Home</title>
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,14 +26,29 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Adding Regions and Institutions" href="add_reg_inst.html" />
-    <link rel="prev" title="Understanding and Adding Archetypes to Your Scenario" href="add_arche.html" /> 
+    <link rel="prev" title="Understanding Commodities" href="add_commod_recipe.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
 var ga_enabled = !$.cookie('disable-ga');
 if(ga_enabled){
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -67,7 +81,7 @@ if(ga_enabled){
           <a href="add_reg_inst.html" title="Adding Regions and Institutions"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="add_arche.html" title="Understanding and Adding Archetypes to Your Scenario"
+          <a href="add_commod_recipe.html" title="Understanding Commodities"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../../index.html">Home</a> &#187;</li>
 
@@ -83,196 +97,606 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="adding-prototypes-to-your-simulation">
-<h1>Adding Prototypes to your Simulation<a class="headerlink" href="#adding-prototypes-to-your-simulation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="concept-configuring-an-archetype-to-create-a-prototype">
-<h2>Concept: Configuring an Archetype to Create a Prototype<a class="headerlink" href="#concept-configuring-an-archetype-to-create-a-prototype" title="Permalink to this headline">¶</a></h2>
-<p>While the archetype describes the form of the model used to represent a
+  <div class="section" id="understanding-prototypes">
+<h1>Understanding Prototypes<a class="headerlink" href="#understanding-prototypes" title="Permalink to this headline">¶</a></h1>
+<p>One key feature of <span style="font-variant:small-caps;">Cyclus</span> is its ability to switch between
+different models of the facilities within the fuel cycle. These models,
+called <strong>archetypes</strong>, may change how the facility interacts with other
+facilities or how the physics of the facility are represented. For
+example, reactor archetypes determine the reactor’s fresh and spent fuel
+compositions and how the reactor experiences fuel burn-up. A reactor
+model can have three varying fidelity levels:</p>
+<ul class="simple">
+<li>A very simple model that uses recipe to deplete fuel</li>
+<li>A more complex model may tabulate reactor performance and
+physics parameters, and interpolate its input and output recipes.</li>
+<li>The most complex model could perform a full depletion calculation each time
+new fuel enters the reactor.</li>
+</ul>
+<p>A simple set of archetypes have been created in <a class="reference external" href="http://fuelcycle.org/user/cycamoreagents.html">Cycamore</a>.
+While the archetype describes the form of the model used to represent a
 facility, a variety of parameters are generally available to configure the
-specific behavior.   For the example of a reactpr, the developer will probably
+specific behavior.   For the example of a reactor, the developer will probably
 allow the user to define the power level of the reactor, independent of the
 specific model chosen to represent the behavior of the model.  Other common
-reactor paramters are fuel loading parameters such as cycle length and batch
+reactor parameters are fuel loading parameters such as cycle length and batch
 size.</p>
 <p>In <span style="font-variant:small-caps;">Cyclus</span>, when an archetype has been configured with a
-specific set of parameters, it is called a <em>prototype</em>.</p>
-<div class="section" id="activity-configure-your-first-prototype">
-<h3>Activity: Configure your first prototype<a class="headerlink" href="#activity-configure-your-first-prototype" title="Permalink to this headline">¶</a></h3>
-<p>The first facility in our fuel cycle will be a mine, using the Cycamore Source
-archetype.</p>
+specific set of parameters, it is called a <strong>prototype</strong>.</p>
+<div class="section" id="example-source-prototype">
+<h2>Example: Source Prototype<a class="headerlink" href="#example-source-prototype" title="Permalink to this headline">¶</a></h2>
+<p>The Source facility acts as a source of material with a fixed throughput (per
+time step) capacity and a lifetime capacity defined by a total inventory size.
+It offers its material as a single commodity. If a composition recipe is
+specified, it provides that single material composition to requesters. If
+unspecified, the source provides materials with the exact requested compositions.
+The inventory size and throughput both default to infinite. Supplies material
+results in corresponding decrease in inventory, and when the inventory size
+reaches zero, the source can provide no more material.</p>
+<p>The Source archetype is of the form:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>Source<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Source&gt;</span>
+      <span class="nt">&lt;outcommod&gt;</span>out_commodity<span class="nt">&lt;/outcommod&gt;</span>
+    <span class="nt">&lt;/Source&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
+</div>
+<p>Optional parameters:</p>
+<dl class="docutils">
+<dt>outrecipe:</dt>
+<dd>Name of the isotopic composition of the material that this source provides
+regardless of the requested composition. If empty, the Source creates and
+provides whatever composition is requested.</dd>
+</dl>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;outrecipe&gt;</span>[outrecipe]<span class="nt">&lt;/outrecipe&gt;</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>inventory_size: default = 1e+299, range: [0.0, 1e+299]</dt>
+<dd>Total amount of material this source has remaining. Every trade decreases
+this value by the supplied material quantity. When it reaches zero, the
+source cannot provide any more material.</dd>
+</dl>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;inventory_size&gt;</span>[double ( kg )]<span class="nt">&lt;/inventory_size&gt;</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>throughput: default=1e+299,range: [0.0, 1e+299]</dt>
+<dd>Amount (kg) of the commodity that the Source can supply at each time step</dd>
+</dl>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;throughput&gt;</span>[double ( kg/(time step) )]<span class="nt">&lt;/throughput&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="activity-configure-the-source-prototype">
+<h2>Activity: Configure the Source prototype<a class="headerlink" href="#activity-configure-the-source-prototype" title="Permalink to this headline">¶</a></h2>
+<p>Our source, <code class="docutils literal"><span class="pre">UraniumMine</span></code>, will provide the natural uranium ore for our enrichment facility.
+This facility takes two inputs, <code class="docutils literal"><span class="pre">name</span></code> and <code class="docutils literal"><span class="pre">outcommd</span></code>. Using the Source
+Archetype and the table below, create the UraniumMine prototype.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="46%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">name</span></code></td>
+<td><code class="docutils literal"><span class="pre">UraniumMine</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Archetype</span></code></td>
+<td><code class="docutils literal"><span class="pre">Source</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">out_commod</span></code></td>
+<td><code class="docutils literal"><span class="pre">u-ore</span></code></td>
+</tr>
+</tbody>
+</table>
 <ol class="arabic simple">
-<li>Drag the cycamore Source archetype from the ribbon to the fuel cycle design pane.</li>
-<li>Right-click on the Source facility to show its context menu, and choose
-&#8220;Facility Documentation&#8221;.  Close the documentation when finished.</li>
-<li>Double click on the Source facility that you just dropped to open its configuration window.</li>
-<li>Choose a name for your Source prototype, e.g. &#8220;U Mine&#8221;.</li>
+<li>The template for the Source archetype is of the form:</li>
 </ol>
-<p><em>Bonus: From the Source facility&#8217;s context menu (right-click) choose &#8220;Change
-Niche&#8221; and type &#8220;mine&#8221; as the New Niche.  The only purpose of the niche is to
-allow different visualization in the fuel design pane.  Other niches include:
-&#8220;fuel fabriaction&#8221;, &#8220;reactor&#8221;, &#8220;abr&#8221;, &#8220;repository&#8221;, &#8220;reprocessing&#8221;,
-&#8220;separations&#8221;.</em></p>
-<p>Your fuel cycle design should now look like this:</p>
-<img alt="Fuel cycle design pane showing first prototype." class="align-center" src="../../_images/first_proto.png" />
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>name<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Archetype&gt;</span>
+      <span class="nt">&lt;outcommod&gt;</span>outcommod<span class="nt">&lt;/outcommod&gt;</span>
+    <span class="nt">&lt;/Source&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
+</div>
+<p>2. Filling in the variables <code class="docutils literal"><span class="pre">name</span></code>, <code class="docutils literal"><span class="pre">Archetype</span></code>, and <code class="docutils literal"><span class="pre">out_commod</span></code> as
+<code class="docutils literal"><span class="pre">UraniumMine</span></code>, <code class="docutils literal"><span class="pre">Source</span></code>, and <code class="docutils literal"><span class="pre">fresh-uox</span></code> leads to:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>UraniumMine<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Source&gt;</span>
+      <span class="nt">&lt;outcommod&gt;</span>u-ore<span class="nt">&lt;/outcommod&gt;</span>
+    <span class="nt">&lt;/Source&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
+</div>
+<p>Once complete, append this facility under the commodity section and before the recipe section of your input file <a class="footnote-reference" href="#f1" id="id1">[1]</a>.</p>
+</div>
+<div class="section" id="example-enrichment-prototype">
+<h2>Example: Enrichment Prototype<a class="headerlink" href="#example-enrichment-prototype" title="Permalink to this headline">¶</a></h2>
+<p>The Enrichment facility is a simple agent that enriches natural uranium in a <span style="font-variant:small-caps;">Cyclus</span> simulation. It does not
+explicitly compute the physical enrichment process, rather it calculates the SWU required to convert an
+incoming isotopic vector (i.e. natural uranium) into a requested enriched recipe (i.e. 4% enriched uranium),
+given the natural uranium inventory constraint and its SWU capacity constraint.
+The Enrichment archetype is of the form:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>EnrichmentPlant<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Enrichment&gt;</span>
+      <span class="nt">&lt;feed_commod&gt;</span>feed_commodity<span class="nt">&lt;/feed_commod&gt;</span>
+      <span class="nt">&lt;feed_recipe&gt;</span>feed_recipe<span class="nt">&lt;/feed_recipe&gt;</span>
+      <span class="nt">&lt;product_commod&gt;</span>product_commodity<span class="nt">&lt;/product_commod&gt;</span>
+      <span class="nt">&lt;tails_commod&gt;</span>tails_commodity<span class="nt">&lt;/tails_commod&gt;</span>
+    <span class="nt">&lt;/Enrichment&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
+</div>
+<p>Optional parameters:</p>
+<dl class="docutils">
+<dt>max_feed_inventory: default = 1e+299, range: [0.0, 1e+299]</dt>
+<dd>Maximum total inventory of natural uranium in the enrichment facility (kg)</dd>
+</dl>
+<div class="highlight-XML"><div class="highlight"><pre><span></span>&lt;max_feed_inventory&gt;1000000&lt;/max_feed_inventory
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>tails_assay: default=0.003, range: [0.0, 0.003]</dt>
+<dd>Tails assay from the enrichment process</dd>
+</dl>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;tails_assay&gt;</span>[double]<span class="nt">&lt;/tails_assay&gt;</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>initial_feed: default = 0</dt>
+<dd>Amount of natural uranium stored at the enrichment facility at the beginning of the simulation (kg)</dd>
+</dl>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;initial_feed&gt;</span>[double]<span class="nt">&lt;/initial_feed&gt;</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>max_enrich: default = 1.0, range: [0.0,1.0]</dt>
+<dd>maximum allowed weight fraction of U235 in product</dd>
+</dl>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;max_enrich&gt;</span>[double]<span class="nt">&lt;/max_enrich&gt;</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>order_prefs: default = 1, userlevel: 10</dt>
+<dd>Turn on preference ordering for input material so that EF chooses higher U235 content first</dd>
+</dl>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;order_prefs&gt;</span>[boolean]<span class="nt">&lt;/order_prefs&gt;</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>swu_capacity: default = 1e+299, range: [0.0, 1e+299]</dt>
+<dd>Separative work unit (SWU) capacity of enrichment facility (kgSWU/timestep)</dd>
+</dl>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;swu_capacity&gt;</span>[double]<span class="nt">&lt;/swu_capacity&gt;</span>
+</pre></div>
 </div>
 </div>
-<div class="section" id="concept-commodities">
-<h2>Concept: Commodities<a class="headerlink" href="#concept-commodities" title="Permalink to this headline">¶</a></h2>
-<p><span style="font-variant:small-caps;">Cyclus</span> exchanges resources between facilities using a market-like mechanism
-called the dynamic resource exchange (DRE).  The concept of a commodity is
-uses to simply indicate which facilities may be interested in trading with
-each other through the DRE.  A commodity is therefore nothing more than a
-unique name that is used to define a set of producers and consumers of a
-common resource.  A commodity does not necessarily have a specific
-composition; this will be determined by the agents during the simulation.</p>
-<div class="section" id="activity-add-a-commodity-to-the-mine">
-<h3>Activity: Add a commodity to the mine<a class="headerlink" href="#activity-add-a-commodity-to-the-mine" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic simple">
-<li>Add a commodity in the commodity list of the main view: &#8220;U-ore&#8221; (For now,
-you can ignore the priority setting)</li>
-<li>In the configuration window for the mine, select &#8220;U-ore&#8221; from the Output Commodity dropdown menu</li>
-</ol>
-<img alt="A first commodity and its use in the mine." class="align-center" src="../../_images/mine_commod.png" />
+<div class="section" id="activity-creating-the-enrichment-prototype">
+<h2>Activity: Creating the Enrichment Prototype<a class="headerlink" href="#activity-creating-the-enrichment-prototype" title="Permalink to this headline">¶</a></h2>
+<p>The enrichment facility, <code class="docutils literal"><span class="pre">EnrichmentPlant</span></code> will intake the natural <code class="docutils literal"><span class="pre">u-ore</span></code>
+from <code class="docutils literal"><span class="pre">UraniumMine</span></code> and create <code class="docutils literal"><span class="pre">fresh-uox</span></code> and <code class="docutils literal"><span class="pre">tails</span></code> as its products.
+The template for the Enrichment archetype is of the form:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>enrichment_plant_name<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Archetype&gt;</span>
+      <span class="nt">&lt;feed_commod&gt;</span>feed_commodity<span class="nt">&lt;/feed_commod&gt;</span>
+      <span class="nt">&lt;feed_recipe&gt;</span>feed_recipe<span class="nt">&lt;/feed_recipe&gt;</span>
+      <span class="nt">&lt;product_commod&gt;</span>product_commodity<span class="nt">&lt;/product_commod&gt;</span>
+      <span class="nt">&lt;tails_commod&gt;</span>tails_commodity<span class="nt">&lt;/tails_commod&gt;</span>
+      <span class="nt">&lt;max_feed_inventory&gt;</span>1000000<span class="nt">&lt;/max_feed_inventory&gt;</span>
+    <span class="nt">&lt;/Archetype&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
 </div>
-<div class="section" id="activity-add-an-enrichment-facility">
-<h3>Activity: Add an enrichment facility<a class="headerlink" href="#activity-add-an-enrichment-facility" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic simple">
-<li>Drag the cycamore Enrichmnent archetype from the ribbon to the fuel cycle design pane.</li>
-<li>Double-click to add the following configuration:</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>Name: MyEnrichPlant</li>
-<li>Feed Commodity: U-ore</li>
+<p>Using the template above and the table below, generate the input enrichment facility prototype.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">name</span></code></td>
+<td><code class="docutils literal"><span class="pre">EnrichmentPlant</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Archetype</span></code></td>
+<td><code class="docutils literal"><span class="pre">Enrichment</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">feed_commod</span></code></td>
+<td><code class="docutils literal"><span class="pre">u-ore</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">feed_recipe</span></code></td>
+<td><code class="docutils literal"><span class="pre">nat-u</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">product_commod</span></code></td>
+<td><code class="docutils literal"><span class="pre">fresh-uox</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">tails_commod</span></code></td>
+<td><code class="docutils literal"><span class="pre">tails</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">max_feed_inventory</span></code></td>
+<td>1000000</td>
+</tr>
+</tbody>
+</table>
+<p>After filling in these variables, your enrichment facility prototype will look like:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>EnrichmentPlant<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Enrichment&gt;</span>
+      <span class="nt">&lt;feed_commod&gt;</span>u-ore<span class="nt">&lt;/feed_commod&gt;</span>
+      <span class="nt">&lt;feed_recipe&gt;</span>nat-u<span class="nt">&lt;/feed_recipe&gt;</span>
+      <span class="nt">&lt;product_commod&gt;</span>fresh-uox<span class="nt">&lt;/product_commod&gt;</span>
+      <span class="nt">&lt;tails_commod&gt;</span>tails<span class="nt">&lt;/tails_commod&gt;</span>
+      <span class="nt">&lt;max_feed_inventory&gt;</span>1000000<span class="nt">&lt;/max_feed_inventory&gt;</span>
+    <span class="nt">&lt;/Enrichment&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
+</div>
+<p>Once complete, append this facility under the Source prototype of your input file <a class="footnote-reference" href="#f1" id="id2">[1]</a>.</p>
+</div>
+<div class="section" id="example-reactor-prototype">
+<h2>Example: Reactor Prototype<a class="headerlink" href="#example-reactor-prototype" title="Permalink to this headline">¶</a></h2>
+<p>The Reactor is a simple, general reactor based on static compositional transformations to model fuel burnup.
+The user specifies a set of fresh fuel compositions the Reactor accepts and corresponding spent fuel
+compositions the reactor discharges from the core. No incremental transmutation takes place. Rather,
+at the end of an operational cycle, the batch being discharged from the core is instantaneously transmuted
+from its original fresh fuel composition into its spent fuel form.</p>
+<p>Each fuel is identified by a specific input commodity and has an associated input recipe (nuclide composition),
+output recipe, output commodity, and preference. The preference identifies which input fuels are preferred
+when requesting. Changes in these preferences can be specified as a function of time using the pref_change
+variables. Changes in the input-output recipe compositions can also be specified as a function of time using
+the recipe_change variables.</p>
+<p>The reactor treats fuel as individual assemblies. Fuel is requested in assembly-sized quanta. If real-world
+assembly modeling is unnecessary, parameters can be adjusted (e.g. <code class="docutils literal"><span class="pre">n_assem_core</span></code>, <code class="docutils literal"><span class="pre">assem_size</span></code>,
+<code class="docutils literal"><span class="pre">n_assem_batch</span></code>). At the end of every cycle, a full batch is discharged from the core consisting of
+<code class="docutils literal"><span class="pre">n_assem_batch</span></code> assemblies of <code class="docutils literal"><span class="pre">assem_size</span></code> kg. The reactor also has a specifiable refueling time
+period following the end of each cycle at the end of which it will resume operation on the next cycle if it
+has enough fuel for a full core; otherwise it waits until it has enough fresh fuel assemblies.
+When the reactor reaches the end of its lifetime, it will discharge all material from its core and trade away all its
+spent fuel as quickly as possible. Full decommissioning will be delayed until all spent fuel is gone. If the reactor
+has a full core when it is decommissioned (i.e. is mid-cycle) when the reactor is decommissioned, half (rounded
+up to nearest int) of its assemblies are transmuted to their respective burnt compositions.
+The Reactor archetype is of the form:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>reactor_name<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Reactor&gt;</span>
+      <span class="nt">&lt;fuel_incommods&gt;</span>
+          <span class="nt">&lt;val&gt;</span>input_fuel_commodity<span class="nt">&lt;/val&gt;</span>
+      <span class="nt">&lt;/fuel_incommods&gt;</span>
+      <span class="nt">&lt;fuel_inrecipes&gt;</span>
+          <span class="nt">&lt;val&gt;</span>input_fuel_recipe<span class="nt">&lt;/val&gt;</span>
+      <span class="nt">&lt;/fuel_inrecipes&gt;</span>
+      <span class="nt">&lt;fuel_outcommods&gt;</span>
+          <span class="nt">&lt;val&gt;</span>output_fuel_commodity<span class="nt">&lt;/val&gt;</span>
+      <span class="nt">&lt;/fuel_outcommods&gt;</span>
+      <span class="nt">&lt;fuel_outrecipes&gt;</span>
+          <span class="nt">&lt;val&gt;</span>output_fuel_recipe<span class="nt">&lt;/val&gt;</span>
+      <span class="nt">&lt;/fuel_outrecipes&gt;</span>
+      <span class="nt">&lt;cycle_time&gt;</span>18<span class="nt">&lt;/cycle_time&gt;</span>
+      <span class="nt">&lt;refuel_time&gt;</span>1<span class="nt">&lt;/refuel_time&gt;</span>
+      <span class="nt">&lt;assem_size&gt;</span>33000<span class="nt">&lt;/assem_size&gt;</span>
+      <span class="nt">&lt;n_assem_core&gt;</span>3<span class="nt">&lt;/n_assem_core&gt;</span>
+      <span class="nt">&lt;n_assem_batch&gt;</span>1<span class="nt">&lt;/n_assem_batch&gt;</span>
+      <span class="nt">&lt;power_cap&gt;</span>power_out<span class="nt">&lt;/power_cap&gt;</span>
+    <span class="nt">&lt;/Reactor&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="activity-creating-the-reactor-prototype">
+<h2>Activity: Creating the Reactor Prototype<a class="headerlink" href="#activity-creating-the-reactor-prototype" title="Permalink to this headline">¶</a></h2>
+<p>Now let’s model the reactor this fuel will go through! In this simple example,
+let’s model a single PWR in the United States. It has a power capacity of 1178
+MWe, and there is only one of them in the region.
+The template for the reactor is given below:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>Reactor<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Archetype&gt;</span>
+      <span class="nt">&lt;fuel_incommods&gt;</span> <span class="nt">&lt;val&gt;</span>[VALUE]<span class="nt">&lt;/val&gt;</span> <span class="nt">&lt;/fuel_incommods&gt;</span>
+      <span class="nt">&lt;fuel_inrecipes&gt;</span> <span class="nt">&lt;val&gt;</span>[VALUE]<span class="nt">&lt;/val&gt;</span> <span class="nt">&lt;/fuel_inrecipes&gt;</span>
+      <span class="nt">&lt;fuel_outcommods&gt;</span> <span class="nt">&lt;val&gt;</span>[VALUE]<span class="nt">&lt;/val&gt;</span> <span class="nt">&lt;/fuel_outcommods&gt;</span>
+      <span class="nt">&lt;fuel_outrecipes&gt;</span> <span class="nt">&lt;val&gt;</span>[VALUE]<span class="nt">&lt;/val&gt;</span> <span class="nt">&lt;/fuel_outrecipes&gt;</span>
+      <span class="nt">&lt;cycle_time&gt;</span>[VALUE]<span class="nt">&lt;/cycle_time&gt;</span>
+      <span class="nt">&lt;refuel_time&gt;</span>[VALUE]<span class="nt">&lt;/refuel_time&gt;</span>
+      <span class="nt">&lt;assem_size&gt;</span>[VALUE]<span class="nt">&lt;/assem_size&gt;</span>
+      <span class="nt">&lt;n_assem_core&gt;</span>[VALUE]<span class="nt">&lt;/n_assem_core&gt;</span>
+      <span class="nt">&lt;n_assem_batch&gt;</span>[VALUE]<span class="nt">&lt;/n_assem_batch&gt;</span>
+      <span class="nt">&lt;power_cap&gt;</span>[VALUE]<span class="nt">&lt;/power_cap&gt;</span>
+    <span class="nt">&lt;/Reactor&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
+</div>
+<p>Where:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">fuel_incommods</span></code>: input fuel commodity</li>
+<li><code class="docutils literal"><span class="pre">fuel_inrecipes</span></code>” input fuel recipe</li>
+<li><code class="docutils literal"><span class="pre">fuel_outcommods</span></code>: output fuel commodity</li>
+<li><code class="docutils literal"><span class="pre">fuel_outrecipes</span></code>: output fuel recipe.</li>
+<li><code class="docutils literal"><span class="pre">cycle_time</span></code>: amount of time the reactor operates between refueling outages</li>
+<li><code class="docutils literal"><span class="pre">refuel_time</span></code>: duration of refueling outage</li>
+<li><code class="docutils literal"><span class="pre">assem_size</span></code>” size of a single assembly</li>
+<li><code class="docutils literal"><span class="pre">n_assem_core</span></code> : number of assemblies in the core</li>
+<li><code class="docutils literal"><span class="pre">n_assem_batch</span></code>: number of batches replaced per refueling.</li>
+<li><code class="docutils literal"><span class="pre">power_cap</span></code>: amount of electricity the reactor generates.</li>
 </ul>
-<p>Notice that when you specify the feed commodity as &#8220;U-ore&#8221;, a line is
-automatically drawn to indicate possible trading of material between the mine
-and the enrichment facility.</p>
-</div></blockquote>
-<img alt="Uranium ore can now flow from the mine to the enrichment facility." class="align-center" src="../../_images/u-ore-enrich.png" />
-<ol class="arabic simple" start="3">
-<li>Use what you learned above to add two new commodities:</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>Fresh-UOX-Fuel</li>
-<li>Enrich-Tails</li>
-</ul>
-</div></blockquote>
-<ol class="arabic simple" start="4">
-<li>Modify the Enrichment facility to use these commodities:</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>Product Commodity: Fresh-UOX-Fuel</li>
-<li>Tails Commodity: Enrich-Tails</li>
-</ul>
-</div></blockquote>
-<img alt="All commodities have been defined for the enrichment facility." class="align-center" src="../../_images/enrich-commods.png" />
+<p>Using the template above and the table below, create the Reactor prototype.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="46%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">name</span></code></td>
+<td><code class="docutils literal"><span class="pre">1178MWe</span> <span class="pre">BRAIDWOOD-1</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Archetype</span></code></td>
+<td><code class="docutils literal"><span class="pre">Reactor</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">fuel_incommods</span></code></td>
+<td><code class="docutils literal"><span class="pre">fresh-uox</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">fuel_inrecipes</span></code></td>
+<td><code class="docutils literal"><span class="pre">fresh-uox</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">fuel_outcommods</span></code></td>
+<td><code class="docutils literal"><span class="pre">spent-uox</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">fuel_outrecipes</span></code></td>
+<td><code class="docutils literal"><span class="pre">spent-uox</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">cycle_time</span></code></td>
+<td><code class="docutils literal"><span class="pre">18</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">refuel_time</span></code></td>
+<td><code class="docutils literal"><span class="pre">1</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">assem_size</span></code></td>
+<td><code class="docutils literal"><span class="pre">33000</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">n_assem_core</span></code></td>
+<td><code class="docutils literal"><span class="pre">3</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">n_assem_batch</span></code></td>
+<td><code class="docutils literal"><span class="pre">1</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">power_cap</span></code></td>
+<td><code class="docutils literal"><span class="pre">1178</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Once completed, your prototype should look like:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+    <span class="nt">&lt;name&gt;</span>1178MWe BRAIDWOOD-1<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;config&gt;</span>
+      <span class="nt">&lt;Reactor&gt;</span>
+        <span class="nt">&lt;fuel_incommods&gt;</span> <span class="nt">&lt;val&gt;</span>fresh-uox<span class="nt">&lt;/val&gt;</span> <span class="nt">&lt;/fuel_incommods&gt;</span>
+        <span class="nt">&lt;fuel_inrecipes&gt;</span> <span class="nt">&lt;val&gt;</span>fresh-uox<span class="nt">&lt;/val&gt;</span> <span class="nt">&lt;/fuel_inrecipes&gt;</span>
+        <span class="nt">&lt;fuel_outcommods&gt;</span> <span class="nt">&lt;val&gt;</span>spent-uox<span class="nt">&lt;/val&gt;</span> <span class="nt">&lt;/fuel_outcommods&gt;</span>
+        <span class="nt">&lt;fuel_outrecipes&gt;</span> <span class="nt">&lt;val&gt;</span>spent-uox<span class="nt">&lt;/val&gt;</span> <span class="nt">&lt;/fuel_outrecipes&gt;</span>
+        <span class="nt">&lt;cycle_time&gt;</span>18<span class="nt">&lt;/cycle_time&gt;</span>
+        <span class="nt">&lt;refuel_time&gt;</span>1<span class="nt">&lt;/refuel_time&gt;</span>
+        <span class="nt">&lt;assem_size&gt;</span>33000<span class="nt">&lt;/assem_size&gt;</span>
+        <span class="nt">&lt;n_assem_core&gt;</span>3<span class="nt">&lt;/n_assem_core&gt;</span>
+        <span class="nt">&lt;n_assem_batch&gt;</span>1<span class="nt">&lt;/n_assem_batch&gt;</span>
+        <span class="nt">&lt;power_cap&gt;</span>1178<span class="nt">&lt;/power_cap&gt;</span>
+      <span class="nt">&lt;/Reactor&gt;</span>
+    <span class="nt">&lt;/config&gt;</span>
+  <span class="nt">&lt;/facility&gt;</span>
+</pre></div>
+</div>
+<p>Once complete, append this facility under the Enrichment facility of your input file <a class="footnote-reference" href="#f1" id="id3">[1]</a>.</p>
+</div>
+<div class="section" id="example-sink-prototype">
+<h2>Example: Sink Prototype<a class="headerlink" href="#example-sink-prototype" title="Permalink to this headline">¶</a></h2>
+<p>A sink facility that accepts materials and products with a fixed throughput (per time step) capacity and a lifetime
+capacity defined by a total inventory size. The inventory size and throughput capacity both default to infinite. If a
+recipe is provided, it will request material with that recipe. Requests are made for any number of specified
+commodities.
+The Sink archetype section is of the form:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>Sink_name<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Sink&gt;</span>
+      <span class="nt">&lt;in_commods&gt;</span>
+        <span class="nt">&lt;val&gt;</span>input_commodity<span class="nt">&lt;/val&gt;</span>
+        <span class="nt">&lt;val&gt;</span>input_commodity<span class="nt">&lt;/val&gt;</span>
+      <span class="nt">&lt;/in_commods&gt;</span>
+    <span class="nt">&lt;/Sink&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
+</div>
+<p>Optional parameters:</p>
+<dl class="docutils">
+<dt>in_commod_prefs: default=[], range: [None, [1e-299, 1e+299]]</dt>
+<dd>Commodities that the sink facility accepts</dd>
+</dl>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;in_commod_prefs&gt;</span>
+    <span class="nt">&lt;val&gt;</span>[double]<span class="nt">&lt;/val&gt;</span>
+    <span class="nt">&lt;val&gt;</span>[double]<span class="nt">&lt;/val&gt;</span>
+<span class="nt">&lt;/in_commod_prefs&gt;</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>recipe_name: default=””</dt>
+<dd>Name of recipe to use for material requests, where the default (empty string) is to accept everything</dd>
+</dl>
+<div class="highlight-XML"><div class="highlight"><pre><span></span>&lt;recipe_name&gt;[inrecipe]&lt;/recipe_name
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>max_inv_size: default=1e+299, range: [0.0, 1e+299]</dt>
+<dd>Total maximum inventory size of sink facility</dd>
+</dl>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;max_inv_size&gt;</span>[double]<span class="nt">&lt;/max_inv_size&gt;</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>capacity: default = 1e+299, range: [0.0, 1e+299]</dt>
+<dd>capacity the sink facility can accept at each time step</dd>
+</dl>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;capacity&gt;</span>[double]<span class="nt">&lt;/capacity&gt;</span>
+</pre></div>
 </div>
 </div>
-<div class="section" id="concept-material-recipes">
-<h2>Concept: Material recipes<a class="headerlink" href="#concept-material-recipes" title="Permalink to this headline">¶</a></h2>
-<p>Materials area a fundamental type of resource in <span style="font-variant:small-caps;">Cyclus</span>.  Each material
-object consists of a quantity (typically in kg) and a quality, ie. an isotopic
-composition.  The isotopic composition is referred to as a recipe.  Some
-archetypes may want to specify recipes for their input and/or output, as
-a list of isotope with either mass or atom fractions.</p>
-<div class="section" id="activity-add-a-recipe-for-natural-uranium">
-<h3>Activity: Add a recipe for natural uranium<a class="headerlink" href="#activity-add-a-recipe-for-natural-uranium" title="Permalink to this headline">¶</a></h3>
-<p>Our enrichment facility will request natural uranium.</p>
-<ol class="arabic simple">
-<li>Drag the <strong>Recipe Builder</strong> <em>tool</em> into the <em>workspace</em> and drop it on an
-empty location.</li>
-</ol>
-<img alt="Initial view of the Recipe Builder." class="align-center" src="../../_images/recipe-builder-drag.png" />
-<ol class="arabic simple" start="2">
-<li>Select &#8220;Add New Recipe&#8221;</li>
-<li>Give your recipe a name: Nat-U</li>
-<li>Choose either the mass or atom basis.  In this case a mass basis is more straightforward.</li>
-<li>Click on the &#8220;Add Isotope&#8221; button</li>
-<li>Enter the information for U-235.  <span style="font-variant:small-caps;">Cyclus</span> uses a robust system that allows
-users to refer to isotopes in a multitude of formats.  For U-235, you can
-enter either &#8220;U-235&#8221; or &#8220;92235&#8221;.  The mass fraction is 0.007.</li>
-</ol>
-<img alt="The natural uranium recipe after adding only U-235." class="align-center" src="../../_images/recipe-natU-235-only.png" />
-<ol class="arabic simple" start="7">
-<li>Repeat steps 5 &amp; 6 for U-238.</li>
-<li>Return to the configuration window for the enrichment plant</li>
-<li>Select &#8220;Nat-U&#8221; recipe as the feed recipe</li>
-</ol>
-<img alt="The natural uranium recipe is complete and assigned to the Enrichment facility's feed recipe." class="align-center" src="../../_images/recipe-natU-finished-assigned.png" />
+<div class="section" id="activity-creating-the-sink-prototype">
+<h2>Activity: Creating the Sink Prototype<a class="headerlink" href="#activity-creating-the-sink-prototype" title="Permalink to this headline">¶</a></h2>
+<p>Our sink, <code class="docutils literal"><span class="pre">NuclearRepository</span></code>, will store the <code class="docutils literal"><span class="pre">spent-uox</span></code> and <code class="docutils literal"><span class="pre">tails</span></code> after
+their use in the fuel cycle. Using the Sink Archetype template and the table below,
+create the UraniumMine prototype.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">name</span></code></td>
+<td><code class="docutils literal"><span class="pre">NuclearRepository</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Archetype</span></code></td>
+<td><code class="docutils literal"><span class="pre">Sink</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">val</span></code></td>
+<td><code class="docutils literal"><span class="pre">spent-uox</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">val</span></code></td>
+<td><code class="docutils literal"><span class="pre">tails</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>The sink facility archetype is:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>Sink_name<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Archetype&gt;</span>
+      <span class="nt">&lt;in_commods&gt;</span>
+        <span class="nt">&lt;val&gt;</span>input_commodity<span class="nt">&lt;/val&gt;</span>
+        <span class="nt">&lt;val&gt;</span>input_commodity<span class="nt">&lt;/val&gt;</span>
+      <span class="nt">&lt;/in_commods&gt;</span>
+    <span class="nt">&lt;/Sink&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
 </div>
-<div class="section" id="activity-completing-your-prototype-configurations">
-<h3>Activity: Completing your Prototype Configurations<a class="headerlink" href="#activity-completing-your-prototype-configurations" title="Permalink to this headline">¶</a></h3>
-<p>For each of the following prototypes, drag it into the fuel cycle design pane
-and configure it with the following information.</p>
-<ol class="arabic simple">
-<li>Reactor</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>Name: ALWR</li>
-<li>Fresh Fuel Commodity List: Fresh-UOX-Fuel</li>
-<li>Fresh Fuel Recipe List:<ul>
-<li>Fresh-UOX-Fuel-4: create a recipe with a mass basis with 4% U-235 <em>(you&#8217;ll need to add this)</em></li>
-</ul>
-</li>
-<li>Spent Fuel Commodity List: Used-UOX-Fuel <em>(you&#8217;ll need to add this)</em></li>
-<li>Spent Fuel Recipe List:</li>
-<li>Used-UOX-Fuel-4: create a recipe with a mass basis with:<ul>
-<li>1% U-235, 94% U-238, 1% Pu-239, 4% Cs-137 <em>(you&#8217;ll need to add this)</em></li>
-</ul>
-</li>
-<li>Assembly Mass: 33000 kg</li>
-<li>Number of Assemblies per Batch: 1</li>
-<li>Number of Assemblies in Core: 3</li>
-<li>Cycle Length: 11</li>
-<li>Refueling Outage Duration: 1</li>
-</ul>
-</div></blockquote>
-<img alt="Complete reactor configurationn showing spent fuel recipe." class="align-center" src="../../_images/rxtr-complete.png" />
-<ol class="arabic simple" start="2">
-<li>Repository (using the Sink module)</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>Change the niche to &#8220;repository&#8221;</li>
-<li>Name: UndergroundFacility</li>
-<li>Input commodity: Used-UOX-Fuel</li>
-</ul>
-</div></blockquote>
-<img alt="Complete once through cycle including repo." class="align-center" src="../../_images/repo-complete.png" />
+<p>After filling in these variables, your sink facility prototype will look like:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>NuclearRepository<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Sink&gt;</span>
+      <span class="nt">&lt;in_commods&gt;</span>
+        <span class="nt">&lt;val&gt;</span>spent-uox<span class="nt">&lt;/val&gt;</span>
+        <span class="nt">&lt;val&gt;</span>tails<span class="nt">&lt;/val&gt;</span>
+      <span class="nt">&lt;/in_commods&gt;</span>
+    <span class="nt">&lt;/Sink&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
 </div>
+<p>Once complete, append this facility under the Reactor prototype of your input file <a class="footnote-reference" href="#f1" id="id4">[1]</a>.</p>
 </div>
-<div class="section" id="advanced-input-options">
-<h2>Advanced Input Options<a class="headerlink" href="#advanced-input-options" title="Permalink to this headline">¶</a></h2>
-<p>In order to streamline input for users, some advanced input quantities are
-hidden by default.  These input quantities will always have default values, so
-users aren&#8217;t required to set them.  In theory, the archetype developers can
-create many layers with increasing numbers of input quantities.  These deeper
-levels of inputs are accesible using the &#8220;User Level&#8221; option on each form.</p>
-<div class="section" id="activity-set-the-reactor-power">
-<h3>Activity: Set the Reactor Power<a class="headerlink" href="#activity-set-the-reactor-power" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic simple">
-<li>Open the configuration form for the &#8220;ALWR&#8221; reactor</li>
-<li>Change the &#8220;User Level&#8221; to 1</li>
-</ol>
-<img alt="First look at user level 1 for the reactor" class="align-center" src="../../_images/user-level-1.png" />
-<ol class="arabic simple" start="3">
-<li>Scroll down to find the input for &#8220;Power&#8221; and set it to 1000 MWe</li>
-</ol>
-<img alt="First look at user level 1 for the reactor" class="align-center" src="../../_images/user-level-1-power-annotated.png" />
+<div class="section" id="check-complete-facility-block">
+<h2>Check: Complete Facility block<a class="headerlink" href="#check-complete-facility-block" title="Permalink to this headline">¶</a></h2>
+<p>The facility section of your input file should be of the form:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>UraniumMine<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Source&gt;</span>
+      <span class="nt">&lt;outcommod&gt;</span>u-ore<span class="nt">&lt;/outcommod&gt;</span>
+    <span class="nt">&lt;/Source&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+
+<span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>EnrichmentPlant<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Enrichment&gt;</span>
+      <span class="nt">&lt;feed_commod&gt;</span>u-ore<span class="nt">&lt;/feed_commod&gt;</span>
+      <span class="nt">&lt;feed_recipe&gt;</span>nat-u<span class="nt">&lt;/feed_recipe&gt;</span>
+      <span class="nt">&lt;product_commod&gt;</span>fresh-uox<span class="nt">&lt;/product_commod&gt;</span>
+      <span class="nt">&lt;tails_commod&gt;</span>tails<span class="nt">&lt;/tails_commod&gt;</span>
+      <span class="nt">&lt;max_feed_inventory&gt;</span>1000000<span class="nt">&lt;/max_feed_inventory&gt;</span>
+    <span class="nt">&lt;/Enrichment&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+
+<span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>1178MWe BRAIDWOOD-1<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Reactor&gt;</span>
+      <span class="nt">&lt;fuel_incommods&gt;</span> <span class="nt">&lt;val&gt;</span>fresh-uox<span class="nt">&lt;/val&gt;</span> <span class="nt">&lt;/fuel_incommods&gt;</span>
+      <span class="nt">&lt;fuel_inrecipes&gt;</span> <span class="nt">&lt;val&gt;</span>fresh-uox<span class="nt">&lt;/val&gt;</span> <span class="nt">&lt;/fuel_inrecipes&gt;</span>
+      <span class="nt">&lt;fuel_outcommods&gt;</span> <span class="nt">&lt;val&gt;</span>spent-uox<span class="nt">&lt;/val&gt;</span> <span class="nt">&lt;/fuel_outcommods&gt;</span>
+      <span class="nt">&lt;fuel_outrecipes&gt;</span> <span class="nt">&lt;val&gt;</span>spent-uox<span class="nt">&lt;/val&gt;</span> <span class="nt">&lt;/fuel_outrecipes&gt;</span>
+      <span class="nt">&lt;cycle_time&gt;</span>18<span class="nt">&lt;/cycle_time&gt;</span>
+      <span class="nt">&lt;refuel_time&gt;</span>1<span class="nt">&lt;/refuel_time&gt;</span>
+      <span class="nt">&lt;assem_size&gt;</span>33000<span class="nt">&lt;/assem_size&gt;</span>
+      <span class="nt">&lt;n_assem_core&gt;</span>3<span class="nt">&lt;/n_assem_core&gt;</span>
+      <span class="nt">&lt;n_assem_batch&gt;</span>1<span class="nt">&lt;/n_assem_batch&gt;</span>
+      <span class="nt">&lt;power_cap&gt;</span>1178<span class="nt">&lt;/power_cap&gt;</span>
+    <span class="nt">&lt;/Reactor&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+
+<span class="nt">&lt;facility&gt;</span>
+  <span class="nt">&lt;name&gt;</span>NuclearRepository<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;config&gt;</span>
+    <span class="nt">&lt;Sink&gt;</span>
+      <span class="nt">&lt;in_commods&gt;</span>
+        <span class="nt">&lt;val&gt;</span>spent-uox<span class="nt">&lt;/val&gt;</span>
+        <span class="nt">&lt;val&gt;</span>tails<span class="nt">&lt;/val&gt;</span>
+      <span class="nt">&lt;/in_commods&gt;</span>
+    <span class="nt">&lt;/Sink&gt;</span>
+  <span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
 </div>
-<div class="section" id="activity-set-the-maximum-inventory-of-feed-at-the-reactor">
-<h3>Activity: Set the Maximum Inventory of Feed at the Reactor<a class="headerlink" href="#activity-set-the-maximum-inventory-of-feed-at-the-reactor" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic simple">
-<li>Open the configuration form for the &#8220;EnrichPlant&#8221;</li>
-<li>Chnage to &#8220;User Level: 1</li>
-<li>Find the &#8220;Maximum Feed Inventory&#8221; entry and set it to: 1000000</li>
-</ol>
-<img alt="First look at user level 1 for the reactor" class="align-center" src="../../_images/enrich-max-inv-annotated.png" />
-</div>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>, <a class="fn-backref" href="#id3">3</a>, <a class="fn-backref" href="#id4">4</a>)</em> The exact order of the sections in a <span style="font-variant:small-caps;">Cyclus</span> input file are of minor consequence. The <code class="docutils literal"><span class="pre">control</span></code> sequence must go first, but the other sequences can go in any order that makes sense to the user. The traditional organization  of an input file is: control, archetypes, commodities, facilities,   regions/institutions, and recipes.</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -284,29 +708,19 @@ levels of inputs are accesible using the &#8220;User Level&#8221; option on each
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">Adding Prototypes to your Simulation</a><ul>
-<li><a class="reference internal" href="#concept-configuring-an-archetype-to-create-a-prototype">Concept: Configuring an Archetype to Create a Prototype</a><ul>
-<li><a class="reference internal" href="#activity-configure-your-first-prototype">Activity: Configure your first prototype</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#concept-commodities">Concept: Commodities</a><ul>
-<li><a class="reference internal" href="#activity-add-a-commodity-to-the-mine">Activity: Add a commodity to the mine</a></li>
-<li><a class="reference internal" href="#activity-add-an-enrichment-facility">Activity: Add an enrichment facility</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#concept-material-recipes">Concept: Material recipes</a><ul>
-<li><a class="reference internal" href="#activity-add-a-recipe-for-natural-uranium">Activity: Add a recipe for natural uranium</a></li>
-<li><a class="reference internal" href="#activity-completing-your-prototype-configurations">Activity: Completing your Prototype Configurations</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#advanced-input-options">Advanced Input Options</a><ul>
-<li><a class="reference internal" href="#activity-set-the-reactor-power">Activity: Set the Reactor Power</a></li>
-<li><a class="reference internal" href="#activity-set-the-maximum-inventory-of-feed-at-the-reactor">Activity: Set the Maximum Inventory of Feed at the Reactor</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">Understanding Prototypes</a><ul>
+<li><a class="reference internal" href="#example-source-prototype">Example: Source Prototype</a></li>
+<li><a class="reference internal" href="#activity-configure-the-source-prototype">Activity: Configure the Source prototype</a></li>
+<li><a class="reference internal" href="#example-enrichment-prototype">Example: Enrichment Prototype</a></li>
+<li><a class="reference internal" href="#activity-creating-the-enrichment-prototype">Activity: Creating the Enrichment Prototype</a></li>
+<li><a class="reference internal" href="#example-reactor-prototype">Example: Reactor Prototype</a></li>
+<li><a class="reference internal" href="#activity-creating-the-reactor-prototype">Activity: Creating the Reactor Prototype</a></li>
+<li><a class="reference internal" href="#example-sink-prototype">Example: Sink Prototype</a></li>
+<li><a class="reference internal" href="#activity-creating-the-sink-prototype">Activity: Creating the Sink Prototype</a></li>
+<li><a class="reference internal" href="#check-complete-facility-block">Check: Complete Facility block</a></li>
 </ul>
 </li>
 </ul>
@@ -314,8 +728,8 @@ levels of inputs are accesible using the &#8220;User Level&#8221; option on each
   </div>
   <div class="sphinxprev">
     <h4>Previous page</h4>
-    <p class="topless"><a href="add_arche.html"
-                          title="Previous page">&larr; Understanding and Adding Archetypes to Your Scenario</a></p>
+    <p class="topless"><a href="add_commod_recipe.html"
+                          title="Previous page">&larr; Understanding Commodities</a></p>
   </div>
   <div class="sphinxnext">
     <h4>Next page</h4>
@@ -386,6 +800,23 @@ levels of inputs are accesible using the &#8220;User Level&#8221; option on each
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -403,7 +834,7 @@ levels of inputs are accesible using the &#8220;User Level&#8221; option on each
           <a href="add_reg_inst.html" title="Adding Regions and Institutions"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="add_arche.html" title="Understanding and Adding Archetypes to Your Scenario"
+          <a href="add_commod_recipe.html" title="Understanding Commodities"
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../../index.html">Home</a> &#187;</li>
 
@@ -415,7 +846,7 @@ levels of inputs are accesible using the &#8220;User Level&#8221; option on each
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

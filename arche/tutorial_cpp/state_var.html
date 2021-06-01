@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Adding State Variables &#8212; Home</title>
-    
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -96,7 +110,7 @@ if(ga_enabled){
 <h2>Add State Variables with Cyclus #pragma<a class="headerlink" href="#add-state-variables-with-cyclus-pragma" title="Permalink to this headline">¶</a></h2>
 <p>The Cyclus preprocessor provides a <code class="docutils literal"><span class="pre">#pragma</span></code> that defines variables to
 be part of the set of state variables and allows convenient annotations.</p>
-<p>First, we&#8217;ll add the maximum monthly transfer capacity, called <code class="docutils literal"><span class="pre">throughput</span></code>.
+<p>First, we’ll add the maximum monthly transfer capacity, called <code class="docutils literal"><span class="pre">throughput</span></code>.
 Open the file <code class="docutils literal"><span class="pre">src/storage.h</span></code> in your text editor.</p>
 <p>Immediately after the declaration of <code class="docutils literal"><span class="pre">Tock()</span></code>, add the following:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var { \</span>
@@ -108,7 +122,7 @@ Open the file <code class="docutils literal"><span class="pre">src/storage.h</sp
 <span class="kt">double</span> <span class="n">throughput</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Now, we&#8217;ll add variables for the minimum amount of time that material is
+<p>Now, we’ll add variables for the minimum amount of time that material is
 stored and the input/output commodity names.</p>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var { \</span>
 <span class="cp">  &quot;doc&quot;: &quot;Minimum amount of time material must be stored&quot;, \</span>
@@ -139,8 +153,8 @@ stored and the input/output commodity names.</p>
 <div class="section" id="build-and-install-the-modified-module">
 <h2>Build and Install the Modified Module<a class="headerlink" href="#build-and-install-the-modified-module" title="Permalink to this headline">¶</a></h2>
 <p>To rebuild, reinstall, and test this module, just issue the same command as before:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./install.py
-<span class="gp">$</span> Storage_unit_tests
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
+<span class="gp">$ </span>Storage_unit_tests
 </pre></div>
 </div>
 </div>
@@ -149,7 +163,7 @@ stored and the input/output commodity names.</p>
 <p>If you try to run the same input file with your modified module, you will get
 errors because the sample input file no longer includes the necessary pieces
 to define your module.  It is missing the new variables.  Try it:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cyclus -v <span class="m">2</span> input/storage.xml
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus -v <span class="m">2</span> input/storage.xml
 <span class="go">              :</span>
 <span class="go">          .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q</span>
 <span class="go">        CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)</span>
@@ -184,17 +198,17 @@ to define your module.  It is missing the new variables.  Try it:</p>
 </pre></div>
 </div>
 <p>The simulation now fails because it does not match the schema. You can view the schema with</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cyclus --agent-schema tutorial:Storage:Storage
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus --agent-schema tutorial:Storage:Storage
 </pre></div>
 </div>
 <p>Notice that you were able to take advantage of the input file validation simply by using the <code class="docutils literal"><span class="pre">#pragma</span></code>.</p>
 <p>Our failed cyclus simulation produced an output file that will need to be deleted.</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> rm cyclus.sqlite
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>rm cyclus.sqlite
 </pre></div>
 </div>
-<p>Now, we&#8217;ll change that input file.  Open the file <code class="docutils literal"><span class="pre">input/storage.xml</span></code> in
+<p>Now, we’ll change that input file.  Open the file <code class="docutils literal"><span class="pre">input/storage.xml</span></code> in
 your text editor, and find the prototype configuration for the single facility
-named &#8220;OneFacility&#8221; that looks like this.</p>
+named “OneFacility” that looks like this.</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
   <span class="nt">&lt;name&gt;</span>OneFacility<span class="nt">&lt;/name&gt;</span>
   <span class="nt">&lt;config&gt;</span>
@@ -215,7 +229,7 @@ named &#8220;OneFacility&#8221; that looks like this.</p>
 </pre></div>
 </div>
 <p>Now we can try it again:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> cyclus -v <span class="m">2</span> input/storage.xml
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus -v <span class="m">2</span> input/storage.xml
 <span class="go">              :</span>
 <span class="go">          .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q</span>
 <span class="go">        CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)</span>
@@ -282,7 +296,7 @@ named &#8220;OneFacility&#8221; that looks like this.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Adding State Variables</a><ul>
@@ -368,6 +382,23 @@ named &#8220;OneFacility&#8221; that looks like this.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -397,7 +428,7 @@ named &#8220;OneFacility&#8221; that looks like this.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

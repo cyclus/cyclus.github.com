@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Guide for Contributing to Cyclus &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -96,16 +110,16 @@ projects found at <a class="reference external" href="http://github.com/cyclus">
 <p>Although you do not have to register with GitHub to download and edit the
 code, if you desire your work to be integrated into the <span style="font-variant:small-caps;">Cyclus</span> mainline of
 development <em>you must fork the cyclus core repository into your own GitHub
-account and submit &#8216;Pull Requests&#8217;</em>. <a class="reference internal" href="build_from_source.html"><span class="doc">Here is a tutorial on getting and
+account and submit ‘Pull Requests’</em>. <a class="reference internal" href="build_from_source.html"><span class="doc">Here is a tutorial on getting and
 building cyclus.</span></a></p>
 <div class="section" id="working-on-a-topic">
 <h2>Working on a Topic<a class="headerlink" href="#working-on-a-topic" title="Permalink to this headline">¶</a></h2>
-<p><em>Note that &#8220;upstream&#8221; repository refers to the primary `cyclus/cyclus` repository.</em></p>
+<p><em>Note that “upstream” repository refers to the primary `cyclus/cyclus` repository.</em></p>
 <p>You may find or create an issue report in a <span style="font-variant:small-caps;">Cyclus</span> repository that you would
 like to solve.</p>
-<p>You&#8217;ll first need to fork your repository and create a branch for the topic
-you&#8217;d like you solve. As you do your development, push only to your own fork.
-Make a pull request to the upstream repository (usually the &#8220;develop&#8221; branch)
+<p>You’ll first need to fork your repository and create a branch for the topic
+you’d like you solve. As you do your development, push only to your own fork.
+Make a pull request to the upstream repository (usually the “develop” branch)
 only after:</p>
 <ul class="simple">
 <li>You have pulled the latest changes from the upstream repository.</li>
@@ -115,8 +129,8 @@ only after:</p>
 <li><span style="font-variant:small-caps;">Cyclus</span> input files run as expected.</li>
 <li>Your code has been reviewed by another developer.</li>
 </ul>
-<p>Code from the &#8220;develop&#8221; branch generally must pass even more rigorous checks
-before being integrated into the &#8220;master&#8221; branch. Hotfixes would be a
+<p>Code from the “develop” branch generally must pass even more rigorous checks
+before being integrated into the “master” branch. Hotfixes would be a
 possible exception to this.</p>
 </div>
 <div class="section" id="keeping-your-fork-up-to-date">
@@ -125,19 +139,19 @@ possible exception to this.</p>
 <li><p class="first">Use a branching workflow similar to the one described at
 <a class="reference external" href="http://progit.org/book/ch3-4.html">http://progit.org/book/ch3-4.html</a>.</p>
 </li>
-<li><p class="first">The &#8220;develop&#8221; branch is how <span style="font-variant:small-caps;">Cyclus</span> developers will share (generally
+<li><p class="first">The “develop” branch is how <span style="font-variant:small-caps;">Cyclus</span> developers will share (generally
 compilable) progress when we are not yet ready for the code to become
-&#8216;production&#8217;.</p>
+‘production’.</p>
 </li>
-<li><p class="first">Keep your own &#8220;master&#8221; and &#8220;develop&#8221; branches in sync with the upstream
-repository&#8217;s &#8220;master&#8221; and &#8220;develop&#8221; branches. The master branch should
-always be the &#8216;stable&#8217; or &#8216;production&#8217; release of <span style="font-variant:small-caps;">Cyclus</span>.</p>
+<li><p class="first">Keep your own “master” and “develop” branches in sync with the upstream
+repository’s “master” and “develop” branches. The master branch should
+always be the ‘stable’ or ‘production’ release of <span style="font-variant:small-caps;">Cyclus</span>.</p>
 <blockquote>
 <div><ul>
-<li><p class="first">Pull the most recent history from the upstream repository &#8220;master&#8221;
-and/or &#8220;develop&#8221; branches before you merge changes into your
+<li><p class="first">Pull the most recent history from the upstream repository “master”
+and/or “develop” branches before you merge changes into your
 corresponding local branch. Consider doing a rebase pull instead of
-a regular pull or &#8216;fetch and merge&#8217;.  For example:</p>
+a regular pull or ‘fetch and merge’.  For example:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">develop</span>
 <span class="n">git</span> <span class="n">pull</span> <span class="o">--</span><span class="n">rebase</span> <span class="n">upstream</span> <span class="n">develop</span>
 </pre></div>
@@ -147,7 +161,7 @@ a regular pull or &#8216;fetch and merge&#8217;.  For example:</p>
 </div></blockquote>
 </li>
 <li><p class="first">As you do development on topic branches in your own fork, consider
-rebasing the topic branch onto the &#8220;master&#8221; and/or &#8220;develop&#8221;  branches
+rebasing the topic branch onto the “master” and/or “develop”  branches
 after <em>pulls</em> from the upstream repository rather than merging the pulled
 changes into your branch.  This will help maintain a more linear (and clean)
 history.  <em>Please see caution about rebasing below</em>.  For example:</p>
@@ -197,7 +211,7 @@ input files,</p>
 <div class="section" id="making-a-pull-request">
 <h2>Making a Pull Request<a class="headerlink" href="#making-a-pull-request" title="Permalink to this headline">¶</a></h2>
 <p>When you are ready to move changes from one of your topic branches into the
-&#8220;develop&#8221; branch, it must be reviewed and accepted by another developer.</p>
+“develop” branch, it must be reviewed and accepted by another developer.</p>
 <blockquote>
 <div><ul class="simple">
 <li>You may want to review this <a class="reference external" href="https://help.github.com/articles/using-pull-requests/">tutorial</a> before you make
@@ -205,7 +219,7 @@ a pull request to the develop branch.</li>
 </ul>
 </div></blockquote>
 <p>Sometimes, your pull request will be closed by the reviewer until further
-changes are made to appease the reviewer&#8217;s concerns. This may be frustrating,
+changes are made to appease the reviewer’s concerns. This may be frustrating,
 but please act rationally, discuss the issues on the GitHub space made for
 your pull request, consult the <cite>style guide &lt;style_guide&gt;</cite>, email the
 developer listhost for further advice, and make changes to your topic branch
@@ -233,8 +247,8 @@ use.</p>
 <li><p class="first">Commit your <code class="docutils literal"><span class="pre">branch.rst</span></code>.</p>
 </li>
 </ol>
-<p>Feel free to update this file whenever you want! Please don&#8217;t use someone
-else&#8217;s file name. All of the files in this <code class="docutils literal"><span class="pre">news/</span></code> directory will be merged
+<p>Feel free to update this file whenever you want! Please don’t use someone
+else’s file name. All of the files in this <code class="docutils literal"><span class="pre">news/</span></code> directory will be merged
 automatically at release time.  The <code class="docutils literal"><span class="pre">None</span></code> entries will be automatically
 filtered out too!</p>
 </div>
@@ -258,13 +272,13 @@ branch thusly,</p>
 </li>
 <li><p class="first">Accept the Pull Request</p>
 <ul>
-<li><p class="first">In general, <strong>every commit</strong> (notice this is not &#8216;every push&#8217;) to the
-&#8220;develop&#8221; and &#8220;master&#8221; branches should compile and pass tests. This
+<li><p class="first">In general, <strong>every commit</strong> (notice this is not ‘every push’) to the
+“develop” and “master” branches should compile and pass tests. This
 is guaranteed by using a NON-fast-forward merge during the pull request
 acceptance process.</p>
 </li>
-<li><p class="first">The green &#8220;Merge Pull Request&#8221; button does a non-fast-forward merge by
-default. However, if that button is unavailable, you&#8217;ve made minor
+<li><p class="first">The green “Merge Pull Request” button does a non-fast-forward merge by
+default. However, if that button is unavailable, you’ve made minor
 local changes to the pulled branch, or you just want to do it from the
 command line, make sure your merge is a non-fast-forward merge. For example:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">develop</span>
@@ -292,7 +306,7 @@ command line, make sure your merge is a non-fast-forward merge. For example:</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Guide for Contributing to <span style="font-variant:small-caps;">Cyclus</span></a><ul>
@@ -382,6 +396,23 @@ command line, make sure your merge is a non-fast-forward merge. For example:</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -410,7 +441,7 @@ command line, make sure your merge is a non-fast-forward merge. For example:</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Adding a Separations Facility &#8212; Home</title>
-    
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -88,6 +102,40 @@ if(ga_enabled){
 <p>The separations facility will request all the commodities in its Feed
 Commodity List, and separate them into any number of streams, plus a waste
 stream.</p>
+<p>The following is the input template for <code class="docutils literal"><span class="pre">Cycamore::Separations</span></code> archetype:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span>&lt;facility&gt;
+  &lt;name&gt;SeparationsFacility&lt;/name&gt;
+  &lt;config&gt;
+    &lt;Separations&gt;
+      &lt;feed_commods&gt;
+        &lt;val&gt;_______&lt;/val&gt;
+      &lt;/feed_commods&gt;
+      &lt;feed_commod_prefs&gt;
+        &lt;val&gt;_______&lt;/val&gt;
+      &lt;/feed_commod_prefs&gt;
+      &lt;feedbuf_size&gt;_______&lt;/feedbuf_size&gt;
+      &lt;throughput&gt;_______&lt;/throughput&gt;
+      &lt;leftover_commod&gt;_______&lt;/leftover_commod&gt;
+      &lt;leftoverbuf_size&gt;_______&lt;/leftoverbuf_size&gt;
+      &lt;streams&gt;
+        &lt;item&gt;
+          &lt;commod&gt;_______&lt;/commod&gt;
+          &lt;info&gt;
+            &lt;buf_size&gt;_______&lt;/buf_size&gt;
+            &lt;efficiencies&gt;
+              &lt;item&gt;
+                &lt;comp&gt;_______&lt;/comp&gt;
+                &lt;eff&gt;_______&lt;/eff&gt;
+              &lt;/item
+            &lt;/efficiencies&gt;
+          &lt;/info&gt;
+        &lt;/item&gt;
+      &lt;/streams&gt;
+    &lt;/Separations&gt;
+  &lt;/config&gt;
+&lt;/facility&gt;
+</pre></div>
+</div>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>Our feed commodity list should include both:</dt>
@@ -98,7 +146,7 @@ stream.</p>
 </dd>
 </dl>
 </li>
-<li>The maximum feed inventory is the most feed material that we&#8217;ll have on
+<li>The maximum feed inventory is the most feed material that we’ll have on
 hand: 1000 tonnes.</li>
 <li>The maxium separations throughout is the size of our plant: 80 tonnes/timestep</li>
 <li><dl class="first docutils">
@@ -110,9 +158,44 @@ hand: 1000 tonnes.</li>
 </dd>
 </dl>
 </li>
-<li>all other material will go to waste</li>
+<li>all other material will go to Separated-Waste</li>
 </ul>
-<p>In user level 1, we will change the &#8220;Leftover Commodity&#8221; to be Separated-Waste.</p>
+<p>Filling in the template, the input block looks like:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span>&lt;facility&gt;
+  &lt;name&gt;SeparationsFacility&lt;/name&gt;
+  &lt;config&gt;
+    &lt;Separations&gt;
+      &lt;feed_commods&gt;
+        &lt;val&gt;spent-uox&lt;/val&gt;
+        &lt;val&gt;used-mox&lt;/val&gt;
+      &lt;/feed_commods&gt;
+      &lt;feed_commod_prefs&gt;
+        &lt;val&gt;1.0&lt;/val&gt;
+        &lt;val&gt;1.0&lt;/val&gt;
+      &lt;/feed_commod_prefs&gt;
+      &lt;feedbuf_size&gt;1000E+3_&lt;/feedbuf_size&gt;
+      &lt;throughput&gt;80e+3&lt;/throughput&gt;
+      &lt;leftover_commod&gt;Separated-Waste&lt;/leftover_commod&gt;
+      &lt;leftoverbuf_size&gt;1000e+3&lt;/leftoverbuf_size&gt;
+      &lt;streams&gt;
+        &lt;item&gt;
+          &lt;commod&gt;Separated-Fissile&lt;/commod&gt;
+          &lt;info&gt;
+            &lt;buf_size&gt;5e+3&lt;/buf_size&gt;
+            &lt;efficiencies&gt;
+              &lt;item&gt;
+                &lt;comp&gt;94000&lt;/comp&gt;
+                &lt;eff&gt;0.99&lt;/eff&gt;
+              &lt;/item
+            &lt;/efficiencies&gt;
+          &lt;/info&gt;
+        &lt;/item&gt;
+      &lt;/streams&gt;
+    &lt;/Separations&gt;
+  &lt;/config&gt;
+&lt;/facility&gt;
+</pre></div>
+</div>
 </div>
 
 
@@ -198,6 +281,23 @@ hand: 1000 tonnes.</li>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -227,7 +327,7 @@ hand: 1000 tonnes.</li>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

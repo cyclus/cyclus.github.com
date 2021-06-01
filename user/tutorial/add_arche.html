@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Understanding and Adding Archetypes to Your Scenario &#8212; Home</title>
-    
+    <title>Understanding Archetypes &#8212; Home</title>
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,13 +26,28 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Adding Prototypes to your Simulation" href="add_proto.html" />
+    <link rel="next" title="Understanding Commodities" href="add_commod_recipe.html" />
     <link rel="prev" title="Starting a New Scenario" href="sim_parm.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
 var ga_enabled = !$.cookie('disable-ga');
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -64,7 +78,7 @@ if(ga_enabled){
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="add_proto.html" title="Adding Prototypes to your Simulation"
+          <a href="add_commod_recipe.html" title="Understanding Commodities"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="sim_parm.html" title="Starting a New Scenario"
@@ -83,8 +97,8 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="understanding-and-adding-archetypes-to-your-scenario">
-<h1>Understanding and Adding Archetypes to Your Scenario<a class="headerlink" href="#understanding-and-adding-archetypes-to-your-scenario" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="understanding-archetypes">
+<h1>Understanding Archetypes<a class="headerlink" href="#understanding-archetypes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="concept-archetypes">
 <h2>Concept: Archetypes<a class="headerlink" href="#concept-archetypes" title="Permalink to this headline">¶</a></h2>
 <p>One of the principal features of <span style="font-variant:small-caps;">Cyclus</span> is the ability for users to easily
@@ -92,8 +106,8 @@ switch between different models of fuel cycle facilities.  Models may differ
 in the way they choose to represent the physics of the facility, or in the way
 they choose for the facility to interact with other facilities, or both. In
 <span style="font-variant:small-caps;">Cyclus</span>, we call each of these different models an <a class="reference internal" href="../../basics/glossary.html#term-archetype"><span class="xref std std-term">archetype</span></a>.</p>
-<div class="section" id="archetype-example-reactor-fidelity">
-<h3>Archetype Example: Reactor Fidelity<a class="headerlink" href="#archetype-example-reactor-fidelity" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="archetype-example">
+<h3>Archetype Example<a class="headerlink" href="#archetype-example" title="Permalink to this headline">¶</a></h3>
 <p>The easiest way for most fuel cycle analysts to understand the difference
 between archetypes is through the example of a reactor model.</p>
 <ul class="simple">
@@ -103,11 +117,11 @@ might assume that all material that it receives matches its desired input
 recipe, and that all the material that it then ships as used fuel will match
 its prescribed output recipe.  This will probably run the fastest.</li>
 <li>A more sophisticated reactor archetype uses some form of tabulated data to
-determine both performance characteristics and used fuel discharge
-composition.  It could be as simple as interpolating between a set of
+determine both <strong>performance characteristics</strong> and <strong>used fuel discharge
+composition</strong>.  It could be as simple as interpolating between a set of
 possible input recipes and then using that interpolation on a set of
 corresponding output recipes.  A more complex version of such an archetype
-could even have tabulated reactor physics paramters for more fidelity.</li>
+could even have tabulated reactor physics parameters for more fidelity.</li>
 <li>The most sophisticated reactor archetype may actually be a wrapper for fuel
 depletion software, and perform a full depletion calculation each time new
 fuel arrives at the reactor.  This will probably take the most computer time
@@ -125,53 +139,183 @@ simple models and are useful for tutorials such as this, and as a standard way
 to model facilities that may be at the peripheral of a problem.  The Cycamore
 facility archetypes are:</p>
 <ul class="simple">
-<li><strong>Source:</strong> This generic source of material may fill the role of any
+<li><strong>Source:</strong> <a class="reference external" href="http://fuelcycle.org/user/cycamoreagents.html#cycamore-source">Source</a>
+is a generic source of material may fill the role of any
 facility that produces fresh material.  Depending on how much of the fuel
-cycle a user wants to model explicity, this could fill the role of a uranium
-mine, an enrichment facility, a fuel fabrication facility, etc.</li>
-<li><strong>Enrichment:</strong> This facility archetype implements the standard equations for
+cycle a user wants to model explicitly, this could fill the role of a uranium
+mine, an enrichment facility, a fuel fabrication facility, import of a commodity from
+outside simulated facilities, etc. The Source facility produces resources at a user-specified
+rate and may be limited to a user-specified total inventory.</li>
+<li><strong>Enrichment:</strong> <a class="reference external" href="http://fuelcycle.org/user/cycamoreagents.html#cycamore-enrichment">Enrichment</a>
+is a facility archetype that implements the standard equations for
 enrichment of U-235 in U-238, with a constrained total enrichment capacity.</li>
-<li><strong>Reactor:</strong> This facility archetype uses simple fuel recipes for a reactor
-that reloads batches of assemblies at regular intervals.</li>
-<li><strong>Separations:</strong> This facility archetype takes a number of input streams and
+<li><strong>Reactor:</strong> <a class="reference external" href="http://fuelcycle.org/user/cycamoreagents.html#cycamore-reactor">Reactor</a>
+is a facility archetype which uses fresh and spent fuel recipes to model fuel transmutation.
+Fuel is modeled as batches and assemblies that are reloaded at regular intervals.</li>
+<li><strong>Separations:</strong> <a class="reference external" href="http://fuelcycle.org/user/cycamoreagents.html#cycamore-separations">Separations</a>
+is a facility archetype that receives one or more material streams and
 separates all the isotopes into a number of output streams.</li>
-<li><strong>FuelFab:</strong> This facility archetype mixes streams of fissile and
+<li><strong>FuelFab:</strong> <a class="reference external" href="http://fuelcycle.org/user/cycamoreagents.html#cycamore-fuelfab">FuelFab</a> is
+a facility archetype that mixes streams of fissile and
 fissionable material in order to best approximate a given recipe using the
 d-factor approach.</li>
-<li><strong>Sink:</strong> This generic sink of material may fill the role of any facility
+<li><strong>Sink:</strong> <a class="reference external" href="http://fuelcycle.org/user/cycamoreagents.html#cycamore-sink">Sink</a> is a generic
+sink of material that may fill the role of any facility
 that permanently holds used nuclear material.  Depending on how much of the
 fuel cycle a user wants to model explicitly, this could fill the role of a
-geologic repository, an interim storage facility, etc.</li>
+geologic repository, an interim storage facility, export of a commodity to outside simulated facilities, etc.</li>
 </ul>
+</div>
 </div>
 <div class="section" id="activity-discover-the-available-archetypes">
-<h3>Activity: Discover the Available Archetypes<a class="headerlink" href="#activity-discover-the-available-archetypes" title="Permalink to this headline">¶</a></h3>
-<p>Since archetypes can change without having to resinstall <span style="font-variant:small-caps;">Cyclus</span>, there is
-the ability to automatically discover which archetypes are available.</p>
-<ol class="arabic simple">
-<li>Press the &#8220;Discover Archetypes&#8221; button to update the archetypes available to you.</li>
-</ol>
-<img alt="View of archetype discovery pane." class="align-center" src="../../_images/disc_arche.png" />
-<ol class="arabic simple" start="2">
-<li>Select the &#8220;Add Archetype to Simulation&#8221; drop-down box to see which
-archetypes are available.</li>
-</ol>
+<h2>Activity: Discover the Available Archetypes<a class="headerlink" href="#activity-discover-the-available-archetypes" title="Permalink to this headline">¶</a></h2>
+<p>If using <span style="font-variant:small-caps;">Cyclus</span> on your machine, the archetypes available to you are only those that you have downloaded.
+To check which archetypes are downloaded on your machine run the command <code class="docutils literal"><span class="pre">cyclus</span> <span class="pre">-a</span></code> from your terminal.</p>
+<p>If you are not running <span style="font-variant:small-caps;">Cyclus</span> on your machine, the archetypes available to you include those in Cycamore, which
+can be found on the <a class="reference external" href="http://fuelcycle.org/user/cycamoreagents.html">archetypes</a> webpage.</p>
+<p>What archetypes can you see yourself using in your research?</p>
 </div>
-<div class="section" id="activity-select-archetypes-to-use-in-this-scneario">
-<h3>Activity: Select Archetypes to Use in this Scneario<a class="headerlink" href="#activity-select-archetypes-to-use-in-this-scneario" title="Permalink to this headline">¶</a></h3>
-<p>After discovering which archetypes are available on your system, you are able to select which
-subset of archetypes will be used in this particular scenario.</p>
-<ol class="arabic simple">
-<li>For this scenario, select each of these archetypes from the drop down box.</li>
-</ol>
+<div class="section" id="concept-third-party-archetypes">
+<h2>Concept: Third-Party Archetypes<a class="headerlink" href="#concept-third-party-archetypes" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://fuelcycle.org/user/index.html#=third-party">Third-Party</a> Archetypes
+complement the initial archetypes available in Cycamore and are not necessarily
+maintained by the <span style="font-variant:small-caps;">Cyclus</span> core development team.  Popular Third-Party Archetypes are:</p>
 <ul class="simple">
-<li><em>cycamore Source</em>: to act as the mine</li>
-<li><em>cycamore Enrichment</em>: to act as the enrichment facility</li>
-<li><em>cycamore Reactor</em>: to act as the LWR</li>
-<li><em>cycamore Sink</em>: to act as the geoligic respository</li>
+<li>Bright-lite</li>
+<li>Cyborg</li>
+<li>Mbmore Archetypes</li>
+<li>rwc Archetypes</li>
 </ul>
-<p>Notice how these now appear in the window on the right.</p>
-<a class="reference internal image-reference" href="../../_images/arche_ribbon.png"><img alt="View of archetype ribbon after adding archetypes" class="align-center" src="../../_images/arche_ribbon.png" style="width: 100%;" /></a>
+<p>Review the <a class="reference external" href="http://fuelcycle.org/arche/tutorial/input_files.html">archetype developer tutorial</a>
+for more information on making your own Archetypes.</p>
+</div>
+<div class="section" id="activity-adding-archetypes">
+<h2>Activity: Adding archetypes<a class="headerlink" href="#activity-adding-archetypes" title="Permalink to this headline">¶</a></h2>
+<p>After discovering which archetypes are available, we will select which
+subset of archetypes to use in this particular scenario.</p>
+<p>The archetypes we will use in our simulation include:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">cycamore</span> <span class="pre">Source</span></code>: to act as the mine</li>
+<li><code class="docutils literal"><span class="pre">cycamore</span> <span class="pre">Enrichment</span></code>:to act as the enrichment facility</li>
+<li><code class="docutils literal"><span class="pre">cycamore</span> <span class="pre">Reactor</span></code>: to act as the LWR</li>
+<li><code class="docutils literal"><span class="pre">cycamore</span> <span class="pre">Sink</span></code>: to act as the geological repository.</li>
+</ul>
+<p>A user identifies the simulation <code class="docutils literal"><span class="pre">archetypes</span></code> in the archetype block of the <span style="font-variant:small-caps;">Cyclus</span> input file.
+The <code class="docutils literal"><span class="pre">archetype</span></code> block is located after the simulation control block and takes the form:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;archetypes&gt;</span>
+    <span class="nt">&lt;spec&gt;</span>
+      <span class="nt">&lt;lib&gt;</span>lib1<span class="nt">&lt;/lib&gt;</span>
+      <span class="nt">&lt;name&gt;</span>arch_1<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;/spec&gt;</span>
+    <span class="nt">&lt;spec&gt;</span>
+      <span class="nt">&lt;lib&gt;</span>lib2<span class="nt">&lt;/lib&gt;</span>
+      <span class="nt">&lt;name&gt;</span>arch_2<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;/spec&gt;</span>
+<span class="nt">&lt;/archetypes&gt;</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal"><span class="pre">lib</span></code> is the library in which the archetype came from and <code class="docutils literal"><span class="pre">name</span></code> is
+the archetype name. Let’s build our archetypes!
+Using the template below and the table below,
+fill in the template with the variables listed in the table below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="31%" />
+<col width="47%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Value</th>
+<th class="head">Purpose</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">lib1</span></code></td>
+<td><code class="docutils literal"><span class="pre">cycamore</span></code></td>
+<td>Library of the archetype</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">arch1</span></code></td>
+<td><code class="docutils literal"><span class="pre">Enrichment</span></code></td>
+<td>Name of archetype</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">lib2</span></code></td>
+<td><code class="docutils literal"><span class="pre">cycamore</span></code></td>
+<td>Library of the archetype</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">arch2</span></code></td>
+<td><code class="docutils literal"><span class="pre">Reactor</span></code></td>
+<td>Name of archetype</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">lib3</span></code></td>
+<td><code class="docutils literal"><span class="pre">cycamore</span></code></td>
+<td>Library of the archetype</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">arch3</span></code></td>
+<td><code class="docutils literal"><span class="pre">Source</span></code></td>
+<td>Name of archetype</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">lib4</span></code></td>
+<td><code class="docutils literal"><span class="pre">cycamore</span></code></td>
+<td>Library of the archetype</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">arch4</span></code></td>
+<td><code class="docutils literal"><span class="pre">Sink</span></code></td>
+<td>Name of archetype</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="archetype-block-template">
+<h3>Archetype Block Template<a class="headerlink" href="#archetype-block-template" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;archetypes&gt;</span>
+  <span class="nt">&lt;spec&gt;</span>
+    <span class="nt">&lt;lib&gt;</span>lib1<span class="nt">&lt;/lib&gt;</span>
+    <span class="nt">&lt;name&gt;</span>arch1<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;/spec&gt;</span>
+  <span class="nt">&lt;spec&gt;</span>
+    <span class="nt">&lt;lib&gt;</span>lib2<span class="nt">&lt;/lib&gt;</span>
+    <span class="nt">&lt;name&gt;</span>arch2<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;/spec&gt;</span>
+  <span class="nt">&lt;spec&gt;</span>
+    <span class="nt">&lt;lib&gt;</span>lib3<span class="nt">&lt;/lib&gt;</span>
+    <span class="nt">&lt;name&gt;</span>arch3<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;/spec&gt;</span>
+  <span class="nt">&lt;spec&gt;</span>
+    <span class="nt">&lt;lib&gt;</span>lib4<span class="nt">&lt;/lib&gt;</span>
+    <span class="nt">&lt;name&gt;</span>arch4<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;/spec&gt;</span>
+<span class="nt">&lt;/archetypes&gt;</span>
+</pre></div>
+</div>
+<p>Once complete, your <code class="docutils literal"><span class="pre">archetypes</span></code> block should look like:</p>
+<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;archetypes&gt;</span>
+  <span class="nt">&lt;spec&gt;</span>
+    <span class="nt">&lt;lib&gt;</span>cycamore<span class="nt">&lt;/lib&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Enrichment<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;/spec&gt;</span>
+  <span class="nt">&lt;spec&gt;</span>
+    <span class="nt">&lt;lib&gt;</span>cycamore<span class="nt">&lt;/lib&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Reactor<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;/spec&gt;</span>
+  <span class="nt">&lt;spec&gt;</span>
+    <span class="nt">&lt;lib&gt;</span>cycamore<span class="nt">&lt;/lib&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Source<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;/spec&gt;</span>
+  <span class="nt">&lt;spec&gt;</span>
+    <span class="nt">&lt;lib&gt;</span>cycamore<span class="nt">&lt;/lib&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Sink<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;/spec&gt;</span>
+<span class="nt">&lt;/archetypes&gt;</span>
+</pre></div>
+</div>
+<p>Once complete, append the archetypes section under the control section of input file <a class="footnote-reference" href="#f1" id="id1">[1]</a>.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The exact order of the sections in a <span style="font-variant:small-caps;">Cyclus</span> input file are of minor consequence. The <code class="docutils literal"><span class="pre">control</span></code> sequence must go first, but the other sequences can go in any order that makes sense to the user. The traditional organization  of an input file is: control, archetypes, commodities, facilities,   regions/institutions, and recipes.</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -184,15 +328,19 @@ subset of archetypes will be used in this particular scenario.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">Understanding and Adding Archetypes to Your Scenario</a><ul>
+<li><a class="reference internal" href="#">Understanding Archetypes</a><ul>
 <li><a class="reference internal" href="#concept-archetypes">Concept: Archetypes</a><ul>
-<li><a class="reference internal" href="#archetype-example-reactor-fidelity">Archetype Example: Reactor Fidelity</a></li>
+<li><a class="reference internal" href="#archetype-example">Archetype Example</a></li>
 <li><a class="reference internal" href="#cycamore-the-cyclus-additional-module-repository">Cycamore: The <span style="font-variant:small-caps;">Cyclus</span> Additional Module Repository</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#activity-discover-the-available-archetypes">Activity: Discover the Available Archetypes</a></li>
-<li><a class="reference internal" href="#activity-select-archetypes-to-use-in-this-scneario">Activity: Select Archetypes to Use in this Scneario</a></li>
+<li><a class="reference internal" href="#concept-third-party-archetypes">Concept: Third-Party Archetypes</a></li>
+<li><a class="reference internal" href="#activity-adding-archetypes">Activity: Adding archetypes</a><ul>
+<li><a class="reference internal" href="#archetype-block-template">Archetype Block Template</a></li>
 </ul>
 </li>
 </ul>
@@ -207,8 +355,8 @@ subset of archetypes will be used in this particular scenario.</p>
   </div>
   <div class="sphinxnext">
     <h4>Next page</h4>
-    <p class="topless"><a href="add_proto.html"
-                          title="Next page">&rarr; Adding Prototypes to your Simulation</a></p>
+    <p class="topless"><a href="add_commod_recipe.html"
+                          title="Next page">&rarr; Understanding Commodities</a></p>
   </div>
   <div class="sphinxlocaltoc">
   <h3>Useful Pages</h3>
@@ -274,6 +422,23 @@ subset of archetypes will be used in this particular scenario.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -288,7 +453,7 @@ subset of archetypes will be used in this particular scenario.</p>
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="add_proto.html" title="Adding Prototypes to your Simulation"
+          <a href="add_commod_recipe.html" title="Understanding Commodities"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="sim_parm.html" title="Starting a New Scenario"
@@ -303,7 +468,7 @@ subset of archetypes will be used in this particular scenario.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

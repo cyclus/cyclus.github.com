@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Dynamic Resource Exchange &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -108,7 +122,7 @@ resources and another for <code class="docutils literal"><span class="pre">Produ
 <span id="rfb"></span><h2>Request For Bids Phase<a class="headerlink" href="#request-for-bids-phase" title="Permalink to this headline">¶</a></h2>
 <p>In the Request for Bids (RFB) phase, the exchange queries all registered traders
 regarding their demand for a given resource type. Querying is provided through
-the <code class="docutils literal"><span class="pre">Trader</span></code> interface&#8217;s &#8220;get requests&#8221; for a given resource type,
+the <code class="docutils literal"><span class="pre">Trader</span></code> interface’s “get requests” for a given resource type,
 e.g., <code class="docutils literal"><span class="pre">GetMatlRequests()</span></code> (C++) or <code class="docutils literal"><span class="pre">get_material_requests()</span></code> (Python) functions.</p>
 <p>Requests are modeled as collections of <code class="docutils literal"><span class="pre">RequestPortfolio</span></code> instances, where each
 portfolio includes a collection of <code class="docutils literal"><span class="pre">Request</span></code> objects and a collection of
@@ -154,7 +168,7 @@ be:</p>
 </pre></div>
 </div>
 <p><strong>Python:</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="kn">as</span> <span class="nn">ts</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
 
 <span class="k">def</span> <span class="nf">get_material_requests</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">request_qty</span> <span class="o">=</span> <span class="mf">10.0</span>  <span class="c1"># kg</span>
@@ -195,7 +209,7 @@ be:</p>
 <span id="rrfb"></span><h2>Response to Request For Bids Phase<a class="headerlink" href="#response-to-request-for-bids-phase" title="Permalink to this headline">¶</a></h2>
 <p>In the Response to Request for Bids (RRFB) phase, the exchange queries all
 registered traders regarding their supply for a given resource type. Querying is
-provided through the <code class="docutils literal"><span class="pre">Trader</span></code> interface&#8217;s &#8220;get bids&#8221; for a given
+provided through the <code class="docutils literal"><span class="pre">Trader</span></code> interface’s “get bids” for a given
 resource type, e.g. <code class="docutils literal"><span class="pre">GetMatlBids()</span></code> (C++) or <code class="docutils literal"><span class="pre">get_material_bids()</span></code> (Python).</p>
 <p>Bids are modeled as collections of <code class="docutils literal"><span class="pre">BidPortfolio</span></code>, where each
 portfolio includes a collection of <code class="docutils literal"><span class="pre">Bid</span></code> objects and a collection of
@@ -215,7 +229,7 @@ get material bids implementation would then be:</p>
  <span class="k">public</span><span class="o">:</span>
   <span class="n">NucConverter</span><span class="p">(</span><span class="kt">int</span> <span class="n">nuc</span><span class="p">)</span> <span class="o">:</span> <span class="n">nuc_</span><span class="p">(</span><span class="n">nuc</span><span class="p">)</span> <span class="p">{};</span>
 
-  <span class="k">virtual</span> <span class="kt">double</span> <span class="nf">convert</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span><span class="p">,</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Arc</span> <span class="k">const</span> <span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span>
+  <span class="k">virtual</span> <span class="kt">double</span> <span class="n">convert</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span><span class="p">,</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Arc</span> <span class="k">const</span> <span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span>
                          <span class="n">cyclus</span><span class="o">::</span><span class="n">ExchangeTranslationContext</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">*</span> <span class="n">ctx</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
     <span class="n">cyclus</span><span class="o">::</span><span class="n">MatQuery</span> <span class="n">mq</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
     <span class="k">return</span> <span class="n">mq</span><span class="p">.</span><span class="n">mass</span><span class="p">(</span><span class="n">nuc_</span><span class="p">);</span>
@@ -264,7 +278,7 @@ get material bids implementation would then be:</p>
 <p><strong>Python:</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Note that the Python interface does not yet support custom constraint functions.</span>
 <span class="c1"># these are fairly rare in practice and is a forth coming feature.</span>
-<span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="kn">as</span> <span class="nn">ts</span>
+<span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
 
 <span class="k">def</span> <span class="nf">get_material_bids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">requests</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This function takes as input a requests dictionary, which maps</span>
@@ -317,8 +331,8 @@ get material bids implementation would then be:</p>
 </div>
 <div class="section" id="white-box-examples">
 <h3>White Box Examples<a class="headerlink" href="#white-box-examples" title="Permalink to this headline">¶</a></h3>
-<p>Consider a case where a facility&#8217;s bid depends on the type of the requester&#8217;s
-<code class="docutils literal"><span class="pre">Agent</span></code>, and the bidder determines its offer based on the requester&#8217;s
+<p>Consider a case where a facility’s bid depends on the type of the requester’s
+<code class="docutils literal"><span class="pre">Agent</span></code>, and the bidder determines its offer based on the requester’s
 interface:</p>
 <p><strong>C++:</strong></p>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">FooFac</span><span class="o">::</span><span class="n">SpecialFooOffer</span><span class="p">()</span> <span class="p">{</span>
@@ -389,7 +403,7 @@ interface:</p>
 <p>In the Preference Adjustment (PA) phase, requesters are allowed to view which
 bids were matched to their requests, and adjust their preference for the given
 bid-request pairing. Querying is provided through the <code class="docutils literal"><span class="pre">Agent</span></code> interface, so all cyclus
-archetypes may adjust preferences. The &#8220;adjust prefs: functions are based on a given resource
+archetypes may adjust preferences. The “adjust prefs: functions are based on a given resource
 type, e.g. <code class="docutils literal"><span class="pre">AdjustMaterialPrefs</span></code> (C++) or <code class="docutils literal"><span class="pre">adjust_material_prefs()</span></code> (Python).</p>
 <p>Preferences are used by resource exchange solvers to inform their solution
 method. The default preference for all bids is zero. Agents will only utilize
@@ -442,7 +456,7 @@ would then be:</p>
 <span class="sd">    it can return only those request-bid pairs that it actually wants to update.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># If you don&#39;t want to do any prefernce adjustment, just return None.</span>
-    <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="kc">None</span>
 
     <span class="c1"># Otherwise we can loop though and update those that matter.</span>
     <span class="n">updates</span> <span class="o">=</span> <span class="p">{}</span>
@@ -554,10 +568,10 @@ solver that is employed by the <span style="font-variant:small-caps;">Cyclus</sp
 <span id="trade"></span><h2>Trade Execution Phase<a class="headerlink" href="#trade-execution-phase" title="Permalink to this headline">¶</a></h2>
 <p>When satisfactory request-bid pairings are determined, a final communication is
 executed for each bidder and requester during the Trade Execution Phase. Bidders
-are notified of their winning bids through the <code class="docutils literal"><span class="pre">Trader</span></code> &#8220;get trades&#8221;
+are notified of their winning bids through the <code class="docutils literal"><span class="pre">Trader</span></code> “get trades”
 functions (e.g. <code class="docutils literal"><span class="pre">GetMatlTrades()</span></code> in C++ and <code class="docutils literal"><span class="pre">get_material_trades()</span></code> in Python),
 and requesters are provided their
-satisfied requests through the <code class="docutils literal"><span class="pre">Trader</span></code> &#8220;accept trades&#8221;
+satisfied requests through the <code class="docutils literal"><span class="pre">Trader</span></code> “accept trades”
 functions (e.g. <code class="docutils literal"><span class="pre">AcceptMatlTrades()</span></code> in C++ and <code class="docutils literal"><span class="pre">accept_material_trades()</span></code> in Python).</p>
 <p>By convention in C++, traders can implement a <code class="docutils literal"><span class="pre">TradeResponse()</span></code> function that provides a
 <code class="docutils literal"><span class="pre">Material::Ptr</span></code> given a <code class="docutils literal"><span class="pre">Trade</span></code>. It can then implement its
@@ -578,7 +592,7 @@ Trader interface as follows:</p>
 </pre></div>
 </div>
 <p><strong>Python:</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="kn">as</span> <span class="nn">ts</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
 
 <span class="k">def</span> <span class="nf">get_material_trades</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trades</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;In Python, the get trades functions take a single trades aregument and</span>
@@ -596,7 +610,7 @@ Trader interface as follows:</p>
     <span class="k">return</span> <span class="n">responses</span>
 </pre></div>
 </div>
-<p>Similarly, Traders can implement an &#8220;accept trade&#8221; function that accepts a
+<p>Similarly, Traders can implement an “accept trade” function that accepts a
 the resources from a <code class="docutils literal"><span class="pre">Trade</span></code>. It can then implement its
 Trader interface as follows:</p>
 <p><strong>C++:</strong></p>
@@ -647,7 +661,7 @@ the equality of the parent of a <code class="docutils literal"><span class="pre"
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>A trader who then wants behavior based on whether a bidder&#8217;s manager inherits
+<p>A trader who then wants behavior based on whether a bidder’s manager inherits
 from <code class="docutils literal"><span class="pre">PrefGetter</span></code> can then implement its preference adjustment as follows:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">virtual</span> <span class="kt">void</span> <span class="n">FooFac</span><span class="o">::</span><span class="n">AdjustMatlPrefs</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">PrefMap</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&amp;</span> <span class="n">prefs</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">cyclus</span><span class="o">::</span><span class="n">PrefMap</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">::</span><span class="n">iterator</span> <span class="n">pmit</span><span class="p">;</span>
@@ -699,7 +713,7 @@ entity through its <code class="docutils literal"><span class="pre">Agent</span>
 stopping an archetype developer from implementing logic that is specific to a
 implemented archetype.</p>
 <p>For example, take a facility that informs a trader what composition of material
-it wants given another facility&#8217;s inventory.</p>
+it wants given another facility’s inventory.</p>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TradeInformer</span><span class="o">:</span> <span class="k">public</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Facility</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="cp">#pragma cyclus</span>
@@ -760,7 +774,7 @@ it wants given another facility&#8217;s inventory.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Dynamic Resource Exchange</a><ul>
@@ -862,6 +876,23 @@ it wants given another facility&#8217;s inventory.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -890,7 +921,7 @@ it wants given another facility&#8217;s inventory.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

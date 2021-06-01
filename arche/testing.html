@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Testing and Debugging Archetypes &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -87,11 +101,11 @@ if(ga_enabled){
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>Writing <a class="reference external" href="http://en.wikipedia.org/wiki/Unit_testing">unit tests</a> for your
-module is a prerequisite for its addition to any <span style="font-variant:small-caps;">Cyclus</span> library, but it&#8217;s
+module is a prerequisite for its addition to any <span style="font-variant:small-caps;">Cyclus</span> library, but it’s
 really a <a class="reference external" href="http://software-carpentry.org/v4/test/unit.html">good idea anyway</a>.</p>
 <p><span style="font-variant:small-caps;">Cyclus</span> makes use of the <a class="reference external" href="http://code.google.com/p/googletest/">Google Test</a> framework. The <a class="reference external" href="https://code.google.com/p/googletest/wiki/Primer">primer</a> is recommended as an
 introduction to the fundamental concepts of unit testing with Google Test.
-Seriously, if you&#8217;re unfamiliar with unit testing or Google Test, check out
+Seriously, if you’re unfamiliar with unit testing or Google Test, check out
 the primer.</p>
 </div>
 <div class="section" id="unit-tests-out-of-the-box">
@@ -108,7 +122,7 @@ tests for any class that inherits from one of:</p>
 </ul>
 <p>Note that <code class="docutils literal"><span class="pre">cyclus::Agent</span></code> is the base class for any object that acts as an
 <a class="reference internal" href="../basics/glossary.html#term-agent"><span class="xref std std-term">agent</span></a> in the simulation, so every archetype can invoke those unit tests.</p>
-<p>In order to get the provided unit tests in your archetype&#8217;s tests, a few extra
+<p>In order to get the provided unit tests in your archetype’s tests, a few extra
 lines must be added to your <code class="docutils literal"><span class="pre">*_tests.cc</span></code> file. For instance, the
 <code class="docutils literal"><span class="pre">TutorialFacility</span></code> in the <a class="reference internal" href="hello_world_py.html#hello-world"><span class="std std-ref">Hello, Cyclus! [Python]</span></a> example with the file structure
 outline in <a class="reference internal" href="cmake.html#cmake-build"><span class="std std-ref">Building Modules with CMake</span></a> adds the following lines to
@@ -137,14 +151,14 @@ outline in <a class="reference internal" href="cmake.html#cmake-build"><span cla
 </div>
 <p>The above lines can be specialized to your case by replacing <code class="docutils literal"><span class="pre">TutorialFac</span></code> with
 an appropriate moniker (anything that uniquely identifies your unit test
-name). Also, if you&#8217;re subclassing from <code class="docutils literal"><span class="pre">cyclus::Institution</span></code> or
+name). Also, if you’re subclassing from <code class="docutils literal"><span class="pre">cyclus::Institution</span></code> or
 <code class="docutils literal"><span class="pre">cyclus::Region</span></code>, replace all instances of facility in the above example with
 the institution or region, respectively.</p>
 </div>
 <div class="section" id="unit-test-example">
 <h2>Unit Test Example<a class="headerlink" href="#unit-test-example" title="Permalink to this headline">¶</a></h2>
 <p>Now we will provide an example of a very simple <a class="reference internal" href="../basics/glossary.html#term-archetype"><span class="xref std std-term">archetype</span></a> that keeps
-track of how many <a class="reference internal" href="../basics/glossary.html#term-tick"><span class="xref std std-term">ticks</span></a> it has experienced. We&#8217;ll call it
+track of how many <a class="reference internal" href="../basics/glossary.html#term-tick"><span class="xref std std-term">ticks</span></a> it has experienced. We’ll call it
 <code class="docutils literal"><span class="pre">TickTracker</span></code>.</p>
 <p>This tutorial assumes that you have a directory setup like that described in
 <a class="reference internal" href="hello_world_py.html#hello-world"><span class="std std-ref">Hello, Cyclus! [Python]</span></a>, namely that there is a <cite>src</cite> directory in which
@@ -161,13 +175,13 @@ following lines:</p>
   <span class="cp">#pragma cyclus</span>
 
   <span class="c1">/// increments n_ticks</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Tick</span><span class="p">();</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Tick</span><span class="p">();</span>
 
   <span class="c1">/// no-op</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Tock</span><span class="p">()</span> <span class="p">{};</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Tock</span><span class="p">()</span> <span class="p">{};</span>
 
   <span class="c1">/// query now many ticks the agent has experienced</span>
-  <span class="kr">inline</span> <span class="kt">int</span> <span class="nf">n_ticks</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">n_ticks_</span><span class="p">;}</span>
+  <span class="kr">inline</span> <span class="kt">int</span> <span class="n">n_ticks</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">n_ticks_</span><span class="p">;}</span>
 
  <span class="k">private</span><span class="o">:</span>
   <span class="kt">int</span> <span class="n">n_ticks_</span><span class="p">;</span>
@@ -232,9 +246,9 @@ has the following lines:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">INSTALL_CYCLUS_STANDALONE</span><span class="p">(</span><span class="s2">&quot;TickTracker&quot;</span> <span class="s2">&quot;tick_tracker&quot;</span> <span class="s2">&quot;tutorial&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now we&#8217;re ready to install the <code class="docutils literal"><span class="pre">TickTracker</span></code> module and run its tests. If you
-haven&#8217;t already, now is a good time to add the <code class="docutils literal"><span class="pre">$CYCLUS_INSTALL_PATH</span></code> to your
-<code class="docutils literal"><span class="pre">PATH</span></code> environment variable (<span style="font-variant:small-caps;">Cyclus</span>&#8216; <code class="docutils literal"><span class="pre">install.py</span></code> defaults to
+<p>Now we’re ready to install the <code class="docutils literal"><span class="pre">TickTracker</span></code> module and run its tests. If you
+haven’t already, now is a good time to add the <code class="docutils literal"><span class="pre">$CYCLUS_INSTALL_PATH</span></code> to your
+<code class="docutils literal"><span class="pre">PATH</span></code> environment variable (<span style="font-variant:small-caps;">Cyclus</span>’ <code class="docutils literal"><span class="pre">install.py</span></code> defaults to
 <code class="docutils literal"><span class="pre">~/.local</span></code>). Next, from your top level directory (where your <code class="docutils literal"><span class="pre">install.py</span></code>
 file is), run:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./install.py
@@ -277,7 +291,7 @@ $ TickTracker_unit_tests
 </div>
 <div class="section" id="testing-resource-exchange">
 <h2>Testing Resource Exchange<a class="headerlink" href="#testing-resource-exchange" title="Permalink to this headline">¶</a></h2>
-<p>One of the most important things to test is your archetype&#8217;s resource exchange
+<p>One of the most important things to test is your archetype’s resource exchange
 behavior.  Does it request/receive the right kinds of material?  Does it offer/sell
 resources at the right time?  One of the best ways to test this is to actually
 run a simulation with your archetype.  Cyclus comes with a mock simulation
@@ -367,7 +381,7 @@ details.</p>
 <div class="section" id="debugging">
 <h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
 <p>If exceptions are being thrown when you try to use your archetype in
-simulations, you can turn off Cyclus&#8217; main exception handling/catching by
+simulations, you can turn off Cyclus’ main exception handling/catching by
 setting the environment variable <code class="docutils literal"><span class="pre">CYCLUS_NO_CATCH=1</span></code> when you run cyclus.
 This will prevent exceptions from being caught resulting in a core-dump.  You
 can then use a debugger (e.g. gdb or lldb) to run the failing simulation and
@@ -381,9 +395,9 @@ Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2016
 ...
 </pre></div>
 </div>
-<p>Cyclus has the ability to dump extra information about a simulation run&#8217;s
+<p>Cyclus has the ability to dump extra information about a simulation run’s
 resource exchange into the database.  This information can be
-particularly helpful for debugging and verifying your archetype&#8217;s behavior
+particularly helpful for debugging and verifying your archetype’s behavior
 with respect to resource exchange.  To turn on this debugging, simply run
 cyclus with the environment variable <code class="docutils literal"><span class="pre">CYCLUS_DEBUG_DRE</span></code> set to any non-empty
 value:</p>
@@ -398,16 +412,16 @@ value:</p>
 <li><code class="docutils literal"><span class="pre">ReqId</span></code>, simulation-unique identifier for this request</li>
 <li><code class="docutils literal"><span class="pre">RequesterID</span></code>: ID of the requesting agent</li>
 <li><code class="docutils literal"><span class="pre">Commodity</span></code>: the commodity of the request</li>
-<li><code class="docutils literal"><span class="pre">Preference</span></code>: agent&#8217;s preference for this particular request</li>
+<li><code class="docutils literal"><span class="pre">Preference</span></code>: agent’s preference for this particular request</li>
 <li><code class="docutils literal"><span class="pre">Exclusive</span></code>: true (non-zero) if this request is all-or-nothing (integral)</li>
-<li><code class="docutils literal"><span class="pre">ResType</span></code>: resource type (e.g. &#8220;Material&#8221;, &#8220;Product&#8221;)</li>
+<li><code class="docutils literal"><span class="pre">ResType</span></code>: resource type (e.g. “Material”, “Product”)</li>
 <li><code class="docutils literal"><span class="pre">Quantity</span></code>: amount of the request</li>
 <li><code class="docutils literal"><span class="pre">ResUnits</span></code>: units of the request (e.g. kg)</li>
 </ul>
 </li>
 <li><strong>DebugBids</strong>: record of every resource bid made in the simulation.<ul>
 <li><code class="docutils literal"><span class="pre">SimId</span></code>: simulation UUID</li>
-<li><code class="docutils literal"><span class="pre">ReqId</span></code>: simulation-unique identifier for the bid&#8217;s request</li>
+<li><code class="docutils literal"><span class="pre">ReqId</span></code>: simulation-unique identifier for the bid’s request</li>
 <li><code class="docutils literal"><span class="pre">BidderId</span></code>: ID of the the bidding agent</li>
 <li><code class="docutils literal"><span class="pre">BidQuantity</span></code>: amount of thd bid</li>
 <li><code class="docutils literal"><span class="pre">Exclusive</span></code>: true(non-zero) if this request is all-or-nothing (integral)</li>
@@ -415,7 +429,7 @@ value:</p>
 </li>
 </ul>
 <p>Note that some information about bids can be inferred from corresponding
-requests.  A bid&#8217;s time, commodity, resource type, and units are all identical
+requests.  A bid’s time, commodity, resource type, and units are all identical
 to those of the corresponding request.</p>
 </div>
 </div>
@@ -428,7 +442,7 @@ to those of the corresponding request.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Testing and Debugging Archetypes</a><ul>
@@ -516,6 +530,23 @@ to those of the corresponding request.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -544,7 +575,7 @@ to those of the corresponding request.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

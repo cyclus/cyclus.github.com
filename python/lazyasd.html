@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Lazy and Self-destructive Python Tools (cyclus.lazyasd) &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -82,254 +96,8 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-cyclus.lazyasd">
-<span id="lazy-and-self-destructive-python-tools-cyclus-lazyasd"></span><span id="cyclus-pyapi-lazyasd"></span><h1>Lazy and Self-destructive Python Tools (<code class="docutils literal"><span class="pre">cyclus.lazyasd</span></code>)<a class="headerlink" href="#module-cyclus.lazyasd" title="Permalink to this headline">¶</a></h1>
-<p>Lazy and self destructive containers for speeding up module import.</p>
-<dl class="class">
-<dt id="cyclus.lazyasd.BackgroundModuleLoader">
-<em class="property">class </em><code class="descclassname">cyclus.lazyasd.</code><code class="descname">BackgroundModuleLoader</code><span class="sig-paren">(</span><em>name</em>, <em>package</em>, <em>replacements</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.BackgroundModuleLoader" title="Permalink to this definition">¶</a></dt>
-<dd><p>Thread to load modules in the background.</p>
-<dl class="attribute">
-<dt id="cyclus.lazyasd.BackgroundModuleLoader.daemon">
-<code class="descname">daemon</code><a class="headerlink" href="#cyclus.lazyasd.BackgroundModuleLoader.daemon" title="Permalink to this definition">¶</a></dt>
-<dd><p>A boolean value indicating whether this thread is a daemon thread.</p>
-<p>This must be set before start() is called, otherwise RuntimeError is
-raised. Its initial value is inherited from the creating thread; the
-main thread is not a daemon thread and therefore all threads created in
-the main thread default to daemon = False.</p>
-<p>The entire Python program exits when no alive non-daemon threads are
-left.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.BackgroundModuleLoader.getName">
-<code class="descname">getName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.BackgroundModuleLoader.getName" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="cyclus.lazyasd.BackgroundModuleLoader.ident">
-<code class="descname">ident</code><a class="headerlink" href="#cyclus.lazyasd.BackgroundModuleLoader.ident" title="Permalink to this definition">¶</a></dt>
-<dd><p>Thread identifier of this thread or None if it has not been started.</p>
-<p>This is a nonzero integer. See the thread.get_ident() function. Thread
-identifiers may be recycled when a thread exits and another thread is
-created. The identifier is available even after the thread has exited.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.BackgroundModuleLoader.isAlive">
-<code class="descname">isAlive</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.BackgroundModuleLoader.isAlive" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return whether the thread is alive.</p>
-<p>This method returns True just before the run() method starts until just
-after the run() method terminates. The module function enumerate()
-returns a list of all alive threads.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.BackgroundModuleLoader.isDaemon">
-<code class="descname">isDaemon</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.BackgroundModuleLoader.isDaemon" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.BackgroundModuleLoader.is_alive">
-<code class="descname">is_alive</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.BackgroundModuleLoader.is_alive" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return whether the thread is alive.</p>
-<p>This method returns True just before the run() method starts until just
-after the run() method terminates. The module function enumerate()
-returns a list of all alive threads.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.BackgroundModuleLoader.join">
-<code class="descname">join</code><span class="sig-paren">(</span><em>timeout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.BackgroundModuleLoader.join" title="Permalink to this definition">¶</a></dt>
-<dd><p>Wait until the thread terminates.</p>
-<p>This blocks the calling thread until the thread whose join() method is
-called terminates &#8211; either normally or through an unhandled exception
-or until the optional timeout occurs.</p>
-<p>When the timeout argument is present and not None, it should be a
-floating point number specifying a timeout for the operation in seconds
-(or fractions thereof). As join() always returns None, you must call
-isAlive() after join() to decide whether a timeout happened &#8211; if the
-thread is still alive, the join() call timed out.</p>
-<p>When the timeout argument is not present or None, the operation will
-block until the thread terminates.</p>
-<p>A thread can be join()ed many times.</p>
-<p>join() raises a RuntimeError if an attempt is made to join the current
-thread as that would cause a deadlock. It is also an error to join() a
-thread before it has been started and attempts to do so raises the same
-exception.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="cyclus.lazyasd.BackgroundModuleLoader.name">
-<code class="descname">name</code><a class="headerlink" href="#cyclus.lazyasd.BackgroundModuleLoader.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>A string used for identification purposes only.</p>
-<p>It has no semantics. Multiple threads may be given the same name. The
-initial name is set by the constructor.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.BackgroundModuleLoader.run">
-<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.BackgroundModuleLoader.run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.BackgroundModuleLoader.setDaemon">
-<code class="descname">setDaemon</code><span class="sig-paren">(</span><em>daemonic</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.BackgroundModuleLoader.setDaemon" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.BackgroundModuleLoader.setName">
-<code class="descname">setName</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.BackgroundModuleLoader.setName" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.BackgroundModuleLoader.start">
-<code class="descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.BackgroundModuleLoader.start" title="Permalink to this definition">¶</a></dt>
-<dd><p>Start the thread&#8217;s activity.</p>
-<p>It must be called at most once per thread object. It arranges for the
-object&#8217;s run() method to be invoked in a separate thread of control.</p>
-<p>This method will raise a RuntimeError if called more than once on the
-same thread object.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="cyclus.lazyasd.BackgroundModuleProxy">
-<em class="property">class </em><code class="descclassname">cyclus.lazyasd.</code><code class="descname">BackgroundModuleProxy</code><span class="sig-paren">(</span><em>modname</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.BackgroundModuleProxy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Proxy object for modules loaded in the background that block attribute
-access until the module is loaded..</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="cyclus.lazyasd.LazyBool">
-<em class="property">class </em><code class="descclassname">cyclus.lazyasd.</code><code class="descname">LazyBool</code><span class="sig-paren">(</span><em>load</em>, <em>ctx</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.LazyBool" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="cyclus.lazyasd.LazyDict">
-<em class="property">class </em><code class="descclassname">cyclus.lazyasd.</code><code class="descname">LazyDict</code><span class="sig-paren">(</span><em>loaders</em>, <em>ctx</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.LazyDict" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="cyclus.lazyasd.LazyDict.clear">
-<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None.  Remove all items from D.<a class="headerlink" href="#cyclus.lazyasd.LazyDict.clear" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.LazyDict.get">
-<code class="descname">get</code><span class="sig-paren">(</span><em>k</em><span class="optional">[</span>, <em>d</em><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; D[k] if k in D, else d.  d defaults to None.<a class="headerlink" href="#cyclus.lazyasd.LazyDict.get" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.LazyDict.items">
-<code class="descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; a set-like object providing a view on D's items<a class="headerlink" href="#cyclus.lazyasd.LazyDict.items" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.LazyDict.keys">
-<code class="descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; a set-like object providing a view on D's keys<a class="headerlink" href="#cyclus.lazyasd.LazyDict.keys" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.LazyDict.pop">
-<code class="descname">pop</code><span class="sig-paren">(</span><em>k</em><span class="optional">[</span>, <em>d</em><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; v, remove specified key and return the corresponding value.<a class="headerlink" href="#cyclus.lazyasd.LazyDict.pop" title="Permalink to this definition">¶</a></dt>
-<dd><p>If key is not found, d is returned if given, otherwise KeyError is raised.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.LazyDict.popitem">
-<code class="descname">popitem</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; (k, v), remove and return some (key, value) pair<a class="headerlink" href="#cyclus.lazyasd.LazyDict.popitem" title="Permalink to this definition">¶</a></dt>
-<dd><p>as a 2-tuple; but raise KeyError if D is empty.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.LazyDict.setdefault">
-<code class="descname">setdefault</code><span class="sig-paren">(</span><em>k</em><span class="optional">[</span>, <em>d</em><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; D.get(k,d), also set D[k]=d if k not in D<a class="headerlink" href="#cyclus.lazyasd.LazyDict.setdefault" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.LazyDict.update">
-<code class="descname">update</code><span class="sig-paren">(</span><span class="optional">[</span><em>E</em>, <span class="optional">]</span><em>**F</em><span class="sig-paren">)</span> &#x2192; None.  Update D from mapping/iterable E and F.<a class="headerlink" href="#cyclus.lazyasd.LazyDict.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>If E present and has a .keys() method, does:     for k in E: D[k] = E[k]
-If E present and lacks .keys() method, does:     for (k, v) in E: D[k] = v
-In either case, this is followed by: for k, v in F.items(): D[k] = v</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="cyclus.lazyasd.LazyDict.values">
-<code class="descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; an object providing a view on D's values<a class="headerlink" href="#cyclus.lazyasd.LazyDict.values" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="cyclus.lazyasd.LazyObject">
-<em class="property">class </em><code class="descclassname">cyclus.lazyasd.</code><code class="descname">LazyObject</code><span class="sig-paren">(</span><em>load</em>, <em>ctx</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.LazyObject" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="cyclus.lazyasd.lazybool">
-<code class="descclassname">cyclus.lazyasd.</code><code class="descname">lazybool</code><span class="sig-paren">(</span><em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.lazybool" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorator for constructing lazy booleans from a function.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="cyclus.lazyasd.lazydict">
-<code class="descclassname">cyclus.lazyasd.</code><code class="descname">lazydict</code><span class="sig-paren">(</span><em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.lazydict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorator for constructing lazy dicts from a function.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="cyclus.lazyasd.lazyobject">
-<code class="descclassname">cyclus.lazyasd.</code><code class="descname">lazyobject</code><span class="sig-paren">(</span><em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.lazyobject" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorator for constructing lazy objects from a function.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="cyclus.lazyasd.load_module_in_background">
-<code class="descclassname">cyclus.lazyasd.</code><code class="descname">load_module_in_background</code><span class="sig-paren">(</span><em>name</em>, <em>package=None</em>, <em>debug='DEBUG'</em>, <em>env=None</em>, <em>replacements=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lazyasd.load_module_in_background" title="Permalink to this definition">¶</a></dt>
-<dd><p>Entry point for loading modules in background thread.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>name</strong> : str</p>
-<blockquote>
-<div><p>Module name to load in background thread.</p>
-</div></blockquote>
-<p><strong>package</strong> : str or None, optional</p>
-<blockquote>
-<div><p>Package name, has the same meaning as in importlib.import_module().</p>
-</div></blockquote>
-<p><strong>debug</strong> : str, optional</p>
-<blockquote>
-<div><p>Debugging symbol name to look up in the environment.</p>
-</div></blockquote>
-<p><strong>env</strong> : Mapping or None, optional</p>
-<blockquote>
-<div><p>Environment this will default to __xonsh_env__, if available, and
-os.environ otherwise.</p>
-</div></blockquote>
-<p><strong>replacements</strong> : Mapping or None, optional</p>
-<blockquote>
-<div><p>Dictionary mapping fully qualified module names (eg foo.bar.baz) that
-import the lazily loaded moudle, with the variable name in that
-module. For example, suppose that foo.bar imports module a as b,
-this dict is then {&#8216;foo.bar&#8217;: &#8216;b&#8217;}.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>module</strong> : ModuleType</p>
-<blockquote class="last">
-<div><p>This is either the original module that is found in sys.modules or
-a proxy module that will block until delay attribute access until the
-module is fully loaded.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
+  <div class="section" id="lazy-and-self-destructive-python-tools-cyclus-lazyasd">
+<span id="cyclus-pyapi-lazyasd"></span><h1>Lazy and Self-destructive Python Tools (<code class="docutils literal"><span class="pre">cyclus.lazyasd</span></code>)<a class="headerlink" href="#lazy-and-self-destructive-python-tools-cyclus-lazyasd" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
@@ -415,6 +183,23 @@ module is fully loaded.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -443,7 +228,7 @@ module is fully loaded.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

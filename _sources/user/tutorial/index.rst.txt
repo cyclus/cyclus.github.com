@@ -2,10 +2,9 @@
 ======================
 
 In this tutorial, we will build, run and analyze a fuel cycle scenario using
-Cyclist, the graphical user interface developed specifically for the Cyclus
-fuel cycle simulator.  This tutorial assumes that the learner is already
-familiar with the purpose of a fuel cycle simulator. This tutorial will
-require an internet connection so that |cyclus| can be run remotely.
+|Cyclus|, a nuclear fuel cycle simulator.  This tutorial assumes that the learner is already
+familiar with the purpose of a nuclear fuel cycle simulator. This tutorial will
+require an internet connection so that |Cyclus| can be run remotely.
 
 Overview
 ---------
@@ -25,15 +24,15 @@ Exercise #1
 .. toctree::
     :maxdepth: 2
 
-    install_launch_cyclist
-    cyclist_tour 
-    sim_parm 
+    install_launch_cyclus
+    sim_parm
     add_arche
+    add_commod_recipe
     add_proto
     add_reg_inst
     launch_cyclus
-    data_explorer
-    plot_output
+    run_cyclus_native
+    add_second_reactor
 
 Exercise #2
 -------------
@@ -51,4 +50,12 @@ on your own, all with the support of the Cyclus development team.
    add_sep
    add_fab
    mod_rxtr
-   add_deploy  
+   add_deploy 
+
+Recap
+-----
+
+.. toctree::
+   :maxdepth: 1
+
+   cyclus_tutorial_recap

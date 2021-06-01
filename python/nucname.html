@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Nuclide Naming Functions (cyclus.nucname) &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -96,7 +110,7 @@ if(ga_enabled){
 <dl class="method">
 <dt id="cyclus.nucname.NucTypeError.with_traceback">
 <code class="descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.NucTypeError.with_traceback" title="Permalink to this definition">¶</a></dt>
-<dd><p>Exception.with_traceback(tb) &#8211;
+<dd><p>Exception.with_traceback(tb) –
 set self.__traceback__ to tb and return self.</p>
 </dd></dl>
 
@@ -105,7 +119,7 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="function">
 <dt id="cyclus.nucname.alara">
 <code class="descclassname">cyclus.nucname.</code><code class="descname">alara</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.alara" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts a nuclide to its ALARA form (&#8216;am:242&#8217;).</p>
+<dd><p>Converts a nuclide to its ALARA form (‘am:242’).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -129,7 +143,7 @@ set self.__traceback__ to tb and return self.</p>
 <dl class="function">
 <dt id="cyclus.nucname.alara_to_id">
 <code class="descclassname">cyclus.nucname.</code><code class="descname">alara_to_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.alara_to_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts a nuclide directly from ALARA form (&#8216;am:242&#8217;) to
+<dd><p>Converts a nuclide directly from ALARA form (‘am:242’) to
 the canonical identifier form.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -154,7 +168,7 @@ the canonical identifier form.</p>
 <dl class="function">
 <dt id="cyclus.nucname.anum">
 <code class="descclassname">cyclus.nucname.</code><code class="descname">anum</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.anum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieves a nuclide&#8217;s nucleon number (95).</p>
+<dd><p>Retrieves a nuclide’s nucleon number (95).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -495,7 +509,7 @@ the canonical identifier form.</p>
 <dl class="function">
 <dt id="cyclus.nucname.name">
 <code class="descclassname">cyclus.nucname.</code><code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts a nuclide to its name form (&#8216;Am242M&#8217;). The name() function
+<dd><p>Converts a nuclide to its name form (‘Am242M’). The name() function
 first converts functions to id form using the id() function. Thus the
 form order resolution for id() also applies to here.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -521,7 +535,7 @@ form order resolution for id() also applies to here.</p>
 <dl class="function">
 <dt id="cyclus.nucname.nist">
 <code class="descclassname">cyclus.nucname.</code><code class="descname">nist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.nist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts a nuclide to NIST form (&#8216;242Am&#8217;).</p>
+<dd><p>Converts a nuclide to NIST form (‘242Am’).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -545,7 +559,7 @@ form order resolution for id() also applies to here.</p>
 <dl class="function">
 <dt id="cyclus.nucname.nist_to_id">
 <code class="descclassname">cyclus.nucname.</code><code class="descname">nist_to_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.nist_to_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts a nuclide directly from NIST form (&#8216;242Am&#8217;) to
+<dd><p>Converts a nuclide directly from NIST form (‘242Am’) to
 the canonical identifier form.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -570,7 +584,7 @@ the canonical identifier form.</p>
 <dl class="function">
 <dt id="cyclus.nucname.serpent">
 <code class="descclassname">cyclus.nucname.</code><code class="descname">serpent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.serpent" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts a nuclide to its Serepnt form (&#8216;Am-242m&#8217;).</p>
+<dd><p>Converts a nuclide to its Serepnt form (‘Am-242m’).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -594,7 +608,7 @@ the canonical identifier form.</p>
 <dl class="function">
 <dt id="cyclus.nucname.serpent_to_id">
 <code class="descclassname">cyclus.nucname.</code><code class="descname">serpent_to_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.serpent_to_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts a nuclide directly from Serpent form (&#8216;Am-242m&#8217;) to
+<dd><p>Converts a nuclide directly from Serpent form (‘Am-242m’) to
 the canonical identifier form.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -619,7 +633,7 @@ the canonical identifier form.</p>
 <dl class="function">
 <dt id="cyclus.nucname.snum">
 <code class="descclassname">cyclus.nucname.</code><code class="descname">snum</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.snum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieves a nuclide&#8217;s excitation number (95).</p>
+<dd><p>Retrieves a nuclide’s excitation number (95).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -716,7 +730,7 @@ the canonical identifier form.</p>
 <dl class="function">
 <dt id="cyclus.nucname.znum">
 <code class="descclassname">cyclus.nucname.</code><code class="descname">znum</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.znum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieves a nuclide&#8217;s charge number (95).</p>
+<dd><p>Retrieves a nuclide’s charge number (95).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -969,6 +983,23 @@ the canonical identifier form.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -997,7 +1028,7 @@ the canonical identifier form.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

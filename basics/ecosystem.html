@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>The Cyclus Community &amp; Ecosystem &#8212; Home</title>
-    
     <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -100,8 +114,8 @@ runtime <a class="reference internal" href="glossary.html#term-module"><span cla
 distributed under any licensing scheme.  Separate from the core
 infrastructure, the distribution responsibility will rest with the developer
 of each module.  This system will insulate the core infrastructure from
-accidental &#8220;pollution&#8221; by modules of a sensitive nature, and, similarly, limit
-issues regarding the authorization for distribution to the author&#8217;s
+accidental “pollution” by modules of a sensitive nature, and, similarly, limit
+issues regarding the authorization for distribution to the author’s
 organization.  Ideally, most module developers will be authorized for open
 distribution of their modules.</p>
 <p>Finally, the community will be relied upon to provide review and curation of
@@ -125,7 +139,7 @@ distribution of this core infrastructure is critical to its mission.
 tools, such as GNU compilers, SQLite, Boost, etc.)  The <span style="font-variant:small-caps;">Cyclus</span> core is
 currently available via its <a class="reference external" href="http://github.com/cyclus/cyclus">GitHub repository</a>.  Interested users and developers are
 invited to make their own copy of this repository, review the list of open
-issues, and participate in the developer&#8217;s mailing list. Like all open source
+issues, and participate in the developer’s mailing list. Like all open source
 projects, this distribution mode permits a thorough code review by interested
 parties and the possibility of contributions in order to identify/resolve
 defects or request/provide feature enhancements.</p>
@@ -159,11 +173,11 @@ collections of modules.</p>
 <p>Decentralizing the development and distribution of runtime modules provides a
 number of benefits.  First, as is true for the core infrastructure, a larger
 pool of developers can contribute to the <span style="font-variant:small-caps;">Cyclus</span> ecosystem by providing
-modules that represent their organization&#8217;s specific interests.  If a
+modules that represent their organization’s specific interests.  If a
 particular user/developer would like to understand the impact of their own
 technology on the greater fuel cycle, they are free to develop a module that
 simulates this technology and contribute it to the broader community.</p>
-<p>More importantly, this will contribute to the maintenance of a &#8220;pristine&#8221; core
+<p>More importantly, this will contribute to the maintenance of a “pristine” core
 infrastructure, from the point of view of sensitive information.  Any software
 added to the source code repository leaves behind permanent artifacts - even
 if removed at a later date. The inclusion of all newly developed plug-ins in a
@@ -196,7 +210,7 @@ of the module.  In most such cases, a substantial burden of quality assurance
 and testing would be required by the organization preforming this centralized
 distribution.  In the decentralized approach of the <span style="font-variant:small-caps;">Cyclus</span> ecosystem,
 mechanisms will be provided for members of the community to provide
-peer-review of the modules&#8217; quality and applicability to certain problems.</p>
+peer-review of the modules’ quality and applicability to certain problems.</p>
 <p>For modules that are distributed with an open source policy, other users and
 developers will be able to perform a direct source code review as well as
 testing the functionality of the module in fuel cycle analyses.  For other
@@ -220,7 +234,7 @@ likely to give them the most benefit.</p>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>J.W. Paulson, <em>et al</em>, &#8220;An Empirical Study of Open-Source and Closed-Source Software Products&#8221;, <em>IEEE Transactions on Software Engineering</em>, <strong>30</strong> (4), April 2004. <a class="reference external" href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=01274044">http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=01274044</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>J.W. Paulson, <em>et al</em>, “An Empirical Study of Open-Source and Closed-Source Software Products”, <em>IEEE Transactions on Software Engineering</em>, <strong>30</strong> (4), April 2004. <a class="reference external" href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=01274044">http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=01274044</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -236,7 +250,7 @@ likely to give them the most benefit.</p>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../index.html" title="index">
           <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">The <span style="font-variant:small-caps;">Cyclus</span> Community &amp; Ecosystem</a><ul>
@@ -329,6 +343,23 @@ likely to give them the most benefit.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -357,7 +388,7 @@ likely to give them the most benefit.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Working with Cyclus in the Cloud &#8212; Home</title>
-    
+    <title>Using Cyclus in the Cloud &#8212; Home</title>
     <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,13 +26,28 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="An Introduction to Data Exploration" href="data_explorer.html" />
+    <link rel="next" title="Working with Cyclus in on your machine" href="run_cyclus_native.html" />
     <link rel="prev" title="Adding Regions and Institutions" href="add_reg_inst.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
 var ga_enabled = !$.cookie('disable-ga');
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -64,7 +78,7 @@ if(ga_enabled){
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="data_explorer.html" title="An Introduction to Data Exploration"
+          <a href="run_cyclus_native.html" title="Working with Cyclus in on your machine"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="add_reg_inst.html" title="Adding Regions and Institutions"
@@ -83,47 +97,52 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="working-with-cyclus-in-the-cloud">
-<h1>Working with Cyclus in the Cloud<a class="headerlink" href="#working-with-cyclus-in-the-cloud" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="using-cyclus-in-the-cloud">
+<h1>Using <span style="font-variant:small-caps;">Cyclus</span> in the Cloud<a class="headerlink" href="#using-cyclus-in-the-cloud" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="choosing-where-to-run">
 <h2>Choosing Where to Run<a class="headerlink" href="#choosing-where-to-run" title="Permalink to this headline">¶</a></h2>
-<p>The Cyclist user interface can be used to run simulations on your local
-machine, if you have <span style="font-variant:small-caps;">Cyclus</span> installed, or in an appropriately configured
-cloud resource.  The advantage of using a local machine is that you can
-control which archetypes are availabe.  The advantage of using a remote
-machine is that you don&#8217;t have to install the entire <span style="font-variant:small-caps;">Cyclus</span> toolset on your
-local machine.</p>
-<p>For today&#8217;s tutorial, a cloud resource has been made availale at
-cycrun.fuelcycle.org.  This is the same resources that is used to run <span style="font-variant:small-caps;">Cyclus</span>
-from the <span style="font-variant:small-caps;">Cyclus</span> home page.</p>
-<div class="section" id="activity-execute-your-scneario-in-the-cloud">
-<h3>Activity: Execute your Scneario in the Cloud<a class="headerlink" href="#activity-execute-your-scneario-in-the-cloud" title="Permalink to this headline">¶</a></h3>
+<p>For this tutorial, there are 2 options for places to run the <span style="font-variant:small-caps;">Cyclus</span> simulation.</p>
 <ol class="arabic simple">
-<li>Select the Server: <a class="reference external" href="http://cycrun.fuelcycle.org">http://cycrun.fuelcycle.org</a></li>
-<li>Click the &#8220;Execute&#8221; button</li>
-<li>This will launch a job and show you the status in the &#8220;Jobs&#8221; panel.</li>
+<li>Our cloud resource where <span style="font-variant:small-caps;">Cyclus</span> is installed.</li>
 </ol>
-<img alt="Job status is shown when executing in the cloud" class="align-center" src="../../_images/running-job-annotated.png" />
+<p>2. A <a class="reference external" href="http://fuelcycle.org/user/tutorial/run_cyclus_native.html">Jupyter Notebook</a>
+in the local machine where you have <span style="font-variant:small-caps;">Cyclus</span> installed.</p>
+<p>The advantage of using your local machine is that you can determine which
+version of <span style="font-variant:small-caps;">Cyclus</span> you want to use and if you wanted to include archetypes
+that are not available on the cloud resource. The advantage of using a remote
+machine is that you don’t have to install the entire <span style="font-variant:small-caps;">Cyclus</span> toolset on your
+local machine.</p>
+<p>For this tutorial, the cloud resource has been made available at
+<a class="reference external" href="http://cycrun.fuelcycle.org">http://cycrun.fuelcycle.org</a>.  This is the same resources that is used to run <span style="font-variant:small-caps;">Cyclus</span>
+from the <span style="font-variant:small-caps;">Cyclus</span> home page. If it is desired to run <span style="font-variant:small-caps;">Cyclus</span> on your local
+machine, then this section of the tutorial can be skipped.</p>
+<div class="section" id="execute-your-scenario-in-the-cloud">
+<h3>Execute your Scenario in the Cloud<a class="headerlink" href="#execute-your-scenario-in-the-cloud" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Open the XML input file that you created in Exercise 1</li>
+<li>Go to the Server: <a class="reference external" href="http://cycrun.fuelcycle.org">http://cycrun.fuelcycle.org</a></li>
+<li>Copy and paste the input file content into the window</li>
+<li>Click the “Submit” button</li>
+<li>This will launch a job and show you the “Job Id”</li>
+</ol>
+<img alt="Job status is shown when executing in the cloud" class="align-center" src="../../_images/cycrun.png" />
 </div>
-<div class="section" id="activity-retrieve-your-results-for-analysis">
-<h3>Activity: Retrieve your Results for Analysis<a class="headerlink" href="#activity-retrieve-your-results-for-analysis" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="retrieve-your-results-for-analysis">
+<h3>Retrieve your Results for Analysis<a class="headerlink" href="#retrieve-your-results-for-analysis" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>When your simulation in the cloud has finished, it will indicate in the
 Jobs pane.</li>
 </ol>
-<img alt="Job status is shown when executing in the cloud" class="align-center" src="../../_images/running-job-annotated.png" />
+<img alt="Job status is shown when executing in the cloud" class="align-center" src="../../_images/cycrun_final.png" />
 <ol class="arabic simple" start="2">
-<li>Right-click on the job number and select &#8220;Load Simulation&#8221;</li>
-<li>Switch to the &#8220;Data Exploration&#8221; tab in the <em>Workspace</em>.</li>
+<li>Right-click on the job number’s Output result and download the output file.</li>
 </ol>
 </div>
 <div class="section" id="backup-files-for-success">
 <h3>Backup: Files for Success<a class="headerlink" href="#backup-files-for-success" title="Permalink to this headline">¶</a></h3>
-<p>In case your run did not succeed, you can retrieve these files to continue:</p>
-<ul class="simple">
-<li><a class="reference external" href="http://cnergdata.engr.wisc.edu/cyclus/cyclist/tutorial/cycic-tutorial.xml">Successful input file</a></li>
-<li><a class="reference external" href="http://cnergdata.engr.wisc.edu/cyclus/cyclist/tutorial/cycic-tutorial.sqlite">Successful output db file</a></li>
-</ul>
+<p>If your run did not succeed, you can retrieve correct input and output files <a class="reference external" href="https://doi.org/10.5281/zenodo.4557613">here</a> under <code class="docutils literal"><span class="pre">input_oncethrough.xml</span></code>
+or <code class="docutils literal"><span class="pre">ouput_oncethrough.sqlite</span></code>. This link contains input and
+output files for each of the examples in this tutorial.</p>
 </div>
 </div>
 </div>
@@ -136,13 +155,13 @@ Jobs pane.</li>
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="../../index.html" title="index">
           <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinxlocaltoc">
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">Working with Cyclus in the Cloud</a><ul>
+<li><a class="reference internal" href="#">Using <span style="font-variant:small-caps;">Cyclus</span> in the Cloud</a><ul>
 <li><a class="reference internal" href="#choosing-where-to-run">Choosing Where to Run</a><ul>
-<li><a class="reference internal" href="#activity-execute-your-scneario-in-the-cloud">Activity: Execute your Scneario in the Cloud</a></li>
-<li><a class="reference internal" href="#activity-retrieve-your-results-for-analysis">Activity: Retrieve your Results for Analysis</a></li>
+<li><a class="reference internal" href="#execute-your-scenario-in-the-cloud">Execute your Scenario in the Cloud</a></li>
+<li><a class="reference internal" href="#retrieve-your-results-for-analysis">Retrieve your Results for Analysis</a></li>
 <li><a class="reference internal" href="#backup-files-for-success">Backup: Files for Success</a></li>
 </ul>
 </li>
@@ -158,8 +177,8 @@ Jobs pane.</li>
   </div>
   <div class="sphinxnext">
     <h4>Next page</h4>
-    <p class="topless"><a href="data_explorer.html"
-                          title="Next page">&rarr; An Introduction to Data Exploration</a></p>
+    <p class="topless"><a href="run_cyclus_native.html"
+                          title="Next page">&rarr; Working with <span style="font-variant:small-caps;">Cyclus</span> in on your machine</a></p>
   </div>
   <div class="sphinxlocaltoc">
   <h3>Useful Pages</h3>
@@ -225,6 +244,23 @@ Jobs pane.</li>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -239,7 +275,7 @@ Jobs pane.</li>
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="data_explorer.html" title="An Introduction to Data Exploration"
+          <a href="run_cyclus_native.html" title="Working with Cyclus in on your machine"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="add_reg_inst.html" title="Adding Regions and Institutions"
@@ -254,7 +290,7 @@ Jobs pane.</li>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

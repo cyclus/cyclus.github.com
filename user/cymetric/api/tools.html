@@ -1,23 +1,22 @@
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>cymetric.tools - Tools &#8212; Home</title>
-    
     <link rel="stylesheet" href="../../../_static/cyclus.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/table_styling.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '(999999.999999)',
+        VERSION:     '(1.5.5)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -27,9 +26,24 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../../../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../../../_static/cloud.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script type="text/javascript" src="../../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script type="text/javascript" src="../../../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -51,7 +65,7 @@ if(ga_enabled){
 }
 </script>
   </head>
-  <body role="document">
+  <body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -88,6 +102,22 @@ if(ga_enabled){
 <span id="cymetric-tools-tools"></span><span id="cym-tools"></span><h1><a class="reference internal" href="#module-cymetric.tools" title="cymetric.tools"><code class="xref py py-mod docutils literal"><span class="pre">cymetric.tools</span></code></a> - Tools<a class="headerlink" href="#module-cymetric.tools" title="Permalink to this headline">¶</a></h1>
 <p>General cymetric tools.</p>
 <dl class="function">
+<dt id="cymetric.tools.add_missing_time_step">
+<code class="descclassname">cymetric.tools.</code><code class="descname">add_missing_time_step</code><span class="sig-paren">(</span><em>df</em>, <em>ref_time</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.add_missing_time_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the missing time step to a Panda Data Frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>df</strong> : Pandas Data Frame</p>
+<p class="last"><strong>ref_time</strong> :  of the time step references (Coming from TimeStep metrics)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="cymetric.tools.dbopen">
 <code class="descclassname">cymetric.tools.</code><code class="descname">dbopen</code><span class="sig-paren">(</span><em>fname</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.dbopen" title="Permalink to this definition">¶</a></dt>
 <dd><p>Opens a Cyclus database.</p>
@@ -98,6 +128,41 @@ if(ga_enabled){
 <code class="descclassname">cymetric.tools.</code><code class="descname">ensure_dt_bytes</code><span class="sig-paren">(</span><em>dt</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.ensure_dt_bytes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ensures that a structured numpy dtype is given in a Python 2 &amp; 3
 compatible way.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cymetric.tools.format_nucs">
+<code class="descclassname">cymetric.tools.</code><code class="descname">format_nucs</code><span class="sig-paren">(</span><em>nucs</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.format_nucs" title="Permalink to this definition">¶</a></dt>
+<dd><p>format the nuclide  provided by the users into a standard format:
+ZZAASSSS.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>nucs</strong> :  of nuclides</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cymetric.tools.merge">
+<code class="descclassname">cymetric.tools.</code><code class="descname">merge</code><span class="sig-paren">(</span><em>df</em>, <em>base_col</em>, <em>add_df</em>, <em>add_col</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.merge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merge some additionnal columns fram an additionnal Pandas Data Frame
+onother one and then remove the second base column (keeping SimID
+information).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>df: Pandas Data Frame</strong></p>
+<p><strong>base_col:  of the base columns names</strong></p>
+<p><strong>add_df: Pandas Data Frame to add in the df one</strong></p>
+<p class="last"><strong>add_col: columns to be added</strong></p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -140,6 +205,12 @@ with the values from the right column. A copy of left is returned.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="cymetric.tools.raise_no_graphviz">
+<code class="descclassname">cymetric.tools.</code><code class="descname">raise_no_graphviz</code><span class="sig-paren">(</span><em>msg</em>, <em>have_graphviz=False</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.raise_no_graphviz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raise an error when Graphviz cannot be found.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="cymetric.tools.raise_no_pyne">
 <code class="descclassname">cymetric.tools.</code><code class="descname">raise_no_pyne</code><span class="sig-paren">(</span><em>msg</em>, <em>have_pyne=False</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.raise_no_pyne" title="Permalink to this definition">¶</a></dt>
 <dd><p>Raise an error when PyNE cannot be found.</p>
@@ -149,6 +220,23 @@ with the values from the right column. A copy of left is returned.</p>
 <dt id="cymetric.tools.raw_to_series">
 <code class="descclassname">cymetric.tools.</code><code class="descname">raw_to_series</code><span class="sig-paren">(</span><em>df</em>, <em>idx</em>, <em>val</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.raw_to_series" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert data frame to series with multi-index.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cymetric.tools.reduce">
+<code class="descclassname">cymetric.tools.</code><code class="descname">reduce</code><span class="sig-paren">(</span><em>df</em>, <em>rdc_</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.reduce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter the df Pandas Data Frame according to the <a href="#id1"><span class="problematic" id="id2">rdc_</span></a> (list of item
+in the corresponding columns).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>df: Pandas Data Frame</strong></p>
+<p class="last"><strong>rdc_: list of pair of string and string list.</strong></p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -236,6 +324,23 @@ with the values from the right column. A copy of left is returned.</p>
 
         </div>
       </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
       <div class="clearer"></div>
     </div>
     <div class="relbar-bottom">
@@ -266,7 +371,7 @@ with the values from the right column. A copy of left is returned.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on May 26, 2021.
+      Last updated on Jun 01, 2021.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
