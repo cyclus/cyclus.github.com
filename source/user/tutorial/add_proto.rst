@@ -123,7 +123,7 @@ Archetype and the table below, create the UraniumMine prototype.
     </config>
   </facility>
 
-Once complete, append this facility under the commodity section and before the recipe section of your input file.
+Once complete, append this facility under the commodity section and before the recipe section of your input file [#f1]_.
 
 Example: Enrichment Prototype
 +++++++++++++++++++++++++++++
@@ -250,7 +250,7 @@ After filling in these variables, your enrichment facility prototype will look l
     </config>
   </facility>
 
-Once complete, append this facility under the Source prototype of your input file.
+Once complete, append this facility under the Source prototype of your input file [#f1]_.
 
 
 Example: Reactor Prototype
@@ -401,7 +401,7 @@ Once completed, your prototype should look like:
         </config>
       </facility>
 
-Once complete, append this facility under the Enrichment facility of your input file.
+Once complete, append this facility under the Enrichment facility of your input file [#f1]_.
 
 
 Example: Sink Prototype
@@ -511,7 +511,7 @@ After filling in these variables, your sink facility prototype will look like:
     </config>
   </facility>
 
-Once complete, append this facility under the Reactor prototype of your input file.
+Once complete, append this facility under the Reactor prototype of your input file [#f1]_.
 
 Check: Complete Facility block
 ++++++++++++++++++++++++++++++++++++++++
@@ -571,3 +571,6 @@ The facility section of your input file should be of the form:
       </Sink>
     </config>
   </facility>
+
+.. rubric:: Footnotes
+.. [#f1] The exact order of the sections in a |Cyclus| input file are of minor consequence. The ``control`` sequence must go first, but the other sequences can go in any order that makes sense to the user. The traditional organization  of an input file is: control, archetypes, commodities, facilities,   regions/institutions, and recipes. 
