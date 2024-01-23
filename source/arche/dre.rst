@@ -340,7 +340,7 @@ interface:
 
 .. code-block:: python
 
-    from cyclus.typesystem import ts
+    import cyclus.typesystem as ts
 
     def special_foo_offer(self):
         recipe = self.context.get_recipe("recipe")
