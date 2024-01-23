@@ -17,7 +17,7 @@ Building the Cyclus website requires:
 
 **NOTE:** The cloud package for Debian and Ubuntu is broken, so do not apt-get
 this. Please ``pip install cloud_sptheme``, ``easy_install cloud_sptheme``, or install from source instead.
-If installing from pip, install the source (``pip install no-binary=cloud_sptheme cloud_sptheme)``, then 
+If installing from pip, install the source (``pip install no-binary=cloud_sptheme cloud_sptheme``), then 
 use `this patch <https://foss.heptapod.net/doc-utils/cloud_sptheme/-/issues/47>`
 to fix a bug in the package. 
 
