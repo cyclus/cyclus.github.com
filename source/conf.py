@@ -51,6 +51,8 @@ extensions = ['sphinx.ext.mathjax', 'sphinx.ext.autodoc',
               'cyclusagent', 'cloud_sptheme.ext.table_styling',
               'sphinxcontrib.bibtex']
 
+bibtex_bibfiles = ['cite/pubs.bib', 'cep/cep-0002-1.bib', 'cep/cep-0004-1.bib', 'cep/cep-0018-1.bib', 'cep/cep-0020-1.bib']
+
 numpydoc_show_class_members = False
 
 # Add any paths that contain templates here, relative to this directory.
