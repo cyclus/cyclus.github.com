@@ -79,6 +79,21 @@ be:
       std::set<RequestPortfolio<Material>::Ptr> ports();
       ports.insert(port);
       return ports;
+
+      // To make the request more complex, you can add preferences to 
+      // each request (argument 4), make them exclusive (argument 5), 
+      // and make the requests mutual:
+      std::set<RequestPortfolio<Material>::Ptr> ports;
+      RequestPortfolio<Material>::Ptr port(new RequestPortfolio<Material>());
+      std::vector<Request<Material>*> mreqs; 
+      double prefA = 2;
+      double prefB = 1;
+      Request<Material>* r1 = port->AddRequest(targeta, this, commodA, prefA, true);
+      Request<Material>* r2 = port->AddRequest(targetb, this, commodB, prefB, true);
+      mreqs = {r1, r2}; 
+      port->AddMutualReqs(mreqs);
+      ports.insert(port);
+      return ports;
     }
 
 **Python:**
