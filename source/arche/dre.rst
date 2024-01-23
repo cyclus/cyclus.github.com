@@ -43,7 +43,7 @@ commodity-resource combination. A constraint provides a constraining value and a
 conversion function that can convert a potential resource into the units of the
 capacity (see :ref:`rrfb` for a more detailed example).
 
-For example, consider a facility of type ``FooFac`` that needs 5 kg fuel,
+For example, consider a facility of type ``FooFac`` that needs 10 kg fuel,
 where the fuel is represented by a ``Material`` resource. It knows of two commodities in
 the simulation that meet its demand, ``FuelA`` and ``FuelB``, and it prefers
 ``FuelA`` over ``FuelB``. A valid get material request implementation would then
@@ -96,11 +96,11 @@ be:
         recipe_b = self.context().get_recipe("recipeB")
         target_b = ts.Material.create_untracked(request_qty, recipe_b)
         # commodity mapping to request target
-        commods = {"FuelA": target_a, "FuelB": target_b}
+        commods = {"FuelA": target_a}, {"FuelB": target_b}
 
         # The Python interface allow you to return a few different structures,
         # depending on your needs.  In its simplest form, if you do not not have
-        # any capacity constraints, you can just return the commoditer mapping!
+        # any capacity constraints, you can just return the commodity mapping!
         return commods
 
         # If you do have a capacity constraint, you need to provide a portfolio
@@ -114,10 +114,26 @@ be:
         port = {"commodities": commods, "constraints": [request_qty, request_qty*2]}
         return port
 
+        # If you want to define multiple commodities as mutual requests, such that 
+        # any of them would meet the request, but one is preferred over the other
+        # you need to add preferences to each commodity. 
+        # The larger value indicates a greater preference:
+        commods = [{"FuelA": target_a, "preference":2}, 
+                   {"FuelB": target_b, "preference":1}]
+        port = {"commodities":commods, "constraints":request_qty
+
+        # If you want the requests to be exclusive, then you have to indicate 
+        # that:
+        commods = [{"FuelA": target_a, "preference":2, "exclusive":True}, 
+                   {"FuelB": target_b, "preference":1, "exclusive":True}]
+        port = {"commodities":commods, "constraints":request_qty
+
         # lastly, if you need to return many portfolios, simply return a list of
-        # portfolio dictionaries!
-        ports = [{"commodities": {"FuelA": target_a}, "constraints": request_qty},
-                 {"commodities": {"FuelB": target_b}, "constraints": request_qty}]
+        # portfolio dictionaries! The "preference" and "exclusive" keys are optional
+        ports = [{"commodities": {"FuelA": target_a, "preference": 2, "exclusive": True}, 
+                  "constraints": request_qty},
+                 {"commodities": {"FuelB": target_b, "preference": 1, "exclusive": True}, 
+                  "constraints": request_qty}]
         return ports
 
 
