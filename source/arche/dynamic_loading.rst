@@ -1,4 +1,5 @@
-Dynamic Loading Overview========================
+Dynamic Loading Overview
+========================
 
 *Dynamic loading* is a term used to describe the action of loading
 libraries at run time. This implies that knowledge of the structure
