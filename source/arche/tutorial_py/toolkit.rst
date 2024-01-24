@@ -26,7 +26,7 @@ Add State Variables and Resource Buffers
 All state variable additions should be included in ``~/tutorial/tut/agents.py`` below the
 other state variables added previously in this tutorial.
 
-A ``ResBuf`` is available as a data type in the typesystem. However, to use it
+A ``ResBuf`` is available as a data type in the ``typesystem``. However, to use it
 as a state variable, so we instead have to use the ``ResBufMaterialInv`` or
 ``RefBufProductInv`` classes. These inventories should be added below the other state
 variables we have already applied to the storage class.
@@ -51,7 +51,7 @@ This creates a state variable named ``inventory`` that is based on the
 ``ResBuf`` class.  We'll explain how buffers
 work in just a moment.  A ResBuf object and its ``ts.Inventory`` state var has special
 handling by the Python ``Agent`` class from which ``Facility`` inherits. It will not appear
-in the schema and therefore will not appear in the Cycic UI either.
+in the schema and therefore will not appear in the Cyclus UI either.
 
 Next, add two additional buffers:
 
@@ -167,7 +167,7 @@ shown below.
 Buffer Transfer Logic
 ++++++++++++++++++++++++++++++++
 The job of the ``Storage`` archetype developer is to determine and implement
-the logic related to transfering material between the input and output buffers
+the logic related to transferring material between the input and output buffers
 and the middle inventory buffer. Two rules govern buffer transfer logic
 in this model:
 
