@@ -80,16 +80,21 @@ be:
       ports.insert(port);
       return ports;
 
-      // To make the request more complex, you can add preferences to 
-      // each request (argument 4), make them exclusive (argument 5), 
-      // and make the requests mutual:
+      // In this example, both the FuelA and FuelB commodities can meet the 
+      // material request, but FuelA is preferred. So we define a preference 
+      // for each commodity as the fourth argument in the function. 
+      // The larger the preference value, the more the commodity is preferred. 
+      // The fifth argument here is if the request is exclusive: 
       std::set<RequestPortfolio<Material>::Ptr> ports;
       RequestPortfolio<Material>::Ptr port(new RequestPortfolio<Material>());
-      std::vector<Request<Material>*> mreqs; 
+      
       double prefA = 2;
       double prefB = 1;
       Request<Material>* r1 = port->AddRequest(targeta, this, commodA, prefA, true);
       Request<Material>* r2 = port->AddRequest(targetb, this, commodB, prefB, true);
+
+      // Additionally, we can create a vector of requests that are mutual: 
+      std::vector<Request<Material>*> mreqs; 
       mreqs = {r1, r2}; 
       port->AddMutualReqs(mreqs);
       ports.insert(port);
@@ -129,10 +134,11 @@ be:
         port = {"commodities": commods, "constraints": [request_qty, request_qty*2]}
         return port
 
-        # If you want to define multiple commodities as mutual requests, such that 
-        # any of them would meet the request, but one is preferred over the other
-        # you need to add preferences to each commodity. 
-        # The larger value indicates a greater preference:
+        # In this example, both the FuelA and FuelB commodities can meet the 
+        # material request, but FuelA is preferred. So we define a preference 
+        # for each commodity. The larger the preference value, the 
+        # more the commodity is preferred. Placing the dictionaries in
+        # a list makes them mutual requests:
         commods = [{"FuelA": target_a, "preference":2}, 
                    {"FuelB": target_b, "preference":1}]
         port = {"commodities":commods, "constraints":request_qty
@@ -145,9 +151,9 @@ be:
 
         # lastly, if you need to return many portfolios, simply return a list of
         # portfolio dictionaries! The "preference" and "exclusive" keys are optional
-        ports = [{"commodities": {"FuelA": target_a, "preference": 2, "exclusive": True}, 
+        ports = [{"commodities": [{"FuelA": target_a, "preference": 2, "exclusive": True}], 
                   "constraints": request_qty},
-                 {"commodities": {"FuelB": target_b, "preference": 1, "exclusive": True}, 
+                 {"commodities": [{"FuelB": target_b, "preference": 1, "exclusive": True}], 
                   "constraints": request_qty}]
         return ports
 
