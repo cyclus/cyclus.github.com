@@ -25,8 +25,8 @@ The mission of the |Cyclus| organization is to foster the ongoing development
 of the open source |Cyclus| ecosystem as both a research platform and a user
 tool for the study of dynamic nuclear fuel cycles.
 
-Defintions
-==========
+Definitions
+===========
 
 |Cyclus| Ecosystem
 -------------------
