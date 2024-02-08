@@ -116,7 +116,7 @@ be:
         recipe_b = self.context().get_recipe("recipeB")
         target_b = ts.Material.create_untracked(request_qty, recipe_b)
         # commodity mapping to request target
-        commods = {"FuelA": target_a}, {"FuelB": target_b}
+        commods = {"FuelA": target_a, "FuelB": target_b}
 
         # The Python interface allow you to return a few different structures,
         # depending on your needs.  In its simplest form, if you do not not have
