@@ -15,7 +15,8 @@ import textwrap
 import warnings
 import subprocess
 import xml.dom.minidom
-from collections import OrderedDict, Mapping, Sequence
+from collections import OrderedDict
+from collections.abc import Mapping, Sequence
 
 try:
     import simplejson as json

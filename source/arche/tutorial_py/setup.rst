@@ -73,7 +73,7 @@ Now we can install the tutorial project via,
     ~/tutorial $ python setup.py install --user
 
 
-Let's now make an exmaple input file in a special ``input`` directory:
+Let's now make an example input file in a special ``input`` directory:
 
 .. code-block:: console
 
@@ -109,7 +109,7 @@ Now open up the ``input/storage.`` input file and edit it to look like:
     }
 
 
-Test the input file by running Cyclus:
+Test the input file by running |Cyclus|:
 
 .. code-block:: console
 
