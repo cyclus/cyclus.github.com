@@ -141,13 +141,13 @@ be:
         # a list makes them mutual requests:
         commods = [{"FuelA": target_a, "preference":2}, 
                    {"FuelB": target_b, "preference":1}]
-        port = {"commodities":commods, "constraints":request_qty
+        port = {"commodities":commods, "constraints":request_qty}
 
         # If you want the requests to be exclusive, then you have to indicate 
         # that:
         commods = [{"FuelA": target_a, "preference":2, "exclusive":True}, 
                    {"FuelB": target_b, "preference":1, "exclusive":True}]
-        port = {"commodities":commods, "constraints":request_qty
+        port = {"commodities":commods, "constraints":request_qty}
 
         # lastly, if you need to return many portfolios, simply return a list of
         # portfolio dictionaries! The "preference" and "exclusive" keys are optional

@@ -51,7 +51,7 @@ This creates a state variable named ``inventory`` that is based on the
 ``ResBuf`` class.  We'll explain how buffers
 work in just a moment.  A ResBuf object and its ``ts.Inventory`` state var has special
 handling by the Python ``Agent`` class from which ``Facility`` inherits. It will not appear
-in the schema and therefore will not appear in the Cyclus UI either.
+in the schema.
 
 Next, add two additional buffers:
 
