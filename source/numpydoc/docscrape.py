@@ -438,7 +438,7 @@ class FunctionDoc(NumpyDocString):
                     argspec = inspect.getfullargspec(func)
                 else:
                     argspec = inspect.getargspec(func)
-                argspec = inspect.formatargspec(*argspec)
+                argspec = inspect.signature(*argspec)
                 argspec = argspec.replace('*','\*')
                 signature = '%s%s' % (func_name, argspec)
             except TypeError as e:
