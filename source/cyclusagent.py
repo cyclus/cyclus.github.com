@@ -8,9 +8,9 @@ For example,
 """
 from __future__ import print_function, unicode_literals
 import sys
-import os.path
-import re
-import time
+#import os.path
+#import re
+#import time
 import textwrap
 import warnings
 import subprocess
@@ -29,11 +29,11 @@ from docutils import io, nodes, statemachine, utils
 try:
     from docutils.utils.error_reporting import ErrorString  # the new way
 except ImportError:
-    from docutils.error_reporting import ErrorString        # the old way
+    from docutils.utils.error_reporting import ErrorString  # the old way, deprecated, to be remove in 0.21
 from docutils.parsers.rst import Directive, convert_directive_function
 from docutils.parsers.rst import directives, roles, states
-from docutils.parsers.rst.roles import set_classes
-from docutils.transforms import misc
+#from docutils.parsers.rst.roles import set_classes
+#from docutils.transforms import misc
 from docutils.statemachine import ViewList
 
 from sphinx.util.nodes import nested_parse_with_titles
@@ -180,6 +180,7 @@ def build_xml_sample(cpptype, schematype=None, uitype=None, names=None, units=No
 
     impl = ''
     t = cpptype if isinstance(cpptype, STRING_TYPES) else cpptype[0]
+    print(cpptype, t)
     if t in PRIMITIVES:
         name = 'val'
         if names is not None:
@@ -239,7 +240,7 @@ def build_xml_sample(cpptype, schematype=None, uitype=None, names=None, units=No
         impl += build_xml_sample(cpptype[2], schematype[2], uitype[2], secondname, units[2])
         impl += '</{0}>'.format(name)
     else:
-        msg = 'Unsupported type {1}'.format(t)
+        msg = 'Unsupported type {0}'.format(t)
         raise RuntimeError(msg)
 
     s = xml.dom.minidom.parseString(impl)
@@ -537,7 +538,6 @@ class CyclusAgent(Directive):
         lines = self.lines
         header = 'State Variables'
         lines += [header, ';' * len(header), '']
-
         for name, info in vars.items():
             if isinstance(info, STRING_TYPES):
                 # must be an alias entry - skip it
@@ -594,7 +594,10 @@ class CyclusAgent(Directive):
             self.lines.append('')
 
             self.lines += [ind + '**XML:**', '', ind + '.. code-block:: xml', '']
-            schemalines = build_xml_sample(t, schematype, uitype, labels, units).split('\n')
+            if t == "cyclus::toolkit::TotalInvTracker":
+                continue
+            else:
+                schemalines = build_xml_sample(t, schematype, uitype, labels, units).split('\n')
             previndent = ''
             for l in schemalines:
                 if len(l.strip()) > 0:
@@ -650,12 +653,12 @@ class CyclusAgent(Directive):
             self.load_schema()
         except OSError:
             warnings.warn("WARNING: Failed to load schema, proceeding without schema",
-                          RuntimeWraning)
+                          RuntimeWarning)
         try:
             self.load_annotations()
         except OSError:
             warnings.warn("WARNING: Failed to load annotations, proceeding without "
-                          "annotations", RuntimeWraning)
+                          "annotations", RuntimeWarning)
 
         # set up list of rst stirngs
         self.lines = []
