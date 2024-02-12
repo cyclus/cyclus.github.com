@@ -65,6 +65,7 @@ Index
     SA - 24 - Default Preferences - Gidden <cep24>
     SA - 25 - Preference Adjustment Process - Gidden <cep25>
     SD - 26 - Generalize the DRE to Optimize Multiple Metrics - Flanagan, Scopatz <cep26>
+    SA - 27 - Toolkit Capabilities Injection into an Archetype - Mouginot <cep27>
 
 Key
 ---
