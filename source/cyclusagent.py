@@ -53,7 +53,8 @@ elif sys.version_info[0] >= 3:
 def contains_resbuf(type_str):
     bufs = ('cyclus::toolkit::ResBuf',
             'cyclus::toolkit::ResMap',
-            'cyclus::toolkit::ResourceBuff')
+            'cyclus::toolkit::ResourceBuff',
+            'cyclus::toolkit::TotalInvTracker')
     for buf in bufs:
         if buf in type_str:
             return True
@@ -180,7 +181,6 @@ def build_xml_sample(cpptype, schematype=None, uitype=None, names=None, units=No
 
     impl = ''
     t = cpptype if isinstance(cpptype, STRING_TYPES) else cpptype[0]
-    print(cpptype, t)
     if t in PRIMITIVES:
         name = 'val'
         if names is not None:
@@ -594,10 +594,7 @@ class CyclusAgent(Directive):
             self.lines.append('')
 
             self.lines += [ind + '**XML:**', '', ind + '.. code-block:: xml', '']
-            if t == "cyclus::toolkit::TotalInvTracker":
-                continue
-            else:
-                schemalines = build_xml_sample(t, schematype, uitype, labels, units).split('\n')
+            schemalines = build_xml_sample(t, schematype, uitype, labels, units).split('\n')
             previndent = ''
             for l in schemalines:
                 if len(l.strip()) > 0:
