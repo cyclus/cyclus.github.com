@@ -8,9 +8,6 @@ For example,
 """
 from __future__ import print_function, unicode_literals
 import sys
-#import os.path
-#import re
-#import time
 import textwrap
 import warnings
 import subprocess
@@ -25,13 +22,9 @@ except ImportError:
     import json
     JSONDecodeError = ValueError
 
-from docutils import io, nodes, statemachine, utils
-try:
-    from docutils.utils.error_reporting import ErrorString  # the new way
-except ImportError:
-    from docutils.utils.error_reporting import ErrorString  # the old way, deprecated, to be remove in 0.21
-from docutils.parsers.rst import Directive, convert_directive_function
-from docutils.parsers.rst import directives, roles, states
+from docutils import nodes
+from docutils.parsers.rst import Directive
+from docutils.parsers.rst import directives
 #from docutils.parsers.rst.roles import set_classes
 #from docutils.transforms import misc
 from docutils.statemachine import ViewList
