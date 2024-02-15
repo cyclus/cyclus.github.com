@@ -1,4 +1,4 @@
-.. _hello_world:
+.. _hello_world_py:
 
 Hello, Cyclus! [Python]
 =======================

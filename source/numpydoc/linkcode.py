@@ -33,7 +33,7 @@ def doctree_read(app, doctree):
     env = app.builder.env
 
     resolve_target = getattr(env.config, 'linkcode_resolve', None)
-    if not isinstance(env.config.linkcode_resolve, collections.Callable):
+    if not isinstance(env.config.linkcode_resolve, collections.abc.Callable):
         raise LinkcodeError(
             "Function `linkcode_resolve` is not given in conf.py")
 

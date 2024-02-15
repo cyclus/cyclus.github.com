@@ -438,7 +438,7 @@ class FunctionDoc(NumpyDocString):
                     argspec = inspect.getfullargspec(func)
                 else:
                     argspec = inspect.getargspec(func)
-                argspec = inspect.formatargspec(*argspec)
+                argspec = inspect.signature(*argspec)
                 argspec = argspec.replace('*','\*')
                 signature = '%s%s' % (func_name, argspec)
             except TypeError as e:
@@ -519,7 +519,7 @@ class ClassDoc(NumpyDocString):
         return [name for name,func in inspect.getmembers(self._cls)
                 if ((not name.startswith('_')
                      or name in self.extra_public_methods)
-                    and isinstance(func, collections.Callable))]
+                    and isinstance(func, collections.abc.Callable))]
 
     @property
     def properties(self):

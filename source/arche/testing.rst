@@ -37,7 +37,7 @@ Note that ``cyclus::Agent`` is the base class for any object that acts as an
 
 In order to get the provided unit tests in your archetype's tests, a few extra
 lines must be added to your ``*_tests.cc`` file. For instance, the
-``TutorialFacility`` in the :ref:`hello_world` example with the file structure
+``TutorialFacility`` in the :ref:`hello_world_cpp` example with the file structure
 outline in :ref:`cmake_build` adds the following lines to
 ``tutorial_facility_tests.cc`` to get all of the free ``cyclus::Agent`` and
 ``cyclus::Facility`` unit tests: ::
@@ -76,7 +76,7 @@ track of how many :term:`ticks <tick>` it has experienced. We'll call it
 ``TickTracker``.
 
 This tutorial assumes that you have a directory setup like that described in
-:ref:`hello_world`, namely that there is a `src` directory in which
+:ref:`hello_world_cpp`, namely that there is a `src` directory in which
 :term:`archetype` source files are housed and a `install.py` file that will
 install them on your system.
 
