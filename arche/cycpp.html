@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Using the Cyclus Preprocessor &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Testing and Debugging Archetypes" href="testing.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -85,7 +73,8 @@ if(ga_enabled){
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Using the Cyclus Preprocessor</a></li> 
       </ul>
     </div>
     </div>
@@ -96,35 +85,35 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="using-the-cyclus-preprocessor">
-<span id="cycpp"></span><h1>Using the Cyclus Preprocessor<a class="headerlink" href="#using-the-cyclus-preprocessor" title="Permalink to this headline">¶</a></h1>
+  <section id="using-the-cyclus-preprocessor">
+<span id="cycpp"></span><h1>Using the Cyclus Preprocessor<a class="headerlink" href="#using-the-cyclus-preprocessor" title="Link to this heading">¶</a></h1>
 <table style="width:100%">
 <tr><td><p>A key part of the <span style="font-variant:small-caps;">Cyclus</span> agent and module development infrastructure is
-a <span style="font-variant:small-caps;">Cyclus</span>-aware C++ preprocessor called <code class="docutils literal"><span class="pre">cycpp</span></code>.  This preprocessor
+a <span style="font-variant:small-caps;">Cyclus</span>-aware C++ preprocessor called <code class="docutils literal notranslate"><span class="pre">cycpp</span></code>.  This preprocessor
 inspects the agents that you write and then - based on the directives you
 have given it - generates code that conforms to the <span style="font-variant:small-caps;">Cyclus</span> agent API.
 This allows you to focus on coding up the desired agent behavior rather
 than worrying about the tedious and error-prone process of making your
 agents conform to the <span style="font-variant:small-caps;">Cyclus</span> kernel.</p>
-<p>Before we continue there are a couple of noteworthy points about <code class="docutils literal"><span class="pre">cycpp</span></code>:</p>
+<p>Before we continue there are a couple of noteworthy points about <code class="docutils literal notranslate"><span class="pre">cycpp</span></code>:</p>
 <ul class="simple">
-<li>Even when using the preprocessor, agents are still completely valid C++
-and may be compiled without running <code class="docutils literal"><span class="pre">cycpp</span></code> - though they probably
-won’t do the correct thing in a simulation.</li>
-<li>If your module is compiled with the CMake macros found in UseCyclus,
-<code class="docutils literal"><span class="pre">cycpp</span></code> is run automatically for you on all relevant files.</li>
+<li><p>Even when using the preprocessor, agents are still completely valid C++
+and may be compiled without running <code class="docutils literal notranslate"><span class="pre">cycpp</span></code> - though they probably
+won’t do the correct thing in a simulation.</p></li>
+<li><p>If your module is compiled with the CMake macros found in UseCyclus,
+<code class="docutils literal notranslate"><span class="pre">cycpp</span></code> is run automatically for you on all relevant files.</p></li>
 </ul>
 <p>Without further ado, let’s dive in!</p>
 </td><td style="width:300px;"><a class="reference internal image-reference" href="../_images/pennyfarthing-jack.jpg"><img alt="../_images/pennyfarthing-jack.jpg" class="align-center" src="../_images/pennyfarthing-jack.jpg" style="width: 300px;" /></a>
 </td></tr>
-</table><div class="section" id="pragma-cyclus">
-<h2>Pragma <span style="font-variant:small-caps;">Cyclus</span><a class="headerlink" href="#pragma-cyclus" title="Permalink to this headline">¶</a></h2>
+</table><section id="pragma-cyclus">
+<h2>Pragma <span style="font-variant:small-caps;">Cyclus</span><a class="headerlink" href="#pragma-cyclus" title="Link to this heading">¶</a></h2>
 <p>The preprocessor functions by defining a suite of <span style="font-variant:small-caps;">Cyclus</span>-directives that
-<code class="docutils literal"><span class="pre">cycpp</span></code> picks up (but that plain old <code class="docutils literal"><span class="pre">cpp</span></code> ignores).  These all start
-with the prefix <code class="docutils literal"><span class="pre">#pragma</span> <span class="pre">cyclus</span></code> and fall into one of two broad categories:</p>
+<code class="docutils literal notranslate"><span class="pre">cycpp</span></code> picks up (but that plain old <code class="docutils literal notranslate"><span class="pre">cpp</span></code> ignores).  These all start
+with the prefix <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">cyclus</span></code> and fall into one of two broad categories:</p>
 <ol class="arabic simple">
-<li><strong>Annotation directives</strong> and</li>
-<li><strong>Code generation directives</strong>.</li>
+<li><p><strong>Annotation directives</strong> and</p></li>
+<li><p><strong>Code generation directives</strong>.</p></li>
 </ol>
 <p>The annotation directives allow you specify information and metadata
 (documentation, default values, maximum shape sizes, etc.) about your agents.
@@ -132,9 +121,9 @@ The code generation directives replace themselves with C++ code inside of the
 agents based on the annotations provided. <em>The use of these directives is
 entirely optional.</em>  However, in their absence you must implement the
 corresponding agent API yourself.</p>
-</div>
-<div class="section" id="annotation-directives">
-<span id="pragma-cyclus-var"></span><h2>Annotation Directives<a class="headerlink" href="#annotation-directives" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="annotation-directives">
+<span id="pragma-cyclus-var"></span><h2>Annotation Directives<a class="headerlink" href="#annotation-directives" title="Link to this heading">¶</a></h2>
 <p><span style="font-variant:small-caps;">Cyclus</span> agents are based on the notion of <strong>state variables</strong>.  These are
 member variables of your agents whose values (should) fully determine the
 state of the your agent at any time step. State variables are important
@@ -147,172 +136,172 @@ applies to the next member variable declaration that it sees. This directive
 not only defines the annotations for a variable, but also declares it as being
 a state variable.  It has the following signature:</p>
 <p><strong>State variable annotation signature:</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var &lt;dict&gt;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var &lt;dict&gt;</span>
 </pre></div>
 </div>
-<p>Here, the <code class="docutils literal"><span class="pre">&lt;dict&gt;</span></code> argument must evaluate to a Python dictionary (or other mapping).
+<p>Here, the <code class="docutils literal notranslate"><span class="pre">&lt;dict&gt;</span></code> argument must evaluate to a Python dictionary (or other mapping).
 For example,</p>
 <p><strong>State variable annotation example:</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var {&quot;default&quot;: 42.0, &quot;units&quot;: &quot;n/cm2/s&quot;}</span>
-<span class="kt">double</span> <span class="n">flux</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var {&quot;default&quot;: 42.0, &quot;units&quot;: &quot;n/cm2/s&quot;}</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">flux</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>These two lines declare that the member variable <code class="docutils literal"><span class="pre">flux</span></code> is in fact a state
+<p>These two lines declare that the member variable <code class="docutils literal notranslate"><span class="pre">flux</span></code> is in fact a state
 variable of type double with the given metadata.  The keys of this dictionary
 may be anything you desire. Though because they are eventually persisted to
 JSON the keys must be strings. Certain keys have special semantic
-meaning. Furthermore, there are two keys - <code class="docutils literal"><span class="pre">type</span></code> and <code class="docutils literal"><span class="pre">index</span></code> - that are set by
-<code class="docutils literal"><span class="pre">cycpp</span></code> itself and should not be specified explicitly. State variables may have any
+meaning. Furthermore, there are two keys - <code class="docutils literal notranslate"><span class="pre">type</span></code> and <code class="docutils literal notranslate"><span class="pre">index</span></code> - that are set by
+<code class="docutils literal notranslate"><span class="pre">cycpp</span></code> itself and should not be specified explicitly. State variables may have any
 C++ type that is allowed by the database backend that is being used.  For a listing of
 valid types please refer to the <a class="reference internal" href="dbtypes.html"><span class="doc">Database Types</span></a> page. <a class="reference internal" href="#cycpp-table-1"><span class="std std-ref">Table I. Special State Variable Annotations</span></a>
 contains a listing of all special keys and their meanings.</p>
-<span id="cycpp-table-1"></span><table border="1" class="colwidths-given styled-table centered docutils" id="id1">
-<caption><span class="caption-text"><strong>Table I.</strong> Special State Variable Annotations</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<span id="cycpp-table-1"></span><table class="styled-table centered docutils align-default" id="id1">
+<caption><span class="caption-text"><strong>Table I.</strong> Special State Variable Annotations</span><a class="headerlink" href="#id1" title="Link to this table">¶</a></caption>
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10.0%" />
+<col style="width: 90.0%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="left-align no-left-divider single-right-divider head">key</th>
-<th class="left-align single-left-divider no-right-divider head">meaning</th>
+<thead>
+<tr class="row-odd"><th class="head left-align no-left-divider single-right-divider"><p>key</p></th>
+<th class="head left-align single-left-divider no-right-divider"><p>meaning</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">type</td>
-<td class="left-align single-left-divider no-right-divider">The C++ type.  Valid types may be found on the <a class="reference internal" href="dbtypes.html"><span class="doc">Database Types</span></a>
+<tbody>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>type</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>The C++ type.  Valid types may be found on the <a class="reference internal" href="dbtypes.html"><span class="doc">Database Types</span></a>
 page. <strong>READ ONLY:</strong> Do not set this key in
-<code class="docutils literal"><span class="pre">#pragma</span> <span class="pre">cyclus</span> <span class="pre">var</span> <span class="pre">{...}</span></code> as it is set automatically by
+<code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">cyclus</span> <span class="pre">var</span> <span class="pre">{...}</span></code> as it is set automatically by
 cycpp. Feel free to use this downstream in your class or in a
-post-process.</td>
+post-process.</p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">index</td>
-<td class="left-align single-left-divider no-right-divider">Which number state variable is this, 0-indexed.
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>index</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>Which number state variable is this, 0-indexed.
 <strong>READ ONLY:</strong> Do not set this key in
-<code class="docutils literal"><span class="pre">#pragma</span> <span class="pre">cyclus</span> <span class="pre">var</span> <span class="pre">{...}</span></code> as it is set automatically by
+<code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">cyclus</span> <span class="pre">var</span> <span class="pre">{...}</span></code> as it is set automatically by
 cycpp. Feel free to use this downstream in your class or in a
-post-process.</td>
+post-process.</p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">default</td>
-<td class="left-align single-left-divider no-right-divider">The default value for this variable that is used if otherwise
-unspecified. The value must match the type of the variable.</td>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>default</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>The default value for this variable that is used if otherwise
+unspecified. The value must match the type of the variable.</p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">internal</td>
-<td class="left-align single-left-divider no-right-divider"><code class="docutils literal"><span class="pre">True</span></code> if this state variable is only for
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>internal</p></td>
+<td class="left-align single-left-divider no-right-divider"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if this state variable is only for
 archetype-internal usage.  Although the variable will still
 be persisted in the database and initialized normally (e.g.
 with any default), it will not be included in the XML schema
-or input file.</td>
+or input file.</p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">shape</td>
-<td class="left-align single-left-divider no-right-divider">The shape of a variable length datatypes. If present this must
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>shape</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>The shape of a variable length datatypes. If present this must
 be a list of integers whose length (rank) makes sense for this
 type. Specifying positive values will (depending on the
 backend) turn a variable length type into a fixed length one
-with the length of the given value. Putting a <code class="docutils literal"><span class="pre">-1</span></code> in the
+with the length of the given value. Putting a <code class="docutils literal notranslate"><span class="pre">-1</span></code> in the
 shape will retain the variable length nature along that axis.
 Fixed length variables are normally more performant so it is
 often a good idea to specify the shape where possible. For
-example, a length-5 string would have a shape of <code class="docutils literal"><span class="pre">[5]</span></code> and
+example, a length-5 string would have a shape of <code class="docutils literal notranslate"><span class="pre">[5]</span></code> and
 a length-10 vector of variable length strings would have a
-shape of <code class="docutils literal"><span class="pre">[10,</span> <span class="pre">-1]</span></code>.</td>
+shape of <code class="docutils literal notranslate"><span class="pre">[10,</span> <span class="pre">-1]</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">doc</td>
-<td class="left-align single-left-divider no-right-divider">Documentation string.</td>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>doc</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>Documentation string.</p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">tooltip</td>
-<td class="left-align single-left-divider no-right-divider">Brief documentation string for user interfaces.</td>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>tooltip</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>Brief documentation string for user interfaces.</p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">units</td>
-<td class="left-align single-left-divider no-right-divider">The physical units, if any.</td>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>units</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>The physical units, if any.</p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">userlevel</td>
-<td class="left-align single-left-divider no-right-divider">Integer from 0 - 10 for representing ease (0) or difficulty (10)
-in using this variable, default 0.</td>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>userlevel</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>Integer from 0 - 10 for representing ease (0) or difficulty (10)
+in using this variable, default 0.</p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">alias</td>
-<td class="left-align single-left-divider no-right-divider">The name of the state variable in the schema and input file.
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>alias</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>The name of the state variable in the schema and input file.
 If this is not present it defaults to the C++ variable name.
 The alias may also be a nested list of strings that matches
 the C++ template type. Each member of the hierarchy will
 recieve the corresponding alias.  For example, a
-<code class="docutils literal"><span class="pre">[std::map,</span> <span class="pre">int,</span> <span class="pre">double]</span></code> could be aliased by
-<code class="docutils literal"><span class="pre">['recipe',</span> <span class="pre">'id',</span> <span class="pre">'mass']</span></code>. For maps, an additional item
+<code class="docutils literal notranslate"><span class="pre">[std::map,</span> <span class="pre">int,</span> <span class="pre">double]</span></code> could be aliased by
+<code class="docutils literal notranslate"><span class="pre">['recipe',</span> <span class="pre">'id',</span> <span class="pre">'mass']</span></code>. For maps, an additional item
 tag is inserted. To also alias the item tag, make the top
 alias into a 2-element list, whose first string represents
 the map and whose second string is the item alias, e.g.
-<code class="docutils literal"><span class="pre">[['recipe',</span> <span class="pre">'entry'],</span> <span class="pre">'id',</span> <span class="pre">'mass']</span></code></td>
+<code class="docutils literal notranslate"><span class="pre">[['recipe',</span> <span class="pre">'entry'],</span> <span class="pre">'id',</span> <span class="pre">'mass']</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">uilabel</td>
-<td class="left-align single-left-divider no-right-divider">The text string a UI will display as the name of this input on
-the UI input form.</td>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>uilabel</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>The text string a UI will display as the name of this input on
+the UI input form.</p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">uitype</td>
-<td class="left-align single-left-divider no-right-divider">The type of the input field in reference in a UI,
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>uitype</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>The type of the input field in reference in a UI,
 currently supported types are; incommodity, outcommodity,
 commodity, range, combobox, facility, prototype, recipe, nuclide,
 and none.
 For ‘nuclide’ when the type is an int, the values will be read in
 from the input file in human readable string format (‘U-235’) and
-automatically converted to results of <code class="docutils literal"><span class="pre">pyne::nucname::id()</span></code>
-(922350000) in the database and on the archetype.</td>
+automatically converted to results of <code class="docutils literal notranslate"><span class="pre">pyne::nucname::id()</span></code>
+(922350000) in the database and on the archetype.</p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">range</td>
-<td class="left-align single-left-divider no-right-divider">This indicates the range associated with a range type.
-It must take the form of <code class="docutils literal"><span class="pre">[min,</span> <span class="pre">max]</span></code> or
-<code class="docutils literal"><span class="pre">[min,</span> <span class="pre">max,</span> <span class="pre">(optional)</span> <span class="pre">step</span> <span class="pre">size]</span></code>.</td>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>range</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>This indicates the range associated with a range type.
+It must take the form of <code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max]</span></code> or
+<code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max,</span> <span class="pre">(optional)</span> <span class="pre">step</span> <span class="pre">size]</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">categorical</td>
-<td class="left-align single-left-divider no-right-divider">This indicates the decrete values a combobox Type can take. It
-must take the form of <code class="docutils literal"><span class="pre">[value1,</span> <span class="pre">value2,</span> <span class="pre">value3,</span> <span class="pre">etc]</span></code>.</td>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>categorical</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>This indicates the decrete values a combobox Type can take. It
+must take the form of <code class="docutils literal notranslate"><span class="pre">[value1,</span> <span class="pre">value2,</span> <span class="pre">value3,</span> <span class="pre">etc]</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">schematype</td>
-<td class="left-align single-left-divider no-right-divider">This is the data type that is used in the schema for input file
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>schematype</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>This is the data type that is used in the schema for input file
 validation. This enables you to supply just the data type
 rather than having to overwrite the full schema for this state
 variable. In most cases - when the shape is rank 0 or 1 such
 as for scalars or vectors - this is simply a string. In cases
 where the rank is 2+ this is a list of strings. Please refer to
 the <a class="reference external" href="http://www.w3.org/TR/xmlschema-2/">XML Schema Datatypes</a>
-page for more information. <em>New in v1.1.</em></td>
+page for more information. <em>New in v1.1.</em></p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">initfromcopy</td>
-<td class="left-align single-left-divider no-right-divider">Code snippet to use in the <code class="docutils literal"><span class="pre">InitFrom(Agent*</span> <span class="pre">m)</span></code> function for
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>initfromcopy</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>Code snippet to use in the <code class="docutils literal notranslate"><span class="pre">InitFrom(Agent*</span> <span class="pre">m)</span></code> function for
 this state variable instead of using code generation.
-This is a string.</td>
+This is a string.</p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">initfromdb</td>
-<td class="left-align single-left-divider no-right-divider">Code snippet to use in the <code class="docutils literal"><span class="pre">InitFrom(QueryableBackend*</span> <span class="pre">b)</span></code>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>initfromdb</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>Code snippet to use in the <code class="docutils literal notranslate"><span class="pre">InitFrom(QueryableBackend*</span> <span class="pre">b)</span></code>
 function for this state variable instead of using code generation.
-This is a string.</td>
+This is a string.</p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">infiletodb</td>
-<td class="left-align single-left-divider no-right-divider">Code snippets to use in the <code class="docutils literal"><span class="pre">InfileToDb()</span></code> function
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>infiletodb</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>Code snippets to use in the <code class="docutils literal notranslate"><span class="pre">InfileToDb()</span></code> function
 for this state variable instead of using code generation.
 This is a dictionary of string values with the two keys ‘read’
 and ‘write’ which represent reading values from the input file
-writing them out to the database respectively.</td>
+writing them out to the database respectively.</p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">schema</td>
-<td class="left-align single-left-divider no-right-divider">Code snippet to use in the <code class="docutils literal"><span class="pre">schema()</span></code> function for
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>schema</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>Code snippet to use in the <code class="docutils literal notranslate"><span class="pre">schema()</span></code> function for
 this state variable instead of using code generation.
 This is an RNG string. If you supply this then you likely need
-to supply <code class="docutils literal"><span class="pre">infiletodb</span></code> as well to ensure that your custom
-schema is read into the database correctly.</td>
+to supply <code class="docutils literal notranslate"><span class="pre">infiletodb</span></code> as well to ensure that your custom
+schema is read into the database correctly.</p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">snapshot</td>
-<td class="left-align single-left-divider no-right-divider">Code snippet to use in the <code class="docutils literal"><span class="pre">Snapshot()</span></code> function for
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>snapshot</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>Code snippet to use in the <code class="docutils literal notranslate"><span class="pre">Snapshot()</span></code> function for
 this state variable instead of using code generation.
-This is a string.</td>
+This is a string.</p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">snapshotinv</td>
-<td class="left-align single-left-divider no-right-divider">Code snippet to use in the <code class="docutils literal"><span class="pre">SnapshotInv()</span></code> function for
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>snapshotinv</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>Code snippet to use in the <code class="docutils literal notranslate"><span class="pre">SnapshotInv()</span></code> function for
 this state variable instead of using code generation.
-This is a string.</td>
+This is a string.</p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">initinv</td>
-<td class="left-align single-left-divider no-right-divider">Code snippet to use in the <code class="docutils literal"><span class="pre">InitInv()</span></code> function for
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>initinv</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>Code snippet to use in the <code class="docutils literal notranslate"><span class="pre">InitInv()</span></code> function for
 this state variable instead of using code generation.
-This is a string.</td>
+This is a string.</p></td>
 </tr>
 </tbody>
 </table>
@@ -322,104 +311,104 @@ specified by the <strong>note directive</strong>. Similarly to the state variabl
 annotations, agent annotations must be given inside of the class declaration.
 They also have a very similar signature:</p>
 <p><strong>Note (agent annotation) signature:</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus note &lt;dict&gt;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus note &lt;dict&gt;</span>
 </pre></div>
 </div>
-<p>Again, the <code class="docutils literal"><span class="pre">&lt;dict&gt;</span></code> argument here must evaluate to a Python dictionary.
+<p>Again, the <code class="docutils literal notranslate"><span class="pre">&lt;dict&gt;</span></code> argument here must evaluate to a Python dictionary.
 For example,</p>
 <p><strong>Note (agent annotation) example:</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus note {&quot;doc&quot;: &quot;If I wanna be rich, I’ve got to find myself&quot;}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus note {&quot;doc&quot;: &quot;If I wanna be rich, I’ve got to find myself&quot;}</span>
 </pre></div>
 </div>
 <p>Unlike state variables, agent annotations only have a few special members.  One of
-this is <code class="docutils literal"><span class="pre">vars</span></code> which contains the state variable annotations!
+this is <code class="docutils literal notranslate"><span class="pre">vars</span></code> which contains the state variable annotations!
 <a class="reference internal" href="#cycpp-table-2"><span class="std std-ref">Table II. Special Agent Annotations</span></a> contains a listing of all special keys and their meaning.</p>
-<span id="cycpp-table-2"></span><table border="1" class="colwidths-given styled-table centered docutils" id="id2">
-<caption><span class="caption-text"><strong>Table II.</strong> Special Agent Annotations</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<span id="cycpp-table-2"></span><table class="styled-table centered docutils align-default" id="id2">
+<caption><span class="caption-text"><strong>Table II.</strong> Special Agent Annotations</span><a class="headerlink" href="#id2" title="Link to this table">¶</a></caption>
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10.0%" />
+<col style="width: 90.0%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="left-align no-left-divider single-right-divider head">key</th>
-<th class="left-align single-left-divider no-right-divider head">meaning</th>
+<thead>
+<tr class="row-odd"><th class="head left-align no-left-divider single-right-divider"><p>key</p></th>
+<th class="head left-align single-left-divider no-right-divider"><p>meaning</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">vars</td>
-<td class="left-align single-left-divider no-right-divider">The state variable annotations, <strong>READ ONLY</strong>.</td>
+<tbody>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>vars</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>The state variable annotations, <strong>READ ONLY</strong>.</p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">name</td>
-<td class="left-align single-left-divider no-right-divider">C++ class name (string) of the archetype. <strong>READ ONLY.</strong>
-<em>New in version 1.1.1.</em></td>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>name</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>C++ class name (string) of the archetype. <strong>READ ONLY.</strong>
+<em>New in version 1.1.1.</em></p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">entity</td>
-<td class="left-align single-left-divider no-right-divider">The kind of archetype that this is based on which class it
-inherits from. If this inherits from <code class="docutils literal"><span class="pre">cyclus::Region</span></code>,
-<code class="docutils literal"><span class="pre">cyclus::Institution</span></code>, or <code class="docutils literal"><span class="pre">cyclus::Facility</span></code> then this
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>entity</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>The kind of archetype that this is based on which class it
+inherits from. If this inherits from <code class="docutils literal notranslate"><span class="pre">cyclus::Region</span></code>,
+<code class="docutils literal notranslate"><span class="pre">cyclus::Institution</span></code>, or <code class="docutils literal notranslate"><span class="pre">cyclus::Facility</span></code> then this
 will be the string ‘region’, ‘institution’, or ‘facility’
-respecively. If the class inherits from <code class="docutils literal"><span class="pre">cyclus::Agent</span></code> but
+respecively. If the class inherits from <code class="docutils literal notranslate"><span class="pre">cyclus::Agent</span></code> but
 does not inherit from the previous three then this will be
 the string ‘archetype’. In the class does not even inherit
-from <code class="docutils literal"><span class="pre">cyclus::Agent</span></code>, then this will be ‘unknown’.
-<strong>READ ONLY.</strong> <em>New in version 1.1.1.</em></td>
+from <code class="docutils literal notranslate"><span class="pre">cyclus::Agent</span></code>, then this will be ‘unknown’.
+<strong>READ ONLY.</strong> <em>New in version 1.1.1.</em></p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">parents</td>
-<td class="left-align single-left-divider no-right-divider">List of string class names of the direct superclasses of this
-archetype. <strong>READ ONLY.</strong> <em>New in version 1.1.1.</em></td>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>parents</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>List of string class names of the direct superclasses of this
+archetype. <strong>READ ONLY.</strong> <em>New in version 1.1.1.</em></p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">all_parents</td>
-<td class="left-align single-left-divider no-right-divider">List of string class names of all the superclasses of this
-archetype. <strong>READ ONLY.</strong> <em>New in version 1.1.1.</em></td>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>all_parents</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>List of string class names of all the superclasses of this
+archetype. <strong>READ ONLY.</strong> <em>New in version 1.1.1.</em></p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">niche</td>
-<td class="left-align single-left-divider no-right-divider">A string which names the group that the achetype belongs to
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>niche</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>A string which names the group that the achetype belongs to
 that defines how it is swappable with other archetypes. If
 two archetypes have the same niche then they are partially or
 wholly swappable. Niches may overlap and any string may be
 used as the niche. Some example niches that are useful to
-displaying user interfaces are: <code class="docutils literal"><span class="pre">reactor</span></code>, <code class="docutils literal"><span class="pre">reprocessing</span></code>,
-<code class="docutils literal"><span class="pre">repository</span></code>, <code class="docutils literal"><span class="pre">mine</span></code>, and others.</td>
+displaying user interfaces are: <code class="docutils literal notranslate"><span class="pre">reactor</span></code>, <code class="docutils literal notranslate"><span class="pre">reprocessing</span></code>,
+<code class="docutils literal notranslate"><span class="pre">repository</span></code>, <code class="docutils literal notranslate"><span class="pre">mine</span></code>, and others.</p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">doc</td>
-<td class="left-align single-left-divider no-right-divider">Documentation string.</td>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>doc</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>Documentation string.</p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">tooltip</td>
-<td class="left-align single-left-divider no-right-divider">Brief documentation string for user interfaces.</td>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>tooltip</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>Brief documentation string for user interfaces.</p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">userlevel</td>
-<td class="left-align single-left-divider no-right-divider">Integer from 0 - 10 for representing ease (0) or
-difficulty (10) in using this variable, default 0.</td>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>userlevel</p></td>
+<td class="left-align single-left-divider no-right-divider"><p>Integer from 0 - 10 for representing ease (0) or
+difficulty (10) in using this variable, default 0.</p></td>
 </tr>
 </tbody>
 </table>
 <br /><hr class="docutils" />
-<p>If you find dictionaries too confining, <code class="docutils literal"><span class="pre">cycpp</span></code> also has an <strong>exec directive</strong>.
+<p>If you find dictionaries too confining, <code class="docutils literal notranslate"><span class="pre">cycpp</span></code> also has an <strong>exec directive</strong>.
 This allows you to execute arbitrary Python code which is added to the global
 namespace the state variables and agent annotations are evaluated within.  This
 directive may be placed anywhere and is not confined to the class declaration,
 like above.  However, it is only executed during the annotations phase of
 preprocessing.  The signature for this directive is:</p>
 <p><strong>Exec signature:</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus exec &lt;code&gt;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus exec &lt;code&gt;</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">&lt;code&gt;</span></code> argument may be any valid Python code. A non-trivial example,</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;code&gt;</span></code> argument may be any valid Python code. A non-trivial example,</p>
 <p><strong>Exec example:</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus exec from math import pi</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus exec from math import pi</span>
 <span class="cp">#pragma cyclus exec r = 10</span>
 
 <span class="cp">#pragma cyclus var {&quot;default&quot;: 2*pi*r}</span>
-<span class="kt">float</span> <span class="n">circumfrence</span><span class="p">;</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">circumfrence</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>One possible use for this is to keep all state variable annotations in a
-separate sidecar <code class="docutils literal"><span class="pre">*.py</span></code> file and then import and use them rather than
+separate sidecar <code class="docutils literal notranslate"><span class="pre">*.py</span></code> file and then import and use them rather than
 cluttering up the C++ source code.  Such decisions are up to the style of the
 developer.</p>
-</div>
-<div class="section" id="code-generation-directives">
-<h2>Code Generation Directives<a class="headerlink" href="#code-generation-directives" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="code-generation-directives">
+<h2>Code Generation Directives<a class="headerlink" href="#code-generation-directives" title="Link to this heading">¶</a></h2>
 <p>Once all of the annotations have been accumulated, the preprocessor takes
 <em>another</em> pass through the code.  This time it ignores the annotations
 directives and injects C++ code anytime it sees a valid code generation
@@ -428,20 +417,20 @@ directive.</p>
 directive</strong>. This engages all possible code generation routines and must live
 within the public part of the class declaration.</p>
 <p><strong>The prime directive:</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus</span>
 </pre></div>
 </div>
 <p>Unless you are doing something fancy such as manually writing any of the agent
-member functions that <code class="docutils literal"><span class="pre">cycpp</span></code> generates, the prime directive should be all that
+member functions that <code class="docutils literal notranslate"><span class="pre">cycpp</span></code> generates, the prime directive should be all that
 you ever need.  For example, an agent that does nothing and has no state variables
 would be completely defined by the following thanks to the prime directive:</p>
 <p><strong>The prime directive example:</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DoNothingCongress</span> <span class="o">:</span> <span class="k">public</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Institution</span> <span class="p">{</span>
- <span class="k">public</span><span class="o">:</span>
-  <span class="n">DoNothingCongress</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Context</span><span class="o">*</span> <span class="n">ctx</span><span class="p">)</span> <span class="p">{};</span>
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">DoNothingCongress</span><span class="p">()</span> <span class="p">{};</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DoNothingCongress</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Institution</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="n">DoNothingCongress</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Context</span><span class="o">*</span><span class="w"> </span><span class="n">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">DoNothingCongress</span><span class="p">()</span><span class="w"> </span><span class="p">{};</span>
 
-  <span class="cp">#pragma cyclus</span>
+<span class="w">  </span><span class="cp">#pragma cyclus</span>
 <span class="p">};</span>
 </pre></div>
 </div>
@@ -450,99 +439,99 @@ would be completely defined by the following thanks to the prime directive:</p>
 into more specific code generation routines.  These fit into three broad
 categories:</p>
 <ol class="arabic simple">
-<li><strong>Declaration (decl) directives</strong>,</li>
-<li><strong>Definition (def) directives</strong>, and</li>
-<li><strong>Implementation (impl) directives</strong>.</li>
+<li><p><strong>Declaration (decl) directives</strong>,</p></li>
+<li><p><strong>Definition (def) directives</strong>, and</p></li>
+<li><p><strong>Implementation (impl) directives</strong>.</p></li>
 </ol>
-<p>The <code class="docutils literal"><span class="pre">decl</span></code> directives generate only the member function declaration and must
+<p>The <code class="docutils literal notranslate"><span class="pre">decl</span></code> directives generate only the member function declaration and must
 be used from within the public part of the agent’s class declaration.  The
-<code class="docutils literal"><span class="pre">def</span></code> generate the member function definition in its entirety including the
+<code class="docutils literal notranslate"><span class="pre">def</span></code> generate the member function definition in its entirety including the
 function signature.  These may be used either in the class declaration or in
-the source file (<code class="docutils literal"><span class="pre">*.cc</span></code>, <code class="docutils literal"><span class="pre">*.cpp</span></code>, etc.).  The <code class="docutils literal"><span class="pre">impl</span></code> directives generate
+the source file (<code class="docutils literal notranslate"><span class="pre">*.cc</span></code>, <code class="docutils literal notranslate"><span class="pre">*.cpp</span></code>, etc.).  The <code class="docutils literal notranslate"><span class="pre">impl</span></code> directives generate
 only the body of the member function, leaving off the function signature.
 These are useful for intercepting default behavior while still benefiting from
 code generation.  These must be called from with the appropriate function
 body.</p>
 <p>The signature for the targeted code generation directives is as follows:</p>
 <p><strong>Targeted code generation directive signatures:</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus &lt;decl|def|impl&gt; [&lt;func&gt; [&lt;agent&gt;]]</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus &lt;decl|def|impl&gt; [&lt;func&gt; [&lt;agent&gt;]]</span>
 </pre></div>
 </div>
-<p>The first argument must be one of <code class="docutils literal"><span class="pre">decl</span></code>, <code class="docutils literal"><span class="pre">def</span></code>, or <code class="docutils literal"><span class="pre">impl</span></code>, which
+<p>The first argument must be one of <code class="docutils literal notranslate"><span class="pre">decl</span></code>, <code class="docutils literal notranslate"><span class="pre">def</span></code>, or <code class="docutils literal notranslate"><span class="pre">impl</span></code>, which
 determines the kind of code generation that will be performed.  The second,
-optional <code class="docutils literal"><span class="pre">&lt;func&gt;</span></code> argument is the member function name that code should be
-generated for. The third and final and optional <code class="docutils literal"><span class="pre">&lt;agent&gt;</span></code> argument is the
+optional <code class="docutils literal notranslate"><span class="pre">&lt;func&gt;</span></code> argument is the member function name that code should be
+generated for. The third and final and optional <code class="docutils literal notranslate"><span class="pre">&lt;agent&gt;</span></code> argument is the
 agent name to code generate for. This argument is useful in the face of
-ambiguous or absent C++ scope.  The <code class="docutils literal"><span class="pre">&lt;func&gt;</span></code> argument must be present if
-<code class="docutils literal"><span class="pre">&lt;agent&gt;</span></code> needs to be specified.</p>
+ambiguous or absent C++ scope.  The <code class="docutils literal notranslate"><span class="pre">&lt;func&gt;</span></code> argument must be present if
+<code class="docutils literal notranslate"><span class="pre">&lt;agent&gt;</span></code> needs to be specified.</p>
 <p>In the absence of optional arguments there are only:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus decl</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus decl</span>
 <span class="cp">#pragma cyclus def</span>
 </pre></div>
 </div>
 <p>These generate all of the member function declarations and definitions,
-respectively.  Note that there is no corresponding <code class="docutils literal"><span class="pre">#pragma</span> <span class="pre">cyclus</span> <span class="pre">impl</span></code>
+respectively.  Note that there is no corresponding <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">cyclus</span> <span class="pre">impl</span></code>
 because function bodies cannot be strung together without the corresponding
 signatures encapsulating them.</p>
-<p>When the <code class="docutils literal"><span class="pre">&lt;func&gt;</span></code> argument is provided the directive generates only the
+<p>When the <code class="docutils literal notranslate"><span class="pre">&lt;func&gt;</span></code> argument is provided the directive generates only the
 definition, declaration, or implementation for the given agent API function.
-For example the following would generate the definition for the <code class="docutils literal"><span class="pre">schema()</span></code>
+For example the following would generate the definition for the <code class="docutils literal notranslate"><span class="pre">schema()</span></code>
 function.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus def schema</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus def schema</span>
 </pre></div>
 </div>
 <p><a class="reference internal" href="#cycpp-table-3"><span class="std std-ref">Table III. Member Function Flags and Their C++ Signatures</span></a> contains a listing of all available function flags and their
 associated C++ information.</p>
-<span id="cycpp-table-3"></span><table border="1" class="colwidths-given styled-table centered docutils" id="id3">
-<caption><span class="caption-text"><strong>Table III.</strong> Member Function Flags and Their C++ Signatures</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<span id="cycpp-table-3"></span><table class="styled-table centered docutils align-default" id="id3">
+<caption><span class="caption-text"><strong>Table III.</strong> Member Function Flags and Their C++ Signatures</span><a class="headerlink" href="#id3" title="Link to this table">¶</a></caption>
 <colgroup>
-<col width="10%" />
-<col width="60%" />
-<col width="30%" />
+<col style="width: 10.0%" />
+<col style="width: 60.0%" />
+<col style="width: 30.0%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="left-align no-left-divider single-right-divider head">func</th>
-<th class="left-align single-left-divider single-right-divider head">C++ Signature</th>
-<th class="left-align single-left-divider no-right-divider head">Return Type</th>
+<thead>
+<tr class="row-odd"><th class="head left-align no-left-divider single-right-divider"><p>func</p></th>
+<th class="head left-align single-left-divider single-right-divider"><p>C++ Signature</p></th>
+<th class="head left-align single-left-divider no-right-divider"><p>Return Type</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">clone</td>
-<td class="left-align single-left-divider single-right-divider"><code class="docutils literal"><span class="pre">Clone()</span></code></td>
-<td class="left-align single-left-divider no-right-divider"><code class="docutils literal"><span class="pre">cyclus::Agent*</span></code></td>
+<tbody>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>clone</p></td>
+<td class="left-align single-left-divider single-right-divider"><p><code class="docutils literal notranslate"><span class="pre">Clone()</span></code></p></td>
+<td class="left-align single-left-divider no-right-divider"><p><code class="docutils literal notranslate"><span class="pre">cyclus::Agent*</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">initfromcopy</td>
-<td class="left-align single-left-divider single-right-divider"><code class="docutils literal"><span class="pre">InitFrom(MyAgent*</span> <span class="pre">m)</span></code></td>
-<td class="left-align single-left-divider no-right-divider"><code class="docutils literal"><span class="pre">void</span></code></td>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>initfromcopy</p></td>
+<td class="left-align single-left-divider single-right-divider"><p><code class="docutils literal notranslate"><span class="pre">InitFrom(MyAgent*</span> <span class="pre">m)</span></code></p></td>
+<td class="left-align single-left-divider no-right-divider"><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">initfromdb</td>
-<td class="left-align single-left-divider single-right-divider"><code class="docutils literal"><span class="pre">InitFrom(cyclus::QueryableBackend*</span> <span class="pre">b)</span></code></td>
-<td class="left-align single-left-divider no-right-divider"><code class="docutils literal"><span class="pre">void</span></code></td>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>initfromdb</p></td>
+<td class="left-align single-left-divider single-right-divider"><p><code class="docutils literal notranslate"><span class="pre">InitFrom(cyclus::QueryableBackend*</span> <span class="pre">b)</span></code></p></td>
+<td class="left-align single-left-divider no-right-divider"><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">infiletodb</td>
-<td class="left-align single-left-divider single-right-divider"><code class="docutils literal"><span class="pre">InfileToDb(cyclus::InfileTree*</span> <span class="pre">tree,</span>
-<span class="pre">cyclus::DbInit</span> <span class="pre">di)</span></code></td>
-<td class="left-align single-left-divider no-right-divider"><code class="docutils literal"><span class="pre">void</span></code></td>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>infiletodb</p></td>
+<td class="left-align single-left-divider single-right-divider"><p><code class="docutils literal notranslate"><span class="pre">InfileToDb(cyclus::InfileTree*</span> <span class="pre">tree,</span>
+<span class="pre">cyclus::DbInit</span> <span class="pre">di)</span></code></p></td>
+<td class="left-align single-left-divider no-right-divider"><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">schema</td>
-<td class="left-align single-left-divider single-right-divider"><code class="docutils literal"><span class="pre">schema()</span></code></td>
-<td class="left-align single-left-divider no-right-divider"><code class="docutils literal"><span class="pre">std::string</span></code></td>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>schema</p></td>
+<td class="left-align single-left-divider single-right-divider"><p><code class="docutils literal notranslate"><span class="pre">schema()</span></code></p></td>
+<td class="left-align single-left-divider no-right-divider"><p><code class="docutils literal notranslate"><span class="pre">std::string</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">annotations</td>
-<td class="left-align single-left-divider single-right-divider"><code class="docutils literal"><span class="pre">annotations()</span></code></td>
-<td class="left-align single-left-divider no-right-divider"><code class="docutils literal"><span class="pre">Json::Value</span></code></td>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>annotations</p></td>
+<td class="left-align single-left-divider single-right-divider"><p><code class="docutils literal notranslate"><span class="pre">annotations()</span></code></p></td>
+<td class="left-align single-left-divider no-right-divider"><p><code class="docutils literal notranslate"><span class="pre">Json::Value</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">snapshot</td>
-<td class="left-align single-left-divider single-right-divider"><code class="docutils literal"><span class="pre">Snapshot(cyclus::DbInit</span> <span class="pre">di)</span></code></td>
-<td class="left-align single-left-divider no-right-divider"><code class="docutils literal"><span class="pre">void</span></code></td>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>snapshot</p></td>
+<td class="left-align single-left-divider single-right-divider"><p><code class="docutils literal notranslate"><span class="pre">Snapshot(cyclus::DbInit</span> <span class="pre">di)</span></code></p></td>
+<td class="left-align single-left-divider no-right-divider"><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="left-align no-left-divider single-right-divider">snapshotinv</td>
-<td class="left-align single-left-divider single-right-divider"><code class="docutils literal"><span class="pre">SnapshotInv()</span></code></td>
-<td class="left-align single-left-divider no-right-divider"><code class="docutils literal"><span class="pre">cyclus::Inventories</span></code></td>
+<tr class="row-odd"><td class="left-align no-left-divider single-right-divider"><p>snapshotinv</p></td>
+<td class="left-align single-left-divider single-right-divider"><p><code class="docutils literal notranslate"><span class="pre">SnapshotInv()</span></code></p></td>
+<td class="left-align single-left-divider no-right-divider"><p><code class="docutils literal notranslate"><span class="pre">cyclus::Inventories</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="left-align no-left-divider single-right-divider">initinv</td>
-<td class="left-align single-left-divider single-right-divider"><code class="docutils literal"><span class="pre">InitInv(cyclus::Inventories&amp;</span> <span class="pre">inv)</span></code></td>
-<td class="left-align single-left-divider no-right-divider"><code class="docutils literal"><span class="pre">void</span></code></td>
+<tr class="row-even"><td class="left-align no-left-divider single-right-divider"><p>initinv</p></td>
+<td class="left-align single-left-divider single-right-divider"><p><code class="docutils literal notranslate"><span class="pre">InitInv(cyclus::Inventories&amp;</span> <span class="pre">inv)</span></code></p></td>
+<td class="left-align single-left-divider no-right-divider"><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -550,14 +539,14 @@ associated C++ information.</p>
 <p>Lastly, the agent’s classname may be optionally passed the to the directive.
 This is most useful in source files for the definition directives. This is
 because such directives typically lack the needed class scope.  For example,
-for the snapshot definition of <code class="docutils literal"><span class="pre">MyAgent</span></code> living in <code class="docutils literal"><span class="pre">mynamespace</span></code> we would
+for the snapshot definition of <code class="docutils literal notranslate"><span class="pre">MyAgent</span></code> living in <code class="docutils literal notranslate"><span class="pre">mynamespace</span></code> we would
 use:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus def snapshot mynamespace::MyAgent</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus def snapshot mynamespace::MyAgent</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="putting-it-together">
-<h2>Putting It Together<a class="headerlink" href="#putting-it-together" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="putting-it-together">
+<h2>Putting It Together<a class="headerlink" href="#putting-it-together" title="Link to this heading">¶</a></h2>
 <p><span style="font-variant:small-caps;">Cyclus</span> agents are written by declaring certain member variables to be
 <strong>state variables</strong>.  This means that they <em>define</em> the conditions of the
 agent at the start of every time step.  State variables are automatically are
@@ -569,131 +558,131 @@ prime directive.</p>
 <p>As a simple example, consider a reactor model that has three state variables:
 a flux, a power level, and a flag for whether it is shutdown or not.
 This could be implemented as follows:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Reactor</span> <span class="o">:</span> <span class="k">public</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Facility</span> <span class="p">{</span>
- <span class="k">public</span><span class="o">:</span>
-  <span class="n">Reactor</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Context</span><span class="o">*</span> <span class="n">ctx</span><span class="p">)</span> <span class="p">{};</span>
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">Reactor</span><span class="p">()</span> <span class="p">{};</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Reactor</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Facility</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="n">Reactor</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Context</span><span class="o">*</span><span class="w"> </span><span class="n">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Reactor</span><span class="p">()</span><span class="w"> </span><span class="p">{};</span>
 
-  <span class="cp">#pragma cyclus</span>
+<span class="w">  </span><span class="cp">#pragma cyclus</span>
 
- <span class="k">private</span><span class="o">:</span>
-  <span class="cp">#pragma cyclus var {&#39;default&#39;: 4e14, \</span>
+<span class="w"> </span><span class="k">private</span><span class="o">:</span>
+<span class="w">  </span><span class="cp">#pragma cyclus var {&#39;default&#39;: 4e14, \</span>
 <span class="cp">                      &#39;doc&#39;: &#39;the core-average flux&#39;, \</span>
 <span class="cp">                      &#39;units&#39;: &#39;n/cm2/2&#39;}</span>
-  <span class="kt">double</span> <span class="n">flux</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">flux</span><span class="p">;</span>
 
-  <span class="cp">#pragma cyclus var {&#39;default&#39;: 1000, &#39;units&#39;: &#39;MWe&#39;}</span>
-  <span class="kt">float</span> <span class="n">power</span><span class="p">;</span>
+<span class="w">  </span><span class="cp">#pragma cyclus var {&#39;default&#39;: 1000, &#39;units&#39;: &#39;MWe&#39;}</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">power</span><span class="p">;</span>
 
-  <span class="cp">#pragma cyclus var {&#39;doc&#39;: &#39;Are we operating?&#39;}</span>
-  <span class="kt">bool</span> <span class="n">shutdown</span><span class="p">;</span>
+<span class="w">  </span><span class="cp">#pragma cyclus var {&#39;doc&#39;: &#39;Are we operating?&#39;}</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">shutdown</span><span class="p">;</span>
 <span class="p">};</span>
 </pre></div>
 </div>
 <p>Note that the state variables may be private or protected if desired.
 Furthermore annotations may be broken up over many lines using trailing
 backslashes to make the code more readable.  It remains up to you - the module
-developer - to implement the desired behavior and logic in the <code class="docutils literal"><span class="pre">Tick()</span></code> and
-<code class="docutils literal"><span class="pre">Tock()</span></code> member functions.  Fancier tricks are available as needed but this
+developer - to implement the desired behavior and logic in the <code class="docutils literal notranslate"><span class="pre">Tick()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Tock()</span></code> member functions.  Fancier tricks are available as needed but this
 is the essence of how to write <span style="font-variant:small-caps;">Cyclus</span> agents.</p>
-</div>
-</div>
-<div class="section" id="abusing-the-cyclus-preprocessor">
-<h1>Abusing the <span style="font-variant:small-caps;">Cyclus</span> Preprocessor<a class="headerlink" href="#abusing-the-cyclus-preprocessor" title="Permalink to this headline">¶</a></h1>
-<p>Now that you know how to use <code class="docutils literal"><span class="pre">cycpp</span></code>, it is useful to know about some of the
+</section>
+</section>
+<section id="abusing-the-cyclus-preprocessor">
+<h1>Abusing the <span style="font-variant:small-caps;">Cyclus</span> Preprocessor<a class="headerlink" href="#abusing-the-cyclus-preprocessor" title="Link to this heading">¶</a></h1>
+<p>Now that you know how to use <code class="docutils literal notranslate"><span class="pre">cycpp</span></code>, it is useful to know about some of the
 more advanced features and how they can be leveraged.</p>
-<div class="section" id="scope-and-annotations">
-<h2>Scope and Annotations<a class="headerlink" href="#scope-and-annotations" title="Permalink to this headline">¶</a></h2>
+<section id="scope-and-annotations">
+<h2>Scope and Annotations<a class="headerlink" href="#scope-and-annotations" title="Link to this heading">¶</a></h2>
 <p>Annotations dictionaries retain the C++ scope that they are defined in even
 though they are written in Python.  This allows state variables to refer to
 the annotations for previously declared state variables.  Since the scope is
 retained, this allows annotations to refer to each other across agent/class
 and namespace boundaries.</p>
 <p>Because the annotations are dictionaries, the scoping is performed with the
-Python scoping operator (<code class="docutils literal"><span class="pre">.</span></code>) rather than the C++ scoping operator (<code class="docutils literal"><span class="pre">::</span></code>).
-For example, consider the case where we have a <code class="docutils literal"><span class="pre">Spy</span></code> class that lives in the
-<code class="docutils literal"><span class="pre">mi6</span></code> namespace.  Also in the namespace is the spy’s <code class="docutils literal"><span class="pre">Friend</span></code>.
+Python scoping operator (<code class="docutils literal notranslate"><span class="pre">.</span></code>) rather than the C++ scoping operator (<code class="docutils literal notranslate"><span class="pre">::</span></code>).
+For example, consider the case where we have a <code class="docutils literal notranslate"><span class="pre">Spy</span></code> class that lives in the
+<code class="docutils literal notranslate"><span class="pre">mi6</span></code> namespace.  Also in the namespace is the spy’s <code class="docutils literal notranslate"><span class="pre">Friend</span></code>.
 Furthermore, somewhere out in global scope lives the Spy’s arch-nemesis class
-<code class="docutils literal"><span class="pre">Enemy</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">Enemy</span></code>.</p>
 <p>The first rule of scoping is that two state variables on the same class
 share the same scope.  Thus they can directly refer to each other.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">mi6</span> <span class="p">{</span>
-<span class="k">class</span> <span class="nc">Spy</span> <span class="p">{</span>
-  <span class="cp">#pragma cyclus var {&quot;default&quot;: 7}</span>
-  <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">mi6</span><span class="w"> </span><span class="p">{</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Spy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cp">#pragma cyclus var {&quot;default&quot;: 7}</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
 
-  <span class="cp">#pragma cyclus var {&quot;default&quot;: &quot;James Bond, {0:0&gt;3}&quot;.format(id[&#39;default&#39;])}</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+<span class="w">  </span><span class="cp">#pragma cyclus var {&quot;default&quot;: &quot;James Bond, {0:0&gt;3}&quot;.format(id[&#39;default&#39;])}</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
 <span class="p">};</span>
-<span class="p">};</span> <span class="c1">// namespace mi6</span>
+<span class="p">};</span><span class="w"> </span><span class="c1">// namespace mi6</span>
 </pre></div>
 </div>
-<p>In the above, <code class="docutils literal"><span class="pre">id</span></code> is used to help define the annotations for <code class="docutils literal"><span class="pre">name</span></code>.
+<p>In the above, <code class="docutils literal notranslate"><span class="pre">id</span></code> is used to help define the annotations for <code class="docutils literal notranslate"><span class="pre">name</span></code>.
 Note that from within the annotations, other state variables are the annotation
 dictionary that was previously defined.  They fo not take on the C++ default value.
-This is why we could look up <code class="docutils literal"><span class="pre">id['default']</span></code>.</p>
+This is why we could look up <code class="docutils literal notranslate"><span class="pre">id['default']</span></code>.</p>
 <p>The second rule of scoping is that you are allowed to look into the annotations
 of other classes.  However, to do so you must specifiy the class you are looking
 into.  Looking at our spy’s friend</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">mi6</span> <span class="p">{</span>
-<span class="k">class</span> <span class="nc">Friend</span> <span class="p">{</span>
-  <span class="cp">#pragma cyclus var {&quot;doc&quot;: &quot;Normally helps {0}&quot;.format(Spy.name[&#39;default&#39;])}</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">help_first</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">mi6</span><span class="w"> </span><span class="p">{</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Friend</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cp">#pragma cyclus var {&quot;doc&quot;: &quot;Normally helps {0}&quot;.format(Spy.name[&#39;default&#39;])}</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">help_first</span><span class="p">;</span>
 <span class="p">};</span>
-<span class="p">};</span> <span class="c1">// namespace mi6</span>
+<span class="p">};</span><span class="w"> </span><span class="c1">// namespace mi6</span>
 </pre></div>
 </div>
-<p>Here, to access the annotations for Spy’s name we had to use <code class="docutils literal"><span class="pre">Spy.name</span></code>,
+<p>Here, to access the annotations for Spy’s name we had to use <code class="docutils literal notranslate"><span class="pre">Spy.name</span></code>,
 drilling into the Spy class. Inspecting in this way is not limited by C++
 access control (public, private, or protected).</p>
 <p>Lastly, if the agent we are trying to inspect lives in a completely different
 namespace, we must first drill into that namespace. For example, the spy’s
-main enemy is not part of <code class="docutils literal"><span class="pre">mi6</span></code>.  Thus to access the spy’s name annotations,
-the enemy must write <code class="docutils literal"><span class="pre">mi6.Spy.name</span></code>. For example:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Enemy</span> <span class="p">{</span>
-    <span class="cp">#pragma cyclus var {&#39;default&#39;: mi6.Spy.name[&#39;default&#39;]}</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">nemesis</span><span class="p">;</span>
+main enemy is not part of <code class="docutils literal notranslate"><span class="pre">mi6</span></code>.  Thus to access the spy’s name annotations,
+the enemy must write <code class="docutils literal notranslate"><span class="pre">mi6.Spy.name</span></code>. For example:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Enemy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cp">#pragma cyclus var {&#39;default&#39;: mi6.Spy.name[&#39;default&#39;]}</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">nemesis</span><span class="p">;</span>
 <span class="p">};</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="inventories">
-<h2>Inventories<a class="headerlink" href="#inventories" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="inventories">
+<h2>Inventories<a class="headerlink" href="#inventories" title="Link to this heading">¶</a></h2>
 <p>In addition to the normal <a class="reference internal" href="dbtypes.html"><span class="doc">Database Types</span></a>, state variables may also be declared
-with the <code class="docutils literal"><span class="pre">cyclus::Inventories</span></code> type.  This is a special <span style="font-variant:small-caps;">Cyclus</span> typedef
-of <code class="docutils literal"><span class="pre">std::map&lt;std::string,</span> <span class="pre">std::vector&lt;Resource::Ptr&gt;</span> <span class="pre">&gt;</span></code> that enables the
+with the <code class="docutils literal notranslate"><span class="pre">cyclus::Inventories</span></code> type.  This is a special <span style="font-variant:small-caps;">Cyclus</span> typedef
+of <code class="docutils literal notranslate"><span class="pre">std::map&lt;std::string,</span> <span class="pre">std::vector&lt;Resource::Ptr&gt;</span> <span class="pre">&gt;</span></code> that enables the
 storing of an arbitrary of resources (map values) by the associated commodity
 (map key). While the concept of a resource inventory may be implemented in many
-ways, the advantage in using the <code class="docutils literal"><span class="pre">cyclus::Inventories</span></code> is that the <span style="font-variant:small-caps;">Cyclus</span>
+ways, the advantage in using the <code class="docutils literal notranslate"><span class="pre">cyclus::Inventories</span></code> is that the <span style="font-variant:small-caps;">Cyclus</span>
 kernel knows how to save and load this type as well as represent it in RNG.
 Inventories may be used as normal state variables.  For example:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var {&#39;doc&#39;: &#39;my stocks&#39;}</span>
-<span class="n">cyclus</span><span class="o">::</span><span class="n">Inventories</span> <span class="n">invs</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var {&#39;doc&#39;: &#39;my stocks&#39;}</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">Inventories</span><span class="w"> </span><span class="n">invs</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>It is therefore <em>hightly</em> recommended that you store resources in this
 data structure.</p>
-</div>
-<div class="section" id="state-variable-code-generation-overrides">
-<h2>State Variable Code Generation Overrides<a class="headerlink" href="#state-variable-code-generation-overrides" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="state-variable-code-generation-overrides">
+<h2>State Variable Code Generation Overrides<a class="headerlink" href="#state-variable-code-generation-overrides" title="Link to this heading">¶</a></h2>
 <p>A powerful feature of most of the code generation directives is that the
 C++ code that is created for a state variable may be optionally replaced with a
 code snippet writing in the annotations. This allows you to selectively
 define the C++ behavior without the need to fully rewrite the member function.</p>
 <p>A potential use case is to provide a custom schema while still utilizing all other
-parts of <code class="docutils literal"><span class="pre">cycpp</span></code>.  For example:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var {&#39;schema&#39;: &#39;&lt;my&gt;Famcy RNG here&lt;/my&gt;&#39;}</span>
-<span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fibonacci</span><span class="p">;</span>
+parts of <code class="docutils literal notranslate"><span class="pre">cycpp</span></code>.  For example:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var {&#39;schema&#39;: &#39;&lt;my&gt;Famcy RNG here&lt;/my&gt;&#39;}</span>
+<span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>This will override the schema only for the Fibonacci state variable.  For a
 listing of all code generation functions that may be overridden, please see
 <a class="reference internal" href="#cycpp-table-1"><span class="std std-ref">Table I. Special State Variable Annotations</span></a>.</p>
-</div>
-<div class="section" id="implementation-hacks">
-<h2>Implementation Hacks<a class="headerlink" href="#implementation-hacks" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">impl</span></code> code generation directives exist primarily to be abused.  Unlike
-the <code class="docutils literal"><span class="pre">def</span></code> directives, the implementation directives do not include the
+</section>
+<section id="implementation-hacks">
+<h2>Implementation Hacks<a class="headerlink" href="#implementation-hacks" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">impl</span></code> code generation directives exist primarily to be abused.  Unlike
+the <code class="docutils literal notranslate"><span class="pre">def</span></code> directives, the implementation directives do not include the
 function signature or return statement.  The downside of this is that you must
 provide the function signature and the return value yourself.  The upside is
 that you may perform any operation before &amp; after the directive!</p>
@@ -701,53 +690,53 @@ that you may perform any operation before &amp; after the directive!</p>
 on the Reactor agent is always snapshotted to the database as the value 42.
 However, we did not want to permanently alter the value of this variable.
 This could be achieved through the following pattern:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">Reactor</span><span class="o">::</span><span class="n">Snapshot</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">DbInit</span> <span class="n">di</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kt">double</span> <span class="n">real_flux</span> <span class="o">=</span> <span class="n">flux</span><span class="p">;</span>  <span class="c1">// copy the existing flux value.</span>
-  <span class="n">flux</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>  <span class="c1">// set the value to wat we want temporarily</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Reactor::Snapshot</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">DbInit</span><span class="w"> </span><span class="n">di</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">real_flux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">flux</span><span class="p">;</span><span class="w">  </span><span class="c1">// copy the existing flux value.</span>
+<span class="w">  </span><span class="n">flux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span><span class="w">  </span><span class="c1">// set the value to wat we want temporarily</span>
 
-  <span class="c1">// fill in the code generated implementation of Shapshop()</span>
-  <span class="cp">#prama cyclus impl snapshot Reactor</span>
+<span class="w">  </span><span class="c1">// fill in the code generated implementation of Shapshop()</span>
+<span class="w">  </span><span class="cp">#prama cyclus impl snapshot Reactor</span>
 
-  <span class="n">flux</span> <span class="o">=</span> <span class="n">real_flux</span><span class="p">;</span>  <span class="c1">// reset the flux</span>
+<span class="w">  </span><span class="n">flux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">real_flux</span><span class="p">;</span><span class="w">  </span><span class="c1">// reset the flux</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>There are likely much more legitimate uses for this feature. For a complete
 listing of the member function information, please see <a class="reference internal" href="#cycpp-table-3"><span class="std std-ref">Table III. Member Function Flags and Their C++ Signatures</span></a>.</p>
-</div>
-<div class="section" id="custom-schema-initialization">
-<h2>Custom Schema &amp; Initialization<a class="headerlink" href="#custom-schema-initialization" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="custom-schema-initialization">
+<h2>Custom Schema &amp; Initialization<a class="headerlink" href="#custom-schema-initialization" title="Link to this heading">¶</a></h2>
 <p>Suppose that you would like for the schema for a state variable to be different
-than the default behavior provided by <code class="docutils literal"><span class="pre">cycpp</span></code>. Or perhaps you would like more
+than the default behavior provided by <code class="docutils literal notranslate"><span class="pre">cycpp</span></code>. Or perhaps you would like more
 sophisticated input validation than can is provided by XML and RelaxNG for a
 state variable. This may be easily done by supplying the state variable annotation
-keys <code class="docutils literal"><span class="pre">schema</span></code> and <code class="docutils literal"><span class="pre">infiletodb</span></code>. These allow you to inject code snippets
+keys <code class="docutils literal notranslate"><span class="pre">schema</span></code> and <code class="docutils literal notranslate"><span class="pre">infiletodb</span></code>. These allow you to inject code snippets
 pertaining to the state variable without interfering with the rest of the
 code generation.</p>
 <p>For example, let’s say that we have an integer state variable called
-<code class="docutils literal"><span class="pre">material_identifier</span></code> that we know always should be even.  This name is
+<code class="docutils literal notranslate"><span class="pre">material_identifier</span></code> that we know always should be even.  This name is
 a bit long to make users type in, so we would prefer to expose this in the
-input file as <code class="docutils literal"><span class="pre">matid</span></code>.  The RNG snippet that you would use for the <code class="docutils literal"><span class="pre">schema</span></code>
+input file as <code class="docutils literal notranslate"><span class="pre">matid</span></code>.  The RNG snippet that you would use for the <code class="docutils literal notranslate"><span class="pre">schema</span></code>
 is thus:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;schema&#39;</span><span class="p">:</span> <span class="s1">&#39;&lt;element name=&quot;matid&quot;&gt;&#39;</span> \
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;schema&#39;</span><span class="p">:</span> <span class="s1">&#39;&lt;element name=&quot;matid&quot;&gt;&#39;</span> \
            <span class="s1">&#39;  &lt;data type=&quot;int&quot; /&gt;&#39;</span> \
            <span class="s1">&#39;&lt;/element&gt;&#39;</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>You can change the data type or any other valid RNG here.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Whenever a state variable name is changed in the <code class="docutils literal"><span class="pre">schema</span></code>, you
-must supply an accompanying <code class="docutils literal"><span class="pre">infiletodb</span></code>.</p>
+<p class="admonition-title">Note</p>
+<p>Whenever a state variable name is changed in the <code class="docutils literal notranslate"><span class="pre">schema</span></code>, you
+must supply an accompanying <code class="docutils literal notranslate"><span class="pre">infiletodb</span></code>.</p>
 </div>
-<p>Providing a custom <code class="docutils literal"><span class="pre">infiletodb</span></code> is slightly more complicated because you
+<p>Providing a custom <code class="docutils literal notranslate"><span class="pre">infiletodb</span></code> is slightly more complicated because you
 must give C++ snippets for reading from the input file and for persisting to
-the database. The value for <code class="docutils literal"><span class="pre">infiletodb</span></code> is thus not a simple string
-but a dict that has <code class="docutils literal"><span class="pre">read</span></code> and <code class="docutils literal"><span class="pre">write</span></code> keys.  Continuing with the
-example we can ensure that <code class="docutils literal"><span class="pre">matid</span></code> is even after it has been read in.
+the database. The value for <code class="docutils literal notranslate"><span class="pre">infiletodb</span></code> is thus not a simple string
+but a dict that has <code class="docutils literal notranslate"><span class="pre">read</span></code> and <code class="docutils literal notranslate"><span class="pre">write</span></code> keys.  Continuing with the
+example we can ensure that <code class="docutils literal notranslate"><span class="pre">matid</span></code> is even after it has been read in.
 Here, we do not change the name of the state variable on the agent in
 memory or in the database.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;infiletodb&#39;</span><span class="p">:</span> <span class="p">{</span> \
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;infiletodb&#39;</span><span class="p">:</span> <span class="p">{</span> \
     <span class="s1">&#39;read&#39;</span><span class="p">:</span> <span class="s1">&#39;material_identifier = cyclus::Query&lt;int&gt;(tree, &quot;matid&quot;);</span><span class="se">\n</span><span class="s1">&#39;</span> \
             <span class="s1">&#39;if (material_identifier%2 == 1)</span><span class="se">\n</span><span class="s1">&#39;</span> \
             <span class="s1">&#39;  material_identifier++;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> \
@@ -755,12 +744,12 @@ memory or in the database.</p>
 <span class="p">}}</span>
 </pre></div>
 </div>
-<p>For more examples and explanation of what the <code class="docutils literal"><span class="pre">InfileToDb()</span></code> function
+<p>For more examples and explanation of what the <code class="docutils literal notranslate"><span class="pre">InfileToDb()</span></code> function
 does please refer to other code generated samples and refer to other parts
 of the documentation.
 Pulling this all together, we can write our custom schema and initialization
 as follows:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var {&#39;schema&#39;: &#39;&lt;element name=&quot;matid&quot;&gt;&#39; \</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var {&#39;schema&#39;: &#39;&lt;element name=&quot;matid&quot;&gt;&#39; \</span>
 <span class="cp">                              &#39;  &lt;data type=&quot;int&quot; /&gt;&#39; \</span>
 <span class="cp">                              &#39;&lt;/element&gt;&#39;, \</span>
 <span class="cp">                    &#39;infiletodb&#39;: { \</span>
@@ -770,23 +759,21 @@ as follows:</p>
 <span class="cp">                        &#39;write&#39;: &#39;-&gt;AddVal(&quot;material_identifier&quot;, material_identifier)\n&#39; \</span>
 <span class="cp">                        }\</span>
 <span class="cp">                    }</span>
-<span class="kt">int</span> <span class="n">material_identifier</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">material_identifier</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Other state variable annotation keys allow you to provide code snippets
 in much the same way.</p>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Using the Cyclus Preprocessor</a><ul>
@@ -817,68 +804,16 @@ in much the same way.</p>
     <p class="topless"><a href="testing.html"
                           title="Next page">&rarr; Testing and Debugging Archetypes</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -919,14 +854,15 @@ in much the same way.</p>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Using the Cyclus Preprocessor</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

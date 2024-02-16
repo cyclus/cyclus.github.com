@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Custom Database Tables &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Errors and Warnings [C++]" href="errors.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -85,7 +73,8 @@ if(ga_enabled){
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Custom Database Tables</a></li> 
       </ul>
     </div>
     </div>
@@ -96,29 +85,29 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="custom-database-tables">
-<h1>Custom Database Tables<a class="headerlink" href="#custom-database-tables" title="Permalink to this headline">¶</a></h1>
+  <section id="custom-database-tables">
+<h1>Custom Database Tables<a class="headerlink" href="#custom-database-tables" title="Link to this heading">¶</a></h1>
 <p>Agents are allowed to write their own custom output into the database during
 simulations.  The interface for recording this data is accessible through the
 agent’s <a class="reference internal" href="../basics/glossary.html#term-context"><span class="xref std std-term">context</span></a>.  Data may be logged via the Context::NewDatum function:</p>
 <p><strong>C++:</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">MyReactor</span><span class="o">::</span><span class="n">Tick</span><span class="p">()</span> <span class="p">{</span>
-  <span class="p">...</span>
-  <span class="kt">double</span> <span class="n">monthly_water</span> <span class="o">=</span> <span class="p">...;</span>
-  <span class="kt">double</span> <span class="n">monthly_op_cost</span> <span class="o">=</span> <span class="p">...;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">MyReactor</span><span class="o">::</span><span class="n">Tick</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">monthly_water</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">monthly_op_cost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
 
-  <span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">NewDatum</span><span class="p">(</span><span class="s">&quot;MyReactorData&quot;</span><span class="p">)</span>
-           <span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;AgentID&quot;</span><span class="p">,</span> <span class="n">id</span><span class="p">())</span>
-           <span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;Time&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">())</span>
-           <span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;WaterUsage&quot;</span><span class="p">,</span> <span class="n">monthl_water</span><span class="p">)</span>
-           <span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;OperatingCost&quot;</span><span class="p">,</span> <span class="n">monthly_op_cost</span><span class="p">)</span>
-           <span class="o">-&gt;</span><span class="n">Record</span><span class="p">();</span>
-  <span class="p">...</span>
+<span class="w">  </span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">NewDatum</span><span class="p">(</span><span class="s">&quot;MyReactorData&quot;</span><span class="p">)</span>
+<span class="w">           </span><span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;AgentID&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">())</span>
+<span class="w">           </span><span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;Time&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">())</span>
+<span class="w">           </span><span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;WaterUsage&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">monthl_water</span><span class="p">)</span>
+<span class="w">           </span><span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;OperatingCost&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">monthly_op_cost</span><span class="p">)</span>
+<span class="w">           </span><span class="o">-&gt;</span><span class="n">Record</span><span class="p">();</span>
+<span class="w">  </span><span class="p">...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>Python:</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cyclus.agents</span> <span class="kn">import</span> <span class="n">Facility</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cyclus.agents</span> <span class="kn">import</span> <span class="n">Facility</span>
 <span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
 
 <span class="k">class</span> <span class="nc">MyReactor</span><span class="p">(</span><span class="n">Facility</span><span class="p">):</span>
@@ -145,15 +134,15 @@ single agent class, tables should generally include a column that adds their
 ID; and for similar reasons, it is often desirable to include the simulation
 time as a column in these tables:</p>
 <p><strong>C++:</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">NewDatum</span><span class="p">(</span><span class="s">&quot;MyReactorData&quot;</span><span class="p">)</span>
-         <span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;AgentID&quot;</span><span class="p">,</span> <span class="n">id</span><span class="p">())</span>
-         <span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;Time&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">())</span>
-         <span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(...</span>
-         <span class="p">...</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">NewDatum</span><span class="p">(</span><span class="s">&quot;MyReactorData&quot;</span><span class="p">)</span>
+<span class="w">         </span><span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;AgentID&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">())</span>
+<span class="w">         </span><span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;Time&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">())</span>
+<span class="w">         </span><span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(...</span>
+<span class="w">         </span><span class="p">...</span>
 </pre></div>
 </div>
 <p><strong>Python:</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">new_datum</span><span class="p">(</span><span class="s2">&quot;MyReactorData&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">new_datum</span><span class="p">(</span><span class="s2">&quot;MyReactorData&quot;</span><span class="p">)</span>
 <span class="n">d</span><span class="o">.</span><span class="n">add_val</span><span class="p">(</span><span class="s2">&quot;AgentID&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">INT</span><span class="p">)</span>
 <span class="n">d</span><span class="o">.</span><span class="n">add_val</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">INT</span><span class="p">)</span>
 <span class="n">d</span><span class="o">.</span><span class="n">add_val</span><span class="p">(</span><span class="o">...</span>
@@ -164,23 +153,23 @@ time as a column in these tables:</p>
 names and value types). It is the responsibility of the developer to
 enforce this in their code.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Database formats only support a finite number of datum value-types.  Do not
+<p class="admonition-title">Warning</p>
+<p>Database formats only support a finite number of datum value-types.  Do not
 add values to database tables that are not supported by the backend(s) in
 use. For information on which c++ types the backends support, you can check
 <a class="reference internal" href="dbtypes.html"><span class="doc">here</span></a>.</p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">If you require a datatype that isn’t currently supported, please
+<p class="admonition-title">Note</p>
+<p>If you require a datatype that isn’t currently supported, please
 ask the kernel developers and they will help as soon as possible.</p>
 </div>
-<div class="section" id="table-data-shapes">
-<h2>Table Data Shapes<a class="headerlink" href="#table-data-shapes" title="Permalink to this headline">¶</a></h2>
+<section id="table-data-shapes">
+<h2>Table Data Shapes<a class="headerlink" href="#table-data-shapes" title="Link to this heading">¶</a></h2>
 <p>All added values can optionally take a <cite>std::vector&lt;int&gt;*</cite> shape argument that
 is used as maximum dimensions for the value being added.  The <a class="reference internal" href="dbtypes.html"><span class="doc">Database Types</span></a>
 page lists the rank of the shape of different C++ types.  A
-<code class="docutils literal"><span class="pre">std::vector&lt;std::string&gt;</span></code> has rank two - the first shape element being the
+<code class="docutils literal notranslate"><span class="pre">std::vector&lt;std::string&gt;</span></code> has rank two - the first shape element being the
 length of the vector, the second element being the length of each string in
 the vector.  When the shape argument is ommitted, the default is to treat all
 elements in the value as variable-length.  An entry of <cite>-1</cite> in the shape
@@ -188,29 +177,29 @@ vector indicates variable length also.  It is an error to pass in a shape
 vector with the wrong rank (number of elements) for that type.  An example of
 using the shape vector follows:</p>
 <p><strong>C++:</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">colors</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">colors</span><span class="p">;</span>
 <span class="n">colors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;green&quot;</span><span class="p">);</span>
 <span class="n">colors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">);</span>
 <span class="n">colors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;chartreuse&quot;</span><span class="p">);</span>
 
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">shape</span><span class="p">;</span> <span class="c1">// this should usually be a class member variable</span>
-<span class="n">shape</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// maximum number of elements in the color vector</span>
-<span class="n">shape</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span> <span class="c1">// maximum character length of each color</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">shape</span><span class="p">;</span><span class="w"> </span><span class="c1">// this should usually be a class member variable</span>
+<span class="n">shape</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"> </span><span class="c1">// maximum number of elements in the color vector</span>
+<span class="n">shape</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span><span class="w"> </span><span class="c1">// maximum character length of each color</span>
 
 <span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">NewDatum</span><span class="p">(</span><span class="s">&quot;DecorPreferences&quot;</span><span class="p">)</span>
-         <span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;AgentID&quot;</span><span class="p">,</span> <span class="n">id</span><span class="p">())</span>
-         <span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;Time&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">())</span>
-         <span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;FavoriteColors&quot;</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span>
-         <span class="o">-&gt;</span><span class="n">Record</span><span class="p">();</span>
+<span class="w">         </span><span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;AgentID&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">())</span>
+<span class="w">         </span><span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;Time&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">())</span>
+<span class="w">         </span><span class="o">-&gt;</span><span class="n">AddVal</span><span class="p">(</span><span class="s">&quot;FavoriteColors&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">colors</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="p">)</span>
+<span class="w">         </span><span class="o">-&gt;</span><span class="n">Record</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>Python:</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;green&quot;</span><span class="p">,</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="s">&quot;chartreuse&quot;</span><span class="p">]</span>
-<span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">new_datum</span><span class="p">(</span><span class="s">&quot;DecorPreferences&quot;</span><span class="p">)</span>
-<span class="n">d</span><span class="p">.</span><span class="n">add_val</span><span class="p">(</span><span class="s">&quot;AgentID&quot;</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="n">ts</span><span class="p">.</span><span class="n">INT</span><span class="p">)</span>
-<span class="n">d</span><span class="p">.</span><span class="n">add_val</span><span class="p">(</span><span class="s">&quot;Time&quot;</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">time</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="n">ts</span><span class="p">.</span><span class="n">INT</span><span class="p">)</span>
-<span class="n">d</span><span class="p">.</span><span class="n">add_val</span><span class="p">(</span><span class="s">&quot;FavoriteColors&quot;</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">ts</span><span class="p">.</span><span class="n">VECTOR_STRING</span><span class="p">)</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;green&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;chartreuse&quot;</span><span class="p">]</span>
+<span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">]</span>
+<span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">new_datum</span><span class="p">(</span><span class="s">&quot;DecorPreferences&quot;</span><span class="p">)</span>
+<span class="n">d</span><span class="p">.</span><span class="n">add_val</span><span class="p">(</span><span class="s">&quot;AgentID&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="n">ts</span><span class="p">.</span><span class="n">INT</span><span class="p">)</span>
+<span class="n">d</span><span class="p">.</span><span class="n">add_val</span><span class="p">(</span><span class="s">&quot;Time&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="n">ts</span><span class="p">.</span><span class="n">INT</span><span class="p">)</span>
+<span class="n">d</span><span class="p">.</span><span class="n">add_val</span><span class="p">(</span><span class="s">&quot;FavoriteColors&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">colors</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="p">,</span><span class="w"> </span><span class="n">ts</span><span class="p">.</span><span class="n">VECTOR_STRING</span><span class="p">)</span>
 <span class="n">d</span><span class="p">.</span><span class="n">record</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -219,75 +208,59 @@ specified in the shape.  So it will be truncated to “chartreu” in the
 database. Shape vectors should generally be stored as class member variables
 to avoid excessive memory [de]allocation and should be set correctly from
 construction to destruction of your agent.</p>
-</div>
-<div class="section" id="reserved-table-names">
-<h2>Reserved Table Names<a class="headerlink" href="#reserved-table-names" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="reserved-table-names">
+<h2>Reserved Table Names<a class="headerlink" href="#reserved-table-names" title="Link to this heading">¶</a></h2>
 <p>The <span style="font-variant:small-caps;">Cyclus</span> kernel creates several of its own tables.  The names of these
 tables are reserved, and you are responsible to avoid using them for custom
 table names.  The reserved table names are (all case combos upper and lower):</p>
 <ul>
-<li><p class="first">all names starting with the prefixes:</p>
+<li><p>all names starting with the prefixes:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Cyclus</li>
-<li>Agent</li>
-<li>VL_</li>
-<li>Pair</li>
-<li>String</li>
-<li>Vector</li>
-<li>Map</li>
-<li>List</li>
-<li>Set</li>
-<li>Blob</li>
+<li><p>Cyclus</p></li>
+<li><p>Agent</p></li>
+<li><p>VL_</p></li>
+<li><p>Pair</p></li>
+<li><p>String</p></li>
+<li><p>Vector</p></li>
+<li><p>Map</p></li>
+<li><p>List</p></li>
+<li><p>Set</p></li>
+<li><p>Blob</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Resources</p>
-</li>
-<li><p class="first">Products</p>
-</li>
-<li><p class="first">Transactions</p>
-</li>
-<li><p class="first">Info</p>
-</li>
-<li><p class="first">Finish</p>
-</li>
-<li><p class="first">InputFiles</p>
-</li>
-<li><p class="first">Prototypes</p>
-</li>
-<li><p class="first">Recipes</p>
-</li>
-<li><p class="first">Snapshots</p>
-</li>
-<li><p class="first">MaterialInfo</p>
-</li>
-<li><p class="first">Compositions</p>
-</li>
-<li><p class="first">NextIds</p>
-</li>
-<li><p class="first">ResCreators</p>
-</li>
-<li><p class="first">CommodPriority</p>
-</li>
+<li><p>Resources</p></li>
+<li><p>Products</p></li>
+<li><p>Transactions</p></li>
+<li><p>Info</p></li>
+<li><p>Finish</p></li>
+<li><p>InputFiles</p></li>
+<li><p>Prototypes</p></li>
+<li><p>Recipes</p></li>
+<li><p>Snapshots</p></li>
+<li><p>MaterialInfo</p></li>
+<li><p>Compositions</p></li>
+<li><p>NextIds</p></li>
+<li><p>ResCreators</p></li>
+<li><p>CommodPriority</p></li>
 </ul>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Table names may only contain alphanumeric characters and underscores and
+<p class="admonition-title">Warning</p>
+<p>Table names may only contain alphanumeric characters and underscores and
 must not start with a number.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Custom Database Tables</a><ul>
@@ -308,68 +281,16 @@ must not start with a number.</p>
     <p class="topless"><a href="errors.html"
                           title="Next page">&rarr; Errors and Warnings [C++]</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -410,14 +331,15 @@ must not start with a number.</p>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Custom Database Tables</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

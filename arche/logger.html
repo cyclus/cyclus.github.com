@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Logging &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Archetype Command Line Interface" href="cli.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -85,7 +73,8 @@ if(ga_enabled){
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Logging</a></li> 
       </ul>
     </div>
     </div>
@@ -96,9 +85,9 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="logging">
-<span id="id1"></span><h1>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>LOG<span class="o">(</span>LogLevel level, std::string prefix<span class="o">)</span>
+  <section id="logging">
+<span id="id1"></span><h1>Logging<a class="headerlink" href="#logging" title="Link to this heading">¶</a></h1>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>LOG<span class="o">(</span>LogLevel<span class="w"> </span>level,<span class="w"> </span>std::string<span class="w"> </span>prefix<span class="o">)</span>
 </pre></div>
 </div>
 <p>Built-in logging functionality has been provided to aid debugging.  To use the
@@ -114,18 +103,18 @@ statement.</p>
 enum doxygen documentation. The following is a summary:</p>
 <blockquote>
 <div><ul class="simple">
-<li>LEV_ERROR: Use for errors that require model code or input file
-modification/fixing (use extremely sparingly)</li>
-<li>LEV_WARN: Use to report questionable simulation state (use extremely
-sparingly)</li>
-<li>LEV_INFO1: Information helpful for simulation users and developers alike -
-least verbose.</li>
-<li>LEV_INFO[2, 3, 4]</li>
-<li>LEV_INFO5: Information helpful for simulation users and developers alike -
-most verbose.</li>
-<li>LEV_DEBUG1: debugging information - least verbose</li>
-<li>LEV_DEBUG[2, 3, 4]</li>
-<li>LEV_DEBUG5: debugging information - most verbose</li>
+<li><p>LEV_ERROR: Use for errors that require model code or input file
+modification/fixing (use extremely sparingly)</p></li>
+<li><p>LEV_WARN: Use to report questionable simulation state (use extremely
+sparingly)</p></li>
+<li><p>LEV_INFO1: Information helpful for simulation users and developers alike -
+least verbose.</p></li>
+<li><p>LEV_INFO[2, 3, 4]</p></li>
+<li><p>LEV_INFO5: Information helpful for simulation users and developers alike -
+most verbose.</p></li>
+<li><p>LEV_DEBUG1: debugging information - least verbose</p></li>
+<li><p>LEV_DEBUG[2, 3, 4]</p></li>
+<li><p>LEV_DEBUG5: debugging information - most verbose</p></li>
 </ul>
 </div></blockquote>
 <p>Developers working on agents set the LOG prefix argument to a unique
@@ -136,27 +125,27 @@ information most relevant to their work.</p>
 specified level is not higher than or equal to the report-level cutoff, the
 macro does nothing, limiting the performance impact of logging statements.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Do NOT place any state-changing expressions with the LOG
+<p class="admonition-title">Warning</p>
+<p>Do NOT place any state-changing expressions with the LOG
 macro as they may not run if the report level excludes the specified LogLevel.</p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The Python interface should use the Python standard library logging system.</p>
+<p class="admonition-title">Note</p>
+<p>The Python interface should use the Python standard library logging system.</p>
 </div>
-<div class="section" id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;Logger.h&quot;</span><span class="cp"></span>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Logger.h&quot;</span>
 
-<span class="kt">void</span> <span class="nf">myfunc</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">myfunc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_ERROR</span><span class="p">,</span> <span class="s">&quot;prefix&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;This is my error statement. &quot;</span>
-                           <span class="o">&lt;&lt;</span> <span class="s">&quot;and more info...&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">LOG</span><span class="p">(</span><span class="n">LEV_ERROR</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;prefix&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;This is my error statement. &quot;</span>
+<span class="w">                           </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;and more info...&quot;</span><span class="p">;</span>
 
-  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG2</span><span class="p">,</span> <span class="s">&quot;prefix&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;This is my first debug statement. &quot;</span>
-                            <span class="o">&lt;&lt;</span> <span class="s">&quot;and more info...&quot;</span><span class="p">;</span>
-  <span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG1</span><span class="p">,</span> <span class="s">&quot;prefix&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;This is another debug statement. &quot;</span>
-                            <span class="o">&lt;&lt;</span> <span class="s">&quot;and more info...&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;prefix&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;This is my first debug statement. &quot;</span>
+<span class="w">                            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;and more info...&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;prefix&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;This is another debug statement. &quot;</span>
+<span class="w">                            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;and more info...&quot;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -165,30 +154,28 @@ report-cutoff.  Available levels are described in the LogLevel enum.  In the
 above example if the command line verbosity were set to <em>LEV_DEBUG1</em>, the
 first and third statements would print, while the second would not. Output
 would be something like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ERROR</span> <span class="p">(</span><span class="n">prefix</span><span class="p">):</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">my</span> <span class="n">error</span> <span class="n">statement</span><span class="o">.</span> <span class="ow">and</span> <span class="n">more</span> <span class="n">info</span><span class="o">...</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span> <span class="p">(</span><span class="n">prefix</span><span class="p">):</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">my</span> <span class="n">error</span> <span class="n">statement</span><span class="o">.</span> <span class="ow">and</span> <span class="n">more</span> <span class="n">info</span><span class="o">...</span>
 <span class="n">DEBUG1</span><span class="p">(</span><span class="n">prefix</span><span class="p">):</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">another</span> <span class="n">debug</span> <span class="n">statement</span><span class="o">.</span> <span class="ow">and</span> <span class="n">more</span> <span class="n">info</span><span class="o">...</span>
 </pre></div>
 </div>
 <p>Any expression placed with a log statement that is not printed will not be
 executed. An example of what NOT to do follows:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG2</span><span class="p">,</span> <span class="s">&quot;module name&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The expression myobject.setName(newname): &quot;</span>
-                               <span class="o">&lt;&lt;</span> <span class="n">myobject</span><span class="p">.</span><span class="n">setName</span><span class="p">(</span><span class="n">newname</span><span class="p">)</span>
-                               <span class="o">&lt;&lt;</span> <span class="s">&quot; might not ever execute&quot;</span>
-                               <span class="o">&lt;&lt;</span> <span class="s">&quot; depending on the verbosity level.&quot;</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">LOG</span><span class="p">(</span><span class="n">LEV_DEBUG2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;module name&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The expression myobject.setName(newname): &quot;</span>
+<span class="w">                               </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">myobject</span><span class="p">.</span><span class="n">setName</span><span class="p">(</span><span class="n">newname</span><span class="p">)</span>
+<span class="w">                               </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; might not ever execute&quot;</span>
+<span class="w">                               </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; depending on the verbosity level.&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Logging</a><ul>
@@ -208,68 +195,16 @@ executed. An example of what NOT to do follows:</p>
     <p class="topless"><a href="cli.html"
                           title="Next page">&rarr; Archetype Command Line Interface</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -310,14 +245,15 @@ executed. An example of what NOT to do follows:</p>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Logging</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>CEP 17 - Resource Tracking and Interfaces Re-Re-Redo &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="CEP 18 - Dynamic Resource Exchange Procedure" href="cep18.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -85,7 +73,8 @@ if(ga_enabled){
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 17 - Resource Tracking and Interfaces Re-Re-Redo</a></li> 
       </ul>
     </div>
     </div>
@@ -96,53 +85,56 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="cep-17-resource-tracking-and-interfaces-re-re-redo">
-<h1>CEP 17 - Resource Tracking and Interfaces Re-Re-Redo<a class="headerlink" href="#cep-17-resource-tracking-and-interfaces-re-re-redo" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">CEP:</th><td class="field-body">17</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Title:</th><td class="field-body">Resource Tracking and Interfaces Re-Re-Redo</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Last-Modified:</th><td class="field-body">2013-09-03</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">Robert Carlsen &lt;<a class="reference external" href="mailto:rwcarlsen&#37;&#52;&#48;gmail&#46;com">rwcarlsen<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Status:</th><td class="field-body">Accepted</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Created:</th><td class="field-body">Robert Carlsen</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="abstract">
-<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+  <section id="cep-17-resource-tracking-and-interfaces-re-re-redo">
+<h1>CEP 17 - Resource Tracking and Interfaces Re-Re-Redo<a class="headerlink" href="#cep-17-resource-tracking-and-interfaces-re-re-redo" title="Link to this heading">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">CEP<span class="colon">:</span></dt>
+<dd class="field-odd"><p>17</p>
+</dd>
+<dt class="field-even">Title<span class="colon">:</span></dt>
+<dd class="field-even"><p>Resource Tracking and Interfaces Re-Re-Redo</p>
+</dd>
+<dt class="field-odd">Last-Modified<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2013-09-03</p>
+</dd>
+<dt class="field-even">Author<span class="colon">:</span></dt>
+<dd class="field-even"><p>Robert Carlsen &lt;<a class="reference external" href="mailto:rwcarlsen&#37;&#52;&#48;gmail&#46;com">rwcarlsen<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+</dd>
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Accepted</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Standards Track</p>
+</dd>
+<dt class="field-odd">Created<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Robert Carlsen</p>
+</dd>
+</dl>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading">¶</a></h2>
 <p>This proposal serves to address two related issues:</p>
 <ol class="arabic">
-<li><p class="first"><strong>Resource tracking:</strong></p>
+<li><p><strong>Resource tracking:</strong></p>
 <p>Several types of analysis are made difficult to impossible by the
 incomplete resource history currently recorded by <span style="font-variant:small-caps;">Cyclus</span> simulations. Such
 analyses include agent time-dependent isotopic inventories and
 proliferation-resistance material handling. It is proposed that all
 resource state and state transitions will be tracked (as opposed to just
 recording state at inter-agent transactions).  In addition to required
-internal additions/changes to resource classes, explicit <code class="docutils literal"><span class="pre">transmute</span></code>
+internal additions/changes to resource classes, explicit <code class="docutils literal notranslate"><span class="pre">transmute</span></code>
 functionality will be added to the Material class to accommodate
 mass-conserving state changes that occur in agents such as Reactors.</p>
 </li>
-<li><p class="first"><strong>Resource interface complexity:</strong></p>
+<li><p><strong>Resource interface complexity:</strong></p>
 <p>Creating, querying, and manipulating resources is too complex and is spread
 across too many classes.  The resource class (and friends) will have their
 interfaces minimized and all extra functionality will be provided by one or
 more wrapper classes.</p>
 </li>
 </ol>
-</div>
-<div class="section" id="motivation-and-rationale">
-<h2>Motivation and Rationale<a class="headerlink" href="#motivation-and-rationale" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="motivation-and-rationale">
+<h2>Motivation and Rationale<a class="headerlink" href="#motivation-and-rationale" title="Link to this heading">¶</a></h2>
 <p>This proposal serves to address two related issues: resource tracking and
 resource interface complexity. Because changes to resource tracking will be
 intrusive to the current resource interfaces, performing these changes
@@ -152,24 +144,24 @@ together is desirable.</p>
 This limited tracking is problematic for certain kinds of output
 analysis.  Examples:</p>
 <ol class="arabic simple">
-<li>The meaning of “inventory” for agents that transmute materials is
+<li><p>The meaning of “inventory” for agents that transmute materials is
 ill-defined.  To calculate the inventory of a reactor faciltiy, an
 analysis of present data would show fresh fuel coming in, and spent fuel
 coming out.  The aggregation of transactions to a specific point in time
 would not be the reactor’s current inventory.  Rather it would be the
 reactor’s inventory plus the difference between fresh and spent fuel
-processed until that point in time. The same problem exists with decay.</li>
-<li>We cannot determine if a resource was ever handled inappropriately (e.g.
-non-proliferation analysis) internally within an agent.</li>
-<li>We are unable to determine “source” agents that create material and what
-they created.</li>
-<li>There is no mass-conservation-safe way to transmute a material (i.e.
+processed until that point in time. The same problem exists with decay.</p></li>
+<li><p>We cannot determine if a resource was ever handled inappropriately (e.g.
+non-proliferation analysis) internally within an agent.</p></li>
+<li><p>We are unable to determine “source” agents that create material and what
+they created.</p></li>
+<li><p>There is no mass-conservation-safe way to transmute a material (i.e.
 change its nuclide composition) outside of destroying and simultaneously
-creating new material objects (which isn’t mass-conservations-safe).</li>
-<li>When resources are split and combined, there is no way to recall this
+creating new material objects (which isn’t mass-conservations-safe).</p></li>
+<li><p>When resources are split and combined, there is no way to recall this
 heritage.  Tracing paths of certain material objects is not possible.
 Analyzing the contribution of agent X to the flow of isotope Y through
-agent Z is not possible.</li>
+agent Z is not possible.</p></li>
 </ol>
 <p>The above deficiencies are used as drivers for designing/implementing a more
 thorough resource tracking infrastructure.</p>
@@ -202,29 +194,29 @@ toolkits for others to use that don’t even need to be a part of the <span styl
 core. This makes it easier to ensure that material/composition inner
 workings remain pure and correct despite rapid or significant changes to
 the kitchen-sink API that will likely evolve.</p>
-</div>
-<div class="section" id="specification">
-<h2>Specification<a class="headerlink" href="#specification" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="specification">
+<h2>Specification<a class="headerlink" href="#specification" title="Link to this heading">¶</a></h2>
 <p>A reference implementation exists for both the <span style="font-variant:small-caps;">Cyclus</span> core and cycamore.
 These reside at <a class="reference external" href="https://github.com/rwcarlsen/cyclus">https://github.com/rwcarlsen/cyclus</a> (“res” branch) and
 <a class="reference external" href="https://github.com/rwcarlsen/cycamore">https://github.com/rwcarlsen/cycamore</a> (“res” branch) respectively.  Further
 implementation details can be found there.</p>
-<div class="section" id="data-tracking">
-<h3>Data Tracking<a class="headerlink" href="#data-tracking" title="Permalink to this headline">¶</a></h3>
+<section id="data-tracking">
+<h3>Data Tracking<a class="headerlink" href="#data-tracking" title="Link to this heading">¶</a></h3>
 <p>In addition to tracking the transfer of resources between agents (and
 corresponding state), we track:</p>
 <ul class="simple">
-<li>Creation of a resource. Parentless resources are implicitly defined as
-“newly created”</li>
-<li>Transmutation of a material resource within an agent (Resource,
+<li><p>Creation of a resource. Parentless resources are implicitly defined as
+“newly created”</p></li>
+<li><p>Transmutation of a material resource within an agent (Resource,
 ResourceHeritage, Compositions, GenericResource tables). The transmuted
 resource has the prev resource as its only parent.  This helps address
-problem #1 and #4 from Motivation section.</li>
-<li>Decay of a material resource (Resource, ResourceHeritage, Compositions
-tables): This is a special, common case of transmutation.</li>
-<li>All splitting/combining of materials. Tracked by recording the parent(s)
+problem #1 and #4 from Motivation section.</p></li>
+<li><p>Decay of a material resource (Resource, ResourceHeritage, Compositions
+tables): This is a special, common case of transmutation.</p></li>
+<li><p>All splitting/combining of materials. Tracked by recording the parent(s)
 of each Resource object. Resources with no parent were newly created.
-Helps address problem #2, #3 and #5.</li>
+Helps address problem #2, #3 and #5.</p></li>
 </ul>
 <p>This also simplifies rules for acceptable resource handling. Namely, it is
 never okay for a resource to be destructed or thrown-away unless it is
@@ -243,90 +235,90 @@ simulation we want to run, then we either need (minimally) the tracking
 proposed in this CEP or we need to break the orthogonality that I just
 described.  Eliminating even one of the things tracked as described above
 will break the ability to unambiguously determine agent inventories.</p>
-</div>
-<div class="section" id="output-schema">
-<h3>Output Schema<a class="headerlink" href="#output-schema" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="output-schema">
+<h3>Output Schema<a class="headerlink" href="#output-schema" title="Link to this heading">¶</a></h3>
 <p>All recorded data will stay the same except for the tables listed below:</p>
 <ul class="simple">
-<li>[TableName] ([new/modified/removed]): [field1], [field2], …</li>
+<li><p>[TableName] ([new/modified/removed]): [field1], [field2], …</p></li>
 </ul>
 <ul class="simple">
-<li>Resource (modified): ID, Time, Type, Quantity, StateID, Parent1, Parent2</li>
-<li>Compositions (new): ID, Isotope, Quantity</li>
-<li>TransactedResources (modified): TransactionID, Position, ResourceID</li>
-<li>GenericResources (modified): ID, Quality, Units</li>
-<li>IsotopicStates (removed)</li>
+<li><p>Resource (modified): ID, Time, Type, Quantity, StateID, Parent1, Parent2</p></li>
+<li><p>Compositions (new): ID, Isotope, Quantity</p></li>
+<li><p>TransactedResources (modified): TransactionID, Position, ResourceID</p></li>
+<li><p>GenericResources (modified): ID, Quality, Units</p></li>
+<li><p>IsotopicStates (removed)</p></li>
 </ul>
 <p><em>Note that unlike GenericResources, there is no units field for
 compositions because we can record all material composition amounts in a
 canonical unit (i.e. kg).  GenericResources, however, are
 expected/anticipated to have different unit types along with their
 differing “quality” field values.</em></p>
-</div>
-<div class="section" id="resources-material-api">
-<h3>Resources/Material API<a class="headerlink" href="#resources-material-api" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="resources-material-api">
+<h3>Resources/Material API<a class="headerlink" href="#resources-material-api" title="Link to this heading">¶</a></h3>
 <p>The Material and Composition classes will be designed to provide only the
 minimal interface to support basic manipulation and tracking required by the
 <span style="font-variant:small-caps;">Cyclus</span> core.  All more complex operations will be implemented in helper
 classes (like MatQuery). A summary of each of these classes’ new role and
 its public interfaces are described below.</p>
-<div class="section" id="resource-class">
-<h4>Resource class<a class="headerlink" href="#resource-class" title="Permalink to this headline">¶</a></h4>
+<section id="resource-class">
+<h4>Resource class<a class="headerlink" href="#resource-class" title="Link to this heading">¶</a></h4>
 <p>Resource class provides an abstract interface allowing different types of
 resources to be transacted in a simulation.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">cyclus</span> <span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">cyclus</span><span class="w"> </span><span class="p">{</span>
 
-<span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">ResourceType</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">ResourceType</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">Resource</span> <span class="p">{</span>
- <span class="k">public</span><span class="o">:</span>
-  <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Resource</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Resource</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="k">typedef</span><span class="w"> </span><span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Resource</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Ptr</span><span class="p">;</span>
 
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">Resource</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Resource</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">};</span>
 
-  <span class="c1">/// returns the unique id corresponding to this resource and its current</span>
-  <span class="c1">/// state.</span>
-  <span class="k">const</span> <span class="kt">int</span> <span class="n">id</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">/// returns the unique id corresponding to this resource and its current</span>
+<span class="w">  </span><span class="c1">/// state.</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">id</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 
-  <span class="c1">/// assigns a new, unique id to this resource and its state.</span>
-  <span class="kt">void</span> <span class="nf">BumpId</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">/// assigns a new, unique id to this resource and its state.</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">BumpId</span><span class="p">();</span>
 
-  <span class="c1">/// returns an id representing the specific resource implementation&#39;s</span>
-  <span class="c1">/// internal state.  Any change to the state_id should be accompanied by a</span>
-  <span class="c1">/// call to BumpId.</span>
-  <span class="k">virtual</span> <span class="kt">int</span> <span class="n">state_id</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">/// returns an id representing the specific resource implementation&#39;s</span>
+<span class="w">  </span><span class="c1">/// internal state.  Any change to the state_id should be accompanied by a</span>
+<span class="w">  </span><span class="c1">/// call to BumpId.</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">state_id</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-  <span class="k">virtual</span> <span class="k">const</span> <span class="n">ResourceType</span> <span class="n">type</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">ResourceType</span><span class="w"> </span><span class="nf">type</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-  <span class="c1">/// returns an untracked (not part of the simulation) copy of the resource.</span>
-  <span class="k">virtual</span> <span class="n">Ptr</span> <span class="n">Clone</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="c1">// the clone method implementations should set tracked_ = false.</span>
+<span class="w">  </span><span class="c1">/// returns an untracked (not part of the simulation) copy of the resource.</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Ptr</span><span class="w"> </span><span class="nf">Clone</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// the clone method implementations should set tracked_ = false.</span>
 
-  <span class="c1">/// records the resource&#39;s state to the output database.  This method should</span>
-  <span class="c1">/// generally / NOT record data accessible via the Resource class public</span>
-  <span class="c1">/// methods (e.g.  / state_id, units, type, quantity)</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Record</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">/// records the resource&#39;s state to the output database.  This method should</span>
+<span class="w">  </span><span class="c1">/// generally / NOT record data accessible via the Resource class public</span>
+<span class="w">  </span><span class="c1">/// methods (e.g.  / state_id, units, type, quantity)</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Record</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-  <span class="c1">/// Returns the units this resource is based in.</span>
-  <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">/// Returns the units this resource is based in.</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">units</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-  <span class="c1">/// returns the quantity of this resource with dimensions as specified by</span>
-  <span class="c1">/// units().</span>
-  <span class="k">virtual</span> <span class="kt">double</span> <span class="n">quantity</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">/// returns the quantity of this resource with dimensions as specified by</span>
+<span class="w">  </span><span class="c1">/// units().</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">quantity</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-  <span class="c1">/// splits the resource and returns the extracted portion as a new resource</span>
-  <span class="c1">/// object.  Allows for things like ResourceBuff and market matching to</span>
-  <span class="c1">/// split offers/requests of arbitrary resource implementation type.</span>
-  <span class="k">virtual</span> <span class="n">Ptr</span> <span class="n">ExtractRes</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">/// splits the resource and returns the extracted portion as a new resource</span>
+<span class="w">  </span><span class="c1">/// object.  Allows for things like ResourceBuff and market matching to</span>
+<span class="w">  </span><span class="c1">/// split offers/requests of arbitrary resource implementation type.</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Ptr</span><span class="w"> </span><span class="nf">ExtractRes</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">quantity</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
 <span class="p">};</span>
 
-<span class="p">}</span> <span class="c1">// namespace cyclus</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace cyclus</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="material-class">
-<h4>Material class<a class="headerlink" href="#material-class" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="material-class">
+<h4>Material class<a class="headerlink" href="#material-class" title="Link to this heading">¶</a></h4>
 <p>The material class is primarily responsible for enabling basic material
 manipulation while helping enforce mass conservation.  It also provides the
 ability to easily decay a material up to the current simulation time; it
@@ -337,150 +329,150 @@ transmute (change material composition - e.g. fission by reactor), absorb
 handling/manipulation will be performed using these operations - and all
 operations performed will be recorded. Usage examples:</p>
 <ul class="simple">
-<li>A mining facility that “creates” new material</li>
+<li><p>A mining facility that “creates” new material</p></li>
 </ul>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">nat_u</span> <span class="o">=</span> <span class="p">...</span>
-<span class="kt">double</span> <span class="n">qty</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">nat_u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">qty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.0</span><span class="p">;</span>
 
-<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span> <span class="o">=</span> <span class="n">Material</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span><span class="n">qty</span><span class="p">,</span> <span class="n">nat_u</span><span class="p">);</span>
+<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Material</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span><span class="n">qty</span><span class="p">,</span><span class="w"> </span><span class="n">nat_u</span><span class="p">);</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li>A conversion facility mixing uranium and flourine:</li>
+<li><p>A conversion facility mixing uranium and flourine:</p></li>
 </ul>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">uf6</span> <span class="o">=</span> <span class="n">uranium_buf</span><span class="p">.</span><span class="n">PopOne</span><span class="p">();</span>
-<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">f</span> <span class="o">=</span> <span class="n">flourine_buf</span><span class="p">.</span><span class="n">PopOne</span><span class="p">();</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">uf6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uranium_buf</span><span class="p">.</span><span class="n">PopOne</span><span class="p">();</span>
+<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">flourine_buf</span><span class="p">.</span><span class="n">PopOne</span><span class="p">();</span>
 
 <span class="n">uf6</span><span class="p">.</span><span class="n">Absorb</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li>A reactor transmuting fuel:</li>
+<li><p>A reactor transmuting fuel:</p></li>
 </ul>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">burned_comp</span> <span class="o">=</span> <span class="p">...</span> <span class="c1">// fancy code to calculate burned isotopics</span>
-<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">assembly</span> <span class="o">=</span> <span class="n">core_fuel</span><span class="p">.</span><span class="n">PopOne</span><span class="p">();</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">burned_comp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="c1">// fancy code to calculate burned isotopics</span>
+<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">assembly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">core_fuel</span><span class="p">.</span><span class="n">PopOne</span><span class="p">();</span>
 
 <span class="n">assembly</span><span class="p">.</span><span class="n">Transmute</span><span class="p">(</span><span class="n">burned_comp</span><span class="p">);</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li>A separations plant extracting stuff from spent fuel:</li>
+<li><p>A separations plant extracting stuff from spent fuel:</p></li>
 </ul>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">comp</span> <span class="o">=</span> <span class="p">...</span> <span class="c1">// fancy code to calculate extraction isotopics</span>
-<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">bucket</span> <span class="o">=</span> <span class="n">spent_fuel</span><span class="p">.</span><span class="n">PopOne</span><span class="p">();</span>
-<span class="kt">double</span> <span class="n">qty</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">comp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="c1">// fancy code to calculate extraction isotopics</span>
+<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spent_fuel</span><span class="p">.</span><span class="n">PopOne</span><span class="p">();</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">qty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.0</span><span class="p">;</span>
 
-<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">mox</span> <span class="o">=</span> <span class="n">bucket</span><span class="p">.</span><span class="n">ExtractComp</span><span class="p">(</span><span class="n">qty</span><span class="p">,</span> <span class="n">comp</span><span class="p">);</span>
+<span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">mox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bucket</span><span class="p">.</span><span class="n">ExtractComp</span><span class="p">(</span><span class="n">qty</span><span class="p">,</span><span class="w"> </span><span class="n">comp</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Proposed material class interface:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Material</span><span class="o">:</span> <span class="k">public</span> <span class="n">Resource</span> <span class="p">{</span>
- <span class="k">public</span><span class="o">:</span>
-  <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
-  <span class="k">static</span> <span class="k">const</span> <span class="n">ResourceType</span> <span class="n">kType</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Material</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Resource</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="k">typedef</span><span class="w"> </span><span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Ptr</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">ResourceType</span><span class="w"> </span><span class="n">kType</span><span class="p">;</span>
 
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">Material</span><span class="p">();</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Material</span><span class="p">();</span>
 
-  <span class="k">static</span> <span class="n">Ptr</span> <span class="n">Create</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
-  <span class="k">static</span> <span class="n">Ptr</span> <span class="n">CreateUntracked</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">Ptr</span><span class="w"> </span><span class="nf">Create</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">quantity</span><span class="p">,</span><span class="w"> </span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">c</span><span class="p">);</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">Ptr</span><span class="w"> </span><span class="nf">CreateUntracked</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">quantity</span><span class="p">,</span><span class="w"> </span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">c</span><span class="p">);</span>
 
-  <span class="k">virtual</span> <span class="kt">int</span> <span class="n">state_id</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">state_id</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 
-  <span class="k">virtual</span> <span class="k">const</span> <span class="n">ResourceType</span> <span class="n">type</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">ResourceType</span><span class="w"> </span><span class="nf">type</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 
-  <span class="k">virtual</span> <span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">Clone</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="nf">Clone</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Record</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Record</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 
-  <span class="c1">/// returns &quot;kg&quot;</span>
-  <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">/// returns &quot;kg&quot;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">units</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 
-  <span class="c1">/// returns the mass of this material in kg.</span>
-  <span class="k">virtual</span> <span class="kt">double</span> <span class="n">quantity</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">/// returns the mass of this material in kg.</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">quantity</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 
-  <span class="k">virtual</span> <span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">ExtractRes</span><span class="p">(</span><span class="kt">double</span> <span class="n">qty</span><span class="p">);</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="nf">ExtractRes</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">qty</span><span class="p">);</span>
 
-  <span class="n">Ptr</span> <span class="nf">ExtractQty</span><span class="p">(</span><span class="kt">double</span> <span class="n">qty</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Ptr</span><span class="w"> </span><span class="nf">ExtractQty</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">qty</span><span class="p">);</span>
 
-  <span class="n">Ptr</span> <span class="nf">ExtractComp</span><span class="p">(</span><span class="kt">double</span> <span class="n">qty</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">,</span> <span class="kt">double</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">eps_rsrc</span><span class="p">());</span>
+<span class="w">  </span><span class="n">Ptr</span><span class="w"> </span><span class="nf">ExtractComp</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">qty</span><span class="p">,</span><span class="w"> </span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eps_rsrc</span><span class="p">());</span>
 
-  <span class="kt">void</span> <span class="nf">Absorb</span><span class="p">(</span><span class="n">Ptr</span> <span class="n">mat</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">Absorb</span><span class="p">(</span><span class="n">Ptr</span><span class="w"> </span><span class="n">mat</span><span class="p">);</span>
 
-  <span class="kt">void</span> <span class="nf">Transmute</span><span class="p">(</span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">Transmute</span><span class="p">(</span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">c</span><span class="p">);</span>
 
-  <span class="kt">void</span> <span class="nf">Decay</span><span class="p">(</span><span class="kt">int</span> <span class="n">curr_time</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">Decay</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">curr_time</span><span class="p">);</span>
 
-  <span class="k">static</span> <span class="kt">void</span> <span class="n">DecayAll</span><span class="p">(</span><span class="kt">int</span> <span class="n">curr_time</span><span class="p">);</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">DecayAll</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">curr_time</span><span class="p">);</span>
 
-  <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">comp</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="nf">comp</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 <span class="p">};</span>
 
-<span class="p">}</span> <span class="c1">// namespace cyclus</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace cyclus</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="genericresource-class">
-<h4>GenericResource class<a class="headerlink" href="#genericresource-class" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="genericresource-class">
+<h4>GenericResource class<a class="headerlink" href="#genericresource-class" title="Link to this heading">¶</a></h4>
 <p>Implements the Resource class interface in a simple way usable for things
 like: bananas, man-hours, water, buying power, etc.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">GenericResource</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Resource</span> <span class="p">{</span>
- <span class="k">public</span><span class="o">:</span>
-  <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">GenericResource</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
-  <span class="k">static</span> <span class="k">const</span> <span class="n">ResourceType</span> <span class="n">kType</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">GenericResource</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Resource</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="k">typedef</span><span class="w"> </span><span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">GenericResource</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Ptr</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">ResourceType</span><span class="w"> </span><span class="n">kType</span><span class="p">;</span>
 
-  <span class="k">static</span> <span class="n">Ptr</span> <span class="n">Create</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">quality</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">);</span>
-  <span class="k">static</span> <span class="n">Ptr</span> <span class="n">CreateUntracked</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">quality</span><span class="p">,</span>
-                             <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">);</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">Ptr</span><span class="w"> </span><span class="nf">Create</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">quantity</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">quality</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">units</span><span class="p">);</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">Ptr</span><span class="w"> </span><span class="nf">CreateUntracked</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">quantity</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">quality</span><span class="p">,</span>
+<span class="w">                             </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">units</span><span class="p">);</span>
 
-  <span class="c1">/// not needed/no meaning for generic resources</span>
-  <span class="k">virtual</span> <span class="kt">int</span> <span class="n">state_id</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">};</span>
+<span class="w">  </span><span class="c1">/// not needed/no meaning for generic resources</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">state_id</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
 
-  <span class="c1">/// Returns the concrete type of this resource</span>
-  <span class="k">virtual</span> <span class="k">const</span> <span class="n">ResourceType</span> <span class="n">type</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">kType</span><span class="p">;</span>
-  <span class="p">};</span>
+<span class="w">  </span><span class="c1">/// Returns the concrete type of this resource</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">ResourceType</span><span class="w"> </span><span class="nf">type</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">kType</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
 
-  <span class="c1">/// Returns a reference to a newly allocated copy of this resource</span>
-  <span class="k">virtual</span> <span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">Clone</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">/// Returns a reference to a newly allocated copy of this resource</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="nf">Clone</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Record</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="p">};</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Record</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">};</span>
 
-  <span class="c1">/// Returns the total quantity of this resource in its base unit</span>
-  <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">units_</span><span class="p">;</span>
-  <span class="p">};</span>
+<span class="w">  </span><span class="c1">/// Returns the total quantity of this resource in its base unit</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">units</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">units_</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
 
-  <span class="c1">/// Returns the total quantity of this resource in its base unit</span>
-  <span class="k">virtual</span> <span class="kt">double</span> <span class="n">quantity</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">quantity_</span><span class="p">;</span>
-  <span class="p">};</span>
+<span class="w">  </span><span class="c1">/// Returns the total quantity of this resource in its base unit</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">quantity</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">quantity_</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
 
-  <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">quality</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">quality_</span><span class="p">;</span>
-  <span class="p">};</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">quality</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">quality_</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
 
-  <span class="k">virtual</span> <span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">ExtractRes</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">);</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="nf">ExtractRes</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">quantity</span><span class="p">);</span>
 
-  <span class="c1">/// Extracts the specified mass from this resource and returns it as a</span>
-  <span class="c1">/// new generic resource object with the same quality/type.</span>
+<span class="w">  </span><span class="c1">/// Extracts the specified mass from this resource and returns it as a</span>
+<span class="w">  </span><span class="c1">/// new generic resource object with the same quality/type.</span>
 
-  <span class="c1">/// @throws CycGenResourceOverExtract</span>
-  <span class="n">GenericResource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">Extract</span><span class="p">(</span><span class="kt">double</span> <span class="n">quantity</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">/// @throws CycGenResourceOverExtract</span>
+<span class="w">  </span><span class="n">GenericResource</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="nf">Extract</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">quantity</span><span class="p">);</span>
 
-  <span class="c1">/// Absorbs the contents of the given &#39;other&#39; resource into this</span>
-  <span class="c1">/// resource</span>
-  <span class="c1">/// @throws CycGenResourceIncompatible &#39;other&#39; resource is of a</span>
-  <span class="kt">void</span> <span class="nf">Absorb</span><span class="p">(</span><span class="n">GenericResource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">other</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">/// Absorbs the contents of the given &#39;other&#39; resource into this</span>
+<span class="w">  </span><span class="c1">/// resource</span>
+<span class="w">  </span><span class="c1">/// @throws CycGenResourceIncompatible &#39;other&#39; resource is of a</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">Absorb</span><span class="p">(</span><span class="n">GenericResource</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
 <span class="p">};</span>
 
-<span class="p">}</span> <span class="c1">// namespace cyclus</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace cyclus</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="composition-class">
-<h4>Composition class<a class="headerlink" href="#composition-class" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="composition-class">
+<h4>Composition class<a class="headerlink" href="#composition-class" title="Link to this heading">¶</a></h4>
 <p>An immutable object responsible for tracking decay lineages (to prevent
 duplicate calculations and output recording) and able to record its
 composition data to output when told.  Each composition will keep a pointer
@@ -493,7 +485,7 @@ defining equivalence trivially as “the same object in memory” or pointer
 equality.  Some discussion regarding this can be found in comments here:
 <a class="reference external" href="https://github.com/cyclus/cyclus/issues/484">https://github.com/cyclus/cyclus/issues/484</a>.  Of particular concern w.r.t.
 the previous equivalence notion is this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Also</span> <span class="o">-</span> <span class="n">another</span> <span class="n">potential</span> <span class="n">issue</span> <span class="n">I</span> <span class="n">thought</span> <span class="n">of</span><span class="p">:</span> <span class="n">Repeatedly</span> <span class="n">calling</span> <span class="n">multiple</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Also</span> <span class="o">-</span> <span class="n">another</span> <span class="n">potential</span> <span class="n">issue</span> <span class="n">I</span> <span class="n">thought</span> <span class="n">of</span><span class="p">:</span> <span class="n">Repeatedly</span> <span class="n">calling</span> <span class="n">multiple</span>
 <span class="n">consecutive</span> <span class="n">small</span> <span class="n">differences</span> <span class="n">negligible</span> <span class="n">could</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">compositions</span>
 <span class="n">staying</span> <span class="n">the</span> <span class="n">same</span> <span class="n">that</span> <span class="n">would</span> <span class="n">have</span> <span class="n">otherwise</span> <span class="n">been</span> <span class="n">appreciably</span> <span class="n">different</span> <span class="k">if</span>
 <span class="n">each</span> <span class="n">small</span> <span class="n">change</span> <span class="n">were</span> <span class="n">allowed</span> <span class="n">to</span> <span class="n">propogate</span> <span class="k">as</span> <span class="n">a</span> <span class="n">new</span> <span class="n">composition</span><span class="o">.</span>
@@ -502,35 +494,35 @@ the previous equivalence notion is this:</p>
 <p>While there are definitely uses for material/composition equivalence, they
 should/will not be used by the core (for now) and best belong in MatQuery
 or other places.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">cyclus</span> <span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">cyclus</span><span class="w"> </span><span class="p">{</span>
 
-<span class="k">typedef</span> <span class="kt">int</span> <span class="n">Iso</span><span class="p">;</span>
-<span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">Iso</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">CompMap</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Iso</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">Iso</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CompMap</span><span class="p">;</span>
 
 <span class="c1">// Represents an immutable nuclear material composition</span>
-<span class="k">class</span> <span class="nc">Composition</span> <span class="p">{</span>
- <span class="k">public</span><span class="o">:</span>
-  <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Composition</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Composition</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="k">typedef</span><span class="w"> </span><span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Composition</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Ptr</span><span class="p">;</span>
 
-  <span class="k">static</span> <span class="n">Ptr</span> <span class="n">CreateAtom</span><span class="p">(</span><span class="n">CompMap</span> <span class="n">v</span><span class="p">);</span>
-  <span class="k">static</span> <span class="n">Ptr</span> <span class="n">CreateMass</span><span class="p">(</span><span class="n">CompMap</span> <span class="n">v</span><span class="p">);</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">Ptr</span><span class="w"> </span><span class="nf">CreateAtom</span><span class="p">(</span><span class="n">CompMap</span><span class="w"> </span><span class="n">v</span><span class="p">);</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">Ptr</span><span class="w"> </span><span class="nf">CreateMass</span><span class="p">(</span><span class="n">CompMap</span><span class="w"> </span><span class="n">v</span><span class="p">);</span>
 
-  <span class="kt">int</span> <span class="nf">id</span><span class="p">();</span>
-  <span class="k">const</span> <span class="n">CompMap</span><span class="o">&amp;</span> <span class="n">atom_vect</span><span class="p">();</span>
-  <span class="k">const</span> <span class="n">CompMap</span><span class="o">&amp;</span> <span class="n">mass_vect</span><span class="p">();</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="nf">id</span><span class="p">();</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">CompMap</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">atom_vect</span><span class="p">();</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">CompMap</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">mass_vect</span><span class="p">();</span>
 
-  <span class="n">Ptr</span> <span class="nf">Decay</span><span class="p">(</span><span class="kt">int</span> <span class="n">delta</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Ptr</span><span class="w"> </span><span class="nf">Decay</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">delta</span><span class="p">);</span>
 
-  <span class="c1">/// record in output database (if not done previously).</span>
-  <span class="kt">void</span> <span class="nf">Record</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">/// record in output database (if not done previously).</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">Record</span><span class="p">();</span>
 <span class="p">};</span>
 
-<span class="p">}</span> <span class="c1">// namespace cyclus</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace cyclus</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="compmath-namespace">
-<h4>compmath namespace<a class="headerlink" href="#compmath-namespace" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="compmath-namespace">
+<h4>compmath namespace<a class="headerlink" href="#compmath-namespace" title="Link to this heading">¶</a></h4>
 <p>The excellent floating point calculation handling and thresholding
 functionality introduced by &#64;katyhuff will be preserved. The current
 (pre-proposal) Material::Diff and Material::ApplyThreshold methods will become
@@ -540,225 +532,215 @@ CompMap’s because Composition’s themselves are immutable.  Resource
 and Composition classes will use these methods where appropriate instead of
 their own, internal versions. This namespace is intended to grow organically as
 needed.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">cyclus</span> <span class="p">{</span>
-<span class="k">namespace</span> <span class="n">compmath</span> <span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">cyclus</span><span class="w"> </span><span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">compmath</span><span class="w"> </span><span class="p">{</span>
 
-<span class="n">CompMap</span> <span class="nf">Add</span><span class="p">(</span><span class="k">const</span> <span class="n">CompMap</span><span class="o">&amp;</span> <span class="n">v1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">qty1</span><span class="p">,</span>
-                      <span class="k">const</span> <span class="n">CompMap</span><span class="o">&amp;</span> <span class="n">v2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">qty2</span><span class="p">);</span>
+<span class="n">CompMap</span><span class="w"> </span><span class="nf">Add</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">CompMap</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">qty1</span><span class="p">,</span>
+<span class="w">                      </span><span class="k">const</span><span class="w"> </span><span class="n">CompMap</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">qty2</span><span class="p">);</span>
 
 <span class="c1">/// previously Material::Diff</span>
-<span class="n">CompMap</span> <span class="nf">Sub</span><span class="p">(</span><span class="k">const</span> <span class="n">CompMap</span><span class="o">&amp;</span> <span class="n">v1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">qty1</span><span class="p">,</span>
-                       <span class="k">const</span> <span class="n">CompMap</span><span class="o">&amp;</span> <span class="n">v2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">qty2</span><span class="p">);</span>
+<span class="n">CompMap</span><span class="w"> </span><span class="nf">Sub</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">CompMap</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">qty1</span><span class="p">,</span>
+<span class="w">                       </span><span class="k">const</span><span class="w"> </span><span class="n">CompMap</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">qty2</span><span class="p">);</span>
 
-<span class="kt">void</span> <span class="nf">ApplyThreshold</span><span class="p">(</span><span class="n">CompMap</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">double</span> <span class="n">threshold</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">ApplyThreshold</span><span class="p">(</span><span class="n">CompMap</span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">threshold</span><span class="p">);</span>
 
-<span class="kt">void</span> <span class="nf">Normalize</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">CompMap</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">double</span> <span class="n">val</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Normalize</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">CompMap</span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
 
-<span class="kt">bool</span> <span class="nf">ValidIsos</span><span class="p">(</span><span class="k">const</span> <span class="n">CompMap</span><span class="o">&amp;</span> <span class="n">v</span><span class="p">);</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">ValidIsos</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">CompMap</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="p">);</span>
 
-<span class="kt">bool</span> <span class="nf">AllPositive</span><span class="p">(</span><span class="k">const</span> <span class="n">CompMap</span><span class="o">&amp;</span> <span class="n">v</span><span class="p">);</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">AllPositive</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">CompMap</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="p">);</span>
 
-<span class="kt">bool</span> <span class="nf">AlmostEq</span><span class="p">(</span><span class="k">const</span> <span class="n">CompMap</span><span class="o">&amp;</span> <span class="n">v1</span><span class="p">,</span>
-              <span class="k">const</span> <span class="n">CompMap</span><span class="o">&amp;</span> <span class="n">v2</span><span class="p">,</span>
-              <span class="kt">double</span> <span class="n">threshold</span><span class="p">);</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">AlmostEq</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">CompMap</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v1</span><span class="p">,</span>
+<span class="w">              </span><span class="k">const</span><span class="w"> </span><span class="n">CompMap</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v2</span><span class="p">,</span>
+<span class="w">              </span><span class="kt">double</span><span class="w"> </span><span class="n">threshold</span><span class="p">);</span>
 
-<span class="p">}</span> <span class="c1">// namespace compmath</span>
-<span class="p">}</span> <span class="c1">// namespace cyclus</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace compmath</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace cyclus</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="matquery-class">
-<h4>MatQuery class<a class="headerlink" href="#matquery-class" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="matquery-class">
+<h4>MatQuery class<a class="headerlink" href="#matquery-class" title="Link to this heading">¶</a></h4>
 <p>(This interface will probably need extension)</p>
 <p>This is intended to allow user-developers to <em>easily</em> retrieve any kind of
 information about a material they could ever reasonably need. The interface is
 designed to grow organically as needed.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MatQuery</span> <span class="p">{</span>
-  <span class="k">public</span><span class="o">:</span>
-    <span class="n">MatQuery</span><span class="p">(</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MatQuery</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">MatQuery</span><span class="p">(</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">m</span><span class="p">);</span>
 
-    <span class="c1">/// Convenience constructor that auto-casts a Resource::Ptr to a</span>
-    <span class="c1">/// Material::Ptr.</span>
-    <span class="n">MatQuery</span><span class="p">(</span><span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">/// Convenience constructor that auto-casts a Resource::Ptr to a</span>
+<span class="w">    </span><span class="c1">/// Material::Ptr.</span>
+<span class="w">    </span><span class="n">MatQuery</span><span class="p">(</span><span class="n">Resource</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">m</span><span class="p">);</span>
 
-    <span class="kt">double</span> <span class="nf">mass</span><span class="p">(</span><span class="n">Iso</span> <span class="n">iso</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="nf">mass</span><span class="p">(</span><span class="n">Iso</span><span class="w"> </span><span class="n">iso</span><span class="p">);</span>
 
-    <span class="kt">double</span> <span class="nf">moles</span><span class="p">(</span><span class="n">Iso</span> <span class="n">iso</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="nf">moles</span><span class="p">(</span><span class="n">Iso</span><span class="w"> </span><span class="n">iso</span><span class="p">);</span>
 
-    <span class="kt">double</span> <span class="nf">mass_frac</span><span class="p">(</span><span class="n">Iso</span> <span class="n">iso</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="nf">mass_frac</span><span class="p">(</span><span class="n">Iso</span><span class="w"> </span><span class="n">iso</span><span class="p">);</span>
 
-    <span class="kt">double</span> <span class="nf">atom_frac</span><span class="p">(</span><span class="n">Iso</span> <span class="n">iso</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="nf">atom_frac</span><span class="p">(</span><span class="n">Iso</span><span class="w"> </span><span class="n">iso</span><span class="p">);</span>
 
-    <span class="kt">double</span> <span class="nf">qty</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="nf">qty</span><span class="p">();</span>
 
-    <span class="kt">bool</span> <span class="nf">AlmostEqual</span><span class="p">(</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">other</span><span class="p">,</span> <span class="kt">double</span> <span class="n">threshold</span><span class="o">=</span><span class="n">cyclus</span><span class="p">.</span><span class="n">eps</span><span class="p">());</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">AlmostEqual</span><span class="p">(</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">other</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">threshold</span><span class="o">=</span><span class="n">cyclus</span><span class="p">.</span><span class="n">eps</span><span class="p">());</span>
 <span class="p">};</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="other-changes">
-<h3>Other Changes<a class="headerlink" href="#other-changes" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="other-changes">
+<h3>Other Changes<a class="headerlink" href="#other-changes" title="Link to this heading">¶</a></h3>
 <p>The RecipeLibrary’s role of composition decay management has been shifted into
 the Composition class.  <em>The decay lineage tracking functionality introduced by
 Matt Gidden has been effectively preserved.</em>  RecipeLibrary now is only
 responsible for loading recipes from xml input and serving them up simulation
 wide.  Agents are also allowed to register their own compositions manually.
 RecipeLibrary interface becomes:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">RecipeLibrary</span> <span class="p">{</span>
- <span class="k">public</span><span class="o">:</span>
-  <span class="cm">/**</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">RecipeLibrary</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="cm">/**</span>
 <span class="cm">     Gives all simulation objects global access to the RecipeLibrary by</span>
 <span class="cm">     returning a pointer to it.</span>
 <span class="cm">     Like the Highlander, there can be only one.</span>
 
 <span class="cm">     @return a pointer to the RecipeLibrary</span>
 <span class="cm">   */</span>
-  <span class="k">static</span> <span class="n">RecipeLibrary</span><span class="o">*</span> <span class="n">Instance</span><span class="p">();</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">RecipeLibrary</span><span class="o">*</span><span class="w"> </span><span class="n">Instance</span><span class="p">();</span>
 
-  <span class="cm">/**</span>
+<span class="w">  </span><span class="cm">/**</span>
 <span class="cm">     loads the recipes from the input file</span>
 <span class="cm">   */</span>
-  <span class="kt">void</span> <span class="nf">LoadRecipes</span><span class="p">(</span><span class="n">QueryEngine</span><span class="o">*</span> <span class="n">qe</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">LoadRecipes</span><span class="p">(</span><span class="n">QueryEngine</span><span class="o">*</span><span class="w"> </span><span class="n">qe</span><span class="p">);</span>
 
-  <span class="cm">/**</span>
+<span class="w">  </span><span class="cm">/**</span>
 <span class="cm">     loads a specific recipe</span>
 <span class="cm">   */</span>
-  <span class="kt">void</span> <span class="nf">LoadRecipe</span><span class="p">(</span><span class="n">QueryEngine</span><span class="o">*</span> <span class="n">qe</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">LoadRecipe</span><span class="p">(</span><span class="n">QueryEngine</span><span class="o">*</span><span class="w"> </span><span class="n">qe</span><span class="p">);</span>
 
-  <span class="cm">/**</span>
+<span class="w">  </span><span class="cm">/**</span>
 <span class="cm">     records a new recipe in the simulation</span>
 <span class="cm">     - records the recipe in the BookKeeper</span>
 
 <span class="cm">     @param recipe the recipe to be recorded, a CompMapPtr</span>
 <span class="cm">   */</span>
-  <span class="kt">void</span> <span class="nf">AddRecipe</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">,</span> <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">c</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">AddRecipe</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">c</span><span class="p">);</span>
 
-  <span class="cm">/**</span>
+<span class="w">  </span><span class="cm">/**</span>
 <span class="cm">     This returns a CompMapPtr to the named recipe in the recipes_ map</span>
 
 <span class="cm">     @param name the name of the parent recipe, a key in the recipes_ map</span>
 <span class="cm">   */</span>
-  <span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">GetRecipe</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Composition</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="nf">GetRecipe</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
 <span class="p">};</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="backwards-compatibility">
-<h2>Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="backwards-compatibility">
+<h2>Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Link to this heading">¶</a></h2>
 <p>Most backwards incompatible changes are unambiguously described by the
 reference implementation at <a class="reference external" href="https://github.com/rwcarlsen/cycamore">https://github.com/rwcarlsen/cycamore</a> (“res”
 branch). Existing modules will need to be updated to use the new API’s.  These
 changes are fairly straight forward and include:</p>
 <ul class="simple">
-<li>Material queries will have to be modified to use MatQuery class.</li>
-<li>CompMap/IsoVector creation will need to change to use new Composition
-factory methods.</li>
-<li>Material creation will need to change to use new Material factory
-methods.</li>
-<li>Agents (esp. reactors) must be modified to transmute rather than
-throw-away/create material.</li>
+<li><p>Material queries will have to be modified to use MatQuery class.</p></li>
+<li><p>CompMap/IsoVector creation will need to change to use new Composition
+factory methods.</p></li>
+<li><p>Material creation will need to change to use new Material factory
+methods.</p></li>
+<li><p>Agents (esp. reactors) must be modified to transmute rather than
+throw-away/create material.</p></li>
 </ul>
-</div>
-<div class="section" id="other-notes">
-<h2>Other Notes<a class="headerlink" href="#other-notes" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="current-implementation-bugs">
-<h3>Current implementation bugs<a class="headerlink" href="#current-implementation-bugs" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="other-notes">
+<h2>Other Notes<a class="headerlink" href="#other-notes" title="Link to this heading">¶</a></h2>
+<section id="current-implementation-bugs">
+<h3>Current implementation bugs<a class="headerlink" href="#current-implementation-bugs" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li>The current (before this CEP) <span style="font-variant:small-caps;">Cyclus</span> core does not correctly record
+<li><p>The current (before this CEP) <span style="font-variant:small-caps;">Cyclus</span> core does not correctly record
 decayed compositions in the output database. This makes comparing
 simulation output size and performance with that of this CEP’s proposed
-changes not exactly “fair”.</li>
+changes not exactly “fair”.</p></li>
 </ul>
-</div>
-<div class="section" id="backends-and-performance">
-<h3>Backends and Performance<a class="headerlink" href="#backends-and-performance" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="backends-and-performance">
+<h3>Backends and Performance<a class="headerlink" href="#backends-and-performance" title="Link to this heading">¶</a></h3>
 <p>Preliminary investigation on my part indicates that this extra tracking
 will cause significant slowdown using an Sqlite backend database <em>when
 material decay is frequent</em>.  This slowdown prompted the development of a
 faster HDF5 alternative (currently merged into develop branch).</p>
 <p>Basic performance stats were collected by running a full <span style="font-variant:small-caps;">Cyclus</span>
-inpro_low.xml simulation <code class="docutils literal"><span class="pre">time</span> <span class="pre">cyclus</span> <span class="pre">[path/to/]inpro_low.xml</span></code>.  For
+inpro_low.xml simulation <code class="docutils literal notranslate"><span class="pre">time</span> <span class="pre">cyclus</span> <span class="pre">[path/to/]inpro_low.xml</span></code>.  For
 reference:</p>
 <ul class="simple">
-<li>~50,000 material objects total</li>
-<li>1100 months</li>
-<li>2200 decay calculations</li>
-<li>~28,000,000 resource object state changes recorded (with CEP implemented)</li>
+<li><p>~50,000 material objects total</p></li>
+<li><p>1100 months</p></li>
+<li><p>2200 decay calculations</p></li>
+<li><p>~28,000,000 resource object state changes recorded (with CEP implemented)</p></li>
 </ul>
 <p><span style="font-variant:small-caps;">Cyclus</span> was built with CMake’s “RELEASE” mode.  Results reported are
 approximate and specific to my office computer.</p>
 <p>Without proposed changes (decayed compositions are not recorded - current bug):</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="47%" />
-<col width="20%" />
-<col width="33%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head"><ul class="first last simple">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><ul class="simple">
 <li></li>
 </ul>
 </th>
-<th class="head" colspan="2">Backend</th>
+<th class="head" colspan="2"><p>Backend</p></th>
 </tr>
-<tr class="row-even"><th class="head">Decay</th>
-<th class="head">Sqlite</th>
-<th class="head">Hdf5</th>
+<tr class="row-even"><th class="head"><p>Decay</p></th>
+<th class="head"><p>Sqlite</p></th>
+<th class="head"><p>Hdf5</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td>Every 2nd timestep</td>
-<td>40 sec.</td>
-<td>15 sec.</td>
+<tbody>
+<tr class="row-odd"><td><p>Every 2nd timestep</p></td>
+<td><p>40 sec.</p></td>
+<td><p>15 sec.</p></td>
 </tr>
-<tr class="row-even"><td>None</td>
-<td>40 sec.</td>
-<td>15 sec.</td>
+<tr class="row-even"><td><p>None</p></td>
+<td><p>40 sec.</p></td>
+<td><p>15 sec.</p></td>
 </tr>
 </tbody>
 </table>
 <p>With proposed changes:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="47%" />
-<col width="20%" />
-<col width="33%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head"><ul class="first last simple">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><ul class="simple">
 <li></li>
 </ul>
 </th>
-<th class="head" colspan="2">Backend</th>
+<th class="head" colspan="2"><p>Backend</p></th>
 </tr>
-<tr class="row-even"><th class="head">Decay</th>
-<th class="head">Sqlite</th>
-<th class="head">Hdf5</th>
+<tr class="row-even"><th class="head"><p>Decay</p></th>
+<th class="head"><p>Sqlite</p></th>
+<th class="head"><p>Hdf5</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td>Every 2nd timestep</td>
-<td>16 min.</td>
-<td>55 sec.</td>
+<tbody>
+<tr class="row-odd"><td><p>Every 2nd timestep</p></td>
+<td><p>16 min.</p></td>
+<td><p>55 sec.</p></td>
 </tr>
-<tr class="row-even"><td>None</td>
-<td>54 sec.</td>
-<td>15 sec.</td>
+<tr class="row-even"><td><p>None</p></td>
+<td><p>54 sec.</p></td>
+<td><p>15 sec.</p></td>
 </tr>
 </tbody>
 </table>
 <p>With proposed changes running inpro_low.xml with decay on and hdf5 backend:</p>
 <ul class="simple">
-<li>Event and EventManager code takes ~20% of</li>
-<li>Hdf5Back code takes ~20% of runtime.</li>
-<li>ticking, tocking, and daily-tasking take about ~45% of runtime.</li>
-<li>Decay calculations take ~10% of runtime.</li>
+<li><p>Event and EventManager code takes ~20% of</p></li>
+<li><p>Hdf5Back code takes ~20% of runtime.</p></li>
+<li><p>ticking, tocking, and daily-tasking take about ~45% of runtime.</p></li>
+<li><p>Decay calculations take ~10% of runtime.</p></li>
 </ul>
-</div>
-<div class="section" id="decay-initiation">
-<h3>Decay Initiation<a class="headerlink" href="#decay-initiation" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="decay-initiation">
+<h3>Decay Initiation<a class="headerlink" href="#decay-initiation" title="Link to this heading">¶</a></h3>
 <p>There has been some debate regarding the best way(s) to handle decaying
 material objects in the simulation. Options include: manually by agents,
 automatically and periodic, automatically at transaction time, and others.
@@ -767,19 +749,17 @@ impact on simulation speed and output size, it has no direct impact on nor
 directly impacts this proposal. Further discussion on this can be found
 here <a class="reference external" href="https://github.com/cyclus/cyclus/issues/466">https://github.com/cyclus/cyclus/issues/466</a> and to lesser degree
 <a class="reference external" href="https://github.com/cyclus/cyclus/issues/204">https://github.com/cyclus/cyclus/issues/204</a>.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">CEP 17 - Resource Tracking and Interfaces Re-Re-Redo</a><ul>
@@ -822,68 +802,16 @@ here <a class="reference external" href="https://github.com/cyclus/cyclus/issues
     <p class="topless"><a href="cep18.html"
                           title="Next page">&rarr; CEP 18 - Dynamic Resource Exchange Procedure</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -924,14 +852,15 @@ here <a class="reference external" href="https://github.com/cyclus/cyclus/issues
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 17 - Resource Tracking and Interfaces Re-Re-Redo</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

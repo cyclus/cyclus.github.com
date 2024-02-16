@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Running Simulations &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Cyclus Server" href="server.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -85,7 +73,8 @@ if(ga_enabled){
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Running Simulations</a></li> 
       </ul>
     </div>
     </div>
@@ -96,78 +85,76 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="running-simulations">
-<h1>Running Simulations<a class="headerlink" href="#running-simulations" title="Permalink to this headline">¶</a></h1>
+  <section id="running-simulations">
+<h1>Running Simulations<a class="headerlink" href="#running-simulations" title="Link to this heading">¶</a></h1>
 <p>To run a simulation you must use the <span style="font-variant:small-caps;">Cyclus</span> command line utility:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./path/to/cyclus <span class="o">[</span>options<span class="o">]</span> <span class="o">[</span>input-file<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./path/to/cyclus<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span><span class="o">[</span>input-file<span class="o">]</span>
 </pre></div>
 </div>
 <p>Or you may run directly through Python:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python -m cyclus <span class="o">[</span>options<span class="o">]</span> <span class="o">[</span>input-file<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>cyclus<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span><span class="o">[</span>input-file<span class="o">]</span>
 </pre></div>
 </div>
 <p>For more information, please refer to the help:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cyclus -h
-Usage:   cyclus <span class="o">[</span>opts<span class="o">]</span> <span class="o">[</span>input-file<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cyclus<span class="w"> </span>-h
+Usage:<span class="w">   </span>cyclus<span class="w"> </span><span class="o">[</span>opts<span class="o">]</span><span class="w"> </span><span class="o">[</span>input-file<span class="o">]</span>
 
-  -h <span class="o">[</span> --help <span class="o">]</span>            produce <span class="nb">help</span> message
-  -V <span class="o">[</span> --version <span class="o">]</span>         print cyclus core and dependency versions and quit
-  --restart arg            restart from the specified simulation snapshot
-                           <span class="o">[</span>db-file<span class="o">]</span>:<span class="o">[</span>sim-id<span class="o">]</span>:<span class="o">[</span>timestep<span class="o">]</span>
-  --schema                 dump the cyclus master schema including all
-                           installed module schemas
-  --agent-schema arg       dump the schema <span class="k">for</span> the named agent
-  --schema-path arg        manually specify the path to the cyclus master
-                           schema
-  --flat-schema            use the flat master simulation schema
-  --agent-annotations arg  dump the annotations <span class="k">for</span> the named agent
-  --no-agent               only print log entries from cyclus core code
-  --no-mem                 exclude memory log statement from logger output
-  -v <span class="o">[</span> --verb <span class="o">]</span> arg        output log verbosity. Can be text:
+<span class="w">  </span>-h<span class="w"> </span><span class="o">[</span><span class="w"> </span>--help<span class="w"> </span><span class="o">]</span><span class="w">            </span>produce<span class="w"> </span><span class="nb">help</span><span class="w"> </span>message
+<span class="w">  </span>-V<span class="w"> </span><span class="o">[</span><span class="w"> </span>--version<span class="w"> </span><span class="o">]</span><span class="w">         </span>print<span class="w"> </span>cyclus<span class="w"> </span>core<span class="w"> </span>and<span class="w"> </span>dependency<span class="w"> </span>versions<span class="w"> </span>and<span class="w"> </span>quit
+<span class="w">  </span>--restart<span class="w"> </span>arg<span class="w">            </span>restart<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>specified<span class="w"> </span>simulation<span class="w"> </span>snapshot
+<span class="w">                           </span><span class="o">[</span>db-file<span class="o">]</span>:<span class="o">[</span>sim-id<span class="o">]</span>:<span class="o">[</span>timestep<span class="o">]</span>
+<span class="w">  </span>--schema<span class="w">                 </span>dump<span class="w"> </span>the<span class="w"> </span>cyclus<span class="w"> </span>master<span class="w"> </span>schema<span class="w"> </span>including<span class="w"> </span>all
+<span class="w">                           </span>installed<span class="w"> </span>module<span class="w"> </span>schemas
+<span class="w">  </span>--agent-schema<span class="w"> </span>arg<span class="w">       </span>dump<span class="w"> </span>the<span class="w"> </span>schema<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>named<span class="w"> </span>agent
+<span class="w">  </span>--schema-path<span class="w"> </span>arg<span class="w">        </span>manually<span class="w"> </span>specify<span class="w"> </span>the<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>cyclus<span class="w"> </span>master
+<span class="w">                           </span>schema
+<span class="w">  </span>--flat-schema<span class="w">            </span>use<span class="w"> </span>the<span class="w"> </span>flat<span class="w"> </span>master<span class="w"> </span>simulation<span class="w"> </span>schema
+<span class="w">  </span>--agent-annotations<span class="w"> </span>arg<span class="w">  </span>dump<span class="w"> </span>the<span class="w"> </span>annotations<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>named<span class="w"> </span>agent
+<span class="w">  </span>--no-agent<span class="w">               </span>only<span class="w"> </span>print<span class="w"> </span>log<span class="w"> </span>entries<span class="w"> </span>from<span class="w"> </span>cyclus<span class="w"> </span>core<span class="w"> </span>code
+<span class="w">  </span>--no-mem<span class="w">                 </span>exclude<span class="w"> </span>memory<span class="w"> </span>log<span class="w"> </span>statement<span class="w"> </span>from<span class="w"> </span>logger<span class="w"> </span>output
+<span class="w">  </span>-v<span class="w"> </span><span class="o">[</span><span class="w"> </span>--verb<span class="w"> </span><span class="o">]</span><span class="w"> </span>arg<span class="w">        </span>output<span class="w"> </span>log<span class="w"> </span>verbosity.<span class="w"> </span>Can<span class="w"> </span>be<span class="w"> </span>text:
 
-                              LEV_ERROR <span class="o">(</span>least verbose, default<span class="o">)</span>, LEV_WARN,
-                              LEV_INFO1 <span class="o">(</span>through <span class="m">5</span><span class="o">)</span>, and LEV_DEBUG1 <span class="o">(</span>through
-                           <span class="m">5</span><span class="o">)</span>.
+<span class="w">                              </span>LEV_ERROR<span class="w"> </span><span class="o">(</span>least<span class="w"> </span>verbose,<span class="w"> </span>default<span class="o">)</span>,<span class="w"> </span>LEV_WARN,
+<span class="w">                              </span>LEV_INFO1<span class="w"> </span><span class="o">(</span>through<span class="w"> </span><span class="m">5</span><span class="o">)</span>,<span class="w"> </span>and<span class="w"> </span>LEV_DEBUG1<span class="w"> </span><span class="o">(</span>through
+<span class="w">                           </span><span class="m">5</span><span class="o">)</span>.
 
-                           Or an integer:
+<span class="w">                           </span>Or<span class="w"> </span>an<span class="w"> </span>integer:
 
-                              <span class="m">0</span> <span class="o">(</span>LEV_ERROR equiv<span class="o">)</span> through <span class="m">11</span> <span class="o">(</span>LEV_DEBUG5 equiv<span class="o">)</span>
+<span class="w">                              </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>LEV_ERROR<span class="w"> </span>equiv<span class="o">)</span><span class="w"> </span>through<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="o">(</span>LEV_DEBUG5<span class="w"> </span>equiv<span class="o">)</span>
 
-  -o <span class="o">[</span> --output-path <span class="o">]</span> arg output path
-  --input-file arg         input file
-  --warn-limit arg         number of warnings to issue per kind, defaults to <span class="m">1</span>
-  --warn-as-error          throw errors when warnings are issued
-  -p <span class="o">[</span> --path <span class="o">]</span>            print the CYCLUS_PATH
-  --include                print the cyclus include directory
-  --install-path           print the cyclus install directory
-  --build-path             print the cyclus build directory
-  --rng-schema             print the path to cyclus.rng.in
-  --nuc-data               print the path to cyclus_nuc_data.h5
+<span class="w">  </span>-o<span class="w"> </span><span class="o">[</span><span class="w"> </span>--output-path<span class="w"> </span><span class="o">]</span><span class="w"> </span>arg<span class="w"> </span>output<span class="w"> </span>path
+<span class="w">  </span>--input-file<span class="w"> </span>arg<span class="w">         </span>input<span class="w"> </span>file
+<span class="w">  </span>--warn-limit<span class="w"> </span>arg<span class="w">         </span>number<span class="w"> </span>of<span class="w"> </span>warnings<span class="w"> </span>to<span class="w"> </span>issue<span class="w"> </span>per<span class="w"> </span>kind,<span class="w"> </span>defaults<span class="w"> </span>to<span class="w"> </span><span class="m">1</span>
+<span class="w">  </span>--warn-as-error<span class="w">          </span>throw<span class="w"> </span>errors<span class="w"> </span>when<span class="w"> </span>warnings<span class="w"> </span>are<span class="w"> </span>issued
+<span class="w">  </span>-p<span class="w"> </span><span class="o">[</span><span class="w"> </span>--path<span class="w"> </span><span class="o">]</span><span class="w">            </span>print<span class="w"> </span>the<span class="w"> </span>CYCLUS_PATH
+<span class="w">  </span>--include<span class="w">                </span>print<span class="w"> </span>the<span class="w"> </span>cyclus<span class="w"> </span>include<span class="w"> </span>directory
+<span class="w">  </span>--install-path<span class="w">           </span>print<span class="w"> </span>the<span class="w"> </span>cyclus<span class="w"> </span>install<span class="w"> </span>directory
+<span class="w">  </span>--build-path<span class="w">             </span>print<span class="w"> </span>the<span class="w"> </span>cyclus<span class="w"> </span>build<span class="w"> </span>directory
+<span class="w">  </span>--rng-schema<span class="w">             </span>print<span class="w"> </span>the<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>cyclus.rng.in
+<span class="w">  </span>--nuc-data<span class="w">               </span>print<span class="w"> </span>the<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>cyclus_nuc_data.h5
 </pre></div>
 </div>
-<div class="section" id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cyclus ./path/to/myinput.xml
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cyclus<span class="w"> </span>./path/to/myinput.xml
 
-$ cyclus -v LEV_DEBUG5 myinput.py
+$<span class="w"> </span>cyclus<span class="w"> </span>-v<span class="w"> </span>LEV_DEBUG5<span class="w"> </span>myinput.py
 
-$ python -m cyclus -v LEV_INFO3 myinput.json
+$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>cyclus<span class="w"> </span>-v<span class="w"> </span>LEV_INFO3<span class="w"> </span>myinput.json
 
-$ cyclus -v <span class="m">4</span> myinput.xml
+$<span class="w"> </span>cyclus<span class="w"> </span>-v<span class="w"> </span><span class="m">4</span><span class="w"> </span>myinput.xml
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Running Simulations</a><ul>
@@ -187,68 +174,16 @@ $ cyclus -v <span class="m">4</span> myinput.xml
     <p class="topless"><a href="server.html"
                           title="Next page">&rarr; Cyclus Server</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -289,14 +224,15 @@ $ cyclus -v <span class="m">4</span> myinput.xml
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Running Simulations</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

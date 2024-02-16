@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Use Cases for Cyclus Data Analysis &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Cyclus Archetype Developer Guide" href="../arche/index.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -85,7 +73,8 @@ if(ga_enabled){
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Use Cases for <span style="font-variant:small-caps;">Cyclus</span> Data Analysis</a></li> 
       </ul>
     </div>
     </div>
@@ -96,14 +85,14 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="use-cases-for-cyclus-data-analysis">
-<h1>Use Cases for <span style="font-variant:small-caps;">Cyclus</span> Data Analysis<a class="headerlink" href="#use-cases-for-cyclus-data-analysis" title="Permalink to this headline">¶</a></h1>
+  <section id="use-cases-for-cyclus-data-analysis">
+<h1>Use Cases for <span style="font-variant:small-caps;">Cyclus</span> Data Analysis<a class="headerlink" href="#use-cases-for-cyclus-data-analysis" title="Link to this heading">¶</a></h1>
 <p>This section will attempt to document a number of primary data exploration use
 cases.  For an overview of the information recorded in a
 <span style="font-variant:small-caps;">Cyclus</span> simulation database, check out <a class="reference internal" href="dbdoc.html"><span class="doc">Understanding the Database</span></a>.  The two most common
 modes are explorations of the material flows and the facility histories.</p>
-<div class="section" id="material-flow-explorations">
-<h2>Material flow explorations<a class="headerlink" href="#material-flow-explorations" title="Permalink to this headline">¶</a></h2>
+<section id="material-flow-explorations">
+<h2>Material flow explorations<a class="headerlink" href="#material-flow-explorations" title="Link to this heading">¶</a></h2>
 <p>Many material flow explorations would begin by visualizing the
 time-dependent material flow between a set of sending facilities and a
 set of receiving facilities.  The minimum information needed to
@@ -122,14 +111,14 @@ representations depending on the user’s interests.  The following
 discussion will consider, in this order:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>the resolution of the time domain,</li>
-<li>filtering operations to restrict the data included in a single time series,</li>
-<li>application of post-processing functions for alternative engineering responses, and</li>
-<li>comparative visualization of multiple time series.</li>
+<li><p>the resolution of the time domain,</p></li>
+<li><p>filtering operations to restrict the data included in a single time series,</p></li>
+<li><p>application of post-processing functions for alternative engineering responses, and</p></li>
+<li><p>comparative visualization of multiple time series.</p></li>
 </ol>
 </div></blockquote>
-<div class="section" id="time-domain-resolution-and-representation">
-<h3>Time Domain Resolution and Representation<a class="headerlink" href="#time-domain-resolution-and-representation" title="Permalink to this headline">¶</a></h3>
+<section id="time-domain-resolution-and-representation">
+<h3>Time Domain Resolution and Representation<a class="headerlink" href="#time-domain-resolution-and-representation" title="Link to this heading">¶</a></h3>
 <p>Most simulations are expected to proceed with monthly time steps (this
 is user-configurable), probably too fine for meaningful visualization.
 The default resolution for such a visualization should be annual flows
@@ -146,9 +135,9 @@ resolution.</p>
 <p>In a related and common time series interaction, users may want to
 zoom in and out of regions of the time domain to explore detailed
 features.</p>
-</div>
-<div class="section" id="filtering-the-sets-of-participating-facilities">
-<h3>Filtering the Sets of Participating Facilities<a class="headerlink" href="#filtering-the-sets-of-participating-facilities" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="filtering-the-sets-of-participating-facilities">
+<h3>Filtering the Sets of Participating Facilities<a class="headerlink" href="#filtering-the-sets-of-participating-facilities" title="Link to this heading">¶</a></h3>
 <p>Filtering operations will be always be necessary to define the set of
 facilities that participate in a given material flow visualization.
 The simplest form of such a filter is the selection of an entire
@@ -157,15 +146,15 @@ market.  Beyond that, some other obvious ways to create sets of
 facilities for either the source or receiving set are:</p>
 <blockquote>
 <div><ul class="simple">
-<li>choosing individual facilities from a list of existing facilities</li>
-<li>choosing individual institutions and therefore including all
-facilities owned by that institution</li>
-<li>choosing individual regions and therefore including all facilities
-operating in that region</li>
-<li>choosing a particular facility prototype and therefore including
-all facilities based on that prototype</li>
-<li>choosing a particular facility module and therefore including all
-facilities based on that module</li>
+<li><p>choosing individual facilities from a list of existing facilities</p></li>
+<li><p>choosing individual institutions and therefore including all
+facilities owned by that institution</p></li>
+<li><p>choosing individual regions and therefore including all facilities
+operating in that region</p></li>
+<li><p>choosing a particular facility prototype and therefore including
+all facilities based on that prototype</p></li>
+<li><p>choosing a particular facility module and therefore including all
+facilities based on that module</p></li>
 </ul>
 </div></blockquote>
 <p>The ideal user interface will allow subsets of facilities to be added
@@ -175,20 +164,20 @@ intersection, union, and negation.</p>
 separated into multiple time series (possibly displayed in a
 comparative fashion), by selecting a characteristic that defines
 subsets of facilities.</p>
-</div>
-<div class="section" id="filtering-the-set-of-nuclides">
-<h3>Filtering the Set of Nuclides<a class="headerlink" href="#filtering-the-set-of-nuclides" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="filtering-the-set-of-nuclides">
+<h3>Filtering the Set of Nuclides<a class="headerlink" href="#filtering-the-set-of-nuclides" title="Link to this heading">¶</a></h3>
 <p>It will also be important to restrict the material flow time series
 data by filtering on the set of nuclides that are included in the
 material flow data.  There are a small number of standard ways to
 define sets of nuclides:</p>
 <ul class="simple">
-<li>include all nuclides</li>
-<li>choose individual chemical elements (e.g. uranium) and thereby
-including all the nuclides of that element</li>
-<li>choose individual nuclides (e.g. U-235)</li>
-<li>choose from predefined meaningful sets of nuclides
-(e.g. fission products, actinides, transuranics, fissile nuclides)</li>
+<li><p>include all nuclides</p></li>
+<li><p>choose individual chemical elements (e.g. uranium) and thereby
+including all the nuclides of that element</p></li>
+<li><p>choose individual nuclides (e.g. U-235)</p></li>
+<li><p>choose from predefined meaningful sets of nuclides
+(e.g. fission products, actinides, transuranics, fissile nuclides)</p></li>
 </ul>
 <p>As with the facility filtering capability, an ideal user interface
 will allow subsets of nuclides to be added and deleted from the data
@@ -198,41 +187,41 @@ facility with respect to nuclide can be found in figure 5.11 of Kyle Oliver’s
 masters thesis, GeniusV2: Software Design and Mathematical Formulations For
 Multi-Region Discrete Nuclear Fuel Cycle Simulation And Analysis.</p>
 <a class="reference internal image-reference" href="../_images/cumulative_iso_dist.png"><img alt="../_images/cumulative_iso_dist.png" src="../_images/cumulative_iso_dist.png" style="width: 500pt;" /></a>
-</div>
-<div class="section" id="post-processing-for-alternative-engineering-responses">
-<h3>Post-processing for Alternative Engineering Responses<a class="headerlink" href="#post-processing-for-alternative-engineering-responses" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="post-processing-for-alternative-engineering-responses">
+<h3>Post-processing for Alternative Engineering Responses<a class="headerlink" href="#post-processing-for-alternative-engineering-responses" title="Link to this heading">¶</a></h3>
 <p>While the fundamental material flows are defined as the raw quantity
 of each nuclide that is being transacted, there will be a growing set
 of transformations that convert these number densities into other
 interesting metrics/quantities including:</p>
 <ul class="simple">
-<li>radiotoxicity</li>
-<li>decay heat</li>
-<li>waste volume</li>
-<li>others to-be-determined</li>
+<li><p>radiotoxicity</p></li>
+<li><p>decay heat</p></li>
+<li><p>waste volume</p></li>
+<li><p>others to-be-determined</p></li>
 </ul>
 <p>Users will want to apply these transformations, either changing the
 metric shown in the primary visualization or cloning the primary
 visualization but showing the other metric.</p>
-</div>
-<div class="section" id="workflows-for-comparitive-time-series-exploration">
-<h3>Workflows for Comparitive Time Series Exploration<a class="headerlink" href="#workflows-for-comparitive-time-series-exploration" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="workflows-for-comparitive-time-series-exploration">
+<h3>Workflows for Comparitive Time Series Exploration<a class="headerlink" href="#workflows-for-comparitive-time-series-exploration" title="Link to this heading">¶</a></h3>
 <p>Once a number of single time series are defined, it will be common to
 visualize them on adjacent axes or within the same set of axes.  One
 possible workflow is as follows:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>A user selects a market and is immediately shown the
+<li><p>A user selects a market and is immediately shown the
 instantaneous material flow through that market over the entire
-simulation time domain, with a default time resolution.</li>
-<li>A user selects the originating region as a characteristic that
+simulation time domain, with a default time resolution.</p></li>
+<li><p>A user selects the originating region as a characteristic that
 splits the single material flow time series into multiple time
 series, each one now defined with a set of source facilities
 from a different region.  These time series are shown on the
 same axes as a stacked area chart.  The envelope of these now
 differentiated time series is identical to the envelope of the
-original time series.</li>
-<li>The user is then interested in a certain subset of the nuclides,
+original time series.</p></li>
+<li><p>The user is then interested in a certain subset of the nuclides,
 say the fissile nuclides, and requests that this same material
 flow data be filtered to only include those nuclides.  Each of
 the material flow time series may (or may not) be reduced as the
@@ -242,24 +231,24 @@ become difficult to visualize the many different time series
 formed by differentiating by facility characteristic and nuclide
 at the same time.  In some cases, especially where a small
 number of nuclide subsets are identified, this may be
-practical.)</li>
-<li>At this point the user may seek a detailed isotopic breakdown of
+practical.)</p></li>
+<li><p>At this point the user may seek a detailed isotopic breakdown of
 one of the material flows, either as a time series shown on a
 different axis pair, or as a single time step snapshot.  In the
 latter case, a variety of options are available to visualize
 this, including bar charts, pie charts, tables of data, and
 other more advanced representations.  When examining a snapshot,
 the linked visualization tool may update constantly as a user
-swipes a bar across the time series visualization.</li>
+swipes a bar across the time series visualization.</p></li>
 </ol>
 </div></blockquote>
 <p>At this point, an ideal user interface may allow users to “tear-off”
 individual time series from the collection of time series into
 different axes for further exploration/differentiation in modes
 similar to above.</p>
-</div>
-<div class="section" id="quasi-spatial-representation-of-material-flows">
-<h3>(Quasi-)Spatial Representation of Material Flows<a class="headerlink" href="#quasi-spatial-representation-of-material-flows" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="quasi-spatial-representation-of-material-flows">
+<h3>(Quasi-)Spatial Representation of Material Flows<a class="headerlink" href="#quasi-spatial-representation-of-material-flows" title="Link to this heading">¶</a></h3>
 <p>Another interesting visualization of this time series data is as an
 animated graph representation.  Graph nodes would represent source and
 receiving facilities with the connecting arcs somehow indicating the
@@ -277,18 +266,18 @@ nodes or by selecting specific arcs.</p>
 <p>At such a time that geospatial data (or an approximation/surrogate to
 this data) is available, this graph visualization could be arranged to
 represent the real geospatial locations of facilities.</p>
-</div>
-</div>
-<div class="section" id="commodity-capacity-and-supply-demand-exploration">
-<h2>Commodity Capacity and Supply/Demand Exploration<a class="headerlink" href="#commodity-capacity-and-supply-demand-exploration" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="commodity-capacity-and-supply-demand-exploration">
+<h2>Commodity Capacity and Supply/Demand Exploration<a class="headerlink" href="#commodity-capacity-and-supply-demand-exploration" title="Link to this heading">¶</a></h2>
 <p>Another primary visualization is time series data for installed
 capacity of a set of facilities.  Most of the operations discussed
 above will be of interest including:</p>
 <ul class="simple">
-<li>time domain resolution and representation</li>
-<li>filtering across different dimensions (although not across a nuclide dimension)</li>
-<li>applying transformations</li>
-<li>comparative visualization</li>
+<li><p>time domain resolution and representation</p></li>
+<li><p>filtering across different dimensions (although not across a nuclide dimension)</p></li>
+<li><p>applying transformations</p></li>
+<li><p>comparative visualization</p></li>
 </ul>
 <p>By combining the information about the theoretical capacity with the
 information about material transactions, the relationship between
@@ -297,18 +286,16 @@ input and output resource buffers within facilities means that
 instantaneous transaction flow rates are not always representative of
 instantaneous utilization of the available processing capacity.
 Access to this information will require additional output records.)</p>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Use Cases for <span style="font-variant:small-caps;">Cyclus</span> Data Analysis</a><ul>
@@ -337,68 +324,16 @@ Access to this information will require additional output records.)</p>
     <p class="topless"><a href="../arche/index.html"
                           title="Next page">&rarr; <span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -439,14 +374,15 @@ Access to this information will require additional output records.)</p>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Use Cases for <span style="font-variant:small-caps;">Cyclus</span> Data Analysis</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

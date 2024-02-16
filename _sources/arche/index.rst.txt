@@ -27,7 +27,7 @@ to the right place!
 This guide assumes that you have |cyclus| installed, are familiar with running
 simulations and understand user-level concepts.
 
-To get started please follow the instructions in :doc:`hello_world`.
+To get started please follow the instructions in :doc:`hello_world_cpp`.
 
 .. raw:: html
 

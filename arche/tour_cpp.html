@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>A Tour of Cycstub &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Hello, Cyclus! [Python]" href="hello_world_py.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -85,7 +73,8 @@ if(ga_enabled){
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">A Tour of Cycstub</a></li> 
       </ul>
     </div>
     </div>
@@ -96,40 +85,40 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="a-tour-of-cycstub">
-<h1>A Tour of Cycstub<a class="headerlink" href="#a-tour-of-cycstub" title="Permalink to this headline">¶</a></h1>
+  <section id="a-tour-of-cycstub">
+<h1>A Tour of Cycstub<a class="headerlink" href="#a-tour-of-cycstub" title="Link to this heading">¶</a></h1>
 <p>This section will walk through the source files of the stub <a class="reference internal" href="../basics/glossary.html#term-archetype"><span class="xref std std-term">archetypes</span></a> in <a class="reference external" href="https://github.com/cyclus/cycstub">Cycstub</a>. Cycstub provides
 three stub archetypes:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">StubFacility</span></code></li>
-<li><code class="docutils literal"><span class="pre">StubInstitution</span></code></li>
-<li><code class="docutils literal"><span class="pre">StubRegion</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StubFacility</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StubInstitution</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StubRegion</span></code></p></li>
 </ul>
-<p>We will walk through <code class="docutils literal"><span class="pre">StubFacility</span></code>’s source specifically because its the
+<p>We will walk through <code class="docutils literal notranslate"><span class="pre">StubFacility</span></code>‘s source specifically because its the
 most complicated of the three. Before we begin, though, let’s get a fresh copy
 of Cycstub (or follow along on the <a class="reference external" href="https://github.com/cyclus/cycstub">website</a>).</p>
 <p><strong>Getting cycstub via git:</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/cyclus/cycstub.git
-$ <span class="nb">cd</span> cycstub
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/cyclus/cycstub.git
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>cycstub
 </pre></div>
 </div>
 <p><strong>Getting cycstub via zip:</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -L https://api.github.com/repos/cyclus/cycstub/zipball &gt; cycstub.zip
-$ unzip cycstub.zip
-$ mv cyclus-cycstub-* cycstub
-$ <span class="nb">cd</span> cycstub
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>curl<span class="w"> </span>-L<span class="w"> </span>https://api.github.com/repos/cyclus/cycstub/zipball<span class="w"> </span>&gt;<span class="w"> </span>cycstub.zip
+$<span class="w"> </span>unzip<span class="w"> </span>cycstub.zip
+$<span class="w"> </span>mv<span class="w"> </span>cyclus-cycstub-*<span class="w"> </span>cycstub
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>cycstub
 </pre></div>
 </div>
-<p>Feel free to <code class="docutils literal"><span class="pre">rm</span></code> the cycstub directory when we’re done (you can always get it
+<p>Feel free to <code class="docutils literal notranslate"><span class="pre">rm</span></code> the cycstub directory when we’re done (you can always get it
 back!).</p>
-<div class="section" id="stubfacility">
-<h2>StubFacility<a class="headerlink" href="#stubfacility" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">StubFacility</span></code> provides the minimal interface that an <a class="reference internal" href="../basics/glossary.html#term-archetype"><span class="xref std std-term">archetype</span></a>
-that derives from <code class="docutils literal"><span class="pre">cyclus::Facility</span></code> must provide. We’ll go through both the
-header (<code class="docutils literal"><span class="pre">h</span></code>) and implementation (<code class="docutils literal"><span class="pre">cc</span></code>) files in conjunction, starting at the
+<section id="stubfacility">
+<h2>StubFacility<a class="headerlink" href="#stubfacility" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">StubFacility</span></code> provides the minimal interface that an <a class="reference internal" href="../basics/glossary.html#term-archetype"><span class="xref std std-term">archetype</span></a>
+that derives from <code class="docutils literal notranslate"><span class="pre">cyclus::Facility</span></code> must provide. We’ll go through both the
+header (<code class="docutils literal notranslate"><span class="pre">h</span></code>) and implementation (<code class="docutils literal notranslate"><span class="pre">cc</span></code>) files in conjunction, starting at the
 top.</p>
-<p><code class="docutils literal"><span class="pre">stub_facility.h</span></code> has a single <span style="font-variant:small-caps;">Cyclus</span>-based include</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;cyclus.h&quot;</span><span class="cp"></span>
+<p><code class="docutils literal notranslate"><span class="pre">stub_facility.h</span></code> has a single <span style="font-variant:small-caps;">Cyclus</span>-based include</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;cyclus.h&quot;</span>
 </pre></div>
 </div>
 <p>which includes most <a class="reference internal" href="../basics/glossary.html#term-cyclus-kernel"><span class="xref std std-term">cyclus kernel</span></a> headers as a convenience for new
@@ -137,97 +126,95 @@ top.</p>
 include the specific kernel headers you need if you require a smaller
 executable.</p>
 <p>Moving on in the header file we come to the class declaration</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">StubFacility</span> <span class="o">:</span> <span class="k">public</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Facility</span>  <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">StubFacility</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Facility</span><span class="w">  </span><span class="p">{</span>
 </pre></div>
 </div>
-<p>which simply states that the <code class="docutils literal"><span class="pre">StubFacility</span></code> inherits from <code class="docutils literal"><span class="pre">cyclus::Facility</span></code>.</p>
+<p>which simply states that the <code class="docutils literal notranslate"><span class="pre">StubFacility</span></code> inherits from <code class="docutils literal notranslate"><span class="pre">cyclus::Facility</span></code>.</p>
 <p>We then come to the constructor declaration</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="k">explicit</span> <span class="nf">StubFacility</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Context</span><span class="o">*</span> <span class="n">ctx</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">explicit</span><span class="w"> </span><span class="n">StubFacility</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Context</span><span class="o">*</span><span class="w"> </span><span class="n">ctx</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>and implementation</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">StubFacility</span><span class="o">::</span><span class="n">StubFacility</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Context</span><span class="o">*</span> <span class="n">ctx</span><span class="p">)</span>
-    <span class="o">:</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Facility</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span> <span class="p">{};</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">StubFacility</span><span class="o">::</span><span class="n">StubFacility</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Context</span><span class="o">*</span><span class="w"> </span><span class="n">ctx</span><span class="p">)</span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Facility</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">{};</span>
 </pre></div>
 </div>
-<p>The constructor takes a single <code class="docutils literal"><span class="pre">cyclus::Context</span></code> argument. The <a class="reference internal" href="../basics/glossary.html#term-context"><span class="xref std std-term">context</span></a>
+<p>The constructor takes a single <code class="docutils literal notranslate"><span class="pre">cyclus::Context</span></code> argument. The <a class="reference internal" href="../basics/glossary.html#term-context"><span class="xref std std-term">context</span></a>
 is the mechanism by which <a class="reference internal" href="../basics/glossary.html#term-agent"><span class="xref std std-term">agents</span></a> can query and otherwise
-communicate with the simulation environment. Because the base <code class="docutils literal"><span class="pre">cyclus::Agent</span></code>
-class requires a <code class="docutils literal"><span class="pre">cyclus::Context</span></code> argument in its constructor, all derived
-classes must pass the argument down its constructor chain, as <code class="docutils literal"><span class="pre">StubFacility</span></code>
-does with its <code class="docutils literal"><span class="pre">cyclus::Facility</span></code> constructor above.</p>
+communicate with the simulation environment. Because the base <code class="docutils literal notranslate"><span class="pre">cyclus::Agent</span></code>
+class requires a <code class="docutils literal notranslate"><span class="pre">cyclus::Context</span></code> argument in its constructor, all derived
+classes must pass the argument down its constructor chain, as <code class="docutils literal notranslate"><span class="pre">StubFacility</span></code>
+does with its <code class="docutils literal notranslate"><span class="pre">cyclus::Facility</span></code> constructor above.</p>
 <p>Continuing with the header file, we next come to <strong>the prime directive</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus</span>
 </pre></div>
 </div>
 <p>In short, the prime directive allows an archetype developer to use the <span style="font-variant:small-caps;">Cyclus</span>
 preprocessor to autogenerate many member functions that are required for
 <span style="font-variant:small-caps;">Cyclus</span> features related to initialization and restart capabilities. For a
 further explanation, see <a class="reference internal" href="cycpp.html#cycpp"><span class="std std-ref">Using the Cyclus Preprocessor</span></a>.</p>
-<p>The next line in <code class="docutils literal"><span class="pre">stub_facility.h</span></code> is also related to the preprocessor’s
+<p>The next line in <code class="docutils literal notranslate"><span class="pre">stub_facility.h</span></code> is also related to the preprocessor’s
 ability to help automate some documentation:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus note {&quot;doc&quot;: &quot;A stub facility is provided as a skeleton &quot; \</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus note {&quot;doc&quot;: &quot;A stub facility is provided as a skeleton &quot; \</span>
 <span class="cp">                            &quot;for the design of new facility agents.&quot;}</span>
 </pre></div>
 </div>
-<p>Again, <code class="docutils literal"><span class="pre">#pragma</span> <span class="pre">cyclus</span> <span class="pre">note</span></code> is explained further in <a class="reference internal" href="cycpp.html#cycpp"><span class="std std-ref">Using the Cyclus Preprocessor</span></a>.</p>
+<p>Again, <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">cyclus</span> <span class="pre">note</span></code> is explained further in <a class="reference internal" href="cycpp.html#cycpp"><span class="std std-ref">Using the Cyclus Preprocessor</span></a>.</p>
 <p>Continuing along, we reach the final three member functions, each of which are
-defined on the base <code class="docutils literal"><span class="pre">cyclus::Agent</span></code> class and are overrode by the
-<code class="docutils literal"><span class="pre">StubFacility</span></code>.</p>
-<div class="section" id="str">
-<h3>str<a class="headerlink" href="#str" title="Permalink to this headline">¶</a></h3>
+defined on the base <code class="docutils literal notranslate"><span class="pre">cyclus::Agent</span></code> class and are overrode by the
+<code class="docutils literal notranslate"><span class="pre">StubFacility</span></code>.</p>
+<section id="str">
+<h3>str<a class="headerlink" href="#str" title="Link to this heading">¶</a></h3>
 <p>The declaration</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">str</span><span class="p">();</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">str</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>and implementation</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">StubFacility</span><span class="o">::</span><span class="n">str</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="n">Facility</span><span class="o">::</span><span class="n">str</span><span class="p">();</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">StubFacility::str</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">Facility</span><span class="o">::</span><span class="n">str</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>of the <code class="docutils literal"><span class="pre">str</span></code> method allows the <code class="docutils literal"><span class="pre">StubFacility</span></code> to customize its string
-representation, which is printed at a variety of <code class="docutils literal"><span class="pre">cyclus::Logger</span></code> logging
+<p>of the <code class="docutils literal notranslate"><span class="pre">str</span></code> method allows the <code class="docutils literal notranslate"><span class="pre">StubFacility</span></code> to customize its string
+representation, which is printed at a variety of <code class="docutils literal notranslate"><span class="pre">cyclus::Logger</span></code> logging
 levels, which is explained further in <a class="reference internal" href="logger.html"><span class="doc">Logging</span></a>.</p>
-</div>
-<div class="section" id="tick">
-<h3>Tick<a class="headerlink" href="#tick" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="tick">
+<h3>Tick<a class="headerlink" href="#tick" title="Link to this heading">¶</a></h3>
 <p>The declaration</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">virtual</span> <span class="kt">void</span> <span class="n">Tick</span><span class="p">();</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Tick</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>and implementation</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">StubFacility</span><span class="o">::</span><span class="n">Tick</span><span class="p">()</span> <span class="p">{}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">StubFacility::Tick</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 </pre></div>
 </div>
-<p>of the <code class="docutils literal"><span class="pre">Tick</span></code> member function allows the <code class="docutils literal"><span class="pre">StubFacility</span></code> to act during the
+<p>of the <code class="docutils literal notranslate"><span class="pre">Tick</span></code> member function allows the <code class="docutils literal notranslate"><span class="pre">StubFacility</span></code> to act during the
 <a class="reference internal" href="../basics/glossary.html#term-tick"><span class="xref std std-term">tick</span></a> <a class="reference internal" href="../basics/glossary.html#term-agent-phase"><span class="xref std std-term">agent phase</span></a>.</p>
-</div>
-<div class="section" id="tock">
-<h3>Tock<a class="headerlink" href="#tock" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="tock">
+<h3>Tock<a class="headerlink" href="#tock" title="Link to this heading">¶</a></h3>
 <p>The declaration</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">virtual</span> <span class="kt">void</span> <span class="n">Tock</span><span class="p">();</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Tock</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>and implementation</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">StubFacility</span><span class="o">::</span><span class="n">Tock</span><span class="p">()</span> <span class="p">{}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">StubFacility::Tock</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 </pre></div>
 </div>
-<p>of the <code class="docutils literal"><span class="pre">Tock</span></code> member function allows the <code class="docutils literal"><span class="pre">StubFacility</span></code> to act during the
+<p>of the <code class="docutils literal notranslate"><span class="pre">Tock</span></code> member function allows the <code class="docutils literal notranslate"><span class="pre">StubFacility</span></code> to act during the
 <a class="reference internal" href="../basics/glossary.html#term-tock"><span class="xref std std-term">tock</span></a> <a class="reference internal" href="../basics/glossary.html#term-agent-phase"><span class="xref std std-term">agent phase</span></a>.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">A Tour of Cycstub</a><ul>
@@ -252,68 +239,16 @@ levels, which is explained further in <a class="reference internal" href="logger
     <p class="topless"><a href="hello_world_py.html"
                           title="Next page">&rarr; Hello, Cyclus! [Python]</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -354,14 +289,15 @@ levels, which is explained further in <a class="reference internal" href="logger
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">A Tour of Cycstub</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

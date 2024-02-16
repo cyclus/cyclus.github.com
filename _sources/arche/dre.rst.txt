@@ -43,7 +43,7 @@ commodity-resource combination. A constraint provides a constraining value and a
 conversion function that can convert a potential resource into the units of the
 capacity (see :ref:`rrfb` for a more detailed example).
 
-For example, consider a facility of type ``FooFac`` that needs 5 kg fuel,
+For example, consider a facility of type ``FooFac`` that needs 10 kg fuel,
 where the fuel is represented by a ``Material`` resource. It knows of two commodities in
 the simulation that meet its demand, ``FuelA`` and ``FuelB``, and it prefers
 ``FuelA`` over ``FuelB``. A valid get material request implementation would then
@@ -79,6 +79,26 @@ be:
       std::set<RequestPortfolio<Material>::Ptr> ports();
       ports.insert(port);
       return ports;
+
+      // In this example, both the FuelA and FuelB commodities can meet the 
+      // material request, but FuelA is preferred. So we define a preference 
+      // for each commodity as the fourth argument in the function. 
+      // The larger the preference value, the more the commodity is preferred. 
+      // The fifth argument here is if the request is exclusive: 
+      std::set<RequestPortfolio<Material>::Ptr> ports;
+      RequestPortfolio<Material>::Ptr port(new RequestPortfolio<Material>());
+      
+      double prefA = 2;
+      double prefB = 1;
+      Request<Material>* r1 = port->AddRequest(targeta, this, commodA, prefA, true);
+      Request<Material>* r2 = port->AddRequest(targetb, this, commodB, prefB, true);
+
+      // Additionally, we can create a vector of requests that are mutual: 
+      std::vector<Request<Material>*> mreqs; 
+      mreqs = {r1, r2}; 
+      port->AddMutualReqs(mreqs);
+      ports.insert(port);
+      return ports;
     }
 
 **Python:**
@@ -100,7 +120,7 @@ be:
 
         # The Python interface allow you to return a few different structures,
         # depending on your needs.  In its simplest form, if you do not not have
-        # any capacity constraints, you can just return the commoditer mapping!
+        # any capacity constraints, you can just return the commodity mapping!
         return commods
 
         # If you do have a capacity constraint, you need to provide a portfolio
@@ -114,10 +134,27 @@ be:
         port = {"commodities": commods, "constraints": [request_qty, request_qty*2]}
         return port
 
+        # In this example, both the FuelA and FuelB commodities can meet the 
+        # material request, but FuelA is preferred. So we define a preference 
+        # for each commodity. The larger the preference value, the 
+        # more the commodity is preferred. Placing the dictionaries in
+        # a list makes them mutual requests:
+        commods = [{"FuelA": target_a, "preference":2}, 
+                   {"FuelB": target_b, "preference":1}]
+        port = {"commodities":commods, "constraints":request_qty}
+
+        # If you want the requests to be exclusive, then you have to indicate 
+        # that:
+        commods = [{"FuelA": target_a, "preference":2, "exclusive":True}, 
+                   {"FuelB": target_b, "preference":1, "exclusive":True}]
+        port = {"commodities":commods, "constraints":request_qty}
+
         # lastly, if you need to return many portfolios, simply return a list of
-        # portfolio dictionaries!
-        ports = [{"commodities": {"FuelA": target_a}, "constraints": request_qty},
-                 {"commodities": {"FuelB": target_b}, "constraints": request_qty}]
+        # portfolio dictionaries! The "preference" and "exclusive" keys are optional
+        ports = [{"commodities": [{"FuelA": target_a, "preference": 2, "exclusive": True}], 
+                  "constraints": request_qty},
+                 {"commodities": [{"FuelB": target_b, "preference": 1, "exclusive": True}], 
+                  "constraints": request_qty}]
         return ports
 
 
@@ -309,7 +346,7 @@ interface:
 
 .. code-block:: python
 
-    from cyclus.typesystem import ts
+    import cyclus.typesystem as ts
 
     def special_foo_offer(self):
         recipe = self.context.get_recipe("recipe")

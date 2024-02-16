@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Adding Buffers and Policies from the Toolkit &#8212; Home</title>
-    <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+        <script src="../../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+        <script src="../../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../../_static/cloud.js"></script>
+        <script src="../../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../../_static/big_c.ico"/>
+    <link rel="icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Adding a Test" href="testing.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -86,7 +74,8 @@ if(ga_enabled){
     <li><a href="../../index.html">Home</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Archetype Development Tutorial [C++]</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Archetype Development Tutorial [C++]</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Adding Buffers and Policies from the Toolkit</a></li> 
       </ul>
     </div>
     </div>
@@ -97,66 +86,67 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="adding-buffers-and-policies-from-the-toolkit">
-<h1>Adding Buffers and Policies from the Toolkit<a class="headerlink" href="#adding-buffers-and-policies-from-the-toolkit" title="Permalink to this headline">¶</a></h1>
+  <section id="adding-buffers-and-policies-from-the-toolkit">
+<h1>Adding Buffers and Policies from the Toolkit<a class="headerlink" href="#adding-buffers-and-policies-from-the-toolkit" title="Link to this heading">¶</a></h1>
 <p>In this lesson, we will:</p>
 <ol class="arabic simple">
-<li>Add ResBufs to track material inventories</li>
-<li>Add Policies to manage the trading of material</li>
-<li>Add inventory management logic</li>
-<li>Change our log information to show the info about the inventories</li>
-<li>Add a notion of total storage capacity</li>
+<li><p>Add ResBufs to track material inventories</p></li>
+<li><p>Add Policies to manage the trading of material</p></li>
+<li><p>Add inventory management logic</p></li>
+<li><p>Change our log information to show the info about the inventories</p></li>
+<li><p>Add a notion of total storage capacity</p></li>
 </ol>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>Cyclus has a growing Toolkit of standard patterns that can be used by
 archetype developers.  There are many advantages to using the Toolkit patterns
 rather than developing similar functionality yourself, typical of most code
 reuse situations:</p>
 <ul class="simple">
-<li>robustness - Toolkit patterns have been subjected to the Cyclus QA process</li>
-<li>time savings - It will take less time to learn how to use a Toolkit than it takes to develop your own</li>
-<li>improvements - You can benefit immediately from any improvements in the performance of the Toolkit pattern</li>
+<li><p>robustness - Toolkit patterns have been subjected to the Cyclus QA process</p></li>
+<li><p>time savings - It will take less time to learn how to use a Toolkit than it takes to develop your own</p></li>
+<li><p>improvements - You can benefit immediately from any improvements in the performance of the Toolkit pattern</p></li>
 </ul>
 <p>Code reuse is a critical best practice in all software development.</p>
-<p>One of the Toolkit patterns is a <code class="docutils literal"><span class="pre">ResBuf</span></code>, providing a way to track an
-inventory of <code class="docutils literal"><span class="pre">Resource</span></code> objects. There are also <code class="docutils literal"><span class="pre">MatlBuyPolicy</span></code> and
-<code class="docutils literal"><span class="pre">MatlSellPolicy</span></code> for managing the trading of <code class="docutils literal"><span class="pre">Material</span></code> objects.</p>
-</div>
-<div class="section" id="add-state-variables-buffers-and-policies">
-<h2>Add State Variables, Buffers, and Policies<a class="headerlink" href="#add-state-variables-buffers-and-policies" title="Permalink to this headline">¶</a></h2>
-<p>All state variable additions should be included in <code class="docutils literal"><span class="pre">src/storage.h</span></code> below the
+<p>One of the Toolkit patterns is a <code class="docutils literal notranslate"><span class="pre">ResBuf</span></code>, providing a way to track an
+inventory of <code class="docutils literal notranslate"><span class="pre">Resource</span></code> objects. There are also <code class="docutils literal notranslate"><span class="pre">MatlBuyPolicy</span></code> and
+<code class="docutils literal notranslate"><span class="pre">MatlSellPolicy</span></code> for managing the trading of <code class="docutils literal notranslate"><span class="pre">Material</span></code> objects.</p>
+</section>
+<section id="add-state-variables-buffers-and-policies">
+<h2>Add State Variables, Buffers, and Policies<a class="headerlink" href="#add-state-variables-buffers-and-policies" title="Link to this heading">¶</a></h2>
+<p>All state variable additions should be included in <code class="docutils literal notranslate"><span class="pre">src/storage.h</span></code> below the
 other state variables added previously.</p>
 <blockquote>
-<div>A <code class="docutils literal"><span class="pre">ResBuf</span></code> is available as a data type for another state variable, so we
-simply have to add the following:</div></blockquote>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">/// this facility holds material in storage.</span>
+<div><p>A <code class="docutils literal notranslate"><span class="pre">ResBuf</span></code> is available as a data type for another state variable, so we
+simply have to add the following:</p>
+</div></blockquote>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">/// this facility holds material in storage.</span>
 <span class="cp">#pragma cyclus var {}</span>
-<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">ResBuf</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span> <span class="n">inventory</span><span class="p">;</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">ResBuf</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span><span class="w"> </span><span class="n">inventory</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>This creates a state variable named <code class="docutils literal"><span class="pre">inventory</span></code> that is based on the
-<code class="docutils literal"><span class="pre">cyclus::toolkit::ResBuf</span></code> class.  We’ll explain how buffers and policies
+<p>This creates a state variable named <code class="docutils literal notranslate"><span class="pre">inventory</span></code> that is based on the
+<code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::ResBuf</span></code> class.  We’ll explain how buffers and policies
 work in just a moment.  A ResBuf object has special handling by the
 preprocessor, so it will not appear in the schema and therefore will not
 appear in the Cycic UI either.</p>
 <p>Next, add two additional buffers</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">/// a buffer for incoming material</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">/// a buffer for incoming material</span>
 <span class="cp">#pragma cyclus var {}</span>
-<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">ResBuf</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span> <span class="n">input</span><span class="p">;</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">ResBuf</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span><span class="w"> </span><span class="n">input</span><span class="p">;</span>
 
 <span class="c1">/// a buffer for outgoing material</span>
 <span class="cp">#pragma cyclus var {}</span>
-<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">ResBuf</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span> <span class="n">output</span><span class="p">;</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">ResBuf</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span><span class="w"> </span><span class="n">output</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Now add the policies. Policies do not require any special handling, and
 thus do not need a pragma</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">/// a policy for requesting material</span>
-<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">MatlBuyPolicy</span> <span class="n">buy_policy</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">/// a policy for requesting material</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">MatlBuyPolicy</span><span class="w"> </span><span class="n">buy_policy</span><span class="p">;</span>
 
 <span class="c1">/// a policy for sending material</span>
-<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">MatlSellPolicy</span> <span class="n">sell_policy</span><span class="p">;</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">MatlSellPolicy</span><span class="w"> </span><span class="n">sell_policy</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>There needs to be a mechansim for keeping track of when materials enter the
@@ -165,26 +155,26 @@ choose a data structure that is compatible with the at least one of the Cyclus
 output databases (see <a class="reference internal" href="../dbtypes.html#dbtypes"><span class="std std-ref">Database Types</span></a>). Given that requirement, an appropriate
 data structure is a <a class="reference external" href="http://www.cplusplus.com/reference/list/list/">list</a>. Accordingly, add the
 following</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">/// list for material entry times, providing a default lets this variable be</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">/// list for material entry times, providing a default lets this variable be</span>
 <span class="c1">/// optional in an input file</span>
 <span class="cp">#pragma cyclus var { \</span>
 <span class="cp">  &quot;default&quot;: [] \</span>
 <span class="cp">}</span>
-<span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">entry_times</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">entry_times</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>This requires another header file, so at the top of the storage.h file, after
-<code class="docutils literal"><span class="pre">#include</span> <span class="pre">&lt;string&gt;</span></code>, add another include</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;list&gt;</span><span class="cp"></span>
+<code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;string&gt;</span></code>, add another include</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;list&gt;</span>
 </pre></div>
 </div>
 <p>Finally, check that everything works by installing and testing</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
 <span class="gp">$ </span>Storage_unit_tests
 </pre></div>
 </div>
 <p>You can also confirm that everything still works with running the simulation:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus -v <span class="m">3</span> input/storage.xml
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus<span class="w"> </span>-v<span class="w"> </span><span class="m">3</span><span class="w"> </span>input/storage.xml
 <span class="go">              :</span>
 <span class="go">          .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q</span>
 <span class="go">        CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)</span>
@@ -265,165 +255,167 @@ following</p>
 <span class="go">Simulation ID: 9f15b93c-9ab2-49bb-a14f-fef872e64ce8</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="add-implementation-logic">
-<h2>Add Implementation Logic<a class="headerlink" href="#add-implementation-logic" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="add-implementation-logic">
+<h2>Add Implementation Logic<a class="headerlink" href="#add-implementation-logic" title="Link to this heading">¶</a></h2>
 <p>The goal of a storage facility is to ask for material up to some limit, store it
 for an amount of time, and then send it on to any interested parties. This can
 be implemented in Cyclus by utilizing the Toolkit objects stated above. The buy
 and sell policies will automatically fill and empty the input and output
 buffers, respectively.  A concept of material flow through the facility is
 shown below.</p>
-<div class="figure align-center" id="id2">
+<figure class="align-center" id="id2">
 <a class="reference internal image-reference" href="../../_images/storage_diagram.svg"><img alt="../../_images/storage_diagram.svg" src="../../_images/storage_diagram.svg" width="75%" /></a>
-<p class="caption"><span class="caption-text"><strong>Figure:</strong> Material flow through a Storage facility. Green arrows occur
+<figcaption>
+<p><span class="caption-text"><strong>Figure:</strong> Material flow through a Storage facility. Green arrows occur
 <strong>before</strong> the DRE (during the Tick). Yellow arrows occur during the
-DRE. Brown arrows occur <strong>after</strong> the DRE (during the Tock).</span></p>
-</div>
-<div class="section" id="connect-buffers-and-policies">
-<h3>Connect Buffers and Policies<a class="headerlink" href="#connect-buffers-and-policies" title="Permalink to this headline">¶</a></h3>
+DRE. Brown arrows occur <strong>after</strong> the DRE (during the Tock).</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<section id="connect-buffers-and-policies">
+<h3>Connect Buffers and Policies<a class="headerlink" href="#connect-buffers-and-policies" title="Link to this heading">¶</a></h3>
 <p>In order for policies to be utilized, they must be connected to their respective
 buffers. The storage facility would like them always connected; accordingly,
 that operation should happen at the time when the facility enters a
 simulation. The kernel will let agents know that they are entering a simulation
-via the <code class="docutils literal"><span class="pre">EnterNotify()</span></code> function.</p>
-<p>Add the following to <code class="docutils literal"><span class="pre">src/storage.h</span></code> before the <code class="docutils literal"><span class="pre">Tick()</span></code> function</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">/// set up policies and buffers</span>
-<span class="k">virtual</span> <span class="kt">void</span> <span class="n">EnterNotify</span><span class="p">();</span>
+via the <code class="docutils literal notranslate"><span class="pre">EnterNotify()</span></code> function.</p>
+<p>Add the following to <code class="docutils literal notranslate"><span class="pre">src/storage.h</span></code> before the <code class="docutils literal notranslate"><span class="pre">Tick()</span></code> function</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">/// set up policies and buffers</span>
+<span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">EnterNotify</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>And add the following to <code class="docutils literal"><span class="pre">src/storage.cc</span></code> before the <code class="docutils literal"><span class="pre">Tick()</span></code> function</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">Storage</span><span class="o">::</span><span class="n">EnterNotify</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">cyclus</span><span class="o">::</span><span class="n">Facility</span><span class="o">::</span><span class="n">EnterNotify</span><span class="p">();</span> <span class="c1">// call base function first</span>
-  <span class="n">buy_policy</span><span class="p">.</span><span class="n">Init</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">input</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;input&quot;</span><span class="p">),</span> <span class="n">throughput</span><span class="p">).</span><span class="n">Set</span><span class="p">(</span><span class="n">incommod</span><span class="p">).</span><span class="n">Start</span><span class="p">();</span>
-  <span class="n">sell_policy</span><span class="p">.</span><span class="n">Init</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">output</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;output&quot;</span><span class="p">),</span> <span class="n">throughput</span><span class="p">).</span><span class="n">Set</span><span class="p">(</span><span class="n">outcommod</span><span class="p">).</span><span class="n">Start</span><span class="p">();</span>
+<p>And add the following to <code class="docutils literal notranslate"><span class="pre">src/storage.cc</span></code> before the <code class="docutils literal notranslate"><span class="pre">Tick()</span></code> function</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Storage::EnterNotify</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Facility</span><span class="o">::</span><span class="n">EnterNotify</span><span class="p">();</span><span class="w"> </span><span class="c1">// call base function first</span>
+<span class="w">  </span><span class="n">buy_policy</span><span class="p">.</span><span class="n">Init</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;input&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">throughput</span><span class="p">).</span><span class="n">Set</span><span class="p">(</span><span class="n">incommod</span><span class="p">).</span><span class="n">Start</span><span class="p">();</span>
+<span class="w">  </span><span class="n">sell_policy</span><span class="p">.</span><span class="n">Init</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;output&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">throughput</span><span class="p">).</span><span class="n">Set</span><span class="p">(</span><span class="n">outcommod</span><span class="p">).</span><span class="n">Start</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="buffer-transfer-logic">
-<h3>Buffer Transfer Logic<a class="headerlink" href="#buffer-transfer-logic" title="Permalink to this headline">¶</a></h3>
-<p>The job of the <code class="docutils literal"><span class="pre">Storage</span></code> archetype developer is to determine and implement
+</section>
+<section id="buffer-transfer-logic">
+<h3>Buffer Transfer Logic<a class="headerlink" href="#buffer-transfer-logic" title="Link to this heading">¶</a></h3>
+<p>The job of the <code class="docutils literal notranslate"><span class="pre">Storage</span></code> archetype developer is to determine and implement
 the logic related to transfering material between the input and output buffers
 and the middle inventory buffer. Two rules govern buffer transfer logic
 in this model:</p>
 <ol class="arabic simple">
-<li>All material in the input buffer is transferred to the inventory buffer</li>
-<li>Material in the inventory buffer that has been stored for long enough is
-transferred to the output buffer</li>
+<li><p>All material in the input buffer is transferred to the inventory buffer</p></li>
+<li><p>Material in the inventory buffer that has been stored for long enough is
+transferred to the output buffer</p></li>
 </ol>
 <p>Because the input buffer transfer should occur <em>after</em> the DRE, it must happen
-in the <code class="docutils literal"><span class="pre">Tock()</span></code> method. Similarly, because the output buffer transfer should
-occur <em>before</em> the DRE, it must happen in the <code class="docutils literal"><span class="pre">Tick()</span></code> method. For each
-transfer, care must be taken to update the <code class="docutils literal"><span class="pre">entry_times</span></code> list appropriately.</p>
+in the <code class="docutils literal notranslate"><span class="pre">Tock()</span></code> method. Similarly, because the output buffer transfer should
+occur <em>before</em> the DRE, it must happen in the <code class="docutils literal notranslate"><span class="pre">Tick()</span></code> method. For each
+transfer, care must be taken to update the <code class="docutils literal notranslate"><span class="pre">entry_times</span></code> list appropriately.</p>
 <p>The input buffer transfer requires the following operation for each object in
 the buffer:</p>
 <ol class="arabic simple">
-<li><em>Pop</em> the object from the input buffer</li>
-<li><em>Push</em> the object to the inventory buffer</li>
-<li><em>Push</em> the current time to the <code class="docutils literal"><span class="pre">entry_times</span></code></li>
+<li><p><em>Pop</em> the object from the input buffer</p></li>
+<li><p><em>Push</em> the object to the inventory buffer</p></li>
+<li><p><em>Push</em> the current time to the <code class="docutils literal notranslate"><span class="pre">entry_times</span></code></p></li>
 </ol>
-<p>In order to implement this, replace the current <code class="docutils literal"><span class="pre">Tock()</span></code> implementation in
-<code class="docutils literal"><span class="pre">src/storage.cc</span></code> with</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">Storage</span><span class="o">::</span><span class="n">Tock</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">();</span>
-  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">input</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
-    <span class="n">inventory</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">input</span><span class="p">.</span><span class="n">Pop</span><span class="p">());</span>
-    <span class="n">entry_times</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
-  <span class="p">}</span>
+<p>In order to implement this, replace the current <code class="docutils literal notranslate"><span class="pre">Tock()</span></code> implementation in
+<code class="docutils literal notranslate"><span class="pre">src/storage.cc</span></code> with</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Storage::Tock</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">();</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">input</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">inventory</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">input</span><span class="p">.</span><span class="n">Pop</span><span class="p">());</span>
+<span class="w">    </span><span class="n">entry_times</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>The output buffer transfer requires the following operation so long as the
 condition in 1. is met:</p>
 <ol class="arabic simple">
-<li>Check whether enough time has passed since the time at the front of
-<code class="docutils literal"><span class="pre">entry_times</span></code> <em>and</em> the inventory is not empty. If so:</li>
-<li><em>Pop</em> an object from the inventory buffer</li>
-<li><em>Push</em> that object to the output buffer</li>
-<li><em>Pop</em> a time from the <code class="docutils literal"><span class="pre">entry_times</span></code></li>
+<li><p>Check whether enough time has passed since the time at the front of
+<code class="docutils literal notranslate"><span class="pre">entry_times</span></code> <em>and</em> the inventory is not empty. If so:</p></li>
+<li><p><em>Pop</em> an object from the inventory buffer</p></li>
+<li><p><em>Push</em> that object to the output buffer</p></li>
+<li><p><em>Pop</em> a time from the <code class="docutils literal notranslate"><span class="pre">entry_times</span></code></p></li>
 </ol>
-<p>In order to implement this, replace the current <code class="docutils literal"><span class="pre">Tick()</span></code> implementation in
-<code class="docutils literal"><span class="pre">src/storage.cc</span></code> with</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">Storage</span><span class="o">::</span><span class="n">Tick</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">finished_storing</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">storage_time</span><span class="p">;</span>
-  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">inventory</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">entry_times</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">finished_storing</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">output</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">inventory</span><span class="p">.</span><span class="n">Pop</span><span class="p">());</span>
-    <span class="n">entry_times</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
-  <span class="p">}</span>
+<p>In order to implement this, replace the current <code class="docutils literal notranslate"><span class="pre">Tick()</span></code> implementation in
+<code class="docutils literal notranslate"><span class="pre">src/storage.cc</span></code> with</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Storage::Tick</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">finished_storing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">storage_time</span><span class="p">;</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">inventory</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">entry_times</span><span class="p">.</span><span class="n">front</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">finished_storing</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">output</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">inventory</span><span class="p">.</span><span class="n">Pop</span><span class="p">());</span>
+<span class="w">    </span><span class="n">entry_times</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="build-and-test">
-<h3>Build and Test<a class="headerlink" href="#build-and-test" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="build-and-test">
+<h3>Build and Test<a class="headerlink" href="#build-and-test" title="Link to this heading">¶</a></h3>
 <p>Same as it ever was</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
 <span class="gp">$ </span>Storage_unit_tests
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="add-some-logging">
-<h2>Add Some Logging<a class="headerlink" href="#add-some-logging" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="add-some-logging">
+<h2>Add Some Logging<a class="headerlink" href="#add-some-logging" title="Link to this heading">¶</a></h2>
 <p>Now that all of the required logic is there, it would be nice to know some
 information about what is happening to a facility during a simulation. This is
 accomplished in Cyclus through <a class="reference internal" href="../logger.html#logging"><span class="std std-ref">Logging</span></a>, which is implemented as a stream
 operation.</p>
-<p>Information about the current inventory can be added by updating the <code class="docutils literal"><span class="pre">Tock()</span></code>
+<p>Information about the current inventory can be added by updating the <code class="docutils literal notranslate"><span class="pre">Tock()</span></code>
 function (after any pushing/popping) with</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span> <span class="s">&quot;Storage&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The total inventory at time &quot;</span>
-                                  <span class="o">&lt;&lt;</span> <span class="n">t</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; is &quot;</span>
-                                  <span class="o">&lt;&lt;</span> <span class="n">inventory</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span> <span class="o">+</span> <span class="n">output</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span>
-                                  <span class="o">&lt;&lt;</span> <span class="s">&quot; kg.&quot;</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Storage&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The total inventory at time &quot;</span>
+<span class="w">                                  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; is &quot;</span>
+<span class="w">                                  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">inventory</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">output</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span>
+<span class="w">                                  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; kg.&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>After updating the function should look something like</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">Storage</span><span class="o">::</span><span class="n">Tock</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">();</span>
-  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">input</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
-    <span class="n">inventory</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">input</span><span class="p">.</span><span class="n">Pop</span><span class="p">());</span>
-    <span class="n">entry_times</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
-  <span class="p">}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Storage::Tock</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">();</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">input</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">inventory</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">input</span><span class="p">.</span><span class="n">Pop</span><span class="p">());</span>
+<span class="w">    </span><span class="n">entry_times</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span> <span class="s">&quot;Storage&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The total inventory at time &quot;</span>
-                                    <span class="o">&lt;&lt;</span> <span class="n">t</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; is &quot;</span>
-                                    <span class="o">&lt;&lt;</span> <span class="n">inventory</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span> <span class="o">+</span> <span class="n">output</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span>
-                                    <span class="o">&lt;&lt;</span> <span class="s">&quot; kg.&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Storage&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The total inventory at time &quot;</span>
+<span class="w">                                    </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; is &quot;</span>
+<span class="w">                                    </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">inventory</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">output</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span>
+<span class="w">                                    </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; kg.&quot;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Notice that this uses the built in <code class="docutils literal"><span class="pre">quantity()</span></code> method of a ResBuf
-object and that both the <code class="docutils literal"><span class="pre">inventory</span></code> and <code class="docutils literal"><span class="pre">output</span></code> buffers are queried. While
+<p>Notice that this uses the built in <code class="docutils literal notranslate"><span class="pre">quantity()</span></code> method of a ResBuf
+object and that both the <code class="docutils literal notranslate"><span class="pre">inventory</span></code> and <code class="docutils literal notranslate"><span class="pre">output</span></code> buffers are queried. While
 the implementation logic requires multiple buffers, the model assumes the
 facility acts as a single cohesive unit.</p>
 <p>You can also add information about the quantity of material that will be
 requested and offered. Since this information is important to know <em>before</em> the
-DRE, it goes in the <code class="docutils literal"><span class="pre">Tick()</span></code></p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span> <span class="s">&quot;Storage&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Quantity to be requested: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">buy_policy</span><span class="p">.</span><span class="n">TotalQty</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; kg.&quot;</span><span class="p">;</span>
-<span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span> <span class="s">&quot;Storage&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Quantity to be offered: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">sell_policy</span><span class="p">.</span><span class="n">Limit</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; kg.&quot;</span><span class="p">;</span>
+DRE, it goes in the <code class="docutils literal notranslate"><span class="pre">Tick()</span></code></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Storage&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Quantity to be requested: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">buy_policy</span><span class="p">.</span><span class="n">TotalQty</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; kg.&quot;</span><span class="p">;</span>
+<span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Storage&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Quantity to be offered: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sell_policy</span><span class="p">.</span><span class="n">Limit</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; kg.&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>After updating the function should look something like</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">Storage</span><span class="o">::</span><span class="n">Tick</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">finished_storing</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">storage_time</span><span class="p">;</span>
-  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">inventory</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">entry_times</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">finished_storing</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">output</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">inventory</span><span class="p">.</span><span class="n">Pop</span><span class="p">());</span>
-        <span class="n">entry_times</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
-  <span class="p">}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Storage::Tick</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">finished_storing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">storage_time</span><span class="p">;</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">inventory</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">entry_times</span><span class="p">.</span><span class="n">front</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">finished_storing</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">output</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">inventory</span><span class="p">.</span><span class="n">Pop</span><span class="p">());</span>
+<span class="w">        </span><span class="n">entry_times</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span> <span class="s">&quot;Storage&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Quantity to be requested: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">buy_policy</span><span class="p">.</span><span class="n">TotalQty</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; kg.&quot;</span><span class="p">;</span>
-  <span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span> <span class="s">&quot;Storage&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Quantity to be offered: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">sell_policy</span><span class="p">.</span><span class="n">Limit</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; kg.&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Storage&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Quantity to be requested: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">buy_policy</span><span class="p">.</span><span class="n">TotalQty</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; kg.&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Storage&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Quantity to be offered: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sell_policy</span><span class="p">.</span><span class="n">Limit</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; kg.&quot;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>To see the logging output, build and rerun the simulation</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Increase the verbosity from <code class="docutils literal"><span class="pre">2</span></code> to <code class="docutils literal"><span class="pre">3</span></code>.</p>
+<p class="admonition-title">Note</p>
+<p>Increase the verbosity from <code class="docutils literal notranslate"><span class="pre">2</span></code> to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p>
 </div>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
-<span class="gp">$ </span>cyclus -v <span class="m">3</span> input/storage.xml
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
+<span class="gp">$ </span>cyclus<span class="w"> </span>-v<span class="w"> </span><span class="m">3</span><span class="w"> </span>input/storage.xml
 <span class="go">              :</span>
 <span class="go">          .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q</span>
 <span class="go">        CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)</span>
@@ -554,82 +546,84 @@ DRE, it goes in the <code class="docutils literal"><span class="pre">Tick()</spa
 <span class="go">Simulation ID: 747f6c86-fce8-49be-8c57-8bb38e11761a</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="add-a-state-variable-to-define-storage-capcity">
-<h2>Add a State Variable to Define Storage Capcity<a class="headerlink" href="#add-a-state-variable-to-define-storage-capcity" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="add-a-state-variable-to-define-storage-capcity">
+<h2>Add a State Variable to Define Storage Capcity<a class="headerlink" href="#add-a-state-variable-to-define-storage-capcity" title="Link to this heading">¶</a></h2>
 <p>A natural extension for the current storage facility implementation is to have a
 maximum storage capacity. To do so, first add a capacity state variable to
 storage.h . If you still want the input file to work, you have to provide a
-<code class="docutils literal"><span class="pre">default</span></code> key in the pragma data structure. A sufficiently large value will
+<code class="docutils literal notranslate"><span class="pre">default</span></code> key in the pragma data structure. A sufficiently large value will
 do.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var { \</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var { \</span>
 <span class="cp">  &#39;doc&#39;: &#39;Maximum storage capacity (including all material in the facility)&#39;, \</span>
 <span class="cp">  &#39;tooltip&#39;: &#39;Maximum storage capacity&#39;, \</span>
 <span class="cp">  &#39;units&#39;: &#39;kg&#39;, \</span>
 <span class="cp">  &#39;default&#39;: 1e200, \</span>
 <span class="cp">  &#39;uilabel&#39;: &#39;Maximum Storage Capacity&#39; \</span>
 <span class="cp">}</span>
-<span class="kt">double</span> <span class="n">capacity</span><span class="p">;</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">capacity</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The required implementation is nontrivial. The goal of adding a capacity
 member is to guarantee that the amount of material in the facility never exceeds
 a certain value. The only way for material to enter the facility is through the
-<code class="docutils literal"><span class="pre">input</span></code> ResBuff via the <code class="docutils literal"><span class="pre">buy_policy</span></code>. The <code class="docutils literal"><span class="pre">MatlBuyPolicy</span></code> sets a maximum
-buy amount based on both its <code class="docutils literal"><span class="pre">throughput</span></code> and the <code class="docutils literal"><span class="pre">capacity</span></code> of the
-connected <code class="docutils literal"><span class="pre">ResBuf</span></code>. Accordingly, you can update the <code class="docutils literal"><span class="pre">input</span></code> buffer’s
+<code class="docutils literal notranslate"><span class="pre">input</span></code> ResBuff via the <code class="docutils literal notranslate"><span class="pre">buy_policy</span></code>. The <code class="docutils literal notranslate"><span class="pre">MatlBuyPolicy</span></code> sets a maximum
+buy amount based on both its <code class="docutils literal notranslate"><span class="pre">throughput</span></code> and the <code class="docutils literal notranslate"><span class="pre">capacity</span></code> of the
+connected <code class="docutils literal notranslate"><span class="pre">ResBuf</span></code>. Accordingly, you can update the <code class="docutils literal notranslate"><span class="pre">input</span></code> buffer’s
 capacity before the DRE occurs to achieve this behavior.</p>
-<div class="figure align-center" id="id3">
-<img alt="../../_images/storage_capacity.svg" src="../../_images/storage_capacity.svg" /><p class="caption"><span class="caption-text"><strong>Figure:</strong> Storage buffers between two time steps. The total capacity is
-represented by the area of all three boxes. The <code class="docutils literal"><span class="pre">input</span></code> buffer’s capacity
-must be updated to reflect how much material is in both the <code class="docutils literal"><span class="pre">inventory</span></code>
-and <code class="docutils literal"><span class="pre">output</span></code> buffers. The colored arrows on the right match the material
-flows in the previous figure.</span></p>
-</div>
-<p>To do so, add the following line to the end of the <code class="docutils literal"><span class="pre">Tick()</span></code> function (in the
-implementation file), which updates capacity of the <code class="docutils literal"><span class="pre">input</span></code> through the
-<code class="docutils literal"><span class="pre">ResBuf</span></code> <code class="docutils literal"><span class="pre">capacity()</span></code> API</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">// only allow requests up to the storage capacity</span>
-<span class="n">input</span><span class="p">.</span><span class="n">capacity</span><span class="p">(</span><span class="n">capacity</span> <span class="o">-</span> <span class="n">inventory</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span> <span class="o">-</span> <span class="n">output</span><span class="p">.</span><span class="n">quantity</span><span class="p">());</span>
+<figure class="align-center" id="id3">
+<img alt="../../_images/storage_capacity.svg" src="../../_images/storage_capacity.svg" /><figcaption>
+<p><span class="caption-text"><strong>Figure:</strong> Storage buffers between two time steps. The total capacity is
+represented by the area of all three boxes. The <code class="docutils literal notranslate"><span class="pre">input</span></code> buffer’s capacity
+must be updated to reflect how much material is in both the <code class="docutils literal notranslate"><span class="pre">inventory</span></code>
+and <code class="docutils literal notranslate"><span class="pre">output</span></code> buffers. The colored arrows on the right match the material
+flows in the previous figure.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>To do so, add the following line to the end of the <code class="docutils literal notranslate"><span class="pre">Tick()</span></code> function (in the
+implementation file), which updates capacity of the <code class="docutils literal notranslate"><span class="pre">input</span></code> through the
+<code class="docutils literal notranslate"><span class="pre">ResBuf</span></code> <code class="docutils literal notranslate"><span class="pre">capacity()</span></code> API</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// only allow requests up to the storage capacity</span>
+<span class="n">input</span><span class="p">.</span><span class="n">capacity</span><span class="p">(</span><span class="n">capacity</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">inventory</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">output</span><span class="p">.</span><span class="n">quantity</span><span class="p">());</span>
 </pre></div>
 </div>
-<p>So the full <code class="docutils literal"><span class="pre">Tick()</span></code> function now looks like</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">Storage</span><span class="o">::</span><span class="n">Tick</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">finished_storing</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">storage_time</span><span class="p">;</span>
-  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">inventory</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">entry_times</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">finished_storing</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">output</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">inventory</span><span class="p">.</span><span class="n">Pop</span><span class="p">());</span>
-    <span class="n">entry_times</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
-  <span class="p">}</span>
+<p>So the full <code class="docutils literal notranslate"><span class="pre">Tick()</span></code> function now looks like</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Storage::Tick</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">finished_storing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">storage_time</span><span class="p">;</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">inventory</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">entry_times</span><span class="p">.</span><span class="n">front</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">finished_storing</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">output</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">inventory</span><span class="p">.</span><span class="n">Pop</span><span class="p">());</span>
+<span class="w">    </span><span class="n">entry_times</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// only allow requests up to the storage capacity</span>
-  <span class="n">input</span><span class="p">.</span><span class="n">capacity</span><span class="p">(</span><span class="n">capacity</span> <span class="o">-</span> <span class="n">inventory</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span> <span class="o">-</span> <span class="n">output</span><span class="p">.</span><span class="n">quantity</span><span class="p">());</span>
+<span class="w">  </span><span class="c1">// only allow requests up to the storage capacity</span>
+<span class="w">  </span><span class="n">input</span><span class="p">.</span><span class="n">capacity</span><span class="p">(</span><span class="n">capacity</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">inventory</span><span class="p">.</span><span class="n">quantity</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">output</span><span class="p">.</span><span class="n">quantity</span><span class="p">());</span>
 
-  <span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span> <span class="s">&quot;Storage&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Quantity to be requested: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">buy_policy</span><span class="p">.</span><span class="n">TotalQty</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; kg.&quot;</span><span class="p">;</span>
-  <span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span> <span class="s">&quot;Storage&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Quantity to be offered: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">sell_policy</span><span class="p">.</span><span class="n">Limit</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; kg.&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Storage&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Quantity to be requested: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">buy_policy</span><span class="p">.</span><span class="n">TotalQty</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; kg.&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">LOG</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">LEV_INFO2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Storage&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Quantity to be offered: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sell_policy</span><span class="p">.</span><span class="n">Limit</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; kg.&quot;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="section" id="id1">
-<h3>Build and Test<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<section id="id1">
+<h3>Build and Test<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <p>Same as it ever was</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
 <span class="gp">$ </span>Storage_unit_tests
 </pre></div>
 </div>
-</div>
-<div class="section" id="update-input-file-and-run">
-<h3>Update Input File and Run<a class="headerlink" href="#update-input-file-and-run" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="update-input-file-and-run">
+<h3>Update Input File and Run<a class="headerlink" href="#update-input-file-and-run" title="Link to this heading">¶</a></h3>
 <p>You can test that your new capacity capability works by adding the following to
-the end of the <code class="docutils literal"><span class="pre">config</span></code> block for <code class="docutils literal"><span class="pre">Storage</span></code> (before the close tag
-&lt;/Storage&gt;) in <code class="docutils literal"><span class="pre">input/storage.xml</span></code></p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;capacity&gt;</span>8<span class="nt">&lt;/capacity&gt;</span>
+the end of the <code class="docutils literal notranslate"><span class="pre">config</span></code> block for <code class="docutils literal notranslate"><span class="pre">Storage</span></code> (before the close tag
+&lt;/Storage&gt;) in <code class="docutils literal notranslate"><span class="pre">input/storage.xml</span></code></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;capacity&gt;</span>8<span class="nt">&lt;/capacity&gt;</span>
 </pre></div>
 </div>
 <p>Note that this capacity is smaller than the throughput! What do you think you
 will see in the output logs?</p>
 <p>Try it out (don’t forget to delete the old sqlite file first):</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>rm cyclus.sqlite
-<span class="gp">$ </span>cyclus -v <span class="m">3</span> input/storage.xml
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rm<span class="w"> </span>cyclus.sqlite
+<span class="gp">$ </span>cyclus<span class="w"> </span>-v<span class="w"> </span><span class="m">3</span><span class="w"> </span>input/storage.xml
 <span class="go">              :</span>
 <span class="go">          .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q</span>
 <span class="go">        CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)</span>
@@ -760,19 +754,17 @@ will see in the output logs?</p>
 <span class="go">Simulation ID: 1ce98e9b-bd89-402b-8bd6-c8266e293dba</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../../index.html" title="index">
-          <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Adding Buffers and Policies from the Toolkit</a><ul>
@@ -805,68 +797,16 @@ will see in the output logs?</p>
     <p class="topless"><a href="testing.html"
                           title="Next page">&rarr; Adding a Test</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -908,14 +848,15 @@ will see in the output logs?</p>
     <li><a href="../../index.html">Home</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" >Archetype Development Tutorial [C++]</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="index.html" >Archetype Development Tutorial [C++]</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Adding Buffers and Policies from the Toolkit</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

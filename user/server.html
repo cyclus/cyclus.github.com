@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Cyclus Server &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Cyclus User Tutorial" href="tutorial/index.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -85,7 +73,8 @@ if(ga_enabled){
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Cyclus Server</a></li> 
       </ul>
     </div>
     </div>
@@ -96,8 +85,8 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="cyclus-server">
-<h1>Cyclus Server<a class="headerlink" href="#cyclus-server" title="Permalink to this headline">¶</a></h1>
+  <section id="cyclus-server">
+<h1>Cyclus Server<a class="headerlink" href="#cyclus-server" title="Link to this heading">¶</a></h1>
 <p>Cyclus may also be run as an interactive server if it was compiled with Python v3.5.2+ support.</p>
 <p>The Cyclus server is a websockets server that uses JSON to send and recieve instructuctions
 from the websockets client (typically a webbrowser). The Cyclus server works by having a queue
@@ -107,68 +96,66 @@ may be registered to occur only when the server first loads (initial actions). S
 may include anything from returning database queries, simple echo messages, or shutting down
 the server itself.</p>
 <p>To start up the Cyclus server, use the following command line utility, spawned via Python.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python -m cyclus.server
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>cyclus.server
 </pre></div>
 </div>
 <p>For more information, please refer to the help:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python -m cyclus.server -h
-usage: cyclus <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-o OUTPUT_PATH<span class="o">]</span> <span class="o">[</span>--debug<span class="o">]</span> <span class="o">[</span>--host HOST<span class="o">]</span> <span class="o">[</span>-p PORT<span class="o">]</span>
-              <span class="o">[</span>-n NTHREADS<span class="o">]</span> <span class="o">[</span>-r REPEATING_ACTIONS <span class="o">[</span>REPEATING_ACTIONS ...<span class="o">]]</span>
-              <span class="o">[</span>-i INITIAL_ACTIONS <span class="o">[</span>INITIAL_ACTIONS ...<span class="o">]]</span>
-              <span class="o">[</span>input_file<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>cyclus.server<span class="w"> </span>-h
+usage:<span class="w"> </span>cyclus<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>-o<span class="w"> </span>OUTPUT_PATH<span class="o">]</span><span class="w"> </span><span class="o">[</span>--debug<span class="o">]</span><span class="w"> </span><span class="o">[</span>--host<span class="w"> </span>HOST<span class="o">]</span><span class="w"> </span><span class="o">[</span>-p<span class="w"> </span>PORT<span class="o">]</span>
+<span class="w">              </span><span class="o">[</span>-n<span class="w"> </span>NTHREADS<span class="o">]</span><span class="w"> </span><span class="o">[</span>-r<span class="w"> </span>REPEATING_ACTIONS<span class="w"> </span><span class="o">[</span>REPEATING_ACTIONS<span class="w"> </span>...<span class="o">]]</span>
+<span class="w">              </span><span class="o">[</span>-i<span class="w"> </span>INITIAL_ACTIONS<span class="w"> </span><span class="o">[</span>INITIAL_ACTIONS<span class="w"> </span>...<span class="o">]]</span>
+<span class="w">              </span><span class="o">[</span>input_file<span class="o">]</span>
 
-Cyclus Server CLI
+Cyclus<span class="w"> </span>Server<span class="w"> </span>CLI
 
-positional arguments:
-  input_file            path to input file
+positional<span class="w"> </span>arguments:
+<span class="w">  </span>input_file<span class="w">            </span>path<span class="w"> </span>to<span class="w"> </span>input<span class="w"> </span>file
 
-optional arguments:
-  -h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
-  -o OUTPUT_PATH, --output-path OUTPUT_PATH
-                        output path
-  --debug               runs the server <span class="k">in</span> debug mode.
-  --host HOST           hostname to run the server on
-  -p PORT, --port PORT  port to run the server on
-  -n NTHREADS, --nthreads NTHREADS
-                        Maximum number of thread workers to run with.
-  -r REPEATING_ACTIONS <span class="o">[</span>REPEATING_ACTIONS ...<span class="o">]</span>, --repeating-actions REPEATING_ACTIONS <span class="o">[</span>REPEATING_ACTIONS ...<span class="o">]</span>
-                        list of repeating actions
-  -i INITIAL_ACTIONS <span class="o">[</span>INITIAL_ACTIONS ...<span class="o">]</span>, --initial-actions INITIAL_ACTIONS <span class="o">[</span>INITIAL_ACTIONS ...<span class="o">]</span>
-                        list of initial actions to queue
+optional<span class="w"> </span>arguments:
+<span class="w">  </span>-h,<span class="w"> </span>--help<span class="w">            </span>show<span class="w"> </span>this<span class="w"> </span><span class="nb">help</span><span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span><span class="nb">exit</span>
+<span class="w">  </span>-o<span class="w"> </span>OUTPUT_PATH,<span class="w"> </span>--output-path<span class="w"> </span>OUTPUT_PATH
+<span class="w">                        </span>output<span class="w"> </span>path
+<span class="w">  </span>--debug<span class="w">               </span>runs<span class="w"> </span>the<span class="w"> </span>server<span class="w"> </span><span class="k">in</span><span class="w"> </span>debug<span class="w"> </span>mode.
+<span class="w">  </span>--host<span class="w"> </span>HOST<span class="w">           </span>hostname<span class="w"> </span>to<span class="w"> </span>run<span class="w"> </span>the<span class="w"> </span>server<span class="w"> </span>on
+<span class="w">  </span>-p<span class="w"> </span>PORT,<span class="w"> </span>--port<span class="w"> </span>PORT<span class="w">  </span>port<span class="w"> </span>to<span class="w"> </span>run<span class="w"> </span>the<span class="w"> </span>server<span class="w"> </span>on
+<span class="w">  </span>-n<span class="w"> </span>NTHREADS,<span class="w"> </span>--nthreads<span class="w"> </span>NTHREADS
+<span class="w">                        </span>Maximum<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>thread<span class="w"> </span>workers<span class="w"> </span>to<span class="w"> </span>run<span class="w"> </span>with.
+<span class="w">  </span>-r<span class="w"> </span>REPEATING_ACTIONS<span class="w"> </span><span class="o">[</span>REPEATING_ACTIONS<span class="w"> </span>...<span class="o">]</span>,<span class="w"> </span>--repeating-actions<span class="w"> </span>REPEATING_ACTIONS<span class="w"> </span><span class="o">[</span>REPEATING_ACTIONS<span class="w"> </span>...<span class="o">]</span>
+<span class="w">                        </span>list<span class="w"> </span>of<span class="w"> </span>repeating<span class="w"> </span>actions
+<span class="w">  </span>-i<span class="w"> </span>INITIAL_ACTIONS<span class="w"> </span><span class="o">[</span>INITIAL_ACTIONS<span class="w"> </span>...<span class="o">]</span>,<span class="w"> </span>--initial-actions<span class="w"> </span>INITIAL_ACTIONS<span class="w"> </span><span class="o">[</span>INITIAL_ACTIONS<span class="w"> </span>...<span class="o">]</span>
+<span class="w">                        </span>list<span class="w"> </span>of<span class="w"> </span>initial<span class="w"> </span>actions<span class="w"> </span>to<span class="w"> </span>queue
 </pre></div>
 </div>
-<div class="section" id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Run an input file in server mode, returning all of the output</span>
-  <span class="c1"># table data over the websocket each time step.</span>
-$ python -m cyclus.server input.json
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run an input file in server mode, returning all of the output</span>
+<span class="w">  </span><span class="c1"># table data over the websocket each time step.</span>
+$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>cyclus.server<span class="w"> </span>input.json
 
 <span class="c1"># print the NullRegion annotations and exit</span>
-$ python -m cyclus.server -i agent_annotations <span class="nv">spec</span><span class="o">=</span><span class="s2">&quot;:agents:NullRegion&quot;</span> shutdown
+$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>cyclus.server<span class="w"> </span>-i<span class="w"> </span>agent_annotations<span class="w"> </span><span class="nv">spec</span><span class="o">=</span><span class="s2">&quot;:agents:NullRegion&quot;</span><span class="w"> </span>shutdown
 </pre></div>
 </div>
-</div>
-<div class="section" id="web-application-for-testing">
-<h2>Web Application for Testing<a class="headerlink" href="#web-application-for-testing" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="web-application-for-testing">
+<h2>Web Application for Testing<a class="headerlink" href="#web-application-for-testing" title="Link to this heading">¶</a></h2>
 <p>Cyclus also ships with a simple web application that is an example client for Cyclus server.
 You may start this web app (after starting Cyclus Server) with the following command in a new
 terminal:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python -m cyclus.webapp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>cyclus.webapp
 </pre></div>
 </div>
 <p>To access this web application, point your browser to <a href="#id1"><span class="problematic" id="id2">`http://localhost:4200`_</span></a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Cyclus Server</a><ul>
@@ -189,68 +176,16 @@ terminal:</p>
     <p class="topless"><a href="tutorial/index.html"
                           title="Next page">&rarr; <span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -291,14 +226,15 @@ terminal:</p>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Cyclus Server</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

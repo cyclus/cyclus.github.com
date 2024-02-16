@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../../../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>cymetric.schemas - Schemas &#8212; Home</title>
-    <link rel="stylesheet" href="../../../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../../../_static/jquery.cookie.js"></script>
+        <script src="../../../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../../../_static/cloud.base.js"></script>
+        <script src="../../../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../../../_static/cloud.js"></script>
+        <script src="../../../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../../../_static/big_c.ico"/>
+    <link rel="icon" href="../../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="cymetric.evaluator - Evaluators" href="evaluator.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -87,7 +75,8 @@ if(ga_enabled){
 
           <li class="nav-item nav-item-1"><a href="../../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" >Cymetric</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Cymetric API</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Cymetric API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.schemas</span></code> - Schemas</a></li> 
       </ul>
     </div>
     </div>
@@ -98,57 +87,87 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-cymetric.schemas">
-<span id="cymetric-schemas-schemas"></span><span id="cym-schemas"></span><h1><a class="reference internal" href="#module-cymetric.schemas" title="cymetric.schemas"><code class="xref py py-mod docutils literal"><span class="pre">cymetric.schemas</span></code></a> - Schemas<a class="headerlink" href="#module-cymetric.schemas" title="Permalink to this headline">¶</a></h1>
+  <section id="module-cymetric.schemas">
+<span id="cymetric-schemas-schemas"></span><span id="cym-schemas"></span><h1><a class="reference internal" href="#module-cymetric.schemas" title="cymetric.schemas"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.schemas</span></code></a> - Schemas<a class="headerlink" href="#module-cymetric.schemas" title="Link to this heading">¶</a></h1>
 <p>Schemas for cymetric.</p>
-<dl class="class">
-<dt id="cymetric.schemas.SchemaProperty">
-<em class="property">class </em><code class="descclassname">cymetric.schemas.</code><code class="descname">SchemaProperty</code><span class="sig-paren">(</span><em>obj</em>, <em>prop</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.schemas.SchemaProperty" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="cymetric.schemas.SchemaProperty">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cymetric.schemas.</span></span><span class="sig-name descname"><span class="pre">SchemaProperty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.schemas.SchemaProperty" title="Link to this definition">¶</a></dt>
 <dd><p>Represents specific properties of a schema.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cymetric.schemas.SchemaProperty.insert">
+<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.schemas.SchemaProperty.insert" title="Link to this definition">¶</a></dt>
+<dd><p>S.insert(index, value) – insert value before index</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cymetric.schemas.canon_column">
-<code class="descclassname">cymetric.schemas.</code><code class="descname">canon_column</code><span class="sig-paren">(</span><em>col</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.schemas.canon_column" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.schemas.canon_column">
+<span class="sig-prename descclassname"><span class="pre">cymetric.schemas.</span></span><span class="sig-name descname"><span class="pre">canon_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.schemas.canon_column" title="Link to this definition">¶</a></dt>
 <dd><p>Returns canonical form of a column.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cymetric.schemas.canon_dbtype">
-<code class="descclassname">cymetric.schemas.</code><code class="descname">canon_dbtype</code><span class="sig-paren">(</span><em>dbtype</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.schemas.canon_dbtype" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.schemas.canon_dbtype">
+<span class="sig-prename descclassname"><span class="pre">cymetric.schemas.</span></span><span class="sig-name descname"><span class="pre">canon_dbtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbtype</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.schemas.canon_dbtype" title="Link to this definition">¶</a></dt>
 <dd><p>Returns the canonical form for a Cyclus database type.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cymetric.schemas.canon_name">
-<code class="descclassname">cymetric.schemas.</code><code class="descname">canon_name</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.schemas.canon_name" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.schemas.canon_name">
+<span class="sig-prename descclassname"><span class="pre">cymetric.schemas.</span></span><span class="sig-name descname"><span class="pre">canon_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.schemas.canon_name" title="Link to this definition">¶</a></dt>
 <dd><p>Returns canonical form of a column name.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cymetric.schemas.canon_shape">
-<code class="descclassname">cymetric.schemas.</code><code class="descname">canon_shape</code><span class="sig-paren">(</span><em>shape</em>, <em>dbtype</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.schemas.canon_shape" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.schemas.canon_shape">
+<span class="sig-prename descclassname"><span class="pre">cymetric.schemas.</span></span><span class="sig-name descname"><span class="pre">canon_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dbtype</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.schemas.canon_shape" title="Link to this definition">¶</a></dt>
 <dd><p>Returns the canonical shape for a Cyclus database type.</p>
 </dd></dl>
 
-<dl class="class">
-<dt id="cymetric.schemas.schema">
-<em class="property">class </em><code class="descclassname">cymetric.schemas.</code><code class="descname">schema</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.schemas.schema" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="cymetric.schemas.schema">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cymetric.schemas.</span></span><span class="sig-name descname"><span class="pre">schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.schemas.schema" title="Link to this definition">¶</a></dt>
 <dd><p>A type represented compound schema composed of column names,
 associated types from the Cyclus type system, and optional shapes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cymetric.schemas.schema.insert">
+<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.schemas.schema.insert" title="Link to this definition">¶</a></dt>
+<dd><p>S.insert(index, value) – insert value before index</p>
 </dd></dl>
 
-</div>
+</dd></dl>
+
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../../../index.html" title="index">
-          <img class="logo" src="../../../_static/big_c.png" alt="Logo"/>
-        </a></p>
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.schemas</span></code> - Schemas</a><ul>
+<li><a class="reference internal" href="#cymetric.schemas.SchemaProperty"><code class="docutils literal notranslate"><span class="pre">SchemaProperty</span></code></a><ul>
+<li><a class="reference internal" href="#cymetric.schemas.SchemaProperty.insert"><code class="docutils literal notranslate"><span class="pre">SchemaProperty.insert()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cymetric.schemas.canon_column"><code class="docutils literal notranslate"><span class="pre">canon_column()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.schemas.canon_dbtype"><code class="docutils literal notranslate"><span class="pre">canon_dbtype()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.schemas.canon_name"><code class="docutils literal notranslate"><span class="pre">canon_name()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.schemas.canon_shape"><code class="docutils literal notranslate"><span class="pre">canon_shape()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.schemas.schema"><code class="docutils literal notranslate"><span class="pre">schema</span></code></a><ul>
+<li><a class="reference internal" href="#cymetric.schemas.schema.insert"><code class="docutils literal notranslate"><span class="pre">schema.insert()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div class="sphinxprev">
     <h4>Previous page</h4>
     <p class="topless"><a href="index.html"
@@ -157,70 +176,18 @@ associated types from the Cyclus type system, and optional shapes.</p>
   <div class="sphinxnext">
     <h4>Next page</h4>
     <p class="topless"><a href="evaluator.html"
-                          title="Next page">&rarr; <code class="docutils literal"><span class="pre">cymetric.evaluator</span></code> - Evaluators</a></p>
+                          title="Next page">&rarr; <code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.evaluator</span></code> - Evaluators</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../../../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../../../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../../../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../../../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../../../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../../../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../../../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -263,14 +230,15 @@ associated types from the Cyclus type system, and optional shapes.</p>
 
           <li class="nav-item nav-item-1"><a href="../../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" >Cymetric</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="index.html" >Cymetric API</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="index.html" >Cymetric API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.schemas</span></code> - Schemas</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

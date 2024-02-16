@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>CEP 25 - Preference Adjustment Process &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="CEP 26 - Generalize the DRE to Optimize Multiple Metrics" href="cep26.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -85,7 +73,8 @@ if(ga_enabled){
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 25 - Preference Adjustment Process</a></li> 
       </ul>
     </div>
     </div>
@@ -96,43 +85,46 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="cep-25-preference-adjustment-process">
-<h1>CEP 25 - Preference Adjustment Process<a class="headerlink" href="#cep-25-preference-adjustment-process" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">CEP:</th><td class="field-body">25</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Title:</th><td class="field-body">Preference Adjustment Process</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Last-Modified:</th><td class="field-body">2015-08-25</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">Matthew Gidden</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Status:</th><td class="field-body">Accepted</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Created:</th><td class="field-body">2015-07-07</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="abstract">
-<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+  <section id="cep-25-preference-adjustment-process">
+<h1>CEP 25 - Preference Adjustment Process<a class="headerlink" href="#cep-25-preference-adjustment-process" title="Link to this heading">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">CEP<span class="colon">:</span></dt>
+<dd class="field-odd"><p>25</p>
+</dd>
+<dt class="field-even">Title<span class="colon">:</span></dt>
+<dd class="field-even"><p>Preference Adjustment Process</p>
+</dd>
+<dt class="field-odd">Last-Modified<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2015-08-25</p>
+</dd>
+<dt class="field-even">Author<span class="colon">:</span></dt>
+<dd class="field-even"><p>Matthew Gidden</p>
+</dd>
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Accepted</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Standards Track</p>
+</dd>
+<dt class="field-odd">Created<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2015-07-07</p>
+</dd>
+</dl>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading">¶</a></h2>
 <p>This CEP describes the process of adjusting preferences in the DRE, e.g., with
 regard to implementing international trade instruments. It generalizes
 methodology of the preference adjustment phase.</p>
-</div>
-<div class="section" id="motivation">
-<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading">¶</a></h2>
 <p>The current preference adjustment phase only includes the requesting facility
 and its managers (i.e. institution and region). Only allowing requesting
 managers to adjust preferences is problematic because it prohibits, for
 example, the complete modeling of intra-regional instruments such as tariffs.</p>
-</div>
-<div class="section" id="specification-implementation">
-<h2>Specification &amp; Implementation<a class="headerlink" href="#specification-implementation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="specification-implementation">
+<h2>Specification &amp; Implementation<a class="headerlink" href="#specification-implementation" title="Link to this heading">¶</a></h2>
 <p>In order for managers of bidding regions to apply tariffs, or any other
 inter-entity instruments, they must be involved in preference
 adjustment. Previously, only managers of the requesting entities were allowed to
@@ -143,9 +135,9 @@ to adjust preferences before bidding managers (and vice-versa). Accordingly, a
 general approach is taken for the preference <em>adjustment ordering</em>
 methodology. The entities involved in any trade preference adjustment are the
 two traders, and each of their associated managers. In a common Cyclus use case,
-this involves two <code class="docutils literal"><span class="pre">Trader</span></code> entities whose immediate “manager” is the
-<code class="docutils literal"><span class="pre">Facility</span></code> entity of whom they are a member. Further, each <code class="docutils literal"><span class="pre">Facility</span></code> is
-managed by an <code class="docutils literal"><span class="pre">Institution</span></code> which is managed by a <code class="docutils literal"><span class="pre">Region</span></code>.</p>
+this involves two <code class="docutils literal notranslate"><span class="pre">Trader</span></code> entities whose immediate “manager” is the
+<code class="docutils literal notranslate"><span class="pre">Facility</span></code> entity of whom they are a member. Further, each <code class="docutils literal notranslate"><span class="pre">Facility</span></code> is
+managed by an <code class="docutils literal notranslate"><span class="pre">Institution</span></code> which is managed by a <code class="docutils literal notranslate"><span class="pre">Region</span></code>.</p>
 <p>For the purpose of this CEP, a default ordering is defined: the requester and
 its managers are queried in order followed by the managers of the bidder. The
 bidder is not involved, because it is assumed that suppliers are motivated to
@@ -183,36 +175,34 @@ modeled scenarios. If that capability is identified as critical path in the
 future, a user-facing interface can be implemented that allows adjustment of
 both the preference adjustment ordering and preference aggregation
 determination.</p>
-<p>See <a class="footnote-reference" href="#id2" id="id1">[1]</a> for implementation of Agent-based preference adjustment.</p>
-</div>
-<div class="section" id="backwards-compatibility">
-<h2>Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> for implementation of Agent-based preference adjustment.</p>
+</section>
+<section id="backwards-compatibility">
+<h2>Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Link to this heading">¶</a></h2>
 <p>No backwards incompatibilities are introduced with this CEP.</p>
-</div>
-<div class="section" id="document-history">
-<h2>Document History<a class="headerlink" href="#document-history" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="document-history">
+<h2>Document History<a class="headerlink" href="#document-history" title="Link to this heading">¶</a></h2>
 <p>This document is released under the CC-BY 3.0 license.</p>
-</div>
-<div class="section" id="references-and-footnotes">
-<h2>References and Footnotes<a class="headerlink" href="#references-and-footnotes" title="Permalink to this headline">¶</a></h2>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://github.com/cyclus/cyclus/pull/1122">https://github.com/cyclus/cyclus/pull/1122</a></td></tr>
-</tbody>
-</table>
-</div>
-</div>
+</section>
+<section id="references-and-footnotes">
+<h2>References and Footnotes<a class="headerlink" href="#references-and-footnotes" title="Link to this heading">¶</a></h2>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://github.com/cyclus/cyclus/pull/1122">https://github.com/cyclus/cyclus/pull/1122</a></p>
+</aside>
+</aside>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">CEP 25 - Preference Adjustment Process</a><ul>
@@ -237,68 +227,16 @@ determination.</p>
     <p class="topless"><a href="cep26.html"
                           title="Next page">&rarr; CEP 26 - Generalize the DRE to Optimize Multiple Metrics</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -339,14 +277,15 @@ determination.</p>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 25 - Preference Adjustment Process</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

@@ -1,4 +1,4 @@
-.. _hello_world:
+.. _hello_world_py:
 
 Hello, Cyclus! [Python]
 =======================
@@ -29,7 +29,7 @@ And that is it! The above is a fully-functional |Cyclus| facility.
 
 ------------
 
-Let's now change the behavior of the MyFacility's ``tick()`` and
+Let's now change the behavior of the ``MyFacility``'s ``tick()`` and
 ``tock()`` methods to print "Hello" and "World" respectively.
 
 **proj/agents.py:**
@@ -48,12 +48,12 @@ Let's now change the behavior of the MyFacility's ``tick()`` and
             print("World!")
 
 
-Now that we have altered the behavior of the TutorialFacility, reinstall the project
+Now that we have altered the behavior of ``MyFacility``, reinstall the project
 so that it is available to cyclus.
 
 ------------
 
-You can refer to this facilty in a |cyclus| input file by using the Python package and
+You can refer to this facility in a |cyclus| input file by using the Python package and
 module name in the lib section of the archetypes spec, like you would write it if you
 were importing a module.  The class name goes in the
 name section of the spec.

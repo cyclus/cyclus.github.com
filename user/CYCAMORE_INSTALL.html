@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Cycamore Installation Guide &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
@@ -62,8 +51,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -76,7 +64,8 @@ if(ga_enabled){
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
- 
+
+        <li class="nav-item nav-item-this"><a href="">Cycamore Installation Guide</a></li> 
       </ul>
     </div>
     </div>
@@ -87,208 +76,196 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="cycamore-installation-guide">
-<h1><a class="toc-backref" href="#id1">Cycamore Installation Guide</a><a class="headerlink" href="#cycamore-installation-guide" title="Permalink to this headline">¶</a></h1>
+  <section id="cycamore-installation-guide">
+<h1><a class="toc-backref" href="#id1" role="doc-backlink">Cycamore Installation Guide</a><a class="headerlink" href="#cycamore-installation-guide" title="Link to this heading">¶</a></h1>
 <p>Cycamore uses the CMake cross-platform build-generator. To
 simplify the usage of cmake to build Cycamore from source, a python script is
 provided with the source.</p>
-<div class="contents topic" id="table-of-contents">
+<nav class="contents" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#cycamore-installation-guide" id="id1">Cycamore Installation Guide</a><ul>
-<li><a class="reference internal" href="#dependencies" id="id2">Dependencies</a></li>
-<li><a class="reference internal" href="#installation" id="id3">Installation</a><ul>
-<li><a class="reference internal" href="#default-installation" id="id4">Default Installation</a></li>
-<li><a class="reference internal" href="#custom-cycamore-installation" id="id5">Custom Cycamore Installation</a></li>
-<li><a class="reference internal" href="#cmake-cycamore-installation" id="id6">CMake Cycamore Installation</a></li>
+<li><p><a class="reference internal" href="#cycamore-installation-guide" id="id1">Cycamore Installation Guide</a></p>
+<ul>
+<li><p><a class="reference internal" href="#dependencies" id="id2">Dependencies</a></p></li>
+<li><p><a class="reference internal" href="#installation" id="id3">Installation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#default-installation" id="id4">Default Installation</a></p></li>
+<li><p><a class="reference internal" href="#custom-cycamore-installation" id="id5">Custom Cycamore Installation</a></p></li>
+<li><p><a class="reference internal" href="#cmake-cycamore-installation" id="id6">CMake Cycamore Installation</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#running-tests" id="id7">Running Tests</a></li>
+<li><p><a class="reference internal" href="#running-tests" id="id7">Running Tests</a></p></li>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="dependencies">
-<h2><a class="toc-backref" href="#id2">Dependencies</a><a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+</nav>
+<section id="dependencies">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Dependencies</a><a class="headerlink" href="#dependencies" title="Link to this heading">¶</a></h2>
 <p>Cycamore’s only dependency is the Cyclus Core.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="53%" />
-<col width="47%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Package</th>
-<th class="head">Minimum Version</th>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Package</p></th>
+<th class="head"><p>Minimum Version</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><cite>Cyclus</cite></td>
-<td>1.4</td>
+<tbody>
+<tr class="row-even"><td><p><cite>Cyclus</cite></p></td>
+<td><p>1.4</p></td>
 </tr>
 </tbody>
 </table>
 <p>There are a number of ways to install the Cyclus core:</p>
 <ul class="simple">
-<li>To install from source code, see the <a class="reference external" href="http://github.com/cyclus/cyclus">Cyclus Core repository</a></li>
-<li>To install from a binary distribution, see the instructions for
-<a class="reference external" href="DEPENDENCIES.rst">Installing Cyclus from Binaries</a></li>
+<li><p>To install from source code, see the <a class="reference external" href="http://github.com/cyclus/cyclus">Cyclus Core repository</a></p></li>
+<li><p>To install from a binary distribution, see the instructions for
+<a class="reference external" href="DEPENDENCIES.rst">Installing Cyclus from Binaries</a></p></li>
 </ul>
-</div>
-<div class="section" id="installation">
-<h2><a class="toc-backref" href="#id3">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="installation">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Installation</a><a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
 <p>Before going further with the installation procedure, be sure you have installed
 <a class="reference external" href="http://github.com/cyclus/cyclus">Cyclus</a>.</p>
-<div class="section" id="default-installation">
-<h3><a class="toc-backref" href="#id4">Default Installation</a><a class="headerlink" href="#default-installation" title="Permalink to this headline">¶</a></h3>
+<section id="default-installation">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Default Installation</a><a class="headerlink" href="#default-installation" title="Link to this heading">¶</a></h3>
 <p>Run the install script:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>python install.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>install.py
 </pre></div>
 </div>
 <p>If you successfully followed the instructions above, then the Cycamore library
-has been generated and placed in <code class="docutils literal"><span class="pre">.local/</span></code> in your home directory.</p>
-</div>
-<div class="section" id="custom-cycamore-installation">
-<h3><a class="toc-backref" href="#id5">Custom Cycamore Installation</a><a class="headerlink" href="#custom-cycamore-installation" title="Permalink to this headline">¶</a></h3>
+has been generated and placed in <code class="docutils literal notranslate"><span class="pre">.local/</span></code> in your home directory.</p>
+</section>
+<section id="custom-cycamore-installation">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Custom Cycamore Installation</a><a class="headerlink" href="#custom-cycamore-installation" title="Link to this heading">¶</a></h3>
 <p>The installation using the install script can be customized using the following
 flag:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><cite>-h</cite>, <cite>–help</cite></td>
-<td>show this help message and exit</td>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><cite>-h</cite>, <cite>–help</cite></p></td>
+<td><p>show this help message and exit</p></td>
 </tr>
-<tr class="row-even"><td><cite>–build_dir BUILD_DIR</cite></td>
-<td>where to place the build directory</td>
+<tr class="row-even"><td><p><cite>–build_dir BUILD_DIR</cite></p></td>
+<td><p>where to place the build directory</p></td>
 </tr>
-<tr class="row-odd"><td><cite>–uninstall</cite></td>
-<td>uninstall</td>
+<tr class="row-odd"><td><p><cite>–uninstall</cite></p></td>
+<td><p>uninstall</p></td>
 </tr>
-<tr class="row-even"><td><cite>–no-update</cite></td>
-<td>do not update the hash in version.cc</td>
+<tr class="row-even"><td><p><cite>–no-update</cite></p></td>
+<td><p>do not update the hash in version.cc</p></td>
 </tr>
-<tr class="row-odd"><td><cite>–clean-build</cite></td>
-<td>attempt to remove the build directory before building</td>
+<tr class="row-odd"><td><p><cite>–clean-build</cite></p></td>
+<td><p>attempt to remove the build directory before building</p></td>
 </tr>
-<tr class="row-even"><td><cite>-j THREADS</cite>, <cite>–threads THREADS</cite></td>
-<td>the number of threads to use in the make step</td>
+<tr class="row-even"><td><p><cite>-j THREADS</cite>, <cite>–threads THREADS</cite></p></td>
+<td><p>the number of threads to use in the make step</p></td>
 </tr>
-<tr class="row-odd"><td><cite>–prefix PREFIX</cite></td>
-<td>the relative path to the installation directory</td>
+<tr class="row-odd"><td><p><cite>–prefix PREFIX</cite></p></td>
+<td><p>the relative path to the installation directory</p></td>
 </tr>
-<tr class="row-even"><td><cite>–config-only</cite></td>
-<td>only configure the package, do not build or install</td>
+<tr class="row-even"><td><p><cite>–config-only</cite></p></td>
+<td><p>only configure the package, do not build or install</p></td>
 </tr>
-<tr class="row-odd"><td><cite>–build-only</cite></td>
-<td>only build the package, do not install</td>
+<tr class="row-odd"><td><p><cite>–build-only</cite></p></td>
+<td><p>only build the package, do not install</p></td>
 </tr>
-<tr class="row-even"><td><cite>–test</cite></td>
-<td>run tests after building</td>
+<tr class="row-even"><td><p><cite>–test</cite></p></td>
+<td><p>run tests after building</p></td>
 </tr>
-<tr class="row-odd"><td><cite>–allow-milps</cite></td>
-<td>Allows mixed integer linear programs by default</td>
+<tr class="row-odd"><td><p><cite>–allow-milps</cite></p></td>
+<td><p>Allows mixed integer linear programs by default</p></td>
 </tr>
-<tr class="row-even"><td><cite>–dont-allow-milps</cite></td>
-<td>Don’t Allows mixed integer linear programs by default</td>
+<tr class="row-even"><td><p><cite>–dont-allow-milps</cite></p></td>
+<td><p>Don’t Allows mixed integer linear programs by default</p></td>
 </tr>
-<tr class="row-odd"><td><cite>–deps-root DEPS_ROOT</cite>, <cite>–deps_root DEPS_ROOT</cite></td>
-<td>the path to the directory containing all dependencies</td>
+<tr class="row-odd"><td><p><cite>–deps-root DEPS_ROOT</cite>, <cite>–deps_root DEPS_ROOT</cite></p></td>
+<td><p>the path to the directory containing all dependencies</p></td>
 </tr>
-<tr class="row-even"><td><cite>–coin-root COIN_ROOT</cite>, <cite>–coin_root COIN_ROOT</cite></td>
-<td>the relative path to the Coin-OR libraries directory</td>
+<tr class="row-even"><td><p><cite>–coin-root COIN_ROOT</cite>, <cite>–coin_root COIN_ROOT</cite></p></td>
+<td><p>the relative path to the Coin-OR libraries directory</p></td>
 </tr>
-<tr class="row-odd"><td><cite>–boost_root BOOST_ROOT</cite></td>
-<td>the relative path to the Boost libraries directory</td>
+<tr class="row-odd"><td><p><cite>–boost_root BOOST_ROOT</cite></p></td>
+<td><p>the relative path to the Boost libraries directory</p></td>
 </tr>
-<tr class="row-even"><td><cite>–hdf5_root HDF5_ROOT</cite></td>
-<td>the path to the HDF5 libraries directory</td>
+<tr class="row-even"><td><p><cite>–hdf5_root HDF5_ROOT</cite></p></td>
+<td><p>the path to the HDF5 libraries directory</p></td>
 </tr>
-<tr class="row-odd"><td><cite>–cyclus-root CYCLUS_ROOT</cite>, <cite>–cyclus_root CYCLUS_ROOT</cite></td>
-<td>the relative path to Cyclus installation directory</td>
+<tr class="row-odd"><td><p><cite>–cyclus-root CYCLUS_ROOT</cite>, <cite>–cyclus_root CYCLUS_ROOT</cite></p></td>
+<td><p>the relative path to Cyclus installation directory</p></td>
 </tr>
-<tr class="row-even"><td><cite>–cmake_prefix_path CMAKE_PREFIX_PATH</cite></td>
-<td>the cmake prefix path for use with FIND_PACKAGE, FIND_PATH, FIND_PROGRAM, or FIND_LIBRARY macros</td>
+<tr class="row-even"><td><p><cite>–cmake_prefix_path CMAKE_PREFIX_PATH</cite></p></td>
+<td><p>the cmake prefix path for use with FIND_PACKAGE, FIND_PATH, FIND_PROGRAM, or FIND_LIBRARY macros</p></td>
 </tr>
-<tr class="row-odd"><td><cite>–build-type BUILD_TYPE</cite>, <cite>–build_type BUILD_TYPE</cite></td>
-<td>the CMAKE_BUILD_TYPE</td>
+<tr class="row-odd"><td><p><cite>–build-type BUILD_TYPE</cite>, <cite>–build_type BUILD_TYPE</cite></p></td>
+<td><p>the CMAKE_BUILD_TYPE</p></td>
 </tr>
-<tr class="row-even"><td><cite>-D VAR</cite></td>
-<td>Set enviornment variable(s).</td>
+<tr class="row-even"><td><p><cite>-D VAR</cite></p></td>
+<td><p>Set enviornment variable(s).</p></td>
 </tr>
 </tbody>
 </table>
 <p>For example, if you have installed coin-Cbc from source or otherwise have it
 installed in a non-standard location, you should make use of the coinRoot
 installation flag. The otherwise identical process would look like:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>.../cycamore$  python install.py --coin_root<span class="o">=</span>path/to/coin
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.../cycamore$<span class="w">  </span>python<span class="w"> </span>install.py<span class="w"> </span>--coin_root<span class="o">=</span>path/to/coin
 </pre></div>
 </div>
-</div>
-<div class="section" id="cmake-cycamore-installation">
-<h3><a class="toc-backref" href="#id6">CMake Cycamore Installation</a><a class="headerlink" href="#cmake-cycamore-installation" title="Permalink to this headline">¶</a></h3>
-<p>If you are <code class="docutils literal"><span class="pre">CMake</span></code> aficionado you can also install Cycamore without using the
-install.py python script and use <code class="docutils literal"><span class="pre">cmake</span></code> directly, which should look like:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mkdir bld
-<span class="nb">cd</span> build
-cmake .. -DCMAKE_INSTALL_PREFIX<span class="o">=</span>~/.local/
+</section>
+<section id="cmake-cycamore-installation">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">CMake Cycamore Installation</a><a class="headerlink" href="#cmake-cycamore-installation" title="Link to this heading">¶</a></h3>
+<p>If you are <code class="docutils literal notranslate"><span class="pre">CMake</span></code> aficionado you can also install Cycamore without using the
+install.py python script and use <code class="docutils literal notranslate"><span class="pre">cmake</span></code> directly, which should look like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>bld
+<span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>~/.local/
 make
-make install
+make<span class="w"> </span>install
 </pre></div>
 </div>
 <p>You can customize your cmake installation using the proper cmake flag.  All
-cmake variables can be listed using: <code class="docutils literal"><span class="pre">cmake</span> <span class="pre">-LAH</span></code>.  The main variables used are:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">COIN_ROOT_DIR</span></code></td>
-<td>set Coin-OT library directory</td>
+cmake variables can be listed using: <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-LAH</span></code>.  The main variables used are:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">COIN_ROOT_DIR</span></code></p></td>
+<td><p>set Coin-OT library directory</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">BOOST_ROOT</span></code></td>
-<td>set Boost liraries directory</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BOOST_ROOT</span></code></p></td>
+<td><p>set Boost liraries directory</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">HDF5_ROOT</span></code></td>
-<td>set HDF5 root directory</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">HDF5_ROOT</span></code></p></td>
+<td><p>set HDF5 root directory</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">HDF5_LIBRARIES</span></code></td>
-<td>set HDF5 libraries path</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">HDF5_LIBRARIES</span></code></p></td>
+<td><p>set HDF5 libraries path</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">HDF5_LIBRARY_DIRS</span></code></td>
-<td>set HDF5 library directory</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">HDF5_LIBRARY_DIRS</span></code></p></td>
+<td><p>set HDF5 library directory</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">HDF5_INCLUDE_DIRS</span></code></td>
-<td>set HDF5 include directory</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">HDF5_INCLUDE_DIRS</span></code></p></td>
+<td><p>set HDF5 include directory</p></td>
 </tr>
 </tbody>
 </table>
-<p>All variables can be set using <code class="docutils literal"><span class="pre">-DMY_VARIABLE=MY_VARIABLES_VALUE</span></code>.</p>
-</div>
-</div>
-<div class="section" id="running-tests">
-<h2><a class="toc-backref" href="#id7">Running Tests</a><a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h2>
+<p>All variables can be set using <code class="docutils literal notranslate"><span class="pre">-DMY_VARIABLE=MY_VARIABLES_VALUE</span></code>.</p>
+</section>
+</section>
+<section id="running-tests">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Running Tests</a><a class="headerlink" href="#running-tests" title="Link to this heading">¶</a></h2>
 <p>Installing Cycamore will also install a test driver (i.e., an executable of all of
 our tests). We strongly recommend after a fresh install of Cycamore, or after
 any modification on the source code, to rerun those tests in order to insure the
 proper functioning of Cycamore. You can run the tests yourself via:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cycamore_unit_tests
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cycamore_unit_tests
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Cycamore Installation Guide</a><ul>
@@ -305,68 +282,16 @@ proper functioning of Cycamore. You can run the tests yourself via:</p>
 </ul>
 
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -400,14 +325,15 @@ proper functioning of Cycamore. You can run the tests yourself via:</p>
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
- 
+
+        <li class="nav-item nav-item-this"><a href="">Cycamore Installation Guide</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

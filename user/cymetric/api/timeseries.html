@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../../../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>cymetric.timeseries - Timeseries &#8212; Home</title>
-    <link rel="stylesheet" href="../../../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../../../_static/jquery.cookie.js"></script>
+        <script src="../../../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../../../_static/cloud.base.js"></script>
+        <script src="../../../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../../../_static/cloud.js"></script>
+        <script src="../../../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../../../_static/big_c.ico"/>
+    <link rel="icon" href="../../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Understanding the Database" href="../../dbdoc.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -87,7 +75,8 @@ if(ga_enabled){
 
           <li class="nav-item nav-item-1"><a href="../../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" >Cymetric</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Cymetric API</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Cymetric API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.timeseries</span></code> - Timeseries</a></li> 
       </ul>
     </div>
     </div>
@@ -98,251 +87,178 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-cymetric.timeseries">
-<span id="cymetric-timeseries-timeseries"></span><span id="cym-timeseries"></span><h1><a class="reference internal" href="#module-cymetric.timeseries" title="cymetric.timeseries"><code class="xref py py-mod docutils literal"><span class="pre">cymetric.timeseries</span></code></a> - Timeseries<a class="headerlink" href="#module-cymetric.timeseries" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="cymetric.timeseries.get_deployment">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">get_deployment</code><span class="sig-paren">(</span><em>evaler</em>, <em>facilities=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.get_deployment" title="Permalink to this definition">¶</a></dt>
+  <section id="module-cymetric.timeseries">
+<span id="cymetric-timeseries-timeseries"></span><span id="cym-timeseries"></span><h1><a class="reference internal" href="#module-cymetric.timeseries" title="cymetric.timeseries"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.timeseries</span></code></a> - Timeseries<a class="headerlink" href="#module-cymetric.timeseries" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.timeseries.get_deployment">
+<span class="sig-prename descclassname"><span class="pre">cymetric.timeseries.</span></span><span class="sig-name descname"><span class="pre">get_deployment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.get_deployment" title="Link to this definition">¶</a></dt>
 <dd><p>Get a simple time series with deployment schedule of the selected facilities.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
-<p class="last"><strong>facilities</strong> :  of the facility</p>
-</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>evaler</strong> : evaler</p>
+<p><strong>facilities</strong> :  of the facility</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="cymetric.timeseries.get_power">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">get_power</code><span class="sig-paren">(</span><em>evaler</em>, <em>facilities=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.get_power" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.timeseries.get_power">
+<span class="sig-prename descclassname"><span class="pre">cymetric.timeseries.</span></span><span class="sig-name descname"><span class="pre">get_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.get_power" title="Link to this definition">¶</a></dt>
 <dd><p>Shape the reduced Power Data Frame into a simple time serie. Applying
 facilities selection when required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
-<p class="last"><strong>facilities</strong> :  of the facility</p>
-</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>evaler</strong> : evaler</p>
+<p><strong>facilities</strong> :  of the facility</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="cymetric.timeseries.get_retirement">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">get_retirement</code><span class="sig-paren">(</span><em>evaler</em>, <em>facilities=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.get_retirement" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.timeseries.get_retirement">
+<span class="sig-prename descclassname"><span class="pre">cymetric.timeseries.</span></span><span class="sig-name descname"><span class="pre">get_retirement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.get_retirement" title="Link to this definition">¶</a></dt>
 <dd><p>Get a simple time series with retirement schedule of the selected facilities.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
-<p class="last"><strong>facilities</strong> :  of the facility</p>
-</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>evaler</strong> : evaler</p>
+<p><strong>facilities</strong> :  of the facility</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="cymetric.timeseries.inventories">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">inventories</code><span class="sig-paren">(</span><em>evaler</em>, <em>facilities=()</em>, <em>nucs=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.inventories" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.timeseries.inventories">
+<span class="sig-prename descclassname"><span class="pre">cymetric.timeseries.</span></span><span class="sig-name descname"><span class="pre">inventories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nucs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.inventories" title="Link to this definition">¶</a></dt>
 <dd><p>Shape the reduced inventory Data Frame into a simple time serie. Applying
 nuclides/facilities selection when required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>evaler</strong> : evaler</p>
 <p><strong>facilities</strong> :  of the facility</p>
-<p class="last"><strong>nucs</strong> :  of nuclide to select.</p>
-</td>
-</tr>
-</tbody>
-</table>
+<p><strong>nucs</strong> :  of nuclide to select.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="cymetric.timeseries.inventories_activity">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">inventories_activity</code><span class="sig-paren">(</span><em>evaler</em>, <em>facilities=()</em>, <em>nucs=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.inventories_activity" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.timeseries.inventories_activity">
+<span class="sig-prename descclassname"><span class="pre">cymetric.timeseries.</span></span><span class="sig-name descname"><span class="pre">inventories_activity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nucs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.inventories_activity" title="Link to this definition">¶</a></dt>
 <dd><p>Get a simple time series of the decay heat of the inventory in the selcted
 facilities. Applying nuclides selection when required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>evaler</strong> : evaler</p>
 <p><strong>facilities</strong> :  of the facility</p>
-<p class="last"><strong>nucs</strong> :  of nuclide to select.</p>
-</td>
-</tr>
-</tbody>
-</table>
+<p><strong>nucs</strong> :  of nuclide to select.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="cymetric.timeseries.inventories_decayheat">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">inventories_decayheat</code><span class="sig-paren">(</span><em>evaler</em>, <em>facilities=()</em>, <em>nucs=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.inventories_decayheat" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.timeseries.inventories_decayheat">
+<span class="sig-prename descclassname"><span class="pre">cymetric.timeseries.</span></span><span class="sig-name descname"><span class="pre">inventories_decayheat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nucs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.inventories_decayheat" title="Link to this definition">¶</a></dt>
 <dd><p>Get a simple time series of the decay heat of the inventory in the selcted
 facilities. Applying nuclides selection when required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>evaler</strong> : evaler</p>
 <p><strong>facilities</strong> :  of the facility</p>
-<p class="last"><strong>nucs</strong> :  of nuclide to select.</p>
-</td>
-</tr>
-</tbody>
-</table>
+<p><strong>nucs</strong> :  of nuclide to select.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="cymetric.timeseries.transactions">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">transactions</code><span class="sig-paren">(</span><em>evaler</em>, <em>senders=()</em>, <em>receivers=()</em>, <em>commodities=()</em>, <em>nucs=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.transactions" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.timeseries.transactions">
+<span class="sig-prename descclassname"><span class="pre">cymetric.timeseries.</span></span><span class="sig-name descname"><span class="pre">transactions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">senders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receivers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commodities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nucs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.transactions" title="Link to this definition">¶</a></dt>
 <dd><p>Shape the reduced transation Data Frame into a simple time serie. Applying nuclides selection when required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>evaler</strong> : evaler</p>
 <p><strong>senders</strong> :  of the sending facility</p>
 <p><strong>receivers</strong> :  of the receiving facility</p>
 <p><strong>commodities</strong> :  of the commodity exchanged</p>
-<p class="last"><strong>nucs</strong> :  of nuclide to select.</p>
-</td>
-</tr>
-</tbody>
-</table>
+<p><strong>nucs</strong> :  of nuclide to select.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="cymetric.timeseries.transactions_activity">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">transactions_activity</code><span class="sig-paren">(</span><em>evaler</em>, <em>senders=()</em>, <em>receivers=()</em>, <em>commodities=()</em>, <em>nucs=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.transactions_activity" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.timeseries.transactions_activity">
+<span class="sig-prename descclassname"><span class="pre">cymetric.timeseries.</span></span><span class="sig-name descname"><span class="pre">transactions_activity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">senders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receivers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commodities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nucs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.transactions_activity" title="Link to this definition">¶</a></dt>
 <dd><p>Shape the reduced transation Data Frame into a simple time serie. Applying nuclides selection when required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>evaler</strong> : evaler</p>
 <p><strong>senders</strong> :  of the sending facility</p>
 <p><strong>receivers</strong> :  of the receiving facility</p>
 <p><strong>commodities</strong> :  of the commodity exchanged</p>
-<p class="last"><strong>nucs</strong> :  of nuclide to select.</p>
-</td>
-</tr>
-</tbody>
-</table>
+<p><strong>nucs</strong> :  of nuclide to select.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="cymetric.timeseries.transactions_decayheat">
-<code class="descclassname">cymetric.timeseries.</code><code class="descname">transactions_decayheat</code><span class="sig-paren">(</span><em>evaler</em>, <em>senders=()</em>, <em>receivers=()</em>, <em>commodities=()</em>, <em>nucs=()</em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.transactions_decayheat" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.timeseries.transactions_decayheat">
+<span class="sig-prename descclassname"><span class="pre">cymetric.timeseries.</span></span><span class="sig-name descname"><span class="pre">transactions_decayheat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">senders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receivers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commodities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nucs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.timeseries.transactions_decayheat" title="Link to this definition">¶</a></dt>
 <dd><p>Shape the reduced transation Data Frame into a simple time serie. Applying nuclides selection when required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>evaler</strong> : evaler</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>evaler</strong> : evaler</p>
 <p><strong>senders</strong> :  of the sending facility</p>
 <p><strong>receivers</strong> :  of the receiving facility</p>
 <p><strong>commodities</strong> :  of the commodity exchanged</p>
-<p class="last"><strong>nucs</strong> :  of nuclide to select.</p>
-</td>
-</tr>
-</tbody>
-</table>
+<p><strong>nucs</strong> :  of nuclide to select.</p>
+</dd>
+</dl>
 </dd></dl>
 
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../../../index.html" title="index">
-          <img class="logo" src="../../../_static/big_c.png" alt="Logo"/>
-        </a></p>
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.timeseries</span></code> - Timeseries</a><ul>
+<li><a class="reference internal" href="#cymetric.timeseries.get_deployment"><code class="docutils literal notranslate"><span class="pre">get_deployment()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.timeseries.get_power"><code class="docutils literal notranslate"><span class="pre">get_power()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.timeseries.get_retirement"><code class="docutils literal notranslate"><span class="pre">get_retirement()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.timeseries.inventories"><code class="docutils literal notranslate"><span class="pre">inventories()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.timeseries.inventories_activity"><code class="docutils literal notranslate"><span class="pre">inventories_activity()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.timeseries.inventories_decayheat"><code class="docutils literal notranslate"><span class="pre">inventories_decayheat()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.timeseries.transactions"><code class="docutils literal notranslate"><span class="pre">transactions()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.timeseries.transactions_activity"><code class="docutils literal notranslate"><span class="pre">transactions_activity()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.timeseries.transactions_decayheat"><code class="docutils literal notranslate"><span class="pre">transactions_decayheat()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div class="sphinxprev">
     <h4>Previous page</h4>
     <p class="topless"><a href="tools.html"
-                          title="Previous page">&larr; <code class="docutils literal"><span class="pre">cymetric.tools</span></code> - Tools</a></p>
+                          title="Previous page">&larr; <code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.tools</span></code> - Tools</a></p>
   </div>
   <div class="sphinxnext">
     <h4>Next page</h4>
     <p class="topless"><a href="../../dbdoc.html"
                           title="Next page">&rarr; Understanding the Database</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../../../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../../../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../../../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../../../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../../../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../../../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../../../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -385,14 +301,15 @@ facilities. Applying nuclides selection when required.</p>
 
           <li class="nav-item nav-item-1"><a href="../../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" >Cymetric</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="index.html" >Cymetric API</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="index.html" >Cymetric API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.timeseries</span></code> - Timeseries</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

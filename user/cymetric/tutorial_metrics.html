@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Writing Your Own Metrics Tutorial &#8212; Home</title>
-    <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+        <script src="../../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+        <script src="../../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../../_static/cloud.js"></script>
+        <script src="../../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../../_static/big_c.ico"/>
+    <link rel="icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Cymetric API" href="api/index.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -86,7 +74,8 @@ if(ga_enabled){
     <li><a href="../../index.html">Home</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Cymetric</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Cymetric</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Writing Your Own Metrics Tutorial</a></li> 
       </ul>
     </div>
     </div>
@@ -97,21 +86,21 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="writing-your-own-metrics-tutorial">
-<span id="cym-tutorial-metrics"></span><h1>Writing Your Own Metrics Tutorial<a class="headerlink" href="#writing-your-own-metrics-tutorial" title="Permalink to this headline">¶</a></h1>
+  <section id="writing-your-own-metrics-tutorial">
+<span id="cym-tutorial-metrics"></span><h1>Writing Your Own Metrics Tutorial<a class="headerlink" href="#writing-your-own-metrics-tutorial" title="Link to this heading">¶</a></h1>
 <p>This tutorial will describe how to write your own metrics for your own
 custom analyses. This takes place within Python, so you may want to check
 out the Cymetric Python tutorial first.</p>
-<div class="section" id="writing-metrics">
-<h2>Writing Metrics<a class="headerlink" href="#writing-metrics" title="Permalink to this headline">¶</a></h2>
+<section id="writing-metrics">
+<h2>Writing Metrics<a class="headerlink" href="#writing-metrics" title="Link to this heading">¶</a></h2>
 <p>Naturally, you do not want to be limited to the metrics that come predefined
 by cymetric! You have
 your own data and your own analysis that you want to perform. It is easy to
 write metrics and fully hook into the cymetric tools.</p>
 <p>A metric is a function that accepts a pandas Series, returns a
-pandas DataFrame, and is decorated by the <code class="docutils literal"><span class="pre">&#64;metric()</span></code> decorator found in
+pandas DataFrame, and is decorated by the <code class="docutils literal notranslate"><span class="pre">&#64;metric()</span></code> decorator found in
 cymetric. The general format is as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
 <span class="kn">import</span> <span class="nn">cymetic</span> <span class="k">as</span> <span class="nn">cym</span>
 
 <span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
@@ -130,31 +119,31 @@ cymetric. The general format is as follows:</p>
 </pre></div>
 </div>
 <p>This metric may be evaulated with:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">cym</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;MyMetric&#39;</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cym</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;MyMetric&#39;</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>In the above, the <code class="docutils literal"><span class="pre">&#64;metric()</span></code> decorator takes three arguments. The first is
-the <code class="docutils literal"><span class="pre">name</span></code> of the metric (e.g., <code class="docutils literal"><span class="pre">'MyMetric'</span></code>). Note that this can be
+<p>In the above, the <code class="docutils literal notranslate"><span class="pre">&#64;metric()</span></code> decorator takes three arguments. The first is
+the <code class="docutils literal notranslate"><span class="pre">name</span></code> of the metric (e.g., <code class="docutils literal notranslate"><span class="pre">'MyMetric'</span></code>). Note that this can be
 distinct from the function name.</p>
-<p>The second is <code class="docutils literal"><span class="pre">depends</span></code>, which represents the metric dependencies.  This is a
-list of 3-tuples that represents which <code class="docutils literal"><span class="pre">series</span></code> to pull out of the database
-and pass into the metric function (e.g., <code class="docutils literal"><span class="pre">my_metric()</span></code>).  The entries in the
+<p>The second is <code class="docutils literal notranslate"><span class="pre">depends</span></code>, which represents the metric dependencies.  This is a
+list of 3-tuples that represents which <code class="docutils literal notranslate"><span class="pre">series</span></code> to pull out of the database
+and pass into the metric function (e.g., <code class="docutils literal notranslate"><span class="pre">my_metric()</span></code>).  The entries in the
 dependency list have three components. The first element is the table name as a
-string (e.g., <code class="docutils literal"><span class="pre">'Table1'</span></code>). The second element is a tuple of column names that
-become the index of the series (e.g., <code class="docutils literal"><span class="pre">('Col1',</span> <span class="pre">'Col2')</span></code>). Finally, the last
+string (e.g., <code class="docutils literal notranslate"><span class="pre">'Table1'</span></code>). The second element is a tuple of column names that
+become the index of the series (e.g., <code class="docutils literal notranslate"><span class="pre">('Col1',</span> <span class="pre">'Col2')</span></code>). Finally, the last
 element is the column of the table that becomes the values of the series (e.g.,
-<code class="docutils literal"><span class="pre">'Value1'</span></code>).  A metric may have as many dependencies as required. Circular
+<code class="docutils literal notranslate"><span class="pre">'Value1'</span></code>).  A metric may have as many dependencies as required. Circular
 dependencies are not allowed!</p>
-<p>Lastly, the <code class="docutils literal"><span class="pre">&#64;metric()</span></code> decorator takes a <code class="docutils literal"><span class="pre">schema</span></code> argument. The schema is
+<p>Lastly, the <code class="docutils literal notranslate"><span class="pre">&#64;metric()</span></code> decorator takes a <code class="docutils literal notranslate"><span class="pre">schema</span></code> argument. The schema is
 defined by a list of 2-tuples. The first entry is the column name and the
 second is the <span style="font-variant:small-caps;">Cyclus</span> database type. This represents the structure of the
 metric table on disk and in <span style="font-variant:small-caps;">Cyclus</span>. Thus, it is highly tied to the <span style="font-variant:small-caps;">Cyclus</span>
 <a class="reference external" href="http://fuelcycle.org/arche/dbtypes.html">type system</a>.
 The DataFrame that is returned should have column names that match
-the schema provided. It is generally a good idea to include a <code class="docutils literal"><span class="pre">SimId</span></code> column.</p>
+the schema provided. It is generally a good idea to include a <code class="docutils literal notranslate"><span class="pre">SimId</span></code> column.</p>
 <p>For a more concrete example, if you wanted to square the mass of materials as a
-metric, you could write a <code class="docutils literal"><span class="pre">MaterialsSquared</span></code> metric.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+metric, you could write a <code class="docutils literal notranslate"><span class="pre">MaterialsSquared</span></code> metric.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
 <span class="kn">import</span> <span class="nn">cymetic</span> <span class="k">as</span> <span class="nn">cym</span>
@@ -177,41 +166,39 @@ metric, you could write a <code class="docutils literal"><span class="pre">Mater
 </pre></div>
 </div>
 <p>This metric may be evaulated with:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">cym</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;MaterialsSquared&#39;</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cym</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;MaterialsSquared&#39;</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Note that to write this metric, no knowledge of the database or any filters is
 assumed. Cymetric handles all of these details for you!</p>
 <p>If the pandas functionality seems mysterious to you, it may be beneficial to
 review a quick tutorial, <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/10min.html">10 Minutes to pandas</a>.</p>
-</div>
-<div class="section" id="making-metrics-from-custom-database-tables">
-<h2>Making Metrics from Custom Database Tables<a class="headerlink" href="#making-metrics-from-custom-database-tables" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="making-metrics-from-custom-database-tables">
+<h2>Making Metrics from Custom Database Tables<a class="headerlink" href="#making-metrics-from-custom-database-tables" title="Link to this heading">¶</a></h2>
 <p>The above shows how easy it is to incorporate metrics that are computed via
 cymetric. Moreover, <span style="font-variant:small-caps;">Cyclus</span> databases can be comprised of both <a class="reference external" href="http://fuelcycle.org/user/dbdoc.html#table-descriptions">default tables</a> and  <a class="reference external" href="http://fuelcycle.org/arche/custom_tables.html">custom tables</a>. Cymetric also helps you
 bring in data that might come as a custom table in a <span style="font-variant:small-caps;">Cyclus</span> database.  All you
-need to do is use the <code class="docutils literal"><span class="pre">root_metric()</span></code> function somewhere. This simply accepts
+need to do is use the <code class="docutils literal notranslate"><span class="pre">root_metric()</span></code> function somewhere. This simply accepts
 the name of the table. For example,</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">my_root_table</span> <span class="o">=</span> <span class="n">cym</span><span class="o">.</span><span class="n">root_metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;MyRootTable&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_root_table</span> <span class="o">=</span> <span class="n">cym</span><span class="o">.</span><span class="n">root_metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;MyRootTable&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This metric may be evaulated with:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">cym</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;MyRootTable&#39;</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cym</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;MyRootTable&#39;</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>And that is all!</p>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../../index.html" title="index">
-          <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Writing Your Own Metrics Tutorial</a><ul>
@@ -232,68 +219,16 @@ the name of the table. For example,</p>
     <p class="topless"><a href="api/index.html"
                           title="Next page">&rarr; Cymetric API</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -335,14 +270,15 @@ the name of the table. For example,</p>
     <li><a href="../../index.html">Home</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" >Cymetric</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="index.html" >Cymetric</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Writing Your Own Metrics Tutorial</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

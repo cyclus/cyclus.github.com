@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>CEP 20 - Time Step Execution Stack &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="CEP 21 - Agent Identification and Discovery" href="cep21.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -85,7 +73,8 @@ if(ga_enabled){
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 20 - Time Step Execution Stack</a></li> 
       </ul>
     </div>
     </div>
@@ -96,30 +85,33 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="cep-20-time-step-execution-stack">
-<h1>CEP 20 - Time Step Execution Stack<a class="headerlink" href="#cep-20-time-step-execution-stack" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">CEP:</th><td class="field-body">20</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Title:</th><td class="field-body">Time Step Execution Stack</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Last-Modified:</th><td class="field-body">2014-02-24</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">Matthew Gidden</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Status:</th><td class="field-body">Accepted</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Created:</th><td class="field-body">2014-02-19</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="abstract">
-<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+  <section id="cep-20-time-step-execution-stack">
+<h1>CEP 20 - Time Step Execution Stack<a class="headerlink" href="#cep-20-time-step-execution-stack" title="Link to this heading">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">CEP<span class="colon">:</span></dt>
+<dd class="field-odd"><p>20</p>
+</dd>
+<dt class="field-even">Title<span class="colon">:</span></dt>
+<dd class="field-even"><p>Time Step Execution Stack</p>
+</dd>
+<dt class="field-odd">Last-Modified<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2014-02-24</p>
+</dd>
+<dt class="field-even">Author<span class="colon">:</span></dt>
+<dd class="field-even"><p>Matthew Gidden</p>
+</dd>
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Accepted</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Standards Track</p>
+</dd>
+<dt class="field-odd">Created<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2014-02-19</p>
+</dd>
+</dl>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading">¶</a></h2>
 <p>An update to the time step execution stack is proposed. A timestep will now
 progress through phases, including a building phase, a tick phase, a resource
 exchange phase, a tock phase, and a decommissioning phase. Phases are grouped in
@@ -127,14 +119,14 @@ two categories: kernel phases and agent phases. Kernel phases have required or
 guaranteed actions that occur during them, and include the build, exchange, and
 decommission phases. Agent phases include the Tick, Tock, and Decision phases, and allow
 agents to inspect simulation state and update their own state.</p>
-</div>
-<div class="section" id="motivation">
-<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading">¶</a></h2>
 <p>The current time step in <span style="font-variant:small-caps;">Cyclus</span> consists of the following stack:</p>
 <ul class="simple">
-<li>Tick</li>
-<li>Resource Exchange</li>
-<li>Tock</li>
+<li><p>Tick</p></li>
+<li><p>Resource Exchange</p></li>
+<li><p>Tock</p></li>
 </ul>
 <p>Until very recently, only Regions received ticks/tocks from the Timer
 class. They were then expected to pass the Tick/Tock “message” to their
@@ -158,10 +150,10 @@ decisions based on the state of the simulation. Therefore a user phase specifica
 for decision must occur after the tock phase. Note, this phase exists only for
 agents to make decisions based on that time step. Other actions should
 occur in the Tick and Tock phases.</p>
-</div>
-<div class="section" id="rationale">
-<h2>Rationale<a class="headerlink" href="#rationale" title="Permalink to this headline">¶</a></h2>
-<p>By Law’s definition <a class="reference internal" href="#law-1999-sma-554952" id="id1">[LK99]</a>, a <span style="font-variant:small-caps;">Cyclus</span> simulation is,
+</section>
+<section id="rationale">
+<h2>Rationale<a class="headerlink" href="#rationale" title="Link to this heading">¶</a></h2>
+<p>By Law’s definition <span id="id1">[<a class="reference internal" href="#id3" title="Averill M. Law and David M. Kelton. Simulation Modeling and Analysis. McGraw-Hill Higher Education, 3rd edition, 1999. ISBN 0070592926.">LK99</a>]</span>, a <span style="font-variant:small-caps;">Cyclus</span> simulation is,
 broadly, a dynamic, discrete-event simulation that uses a fixed-increment time
 advance mechanism. In general, fixed-increment time advance scenarios assume a
 time step (dt), and assume that all events that would happen during a time occur
@@ -171,8 +163,8 @@ that executes all events simultaneously that were supposed to have occurred in
 the time step.</p>
 <p>Two key types of events happen in a <span style="font-variant:small-caps;">Cyclus</span> simulation (at present):</p>
 <ul class="simple">
-<li>the exchange of resources</li>
-<li>agent entry into and exit from the simulation</li>
+<li><p>the exchange of resources</p></li>
+<li><p>agent entry into and exit from the simulation</p></li>
 </ul>
 <p>Simulation entities can have arbitrarily complex state which is dependent on the
 results of the exchange and the present status of agents in the
@@ -187,12 +179,12 @@ that exists in a given time step should be included in the resource exchange,
 or, equivalently, experience the entire time step execution stack</em>.</p>
 <p>This leads to the following ordering, or <em>phases</em>, of time step execution:</p>
 <ul class="simple">
-<li>agents enter simulation (Building Phase)</li>
-<li>agents respond to current simulation state (Tick Phase)</li>
-<li>resource exchange execution (Exchange Phase)</li>
-<li>agents respond to current simulation state (Tock Phase)</li>
-<li>agents react to simulation (Decision Phase)</li>
-<li>agents leave simulation (Decommissioning Phase)</li>
+<li><p>agents enter simulation (Building Phase)</p></li>
+<li><p>agents respond to current simulation state (Tick Phase)</p></li>
+<li><p>resource exchange execution (Exchange Phase)</p></li>
+<li><p>agents respond to current simulation state (Tock Phase)</p></li>
+<li><p>agents react to simulation (Decision Phase)</p></li>
+<li><p>agents leave simulation (Decommissioning Phase)</p></li>
 </ul>
 <p>The Building, Exchange, and Decommissioning phases each include critical,
 core-based events, and will be called <em>Kernel</em> phases. The Tick, Tock, and Decision
@@ -215,19 +207,19 @@ given time and taking its first action in the subsequent time step.</p>
 there is a final important invariant: <em>there is no guaranteed agent ordering of
 within-phase execution</em>. This invariant allows for:</p>
 <ul class="simple">
-<li>a more cognitively simple process</li>
-<li>paralellization</li>
+<li><p>a more cognitively simple process</p></li>
+<li><p>paralellization</p></li>
 </ul>
 <p>Any future addition of phases in the timestep execution stack neccessarily
 guarantee the three invariants described above.</p>
-</div>
-<div class="section" id="specification-implementation">
-<h2>Specification &amp; Implementation<a class="headerlink" href="#specification-implementation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="specification-implementation">
+<h2>Specification &amp; Implementation<a class="headerlink" href="#specification-implementation" title="Link to this heading">¶</a></h2>
 <p>Two primary concerns exist for changing the current state of <span style="font-variant:small-caps;">Cyclus</span> to
 incorporate this CEP:</p>
 <ul class="simple">
-<li>how to implement agent entry/exit as described</li>
-<li>what name to give to the response phases</li>
+<li><p>how to implement agent entry/exit as described</p></li>
+<li><p>what name to give to the response phases</p></li>
 </ul>
 <p>Currently, the response phases are called Tick and Tock. These names have been
 criticized for not being specific/informative about the expected actions agents
@@ -237,7 +229,7 @@ will/should take during the phases. I propose we instead use <em>PreExchange</em
 (or manager-managed) relationship agents have in <span style="font-variant:small-caps;">Cyclus</span>. Specifically, the
 entry and exit of agents should be managed by the agent’s manager. The following
 provides one possible specification.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">///</span> <span class="nd">@brief</span> <span class="n">execute</span> <span class="n">time</span> <span class="n">step</span> <span class="n">stack</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">///</span> <span class="nd">@brief</span> <span class="n">execute</span> <span class="n">time</span> <span class="n">step</span> <span class="n">stack</span>
 <span class="k">def</span> <span class="nf">Step</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
     <span class="n">time</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
@@ -271,43 +263,42 @@ within a phase is unordered, future simulation predictions would be unreliable
 be immutable <em>during</em> phases. This issue can be remedied by using staging data
 structures and merging the staging data structures into the lists after the
 completion of a phase.</p>
-</div>
-<div class="section" id="backwards-compatibility">
-<h2>Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="backwards-compatibility">
+<h2>Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Link to this heading">¶</a></h2>
 <p>The overall <span style="font-variant:small-caps;">Cyclus</span> implementation/framework will remain largely unchanged,
 with the exception of the core’s handling of agent entry/exit
 registration. <em>Cycamore</em> modules that deal with agent entry/exit will have to be
 redesigned to incorporate the new execution stack.</p>
-</div>
-<div class="section" id="document-history">
-<h2>Document History<a class="headerlink" href="#document-history" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="document-history">
+<h2>Document History<a class="headerlink" href="#document-history" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
-<li>Adding Decision Phase (April 2018) - Author: Robert Flanagan</li>
+<li><p>Adding Decision Phase (April 2018) - Author: Robert Flanagan</p></li>
 </ol>
 <p>This document is released under the CC-BY 3.0 license.</p>
-</div>
-<div class="section" id="references-and-footnotes">
-<h2>References and Footnotes<a class="headerlink" href="#references-and-footnotes" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="references-and-footnotes">
+<h2>References and Footnotes<a class="headerlink" href="#references-and-footnotes" title="Link to this heading">¶</a></h2>
 <p class="rubric">References</p>
-<p id="bibtex-bibliography-cep/cep20-0"><table class="docutils citation" frame="void" id="law-1999-sma-554952" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[LK99]</a></td><td>Averill&nbsp;M. Law and David&nbsp;M. Kelton. <em>Simulation Modeling and Analysis</em>. McGraw-Hill Higher Education, 3rd edition, 1999. ISBN 0070592926.</td></tr>
-</tbody>
-</table>
-</p>
+<div class="docutils container" id="id2">
+<div role="list" class="citation-list">
+<div class="citation" id="id3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">LK99</a><span class="fn-bracket">]</span></span>
+<p>Averill M. Law and David M. Kelton. <em>Simulation Modeling and Analysis</em>. McGraw-Hill Higher Education, 3rd edition, 1999. ISBN 0070592926.</p>
 </div>
 </div>
+</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">CEP 20 - Time Step Execution Stack</a><ul>
@@ -333,68 +324,16 @@ redesigned to incorporate the new execution stack.</p>
     <p class="topless"><a href="cep21.html"
                           title="Next page">&rarr; CEP 21 - Agent Identification and Discovery</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -435,14 +374,15 @@ redesigned to incorporate the new execution stack.</p>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 20 - Time Step Execution Stack</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

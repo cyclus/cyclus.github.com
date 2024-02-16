@@ -1,50 +1,40 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>CEP 18 - Dynamic Resource Exchange Procedure &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="CEP 19 - Cyclus Input Procedure Updates" href="cep19.html" />
@@ -64,8 +54,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -85,7 +74,8 @@ if(ga_enabled){
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 18 - Dynamic Resource Exchange Procedure</a></li> 
       </ul>
     </div>
     </div>
@@ -96,30 +86,33 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="cep-18-dynamic-resource-exchange-procedure">
-<h1>CEP 18 - Dynamic Resource Exchange Procedure<a class="headerlink" href="#cep-18-dynamic-resource-exchange-procedure" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">CEP:</th><td class="field-body">18</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Title:</th><td class="field-body">Dynamic Resource Exchange Procedure</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Last-Modified:</th><td class="field-body">2013-11-04</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">Matthew Gidden</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Status:</th><td class="field-body">Accepted</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Created:</th><td class="field-body">2013-09-02</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="abstract">
-<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+  <section id="cep-18-dynamic-resource-exchange-procedure">
+<h1>CEP 18 - Dynamic Resource Exchange Procedure<a class="headerlink" href="#cep-18-dynamic-resource-exchange-procedure" title="Link to this heading">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">CEP<span class="colon">:</span></dt>
+<dd class="field-odd"><p>18</p>
+</dd>
+<dt class="field-even">Title<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dynamic Resource Exchange Procedure</p>
+</dd>
+<dt class="field-odd">Last-Modified<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2013-11-04</p>
+</dd>
+<dt class="field-even">Author<span class="colon">:</span></dt>
+<dd class="field-even"><p>Matthew Gidden</p>
+</dd>
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Accepted</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Standards Track</p>
+</dd>
+<dt class="field-odd">Created<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2013-09-02</p>
+</dd>
+</dl>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading">¶</a></h2>
 <p>An updated procedure for determining dynamic resource exchanges is presented. It
 occurs nominally in four phases: a request for bids, a response to the request
 for bids, preference assignment, and resolution. The first three phases
@@ -127,12 +120,12 @@ encompass an information gathering procedure, providing generic information to
 any market exchange solution procedure. The final phase is modular in that any
 algorithm can be used to solve the exchange. This modular phase takes the place
 of the current implementation of MarketModels. The procedure is informed by
-agent-based supply chain modeling literature <a class="reference internal" href="#julka-agent-based-2002" id="id1">[JSK02]</a> with
+agent-based supply chain modeling literature <span id="id1">[<a class="reference internal" href="#id8" title="N. Julka, R. Srinivasan, and I. Karimi. Agent-based supply chain management-1: framework. Computers &amp; Chemical Engineering, 26(12):1755–1769, 2002. URL: http://www.sciencedirect.com/science/article/pii/S0098135402001503 (visited on 2013-01-14).">JSK02</a>]</span> with
 modifications as required for our nuclear-engineering domain specific
 information.</p>
-</div>
-<div class="section" id="motivation">
-<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading">¶</a></h2>
 <p>The current implementation of Markets in <span style="font-variant:small-caps;">Cyclus</span> includes a base MarketModel
 class which is intended to be derived from by concrete, dynamically loaded,
 user-defined classes. Markets are assigned specific commodities, i.e., there is
@@ -178,9 +171,9 @@ response mechanism for facilities to delineate between resources of a given
 commodity. The current implementation places this concern upon the market’s
 resolution algorithm, rather than on the facility via some communication
 mechanism, again muddying the concerns associated with the resource exchange.</p>
-</div>
-<div class="section" id="rationale">
-<h2>Rationale<a class="headerlink" href="#rationale" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="rationale">
+<h2>Rationale<a class="headerlink" href="#rationale" title="Link to this heading">¶</a></h2>
 <p>The proposed refactor addresses each of the issues provided in the previous
 section. The notion of market models is redefined, separating the collection of
 supply-demand information from the algorithm used to match suppliers with
@@ -194,12 +187,12 @@ algorithms determine the set of offers and requests to be matched; and the core
 sends out resolved transactions. Message passing to and from markets is
 addressed by the framework, providing facilities, institutions, and regions each
 with specific, defined agency.</p>
-<div class="section" id="supply-demand-framework">
-<h3>Supply-Demand Framework<a class="headerlink" href="#supply-demand-framework" title="Permalink to this headline">¶</a></h3>
+<section id="supply-demand-framework">
+<h3>Supply-Demand Framework<a class="headerlink" href="#supply-demand-framework" title="Link to this heading">¶</a></h3>
 <p>Supply-demand determination at any given time step occurs in nominally three
 steps, or <strong>phases</strong>, and the associated terminology is taken from previous
 supply chain agent-based modeling work
-<a class="reference internal" href="#julka-agent-based-2002" id="id2">[JSK02]</a>. Importantly, this information-gathering step is
+<span id="id2">[<a class="reference internal" href="#id8" title="N. Julka, R. Srinivasan, and I. Karimi. Agent-based supply chain management-1: framework. Computers &amp; Chemical Engineering, 26(12):1755–1769, 2002. URL: http://www.sciencedirect.com/science/article/pii/S0098135402001503 (visited on 2013-01-14).">JSK02</a>]</span>. Importantly, this information-gathering step is
 agnostic as to the actual matching algorithm used, it is concerned only with
 querying the current status of supply and demand and facility preference thereof
 in the simulation.</p>
@@ -221,17 +214,17 @@ material, including depleted uranium from enrichment or reprocessed uranium from
 separations. Accordingly, it could demand both commodities as long as it
 provides a corresponding constraint with respect to total consumption.</p>
 <p>At the completion of the RFB phase, the market exchange will have a set of
-consumption portfolios, <span class="math">\(P\)</span>, for each requester in the exchange, shown as
+consumption portfolios, <span class="math notranslate nohighlight">\(P\)</span>, for each requester in the exchange, shown as
 the orange box in Figure 1. Each portfolio consists of a set of requests,
-<span class="math">\(R\)</span>, a cardinal preferential ordering over the requests, <span class="math">\(\alpha_R\)</span>,
-and possibly a set of constraints over the requests, <span class="math">\(c_R\)</span>. A constraint
+<span class="math notranslate nohighlight">\(R\)</span>, a cardinal preferential ordering over the requests, <span class="math notranslate nohighlight">\(\alpha_R\)</span>,
+and possibly a set of constraints over the requests, <span class="math notranslate nohighlight">\(c_R\)</span>. A constraint
 can be associated with more than one request. Take the previous example of MOX
 and UOX for an LWR. Each is a separate request, but a constraint may be
 concerned with the combination of the two. Another example is a repository that
 may request many commodities, but has a radiotoxicity constraint over any
 commodities it receives for a given time step.</p>
-<p>A request consists of a quantity, <span class="math">\(q_r\)</span>, and a target isotopic vector,
-<span class="math">\(I_r\)</span>. Consumers are allowed to offer the null set of isotopics as their
+<p>A request consists of a quantity, <span class="math notranslate nohighlight">\(q_r\)</span>, and a target isotopic vector,
+<span class="math notranslate nohighlight">\(I_r\)</span>. Consumers are allowed to offer the null set of isotopics as their
 profile, effectively providing no information. In general, a requester may have
 more than one request (nodes in Figure 1) per commodity. A prime example is a
 reactor that chooses to requests fuel assemblies, of which they request many.</p>
@@ -304,8 +297,8 @@ isotopics, and an associated preference.</p>
 the levels of relational modeling available to a user or developer. Both types
 of agents or models in <span style="font-variant:small-caps;">Cyclus</span> can possibly be allowed to affect preferences
 during the PA phase. A slightly longer discussion is included below.</p>
-<div class="section" id="facility-agency">
-<h4>Facility Agency<a class="headerlink" href="#facility-agency" title="Permalink to this headline">¶</a></h4>
+<section id="facility-agency">
+<h4>Facility Agency<a class="headerlink" href="#facility-agency" title="Link to this heading">¶</a></h4>
 <p>Facilities in <span style="font-variant:small-caps;">Cyclus</span> are abstracted to either consumers or suppliers of
 commodities, and some may be both. Supplier agents are provided agency by being
 able to communicate to the market-resolution mechanism a variety of production
@@ -315,10 +308,10 @@ preferences among possible suppliers based on the supplier’s quality of
 product. Because this agency is encapsulated for each agent, it is possible to
 define strategies that can be attached or detached to the agents at
 run-time. Such strategies are an example of the Strategy design pattern
-<a class="reference internal" href="#vlissides-design-1995" id="id3">[VHJG95]</a>.</p>
-</div>
-<div class="section" id="institutional-agency">
-<h4>Institutional Agency<a class="headerlink" href="#institutional-agency" title="Permalink to this headline">¶</a></h4>
+<span id="id3">[<a class="reference internal" href="#id5" title="John Vlissides, R Helm, R Johnson, and E Gamma. Design patterns: elements of reusable object-oriented software. Reading: Addison-Wesley, 1995.">VHJG95</a>]</span>.</p>
+</section>
+<section id="institutional-agency">
+<h4>Institutional Agency<a class="headerlink" href="#institutional-agency" title="Link to this heading">¶</a></h4>
 <p>Institutions in <span style="font-variant:small-caps;">Cyclus</span> manage a set of facilities. Facility management is
 nominally split into two main categories: the commissioning and decommissioning
 of facilities and supply-demand association. The goal of including a notion of
@@ -342,9 +335,9 @@ decisions, part of the <strong>art</strong> of simulation. Accordingly, the stra
 affecting preferences is encapsulated within the full preference allocation
 phase in order to allow for further modularity of relational options between
 agents.</p>
-</div>
-<div class="section" id="regional-agency">
-<h4>Regional Agency<a class="headerlink" href="#regional-agency" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="regional-agency">
+<h4>Regional Agency<a class="headerlink" href="#regional-agency" title="Link to this heading">¶</a></h4>
 <p>Regions are provided agency by their ability to affect preferences between
 supplier-consumer facility pairs in the PA phase, much like institutions. The
 ability to perturb arc preferences between a given supplier and a given consumer
@@ -356,12 +349,11 @@ of it into a different region. Such constraints could be applied not only to
 bulk quantities of a commodity, but also to the quality of each commodity. Such
 a mechanism could be used to model interdiction of highly-enriched uranium
 transport, for example.</p>
-<div align="center" class="align-center"><img alt="../_images/cep-0018-2.svg" src="../_images/cep-0018-2.svg" /></div>
-<p><strong>Figure 4:</strong> Information Gathering Phase Order.</p>
-</div>
-</div>
-<div class="section" id="market-resolution">
-<h3>Market Resolution<a class="headerlink" href="#market-resolution" title="Permalink to this headline">¶</a></h3>
+<img alt="../_images/cep-0018-2.svg" class="align-center" src="../_images/cep-0018-2.svg" /><p><strong>Figure 4:</strong> Information Gathering Phase Order.</p>
+</section>
+</section>
+<section id="market-resolution">
+<h3>Market Resolution<a class="headerlink" href="#market-resolution" title="Link to this heading">¶</a></h3>
 <p>Upon completion of the information gathering step, all information regarding the
 exchange is known. Importantly, proposed resource qualities, constraining values
 based on the resource quality, and other data such as preferences and/or costs
@@ -376,36 +368,36 @@ the exchange executes the trades.</p>
 <p>It is important to note that a generic solver interface is defined and its
 constructor is provided a resource exchange graph. Different subclasses can
 define solution algorithms given the graph.</p>
-</div>
-</div>
-<div class="section" id="specification-implementation">
-<h2>Specification &amp; Implementation<a class="headerlink" href="#specification-implementation" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="specification-implementation">
+<h2>Specification &amp; Implementation<a class="headerlink" href="#specification-implementation" title="Link to this heading">¶</a></h2>
 <p>Each major phase method and associated classes are treated. Method inputs and
 outputs are described as well as known issues dealing with their
 implementation. The members and methods of proposed classes are also
 described. Because the phases utilize new classes and containers, those are
 described first.</p>
-<div class="section" id="constituent-classes-and-containers">
-<h3>Constituent Classes and Containers<a class="headerlink" href="#constituent-classes-and-containers" title="Permalink to this headline">¶</a></h3>
+<section id="constituent-classes-and-containers">
+<h3>Constituent Classes and Containers<a class="headerlink" href="#constituent-classes-and-containers" title="Link to this heading">¶</a></h3>
 <p>The major new data structures required for this proposal are:</p>
 <ul class="simple">
-<li>Bids</li>
-<li>BidPortfolios</li>
-<li>CapacityConstraints</li>
-<li>Requests</li>
-<li>RequestPortfolios</li>
+<li><p>Bids</p></li>
+<li><p>BidPortfolios</p></li>
+<li><p>CapacityConstraints</p></li>
+<li><p>Requests</p></li>
+<li><p>RequestPortfolios</p></li>
 </ul>
 <p>Reference implementation (in /src) and tests (in /tests) for each can be found
 in the <a class="reference external" href="https://github.com/gidden/cyclus/tree/cep18">CEP18 branch</a>.</p>
 <p>A template approach has been taken, delineating, for instance, a material
-request, <code class="docutils literal"><span class="pre">Request&lt;Material&gt;</span></code>, from a GenericResource request,
-<code class="docutils literal"><span class="pre">Request&lt;GenericResource&gt;</span></code>. The current behavior (i.e., only using parent
+request, <code class="docutils literal notranslate"><span class="pre">Request&lt;Material&gt;</span></code>, from a GenericResource request,
+<code class="docutils literal notranslate"><span class="pre">Request&lt;GenericResource&gt;</span></code>. The current behavior (i.e., only using parent
 classes and dynamic casting to derived classes) can be invoked by templating on
-the <code class="docutils literal"><span class="pre">Resource</span></code> type, i.e., <code class="docutils literal"><span class="pre">Request&lt;Resource&gt;</span></code>. See the <a class="reference external" href="https://github.com/gidden/cyclus/blob/cep18/tests/capacity_constraint_tests.cc">capacity constraint
+the <code class="docutils literal notranslate"><span class="pre">Resource</span></code> type, i.e., <code class="docutils literal notranslate"><span class="pre">Request&lt;Resource&gt;</span></code>. See the <a class="reference external" href="https://github.com/gidden/cyclus/blob/cep18/tests/capacity_constraint_tests.cc">capacity constraint
 tests</a> for an example of this range of behavior.</p>
-</div>
-<div class="section" id="resource-exchange">
-<h3>Resource Exchange<a class="headerlink" href="#resource-exchange" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="resource-exchange">
+<h3>Resource Exchange<a class="headerlink" href="#resource-exchange" title="Link to this heading">¶</a></h3>
 <p>The resource exchange is implemented through coordination of two classes, the
 ResourceExchange and the ExchangeContext, both of which are implemented with
 tests in the <a class="reference external" href="https://github.com/gidden/cyclus/tree/cep18">CEP18 branch</a>.</p>
@@ -419,65 +411,65 @@ simulation context. Both the ExchangeContext and ResourceExchange are templated
 on the Resource being exchanged, as was the case above. An overview of the
 exchange implementation follows, noting the state updates of the context at each
 phase.</p>
-<div class="section" id="rfb-phase">
-<h4>RFB Phase<a class="headerlink" href="#rfb-phase" title="Permalink to this headline">¶</a></h4>
+<section id="rfb-phase">
+<h4>RFB Phase<a class="headerlink" href="#rfb-phase" title="Link to this heading">¶</a></h4>
 <p>Note that the ExchangeContext has no state at the beginning of the phases.</p>
 <p>ResourceExchange operations:</p>
 <ul class="simple">
-<li>Queries each Trader registered with the simulation Context, asking for
-RequestPortfolios</li>
+<li><p>Queries each Trader registered with the simulation Context, asking for
+RequestPortfolios</p></li>
 </ul>
 <p>ExchangeContext state at end of phase:</p>
 <ul class="simple">
-<li>Requesters</li>
-<li>Requests</li>
-<li>RequestPortfolio</li>
+<li><p>Requesters</p></li>
+<li><p>Requests</p></li>
+<li><p>RequestPortfolio</p></li>
 </ul>
-</div>
-<div class="section" id="rrfb-phase">
-<h4>RRFB Phase<a class="headerlink" href="#rrfb-phase" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="rrfb-phase">
+<h4>RRFB Phase<a class="headerlink" href="#rrfb-phase" title="Link to this heading">¶</a></h4>
 <p>ResourceExchange operations:</p>
 <ul class="simple">
-<li>Queries each Trader registered with the simulation Context, asking for
-BidPorftolios</li>
-<li>The ExchangeContext is given to each trader in order to determine all Requests
-for a specific commodity</li>
+<li><p>Queries each Trader registered with the simulation Context, asking for
+BidPorftolios</p></li>
+<li><p>The ExchangeContext is given to each trader in order to determine all Requests
+for a specific commodity</p></li>
 </ul>
 <p>ExchangeContext state at end of phase:</p>
 <ul class="simple">
-<li>Bidders</li>
-<li>BidPortfolios</li>
-<li>Default preferences for each Bid-Request pair (provided in the original Request)</li>
+<li><p>Bidders</p></li>
+<li><p>BidPortfolios</p></li>
+<li><p>Default preferences for each Bid-Request pair (provided in the original Request)</p></li>
 </ul>
-</div>
-<div class="section" id="pa-procedure">
-<h4>PA Procedure<a class="headerlink" href="#pa-procedure" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="pa-procedure">
+<h4>PA Procedure<a class="headerlink" href="#pa-procedure" title="Link to this heading">¶</a></h4>
 <p>ResourceExchange operations:</p>
 <ul class="simple">
-<li>For each Requester and each parent in the Model child-parent tree of that
-Requester, preferences are allowed to be perturbed, which looks nominally like:</li>
+<li><p>For each Requester and each parent in the Model child-parent tree of that
+Requester, preferences are allowed to be perturbed, which looks nominally like:</p></li>
 </ul>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">/// @brief allows a trader and its parents to adjust any preferences in the</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">/// @brief allows a trader and its parents to adjust any preferences in the</span>
 <span class="c1">/// system</span>
-<span class="kt">void</span> <span class="nf">DoAdjustment</span><span class="p">(</span><span class="n">Trader</span><span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">typename</span> <span class="nc">PrefMap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&amp;</span> <span class="n">prefs</span> <span class="o">=</span> <span class="n">ex_ctx_</span><span class="p">.</span><span class="n">Prefs</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
-  <span class="n">Model</span><span class="o">*</span> <span class="n">m</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">Model</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">m</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">cyclus</span><span class="o">::</span><span class="n">AdjustPrefs</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">prefs</span><span class="p">);</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">parent</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">DoAdjustment</span><span class="p">(</span><span class="n">Trader</span><span class="o">*</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">typename</span><span class="w"> </span><span class="nc">PrefMap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&amp;</span><span class="w"> </span><span class="n">prefs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ex_ctx_</span><span class="p">.</span><span class="n">Prefs</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Model</span><span class="o">*</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">Model</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cyclus</span><span class="o">::</span><span class="n">AdjustPrefs</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">prefs</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="o">-&gt;</span><span class="n">parent</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
 </pre></div>
 </div>
 <p>For full implementation details, please see the <a class="reference external" href="https://github.com/gidden/cyclus/tree/cep18">CEP18 branch</a>.</p>
 <p>ExchangeContext state at end of phase:</p>
 <ul class="simple">
-<li>Possibly perturbed preferences for each Bid-Request pair</li>
+<li><p>Possibly perturbed preferences for each Bid-Request pair</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="exchangegraph">
-<h3>ExchangeGraph<a class="headerlink" href="#exchangegraph" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="exchangegraph">
+<h3>ExchangeGraph<a class="headerlink" href="#exchangegraph" title="Link to this heading">¶</a></h3>
 <p>An ExchangeGraph is a graph representation of a resource exchange. It provides a
 resource-free representation of the exchange, i.e., the quality-specific
 constraint and preference values are “baked in”. By the nature of the
@@ -485,90 +477,88 @@ supplier/requester setup, the graph is bipartite, thus there is a notion of U
 (left) and V (right) nodes, and arcs strictly connect a U node to a V
 node. Constraints are defined along arcs, where each u-v node pair is associated
 with a constraining value. Preferences are also defined along arcs.</p>
-</div>
-<div class="section" id="exchangetranslator">
-<h3>ExchangeTranslator<a class="headerlink" href="#exchangetranslator" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="exchangetranslator">
+<h3>ExchangeTranslator<a class="headerlink" href="#exchangetranslator" title="Link to this heading">¶</a></h3>
 <p>The ExchangeTranslator is an object responsible for translating a given
 ExchangeContext into an ExchangeGraph, and has a pretty simple interface:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">ExchangePair</span> <span class="p">{</span>
-   <span class="n">Request</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Ptr</span> <span class="n">r</span><span class="p">;</span> <span class="c1">// request</span>
-   <span class="n">Bid</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Ptr</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// bid</span>
-   <span class="kt">double</span> <span class="n">p</span><span class="p">;</span> <span class="c1">// percent of bid to give</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">ExchangePair</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="n">Request</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w"> </span><span class="c1">// request</span>
+<span class="w">   </span><span class="n">Bid</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// bid</span>
+<span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"> </span><span class="c1">// percent of bid to give</span>
 <span class="p">}</span>
 
 <span class="k">template</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span>
-<span class="k">class</span> <span class="nc">ExchangeTranslator</span> <span class="p">{</span>
- <span class="k">public</span><span class="o">:</span>
-  <span class="n">ExchangeGraph</span> <span class="n">ToGraph</span><span class="p">(</span><span class="k">const</span> <span class="n">ExchangeContext</span><span class="o">&amp;</span> <span class="n">ec</span><span class="p">)</span> <span class="p">{</span>
-   <span class="cm">/* do translation */</span>
-  <span class="p">};</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ExchangeTranslator</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="n">ExchangeGraph</span><span class="w"> </span><span class="n">ToGraph</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ExchangeContext</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="cm">/* do translation */</span>
+<span class="w">  </span><span class="p">};</span>
 
-  <span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span> <span class="n">ExchangePair</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;</span>
-    <span class="n">FromGraph</span><span class="p">(</span><span class="k">const</span> <span class="n">ExchangeGraph</span><span class="o">&amp;</span> <span class="n">eg</span><span class="p">)</span> <span class="p">{</span>
-     <span class="cm">/* do back-translation */</span>
-  <span class="p">};</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="w"> </span><span class="n">ExchangePair</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span>
+<span class="w">    </span><span class="n">FromGraph</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ExchangeGraph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">eg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="cm">/* do back-translation */</span>
+<span class="w">  </span><span class="p">};</span>
 <span class="p">};</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="exchangesolver">
-<h3>ExchangeSolver<a class="headerlink" href="#exchangesolver" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="exchangesolver">
+<h3>ExchangeSolver<a class="headerlink" href="#exchangesolver" title="Link to this heading">¶</a></h3>
 <p>The ExchangeSolver is a virtual interface for solvers of a resource exchange. A
 constrained ExchangeGraph is provided as input, and a solution ExchangeGraph is
 provided as output, which satisfies the provided constraints. It too, has a
 pretty simple interface</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExchangeSolver</span> <span class="p">{</span>
- <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Solve</span><span class="p">(</span><span class="k">const</span> <span class="n">ExchangeGraph</span><span class="o">&amp;</span> <span class="n">g</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ExchangeSolver</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">Solve</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ExchangeGraph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">g</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">};</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="backwards-compatibility">
-<h2>Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="backwards-compatibility">
+<h2>Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Link to this heading">¶</a></h2>
 <p>This CEP proposes a number of backwards incompatibilities.</p>
 <ul class="simple">
-<li>The MarketModel is replaced by an information gathering procedure and a
-modular MarketAlgorithm</li>
-<li>Transactions are reduced to accepted offers, rather than proposed offers and
-requests</li>
-<li>The Message and Communicator classes are no longer needed</li>
+<li><p>The MarketModel is replaced by an information gathering procedure and a
+modular MarketAlgorithm</p></li>
+<li><p>Transactions are reduced to accepted offers, rather than proposed offers and
+requests</p></li>
+<li><p>The Message and Communicator classes are no longer needed</p></li>
 </ul>
-</div>
-<div class="section" id="document-history">
-<h2>Document History<a class="headerlink" href="#document-history" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="document-history">
+<h2>Document History<a class="headerlink" href="#document-history" title="Link to this heading">¶</a></h2>
 <p>This document is released under the CC-BY 3.0 license.</p>
-</div>
-<div class="section" id="references-and-footnotes">
-<h2>References and Footnotes<a class="headerlink" href="#references-and-footnotes" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="references-and-footnotes">
+<h2>References and Footnotes<a class="headerlink" href="#references-and-footnotes" title="Link to this heading">¶</a></h2>
 <p class="rubric">References</p>
-<p id="bibtex-bibliography-cep/cep18-0"><table class="docutils citation" frame="void" id="julka-agent-based-2002" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[JSK02]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> N.&nbsp;Julka, R.&nbsp;Srinivasan, and I.&nbsp;Karimi. Agent-based supply chain management-1: framework. <em>Computers &amp; Chemical Engineering</em>, 26(12):1755–1769, 2002. URL: <a class="reference external" href="http://www.sciencedirect.com/science/article/pii/S0098135402001503">http://www.sciencedirect.com/science/article/pii/S0098135402001503</a> (visited on 2013-01-14).</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="vlissides-design-1995" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[VHJG95]</a></td><td>John Vlissides, R&nbsp;Helm, R&nbsp;Johnson, and E&nbsp;Gamma. Design patterns: elements of reusable object-oriented software. <em>Reading: Addison-Wesley</em>, 1995.</td></tr>
-</tbody>
-</table>
-</p>
+<div class="docutils container" id="id4">
+<div role="list" class="citation-list">
+<div class="citation" id="id8" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>JSK02<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
+<p>N. Julka, R. Srinivasan, and I. Karimi. Agent-based supply chain management-1: framework. <em>Computers &amp; Chemical Engineering</em>, 26(12):1755–1769, 2002. URL: <a class="reference external" href="http://www.sciencedirect.com/science/article/pii/S0098135402001503">http://www.sciencedirect.com/science/article/pii/S0098135402001503</a> (visited on 2013-01-14).</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">VHJG95</a><span class="fn-bracket">]</span></span>
+<p>John Vlissides, R Helm, R Johnson, and E Gamma. Design patterns: elements of reusable object-oriented software. <em>Reading: Addison-Wesley</em>, 1995.</p>
 </div>
 </div>
+</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">CEP 18 - Dynamic Resource Exchange Procedure</a><ul>
@@ -615,68 +605,16 @@ requests</li>
     <p class="topless"><a href="cep19.html"
                           title="Next page">&rarr; CEP 19 - <span style="font-variant:small-caps;">Cyclus</span> Input Procedure Updates</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -717,14 +655,15 @@ requests</li>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 18 - Dynamic Resource Exchange Procedure</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

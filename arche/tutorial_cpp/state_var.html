@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Adding State Variables &#8212; Home</title>
-    <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+        <script src="../../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+        <script src="../../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../../_static/cloud.js"></script>
+        <script src="../../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../../_static/big_c.ico"/>
+    <link rel="icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Adding Buffers and Policies from the Toolkit" href="toolkit.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -86,7 +74,8 @@ if(ga_enabled){
     <li><a href="../../index.html">Home</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Archetype Development Tutorial [C++]</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Archetype Development Tutorial [C++]</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Adding State Variables</a></li> 
       </ul>
     </div>
     </div>
@@ -97,40 +86,40 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="adding-state-variables">
-<h1>Adding State Variables<a class="headerlink" href="#adding-state-variables" title="Permalink to this headline">¶</a></h1>
+  <section id="adding-state-variables">
+<h1>Adding State Variables<a class="headerlink" href="#adding-state-variables" title="Link to this heading">¶</a></h1>
 <p>In this lesson, we will:</p>
 <ol class="arabic simple">
-<li>Add the necessary state variables to define this facility using the Cyclus
-<code class="docutils literal"><span class="pre">#pragma</span></code> directives</li>
-<li>Build and install the updated module</li>
-<li>Modify the sample input file to include these variables</li>
+<li><p>Add the necessary state variables to define this facility using the Cyclus
+<code class="docutils literal notranslate"><span class="pre">#pragma</span></code> directives</p></li>
+<li><p>Build and install the updated module</p></li>
+<li><p>Modify the sample input file to include these variables</p></li>
 </ol>
-<div class="section" id="add-state-variables-with-cyclus-pragma">
-<h2>Add State Variables with Cyclus #pragma<a class="headerlink" href="#add-state-variables-with-cyclus-pragma" title="Permalink to this headline">¶</a></h2>
-<p>The Cyclus preprocessor provides a <code class="docutils literal"><span class="pre">#pragma</span></code> that defines variables to
+<section id="add-state-variables-with-cyclus-pragma">
+<h2>Add State Variables with Cyclus #pragma<a class="headerlink" href="#add-state-variables-with-cyclus-pragma" title="Link to this heading">¶</a></h2>
+<p>The Cyclus preprocessor provides a <code class="docutils literal notranslate"><span class="pre">#pragma</span></code> that defines variables to
 be part of the set of state variables and allows convenient annotations.</p>
-<p>First, we’ll add the maximum monthly transfer capacity, called <code class="docutils literal"><span class="pre">throughput</span></code>.
-Open the file <code class="docutils literal"><span class="pre">src/storage.h</span></code> in your text editor.</p>
-<p>Immediately after the declaration of <code class="docutils literal"><span class="pre">Tock()</span></code>, add the following:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var { \</span>
+<p>First, we’ll add the maximum monthly transfer capacity, called <code class="docutils literal notranslate"><span class="pre">throughput</span></code>.
+Open the file <code class="docutils literal notranslate"><span class="pre">src/storage.h</span></code> in your text editor.</p>
+<p>Immediately after the declaration of <code class="docutils literal notranslate"><span class="pre">Tock()</span></code>, add the following:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var { \</span>
 <span class="cp">  &quot;doc&quot;: &quot;Maximum amount of material that can be transferred in or out each time step&quot;, \</span>
 <span class="cp">  &quot;tooltip&quot;: &quot;Maximum amount of material that can be transferred in or out each time step&quot;, \</span>
 <span class="cp">  &quot;units&quot;: &quot;kg&quot;, \</span>
 <span class="cp">  &quot;uilabel&quot;: &quot;Maximum Throughput&quot; \</span>
 <span class="cp">}</span>
-<span class="kt">double</span> <span class="n">throughput</span><span class="p">;</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">throughput</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Now, we’ll add variables for the minimum amount of time that material is
 stored and the input/output commodity names.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var { \</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cyclus var { \</span>
 <span class="cp">  &quot;doc&quot;: &quot;Minimum amount of time material must be stored&quot;, \</span>
 <span class="cp">  &quot;tooltip&quot;: &quot;Minimum amount of time material must be stored&quot;, \</span>
 <span class="cp">  &quot;units&quot;: &quot;months&quot;, \</span>
 <span class="cp">  &quot;uilabel&quot;: &quot;Storage Time&quot; \</span>
 <span class="cp">}</span>
-<span class="kt">int</span> <span class="n">storage_time</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">storage_time</span><span class="p">;</span>
 
 <span class="cp">#pragma cyclus var { \</span>
 <span class="cp"> &quot;tooltip&quot;: &quot;Storage input commodity&quot;, \</span>
@@ -138,7 +127,7 @@ stored and the input/output commodity names.</p>
 <span class="cp"> &quot;uilabel&quot;: &quot;Input Commodity&quot;, \</span>
 <span class="cp"> &quot;uitype&quot;: &quot;incommodity&quot;, \</span>
 <span class="cp">}</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">incommod</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">incommod</span><span class="p">;</span>
 
 <span class="cp">#pragma cyclus var { \</span>
 <span class="cp"> &quot;tooltip&quot;: &quot;Storage output commodity&quot;, \</span>
@@ -146,24 +135,24 @@ stored and the input/output commodity names.</p>
 <span class="cp"> &quot;uilabel&quot;: &quot;Output Commodity&quot;, \</span>
 <span class="cp"> &quot;uitype&quot;: &quot;outcommodity&quot;, \</span>
 <span class="cp">}</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">outcommod</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">outcommod</span><span class="p">;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="build-and-install-the-modified-module">
-<h2>Build and Install the Modified Module<a class="headerlink" href="#build-and-install-the-modified-module" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="build-and-install-the-modified-module">
+<h2>Build and Install the Modified Module<a class="headerlink" href="#build-and-install-the-modified-module" title="Link to this heading">¶</a></h2>
 <p>To rebuild, reinstall, and test this module, just issue the same command as before:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./install.py
 <span class="gp">$ </span>Storage_unit_tests
 </pre></div>
 </div>
-</div>
-<div class="section" id="modify-the-input-file">
-<h2>Modify the Input File<a class="headerlink" href="#modify-the-input-file" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="modify-the-input-file">
+<h2>Modify the Input File<a class="headerlink" href="#modify-the-input-file" title="Link to this heading">¶</a></h2>
 <p>If you try to run the same input file with your modified module, you will get
 errors because the sample input file no longer includes the necessary pieces
 to define your module.  It is missing the new variables.  Try it:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus -v <span class="m">2</span> input/storage.xml
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus<span class="w"> </span>-v<span class="w"> </span><span class="m">2</span><span class="w"> </span>input/storage.xml
 <span class="go">              :</span>
 <span class="go">          .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q</span>
 <span class="go">        CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)</span>
@@ -198,38 +187,38 @@ to define your module.  It is missing the new variables.  Try it:</p>
 </pre></div>
 </div>
 <p>The simulation now fails because it does not match the schema. You can view the schema with</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus --agent-schema tutorial:Storage:Storage
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus<span class="w"> </span>--agent-schema<span class="w"> </span>tutorial:Storage:Storage
 </pre></div>
 </div>
-<p>Notice that you were able to take advantage of the input file validation simply by using the <code class="docutils literal"><span class="pre">#pragma</span></code>.</p>
+<p>Notice that you were able to take advantage of the input file validation simply by using the <code class="docutils literal notranslate"><span class="pre">#pragma</span></code>.</p>
 <p>Our failed cyclus simulation produced an output file that will need to be deleted.</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>rm cyclus.sqlite
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rm<span class="w"> </span>cyclus.sqlite
 </pre></div>
 </div>
-<p>Now, we’ll change that input file.  Open the file <code class="docutils literal"><span class="pre">input/storage.xml</span></code> in
+<p>Now, we’ll change that input file.  Open the file <code class="docutils literal notranslate"><span class="pre">input/storage.xml</span></code> in
 your text editor, and find the prototype configuration for the single facility
 named “OneFacility” that looks like this.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
-  <span class="nt">&lt;name&gt;</span>OneFacility<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;config&gt;</span>
-    <span class="nt">&lt;Storage</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;/config&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>OneFacility<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;config&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Storage</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/config&gt;</span>
 <span class="nt">&lt;/facility&gt;</span>
 </pre></div>
 </div>
-<p>We need to replace the <code class="docutils literal"><span class="pre">&lt;config&gt;</span></code> element with this:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;config&gt;</span>
-  <span class="nt">&lt;Storage&gt;</span>
-    <span class="nt">&lt;throughput&gt;</span>10<span class="nt">&lt;/throughput&gt;</span>
-    <span class="nt">&lt;storage_time&gt;</span>1<span class="nt">&lt;/storage_time&gt;</span>
-    <span class="nt">&lt;incommod&gt;</span>fuel<span class="nt">&lt;/incommod&gt;</span>
-    <span class="nt">&lt;outcommod&gt;</span>stored_fuel<span class="nt">&lt;/outcommod&gt;</span>
-  <span class="nt">&lt;/Storage&gt;</span>
+<p>We need to replace the <code class="docutils literal notranslate"><span class="pre">&lt;config&gt;</span></code> element with this:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;config&gt;</span>
+<span class="w">  </span><span class="nt">&lt;Storage&gt;</span>
+<span class="w">    </span><span class="nt">&lt;throughput&gt;</span>10<span class="nt">&lt;/throughput&gt;</span>
+<span class="w">    </span><span class="nt">&lt;storage_time&gt;</span>1<span class="nt">&lt;/storage_time&gt;</span>
+<span class="w">    </span><span class="nt">&lt;incommod&gt;</span>fuel<span class="nt">&lt;/incommod&gt;</span>
+<span class="w">    </span><span class="nt">&lt;outcommod&gt;</span>stored_fuel<span class="nt">&lt;/outcommod&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/Storage&gt;</span>
 <span class="nt">&lt;/config&gt;</span>
 </pre></div>
 </div>
 <p>Now we can try it again:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus -v <span class="m">2</span> input/storage.xml
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus<span class="w"> </span>-v<span class="w"> </span><span class="m">2</span><span class="w"> </span>input/storage.xml
 <span class="go">              :</span>
 <span class="go">          .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q</span>
 <span class="go">        CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)</span>
@@ -285,18 +274,16 @@ named “OneFacility” that looks like this.</p>
 <span class="go">Simulation ID: 9f15b93c-9ab2-49bb-a14f-fef872e64ce8</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../../index.html" title="index">
-          <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Adding State Variables</a><ul>
@@ -318,68 +305,16 @@ named “OneFacility” that looks like this.</p>
     <p class="topless"><a href="toolkit.html"
                           title="Next page">&rarr; Adding Buffers and Policies from the Toolkit</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -421,14 +356,15 @@ named “OneFacility” that looks like this.</p>
     <li><a href="../../index.html">Home</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" >Archetype Development Tutorial [C++]</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="index.html" >Archetype Development Tutorial [C++]</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Adding State Variables</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

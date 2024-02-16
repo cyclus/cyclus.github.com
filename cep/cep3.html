@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>CEP 3 - Cyclus Release Procedure &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="CEP 4 - Attribution of Code Products in the Cyclus Ecosystem" href="cep4.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -85,7 +73,8 @@ if(ga_enabled){
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 3 - <span style="font-variant:small-caps;">Cyclus</span> Release Procedure</a></li> 
       </ul>
     </div>
     </div>
@@ -96,35 +85,38 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="cep-3-cyclus-release-procedure">
-<h1>CEP 3 - <span style="font-variant:small-caps;">Cyclus</span> Release Procedure<a class="headerlink" href="#cep-3-cyclus-release-procedure" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">CEP:</th><td class="field-body">3</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Title:</th><td class="field-body"><span style="font-variant:small-caps;">Cyclus</span> Release Procedure</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Last-Modified:</th><td class="field-body">2017-11-06</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">Anthony Scopatz and Matthew Gidden and Baptiste Mouginot</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Status:</th><td class="field-body">Accepted</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Process</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Created:</th><td class="field-body">2013-10-25</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="abstract">
-<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+  <section id="cep-3-cyclus-release-procedure">
+<h1>CEP 3 - <span style="font-variant:small-caps;">Cyclus</span> Release Procedure<a class="headerlink" href="#cep-3-cyclus-release-procedure" title="Link to this heading">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">CEP<span class="colon">:</span></dt>
+<dd class="field-odd"><p>3</p>
+</dd>
+<dt class="field-even">Title<span class="colon">:</span></dt>
+<dd class="field-even"><p><span style="font-variant:small-caps;">Cyclus</span> Release Procedure</p>
+</dd>
+<dt class="field-odd">Last-Modified<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2017-11-06</p>
+</dd>
+<dt class="field-even">Author<span class="colon">:</span></dt>
+<dd class="field-even"><p>Anthony Scopatz and Matthew Gidden and Baptiste Mouginot</p>
+</dd>
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Accepted</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Process</p>
+</dd>
+<dt class="field-odd">Created<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2013-10-25</p>
+</dd>
+</dl>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading">¶</a></h2>
 <p>The purpose of this document is to act as a guideline and checklist for how
 to release the <span style="font-variant:small-caps;">Cyclus</span> core code base and the supported projects in the ecosystem.</p>
-</div>
-<div class="section" id="the-cyclus-ecosystem">
-<h2>The <span style="font-variant:small-caps;">Cyclus</span> Ecosystem<a class="headerlink" href="#the-cyclus-ecosystem" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-cyclus-ecosystem">
+<h2>The <span style="font-variant:small-caps;">Cyclus</span> Ecosystem<a class="headerlink" href="#the-cyclus-ecosystem" title="Link to this heading">¶</a></h2>
 <p>The very first thing to do when preparing for an upcoming release is to elect
 a release manager.  This person has the special responsibility of making sure
 all of the following tasks are implemented.  Therefore, their judgment for the
@@ -133,296 +125,290 @@ placement of issues and code stability must be adhered to.</p>
 (This may change in the future a development diverges and the core becomes more
 stable.)  The projects that are under the release manager’s purview are:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-<li><a class="reference external" href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-<li><a class="reference external" href="https://github.com/cyclus/cymetric">Cymetric</a></li>
+<li><p><a class="reference external" href="https://github.com/cyclus/cyclus">Cyclus</a></p></li>
+<li><p><a class="reference external" href="https://github.com/cyclus/cycamore">Cycamore</a></p></li>
+<li><p><a class="reference external" href="https://github.com/cyclus/cymetric">Cymetric</a></p></li>
 </ul>
 <p>The projects which are not yet under the release managers purview are:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/ergs/rickshaw">Rickshaw</a></li>
-<li><a class="reference external" href="https://github.com/cyclus/cyclist2">CyclusJS</a></li>
+<li><p><a class="reference external" href="https://github.com/ergs/rickshaw">Rickshaw</a></p></li>
+<li><p><a class="reference external" href="https://github.com/cyclus/cyclist2">CyclusJS</a></p></li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The following full release process only applies to MAJOR and MINOR
+<p class="admonition-title">Note</p>
+<p>The following full release process only applies to MAJOR and MINOR
 release number changes. MICRO or PATCH releases may be performed
 with a version bump and a git tag alone. This is to enable fast turn
 arounds for bug fixes and binary package creation (ie deb or conda).
 Therefore versions with a non-zero MICRO number should be considered
 relatively unstable.</p>
 </div>
-</div>
-<div class="section" id="release-candidates-tags-branches">
-<h2>Release Candidates (Tags &amp; Branches)<a class="headerlink" href="#release-candidates-tags-branches" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="release-candidates-tags-branches">
+<h2>Release Candidates (Tags &amp; Branches)<a class="headerlink" href="#release-candidates-tags-branches" title="Link to this heading">¶</a></h2>
 <p>At the beginning of a release, a special branch for <em>each</em> project should be
-made off of <code class="docutils literal"><span class="pre">master</span></code> named <code class="docutils literal"><span class="pre">vX.X.X-release</span></code>. Note the <em>v</em> at the beginning. Each
+made off of <code class="docutils literal notranslate"><span class="pre">master</span></code> named <code class="docutils literal notranslate"><span class="pre">vX.X.X-release</span></code>. Note the <em>v</em> at the beginning. Each
 project should have the initial version of of it’s release branch <em>tagged</em> as
-<code class="docutils literal"><span class="pre">X.X.X-rc1</span></code>, the first release candidate.</p>
+<code class="docutils literal notranslate"><span class="pre">X.X.X-rc1</span></code>, the first release candidate.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">To distingush them, branch names have a <code class="docutils literal"><span class="pre">v</span></code> prefix (<code class="docutils literal"><span class="pre">vX.X.X-release</span></code>)
-while tag names lack this prefix (<code class="docutils literal"><span class="pre">X.X.X-rcX</span></code>).</p>
+<p class="admonition-title">Note</p>
+<p>To distingush them, branch names have a <code class="docutils literal notranslate"><span class="pre">v</span></code> prefix (<code class="docutils literal notranslate"><span class="pre">vX.X.X-release</span></code>)
+while tag names lack this prefix (<code class="docutils literal notranslate"><span class="pre">X.X.X-rcX</span></code>).</p>
 </div>
 <p>Release candidates serve as an official proving ground for the release. Upon
 creation, an announcement should be made to the developer’s list, and users of
 the project should be encouraged to test them out in order to bugs/other issues.</p>
 <p>Any required changes must be pull requested from a topical branch into the
 <em>release</em> branch.  After this has been accepted, the topical branch must be
-merged with <code class="docutils literal"><span class="pre">master</span></code> as well. The release branch is there so that development
-can continue on the <code class="docutils literal"><span class="pre">master</span></code> branch while the release candidates (rc) are out
+merged with <code class="docutils literal notranslate"><span class="pre">master</span></code> as well. The release branch is there so that development
+can continue on the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch while the release candidates (rc) are out
 and under review.  This is because otherwise any new developments would have to
-wait until post-release to be merged into <code class="docutils literal"><span class="pre">master</span></code> to prevent them from
+wait until post-release to be merged into <code class="docutils literal notranslate"><span class="pre">master</span></code> to prevent them from
 accidentally getting released early.</p>
-<p>Everything that is in the release branch must also be part of <code class="docutils literal"><span class="pre">master</span></code>.
+<p>Everything that is in the release branch must also be part of <code class="docutils literal notranslate"><span class="pre">master</span></code>.
 Graphically,</p>
-<div class="figure align-center" id="id5">
-<img alt="../_images/cep-0003-1.svg" src="../_images/cep-0003-1.svg" /><p class="caption"><span class="caption-text"><strong>Figure 1:</strong> Branch hierarchy under release.</span></p>
-</div>
+<figure class="align-center" id="id5">
+<img alt="../_images/cep-0003-1.svg" src="../_images/cep-0003-1.svg" /><figcaption>
+<p><span class="caption-text"><strong>Figure 1:</strong> Branch hierarchy under release.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Any commits merged into the release branch must <em>also</em> be merged into
-<code class="docutils literal"><span class="pre">master</span></code>. It is common practice for the release manager to request the
-reviewer pull requests to merge the topical branch into <code class="docutils literal"><span class="pre">master</span></code>
+<p class="admonition-title">Note</p>
+<p>Any commits merged into the release branch must <em>also</em> be merged into
+<code class="docutils literal notranslate"><span class="pre">master</span></code>. It is common practice for the release manager to request the
+reviewer pull requests to merge the topical branch into <code class="docutils literal notranslate"><span class="pre">master</span></code>
 as well. However, it is the ultimate release manager’s responsibility to
-make sure <code class="docutils literal"><span class="pre">master</span></code> is kept up to date with the <code class="docutils literal"><span class="pre">release</span></code> branch.</p>
+make sure <code class="docutils literal notranslate"><span class="pre">master</span></code> is kept up to date with the <code class="docutils literal notranslate"><span class="pre">release</span></code> branch.</p>
 </div>
 <p>If changes are made to the release branch, a new candidate must be issued after
-<em>2 - 5 days</em>. Every time a new release candidate comes out the <code class="docutils literal"><span class="pre">vX.X.X-release</span></code>
-must be tagged with the name <code class="docutils literal"><span class="pre">X.X.X-rcX</span></code>. A developer’s list annoucement must
+<em>2 - 5 days</em>. Every time a new release candidate comes out the <code class="docutils literal notranslate"><span class="pre">vX.X.X-release</span></code>
+must be tagged with the name <code class="docutils literal notranslate"><span class="pre">X.X.X-rcX</span></code>. A developer’s list annoucement must
 accompany any new candidate.</p>
 <p>The release branch must be quiet and untouched for <em>2 - 5 days prior</em> to the
-full release. When the full and final release happens, the <code class="docutils literal"><span class="pre">vX.X.X-release</span></code>
-branch is deleted. All commits in the <code class="docutils literal"><span class="pre">vX.X.X-release</span></code> branch must have also
-been merged into the <code class="docutils literal"><span class="pre">master</span></code> branch as they were accepted.</p>
-</div>
-<div class="section" id="project-checklist">
-<h2>Project Checklist<a class="headerlink" href="#project-checklist" title="Permalink to this headline">¶</a></h2>
+full release. When the full and final release happens, the <code class="docutils literal notranslate"><span class="pre">vX.X.X-release</span></code>
+branch is deleted. All commits in the <code class="docutils literal notranslate"><span class="pre">vX.X.X-release</span></code> branch must have also
+been merged into the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch as they were accepted.</p>
+</section>
+<section id="project-checklist">
+<h2>Project Checklist<a class="headerlink" href="#project-checklist" title="Link to this heading">¶</a></h2>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Utility scripts for this process can be found in the <a class="reference external" href="https://github.com/cyclus/release">release</a> repository</p>
+<p class="admonition-title">Note</p>
+<p>Utility scripts for this process can be found in the <a class="reference external" href="https://github.com/cyclus/release">release</a> repository</p>
 </div>
 <p>Releasing a <span style="font-variant:small-caps;">Cyclus</span> project is comprised of the following operations. Each
 operation should be enacted in order.</p>
-<div class="section" id="release-candidate-process">
-<h3>Release Candidate Process<a class="headerlink" href="#release-candidate-process" title="Permalink to this headline">¶</a></h3>
+<section id="release-candidate-process">
+<h3>Release Candidate Process<a class="headerlink" href="#release-candidate-process" title="Link to this heading">¶</a></h3>
 <ol class="arabic">
-<li><p class="first">Review <strong>ALL</strong> issues and pull requests, reassigning or closing them as needed.</p>
-</li>
-<li><p class="first">Ensure that all issues/PRs in this release’s milestone have been closed.
+<li><p>Review <strong>ALL</strong> issues and pull requests, reassigning or closing them as needed.</p></li>
+<li><p>Ensure that all issues/PRs in this release’s milestone have been closed.
 Moving them to the next release’s milestone is a perfectly valid strategy for
-completing this milestone.</p>
-</li>
-<li><p class="first">Initiate the release candidate process (see above)</p>
-</li>
-<li><p class="first">Review the current state of documentation and make approriate updates.</p>
-</li>
-<li><p class="first">Finish the release candidate process</p>
+completing this milestone.</p></li>
+<li><p>Initiate the release candidate process (see above)</p></li>
+<li><p>Review the current state of documentation and make approriate updates.</p></li>
+<li><p>Finish the release candidate process</p>
 <blockquote>
 <div><ul class="simple">
-<li>make sure all commits in the <code class="docutils literal"><span class="pre">release</span></code> branch also are in <code class="docutils literal"><span class="pre">master</span></code></li>
+<li><p>make sure all commits in the <code class="docutils literal notranslate"><span class="pre">release</span></code> branch also are in <code class="docutils literal notranslate"><span class="pre">master</span></code></p></li>
 </ul>
 </div></blockquote>
 </li>
 </ol>
-</div>
-<div class="section" id="release-process">
-<h3>Release Process<a class="headerlink" href="#release-process" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="release-process">
+<h3>Release Process<a class="headerlink" href="#release-process" title="Link to this heading">¶</a></h3>
 <ol class="arabic">
-<li><p class="first">Make sure every local <span style="font-variant:small-caps;">Cyclus</span> project repository is up to date with its
-<code class="docutils literal"><span class="pre">master</span></code>, and <code class="docutils literal"><span class="pre">vX.X.X-release</span></code> branches on <code class="docutils literal"><span class="pre">upstream</span></code>.</p>
-</li>
-<li><p class="first">Bump the version in <code class="docutils literal"><span class="pre">cyclus/src/version.h.in</span></code> and <code class="docutils literal"><span class="pre">cyclus/cyclus/__init__.py</span></code>,
-<code class="docutils literal"><span class="pre">cycamore/src/cycamore_version.h.in</span></code>, and
-<code class="docutils literal"><span class="pre">cymetric/setup.py</span></code>; commit the changes</p>
-</li>
-<li><p class="first">Perform maintenance tasks for all projects. The maintenance depends on <a class="reference external" href="https://github.com/pyne/pyne.git">PyNE</a> and Doxygen. Maintenance files can be
+<li><p>Make sure every local <span style="font-variant:small-caps;">Cyclus</span> project repository is up to date with its
+<code class="docutils literal notranslate"><span class="pre">master</span></code>, and <code class="docutils literal notranslate"><span class="pre">vX.X.X-release</span></code> branches on <code class="docutils literal notranslate"><span class="pre">upstream</span></code>.</p></li>
+<li><p>Bump the version in <code class="docutils literal notranslate"><span class="pre">cyclus/src/version.h.in</span></code> and <code class="docutils literal notranslate"><span class="pre">cyclus/cyclus/__init__.py</span></code>,
+<code class="docutils literal notranslate"><span class="pre">cycamore/src/cycamore_version.h.in</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">cymetric/setup.py</span></code>; commit the changes</p></li>
+<li><p>Perform maintenance tasks for all projects. The maintenance depends on <a class="reference external" href="https://github.com/pyne/pyne.git">PyNE</a> and Doxygen. Maintenance files can be
 found <a class="reference external" href="https://github.com/cyclus/release">here</a>.</p>
 <blockquote>
 <div><ul class="simple">
-<li>they are described in detail below, <em>but</em> the <code class="docutils literal"><span class="pre">maintenance.sh</span></code> utility
-in <code class="docutils literal"><span class="pre">release/utils</span></code> will do this automatically for you</li>
-<li>make sure to have your <code class="docutils literal"><span class="pre">rs.cred</span></code> file (see <code class="docutils literal"><span class="pre">maintenance.sh</span></code>’s help)</li>
+<li><p>they are described in detail below, <em>but</em> the <code class="docutils literal notranslate"><span class="pre">maintenance.sh</span></code> utility
+in <code class="docutils literal notranslate"><span class="pre">release/utils</span></code> will do this automatically for you</p></li>
+<li><p>make sure to have your <code class="docutils literal notranslate"><span class="pre">rs.cred</span></code> file (see <code class="docutils literal notranslate"><span class="pre">maintenance.sh</span></code>’s help)</p></li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /path/to/release/utils
-$ <span class="nb">export</span> <span class="nv">CYCLUS_DIR</span><span class="o">=</span>/path/to/cyclus
-$ <span class="nb">export</span> <span class="nv">CYCAMORE_DIR</span><span class="o">=</span>/path/to/cycamore
-$ ./maintenance.sh -r -v X.X.X <span class="c1"># X.X.X is *this* version</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/path/to/release/utils
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CYCLUS_DIR</span><span class="o">=</span>/path/to/cyclus
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CYCAMORE_DIR</span><span class="o">=</span>/path/to/cycamore
+$<span class="w"> </span>./maintenance.sh<span class="w"> </span>-r<span class="w"> </span>-v<span class="w"> </span>X.X.X<span class="w"> </span><span class="c1"># X.X.X is *this* version</span>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>If maintenance script fails because of an ABI failure that is caused by
 a compiler update (or other similar change caused by reasons other
 than code changes), you might want to accept them and procceed with the
 release with those. To do so you need to generate the new symbols and
 commit them:</p>
 <ol class="arabic simple">
-<li>First make sure those changes can be ignored by emailing for
-discussion/approval the dev-list</li>
-<li>if the dev-list agrees to those changes, update the symbols and
-commit the new one:</li>
+<li><p>First make sure those changes can be ignored by emailing for
+discussion/approval the dev-list</p></li>
+<li><p>if the dev-list agrees to those changes, update the symbols and
+commit the new one:</p></li>
 </ol>
-<div class="last highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> <span class="nv">$CYCLUS_DIR</span>/release
-$ ./smbchk.py --update -t X.X.X <span class="c1"># X.X.X is *this* version</span>
-$ git add symbols.json
-$ git commit -m <span class="s2">&quot;Describe here all the change on the ABI&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$CYCLUS_DIR</span>/release
+$<span class="w"> </span>./smbchk.py<span class="w"> </span>--update<span class="w"> </span>-t<span class="w"> </span>X.X.X<span class="w"> </span><span class="c1"># X.X.X is *this* version</span>
+$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>symbols.json
+$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Describe here all the change on the ABI&quot;</span>
 </pre></div>
 </div>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first">Commit all changes for all projects.</p>
+<li><p>Commit all changes for all projects.</p>
 <blockquote>
-<div><div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /path/to/project
-$ git checkout vX.X.X-release
-$ git commit -am <span class="s2">&quot;final release commit after maintenence&quot;</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/path/to/project
+$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>vX.X.X-release
+$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-am<span class="w"> </span><span class="s2">&quot;final release commit after maintenence&quot;</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first">Update all master branches.</p>
+<li><p>Update all master branches.</p>
 <blockquote>
-<div><div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /path/to/project
-$ git checkout master
-$ git merge --no-ff vX.X.X-release
-$ git push upstream master
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/path/to/project
+$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>master
+$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>--no-ff<span class="w"> </span>vX.X.X-release
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span>master
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first"><em>Locally</em> tag the repository for <em>each</em> of the projects.</p>
+<li><p><em>Locally</em> tag the repository for <em>each</em> of the projects.</p>
 <blockquote>
-<div><div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /path/to/project
-$ git checkout master
-$ git merge --no-ff vX.X.X-release
-$ git tag -a -m <span class="s2">&quot;Cyclus project release X.X.X, see http://fuelcycle.org/previous/vX.X.X.html for release notes&quot;</span> X.X.X
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/path/to/project
+$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>master
+$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>--no-ff<span class="w"> </span>vX.X.X-release
+$<span class="w"> </span>git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Cyclus project release X.X.X, see http://fuelcycle.org/previous/vX.X.X.html for release notes&quot;</span><span class="w"> </span>X.X.X
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first">Draft release notes.</p>
+<li><p>Draft release notes.</p>
 <blockquote>
 <div><ul class="simple">
-<li>the <code class="docutils literal"><span class="pre">make_release_notes.sh</span></code> utility in <code class="docutils literal"><span class="pre">release/utils</span></code> will help
-provide a template</li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">make_release_notes.sh</span></code> utility in <code class="docutils literal notranslate"><span class="pre">release/utils</span></code> will help
+provide a template</p></li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /path/to/release/utils
-$ <span class="nb">export</span> <span class="nv">CYCLUS_DIR</span><span class="o">=</span>/path/to/cyclus
-$ <span class="nb">export</span> <span class="nv">CYCAMORE_DIR</span><span class="o">=</span>/path/to/cycamore
-$ <span class="nb">export</span> <span class="nv">CYMETRIC_DIR</span><span class="o">=</span>/path/to/cymetric
-$ ./make_release_notes.sh W.W.W X.X.X <span class="c1"># W.W.W is the previous version, X.X.X is *this* version</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/path/to/release/utils
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CYCLUS_DIR</span><span class="o">=</span>/path/to/cyclus
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CYCAMORE_DIR</span><span class="o">=</span>/path/to/cycamore
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CYMETRIC_DIR</span><span class="o">=</span>/path/to/cymetric
+$<span class="w"> </span>./make_release_notes.sh<span class="w"> </span>W.W.W<span class="w"> </span>X.X.X<span class="w"> </span><span class="c1"># W.W.W is the previous version, X.X.X is *this* version</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li>add the release notes as <code class="docutils literal"><span class="pre">cyclus.github.com/source/previous/vX.X.X.rst</span></code>
-with appropriate updates to <code class="docutils literal"><span class="pre">index.rst</span></code> in that directory</li>
+<li><p>add the release notes as <code class="docutils literal notranslate"><span class="pre">cyclus.github.com/source/previous/vX.X.X.rst</span></code>
+with appropriate updates to <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> in that directory</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Update the API docs.</p>
+<li><p>Update the API docs.</p>
 <blockquote>
 <div><ul class="simple">
-<li>the <code class="docutils literal"><span class="pre">api_docs.sh</span></code> utility in <code class="docutils literal"><span class="pre">release/utils</span></code> will do this
-automatically for you</li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">api_docs.sh</span></code> utility in <code class="docutils literal notranslate"><span class="pre">release/utils</span></code> will do this
+automatically for you</p></li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /path/to/release/utils
-$ <span class="nb">export</span> <span class="nv">CYCLUS_DIR</span><span class="o">=</span>/path/to/cyclus
-$ <span class="nb">export</span> <span class="nv">CYCAMORE_DIR</span><span class="o">=</span>/path/to/cycamore
-$ ./api_docs.sh X.X.X <span class="c1"># X.X.X is *this* version</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/path/to/release/utils
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CYCLUS_DIR</span><span class="o">=</span>/path/to/cyclus
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CYCAMORE_DIR</span><span class="o">=</span>/path/to/cycamore
+$<span class="w"> </span>./api_docs.sh<span class="w"> </span>X.X.X<span class="w"> </span><span class="c1"># X.X.X is *this* version</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first">Update the <code class="docutils literal"><span class="pre">master</span></code> branch of all projects and clean up.</p>
+<li><p>Update the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch of all projects and clean up.</p>
 <blockquote>
-<div><div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /path/to/project
-$ git push upstream X.X.X master
-$ git push upstream --delete vX.X.X-release
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/path/to/project
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span>X.X.X<span class="w"> </span>master
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span>--delete<span class="w"> </span>vX.X.X-release
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first">Manually visit the github.com page for each project and draft/publish a new release.</p>
+<li><p>Manually visit the github.com page for each project and draft/publish a new release.</p>
 <blockquote>
 <div><ul class="simple">
-<li>See instructions <a class="reference external" href="https://help.github.com/en/github/administering-a-repository/creating-releases">here</a></li>
+<li><p>See instructions <a class="reference external" href="https://help.github.com/en/github/administering-a-repository/creating-releases">here</a></p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Update Conda-forge</p>
+<li><p>Update Conda-forge</p>
 <blockquote>
 <div><ul class="simple">
-<li>For each project, find the corresponding feedstock repository in the
+<li><p>For each project, find the corresponding feedstock repository in the
 conda-forge organization on github. For example, cyclus’ feedstock is at
-<a class="reference external" href="https://github.com/conda-forge/cyclus-feedstock">https://github.com/conda-forge/cyclus-feedstock</a></li>
-<li>In each project’s feedstok, open up a PR which updates the
+<a class="reference external" href="https://github.com/conda-forge/cyclus-feedstock">https://github.com/conda-forge/cyclus-feedstock</a></p></li>
+<li><p>In each project’s feedstok, open up a PR which updates the
 <cite>recipe/meta.yaml</cite> file with the new version number and the new SHA-256
 value of the new version’s tarball. See conda-forge documentation for more
-or ask the feedstock maintainers for help.</li>
-<li>Note that each feedstock must be accepted and the package uploaded to
+or ask the feedstock maintainers for help.</p></li>
+<li><p>Note that each feedstock must be accepted and the package uploaded to
 anaconda.org (automatic) prior to accepting updates for the next feedstock
-dependency. For example, cyclus must be fully updated before cycamore.</li>
+dependency. For example, cyclus must be fully updated before cycamore.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Create a DOI. See <a class="reference internal" href="cep4.html"><span class="doc">CEP4</span></a> for details.</p>
+<li><p>Create a DOI. See <a class="reference internal" href="cep4.html"><span class="doc">CEP4</span></a> for details.</p>
 <blockquote>
 <div><ul class="simple">
-<li>This can be updated one day to use the Figshare <a class="reference external" href="http://api.figshare.com/docs/intro.html">API</a></li>
+<li><p>This can be updated one day to use the Figshare <a class="reference external" href="http://api.figshare.com/docs/intro.html">API</a></p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Update website release information.</p>
+<li><p>Update website release information.</p>
 <blockquote>
 <div><ul class="simple">
-<li>on the front page (<code class="docutils literal"><span class="pre">source/index.rst</span></code>)</li>
-<li>DOIs (<code class="docutils literal"><span class="pre">source/cite/index.rst</span></code>)</li>
-<li>release notes (<code class="docutils literal"><span class="pre">source/previous/index.rst</span></code>), remember both the release
-notes and the zip/tar URLs!</li>
-<li>layout template (<code class="docutils literal"><span class="pre">source/atemplates/layout.html</span></code>) of the website</li>
-<li>install from tarball instruction
-(<code class="docutils literal"><span class="pre">source/user/install_from_tarball.rst</span></code>)</li>
+<li><p>on the front page (<code class="docutils literal notranslate"><span class="pre">source/index.rst</span></code>)</p></li>
+<li><p>DOIs (<code class="docutils literal notranslate"><span class="pre">source/cite/index.rst</span></code>)</p></li>
+<li><p>release notes (<code class="docutils literal notranslate"><span class="pre">source/previous/index.rst</span></code>), remember both the release
+notes and the zip/tar URLs!</p></li>
+<li><p>layout template (<code class="docutils literal notranslate"><span class="pre">source/atemplates/layout.html</span></code>) of the website</p></li>
+<li><p>install from tarball instruction
+(<code class="docutils literal notranslate"><span class="pre">source/user/install_from_tarball.rst</span></code>)</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Commit all changes to <code class="docutils literal"><span class="pre">cyclus.github.com</span></code> and <code class="docutils literal"><span class="pre">make</span> <span class="pre">gh-publish</span></code></p>
-</li>
-<li><p class="first">Send out an email to <code class="docutils literal"><span class="pre">cyclus-dev</span></code> and <code class="docutils literal"><span class="pre">cyclus-users</span></code> to announce the release!</p>
-</li>
+<li><p>Commit all changes to <code class="docutils literal notranslate"><span class="pre">cyclus.github.com</span></code> and <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gh-publish</span></code></p></li>
+<li><p>Send out an email to <code class="docutils literal notranslate"><span class="pre">cyclus-dev</span></code> and <code class="docutils literal notranslate"><span class="pre">cyclus-users</span></code> to announce the release!</p></li>
 </ol>
-</div>
-</div>
-<div class="section" id="maintainence-tasks">
-<h2>Maintainence Tasks<a class="headerlink" href="#maintainence-tasks" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="maintainence-tasks">
+<h2>Maintainence Tasks<a class="headerlink" href="#maintainence-tasks" title="Link to this heading">¶</a></h2>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">There is now the <code class="docutils literal"><span class="pre">maintenence.sh</span></code> utility in <code class="docutils literal"><span class="pre">release/utils</span></code> that
+<p class="admonition-title">Note</p>
+<p>There is now the <code class="docutils literal notranslate"><span class="pre">maintenence.sh</span></code> utility in <code class="docutils literal notranslate"><span class="pre">release/utils</span></code> that
 will automate this for you. The section remains here for posterity.</p>
 </div>
 <p>Each project may have associate maintenance tasks which may need to be performed
 at least as often as every micro release.</p>
-<div class="section" id="cyclus">
-<h3><span style="font-variant:small-caps;">Cyclus</span><a class="headerlink" href="#cyclus" title="Permalink to this headline">¶</a></h3>
+<section id="cyclus">
+<h3><span style="font-variant:small-caps;">Cyclus</span><a class="headerlink" href="#cyclus" title="Link to this heading">¶</a></h3>
 <p><strong>Update PyNE:</strong>  PyNE source code is included and shipped as part of <span style="font-variant:small-caps;">Cyclus</span>. As pyne
 evolves, we’ll want to have our version evolve as well. Here are the steps to do so.
 These assume that in your HOME dir there are both the pyne and <span style="font-variant:small-caps;">Cyclus</span> repos.  Remember
 to check in the changes afterwards.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/pyne
-$ ./amalgamate.py -s pyne.cc -i pyne.h
-$ cp pyne.* ~/cyclus/src
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/pyne
+$<span class="w"> </span>./amalgamate.py<span class="w"> </span>-s<span class="w"> </span>pyne.cc<span class="w"> </span>-i<span class="w"> </span>pyne.h
+$<span class="w"> </span>cp<span class="w"> </span>pyne.*<span class="w"> </span>~/cyclus/src
 </pre></div>
 </div>
 <p><strong>Update Nuclear Data:</strong> PyNE also provides a nuclear data library generator which we use for
 our source data.  Occassionally, this needs to be updated as updates to pyne itself come out.
 The command for generating <span style="font-variant:small-caps;">Cyclus</span> specific nuclear data is as follows:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/pyne
-$ nuc_data_make -o cyclus_nuc_data.h5 <span class="se">\</span>
- -m atomic_mass,scattering_lengths,decay,simple_xs,materials,eaf,wimsd_fpy,nds_fpy
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/pyne
+$<span class="w"> </span>nuc_data_make<span class="w"> </span>-o<span class="w"> </span>cyclus_nuc_data.h5<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>-m<span class="w"> </span>atomic_mass,scattering_lengths,decay,simple_xs,materials,eaf,wimsd_fpy,nds_fpy
 </pre></div>
 </div>
 <p>Once the file is generated it must be put onto rackspace.</p>
 <p><strong>Update Gtest:</strong> We include a copy of the fused Gtest source code within our
-source tree located in the <code class="docutils literal"><span class="pre">tests/GoogleTest</span></code> directory.  To keep up with
+source tree located in the <code class="docutils literal notranslate"><span class="pre">tests/GoogleTest</span></code> directory.  To keep up with
 Gtest’s natural evolution cycle, please download the latest release of Google Tests
 and follow <a class="reference external" href="https://code.google.com/p/googletest/wiki/V1_6_AdvancedGuide#Fusing_Google_Test_Source_Files">the fused source directions here</a>.  If we go too long without doing this,
 it could be very painful to update.</p>
@@ -431,8 +417,8 @@ stability.  Luckily, we have a tool for keeping track of this mostly
 automatically.  In order to check this correctly, you must have a <strong>RELEASE</strong>
 build of Cyclus compiled/installed.  Every release please run the following
 command to verify that the release branch is stable:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> cyclus/release
-$ ./smbchk.py --update -t HEAD --no-save --check
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>cyclus/release
+$<span class="w"> </span>./smbchk.py<span class="w"> </span>--update<span class="w"> </span>-t<span class="w"> </span>HEAD<span class="w"> </span>--no-save<span class="w"> </span>--check
 </pre></div>
 </div>
 <p>If <span style="font-variant:small-caps;">Cyclus</span> only has API additions, it is considered stable and the command will
@@ -445,37 +431,35 @@ probably best to do this prior to any release candidates if possible.</p>
 <p>Once stable and there are no more code changes to be made, add the symbols
 in this release to the database with the following command (again - make sure
 you are working on a RELEASE build of Cyclus):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> cyclus/release
-$ ./smbchk.py --update -t X.X.X
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>cyclus/release
+$<span class="w"> </span>./smbchk.py<span class="w"> </span>--update<span class="w"> </span>-t<span class="w"> </span>X.X.X
 </pre></div>
 </div>
-<p>where <code class="docutils literal"><span class="pre">X.X.X</span></code> is the version tag. This should alter the <code class="docutils literal"><span class="pre">symbols.json</span></code>
+<p>where <code class="docutils literal notranslate"><span class="pre">X.X.X</span></code> is the version tag. This should alter the <code class="docutils literal notranslate"><span class="pre">symbols.json</span></code>
 file.  Commit this and add it to the repo.</p>
-</div>
-<div class="section" id="cycamore">
-<h3>Cycamore<a class="headerlink" href="#cycamore" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="cycamore">
+<h3>Cycamore<a class="headerlink" href="#cycamore" title="Link to this heading">¶</a></h3>
 <p>No maintenence required.</p>
-</div>
-<div class="section" id="cymetric">
-<h3>Cymetric<a class="headerlink" href="#cymetric" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="cymetric">
+<h3>Cymetric<a class="headerlink" href="#cymetric" title="Link to this heading">¶</a></h3>
 <p>No maintenance required.</p>
-</div>
-</div>
-<div class="section" id="document-history">
-<h2>Document History<a class="headerlink" href="#document-history" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="document-history">
+<h2>Document History<a class="headerlink" href="#document-history" title="Link to this heading">¶</a></h2>
 <p>This document is released under the CC-BY 3.0 license.</p>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">CEP 3 - <span style="font-variant:small-caps;">Cyclus</span> Release Procedure</a><ul>
@@ -509,68 +493,16 @@ file.  Commit this and add it to the repo.</p>
     <p class="topless"><a href="cep4.html"
                           title="Next page">&rarr; CEP 4 - Attribution of Code Products in the <span style="font-variant:small-caps;">Cyclus</span> Ecosystem</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -611,14 +543,15 @@ file.  Commit this and add it to the repo.</p>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 3 - <span style="font-variant:small-caps;">Cyclus</span> Release Procedure</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Building Cyclus With Conda &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Style Guidelines for Developers" href="style_guide.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -85,7 +73,8 @@ if(ga_enabled){
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Kernel Developer Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Kernel Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Building <span style="font-variant:small-caps;">Cyclus</span> With Conda</a></li> 
       </ul>
     </div>
     </div>
@@ -96,16 +85,16 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="building-cyclus-with-conda">
-<h1>Building <span style="font-variant:small-caps;">Cyclus</span> With Conda<a class="headerlink" href="#building-cyclus-with-conda" title="Permalink to this headline">¶</a></h1>
+  <section id="building-cyclus-with-conda">
+<h1>Building <span style="font-variant:small-caps;">Cyclus</span> With Conda<a class="headerlink" href="#building-cyclus-with-conda" title="Link to this heading">¶</a></h1>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">In the cyclus ecosystem, only versions whose micro or patch number
+<p class="admonition-title">Warning</p>
+<p>In the cyclus ecosystem, only versions whose micro or patch number
 (the third and last number) are zero  are considered <strong>stable</strong>.
 Other releases where the version number is greater than zero are
 bugfix and maintainence releases and are considered <strong>unstable</strong>.
-For example, a release number of <code class="docutils literal"><span class="pre">1.42.0</span></code> is stable, while
-<code class="docutils literal"><span class="pre">1.42.3</span></code> is unstable.</p>
+For example, a release number of <code class="docutils literal notranslate"><span class="pre">1.42.0</span></code> is stable, while
+<code class="docutils literal notranslate"><span class="pre">1.42.3</span></code> is unstable.</p>
 </div>
 <p>The process of building Conda packages involves a system called
 <a class="reference external" href="http://conda.pydata.org/docs/build.html">Conda Recipes</a> . A Conda Recipe
@@ -113,7 +102,7 @@ is a directory containing at least two files, meta.yaml and build.sh.
 Version information, build and run dependencies, the location of the source
 code, and other information about the package are stored in meta.yaml, while
 build.sh contains a script to build from source. Packages are built from
-recipes using the <code class="docutils literal"><span class="pre">conda</span> <span class="pre">build</span> <span class="pre">&lt;recipe</span> <span class="pre">dir&gt;</span></code> command. Necessary dependency
+recipes using the <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">build</span> <span class="pre">&lt;recipe</span> <span class="pre">dir&gt;</span></code> command. Necessary dependency
 packages will be automatically downloaded and installed before the build.sh
 script is run and installed.  The final output is a tar.bz2 file which is a
 Conda package containing the necessary binaries, libraries, etc.  This package
@@ -125,46 +114,44 @@ an available Conda package to install.</p>
 <a class="reference external" href="http://github.com/cyclus/ciclus">Ciclus Repo</a>. As part of installing and
 maintaining <span style="font-variant:small-caps;">Cyclus</span> with Conda, recipes for a number of dependencies have
 also been created.  All lowercase directories in this repo (except fetch) are
-Conda recipes.  Additionally, this repo contains a stock <code class="docutils literal"><span class="pre">.condarc</span></code> file
+Conda recipes.  Additionally, this repo contains a stock <code class="docutils literal notranslate"><span class="pre">.condarc</span></code> file
 which automatically points to the
 <span style="font-variant:small-caps;">Cyclus</span> <a class="reference external" href="http://binstar.org/cyclus">Binstar Account</a>.</p>
-<div class="section" id="how-to-work-with-conda">
-<h2>How to work with Conda<a class="headerlink" href="#how-to-work-with-conda" title="Permalink to this headline">¶</a></h2>
+<section id="how-to-work-with-conda">
+<h2>How to work with Conda<a class="headerlink" href="#how-to-work-with-conda" title="Link to this heading">¶</a></h2>
 <p>There are many ways to customize the files in Ciclus repo.</p>
 <p>1) Push a package to Binstar Once you have successfully built a Conda recipe,
 it can be uploaded to Binstar with the command</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">binstar</span> <span class="n">upload</span> <span class="o">-</span><span class="n">u</span> <span class="n">cyclus</span> <span class="n">anaconda</span><span class="o">/</span><span class="n">conda</span><span class="o">-</span><span class="n">bld</span><span class="o">/</span><span class="n">linux</span><span class="o">-</span><span class="mi">64</span><span class="o">/</span><span class="n">cyclus</span><span class="o">-&lt;</span><span class="n">VERSION</span><span class="o">&gt;.</span><span class="n">tar</span><span class="o">.</span><span class="n">bz2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">binstar</span> <span class="n">upload</span> <span class="o">-</span><span class="n">u</span> <span class="n">cyclus</span> <span class="n">anaconda</span><span class="o">/</span><span class="n">conda</span><span class="o">-</span><span class="n">bld</span><span class="o">/</span><span class="n">linux</span><span class="o">-</span><span class="mi">64</span><span class="o">/</span><span class="n">cyclus</span><span class="o">-&lt;</span><span class="n">VERSION</span><span class="o">&gt;.</span><span class="n">tar</span><span class="o">.</span><span class="n">bz2</span>
 </pre></div>
 </div>
 <p>So, for instance, uploading version 1.0 of <span style="font-variant:small-caps;">Cyclus</span> would be</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">binstar</span> <span class="n">upload</span> <span class="o">-</span><span class="n">u</span> <span class="n">cyclus</span> <span class="n">anaconda</span><span class="o">/</span><span class="n">conda</span><span class="o">-</span><span class="n">bld</span><span class="o">/</span><span class="n">linux</span><span class="o">-</span><span class="mi">64</span><span class="o">/</span><span class="n">cyclus</span><span class="o">-</span><span class="mf">1.0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">bz2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">binstar</span> <span class="n">upload</span> <span class="o">-</span><span class="n">u</span> <span class="n">cyclus</span> <span class="n">anaconda</span><span class="o">/</span><span class="n">conda</span><span class="o">-</span><span class="n">bld</span><span class="o">/</span><span class="n">linux</span><span class="o">-</span><span class="mi">64</span><span class="o">/</span><span class="n">cyclus</span><span class="o">-</span><span class="mf">1.0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">bz2</span>
 </pre></div>
 </div>
 <p>2) <strong>Change the repository  to build:</strong> Say you want to test your fork of <span style="font-variant:small-caps;">Cyclus</span>
 before making a pull request. To customize what repos <span style="font-variant:small-caps;">Cyclus</span> and Cycamore
-are pulled from, look in <code class="docutils literal"><span class="pre">cyclus/meta.yaml</span></code> and <code class="docutils literal"><span class="pre">cycamore/meta.yaml</span></code>
-respectively.  In these files you can change the <code class="docutils literal"><span class="pre">git_url</span></code> field to point to
+are pulled from, look in <code class="docutils literal notranslate"><span class="pre">cyclus/meta.yaml</span></code> and <code class="docutils literal notranslate"><span class="pre">cycamore/meta.yaml</span></code>
+respectively.  In these files you can change the <code class="docutils literal notranslate"><span class="pre">git_url</span></code> field to point to
 the repo of your choice.</p>
-<p>3) <strong>Change the branch to build:</strong> In <code class="docutils literal"><span class="pre">cyclus/meta.yaml</span></code> (or Cycamore), alter the
-<code class="docutils literal"><span class="pre">git_tag</span></code> field to the branch or tag you want to use.</p>
+<p>3) <strong>Change the branch to build:</strong> In <code class="docutils literal notranslate"><span class="pre">cyclus/meta.yaml</span></code> (or Cycamore), alter the
+<code class="docutils literal notranslate"><span class="pre">git_tag</span></code> field to the branch or tag you want to use.</p>
 <p>4) <strong>Test a new build process for Cyclus and Cycamore:</strong> To alter <span style="font-variant:small-caps;">Cyclus</span> or
-Cycamore’s build process, look at <code class="docutils literal"><span class="pre">build.sh</span></code> in <span style="font-variant:small-caps;">Cyclus</span> or Cycamore
+Cycamore’s build process, look at <code class="docutils literal notranslate"><span class="pre">build.sh</span></code> in <span style="font-variant:small-caps;">Cyclus</span> or Cycamore
 respectively.</p>
 <p>5) <strong>Create/upload a new version of a dependency:</strong> Alter the dependency’s
-<code class="docutils literal"><span class="pre">meta.yaml</span></code> file to point to the correct version of dependency source code.
+<code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> file to point to the correct version of dependency source code.
 Build the package, follow instructions in 1 to upload to Binstar.</p>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Building <span style="font-variant:small-caps;">Cyclus</span> With Conda</a><ul>
@@ -184,68 +171,16 @@ Build the package, follow instructions in 1 to upload to Binstar.</p>
     <p class="topless"><a href="style_guide.html"
                           title="Next page">&rarr; Style Guidelines for Developers</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -286,14 +221,15 @@ Build the package, follow instructions in 1 to upload to Binstar.</p>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Kernel Developer Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Kernel Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Building <span style="font-variant:small-caps;">Cyclus</span> With Conda</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

@@ -1,50 +1,40 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>CEP 23 - Defining Time Step Length, High Noon for Blue Moon &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="CEP 24 - Default Preferences" href="cep24.html" />
@@ -64,8 +54,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -85,7 +74,8 @@ if(ga_enabled){
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 23 - Defining Time Step Length, High Noon for Blue Moon</a></li> 
       </ul>
     </div>
     </div>
@@ -96,45 +86,49 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="cep-23-defining-time-step-length-high-noon-for-blue-moon">
-<h1>CEP 23 - Defining Time Step Length, High Noon for Blue Moon<a class="headerlink" href="#cep-23-defining-time-step-length-high-noon-for-blue-moon" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">CEP:</th><td class="field-body">23</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Title:</th><td class="field-body">Defining Time Step Length, High Noon for Blue Moon</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Last-Modified:</th><td class="field-body">2014-12-01</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">Anthony Scopatz</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">BDFP:</th><td class="field-body">Paul P. H. Wilson</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Status:</th><td class="field-body">Draft</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Created:</th><td class="field-body">2014-12-01</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="motivation">
-<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+  <section id="cep-23-defining-time-step-length-high-noon-for-blue-moon">
+<h1>CEP 23 - Defining Time Step Length, High Noon for Blue Moon<a class="headerlink" href="#cep-23-defining-time-step-length-high-noon-for-blue-moon" title="Link to this heading">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">CEP<span class="colon">:</span></dt>
+<dd class="field-odd"><p>23</p>
+</dd>
+<dt class="field-even">Title<span class="colon">:</span></dt>
+<dd class="field-even"><p>Defining Time Step Length, High Noon for Blue Moon</p>
+</dd>
+<dt class="field-odd">Last-Modified<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2014-12-01</p>
+</dd>
+<dt class="field-even">Author<span class="colon">:</span></dt>
+<dd class="field-even"><p>Anthony Scopatz</p>
+</dd>
+<dt class="field-odd">BDFP<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Paul P. H. Wilson</p>
+</dd>
+<dt class="field-even">Status<span class="colon">:</span></dt>
+<dd class="field-even"><p>Draft</p>
+</dd>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Standards Track</p>
+</dd>
+<dt class="field-even">Created<span class="colon">:</span></dt>
+<dd class="field-even"><p>2014-12-01</p>
+</dd>
+</dl>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading">¶</a></h2>
 <p>Cyclus is a discrete time simulator whose assumed default time step is
 months. Months are the worst unit ever. This proposal adds precision and
-flexibility to what we mean by <span class="math">\(\delta t\)</span>. Namely, this CEP moves from
+flexibility to what we mean by <span class="math notranslate nohighlight">\(\delta t\)</span>. Namely, this CEP moves from
 months to seconds and allows the user to set the time step length, preserving
 a default length of a Julian month.</p>
-</div>
-<div class="section" id="discussion">
-<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Link to this heading">¶</a></h2>
 <p>Cyclus lacks a canonical time system. This CEP seeks to unambiguously define
 the seconds as the default time unit.  This allows agents to unambiguously
 communicate with each other and to determine their own time scales internally.
 This CEP also adds the capability for users to specify a time step length
-(<span class="math">\(\delta t\)</span>) of their choosing. The default time step, if unspecified,
+(<span class="math notranslate nohighlight">\(\delta t\)</span>) of their choosing. The default time step, if unspecified,
 will be a well-defined month, improving on the historically nebulous month.</p>
 <p>This CEP is motivated by our past woes with months.
 Months are an awful time step because there is no single definition for what a
@@ -149,54 +143,54 @@ or to have non-month days between years.</p>
 it is an even worse idea to implement a full Gregorian calendar. Like with
 time zones, the opportunities for failure are nearly endless. Furthermore,
 going with a real calendar breaks with the current notion that all time steps
-have an equal <span class="math">\(\delta t\)</span>.</p>
-</div>
-<div class="section" id="specification">
-<h2>Specification<a class="headerlink" href="#specification" title="Permalink to this headline">¶</a></h2>
+have an equal <span class="math notranslate nohighlight">\(\delta t\)</span>.</p>
+</section>
+<section id="specification">
+<h2>Specification<a class="headerlink" href="#specification" title="Link to this heading">¶</a></h2>
 <p>This CEP defines the default time step as the average length of a Julian
 month as measured in seconds, the proper unit for time:</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\delta t = \frac{365.25 [d]}{12} = \frac{31557600 [s]}{12} = 2629800 [s/m]\]</div>
 <p>Furthermore, this actual time step should be able to be set by the user in the
 input file. The following changes to the master schema(s) are thus needed:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span>&lt;element name =&quot;control&quot;&gt;
-  &lt;interleave&gt;
-    . . .
-    &lt;optional&gt;
-      &lt;element name=&quot;dt&quot;&gt;&lt;data type=&quot;unsignedLong&quot;/&lt;/element&gt;
-    &lt;/optional&gt;
-    &lt;optional&gt;
-      &lt;element name=&quot;dt_units&quot;&gt;&lt;data type=&quot;token&quot;/&lt;/element&gt;
-    &lt;/optional&gt;
-  &lt;/interleave&gt;
-&lt;/element&gt;
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name =</span><span class="s">&quot;control&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;interleave&gt;</span>
+<span class="w">    </span>.<span class="w"> </span>.<span class="w"> </span>.
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;dt&quot;</span><span class="nt">&gt;&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;unsignedLong&quot;</span><span class="err">/&lt;/element</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;dt_units&quot;</span><span class="nt">&gt;&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;token&quot;</span><span class="err">/&lt;/element</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/interleave&gt;</span>
+<span class="nt">&lt;/element&gt;</span>
 </pre></div>
 </div>
 <p>This information would be added to the context with the following members:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Context</span> <span class="p">{</span>
- <span class="k">public</span><span class="o">:</span>
-  <span class="c1">// Returns the time step in seconds</span>
-  <span class="kr">inline</span> <span class="kt">uint64_t</span> <span class="n">dt</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">dt_</span><span class="p">;</span> <span class="p">};</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Context</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="c1">// Returns the time step in seconds</span>
+<span class="w">  </span><span class="kr">inline</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">dt</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">dt_</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
 
-  <span class="c1">// Returns the time step in [units], given as string</span>
-  <span class="kt">uint64_t</span> <span class="nf">dt</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">units</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Returns the time step in [units], given as string</span>
+<span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="nf">dt</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">units</span><span class="p">);</span>
 
-  <span class="c1">// Returns the time step in [units], given as TimeUnits enum</span>
-  <span class="kt">uint64_t</span> <span class="nf">dt</span><span class="p">(</span><span class="n">TimeUnits</span> <span class="n">units</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Returns the time step in [units], given as TimeUnits enum</span>
+<span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="nf">dt</span><span class="p">(</span><span class="n">TimeUnits</span><span class="w"> </span><span class="n">units</span><span class="p">);</span>
 
- <span class="k">private</span><span class="o">:</span>
-  <span class="kt">uint64_t</span> <span class="n">dt_</span><span class="p">;</span>  <span class="c1">// the length of the time step, in seconds.</span>
+<span class="w"> </span><span class="k">private</span><span class="o">:</span>
+<span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">dt_</span><span class="p">;</span><span class="w">  </span><span class="c1">// the length of the time step, in seconds.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>All archetypes and toolkit code should then ask the context what the time step
 size is whenever they actually need the current. As per <a class="reference external" href="cep20.html">CEP20</a>,
 the time step length is fixed for the entire simulation and may not change.</p>
-<p>Furthermore, <code class="docutils literal"><span class="pre">TimeUnits</span></code> will be a fixed set of time increments that will
+<p>Furthermore, <code class="docutils literal notranslate"><span class="pre">TimeUnits</span></code> will be a fixed set of time increments that will
 not be able to be set by the users.  An initial set of time units are:
 s, min, hr, d, month (as defined above), y, ky, My, Gy.</p>
-<div class="section" id="best-practices">
-<h3>Best Practices<a class="headerlink" href="#best-practices" title="Permalink to this headline">¶</a></h3>
+<section id="best-practices">
+<h3>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">¶</a></h3>
 <p>Along with this CEP comes the best practice that
 archetypes which model time-dependent behavior should not
 assume a nominal time step. Archetypes should always get the time step length
@@ -206,14 +200,14 @@ per prototype.</p>
 about actual real physical time and those which simply function per
 simulation time step.</p>
 <p>When an archetype uses real time, due to physics calculations or other needs,
-the archetype should now check that <span class="math">\(\delta t\)</span> is within a valid range
+the archetype should now check that <span class="math notranslate nohighlight">\(\delta t\)</span> is within a valid range
 that they define. This is because users will now be able to set the time step.
 This validation check maybe performed in any of the archetype’s member functions.
 If a static range is known ahead of time, then this check is most appropriate in
 the constructor. If the time step length is outside of the valid range of the agent,
 then an exception should be raised.  We recommend something along the lines of:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">context</span><span class="p">().</span><span class="n">dt</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">max_dt</span><span class="p">)</span>
-  <span class="k">throw</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">ValidationError</span><span class="p">(</span><span class="s">&quot;time step exceeds valid range!&quot;</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">context</span><span class="p">().</span><span class="n">dt</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">max_dt</span><span class="p">)</span>
+<span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">ValidationError</span><span class="p">(</span><span class="s">&quot;time step exceeds valid range!&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>On the other hand, if the archtype only models per time step behavior, then
@@ -221,28 +215,26 @@ state variables should be expressible by default in terms of number of time step
 not in terms of seconds.  If other time values are desirable, the user
 should explicitly give the time units. For any time-based variable, the default
 associated units should be provided by the metadata.</p>
-</div>
-</div>
-<div class="section" id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">¶</a></h2>
 <p>The implementation of this code should be fairly straight forward. Unlike time
 itself, there is no funny business here.</p>
-</div>
-<div class="section" id="document-history">
-<h2>Document History<a class="headerlink" href="#document-history" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="document-history">
+<h2>Document History<a class="headerlink" href="#document-history" title="Link to this heading">¶</a></h2>
 <p>This document is released under the CC-BY 4.0 license.</p>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">CEP 23 - Defining Time Step Length, High Noon for Blue Moon</a><ul>
@@ -269,68 +261,16 @@ itself, there is no funny business here.</p>
     <p class="topless"><a href="cep24.html"
                           title="Next page">&rarr; CEP 24 - Default Preferences</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -371,14 +311,15 @@ itself, there is no funny business here.</p>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 23 - Defining Time Step Length, High Noon for Blue Moon</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

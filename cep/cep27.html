@@ -1,52 +1,43 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>CEP 27 - Toolkit Capabilities Injection into an Archetype &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cyclus Previous Versions" href="../previous/index.html" />
+    <link rel="prev" title="CEP 26 - Generalize the DRE to Optimize Multiple Metrics" href="cep26.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
 var ga_enabled = !$.cookie('disable-ga');
 if(ga_enabled){
@@ -62,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -75,8 +65,16 @@ if(ga_enabled){
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../previous/index.html" title="Cyclus Previous Versions"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep26.html" title="CEP 26 - Generalize the DRE to Optimize Multiple Metrics"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
- 
+
+          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 27 - Toolkit Capabilities Injection into an Archetype</a></li> 
       </ul>
     </div>
     </div>
@@ -87,30 +85,33 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="cep-27-toolkit-capabilities-injection-into-an-archetype">
-<h1>CEP 27 - Toolkit Capabilities Injection into an Archetype<a class="headerlink" href="#cep-27-toolkit-capabilities-injection-into-an-archetype" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">CEP:</th><td class="field-body">27</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Title:</th><td class="field-body">Agent Toolkit Capabilities</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Last-Modified:</th><td class="field-body">2019-10-28</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Author:</th><td class="field-body">Baptiste Mouginot &lt;<a class="reference external" href="mailto:mouginot&#46;baptiste&#37;&#52;&#48;gmail&#46;com">mouginot<span>&#46;</span>baptiste<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Status:</th><td class="field-body">Active</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Created:</th><td class="field-body">Baptiste Mouginot</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="abstract">
-<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+  <section id="cep-27-toolkit-capabilities-injection-into-an-archetype">
+<h1>CEP 27 - Toolkit Capabilities Injection into an Archetype<a class="headerlink" href="#cep-27-toolkit-capabilities-injection-into-an-archetype" title="Link to this heading">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">CEP<span class="colon">:</span></dt>
+<dd class="field-odd"><p>27</p>
+</dd>
+<dt class="field-even">Title<span class="colon">:</span></dt>
+<dd class="field-even"><p>Agent Toolkit Capabilities</p>
+</dd>
+<dt class="field-odd">Last-Modified<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2019-10-28</p>
+</dd>
+<dt class="field-even">Author<span class="colon">:</span></dt>
+<dd class="field-even"><p>Baptiste Mouginot &lt;<a class="reference external" href="mailto:mouginot&#46;baptiste&#37;&#52;&#48;gmail&#46;com">mouginot<span>&#46;</span>baptiste<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+</dd>
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Active</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Standards Track</p>
+</dd>
+<dt class="field-odd">Created<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Baptiste Mouginot</p>
+</dd>
+</dl>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading">¶</a></h2>
 <p>The <span style="font-variant:small-caps;">Cyclus</span> toolkit is designed to easily implement specific capabilities in
 newly developed archetypes, such as a trading policy, commodity producers, etc.
 To add characteristics to archetypes such as <cite>Position</cite> or <cite>Metadata</cite>, the
@@ -120,183 +121,182 @@ file. The developers have to manually ensure the consistency in variable naming 
 implementation across multiple archetypes/files.
 This CEP explains introduces the concept of snippets to simplify and maintain consistency
 in the implementation and the usage, across multiple archetypes.</p>
-</div>
-<div class="section" id="toolkit-implementation">
-<h2>Toolkit Implementation<a class="headerlink" href="#toolkit-implementation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="toolkit-implementation">
+<h2>Toolkit Implementation<a class="headerlink" href="#toolkit-implementation" title="Link to this heading">¶</a></h2>
 <p>Each <span style="font-variant:small-caps;">Cyclus</span> toolkit component will contain 3 different files:
-- 2 for the definition of the feature C++ class (<code class="docutils literal"><span class="pre">cpp</span></code> and header) that allows</p>
+- 2 for the definition of the feature C++ class (<code class="docutils literal notranslate"><span class="pre">cpp</span></code> and header) that allows</p>
 <blockquote>
-<div>the use of the capabilities, and optionally to register its values in the
-output database,</div></blockquote>
+<div><p>the use of the capabilities, and optionally to register its values in the
+output database,</p>
+</div></blockquote>
 <ul class="simple">
-<li>a snippet definition file used to simplify the implementation and ensure
-consistency accross its integration in the different archetypes.</li>
+<li><p>a snippet definition file used to simplify the implementation and ensure
+consistency accross its integration in the different archetypes.</p></li>
 </ul>
-<p>The snippet definition file will be included in the <code class="docutils literal"><span class="pre">private</span></code> section of the
-archetype header as: <code class="docutils literal"><span class="pre">#include</span> <span class="pre">toolkit/my_feature_snippet.cycpp.h</span></code>. (The use of the
-<code class="docutils literal"><span class="pre">cycpp.h</span></code> has been chosen to allow syntax highlighting and inform developers
+<p>The snippet definition file will be included in the <code class="docutils literal notranslate"><span class="pre">private</span></code> section of the
+archetype header as: <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">toolkit/my_feature_snippet.cycpp.h</span></code>. (The use of the
+<code class="docutils literal notranslate"><span class="pre">cycpp.h</span></code> has been chosen to allow syntax highlighting and inform developers
 that this is not a standard C++ header.)</p>
 <p>The snippet file, will contain the declaration of all the variables required
 to use the capabilities class:</p>
 <ul class="simple">
-<li>the definition of the capability class as a member variable.</li>
-<li>initialization of the added variables.</li>
-<li>(optional) if the capability requires/allows variable input from users,
-standard <span style="font-variant:small-caps;">Cyclus</span> member variable declaration with variable <code class="docutils literal"><span class="pre">#pragma</span></code> is
+<li><p>the definition of the capability class as a member variable.</p></li>
+<li><p>initialization of the added variables.</p></li>
+<li><p>(optional) if the capability requires/allows variable input from users,
+standard <span style="font-variant:small-caps;">Cyclus</span> member variable declaration with variable <code class="docutils literal notranslate"><span class="pre">#pragma</span></code> is
 required. In addition, to the standard variable declaration and the
-<code class="docutils literal"><span class="pre">#pragma</span></code> the method also require a <code class="docutils literal"><span class="pre">std::vector&lt;int&gt;</span>
+<code class="docutils literal notranslate"><span class="pre">#pragma</span></code> the method also require a <code class="docutils literal notranslate"><span class="pre">std::vector&lt;int&gt;</span>
 <span class="pre">cycpp_shape_myvariable</span></code> to be declared for each of the decorated variable
-that are in the <cite>toolkit/my_feature_snippet.cycpp.h</cite> file. (<code class="docutils literal"><span class="pre">cycpp</span> <span class="pre">preprocessor</span></code> is
-not able at the time to add them automatically for included files.)</li>
+that are in the <cite>toolkit/my_feature_snippet.cycpp.h</cite> file. (<code class="docutils literal notranslate"><span class="pre">cycpp</span> <span class="pre">preprocessor</span></code> is
+not able at the time to add them automatically for included files.)</p></li>
 </ul>
 <p>The main purpose of this include method would be to ensure consistency across
 archetypes using the same toolkit capability requiring user input, avoiding 1
 set of input syntax per archetypes for the same capability.</p>
 <p>If the toolkit features needs the capabilities to write in the output database a
-<code class="docutils literal"><span class="pre">RecordSnippet(Agent*</span> <span class="pre">agent)</span></code> method will be implemented in the toolkit class to avoid
+<code class="docutils literal notranslate"><span class="pre">RecordSnippet(Agent*</span> <span class="pre">agent)</span></code> method will be implemented in the toolkit class to avoid
 multiplication of implementation in the each archetype using the feature.</p>
-</div>
-<div class="section" id="archetypes-integration">
-<h2>Archetypes Integration<a class="headerlink" href="#archetypes-integration" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="archetypes-integration">
+<h2>Archetypes Integration<a class="headerlink" href="#archetypes-integration" title="Link to this heading">¶</a></h2>
 <p>When the capability is integrated in an Archetype the following implementations
 have to be done:</p>
 <ol class="arabic simple">
-<li>Include toolkit class header in in the class header:
-<code class="docutils literal"><span class="pre">#include</span> <span class="pre">'toolkit/my_feature.h'</span></code>.</li>
-<li>Include the snippet in the class header core:
-<code class="docutils literal"><span class="pre">#include</span> <span class="pre">toolkit/my_feature_snippet.cycpp,h</span></code>.</li>
-<li>(optional) In the <code class="docutils literal"><span class="pre">Archetype::EnterNotify()</span></code>, initialise the toolkit class member
-variables with variables.</li>
-<li>(optional) If required, call the <code class="docutils literal"><span class="pre">RecordSnippet()</span></code> method when necessary during the
-Archetype operation.</li>
+<li><p>Include toolkit class header in in the class header:
+<code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">'toolkit/my_feature.h'</span></code>.</p></li>
+<li><p>Include the snippet in the class header core:
+<code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">toolkit/my_feature_snippet.cycpp,h</span></code>.</p></li>
+<li><p>(optional) In the <code class="docutils literal notranslate"><span class="pre">Archetype::EnterNotify()</span></code>, initialise the toolkit class member
+variables with variables.</p></li>
+<li><p>(optional) If required, call the <code class="docutils literal notranslate"><span class="pre">RecordSnippet()</span></code> method when necessary during the
+Archetype operation.</p></li>
 </ol>
-</div>
-<div class="section" id="class-member-vs-inheritance">
-<h2>Class member vs Inheritance<a class="headerlink" href="#class-member-vs-inheritance" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="class-member-vs-inheritance">
+<h2>Class member vs Inheritance<a class="headerlink" href="#class-member-vs-inheritance" title="Link to this heading">¶</a></h2>
 <p>With inheritance of the capability class, one will need to also modify the
 archetype class declaration in addition to simply including the snippet at the
 right place.
 This may also lead to confusion, as one can believe that the user input value
 for variable are passed in the constructor of the class and might lead the
 develop to skip the assignation of the value in the inherited class in the
-<code class="docutils literal"><span class="pre">EnterNotify</span></code>…</p>
+<code class="docutils literal notranslate"><span class="pre">EnterNotify</span></code>…</p>
 <p>Otherwise behavior would be very similar.</p>
-</div>
-<div class="section" id="example">
-<h2>Example:<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="without-inheritance">
-<h3>Without Inheritance:<a class="headerlink" href="#without-inheritance" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal"><span class="pre">toolkit/my_feature_snippet.cycpp.h</span></code>:
+</section>
+<section id="example">
+<h2>Example:<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
+<section id="without-inheritance">
+<h3>Without Inheritance:<a class="headerlink" href="#without-inheritance" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">toolkit/my_feature_snippet.cycpp.h</span></code>:
 .. highlight:: c</p>
 <blockquote>
 <div><p>cyclus::toolkit::Position coordinates(0,0);</p>
-<dl class="docutils">
-<dt>#pragma cyclus var { </dt>
-<dd><p class="first">“default”: 0.0, “uilabel”: “Geographical latitude in degrees as a double”, “doc”: “Latitude of the agent’s geographical position. The value should ” </p>
-<blockquote class="last">
-<div>“be expressed in degrees as a double.” }</div></blockquote>
+<dl>
+<dt>#pragma cyclus var { </dt><dd><p>“default”: 0.0, “uilabel”: “Geographical latitude in degrees as a double”, “doc”: “Latitude of the agent’s geographical position. The value should “ </p>
+<blockquote>
+<div><p>“be expressed in degrees as a double.” }</p>
+</div></blockquote>
 </dd>
 </dl>
 <p>double latitude = 0;
 // required for compilation but not added by the cycpp preprocessor…
 std::vector&lt;int&gt; cycpp_shape_latitude;</p>
-<dl class="docutils">
-<dt>#pragma cyclus var { </dt>
-<dd>“default”: 0.0, “uilabel”: “Geographical longitude in degrees as a double”, “doc”: “Longitude of the agent’s geographical position. The value should” “be expressed in degrees as a double.” }</dd>
+<dl class="simple">
+<dt>#pragma cyclus var { </dt><dd><p>“default”: 0.0, “uilabel”: “Geographical longitude in degrees as a double”, “doc”: “Longitude of the agent’s geographical position. The value should” “be expressed in degrees as a double.” }</p>
+</dd>
 </dl>
 <p>double longitude = 0;
 // required for compilation but not added by the cycpp preprocessor…
 std::vector&lt;int&gt; cycpp_shape_longitude;</p>
 </div></blockquote>
-<p><code class="docutils literal"><span class="pre">my_archetype_example.h</span></code>:
+<p><code class="docutils literal notranslate"><span class="pre">my_archetype_example.h</span></code>:
 .. highlight:: c</p>
 <blockquote>
 <div><p>#include ‘toolkit/Position.h’</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>class fun_archetype <span class="classifier-delimiter">:</span> <span class="classifier">public cyclus::facility{</span></dt>
-<dd>public:
+<div><dl class="simple">
+<dt>class fun_archetype<span class="classifier">public cyclus::facility{</span></dt><dd><p>public:
 […]
 private:
 […]
-#include “toolkit/my_feature_snippet.cycpp.h”</dd>
+#include “toolkit/my_feature_snippet.cycpp.h”</p>
+</dd>
 </dl>
 </div></blockquote>
 <p>}</p>
 </div></blockquote>
-<p><code class="docutils literal"><span class="pre">my_archetype_example.cpp</span></code>:
+<p><code class="docutils literal notranslate"><span class="pre">my_archetype_example.cpp</span></code>:
 .. highlight:: c</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>void fun_archetype::EnterNotify() {</dt>
-<dd>coordinates.set_position(latitude, longitude);
+<div><dl class="simple">
+<dt>void fun_archetype::EnterNotify() {</dt><dd><p>coordinates.set_position(latitude, longitude);
 coordinates.RecordPosition(this);
 […]
-}</dd>
+}</p>
+</dd>
 </dl>
 </div></blockquote>
-</div>
-<div class="section" id="with-inheritance">
-<h3>With Inheritance:<a class="headerlink" href="#with-inheritance" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal"><span class="pre">toolkit/my_feature_snippet.cycpp.h</span></code>:
+</section>
+<section id="with-inheritance">
+<h3>With Inheritance:<a class="headerlink" href="#with-inheritance" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">toolkit/my_feature_snippet.cycpp.h</span></code>:
 .. highlight:: c</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>#pragma cyclus var { </dt>
-<dd><p class="first">“default”: 0.0, “uilabel”: “Geographical latitude in degrees as a double”, “doc”: “Latitude of the agent’s geographical position. The value should ” </p>
-<blockquote class="last">
-<div>“be expressed in degrees as a double.” }</div></blockquote>
+<div><dl>
+<dt>#pragma cyclus var { </dt><dd><p>“default”: 0.0, “uilabel”: “Geographical latitude in degrees as a double”, “doc”: “Latitude of the agent’s geographical position. The value should “ </p>
+<blockquote>
+<div><p>“be expressed in degrees as a double.” }</p>
+</div></blockquote>
 </dd>
 </dl>
 <p>double latitude = 0;
 // required for compilation but not added by the cycpp preprocessor…
 std::vector&lt;int&gt; cycpp_shape_latitude;</p>
-<dl class="docutils">
-<dt>#pragma cyclus var { </dt>
-<dd>“default”: 0.0, “uilabel”: “Geographical longitude in degrees as a double”, “doc”: “Longitude of the agent’s geographical position. The value should” “be expressed in degrees as a double.” }</dd>
+<dl class="simple">
+<dt>#pragma cyclus var { </dt><dd><p>“default”: 0.0, “uilabel”: “Geographical longitude in degrees as a double”, “doc”: “Longitude of the agent’s geographical position. The value should” “be expressed in degrees as a double.” }</p>
+</dd>
 </dl>
 <p>double longitude = 0;
 // required for compilation but not added by the cycpp preprocessor…
 std::vector&lt;int&gt; cycpp_shape_longitude;</p>
 </div></blockquote>
-<p><code class="docutils literal"><span class="pre">my_archetype_example.h</span></code>:
+<p><code class="docutils literal notranslate"><span class="pre">my_archetype_example.h</span></code>:
 .. highlight:: c</p>
 <blockquote>
 <div><p>#include ‘toolkit/Position.h’</p>
-<dl class="docutils">
-<dt>class fun_archetype <span class="classifier-delimiter">:</span> <span class="classifier">public cyclus::facility, public Position {</span></dt>
-<dd>public:
+<dl class="simple">
+<dt>class fun_archetype<span class="classifier">public cyclus::facility, public Position {</span></dt><dd><p>public:
 […]
 private:
 […]
-#include “toolkit/my_feature_snippet.cycpp.h”</dd>
+#include “toolkit/my_feature_snippet.cycpp.h”</p>
+</dd>
 </dl>
 <p>}</p>
 </div></blockquote>
-<p><code class="docutils literal"><span class="pre">my_archetype_example.cpp</span></code>:
+<p><code class="docutils literal notranslate"><span class="pre">my_archetype_example.cpp</span></code>:
 .. highlight:: c</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>void fun_archetype::EnterNotify() {</dt>
-<dd>this.set_position(latitude, longitude);
+<div><dl class="simple">
+<dt>void fun_archetype::EnterNotify() {</dt><dd><p>this.set_position(latitude, longitude);
 this.RecordPosition(this);
 […]
-}</dd>
+}</p>
+</dd>
 </dl>
 </div></blockquote>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">CEP 27 - Toolkit Capabilities Injection into an Archetype</a><ul>
@@ -314,68 +314,26 @@ this.RecordPosition(this);
 </ul>
 
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="cep26.html"
+                          title="Previous page">&larr; CEP 26 - Generalize the DRE to Optimize Multiple Metrics</a></p>
   </div>
-    
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="../previous/index.html"
+                          title="Next page">&rarr; <span style="font-variant:small-caps;">Cyclus</span> Previous Versions</a></p>
+  </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -408,15 +366,23 @@ this.RecordPosition(this);
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../previous/index.html" title="Cyclus Previous Versions"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep26.html" title="CEP 26 - Generalize the DRE to Optimize Multiple Metrics"
+             >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
- 
+
+          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 27 - Toolkit Capabilities Injection into an Archetype</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

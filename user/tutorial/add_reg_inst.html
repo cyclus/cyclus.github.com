@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Adding Regions and Institutions &#8212; Home</title>
-    <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+        <script src="../../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+        <script src="../../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../../_static/cloud.js"></script>
+        <script src="../../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../../_static/big_c.ico"/>
+    <link rel="icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Using Cyclus in the Cloud" href="launch_cyclus.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -86,7 +74,8 @@ if(ga_enabled){
     <li><a href="../../index.html">Home</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Adding Regions and Institutions</a></li> 
       </ul>
     </div>
     </div>
@@ -97,10 +86,10 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="adding-regions-and-institutions">
-<h1>Adding Regions and Institutions<a class="headerlink" href="#adding-regions-and-institutions" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="concept-regions-institutions">
-<h2>Concept: Regions &amp; Institutions<a class="headerlink" href="#concept-regions-institutions" title="Permalink to this headline">¶</a></h2>
+  <section id="adding-regions-and-institutions">
+<h1>Adding Regions and Institutions<a class="headerlink" href="#adding-regions-and-institutions" title="Link to this heading">¶</a></h1>
+<section id="concept-regions-institutions">
+<h2>Concept: Regions &amp; Institutions<a class="headerlink" href="#concept-regions-institutions" title="Link to this heading">¶</a></h2>
 <p><span style="font-variant:small-caps;">Cyclus</span> establishes a hierarchy of agents: Facility agents are managed by
 Institution agents that exist within a Region agent.  This series of ownership
 allow for control of the interaction behavior
@@ -109,46 +98,41 @@ may not be allowed to trade if they are in two different regions.</p>
 <p>Every <span style="font-variant:small-caps;">Cyclus</span> simulation needs at least one Region and one Institution, and
 in this case, we’ll use the simplest options:</p>
 <ul class="simple">
-<li>a Null Institution (<em>NullInst</em>) that holds a set of facilities that are
-deployed at the start of a simulation.</li>
-<li>a Null Region (<em>NullRegion</em>) that holds a set of Institutions.</li>
+<li><p>a Null Institution (<em>NullInst</em>) that holds a set of facilities that are
+deployed at the start of a simulation.</p></li>
+<li><p>a Null Region (<em>NullRegion</em>) that holds a set of Institutions.</p></li>
 </ul>
 <p>Defining these is done in the archetypes section of the code. This is done
 in a similar manner as the other archetypes previously defined, except regions
-and insitutions used in this tutorial come from the <code class="docutils literal"><span class="pre">agents</span></code> library, rather
-than the <code class="docutils literal"><span class="pre">cycamore</span></code> library.</p>
+and insitutions used in this tutorial come from the <code class="docutils literal notranslate"><span class="pre">agents</span></code> library, rather
+than the <code class="docutils literal notranslate"><span class="pre">cycamore</span></code> library.</p>
 <p>Using the template and table below,
 properly fill the template with the variables listed in the table below.
 In the template, the dots represent the archetypes already defined in the
 simulation.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="22%" />
-<col width="31%" />
-<col width="47%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Variable</th>
-<th class="head">Value</th>
-<th class="head">Purpose</th>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Purpose</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">lib6</span></code></td>
-<td><code class="docutils literal"><span class="pre">agents</span></code></td>
-<td>Library of the archetype</td>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lib6</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">agents</span></code></p></td>
+<td><p>Library of the archetype</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">arch6</span></code></td>
-<td><code class="docutils literal"><span class="pre">NullRegion</span></code></td>
-<td>Name of archetype</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">arch6</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">NullRegion</span></code></p></td>
+<td><p>Name of archetype</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">lib7</span></code></td>
-<td><code class="docutils literal"><span class="pre">agents</span></code></td>
-<td>Library of the archetype</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lib7</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">agents</span></code></p></td>
+<td><p>Library of the archetype</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">arch7</span></code></td>
-<td><code class="docutils literal"><span class="pre">NullInst</span></code></td>
-<td>Name of archetype</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">arch7</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">NullInst</span></code></p></td>
+<td><p>Name of archetype</p></td>
 </tr>
 </tbody>
 </table>
@@ -156,375 +140,368 @@ simulation.</p>
 <p>Since these are all archetypes, no matter what library they’re from, we must append
 these two``spec`` blocks into the the arechtype block that we already have. This
 results in the full archetype block:</p>
-<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;archetypes&gt;</span>
-  <span class="nt">&lt;spec&gt;</span>
-    <span class="nt">&lt;lib&gt;</span>cycamore<span class="nt">&lt;/lib&gt;</span>
-    <span class="nt">&lt;name&gt;</span>Enrichment<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;/spec&gt;</span>
-  <span class="nt">&lt;spec&gt;</span>
-    <span class="nt">&lt;lib&gt;</span>cycamore<span class="nt">&lt;/lib&gt;</span>
-    <span class="nt">&lt;name&gt;</span>Reactor<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;/spec&gt;</span>
-  <span class="nt">&lt;spec&gt;</span>
-    <span class="nt">&lt;lib&gt;</span>cycamore<span class="nt">&lt;/lib&gt;</span>
-    <span class="nt">&lt;name&gt;</span>Source<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;/spec&gt;</span>
-  <span class="nt">&lt;spec&gt;</span>
-    <span class="nt">&lt;lib&gt;</span>cycamore<span class="nt">&lt;/lib&gt;</span>
-    <span class="nt">&lt;name&gt;</span>Sink<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;/spec&gt;</span>
-  <span class="nt">&lt;spec&gt;</span>
-    <span class="nt">&lt;lib&gt;</span>agents<span class="nt">&lt;/lib&gt;</span>
-    <span class="nt">&lt;name&gt;</span>NullRegion<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;/spec&gt;</span>
-  <span class="nt">&lt;spec&gt;</span>
-    <span class="nt">&lt;lib&gt;</span>agents<span class="nt">&lt;/lib&gt;</span>
-    <span class="nt">&lt;name&gt;</span>NullInst<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;/spec&gt;</span>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;archetypes&gt;</span>
+<span class="w">  </span><span class="nt">&lt;spec&gt;</span>
+<span class="w">    </span><span class="nt">&lt;lib&gt;</span>cycamore<span class="nt">&lt;/lib&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>Enrichment<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/spec&gt;</span>
+<span class="w">  </span><span class="nt">&lt;spec&gt;</span>
+<span class="w">    </span><span class="nt">&lt;lib&gt;</span>cycamore<span class="nt">&lt;/lib&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>Reactor<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/spec&gt;</span>
+<span class="w">  </span><span class="nt">&lt;spec&gt;</span>
+<span class="w">    </span><span class="nt">&lt;lib&gt;</span>cycamore<span class="nt">&lt;/lib&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>Source<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/spec&gt;</span>
+<span class="w">  </span><span class="nt">&lt;spec&gt;</span>
+<span class="w">    </span><span class="nt">&lt;lib&gt;</span>cycamore<span class="nt">&lt;/lib&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>Sink<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/spec&gt;</span>
+<span class="w">  </span><span class="nt">&lt;spec&gt;</span>
+<span class="w">    </span><span class="nt">&lt;lib&gt;</span>agents<span class="nt">&lt;/lib&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>NullRegion<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/spec&gt;</span>
+<span class="w">  </span><span class="nt">&lt;spec&gt;</span>
+<span class="w">    </span><span class="nt">&lt;lib&gt;</span>agents<span class="nt">&lt;/lib&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>NullInst<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/spec&gt;</span>
 <span class="nt">&lt;/archetypes&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="concept-regions">
-<h2>Concept: Regions<a class="headerlink" href="#concept-regions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="concept-regions">
+<h2>Concept: Regions<a class="headerlink" href="#concept-regions" title="Link to this heading">¶</a></h2>
 <p>Regions tie together a fuel cycle as they designate what facilities are
 in the region’s fuel cycle. Regions may apply preferences to each
 potential request-bid pairing based on the proposed resource transfer.
 The basic structure of a region is:</p>
-<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;region&gt;</span>
-  <span class="nt">&lt;name&gt;</span>Region_name<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;config&gt;</span>
-    <span class="nt">&lt;NullRegion/&gt;</span>
-  <span class="nt">&lt;/config&gt;</span>
-  <span class="nt">&lt;institution&gt;</span>
-  ...
-  ...
-  <span class="nt">&lt;/institution&gt;</span>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;region&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>Region_name<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;config&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NullRegion/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/config&gt;</span>
+<span class="w">  </span><span class="nt">&lt;institution&gt;</span>
+<span class="w">  </span>...
+<span class="w">  </span>...
+<span class="w">  </span><span class="nt">&lt;/institution&gt;</span>
 
 <span class="nt">&lt;/region&gt;</span>
 </pre></div>
 </div>
 <p>Where:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">name</span></code>: name of the region</li>
-<li><code class="docutils literal"><span class="pre">config</span></code>: Region archetype to use</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: name of the region</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: Region archetype to use</p></li>
 </ul>
 <p>In between the two dotted lines
 is where the institution and facility information goes.</p>
-</div>
-<div class="section" id="concept-institution">
-<h2>Concept: Institution<a class="headerlink" href="#concept-institution" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="concept-institution">
+<h2>Concept: Institution<a class="headerlink" href="#concept-institution" title="Link to this heading">¶</a></h2>
 <p>In <span style="font-variant:small-caps;">Cyclus</span> input files, each institution block defines an agent that
 acts as an institution in the simulation. An institution block can only
 appear within a region block. Each institution block has the following
 sections in any order:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">name</span></code> (required, once) - a name for the prototype</li>
-<li><code class="docutils literal"><span class="pre">lifetime</span></code> (optional, once) - a non-negative integer indicating the
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (required, once) - a name for the prototype</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lifetime</span></code> (optional, once) - a non-negative integer indicating the
 number of time steps that this region agent will be active in the
-simulation</li>
-<li><code class="docutils literal"><span class="pre">config</span></code> (required, once) - the archetype-specific configuration</li>
-<li><code class="docutils literal"><span class="pre">initialfacilitylist</span></code> (optional, may appear multiple times) - a
-list of facility agents operating at the beginning of the simulation</li>
+simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code> (required, once) - the archetype-specific configuration</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">initialfacilitylist</span></code> (optional, may appear multiple times) - a
+list of facility agents operating at the beginning of the simulation</p></li>
 </ul>
-<p>Each <code class="docutils literal"><span class="pre">initialfacilitylist</span></code> block contains one or more <code class="docutils literal"><span class="pre">entry</span></code> blocks
+<p>Each <code class="docutils literal notranslate"><span class="pre">initialfacilitylist</span></code> block contains one or more <code class="docutils literal notranslate"><span class="pre">entry</span></code> blocks
 that each contain the following sections, in the following order:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">prototype</span></code> - the name of a facility prototype defined elsewhere in
-the input file</li>
-<li><code class="docutils literal"><span class="pre">number</span></code> - the number of such facilities that are operating at the
-beginning of the simulation</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prototype</span></code> - the name of a facility prototype defined elsewhere in
+the input file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">number</span></code> - the number of such facilities that are operating at the
+beginning of the simulation</p></li>
 </ul>
 <p>Put together, the institution block is the form:</p>
-<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;institution&gt;</span>
-  <span class="nt">&lt;initialfacilitylist&gt;</span>
-    <span class="nt">&lt;entry&gt;</span>
-      <span class="nt">&lt;prototype&gt;</span>Prototype_name<span class="nt">&lt;/prototype&gt;</span>
-      <span class="nt">&lt;number&gt;</span>number_of_prototype_names<span class="nt">&lt;/number&gt;</span>
-    <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;/initialfacilitylist&gt;</span>
-  <span class="nt">&lt;name&gt;</span>Inst_name<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;config&gt;</span>
-    <span class="nt">&lt;NullInst/&gt;</span>
-  <span class="nt">&lt;/config&gt;</span>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;institution&gt;</span>
+<span class="w">  </span><span class="nt">&lt;initialfacilitylist&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;prototype&gt;</span>Prototype_name<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">      </span><span class="nt">&lt;number&gt;</span>number_of_prototype_names<span class="nt">&lt;/number&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/initialfacilitylist&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>Inst_name<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;config&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NullInst/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/config&gt;</span>
 <span class="nt">&lt;/institution&gt;</span>
 </pre></div>
 </div>
-<p>There can be multiple <code class="docutils literal"><span class="pre">entry</span></code> blocks within the same institution.</p>
+<p>There can be multiple <code class="docutils literal notranslate"><span class="pre">entry</span></code> blocks within the same institution.</p>
 <p>The example below
 introduces two institution agents (the region section that encloses them
 is not shown). The first institution has the name <em>SingleInstitution</em>,
 and is configured from the archetype with the name
-<code class="docutils literal"><span class="pre">NullInst</span></code>.
-The <code class="docutils literal"><span class="pre">NullInst</span></code> has no defined archetype-specific data.
+<code class="docutils literal notranslate"><span class="pre">NullInst</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">NullInst</span></code> has no defined archetype-specific data.
 This institution begins the simulation with two
-facility agents, one based on the <code class="docutils literal"><span class="pre">FacilityA</span></code> prototype and another
-based on the <code class="docutils literal"><span class="pre">FacilityB</span></code> prototype. The second institution has the
+facility agents, one based on the <code class="docutils literal notranslate"><span class="pre">FacilityA</span></code> prototype and another
+based on the <code class="docutils literal notranslate"><span class="pre">FacilityB</span></code> prototype. The second institution has the
 name <em>AnotherInstitution</em>, is also configured from the archetype with
-the name (or alias) <code class="docutils literal"><span class="pre">NullInst</span></code>. This institution has no initial
+the name (or alias) <code class="docutils literal notranslate"><span class="pre">NullInst</span></code>. This institution has no initial
 facilities.</p>
-<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;institution&gt;</span>
-  <span class="nt">&lt;initialfacilitylist&gt;</span>
-    <span class="nt">&lt;entry&gt;</span>
-      <span class="nt">&lt;prototype&gt;</span>FacilityA<span class="nt">&lt;/prototype&gt;</span>
-      <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
-    <span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry&gt;</span>
-      <span class="nt">&lt;prototype&gt;</span>FacilityB<span class="nt">&lt;/prototype&gt;</span>
-      <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
-    <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;/initialfacilitylist&gt;</span>
-  <span class="nt">&lt;name&gt;</span>SingleInstitution<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;config&gt;</span>
-    <span class="nt">&lt;NullInst/&gt;</span>
-  <span class="nt">&lt;/config&gt;</span>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;institution&gt;</span>
+<span class="w">  </span><span class="nt">&lt;initialfacilitylist&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;prototype&gt;</span>FacilityA<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">      </span><span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;prototype&gt;</span>FacilityB<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">      </span><span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/initialfacilitylist&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>SingleInstitution<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;config&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NullInst/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/config&gt;</span>
 <span class="nt">&lt;/institution&gt;</span>
 
 <span class="nt">&lt;institution&gt;</span>
-  <span class="nt">&lt;name&gt;</span>AnotherInstitution<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;config&gt;</span>
-    <span class="nt">&lt;NullInst/&gt;</span>
-  <span class="nt">&lt;/config&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>AnotherInstitution<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;config&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NullInst/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/config&gt;</span>
 <span class="nt">&lt;/institution&gt;</span>
 </pre></div>
 </div>
 <p>Putting it all together, a complete region template is of the form:</p>
-<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;region&gt;</span>
-  <span class="nt">&lt;name&gt;</span>Region_name<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;config&gt;</span>
-    <span class="nt">&lt;NullRegion/&gt;</span>
-  <span class="nt">&lt;/config&gt;</span>
-  <span class="nt">&lt;institution&gt;</span>
-    <span class="nt">&lt;initialfacilitylist&gt;</span>
-      <span class="nt">&lt;entry&gt;</span>
-        <span class="nt">&lt;prototype&gt;</span>Prototype_name<span class="nt">&lt;/prototype&gt;</span>
-          <span class="nt">&lt;number&gt;</span>number_of_prototype_names<span class="nt">&lt;/number&gt;</span>
-      <span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;/initialfacilitylist&gt;</span>
-    <span class="nt">&lt;name&gt;</span>Inst_name<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;config&gt;</span>
-      <span class="nt">&lt;NullInst/&gt;</span>
-    <span class="nt">&lt;/config&gt;</span>
-  <span class="nt">&lt;/institution&gt;</span>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;region&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>Region_name<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;config&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NullRegion/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/config&gt;</span>
+<span class="w">  </span><span class="nt">&lt;institution&gt;</span>
+<span class="w">    </span><span class="nt">&lt;initialfacilitylist&gt;</span>
+<span class="w">      </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;prototype&gt;</span>Prototype_name<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">          </span><span class="nt">&lt;number&gt;</span>number_of_prototype_names<span class="nt">&lt;/number&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/initialfacilitylist&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>Inst_name<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;config&gt;</span>
+<span class="w">      </span><span class="nt">&lt;NullInst/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/config&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/institution&gt;</span>
 <span class="nt">&lt;/region&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="activity-write-the-region-template">
-<h2>Activity: Write the Region template<a class="headerlink" href="#activity-write-the-region-template" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="activity-write-the-region-template">
+<h2>Activity: Write the Region template<a class="headerlink" href="#activity-write-the-region-template" title="Link to this heading">¶</a></h2>
 <p>Using the template below, let’s create the region section of our input file.</p>
-<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;region&gt;</span>
-  <span class="nt">&lt;name&gt;</span>[VALUE]<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;config&gt;</span>
-    <span class="nt">&lt;NullRegion/&gt;</span>
-  <span class="nt">&lt;/config&gt;</span>
-  <span class="nt">&lt;institution&gt;</span>
-    <span class="nt">&lt;initialfacilitylist&gt;</span>
-      <span class="nt">&lt;entry&gt;</span>
-        <span class="nt">&lt;prototype&gt;</span>[VALUE]<span class="nt">&lt;/prototype&gt;</span>
-        <span class="nt">&lt;number&gt;</span>[VALUE]<span class="nt">&lt;/number&gt;</span>
-      <span class="nt">&lt;/entry&gt;</span>
-      <span class="nt">&lt;/initialfacilitylist&gt;</span>
-    <span class="nt">&lt;name&gt;</span>[VALUE]<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;config&gt;</span>
-      <span class="nt">&lt;NullInst/&gt;</span>
-    <span class="nt">&lt;/config&gt;</span>
-  <span class="nt">&lt;/institution&gt;</span>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;region&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>[VALUE]<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;config&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NullRegion/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/config&gt;</span>
+<span class="w">  </span><span class="nt">&lt;institution&gt;</span>
+<span class="w">    </span><span class="nt">&lt;initialfacilitylist&gt;</span>
+<span class="w">      </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;prototype&gt;</span>[VALUE]<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">        </span><span class="nt">&lt;number&gt;</span>[VALUE]<span class="nt">&lt;/number&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/initialfacilitylist&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>[VALUE]<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;config&gt;</span>
+<span class="w">      </span><span class="nt">&lt;NullInst/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/config&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/institution&gt;</span>
 <span class="nt">&lt;/region&gt;</span>
 </pre></div>
 </div>
 <p>Now the next part of the region template is the other facilities in the
 region’s fuel cycle. In our example, these facilities are
-<code class="docutils literal"><span class="pre">UraniumMine</span></code>, <code class="docutils literal"><span class="pre">EnrichmentPlant</span></code>, and <code class="docutils literal"><span class="pre">NuclearRepository</span></code>. Using
+<code class="docutils literal notranslate"><span class="pre">UraniumMine</span></code>, <code class="docutils literal notranslate"><span class="pre">EnrichmentPlant</span></code>, and <code class="docutils literal notranslate"><span class="pre">NuclearRepository</span></code>. Using
 the above exercise and the table below, fill out the rest of the region
 template.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="30%" />
-<col width="52%" />
-<col width="18%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Variable</th>
-<th class="head">Name</th>
-<th class="head">Amount</th>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Amount</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">prototype</span></code></td>
-<td><code class="docutils literal"><span class="pre">UraniumMine</span></code></td>
-<td><code class="docutils literal"><span class="pre">1</span></code></td>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">prototype</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">UraniumMine</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">prototype</span></code></td>
-<td><code class="docutils literal"><span class="pre">EnrichmentPlant</span></code></td>
-<td><code class="docutils literal"><span class="pre">1</span></code></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">prototype</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EnrichmentPlant</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">prototype</span></code></td>
-<td><code class="docutils literal"><span class="pre">NuclearRepository</span></code></td>
-<td><code class="docutils literal"><span class="pre">1</span></code></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">prototype</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">NuclearRepository</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">name</span></code></td>
-<td><code class="docutils literal"><span class="pre">United</span> <span class="pre">States</span> <span class="pre">Nuclear</span></code></td>
-<td><code class="docutils literal"><span class="pre">1</span></code></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">United</span> <span class="pre">States</span> <span class="pre">Nuclear</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
 </tr>
 </tbody>
 </table>
-<div class="section" id="check-complete-region-block">
-<h3>Check: Complete Region block<a class="headerlink" href="#check-complete-region-block" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;region&gt;</span>
-  <span class="nt">&lt;name&gt;</span>region1<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;config&gt;</span>
-    <span class="nt">&lt;NullRegion/&gt;</span>
-  <span class="nt">&lt;/config&gt;</span>
-  <span class="nt">&lt;institution&gt;</span>
-    <span class="nt">&lt;initialfacilitylist&gt;</span>
-      <span class="nt">&lt;entry&gt;</span>
-        <span class="nt">&lt;prototype&gt;</span>UraniumMine<span class="nt">&lt;/prototype&gt;</span>
-        <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
-      <span class="nt">&lt;/entry&gt;</span>
-      <span class="nt">&lt;entry&gt;</span>
-        <span class="nt">&lt;prototype&gt;</span>EnrichmentPlant<span class="nt">&lt;/prototype&gt;</span>
-        <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
-      <span class="nt">&lt;/entry&gt;</span>
-      <span class="nt">&lt;entry&gt;</span>
-        <span class="nt">&lt;prototype&gt;</span>NuclearRepository<span class="nt">&lt;/prototype&gt;</span>
-        <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
-      <span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;/initialfacilitylist&gt;</span>
-    <span class="nt">&lt;name&gt;</span>United States Nuclear<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;config&gt;</span>
-      <span class="nt">&lt;NullInst/&gt;</span>
-    <span class="nt">&lt;/config&gt;</span>
-  <span class="nt">&lt;/institution&gt;</span>
+<section id="check-complete-region-block">
+<h3>Check: Complete Region block<a class="headerlink" href="#check-complete-region-block" title="Link to this heading">¶</a></h3>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;region&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>region1<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;config&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NullRegion/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/config&gt;</span>
+<span class="w">  </span><span class="nt">&lt;institution&gt;</span>
+<span class="w">    </span><span class="nt">&lt;initialfacilitylist&gt;</span>
+<span class="w">      </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;prototype&gt;</span>UraniumMine<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">        </span><span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;prototype&gt;</span>EnrichmentPlant<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">        </span><span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;prototype&gt;</span>NuclearRepository<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">        </span><span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/initialfacilitylist&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>United<span class="w"> </span>States<span class="w"> </span>Nuclear<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;config&gt;</span>
+<span class="w">      </span><span class="nt">&lt;NullInst/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/config&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/institution&gt;</span>
 <span class="nt">&lt;/region&gt;</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="activity-save-your-input-file">
-<h2>Activity: Save your input file<a class="headerlink" href="#activity-save-your-input-file" title="Permalink to this headline">¶</a></h2>
-<p>Save your input file as <code class="docutils literal"><span class="pre">cyclus_intro_file.xml</span></code></p>
-</div>
-<div class="section" id="activity-add-an-extra-insitution-into-the-region">
-<h2>Activity: Add an extra insitution into the Region<a class="headerlink" href="#activity-add-an-extra-insitution-into-the-region" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="activity-save-your-input-file">
+<h2>Activity: Save your input file<a class="headerlink" href="#activity-save-your-input-file" title="Link to this heading">¶</a></h2>
+<p>Save your input file as <code class="docutils literal notranslate"><span class="pre">cyclus_intro_file.xml</span></code></p>
+</section>
+<section id="activity-add-an-extra-insitution-into-the-region">
+<h2>Activity: Add an extra insitution into the Region<a class="headerlink" href="#activity-add-an-extra-insitution-into-the-region" title="Link to this heading">¶</a></h2>
 <p>Having multiple insitutions help organize facilities and their affiliation.
-Let’s create region, <code class="docutils literal"><span class="pre">USA</span></code>, that contains two institutions, <code class="docutils literal"><span class="pre">Exelon</span></code> and <code class="docutils literal"><span class="pre">United</span> <span class="pre">States</span> <span class="pre">Nuclear</span></code>.
-<code class="docutils literal"><span class="pre">Exelon</span></code> is the institution that holds the <code class="docutils literal"><span class="pre">1178MWe</span> <span class="pre">BRAIDWOOD-1</span></code> reactor and <code class="docutils literal"><span class="pre">United</span> <span class="pre">States</span> <span class="pre">Nuclear</span></code> holds the <code class="docutils literal"><span class="pre">UraniumMine</span></code>, <code class="docutils literal"><span class="pre">EnrichmentPlant</span></code>, and <code class="docutils literal"><span class="pre">NuclearRepository</span></code>.</p>
+Let’s create region, <code class="docutils literal notranslate"><span class="pre">USA</span></code>, that contains two institutions, <code class="docutils literal notranslate"><span class="pre">Exelon</span></code> and <code class="docutils literal notranslate"><span class="pre">United</span> <span class="pre">States</span> <span class="pre">Nuclear</span></code>.
+<code class="docutils literal notranslate"><span class="pre">Exelon</span></code> is the institution that holds the <code class="docutils literal notranslate"><span class="pre">1178MWe</span> <span class="pre">BRAIDWOOD-1</span></code> reactor and <code class="docutils literal notranslate"><span class="pre">United</span> <span class="pre">States</span> <span class="pre">Nuclear</span></code> holds the <code class="docutils literal notranslate"><span class="pre">UraniumMine</span></code>, <code class="docutils literal notranslate"><span class="pre">EnrichmentPlant</span></code>, and <code class="docutils literal notranslate"><span class="pre">NuclearRepository</span></code>.</p>
 <img alt="../../_images/RIF_tutorial.png" src="../../_images/RIF_tutorial.png" />
 <p>Using the template above and the table below, let’s build the region.</p>
-<p>1. Since there are two institutions, <code class="docutils literal"><span class="pre">Exelon</span></code> and <code class="docutils literal"><span class="pre">United</span> <span class="pre">States</span> <span class="pre">Nuclear</span></code>, we will split the region into two parts.
-Let’s first build the <code class="docutils literal"><span class="pre">Exelon</span></code> institution. This institution has one <code class="docutils literal"><span class="pre">1178MWe</span> <span class="pre">BRAIDWOOD-1</span></code> prototype. Using this information we can write this institution as:</p>
-<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;region&gt;</span>
-  <span class="nt">&lt;name&gt;</span>USA<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;config&gt;</span>
-    <span class="nt">&lt;NullRegion/&gt;</span>
-  <span class="nt">&lt;/config&gt;</span>
-  <span class="nt">&lt;institution&gt;</span>
-    <span class="nt">&lt;initialfacilitylist&gt;</span>
-      <span class="nt">&lt;entry&gt;</span>
-        <span class="nt">&lt;prototype&gt;</span>1178MWe BRAIDWOOD-1<span class="nt">&lt;/prototype&gt;</span>
-        <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
-      <span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;/initialfacilitylist&gt;</span>
-    <span class="nt">&lt;name&gt;</span>Exelon<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;config&gt;</span>
-      <span class="nt">&lt;NullInst/&gt;</span>
-    <span class="nt">&lt;/config&gt;</span>
-  <span class="nt">&lt;/institution&gt;</span>
+<p>1. Since there are two institutions, <code class="docutils literal notranslate"><span class="pre">Exelon</span></code> and <code class="docutils literal notranslate"><span class="pre">United</span> <span class="pre">States</span> <span class="pre">Nuclear</span></code>, we will split the region into two parts.
+Let’s first build the <code class="docutils literal notranslate"><span class="pre">Exelon</span></code> institution. This institution has one <code class="docutils literal notranslate"><span class="pre">1178MWe</span> <span class="pre">BRAIDWOOD-1</span></code> prototype. Using this information we can write this institution as:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;region&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>USA<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;config&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NullRegion/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/config&gt;</span>
+<span class="w">  </span><span class="nt">&lt;institution&gt;</span>
+<span class="w">    </span><span class="nt">&lt;initialfacilitylist&gt;</span>
+<span class="w">      </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;prototype&gt;</span>1178MWe<span class="w"> </span>BRAIDWOOD-1<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">        </span><span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/initialfacilitylist&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>Exelon<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;config&gt;</span>
+<span class="w">      </span><span class="nt">&lt;NullInst/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/config&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/institution&gt;</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li>Now let’s build the second institution, <code class="docutils literal"><span class="pre">United</span> <span class="pre">States</span> <span class="pre">Nuclear</span></code>. This institution has one <code class="docutils literal"><span class="pre">UraniumMine</span></code> prototype, <code class="docutils literal"><span class="pre">EnrichmentPlant</span></code> prototype, and one <code class="docutils literal"><span class="pre">NuclearRepository</span></code> prototype. Using this information we can write this institution as:</li>
+<li><p>Now let’s build the second institution, <code class="docutils literal notranslate"><span class="pre">United</span> <span class="pre">States</span> <span class="pre">Nuclear</span></code>. This institution has one <code class="docutils literal notranslate"><span class="pre">UraniumMine</span></code> prototype, <code class="docutils literal notranslate"><span class="pre">EnrichmentPlant</span></code> prototype, and one <code class="docutils literal notranslate"><span class="pre">NuclearRepository</span></code> prototype. Using this information we can write this institution as:</p></li>
 </ol>
-<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;institution&gt;</span>
-  <span class="nt">&lt;initialfacilitylist&gt;</span>
-    <span class="nt">&lt;entry&gt;</span>
-      <span class="nt">&lt;prototype&gt;</span>UraniumMine<span class="nt">&lt;/prototype&gt;</span>
-      <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
-    <span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry&gt;</span>
-      <span class="nt">&lt;prototype&gt;</span>EnrichmentPlant<span class="nt">&lt;/prototype&gt;</span>
-      <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
-    <span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry&gt;</span>
-      <span class="nt">&lt;prototype&gt;</span>NuclearRepository<span class="nt">&lt;/prototype&gt;</span>
-      <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
-    <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;/initialfacilitylist&gt;</span>
-  <span class="nt">&lt;name&gt;</span>United States Nuclear<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;config&gt;</span>
-    <span class="nt">&lt;NullInst/&gt;</span>
-  <span class="nt">&lt;/config&gt;</span>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;institution&gt;</span>
+<span class="w">  </span><span class="nt">&lt;initialfacilitylist&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;prototype&gt;</span>UraniumMine<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">      </span><span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;prototype&gt;</span>EnrichmentPlant<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">      </span><span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;prototype&gt;</span>NuclearRepository<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">      </span><span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/initialfacilitylist&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>United<span class="w"> </span>States<span class="w"> </span>Nuclear<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;config&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NullInst/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/config&gt;</span>
 <span class="nt">&lt;/institution&gt;</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
-<li>We will close the region section by appending the two sections together and appending a <code class="docutils literal"><span class="pre">&lt;/region&gt;</span></code> tag to the end of the section. Once complete, your region prototype should look like:</li>
+<li><p>We will close the region section by appending the two sections together and appending a <code class="docutils literal notranslate"><span class="pre">&lt;/region&gt;</span></code> tag to the end of the section. Once complete, your region prototype should look like:</p></li>
 </ol>
-<div class="highlight-XML"><div class="highlight"><pre><span></span><span class="nt">&lt;region&gt;</span>
-  <span class="nt">&lt;name&gt;</span>USA<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;config&gt;</span>
-    <span class="nt">&lt;NullRegion/&gt;</span>
-  <span class="nt">&lt;/config&gt;</span>
-  <span class="nt">&lt;institution&gt;</span>
-    <span class="nt">&lt;initialfacilitylist&gt;</span>
-      <span class="nt">&lt;entry&gt;</span>
-        <span class="nt">&lt;prototype&gt;</span>1178MWe BRAIDWOOD-1<span class="nt">&lt;/prototype&gt;</span>
-        <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
-      <span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;/initialfacilitylist&gt;</span>
-    <span class="nt">&lt;name&gt;</span>Exelon<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;config&gt;</span>
-      <span class="nt">&lt;NullInst/&gt;</span>
-    <span class="nt">&lt;/config&gt;</span>
-  <span class="nt">&lt;/institution&gt;</span>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;region&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>USA<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;config&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NullRegion/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/config&gt;</span>
+<span class="w">  </span><span class="nt">&lt;institution&gt;</span>
+<span class="w">    </span><span class="nt">&lt;initialfacilitylist&gt;</span>
+<span class="w">      </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;prototype&gt;</span>1178MWe<span class="w"> </span>BRAIDWOOD-1<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">        </span><span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/initialfacilitylist&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>Exelon<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;config&gt;</span>
+<span class="w">      </span><span class="nt">&lt;NullInst/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/config&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/institution&gt;</span>
 
-  <span class="nt">&lt;institution&gt;</span>
-    <span class="nt">&lt;initialfacilitylist&gt;</span>
-      <span class="nt">&lt;entry&gt;</span>
-        <span class="nt">&lt;prototype&gt;</span>UraniumMine<span class="nt">&lt;/prototype&gt;</span>
-        <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
-      <span class="nt">&lt;/entry&gt;</span>
-      <span class="nt">&lt;entry&gt;</span>
-        <span class="nt">&lt;prototype&gt;</span>EnrichmentPlant<span class="nt">&lt;/prototype&gt;</span>
-        <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
-      <span class="nt">&lt;/entry&gt;</span>
-      <span class="nt">&lt;entry&gt;</span>
-        <span class="nt">&lt;prototype&gt;</span>NuclearRepository<span class="nt">&lt;/prototype&gt;</span>
-        <span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
-      <span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;/initialfacilitylist&gt;</span>
-    <span class="nt">&lt;name&gt;</span>United States Nuclear<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;config&gt;</span>
-      <span class="nt">&lt;NullInst/&gt;</span>
-    <span class="nt">&lt;/config&gt;</span>
-  <span class="nt">&lt;/institution&gt;</span>
+<span class="w">  </span><span class="nt">&lt;institution&gt;</span>
+<span class="w">    </span><span class="nt">&lt;initialfacilitylist&gt;</span>
+<span class="w">      </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;prototype&gt;</span>UraniumMine<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">        </span><span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;prototype&gt;</span>EnrichmentPlant<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">        </span><span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;prototype&gt;</span>NuclearRepository<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">        </span><span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/initialfacilitylist&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>United<span class="w"> </span>States<span class="w"> </span>Nuclear<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;config&gt;</span>
+<span class="w">      </span><span class="nt">&lt;NullInst/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/config&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/institution&gt;</span>
 <span class="nt">&lt;/region&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="id1">
-<h2>Activity: Save your Input File<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id1">
+<h2>Activity: Save your Input File<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <p>You are now ready to generate a full <span style="font-variant:small-caps;">Cyclus</span> input file.</p>
 <ol class="arabic simple">
-<li>Save your input file as ‘cyclus_intro_file.xml’</li>
+<li><p>Save your input file as ‘cyclus_intro_file.xml’</p></li>
 </ol>
-<div class="section" id="check-full-input-file">
-<h3>Check: Full Input File<a class="headerlink" href="#check-full-input-file" title="Permalink to this headline">¶</a></h3>
+<section id="check-full-input-file">
+<h3>Check: Full Input File<a class="headerlink" href="#check-full-input-file" title="Link to this heading">¶</a></h3>
 <p><a class="reference external" href="full_input_1.html">Full input file</a></p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../../index.html" title="index">
-          <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Adding Regions and Institutions</a><ul>
@@ -556,68 +533,16 @@ Let’s first build the <code class="docutils literal"><span class="pre">Exelon<
     <p class="topless"><a href="launch_cyclus.html"
                           title="Next page">&rarr; Using <span style="font-variant:small-caps;">Cyclus</span> in the Cloud</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -659,14 +584,15 @@ Let’s first build the <code class="docutils literal"><span class="pre">Exelon<
     <li><a href="../../index.html">Home</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Adding Regions and Institutions</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

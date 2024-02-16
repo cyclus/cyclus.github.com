@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Custom Cyclus Installation &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Installing Cyclus Using the GitHub Repository" href="install_from_git.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -86,7 +74,8 @@ if(ga_enabled){
     <li><a href="../index.html">Home</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="install.html" accesskey="U">Getting Started with <span style="font-variant:small-caps;">Cyclus</span></a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="install.html" accesskey="U">Getting Started with <span style="font-variant:small-caps;">Cyclus</span></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Custom Cyclus Installation</a></li> 
       </ul>
     </div>
     </div>
@@ -97,125 +86,115 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="custom-cyclus-installation">
-<h1>Custom Cyclus Installation<a class="headerlink" href="#custom-cyclus-installation" title="Permalink to this headline">¶</a></h1>
+  <section id="custom-cyclus-installation">
+<h1>Custom Cyclus Installation<a class="headerlink" href="#custom-cyclus-installation" title="Link to this heading">¶</a></h1>
 <p>The installation using the install script can be customized using the following
 flags:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">-h,</span> <span class="pre">--help</span></code></td>
-<td>show the help message and exit</td>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-h,</span> <span class="pre">--help</span></code></p></td>
+<td><p>show the help message and exit</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">--build_dir</span> <span class="pre">BUILD_DIR</span></code></td>
-<td>where to place the build directory</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--build_dir</span> <span class="pre">BUILD_DIR</span></code></p></td>
+<td><p>where to place the build directory</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--uninstall</span></code></td>
-<td>uninstall</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--uninstall</span></code></p></td>
+<td><p>uninstall</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">--no-update</span></code></td>
-<td>do not update the hash in version.cc</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--no-update</span></code></p></td>
+<td><p>do not update the hash in version.cc</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--clean-build</span></code></td>
-<td>attempt to remove the build directory before building</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--clean-build</span></code></p></td>
+<td><p>attempt to remove the build directory before building</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">-j</span> <span class="pre">THREADS,</span> <span class="pre">--threads</span></code></td>
-<td>THREADS the number of threads to use in the make step</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">THREADS,</span> <span class="pre">--threads</span></code></p></td>
+<td><p>THREADS the number of threads to use in the make step</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--prefix</span> <span class="pre">PREFIX</span></code></td>
-<td>the relative path to the installation directory</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--prefix</span> <span class="pre">PREFIX</span></code></p></td>
+<td><p>the relative path to the installation directory</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">--config-only</span></code></td>
-<td>only configure the package, do not build or install</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--config-only</span></code></p></td>
+<td><p>only configure the package, do not build or install</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--build-only</span></code></td>
-<td>only build the package, do not install</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--build-only</span></code></p></td>
+<td><p>only build the package, do not install</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">--test</span></code></td>
-<td>run tests after  building</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--test</span></code></p></td>
+<td><p>run tests after  building</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--coin_root</span> <span class="pre">COIN_ROOT</span></code></td>
-<td>the relative path to the Coin-OR libraries directory</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--coin_root</span> <span class="pre">COIN_ROOT</span></code></p></td>
+<td><p>the relative path to the Coin-OR libraries directory</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">--boost_root</span> <span class="pre">BOOST_ROOT</span></code></td>
-<td>the relative path to the Boost libraries directory</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--boost_root</span> <span class="pre">BOOST_ROOT</span></code></p></td>
+<td><p>the relative path to the Boost libraries directory</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--hdf5_root</span> <span class="pre">HDF5_ROOT</span></code></td>
-<td>the path to the HDF5 libraries directory</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--hdf5_root</span> <span class="pre">HDF5_ROOT</span></code></p></td>
+<td><p>the path to the HDF5 libraries directory</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">--cmake_prefix_path</span> <span class="pre">CMAKE_PREFIX_PATH</span></code></td>
-<td>the cmake prefix path for use with FIND_PACKAGE, FIND_PATH, FIND_PROGRAM, or FIND_LIBRARY macros</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--cmake_prefix_path</span> <span class="pre">CMAKE_PREFIX_PATH</span></code></p></td>
+<td><p>the cmake prefix path for use with FIND_PACKAGE, FIND_PATH, FIND_PROGRAM, or FIND_LIBRARY macros</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">--build_type</span> <span class="pre">BUILD_TYPE</span></code></td>
-<td>change the CMAKE_BUILD_TYPE</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--build_type</span> <span class="pre">BUILD_TYPE</span></code></p></td>
+<td><p>change the CMAKE_BUILD_TYPE</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">-D</span> <span class="pre">VAR</span></code></td>
-<td>set environment variable(s).</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">VAR</span></code></p></td>
+<td><p>set environment variable(s).</p></td>
 </tr>
 </tbody>
 </table>
 <p>For example, if you have installed coin-Cbc from source or otherwise have it
-installed in a non-standard location, you should make use of the <code class="docutils literal"><span class="pre">coin_root</span></code>
+installed in a non-standard location, you should make use of the <code class="docutils literal notranslate"><span class="pre">coin_root</span></code>
 installation flag. The otherwise identical process would look like:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>.../cyclus$  python install.py --coin_root<span class="o">=</span>path/to/coin
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.../cyclus$<span class="w">  </span>python<span class="w"> </span>install.py<span class="w"> </span>--coin_root<span class="o">=</span>path/to/coin
 </pre></div>
 </div>
-</div>
-<div class="section" id="cmake-cyclus-installation">
-<h1>CMake Cyclus Installation<a class="headerlink" href="#cmake-cyclus-installation" title="Permalink to this headline">¶</a></h1>
-<p>If you are <code class="docutils literal"><span class="pre">CMake</span></code> aficionado you can also install Cyclus without using the
-<code class="docutils literal"><span class="pre">install.py</span></code> python script and use <code class="docutils literal"><span class="pre">cmake</span></code> directly, which should look like:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mkdir build
-<span class="nb">cd</span> build
-cmake .. -DCMAKE_INSTALL_PREFIX<span class="o">=</span>~/.local/
+</section>
+<section id="cmake-cyclus-installation">
+<h1>CMake Cyclus Installation<a class="headerlink" href="#cmake-cyclus-installation" title="Link to this heading">¶</a></h1>
+<p>If you are <code class="docutils literal notranslate"><span class="pre">CMake</span></code> aficionado you can also install Cyclus without using the
+<code class="docutils literal notranslate"><span class="pre">install.py</span></code> python script and use <code class="docutils literal notranslate"><span class="pre">cmake</span></code> directly, which should look like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>~/.local/
 make
-make install
+make<span class="w"> </span>install
 </pre></div>
 </div>
 <p>As usual you can customize your cmake installation using the proper cmake flag.
-All cmake variables can be listed using: <code class="docutils literal"><span class="pre">cmake</span> <span class="pre">-LAH</span></code>.
+All cmake variables can be listed using: <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-LAH</span></code>.
 The main variables used are:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">COIN_ROOT_DIR</span></code></td>
-<td>set Coin-OT library directory</td>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">COIN_ROOT_DIR</span></code></p></td>
+<td><p>set Coin-OT library directory</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">BOOST_ROOT</span></code></td>
-<td>set Boost libraries directory</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BOOST_ROOT</span></code></p></td>
+<td><p>set Boost libraries directory</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">HDF5_ROOT</span></code></td>
-<td>set HDF5 root directory</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">HDF5_ROOT</span></code></p></td>
+<td><p>set HDF5 root directory</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">HDF5_LIBRARIES</span></code></td>
-<td>set HDF5 libraries path</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">HDF5_LIBRARIES</span></code></p></td>
+<td><p>set HDF5 libraries path</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">HDF5_LIBRARY_DIRS</span></code></td>
-<td>set HDF5 library directory</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">HDF5_LIBRARY_DIRS</span></code></p></td>
+<td><p>set HDF5 library directory</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">HDF5_INCLUDE_DIRS</span></code></td>
-<td>set HDF5 include directory</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">HDF5_INCLUDE_DIRS</span></code></p></td>
+<td><p>set HDF5 include directory</p></td>
 </tr>
 </tbody>
 </table>
-<p>All variables can be set using <code class="docutils literal"><span class="pre">-DMY_VARIABLE=MY_VARIABLES_VALUE</span></code>.</p>
-</div>
+<p>All variables can be set using <code class="docutils literal notranslate"><span class="pre">-DMY_VARIABLE=MY_VARIABLES_VALUE</span></code>.</p>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Custom Cyclus Installation</a></li>
@@ -233,68 +212,16 @@ The main variables used are:</p>
     <p class="topless"><a href="install_from_git.html"
                           title="Next page">&rarr; Installing <span style="font-variant:small-caps;">Cyclus</span> Using the GitHub Repository</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -336,14 +263,15 @@ The main variables used are:</p>
     <li><a href="../index.html">Home</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="install.html" >Getting Started with <span style="font-variant:small-caps;">Cyclus</span></a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="install.html" >Getting Started with <span style="font-variant:small-caps;">Cyclus</span></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Custom Cyclus Installation</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

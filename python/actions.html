@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Asynchronous Actions (cyclus.actions) &#8212; Home</title>
-    <link rel="stylesheet" href="../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+        <script src="../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.base.js"></script>
+        <script src="../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../_static/cloud.js"></script>
+        <script src="../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../_static/big_c.ico"/>
+    <link rel="icon" href="../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Client Web Application (cyclus.webapp)" href="webapp.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -85,7 +73,8 @@ if(ga_enabled){
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Asynchronous Actions (<code class="docutils literal notranslate"><span class="pre">cyclus.actions</span></code>)</a></li> 
       </ul>
     </div>
     </div>
@@ -96,92 +85,86 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-cyclus.actions">
-<span id="asynchronous-actions-cyclus-actions"></span><span id="cyclus-pyapi-actions"></span><h1>Asynchronous Actions (<code class="docutils literal"><span class="pre">cyclus.actions</span></code>)<a class="headerlink" href="#module-cyclus.actions" title="Permalink to this headline">¶</a></h1>
+  <section id="module-cyclus.actions">
+<span id="asynchronous-actions-cyclus-actions"></span><span id="cyclus-pyapi-actions"></span><h1>Asynchronous Actions (<code class="docutils literal notranslate"><span class="pre">cyclus.actions</span></code>)<a class="headerlink" href="#module-cyclus.actions" title="Link to this heading">¶</a></h1>
 <p>Cyclus actions.</p>
 <p>This file cannot be Cythonized due to current errors in Cython async
 handling. – scopatz 2017-01-02, for more information see.
 see <a class="reference external" href="https://github.com/cython/cython/issues/1573">https://github.com/cython/cython/issues/1573</a></p>
-<dl class="function">
-<dt id="cyclus.actions.action">
-<code class="descclassname">cyclus.actions.</code><code class="descname">action</code><span class="sig-paren">(</span><em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.action" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.action">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.action" title="Link to this definition">¶</a></dt>
 <dd><p>Decorator for declaring async functions as actions.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.agent_annotations">
-<code class="descclassname">cyclus.actions.</code><code class="descname">agent_annotations</code><span class="sig-paren">(</span><em>state</em>, <em>spec</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.agent_annotations" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.agent_annotations">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">agent_annotations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.agent_annotations" title="Link to this definition">¶</a></dt>
 <dd><p>Returns agent annotations for a given spec.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>spec</strong> : str</p>
-<blockquote class="last">
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>spec</strong> : str</p>
+<blockquote>
 <div><p>The agent specification, e.g. “:agents:NullRegion”</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.agent_annotations_as_json">
-<code class="descclassname">cyclus.actions.</code><code class="descname">agent_annotations_as_json</code><span class="sig-paren">(</span><em>state</em>, <em>spec</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.agent_annotations_as_json" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.agent_annotations_as_json">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">agent_annotations_as_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.agent_annotations_as_json" title="Link to this definition">¶</a></dt>
 <dd><p>Returns the agent annotations as a JSON string.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.deregister_tables">
-<code class="descclassname">cyclus.actions.</code><code class="descname">deregister_tables</code><span class="sig-paren">(</span><em>state</em>, <em>tables</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.deregister_tables" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.deregister_tables">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">deregister_tables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tables</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.deregister_tables" title="Link to this definition">¶</a></dt>
 <dd><p>Remove table names to the in-memory backend registry. The lone
 argument here may either be a str (single table), or a set or sequence
 of strings (many tables) to add.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.echo">
-<code class="descclassname">cyclus.actions.</code><code class="descname">echo</code><span class="sig-paren">(</span><em>state</em>, <em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.echo" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.echo">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">echo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.echo" title="Link to this definition">¶</a></dt>
 <dd><p>Simple asyncronous echo.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.ensure_tables">
-<code class="descclassname">cyclus.actions.</code><code class="descname">ensure_tables</code><span class="sig-paren">(</span><em>tables</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.ensure_tables" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.ensure_tables">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">ensure_tables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tables</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.ensure_tables" title="Link to this definition">¶</a></dt>
 <dd><p>Ensures that the input is a set of strings suitable for use as
 table names.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.load">
-<code class="descclassname">cyclus.actions.</code><code class="descname">load</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.load" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.load">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.load" title="Link to this definition">¶</a></dt>
 <dd><p>Loads the simulation from the input file and starts executing it.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.pause">
-<code class="descclassname">cyclus.actions.</code><code class="descname">pause</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.pause" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.pause">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">pause</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.pause" title="Link to this definition">¶</a></dt>
 <dd><p>Asynchronous pause.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.register_tables">
-<code class="descclassname">cyclus.actions.</code><code class="descname">register_tables</code><span class="sig-paren">(</span><em>state</em>, <em>tables</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.register_tables" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.register_tables">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">register_tables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tables</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.register_tables" title="Link to this definition">¶</a></dt>
 <dd><p>Add table names to the in-memory backend registry. The lone
 argument here may either be a str (single table), or a set or sequence
 of strings (many tables) to add.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.send_message">
-<code class="descclassname">cyclus.actions.</code><code class="descname">send_message</code><span class="sig-paren">(</span><em>state</em>, <em>event</em>, <em>params=None</em>, <em>data='null'</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.send_message" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.send_message">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">send_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'null'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.send_message" title="Link to this definition">¶</a></dt>
 <dd><p>Formats and puts a message on the send queue.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>state</strong> : SimState</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>state</strong> : SimState</p>
 <blockquote>
 <div><p>The state to put the message in</p>
 </div></blockquote>
@@ -195,35 +178,31 @@ of strings (many tables) to add.</p>
 converted to JSON.</p>
 </div></blockquote>
 <p><strong>data</strong> : str, optional</p>
-<blockquote class="last">
+<blockquote>
 <div><p>The payload to send, this should already be in JSON form.</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.send_registry">
-<code class="descclassname">cyclus.actions.</code><code class="descname">send_registry</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.send_registry" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.send_registry">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">send_registry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.send_registry" title="Link to this definition">¶</a></dt>
 <dd><p>Sends the current value of the registry of the in-memory backend.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.send_registry_action">
-<code class="descclassname">cyclus.actions.</code><code class="descname">send_registry_action</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.send_registry_action" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.send_registry_action">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">send_registry_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.send_registry_action" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.send_table_data">
-<code class="descclassname">cyclus.actions.</code><code class="descname">send_table_data</code><span class="sig-paren">(</span><em>state</em>, <em>table</em>, <em>conds=None</em>, <em>orient='split'</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.send_table_data" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.send_table_data">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">send_table_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'split'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.send_table_data" title="Link to this definition">¶</a></dt>
 <dd><p>Sends all table data in JSON format.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>table</strong> : str</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table</strong> : str</p>
 <blockquote>
 <div><p>The name of the table to send</p>
 </div></blockquote>
@@ -233,143 +212,109 @@ converted to JSON.</p>
 more information.</p>
 </div></blockquote>
 <p><strong>orient</strong> : str, optional</p>
-<blockquote class="last">
+<blockquote>
 <div><p>The orientation of the JSON representation of the data. See
 the pandas.DataFrame.to_json() method documentation for more
 information.</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.send_table_names">
-<code class="descclassname">cyclus.actions.</code><code class="descname">send_table_names</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.send_table_names" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.send_table_names">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">send_table_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.send_table_names" title="Link to this definition">¶</a></dt>
 <dd><p>Send the table names from the file-system backend.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.shutdown">
-<code class="descclassname">cyclus.actions.</code><code class="descname">shutdown</code><span class="sig-paren">(</span><em>state</em>, <em>when='empty'</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.shutdown" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.shutdown">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">shutdown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">when</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'empty'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.shutdown" title="Link to this definition">¶</a></dt>
 <dd><p>Shuts down the server.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>when</strong> : str, optional</p>
-<blockquote class="last">
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>when</strong> : str, optional</p>
+<blockquote>
 <div><p>When to shutdown the server. Options are “empty” for when the action
 queue is empty, and “now” for right now. Default is empty.</p>
 </div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.sleep">
-<code class="descclassname">cyclus.actions.</code><code class="descname">sleep</code><span class="sig-paren">(</span><em>state</em>, <em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.sleep" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.sleep">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">sleep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.sleep" title="Link to this definition">¶</a></dt>
 <dd><p>Asynchronously sleeps for n seconds.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.table_data_as_json">
-<code class="descclassname">cyclus.actions.</code><code class="descname">table_data_as_json</code><span class="sig-paren">(</span><em>state</em>, <em>table</em>, <em>conds</em>, <em>orient</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.table_data_as_json" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.table_data_as_json">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">table_data_as_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orient</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.table_data_as_json" title="Link to this definition">¶</a></dt>
 <dd><p>Obtains table data as a JSON string.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="cyclus.actions.unpause">
-<code class="descclassname">cyclus.actions.</code><code class="descname">unpause</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.unpause" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.actions.unpause">
+<span class="sig-prename descclassname"><span class="pre">cyclus.actions.</span></span><span class="sig-name descname"><span class="pre">unpause</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.actions.unpause" title="Link to this definition">¶</a></dt>
 <dd><p>Cancels and removes the pause action.</p>
 </dd></dl>
 
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/big_c.png" alt="Logo"/>
-        </a></p>
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Asynchronous Actions (<code class="docutils literal notranslate"><span class="pre">cyclus.actions</span></code>)</a><ul>
+<li><a class="reference internal" href="#cyclus.actions.action"><code class="docutils literal notranslate"><span class="pre">action()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.agent_annotations"><code class="docutils literal notranslate"><span class="pre">agent_annotations()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.agent_annotations_as_json"><code class="docutils literal notranslate"><span class="pre">agent_annotations_as_json()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.deregister_tables"><code class="docutils literal notranslate"><span class="pre">deregister_tables()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.echo"><code class="docutils literal notranslate"><span class="pre">echo()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.ensure_tables"><code class="docutils literal notranslate"><span class="pre">ensure_tables()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.load"><code class="docutils literal notranslate"><span class="pre">load()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.pause"><code class="docutils literal notranslate"><span class="pre">pause()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.register_tables"><code class="docutils literal notranslate"><span class="pre">register_tables()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.send_message"><code class="docutils literal notranslate"><span class="pre">send_message()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.send_registry"><code class="docutils literal notranslate"><span class="pre">send_registry()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.send_registry_action"><code class="docutils literal notranslate"><span class="pre">send_registry_action()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.send_table_data"><code class="docutils literal notranslate"><span class="pre">send_table_data()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.send_table_names"><code class="docutils literal notranslate"><span class="pre">send_table_names()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.shutdown"><code class="docutils literal notranslate"><span class="pre">shutdown()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.sleep"><code class="docutils literal notranslate"><span class="pre">sleep()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.table_data_as_json"><code class="docutils literal notranslate"><span class="pre">table_data_as_json()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.actions.unpause"><code class="docutils literal notranslate"><span class="pre">unpause()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div class="sphinxprev">
     <h4>Previous page</h4>
     <p class="topless"><a href="server.html"
-                          title="Previous page">&larr; Cyclus Server (<code class="docutils literal"><span class="pre">cyclus.server</span></code>)</a></p>
+                          title="Previous page">&larr; Cyclus Server (<code class="docutils literal notranslate"><span class="pre">cyclus.server</span></code>)</a></p>
   </div>
   <div class="sphinxnext">
     <h4>Next page</h4>
     <p class="topless"><a href="webapp.html"
-                          title="Next page">&rarr; Client Web Application (<code class="docutils literal"><span class="pre">cyclus.webapp</span></code>)</a></p>
+                          title="Next page">&rarr; Client Web Application (<code class="docutils literal notranslate"><span class="pre">cyclus.webapp</span></code>)</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -410,14 +355,15 @@ queue is empty, and “now” for right now. Default is empty.</p>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Home</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Asynchronous Actions (<code class="docutils literal notranslate"><span class="pre">cyclus.actions</span></code>)</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

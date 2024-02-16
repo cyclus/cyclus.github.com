@@ -1,4 +1,4 @@
-.. _hello_world:
+.. _hello_world_cpp:
 
 Hello, Cyclus! [C++]
 ====================

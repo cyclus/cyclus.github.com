@@ -60,8 +60,6 @@ will identify the best approach for you.
 2. Run Cyclus with a Sample XML File
 -------------------------------------
 
-(Cyclist users skip this step)
-
 Try running |Cyclus| for yourself. The result will be a :doc:`database <dbdoc>` named cyclus.sqlite.  Use the drop down menu to load the sqlite file into Cyclist for data visualization, or use your favorite sqlite browser to peruse.
 
 .. code-block:: bash

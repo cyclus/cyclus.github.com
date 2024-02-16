@@ -1,50 +1,39 @@
 
 
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../../">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Setup a New Project &#8212; Home</title>
-    <link rel="stylesheet" href="../../_static/cyclus.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '(1.5.5)',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
      
-        <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+        <script src="../../_static/jquery.cookie.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+        <script src="../../_static/cloud.base.js"></script>
     
 
     
      
-        <script type="text/javascript" src="../../_static/cloud.js"></script>
+        <script src="../../_static/cloud.js"></script>
     
 
-    <link rel="shortcut icon" href="../../_static/big_c.ico"/>
+    <link rel="icon" href="../../_static/big_c.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Adding State Variables" href="state_var.html" />
@@ -64,8 +53,7 @@ if(ga_enabled){
   })();
 }
 </script>
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -86,7 +74,8 @@ if(ga_enabled){
     <li><a href="../../index.html">Home</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Archetype Development Tutorial [Python]</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Archetype Development Tutorial [Python]</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Setup a New Project</a></li> 
       </ul>
     </div>
     </div>
@@ -97,45 +86,45 @@ if(ga_enabled){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="setup-a-new-project">
-<h1>Setup a New Project<a class="headerlink" href="#setup-a-new-project" title="Permalink to this headline">¶</a></h1>
+  <section id="setup-a-new-project">
+<h1>Setup a New Project<a class="headerlink" href="#setup-a-new-project" title="Link to this heading">¶</a></h1>
 <p>In this lesson, we will:</p>
 <ol class="arabic simple">
-<li>Clean up the file system for the single storage facility</li>
-<li>Install the storage facility</li>
-<li>Run an input file that uses the new storage facility</li>
+<li><p>Clean up the file system for the single storage facility</p></li>
+<li><p>Install the storage facility</p></li>
+<li><p>Run an input file that uses the new storage facility</p></li>
 </ol>
-<div class="section" id="make-a-new-project">
-<h2>Make a New Project<a class="headerlink" href="#make-a-new-project" title="Permalink to this headline">¶</a></h2>
-<p>First let’s start by making a tutorial example project with an <code class="docutils literal"><span class="pre">agents.py</span></code> file.</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">~ $ mkdir -p tutorial/tut</span>
+<section id="make-a-new-project">
+<h2>Make a New Project<a class="headerlink" href="#make-a-new-project" title="Link to this heading">¶</a></h2>
+<p>First let’s start by making a tutorial example project with an <code class="docutils literal notranslate"><span class="pre">agents.py</span></code> file.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">~ $ mkdir -p tutorial/tut</span>
 <span class="go">~ $ cd tutorial/tut</span>
 <span class="go">~/tuorial/tut $ touch __init__.py agents.py</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="make-a-storage-facility">
-<h2>Make a Storage Facility<a class="headerlink" href="#make-a-storage-facility" title="Permalink to this headline">¶</a></h2>
-<p>Next, make a new facility by editing the <code class="docutils literal"><span class="pre">agents.py</span></code> file to look like the following:</p>
+</section>
+<section id="make-a-storage-facility">
+<h2>Make a Storage Facility<a class="headerlink" href="#make-a-storage-facility" title="Link to this heading">¶</a></h2>
+<p>Next, make a new facility by editing the <code class="docutils literal notranslate"><span class="pre">agents.py</span></code> file to look like the following:</p>
 <p><strong>~/tutorial/tut/agents.py:</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cyclus.agents</span> <span class="kn">import</span> <span class="n">Facility</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cyclus.agents</span> <span class="kn">import</span> <span class="n">Facility</span>
 
 
 <span class="k">class</span> <span class="nc">Storage</span><span class="p">(</span><span class="n">Facility</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;My storage facility.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;My storage facility.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello,&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;World!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="install-and-test">
-<h2>Install and Test<a class="headerlink" href="#install-and-test" title="Permalink to this headline">¶</a></h2>
-<p>To install the tutorial project, we’ll need to have a <code class="docutils literal"><span class="pre">setup.py</span></code> file in the
+</section>
+<section id="install-and-test">
+<h2>Install and Test<a class="headerlink" href="#install-and-test" title="Link to this heading">¶</a></h2>
+<p>To install the tutorial project, we’ll need to have a <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file in the
 root tutorial directory. Create one that looks like:</p>
 <p><strong>~/tutorial/setup.py:</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
 
 
@@ -156,18 +145,18 @@ root tutorial directory. Create one that looks like:</p>
 </pre></div>
 </div>
 <p>Now we can install the tutorial project via,</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">~ $ cd tutorial</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">~ $ cd tutorial</span>
 <span class="go">~/tutorial $ python setup.py install --user</span>
 </pre></div>
 </div>
-<p>Let’s now make an exmaple input file in a special <code class="docutils literal"><span class="pre">input</span></code> directory:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">~ $ cd tutorial</span>
+<p>Let’s now make an example input file in a special <code class="docutils literal notranslate"><span class="pre">input</span></code> directory:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">~ $ cd tutorial</span>
 <span class="go">~/tutorial $ mkdir -p input</span>
 <span class="go">~/tutorial $ touch input/storage.py</span>
 </pre></div>
 </div>
-<p>Now open up the <code class="docutils literal"><span class="pre">input/storage.</span></code> input file and edit it to look like:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SIMULATION</span> <span class="o">=</span> <span class="p">{</span>
+<p>Now open up the <code class="docutils literal notranslate"><span class="pre">input/storage.</span></code> input file and edit it to look like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SIMULATION</span> <span class="o">=</span> <span class="p">{</span>
  <span class="s1">&#39;simulation&#39;</span><span class="p">:</span> <span class="p">{</span>
   <span class="s1">&#39;archetypes&#39;</span><span class="p">:</span> <span class="p">{</span>
    <span class="s1">&#39;spec&#39;</span><span class="p">:</span> <span class="p">[</span>
@@ -191,8 +180,8 @@ root tutorial directory. Create one that looks like:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Test the input file by running Cyclus:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus -v <span class="m">2</span> input/storage.py
+<p>Test the input file by running <span style="font-variant:small-caps;">Cyclus</span>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>cyclus<span class="w"> </span>-v<span class="w"> </span><span class="m">2</span><span class="w"> </span>input/storage.py
 <span class="go">              :</span>
 <span class="go">          .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q</span>
 <span class="go">        CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)</span>
@@ -248,18 +237,16 @@ root tutorial directory. Create one that looks like:</p>
 <span class="go">Simulation ID: 9f15b93c-9ab2-49bb-a14f-fef872e64ce8</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../../index.html" title="index">
-          <img class="logo" src="../../_static/big_c.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../../index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Setup a New Project</a><ul>
@@ -281,68 +268,16 @@ root tutorial directory. Create one that looks like:</p>
     <p class="topless"><a href="state_var.html"
                           title="Next page">&rarr; Adding State Variables</a></p>
   </div>
-  <div class="sphinxlocaltoc">
-  <h3>Useful Pages</h3>
-    <ul><li><ul>
-    <li><a href="/user/install.html">Install Cyclus</a></li>
-    <li><a href="/user/index.html">User Guide</a></li>
-    <li><a href="/user/tutorial/index.html">User Tutorial</a></li>
-    <li><a href="/arche/index.html">Archetype Developer Guide</a></li>
-    <li><a href="/arche/tutorial/index.html">Archetype Developer Tutorial</a></li>
-     <li><a href="http://fuelcycle.org/cyclus/api/">Cyclus API Documentation</a></li>
-    <li><a href="http://fuelcycle.org/cycamore/api/">Cycamore API Documentation</a></li>
-    <li><a href="/basics/glossary.html">Glossary</a></li>
-    <li><a href="mailto:cyclus-users+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-users" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Users</a> mailing list.
-    <li><a href="mailto:cyclus-dev+subscribe@googlegroups.com?subject=Subscribe&body=Send this message to subscribe to the list">Join</a> the
-      <a href="https://groups.google.com/forum/#!forum/cyclus-dev" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers</a> mailing list.
-    <li><a href="http://dev-call.fuelcycle.org" target="_blank"><span style="font-variant:small-caps">Cyclus</span> Developers Hangout Link</a>
-    </ul></li></ul>
-  </div>
-    
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-    <h3>Get Cyclus</h3>
-    <br>
-    Current version: <b>1.5.5</b>
-    <br><br>
-    Install:
-    <div class="highlight-bash" style="width:97.5%"><div class="highlight"><pre><span class="nv">$ </span>conda install cyclus cycamore</pre></div></div>
-    Get the Source:
-    <ul><li><ul>
-          <li><a href="https://github.com/cyclus/cyclus">Cyclus</a></li>
-          <li><a href="https://github.com/cyclus/cycamore">Cycamore</a></li>
-          <li><a href="https://github.com/cyclus/cymetric">Cymetric</a></li>
-          <li><a href="https://github.com/cyclus/rickshaw">Rickshaw</a></li>
-    </ul></li></ul>
-    <h3>Acknowledgements</h3>
-    The Cyclus project has received support from:
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <br />
-
-    In addition, some of the students working on Cyclus have received support from:
-    <br />
-    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/AnlLogo.png" height=100px></a>
-    <a href="http://www.nrc.gov" target="_blank"><img src="../../_static/USNRC.png" height=100px></a>
-    <br />
-    <a href="http://www.neup.gov" target="_blank"><img src="../../_static/neup_logo_large.png" width=170px></a>
-    <br />
-    <a href="http://www.nsf.gov" target="_blank"><img src="../../_static/nsf_logo.png" height=100px></a>
-    <a href="http://www.wisc.edu" target="_blank"><img src="../../_static/crest.png" height=100px></a>
-    <a href="http://www.anl.gov" target="_blank"><img src="../../_static/nnsa.png" width=150px></a>
-
-
-
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
     
@@ -384,14 +319,15 @@ root tutorial directory. Create one that looks like:</p>
     <li><a href="../../index.html">Home</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" >Archetype Development Tutorial [Python]</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="index.html" >Archetype Development Tutorial [Python]</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Setup a New Project</a></li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jun 01, 2021.
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

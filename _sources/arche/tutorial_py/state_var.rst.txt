@@ -73,7 +73,7 @@ stored and the input/output commodity names.
 
 Re-innstall the Modified Module
 ---------------------------------------
-To reinstall this module, just issue the same ``setupy.py`` command as before:
+To reinstall this module, just issue the same ``setup.py`` command as before:
 
 .. code-block:: console
 
@@ -128,7 +128,7 @@ The simulation now fails because it does not match the schema. You can view the 
     ~/tutorial $ cyclus --agent-schema :tut.agents:Storage
 
 Notice that you were able to take advantage of the input file validation simply by using
-the special typesystem class attributes .
+the special ``typesystem`` class attributes.
 
 Our failed cyclus simulation produced an output file that will need to be deleted.
 
