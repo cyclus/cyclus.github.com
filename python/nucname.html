@@ -1,0 +1,908 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Nuclide Naming Functions (cyclus.nucname) &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cyclus Server (cyclus.server)" href="server.html" />
+    <link rel="prev" title="Main Command Line Interface (cyclus.main)" href="main.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="server.html" title="Cyclus Server (cyclus.server)"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="main.html" title="Main Command Line Interface (cyclus.main)"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Nuclide Naming Functions (<code class="docutils literal notranslate"><span class="pre">cyclus.nucname</span></code>)</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-cyclus.nucname">
+<span id="nuclide-naming-functions-cyclus-nucname"></span><span id="cyclus-pyapi-nucname"></span><h1>Nuclide Naming Functions (<code class="docutils literal notranslate"><span class="pre">cyclus.nucname</span></code>)<a class="headerlink" href="#module-cyclus.nucname" title="Link to this heading">¶</a></h1>
+<p>Python wrapper for nucname library.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="cyclus.nucname.NucTypeError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">NucTypeError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.NucTypeError" title="Link to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="cyclus.nucname.NucTypeError.add_note">
+<span class="sig-name descname"><span class="pre">add_note</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.NucTypeError.add_note" title="Link to this definition">¶</a></dt>
+<dd><p>Exception.add_note(note) –
+add a note to the exception</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cyclus.nucname.NucTypeError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#cyclus.nucname.NucTypeError.args" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.nucname.NucTypeError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.NucTypeError.with_traceback" title="Link to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.alara">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">alara</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.alara" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide to its ALARA form (‘am:242’).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : str</p>
+<blockquote>
+<div><p>Output nuclide in name form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.alara_to_id">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">alara_to_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.alara_to_id" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide directly from ALARA form (‘am:242’) to
+the canonical identifier form.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide in ALARA form.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in identifier form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.anum">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">anum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.anum" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieves a nuclide’s nucleon number (95).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>a</strong> : int</p>
+<blockquote>
+<div><p>The number of protons and neutrons in the nucleus.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.cinder">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">cinder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.cinder" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide to its CINDER (aaazzzm) form (2420951).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in CINDER (aaazzzm) form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.cinder_to_id">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">cinder_to_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.cinder_to_id" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide directly from Cinder form (2420951) to
+the canonical identifier form.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide in Cinder form.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in identifier form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.ensdf_to_id">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">ensdf_to_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.ensdf_to_id" title="Link to this definition">¶</a></dt>
+<dd><p>Converts an ENSDF style id to a PyNE nuc_id</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in nuc_id form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.fluka">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">fluka</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.fluka" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide to its FLUKA name.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>fluka_name</strong> : string</p>
+<blockquote>
+<div><p>Output name in FLUKA form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.fluka_to_id">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">fluka_to_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.fluka_to_id" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a fluka name to the canonical identifier form.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> : str</p>
+<blockquote>
+<div><p>Input name, expectedt to be one FLUKA knows</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in identifier form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.groundstate">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">groundstate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.groundstate" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide to its Groundstate form.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in Groundstate form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.id">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.id" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide to its identifier form (952420000).</p>
+<p>If the input nuclide is in id form already, then this is function does no
+work. For all other formats, the id() function provides a best-guess based
+on a heirarchy of other formats that is used to resolve ambiguities between
+naming conventions. For integer input the form resolution order is:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>id</p></li>
+<li><p>zz (elemental z-num only given)</p></li>
+<li><p>zzaaam</p></li>
+<li><p>cinder (aaazzzm)</p></li>
+<li><p>mcnp</p></li>
+<li><p>zzaaa</p></li>
+</ul>
+</div></blockquote>
+<p>For string (or char <a href="#id1"><span class="problematic" id="id2">*</span></a>) input the form resolution order is as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ZZ-LL-AAAM</p></li>
+<li><p>Integer form in a string representation, uses interger resolution</p></li>
+<li><p>NIST</p></li>
+<li><p>name form</p></li>
+<li><p>Serpent</p></li>
+<li><p>LL (element symbol)</p></li>
+</ul>
+</div></blockquote>
+<p>For well-defined situations where you know ahead of time what format the
+nuclide is in, you should use the various form_to_id() functions, rather
+than the id() function which is meant to resolve possibly ambiquous cases.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide id.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.id_to_state_id">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">id_to_state_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.id_to_state_id" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a ENSDF state id to a PyNE nuc_id</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in nuc_id form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.iselement">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">iselement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.iselement" title="Link to this definition">¶</a></dt>
+<dd><p>Test if nuc is a valid element.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input element.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>flag</strong> : bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.isnuclide">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">isnuclide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.isnuclide" title="Link to this definition">¶</a></dt>
+<dd><p>Test if nuc is a valid nuclide.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide(s).</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>flag</strong> : bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.mcnp">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">mcnp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.mcnp" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide to its MCNP form (92636).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in MCNP form.</p>
+</div></blockquote>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Most metastables in this form add 300 + 100*m where
+m is the isomeric state (U-236m = 92636).  However,
+MCNP special cases Am-242 and Am-242m by switching
+the meaning. Thus Am-242m = 95242 and Am-242 = 95642.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.mcnp_to_id">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">mcnp_to_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.mcnp_to_id" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide directly from MCNP form (92636) to
+the canonical identifier form.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide in MCNP form.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in identifier form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.name">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.name" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide to its name form (‘Am242M’). The name() function
+first converts functions to id form using the id() function. Thus the
+form order resolution for id() also applies to here.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : str</p>
+<blockquote>
+<div><p>Output nuclide in name form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.nist">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">nist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.nist" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide to NIST form (‘242Am’).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : str</p>
+<blockquote>
+<div><p>Output nuclide in nist form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.nist_to_id">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">nist_to_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.nist_to_id" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide directly from NIST form (‘242Am’) to
+the canonical identifier form.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide in NIST form.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in identifier form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.serpent">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">serpent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.serpent" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide to its Serepnt form (‘Am-242m’).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : str</p>
+<blockquote>
+<div><p>Output nuclide in serpent form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.serpent_to_id">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">serpent_to_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.serpent_to_id" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide directly from Serpent form (‘Am-242m’) to
+the canonical identifier form.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide in Serpent form.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in identifier form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.snum">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">snum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.snum" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieves a nuclide’s excitation number (95).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>s</strong> : int</p>
+<blockquote>
+<div><p>The excitation level the nucleus.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.state_id_to_id">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">state_id_to_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.state_id_to_id" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a ENSDF state id to a PyNE nuc_id</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in nuc_id form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.sza">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">sza</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.sza" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide to its SZA form (SSSZZZAAA).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in SZA form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.sza_to_id">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">sza_to_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.sza_to_id" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide directly from SZA form (SSSZZZAAA) to
+the canonical identifier form.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide in SZA form.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in identifier form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.znum">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">znum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.znum" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieves a nuclide’s charge number (95).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>z</strong> : int</p>
+<blockquote>
+<div><p>The number of protons in the nucleus.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.zzaaam">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">zzaaam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.zzaaam" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide to its zzaaam form (952420).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in zzaaam form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.zzaaam_to_id">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">zzaaam_to_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.zzaaam_to_id" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide directly from ZZAAAM form (952420) to
+the canonical identifier form.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide in ZZAAAM form.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in identifier form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.zzllaaam">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">zzllaaam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.zzllaaam" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide to its zzllaaam form (95-Am-241m).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : str</p>
+<blockquote>
+<div><p>Output nuclide in zzllaaam form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.zzllaaam_to_id">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">zzllaaam_to_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.zzllaaam_to_id" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide directly from ZZLLAAAM form (95-Am-241m) to
+the canonical identifier form.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide in ZZLLAAAM form.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in identifier form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.zzzaaa">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">zzzaaa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.zzzaaa" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide to its zzzaaa form (95242).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in zzzaaa form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.nucname.zzzaaa_to_id">
+<span class="sig-prename descclassname"><span class="pre">cyclus.nucname.</span></span><span class="sig-name descname"><span class="pre">zzzaaa_to_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.nucname.zzzaaa_to_id" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a nuclide directly from ZZZAAA form (95242) to
+the canonical identifier form.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nuc</strong> : int or str</p>
+<blockquote>
+<div><p>Input nuclide in ZZZAAA form.</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>newnuc</strong> : int</p>
+<blockquote>
+<div><p>Output nuclide in identifier form.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Nuclide Naming Functions (<code class="docutils literal notranslate"><span class="pre">cyclus.nucname</span></code>)</a><ul>
+<li><a class="reference internal" href="#cyclus.nucname.NucTypeError"><code class="docutils literal notranslate"><span class="pre">NucTypeError</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.nucname.NucTypeError.add_note"><code class="docutils literal notranslate"><span class="pre">NucTypeError.add_note()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.NucTypeError.args"><code class="docutils literal notranslate"><span class="pre">NucTypeError.args</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.NucTypeError.with_traceback"><code class="docutils literal notranslate"><span class="pre">NucTypeError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.nucname.alara"><code class="docutils literal notranslate"><span class="pre">alara()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.alara_to_id"><code class="docutils literal notranslate"><span class="pre">alara_to_id()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.anum"><code class="docutils literal notranslate"><span class="pre">anum()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.cinder"><code class="docutils literal notranslate"><span class="pre">cinder()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.cinder_to_id"><code class="docutils literal notranslate"><span class="pre">cinder_to_id()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.ensdf_to_id"><code class="docutils literal notranslate"><span class="pre">ensdf_to_id()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.fluka"><code class="docutils literal notranslate"><span class="pre">fluka()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.fluka_to_id"><code class="docutils literal notranslate"><span class="pre">fluka_to_id()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.groundstate"><code class="docutils literal notranslate"><span class="pre">groundstate()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.id"><code class="docutils literal notranslate"><span class="pre">id()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.id_to_state_id"><code class="docutils literal notranslate"><span class="pre">id_to_state_id()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.iselement"><code class="docutils literal notranslate"><span class="pre">iselement()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.isnuclide"><code class="docutils literal notranslate"><span class="pre">isnuclide()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.mcnp"><code class="docutils literal notranslate"><span class="pre">mcnp()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.mcnp_to_id"><code class="docutils literal notranslate"><span class="pre">mcnp_to_id()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.name"><code class="docutils literal notranslate"><span class="pre">name()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.nist"><code class="docutils literal notranslate"><span class="pre">nist()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.nist_to_id"><code class="docutils literal notranslate"><span class="pre">nist_to_id()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.serpent"><code class="docutils literal notranslate"><span class="pre">serpent()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.serpent_to_id"><code class="docutils literal notranslate"><span class="pre">serpent_to_id()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.snum"><code class="docutils literal notranslate"><span class="pre">snum()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.state_id_to_id"><code class="docutils literal notranslate"><span class="pre">state_id_to_id()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.sza"><code class="docutils literal notranslate"><span class="pre">sza()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.sza_to_id"><code class="docutils literal notranslate"><span class="pre">sza_to_id()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.znum"><code class="docutils literal notranslate"><span class="pre">znum()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.zzaaam"><code class="docutils literal notranslate"><span class="pre">zzaaam()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.zzaaam_to_id"><code class="docutils literal notranslate"><span class="pre">zzaaam_to_id()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.zzllaaam"><code class="docutils literal notranslate"><span class="pre">zzllaaam()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.zzllaaam_to_id"><code class="docutils literal notranslate"><span class="pre">zzllaaam_to_id()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.zzzaaa"><code class="docutils literal notranslate"><span class="pre">zzzaaa()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.nucname.zzzaaa_to_id"><code class="docutils literal notranslate"><span class="pre">zzzaaa_to_id()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="main.html"
+                          title="Previous page">&larr; Main Command Line Interface (<code class="docutils literal notranslate"><span class="pre">cyclus.main</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="server.html"
+                          title="Next page">&rarr; Cyclus Server (<code class="docutils literal notranslate"><span class="pre">cyclus.server</span></code>)</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="server.html" title="Cyclus Server (cyclus.server)"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="main.html" title="Main Command Line Interface (cyclus.main)"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Nuclide Naming Functions (<code class="docutils literal notranslate"><span class="pre">cyclus.nucname</span></code>)</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

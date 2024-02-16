@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CEP 6 - Cyclus Pull Request Style Guide &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CEP 80 - Cycamore Archetype API/Warning Requirements" href="cep80.html" />
+    <link rel="prev" title="CEP 5 - Archetype Development Best Practices" href="cep5.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep80.html" title="CEP 80 - Cycamore Archetype API/Warning Requirements"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep5.html" title="CEP 5 - Archetype Development Best Practices"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 6 - <span style="font-variant:small-caps;">Cyclus</span> Pull Request Style Guide</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="cep-6-cyclus-pull-request-style-guide">
+<h1>CEP 6 - <span style="font-variant:small-caps;">Cyclus</span> Pull Request Style Guide<a class="headerlink" href="#cep-6-cyclus-pull-request-style-guide" title="Link to this heading">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">CEP<span class="colon">:</span></dt>
+<dd class="field-odd"><p>6</p>
+</dd>
+<dt class="field-even">Title<span class="colon">:</span></dt>
+<dd class="field-even"><p><span style="font-variant:small-caps;">Cyclus</span> Pull Request Style Guide</p>
+</dd>
+<dt class="field-odd">Last-Modified<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2015-05-08</p>
+</dd>
+<dt class="field-even">Author<span class="colon">:</span></dt>
+<dd class="field-even"><p>Matthew Gidden</p>
+</dd>
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Draft</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Process</p>
+</dd>
+<dt class="field-odd">Created<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2015-05-04</p>
+</dd>
+</dl>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading">¶</a></h2>
+<p>There is a strong motivation for summarizing and enumerating feature additions,
+bug fixes, and other changes to the code base. Through use of an agreed-upon
+format and style, tools for aggregating and categorizing changes can be
+developed. While this strategy may be applied to issues, this CEP is related to
+pull requests (PRs) only.</p>
+<p>A canoncial class of top-level labels is proposed. The purpose of these labels
+is to broadly categorize additions to the code base. Then, a minimum style guide
+is proposed to provide a known, queryable structure to the body of each pull
+request.</p>
+</section>
+<section id="labels">
+<h2>Labels<a class="headerlink" href="#labels" title="Link to this heading">¶</a></h2>
+<p>Every PR must be assigned at least one label from the following set:</p>
+<ul class="simple">
+<li><p>Feature - Release Notes</p></li>
+<li><p>Feature</p></li>
+<li><p>Bug Fix</p></li>
+<li><p>Maintenance</p></li>
+<li><p>Other</p></li>
+</ul>
+<p>While a PR may have any number of other descriptive labels, it is considered
+blocked if it does not have (at minimum) one of the above labels.</p>
+<p>A PR may be labeled as <cite>Feature - Release Notes</cite> by either the author or
+reviewer. If there is a disagreement between the two parties, deference is given
+to the party who prefers the <cite>Feature - Release Notes</cite> tag. A PR with this label
+is provided candidacy for inclusion in the release notes (highlighting the
+feature addition) but does not guaranteed inclusion in the release notes. The
+release manager is provided deference in making the decision of what features to
+highlight in the release notes, per <a class="reference external" href="fuelcycle.org/cep/cep3.html">CEP 3</a>.</p>
+</section>
+<section id="layout">
+<h2>Layout<a class="headerlink" href="#layout" title="Link to this heading">¶</a></h2>
+<p>Any PR must have, at minimum, a succinct summary of its associated changes. This
+summary must be present at the top of the PR body and must be followed by a new
+line. A PR is considered blocked if it does comply with this structure.</p>
+<p>Any additional structure, while clarifying, is optional.</p>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h3>
+<p>The following provides an example of the raw markdown associated with an
+existing <a class="reference external" href="https://github.com/cyclus/cyclus/pull/1127">PR</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Added simple buy and sell inventory policies
+
+Detail
+======
+Inventory policies were added that automate simplistic interactions with the
+DRE. Each policy is assigned to a `ResBuf` instance and implements the `Trader`
+interface. They can be initialized with information regarding the commodities to
+be bought or sold as well as a maximum per-timestep throughput. Purchasing
+inventory policies also support `(S, s)` behavior, noted in supply chain literature. [1]
+
+[1] Zheng, Yu-Sheng. &quot;A simple proof for optimality of (s, S) policies in
+infinite-horizon inventory systems.&quot; Journal of Applied Probability
+(1991): 802-810.
+
+Related Issues
+==============
+* closes #1047
+* related to cyclus/cycamore#318
+</pre></div>
+</div>
+</section>
+</section>
+<section id="automation">
+<h2>Automation<a class="headerlink" href="#automation" title="Link to this heading">¶</a></h2>
+<p>Using the Github <a class="reference external" href="https://developer.github.com/v3/">API</a> either directly or
+through a module like <a class="reference external" href="https://github3py.readthedocs.org/en/master/">github3.py</a> in conjunction with a standard
+style can allow for the automation of otherwise repetitive and time consuming
+tasks. A chief use case is the generation of release notes. Specifically, if
+every PR that enables a major and minor feature can be identified and
+a summary statement extracted, then the task of writing release notes becomes
+much simpler. This proposal enables such tools to be constructed and utilized.</p>
+</section>
+<section id="backwards-compatibility">
+<h2>Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Link to this heading">¶</a></h2>
+<p>Closed PRs are archival documents whereas a codebase is a living
+“document”. Accordingly, while one would expect a code style guide to be
+applicable upon acceptance to the entire code base, this style guide to only be
+applicable to open PRs. Closed PR text cannot be edited such that it no longer
+complies with the document structure listed in the Layout section. Additional
+comments on closed PRs encouraged as they are needed.</p>
+</section>
+<section id="document-history">
+<h2>Document History<a class="headerlink" href="#document-history" title="Link to this heading">¶</a></h2>
+<p>This document is released under the CC-BY 3.0 license.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">CEP 6 - <span style="font-variant:small-caps;">Cyclus</span> Pull Request Style Guide</a><ul>
+<li><a class="reference internal" href="#abstract">Abstract</a></li>
+<li><a class="reference internal" href="#labels">Labels</a></li>
+<li><a class="reference internal" href="#layout">Layout</a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#automation">Automation</a></li>
+<li><a class="reference internal" href="#backwards-compatibility">Backwards Compatibility</a></li>
+<li><a class="reference internal" href="#document-history">Document History</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="cep5.html"
+                          title="Previous page">&larr; CEP 5 - Archetype Development Best Practices</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="cep80.html"
+                          title="Next page">&rarr; CEP 80 - Cycamore Archetype API/Warning Requirements</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep80.html" title="CEP 80 - Cycamore Archetype API/Warning Requirements"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep5.html" title="CEP 5 - Archetype Development Best Practices"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 6 - <span style="font-variant:small-caps;">Cyclus</span> Pull Request Style Guide</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

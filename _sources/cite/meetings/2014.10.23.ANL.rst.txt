@@ -1,0 +1,79 @@
+Review of Cyclus Code and Associated Modules/Tools Development - Argonne National Lab (10/23/14)
+================================================================================================
+
+Agenda
+------
+
++---------+------------------------------------------------------------------+------------------------+
+| 8:00    | Welcomes - Fuel Cycle Options Campaign & Cyclus Development Team | B.P. Singh (DOE)       |
+|         |                                                                  | R. Wigeland (INL)      |
+|         |                                                                  | T. Taiwo (ANL)         |
+|         |                                                                  | P. Wilson (U. Wisc)    |
++---------+------------------------------------------------------------------+------------------------+
+| 8:20    | Introductory Comments by DOE Technical                           | B. Dixon (INL)         |
+|         | Point of Conctact for  Cyclus Related-Activities                 |                        |
++---------+------------------------------------------------------------------+------------------------+
+| 8:30    | |830_wilson|_                                                    | P. Wilson (U. Wisc)    |
++---------+------------------------------------------------------------------+------------------------+
+| 9:30    | |930_scopatz|_                                                   | Scopatz (U. Wisc)      | 
++---------+------------------------------------------------------------------+------------------------+
+| 10:00   | |1000_brossard|_                                                 | Brossard (U. Wisc)     |
++---------+------------------------------------------------------------------+------------------------+
+| 10:30   | Break                                                            |                        |
++---------+------------------------------------------------------------------+------------------------+
+| 10:45   | Building Cyclus Scenarios with Cycic (Live Demo)                 | Flanagan (U. Texas)    |
++---------+------------------------------------------------------------------+------------------------+
+| 11:15   | |1115_livnat|_                                                   | Livnat (U. Utah)       |
++---------+------------------------------------------------------------------+------------------------+
+| 11:45   | |1145_huff|_                                                     | Huff (UC- Berkeley)    |
++---------+------------------------------------------------------------------+------------------------+
+| 12:15   | Lunch                                                            |                        |
++---------+------------------------------------------------------------------+------------------------+
+| 13:30   | Insights on Fuel Cycle Simulators                                | Price (Consultant)     |
++---------+------------------------------------------------------------------+------------------------+
+| 14:00   | |1400_schneider|_                                                | Schneider (U. Texas)   |
++---------+------------------------------------------------------------------+------------------------+
+| 14:30   | |1430_skutnik|_                                                  | Skutnik (U. Tennessee) |
++---------+------------------------------------------------------------------+------------------------+
+| 15:00   | Break                                                            |                        |
++---------+------------------------------------------------------------------+------------------------+
+| 15:15   | |1515_carlsen|_                                                  | Carlsen (U. Wisc)      |
++---------+------------------------------------------------------------------+------------------------+
+| 15:45   | |1545_scopatz|_                                                  | Scopatz (U. Wisc)      |
++---------+------------------------------------------------------------------+------------------------+
+
+.. |830_wilson| replace:: Cyclus Development: History, Strategy, Contributors, Funding, Future Developmental Needs, and Potential Users
+
+.. _830_wilson: http://dx.doi.org/10.6084/m9.figshare.1285435
+
+.. |930_scopatz| replace:: Cyclus v1.1 Status and Capabilities
+
+.. _930_scopatz: http://dx.doi.org/10.6084/m9.figshare.1289050
+
+.. |1000_brossard| replace:: Thrust 1: Stakeholder, Parameter & Metric Identification
+
+.. _1000_brossard: http://dx.doi.org/10.6084/m9.figshare.1285755
+
+.. |1115_livnat| replace:: Exploring Cyclus Results with Cyclist
+ 
+.. _1115_livnat: http://dx.doi.org/10.6084/m9.figshare.1291039
+
+.. |1145_huff| replace:: Module development for FCO analysis
+
+.. _1145_huff: http://dx.doi.org/10.6084/m9.figshare.1287476
+
+.. |1400_schneider| replace:: Reactor Modules for Cyclus based on Bright-lite
+
+.. _1400_schneider: http://dx.doi.org/10.6084/m9.figshare.1291036
+
+.. |1430_skutnik| replace:: Facility Modules for Cyclus based on Origen
+
+.. _1430_skutnik:  http://dx.doi.org/10.6084/m9.figshare.1291144
+
+.. |1545_scopatz| replace:: A Cyclus Roadmap
+
+.. _1545_scopatz: http://dx.doi.org/10.6084/m9.figshare.1289053
+
+.. |1515_carlsen| replace:: Cyclus Optimization Strategies
+
+.. _1515_carlsen: http://dx.doi.org/10.6084/m9.figshare.1289349

@@ -1,0 +1,758 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Main Command Line Interface (cyclus.main) &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Nuclide Naming Functions (cyclus.nucname)" href="nucname.html" />
+    <link rel="prev" title="Cyclus Library Bindings (cyclus.lib)" href="lib.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="nucname.html" title="Nuclide Naming Functions (cyclus.nucname)"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lib.html" title="Cyclus Library Bindings (cyclus.lib)"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Main Command Line Interface (<code class="docutils literal notranslate"><span class="pre">cyclus.main</span></code>)</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-cyclus.main">
+<span id="main-command-line-interface-cyclus-main"></span><span id="cyclus-pyapi-main"></span><h1>Main Command Line Interface (<code class="docutils literal notranslate"><span class="pre">cyclus.main</span></code>)<a class="headerlink" href="#module-cyclus.main" title="Link to this heading">¶</a></h1>
+<p>Main Cyclus CLI entry point.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.AgentAnnotations">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">AgentAnnotations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.AgentAnnotations" title="Link to this definition">¶</a></dt>
+<dd><p>Displays an agent annotations</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.AgentAnnotations.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.AgentAnnotations.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.AgentListing">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">AgentListing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.AgentListing" title="Link to this definition">¶</a></dt>
+<dd><p>Displays an agent listing</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.AgentListing.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.AgentListing.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.AgentSchema">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">AgentSchema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.AgentSchema" title="Link to this definition">¶</a></dt>
+<dd><p>Displays an agent schema</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.AgentSchema.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.AgentSchema.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.AgentVersion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">AgentVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.AgentVersion" title="Link to this definition">¶</a></dt>
+<dd><p>Displays an agent version</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.AgentVersion.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.AgentVersion.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.AllAgentListing">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">AllAgentListing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.AllAgentListing" title="Link to this definition">¶</a></dt>
+<dd><p>Displays all known cyclus agents</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.AllAgentListing.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.AllAgentListing.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.BuildPath">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">BuildPath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.BuildPath" title="Link to this definition">¶</a></dt>
+<dd><p>Prints the Cyclus Build Path</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.BuildPath.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.BuildPath.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.CMakeModulePath">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">CMakeModulePath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.CMakeModulePath" title="Link to this definition">¶</a></dt>
+<dd><p>Prints the Cyclus CMake Module Path</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.CMakeModulePath.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.CMakeModulePath.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.CyclusPath">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">CyclusPath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.CyclusPath" title="Link to this definition">¶</a></dt>
+<dd><p>Prints the Cyclus Path</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.CyclusPath.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.CyclusPath.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.CyclusVersion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">CyclusVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.CyclusVersion" title="Link to this definition">¶</a></dt>
+<dd><p>Displays the cyclus version</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.CyclusVersion.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.CyclusVersion.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.IncludePath">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">IncludePath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.IncludePath" title="Link to this definition">¶</a></dt>
+<dd><p>Prints the Cyclus Include Path</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.IncludePath.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.IncludePath.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.InfileConverterAction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">InfileConverterAction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.InfileConverterAction" title="Link to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.InfileConverterAction.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.InfileConverterAction.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.InstallPath">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">InstallPath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.InstallPath" title="Link to this definition">¶</a></dt>
+<dd><p>Prints the Cyclus Install Path</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.InstallPath.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.InstallPath.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.JsonToPy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">JsonToPy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.JsonToPy" title="Link to this definition">¶</a></dt>
+<dd><p>converts JSON to Python</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.JsonToPy.converter">
+<span class="sig-name descname"><span class="pre">converter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.JsonToPy.converter" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a JSON string into an equivalent Python string</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.JsonToPy.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.JsonToPy.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cyclus.main.JsonToPy.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'json_to_py'</span></em><a class="headerlink" href="#cyclus.main.JsonToPy.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.JsonToXml">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">JsonToXml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.JsonToXml" title="Link to this definition">¶</a></dt>
+<dd><p>converts JSON to XML</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.JsonToXml.converter">
+<span class="sig-name descname"><span class="pre">converter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.JsonToXml.converter" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a JSON string into an equivalent XML string</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.JsonToXml.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.JsonToXml.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cyclus.main.JsonToXml.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'json_to_xml'</span></em><a class="headerlink" href="#cyclus.main.JsonToXml.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.Metadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">Metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.Metadata" title="Link to this definition">¶</a></dt>
+<dd><p>Displays all known cyclus agents</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.Metadata.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.Metadata.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.NoAgent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">NoAgent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.NoAgent" title="Link to this definition">¶</a></dt>
+<dd><p>Disables agent logging</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.NoAgent.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.NoAgent.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.NoMem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">NoMem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.NoMem" title="Link to this definition">¶</a></dt>
+<dd><p>Disables mem logging</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.NoMem.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.NoMem.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.NucData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">NucData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.NucData" title="Link to this definition">¶</a></dt>
+<dd><p>Prints the Nuclear data Path</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.NucData.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.NucData.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.PyToJson">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">PyToJson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.PyToJson" title="Link to this definition">¶</a></dt>
+<dd><p>converts Python to JSON</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.PyToJson.converter">
+<span class="sig-name descname"><span class="pre">converter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.PyToJson.converter" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a Python string into an equivalent JSON string</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.PyToJson.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.PyToJson.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cyclus.main.PyToJson.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'py_to_json'</span></em><a class="headerlink" href="#cyclus.main.PyToJson.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.PyToXml">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">PyToXml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.PyToXml" title="Link to this definition">¶</a></dt>
+<dd><p>converts Python to XML</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.PyToXml.converter">
+<span class="sig-name descname"><span class="pre">converter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.PyToXml.converter" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a Python string into an equivalent XML string</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.PyToXml.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.PyToXml.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cyclus.main.PyToXml.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'py_to_xml'</span></em><a class="headerlink" href="#cyclus.main.PyToXml.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.Restart">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">Restart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.Restart" title="Link to this definition">¶</a></dt>
+<dd><p>Restart action for cyclus. Not supported.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.Restart.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.Restart.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.RngPrint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">RngPrint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.RngPrint" title="Link to this definition">¶</a></dt>
+<dd><p>Displays path to the rng schema</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.RngPrint.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.RngPrint.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.RngSchema">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">RngSchema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.RngSchema" title="Link to this definition">¶</a></dt>
+<dd><p>Displays path to the rng schema</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.RngSchema.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.RngSchema.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.Schema">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">Schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.Schema" title="Link to this definition">¶</a></dt>
+<dd><p>Displays cyclus schema</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.Schema.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.Schema.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.Verbosity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">Verbosity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.Verbosity" title="Link to this definition">¶</a></dt>
+<dd><p>Sets versbosity level</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.Verbosity.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.Verbosity.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.WarnAsError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">WarnAsError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.WarnAsError" title="Link to this definition">¶</a></dt>
+<dd><p>Sets warning to be errors</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.WarnAsError.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.WarnAsError.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.WarnLimit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">WarnLimit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.WarnLimit" title="Link to this definition">¶</a></dt>
+<dd><p>Sets warning limit</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.WarnLimit.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.WarnLimit.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.XmlToJson">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">XmlToJson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.XmlToJson" title="Link to this definition">¶</a></dt>
+<dd><p>converts XML to JSON</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.XmlToJson.converter">
+<span class="sig-name descname"><span class="pre">converter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.XmlToJson.converter" title="Link to this definition">¶</a></dt>
+<dd><p>Converts an XML string into an equivalent JSON string</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.XmlToJson.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.XmlToJson.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cyclus.main.XmlToJson.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'xml_to_json'</span></em><a class="headerlink" href="#cyclus.main.XmlToJson.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.XmlToPy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">XmlToPy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.XmlToPy" title="Link to this definition">¶</a></dt>
+<dd><p>converts XML to Python</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.XmlToPy.converter">
+<span class="sig-name descname"><span class="pre">converter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.XmlToPy.converter" title="Link to this definition">¶</a></dt>
+<dd><p>Converts an XML string into an equivalent Python string</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.XmlToPy.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.XmlToPy.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cyclus.main.XmlToPy.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'xml_to_py'</span></em><a class="headerlink" href="#cyclus.main.XmlToPy.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.main.ZeroArgAction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">ZeroArgAction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.ZeroArgAction" title="Link to this definition">¶</a></dt>
+<dd><p>An action with no arguments.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.main.ZeroArgAction.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.ZeroArgAction.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.main.main">
+<span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.main" title="Link to this definition">¶</a></dt>
+<dd><p>Main function for Cyclus CLI</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.main.make_agent_ctx">
+<span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">make_agent_ctx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.make_agent_ctx" title="Link to this definition">¶</a></dt>
+<dd><p>Contsructs and agent and returns the agent and the context.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.main.make_parser">
+<span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">make_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.make_parser" title="Link to this definition">¶</a></dt>
+<dd><p>Makes the Cyclus CLI parser.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.main.print_main_schema">
+<span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">print_main_schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.print_main_schema" title="Link to this definition">¶</a></dt>
+<dd><p>Prints the main schema for the simulation</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.main.run_simulation">
+<span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">run_simulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.run_simulation" title="Link to this definition">¶</a></dt>
+<dd><p>Runs the simulation when we recieve an input file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.main.set_schema_path">
+<span class="sig-prename descclassname"><span class="pre">cyclus.main.</span></span><span class="sig-name descname"><span class="pre">set_schema_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.main.set_schema_path" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the schema path on the namespace.</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Main Command Line Interface (<code class="docutils literal notranslate"><span class="pre">cyclus.main</span></code>)</a><ul>
+<li><a class="reference internal" href="#cyclus.main.AgentAnnotations"><code class="docutils literal notranslate"><span class="pre">AgentAnnotations</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.AgentAnnotations.format_usage"><code class="docutils literal notranslate"><span class="pre">AgentAnnotations.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.AgentListing"><code class="docutils literal notranslate"><span class="pre">AgentListing</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.AgentListing.format_usage"><code class="docutils literal notranslate"><span class="pre">AgentListing.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.AgentSchema"><code class="docutils literal notranslate"><span class="pre">AgentSchema</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.AgentSchema.format_usage"><code class="docutils literal notranslate"><span class="pre">AgentSchema.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.AgentVersion"><code class="docutils literal notranslate"><span class="pre">AgentVersion</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.AgentVersion.format_usage"><code class="docutils literal notranslate"><span class="pre">AgentVersion.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.AllAgentListing"><code class="docutils literal notranslate"><span class="pre">AllAgentListing</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.AllAgentListing.format_usage"><code class="docutils literal notranslate"><span class="pre">AllAgentListing.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.BuildPath"><code class="docutils literal notranslate"><span class="pre">BuildPath</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.BuildPath.format_usage"><code class="docutils literal notranslate"><span class="pre">BuildPath.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.CMakeModulePath"><code class="docutils literal notranslate"><span class="pre">CMakeModulePath</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.CMakeModulePath.format_usage"><code class="docutils literal notranslate"><span class="pre">CMakeModulePath.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.CyclusPath"><code class="docutils literal notranslate"><span class="pre">CyclusPath</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.CyclusPath.format_usage"><code class="docutils literal notranslate"><span class="pre">CyclusPath.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.CyclusVersion"><code class="docutils literal notranslate"><span class="pre">CyclusVersion</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.CyclusVersion.format_usage"><code class="docutils literal notranslate"><span class="pre">CyclusVersion.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.IncludePath"><code class="docutils literal notranslate"><span class="pre">IncludePath</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.IncludePath.format_usage"><code class="docutils literal notranslate"><span class="pre">IncludePath.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.InfileConverterAction"><code class="docutils literal notranslate"><span class="pre">InfileConverterAction</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.InfileConverterAction.format_usage"><code class="docutils literal notranslate"><span class="pre">InfileConverterAction.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.InstallPath"><code class="docutils literal notranslate"><span class="pre">InstallPath</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.InstallPath.format_usage"><code class="docutils literal notranslate"><span class="pre">InstallPath.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.JsonToPy"><code class="docutils literal notranslate"><span class="pre">JsonToPy</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.JsonToPy.converter"><code class="docutils literal notranslate"><span class="pre">JsonToPy.converter()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.JsonToPy.format_usage"><code class="docutils literal notranslate"><span class="pre">JsonToPy.format_usage()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.JsonToPy.name"><code class="docutils literal notranslate"><span class="pre">JsonToPy.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.JsonToXml"><code class="docutils literal notranslate"><span class="pre">JsonToXml</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.JsonToXml.converter"><code class="docutils literal notranslate"><span class="pre">JsonToXml.converter()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.JsonToXml.format_usage"><code class="docutils literal notranslate"><span class="pre">JsonToXml.format_usage()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.JsonToXml.name"><code class="docutils literal notranslate"><span class="pre">JsonToXml.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.Metadata"><code class="docutils literal notranslate"><span class="pre">Metadata</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.Metadata.format_usage"><code class="docutils literal notranslate"><span class="pre">Metadata.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.NoAgent"><code class="docutils literal notranslate"><span class="pre">NoAgent</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.NoAgent.format_usage"><code class="docutils literal notranslate"><span class="pre">NoAgent.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.NoMem"><code class="docutils literal notranslate"><span class="pre">NoMem</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.NoMem.format_usage"><code class="docutils literal notranslate"><span class="pre">NoMem.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.NucData"><code class="docutils literal notranslate"><span class="pre">NucData</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.NucData.format_usage"><code class="docutils literal notranslate"><span class="pre">NucData.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.PyToJson"><code class="docutils literal notranslate"><span class="pre">PyToJson</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.PyToJson.converter"><code class="docutils literal notranslate"><span class="pre">PyToJson.converter()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.PyToJson.format_usage"><code class="docutils literal notranslate"><span class="pre">PyToJson.format_usage()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.PyToJson.name"><code class="docutils literal notranslate"><span class="pre">PyToJson.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.PyToXml"><code class="docutils literal notranslate"><span class="pre">PyToXml</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.PyToXml.converter"><code class="docutils literal notranslate"><span class="pre">PyToXml.converter()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.PyToXml.format_usage"><code class="docutils literal notranslate"><span class="pre">PyToXml.format_usage()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.PyToXml.name"><code class="docutils literal notranslate"><span class="pre">PyToXml.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.Restart"><code class="docutils literal notranslate"><span class="pre">Restart</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.Restart.format_usage"><code class="docutils literal notranslate"><span class="pre">Restart.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.RngPrint"><code class="docutils literal notranslate"><span class="pre">RngPrint</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.RngPrint.format_usage"><code class="docutils literal notranslate"><span class="pre">RngPrint.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.RngSchema"><code class="docutils literal notranslate"><span class="pre">RngSchema</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.RngSchema.format_usage"><code class="docutils literal notranslate"><span class="pre">RngSchema.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.Schema"><code class="docutils literal notranslate"><span class="pre">Schema</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.Schema.format_usage"><code class="docutils literal notranslate"><span class="pre">Schema.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.Verbosity"><code class="docutils literal notranslate"><span class="pre">Verbosity</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.Verbosity.format_usage"><code class="docutils literal notranslate"><span class="pre">Verbosity.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.WarnAsError"><code class="docutils literal notranslate"><span class="pre">WarnAsError</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.WarnAsError.format_usage"><code class="docutils literal notranslate"><span class="pre">WarnAsError.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.WarnLimit"><code class="docutils literal notranslate"><span class="pre">WarnLimit</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.WarnLimit.format_usage"><code class="docutils literal notranslate"><span class="pre">WarnLimit.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.XmlToJson"><code class="docutils literal notranslate"><span class="pre">XmlToJson</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.XmlToJson.converter"><code class="docutils literal notranslate"><span class="pre">XmlToJson.converter()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.XmlToJson.format_usage"><code class="docutils literal notranslate"><span class="pre">XmlToJson.format_usage()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.XmlToJson.name"><code class="docutils literal notranslate"><span class="pre">XmlToJson.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.XmlToPy"><code class="docutils literal notranslate"><span class="pre">XmlToPy</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.XmlToPy.converter"><code class="docutils literal notranslate"><span class="pre">XmlToPy.converter()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.XmlToPy.format_usage"><code class="docutils literal notranslate"><span class="pre">XmlToPy.format_usage()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.XmlToPy.name"><code class="docutils literal notranslate"><span class="pre">XmlToPy.name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.ZeroArgAction"><code class="docutils literal notranslate"><span class="pre">ZeroArgAction</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.main.ZeroArgAction.format_usage"><code class="docutils literal notranslate"><span class="pre">ZeroArgAction.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.make_agent_ctx"><code class="docutils literal notranslate"><span class="pre">make_agent_ctx()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.make_parser"><code class="docutils literal notranslate"><span class="pre">make_parser()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.print_main_schema"><code class="docutils literal notranslate"><span class="pre">print_main_schema()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.run_simulation"><code class="docutils literal notranslate"><span class="pre">run_simulation()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.main.set_schema_path"><code class="docutils literal notranslate"><span class="pre">set_schema_path()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="lib.html"
+                          title="Previous page">&larr; Cyclus Library Bindings (<code class="docutils literal notranslate"><span class="pre">cyclus.lib</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="nucname.html"
+                          title="Next page">&rarr; Nuclide Naming Functions (<code class="docutils literal notranslate"><span class="pre">cyclus.nucname</span></code>)</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="nucname.html" title="Nuclide Naming Functions (cyclus.nucname)"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lib.html" title="Cyclus Library Bindings (cyclus.lib)"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Main Command Line Interface (<code class="docutils literal notranslate"><span class="pre">cyclus.main</span></code>)</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

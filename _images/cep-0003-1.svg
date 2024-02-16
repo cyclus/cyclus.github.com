@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="250.22189"
+   height="249.97908"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="cep-0003-1.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="198.58944"
+     inkscape:cy="120.50831"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3838"
+     inkscape:window-height="2082"
+     inkscape:window-x="0"
+     inkscape:window-y="38"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-29.092391,-61.186051)">
+    <circle
+       style="opacity:0.15637859;fill:#a02c2c;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.06666672"
+       id="path2987"
+       cx="154.08194"
+       cy="186.1756"
+       r="124.98954" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.80000019px;line-height:0%;font-family:FreeSerif;-inkscape-font-specification:FreeSerif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666672"
+       x="95.238091"
+       y="123.20538"
+       id="text2991"><tspan
+         sodipodi:role="line"
+         id="tspan2993"
+         x="95.238091"
+         y="123.20538"
+         style="font-size:17.06666756px;line-height:1.25;stroke-width:1.06666672">topical</tspan></text>
+    <circle
+       style="opacity:0.15637859;fill:#87cdde;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.06666672"
+       id="path2999"
+       cx="199.42857"
+       cy="184.04347"
+       r="79.047615" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.80000019px;line-height:0%;font-family:FreeSerif;-inkscape-font-specification:FreeSerif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666672"
+       x="171.5139"
+       y="161.01047"
+       id="text2991-3"><tspan
+         sodipodi:role="line"
+         id="tspan2993-6"
+         x="171.5139"
+         y="161.01047"
+         style="font-size:17.06666756px;line-height:1.25;stroke-width:1.06666672">v4.2-release</tspan></text>
+    <ellipse
+       style="opacity:0.15637859;fill:#ff5555;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.97194982"
+       id="path3024"
+       cx="241.98096"
+       cy="188.04347"
+       rx="37.333336"
+       ry="36.952381" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.80000019px;line-height:0%;font-family:FreeSerif;-inkscape-font-specification:FreeSerif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666672"
+       x="241.41776"
+       y="190.47607"
+       id="text2991-3-7"><tspan
+         sodipodi:role="line"
+         id="tspan2993-6-7"
+         x="241.41776"
+         y="190.47607"
+         style="font-size:17.06666756px;line-height:1.25;stroke-width:1.06666672">master</tspan></text>
+  </g>
+</svg>

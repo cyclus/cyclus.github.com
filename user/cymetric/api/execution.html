@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>cymetric.execution - Execution &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../../../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../../../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../../../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="cymetric.filters - Filters" href="filters.html" />
+    <link rel="prev" title="cymetric.evaluator - Evaluators" href="evaluator.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="filters.html" title="cymetric.filters - Filters"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="evaluator.html" title="cymetric.evaluator - Evaluators"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Cymetric</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Cymetric API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.execution</span></code> - Execution</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-cymetric.execution">
+<span id="cymetric-execution-execution"></span><span id="cym-execution"></span><h1><a class="reference internal" href="#module-cymetric.execution" title="cymetric.execution"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.execution</span></code></a> - Execution<a class="headerlink" href="#module-cymetric.execution" title="Link to this heading">¶</a></h1>
+<p>Execution for cymetric.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="cymetric.execution.ColumnProxy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cymetric.execution.</span></span><span class="sig-name descname"><span class="pre">ColumnProxy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.execution.ColumnProxy" title="Link to this definition">¶</a></dt>
+<dd><p>A proxy object for column that returns condition 3-tuples from
+comparison operations.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cymetric.execution.ExecutionContext">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cymetric.execution.</span></span><span class="sig-name descname"><span class="pre">ExecutionContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.execution.ExecutionContext" title="Link to this definition">¶</a></dt>
+<dd><p>An execution context for the command line or any other situation
+that involves the automatic injection of metric names, column names,
+etc.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cymetric.execution.ExecutionContext.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.execution.ExecutionContext.items" title="Link to this definition">¶</a></dt>
+<dd><p>Returns copy of metrics in (key, value) form.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cymetric.execution.ExecutionContext.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.execution.ExecutionContext.keys" title="Link to this definition">¶</a></dt>
+<dd><p>Returns copy of metric keys.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cymetric.execution.ExecutionContext.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.execution.ExecutionContext.values" title="Link to this definition">¶</a></dt>
+<dd><p>Returns copy of metric values.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cymetric.execution.MetricProxy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cymetric.execution.</span></span><span class="sig-name descname"><span class="pre">MetricProxy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.execution.MetricProxy" title="Link to this definition">¶</a></dt>
+<dd><p>A proxy metric for nicer spelling of metrics in an execution context.
+Objects of this class are bound to an evaluator and will return a data frame
+when indexed. Index parameters are interpreted as query conditions.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.execution.exec_code">
+<span class="sig-prename descclassname"><span class="pre">cymetric.execution.</span></span><span class="sig-name descname"><span class="pre">exec_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.execution.exec_code" title="Link to this definition">¶</a></dt>
+<dd><p>Runs a code snipper in the context of a database.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.execution.has_no_conds">
+<span class="sig-prename descclassname"><span class="pre">cymetric.execution.</span></span><span class="sig-name descname"><span class="pre">has_no_conds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.execution.has_no_conds" title="Link to this definition">¶</a></dt>
+<dd><p>Determines if a key means that there are no conditions given.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.execution.parse_cond">
+<span class="sig-prename descclassname"><span class="pre">cymetric.execution.</span></span><span class="sig-name descname"><span class="pre">parse_cond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cond</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.execution.parse_cond" title="Link to this definition">¶</a></dt>
+<dd><p>Parses a condition and returns the canonical 3-tuple.</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.execution</span></code> - Execution</a><ul>
+<li><a class="reference internal" href="#cymetric.execution.ColumnProxy"><code class="docutils literal notranslate"><span class="pre">ColumnProxy</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.execution.ExecutionContext"><code class="docutils literal notranslate"><span class="pre">ExecutionContext</span></code></a><ul>
+<li><a class="reference internal" href="#cymetric.execution.ExecutionContext.items"><code class="docutils literal notranslate"><span class="pre">ExecutionContext.items()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.execution.ExecutionContext.keys"><code class="docutils literal notranslate"><span class="pre">ExecutionContext.keys()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.execution.ExecutionContext.values"><code class="docutils literal notranslate"><span class="pre">ExecutionContext.values()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cymetric.execution.MetricProxy"><code class="docutils literal notranslate"><span class="pre">MetricProxy</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.execution.exec_code"><code class="docutils literal notranslate"><span class="pre">exec_code()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.execution.has_no_conds"><code class="docutils literal notranslate"><span class="pre">has_no_conds()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.execution.parse_cond"><code class="docutils literal notranslate"><span class="pre">parse_cond()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="evaluator.html"
+                          title="Previous page">&larr; <code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.evaluator</span></code> - Evaluators</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="filters.html"
+                          title="Next page">&rarr; <code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.filters</span></code> - Filters</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="filters.html" title="cymetric.filters - Filters"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="evaluator.html" title="cymetric.evaluator - Evaluators"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Cymetric</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" >Cymetric API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.execution</span></code> - Execution</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

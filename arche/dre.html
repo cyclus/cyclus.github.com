@@ -1,0 +1,912 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Dynamic Resource Exchange &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Database Types" href="dbtypes.html" />
+    <link rel="prev" title="Resources" href="resources.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="dbtypes.html" title="Database Types"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="resources.html" title="Resources"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Dynamic Resource Exchange</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="dynamic-resource-exchange">
+<span id="dre"></span><h1>Dynamic Resource Exchange<a class="headerlink" href="#dynamic-resource-exchange" title="Link to this heading">¶</a></h1>
+<p>The Dynamic Resource Exchange (DRE) is the heart of a <span style="font-variant:small-caps;">Cyclus</span> simulation time
+step. Every <code class="docutils literal notranslate"><span class="pre">Trader</span></code> that is registered with the <code class="docutils literal notranslate"><span class="pre">Context</span></code>
+is automatically included in the exchange. <span style="font-variant:small-caps;">Cyclus</span> agents can either implement
+the <code class="docutils literal notranslate"><span class="pre">Trader</span></code> interface as a mixin or can be composed of one or more
+traders. Note that the <code class="docutils literal notranslate"><span class="pre">Facility</span></code> class derives the
+<code class="docutils literal notranslate"><span class="pre">Trader</span></code> interface, and therefore all agents that derive from
+<code class="docutils literal notranslate"><span class="pre">Facility</span></code> are also traders.</p>
+<p>On each time step, there is a separate <code class="docutils literal notranslate"><span class="pre">ResourceExchange</span></code>
+instance for each concrete <code class="docutils literal notranslate"><span class="pre">Resource</span></code> (i.e. <code class="docutils literal notranslate"><span class="pre">Materials</span></code> and <code class="docutils literal notranslate"><span class="pre">Products</span></code>) of which
+the kernel is aware. For example, there is an exchange for <code class="docutils literal notranslate"><span class="pre">Material</span></code>
+resources and another for <code class="docutils literal notranslate"><span class="pre">Product</span></code> resources.</p>
+<p>The DRE is comprised of five phases which execure in series:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#rfb"><span class="std std-ref">Request For Bids Phase</span></a></p></li>
+<li><p><a class="reference internal" href="#rrfb"><span class="std std-ref">Response to Request For Bids Phase</span></a></p></li>
+<li><p><a class="reference internal" href="#adj"><span class="std std-ref">Preference Adjustment Phase</span></a></p></li>
+<li><p><a class="reference internal" href="#solve"><span class="std std-ref">Solution Phase</span></a></p></li>
+<li><p><a class="reference internal" href="#trade"><span class="std std-ref">Trade Execution Phase</span></a></p></li>
+<li><p><a class="reference internal" href="#examples"><span class="std std-ref">Examples</span></a></p></li>
+</ul>
+<section id="request-for-bids-phase">
+<span id="rfb"></span><h2>Request For Bids Phase<a class="headerlink" href="#request-for-bids-phase" title="Link to this heading">¶</a></h2>
+<p>In the Request for Bids (RFB) phase, the exchange queries all registered traders
+regarding their demand for a given resource type. Querying is provided through
+the <code class="docutils literal notranslate"><span class="pre">Trader</span></code> interface’s “get requests” for a given resource type,
+e.g., <code class="docutils literal notranslate"><span class="pre">GetMatlRequests()</span></code> (C++) or <code class="docutils literal notranslate"><span class="pre">get_material_requests()</span></code> (Python) functions.</p>
+<p>Requests are modeled as collections of <code class="docutils literal notranslate"><span class="pre">RequestPortfolio</span></code> instances, where each
+portfolio includes a collection of <code class="docutils literal notranslate"><span class="pre">Request</span></code> objects and a collection of
+<code class="docutils literal notranslate"><span class="pre">CapacityConstraint</span></code> objects. A portfolio is sufficiently met if one or more
+of its constituent requests are met and all of its constraints are satisfied.</p>
+<p>A request provides a target resource, a commodity, and a preference for that
+commodity-resource combination. A constraint provides a constraining value and a
+conversion function that can convert a potential resource into the units of the
+capacity (see <a class="reference internal" href="#rrfb"><span class="std std-ref">Response to Request For Bids Phase</span></a> for a more detailed example).</p>
+<p>For example, consider a facility of type <code class="docutils literal notranslate"><span class="pre">FooFac</span></code> that needs 10 kg fuel,
+where the fuel is represented by a <code class="docutils literal notranslate"><span class="pre">Material</span></code> resource. It knows of two commodities in
+the simulation that meet its demand, <code class="docutils literal notranslate"><span class="pre">FuelA</span></code> and <code class="docutils literal notranslate"><span class="pre">FuelB</span></code>, and it prefers
+<code class="docutils literal notranslate"><span class="pre">FuelA</span></code> over <code class="docutils literal notranslate"><span class="pre">FuelB</span></code>. A valid get material request implementation would then
+be:</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">RequestPortfolio</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FooFac</span><span class="o">::</span><span class="n">GetMatlRequests</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">RequestPortfolio</span><span class="p">;</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="p">;</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">CapacityConstraint</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">request_qty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="c1">// kg</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">recipeA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;recipeA&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">commoda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FuelA&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">targetA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Material</span><span class="o">::</span><span class="n">CreateUntracked</span><span class="p">(</span><span class="n">request_qty</span><span class="p">,</span>
+<span class="w">                                                    </span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetRecipe</span><span class="p">(</span><span class="n">recipeA</span><span class="p">));</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">recipeB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;recipeB&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">commodB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FuelB&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">targetB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Material</span><span class="o">::</span><span class="n">CreateUntracked</span><span class="p">(</span><span class="n">request_qty</span><span class="p">,</span>
+<span class="w">                                                    </span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetRecipe</span><span class="p">(</span><span class="n">recipeB</span><span class="p">));</span>
+
+<span class="w">  </span><span class="n">CapacityConstraint</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cc</span><span class="p">(</span><span class="n">request_qty</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">RequestPortfolio</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">port</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">RequestPortfolio</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span><span class="p">());</span>
+<span class="w">  </span><span class="n">port</span><span class="o">-&gt;</span><span class="n">AddRequest</span><span class="p">(</span><span class="n">targeta</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">commodA</span><span class="p">);</span>
+<span class="w">  </span><span class="n">port</span><span class="o">-&gt;</span><span class="n">AddRequest</span><span class="p">(</span><span class="n">targetb</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">commodB</span><span class="p">);</span>
+<span class="w">  </span><span class="n">port</span><span class="o">-&gt;</span><span class="n">AddConstraint</span><span class="p">(</span><span class="n">cc</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">RequestPortfolio</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ports</span><span class="p">();</span>
+<span class="w">  </span><span class="n">ports</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">port</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">ports</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// In this example, both the FuelA and FuelB commodities can meet the</span>
+<span class="w">  </span><span class="c1">// material request, but FuelA is preferred. So we define a preference</span>
+<span class="w">  </span><span class="c1">// for each commodity as the fourth argument in the function.</span>
+<span class="w">  </span><span class="c1">// The larger the preference value, the more the commodity is preferred.</span>
+<span class="w">  </span><span class="c1">// The fifth argument here is if the request is exclusive:</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">RequestPortfolio</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ports</span><span class="p">;</span>
+<span class="w">  </span><span class="n">RequestPortfolio</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">port</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">RequestPortfolio</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span><span class="p">());</span>
+
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">prefA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">prefB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Request</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">port</span><span class="o">-&gt;</span><span class="n">AddRequest</span><span class="p">(</span><span class="n">targeta</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">commodA</span><span class="p">,</span><span class="w"> </span><span class="n">prefA</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Request</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">port</span><span class="o">-&gt;</span><span class="n">AddRequest</span><span class="p">(</span><span class="n">targetb</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">commodB</span><span class="p">,</span><span class="w"> </span><span class="n">prefB</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Additionally, we can create a vector of requests that are mutual:</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Request</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*&gt;</span><span class="w"> </span><span class="n">mreqs</span><span class="p">;</span>
+<span class="w">  </span><span class="n">mreqs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span><span class="p">};</span>
+<span class="w">  </span><span class="n">port</span><span class="o">-&gt;</span><span class="n">AddMutualReqs</span><span class="p">(</span><span class="n">mreqs</span><span class="p">);</span>
+<span class="w">  </span><span class="n">ports</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">port</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">ports</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
+
+<span class="k">def</span> <span class="nf">get_material_requests</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">request_qty</span> <span class="o">=</span> <span class="mf">10.0</span>  <span class="c1"># kg</span>
+    <span class="c1"># Material Target A</span>
+    <span class="n">recipe_a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">()</span><span class="o">.</span><span class="n">get_recipe</span><span class="p">(</span><span class="s2">&quot;recipeA&quot;</span><span class="p">)</span>
+    <span class="n">target_a</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">create_untracked</span><span class="p">(</span><span class="n">request_qty</span><span class="p">,</span> <span class="n">recipe_a</span><span class="p">)</span>
+    <span class="c1"># Material Target B</span>
+    <span class="n">recipe_b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">()</span><span class="o">.</span><span class="n">get_recipe</span><span class="p">(</span><span class="s2">&quot;recipeB&quot;</span><span class="p">)</span>
+    <span class="n">target_b</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">create_untracked</span><span class="p">(</span><span class="n">request_qty</span><span class="p">,</span> <span class="n">recipe_b</span><span class="p">)</span>
+    <span class="c1"># commodity mapping to request target</span>
+    <span class="n">commods</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;FuelA&quot;</span><span class="p">:</span> <span class="n">target_a</span><span class="p">,</span> <span class="s2">&quot;FuelB&quot;</span><span class="p">:</span> <span class="n">target_b</span><span class="p">}</span>
+
+    <span class="c1"># The Python interface allow you to return a few different structures,</span>
+    <span class="c1"># depending on your needs.  In its simplest form, if you do not not have</span>
+    <span class="c1"># any capacity constraints, you can just return the commodity mapping!</span>
+    <span class="k">return</span> <span class="n">commods</span>
+
+    <span class="c1"># If you do have a capacity constraint, you need to provide a portfolio</span>
+    <span class="c1"># dict. This is simply a dict with two keys: &quot;commodities&quot; and &quot;constraints&quot;.</span>
+    <span class="c1"># The &quot;commodities&quot; value is the same as above. The &quot;constraints&quot; value is</span>
+    <span class="c1"># either a float or an iterable of floats.</span>
+    <span class="c1"># single constraint:</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;commodities&quot;</span><span class="p">:</span> <span class="n">commods</span><span class="p">,</span> <span class="s2">&quot;constraints&quot;</span><span class="p">:</span> <span class="n">request_qty</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">port</span>
+    <span class="c1"># many constraints:</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;commodities&quot;</span><span class="p">:</span> <span class="n">commods</span><span class="p">,</span> <span class="s2">&quot;constraints&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">request_qty</span><span class="p">,</span> <span class="n">request_qty</span><span class="o">*</span><span class="mi">2</span><span class="p">]}</span>
+    <span class="k">return</span> <span class="n">port</span>
+
+    <span class="c1"># In this example, both the FuelA and FuelB commodities can meet the</span>
+    <span class="c1"># material request, but FuelA is preferred. So we define a preference</span>
+    <span class="c1"># for each commodity. The larger the preference value, the</span>
+    <span class="c1"># more the commodity is preferred. Placing the dictionaries in</span>
+    <span class="c1"># a list makes them mutual requests:</span>
+    <span class="n">commods</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;FuelA&quot;</span><span class="p">:</span> <span class="n">target_a</span><span class="p">,</span> <span class="s2">&quot;preference&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">},</span>
+               <span class="p">{</span><span class="s2">&quot;FuelB&quot;</span><span class="p">:</span> <span class="n">target_b</span><span class="p">,</span> <span class="s2">&quot;preference&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}]</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;commodities&quot;</span><span class="p">:</span><span class="n">commods</span><span class="p">,</span> <span class="s2">&quot;constraints&quot;</span><span class="p">:</span><span class="n">request_qty</span><span class="p">}</span>
+
+    <span class="c1"># If you want the requests to be exclusive, then you have to indicate</span>
+    <span class="c1"># that:</span>
+    <span class="n">commods</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;FuelA&quot;</span><span class="p">:</span> <span class="n">target_a</span><span class="p">,</span> <span class="s2">&quot;preference&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;exclusive&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+               <span class="p">{</span><span class="s2">&quot;FuelB&quot;</span><span class="p">:</span> <span class="n">target_b</span><span class="p">,</span> <span class="s2">&quot;preference&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;exclusive&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">}]</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;commodities&quot;</span><span class="p">:</span><span class="n">commods</span><span class="p">,</span> <span class="s2">&quot;constraints&quot;</span><span class="p">:</span><span class="n">request_qty</span><span class="p">}</span>
+
+    <span class="c1"># lastly, if you need to return many portfolios, simply return a list of</span>
+    <span class="c1"># portfolio dictionaries! The &quot;preference&quot; and &quot;exclusive&quot; keys are optional</span>
+    <span class="n">ports</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;commodities&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;FuelA&quot;</span><span class="p">:</span> <span class="n">target_a</span><span class="p">,</span> <span class="s2">&quot;preference&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;exclusive&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}],</span>
+              <span class="s2">&quot;constraints&quot;</span><span class="p">:</span> <span class="n">request_qty</span><span class="p">},</span>
+             <span class="p">{</span><span class="s2">&quot;commodities&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;FuelB&quot;</span><span class="p">:</span> <span class="n">target_b</span><span class="p">,</span> <span class="s2">&quot;preference&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;exclusive&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}],</span>
+              <span class="s2">&quot;constraints&quot;</span><span class="p">:</span> <span class="n">request_qty</span><span class="p">}]</span>
+    <span class="k">return</span> <span class="n">ports</span>
+</pre></div>
+</div>
+</section>
+<section id="response-to-request-for-bids-phase">
+<span id="rrfb"></span><h2>Response to Request For Bids Phase<a class="headerlink" href="#response-to-request-for-bids-phase" title="Link to this heading">¶</a></h2>
+<p>In the Response to Request for Bids (RRFB) phase, the exchange queries all
+registered traders regarding their supply for a given resource type. Querying is
+provided through the <code class="docutils literal notranslate"><span class="pre">Trader</span></code> interface’s “get bids” for a given
+resource type, e.g. <code class="docutils literal notranslate"><span class="pre">GetMatlBids()</span></code> (C++) or <code class="docutils literal notranslate"><span class="pre">get_material_bids()</span></code> (Python).</p>
+<p>Bids are modeled as collections of <code class="docutils literal notranslate"><span class="pre">BidPortfolio</span></code>, where each
+portfolio includes a collection of <code class="docutils literal notranslate"><span class="pre">Bid</span></code> objects and a collection of
+<code class="docutils literal notranslate"><span class="pre">CapacityConstraint</span></code> objectss. A portfolio is not violated if any of its
+constituent bids are connected to their requests and all of its constraints are
+satisfied.</p>
+<p>A bid is comprised of a request to which it is responding and a resource that it is
+offering in response to the request.</p>
+<section id="black-box-examples">
+<h3>Black Box Examples<a class="headerlink" href="#black-box-examples" title="Link to this heading">¶</a></h3>
+<p>Consider a facility of type <code class="docutils literal notranslate"><span class="pre">FooFac</span></code> that has 10 kg of fuel of commodity type
+<code class="docutils literal notranslate"><span class="pre">FuelA</span></code> that it can provide. Furthermore, consider that its capacity to
+fulfill orders is constrained by the total amount of a given nuclide. A valid
+get material bids implementation would then be:</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">NucConverter</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Converter</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="n">NucConverter</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">nuc</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">nuc_</span><span class="p">(</span><span class="n">nuc</span><span class="p">)</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Arc</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span>
+<span class="w">                         </span><span class="n">cyclus</span><span class="o">::</span><span class="n">ExchangeTranslationContext</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cyclus</span><span class="o">::</span><span class="n">MatQuery</span><span class="w"> </span><span class="n">mq</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">mq</span><span class="p">.</span><span class="n">mass</span><span class="p">(</span><span class="n">nuc_</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w"> </span><span class="k">private</span><span class="o">:</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">nuc_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">BidPortfolio</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FooFac</span><span class="o">::</span><span class="n">GetMatlBids</span><span class="p">(</span>
+<span class="w">    </span><span class="n">cyclus</span><span class="o">::</span><span class="n">CommodMap</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&amp;</span><span class="w"> </span><span class="n">commod_requests</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">BidPortfolio</span><span class="p">;</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">CapacityConstraint</span><span class="p">;</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Converter</span><span class="p">;</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="p">;</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Request</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// respond to all requests of my commodity</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">my_commodity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FuelA&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">BidPortfolio</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">port</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BidPortfolio</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span><span class="p">());</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Request</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*&gt;&amp;</span><span class="w"> </span><span class="n">requests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">commod_requests</span><span class="p">[</span><span class="n">my_commdoity</span><span class="p">];</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Request</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*&gt;::</span><span class="n">iterator</span><span class="w"> </span><span class="n">it</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requests</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">requests</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">recipe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;recipe&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">commod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Fuel&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requests</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">requests</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">offer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Material</span><span class="o">::</span><span class="n">CreateUntracked</span><span class="p">(</span><span class="n">request_qty</span><span class="p">,</span>
+<span class="w">                                                      </span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetRecipe</span><span class="p">(</span><span class="n">recipe</span><span class="p">));</span>
+<span class="w">      </span><span class="n">port</span><span class="o">-&gt;</span><span class="n">AddBid</span><span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">,</span><span class="w"> </span><span class="n">offer</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// add a custom constraint for Pu-239</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">pu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">932390000</span><span class="p">;</span><span class="w"> </span><span class="c1">// Pu-239</span>
+<span class="w">  </span><span class="n">Converter</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">conv</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">NucConverter</span><span class="p">(</span><span class="n">pu</span><span class="p">));</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">max_pu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">8.0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1 Signifigant Quantity of Pu-239</span>
+<span class="w">  </span><span class="n">CapacityConstraint</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span><span class="w"> </span><span class="n">constr</span><span class="p">(</span><span class="n">max_pu</span><span class="p">,</span><span class="w"> </span><span class="n">conv</span><span class="p">);</span>
+<span class="w">  </span><span class="n">port</span><span class="o">-&gt;</span><span class="n">AddConstraint</span><span class="p">(</span><span class="n">constr</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">BidPortfolio</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ports</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ports</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">port</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">ports</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that the Python interface does not yet support custom constraint functions.</span>
+<span class="c1"># these are fairly rare in practice and is a forth coming feature.</span>
+<span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
+
+<span class="k">def</span> <span class="nf">get_material_bids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">requests</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function takes as input a requests dictionary, which maps</span>
+<span class="sd">    commodity names to tuples of Request instances. For example::</span>
+
+<span class="sd">        requests = {</span>
+<span class="sd">            &quot;FuelA&quot;: (MaterialRequest1, MaterialRequest2),</span>
+<span class="sd">            &quot;FuelB&quot;: (MaterialRequest3, MaterialRequest4),</span>
+<span class="sd">            }</span>
+
+<span class="sd">    For more information on MaterialRequests and ProductRequests, please see</span>
+<span class="sd">    the cyclus.typesystem docs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Like with get_material_requests(), many potential bid structures can be returned</span>
+    <span class="c1"># depending on you need. If the commodity that you trade in wasn&#39;t requested this</span>
+    <span class="c1"># time step, you can just return None.</span>
+    <span class="k">if</span> <span class="s1">&#39;FuelA&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">requests</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Alternitavely, you may return a bid portfolio. Let&#39;s start by constructing the</span>
+    <span class="c1"># bids. If you don&#39;t want to offer a bid that is different than the request,</span>
+    <span class="c1"># you can just provide the requests. The bids are then a list of the request objects</span>
+    <span class="n">reqs</span> <span class="o">=</span> <span class="n">requests</span><span class="p">[</span><span class="s1">&#39;FuelA&#39;</span><span class="p">]</span>
+    <span class="n">bids</span> <span class="o">=</span> <span class="p">[</span><span class="n">req</span> <span class="k">for</span> <span class="n">req</span> <span class="ow">in</span> <span class="n">reqs</span><span class="p">]</span>
+    <span class="c1"># Or if you do want to offer something different than the request, the bids list</span>
+    <span class="c1"># list contains dictionaries with &quot;request&quot; and &quot;offer&quot; keys</span>
+    <span class="n">recipe_comp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">get_recipe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">recipe_name</span><span class="p">)</span>
+    <span class="n">bids</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">req</span> <span class="ow">in</span> <span class="n">reqs</span><span class="p">:</span>
+        <span class="n">qty</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">quantity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span><span class="p">)</span>
+        <span class="n">mat</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">create_untracked</span><span class="p">(</span><span class="n">qty</span><span class="p">,</span> <span class="n">recipe_comp</span><span class="p">)</span>
+        <span class="n">bids</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;request&#39;</span><span class="p">:</span> <span class="n">req</span><span class="p">,</span> <span class="s1">&#39;offer&#39;</span><span class="p">:</span> <span class="n">mat</span><span class="p">})</span>
+    <span class="c1"># now that we have the bids, we can add this to a bid portfolio dict, which</span>
+    <span class="c1"># contains a &quot;bids&quot; key.</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;bids&quot;</span><span class="p">:</span> <span class="n">bids</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">port</span>
+
+    <span class="c1"># if you need to add capcity constraint(s), also include a &quot;constraints&quot; key</span>
+    <span class="c1"># in the bids portfolio dict.</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;bids&quot;</span><span class="p">:</span> <span class="n">bids</span><span class="p">,</span> <span class="s2">&quot;constraints&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">port</span>
+
+    <span class="c1"># Of course you may also return many bid portfolios by putting the many</span>
+    <span class="c1"># dicts in the above form in a list.</span>
+    <span class="n">ports</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;bids&quot;</span><span class="p">:</span> <span class="n">bids</span><span class="p">[::</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;constraints&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span><span class="p">},</span>
+             <span class="p">{</span><span class="s2">&quot;bids&quot;</span><span class="p">:</span> <span class="n">bids</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;constraints&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span><span class="p">}]</span>
+    <span class="k">return</span> <span class="n">ports</span>
+</pre></div>
+</div>
+</section>
+<section id="white-box-examples">
+<h3>White Box Examples<a class="headerlink" href="#white-box-examples" title="Link to this heading">¶</a></h3>
+<p>Consider a case where a facility’s bid depends on the type of the requester’s
+<code class="docutils literal notranslate"><span class="pre">Agent</span></code>, and the bidder determines its offer based on the requester’s
+interface:</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="nf">FooFac::SpecialFooOffer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">recipe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;recipe&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Material</span><span class="o">::</span><span class="n">CreateUntracked</span><span class="p">(</span><span class="n">quantity</span><span class="p">,</span>
+<span class="w">                                                   </span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetRecipe</span><span class="p">(</span><span class="n">recipe</span><span class="p">));</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">target</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">BidPortfolio</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FooFac</span><span class="o">::</span><span class="n">GetMatlBids</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">cyclus</span><span class="o">::</span><span class="n">CommodMap</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&amp;</span><span class="w"> </span><span class="n">commod_requests</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">BidPortfolio</span><span class="p">;</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="p">;</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Request</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// respond to all requests of my commodity</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">my_commodity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FuelA&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">BidPortfolio</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">port</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BidPortfolio</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span><span class="p">());</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Request</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*&gt;&amp;</span><span class="w"> </span><span class="n">requests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">commod_requests</span><span class="p">[</span><span class="n">my_commdoity</span><span class="p">];</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Request</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*&gt;::</span><span class="n">iterator</span><span class="w"> </span><span class="n">it</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requests</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">requests</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">offer</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Agent</span><span class="o">*</span><span class="w"> </span><span class="n">agent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">requester</span><span class="p">();</span>
+<span class="w">    </span><span class="n">FooFac</span><span class="o">*</span><span class="w"> </span><span class="n">cast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">FooFac</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">agent</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cast</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">offer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cast</span><span class="o">-&gt;</span><span class="n">SpecialFooOffer</span><span class="p">();</span><span class="w"> </span><span class="c1">// get a special response that the requester wants</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kt">double</span><span class="w"> </span><span class="n">qty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">quantity</span><span class="p">();</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">recipe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;some_other_recipe&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">offer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Material</span><span class="o">::</span><span class="n">CreateUntracked</span><span class="p">(</span><span class="n">qty</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetRecipe</span><span class="p">(</span><span class="n">recipe</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">port</span><span class="o">-&gt;</span><span class="n">AddBid</span><span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">,</span><span class="w"> </span><span class="n">offer</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">BidPortfolio</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ports</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ports</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">port</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">ports</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
+
+<span class="k">def</span> <span class="nf">special_foo_offer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">recipe</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">get_recipe</span><span class="p">(</span><span class="s2">&quot;recipe&quot;</span><span class="p">)</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">create_untracked</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">recipe</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">target</span>
+
+<span class="k">def</span> <span class="nf">get_material_bids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">requests</span><span class="p">):</span>
+    <span class="n">reqs</span> <span class="o">=</span> <span class="n">requests</span><span class="p">[</span><span class="s2">&quot;FuelA&quot;</span><span class="p">]</span>
+    <span class="n">bids</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">req</span> <span class="ow">in</span> <span class="n">reqs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">requester</span><span class="p">,</span> <span class="n">FooFac</span><span class="p">):</span>
+            <span class="n">offer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">special_foo_offer</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">qty</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">quantity</span>
+            <span class="n">recipe</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">get_recipe</span><span class="p">(</span><span class="s2">&quot;some_other_recipe&quot;</span><span class="p">)</span>
+            <span class="n">offer</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">create_untracked</span><span class="p">(</span><span class="n">qty</span><span class="p">,</span> <span class="n">recipe</span><span class="p">)</span>
+        <span class="n">bids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;bids&quot;</span><span class="p">:</span> <span class="n">bids</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="preference-adjustment-phase">
+<span id="adj"></span><h2>Preference Adjustment Phase<a class="headerlink" href="#preference-adjustment-phase" title="Link to this heading">¶</a></h2>
+<p>In the Preference Adjustment (PA) phase, requesters are allowed to view which
+bids were matched to their requests, and adjust their preference for the given
+bid-request pairing. Querying is provided through the <code class="docutils literal notranslate"><span class="pre">Agent</span></code> interface, so all cyclus
+archetypes may adjust preferences. The “adjust prefs: functions are based on a given resource
+type, e.g. <code class="docutils literal notranslate"><span class="pre">AdjustMaterialPrefs</span></code> (C++) or <code class="docutils literal notranslate"><span class="pre">adjust_material_prefs()</span></code> (Python).</p>
+<p>Preferences are used by resource exchange solvers to inform their solution
+method. The default preference for all bids is zero. Agents will only utilize
+the PA phase if there is a reason to update preferences over the default
+provided in their original request.</p>
+<p>Preferences can be adjusted by both the original <code class="docutils literal notranslate"><span class="pre">Trader</span></code> placing
+requests as well as any parent <code class="docutils literal notranslate"><span class="pre">Agent</span></code> instances, with the trader adjusting
+first and the most senior parent adjusting last. In the supported
+Region-Institution-Facility agent relationship, Facilities adjust first,
+followed by Institution and Region parent agents. The calling chain is shown in
+Figure 1, with the orange box representing a call through the <code class="docutils literal notranslate"><span class="pre">Trader</span></code>
+interface and a green box representing the <code class="docutils literal notranslate"><span class="pre">Agent</span></code> interface.</p>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/dre-1.svg"><img alt="../_images/dre-1.svg" height="500" src="../_images/dre-1.svg" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 1:</strong> R-I-F Preference Adjustment Call Chain</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<section id="id1">
+<h3>Black Box Examples<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<p>For example, suppose that an agent prefers potential trades in which the bidder
+has the same parent agent as it does. A valid adjust material preferences implementation
+would then be:</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">FooFac::AdjustMatlPrefs</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">PrefMap</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&amp;</span><span class="w"> </span><span class="n">prefs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">cyclus</span><span class="o">::</span><span class="n">PrefMap</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">::</span><span class="n">iterator</span><span class="w"> </span><span class="n">pmit</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pmit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prefs</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">pmit</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">prefs</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">pmit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">Bid</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="w"> </span><span class="n">mit</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Request</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pmit</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">mit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pmit</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">mit</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">pmit</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">mit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">Bid</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">bid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mit</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">parent</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">bid</span><span class="o">-&gt;</span><span class="n">bidder</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">manager</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">parent</span><span class="p">())</span>
+<span class="w">        </span><span class="n">mit</span><span class="o">-&gt;</span><span class="n">second</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// bump pref if parents are equal</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adjust_material_prefs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The adjustment methods have a single argument which is a prefernce dictionary.</span>
+<span class="sd">    It maps (Request, Bid) tuples to float valued prefernces.  For example::</span>
+
+<span class="sd">        prefs = {</span>
+<span class="sd">            (Request1, Bid1): 1.0,</span>
+<span class="sd">            (Request1, Bid2): 2.0,</span>
+<span class="sd">            (Request2, Bid3): 1.0,</span>
+<span class="sd">            }</span>
+
+<span class="sd">    This function may return None or a dictionary of the same form. Note that the</span>
+<span class="sd">    return value does not need to have all of the same keys as were passed in. Rather,</span>
+<span class="sd">    it can return only those request-bid pairs that it actually wants to update.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># If you don&#39;t want to do any prefernce adjustment, just return None.</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># Otherwise we can loop though and update those that matter.</span>
+    <span class="n">updates</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">bid</span><span class="p">),</span> <span class="n">pref</span> <span class="ow">in</span> <span class="n">prefs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="c1"># favor bids if the parents are the same</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent_id</span> <span class="o">==</span> <span class="n">bid</span><span class="o">.</span><span class="n">bidder</span><span class="o">.</span><span class="n">parent_id</span><span class="p">:</span>
+            <span class="n">updates</span><span class="p">[</span><span class="n">req</span><span class="p">,</span> <span class="n">bid</span><span class="p">]</span> <span class="o">=</span> <span class="n">pref</span> <span class="o">+</span> <span class="mf">1.0</span>
+    <span class="k">return</span> <span class="n">updates</span>
+</pre></div>
+</div>
+<p>Alternatively, an <code class="docutils literal notranslate"><span class="pre">Institution</span></code> managing a <code class="docutils literal notranslate"><span class="pre">Facility</span></code> could
+adjust preferences as follows:</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">FooInst::AdjustMatlPrefs</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">PrefMap</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&amp;</span><span class="w"> </span><span class="n">prefs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">cyclus</span><span class="o">::</span><span class="n">PrefMap</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">::</span><span class="n">iterator</span><span class="w"> </span><span class="n">pmit</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pmit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prefs</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">pmit</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">prefs</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">pmit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">Bid</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="w"> </span><span class="n">mit</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Request</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pmit</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">mit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pmit</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">mit</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">pmit</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">mit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">Bid</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">bid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mit</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Agent</span><span class="o">*</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bid</span><span class="o">-&gt;</span><span class="n">bidder</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">manager</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">parent</span><span class="p">();</span>
+<span class="w">      </span><span class="n">Agent</span><span class="o">*</span><span class="w"> </span><span class="n">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">;</span>
+<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">me</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">you</span><span class="p">)</span>
+<span class="w">       </span><span class="n">mit</span><span class="o">-&gt;</span><span class="n">second</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// bump pref if the parent is me (institutions are equal)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adjust_material_prefs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefs</span><span class="p">):</span>
+    <span class="n">updates</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">bid</span><span class="p">),</span> <span class="n">pref</span> <span class="ow">in</span> <span class="n">prefs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">bid</span><span class="o">.</span><span class="n">bidder</span><span class="o">.</span><span class="n">parent_id</span><span class="p">:</span>
+            <span class="n">updates</span><span class="p">[</span><span class="n">req</span><span class="p">,</span> <span class="n">bid</span><span class="p">]</span> <span class="o">=</span> <span class="n">pref</span> <span class="o">+</span> <span class="mf">1.0</span>
+    <span class="k">return</span> <span class="n">updates</span>
+</pre></div>
+</div>
+<p>Finally, a <code class="docutils literal notranslate"><span class="pre">Region</span></code> managing a <code class="docutils literal notranslate"><span class="pre">Institution</span></code> could adjust
+preferences as</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">FooRegion::AdjustMatlPrefs</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">PrefMap</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&amp;</span><span class="w"> </span><span class="n">prefs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">cyclus</span><span class="o">::</span><span class="n">PrefMap</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">::</span><span class="n">iterator</span><span class="w"> </span><span class="n">pmit</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pmit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prefs</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">pmit</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">prefs</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">pmit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">Bid</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="w"> </span><span class="n">mit</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Request</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pmit</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">mit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pmit</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">mit</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">pmit</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">mit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">Bid</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">bid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mit</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Agent</span><span class="o">*</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bid</span><span class="o">-&gt;</span><span class="n">bidder</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">manager</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">parent</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">parent</span><span class="p">();</span>
+<span class="w">      </span><span class="n">Agent</span><span class="o">*</span><span class="w"> </span><span class="n">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">;</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">me</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">you</span><span class="p">)</span>
+<span class="w">        </span><span class="n">mit</span><span class="o">-&gt;</span><span class="n">second</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// bump pref if the grandparent is me (regions are equal)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adjust_material_prefs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefs</span><span class="p">):</span>
+    <span class="n">updates</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">bid</span><span class="p">),</span> <span class="n">pref</span> <span class="ow">in</span> <span class="n">prefs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">bid</span><span class="o">.</span><span class="n">bidder</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent_id</span><span class="p">:</span>
+            <span class="n">updates</span><span class="p">[</span><span class="n">req</span><span class="p">,</span> <span class="n">bid</span><span class="p">]</span> <span class="o">=</span> <span class="n">pref</span> <span class="o">+</span> <span class="mf">1.0</span>
+    <span class="k">return</span> <span class="n">updates</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>White Box Examples<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<p>Consider a scenario in which preferences will only be adjusted if the requester
+and bidder are of the same type:</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">FooFac::AdjustMatlPrefs</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">PrefMap</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&amp;</span><span class="w"> </span><span class="n">prefs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">cyclus</span><span class="o">::</span><span class="n">PrefMap</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">::</span><span class="n">iterator</span><span class="w"> </span><span class="n">pmit</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pmit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prefs</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">pmit</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">prefs</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">pmit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Request</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pmit</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+<span class="w">    </span><span class="n">FooFac</span><span class="o">*</span><span class="w"> </span><span class="n">cast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">FooFac</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">req</span><span class="o">-&gt;</span><span class="n">requester</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">manager</span><span class="p">());</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cast</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">mit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pmit</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">mit</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">pmit</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">mit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">mit</span><span class="o">-&gt;</span><span class="n">second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pref</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="c1">// we like this trader!</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adjust_material_prefs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefs</span><span class="p">):</span>
+    <span class="n">updates</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">bid</span><span class="p">),</span> <span class="n">pref</span> <span class="ow">in</span> <span class="n">prefs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">requester</span><span class="p">,</span> <span class="n">FooFac</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">updates</span><span class="p">[</span><span class="n">req</span><span class="p">,</span> <span class="n">bid</span><span class="p">]</span> <span class="o">=</span> <span class="n">pref</span> <span class="o">+</span> <span class="mf">10.0</span>  <span class="c1"># we like this trader</span>
+    <span class="k">return</span> <span class="n">updates</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="solution-phase">
+<span id="solve"></span><h2>Solution Phase<a class="headerlink" href="#solution-phase" title="Link to this heading">¶</a></h2>
+<p>The Solution Phase is straightforward from a module developer point of
+view. Given requests, bids for those requests, and preferences for each
+request-bid pairing, a <code class="docutils literal notranslate"><span class="pre">ExchangeSolver</span></code> selects request-bid pairs to
+satisfy and the quantity each resource to assign to each satisfied request-bid
+pairing. The solution times and actual pairings will depend on the concrete
+solver that is employed by the <span style="font-variant:small-caps;">Cyclus</span> kernel.</p>
+</section>
+<section id="trade-execution-phase">
+<span id="trade"></span><h2>Trade Execution Phase<a class="headerlink" href="#trade-execution-phase" title="Link to this heading">¶</a></h2>
+<p>When satisfactory request-bid pairings are determined, a final communication is
+executed for each bidder and requester during the Trade Execution Phase. Bidders
+are notified of their winning bids through the <code class="docutils literal notranslate"><span class="pre">Trader</span></code> “get trades”
+functions (e.g. <code class="docutils literal notranslate"><span class="pre">GetMatlTrades()</span></code> in C++ and <code class="docutils literal notranslate"><span class="pre">get_material_trades()</span></code> in Python),
+and requesters are provided their
+satisfied requests through the <code class="docutils literal notranslate"><span class="pre">Trader</span></code> “accept trades”
+functions (e.g. <code class="docutils literal notranslate"><span class="pre">AcceptMatlTrades()</span></code> in C++ and <code class="docutils literal notranslate"><span class="pre">accept_material_trades()</span></code> in Python).</p>
+<p>By convention in C++, traders can implement a <code class="docutils literal notranslate"><span class="pre">TradeResponse()</span></code> function that provides a
+<code class="docutils literal notranslate"><span class="pre">Material::Ptr</span></code> given a <code class="docutils literal notranslate"><span class="pre">Trade</span></code>. It can then implement its
+Trader interface as follows:</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">FooFac::GetMatlTrades</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Trade</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">trades</span><span class="p">,</span>
+<span class="w">                           </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Trade</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">responses</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="p">;</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Trade</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Trade</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">const_iterator</span><span class="w"> </span><span class="n">it</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trades</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">trades</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">mat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">bid</span><span class="o">-&gt;</span><span class="n">offer</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TradeResponse</span><span class="p">(</span><span class="n">mat</span><span class="p">);</span>
+<span class="w">    </span><span class="n">responses</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
+
+<span class="k">def</span> <span class="nf">get_material_trades</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trades</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;In Python, the get trades functions take a single trades aregument and</span>
+<span class="sd">    should return a responses dict.  The trades is list of Trade objects, see the</span>
+<span class="sd">    cyclus.typesystem docs for more information.</span>
+
+<span class="sd">    The reponses should be a dict whose keys are these trades and whose values</span>
+<span class="sd">    are tracked resource instances. For example, Materials.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># here we respond with what the trade request was.</span>
+    <span class="n">responses</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">trade</span> <span class="ow">in</span> <span class="n">trades</span><span class="p">:</span>
+        <span class="n">mat</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">Material</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trade</span><span class="o">.</span><span class="n">amt</span><span class="p">,</span> <span class="n">trade</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">comp</span><span class="p">())</span>
+        <span class="n">responses</span><span class="p">[</span><span class="n">trade</span><span class="p">]</span> <span class="o">=</span> <span class="n">mat</span>
+    <span class="k">return</span> <span class="n">responses</span>
+</pre></div>
+</div>
+<p>Similarly, Traders can implement an “accept trade” function that accepts a
+the resources from a <code class="docutils literal notranslate"><span class="pre">Trade</span></code>. It can then implement its
+Trader interface as follows:</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">FooFac::AcceptMatlTrades</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Trade</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">responses</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Trade</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">const_iterator</span><span class="w"> </span><span class="n">it</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">responses</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">responses</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">AcceptTrade</span><span class="p">(</span><span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">accept_material_trades</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">responses</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;In the Python interface, this accepts a responses dict that has the same format as</span>
+<span class="sd">    the responses returned from get_material_trades() above. That is, responses maps</span>
+<span class="sd">    Trades to Materials. This function is responsible for storing these traded materails</span>
+<span class="sd">    somewhere in the agent&#39;s inventories. This is the end of the dynamic resource</span>
+<span class="sd">    exchange and so this function shouldn&#39;t return anything.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">mat</span> <span class="ow">in</span> <span class="n">responses</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The implementation logic for each of these functions is determined by how each
+individual agent handles their resource inventories. Accordingly, their
+implementation will be unique to each agent. Some initial examples can be found
+in the <code class="docutils literal notranslate"><span class="pre">Source</span></code> and <code class="docutils literal notranslate"><span class="pre">Sink</span></code> agents, where <code class="docutils literal notranslate"><span class="pre">Source</span></code>
+implements <code class="docutils literal notranslate"><span class="pre">GetMatlTrades()</span></code> or <code class="docutils literal notranslate"><span class="pre">get_material_trades()</span></code> as a bidder and <code class="docutils literal notranslate"><span class="pre">Sink</span></code>
+implements <code class="docutils literal notranslate"><span class="pre">AcceptMatlTrades()</span></code> or <code class="docutils literal notranslate"><span class="pre">accept_material_trades()</span></code> as a requester.</p>
+</section>
+<section id="examples">
+<span id="id3"></span><h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<section id="mixin-based-trader-behavior-c">
+<h3>Mixin-based Trader Behavior [C++]<a class="headerlink" href="#mixin-based-trader-behavior-c" title="Link to this heading">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Python interface can easily handle mix-in behavior for
+Python agents via subclassing and using <code class="docutils literal notranslate"><span class="pre">super()</span></code> on any agent.</p>
+</div>
+<p>Trader behavior can be specialized based on mixins that an archetype uses. For
+example, consider an interface that helps determines preferences based on
+the equality of the parent of a <code class="docutils literal notranslate"><span class="pre">cyclus::Agent</span></code>.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">PrefGetter</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">GetPref</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Agent</span><span class="o">*</span><span class="w"> </span><span class="n">mine</span><span class="p">,</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Agent</span><span class="o">*</span><span class="w"> </span><span class="n">yours</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">mine</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">yours</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>A trader who then wants behavior based on whether a bidder’s manager inherits
+from <code class="docutils literal notranslate"><span class="pre">PrefGetter</span></code> can then implement its preference adjustment as follows:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">FooFac::AdjustMatlPrefs</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">PrefMap</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&amp;</span><span class="w"> </span><span class="n">prefs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">cyclus</span><span class="o">::</span><span class="n">PrefMap</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">::</span><span class="n">iterator</span><span class="w"> </span><span class="n">pmit</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pmit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prefs</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">pmit</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">prefs</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">pmit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">Bid</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="w"> </span><span class="n">mit</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Request</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pmit</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Agent</span><span class="o">*</span><span class="w"> </span><span class="n">reqagent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="o">-&gt;</span><span class="n">requester</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">manager</span><span class="p">();</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">mit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pmit</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">mit</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">pmit</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">mit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">Bid</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">bid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mit</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+<span class="w">      </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Agent</span><span class="o">*</span><span class="w"> </span><span class="n">bidagent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bid</span><span class="o">-&gt;</span><span class="n">bidder</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">manager</span><span class="p">();</span>
+<span class="w">      </span><span class="n">PrefGetter</span><span class="o">*</span><span class="w"> </span><span class="n">pg_cast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">PrefGetter</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">bidagent</span><span class="p">);</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pg_cast</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// special behavior for the mixin</span>
+<span class="w">        </span><span class="n">mit</span><span class="o">-&gt;</span><span class="n">second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cast</span><span class="o">-&gt;</span><span class="n">GetPref</span><span class="p">(</span><span class="n">reqagent</span><span class="o">-&gt;</span><span class="n">parent</span><span class="p">(),</span>
+<span class="w">                                    </span><span class="n">bidagent</span><span class="o">-&gt;</span><span class="n">parent</span><span class="p">());</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">mit</span><span class="o">-&gt;</span><span class="n">second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// choose any (reasonable) default behavior</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Using a dynamic-checking approach will limit the interoperability of your
+archetype with others. Some mixins are provided by the <span style="font-variant:small-caps;">Cyclus</span> kernel in its
+<a class="reference internal" href="toolkit.html#toolkit"><span class="std std-ref">toolkit</span></a>, which is part of the core library.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Using a mixin-based approach will require special implementation of restart
+related functions <em>if</em> the mixin has state associated with it (i.e., members
+that are initialized from an input file and/or stored from timestep to
+timestep). For further reading, see the <code class="docutils literal notranslate"><span class="pre">pragma</span> <span class="pre">cyclus</span> <span class="pre">impl</span></code> directive in
+<a class="reference internal" href="cycpp.html#cycpp"><span class="std std-ref">Using the Cyclus Preprocessor</span></a>.</p>
+</div>
+</section>
+<section id="non-black-box-behavior-c">
+<span id="white-box"></span><h3>Non-Black Box Behavior [C++]<a class="headerlink" href="#non-black-box-behavior-c" title="Link to this heading">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Python interface can trivially handle non-black box behavior for
+Python agents by using <code class="docutils literal notranslate"><span class="pre">isinstance()</span></code> on any agent.</p>
+</div>
+<p>Cyclus provides a simulation framework that supports black-box entity
+interaction, i.e., any entity in the simulation can interact with any other
+entity through its <code class="docutils literal notranslate"><span class="pre">Agent</span></code> interface. However, there is nothing
+stopping an archetype developer from implementing logic that is specific to a
+implemented archetype.</p>
+<p>For example, take a facility that informs a trader what composition of material
+it wants given another facility’s inventory.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TradeInformer</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Facility</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="cp">#pragma cyclus</span>
+
+<span class="w">  </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">IdealMatl</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">ResBuf</span><span class="o">&amp;</span><span class="w"> </span><span class="n">buffer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="c1">// provide whatever implementation is desired</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>A provider of material can then implement its <code class="docutils literal notranslate"><span class="pre">GetMatlBids</span></code> as follows:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">BidPortfolio</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="o">&gt;</span>
+<span class="w">  </span><span class="n">FooFac</span><span class="o">::</span><span class="n">GetMatlBids</span><span class="p">(</span>
+<span class="w">    </span><span class="n">cyclus</span><span class="o">::</span><span class="n">CommodMap</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&amp;</span><span class="w"> </span><span class="n">commod_requests</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">BidPortfolio</span><span class="p">;</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="p">;</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Request</span><span class="p">;</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">cyclus</span><span class="o">::</span><span class="n">Agent</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// respond to all requests of my commodity</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">my_commodity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FuelA&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">BidPortfolio</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">port</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BidPortfolio</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span><span class="p">());</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Request</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*&gt;&amp;</span><span class="w"> </span><span class="n">requests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">commod_requests</span><span class="p">[</span><span class="n">my_commodity</span><span class="p">];</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Request</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;*&gt;::</span><span class="n">iterator</span><span class="w"> </span><span class="n">it</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requests</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">requests</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">offer</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Agent</span><span class="o">*</span><span class="w"> </span><span class="n">agent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">requester</span><span class="p">();</span>
+<span class="w">    </span><span class="n">TradeInformer</span><span class="o">*</span><span class="w"> </span><span class="n">cast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">TradeInformer</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">agent</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cast</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">offer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cast</span><span class="o">-&gt;</span><span class="n">IdealMatl</span><span class="p">(</span><span class="n">inventory</span><span class="p">);</span><span class="w"> </span><span class="c1">// inventory is a state variable ResBuf</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kt">double</span><span class="w"> </span><span class="n">qty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">quantity</span><span class="p">();</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">recipe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;recipe&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">offer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Material</span><span class="o">::</span><span class="n">CreateUntracked</span><span class="p">(</span><span class="n">qty</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetRecipe</span><span class="p">(</span><span class="n">recipe</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">port</span><span class="o">-&gt;</span><span class="n">AddBid</span><span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">,</span><span class="w"> </span><span class="n">offer</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">BidPortfolio</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ports</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ports</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">port</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">ports</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">¶</a></h2>
+<p>For a more in depth (and historical) discussion, see <a class="reference external" href="http://fuelcycle.org/cep/cep18.html">CEP 18</a>.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Dynamic Resource Exchange</a><ul>
+<li><a class="reference internal" href="#request-for-bids-phase">Request For Bids Phase</a></li>
+<li><a class="reference internal" href="#response-to-request-for-bids-phase">Response to Request For Bids Phase</a><ul>
+<li><a class="reference internal" href="#black-box-examples">Black Box Examples</a></li>
+<li><a class="reference internal" href="#white-box-examples">White Box Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#preference-adjustment-phase">Preference Adjustment Phase</a><ul>
+<li><a class="reference internal" href="#id1">Black Box Examples</a></li>
+<li><a class="reference internal" href="#id2">White Box Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#solution-phase">Solution Phase</a></li>
+<li><a class="reference internal" href="#trade-execution-phase">Trade Execution Phase</a></li>
+<li><a class="reference internal" href="#examples">Examples</a><ul>
+<li><a class="reference internal" href="#mixin-based-trader-behavior-c">Mixin-based Trader Behavior [C++]</a></li>
+<li><a class="reference internal" href="#non-black-box-behavior-c">Non-Black Box Behavior [C++]</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="resources.html"
+                          title="Previous page">&larr; Resources</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="dbtypes.html"
+                          title="Next page">&rarr; Database Types</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="dbtypes.html" title="Database Types"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="resources.html" title="Resources"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Dynamic Resource Exchange</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -1,0 +1,242 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Software Process &amp; Architecture &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Nuclear Fuel Cycle Simulators" href="fcs_background.html" />
+    <link rel="prev" title="Fundamental Concepts in Cyclus" href="concepts.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="fcs_background.html" title="Nuclear Fuel Cycle Simulators"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="concepts.html" title="Fundamental Concepts in Cyclus"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Introduction</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Software Process &amp; Architecture</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="software-process-architecture">
+<h1>Software Process &amp; Architecture<a class="headerlink" href="#software-process-architecture" title="Link to this heading">¶</a></h1>
+<p>The software architecture and accompanying development process are critical to
+a simultaneously robust and flexible analysis platform.</p>
+<section id="open-source-development-process">
+<h2>Open Source Development Process<a class="headerlink" href="#open-source-development-process" title="Link to this heading">¶</a></h2>
+<p>The <span style="font-variant:small-caps;">Cyclus</span> development framework employs a modern, open source philosophy
+that ensures transparency, attracts contributions from a varied community of
+collaborators, and guarantees institution-independent access to all potential
+<a class="reference internal" href="glossary.html#term-user"><span class="xref std std-term">users</span></a>. (<a class="reference external" href="https://github.com/cyclus/cyclus/blob/develop/LICENSE.rst">BSD 3-Clause License</a>)
+In this development path, a public source code repository provides
+unhindered access to the <a class="reference external" href="http://github.com/cyclus/cyclys">fundamental simulation framework</a> and <a class="reference external" href="http://github.com/cyclus/cycamore">additional agent archetypes</a> volunteered by developers.  Granting
+unfettered access only to the <span style="font-variant:small-caps;">Cyclus</span> engine allows for compartmentalization
+of the code and its input data. Thus, secure and proprietary <a class="reference internal" href="glossary.html#term-archetype-developer"><span class="xref std std-term">archetype
+developers</span></a> can be similarly encouraged to utilize the <span style="font-variant:small-caps;">Cyclus</span> framework.
+This modern development model passively distributes specialized content to
+interested research groups, and facilitates parallel archetype development
+efforts by institutions with complimentary goals.  The transparency inherent
+in this type of <a class="reference internal" href="glossary.html#term-open-development-process"><span class="xref std std-term">open development process</span></a> also facilitates code review by
+exposing available content to verification and validation by collaborators
+with diverse areas of specialization and levels of expertise.</p>
+<p>Another aspect of this development process is a preference for open source
+third party libraries where additional functionality is necessary and
+available from such libraries.  This includes basic infrastructure such as
+file input/output, as well as archetype-specific capabilities like
+integer programming for network flow optimization.</p>
+</section>
+<section id="dynamically-loadable-modules">
+<h2>Dynamically Loadable Modules<a class="headerlink" href="#dynamically-loadable-modules" title="Link to this heading">¶</a></h2>
+<p>Dynamically loadable modules are the primary mechanism for extending <span style="font-variant:small-caps;">Cyclus</span>
+with new underlying <a class="reference internal" href="glossary.html#term-archetype"><span class="xref std std-term">archetypes</span></a>.  The primary benefit of this
+approach is encapsulation: the <a class="reference internal" href="glossary.html#term-cyclus-kernel"><span class="xref std std-term">cyclus kernel</span></a> is completely independent
+of the individual archetypes and all customization and extension is
+implemented only in the loadable module.  A secondary benefit of this
+encapsulation is the ability for contributors to choose different distribution
+and licensing strategies.  Finally, this strategy allows individual developers
+to explore different levels of complexity within their archetypes,
+including wrapping other simulation tools as loadable modules for <span style="font-variant:small-caps;">Cyclus</span>.</p>
+</section>
+<section id="use-cases-visualization">
+<h2>Use Cases &amp; Visualization<a class="headerlink" href="#use-cases-visualization" title="Link to this heading">¶</a></h2>
+<p>Because of the wide array of use cases for <span style="font-variant:small-caps;">Cyclus</span>, flexibility in the user
+interface is important to provide users with their desired functionality.
+This is true for input generation as well as output visualization.  A
+graphical user interface has been designed and will be implemented in parallel
+with the development of the underlying modules.  The graphical interface is
+extensible by loadable modules in the same way as the core code to provide
+developers the same flexibility in managing their input as they have in
+implementing their archetypes.  Output visualization is also
+important - the discrete facility/discrete material paradigm generates a
+large volume of small data that needs to be aggregated in various ways to
+provide context to a variety of users.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Software Process &amp; Architecture</a><ul>
+<li><a class="reference internal" href="#open-source-development-process">Open Source Development Process</a></li>
+<li><a class="reference internal" href="#dynamically-loadable-modules">Dynamically Loadable Modules</a></li>
+<li><a class="reference internal" href="#use-cases-visualization">Use Cases &amp; Visualization</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="concepts.html"
+                          title="Previous page">&larr; Fundamental Concepts in <span style="font-variant:small-caps;">Cyclus</span></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="fcs_background.html"
+                          title="Next page">&rarr; Nuclear Fuel Cycle Simulators</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="fcs_background.html" title="Nuclear Fuel Cycle Simulators"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="concepts.html" title="Fundamental Concepts in Cyclus"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Introduction</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Software Process &amp; Architecture</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

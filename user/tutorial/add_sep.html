@@ -1,0 +1,277 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Adding a Separations Facility &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Adding a Stream Mixing Fuel Fabrication Facility" href="add_fab.html" />
+    <link rel="prev" title="Getting Started on Recycle" href="add_arche_commod_recipe.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_fab.html" title="Adding a Stream Mixing Fuel Fabrication Facility"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_arche_commod_recipe.html" title="Getting Started on Recycle"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Adding a Separations Facility</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="adding-a-separations-facility">
+<h1>Adding a Separations Facility<a class="headerlink" href="#adding-a-separations-facility" title="Link to this heading">¶</a></h1>
+<p>The separations facility will request all the commodities in its Feed
+Commodity List, and separate them into any number of streams, plus a waste
+stream.</p>
+<p>The following is the input template for <code class="docutils literal notranslate"><span class="pre">Cycamore::Separations</span></code> archetype:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>SeparationsFacility<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;config&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Separations&gt;</span>
+<span class="w">      </span><span class="nt">&lt;feed_commods&gt;</span>
+<span class="w">        </span><span class="nt">&lt;val&gt;</span>_______<span class="nt">&lt;/val&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/feed_commods&gt;</span>
+<span class="w">      </span><span class="nt">&lt;feed_commod_prefs&gt;</span>
+<span class="w">        </span><span class="nt">&lt;val&gt;</span>_______<span class="nt">&lt;/val&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/feed_commod_prefs&gt;</span>
+<span class="w">      </span><span class="nt">&lt;feedbuf_size&gt;</span>_______<span class="nt">&lt;/feedbuf_size&gt;</span>
+<span class="w">      </span><span class="nt">&lt;throughput&gt;</span>_______<span class="nt">&lt;/throughput&gt;</span>
+<span class="w">      </span><span class="nt">&lt;leftover_commod&gt;</span>_______<span class="nt">&lt;/leftover_commod&gt;</span>
+<span class="w">      </span><span class="nt">&lt;leftoverbuf_size&gt;</span>_______<span class="nt">&lt;/leftoverbuf_size&gt;</span>
+<span class="w">      </span><span class="nt">&lt;streams&gt;</span>
+<span class="w">        </span><span class="nt">&lt;item&gt;</span>
+<span class="w">          </span><span class="nt">&lt;commod&gt;</span>_______<span class="nt">&lt;/commod&gt;</span>
+<span class="w">          </span><span class="nt">&lt;info&gt;</span>
+<span class="w">            </span><span class="nt">&lt;buf_size&gt;</span>_______<span class="nt">&lt;/buf_size&gt;</span>
+<span class="w">            </span><span class="nt">&lt;efficiencies&gt;</span>
+<span class="w">              </span><span class="nt">&lt;item&gt;</span>
+<span class="w">                </span><span class="nt">&lt;comp&gt;</span>_______<span class="nt">&lt;/comp&gt;</span>
+<span class="w">                </span><span class="nt">&lt;eff&gt;</span>_______<span class="nt">&lt;/eff&gt;</span>
+<span class="w">              </span><span class="err">&lt;</span>/item
+<span class="w">            </span><span class="nt">&lt;/efficiencies&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/info&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/item&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/streams&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/Separations&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Our feed commodity list should include both:</dt><dd><ul>
+<li><p>Used-UOX-Fuel</p></li>
+<li><p>Used-MOX-Fuel</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>The maximum feed inventory is the most feed material that we’ll have on
+hand: 1000 tonnes.</p></li>
+<li><p>The maxium separations throughout is the size of our plant: 80 tonnes/timestep</p></li>
+<li><dl class="simple">
+<dt>This simple scenario will have a single output stream: Separated-Fissile</dt><dd><ul>
+<li><p>we will hold no more than 5 tonnes of separated material on hand at any time</p></li>
+<li><p>99% of all Pu (94000) will go into that stream</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>all other material will go to Separated-Waste</p></li>
+</ul>
+<p>Filling in the template, the input block looks like:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;facility&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>SeparationsFacility<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;config&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Separations&gt;</span>
+<span class="w">      </span><span class="nt">&lt;feed_commods&gt;</span>
+<span class="w">        </span><span class="nt">&lt;val&gt;</span>spent-uox<span class="nt">&lt;/val&gt;</span>
+<span class="w">        </span><span class="nt">&lt;val&gt;</span>used-mox<span class="nt">&lt;/val&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/feed_commods&gt;</span>
+<span class="w">      </span><span class="nt">&lt;feed_commod_prefs&gt;</span>
+<span class="w">        </span><span class="nt">&lt;val&gt;</span>1.0<span class="nt">&lt;/val&gt;</span>
+<span class="w">        </span><span class="nt">&lt;val&gt;</span>1.0<span class="nt">&lt;/val&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/feed_commod_prefs&gt;</span>
+<span class="w">      </span><span class="nt">&lt;feedbuf_size&gt;</span>1000E+3_<span class="nt">&lt;/feedbuf_size&gt;</span>
+<span class="w">      </span><span class="nt">&lt;throughput&gt;</span>80e+3<span class="nt">&lt;/throughput&gt;</span>
+<span class="w">      </span><span class="nt">&lt;leftover_commod&gt;</span>Separated-Waste<span class="nt">&lt;/leftover_commod&gt;</span>
+<span class="w">      </span><span class="nt">&lt;leftoverbuf_size&gt;</span>1000e+3<span class="nt">&lt;/leftoverbuf_size&gt;</span>
+<span class="w">      </span><span class="nt">&lt;streams&gt;</span>
+<span class="w">        </span><span class="nt">&lt;item&gt;</span>
+<span class="w">          </span><span class="nt">&lt;commod&gt;</span>Separated-Fissile<span class="nt">&lt;/commod&gt;</span>
+<span class="w">          </span><span class="nt">&lt;info&gt;</span>
+<span class="w">            </span><span class="nt">&lt;buf_size&gt;</span>5e+3<span class="nt">&lt;/buf_size&gt;</span>
+<span class="w">            </span><span class="nt">&lt;efficiencies&gt;</span>
+<span class="w">              </span><span class="nt">&lt;item&gt;</span>
+<span class="w">                </span><span class="nt">&lt;comp&gt;</span>94000<span class="nt">&lt;/comp&gt;</span>
+<span class="w">                </span><span class="nt">&lt;eff&gt;</span>0.99<span class="nt">&lt;/eff&gt;</span>
+<span class="w">              </span><span class="err">&lt;</span>/item
+<span class="w">            </span><span class="nt">&lt;/efficiencies&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/info&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/item&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/streams&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/Separations&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/facility&gt;</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="add_arche_commod_recipe.html"
+                          title="Previous page">&larr; Getting Started on Recycle</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="add_fab.html"
+                          title="Next page">&rarr; Adding a Stream Mixing Fuel Fabrication Facility</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_fab.html" title="Adding a Stream Mixing Fuel Fabrication Facility"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_arche_commod_recipe.html" title="Getting Started on Recycle"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Adding a Separations Facility</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

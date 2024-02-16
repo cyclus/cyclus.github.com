@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CEP 4 - Attribution of Code Products in the Cyclus Ecosystem &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CEP 5 - Archetype Development Best Practices" href="cep5.html" />
+    <link rel="prev" title="CEP 3 - Cyclus Release Procedure" href="cep3.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep5.html" title="CEP 5 - Archetype Development Best Practices"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep3.html" title="CEP 3 - Cyclus Release Procedure"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 4 - Attribution of Code Products in the <span style="font-variant:small-caps;">Cyclus</span> Ecosystem</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="cep-4-attribution-of-code-products-in-the-cyclus-ecosystem">
+<h1>CEP 4 - Attribution of Code Products in the <span style="font-variant:small-caps;">Cyclus</span> Ecosystem<a class="headerlink" href="#cep-4-attribution-of-code-products-in-the-cyclus-ecosystem" title="Link to this heading">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">CEP<span class="colon">:</span></dt>
+<dd class="field-odd"><p>4</p>
+</dd>
+<dt class="field-even">Title<span class="colon">:</span></dt>
+<dd class="field-even"><p>Attribution of Code Products in the <span style="font-variant:small-caps;">Cyclus</span> Ecosystem</p>
+</dd>
+<dt class="field-odd">Last-Modified<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2014-06-27</p>
+</dd>
+<dt class="field-even">Author<span class="colon">:</span></dt>
+<dd class="field-even"><p>Kathryn Huff</p>
+</dd>
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Accepted</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Process</p>
+</dd>
+<dt class="field-odd">Created<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2014-06-01</p>
+</dd>
+</dl>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading">¶</a></h2>
+<p>The purpose of this CEP is to define the method for attribution of code
+products within the <span style="font-variant:small-caps;">Cyclus</span> ecosystem. In particular, along with any software
+release a unique, publicly citable object should be created which
+appropriately attributes its authors. This CEP therefore introduces a method
+for creating a <a class="reference external" href="http://en.wikipedia.org/wiki/Digital_object_identifier">Digital Object Identifier</a> for each code release, with alphabetically ordered
+authorship, and encapsulating all of and only the authors responsible for that
+effort.</p>
+</section>
+<section id="concerns">
+<h2>Concerns<a class="headerlink" href="#concerns" title="Link to this heading">¶</a></h2>
+<p>The concerns driving this CEP are threefold :</p>
+<ul class="simple">
+<li><p><strong>Unambiguous Citation</strong></p></li>
+<li><p><strong>Author Identification</strong></p></li>
+<li><p><strong>Contribution Equality</strong></p></li>
+</ul>
+<p>First, public and unambiguous citation of scientific and code products like
+those in the <span style="font-variant:small-caps;">Cyclus</span> ecosystem is of paramount importance to scientific
+reproducibility. Due to the algorithmic and authorship differences between
+versions of the codebase, a unique identifier is required for accurate citation
+of that version.  Therefore, to enable reproducibility in the use of the
+<span style="font-variant:small-caps;">Cyclus</span> ecosystem, each version must be unambiguously citable with a distinct
+DOI.</p>
+<p>Second, to provide an appropriately transparent public link between the
+identities and efforts of the authors, the true names of the authors should be
+listed. As with other forms of scientific publication, public attribution of
+authorship is of importance for appropriately enabling direct praise and blame
+related to that scientific work <span id="id1">[<a class="reference internal" href="#id3" title="Adil E. Shamoo and David B. Resnik. Responsible conduct of research. Oxford University Press, 2003. URL: http://books.google.com/books?hl=en&amp;lr=&amp;id=RLZin-f9eooC&amp;oi=fnd&amp;pg=PA3&amp;dq=responsible+conduct+of+research&amp;ots=RGE6h_FEt5&amp;sig=qaiickHjp9r-qhJYU5TXo5WvoA4 (visited on 2014-06-19).">SR03</a>]</span>.  This feature
+of scientific publication holds the scientist accountable for their work and
+enables them to establish a record of their scientific pursuits. It is for this
+reason that clear attribution of true names is superior to other options, such
+as using a pseudonym for the group (Cyclus developers).</p>
+<p>Finally, since ordering of authorship has conventional meaning and value in the
+scientific community, the ordering of authorship for code products in the
+<span style="font-variant:small-caps;">Cyclus</span> ecosystem should similarly reflect the community consensus concerning
+relative contribution importance. Specifically, due to the inherently
+apples-and-oranges nature of code contributions, no metric for code importance
+was deemed suitable for comparing contribution importance within the <span style="font-variant:small-caps;">Cyclus</span>
+ecosystem. That is, a lack of hierarchy was preferred. Thus, alphabetical
+ordering, which is perceived by convention as non-hierarchical, shall be used.</p>
+<section id="what-releases-should-have-a-doi">
+<h3>What releases should have a DOI?<a class="headerlink" href="#what-releases-should-have-a-doi" title="Link to this heading">¶</a></h3>
+<p>Cyclus versions are indicated by numbers of the form : vMAJ.MIN.MICRO-patch. At the
+very least, major, and minor versions should have associated DOIs. For micro
+versions, which do not undergo a release process, a DOI is optional.</p>
+</section>
+<section id="how-should-a-doi-be-created">
+<h3>How should a DOI be created?<a class="headerlink" href="#how-should-a-doi-be-created" title="Link to this heading">¶</a></h3>
+<p>Creation of a DOI should be conducted or delegated by the code release
+manager. Accordingly, <a class="reference internal" href="cep3.html"><span class="doc">CEP3</span></a> has been updated to reflect this responsibility.
+That person is responsible for identifying the code contributors since the last
+release at that level.</p>
+<p>Among online services that have the capability of creating a DOI for a code
+product, <a class="reference external" href="http://figshare.com/">figshare</a> is preferred. It was initially chosen due to both its
+nascent adoption by the scientific computing community and its native
+ability to capture github-hosted codebases.</p>
+<p>Once the DOI is created, it should be recorded on the cyclus website and should
+be shared with the development team.</p>
+</section>
+<section id="who-is-an-author">
+<h3>Who is an author?<a class="headerlink" href="#who-is-an-author" title="Link to this heading">¶</a></h3>
+<p>An author has contributed code contributing to the release.
+For a <strong>major release</strong>, all authors that contributed code between version
+m.0.0 and version n.0.0 should be listed in the n.0.0 code release DOI.</p>
+<p>In the same way, for a <strong>minor release</strong>, all authors that contributed code between 1.m.0 and
+1.n.0 should be listed in the 1.n.0 code release DOI. Note that additional authors
+should not be included if they have not contributed to this minor release. For
+example, if someone has contributed to version 1.0.0, but not since then, that
+person should not be listed as an author on the DOI for version 1.1.0.</p>
+</section>
+<section id="how-are-authors-listed">
+<h3>How are authors listed?<a class="headerlink" href="#how-are-authors-listed" title="Link to this heading">¶</a></h3>
+<p>All authors should be listed in (english) alphabetical order. This serves both
+to (1) convey a lack of hierarchy in code contribution importance and to (2) reflect the
+true identities of the authors.</p>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
+<p>In the absence of a rigid convention in the scientific computing community concerning
+contribuion metrics, author attribution, and code citation, this CEP proposes
+that uniquely and publicly citable DOIs as well as comprehensive but  flat
+authorship reflect the needs and desires of the <span style="font-variant:small-caps;">Cyclus</span> development community.
+Finally, this document provides resources for implementing the requirements
+it introduces.</p>
+</section>
+<section id="document-history">
+<h2>Document History<a class="headerlink" href="#document-history" title="Link to this heading">¶</a></h2>
+<p>This document is released under the CC-BY 3.0 license.</p>
+</section>
+<section id="references-and-footnotes">
+<h2>References and Footnotes<a class="headerlink" href="#references-and-footnotes" title="Link to this heading">¶</a></h2>
+<p class="rubric">References</p>
+<div class="docutils container" id="id2">
+<div role="list" class="citation-list">
+<div class="citation" id="id3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">SR03</a><span class="fn-bracket">]</span></span>
+<p>Adil E. Shamoo and David B. Resnik. <em>Responsible conduct of research</em>. Oxford University Press, 2003. URL: <a class="reference external" href="http://books.google.com/books?hl=en&amp;lr=&amp;id=RLZin-f9eooC&amp;oi=fnd&amp;pg=PA3&amp;dq=responsible+conduct+of+research&amp;ots=RGE6h_FEt5&amp;sig=qaiickHjp9r-qhJYU5TXo5WvoA4">http://books.google.com/books?hl=en&amp;lr=&amp;id=RLZin-f9eooC&amp;oi=fnd&amp;pg=PA3&amp;dq=responsible+conduct+of+research&amp;ots=RGE6h_FEt5&amp;sig=qaiickHjp9r-qhJYU5TXo5WvoA4</a> (visited on 2014-06-19).</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">CEP 4 - Attribution of Code Products in the <span style="font-variant:small-caps;">Cyclus</span> Ecosystem</a><ul>
+<li><a class="reference internal" href="#abstract">Abstract</a></li>
+<li><a class="reference internal" href="#concerns">Concerns</a><ul>
+<li><a class="reference internal" href="#what-releases-should-have-a-doi">What releases should have a DOI?</a></li>
+<li><a class="reference internal" href="#how-should-a-doi-be-created">How should a DOI be created?</a></li>
+<li><a class="reference internal" href="#who-is-an-author">Who is an author?</a></li>
+<li><a class="reference internal" href="#how-are-authors-listed">How are authors listed?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#summary">Summary</a></li>
+<li><a class="reference internal" href="#document-history">Document History</a></li>
+<li><a class="reference internal" href="#references-and-footnotes">References and Footnotes</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="cep3.html"
+                          title="Previous page">&larr; CEP 3 - <span style="font-variant:small-caps;">Cyclus</span> Release Procedure</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="cep5.html"
+                          title="Next page">&rarr; CEP 5 - Archetype Development Best Practices</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep5.html" title="CEP 5 - Archetype Development Best Practices"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep3.html" title="CEP 3 - Cyclus Release Procedure"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 4 - Attribution of Code Products in the <span style="font-variant:small-caps;">Cyclus</span> Ecosystem</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

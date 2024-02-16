@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cyclus Server (cyclus.server) &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Asynchronous Actions (cyclus.actions)" href="actions.html" />
+    <link rel="prev" title="Nuclide Naming Functions (cyclus.nucname)" href="nucname.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="actions.html" title="Asynchronous Actions (cyclus.actions)"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="nucname.html" title="Nuclide Naming Functions (cyclus.nucname)"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Cyclus Server (<code class="docutils literal notranslate"><span class="pre">cyclus.server</span></code>)</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-cyclus.server">
+<span id="cyclus-server-cyclus-server"></span><span id="cyclus-pyapi-server"></span><h1>Cyclus Server (<code class="docutils literal notranslate"><span class="pre">cyclus.server</span></code>)<a class="headerlink" href="#module-cyclus.server" title="Link to this heading">¶</a></h1>
+<p>An asyncronous cyclus server that provides as JSON API over websockets.</p>
+<p>The webserver has a number of ‘events’ that it may send or recieve. These
+in turn affect how a cyclus simulation runs.</p>
+<p>The server, which operates both asynchronously and in parallel, has five
+top-level tasks which it manages:</p>
+<ul class="simple">
+<li><p>The cyclus simulation object, run on a separate thread,</p></li>
+<li><p>A action consumer, which executes actions that have been queued either
+by the cyclus simulation or the user,</p></li>
+<li><p>A websockets server that sends and recieves JSON-formatted events from
+the client.</p></li>
+<li><p>A heartbeat that sends special events every so often.</p></li>
+<li><p>A monitor for presenting data about certain other future actions.</p></li>
+</ul>
+<p>For purposes of this document, the following terminology is used:</p>
+<p><strong>event:</strong> A JSON object / dictionary that contains behaviour instructions.</p>
+<p><strong>message:</strong> The string form of an event.</p>
+<p><strong>action:</strong> A delayed asynchronous coroutine function that carries out the
+behaviour specified in a cooresponding event. These do the actual work of
+the event system.</p>
+<p><strong>repeating action:</strong> An action coroutine function (or event name) or a list
+of the  coroutine function and arguments that is added to the action queue
+each time step of the simulation. This enables pausing each time step,
+streaming table data, etc.</p>
+<p><strong>task:</strong> A future object that results from calling an action. See
+asyncio for more details.</p>
+<section id="events">
+<h2>Events<a class="headerlink" href="#events" title="Link to this heading">¶</a></h2>
+<p>Events are JSON-formatted strings that represent JSON-objects (dicts) at
+their top-most level. All events must have an “event” key whose value is
+the string name that distinguishes the event from all other kinds of events.</p>
+<p>Often times, events may have parameters that they send/recieve. These live
+in the “params” key as a JSON object / dict.</p>
+<p>Events may be conceptually divided into server-sent, client-sent events, and
+bidirectional events which are sent by either the client or the server.</p>
+<section id="server-events">
+<h3>Server Events<a class="headerlink" href="#server-events" title="Link to this heading">¶</a></h3>
+<p>Server-sent events are those that the server sends to the client. These are
+often repsonse to requests for data about the state of the simulation.
+They typically contain a “data” key which holds data about the simulation
+state. They may also have a “success” key, whose value is true/false, that
+specifies whether the data was able to be computed.</p>
+<p><strong>heartbeat:</strong> A simple event the lets the client know that the server is
+still alive. The data value is the approximate time of the next heartbeat
+in seconds:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;heartbeat&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">val</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>loaded:</strong> A simple message that says that a simulation has been loaded.</p>
+<blockquote>
+<div><dl class="simple">
+<dt>{“event”: “loaded”,</dt><dd><p>“params”: {“status”: “ok”},
+“data”: null</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p><strong>registry:</strong> The in-memory backend registy value in its current form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;registry&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+ <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;table0&quot;</span><span class="p">,</span> <span class="s2">&quot;table1&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>table_names:</strong> The current file system backend table names:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;table_names&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+ <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;table0&quot;</span><span class="p">,</span> <span class="s2">&quot;table1&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="client-events">
+<h3>Client Events<a class="headerlink" href="#client-events" title="Link to this heading">¶</a></h3>
+<p>Client events are often requests originating from users. They may either
+express a request for behaviour (pause the simulation, restart, etc.) or
+a request for data. These events may or may not have additional parameters,
+depending on the type of request.</p>
+<p><strong>deregister_tables:</strong> Remove table names from the in-memory backend registry.
+A registry event from the server will follow the completion of this event:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;deregister_tables&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;tables&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;table0&quot;</span><span class="p">,</span> <span class="s2">&quot;table1&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">]}</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>load:</strong> Loads the input file in the simulation and starts running the simulation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;load&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>pause:</strong> Pauses the simulation until it is unpaused:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;pause&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>register_tables:</strong> Add table names to the in-memory backend registry.
+A registry event from the server will follow the completion of this event:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;register_tables&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;tables&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;table0&quot;</span><span class="p">,</span> <span class="s2">&quot;table1&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">]}</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>registry_request:</strong> A simple reqest for the in-memory backend regsitry:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;registry_request&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>shutdown:</strong> A reqest to shutdown the server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;shutdown&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;when&quot;</span><span class="p">:</span> <span class="s2">&quot;empty&quot;</span> <span class="ow">or</span> <span class="s2">&quot;now&quot;</span><span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>table_names_request:</strong> A simple reqest for the table names present in the
+file system backend:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;table_names_request&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>unpause:</strong> Unpauses the simulation by canceling the pause task:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;unpause&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="bidirectional-events">
+<h3>Bidirectional Events<a class="headerlink" href="#bidirectional-events" title="Link to this heading">¶</a></h3>
+<p>These are events that may logically originate from either the client or the
+server. Certian keys in the event may or not be present depending on the
+sender, but the event name stays the same.</p>
+<p><strong>agent_annotations:</strong> This event requests and returns the agent annotations
+for a given agent spec. If the data field is null, this is a request to the
+server for annotation information. If the data field is a dict, it represents
+the annotations for the spec:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;agent_annotations&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;spec&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;path&gt;:&lt;lib&gt;:&lt;name&gt;&quot;</span><span class="p">},</span>
+ <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">null</span> <span class="ow">or</span> <span class="nb">object</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>echo:</strong> Echos back a single string parameter. When requesting an echo,
+the data key need not be present:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;table_names&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;s&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">},</span>
+ <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">value</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>sleep:</strong> The requester instructs the reciever to sleep for n seconds:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;sleep&quot;</span><span class="p">,</span> <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p><strong>table_data:</strong> Data about a table with the conditions and other parameters
+applied. If the client sends this event without the “data” key, the server
+will respond with the requested table:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;table_data&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;table&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;name of table&gt;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;conds&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;&lt;list of condition lists, if any&gt;&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;orient&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;orientation of JSON, see Pandas&gt;&quot;</span><span class="p">},</span>
+ <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;&lt;keys&gt;&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;values subject to orientation&gt;&quot;</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="command-line-interface">
+<h2>Command Line Interface<a class="headerlink" href="#command-line-interface" title="Link to this heading">¶</a></h2>
+<p>You may launch the cyclus server by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m cyclus.server input.xml
+</pre></div>
+</div>
+<p>Most of the arguments are relatively self-explanatory. However, the CLI here
+also allows you to load initial and repeating actions. The syntax for this
+is an event name followed by parameter tokens (which must contain an equals
+sign):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m cyclus.server input.xml --repeating-actions sleep n=1
+</pre></div>
+</div>
+<p>You may load many actions by repeating the name-params pattern:</p>
+<blockquote>
+<div><p>$ python -m cyclus.server input.xml –repeating-actions         sleep n=1         table_data table=”TimeSeriesPower”</p>
+</div></blockquote>
+<p>Note that everything right of an equals sign in a parameter token is passed
+to Python’s eval() builtin function. It thererfore must be valid Python.
+For string values, make sure that you properly escape quotation marks as
+per the syntax of your shell language.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.server.EventCLIAction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.server.</span></span><span class="sig-name descname"><span class="pre">EventCLIAction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'+'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.server.EventCLIAction" title="Link to this definition">¶</a></dt>
+<dd><p>A basic class for parsing action specs on the command line.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.server.EventCLIAction.format_usage">
+<span class="sig-name descname"><span class="pre">format_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.server.EventCLIAction.format_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.server.action_consumer">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.server.</span></span><span class="sig-name descname"><span class="pre">action_consumer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.server.action_consumer" title="Link to this definition">¶</a></dt>
+<dd><p>The basic consumer of actions.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.server.action_monitor">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.server.</span></span><span class="sig-name descname"><span class="pre">action_monitor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.server.action_monitor" title="Link to this definition">¶</a></dt>
+<dd><p>Consumes actions that have been scheduled for monitoring tasks,
+such as status reporting, sending signals, or canceling other task.
+These are awaited in the order recieved.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.server.get_send_data">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.server.</span></span><span class="sig-name descname"><span class="pre">get_send_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.server.get_send_data" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronously grabs the next data to send from the queue.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.server.heartbeat">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.server.</span></span><span class="sig-name descname"><span class="pre">heartbeat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.server.heartbeat" title="Link to this definition">¶</a></dt>
+<dd><p>This sends a heartbeat event to the client with a nominal period.
+This occurs outside of the normal action-consumer event system. The
+client is then able to detect the lack of a heartbeat and know that the
+server has been disconected.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.server.main">
+<span class="sig-prename descclassname"><span class="pre">cyclus.server.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.server.main" title="Link to this definition">¶</a></dt>
+<dd><p>Main cyclus server entry point.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.server.make_parser">
+<span class="sig-prename descclassname"><span class="pre">cyclus.server.</span></span><span class="sig-name descname"><span class="pre">make_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.server.make_parser" title="Link to this definition">¶</a></dt>
+<dd><p>Makes the argument parser for the cyclus server.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.server.queue_message_action">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.server.</span></span><span class="sig-name descname"><span class="pre">queue_message_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.server.queue_message_action" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.server.run_sim">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.server.</span></span><span class="sig-name descname"><span class="pre">run_sim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.server.run_sim" title="Link to this definition">¶</a></dt>
+<dd><p>Runs a cyclus simulation in an executor, which should be on another
+thread.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.server.websocket_handler">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.server.</span></span><span class="sig-name descname"><span class="pre">websocket_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">websocket</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.server.websocket_handler" title="Link to this definition">¶</a></dt>
+<dd><p>Sends and recieves data via a websocket.</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Cyclus Server (<code class="docutils literal notranslate"><span class="pre">cyclus.server</span></code>)</a><ul>
+<li><a class="reference internal" href="#events">Events</a><ul>
+<li><a class="reference internal" href="#server-events">Server Events</a></li>
+<li><a class="reference internal" href="#client-events">Client Events</a></li>
+<li><a class="reference internal" href="#bidirectional-events">Bidirectional Events</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#command-line-interface">Command Line Interface</a></li>
+<li><a class="reference internal" href="#cyclus.server.EventCLIAction"><code class="docutils literal notranslate"><span class="pre">EventCLIAction</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.server.EventCLIAction.format_usage"><code class="docutils literal notranslate"><span class="pre">EventCLIAction.format_usage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.server.action_consumer"><code class="docutils literal notranslate"><span class="pre">action_consumer()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.server.action_monitor"><code class="docutils literal notranslate"><span class="pre">action_monitor()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.server.get_send_data"><code class="docutils literal notranslate"><span class="pre">get_send_data()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.server.heartbeat"><code class="docutils literal notranslate"><span class="pre">heartbeat()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.server.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.server.make_parser"><code class="docutils literal notranslate"><span class="pre">make_parser()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.server.queue_message_action"><code class="docutils literal notranslate"><span class="pre">queue_message_action()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.server.run_sim"><code class="docutils literal notranslate"><span class="pre">run_sim()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.server.websocket_handler"><code class="docutils literal notranslate"><span class="pre">websocket_handler()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="nucname.html"
+                          title="Previous page">&larr; Nuclide Naming Functions (<code class="docutils literal notranslate"><span class="pre">cyclus.nucname</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="actions.html"
+                          title="Next page">&rarr; Asynchronous Actions (<code class="docutils literal notranslate"><span class="pre">cyclus.actions</span></code>)</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="actions.html" title="Asynchronous Actions (cyclus.actions)"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="nucname.html" title="Nuclide Naming Functions (cyclus.nucname)"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Cyclus Server (<code class="docutils literal notranslate"><span class="pre">cyclus.server</span></code>)</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

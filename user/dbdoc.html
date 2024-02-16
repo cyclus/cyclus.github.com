@@ -1,0 +1,590 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Understanding the Database &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Use Cases for Cyclus Data Analysis" href="analysis_usecases.html" />
+    <link rel="prev" title="cymetric.timeseries - Timeseries" href="cymetric/api/timeseries.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="analysis_usecases.html" title="Use Cases for Cyclus Data Analysis"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cymetric/api/timeseries.html" title="cymetric.timeseries - Timeseries"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Understanding the Database</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="understanding-the-database">
+<h1>Understanding the Database<a class="headerlink" href="#understanding-the-database" title="Link to this heading">¶</a></h1>
+<p>A single database can store multiple simulations’ results. In order for this to
+work, every table in the database has a SimId column that identifies which
+simulation each row belongs to.  In order to robustly analyze the data, all
+processing should be simulation-ID-aware.  Because simulation ID’s are UUID’s,
+databases can be safely merged without conflicts.</p>
+<p><span style="font-variant:small-caps;">Cyclus</span> supports multiple database formats.  While each format is allowed to
+store information in its own way, the overall table structure in databases is
+the same.  <span style="font-variant:small-caps;">Cyclus</span> ships supporting two database formats:</p>
+<ul>
+<li><p><a class="reference external" href="http://sqlite.org/index.html">SQLite</a> (“.sqlite” extension) - <span style="font-variant:small-caps;">Cyclus</span>’
+default database format. Some useful viewers:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="http://sqliteman.com/">Sqliteman</a> (windows and linux)</p></li>
+<li><p><a class="reference external" href="http://sqlitebrowser.org/">SQLite Browser</a> (windows, mac, and linux)</p></li>
+<li><p><a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/">SQLite Manager</a>
+Firefox Add-on (windows, mac, and linux)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><a class="reference external" href="http://www.hdfgroup.org/HDF5/">HDF5</a> (“.h5” extension). Some useful
+viewers:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="http://www.hdfgroup.org/products/java/hdf-java-html/hdfview/">HDFView</a>
+(windows, mac, and linux)</p></li>
+<li><p><a class="reference external" href="http://vitables.org/">ViTables</a> (linux only)</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>Below are a few sections that describe the data tables found in the database.</p>
+<section id="table-descriptions">
+<h2>Table Descriptions<a class="headerlink" href="#table-descriptions" title="Link to this heading">¶</a></h2>
+<section id="resources-table">
+<h3>Resources Table<a class="headerlink" href="#resources-table" title="Link to this heading">¶</a></h3>
+<p>Because resources are tracked as immutable objects, every time a resource is
+changed in the simulation (split, combined, transmuted, decayed, etc.), it
+gets a new entry in the Resources table.  The heritage of resources is also
+tracked.  If two resources are combined into a new one, then the new resource
+entry will have the ID’s of the other two in its “Parent1” and “Parent2”
+columns.  The Resources table effectively encodes a heritage tree for all
+resources.  It is interesting to note that the Resources table does not encode
+any information about where a resource is.  This information can be inferred
+by corroborating Resource ID’s with the <code class="docutils literal notranslate"><span class="pre">ResCreators</span></code> and <code class="docutils literal notranslate"><span class="pre">Transactions</span></code>
+tables.</p>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>ResourceId</strong> (int): The unique ID for this resource entry. See
+<a class="reference internal" href="../arche/resources.html#resource-ids"><span class="std std-ref">Resource IDs</span></a> for more details.</p></li>
+<li><p><strong>ObjId</strong> (int): A resources object id (obj_id) as it existed during the
+simulation simulation.  See <a class="reference internal" href="../arche/resources.html#resource-ids"><span class="std std-ref">Resource IDs</span></a> for more details.</p></li>
+<li><p><strong>Type</strong> (string): One of “Material” or “Product”.  These two types of
+resources have different internal state stored in different tables.  If the
+type is “Product”, then the internal state can be found in the <code class="docutils literal notranslate"><span class="pre">Products</span></code>
+table. If it is Material, then it is in the <code class="docutils literal notranslate"><span class="pre">Compositions</span></code> table.</p></li>
+<li><p><strong>TimeCreated</strong> (int): The simulation time step at which this resource state
+came into existence.</p></li>
+<li><p><strong>Quantity</strong> (double): Amount of the resource in “kg” for Material
+resources.  Amount in terms of the specific quality for Product resources.</p></li>
+<li><p><strong>Units</strong> (string): “kg” for all Material resources, “NONE” for Product
+resources.</p></li>
+<li><p><strong>QualId</strong> (int): Used to identify the corresponding internal-state
+entry (or entries) in the <code class="docutils literal notranslate"><span class="pre">Products</span></code> or <code class="docutils literal notranslate"><span class="pre">Compositions</span></code> table depending
+on the resource’s type.</p></li>
+<li><p><strong>Parent1</strong> (int): If a resource was newly created, this is zero. If this
+resource came from another via is transmutation, combining, or splitting,
+or decay then this is the parent ResourceId</p></li>
+<li><p><strong>Parent2</strong> (int): If a resource was newly created, this is zero. If this
+resource came from another via transmutation, decay, or splitting, Parent2
+is also zero. If the resource came from another via combining this is the
+second parent’s ResourceId.</p></li>
+</ul>
+</section>
+<section id="explicitinventory-table">
+<span id="explicit-inv-table"></span><h3>ExplicitInventory Table<a class="headerlink" href="#explicitinventory-table" title="Link to this heading">¶</a></h3>
+<p>This is an optional table that can be activated by setting
+<code class="docutils literal notranslate"><span class="pre">&lt;explicit_inventory&gt;true&lt;/explicit_inventory&gt;</span></code> in the <code class="docutils literal notranslate"><span class="pre">&lt;control&gt;</span></code> section
+of the input file.  By default, it is disabled and will not be created in the
+database.  Note there is a significant runtime performance penalty for
+activating this table.  This table provides the material inventory of each
+agent at each time step subdivided by internal buffers (e.g.
+<code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::ResBuf</span></code>).  There is one row for each agent on each time
+step for each sub-buffer for each nuclide.</p>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>AgentId</strong> (int): ID of the agent holding the inventory</p></li>
+<li><p><strong>Time</strong> (int): Time Step this inventory was in the given agent.</p></li>
+<li><p><strong>InventoryName</strong> (string): Name of the internal sub inventory/buffer of
+this material.  This (usually) corresponds to the archetype state variable
+names for each ResBuf.</p></li>
+<li><p><strong>NucId</strong> (int): Nuclide identifier in <code class="docutils literal notranslate"><span class="pre">zzzaaammmm</span></code> form.</p></li>
+<li><p><strong>Quantity</strong> (double): Amount in kg of the given nuclide in the specified
+sub-inventory for the given agent on the given time step.</p></li>
+</ul>
+</section>
+<section id="explicitinventorycompact-table">
+<span id="explicit-inv-compact-table"></span><h3>ExplicitInventoryCompact Table<a class="headerlink" href="#explicitinventorycompact-table" title="Link to this heading">¶</a></h3>
+<p>This is an optional table that can be activated by setting
+<code class="docutils literal notranslate"><span class="pre">&lt;explicit_inventory_compact&gt;true&lt;/explicit_inventory_compact&gt;</span></code> in the
+<code class="docutils literal notranslate"><span class="pre">&lt;control&gt;</span></code> section of the input file.  By default, it is disabled and will
+not be created in the database.  Note there is a significant runtime
+performance penalty for activating this table.  This table provides the
+material inventory of each agent at each time step subdivided by internal
+buffers (e.g.  <code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::ResBuf</span></code>).  There is one row for each agent
+on each time step for each sub-buffer.  The fractional composition for each
+nuclide are stored as a single value in the native format of the Cyclus
+backend used to create the database.  The sqlite backend, for example, stores
+this data as an xml string from a boost-serialized <code class="docutils literal notranslate"><span class="pre">std::map&lt;int,</span> <span class="pre">double&gt;</span></code>
+(i.e. NucId-frac pairs).</p>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>AgentId</strong> (int): ID of the agent holding the inventory</p></li>
+<li><p><strong>Time</strong> (int): time step this inventory was in the given agent.</p></li>
+<li><p><strong>InventoryName</strong> (string): Name of the internal sub inventory/buffer of
+this material.  This (usually) corresponds to the archetype state variable
+names for each ResBuf.</p></li>
+<li><p><strong>Quantity</strong> (double): Amount in kg of the given material composition in
+this sub-inventory for the given agent on the given time step.</p></li>
+<li><p><strong>Composition</strong> (int): Cyclus backend-specific format for a <code class="docutils literal notranslate"><span class="pre">std::map&lt;int,</span>
+<span class="pre">double&gt;</span></code> object.</p></li>
+</ul>
+</section>
+<section id="compositions-table">
+<h3>Compositions Table<a class="headerlink" href="#compositions-table" title="Link to this heading">¶</a></h3>
+<p>A composition consists of one or more nuclides and their respective mass
+fractions.  Each nuclide for a composition gets its own row and have the same
+QualId.</p>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>QualId</strong> (int): Key to associate this composition with one or more
+entries in the <code class="docutils literal notranslate"><span class="pre">Resources</span></code> table.</p></li>
+<li><p><strong>NucId</strong> (int): Nuclide identifier in <code class="docutils literal notranslate"><span class="pre">zzzaaammmm</span></code> form.</p></li>
+<li><p><strong>MassFrac</strong> (double): Mass fraction for the nuclide in this composition.</p></li>
+</ul>
+</section>
+<section id="recipes-table">
+<h3>Recipes Table<a class="headerlink" href="#recipes-table" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>Recipe</strong> (string): Recipe name as given in the input file.</p></li>
+<li><p><strong>QualId</strong> (int): Key to identify the Composition for this recipe in the
+<code class="docutils literal notranslate"><span class="pre">Compositions</span></code> table.</p></li>
+</ul>
+</section>
+<section id="products-table">
+<h3>Products Table<a class="headerlink" href="#products-table" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>QualId</strong> (int): Key to associate this quality with one or more entries in
+the <code class="docutils literal notranslate"><span class="pre">Resources</span></code> table.</p></li>
+<li><p><strong>Quality</strong> (string): Describes a product’s quality (e.g. “bananas”, “KWh”,
+etc.)</p></li>
+</ul>
+</section>
+<section id="rescreators-table">
+<h3>ResCreators Table<a class="headerlink" href="#rescreators-table" title="Link to this heading">¶</a></h3>
+<p>Every time an agent creates a new resource from scratch, that event is
+recorded in this table.</p>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>ResourceId</strong> (int): ID of a resource that was created at some point in the
+simulation.</p></li>
+<li><p><strong>AgentId</strong> (int): ID of the agent that created the resource associated with
+the ResourceId.</p></li>
+</ul>
+</section>
+<section id="agententry-table">
+<h3>AgentEntry Table<a class="headerlink" href="#agententry-table" title="Link to this heading">¶</a></h3>
+<p>Each agent that enters and participates in a simulation gets a row in this
+table.</p>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>AgentId</strong> (int): Every agent in a simulation gets its own, unique ID.</p></li>
+<li><p><strong>Kind</strong> (string): One of “Region”, “Inst”, “Facility”, or “Agent”.</p></li>
+<li><p><strong>Spec</strong> (string): The single-string of the <a class="reference internal" href="find_agents.html"><span class="doc">agent specification</span></a>.</p></li>
+<li><p><strong>Prototype</strong> (string): The prototype name, as defined in the input file,
+that was used to create this agent.</p></li>
+<li><p><strong>ParentId</strong> (int): The AgentId of this agent’s parent - the agent that
+built/created this agent.</p></li>
+<li><p><strong>Lifetime</strong> (int): Number of time steps an agent is designed to operate
+over.  <code class="docutils literal notranslate"><span class="pre">-1</span></code> indicates an infinite lifetime.  Note that depending on how
+agents use the lifetime parameter, this may be entirely unrelated to how long
+agents were actually operating in the simulation.</p></li>
+<li><p><strong>EnterTime</strong> (int): The time step when the agent was built and entered the
+simulation.</p></li>
+</ul>
+</section>
+<section id="agentexit-table">
+<h3>AgentExit Table<a class="headerlink" href="#agentexit-table" title="Link to this heading">¶</a></h3>
+<p>Due to implementation details in the <span style="font-variant:small-caps;">Cyclus</span> kernel, this table is separate
+from the <code class="docutils literal notranslate"><span class="pre">AgentEntry</span></code> table.  If this table doesn’t exist, then no agents
+were decommissioned in the simulation.</p>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>AgentId</strong> (int): Key to the AgentId on the <code class="docutils literal notranslate"><span class="pre">AgentEntry</span></code> table.</p></li>
+<li><p><strong>ExitTime</strong> (int): The time step when the agent was decommissioned and
+exited the simulation.</p></li>
+</ul>
+</section>
+<section id="agentversion-table">
+<span id="agent-version-table"></span><h3>AgentVersion Table<a class="headerlink" href="#agentversion-table" title="Link to this heading">¶</a></h3>
+<p>This lists the version of each agent/archetype used in the simulation. Due to
+backwards compatibility, this is in its own, new table instead of the
+AgentEntry table.  There is one entry in this table for each archetype used in
+each simulation.</p>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>Spec</strong> (string): Archetype spec - same as the Spec field in the AgentEntry
+table.</p></li>
+<li><p><strong>Version</strong> (string): The version string provided by the archetype.</p></li>
+</ul>
+</section>
+<section id="transactions-table">
+<h3>Transactions Table<a class="headerlink" href="#transactions-table" title="Link to this heading">¶</a></h3>
+<p>Every single resource transfer between two agents is recorded as a row
+in this table.</p>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>TransactionId</strong> (int): A unique identifier for this resource transfer.</p></li>
+<li><p><strong>SenderId</strong> (int): AgentId for the sending agent.</p></li>
+<li><p><strong>ReceiverId</strong> (int): AgentId for the receiving agent.</p></li>
+<li><p><strong>ResourceId</strong> (int): Key to the entry in the Resources table that describes
+the transferred resource.</p></li>
+<li><p><strong>Commodity</strong> (string): The commodity under which this transfer was
+negotiated.</p></li>
+<li><p><strong>Time</strong> (int): The time step at which the resource transfer took place.</p></li>
+</ul>
+</section>
+<section id="info-table">
+<h3>Info Table<a class="headerlink" href="#info-table" title="Link to this heading">¶</a></h3>
+<p>Each simulation gets a single row in this table describing global simulation
+parameters and <span style="font-variant:small-caps;">Cyclus</span> dependency version information.</p>
+<ul>
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>Handle</strong> (string): A custom user-specified value from the input file
+allowing for convenient identification of simulations in a database (because
+the simulation uuid’s are not very memorable by mere mortals).</p></li>
+<li><p><strong>InitialYear</strong> (int): The year in which time step zero occurs.</p></li>
+<li><p><strong>InitialMonth</strong> (int): The month that time step zero represents.</p></li>
+<li><p><strong>Duration</strong> (int): The length of the simulation in time steps.  Note that
+it is possible a simulation to terminate early before running its entire
+duration (see the <code class="docutils literal notranslate"><span class="pre">Finish</span></code> table section).</p></li>
+<li><p><strong>ParentSimId</strong> (uuid): The SimId for this simulation’s parent. Zero if this
+simulation has no parent.</p></li>
+<li><p><strong>ParentType</strong> (string): One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“init” for simulations that are not based on any other simulation.</p></li>
+<li><p>“restart” for simulations that were restarted another simulation’s
+snapshot.</p></li>
+<li><p>“branch” for simulations that were started from a perturbed state of
+another simulation’s snapshot.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>BranchTime</strong> (int): Zero if this was not a restarted or branched
+simulation. Otherwise, the time step of the ParentSim at which the
+restart/branch occurred.</p></li>
+<li><p><strong>CyclusVersion</strong> (string): Version of <span style="font-variant:small-caps;">Cyclus</span> used to run this simulation.</p></li>
+<li><p><strong>CyclusVersionDescribe</strong> (string): Detailed <span style="font-variant:small-caps;">Cyclus</span> version info (with commit hash)</p></li>
+<li><p><strong>SqliteVersion</strong> (string)</p></li>
+<li><p><strong>Hdf5Version</strong> (string)</p></li>
+<li><p><strong>BoostVersion</strong> (string)</p></li>
+<li><p><strong>LibXML2Version</strong> (string)</p></li>
+<li><p><strong>CoinCBCVersion</strong> (string)</p></li>
+</ul>
+</section>
+<section id="infoexplicitinv-table">
+<h3>InfoExplicitInv Table<a class="headerlink" href="#infoexplicitinv-table" title="Link to this heading">¶</a></h3>
+<p>Each simulation gets one row in this table.</p>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>RecordInventory</strong> (bool): True (or 1) if the ExplicitInventory table was
+or should be activated for the simulation.</p></li>
+<li><p><strong>RecordInventoryCompact</strong> (bool): True (or 1) if the
+ExplicitInventoryCompact table was or should be activated for the
+simulation.</p></li>
+</ul>
+</section>
+<section id="finish-table">
+<h3>Finish Table<a class="headerlink" href="#finish-table" title="Link to this heading">¶</a></h3>
+<p>Each simulation gets one row/entry in this table.</p>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>EarlyTerm</strong> (bool): True (or 1) if the simulation terminated early and did
+not complete normally. False (or 0) otherwise.</p></li>
+<li><p><strong>EndTime</strong> (int): The time step at which the simulation ended.</p></li>
+</ul>
+</section>
+<section id="inputfiles-table">
+<h3>InputFiles Table<a class="headerlink" href="#inputfiles-table" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>Data</strong> (blob): A dump of the entire input file used for this simulation.</p></li>
+</ul>
+</section>
+<section id="decomschedule-table">
+<h3>DecomSchedule Table<a class="headerlink" href="#decomschedule-table" title="Link to this heading">¶</a></h3>
+<p>When agents are scheduled to be decommissioned in the simulation, the details
+are recorded in this table.  Note that this table contains an entry for each
+scheduling regardless of whether or not it actually occurred; if a simulation
+ended before time reached the scheduled time, the agent would not have been
+decommissioned.</p>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>AgentId</strong> (int): ID of the agent that is/was to be decommissioned.</p></li>
+<li><p><strong>SchedTime</strong> (int): The time step on which this decommissioning event was
+created.</p></li>
+<li><p><strong>DecomTime</strong> (int): The time step on which the agent was (or would have
+been) decommissioned.</p></li>
+</ul>
+</section>
+<section id="buildschedule-table">
+<h3>BuildSchedule Table<a class="headerlink" href="#buildschedule-table" title="Link to this heading">¶</a></h3>
+<p>When agents are scheduled to be built in the simulation, the details are
+recorded in this table.  Note that this table contains an entry for each
+scheduling regardless of whether or not it actually occurred; if a simulation
+ended before time reached the scheduled time, the agent would not have been
+built.</p>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>ParentId</strong> (piintd): The Id of the agent that will become this new agent’s
+parent.</p></li>
+<li><p><strong>Prototype</strong> (string): The name of the agent prototype that will be used to
+generate the new agent.  This corresponds to the prototypes defined in an
+input files.</p></li>
+<li><p><strong>SchedTime</strong> (int): The time step on which this build event was created.</p></li>
+<li><p><strong>BuildTime</strong> (int): The time step on which the agent was (or would have
+been) built and deployed into the simulation.</p></li>
+</ul>
+</section>
+<section id="snapshots-table">
+<h3>Snapshots Table<a class="headerlink" href="#snapshots-table" title="Link to this heading">¶</a></h3>
+<p>Every snapshot made during the simulation gets an entry in this table.  All
+times in this table are candidates for simulation restart/branching.</p>
+<ul class="simple">
+<li><p><strong>SimId</strong> (uuid)</p></li>
+<li><p><strong>Time</strong> (int): The time step a snapshot was taken for this simulation.</p></li>
+</ul>
+</section>
+<section id="debugging">
+<h3>Debugging<a class="headerlink" href="#debugging" title="Link to this heading">¶</a></h3>
+<p>If <span style="font-variant:small-caps;">Cyclus</span> was run in debugging mode then the database will then contain
+the following two extra tables:</p>
+<ul class="simple">
+<li><p><strong>DebugRequests</strong>: record of every resource request made in the simulation.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">SimId</span></code>:  simulation UUID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Time</span></code>:  time step of the request</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ReqId</span></code>, simulation-unique identifier for this request</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RequesterID</span></code>: ID of the requesting agent</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Commodity</span></code>: the commodity of the request</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Preference</span></code>: agent’s preference for this particular request</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Exclusive</span></code>: true (non-zero) if this request is all-or-nothing (integral)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ResType</span></code>: resource type (e.g. “Material”, “Product”)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Quantity</span></code>: amount of the request</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ResUnits</span></code>: units of the request (e.g. kg)</p></li>
+</ul>
+</li>
+<li><p><strong>DebugBids</strong>: record of every resource bid made in the simulation.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">SimId</span></code>: simulation UUID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ReqId</span></code>: simulation-unique identifier for the bid’s request</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BidderId</span></code>: ID of the the bidding agent</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BidQuantity</span></code>: amount of thd bid</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Exclusive</span></code>: true(non-zero) if this request is all-or-nothing (integral)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="post-processing">
+<h2>Post Processing<a class="headerlink" href="#post-processing" title="Link to this heading">¶</a></h2>
+<p>We are currently working on developing a post-process step for the database
+that creates a few new tables to assist data analysis and visualization.
+These tables are not set in stone and their schemas are subject to change.
+Below is a summary of them.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Understanding the Database</a><ul>
+<li><a class="reference internal" href="#table-descriptions">Table Descriptions</a><ul>
+<li><a class="reference internal" href="#resources-table">Resources Table</a></li>
+<li><a class="reference internal" href="#explicitinventory-table">ExplicitInventory Table</a></li>
+<li><a class="reference internal" href="#explicitinventorycompact-table">ExplicitInventoryCompact Table</a></li>
+<li><a class="reference internal" href="#compositions-table">Compositions Table</a></li>
+<li><a class="reference internal" href="#recipes-table">Recipes Table</a></li>
+<li><a class="reference internal" href="#products-table">Products Table</a></li>
+<li><a class="reference internal" href="#rescreators-table">ResCreators Table</a></li>
+<li><a class="reference internal" href="#agententry-table">AgentEntry Table</a></li>
+<li><a class="reference internal" href="#agentexit-table">AgentExit Table</a></li>
+<li><a class="reference internal" href="#agentversion-table">AgentVersion Table</a></li>
+<li><a class="reference internal" href="#transactions-table">Transactions Table</a></li>
+<li><a class="reference internal" href="#info-table">Info Table</a></li>
+<li><a class="reference internal" href="#infoexplicitinv-table">InfoExplicitInv Table</a></li>
+<li><a class="reference internal" href="#finish-table">Finish Table</a></li>
+<li><a class="reference internal" href="#inputfiles-table">InputFiles Table</a></li>
+<li><a class="reference internal" href="#decomschedule-table">DecomSchedule Table</a></li>
+<li><a class="reference internal" href="#buildschedule-table">BuildSchedule Table</a></li>
+<li><a class="reference internal" href="#snapshots-table">Snapshots Table</a></li>
+<li><a class="reference internal" href="#debugging">Debugging</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#post-processing">Post Processing</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="cymetric/api/timeseries.html"
+                          title="Previous page">&larr; <code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.timeseries</span></code> - Timeseries</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="analysis_usecases.html"
+                          title="Next page">&rarr; Use Cases for <span style="font-variant:small-caps;">Cyclus</span> Data Analysis</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="analysis_usecases.html" title="Use Cases for Cyclus Data Analysis"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cymetric/api/timeseries.html" title="cymetric.timeseries - Timeseries"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Understanding the Database</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

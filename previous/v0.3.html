@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cyclus 0.3 Release Notes &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cyclus 0.2 Release Notes" href="v0.2.html" />
+    <link rel="prev" title="Cyclus 0.4 Release Notes" href="v0.4.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="v0.2.html" title="Cyclus 0.2 Release Notes"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="v0.4.html" title="Cyclus 0.4 Release Notes"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Previous Versions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Cyclus 0.3 Release Notes</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="cyclus-0-3-release-notes">
+<h1>Cyclus 0.3 Release Notes<a class="headerlink" href="#cyclus-0-3-release-notes" title="Link to this heading">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Author<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Cyclus Developers</p>
+</dd>
+<dt class="field-even">Website<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="http://cyclus.github.io/">http://cyclus.github.io/</a></p>
+</dd>
+<dt class="field-odd">Contact<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="mailto:cyclus-dev&#37;&#52;&#48;googlegroups&#46;com">cyclus-dev<span>&#64;</span>googlegroups<span>&#46;</span>com</a></p>
+</dd>
+</dl>
+<p>The Cyclus core team is excited to announce the latest stable version
+after over a year of development!  This includes nearly 340 commits by
+6 developers.  Major features include,</p>
+<ul class="simple">
+<li><p>Implementation of the Cyclus Enhancment Proposal (CEP) system.</p></li>
+<li><p>Merged Cyclopts into cyclus, CEP2</p></li>
+<li><p>Resource Tracking and Interfaces Re-Re-Redo, CEP17.</p></li>
+<li><p>Google C++ Style Guide compliance.</p></li>
+</ul>
+<p>Since v0.2, 477 files have changed encompassing  52028 line insertions(+) and
+51749 deletions(-).</p>
+<section id="changes-from-0-2-to-0-3">
+<h2>Changes from 0.2 to 0.3<a class="headerlink" href="#changes-from-0-2-to-0-3" title="Link to this heading">¶</a></h2>
+<section id="new-features">
+<h3>New features<a class="headerlink" href="#new-features" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>removed supply_demand and action_building namespace. closes #248.</p></li>
+<li><p>record agent that creates each resource in output db</p></li>
+<li><p>changed resource creation to take this ptr instead of context ptr. Removed context arg from Material::CreateUntracked. Made untracked resources have an id of zero instead of an id of garbage. fixed mat doc comments to use new res_buf method names.</p></li>
+<li><p>cleaned up resource buf interface. Added some basic templating to eliminate need for separate mat_buff</p></li>
+<li><p>added timestamp to resource table.</p></li>
+<li><p>sorted lists of files/includes alphabetically</p></li>
+<li><p>added header_impl file</p></li>
+<li><p>fixed logger macro issue from namespace removal and added a test to catch it at compile time in the future</p></li>
+<li><p>alphabetized cyclus.h</p></li>
+<li><p>moved all symfunctionptr to symfunction::ptr</p></li>
+<li><p>solverptr to solver::ptr</p></li>
+<li><p>moved function type pointers to function::ptr</p></li>
+<li><p>moved VariablePtr to Variable::Ptr</p></li>
+<li><p>removed additional cyclus:: prepends from implementation files</p></li>
+<li><p>removed extraneous cyclus namespace from fac_agent impl</p></li>
+<li><p>removed extraneous cyclus namespace from comp_math impl</p></li>
+<li><p>removed extraneous cyclus namespace from hdf_back impl</p></li>
+<li><p>moved solver interface impl under cyclus namespace</p></li>
+<li><p>removed extraneous cyclus namespace from commodity_producer impl</p></li>
+<li><p>put solver impl under cyclus namespace</p></li>
+<li><p>put cbc solver impl in cyclus namespace</p></li>
+<li><p>put variable implementation file in cyclus namespace</p></li>
+<li><p>removed explicit namespace usage in implementation files for function and building manager</p></li>
+<li><p>removed cyclus:: prefix from optim header files</p></li>
+<li><p>removed cylus:: prefix from non-optim files</p></li>
+<li><p>removed cyclus:: from building manager</p></li>
+<li><p>Update copyright years in license</p></li>
+<li><p>removed reference to include.h</p></li>
+<li><p>move symbolic functions into a different class name</p></li>
+<li><p>moved all files out of optim dirs into their respective top levels</p></li>
+<li><p>renamed cyclopts to optim</p></li>
+<li><p>change module install dir to not be split into separate fac, reg, inst subdirs. Still need to fix schema building and env class and dynamic_loading class correspondingly. made Env::ListModules more robust and include CYCLUS_MODULE_PATH env var dirs in search. Made BuildMasterSchema not care about agent type namespacing subdirs.</p></li>
+<li><p>fixed some gcsg issues and a typo</p></li>
+<li><p>made timer init method not reset previous timer config (e.g. listeners) - this caused confusion and debugging for me in the past</p></li>
+<li><p>made timer ticker registering more robust. Search env var dirs before install dirs for dyn modules. change default dyn module install dir to lib/cyclus instead of lib/Agents</p></li>
+<li><p>added hard coded version and more robust –tags flag to git describe for version.</p></li>
+<li><p>this should make CI pass… not sure if its what we want, though.</p></li>
+<li><p>updated install script with new structure</p></li>
+<li><p>made agent test files install to share dir, fixes #559</p></li>
+<li><p>docs now in the top level directory, and a little clean up. fixes #602</p></li>
+<li><p>docs currently build</p></li>
+<li><p>removed cyclus namespace from stubs</p></li>
+<li><p>moved stub directory to top level, made stubs a separate library, incorporated stub tests into cyclus unit tests</p></li>
+<li><p>a little cleaning before stubbing</p></li>
+<li><p>enabled testing in new build environment. simplified test module directory structure and building.</p></li>
+<li><p>gtest library builds</p></li>
+<li><p>added cli to at the top of the directory structure</p></li>
+<li><p>actually adds top level cmake file..</p></li>
+<li><p>currently builds cycluscore from top-level directory</p></li>
+<li><p>encapsulated stubs namespace in cyclus namespace per gcsg</p></li>
+<li><p>redisabled facility tests as that ‘s a larger issue than this PR</p></li>
+<li><p>added include guards</p></li>
+<li><p>added stub market</p></li>
+<li><p>added stub inst and region. updated stub facility.</p></li>
+<li><p>removed any stubs that aren’t facs, regions, insts, or agents</p></li>
+<li><p>updated namespace name to reflect directory name</p></li>
+<li><p>made mock fac/inst/region/market classes to be used with testing. added the stub facility in a new stub namespace and related tests.</p></li>
+<li><p>added initial stub directory and adjusted cmake files to include their tests.</p></li>
+<li><p>moved all dynamic loading into xml_file_loader. Added a method for listing installed/discoverable dynamic modules to env class. added rng schema methods to test agents and removed rng files from them. removed rng installation from cmake module macro. added master and module schema dumping to cyclus binary. added schema agent test (that schema parses). moved heavy stuff out of xml-file-loader constructor. renamed LoadAll to LoadSim.</p></li>
+<li><p>i think moving loglevel and the macros into the same namespace encapsulation is more promising… still unable to confirm.</p></li>
+<li><p>finishes remaining doxygen warnings</p></li>
+<li><p>I believe that this will fix the warning stemming from logger.h, but I do not see the warning on my machine, so I can’t be sure</p></li>
+<li><p>fixed begincode error</p></li>
+<li><p>removed verbose linking flag</p></li>
+<li><p>fixes build error for macs, moves mac linker flag to top of cmake file to set the flag for all compiled libraries in the build</p></li>
+<li><p>added cli flag for printing cyclus include dir</p></li>
+<li><p>down-selected includes in cyclus.h.  Removed remaining vestiges of converter agents</p></li>
+<li><p>create cyclus.h. added missing header install</p></li>
+<li><p>as &#64;gonuke suggested, adding a preprocessor directive was the right way to go. tested with coin-2.3 on insam</p></li>
+<li><p>removed coin include prefix which causes problems on utk’s darwin system</p></li>
+<li><p>removed unnecessary Config dir. Deleted duplicate (and outdated) LICENSE and README files.</p></li>
+<li><p>moved Core source files into base src/ directory.</p></li>
+<li><p>moved Testing dir to tests dir. Moved test modules into tests dir. Moved app.cc into new cli dir</p></li>
+<li><p>removed disabled tests from being found by the find test script. closes #591.</p></li>
+<li><p>removed pesky cout</p></li>
+<li><p>removed extraneous string var</p></li>
+<li><p>adjusted env var setting to append the current var if it was set</p></li>
+<li><p>added robustness in the environmental tests by resetting the environment variable and the dynamic loading tests by making sure to delete and close opened library modules.</p></li>
+<li><p>test driver now adds the build directory to the cyclus module path. fixes #592. note that this overwrites the global module variable only for the test driver’s environment.</p></li>
+<li><p>Remove indirect dependencies</p></li>
+<li><p>main now returns 0</p></li>
+<li><p>updated readline to use the decode method. the script is now python2/3 compliant. note that I tested with python3.3.</p></li>
+<li><p>renamed id, parentid member vars and accessors</p></li>
+<li><p>initfrom to CapCase</p></li>
+<li><p>made clone methods CapCase</p></li>
+<li><p>added from future import</p></li>
+<li><p>made print function python3-compliant</p></li>
+<li><p>fixed remaining coin and init issues</p></li>
+<li><p>doc improvement</p></li>
+<li><p>added python as a dependency</p></li>
+<li><p>adds a script to generate test names and adjust build system to add those tests to the make test target appropriately. fixes #176.</p></li>
+<li><p>improved clone and initfrom doc comments</p></li>
+<li><p>fixed resource table name</p></li>
+<li><p>have a working version of a ctest fix. need to clean it up and add python as a dependency before sending a PR</p></li>
+<li><p>fixed inst agent tests and fixed duplicate id bug in agent class if implicit copy-constructor is used</p></li>
+<li><p>constructor initializer list</p></li>
+<li><p>removed cruft from agent class. fixed to not record on undeployed decommission. improved var/accessor names</p></li>
+<li><p>removed unnecessary externed Destruct funcs</p></li>
+<li><p>fixed inst class tests</p></li>
+<li><p>fixed dynamic loading tests - removed redundant test with env class tests. Simplified dynamicModule further. Trying to fix inst class tests - still broken.</p></li>
+<li><p>updated test agents.  2 tests still failing</p></li>
+<li><p>updated tests to compile with new cloning and deploy semantics</p></li>
+<li><p>move clone method into agent class. Killed Clone[stuff] methods into single virtual clonefrom method. Change EnterSimulation[bla] methods into a single, virtual, Deploy method. Moved DynamicModule Init method into constructor. Removed redundant info from facility class (build date, etc.).</p></li>
+<li><p>Combiined cyclopts dependency list into cyclus dependency list.</p></li>
+<li><p>added file and cli flag for retrieving cyclus core and dependency versions. Fixes #578.</p></li>
+<li><p>Simplifying names and correcting some rst grammar.</p></li>
+<li><p>Add links to get sample input files. Updated dependency list.</p></li>
+<li><p>Update README.rst with additional information about dependencies and correct call of installation.</p></li>
+<li><p>removed singleton references in documentation</p></li>
+<li><p>undisabled building manager bug</p></li>
+<li><p>removed build dead code and mistakenly commited cyclus.rng file</p></li>
+<li><p>fixed seg fault due to double delete in tear down</p></li>
+<li><p>added tests for the optional query interface</p></li>
+<li><p>added cyclus namespace qualifier to new function usage</p></li>
+<li><p>moved the optional element query into its own nonmember, nonfriend templated function for easier, one-line usage.</p></li>
+<li><p>added tests for null queries</p></li>
+<li><p>removed try/catch blocks for fac agent query engine usage</p></li>
+<li><p>updated market agent tests for context usage</p></li>
+<li><p>added clarification to recipe add/get usage, closes #568</p></li>
+<li><p>added clarification to recipe add/get usage</p></li>
+<li><p>style guide names</p></li>
+<li><p>style guide name changes.</p></li>
+<li><p>renamed externed construct/destruct functions to be CapCase</p></li>
+<li><p>updated facility tests to take the context constructor argument</p></li>
+<li><p>made a separate test context for easier testing and updated appropriate agent test files</p></li>
+<li><p>updated facility agent tests and fixed agent tests</p></li>
+<li><p>updated agent tests</p></li>
+<li><p>removed unncessary agent registration from context - because markets will soon be superseded by CEP18 anyway.</p></li>
+<li><p>updated prototype registration and agent creation to use context. recipe library become so small I moved it into xml_file_loader. renamed xml_file_loader methods according to GCSG and added a LoadAll method.</p></li>
+<li><p>moved control param xml parsing into xml_file_loader out of timer. Added timer init method to context.</p></li>
+<li><p>removed EM macro and simplified recipe library and changed it to recipe namespace</p></li>
+<li><p>fixed segfault issue. fiddled with includes and forward declarations</p></li>
+<li><p>everything compiles, but tests segfault</p></li>
+<li><p>more work converting core to use context - still doesn’t compile</p></li>
+<li><p>started outline for a simulation context</p></li>
+<li><p>Moving include files to include/cyclus</p></li>
+<li><p>changes for making debian packages</p></li>
+<li><p>moved setup.py to install.py</p></li>
+<li><p>fixed var name style</p></li>
+<li><p>unadded redundant neg comp element check. Added test to check for exception throwing</p></li>
+<li><p>added missing neg quantity check</p></li>
+<li><p>adds comments about composition decay chaining. Remove leftover recipe_lib constructor from debugging</p></li>
+<li><p>fixed gcsg names in decay_handler and renamed class to decayer. fixed filename comments in product and improved a couple of guards</p></li>
+<li><p>fixes var names and comments to not refer/suggest anything ‘vector’ ish w.r.t. CompMap code. Change nextId to next_id</p></li>
+<li><p>re-disabled test… need more time to investigate</p></li>
+<li><p>added disabled building manager test</p></li>
+<li><p>readded disabled tests, which now pass</p></li>
+<li><p>removed variable bound introspection from the cbc solver. CI should build without issue now.</p></li>
+<li><p>moved variable bound introspection based on a VariablePtr into non member non friend functions in variable.h/cc.</p></li>
+<li><p>added some more simple tests for the cbc solver. two have been intentionally disabled because the maximization direction for the objective function does not appear to be working. I have double checked that the optimization direction for maximization is correct (it’s 1.0) from the coin documentation. I’ll investigate further.</p></li>
+<li><p>removed bounded 2 variable test, starting simple with 1 variable</p></li>
+<li><p>added a 1 variable test that should pass and a test that uses variable bounds. changed test names to better reflect the testing taxonomy</p></li>
+<li><p>made implicit cast a static cast</p></li>
+<li><p>changed Composition::Vect to CompMap</p></li>
+<li><p>added mat_query tests and polished mat_query doc comments</p></li>
+<li><p>made mat_query a proper implementation file. Removed contains for now and added almostEq to it.</p></li>
+<li><p>polished doc comments for compmath namespace</p></li>
+<li><p>fixed var name mistake in res_tracker</p></li>
+<li><p>polished doc comments on product, material, res_tracker, and composition classes. Added more complete error check to Product::Absorb</p></li>
+<li><p>polished resource class doc comments</p></li>
+<li><p>moved resource table all to res_tracker</p></li>
+<li><p>finished converting compmath tests</p></li>
+<li><p>doc fix</p></li>
+<li><p>moves resource-specific param recording into resource class and resource implementations now only record their special state.</p></li>
+<li><p>fixed comp_math add and sub funcs. material tests all pass</p></li>
+<li><p>moved unique id and bumping implementation into resource class</p></li>
+<li><p>fixed absorb and extract errors in material class</p></li>
+<li><p>finished remaining compile errors - now to fixing failed tests</p></li>
+<li><p>fixed material and matquery tests</p></li>
+<li><p>added tests and tried to consolidate iso_vector, comp_map, and material test content into material, composition and comp_math tests.</p></li>
+<li><p>everything compiles except tests</p></li>
+<li><p>literal 0 -&gt; 0.0 for fp compares</p></li>
+<li><p>abs() -&gt; fabs(), types they are a-changing.</p></li>
+<li><p>fixes doc errors, should clear up &#64;gonuke’s cron job errors</p></li>
+<li><p>fixes master schema building</p></li>
+<li><p>updated test files so cycamore can build</p></li>
+<li><p>ran all files in Core dir through astyle for style guide formatting</p></li>
+<li><p>updated enrichment function names</p></li>
+<li><p>fixed implementation issues</p></li>
+<li><p>fixed all compile errors</p></li>
+<li><p>fixed compile error and more sed replaces for typedef names</p></li>
+<li><p>fixed many typedefs to be CapCase</p></li>
+<li><p>updated macros to install in correct place</p></li>
+<li><p>flattened all directories, removed extraneous file, renamed all files and updated files regarding name changes</p></li>
+<li><p>renamed most funcs to CapCase</p></li>
+<li><p>finished variable-related tests, updated related api, and updated documentation. this last commit closes all code-related issues in cyclus/cyclopts#37.</p></li>
+<li><p>changed namespace names, closes #531</p></li>
+<li><p>added tests for objective and constraint functions, updated documentation</p></li>
+<li><p>made constraint iterator access const as it should have been</p></li>
+<li><p>added tests for the function base class, updated documentation, and made slight API changes based on documentation</p></li>
+<li><p>prepended cyclopts to test name for easy regexp selection</p></li>
+<li><p>updated solver interface documentation</p></li>
+<li><p>made addconstituent public, removing need for friend class</p></li>
+<li><p>made variable tests less namespace verbose</p></li>
+<li><p>renamed integration tests to properly reflect that they are in fact testing the cbc solver. updates cbc solver documentation.</p></li>
+<li><p>added overarching but simple integration test for cyclopts</p></li>
+<li><p>resolve rebase compile errors</p></li>
+<li><p>renamed Error class files and formatted them according to style guide</p></li>
+<li><p>removed exception silencing from sqliteback</p></li>
+<li><p>fixed remaining build/run issues</p></li>
+<li><p>eliminated super-specific crazy exceptions. Created a few basic exception types to be used throughout cyclus core. Shortened exception class names</p></li>
+<li><p>added a test</p></li>
+<li><p>hotfix. Anthony’s namespace merging wiped out my schema building invocation in XMLLoader.</p></li>
+<li><p>fixed header file guards in cyclopts</p></li>
+<li><p>fixed line lengths in header files in cyclopts</p></li>
+<li><p>fixed line lengths of cyclopts implementation files</p></li>
+<li><p>removed using namespace std from cyclopts files</p></li>
+<li><p>updated line lengths for header files in cyclopts</p></li>
+<li><p>fixed line length for Utility files touched in this PR</p></li>
+<li><p>added cyclus namespace on top of cyclopts namespace</p></li>
+<li><p>fixes a few things anthony missed</p></li>
+<li><p>test update. tag: move and squash</p></li>
+<li><p>removed find cyclopts</p></li>
+<li><p>updated findcyclopts</p></li>
+<li><p>Fixed some merge conflict</p></li>
+<li><p>cyclopts testing now exists is subdirectory of Testing</p></li>
+<li><p>ns updates finished now to mereg</p></li>
+<li><p>removed blas link, unnecessary.</p></li>
+<li><p>cyclopts headers now install in cyclopts directory</p></li>
+<li><p>added blas and lapack dependency for coin. tag: squash</p></li>
+<li><p>removed cyclus_tools in favor of explicit includes of variable and function. made cyclopts_limits limits.</p></li>
+<li><p>made cyclopts a subproject whose headers are now called by cyclopts/header.h</p></li>
+<li><p>updated readme and setup script</p></li>
+<li><p>cyclopts now builds as part of cyclus</p></li>
+<li><p>moved cyclopts files into Core directory with history</p></li>
+<li><p>Many testing fixes</p></li>
+<li><p>reverted some documentation overwrites and added some compliance</p></li>
+<li><p>make cyclus up to date with cyclopts google style compliance</p></li>
+<li><p>made input file recorded after schema validation</p></li>
+<li><p>added include guards as per style guide</p></li>
+<li><p>fixes include order, switch indentation, and adds missing map includes to csvback</p></li>
+<li><p>updated primary files used in this branch/PR to use google styleguide for indent/naming</p></li>
+<li><p>More namespace updates</p></li>
+<li><p>fixed Blob.hpp and other formatting. Added tests for each backend for the new blob type.</p></li>
+<li><p>Added cyclus::Blob type as a supported backend type for all backends. Removed unnecessary streaming operators in any.hpp.</p></li>
+<li><p>fixed query engine errors</p></li>
+<li><p>updates cyclus core to reflect cyclopts/cyclopts#33</p></li>
+<li><p>fixed more error, everything is broken</p></li>
+<li><p>‘public, protected, private indent one space’</p></li>
+<li><p>fixes indent errors in DynamicModule.h described in #530.</p></li>
+<li><p>added ns to roesources.</p></li>
+<li><p>first cyclus ns changes.</p></li>
+<li><p>made buildSchema private. Used Agent class module type list instead of custom one.</p></li>
+<li><p>removed cyclus.rng.in generation - now done dynamically in cyclus core</p></li>
+<li><p>modified XML loading to dynamically build the master schema by searching for installed modules</p></li>
+<li><p>created csv backend.</p></li>
+<li><p>fixed name erro</p></li>
+<li><p>updated setup with localdir as default for some params</p></li>
+<li><p>added uninstall target. closes #268.</p></li>
+<li><p>made ~/.local the default install directory in the setup.py</p></li>
+<li><p>Actually have them all and they all work.</p></li>
+<li><p>I think that I got them all..</p></li>
+<li><p>added hdf5 dep to readme instructions. fixes #520.</p></li>
+<li><p>fixed enum element style</p></li>
+<li><p>made eventmanager handle insertion of uuids into all events. backends now need to check for and handle boost::uuids::uuid value type</p></li>
+<li><p>wrote custom pool allocator new and delete for Event class.  Created a producer/consumer type memory reuse vector in EventManager to prevent new/delete calls</p></li>
+<li><p>changed c cast to static_cast</p></li>
+<li><p>Added modified warning to any.hpp. added comment about event vals vector reserve</p></li>
+<li><p>added shortcut to void* in any.hpp. Simplified hdf5 backend fillBuff</p></li>
+<li><p>speed up event class by reserving capacity for event vals</p></li>
+<li><p>switched event class to use a tweaked boost::spirit::hold_any allowing non-explicit construction instead of boost::any. 30% performance boost of total inpro_low runtime.</p></li>
+<li><p>found out that boost has a installed called bjam. bjam has an option –layout which can take the form tagged. tagged adds -mt and -&lt;version_number&gt; to a library. if multithreading is on (which it is by default), it must find a library with the -mt tag. I was able to turn off multi threading for it to find the boost libraries installed in filespace/groups/cnerg/cyclus_dependencies. I’d like to leave the comment there for posterity. this set of commits closes #521.</p></li>
+<li><p>added a message to determine which libraries were being used</p></li>
+<li><p>updated readme’s boost version</p></li>
+<li><p>fixed null-padding on strings issue. changed set to group so Anthony is happy.</p></li>
+<li><p>changed hdf5 ext to .h5. Hdf5Back constructor takes std::string</p></li>
+<li><p>adds better doc comment to hdf5back class. Uncomments the db file deleting line.</p></li>
+<li><p>added hdf5back test</p></li>
+<li><p>added custom backend specification to App.cp via output file extension</p></li>
+<li><p>rewrote hdf5 backend to use C API. Made Sqlite destructor virtual</p></li>
+<li><p>refactored hdf5 back by splitting large code into smaller functions.</p></li>
+<li><p>created hdf5 backend - seems to be working. Probably could use some performance tweaking.</p></li>
+</ul>
+</section>
+<section id="deprecations">
+<h3>Deprecations<a class="headerlink" href="#deprecations" title="Link to this heading">¶</a></h3>
+<p>N/A</p>
+</section>
+<section id="known-bugs">
+<h3>Known bugs<a class="headerlink" href="#known-bugs" title="Link to this heading">¶</a></h3>
+<p>N/A</p>
+</section>
+</section>
+<section id="contributors">
+<h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading">¶</a></h2>
+<p>The following people contributed to this release of Cyclus.  A “*” by their
+name indicates a first time contributor.  Names follow alphabetically,</p>
+<ul class="simple">
+<li><p>Robert Carlsen</p></li>
+<li><p>Royal Elmore</p></li>
+<li><p>Matthew Gidden</p></li>
+<li><p>Katy Huff</p></li>
+<li><p>Olzhas Rakhimov*</p></li>
+<li><p>Anthony Scopatz</p></li>
+<li><p>Zach Welch</p></li>
+<li><p>Paul Wilson</p></li>
+</ul>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Cyclus 0.3 Release Notes</a><ul>
+<li><a class="reference internal" href="#changes-from-0-2-to-0-3">Changes from 0.2 to 0.3</a><ul>
+<li><a class="reference internal" href="#new-features">New features</a></li>
+<li><a class="reference internal" href="#deprecations">Deprecations</a></li>
+<li><a class="reference internal" href="#known-bugs">Known bugs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#contributors">Contributors</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="v0.4.html"
+                          title="Previous page">&larr; Cyclus 0.4 Release Notes</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="v0.2.html"
+                          title="Next page">&rarr; Cyclus 0.2 Release Notes</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="v0.2.html" title="Cyclus 0.2 Release Notes"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="v0.4.html" title="Cyclus 0.4 Release Notes"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Previous Versions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Cyclus 0.3 Release Notes</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

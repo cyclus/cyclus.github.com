@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Control - Simulation Control (required once) &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Commodity - Commodity Priority (optional, may appear multiple times)" href="commodity.html" />
+    <link rel="prev" title="Writing a Cyclus Input File" href="../writing_input.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="commodity.html" title="Commodity - Commodity Priority (optional, may appear multiple times)"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../writing_input.html" title="Writing a Cyclus Input File"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../writing_input.html" accesskey="U">Writing a <span style="font-variant:small-caps;">Cyclus</span> Input File</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="docutils literal notranslate"><span class="pre">Control</span></code> - Simulation Control (required once)</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="control-simulation-control-required-once">
+<h1><code class="docutils literal notranslate"><span class="pre">Control</span></code> - Simulation Control (required once)<a class="headerlink" href="#control-simulation-control-required-once" title="Link to this heading">¶</a></h1>
+<p>Simulation control is the input portion relating to time, uses the <code class="docutils literal notranslate"><span class="pre">control</span></code>
+tag, and has the following sections in any order:</p>
+<blockquote>
+<div><ul>
+<li><p>duration (required once) - the time duration of the simulation (in months)</p></li>
+<li><p>startmonth (required once) - the starting month (1 -&gt; January, 12-&gt;December)</p></li>
+<li><p>startyear (required once) - the starting year</p></li>
+<li><p>simhandle (optional, once) - a user-defined identifier for this simulation</p></li>
+<li><p>explicit_inventory (optional, once) - boolean specifying whether or not to
+create the <a class="reference internal" href="../dbdoc.html#explicit-inv-table"><span class="std std-ref">ExplicitInventory</span></a> table in the
+database.  Because this significantly impacts simulation performance, it
+is deactivated by default.</p></li>
+<li><p>explicit_inventory_compact (optional, once) - boolean specifying whether
+or not to create the <a class="reference internal" href="../dbdoc.html#explicit-inv-compact-table"><span class="std std-ref">ExplicitInventoryCompact</span></a> table in the database.  Because this
+significantly impacts simulation performance, it is deactivated by default.</p></li>
+<li><p>dt (optional, once) - the duration of a single time step in seconds.  If
+omitted, a default value of 1/12 of a year is used (i.e. 2,629,846
+seconds).</p></li>
+<li><p>decay (optional, once) - choose one of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">never</span></code>: turns decay completely off.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">manual</span></code>: decay is only computed if archetypes/agents explicilty decay
+their own material objects.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lazy</span></code>: decay is only computed whenever archetypes/agents “look” at a
+composition.</p></li>
+</ul>
+</li>
+<li><p>solver (optional, once) - configure the DRE solver.</p>
+<ul>
+<li><p>choose one of:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">greedy</span></code>: use a greedy heuristic (not guaranteed optimal, but fast)
+that orders trades based on the average preference of exchange groups</p>
+<ul>
+<li><p>preconditioner (optional) - precondition greedy-solved graphs</p>
+<ul>
+<li><p>choose one of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">greedy</span></code>: use an average-preference greedy preconditioner</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">coin-or</span></code>: use the COIN-OR CLP/CBC solver suite</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>timeout (optional): kill solutions after this time (in seconds)</dt><dd><ul>
+<li><p>verbose (optional): print information about problems being solved</p></li>
+<li><p>mps (optional): write MPS files for each exchange</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">allow_exclusive_orders</span></code> (optional) - exclusive orders should be
+allowed, <cite>True</cite> by default. <strong>NOTE</strong> many Cycamore archetypes depend on
+this option being <cite>True</cite> and will not work as expected if it is
+<cite>False</cite>. This option can be turned to <cite>False</cite> to guarantee LP solves of
+the DRE.</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;control&gt;</span>
+<span class="w">  </span><span class="nt">&lt;startyear&gt;</span>2007<span class="nt">&lt;/startyear&gt;</span><span class="w">   </span><span class="cm">&lt;!-- start in 2007 --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;startmonth&gt;</span>11<span class="nt">&lt;/startmonth&gt;</span><span class="w">   </span><span class="cm">&lt;!-- start in november --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;duration&gt;</span>1200<span class="nt">&lt;/duration&gt;</span><span class="w">     </span><span class="cm">&lt;!-- run for 100 years --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;dt&gt;</span>86400<span class="nt">&lt;/dt&gt;</span><span class="w">                </span><span class="cm">&lt;!-- 1-day time steps --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;decay&gt;</span>lazy<span class="nt">&lt;/decay&gt;</span>
+<span class="nt">&lt;/control&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w"> </span><span class="nt">&quot;control&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;startyear&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2007</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;startmonth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;duration&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;dt&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;decay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lazy&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;control&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="s2">&quot;startyear&quot;</span><span class="p">:</span> <span class="mi">2007</span><span class="p">,</span>
+   <span class="s2">&quot;startmonth&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+   <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="mi">12</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
+   <span class="s2">&quot;dt&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+   <span class="s2">&quot;decay&quot;</span><span class="p">:</span> <span class="s2">&quot;lazy&quot;</span><span class="p">,</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p>This example starts in November 2007, and runs for 100 years (1200 months).</p>
+</section>
+<section class="html-toggle" id="grammar-definition">
+<h2>Grammar Definition<a class="headerlink" href="#grammar-definition" title="Link to this heading">¶</a></h2>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name =</span><span class="s">&quot;control&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;interleave&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;simhandle&quot;</span><span class="nt">&gt;</span><span class="w"> </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;string&quot;</span><span class="nt">/&gt;</span><span class="w"> </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;duration&quot;</span><span class="nt">&gt;</span><span class="w"> </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;nonNegativeInteger&quot;</span><span class="nt">/&gt;</span><span class="w"> </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;startmonth&quot;</span><span class="nt">&gt;</span><span class="w"> </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;nonNegativeInteger&quot;</span><span class="nt">/&gt;</span><span class="w"> </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;startyear&quot;</span><span class="nt">&gt;</span><span class="w"> </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;nonNegativeInteger&quot;</span><span class="nt">/&gt;</span><span class="w"> </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;decay&quot;</span><span class="nt">&gt;</span><span class="w"> </span><span class="nt">&lt;text/&gt;</span><span class="w"> </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;dt&quot;</span><span class="nt">&gt;&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;nonNegativeInteger&quot;</span><span class="nt">/&gt;&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;explicit_inventory&quot;</span><span class="nt">&gt;</span><span class="w"> </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;boolean&quot;</span><span class="nt">/&gt;</span><span class="w"> </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;explicit_inventory_compact&quot;</span><span class="nt">&gt;</span><span class="w"> </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;boolean&quot;</span><span class="nt">/&gt;</span><span class="w"> </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;solver&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;interleave&gt;</span>
+<span class="w">          </span><span class="nt">&lt;optional&gt;&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;config&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;choice&gt;</span>
+<span class="w">            </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;greedy&quot;</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;interleave&gt;</span>
+<span class="w">                </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;preconditioner&quot;</span><span class="nt">&gt;</span><span class="w"> </span><span class="nt">&lt;text/&gt;</span><span class="w"> </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">              </span><span class="nt">&lt;/interleave&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">            </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;coin-or&quot;</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;interleave&gt;</span>
+<span class="w">                </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;timeout&quot;</span><span class="nt">&gt;</span><span class="w">  </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;positiveInteger&quot;</span><span class="nt">/&gt;</span><span class="w">  </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">                </span><span class="nt">&lt;optional&gt;&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;verbose&quot;</span><span class="nt">&gt;&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;boolean&quot;</span><span class="nt">/&gt;&lt;/element&gt;&lt;/optional&gt;</span>
+<span class="w">                </span><span class="nt">&lt;optional&gt;&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mps&quot;</span><span class="nt">&gt;&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;boolean&quot;</span><span class="nt">/&gt;&lt;/element&gt;&lt;/optional&gt;</span>
+<span class="w">              </span><span class="nt">&lt;/interleave&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/choice&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/element&gt;&lt;/optional&gt;</span>
+<span class="w">          </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">            </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;allow_exclusive_orders&quot;</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;boolean&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">          </span><span class="nt">&lt;optional&gt;</span><span class="cm">&lt;!--deprecated. @TODO remove in release 1.5 --&gt;</span>
+<span class="w">            </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;exclusive_orders_only&quot;</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;boolean&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/interleave&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/interleave&gt;</span>
+<span class="nt">&lt;/element&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">Control</span></code> - Simulation Control (required once)</a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#grammar-definition">Grammar Definition</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="../writing_input.html"
+                          title="Previous page">&larr; Writing a <span style="font-variant:small-caps;">Cyclus</span> Input File</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="commodity.html"
+                          title="Next page">&rarr; <code class="docutils literal notranslate"><span class="pre">Commodity</span></code> - Commodity Priority  (optional, may appear multiple times)</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="commodity.html" title="Commodity - Commodity Priority (optional, may appear multiple times)"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../writing_input.html" title="Writing a Cyclus Input File"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../writing_input.html" >Writing a <span style="font-variant:small-caps;">Cyclus</span> Input File</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="docutils literal notranslate"><span class="pre">Control</span></code> - Simulation Control (required once)</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

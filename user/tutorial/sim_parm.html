@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Starting a New Scenario &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Understanding Archetypes" href="add_arche.html" />
+    <link rel="prev" title="Installing and Launching Cyclus" href="install_launch_cyclus.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_arche.html" title="Understanding Archetypes"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="install_launch_cyclus.html" title="Installing and Launching Cyclus"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Starting a New Scenario</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="starting-a-new-scenario">
+<h1>Starting a New Scenario<a class="headerlink" href="#starting-a-new-scenario" title="Link to this heading">¶</a></h1>
+<section id="problem-definition">
+<h2>Problem Definition<a class="headerlink" href="#problem-definition" title="Link to this heading">¶</a></h2>
+<p>We will start with a new scenario representing a simplified once-through fuel
+cycle.  For the purpose of this tutorial, the scenario will include:</p>
+<ul class="simple">
+<li><p>mine producing natural uranium</p></li>
+<li><p>enrichment facility producing 4% enriched uranium oxide fuel</p></li>
+<li><p>LWR reactor consuming fresh fuel and producing used fuel</p></li>
+<li><p>repository to house all spent fuel and waste</p></li>
+</ul>
+<p>More details about each of these facilities will discussed when we are
+required to provide that input.</p>
+</section>
+<section id="concept-simulation-time-steps">
+<h2>Concept: Simulation Time Steps<a class="headerlink" href="#concept-simulation-time-steps" title="Link to this heading">¶</a></h2>
+<p>A <span style="font-variant:small-caps;">Cyclus</span> input file can be written in <a class="reference external" href="https://fuelcycle.org/user/writing_input.html">multiple formats</a>,
+including XML, JSON, and Python. That page also walks through the
+basic structure for each type of input file. This tutorial will walk through
+how to build an XML input.</p>
+<p>The XML <span style="font-variant:small-caps;">Cyclus</span> input file begins with the <code class="docutils literal notranslate"><span class="pre">&lt;simulation&gt;</span></code> tag and ends with the
+<code class="docutils literal notranslate"><span class="pre">&lt;/simulation&gt;</span></code> tag. Within this space, the <code class="docutils literal notranslate"><span class="pre">&lt;control&gt;</span></code> block is the first
+section of the CYCLUS input file and is of the form:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;simulation&gt;</span>
+<span class="w">  </span><span class="nt">&lt;control&gt;</span>
+<span class="w">    </span><span class="nt">&lt;duration&gt;</span>duration_val<span class="nt">&lt;/duration&gt;</span>
+<span class="w">    </span><span class="nt">&lt;startmonth&gt;</span>start_month_val<span class="nt">&lt;/startmonth&gt;</span>
+<span class="w">    </span><span class="nt">&lt;startyear&gt;</span>start_year_val<span class="nt">&lt;/startyear&gt;</span>
+<span class="w">    </span><span class="nt">&lt;decay&gt;</span>decay_val<span class="nt">&lt;/decay&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/control&gt;</span>
+
+
+<span class="nt">&lt;/simulation&gt;</span>
+</pre></div>
+</div>
+<p>Each of the elements shown are user-defined and required for each
+<span style="font-variant:small-caps;">Cyclus</span> simulation:</p>
+<ol class="arabic simple">
+<li><p>Simulation: the simulation handle contains all the parameters in the simulation.</p></li>
+<li><p>Duration: the number of timesteps to be simulated</p></li>
+<li><p>Start month: the first month of the simulation (e.g.: 1 for January)</p></li>
+<li><p>Start year: the first year of the simulation</p></li>
+</ol>
+<p>5. Decay mode:The <span style="font-variant:small-caps;">Cyclus</span> kernel has built-in experimental support for
+<a class="reference external" href="http://fuelcycle.org/devdoc/decay.html">Decay</a> calculations. Materials
+store the time since their last decay and agents are free to invoke the
+decay function on them as desired to decay them to the current simulation
+time. <span style="font-variant:small-caps;">Cyclus</span> can operate in 3 decay modes, with 1 additional mode
+likely to be added in a future release:</p>
+<ul class="simple">
+<li><p>‘never’, all decay is turned off</p></li>
+<li><p>‘manual’, meaning it is only on if the individual archetype decays their own inventory</p></li>
+<li><p>‘lazy’, which will compute decay only when archetypes fetch a particular composition.</p></li>
+<li><p>‘periodic’ (future), automatically decays all materials in a simulation with some fixed frequency.</p></li>
+</ul>
+<p>There are other <a class="reference external" href="http://fuelcycle.org/user/input_specs/control.html">optional parameters</a>
+that could be given but are not in the scope of this tutorial. For simplicity,
+we will not model decay in this tutorial.</p>
+<p>The lifetime of a <span style="font-variant:small-caps;">Cyclus</span> simulation is determined by its <cite>duration</cite>, the
+number of timesteps <span style="font-variant:small-caps;">Cyclus</span> will model the fuel cycle. <span style="font-variant:small-caps;">Cyclus</span> uses a
+time-step approach to march through time and determine what actions are
+taken by each agent at each point in time.  Each time step includes the following phases:</p>
+<ul class="simple">
+<li><p>new agents may enter the system (deployment)</p></li>
+<li><p>each agent prepares for exchange of material</p></li>
+<li><p>agents engage in material trades</p></li>
+<li><p>each agent acts after the exchange of material</p></li>
+<li><p>agents may leave the system (decommissioning)</p></li>
+</ul>
+<p>This tutorial assumes a time step of 1 month</p>
+</section>
+<section id="activity-set-simulation-parameters">
+<h2>Activity: Set Simulation Parameters<a class="headerlink" href="#activity-set-simulation-parameters" title="Link to this heading">¶</a></h2>
+<p>Using the simulation control template above and the table below, properly fill the template
+with the variables listed in the table below in your favorite text editor.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">duration</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">720</span></code></p></td>
+<td><p>length of simulation (months)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">start_month</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>start month of simulation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">start_year</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2018</span></code></p></td>
+<td><p>start year of simulation</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">decay</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">never</span></code></p></td>
+<td><p>radioactive decay</p></td>
+</tr>
+</tbody>
+</table>
+<p>Using this table, let’s set the simulation parameters.</p>
+<p>1. To tell <span style="font-variant:small-caps;">Cyclus</span> that this is the simulation section of the input file,
+first add a <code class="docutils literal notranslate"><span class="pre">simulation</span></code> block:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;simulation&gt;</span>
+<span class="nt">&lt;/simulation&gt;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Place the <code class="docutils literal notranslate"><span class="pre">control</span></code> header in as such</p></li>
+</ol>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;simulation&gt;</span>
+<span class="w">  </span><span class="nt">&lt;control&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/control&gt;</span>
+<span class="nt">&lt;/simulation&gt;</span>
+</pre></div>
+</div>
+<p>Adding spaces to indent the <code class="docutils literal notranslate"><span class="pre">control</span></code> header improves ease of reading.</p>
+<ol class="arabic simple" start="3">
+<li><p>After filling in the parameters listed in the table above, close the control and simulation sections as:</p></li>
+</ol>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;simulation&gt;</span>
+<span class="w">  </span><span class="nt">&lt;control&gt;</span>
+<span class="w">    </span><span class="nt">&lt;duration&gt;</span>720<span class="nt">&lt;/duration&gt;</span>
+<span class="w">    </span><span class="nt">&lt;startmonth&gt;</span>1<span class="nt">&lt;/startmonth&gt;</span>
+<span class="w">    </span><span class="nt">&lt;startyear&gt;</span>2018<span class="nt">&lt;/startyear&gt;</span>
+<span class="w">    </span><span class="nt">&lt;decay&gt;</span>never<span class="nt">&lt;/decay&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/control&gt;</span>
+
+
+<span class="nt">&lt;/simulation&gt;</span>
+</pre></div>
+</div>
+<p><strong>Note</strong>: There are two blank lines between the end of the control section and
+end of the simulation section. This section of the simulation block will hold
+the rest of the simulation parameter blocks (commodities, facilities, regions,
+institutions, and recipe blocks).</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Starting a New Scenario</a><ul>
+<li><a class="reference internal" href="#problem-definition">Problem Definition</a></li>
+<li><a class="reference internal" href="#concept-simulation-time-steps">Concept: Simulation Time Steps</a></li>
+<li><a class="reference internal" href="#activity-set-simulation-parameters">Activity: Set Simulation Parameters</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="install_launch_cyclus.html"
+                          title="Previous page">&larr; Installing and Launching Cyclus</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="add_arche.html"
+                          title="Next page">&rarr; Understanding Archetypes</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="add_arche.html" title="Understanding Archetypes"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="install_launch_cyclus.html" title="Installing and Launching Cyclus"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Starting a New Scenario</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

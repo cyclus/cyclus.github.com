@@ -1,0 +1,1171 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cyclus Archetypes &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cymetric" href="cymetric/index.html" />
+    <link rel="prev" title="Cycamore Archetypes" href="cycamoreagents.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cymetric/index.html" title="Cymetric"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cycamoreagents.html" title="Cycamore Archetypes"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Cyclus Archetypes</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="cyclus-archetypes">
+<span id="id1"></span><h1>Cyclus Archetypes<a class="headerlink" href="#cyclus-archetypes" title="Link to this heading">¶</a></h1>
+<p>This is a collection of archetypes found in the <code class="docutils literal notranslate"><span class="pre">agents</span></code> module that comes with
+<span style="font-variant:small-caps;">Cyclus</span> itself.</p>
+<section id="agents-source">
+<h2>:agents:<strong>Source</strong><a class="headerlink" href="#agents-source" title="Link to this heading">¶</a></h2>
+<p>A minimum implementation source facility that provides a commodity with a given capacity</p>
+<section id="state-variables">
+<h3>State Variables<a class="headerlink" href="#state-variables" title="Link to this heading">¶</a></h3>
+<dl class="field-list">
+<dt class="field-odd">commod<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">std::string</span></code>, shape=[-1]</p>
+<p>commodity that the source facility supplies</p>
+<dl class="field-list simple">
+<dt class="field-odd">schematype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>token</p>
+</dd>
+</dl>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;commod&gt;</span>[outcommodity]<span class="nt">&lt;/commod&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;commod&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&lt;required&gt;&quot;</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># outcommodity</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;commod&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>  <span class="c1"># outcommodity, required</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">recipe_name<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">std::string</span></code>, optional (default=””), shape=[-1]</p>
+<p>Recipe name for source facility’s commodity.If empty, source supplies material with requested compositions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">schematype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>token</p>
+</dd>
+</dl>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;recipe_name&gt;</span>[recipe]<span class="nt">&lt;/recipe_name&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;recipe_name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># recipe</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;recipe_name&quot;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">}</span>  <span class="c1"># recipe, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-odd">capacity<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, shape=[-1]</p>
+<p>amount of commodity that can be supplied at each time step</p>
+<dl class="field-list simple">
+<dt class="field-odd">range<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[0.0, 1e+299]</p>
+</dd>
+</dl>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;capacity&gt;</span>[double]<span class="nt">&lt;/capacity&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;capacity&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&lt;required&gt;&quot;</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># double</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>  <span class="c1"># double, required</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="other-info">
+<h3>Other Info<a class="headerlink" href="#other-info" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Full Archetype Name</strong>: cyclus::Source</p></li>
+<li><p><strong>Simulation Entity Type</strong>: facility</p></li>
+<li><p><strong>Interfaces</strong>: [‘cyclus::Facility’]</p></li>
+<li><p><strong>All Interfaces</strong>: [‘cyclus::Agent’, ‘cyclus::Facility’, ‘cyclus::Ider’, ‘cyclus::StateWrangler’, ‘cyclus::TimeListener’, ‘cyclus::Trader’]</p></li>
+</ul>
+</section>
+<section id="xml-input-schema">
+<h3>XML Input Schema<a class="headerlink" href="#xml-input-schema" title="Link to this heading">¶</a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;interleave&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;commod&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;token&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;recipe_name&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;token&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;capacity&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/interleave&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="agents-sink">
+<h2>:agents:<strong>Sink</strong><a class="headerlink" href="#agents-sink" title="Link to this heading">¶</a></h2>
+<p>A minimum implementation sink facility that accepts specified amounts of commodities from other agents</p>
+<section id="id2">
+<h3>State Variables<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<dl class="field-list">
+<dt class="field-odd">in_commods<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">std::vector&lt;std::string&gt;</span></code>, shape=[-1, -1]</p>
+<p>commodities that the sink facility accepts</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;in_commods&gt;</span>
+<span class="w">  </span><span class="nt">&lt;val&gt;</span>[incommodity]<span class="nt">&lt;/val&gt;</span>
+<span class="w">  </span><span class="nt">&lt;val&gt;</span>[incommodity]<span class="nt">&lt;/val&gt;</span>
+<span class="w">  </span>...
+<span class="nt">&lt;/in_commods&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;in_commods&quot;</span><span class="p p-Indicator">:</span><span class="w">  </span><span class="p p-Indicator">{</span><span class="s">&quot;val&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">   </span><span class="s">&quot;&lt;required&gt;&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">   </span><span class="s">&quot;&lt;required&gt;&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">   </span><span class="nv">...</span>
+<span class="p p-Indicator">]}}</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;in_commods&quot;</span><span class="p">:</span>  <span class="p">{</span><span class="s2">&quot;val&quot;</span><span class="p">:</span> <span class="p">[</span>
+   <span class="s2">&quot;&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;&quot;</span><span class="p">,</span>
+   <span class="o">...</span>
+<span class="p">]}}</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">recipe_name<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">std::string</span></code>, optional (default=””), shape=[-1]</p>
+<p>Name of recipe to request.If empty, sink requests material no particular composition.</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;recipe_name&gt;</span>[recipe]<span class="nt">&lt;/recipe_name&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;recipe_name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># recipe</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;recipe_name&quot;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">}</span>  <span class="c1"># recipe, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-odd">max_inv_size<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, optional (default=1e+299), shape=[-1]</p>
+<p>total maximum inventory size of sink facility</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;max_inv_size&gt;</span>[double]<span class="nt">&lt;/max_inv_size&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;max_inv_size&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">1e+299</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># double</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;max_inv_size&quot;</span><span class="p">:</span> <span class="mf">1e+299</span><span class="p">}</span>  <span class="c1"># double, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">capacity<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, shape=[-1]</p>
+<p>capacity the sink facility can accept at each time step</p>
+<dl class="field-list simple">
+<dt class="field-odd">range<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[0.0, 1e+299]</p>
+</dd>
+</dl>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;capacity&gt;</span>[double]<span class="nt">&lt;/capacity&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;capacity&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&lt;required&gt;&quot;</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># double</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>  <span class="c1"># double, required</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Other Info<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Full Archetype Name</strong>: cyclus::Sink</p></li>
+<li><p><strong>Simulation Entity Type</strong>: facility</p></li>
+<li><p><strong>Interfaces</strong>: [‘cyclus::Facility’]</p></li>
+<li><p><strong>All Interfaces</strong>: [‘cyclus::Agent’, ‘cyclus::Facility’, ‘cyclus::Ider’, ‘cyclus::StateWrangler’, ‘cyclus::TimeListener’, ‘cyclus::Trader’]</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>XML Input Schema<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;interleave&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;in_commods&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;oneOrMore&gt;</span>
+<span class="w">            </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;val&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;string&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/oneOrMore&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;recipe_name&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;string&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;max_inv_size&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;capacity&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/interleave&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="agents-nullregion">
+<h2>:agents:<strong>NullRegion</strong><a class="headerlink" href="#agents-nullregion" title="Link to this heading">¶</a></h2>
+<p>A region that owns the simulation’s institutions but exhibits null behavior. No parameters are given when using the null region.</p>
+<section id="id5">
+<h3>Other Info<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Full Archetype Name</strong>: cyclus::NullRegion</p></li>
+<li><p><strong>Simulation Entity Type</strong>: region</p></li>
+<li><p><strong>Interfaces</strong>: [‘cyclus::Region’]</p></li>
+<li><p><strong>All Interfaces</strong>: [‘cyclus::Agent’, ‘cyclus::Ider’, ‘cyclus::Region’, ‘cyclus::StateWrangler’, ‘cyclus::TimeListener’]</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>XML Input Schema<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;text/&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="agents-nullinst">
+<h2>:agents:<strong>NullInst</strong><a class="headerlink" href="#agents-nullinst" title="Link to this heading">¶</a></h2>
+<p>An instition that owns facilities in the simulation but exhibits null behavior. No parameters are given when using the null institution.</p>
+<section id="id7">
+<h3>Other Info<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Full Archetype Name</strong>: cyclus::NullInst</p></li>
+<li><p><strong>Simulation Entity Type</strong>: institution</p></li>
+<li><p><strong>Interfaces</strong>: [‘cyclus::Institution’]</p></li>
+<li><p><strong>All Interfaces</strong>: [‘cyclus::Agent’, ‘cyclus::Ider’, ‘cyclus::Institution’, ‘cyclus::StateWrangler’, ‘cyclus::TimeListener’]</p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>XML Input Schema<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;text/&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="agents-kfacility">
+<h2>:agents:<strong>KFacility</strong><a class="headerlink" href="#agents-kfacility" title="Link to this heading">¶</a></h2>
+<p>A facility designed for integration tests that both provides and consumes commodities. It changes its request and offer amounts based on a power law with respect to time.</p>
+<section id="id9">
+<h3>State Variables<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<dl class="field-list">
+<dt class="field-odd">in_commod<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">std::string</span></code>, shape=[-1]</p>
+<p>commodity that the k-facility consumes</p>
+<dl class="field-list simple">
+<dt class="field-odd">schematype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>token</p>
+</dd>
+</dl>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;in_commod&gt;</span>[incommodity]<span class="nt">&lt;/in_commod&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;in_commod&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&lt;required&gt;&quot;</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># incommodity</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;in_commod&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>  <span class="c1"># incommodity, required</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">recipe_name<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">std::string</span></code>, shape=[50]</p>
+<p>recipe name for the k-facility’s in-commodity</p>
+<dl class="field-list simple">
+<dt class="field-odd">schematype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>token</p>
+</dd>
+</dl>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;recipe_name&gt;</span>[recipe]<span class="nt">&lt;/recipe_name&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;recipe_name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&lt;required&gt;&quot;</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># recipe</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;recipe_name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>  <span class="c1"># recipe, required</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-odd">out_commod<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">std::string</span></code>, shape=[-1]</p>
+<p>commodity that the k-facility supplies</p>
+<dl class="field-list simple">
+<dt class="field-odd">schematype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>token</p>
+</dd>
+</dl>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;out_commod&gt;</span>[outcommodity]<span class="nt">&lt;/out_commod&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;out_commod&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&lt;required&gt;&quot;</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># outcommodity</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;out_commod&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>  <span class="c1"># outcommodity, required</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">in_capacity<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, shape=[-1]</p>
+<p>number of commodity units that can be taken at each timestep (infinite capacity can be represented by a very large number)</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;in_capacity&gt;</span>[double]<span class="nt">&lt;/in_capacity&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;in_capacity&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&lt;required&gt;&quot;</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># double</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;in_capacity&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>  <span class="c1"># double, required</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-odd">out_capacity<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, shape=[-1]</p>
+<p>number of commodity units that can be supplied at each timestep (infinite capacity can be represented by a very large number)</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;out_capacity&gt;</span>[double]<span class="nt">&lt;/out_capacity&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;out_capacity&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&lt;required&gt;&quot;</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># double</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;out_capacity&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>  <span class="c1"># double, required</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">current_capacity<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, optional (default=0), shape=[-1]</p>
+<p>number of output commodity units that can be supplied at the current time step (infinite capacity can be represented by a very large number )</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;current_capacity&gt;</span>[double]<span class="nt">&lt;/current_capacity&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;current_capacity&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># double</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;current_capacity&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>  <span class="c1"># double, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-odd">max_inv_size<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, optional (default=1e+299), shape=[-1]</p>
+<p>total maximum inventory size of the k-facility</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;max_inv_size&gt;</span>[double]<span class="nt">&lt;/max_inv_size&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;max_inv_size&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">1e+299</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># double</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;max_inv_size&quot;</span><span class="p">:</span> <span class="mf">1e+299</span><span class="p">}</span>  <span class="c1"># double, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">k_factor_in<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, shape=[-1]</p>
+<p>conversion factor that governs the behavior of the k-facility’s input commodity capacity</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;k_factor_in&gt;</span>[double]<span class="nt">&lt;/k_factor_in&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;k_factor_in&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&lt;required&gt;&quot;</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># double</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;k_factor_in&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>  <span class="c1"># double, required</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-odd">k_factor_out<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, shape=[-1]</p>
+<p>conversion factor that governs the behavior of the k-facility’s output commodity capacity</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;k_factor_out&gt;</span>[double]<span class="nt">&lt;/k_factor_out&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;k_factor_out&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&lt;required&gt;&quot;</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># double</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;k_factor_out&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>  <span class="c1"># double, required</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Other Info<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Full Archetype Name</strong>: cyclus::KFacility</p></li>
+<li><p><strong>Simulation Entity Type</strong>: facility</p></li>
+<li><p><strong>Interfaces</strong>: [‘cyclus::Facility’]</p></li>
+<li><p><strong>All Interfaces</strong>: [‘cyclus::Agent’, ‘cyclus::Facility’, ‘cyclus::Ider’, ‘cyclus::StateWrangler’, ‘cyclus::TimeListener’, ‘cyclus::Trader’]</p></li>
+</ul>
+</section>
+<section id="id11">
+<h3>XML Input Schema<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;interleave&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;in_commod&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;token&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;recipe_name&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;token&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;out_commod&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;token&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;in_capacity&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;out_capacity&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;current_capacity&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;max_inv_size&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;k_factor_in&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;k_factor_out&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/interleave&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="agents-predator">
+<h2>:agents:<strong>Predator</strong><a class="headerlink" href="#agents-predator" title="Link to this heading">¶</a></h2>
+<p>A facility that represents predators in the Lotka-Volterra integration tests</p>
+<section id="id12">
+<h3>State Variables<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<dl class="field-list">
+<dt class="field-odd">commod<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">std::string</span></code>, shape=[-1]</p>
+<p>commodity that the predator supplies</p>
+<dl class="field-list simple">
+<dt class="field-odd">schematype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>token</p>
+</dd>
+</dl>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;commod&gt;</span>[outcommodity]<span class="nt">&lt;/commod&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;commod&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&lt;required&gt;&quot;</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># outcommodity</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;commod&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>  <span class="c1"># outcommodity, required</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">prey<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">std::string</span></code>, shape=[-1]</p>
+<p>prey that the predator hunts</p>
+<dl class="field-list simple">
+<dt class="field-odd">schematype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>token</p>
+</dd>
+</dl>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;prey&gt;</span>[incommodity]<span class="nt">&lt;/prey&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;prey&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&lt;required&gt;&quot;</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># incommodity</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;prey&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>  <span class="c1"># incommodity, required</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-odd">full<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, optional (default=1), shape=[-1]</p>
+<p>how many units of prey a predator consumes until it is satisfied</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;full&gt;</span>[double]<span class="nt">&lt;/full&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;full&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># double</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;full&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>  <span class="c1"># double, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">hunt_freq<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">int</span></code>, optional (default=1), shape=[-1]</p>
+<p>how often a predator needs to hunt</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;hunt_freq&gt;</span>[int]<span class="nt">&lt;/hunt_freq&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;hunt_freq&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># int</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;hunt_freq&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>  <span class="c1"># int, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-odd">hunt_cap<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, optional (default=1), shape=[-1]</p>
+<p>how many units of prey a predator can catch during a hunt</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;hunt_cap&gt;</span>[double]<span class="nt">&lt;/hunt_cap&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;hunt_cap&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># double</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;hunt_cap&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>  <span class="c1"># double, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">success<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, optional (default=1), shape=[-1]</p>
+<p>fraction of hunting success on a scale from 0 to 1</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;success&gt;</span>[double]<span class="nt">&lt;/success&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;success&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># double</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>  <span class="c1"># double, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-odd">consumed<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, optional (default=0), shape=[-1]</p>
+<p>how many units of prey consumed per time step</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;consumed&gt;</span>[double]<span class="nt">&lt;/consumed&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;consumed&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># double</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;consumed&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>  <span class="c1"># double, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">hunt_factor<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional (default=0), shape=[-1]</p>
+<p>whether or not to base hunting success on relative predator/prey populations</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;hunt_factor&gt;</span>[boolean]<span class="nt">&lt;/hunt_factor&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;hunt_factor&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># boolean</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;hunt_factor&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>  <span class="c1"># boolean, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-odd">age<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">int</span></code>, optional (default=0), shape=[-1]</p>
+<p>age of predator at beginning of simulation</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;age&gt;</span>[int]<span class="nt">&lt;/age&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;age&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># int</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>  <span class="c1"># int, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">lifespan<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">int</span></code>, optional (default=1), shape=[-1]</p>
+<p>how long a predator lives</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;lifespan&gt;</span>[int]<span class="nt">&lt;/lifespan&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;lifespan&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># int</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;lifespan&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>  <span class="c1"># int, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-odd">dead<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional (default=0), shape=[-1]</p>
+<p>flag for whether predator is currently dead</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dead&gt;</span>[boolean]<span class="nt">&lt;/dead&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;dead&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># boolean</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;dead&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>  <span class="c1"># boolean, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">nchildren<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, optional (default=1), shape=[-1]</p>
+<p>number of predator children born at each birthing instance</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;nchildren&gt;</span>[double]<span class="nt">&lt;/nchildren&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;nchildren&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># double</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;nchildren&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>  <span class="c1"># double, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-odd">birth_and_death<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional (default=0), shape=[-1]</p>
+<p>whether or not simultaneous birth and death are allowed (i.e., can a facility give birth and die in the same time step?)</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;birth_and_death&gt;</span>[boolean]<span class="nt">&lt;/birth_and_death&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;birth_and_death&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># boolean</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;birth_and_death&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>  <span class="c1"># boolean, optional</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="id13">
+<h3>Other Info<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Full Archetype Name</strong>: cyclus::Predator</p></li>
+<li><p><strong>Simulation Entity Type</strong>: facility</p></li>
+<li><p><strong>Interfaces</strong>: [‘cyclus::Facility’]</p></li>
+<li><p><strong>All Interfaces</strong>: [‘cyclus::Agent’, ‘cyclus::Facility’, ‘cyclus::Ider’, ‘cyclus::StateWrangler’, ‘cyclus::TimeListener’, ‘cyclus::Trader’]</p></li>
+</ul>
+</section>
+<section id="id14">
+<h3>XML Input Schema<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;interleave&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;commod&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;token&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;prey&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;token&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;full&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hunt_freq&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;int&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hunt_cap&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;success&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;consumed&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hunt_factor&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;boolean&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;age&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;int&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;lifespan&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;int&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;dead&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;boolean&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;nchildren&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;birth_and_death&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;boolean&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="nt">&lt;/interleave&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="agents-prey">
+<h2>:agents:<strong>Prey</strong><a class="headerlink" href="#agents-prey" title="Link to this heading">¶</a></h2>
+<p>A facility that represents prey in the Lotka-Volterra integration tests</p>
+<section id="id15">
+<h3>State Variables<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
+<dl class="field-list">
+<dt class="field-odd">commod<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">std::string</span></code>, shape=[-1]</p>
+<dl class="field-list simple">
+<dt class="field-odd">schematype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>token</p>
+</dd>
+</dl>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;commod&gt;</span>[outcommodity]<span class="nt">&lt;/commod&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;commod&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&lt;required&gt;&quot;</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># outcommodity</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;commod&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>  <span class="c1"># outcommodity, required</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">age<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">int</span></code>, optional (default=0), shape=[-1]</p>
+<p>age of prey at start of simulation</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;age&gt;</span>[int]<span class="nt">&lt;/age&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;age&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># int</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>  <span class="c1"># int, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-odd">dead<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional (default=0), shape=[-1]</p>
+<p>flag for whether prey is currently dead</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dead&gt;</span>[boolean]<span class="nt">&lt;/dead&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;dead&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># boolean</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;dead&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>  <span class="c1"># boolean, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">nchildren<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">int</span></code>, optional (default=1), shape=[-1]</p>
+<p>number of children born at each birthing instance</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;nchildren&gt;</span>[int]<span class="nt">&lt;/nchildren&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;nchildren&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># int</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;nchildren&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>  <span class="c1"># int, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-odd">birth_freq<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">int</span></code>, optional (default=1), shape=[-1]</p>
+<p>number of time steps between birth of children</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;birth_freq&gt;</span>[int]<span class="nt">&lt;/birth_freq&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;birth_freq&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># int</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;birth_freq&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>  <span class="c1"># int, optional</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">birth_and_death<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional (default=1), shape=[-1]</p>
+<p>whether or not simultaneous birth and death are allowed (i.e., can a facility give birth and die in the same time step?)</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;birth_and_death&gt;</span>[boolean]<span class="nt">&lt;/birth_and_death&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;birth_and_death&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># boolean</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;birth_and_death&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>  <span class="c1"># boolean, optional</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="id16">
+<h3>Other Info<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Full Archetype Name</strong>: cyclus::Prey</p></li>
+<li><p><strong>Simulation Entity Type</strong>: facility</p></li>
+<li><p><strong>Interfaces</strong>: [‘cyclus::Facility’]</p></li>
+<li><p><strong>All Interfaces</strong>: [‘cyclus::Agent’, ‘cyclus::Facility’, ‘cyclus::Ider’, ‘cyclus::StateWrangler’, ‘cyclus::TimeListener’, ‘cyclus::Trader’]</p></li>
+</ul>
+</section>
+<section id="id17">
+<h3>XML Input Schema<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;interleave&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;commod&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;token&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;age&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;int&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;dead&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;boolean&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;nchildren&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;int&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;birth_freq&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;int&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;birth_and_death&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;boolean&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
+<span class="nt">&lt;/interleave&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Cyclus Archetypes</a><ul>
+<li><a class="reference internal" href="#agents-source">:agents:<strong>Source</strong></a><ul>
+<li><a class="reference internal" href="#state-variables">State Variables</a></li>
+<li><a class="reference internal" href="#other-info">Other Info</a></li>
+<li><a class="reference internal" href="#xml-input-schema">XML Input Schema</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#agents-sink">:agents:<strong>Sink</strong></a><ul>
+<li><a class="reference internal" href="#id2">State Variables</a></li>
+<li><a class="reference internal" href="#id3">Other Info</a></li>
+<li><a class="reference internal" href="#id4">XML Input Schema</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#agents-nullregion">:agents:<strong>NullRegion</strong></a><ul>
+<li><a class="reference internal" href="#id5">Other Info</a></li>
+<li><a class="reference internal" href="#id6">XML Input Schema</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#agents-nullinst">:agents:<strong>NullInst</strong></a><ul>
+<li><a class="reference internal" href="#id7">Other Info</a></li>
+<li><a class="reference internal" href="#id8">XML Input Schema</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#agents-kfacility">:agents:<strong>KFacility</strong></a><ul>
+<li><a class="reference internal" href="#id9">State Variables</a></li>
+<li><a class="reference internal" href="#id10">Other Info</a></li>
+<li><a class="reference internal" href="#id11">XML Input Schema</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#agents-predator">:agents:<strong>Predator</strong></a><ul>
+<li><a class="reference internal" href="#id12">State Variables</a></li>
+<li><a class="reference internal" href="#id13">Other Info</a></li>
+<li><a class="reference internal" href="#id14">XML Input Schema</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#agents-prey">:agents:<strong>Prey</strong></a><ul>
+<li><a class="reference internal" href="#id15">State Variables</a></li>
+<li><a class="reference internal" href="#id16">Other Info</a></li>
+<li><a class="reference internal" href="#id17">XML Input Schema</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="cycamoreagents.html"
+                          title="Previous page">&larr; Cycamore Archetypes</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="cymetric/index.html"
+                          title="Next page">&rarr; Cymetric</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cymetric/index.html" title="Cymetric"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cycamoreagents.html" title="Cycamore Archetypes"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Cyclus Archetypes</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

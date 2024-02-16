@@ -1,0 +1,143 @@
+.. _1.5.0:
+
+==================================
+Cyclus 1.5.0 Release
+==================================
+:Author: Cyclus Developers
+:Website: http://fuelcycle.org/
+:Contact: https://groups.google.com/forum/#!forum/cyclus-dev
+
+The Cyclus core team is excited to announce the latest stable version of the
+Cyclus ecosystem!
+
+Major Features
+==============
+
+Compatibility:
+
+* C++ 11 support is now required to compile Cyclus and Cycamore.
+
+* Resource exchange preferences now default to 1.0 instead of zero.
+
+
+`Cyclus <https://github.com/cyclus/cyclus>`_
+---------------------------------------------
+
+Features:
+
+* Resource exchange now supports COIN linear and mixed integer linear solvers.
+  This can be specified in the input file.
+
+* Added new optional :ref:`ExplicitInventory <explicit-inv-table>`  and
+  :ref:`ExplicitInventoryCompact <explicit-inv-compact-table>` tables to the
+  database that can be enabled via input file.
+
+* Implemented custom time step duration that can be set in the input
+  file (i.e. CEP 23).
+
+* Agents/archetypes now can provide their own versions that are recorded in
+  the :ref:`AgentVersion <agent-version-table>` table in the database for
+  provenance/reproducibility.
+
+* Support for new datatypes added to the sqlite backend:
+
+  - ``std::list<std::pair<int, int> >``
+  - ``std::map<std::string, std::pair<std::string, std::vector<double> > >``
+  - ``std::vector<std::pair<std::pair<double, double>, std:map<std::string, double > > > >``
+
+
+* ``cycpp`` now supports the ``internal`` annotation for state variables
+  allowing them to be persisted in the database, but not visible in the input
+  file or GUI.
+
+* Adding 2 new variables to allow adjustments to the caculation tolerance:
+  ``tolerance`` and ``tolerance_generic``.
+
+* Building stubs archetypes now requires C++11.
+
+* More effective hdf5 backend generation by using an AST setup with various
+  nodes and blocks of nodes
+
+* Generate lastest version in dbtypes.json upon install
+
+* Now generate a Python library allowing Cymetric to be full Python 
+
+Bug fixes:
+
+* Fixed floating-point comparison bugs in DRE causing incorrectly failed
+  resource trades.
+
+* Determinism/reproducibility improved by calling agents' resource exchange
+  related functions in consistent order.
+
+* Fixed invalid memory access bugs affecting newer and mac compilers.
+
+* xinclude substitutions in input files are now processed for the input file
+  stored in output databases - rather than storing the incomplete, partial
+  input file.
+
+* Archetype compilation now correctly fails early if the ``cycpp``
+  preprocessor fails.
+
+* Fix late silent failures on <= 0.0 quantity bids to early loud failures.
+
+* ``cyclus::toolkit::ResBuf`` is no longer experimental.
+
+* Fix bad types in ``dbtypes.json``
+
+
+`Cycamore <https://github.com/cyclus/cycamore>`_
+--------------------------------------------------
+
+* Added Storage archetype. This Facility is intended to hold materials for a
+  user specified amount of time in order to model a storage facility with a
+  certain residence time or holdup time.
+
+* Added Mixer archetype.  This facility Mixer mixes N streams with fixed,
+  static, user-specified ratios into a single output stream. The Mixer has N
+  input inventories: one for each streams to be mixed, and one output stream.
+  The supplying of mixed material is constrained by available inventory of mixed
+  material quantities.
+
+* All Cycamore archetypes now uses the ``tolerance_resource`` for all the buffer ``Pop``.
+
+
+`Cymetric <https://github.com/cyclus/cymetric>`_
+--------------------------------------------------
+
+* Added new metrics: full list `here <http://fuelcycle.org/user/cymetric/api/metrics.html>`_
+* Added a new directory with cymetric usage examples
+* Separated out all archetype-specific metrics from the main metrics
+* Is now full Python
+
+
+Summary
+=======
+
+Since v1.3.0,
+
+* Cyclus: 865 commits resulting in  213 files changed, 23823 insertions(+), 6436 deletions(-)
+
+* Cycamore: 177 commits resulting in  71 files changed, 4389 insertions(+), 2077 deletions(-)
+
+* Cymetric: 65 commits resulting in  58 files changed, 1490 insertions(+), 4220 deletions(-)
+
+
+Contributors
+============
+The following people contributed to this release of Cyclus.  A "*" by their
+name indicates a first time contributor.  Names follow alphabetically, 
+
+* Robert Carlsen
+* Robert Flanagan
+* Matthew Gidden
+* Ryan Hodge*
+* Katy Huff
+* Jenny Littell*
+* Meghan McGarry
+* Baptiste Mouginot*
+* Arrielle Opotowsky
+* Anthony Scopatz
+* Steve Skutnik*
+* Paul Wilson
+

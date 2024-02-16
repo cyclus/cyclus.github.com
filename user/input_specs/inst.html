@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Institution - Institution agents (at least one required in each Region) &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Recipe - Recipe Definition (optional, may appear multiple times)" href="recipe.html" />
+    <link rel="prev" title="Region - Region agents (at least one required)" href="region.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="recipe.html" title="Recipe - Recipe Definition (optional, may appear multiple times)"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="region.html" title="Region - Region agents (at least one required)"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../writing_input.html" accesskey="U">Writing a <span style="font-variant:small-caps;">Cyclus</span> Input File</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="docutils literal notranslate"><span class="pre">Institution</span></code> - Institution agents (at least one required in each <code class="docutils literal notranslate"><span class="pre">Region</span></code>)</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="institution-institution-agents-at-least-one-required-in-each-region">
+<h1><code class="docutils literal notranslate"><span class="pre">Institution</span></code> - Institution agents (at least one required in each <code class="docutils literal notranslate"><span class="pre">Region</span></code>)<a class="headerlink" href="#institution-institution-agents-at-least-one-required-in-each-region" title="Link to this heading">¶</a></h1>
+<p>Every agent that participates in a <span style="font-variant:small-caps;">Cyclus</span> simulation represents either a
+facility, an institution or a region.  Each <code class="docutils literal notranslate"><span class="pre">institution</span></code> block defines an
+agent that acts as an institution in the simulation.  In contrast to the
+<code class="docutils literal notranslate"><span class="pre">facility</span></code> block that defines a <a class="reference internal" href="../../basics/glossary.html#term-prototype"><span class="xref std std-term">prototype</span></a>, this block defines an
+<a class="reference internal" href="../../basics/glossary.html#term-agent"><span class="xref std std-term">agent</span></a>.</p>
+<p>An <code class="docutils literal notranslate"><span class="pre">institution</span></code> block can only appear within a <code class="docutils literal notranslate"><span class="pre">region</span></code> block.</p>
+<p>Each <code class="docutils literal notranslate"><span class="pre">institution</span></code> block has the following sections in any order:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (required once) - a name for the prototype</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lifetime</span></code> (optional once) - a non-negative integer indicating the number
+of time steps that this institution agent will be active in the simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code> (required once) - the archetype-specific configuration</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">initialfacilitylist</span></code> (optional, may appear multiple times) - a list of
+facility agents operating at the beginning of the simulation</p></li>
+</ul>
+<p>Each <code class="docutils literal notranslate"><span class="pre">initialfacilitylist</span></code> block contains one or more <code class="docutils literal notranslate"><span class="pre">entry</span></code> blocks that
+each contain the following sections, in the following order:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">prototype</span></code> - the name of a facility prototype defined elsewhere in the input file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">number</span></code> - the number of such facilities that are operating at the beginning of the simulation</p></li>
+</ul>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
+<p>This example introduces two institution agents (the region section that
+encloses them is not shown).  The first institution has the name
+<cite>SingleInstitution</cite>, and is configured from the <a class="reference internal" href="../../basics/glossary.html#term-archetype"><span class="xref std std-term">archetype</span></a> with the
+name (or alias) <cite>NullInst</cite>.  The author of the <code class="docutils literal notranslate"><span class="pre">NullInst</span></code> archetype has
+defined no archetype-specific data. This agent begins the simulation with two
+facility agents, one based on the <code class="docutils literal notranslate"><span class="pre">FacilityA</span></code> prototype and another based on
+the <code class="docutils literal notranslate"><span class="pre">FacilityB</span></code> prototype.  The second institution has the name
+<cite>AnotherInstitution</cite>, is also configured from the archetype with the name (or
+alias) <code class="docutils literal notranslate"><span class="pre">NullInst</span></code>.  This institution has no initial facilities.</p>
+<p><strong>XML:</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;institution&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>SingleInstitution<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;initialfacilitylist&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;prototype&gt;</span>FacilityA<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">      </span><span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;prototype&gt;</span>FacilityB<span class="nt">&lt;/prototype&gt;</span>
+<span class="w">      </span><span class="nt">&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/initialfacilitylist&gt;</span>
+<span class="w">  </span><span class="nt">&lt;config&gt;</span><span class="w"> </span><span class="nt">&lt;NullInst/&gt;</span><span class="w"> </span><span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/institution&gt;</span>
+
+<span class="nt">&lt;institution&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>AnotherInstitution<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;config&gt;</span><span class="w"> </span><span class="nt">&lt;NullInst/&gt;</span><span class="w"> </span><span class="nt">&lt;/config&gt;</span>
+<span class="nt">&lt;/institution&gt;</span>
+</pre></div>
+</div>
+<p><strong>JSON:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;institution&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;NullInst&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">},</span>
+<span class="w">     </span><span class="nt">&quot;initialfacilitylist&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;entry&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="nt">&quot;number&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;prototype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FacilityA&quot;</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="nt">&quot;number&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;prototype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FacilityB&quot;</span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">     </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SingleInstitution&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;NullInst&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">},</span>
+<span class="w">     </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AnotherInstitution&quot;</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;institution&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;NullInst&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+     <span class="s2">&quot;initialfacilitylist&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;entry&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;number&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;prototype&quot;</span><span class="p">:</span> <span class="s2">&quot;FacilityA&quot;</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;number&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;prototype&quot;</span><span class="p">:</span> <span class="s2">&quot;FacilityB&quot;</span><span class="p">},</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;SingleInstitution&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;NullInst&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;AnotherInstitution&quot;</span><span class="p">,</span>
+     <span class="p">},</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section class="html-toggle" id="grammar-definition">
+<h2>Grammar Definition<a class="headerlink" href="#grammar-definition" title="Link to this heading">¶</a></h2>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;institution&quot;</span><span class="nt">&gt;</span><span class="w"> </span><span class="nt">&lt;interleave&gt;</span>
+<span class="w">  </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span><span class="w"> </span><span class="nt">&lt;text/&gt;</span><span class="w"> </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">  </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;lifetime&quot;</span><span class="nt">&gt;</span><span class="w"> </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;nonNegativeInteger&quot;</span><span class="nt">/&gt;</span><span class="w"> </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/optional&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;optional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;initialfacilitylist&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;oneOrMore&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;entry&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;prototype&quot;</span><span class="nt">&gt;</span><span class="w"> </span><span class="nt">&lt;text/&gt;</span><span class="w"> </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">          </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;number&quot;</span><span class="nt">&gt;</span><span class="w"> </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;nonNegativeInteger&quot;</span><span class="nt">/&gt;</span><span class="w"> </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/oneOrMore&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/optional&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;config&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;choice&gt;</span>
+<span class="w">    </span>@Inst_REFS@
+<span class="w">    </span><span class="nt">&lt;/choice&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
+<span class="nt">&lt;/interleave&gt;</span><span class="w"> </span><span class="nt">&lt;/element&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">Institution</span></code> - Institution agents (at least one required in each <code class="docutils literal notranslate"><span class="pre">Region</span></code>)</a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#grammar-definition">Grammar Definition</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="region.html"
+                          title="Previous page">&larr; <code class="docutils literal notranslate"><span class="pre">Region</span></code> - Region agents (at least one required)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="recipe.html"
+                          title="Next page">&rarr; <code class="docutils literal notranslate"><span class="pre">Recipe</span></code> - Recipe Definition (optional, may appear multiple times)</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="recipe.html" title="Recipe - Recipe Definition (optional, may appear multiple times)"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="region.html" title="Region - Region agents (at least one required)"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../writing_input.html" >Writing a <span style="font-variant:small-caps;">Cyclus</span> Input File</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="docutils literal notranslate"><span class="pre">Institution</span></code> - Institution agents (at least one required in each <code class="docutils literal notranslate"><span class="pre">Region</span></code>)</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

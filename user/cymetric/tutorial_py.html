@@ -1,0 +1,261 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Python Interface &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Writing Your Own Metrics Tutorial" href="tutorial_metrics.html" />
+    <link rel="prev" title="Cymetric Command Line Tutorial" href="tutorial_cli.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_metrics.html" title="Writing Your Own Metrics Tutorial"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_cli.html" title="Cymetric Command Line Tutorial"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Cymetric</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Python Interface</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p id="cym-tutorial-py">Cymetric Python Interface Tutorial
+==================================`
+This tutorial will describe how to use cymetric from Python.</p>
+<p>Cymetric is an extension of <span style="font-variant:small-caps;">Cyclus</span>, so it is assumed that <span style="font-variant:small-caps;">Cyclus</span> is already
+installed on your system. (If not, please visit <a class="reference external" href="http://fuelcycle.org/kernel/build_from_source.html">Getting and Building Cyclus
+from Source</a>.) Cymetric
+installation instructions are available on <a class="reference external" href="https://github.com/cyclus/cymetric">GitHub</a>.</p>
+<p>Cymetric operates by reading data from a <span style="font-variant:small-caps;">Cyclus</span> database, computing metrics,
+and writing those metrics back to the database. This way, previously seen
+metrics are stored for later retrieval. The dependencies between metrics are
+automatically computed and evaluated.</p>
+<p>Without further ado, let’s dive in!</p>
+<section id="python-interface">
+<h1>Python Interface<a class="headerlink" href="#python-interface" title="Link to this heading">¶</a></h1>
+<p>While quick feedback is useful, it is more likely that cymetric will be of use
+in a script.  Therefore, this section details how to employ Python to interact
+with cymetric. In addition to writing scripts to compute metrics and produce
+figures, this is essential for the development of new metrics.</p>
+<p>Typically, it is recommended that you alias <code class="docutils literal notranslate"><span class="pre">cymetric</span></code> as <code class="docutils literal notranslate"><span class="pre">cym</span></code>, because
+all of the important functionality lives here.  To start, use the <code class="docutils literal notranslate"><span class="pre">dbopen()</span></code>
+function to open up a database:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cymetric</span> <span class="k">as</span> <span class="nn">cym</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">cym</span><span class="o">.</span><span class="n">dbopen</span><span class="p">(</span><span class="s1">&#39;test.sqlite&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="evaluating-metrics">
+<h2>Evaluating Metrics<a class="headerlink" href="#evaluating-metrics" title="Link to this heading">¶</a></h2>
+<p>The main purpose of cymetric is to evaluate metrics. The easiest way to do this
+is via the <code class="docutils literal notranslate"><span class="pre">eval()</span></code> function. This accepts a metric name and a database and
+returns a pandas DataFrame:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frame</span> <span class="o">=</span> <span class="n">cym</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;Materials&#39;</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You may also optionally supply a list of 3-tuples representing the conditions to
+filter the metric on.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filtered_frame</span> <span class="o">=</span> <span class="n">cym</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;Materials&#39;</span><span class="p">,</span> <span class="n">db</span><span class="p">,</span> <span class="n">conds</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;NucId&#39;</span><span class="p">,</span> <span class="s1">&#39;==&#39;</span><span class="p">,</span> <span class="mi">922350000</span><span class="p">)])</span>
+</pre></div>
+</div>
+<p>Multiple filters can be applied at once. These filters are <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>-ed with each other.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filtered_frame</span> <span class="o">=</span> <span class="n">cym</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;AgentEntry&#39;</span><span class="p">,</span> <span class="n">db</span><span class="p">,</span> <span class="n">conds</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;Kind&#39;</span><span class="p">,</span> <span class="s1">&#39;==&#39;</span><span class="p">,</span><span class="s1">&#39;Facility&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;AgentId&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">)])</span>
+</pre></div>
+</div>
+<p>However, if you are evaluating many metrics, this method will be
+computationally inefficient. Calling <code class="docutils literal notranslate"><span class="pre">eval()</span></code> creates a new <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code>
+object each time a metric is evaluated. Since each <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> object reads
+the database individually, this means <code class="docutils literal notranslate"><span class="pre">eval()</span></code> reads the database each time
+it is called. Alternatively, there is a way to ensure the database only gets
+read once by accessing the <code class="docutils literal notranslate"><span class="pre">eval()</span></code> functionality directly within an
+<code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> object.  You can create an <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> instance with a single
+database and call <code class="docutils literal notranslate"><span class="pre">eval()</span></code> from within it. For example,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">evaler</span> <span class="o">=</span> <span class="n">cym</span><span class="o">.</span><span class="n">Evaluator</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+<span class="n">frame1</span> <span class="o">=</span> <span class="n">evaler</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;Materials&#39;</span><span class="p">)</span>
+<span class="n">frame2</span> <span class="o">=</span> <span class="n">evaler</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;AgentEntry&#39;</span><span class="p">,</span> <span class="n">conds</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;Kind&#39;</span><span class="p">,</span> <span class="s1">&#39;==&#39;</span><span class="p">,</span> <span class="s1">&#39;Facility&#39;</span><span class="p">)])</span>
+</pre></div>
+</div>
+<p>And you can run with the data from there! We recommend learning <a class="reference external" href="http://pandas.pydata.org/">pandas</a> to get the most out of your analysis from this
+point.</p>
+</section>
+<section id="executing-code">
+<h2>Executing Code<a class="headerlink" href="#executing-code" title="Link to this heading">¶</a></h2>
+<p>Sometimes, you just have a code snippet as a string like you might run from the
+command line, even though you are in Python. The <code class="docutils literal notranslate"><span class="pre">exec_code()</span></code> function gives
+you easy access to the exact same capabilities that you have on the command line.
+This function accepts the code string and the database:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cym</span><span class="o">.</span><span class="n">exec_code</span><span class="p">(</span><span class="s2">&quot;print(AgentEntry[:])&quot;</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For more exciting capabilities, please explore the <a class="reference external" href="https://github.com/cyclus/cymetric">examples directory</a> in the cymetric repository or ask us
+questions on the <span style="font-variant:small-caps;">Cyclus</span> users mailing list.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Python Interface</a><ul>
+<li><a class="reference internal" href="#evaluating-metrics">Evaluating Metrics</a></li>
+<li><a class="reference internal" href="#executing-code">Executing Code</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="tutorial_cli.html"
+                          title="Previous page">&larr; Cymetric Command Line Tutorial</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="tutorial_metrics.html"
+                          title="Next page">&rarr; Writing Your Own Metrics Tutorial</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_metrics.html" title="Writing Your Own Metrics Tutorial"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_cli.html" title="Cymetric Command Line Tutorial"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Cymetric</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Python Interface</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

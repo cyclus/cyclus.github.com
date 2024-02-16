@@ -1,0 +1,91 @@
+.. _1.3:
+
+==================================
+Cyclus 1.3 Release Notes
+==================================
+:Author: Cyclus Developers
+:Website: http://fuelcycle.org/
+:Contact: https://groups.google.com/forum/#!forum/cyclus-dev
+
+The Cyclus core team is excited to announce the latest stable version of the
+cyclus ecosystem!
+
+Major features
+==============
+
+
+`Cyclus <https://github.com/cyclus/cyclus>`_
+---------------------------------------------
+
+- ~3x speedups for recipe-based simulations
+- Basic inventory policies added
+- Support for recursive containers in archetypes
+- Many new recursive containers added to sqlite backend
+- Regression tests run on macs!
+- A MockSim interface for full simulation testing without input files
+- Added customizeable TimeSeries output for recording archetype-specific time
+  series
+- Added json-to-xml conversion capability
+- Added new ResMap container
+- Decay added (via Pyne)! An input file flag can be set to
+   - never: never decay
+   - manual: archetypes must call the decay API manually
+   - lazy: materials are decayed as needed when their Material::comp function is
+     called
+
+`Cycamore <https://github.com/cyclus/cycamore>`_
+--------------------------------------------------
+
+- New facility archetypes added
+   - Reactor
+   - FuelFab
+   - Separations
+   - Enrichment
+- Other facility archetypes removed
+   - BatchReactor
+   - EnrichmentFacility
+- Some experimental archetype APIs updated
+   - GrowthRegion
+- Much better end-of-life fuel handling in reactors
+- Regression tests run on macs!
+
+`Cymetric <https://github.com/cyclus/cymetric>`_
+--------------------------------------------------
+
+- First release for a new analysis and visualization tool for Cyclus simulation output
+- Command line tool and Python interface
+- Calculates metrics of user interest from a Cyclus database
+    - Writes metrics back to database
+    - Simple for users to extend the suite of metrics
+        - Designed so calculations can be based on dependencies (other metrics or root metrics)
+        - Uses pandas data types
+    - Uses PyNE for nuclear data
+- Visualization available from the command line via matplotlib
+
+Summary
+=======
+
+Since v1.2.0,
+
+* Cyclus: 409 commits resulting in  113 files changed, 8466 insertions(+), 1760 deletions(-)
+
+* Cycamore: 353 commits resulting in  79 files changed, 7466 insertions(+), 6830 deletions(-)
+
+* Cymetric: 366 commits resulting in  49 files changed, 5978 insertions(+), 266 deletions(-)
+
+Contributors
+============
+The following people contributed to this release of Cyclus.  A "*" by their
+name indicates a first time contributor.  Names follow alphabetically, 
+
+* Robert Carlsen
+* Denia Djokic*
+* Robert Flanagan
+* Matthew Gidden
+* Katy Huff
+* Meghan McGarry*
+* Arrielle Opotowsky
+* Olzhas Rakhimov
+* Anthony Scopatz
+* Paul Wilson
+* John Xia

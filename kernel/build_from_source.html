@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Getting and Building Cyclus From Source &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="cycpp" href="cycpp.html" />
+    <link rel="prev" title="Cyclus Kernel Developer Guide" href="index.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cycpp.html" title="cycpp"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="Cyclus Kernel Developer Guide"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Kernel Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Getting and Building <span style="font-variant:small-caps;">Cyclus</span> From Source</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="getting-and-building-cyclus-from-source">
+<h1>Getting and Building <span style="font-variant:small-caps;">Cyclus</span> From Source<a class="headerlink" href="#getting-and-building-cyclus-from-source" title="Link to this heading">¶</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In the cyclus ecosystem, only versions whose micro or patch number
+(the third and last number) are zero  are considered <strong>stable</strong>.
+Other releases where the version number is greater than zero are
+bugfix and maintainence releases and are considered <strong>unstable</strong>.
+For example, a release number of <code class="docutils literal notranslate"><span class="pre">1.42.0</span></code> is stable, while
+<code class="docutils literal notranslate"><span class="pre">1.42.3</span></code> is unstable.</p>
+</div>
+<section id="the-cyclus-library-suite">
+<h2>The <span style="font-variant:small-caps;">Cyclus</span> Library Suite<a class="headerlink" href="#the-cyclus-library-suite" title="Link to this heading">¶</a></h2>
+<p>The <span style="font-variant:small-caps;">Cyclus</span> ecosystem is composed of two projects:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span style="font-variant:small-caps;">Cyclus</span> Core, comprising core kernel functionality</p></li>
+<li><p>Cycamore, a physics and other domain module repository</p></li>
+</ul>
+</div></blockquote>
+<p>Installation information is provided in the README of each repository, and the
+core must be installed before Cycamore. Accordingly, installation steps are as
+follows:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Visit the <a class="reference external" href="https://github.com/cyclus/cyclus">Cyclus repo</a> and follow the
+installation instructions on the main page (README.rst)</p></li>
+<li><p>Visit the <a class="reference external" href="https://github.com/cyclus/cycamore">Cycamore readme</a> and
+follow the installation instructions on the main page (README.rst)</p></li>
+</ol>
+</div></blockquote>
+<section id="supported-systems">
+<h3>Supported Systems<a class="headerlink" href="#supported-systems" title="Link to this heading">¶</a></h3>
+<p>Currently, two specific systems are supported:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Linux 64-bit (Ubuntu 12+ recommended)</p></li>
+<li><p>MacOSX 8 64-bit</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="unfamiliar-with-git-and-github">
+<h2>Unfamiliar with git and Github?<a class="headerlink" href="#unfamiliar-with-git-and-github" title="Link to this heading">¶</a></h2>
+<p>For the git uninitiated, one must perform the following steps to acquire <span style="font-variant:small-caps;">Cyclus</span>:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><a class="reference external" href="http://help.github.com/linux-set-up-git/">Set Up git</a> shows one how to set up SSH keys and git user info</p></li>
+<li><p>Fork the <span style="font-variant:small-caps;">Cyclus</span> repository, as shown in <a class="reference external" href="http://help.github.com/fork-a-repo/">Fork A Repo</a></p></li>
+</ol>
+</div></blockquote>
+<p>Note that each <span style="font-variant:small-caps;">Cyclus</span> repository has <strong>two</strong> branches:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>master – the latest stable release of the library</p></li>
+<li><p>develop – the latest working copy that passes all tests</p></li>
+</ul>
+</div></blockquote>
+<p>The above branches are synchronized with each other, and should be used in tandem
+(i.e., use master (<span style="font-variant:small-caps;">Cyclus</span>) with master (Cycamore) or develop with develop only).</p>
+<section id="help-with-git-and-github">
+<h3>Help with git and GitHub<a class="headerlink" href="#help-with-git-and-github" title="Link to this heading">¶</a></h3>
+<p>If you are unfamiliar with git, here are some resources:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="http://progit.org/book/">http://progit.org/book/</a> - this is a fantastic guide, from beginner to expert</p></li>
+<li><p><a class="reference external" href="http://book.git-scm.com/">http://book.git-scm.com/</a></p></li>
+<li><p><a class="reference external" href="http://gitimmersion.com/">http://gitimmersion.com/</a> - A very hands-on tutorial.</p></li>
+<li><p><a class="reference external" href="http://www-cs-students.stanford.edu/~blynn/gitmagic/">http://www-cs-students.stanford.edu/~blynn/gitmagic/</a></p></li>
+</ul>
+</div></blockquote>
+<p>If you are unfamiliar with GitHub, here are some resources:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="http://help.github.com">Github Help</a></p></li>
+<li><p>To have your changes integrated into the cyclus/cyclus project, you must
+submit a GitHub <em>Pull Request</em>.  Visit <a class="reference external" href="http://help.github.com/send-pull-requests/">Send pull requests</a> to learn more.</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="contact-us">
+<h2>Contact Us<a class="headerlink" href="#contact-us" title="Link to this heading">¶</a></h2>
+<p>If you have further comments or questions about the build process, please don’t
+hesitate to email or join the <span style="font-variant:small-caps;">Cyclus</span> users list, which will allow you to contact
+the community of users and developers of <span style="font-variant:small-caps;">Cyclus</span>.</p>
+<ul class="simple">
+<li><p>Email the Users’ list: <a class="reference external" href="mailto:cyclus-users&#37;&#52;&#48;groups&#46;google&#46;com">cyclus-users<span>&#64;</span>groups<span>&#46;</span>google<span>&#46;</span>com</a></p></li>
+<li><p>Join the Users’ list: <a class="reference external" href="https://groups.google.com/forum/?fromgroups#!forum/cyclus-users">https://groups.google.com/forum/?fromgroups#!forum/cyclus-users</a></p></li>
+</ul>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Getting and Building <span style="font-variant:small-caps;">Cyclus</span> From Source</a><ul>
+<li><a class="reference internal" href="#the-cyclus-library-suite">The <span style="font-variant:small-caps;">Cyclus</span> Library Suite</a><ul>
+<li><a class="reference internal" href="#supported-systems">Supported Systems</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#unfamiliar-with-git-and-github">Unfamiliar with git and Github?</a><ul>
+<li><a class="reference internal" href="#help-with-git-and-github">Help with git and GitHub</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#contact-us">Contact Us</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="index.html"
+                          title="Previous page">&larr; <span style="font-variant:small-caps;">Cyclus</span> Kernel Developer Guide</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="cycpp.html"
+                          title="Next page">&rarr; cycpp</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cycpp.html" title="cycpp"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="Cyclus Kernel Developer Guide"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Kernel Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Getting and Building <span style="font-variant:small-caps;">Cyclus</span> From Source</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

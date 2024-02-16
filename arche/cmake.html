@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Building Modules with CMake &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Using the Cyclus Preprocessor" href="cycpp.html" />
+    <link rel="prev" title="Making Input Files" href="tutorial_py/input_files.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cycpp.html" title="Using the Cyclus Preprocessor"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_py/input_files.html" title="Making Input Files"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Building Modules with CMake</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="building-modules-with-cmake">
+<span id="cmake-build"></span><h1>Building Modules with CMake<a class="headerlink" href="#building-modules-with-cmake" title="Link to this heading">¶</a></h1>
+<p>If you haven’t follow the initial example in <a class="reference internal" href="hello_world_cpp.html#hello-world-cpp"><span class="std std-ref">Hello, Cyclus! [C++]</span></a>, you should get
+the <a class="reference external" href="https://github.com/cyclus/cycstub">Cycstub repo</a> by either <a class="reference external" href="https://github.com/cyclus/cycstub.git">cloning the
+repository</a> or by <a class="reference external" href="https://github.com/cyclus/cycstub/archive/develop.zip">downloading the zip
+file</a> (see
+<a class="reference internal" href="hello_world_cpp.html#hello-world-cpp"><span class="std std-ref">Hello, Cyclus! [C++]</span></a> for further instructions).</p>
+<p>The Cycstub repo provides a number of critical tools for building your own
+module:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">install.py</span></code>: a basic installation script</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span></code>: a directory of <a class="reference external" href="http://www.cmake.org/">CMake</a> modules
+(e.g. finding <span style="font-variant:small-caps;">Cyclus</span> and its dependencies on your system)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake/UseCyclus.cmake</span></code>: a CMake module that defines important <span style="font-variant:small-caps;">Cyclus</span>
+module build/install macros</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>: a generic CMake driver that will work for most build
+configurations out of the box</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src/CMakeLists.txt</span></code>: a starter file that determines how the module build is
+executed (utilizing the macros in <code class="docutils literal notranslate"><span class="pre">UseCyclus.cmake</span></code>)</p></li>
+</ul>
+<p>The remaining portion of this page covers the various features provided in
+<code class="docutils literal notranslate"><span class="pre">UseCyclus.cmake</span></code> and their use in the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory’s <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>
+file.</p>
+<section id="using-usecyclus">
+<h2>Using UseCyclus<a class="headerlink" href="#using-usecyclus" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">UseCyclus.cmake</span></code> defines the following macros for building and installing
+<span style="font-variant:small-caps;">Cyclus</span> modules:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">USE_CYCLUS</span></code>: informs the build system of the source files related to an
+<a class="reference internal" href="../basics/glossary.html#term-archetype"><span class="xref std std-term">archetype</span></a> implementation and its tests, if tests exist</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INSTALL_CYCLUS_MODULE</span></code>: install a collection of <a class="reference internal" href="../basics/glossary.html#term-archetype"><span class="xref std std-term">archetypes</span></a> that all belong to the same <a class="reference internal" href="../basics/glossary.html#term-module"><span class="xref std std-term">module</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INSTALL_CYCLUS_STANDALONE</span></code>: install an <a class="reference internal" href="../basics/glossary.html#term-archetype"><span class="xref std std-term">archetype</span></a> as a standalone
+module</p></li>
+</ul>
+<section id="usecyclus-vocabulary">
+<h3>UseCyclus Vocabulary<a class="headerlink" href="#usecyclus-vocabulary" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">UseCyclus.cmake</span></code> macro suite uses the following terms:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">lib_root</span></code>: The root name for the to-be-installed library (e.g., <code class="docutils literal notranslate"><span class="pre">MyAgent</span></code>
+for a standalone install or <code class="docutils literal notranslate"><span class="pre">my_module</span></code> for a module install).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src_root</span></code>: The common prefix for all source files required to implement and
+test an <a class="reference internal" href="../basics/glossary.html#term-archetype"><span class="xref std std-term">archetypes</span></a>. For example if your <code class="docutils literal notranslate"><span class="pre">src_root</span></code> is
+<code class="docutils literal notranslate"><span class="pre">my_agent</span></code>, the macro suite will be aware of the following files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">my_agent.cc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">my_agent.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">my_agent_tests.cc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">my_agent_tests.h</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lib_dir</span></code>: The install directory relative the <span style="font-variant:small-caps;">Cyclus</span> library installation
+directory. For example, if <code class="docutils literal notranslate"><span class="pre">lib_dir</span></code> is blank (i.e. “”), the module will be
+installed in <code class="docutils literal notranslate"><span class="pre">$CYCLUS_INSTALL_PREFIX/lib/cyclus/</span></code>; if <code class="docutils literal notranslate"><span class="pre">lib_dir</span></code> is
+something else, e.g. <code class="docutils literal notranslate"><span class="pre">my_module_dir</span></code>, the module will be installed in
+<code class="docutils literal notranslate"><span class="pre">$CYCLUS_INSTALL_PREFIX/lib/cyclus/my_module_dir/</span></code>. The value of
+<code class="docutils literal notranslate"><span class="pre">$CYCLUS_INSTALL_PREFIX</span></code> can be queried by</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cyclus<span class="w"> </span>--install-path
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_driver</span></code>: (optional) A custom <a class="reference external" href="https://code.google.com/p/googletest/">GTest</a> test driver. This is an advanced
+feature which will not be needed by most archetype developers.</p></li>
+</ul>
+</section>
+<section id="usecyclus-macro-arguments">
+<h3>UseCyclus Macro Arguments<a class="headerlink" href="#usecyclus-macro-arguments" title="Link to this heading">¶</a></h3>
+<p>Each <code class="docutils literal notranslate"><span class="pre">UseCyclus.cmake</span></code> macro has arguments included in the above vocabulary
+listing:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">USE_CYCLUS</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">USE_CYCLUS</span><span class="p">(</span><span class="n">lib_root</span> <span class="n">src_root</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INSTALL_CYCLUS_STANDALONE</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INSTALL_CYCLUS_STANDALONE</span><span class="p">(</span><span class="n">lib_root</span> <span class="n">src_root</span> <span class="n">lib_dir</span> <span class="p">[</span><span class="n">test_driver</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INSTALL_CYCLUS_MODULE</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INSTALL_CYCLUS_MODULE</span><span class="p">(</span><span class="n">lib_root</span> <span class="n">lib_dir</span> <span class="p">[</span><span class="n">test_driver</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<section id="standalone-installation">
+<h3>Standalone Installation<a class="headerlink" href="#standalone-installation" title="Link to this heading">¶</a></h3>
+<p>Through the <span class="xref std std-ref">hello_world</span> example, three standalone modules are installed
+using a <code class="docutils literal notranslate"><span class="pre">src/CMakeLists.txt</span></code> file that looks something like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INSTALL_CYCLUS_STANDALONE</span><span class="p">(</span><span class="s2">&quot;TutorialFacility&quot;</span> <span class="s2">&quot;tutorial_facility&quot;</span> <span class="s2">&quot;tutorial&quot;</span><span class="p">)</span>
+<span class="n">INSTALL_CYCLUS_STANDALONE</span><span class="p">(</span><span class="s2">&quot;TutorialInst&quot;</span> <span class="s2">&quot;tutorial_inst&quot;</span> <span class="s2">&quot;tutorial&quot;</span><span class="p">)</span>
+<span class="n">INSTALL_CYCLUS_STANDALONE</span><span class="p">(</span><span class="s2">&quot;TutorialRegion&quot;</span> <span class="s2">&quot;tutorial_region&quot;</span> <span class="s2">&quot;tutorial&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This setup will install three shared object libraries in
+<code class="docutils literal notranslate"><span class="pre">$CYCLUS_INSTALL_PREFIX/lib/cyclus/tutorial</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">libTutorialFacility.so</span></code> (*nix) or <code class="docutils literal notranslate"><span class="pre">libTutorialFacility.dylib</span></code> (mac)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libTutorialInstitution.so</span></code> (*nix) <code class="docutils literal notranslate"><span class="pre">libTutorialInstitution.dylib</span></code> (mac)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libTutorialRegion.so</span></code> (*nix) <code class="docutils literal notranslate"><span class="pre">libTutorialRegion.dylib</span></code> (mac)</p></li>
+</ul>
+<p>and three unit test executables in <code class="docutils literal notranslate"><span class="pre">$CYCLUS_INSTALL_PREFIX/bin</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TutorialFacility_unit_tests</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TutorialInstitution_unit_tests</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TutorialRegion_unit_tests</span></code></p></li>
+</ul>
+</section>
+<section id="module-installation">
+<h3>Module Installation<a class="headerlink" href="#module-installation" title="Link to this heading">¶</a></h3>
+<p>A valid criticism of the hello world standalone approach is that a lot of
+libraries and executables are generated for three modules that are grouped
+together. We can do better!</p>
+<p>What if we wanted to install one module named <code class="docutils literal notranslate"><span class="pre">helloworld</span></code>? Specifically, we
+would want:</p>
+<ul class="simple">
+<li><p>a single shared object library in <code class="docutils literal notranslate"><span class="pre">$CYCLUS_INSTALL_PREFIX/lib/cyclus/tutorial</span></code>
+named <code class="docutils literal notranslate"><span class="pre">libhelloworld.so</span></code> (*nix) or <code class="docutils literal notranslate"><span class="pre">libhelloworld.dylib</span></code> (mac)</p></li>
+<li><p>a single unit test executable in <code class="docutils literal notranslate"><span class="pre">$CYCLUS_INSTALL_PREFIX/bin</span></code> named
+<code class="docutils literal notranslate"><span class="pre">helloworld_unit_tests</span></code></p></li>
+</ul>
+<p>where both incorporate the <code class="docutils literal notranslate"><span class="pre">TutorialFacility</span></code>, <code class="docutils literal notranslate"><span class="pre">TutorialInstitution</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">TutorialRegion</span></code> <a class="reference internal" href="../basics/glossary.html#term-archetype"><span class="xref std std-term">archetypes</span></a>.</p>
+<p>Such behavior is pretty simple to achieve. We first must call <code class="docutils literal notranslate"><span class="pre">UseCyclus</span></code> on
+each of our source file roots to inform the build system of their presence and
+follow up with a call to <code class="docutils literal notranslate"><span class="pre">INSTALL_CYCLUS_MODULE</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">USE_CYCLUS</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span> <span class="s2">&quot;tutorial_facility&quot;</span><span class="p">)</span>
+<span class="n">USE_CYCLUS</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span> <span class="s2">&quot;tutorial_inst&quot;</span><span class="p">)</span>
+<span class="n">USE_CYCLUS</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span> <span class="s2">&quot;tutorial_region&quot;</span><span class="p">)</span>
+<span class="n">INSTALL_CYCLUS_MODULE</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span> <span class="s2">&quot;tutorial&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Building Modules with CMake</a><ul>
+<li><a class="reference internal" href="#using-usecyclus">Using UseCyclus</a><ul>
+<li><a class="reference internal" href="#usecyclus-vocabulary">UseCyclus Vocabulary</a></li>
+<li><a class="reference internal" href="#usecyclus-macro-arguments">UseCyclus Macro Arguments</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples">Examples</a><ul>
+<li><a class="reference internal" href="#standalone-installation">Standalone Installation</a></li>
+<li><a class="reference internal" href="#module-installation">Module Installation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="tutorial_py/input_files.html"
+                          title="Previous page">&larr; Making Input Files</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="cycpp.html"
+                          title="Next page">&rarr; Using the Cyclus Preprocessor</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cycpp.html" title="Using the Cyclus Preprocessor"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_py/input_files.html" title="Making Input Files"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Building Modules with CMake</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

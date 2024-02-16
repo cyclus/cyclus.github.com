@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The (Experimental) Cyclus Toolkit &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cyclus Kernel Developer Guide" href="../kernel/index.html" />
+    <link rel="prev" title="Radioactive Decay in Cyclus" href="decay.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../kernel/index.html" title="Cyclus Kernel Developer Guide"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="decay.html" title="Radioactive Decay in Cyclus"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The (Experimental) Cyclus Toolkit</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="the-experimental-cyclus-toolkit">
+<span id="toolkit"></span><h1>The (Experimental) Cyclus Toolkit<a class="headerlink" href="#the-experimental-cyclus-toolkit" title="Link to this heading">¶</a></h1>
+<p>Currently in an experimental state, the <span style="font-variant:small-caps;">Cyclus</span> toolkit aims to provide
+functionality relevant to a variety of <a class="reference internal" href="../basics/glossary.html#term-archetype"><span class="xref std std-term">archetypes</span></a> that do
+not belong strictly in the <a class="reference internal" href="../basics/glossary.html#term-cyclus-kernel"><span class="xref std std-term">cyclus kernel</span></a>.</p>
+<section id="resourcebuff">
+<h2>ResourceBuff<a class="headerlink" href="#resourcebuff" title="Link to this heading">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>ResourceBuff will soon be deprecated in favor of <code class="docutils literal notranslate"><span class="pre">ResBuf</span></code>.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::ResourceBuff</span></code> (C++) or <code class="docutils literal notranslate"><span class="pre">cyclus.typesystem.ResourceBuff</span></code> (Python)
+class provides provides a canonical
+methodology for dealing with collections of <code class="docutils literal notranslate"><span class="pre">Resources</span></code>.
+<a class="reference internal" href="../basics/glossary.html#term-archetype"><span class="xref std std-term">Archetypes</span></a> in both <span style="font-variant:small-caps;">Cyclus</span> and Cycamore make use of this
+class.  <code class="docutils literal notranslate"><span class="pre">ResourceBuffs</span></code> are usually used as member variables of
+archetypes.  The <span style="font-variant:small-caps;">Cyclus</span> preprocessor (C++) or <span style="font-variant:small-caps;">Cyclus</span> agents (Python) have special
+handling for <code class="docutils literal notranslate"><span class="pre">ResourceBuff</span></code>
+as it can generate all needed code for proper persistence and intiialization
+of the buffer. For this to work, you must annotate the buffer member variable
+with a Cyclus pre-processor <a class="reference internal" href="cycpp.html#pragma-cyclus-var"><span class="std std-ref">pragma</span></a> (C++) or have a
+special <code class="docutils literal notranslate"><span class="pre">ResourceBuffInv</span></code> class attribute (Python) in one of the
+following ways:</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Option 1: minimum required annotation</span>
+<span class="cp">#pragma cyclus var {}</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">ResourceBuff</span><span class="w"> </span><span class="n">mybuf</span><span class="p">;</span>
+
+<span class="c1">// Option 2: you can set a specify buffer capacity</span>
+<span class="cp">#pragma cyclus var {&#39;capacity&#39;: 245.6}</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">ResourceBuff</span><span class="w"> </span><span class="n">mybuf</span><span class="p">;</span>
+
+<span class="c1">// Option 3: you can reference another annotated member variable&#39;s value</span>
+<span class="c1">// as the capacity</span>
+<span class="cp">#pragma cyclus var {}</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">buf_cap</span><span class="p">;</span>
+<span class="cp">#pragma cyclus var {&#39;capacity&#39;: &#39;buf_cap&#39;}</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">ResourceBuff</span><span class="w"> </span><span class="n">mybuf</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cyclus.agents</span> <span class="kn">import</span> <span class="n">Facility</span>
+<span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
+
+<span class="k">class</span> <span class="nc">MyFacility</span><span class="p">(</span><span class="n">Facility</span><span class="p">):</span>
+    <span class="c1"># Option 1: minimum required class attribute</span>
+    <span class="n">mybuf</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">ResourceBuffInv</span><span class="p">()</span>
+
+    <span class="c1"># Option 2: you can set a specify buffer capacity</span>
+    <span class="n">mybuf</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">ResourceBuffInv</span><span class="p">(</span><span class="n">capacity</span><span class="o">=</span><span class="mf">245.6</span><span class="p">)</span>
+
+    <span class="c1"># Option 3: you can reference another annotated member variable&#39;s value</span>
+    <span class="c1"># as the capacity</span>
+    <span class="n">buf_cap</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">Double</span><span class="p">()</span>
+    <span class="n">mybuf</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">ResourceBuffInv</span><span class="p">(</span><span class="n">capacity</span><span class="o">=</span><span class="s1">&#39;buf_cap&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can read the <a class="reference external" href="http://fuelcycle.org/cyclus/api/classcyclus_1_1toolkit_1_1ResourceBuff.html">ResourceBuff API documentation</a> for
+more details on how to use the buffer.</p>
+</section>
+<section id="resbuf">
+<h2>ResBuf<a class="headerlink" href="#resbuf" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::ResBuf</span></code> (C++) or <code class="docutils literal notranslate"><span class="pre">cyclus.typesystem.ResBuf</span></code> (Python) class
+provides provides a canonical
+methodology for dealing with collections of Resources.  <code class="docutils literal notranslate"><span class="pre">ResBufs</span></code>
+are usually used as member variables of archetypes.  The Cyclus preprocessor
+has special handling for <code class="docutils literal notranslate"><span class="pre">ResBuf</span></code> as it can generate all needed code
+for proper persistence and intiialization of the buffer.  For this to work,
+you must annotate the buffer member variable with a Cyclus pre-processor
+<a class="reference internal" href="cycpp.html#pragma-cyclus-var"><span class="std std-ref">pragma</span></a> (C++) or set a class attribute (Python)
+in one of the following ways:</p>
+<p><strong>C++:</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Option 1: minimum required annotation</span>
+<span class="cp">#pragma cyclus var {}</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">ResBuf</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mybuf</span><span class="p">;</span>
+
+<span class="c1">// Option 2: you can set a specify buffer capacity</span>
+<span class="cp">#pragma cyclus var {&#39;capacity&#39;: 245.6}</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">ResBuf</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mybuf</span><span class="p">;</span>
+
+<span class="c1">// Option 3: you can reference another annotated member variable&#39;s value</span>
+<span class="c1">// as the capacity</span>
+<span class="cp">#pragma cyclus var {}</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">buf_cap</span><span class="p">;</span>
+<span class="cp">#pragma cyclus var {&#39;capacity&#39;: &#39;buf_cap&#39;}</span>
+<span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">ResBuf</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mybuf</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cyclus.agents</span> <span class="kn">import</span> <span class="n">Facility</span>
+<span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
+
+<span class="k">class</span> <span class="nc">MyFacility</span><span class="p">(</span><span class="n">Facility</span><span class="p">):</span>
+    <span class="c1"># Option 1: minimum required annotation</span>
+    <span class="n">mybuf</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">ResBufMaterialInv</span><span class="p">()</span>
+
+    <span class="c1"># Option 2: you can set a specify buffer capacity</span>
+    <span class="n">mybuf</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">ResBufMaterialInv</span><span class="p">(</span><span class="n">capacity</span><span class="o">=</span><span class="mf">245.6</span><span class="p">)</span>
+
+    <span class="c1"># Option 3: you can reference another annotated member variable&#39;s value</span>
+    <span class="c1"># as the capacity</span>
+    <span class="n">buf_cap</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">Double</span><span class="p">()</span>
+    <span class="n">mybuf</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">ResBufMaterialInv</span><span class="p">(</span><span class="n">capacity</span><span class="o">=</span><span class="s1">&#39;buf_cap&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can read the <a class="reference external" href="http://fuelcycle.org/cyclus/api/classcyclus_1_1toolkit_1_1ResBuf.html">ResBuf API documentation</a> for
+more details on how to use the buffer.</p>
+</section>
+<section id="matquery-c">
+<h2>MatQuery [C++]<a class="headerlink" href="#matquery-c" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::MatQuery</span></code> class provides some easy-to-use functions that
+interrogate the <code class="docutils literal notranslate"><span class="pre">cyclus::Material</span></code> object. For example, one can query the mass
+or number of moles of a given nuclide.</p>
+</section>
+<section id="enrichment-c">
+<h2>Enrichment [C++]<a class="headerlink" href="#enrichment-c" title="Link to this heading">¶</a></h2>
+<p>A number of functions are provided in <code class="docutils literal notranslate"><span class="pre">toolkit/enrichment.h</span></code> that assist in
+enrichment-related calculations. Some highlights include a representation of
+uranium assays in <code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::Assays</span></code>, as well as functions to calculate
+feed, tails, and SWU quantity requirements.</p>
+</section>
+<section id="commodity-recipe-context-c">
+<h2>Commodity Recipe Context [C++]<a class="headerlink" href="#commodity-recipe-context-c" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::CommodityRecipeContext</span></code> class provides a mapping between
+commodities and recipes that can be updated as a simulation progresses.</p>
+</section>
+<section id="symbolic-functions-c">
+<h2>Symbolic Functions [C++]<a class="headerlink" href="#symbolic-functions-c" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::SymbolicFunction</span></code> class and its derivatives provide an
+object-oriented hierarchy to represent symbolic functions. Factory methods are
+provided by the <code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::SymbFunctionFactory</span></code> class.</p>
+</section>
+<section id="agent-managed-classes-c">
+<h2>Agent Managed Classes [C++]<a class="headerlink" href="#agent-managed-classes-c" title="Link to this heading">¶</a></h2>
+<p>There are a number of interfaces provided in the <span style="font-variant:small-caps;">Cyclus</span> toolkit that can be
+used as either as <a class="reference external" href="http://en.wikipedia.org/wiki/Mixin">mixins</a> or as
+composable, agent-managed state variables:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::Builder</span></code>: an interface for adding information about agents
+that can be built by the manager</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::BuildingManager</span></code>: an interface for making build decisions
+based on supply, demand, and agents that can be built</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::CommodityProducer</span></code>: an interface for adding information
+about commodities that can be produced by the manager</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::CommodityProducerManager</span></code>: an interface that allows an
+agent to query a collection of <code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::CommodityProducers</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::SupplyDemandManager</span></code>: an interface for querying the supply
+and demand on commodities</p></li>
+</ul>
+</section>
+<section id="geographic-informasion-system-gis-class-c">
+<h2>Geographic Informasion System (GIS) Class [C++]<a class="headerlink" href="#geographic-informasion-system-gis-class-c" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>The <code class="docutils literal notranslate"><span class="pre">cyclus::toolkit::GIS</span></code> class provide an option to add geographic coordinates
+of its friend classes. Haversine distance calculations between two facilities or
+agents with GIS coordinates can be performed as well.</p>
+</div></blockquote>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">The (Experimental) Cyclus Toolkit</a><ul>
+<li><a class="reference internal" href="#resourcebuff">ResourceBuff</a></li>
+<li><a class="reference internal" href="#resbuf">ResBuf</a></li>
+<li><a class="reference internal" href="#matquery-c">MatQuery [C++]</a></li>
+<li><a class="reference internal" href="#enrichment-c">Enrichment [C++]</a></li>
+<li><a class="reference internal" href="#commodity-recipe-context-c">Commodity Recipe Context [C++]</a></li>
+<li><a class="reference internal" href="#symbolic-functions-c">Symbolic Functions [C++]</a></li>
+<li><a class="reference internal" href="#agent-managed-classes-c">Agent Managed Classes [C++]</a></li>
+<li><a class="reference internal" href="#geographic-informasion-system-gis-class-c">Geographic Informasion System (GIS) Class [C++]</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="decay.html"
+                          title="Previous page">&larr; Radioactive Decay in <span style="font-variant:small-caps;">Cyclus</span></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="../kernel/index.html"
+                          title="Next page">&rarr; <span style="font-variant:small-caps;">Cyclus</span> Kernel Developer Guide</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../kernel/index.html" title="Cyclus Kernel Developer Guide"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="decay.html" title="Radioactive Decay in Cyclus"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Archetype Developer Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The (Experimental) Cyclus Toolkit</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

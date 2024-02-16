@@ -1,0 +1,378 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CEP 26 - Generalize the DRE to Optimize Multiple Metrics &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CEP 27 - Toolkit Capabilities Injection into an Archetype" href="cep27.html" />
+    <link rel="prev" title="CEP 25 - Preference Adjustment Process" href="cep25.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep27.html" title="CEP 27 - Toolkit Capabilities Injection into an Archetype"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep25.html" title="CEP 25 - Preference Adjustment Process"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="cep0.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 26 - Generalize the DRE to Optimize Multiple Metrics</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="cep-26-generalize-the-dre-to-optimize-multiple-metrics">
+<h1>CEP 26 - Generalize the DRE to Optimize Multiple Metrics<a class="headerlink" href="#cep-26-generalize-the-dre-to-optimize-multiple-metrics" title="Link to this heading">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">CEP<span class="colon">:</span></dt>
+<dd class="field-odd"><p>26</p>
+</dd>
+<dt class="field-even">Title<span class="colon">:</span></dt>
+<dd class="field-even"><p>Generalize the DRE to Optimize Multiple Metrics</p>
+</dd>
+<dt class="field-odd">Last-Modified<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2016-10-19</p>
+</dd>
+<dt class="field-even">Author<span class="colon">:</span></dt>
+<dd class="field-even"><p>Robert Flanagan &amp; Anthony Scopatz</p>
+</dd>
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Draft</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Standards Track</p>
+</dd>
+<dt class="field-odd">Created<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2016-10-19</p>
+</dd>
+</dl>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading">¶</a></h2>
+<p>This CEP proposes to enable broader user customization of the DRE by opening
+up the Cyclus resource exchange interface to many metrics of interest. The DRE will
+no longer solely
+attempt to minimize quantity divided by preference, but rather be capable of
+minimizng or maximizing many metrics jointly. Different DRE solvers may
+choose which metrics to include. Along with this new interface will come a
+new implementation of the Greedy solver that makes use of all metrics.</p>
+</section>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading">¶</a></h2>
+<p>There are several fundamental issues with preferences as an optimization variable:</p>
+<ol class="arabic simple">
+<li><p>Global optimization of Request-Bid arcs is not possible because the meaning and
+scale of preferences are independent between requesters.</p></li>
+<li><p>There is no standard conversion from preference to cost, only the convention that
+cost = quantity / preference.</p></li>
+<li><p>The limits of preference are <span class="math notranslate nohighlight">\((0, \infty)\)</span>, which implies that there is
+no possible way to reject a bid once it has been made and there is no way to
+represent negative costs (subsidies).</p></li>
+<li><p>The preference adjustment phase cannot guarantee validity of adjustments because
+there is not a uniform preference scaling between requesters.</p></li>
+<li><p>Preferences do not support a consistent way for other metrics to be resolved into
+request preferences. Thus to-date, other metrics have been avoided and discouraged.</p></li>
+</ol>
+<p>The failure of preferences as an optimization variable can be shown with the following
+simple system. Consider an exchange graph with two requesters and one bidder for a single
+commodity. The requesters both have infinite capacity, while the bidder may only offer
+a constrained quantity. The bidder may trade 2 units of qualitatively unique resources
+(of the same commodity, e.g. UOX and MOX). Requester 1 has an equal preference (say 5)
+for both resources, even though they are qualitatively different. Requester 2, on the
+other hand, has a high preference (say 15) for one resource and a low preference (say 1)
+for the other resource. Currently in Cyclus, these preferences would be assigned during
+the preference adjustment phase.</p>
+<p>The DRE, and the greedy solver in particular, would give both units of the resource to
+Requester 2. This is because the greedy solver sorts by requester, giving precedence to the
+requester with the highest average preference.  Requester 1’s average preference is 5
+and Requester 2’s average preference is 8.  Since, both requesters have infinite (or
+greater than or equal to 2 units) of capacity, all bids go to Requester 2.</p>
+<p>This situation remains true even as the low preference of Requester 2 tends towards zero
+(i.e. 1e-100). There is no way for Requester 2 to reject a bid and thus Requester 1 will
+never receive a resource. This can be seen in Figure 1 below.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/cep-0026-1.png"><img alt="../_images/cep-0026-1.png" src="../_images/cep-0026-1.png" style="width: 673.0px; height: 184.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 1: Simple transaction with weighted preferences.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The above situation can arise in real world fuel cycle scenarios. One example is the
+case of partitioning used fuel storage based on decay heat into wet and dry storage.
+A used fuel commodity may have instances that are either high or low heat, and storage
+requesters must be able to reject material whose decay heats are above its thermal limit.
+An additional use case is a system where a reactor may choose to be agnostic to UOX or MOX
+in their core while other reactors in the system reject MOX in favor of a strong preference
+for UOX. Cyclus would currently give MOX to the reactor that effectively rejected it anyway,
+leaving the agnostic reactor unfueled.</p>
+<p>As a concept, the current formulation of preferences seems poorly defined and therefore
+difficult to explain or intuit. As shown above, this can lead to incorrect and unanticipated
+results. From here, an attempt can either be made to patch the preference system with
+further constraints or it can be replaced with a more customizable, and thus more intuitive and
+directly relevant, concept.</p>
+<p>We propose a system that will allow the computation of many potential metrics, will sort
+all of the arcs by minimizing or maximizing each each metric in order of a user given
+precedence, and then will finally perform a single greedy solve on the sorted arcs.</p>
+<p>The set of standard available metrics will include the quantity, preference, and
+unit cost. The benefit of providing the unit costs is that they are directly
+and linearly comparable to one another. Moreover they more commonly used to make
+quantitative comparisons than preferences.
+Additionally, costs provide a mechanism for resolving
+request objectives (price limit or maximum cost) and bid objectives (offer price).
+If an offer price is less than or equal to the request price limit, the request-bid
+can be created.  Otherwise the request-bid arc will be rejected.</p>
+</section>
+<section id="specification-implementation">
+<h2>Specification &amp; Implementation<a class="headerlink" href="#specification-implementation" title="Link to this heading">¶</a></h2>
+<p>To accomplish the methodology proposed here will require changes to the API within
+the dynamic resource exchange and the cyclus core code. At a minimum,</p>
+<ol class="arabic simple">
+<li><p>Bids will need to be able to hold a unit cost. The API will need to support
+developers accessing and setting this cost.</p></li>
+<li><p>Update Requests to contain a max-unit-cost, as well as a preference.</p></li>
+<li><p>The current greedy solver will need to be updated or replaced to accomodate the
+change from preference to a multivariate solver.</p></li>
+<li><p>Updating all of the existing archetypes within the Cyclus core and Cycamore to
+support this change.</p></li>
+</ol>
+<p>The first change will be to add the ability for bids to hold a unit cost value. The
+implementation of this may be simple as it will mirror the implementation of the
+current preference attribute of requests. Going forward the request max cost will still be
+the default cost for a request-bid arc. However, this may also be accomplished in a
+more generic fashion by allowing arbitrary metrics, of which unit cost is only one.</p>
+<p>The addition of the unit cost on the request may also be simple.
+The majority of the
+work required will be updating all ressource exchange calls currently in use
+throughout the many archetypes and Cyclus core code.  Similarly, this could be
+extended to a framework for arbitrary metrics, of which unit cost is only one.</p>
+<p>Once Bids and Requests have their own unit costs, updating the default solver for
+Cyclus will be done to perform a global optimization of the entire trade system each
+time step. This can be done by collecting all of the possible Request-Bid arcs.
+These arcs will be constructed by determining if the bid in the arc has a
+unit cost associated with it. If this is the case that unit cost will be used
+for the pair. If there is no bid unit cost however, the max-unit-cost of the
+request will be used. Again, if a metric framework approach is taken, resolution will
+take place via a generic interface, of which cost is only one metric.</p>
+<p>Once the arcs have been created, the DRE solver can sort the value of all unit costs
+from smallest to largest, quantities from either lowest-to-highest (current behavior)
+or highest-to-lowest, and prefences from highest to lowest.
+This will therefore minimizing the total cost of the whole system, maximize or
+minimize flow, and maximize preference.</p>
+<p>As a motivating feature, these changes also increase the flexibility of the
+greedy solver interface. Namely, it will grant users the ability to specify
+the way the system is optimized. The above mechanism for primarily
+minimizing cost is only one method for global optimization. This proposal
+identifies three primary, orthoganal metrics that the greedy solver will jointly
+solve:</p>
+<ul class="simple">
+<li><p>unit cost (min)</p></li>
+<li><p>quantity (min)</p></li>
+<li><p>preference (max)</p></li>
+</ul>
+<p>Each of these can also be used in conjuction with each other or without the
+others. For example, if two
+request-bid arcs have the same unit cost, these two arcs can be sorted by mass or
+preference. It will also be possible to choose maximization and minimization for
+each of the discussed metrics (unit cost, quantity, preference).</p>
+<p>However, the above precedence need not be static. We propose that the user be allowed
+to set the ordering of these metrics in the input file.  Furthermore, they will
+also be allowed to modify the flag for whether to maximize or minimize each
+metric. Such a change would enable a much broader set of use cases to be simulated
+according to the users needs. It will also allow the exploration of a vareity
+of DRE effects based on precedence changes.
+This will be setup through the cyclus input file, but the default ordering will be
+<code class="docutils literal notranslate"><span class="pre">unit</span> <span class="pre">cost</span> <span class="pre">(min),</span> <span class="pre">quantity</span> <span class="pre">(min),</span> <span class="pre">preference</span> <span class="pre">(max)</span></code>.</p>
+<p>Furthermore, in a framework setting, additional metrics can be registered with the
+dynamic resource exchange and then used in the same way as the standard metrics
+above.</p>
+<p>This change represents a fundamental modification to the behavior of the cyclus
+simulator. As mentioned there will be several alterations to the cyclus core code.
+We will aimed to update all of these locations with the new code
+as well as documentation to help developers update their software and to support
+future developers using Cyclus.</p>
+</section>
+<section id="backwards-compatibility">
+<h2>Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Link to this heading">¶</a></h2>
+<p>It is our goal to ensure that the Cyclus core and the Cycamore archetypes will be
+updated to be in line with this CEP. Unfortunately any third party archetypes will
+need to be updated by those parties.</p>
+<p>It is our aim that this change functions as a staging point for a Cyclus 2.0 release.</p>
+<p>The current behaviour of the greedy solver will be recoverable by the user if they set
+the sorting metrics to be <code class="docutils literal notranslate"><span class="pre">average</span> <span class="pre">requester</span> <span class="pre">pref</span> <span class="pre">(max),</span> <span class="pre">quantity</span> <span class="pre">over</span> <span class="pre">preference</span> <span class="pre">(min)</span></code>.
+These two metrics will be added for backwards compatability.</p>
+</section>
+<section id="document-history">
+<h2>Document History<a class="headerlink" href="#document-history" title="Link to this heading">¶</a></h2>
+<p>This document is released under the CC-BY 4.0 license.</p>
+</section>
+<section id="references-and-footnotes">
+<h2>References and Footnotes<a class="headerlink" href="#references-and-footnotes" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">CEP 26 - Generalize the DRE to Optimize Multiple Metrics</a><ul>
+<li><a class="reference internal" href="#abstract">Abstract</a></li>
+<li><a class="reference internal" href="#motivation">Motivation</a></li>
+<li><a class="reference internal" href="#specification-implementation">Specification &amp; Implementation</a></li>
+<li><a class="reference internal" href="#backwards-compatibility">Backwards Compatibility</a></li>
+<li><a class="reference internal" href="#document-history">Document History</a></li>
+<li><a class="reference internal" href="#references-and-footnotes">References and Footnotes</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="cep25.html"
+                          title="Previous page">&larr; CEP 25 - Preference Adjustment Process</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="cep27.html"
+                          title="Next page">&rarr; CEP 27 - Toolkit Capabilities Injection into an Archetype</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep27.html" title="CEP 27 - Toolkit Capabilities Injection into an Archetype"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cep25.html" title="CEP 25 - Preference Adjustment Process"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="cep0.html" ><span style="font-variant:small-caps;">Cyclus</span> Enhancement Proposals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CEP 26 - Generalize the DRE to Optimize Multiple Metrics</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

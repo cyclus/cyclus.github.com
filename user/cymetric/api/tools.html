@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>cymetric.tools - Tools &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../../../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../../../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../../../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="cymetric.timeseries - Timeseries" href="timeseries.html" />
+    <link rel="prev" title="cymetric.main - Command Line Interface" href="main.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="timeseries.html" title="cymetric.timeseries - Timeseries"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="main.html" title="cymetric.main - Command Line Interface"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Cymetric</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Cymetric API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.tools</span></code> - Tools</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-cymetric.tools">
+<span id="cymetric-tools-tools"></span><span id="cym-tools"></span><h1><a class="reference internal" href="#module-cymetric.tools" title="cymetric.tools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.tools</span></code></a> - Tools<a class="headerlink" href="#module-cymetric.tools" title="Link to this heading">¶</a></h1>
+<p>General cymetric tools.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.tools.add_missing_time_step">
+<span class="sig-prename descclassname"><span class="pre">cymetric.tools.</span></span><span class="sig-name descname"><span class="pre">add_missing_time_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.add_missing_time_step" title="Link to this definition">¶</a></dt>
+<dd><p>Add the missing time step to a Panda Data Frame.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df</strong> : Pandas Data Frame</p>
+<p><strong>ref_time</strong> :  of the time step references (Coming from TimeStep metrics)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.tools.dbopen">
+<span class="sig-prename descclassname"><span class="pre">cymetric.tools.</span></span><span class="sig-name descname"><span class="pre">dbopen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.dbopen" title="Link to this definition">¶</a></dt>
+<dd><p>Opens a Cyclus database.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.tools.ensure_dt_bytes">
+<span class="sig-prename descclassname"><span class="pre">cymetric.tools.</span></span><span class="sig-name descname"><span class="pre">ensure_dt_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.ensure_dt_bytes" title="Link to this definition">¶</a></dt>
+<dd><p>Ensures that a structured numpy dtype is given in a Python 2 &amp; 3
+compatible way.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.tools.format_nucs">
+<span class="sig-prename descclassname"><span class="pre">cymetric.tools.</span></span><span class="sig-name descname"><span class="pre">format_nucs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nucs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.format_nucs" title="Link to this definition">¶</a></dt>
+<dd><p>format the nuclide  provided by the users into a standard format:
+ZZAASSSS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nucs</strong> :  of nuclides</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.tools.merge">
+<span class="sig-prename descclassname"><span class="pre">cymetric.tools.</span></span><span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_col</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.merge" title="Link to this definition">¶</a></dt>
+<dd><p>Merge some additionnal columns fram an additionnal Pandas Data Frame
+onother one and then remove the second base column (keeping SimID
+information).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df: Pandas Data Frame</strong></p>
+<p><strong>base_col:  of the base columns names</strong></p>
+<p><strong>add_df: Pandas Data Frame to add in the df one</strong></p>
+<p><strong>add_col: columns to be added</strong></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.tools.merge_and_fillna_col">
+<span class="sig-prename descclassname"><span class="pre">cymetric.tools.</span></span><span class="sig-name descname"><span class="pre">merge_and_fillna_col</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lcol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">how</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'inner'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.merge_and_fillna_col" title="Link to this definition">¶</a></dt>
+<dd><p>Merges two dataframes and fills the values of the left column
+with the values from the right column. A copy of left is returned.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>left</strong> : pd.DataFrame</p>
+<blockquote>
+<div><p>The left data frame</p>
+</div></blockquote>
+<p><strong>right</strong> : pd.DataFrame</p>
+<blockquote>
+<div><p>The right data frame</p>
+</div></blockquote>
+<p><strong>lcol</strong> : str</p>
+<blockquote>
+<div><p>The left column name</p>
+</div></blockquote>
+<p><strong>rcol</strong> : str</p>
+<blockquote>
+<div><p>The right column name</p>
+</div></blockquote>
+<p><strong>how</strong> : str, optional</p>
+<blockquote>
+<div><p>How to perform merge, same as in pd.merge()</p>
+</div></blockquote>
+<p><strong>on</strong> : list of str, optional</p>
+<blockquote>
+<div><p>Which columns to merge on, same as in pd.merge()</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.tools.raise_no_graphviz">
+<span class="sig-prename descclassname"><span class="pre">cymetric.tools.</span></span><span class="sig-name descname"><span class="pre">raise_no_graphviz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">have_graphviz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.raise_no_graphviz" title="Link to this definition">¶</a></dt>
+<dd><p>Raise an error when Graphviz cannot be found.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.tools.raise_no_pyne">
+<span class="sig-prename descclassname"><span class="pre">cymetric.tools.</span></span><span class="sig-name descname"><span class="pre">raise_no_pyne</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">have_pyne</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.raise_no_pyne" title="Link to this definition">¶</a></dt>
+<dd><p>Raise an error when PyNE cannot be found.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.tools.raw_to_series">
+<span class="sig-prename descclassname"><span class="pre">cymetric.tools.</span></span><span class="sig-name descname"><span class="pre">raw_to_series</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.raw_to_series" title="Link to this definition">¶</a></dt>
+<dd><p>Convert data frame to series with multi-index.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cymetric.tools.reduce">
+<span class="sig-prename descclassname"><span class="pre">cymetric.tools.</span></span><span class="sig-name descname"><span class="pre">reduce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rdc_</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cymetric.tools.reduce" title="Link to this definition">¶</a></dt>
+<dd><p>Filter the df Pandas Data Frame according to the <a href="#id1"><span class="problematic" id="id2">rdc_</span></a> (list of item
+in the corresponding columns).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df: Pandas Data Frame</strong></p>
+<p><strong>rdc_: list of pair of string and string list.</strong></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.tools</span></code> - Tools</a><ul>
+<li><a class="reference internal" href="#cymetric.tools.add_missing_time_step"><code class="docutils literal notranslate"><span class="pre">add_missing_time_step()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.tools.dbopen"><code class="docutils literal notranslate"><span class="pre">dbopen()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.tools.ensure_dt_bytes"><code class="docutils literal notranslate"><span class="pre">ensure_dt_bytes()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.tools.format_nucs"><code class="docutils literal notranslate"><span class="pre">format_nucs()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.tools.merge"><code class="docutils literal notranslate"><span class="pre">merge()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.tools.merge_and_fillna_col"><code class="docutils literal notranslate"><span class="pre">merge_and_fillna_col()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.tools.raise_no_graphviz"><code class="docutils literal notranslate"><span class="pre">raise_no_graphviz()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.tools.raise_no_pyne"><code class="docutils literal notranslate"><span class="pre">raise_no_pyne()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.tools.raw_to_series"><code class="docutils literal notranslate"><span class="pre">raw_to_series()</span></code></a></li>
+<li><a class="reference internal" href="#cymetric.tools.reduce"><code class="docutils literal notranslate"><span class="pre">reduce()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="main.html"
+                          title="Previous page">&larr; <code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.main</span></code> - Command Line Interface</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="timeseries.html"
+                          title="Next page">&rarr; <code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.timeseries</span></code> - Timeseries</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="timeseries.html" title="cymetric.timeseries - Timeseries"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="main.html" title="cymetric.main - Command Line Interface"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Cymetric</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" >Cymetric API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">cymetric.tools</span></code> - Tools</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Running Simulations &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cyclus Server" href="server.html" />
+    <link rel="prev" title="Simulation Schema" href="sim_schema.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="server.html" title="Cyclus Server"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="sim_schema.html" title="Simulation Schema"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Running Simulations</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="running-simulations">
+<h1>Running Simulations<a class="headerlink" href="#running-simulations" title="Link to this heading">¶</a></h1>
+<p>To run a simulation you must use the <span style="font-variant:small-caps;">Cyclus</span> command line utility:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./path/to/cyclus<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span><span class="o">[</span>input-file<span class="o">]</span>
+</pre></div>
+</div>
+<p>Or you may run directly through Python:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>cyclus<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span><span class="o">[</span>input-file<span class="o">]</span>
+</pre></div>
+</div>
+<p>For more information, please refer to the help:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cyclus<span class="w"> </span>-h
+Usage:<span class="w">   </span>cyclus<span class="w"> </span><span class="o">[</span>opts<span class="o">]</span><span class="w"> </span><span class="o">[</span>input-file<span class="o">]</span>
+
+<span class="w">  </span>-h<span class="w"> </span><span class="o">[</span><span class="w"> </span>--help<span class="w"> </span><span class="o">]</span><span class="w">            </span>produce<span class="w"> </span><span class="nb">help</span><span class="w"> </span>message
+<span class="w">  </span>-V<span class="w"> </span><span class="o">[</span><span class="w"> </span>--version<span class="w"> </span><span class="o">]</span><span class="w">         </span>print<span class="w"> </span>cyclus<span class="w"> </span>core<span class="w"> </span>and<span class="w"> </span>dependency<span class="w"> </span>versions<span class="w"> </span>and<span class="w"> </span>quit
+<span class="w">  </span>--restart<span class="w"> </span>arg<span class="w">            </span>restart<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>specified<span class="w"> </span>simulation<span class="w"> </span>snapshot
+<span class="w">                           </span><span class="o">[</span>db-file<span class="o">]</span>:<span class="o">[</span>sim-id<span class="o">]</span>:<span class="o">[</span>timestep<span class="o">]</span>
+<span class="w">  </span>--schema<span class="w">                 </span>dump<span class="w"> </span>the<span class="w"> </span>cyclus<span class="w"> </span>master<span class="w"> </span>schema<span class="w"> </span>including<span class="w"> </span>all
+<span class="w">                           </span>installed<span class="w"> </span>module<span class="w"> </span>schemas
+<span class="w">  </span>--agent-schema<span class="w"> </span>arg<span class="w">       </span>dump<span class="w"> </span>the<span class="w"> </span>schema<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>named<span class="w"> </span>agent
+<span class="w">  </span>--schema-path<span class="w"> </span>arg<span class="w">        </span>manually<span class="w"> </span>specify<span class="w"> </span>the<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>cyclus<span class="w"> </span>master
+<span class="w">                           </span>schema
+<span class="w">  </span>--flat-schema<span class="w">            </span>use<span class="w"> </span>the<span class="w"> </span>flat<span class="w"> </span>master<span class="w"> </span>simulation<span class="w"> </span>schema
+<span class="w">  </span>--agent-annotations<span class="w"> </span>arg<span class="w">  </span>dump<span class="w"> </span>the<span class="w"> </span>annotations<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>named<span class="w"> </span>agent
+<span class="w">  </span>--no-agent<span class="w">               </span>only<span class="w"> </span>print<span class="w"> </span>log<span class="w"> </span>entries<span class="w"> </span>from<span class="w"> </span>cyclus<span class="w"> </span>core<span class="w"> </span>code
+<span class="w">  </span>--no-mem<span class="w">                 </span>exclude<span class="w"> </span>memory<span class="w"> </span>log<span class="w"> </span>statement<span class="w"> </span>from<span class="w"> </span>logger<span class="w"> </span>output
+<span class="w">  </span>-v<span class="w"> </span><span class="o">[</span><span class="w"> </span>--verb<span class="w"> </span><span class="o">]</span><span class="w"> </span>arg<span class="w">        </span>output<span class="w"> </span>log<span class="w"> </span>verbosity.<span class="w"> </span>Can<span class="w"> </span>be<span class="w"> </span>text:
+
+<span class="w">                              </span>LEV_ERROR<span class="w"> </span><span class="o">(</span>least<span class="w"> </span>verbose,<span class="w"> </span>default<span class="o">)</span>,<span class="w"> </span>LEV_WARN,
+<span class="w">                              </span>LEV_INFO1<span class="w"> </span><span class="o">(</span>through<span class="w"> </span><span class="m">5</span><span class="o">)</span>,<span class="w"> </span>and<span class="w"> </span>LEV_DEBUG1<span class="w"> </span><span class="o">(</span>through
+<span class="w">                           </span><span class="m">5</span><span class="o">)</span>.
+
+<span class="w">                           </span>Or<span class="w"> </span>an<span class="w"> </span>integer:
+
+<span class="w">                              </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>LEV_ERROR<span class="w"> </span>equiv<span class="o">)</span><span class="w"> </span>through<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="o">(</span>LEV_DEBUG5<span class="w"> </span>equiv<span class="o">)</span>
+
+<span class="w">  </span>-o<span class="w"> </span><span class="o">[</span><span class="w"> </span>--output-path<span class="w"> </span><span class="o">]</span><span class="w"> </span>arg<span class="w"> </span>output<span class="w"> </span>path
+<span class="w">  </span>--input-file<span class="w"> </span>arg<span class="w">         </span>input<span class="w"> </span>file
+<span class="w">  </span>--warn-limit<span class="w"> </span>arg<span class="w">         </span>number<span class="w"> </span>of<span class="w"> </span>warnings<span class="w"> </span>to<span class="w"> </span>issue<span class="w"> </span>per<span class="w"> </span>kind,<span class="w"> </span>defaults<span class="w"> </span>to<span class="w"> </span><span class="m">1</span>
+<span class="w">  </span>--warn-as-error<span class="w">          </span>throw<span class="w"> </span>errors<span class="w"> </span>when<span class="w"> </span>warnings<span class="w"> </span>are<span class="w"> </span>issued
+<span class="w">  </span>-p<span class="w"> </span><span class="o">[</span><span class="w"> </span>--path<span class="w"> </span><span class="o">]</span><span class="w">            </span>print<span class="w"> </span>the<span class="w"> </span>CYCLUS_PATH
+<span class="w">  </span>--include<span class="w">                </span>print<span class="w"> </span>the<span class="w"> </span>cyclus<span class="w"> </span>include<span class="w"> </span>directory
+<span class="w">  </span>--install-path<span class="w">           </span>print<span class="w"> </span>the<span class="w"> </span>cyclus<span class="w"> </span>install<span class="w"> </span>directory
+<span class="w">  </span>--build-path<span class="w">             </span>print<span class="w"> </span>the<span class="w"> </span>cyclus<span class="w"> </span>build<span class="w"> </span>directory
+<span class="w">  </span>--rng-schema<span class="w">             </span>print<span class="w"> </span>the<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>cyclus.rng.in
+<span class="w">  </span>--nuc-data<span class="w">               </span>print<span class="w"> </span>the<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>cyclus_nuc_data.h5
+</pre></div>
+</div>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cyclus<span class="w"> </span>./path/to/myinput.xml
+
+$<span class="w"> </span>cyclus<span class="w"> </span>-v<span class="w"> </span>LEV_DEBUG5<span class="w"> </span>myinput.py
+
+$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>cyclus<span class="w"> </span>-v<span class="w"> </span>LEV_INFO3<span class="w"> </span>myinput.json
+
+$<span class="w"> </span>cyclus<span class="w"> </span>-v<span class="w"> </span><span class="m">4</span><span class="w"> </span>myinput.xml
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Running Simulations</a><ul>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="sim_schema.html"
+                          title="Previous page">&larr; Simulation Schema</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="server.html"
+                          title="Next page">&rarr; Cyclus Server</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="server.html" title="Cyclus Server"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="sim_schema.html" title="Simulation Schema"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Running Simulations</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

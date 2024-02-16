@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cyclus 1.1 Release Notes &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cyclus 1.0 Release Notes" href="v1.0.html" />
+    <link rel="prev" title="Cyclus 1.2 Release Notes" href="v1.2.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="v1.0.html" title="Cyclus 1.0 Release Notes"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="v1.2.html" title="Cyclus 1.2 Release Notes"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Previous Versions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Cyclus 1.1 Release Notes</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="cyclus-1-1-release-notes">
+<h1>Cyclus 1.1 Release Notes<a class="headerlink" href="#cyclus-1-1-release-notes" title="Link to this heading">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Author<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Cyclus Developers</p>
+</dd>
+<dt class="field-even">Website<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="http://fuelcycle.org/">http://fuelcycle.org/</a></p>
+</dd>
+<dt class="field-odd">Contact<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://groups.google.com/forum/#!forum/cyclus-dev">https://groups.google.com/forum/#!forum/cyclus-dev</a></p>
+</dd>
+</dl>
+<p>The Cyclus core team is excited to announce the latest stable version
+of the cyclus ecosystem! This includes nearly 300 commits by
+8 developers.</p>
+<section id="major-features">
+<h2>Major features<a class="headerlink" href="#major-features" title="Link to this heading">¶</a></h2>
+<ul>
+<li><p>Ability to force decay calculations off everywhere in the simulation.</p></li>
+<li><p>A menagerie of new datatypes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">std::vector&lt;float&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::vector&lt;double&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::set&lt;std::string&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::list&lt;std::string&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::pair&lt;int,</span> <span class="pre">int&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::map&lt;int,</span> <span class="pre">double&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::map&lt;int,</span> <span class="pre">std::string&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::map&lt;std::string,</span> <span class="pre">int&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::map&lt;std::string,</span> <span class="pre">double&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::map&lt;std::string,</span> <span class="pre">std::string&gt;</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Human-readable nuclide names may now be uses in input files.</p></li>
+<li><p>Memory leak bug fix.</p></li>
+<li><p>New ‘schematype’ state variable annotation allows archetype developers to
+explicitly set the XML datatype in the schema for a given state variable,
+rather than relying on defaults.</p></li>
+<li><p>Quantity-based constraints added to DRE.</p></li>
+<li><p>Automatic archetype discovery with ‘-l’ and ‘-a’ command line arguments.</p></li>
+<li><p>Better error handling in cycpp.</p></li>
+<li><p>Optional allocation optimization using tcmalloc.</p></li>
+</ul>
+<p>Since v1.0,</p>
+<ul class="simple">
+<li><p>Cyclus: 243 commits resulted in 274 changed files encompassing a net 24,441
+line insertions(+) and 5,222 deletions(-).</p></li>
+<li><p>Cycamore: 38 commits resulted in 69 changed files encompassing a net 1,948
+line insertions(+) and 1,855 deletions(-).</p></li>
+</ul>
+</section>
+<section id="contributors">
+<h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading">¶</a></h2>
+<p>The following people contributed to this release of Cyclus.  A “*” by their
+name indicates a first time contributor.  Names follow alphabetically,</p>
+<ul class="simple">
+<li><p>Robert Carlsen</p></li>
+<li><p>Matthew Gidden</p></li>
+<li><p>Katy Huff</p></li>
+<li><p>Arrielle Opotowsky</p></li>
+<li><p>Olzhas Rakhimov</p></li>
+<li><p>Anthony Scopatz</p></li>
+<li><p>Zach Welch</p></li>
+<li><p>Paul Wilson</p></li>
+</ul>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Cyclus 1.1 Release Notes</a><ul>
+<li><a class="reference internal" href="#major-features">Major features</a></li>
+<li><a class="reference internal" href="#contributors">Contributors</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="v1.2.html"
+                          title="Previous page">&larr; Cyclus 1.2 Release Notes</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="v1.0.html"
+                          title="Next page">&rarr; Cyclus 1.0 Release Notes</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="v1.0.html" title="Cyclus 1.0 Release Notes"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="v1.2.html" title="Cyclus 1.2 Release Notes"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Previous Versions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Cyclus 1.1 Release Notes</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

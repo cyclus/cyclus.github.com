@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Simulation State (cyclus.simstate) &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Agent Archetypes implemented in Python (cyclus.pyagents)" href="pyagents.html" />
+    <link rel="prev" title="Agent Interface - Region, Institution, and Facility (cyclus.agents)" href="agents.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="pyagents.html" title="Agent Archetypes implemented in Python (cyclus.pyagents)"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="agents.html" title="Agent Interface - Region, Institution, and Facility (cyclus.agents)"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Simulation State (<code class="docutils literal notranslate"><span class="pre">cyclus.simstate</span></code>)</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-cyclus.simstate">
+<span id="simulation-state-cyclus-simstate"></span><span id="cyclus-pyapi-simstate"></span><h1>Simulation State (<code class="docutils literal notranslate"><span class="pre">cyclus.simstate</span></code>)<a class="headerlink" href="#module-cyclus.simstate" title="Link to this heading">¶</a></h1>
+<p>Tools for representing and driving the simulation.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="cyclus.simstate.SimState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cyclus.simstate.</span></span><span class="sig-name descname"><span class="pre">SimState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memory_backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schema_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flat_schema</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repeating_actions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heartbeat_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_ms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.simstate.SimState" title="Link to this definition">¶</a></dt>
+<dd><p>Class that represents and drives the simulation state.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_file</strong> : str, optional</p>
+<blockquote>
+<div><p>The path to input file or a raw string of the input file.</p>
+</div></blockquote>
+<p><strong>input_format</strong> : str, optional</p>
+<blockquote>
+<div><p>The format that the input file should be read in as, if it is a raw string.</p>
+</div></blockquote>
+<p><strong>output_path</strong> : str or None, optional</p>
+<blockquote>
+<div><p>The path to the file system database, default (if None) is based
+on the input file path.</p>
+</div></blockquote>
+<p><strong>memory_backend</strong> : MemBack, bool, or None, optional</p>
+<blockquote>
+<div><p>An in-memory backend, if specified.</p>
+</div></blockquote>
+<p><strong>registry</strong> : set, bool, or None, optional</p>
+<blockquote>
+<div><p>The initial registry to start the in-memory backend with. Defaults
+is True, which stores all of the tables.</p>
+</div></blockquote>
+<p><strong>schema_path</strong> : str or None, optional:</p>
+<blockquote>
+<div><p>The path to the cyclus main schema.</p>
+</div></blockquote>
+<p><strong>flat_schema</strong> : bool, optional</p>
+<blockquote>
+<div><p>Whether or not to use the flat main simulation schema.</p>
+</div></blockquote>
+<p><strong>frequency</strong> : int or float, optional</p>
+<blockquote>
+<div><p>The amount of time [sec] to sleep for in tight loops, default 1 ms.</p>
+</div></blockquote>
+<p><strong>repeating_actions</strong> : list or None, optional</p>
+<blockquote>
+<div><p>A list of actions that should be added to the queue at the start of
+each timestep when the cyclus.events.loop() is called. If this is
+None, a new empty list is instantiated.</p>
+</div></blockquote>
+<p><strong>heartbeat_frequency</strong> : float or int, optional</p>
+<blockquote>
+<div><p>The frequency with which to send heartbeat events.</p>
+</div></blockquote>
+<p><strong>debug</strong> : bool, optional</p>
+<blockquote>
+<div><p>Whether the simulation should provide debugging information.</p>
+</div></blockquote>
+</dd>
+</dl>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cyclus.simstate.SimState.send_queue" title="cyclus.simstate.SimState.send_queue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">send_queue</span></code></a></p></td>
+<td><p>A queue for sending data over the TCP server.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cyclus.simstate.SimState.action_queue" title="cyclus.simstate.SimState.action_queue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">action_queue</span></code></a></p></td>
+<td><p>A queue for pending actions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cyclus.simstate.SimState.monitor_queue" title="cyclus.simstate.SimState.monitor_queue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">monitor_queue</span></code></a></p></td>
+<td><p>A queue for pending monitoring actions.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>rec</p></td>
+<td><p>(Recorder or None) A recorder instance, available after load.</p></td>
+</tr>
+<tr class="row-even"><td><p>file_backend</p></td>
+<td><p>(FullBackend or None) A file system based backend that is attached to the output path.</p></td>
+</tr>
+<tr class="row-odd"><td><p>si</p></td>
+<td><p>(SimInit or None) The main simulation initializer object that then can be used to drive the simulation.</p></td>
+</tr>
+<tr class="row-even"><td><p>loop</p></td>
+<td><p>(event loop or None) The Python event loop the current simulation is running under.</p></td>
+</tr>
+<tr class="row-odd"><td><p>executor</p></td>
+<td><p>(Executor or None,) The Python Executor that the simulation should use when running as a server. This is typically a thread pool.</p></td>
+</tr>
+<tr class="row-even"><td><p>tasks</p></td>
+<td><p>(dict) A str-keyed dictionary mapping to current tasks that may be shared among many actions.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py property">
+<dt class="sig sig-object py" id="cyclus.simstate.SimState.action_queue">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">action_queue</span></span><a class="headerlink" href="#cyclus.simstate.SimState.action_queue" title="Link to this definition">¶</a></dt>
+<dd><p>A queue for pending actions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.simstate.SimState.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.simstate.SimState.load" title="Link to this definition">¶</a></dt>
+<dd><p>Loads the simulation.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cyclus.simstate.SimState.monitor_queue">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">monitor_queue</span></span><a class="headerlink" href="#cyclus.simstate.SimState.monitor_queue" title="Link to this definition">¶</a></dt>
+<dd><p>A queue for pending monitoring actions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cyclus.simstate.SimState.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.simstate.SimState.run" title="Link to this definition">¶</a></dt>
+<dd><p>Starts running the simulation.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cyclus.simstate.SimState.send_queue">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">send_queue</span></span><a class="headerlink" href="#cyclus.simstate.SimState.send_queue" title="Link to this definition">¶</a></dt>
+<dd><p>A queue for sending data over the TCP server. This is
+not instantiated until it is first accessed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.simstate.ensure_close_dynamic_modules">
+<span class="sig-prename descclassname"><span class="pre">cyclus.simstate.</span></span><span class="sig-name descname"><span class="pre">ensure_close_dynamic_modules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.simstate.ensure_close_dynamic_modules" title="Link to this definition">¶</a></dt>
+<dd><p>Ensures that the dynamic module library is closed at the end of
+the process.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cyclus.simstate.get_schema_path">
+<span class="sig-prename descclassname"><span class="pre">cyclus.simstate.</span></span><span class="sig-name descname"><span class="pre">get_schema_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flat_schema</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schema_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.simstate.get_schema_path" title="Link to this definition">¶</a></dt>
+<dd><p>Gets the schema path based on the given schema path an the flatness.</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Simulation State (<code class="docutils literal notranslate"><span class="pre">cyclus.simstate</span></code>)</a><ul>
+<li><a class="reference internal" href="#cyclus.simstate.SimState"><code class="docutils literal notranslate"><span class="pre">SimState</span></code></a><ul>
+<li><a class="reference internal" href="#cyclus.simstate.SimState.action_queue"><code class="docutils literal notranslate"><span class="pre">SimState.action_queue</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.simstate.SimState.load"><code class="docutils literal notranslate"><span class="pre">SimState.load()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.simstate.SimState.monitor_queue"><code class="docutils literal notranslate"><span class="pre">SimState.monitor_queue</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.simstate.SimState.run"><code class="docutils literal notranslate"><span class="pre">SimState.run()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.simstate.SimState.send_queue"><code class="docutils literal notranslate"><span class="pre">SimState.send_queue</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclus.simstate.ensure_close_dynamic_modules"><code class="docutils literal notranslate"><span class="pre">ensure_close_dynamic_modules()</span></code></a></li>
+<li><a class="reference internal" href="#cyclus.simstate.get_schema_path"><code class="docutils literal notranslate"><span class="pre">get_schema_path()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="agents.html"
+                          title="Previous page">&larr; Agent Interface - Region, Institution, and Facility (<code class="docutils literal notranslate"><span class="pre">cyclus.agents</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="pyagents.html"
+                          title="Next page">&rarr; Agent Archetypes implemented in Python (<code class="docutils literal notranslate"><span class="pre">cyclus.pyagents</span></code>)</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="pyagents.html" title="Agent Archetypes implemented in Python (cyclus.pyagents)"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="agents.html" title="Agent Interface - Region, Institution, and Facility (cyclus.agents)"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Python Interface</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Simulation State (<code class="docutils literal notranslate"><span class="pre">cyclus.simstate</span></code>)</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

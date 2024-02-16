@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The Cyclus Community &amp; Ecosystem &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Projects Using Cyclus" href="projects.html" />
+    <link rel="prev" title="Nuclear Fuel Cycle Simulators" href="fcs_background.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="projects.html" title="Projects Using Cyclus"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="fcs_background.html" title="Nuclear Fuel Cycle Simulators"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span style="font-variant:small-caps;">Cyclus</span> Introduction</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The <span style="font-variant:small-caps;">Cyclus</span> Community &amp; Ecosystem</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="the-cyclus-community-ecosystem">
+<h1>The <span style="font-variant:small-caps;">Cyclus</span> Community &amp; Ecosystem<a class="headerlink" href="#the-cyclus-community-ecosystem" title="Link to this heading">¶</a></h1>
+<p><strong>The Cyclus project is owned by its community of users &amp; developers and welcomes code &amp; contributions from everyone!</strong></p>
+<p>An important goal of the <span style="font-variant:small-caps;">Cyclus</span> effort is to attract a community of
+developers contributing to a vibrant ecosystem of models.  Due to
+sensitivities regarding the distribution of software for simulating nuclear
+systems, this ecosystem requires careful considerations in its design and
+implementation.</p>
+<p>Critical to the success of this community is the widespread availability of
+the core infrastructure of the <span style="font-variant:small-caps;">Cyclus</span> simulation environment.  Because this
+environment is formulated using a variety of generic concepts not specific to
+nuclear energy systems, this should mitigate concerns for the open source
+distribution of this core infrastructure.</p>
+<p>Moreover, this infrastructure is also designed to allow for the addition of
+runtime <a class="reference internal" href="glossary.html#term-module"><span class="xref std std-term">modules</span></a>, or <a class="reference internal" href="glossary.html#term-plug-in"><span class="xref std std-term">plug-ins</span></a>, that can be developed and
+distributed under any licensing scheme.  Separate from the core
+infrastructure, the distribution responsibility will rest with the developer
+of each module.  This system will insulate the core infrastructure from
+accidental “pollution” by modules of a sensitive nature, and, similarly, limit
+issues regarding the authorization for distribution to the author’s
+organization.  Ideally, most module developers will be authorized for open
+distribution of their modules.</p>
+<p>Finally, the community will be relied upon to provide review and curation of
+available modules, establishing both quality assurance practices and
+recommendations for best use cases for each contributed module.</p>
+<p>Below, a more detailed exposition of these characteristics is provided.</p>
+<section id="open-source-core-infrastructure">
+<h2>Open Source Core Infrastructure<a class="headerlink" href="#open-source-core-infrastructure" title="Link to this heading">¶</a></h2>
+<p>The current portfolio of fuel cycle simulators has been characterized by
+barriers to adoption by new users and developers including:</p>
+<ul class="simple">
+<li><p>policies of limited/restricted distribution,</p></li>
+<li><p>reliance on propriety software development infrastructures, and</p></li>
+<li><p>deeply embedded nuclear technology assumptions arising from
+development path.</p></li>
+</ul>
+<p>Because one of the principle purposes of <span style="font-variant:small-caps;">Cyclus</span> is to create a fuel cycle
+simulator system with a low barrier to adoption, a policy of open source
+distribution of this core infrastructure is critical to its mission.
+(<span style="font-variant:small-caps;">Cyclus</span> is also committed to free and widely used software development
+tools, such as GNU compilers, SQLite, Boost, etc.)  The <span style="font-variant:small-caps;">Cyclus</span> core is
+currently available via its <a class="reference external" href="http://github.com/cyclus/cyclus">GitHub repository</a>.  Interested users and developers are
+invited to make their own copy of this repository, review the list of open
+issues, and participate in the developer’s mailing list. Like all open source
+projects, this distribution mode permits a thorough code review by interested
+parties and the possibility of contributions in order to identify/resolve
+defects or request/provide feature enhancements.</p>
+<p>The <span style="font-variant:small-caps;">Cyclus</span> core infrastructure provides a generic environment for modeling
+flows of materials through a collection of nuclear facilities.  This
+infrastructure could be used for modeling many different supply chain systems,
+nuclear and non-nuclear alike, this infrastructure prioritizes nuclear systems
+analysis.  Addressing the barrier of deeply embedded nuclear technology
+assumptions, this approach ensures that the core infrastructure has a very low
+risk of containing sensitive information regarding the simulation of nuclear
+systems.  These capabilities are added by acquiring and invoking plug-ins
+developed and distributed by the <span style="font-variant:small-caps;">Cyclus</span> community.</p>
+<p>The open source approach can also allow the project to leverage the efforts a
+larger pool of developers and improve the quality of the software product
+<a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+</section>
+<section id="decentralized-module-development-distribution">
+<h2>Decentralized Module Development &amp; Distribution<a class="headerlink" href="#decentralized-module-development-distribution" title="Link to this heading">¶</a></h2>
+<p>When a user/developer wishes to contribute a new module to the <span style="font-variant:small-caps;">Cyclus</span>
+ecosystem, they will be responsible for all aspects of that distribution.  The
+<span style="font-variant:small-caps;">Cyclus</span> core development team will provide a catalog of available modules
+(details are still under development), but this catalog will point to external
+distribution sites that are consistent with each contributors personal and/or
+institutional needs.  For example, developers who are permitted to follow an
+open source approach with their own contributions can have their own GitHub
+account and share their modules through the same mechanism as - but a
+different location from - the <span style="font-variant:small-caps;">Cyclus</span> core.  For some subset of open source
+distribution mechanisms, the <span style="font-variant:small-caps;">Cyclus</span> core will include tools to make it
+easier for individual users to download and install contributed modules or
+collections of modules.</p>
+<p>Decentralizing the development and distribution of runtime modules provides a
+number of benefits.  First, as is true for the core infrastructure, a larger
+pool of developers can contribute to the <span style="font-variant:small-caps;">Cyclus</span> ecosystem by providing
+modules that represent their organization’s specific interests.  If a
+particular user/developer would like to understand the impact of their own
+technology on the greater fuel cycle, they are free to develop a module that
+simulates this technology and contribute it to the broader community.</p>
+<p>More importantly, this will contribute to the maintenance of a “pristine” core
+infrastructure, from the point of view of sensitive information.  Any software
+added to the source code repository leaves behind permanent artifacts - even
+if removed at a later date. The inclusion of all newly developed plug-ins in a
+centralized software repository could result in the entire repository being
+declared sensitive.  Decentralized distribution mitigates this risk.</p>
+<p>Finally, a centralized approach would require identifying a single
+organization that would accept an ongoing burden of authorizing distribution,
+assessing quality and assembling collections.  A decentralized approach
+removes the burden of authorizing distribution and reviewing contributions
+from a central authority. Rather, the authors and community are responsible
+for these tasks, as described in the following sections.</p>
+<section id="distribution-authorization-by-owner">
+<h3>Distribution Authorization by Owner<a class="headerlink" href="#distribution-authorization-by-owner" title="Link to this heading">¶</a></h3>
+<p>Considering the concerns for copyright, intellectual property, and the risk
+that sensitive information could be contained in a module, the burden of
+acquiring and confirming distribution rights by a centralized organization
+could become prohibitive.  If instead the modules developed for the <span style="font-variant:small-caps;">Cyclus</span>
+ecosystem are documented in a catalog that refers to a variety distribution
+sites as appropriate for each developer, the effort for ensuring the rights
+for distribution are the responsibility of the developer and their
+organization.  The inclusion of a given module in the catalog requires little
+oversight and the details of distribution remain between the provider and
+consumer of each module.</p>
+</section>
+<section id="peer-review-qa-and-rating">
+<h3>Peer-review QA and Rating<a class="headerlink" href="#peer-review-qa-and-rating" title="Link to this heading">¶</a></h3>
+<p>For most organizations, including a plug-in in a centralized software
+distribution would be regarded as a tacit approval of the quality and utility
+of the module.  In most such cases, a substantial burden of quality assurance
+and testing would be required by the organization preforming this centralized
+distribution.  In the decentralized approach of the <span style="font-variant:small-caps;">Cyclus</span> ecosystem,
+mechanisms will be provided for members of the community to provide
+peer-review of the modules’ quality and applicability to certain problems.</p>
+<p>For modules that are distributed with an open source policy, other users and
+developers will be able to perform a direct source code review as well as
+testing the functionality of the module in fuel cycle analyses.  For other
+distribution policies, more limited review will be possible.</p>
+<p>In all cases, practices and policies will emerge from the community to support
+standardization of this process.  For example, providing adequate
+documentation and test suites will result in a better review from members of
+the community and ultimately will become pre-requisites to a positive peer
+review.</p>
+</section>
+<section id="curation-and-collections">
+<h3>Curation and Collections<a class="headerlink" href="#curation-and-collections" title="Link to this heading">¶</a></h3>
+<p>When the number of contributions is sufficiently large, there will be benefit
+in developing collections of modules that are known to be useful for certain
+types of simulations.  A decentralized approach will allow individual members
+of the <span style="font-variant:small-caps;">Cyclus</span> community to create such collections, providing a curation
+function to help both new and experienced users identify the modules that are
+likely to give them the most benefit.</p>
+<section id="footnotes">
+<h4>Footnotes<a class="headerlink" href="#footnotes" title="Link to this heading">¶</a></h4>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>J.W. Paulson, <em>et al</em>, “An Empirical Study of Open-Source and Closed-Source Software Products”, <em>IEEE Transactions on Software Engineering</em>, <strong>30</strong> (4), April 2004. <a class="reference external" href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=01274044">http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=01274044</a></p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">The <span style="font-variant:small-caps;">Cyclus</span> Community &amp; Ecosystem</a><ul>
+<li><a class="reference internal" href="#open-source-core-infrastructure">Open Source Core Infrastructure</a></li>
+<li><a class="reference internal" href="#decentralized-module-development-distribution">Decentralized Module Development &amp; Distribution</a><ul>
+<li><a class="reference internal" href="#distribution-authorization-by-owner">Distribution Authorization by Owner</a></li>
+<li><a class="reference internal" href="#peer-review-qa-and-rating">Peer-review QA and Rating</a></li>
+<li><a class="reference internal" href="#curation-and-collections">Curation and Collections</a><ul>
+<li><a class="reference internal" href="#footnotes">Footnotes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="fcs_background.html"
+                          title="Previous page">&larr; Nuclear Fuel Cycle Simulators</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="projects.html"
+                          title="Next page">&rarr; Projects Using <span style="font-variant:small-caps;">Cyclus</span></a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="projects.html" title="Projects Using Cyclus"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="fcs_background.html" title="Nuclear Fuel Cycle Simulators"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> Introduction</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The <span style="font-variant:small-caps;">Cyclus</span> Community &amp; Ecosystem</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

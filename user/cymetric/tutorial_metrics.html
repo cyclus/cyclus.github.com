@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Writing Your Own Metrics Tutorial &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Cymetric API" href="api/index.html" />
+    <link rel="prev" title="Python Interface" href="tutorial_py.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="api/index.html" title="Cymetric API"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_py.html" title="Python Interface"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Cymetric</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Writing Your Own Metrics Tutorial</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="writing-your-own-metrics-tutorial">
+<span id="cym-tutorial-metrics"></span><h1>Writing Your Own Metrics Tutorial<a class="headerlink" href="#writing-your-own-metrics-tutorial" title="Link to this heading">¶</a></h1>
+<p>This tutorial will describe how to write your own metrics for your own
+custom analyses. This takes place within Python, so you may want to check
+out the Cymetric Python tutorial first.</p>
+<section id="writing-metrics">
+<h2>Writing Metrics<a class="headerlink" href="#writing-metrics" title="Link to this heading">¶</a></h2>
+<p>Naturally, you do not want to be limited to the metrics that come predefined
+by cymetric! You have
+your own data and your own analysis that you want to perform. It is easy to
+write metrics and fully hook into the cymetric tools.</p>
+<p>A metric is a function that accepts a pandas Series, returns a
+pandas DataFrame, and is decorated by the <code class="docutils literal notranslate"><span class="pre">&#64;metric()</span></code> decorator found in
+cymetric. The general format is as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
+<span class="kn">import</span> <span class="nn">cymetic</span> <span class="k">as</span> <span class="nn">cym</span>
+
+<span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;Table1&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Col1&#39;</span><span class="p">,</span> <span class="s1">&#39;Col2&#39;</span><span class="p">),</span> <span class="s1">&#39;Value1&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Table2&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Col3&#39;</span><span class="p">,),</span> <span class="s1">&#39;Value2&#39;</span><span class="p">)</span>
+    <span class="p">]</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Id&#39;</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">INT</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;MetricValue&#39;</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">DOUBLE</span><span class="p">)]</span>
+
+<span class="nd">@cym</span><span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;MyMetric&#39;</span><span class="p">,</span> <span class="n">depends</span><span class="o">=</span><span class="n">dependencies</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_metric</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+    <span class="n">one</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">two</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1">#calculations and pandas manipulations go here</span>
+    <span class="k">return</span> <span class="n">dataframe</span>
+</pre></div>
+</div>
+<p>This metric may be evaulated with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cym</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;MyMetric&#39;</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the above, the <code class="docutils literal notranslate"><span class="pre">&#64;metric()</span></code> decorator takes three arguments. The first is
+the <code class="docutils literal notranslate"><span class="pre">name</span></code> of the metric (e.g., <code class="docutils literal notranslate"><span class="pre">'MyMetric'</span></code>). Note that this can be
+distinct from the function name.</p>
+<p>The second is <code class="docutils literal notranslate"><span class="pre">depends</span></code>, which represents the metric dependencies.  This is a
+list of 3-tuples that represents which <code class="docutils literal notranslate"><span class="pre">series</span></code> to pull out of the database
+and pass into the metric function (e.g., <code class="docutils literal notranslate"><span class="pre">my_metric()</span></code>).  The entries in the
+dependency list have three components. The first element is the table name as a
+string (e.g., <code class="docutils literal notranslate"><span class="pre">'Table1'</span></code>). The second element is a tuple of column names that
+become the index of the series (e.g., <code class="docutils literal notranslate"><span class="pre">('Col1',</span> <span class="pre">'Col2')</span></code>). Finally, the last
+element is the column of the table that becomes the values of the series (e.g.,
+<code class="docutils literal notranslate"><span class="pre">'Value1'</span></code>).  A metric may have as many dependencies as required. Circular
+dependencies are not allowed!</p>
+<p>Lastly, the <code class="docutils literal notranslate"><span class="pre">&#64;metric()</span></code> decorator takes a <code class="docutils literal notranslate"><span class="pre">schema</span></code> argument. The schema is
+defined by a list of 2-tuples. The first entry is the column name and the
+second is the <span style="font-variant:small-caps;">Cyclus</span> database type. This represents the structure of the
+metric table on disk and in <span style="font-variant:small-caps;">Cyclus</span>. Thus, it is highly tied to the <span style="font-variant:small-caps;">Cyclus</span>
+<a class="reference external" href="http://fuelcycle.org/arche/dbtypes.html">type system</a>.
+The DataFrame that is returned should have column names that match
+the schema provided. It is generally a good idea to include a <code class="docutils literal notranslate"><span class="pre">SimId</span></code> column.</p>
+<p>For a more concrete example, if you wanted to square the mass of materials as a
+metric, you could write a <code class="docutils literal notranslate"><span class="pre">MaterialsSquared</span></code> metric.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">cyclus.typesystem</span> <span class="k">as</span> <span class="nn">ts</span>
+<span class="kn">import</span> <span class="nn">cymetic</span> <span class="k">as</span> <span class="nn">cym</span>
+
+<span class="n">deps</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Materials&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;SimId&#39;</span><span class="p">,</span> <span class="s1">&#39;ResourceId&#39;</span><span class="p">,</span> <span class="s1">&#39;NucId&#39;</span><span class="p">),</span> <span class="s1">&#39;Mass&#39;</span><span class="p">)]</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;SimId&#39;</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">UUID</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;ResourceId&#39;</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">INT</span><span class="p">),</span>
+          <span class="p">(</span><span class="s1">&#39;NucId&#39;</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">INT</span><span class="p">),</span>  <span class="p">(</span><span class="s1">&#39;MassSquared&#39;</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">DOUBLE</span><span class="p">)]</span>
+
+<span class="nd">@cym</span><span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;MaterialsSquared&#39;</span><span class="p">,</span> <span class="n">depends</span><span class="o">=</span><span class="n">deps</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">mats_sqrd</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+    <span class="n">mats</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">mats</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;SimId&#39;</span><span class="p">:</span> <span class="n">mats</span><span class="o">.</span><span class="n">SimId</span><span class="p">,</span>
+                              <span class="s1">&#39;ResourceId&#39;</span><span class="p">:</span> <span class="n">mats</span><span class="o">.</span><span class="n">ResourceId</span><span class="p">,</span>
+                              <span class="s1">&#39;NucId&#39;</span><span class="p">:</span> <span class="n">mats</span><span class="o">.</span><span class="n">NucId</span><span class="p">,</span>
+                              <span class="s1">&#39;MassSquared&#39;</span><span class="p">:</span> <span class="n">mats</span><span class="o">.</span><span class="n">Mass</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)},</span>
+                        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SimId&#39;</span><span class="p">,</span> <span class="s1">&#39;ResourceId&#39;</span><span class="p">,</span> <span class="s1">&#39;NucId&#39;</span><span class="p">,</span> <span class="s1">&#39;MassSquared&#39;</span><span class="p">])</span>
+    <span class="n">mats</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;MaterialsSquared&#39;</span>
+    <span class="k">return</span> <span class="n">mats</span>
+</pre></div>
+</div>
+<p>This metric may be evaulated with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cym</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;MaterialsSquared&#39;</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that to write this metric, no knowledge of the database or any filters is
+assumed. Cymetric handles all of these details for you!</p>
+<p>If the pandas functionality seems mysterious to you, it may be beneficial to
+review a quick tutorial, <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/10min.html">10 Minutes to pandas</a>.</p>
+</section>
+<section id="making-metrics-from-custom-database-tables">
+<h2>Making Metrics from Custom Database Tables<a class="headerlink" href="#making-metrics-from-custom-database-tables" title="Link to this heading">¶</a></h2>
+<p>The above shows how easy it is to incorporate metrics that are computed via
+cymetric. Moreover, <span style="font-variant:small-caps;">Cyclus</span> databases can be comprised of both <a class="reference external" href="http://fuelcycle.org/user/dbdoc.html#table-descriptions">default tables</a> and  <a class="reference external" href="http://fuelcycle.org/arche/custom_tables.html">custom tables</a>. Cymetric also helps you
+bring in data that might come as a custom table in a <span style="font-variant:small-caps;">Cyclus</span> database.  All you
+need to do is use the <code class="docutils literal notranslate"><span class="pre">root_metric()</span></code> function somewhere. This simply accepts
+the name of the table. For example,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_root_table</span> <span class="o">=</span> <span class="n">cym</span><span class="o">.</span><span class="n">root_metric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;MyRootTable&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This metric may be evaulated with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cym</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;MyRootTable&#39;</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And that is all!</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Writing Your Own Metrics Tutorial</a><ul>
+<li><a class="reference internal" href="#writing-metrics">Writing Metrics</a></li>
+<li><a class="reference internal" href="#making-metrics-from-custom-database-tables">Making Metrics from Custom Database Tables</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="tutorial_py.html"
+                          title="Previous page">&larr; Python Interface</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="api/index.html"
+                          title="Next page">&rarr; Cymetric API</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="api/index.html" title="Cymetric API"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_py.html" title="Python Interface"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Cymetric</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Writing Your Own Metrics Tutorial</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

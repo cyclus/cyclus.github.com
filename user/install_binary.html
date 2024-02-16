@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Installing Cyclus with Binaries &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Custom Cyclus Installation" href="install_custom.html" />
+    <link rel="prev" title="Getting Started with Cyclus" href="install.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="install_custom.html" title="Custom Cyclus Installation"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="install.html" title="Getting Started with Cyclus"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="install.html" accesskey="U">Getting Started with <span style="font-variant:small-caps;">Cyclus</span></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Installing <span style="font-variant:small-caps;">Cyclus</span> with Binaries</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="installing-cyclus-with-binaries">
+<h1>Installing <span style="font-variant:small-caps;">Cyclus</span> with Binaries<a class="headerlink" href="#installing-cyclus-with-binaries" title="Link to this heading">¶</a></h1>
+<p><span style="font-variant:small-caps;">Cyclus</span> supports two binary installation options:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#conda">Conda</a> (Linux and Mac OSX)</p></li>
+<li><p><a class="reference internal" href="#debian-package-manager">Debian package manager</a> (Linux only)</p></li>
+</ol>
+<p><strong>Conda</strong> is a cross-platform, user-space package manager aimed at simplifying
+the installation of open source software. The Cyclus project uses Conda to
+distribute pre-built Cyclus and Cycamore binaries.</p>
+<p>The <strong>Debian package manager</strong> simplifies the installation of open-source
+software. It contains all of the files required to use specific software, as
+well as variety of relevant information: maintainer, description, version,
+dependencies (other software or libraries required to use it).  The Cyclus
+team provides pre-built Cyclus and Cycamore Debian packages to simplify
+installation for the user. These packages are available for LTS Ubuntu version
+14.04 and 16.04 (though they may also work on other Linux systems).</p>
+<section id="conda">
+<h2>Conda<a class="headerlink" href="#conda" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>If you don’t have Conda, start by installing the Python 3.x version of
+<a class="reference external" href="https://www.continuum.io/downloads">Anaconda</a> (or <a class="reference external" href="http://conda.pydata.org/miniconda.html">miniconda</a> for a more lightweight choice) to prepare it for
+Cyclus.</p></li>
+</ol>
+<ol class="arabic">
+<li><p>Once you have conda installed, installing <span style="font-variant:small-caps;">Cyclus</span> and Cycamore is
+straightforward. If you are having issues with certificate verification
+you may install using the second set of commands to fix these issues.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>cycamore
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>config<span class="w"> </span>--set<span class="w"> </span>ssl_verify<span class="w"> </span><span class="nb">false</span>
+$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>cycamore
+</pre></div>
+</div>
+</li>
+<li><p>To ensure the proper installation of <span style="font-variant:small-caps;">Cyclus</span> and Cycamore, you can run the
+<span style="font-variant:small-caps;">Cyclus</span> and Cycamore unit tests, they should report that <strong>all tests</strong> have
+<strong>passed</strong> (or been disabled):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cyclus_unit_tests
+$<span class="w"> </span>cycamore_unit_tests
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="debian-package-manager">
+<h2>Debian Package Manager<a class="headerlink" href="#debian-package-manager" title="Link to this heading">¶</a></h2>
+<p>This installation procedure assumes that you are using Ubuntu (LTS) 14.04 or
+16.04. This method has only been tested on those Ubuntu versions. This
+installation procedure also assumes that you have root access to you computer.</p>
+<ol class="arabic">
+<li><p>Install Cyclus dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libtcmalloc-minimal4<span class="w"> </span>libboost-filesystem-dev<span class="w"> </span>libboost-program-options-dev<span class="w"> </span>libboost-serialization-dev<span class="w"> </span>libhdf5-dev<span class="w"> </span>libxml++2.6-dev<span class="w"> </span>coinor-libcbc-dev
+</pre></div>
+</div>
+<p>WARNING: This dependency list is ONLY correct for the debian binary
+installation, additional dependencies are required to install from source.
+If you need/want more information about dependency installation please read the
+<a class="reference external" href="DEPENDENCIES.html">dependency installation documentation</a>.</p>
+</li>
+<li><p>Download the lastest version Cyclus Core Debian installation package:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Ubuntu 14.04</p></td>
+<td><p><a class="reference external" href="http://dory.fuelcycle.org:4848/ubuntu/14.04/cyclus_latest.deb">without Python</a></p></td>
+<td><p><a class="reference external" href="http://dory.fuelcycle.org:4848/ubuntu/14.04/python2/cyclus_latest.deb">with Python 2.7</a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Ubuntu 16.04</p></td>
+<td><p><a class="reference external" href="http://dory.fuelcycle.org:4848/ubuntu/16.04/cyclus_latest.deb">without Python</a></p></td>
+<td><p><a class="reference external" href="http://dory.fuelcycle.org:4848/ubuntu/16.04/python2/cyclus_latest.deb">with Python 2.7</a></p></td>
+<td><p><a class="reference external" href="http://dory.fuelcycle.org:4848/ubuntu/16.04/python3/cyclus_latest.deb">with Python 3.5</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>You can download previous/different version <a class="reference external" href="http://dory.fuelcycle.org:4848/">here</a>.</p>
+</li>
+<li><p>Install the package by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>cyclus_latest.deb
+</pre></div>
+</div>
+</li>
+</ol>
+<ol class="arabic">
+<li><p>Download the Cycamore Debian installation package corresponding to your Ubuntu version (<a class="reference external" href="http://dory.fuelcycle.org:4848/ubuntu/14.04/cycamore_latest.deb">14.04</a> or
+<a class="reference external" href="http://dory.fuelcycle.org:4848/ubuntu/16.04/cycamore_latest.deb">16.04</a>). You can
+download previous/different version <a class="reference external" href="http://dory.fuelcycle.org:4848/ubuntu/">here</a>.</p></li>
+<li><p>Install the package by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>cycamore_latest.deb
+</pre></div>
+</div>
+</li>
+<li><p>To ensure the proper installation of <span style="font-variant:small-caps;">Cyclus</span> and Cycamore, you can run the
+<span style="font-variant:small-caps;">Cyclus</span> and Cycamore unit tests, they should report that <strong>all tests</strong> have
+<strong>passed</strong> (or been disabled):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cyclus_unit_tests
+$<span class="w"> </span>cycamore_unit_tests
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Happy simulating!</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Installing <span style="font-variant:small-caps;">Cyclus</span> with Binaries</a><ul>
+<li><a class="reference internal" href="#conda">Conda</a></li>
+<li><a class="reference internal" href="#debian-package-manager">Debian Package Manager</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="install.html"
+                          title="Previous page">&larr; Getting Started with <span style="font-variant:small-caps;">Cyclus</span></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="install_custom.html"
+                          title="Next page">&rarr; Custom Cyclus Installation</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="install_custom.html" title="Custom Cyclus Installation"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="install.html" title="Getting Started with Cyclus"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span style="font-variant:small-caps;">Cyclus</span> User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="install.html" >Getting Started with <span style="font-variant:small-caps;">Cyclus</span></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Installing <span style="font-variant:small-caps;">Cyclus</span> with Binaries</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

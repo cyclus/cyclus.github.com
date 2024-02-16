@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cyclus Core &#8212; Home</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cyclus.css?v=a0e5ed17" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="icon" href="../_static/big_c.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12222727-2']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Cyclus Core</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="cyclus-core">
+<h1><a class="toc-backref" href="#id1" role="doc-backlink">Cyclus Core</a><a class="headerlink" href="#cyclus-core" title="Link to this heading">¶</a></h1>
+<p>The core of the Cyclus nuclear fuel cycle simulator from the
+University of Wisconsin - Madison is intended to be a simulation
+framework upon which to develop innovative fuel cycle simulations.</p>
+<p>To see user and developer documentation for this code, please visit
+the <a class="reference external" href="http://fuelcycle.org/">Cyclus Homepage</a>.</p>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#cyclus-core" id="id1">Cyclus Core</a></p>
+<ul>
+<li><p><a class="reference internal" href="#dependencies" id="id2">Dependencies</a></p></li>
+<li><p><a class="reference internal" href="#installing-dependencies" id="id3">Installing Dependencies</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="dependencies">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Dependencies</a><a class="headerlink" href="#dependencies" title="Link to this heading">¶</a></h2>
+<p>In order to facilitate future compatibility with multiple platforms,
+Cyclus is built using <code class="docutils literal notranslate"><span class="pre">CMake</span></code>. A full list of the Cyclus package
+dependencies is shown below:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Package</p></th>
+<th class="head"><p>Minimum Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CMake</span></code></p></td>
+<td><p>2.8</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">boost</span></code></p></td>
+<td><p>1.46.1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">libxml2</span></code></p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">libxml++</span></code></p></td>
+<td><p>2.36</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">python</span></code></p></td>
+<td><p>2.7 or 3.3+</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sqlite3</span></code></p></td>
+<td><p>3.7.10</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">HDF5</span></code></p></td>
+<td><p>1.8.4</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Coin-Cbc</span></code></p></td>
+<td><p>2.5</p></td>
+</tr>
+</tbody>
+</table>
+<p>On some platforms, such as Ubuntu 16.04, the following are also necessary:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Package</p></th>
+<th class="head"><p>Minimum Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">g++</span></code></p></td>
+<td><p>4.8.2</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">libblas-dev</span></code></p></td>
+<td><p>1.2</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">liblapack-dev</span></code></p></td>
+<td><p>3.5.0</p></td>
+</tr>
+</tbody>
+</table>
+<p>And a few optional dependencies:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Package</p></th>
+<th class="head"><p>Minimum Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>doxygen (for docs)</p></td>
+<td><p>1.7.6.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>tcmalloc (for speed)</p></td>
+<td><p>any</p></td>
+</tr>
+<tr class="row-even"><td><p>Cython</p></td>
+<td><p>&gt;=0.25 and  &lt;0.27</p></td>
+</tr>
+<tr class="row-odd"><td><p>Python (dev version)</p></td>
+<td><p>2.7 or 3.3+</p></td>
+</tr>
+<tr class="row-even"><td><p>Jinja2</p></td>
+<td><p>any</p></td>
+</tr>
+<tr class="row-odd"><td><p>NumPy</p></td>
+<td><p>1.9+</p></td>
+</tr>
+<tr class="row-even"><td><p>Pandas</p></td>
+<td><p>any</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Note that the Debian/Ubuntu package ``libtcmalloc`` is NOT discovered correctly
+by our build system.  Instead use ``libgoogle-perftools-dev``.</em></p>
+<p><em>Also note that the development version of Python, Jinja2, NumPy, and Pandas are
+only needed if Cython is installed.</em></p>
+</section>
+<section id="installing-dependencies">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Installing Dependencies</a><a class="headerlink" href="#installing-dependencies" title="Link to this heading">¶</a></h2>
+<p>Cyclus dependencies can either be installed manually or using an operating system’s package
+manager.</p>
+<section id="installing-dependencies-linux-and-unix">
+<h3>Installing Dependencies (Linux and Unix)<a class="headerlink" href="#installing-dependencies-linux-and-unix" title="Link to this heading">¶</a></h3>
+<p>This guide assumes that the user has root access (to issue <code class="docutils literal notranslate"><span class="pre">sudo</span></code> commands) and
+access to a package manager or has some other suitable method of automatically
+installing established libraries. This process was tested using a fresh install
+of Ubuntu versions 16.04, using <code class="docutils literal notranslate"><span class="pre">apt-get</span></code> as the package
+manager (scroll down further for Mac OSX instructions).</p>
+<p>The command to install a dependency takes the form of:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>package
+</pre></div>
+</div>
+<p>where “package” is replaced by the correct package name. The minimal list of
+required library package names is:</p>
+<ol class="arabic simple">
+<li><p>make</p></li>
+<li><p>cmake</p></li>
+<li><p>libboost-all-dev (see note below)</p></li>
+<li><p>libxml2-dev</p></li>
+<li><p>libxml++2.6-dev</p></li>
+<li><p>libsqlite3-dev</p></li>
+<li><p>libhdf5-serial-dev</p></li>
+<li><p>libbz2-dev</p></li>
+<li><p>coinor-libcbc-dev</p></li>
+<li><p>coinor-libcoinutils-dev</p></li>
+<li><p>coinor-libosi-dev</p></li>
+<li><p>coinor-libclp-dev</p></li>
+<li><p>coinor-libcgl-dev</p></li>
+</ol>
+<p>and (optionally):</p>
+<ol class="arabic simple">
+<li><p>doxygen</p></li>
+<li><p>g++</p></li>
+<li><p>libblas-dev</p></li>
+<li><p>liblapack-dev</p></li>
+<li><p>libgoogle-perftools-dev</p></li>
+<li><p>python-dev    or  python3-dev</p></li>
+<li><p>python-tables or  python3-tables</p></li>
+<li><p>python-pandas or  python3-pandas</p></li>
+<li><p>python-numpy  or  python3-numpy</p></li>
+<li><p>python-nose   or  python3-nose</p></li>
+<li><p>python-jinja2 or  python3-jinja2</p></li>
+<li><p>cython        or  cython3       (see note below)</p></li>
+</ol>
+<p>For example, in order to install libxml++ (and libxml2) on your system, type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libxml++2.6-dev
+</pre></div>
+</div>
+<p>If you’d prefer to copy/paste, the following line will install all <strong>required</strong>
+<em>Cyclus</em> dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>cmake<span class="w"> </span>make<span class="w"> </span>libboost-all-dev<span class="w"> </span>libxml2-dev<span class="w"> </span>libxml++2.6-dev<span class="w"> </span><span class="se">\</span>
+libsqlite3-dev<span class="w"> </span>libhdf5-serial-dev<span class="w"> </span>libbz2-dev<span class="w"> </span>coinor-libcbc-dev<span class="w"> </span>coinor-libcoinutils-dev<span class="w"> </span><span class="se">\</span>
+coinor-libosi-dev<span class="w"> </span>coinor-libclp-dev<span class="w"> </span>coinor-libcgl-dev
+</pre></div>
+</div>
+<p>And to install all <em>Cyclus</em> dependencies (<strong>required and optional</strong>):</p>
+<ul class="simple">
+<li><p>if using python 2.x:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>cmake<span class="w"> </span>make<span class="w"> </span>libboost-all-dev<span class="w"> </span>libxml2-dev<span class="w"> </span>libxml++2.6-dev<span class="w"> </span><span class="se">\</span>
+libsqlite3-dev<span class="w"> </span>libhdf5-serial-dev<span class="w"> </span>libbz2-dev<span class="w"> </span>coinor-libcbc-dev<span class="w"> </span>coinor-libcoinutils-dev<span class="w"> </span><span class="se">\</span>
+coinor-libosi-dev<span class="w"> </span>coinor-libclp-dev<span class="w"> </span>coinor-libcgl-dev<span class="w"> </span>libblas-dev<span class="w"> </span>liblapack-dev<span class="w"> </span>g++<span class="w"> </span><span class="se">\</span>
+libgoogle-perftools-dev<span class="w"> </span>python-dev<span class="w"> </span>python-tables<span class="w"> </span>python-pandas<span class="w"> </span>python-numpy<span class="w"> </span>python-nose<span class="w"> </span><span class="se">\</span>
+python-jinja2<span class="w"> </span>cython
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>if using python 3.x:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>cmake<span class="w"> </span>make<span class="w"> </span>libboost-all-dev<span class="w"> </span>libxml2-dev<span class="w"> </span>libxml++2.6-dev<span class="w"> </span><span class="se">\</span>
+libsqlite3-dev<span class="w"> </span>libhdf5-serial-dev<span class="w"> </span>libbz2-dev<span class="w"> </span>coinor-libcbc-dev<span class="w"> </span>coinor-libcoinutils-dev<span class="w"> </span><span class="se">\</span>
+coinor-libosi-dev<span class="w"> </span>coinor-libclp-dev<span class="w"> </span>coinor-libcgl-dev<span class="w"> </span>libblas-dev<span class="w"> </span>liblapack-dev<span class="w"> </span>g++<span class="w"> </span><span class="se">\</span>
+libgoogle-perftools-dev<span class="w"> </span>python3-dev<span class="w"> </span>python3-tables<span class="w"> </span>python3-pandas<span class="w"> </span>python3-numpy<span class="w"> </span>python3-nose<span class="w"> </span><span class="se">\</span>
+python3-jinja2<span class="w"> </span>cython3
+</pre></div>
+</div>
+<p>To determine which version of Python is already installed on your computer, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-V
+</pre></div>
+</div>
+<p>Despite having installed python3, Ubuntu installations may still point at python2.7 by default. So Python -V can return a version of python that is not preferred. In that case the python version can be changed system-wide with the update-alternatives command.</p>
+<p>First, you can list alternatives with the following command:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>update-alternatives<span class="w"> </span>--list<span class="w"> </span>python
+</pre></div>
+</div>
+</div></blockquote>
+<p>Ubuntu may not list any alternatives. To make Ubuntu aware of python 2.7 and python 3.5, use:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--install<span class="w"> </span>/usr/bin/python<span class="w"> </span>python<span class="w"> </span>/usr/bin/python2.7<span class="w"> </span><span class="m">1</span>
+sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--install<span class="w"> </span>/usr/bin/python<span class="w"> </span>python<span class="w"> </span>/usr/bin/python3.5<span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>From now on, to switch between different versions, use:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--config<span class="w"> </span>python
+</pre></div>
+</div>
+</div></blockquote>
+<p>Even if you only have a single python installation, you may have to use update-alternatives to point python at the correct version to avoid build errors.</p>
+<p>Check your current python version with the following command:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>--version
+</pre></div>
+</div>
+</div></blockquote>
+<p>Then make Ubuntu aware of your current python version. Run the following command, using the python version you just checked. The following command uses version python3.8 as an example and will fail if you do not replace 3.8 with your own version number.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--install<span class="w"> </span>/usr/bin/python<span class="w"> </span>python<span class="w"> </span>/usr/bin/python3.8<span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+</div></blockquote>
+<section id="cython-note">
+<h4>Cython Note<a class="headerlink" href="#cython-note" title="Link to this heading">¶</a></h4>
+<p>If you get an error related to an old Cython version, then this may be
+because the Debian stable version of Cython is 0.23.4. However,
+Cyclus requires 0.25.0+. To install the latest cython version, please
+visit the <a class="reference external" href="http://cython.readthedocs.io/en/latest/src/quickstart/install.html">Cython Documentation</a>.</p>
+</section>
+<section id="boost-note">
+<h4>Boost Note<a class="headerlink" href="#boost-note" title="Link to this heading">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">libboost-all-dev</span></code> used above will install the entire Boost library, which
+is not strictly needed. We currently depend on a small subset of the Boost
+libraries:</p>
+<ol class="arabic simple">
+<li><p>libboost-program-options-dev</p></li>
+<li><p>libboost-system-dev</p></li>
+<li><p>libboost-filesystem-dev</p></li>
+</ol>
+<p>However, it is possible (likely) that additional Boost libraries will be used
+because they are an industry standard. Accordingly, we suggest simply installing
+<code class="docutils literal notranslate"><span class="pre">libboost-all-dev</span></code> to limit any headaches due to possible dependency additions
+in the future.</p>
+</section>
+</section>
+<section id="installing-dependencies-mac-osx">
+<h3>Installing Dependencies (Mac OSX)<a class="headerlink" href="#installing-dependencies-mac-osx" title="Link to this heading">¶</a></h3>
+<p>Cyclus archetype development is not fully supported on Mac.  Nonetheless,
+because there are some use cases which require installation from source, we have
+compiled a list of instructions that should be successful.  Use a Mac platform
+at your own risk; we strongly recommend Linux as a primary development environment.</p>
+<p>This guide assumes that the user has root access (to issue <code class="docutils literal notranslate"><span class="pre">sudo</span></code> commands) and
+access to a package manager or has some other suitable method of automatically
+installing established libraries. This process was tested using a fresh install
+of 10.11.6 (El Capitan) using <code class="docutils literal notranslate"><span class="pre">macports</span></code> as the package
+manager.  Macports installs packages in <code class="docutils literal notranslate"><span class="pre">/opt/local</span></code>.  If installing to a
+different location, (i.e. <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code>) change paths in the following
+instructions accordingly. If you use <code class="docutils literal notranslate"><span class="pre">homebrew</span></code>, try the following instructions
+with brew commands in place of the port commands.</p>
+<p>The command to install a dependency takes the form of:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>port<span class="w"> </span>install<span class="w"> </span>package
+</pre></div>
+</div>
+<p>where “package” is replaced by the correct package name. The minimal list of
+required library package names is:</p>
+<ol class="arabic simple">
+<li><p>cmake</p></li>
+<li><p>boost</p></li>
+<li><p>hdf5</p></li>
+<li><p>libxml2</p></li>
+<li><p>libxmlxx2</p></li>
+<li><p>sqlite3</p></li>
+<li><p>doxygen</p></li>
+<li><p>glibmm</p></li>
+</ol>
+<p>Then install Coin-Cbc from source. They can be downloaded to any directory on
+your computer:</p>
+<p><strong>Coin-Cbc</strong>: Download and build using the svn command in the terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>svn<span class="w"> </span>co<span class="w"> </span>https://projects.coin-or.org/svn/Cbc/stable/2.8<span class="w"> </span>Coin-Cbc
+<span class="nb">cd</span><span class="w"> </span>Coin-Cbc/
+mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build/
+../configure<span class="w"> </span>--prefix<span class="o">=</span>/opt/local
+make
+sudo<span class="w"> </span>make<span class="w"> </span>install
+</pre></div>
+</div>
+<p>Finally, update your path and the following environment variables in your
+<code class="docutils literal notranslate"><span class="pre">~/.profile</span></code> (or <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> ) file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">DYLD_FALLBACK_LIBRARY_PATH</span><span class="o">=</span>/opt/local/lib:/opt/local:<span class="nv">$DYLD_FALLBACK_LIBRARY_PATH</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">CMAKE_MODULE_PATH</span><span class="o">=</span>/opt/local/include:<span class="nv">$CMAKE_MODULE_PATH</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CMAKE_PREFIX_PATH</span><span class="o">=</span>/opt/local:<span class="nv">$CMAKE_PREFIX_PATH</span>
+
+<span class="c1"># add to PATH:</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">HDF5_DIR</span><span class="si">}</span>:/opt/local/bin:<span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.local/bin:<span class="nv">$PATH</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Cyclus Core</a><ul>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#installing-dependencies">Installing Dependencies</a><ul>
+<li><a class="reference internal" href="#installing-dependencies-linux-and-unix">Installing Dependencies (Linux and Unix)</a><ul>
+<li><a class="reference internal" href="#cython-note">Cython Note</a></li>
+<li><a class="reference internal" href="#boost-note">Boost Note</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#installing-dependencies-mac-osx">Installing Dependencies (Mac OSX)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Home</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Cyclus Core</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Feb 16, 2024.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
