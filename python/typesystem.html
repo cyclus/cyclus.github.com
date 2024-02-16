@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -5542,7 +5542,7 @@ ability to easily decay a material up to the current simulation time; it
 does not perform any decay related logic itself.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Material.absorb">
-<span class="sig-name descname"><span class="pre">absorb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.absorb" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">absorb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.absorb" title="Link to this definition">¶</a></dt>
 <dd><p>Combines material mat with this one.  mat’s quantity becomes zero.</p>
 </dd></dl>
 
@@ -5563,13 +5563,13 @@ state id. This should NEVER be called by agents.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Material.comp">
-<span class="sig-name descname"><span class="pre">comp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.comp" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">comp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mass'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.comp" title="Link to this definition">¶</a></dt>
 <dd><p>Returns the nuclide composition of this material.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Material.create">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.create" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">creator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mass'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.create" title="Link to this definition">¶</a></dt>
 <dd><p>Creates a new material resource that is “live” and tracked. creator is a
 pointer to the agent creating the resource (usually will be the caller’s
 “this” pointer). All future output data recorded will be done using the
@@ -5578,14 +5578,14 @@ creator’s context.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Material.create_untracked">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_untracked</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.create_untracked" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_untracked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mass'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.create_untracked" title="Link to this definition">¶</a></dt>
 <dd><p>Creates a new material resource that does not actually exist as part of
 the simulation and is untracked.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Material.decay">
-<span class="sig-name descname"><span class="pre">decay</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.decay" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">decay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curr_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.decay" title="Link to this definition">¶</a></dt>
 <dd><p>Updates the material’s composition by performing a decay calculation.
 This is a special case of Transmute where the new composition is
 calculated automatically.  The time delta is calculated as the difference
@@ -5604,20 +5604,20 @@ constants are significant with respect to the time delta.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Material.extract_comp">
-<span class="sig-name descname"><span class="pre">extract_comp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.extract_comp" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">extract_comp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qty</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mass'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.extract_comp" title="Link to this definition">¶</a></dt>
 <dd><p>Creates a new material by extracting from this one.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Material.extract_qty">
-<span class="sig-name descname"><span class="pre">extract_qty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.extract_qty" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">extract_qty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.extract_qty" title="Link to this definition">¶</a></dt>
 <dd><p>Same as ExtractComp with c = this-&gt;comp() and returns a Material,
 not a Resource.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Material.extract_res">
-<span class="sig-name descname"><span class="pre">extract_res</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.extract_res" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">extract_res</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.extract_res" title="Link to this definition">¶</a></dt>
 <dd><p>Splits the resource and returns the extracted portion as a new resource
 object.  Allows for things like ResBuf and Traders to split
 offers/requests of arbitrary resource implementation type.</p>
@@ -5657,7 +5657,7 @@ the return value of units().</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Material.record">
-<span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.record" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.record" title="Link to this definition">¶</a></dt>
 <dd><p>Records the resource’s state to the output database.  This method
 should generally NOT record data accessible via the Resource class
 public methods (e.g.  qual_id, units, type, quantity).</p>
@@ -5674,7 +5674,7 @@ use the obj_id rather than this.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Material.transmute">
-<span class="sig-name descname"><span class="pre">transmute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.transmute" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">transmute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mass'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Material.transmute" title="Link to this definition">¶</a></dt>
 <dd><p>Changes the material’s composition to c without changing its mass.  Use
 this method for things like converting fresh to spent fuel via burning in
 a reactor.</p>
@@ -8685,7 +8685,7 @@ class interface in a simple way usable for things such as: bananas,
 water, buying power, etc.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Product.absorb">
-<span class="sig-name descname"><span class="pre">absorb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Product.absorb" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">absorb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Product.absorb" title="Link to this definition">¶</a></dt>
 <dd><p>Absorbs the contents of the given ‘other’ resource into this resource.</p>
 </dd></dl>
 
@@ -8706,7 +8706,7 @@ state id. This should NEVER be called by agents.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Product.create">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Product.create" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">creator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quality</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Product.create" title="Link to this definition">¶</a></dt>
 <dd><p>Creates a new product resource that is “live” and tracked. creator is a
 pointer to the agent creating the resource (usually will be the caller’s
 “this” pointer). All future output data recorded will be done using the
@@ -8715,21 +8715,21 @@ creator’s context.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Product.create_untracked">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_untracked</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Product.create_untracked" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_untracked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quality</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Product.create_untracked" title="Link to this definition">¶</a></dt>
 <dd><p>Creates a new product that does not actually exist as part of
 the simulation and is untracked.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Product.extract">
-<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Product.extract" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qty</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Product.extract" title="Link to this definition">¶</a></dt>
 <dd><p>Extracts the specified mass from this resource and returns it as a
 new product object with the same quality/type.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Product.extract_res">
-<span class="sig-name descname"><span class="pre">extract_res</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Product.extract_res" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">extract_res</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Product.extract_res" title="Link to this definition">¶</a></dt>
 <dd><p>Splits the resource and returns the extracted portion as a new resource
 object.  Allows for things like ResBuf and Traders to split
 offers/requests of arbitrary resource implementation type.</p>
@@ -8761,7 +8761,7 @@ the return value of units().</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Product.record">
-<span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Product.record" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Product.record" title="Link to this definition">¶</a></dt>
 <dd><p>Records the resource’s state to the output database.  This method
 should generally NOT record data accessible via the Resource class
 public methods (e.g.  qual_id, units, type, quantity).</p>
@@ -9086,7 +9086,7 @@ without actually removing it from the buffer.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResBufMaterial.pop">
-<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufMaterial.pop" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufMaterial.pop" title="Link to this definition">¶</a></dt>
 <dd><p>Pops one Material object from the store. Neagtive values of qty and eps are
 ignored.</p>
 </dd></dl>
@@ -9106,25 +9106,25 @@ For ResBuf, this is equivalent to self.pop_n_res(len(self))</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResBufMaterial.pop_n">
-<span class="sig-name descname"><span class="pre">pop_n</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufMaterial.pop_n" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pop_n</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufMaterial.pop_n" title="Link to this definition">¶</a></dt>
 <dd><p>Pops the specified number of Materials from the buffer.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResBufMaterial.pop_n_res">
-<span class="sig-name descname"><span class="pre">pop_n_res</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufMaterial.pop_n_res" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pop_n_res</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufMaterial.pop_n_res" title="Link to this definition">¶</a></dt>
 <dd><p>Pops the specified number of resources from the buffer.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResBufMaterial.push">
-<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufMaterial.push" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufMaterial.push" title="Link to this definition">¶</a></dt>
 <dd><p>Pushes a single resource object to the buffer.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResBufMaterial.push_many">
-<span class="sig-name descname"><span class="pre">push_many</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufMaterial.push_many" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">push_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufMaterial.push_many" title="Link to this definition">¶</a></dt>
 <dd><p>A consistent interface for pushing many resources into the buffer.
 For ResBuf, this iteratively calls push().</p>
 </dd></dl>
@@ -9322,7 +9322,7 @@ without actually removing it from the buffer.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResBufProduct.pop">
-<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufProduct.pop" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufProduct.pop" title="Link to this definition">¶</a></dt>
 <dd><p>Pops one Product object from the store. Neagtive values of qty and eps are
 ignored.</p>
 </dd></dl>
@@ -9342,25 +9342,25 @@ For ResBuf, this is equivalent to self.pop_n_res(len(self))</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResBufProduct.pop_n">
-<span class="sig-name descname"><span class="pre">pop_n</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufProduct.pop_n" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pop_n</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufProduct.pop_n" title="Link to this definition">¶</a></dt>
 <dd><p>Pops the specified number of Products from the buffer.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResBufProduct.pop_n_res">
-<span class="sig-name descname"><span class="pre">pop_n_res</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufProduct.pop_n_res" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pop_n_res</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufProduct.pop_n_res" title="Link to this definition">¶</a></dt>
 <dd><p>Pops the specified number of resources from the buffer.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResBufProduct.push">
-<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufProduct.push" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufProduct.push" title="Link to this definition">¶</a></dt>
 <dd><p>Pushes a single resource object to the buffer.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResBufProduct.push_many">
-<span class="sig-name descname"><span class="pre">push_many</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufProduct.push_many" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">push_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResBufProduct.push_many" title="Link to this definition">¶</a></dt>
 <dd><p>A consistent interface for pushing many resources into the buffer.
 For ResBuf, this iteratively calls push().</p>
 </dd></dl>
@@ -9545,7 +9545,7 @@ For ResBuf, this iteratively calls push().</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResMapIntMaterial.pop">
-<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapIntMaterial.pop" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapIntMaterial.pop" title="Link to this definition">¶</a></dt>
 <dd><p>Pops one Material object from the store.</p>
 </dd></dl>
 
@@ -9558,7 +9558,7 @@ For ResBuf, this is equivalent to self.res_values()</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResMapIntMaterial.push_many">
-<span class="sig-name descname"><span class="pre">push_many</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapIntMaterial.push_many" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">push_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapIntMaterial.push_many" title="Link to this definition">¶</a></dt>
 <dd><p>A consistent interface for pushing many resources into the buffer.
 For ResMap, this calls ResValues(vals).</p>
 </dd></dl>
@@ -9756,7 +9756,7 @@ For the version of this method which sets resources, see push_many().</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResMapIntProduct.pop">
-<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapIntProduct.pop" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapIntProduct.pop" title="Link to this definition">¶</a></dt>
 <dd><p>Pops one Product object from the store.</p>
 </dd></dl>
 
@@ -9769,7 +9769,7 @@ For ResBuf, this is equivalent to self.res_values()</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResMapIntProduct.push_many">
-<span class="sig-name descname"><span class="pre">push_many</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapIntProduct.push_many" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">push_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapIntProduct.push_many" title="Link to this definition">¶</a></dt>
 <dd><p>A consistent interface for pushing many resources into the buffer.
 For ResMap, this calls ResValues(vals).</p>
 </dd></dl>
@@ -9967,7 +9967,7 @@ For the version of this method which sets resources, see push_many().</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResMapStringMaterial.pop">
-<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapStringMaterial.pop" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapStringMaterial.pop" title="Link to this definition">¶</a></dt>
 <dd><p>Pops one Material object from the store.</p>
 </dd></dl>
 
@@ -9980,7 +9980,7 @@ For ResBuf, this is equivalent to self.res_values()</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResMapStringMaterial.push_many">
-<span class="sig-name descname"><span class="pre">push_many</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapStringMaterial.push_many" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">push_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapStringMaterial.push_many" title="Link to this definition">¶</a></dt>
 <dd><p>A consistent interface for pushing many resources into the buffer.
 For ResMap, this calls ResValues(vals).</p>
 </dd></dl>
@@ -10178,7 +10178,7 @@ For the version of this method which sets resources, see push_many().</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResMapStringProduct.pop">
-<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapStringProduct.pop" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapStringProduct.pop" title="Link to this definition">¶</a></dt>
 <dd><p>Pops one Product object from the store.</p>
 </dd></dl>
 
@@ -10191,7 +10191,7 @@ For ResBuf, this is equivalent to self.res_values()</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResMapStringProduct.push_many">
-<span class="sig-name descname"><span class="pre">push_many</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapStringProduct.push_many" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">push_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResMapStringProduct.push_many" title="Link to this definition">¶</a></dt>
 <dd><p>A consistent interface for pushing many resources into the buffer.
 For ResMap, this calls ResValues(vals).</p>
 </dd></dl>
@@ -10395,7 +10395,7 @@ A cloned resource should never record anything in the output database.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Resource.extract_res">
-<span class="sig-name descname"><span class="pre">extract_res</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Resource.extract_res" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">extract_res</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Resource.extract_res" title="Link to this definition">¶</a></dt>
 <dd><p>Splits the resource and returns the extracted portion as a new resource
 object.  Allows for things like ResBuf and Traders to split
 offers/requests of arbitrary resource implementation type.</p>
@@ -10427,7 +10427,7 @@ the return value of units().</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.Resource.record">
-<span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Resource.record" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.Resource.record" title="Link to this definition">¶</a></dt>
 <dd><p>Records the resource’s state to the output database.  This method
 should generally NOT record data accessible via the Resource class
 public methods (e.g.  qual_id, units, type, quantity).</p>
@@ -10480,7 +10480,7 @@ use the obj_id rather than this.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResourceBuff.pop">
-<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResourceBuff.pop" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">back</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResourceBuff.pop" title="Link to this definition">¶</a></dt>
 <dd><p>Pops one resource object from the store.</p>
 </dd></dl>
 
@@ -10499,7 +10499,7 @@ For ResourceBuff, this is equivalent to self.pop_n(len(self))</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResourceBuff.pop_n">
-<span class="sig-name descname"><span class="pre">pop_n</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResourceBuff.pop_n" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pop_n</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResourceBuff.pop_n" title="Link to this definition">¶</a></dt>
 <dd><p>Pops the specified number of resources from the buffer.</p>
 </dd></dl>
 
@@ -10511,26 +10511,26 @@ For ResourceBuff, this is equivalent to self.pop_n(len(self))</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResourceBuff.pop_qty">
-<span class="sig-name descname"><span class="pre">pop_qty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResourceBuff.pop_qty" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pop_qty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResourceBuff.pop_qty" title="Link to this definition">¶</a></dt>
 <dd><p>Pops the specified quantity of resources from the buffer.
 Negative eps values are ignored (default).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResourceBuff.push">
-<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResourceBuff.push" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResourceBuff.push" title="Link to this definition">¶</a></dt>
 <dd><p>Pushes a single resource object to the buffer.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResourceBuff.push_all">
-<span class="sig-name descname"><span class="pre">push_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResourceBuff.push_all" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">push_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResourceBuff.push_all" title="Link to this definition">¶</a></dt>
 <dd><p>Pushes one or more resource objects to the store.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.typesystem.ResourceBuff.push_many">
-<span class="sig-name descname"><span class="pre">push_many</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResourceBuff.push_many" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">push_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.ResourceBuff.push_many" title="Link to this definition">¶</a></dt>
 <dd><p>A consistent interface for pushing many resources into the buffer.
 For ResourceBuff, this simply calls push_all().</p>
 </dd></dl>
@@ -13566,14 +13566,14 @@ key!!!</p></td>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.typesystem.capsule_any_to_py">
-<span class="sig-prename descclassname"><span class="pre">cyclus.typesystem.</span></span><span class="sig-name descname"><span class="pre">capsule_any_to_py</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.capsule_any_to_py" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.typesystem.</span></span><span class="sig-name descname"><span class="pre">capsule_any_to_py</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.capsule_any_to_py" title="Link to this definition">¶</a></dt>
 <dd><p>Converts a PyCapsule that holds a boost::spirit::hold_any to a python
 value.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.typesystem.prepare_type_representation">
-<span class="sig-prename descclassname"><span class="pre">cyclus.typesystem.</span></span><span class="sig-name descname"><span class="pre">prepare_type_representation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.prepare_type_representation" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.typesystem.</span></span><span class="sig-name descname"><span class="pre">prepare_type_representation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cpptype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">othertype</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.typesystem.prepare_type_representation" title="Link to this definition">¶</a></dt>
 <dd><p>Updates othertype to conform to the length of cpptype using None’s.</p>
 </dd></dl>
 

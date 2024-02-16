@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -95,7 +95,7 @@ if(ga_enabled){
 that live and interact in a simulation.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Agent.ancestor_of">
-<span class="sig-name descname"><span class="pre">ancestor_of</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.ancestor_of" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ancestor_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.ancestor_of" title="Link to this definition">¶</a></dt>
 <dd><p>Returns true if this agent is an ancestor of an other agent (i.e., resides
 above an other agent in the family tree).</p>
 </dd></dl>
@@ -126,7 +126,7 @@ above an other agent in the family tree).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Agent.decendent_of">
-<span class="sig-name descname"><span class="pre">decendent_of</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.decendent_of" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">decendent_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.decendent_of" title="Link to this definition">¶</a></dt>
 <dd><p>Returns true if this agent is an decendent of an other agent (i.e., resides
 above an other agent in the family tree).</p>
 </dd></dl>
@@ -167,7 +167,7 @@ will be the enter time plus its lifetime less 1.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Agent.in_family_tree">
-<span class="sig-name descname"><span class="pre">in_family_tree</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.in_family_tree" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">in_family_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.in_family_tree" title="Link to this definition">¶</a></dt>
 <dd><p>Returns true if this agent is in the parent-child family tree of an
 other agent.</p>
 </dd></dl>
@@ -188,7 +188,7 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Agent.lifetime_force">
-<span class="sig-name descname"><span class="pre">lifetime_force</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.lifetime_force" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">lifetime_force</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_timesteps</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.lifetime_force" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -225,7 +225,7 @@ xml input that the InfileToDb function receives.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Agent.tree_strs">
-<span class="sig-name descname"><span class="pre">tree_strs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.tree_strs" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">tree_strs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Agent.tree_strs" title="Link to this definition">¶</a></dt>
 <dd><p>Returns a list of children strings representing the parent-child tree
 at the node for Agent m.</p>
 </dd></dl>
@@ -348,7 +348,7 @@ destruction.</p></li>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Context.add_recipe">
-<span class="sig-name descname"><span class="pre">add_recipe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.add_recipe" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">add_recipe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.add_recipe" title="Link to this definition">¶</a></dt>
 <dd><p>Adds a new recipe to a simulation</p>
 <section id="parameters">
 <h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
@@ -365,7 +365,7 @@ destruction.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Context.del_agent">
-<span class="sig-name descname"><span class="pre">del_agent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.del_agent" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">del_agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.del_agent" title="Link to this definition">¶</a></dt>
 <dd><p>Destructs and cleans up an agent (and it’s children recursively).</p>
 </dd></dl>
 
@@ -377,7 +377,7 @@ destruction.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Context.get_recipe">
-<span class="sig-name descname"><span class="pre">get_recipe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.get_recipe" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_recipe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mass'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.get_recipe" title="Link to this definition">¶</a></dt>
 <dd><p>Retrieve a registered recipe. This is intended for retrieving
 compositions loaded from an input file(s) at the start of a
 simulation and NOT for communicating compositions between facilities
@@ -387,13 +387,13 @@ during the simulation. You must provide the basis as either “mass” or
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Context.new_datum">
-<span class="sig-name descname"><span class="pre">new_datum</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.new_datum" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">new_datum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.new_datum" title="Link to this definition">¶</a></dt>
 <dd><p>Returns a new datum instance.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Context.schedule_build">
-<span class="sig-name descname"><span class="pre">schedule_build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.schedule_build" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">schedule_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proto_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.schedule_build" title="Link to this definition">¶</a></dt>
 <dd><p>Schedules the named prototype to be built for the specified parent at
 timestep t. The default t=-1 results in the build being scheduled for the
 next build phase (i.e. the start of the next timestep).</p>
@@ -401,7 +401,7 @@ next build phase (i.e. the start of the next timestep).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Context.schedule_decom">
-<span class="sig-name descname"><span class="pre">schedule_decom</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.schedule_decom" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">schedule_decom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Context.schedule_decom" title="Link to this definition">¶</a></dt>
 <dd><p>Schedules the given Agent to be decommissioned at the specified timestep
 t. The default t=-1 results in the decommission being scheduled for the
 next decommission phase (i.e. the end of the current timestep).</p>
@@ -427,7 +427,7 @@ next decommission phase (i.e. the end of the current timestep).</p>
 <dd><p>Datum class.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Datum.add_val">
-<span class="sig-name descname"><span class="pre">add_val</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Datum.add_val" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">add_val</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Datum.add_val" title="Link to this definition">¶</a></dt>
 <dd><p>Adds Datum value to current record as the corresponding cyclus data type.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -485,7 +485,7 @@ to the datum title.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.DbInit.new_datum">
-<span class="sig-name descname"><span class="pre">new_datum</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.DbInit.new_datum" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">new_datum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.DbInit.new_datum" title="Link to this definition">¶</a></dt>
 <dd><p>Returns a new datum to be used exactly as the Context.new_datum() method.
 Users must not add fields to the datum that are automatically injected:
 ‘SimId’, ‘AgentId’, and ‘SimTime’.</p>
@@ -505,13 +505,13 @@ Users must not add fields to the datum that are automatically injected:
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.DynamicModule.exists">
-<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.DynamicModule.exists" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.DynamicModule.exists" title="Link to this definition">¶</a></dt>
 <dd><p>Tests whether an agent spec exists.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.DynamicModule.make">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">make</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.DynamicModule.make" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">make</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.DynamicModule.make" title="Link to this definition">¶</a></dt>
 <dd><p>Returns a newly constructed agent for the given module spec.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -568,14 +568,14 @@ system.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Env.find_module">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">find_module</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Env.find_module" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">find_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Env.find_module" title="Link to this definition">¶</a></dt>
 <dd><p>Returns the full path to a module by searching through default
 install and CYCLUS_PATH directories.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Env.get">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Env.get" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Env.get" title="Link to this definition">¶</a></dt>
 <dd><p>Obtains an environment variable.</p>
 </dd></dl>
 
@@ -593,7 +593,7 @@ install and CYCLUS_PATH directories.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Env.path_base">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">path_base</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Env.path_base" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">path_base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Env.path_base" title="Link to this definition">¶</a></dt>
 <dd><p>Effectively basename</p>
 </dd></dl>
 
@@ -606,7 +606,7 @@ system.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Env.rng_schema">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rng_schema</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Env.rng_schema" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rng_schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Env.rng_schema" title="Link to this definition">¶</a></dt>
 <dd><p>Returns the current rng schema.  Uses CYCLUS_RNG_SCHEMA env var
 if set; otherwise uses the default install location. If using the
 default ocation, set flat=True for the default flat schema.</p>
@@ -614,7 +614,7 @@ default ocation, set flat=True for the default flat schema.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Env.set_nuc_data_path">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_nuc_data_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Env.set_nuc_data_path" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_nuc_data_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Env.set_nuc_data_path" title="Link to this definition">¶</a></dt>
 <dd><p>Initializes the path to the cyclus_nuc_data.h5 file</p>
 <p>By default, it is assumed to be located in the path given by
 GetInstallPath()/share; however, paths in environment variable
@@ -629,7 +629,7 @@ CYCLUS_NUC_DATA are checked first.</p>
 <dd><p>Full backend cyclus database interface.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.FullBackend.query">
-<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.FullBackend.query" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.FullBackend.query" title="Link to this definition">¶</a></dt>
 <dd><p>Queries a database table.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -653,7 +653,7 @@ CYCLUS_NUC_DATA are checked first.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.FullBackend.schema">
-<span class="sig-name descname"><span class="pre">schema</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.FullBackend.schema" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.FullBackend.schema" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -688,7 +688,7 @@ CYCLUS_NUC_DATA are checked first.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Hdf5Back.query">
-<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Hdf5Back.query" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Hdf5Back.query" title="Link to this definition">¶</a></dt>
 <dd><p>Queries a database table.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -712,7 +712,7 @@ CYCLUS_NUC_DATA are checked first.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Hdf5Back.schema">
-<span class="sig-name descname"><span class="pre">schema</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Hdf5Back.schema" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Hdf5Back.schema" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -737,7 +737,7 @@ CYCLUS_NUC_DATA are checked first.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.InfileTree.from_parser">
-<span class="sig-name descname"><span class="pre">from_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.InfileTree.from_parser" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_parser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.InfileTree.from_parser" title="Link to this definition">¶</a></dt>
 <dd><p>Initializes an input file tree from an XML parser.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -751,7 +751,7 @@ CYCLUS_NUC_DATA are checked first.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.InfileTree.nmatches">
-<span class="sig-name descname"><span class="pre">nmatches</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.InfileTree.nmatches" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">nmatches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.InfileTree.nmatches" title="Link to this definition">¶</a></dt>
 <dd><p>Investigates the current status and returns the number of elements
 matching a query.</p>
 <dl class="field-list">
@@ -772,7 +772,7 @@ matching a query.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.InfileTree.optional_query">
-<span class="sig-name descname"><span class="pre">optional_query</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.InfileTree.optional_query" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">optional_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.InfileTree.optional_query" title="Link to this definition">¶</a></dt>
 <dd><p>A query method for optional parameters.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -792,7 +792,7 @@ is determined by the type of the default.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.InfileTree.query">
-<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.InfileTree.query" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dbtype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.InfileTree.query" title="Link to this definition">¶</a></dt>
 <dd><p>A query method for required parameters.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -816,7 +816,7 @@ Blobs and UUIDs are not included because they cannot be lexically cast.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.InfileTree.subtree">
-<span class="sig-name descname"><span class="pre">subtree</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.InfileTree.subtree" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">subtree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.InfileTree.subtree" title="Link to this definition">¶</a></dt>
 <dd><p>Populates a child infile based on a query and index.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -864,7 +864,7 @@ for debugging and other purposes.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Logger.to_log_level">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_log_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Logger.to_log_level" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_log_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Logger.to_log_level" title="Link to this definition">¶</a></dt>
 <dd><p>Converts a string into a corresponding LogLevel value.</p>
 <p>For strings that do not correspond to any particular LogLevel enum value
 the method returns the LogLevel value <cite>LEV_ERROR</cite>.  This method is
@@ -874,7 +874,7 @@ appropriate report levels.  LOG(level) statements</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Logger.to_string">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Logger.to_string" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Logger.to_string" title="Link to this definition">¶</a></dt>
 <dd><p>Converts a LogLevel enum value into a corrsponding string.</p>
 <p>For a level argments that have no corresponding string value, the string
 <cite>BAD_LEVEL</cite> is returned.  This method is primarily intended for translating
@@ -896,7 +896,7 @@ calculated by multiplying decimal degrees by 3600.
 example: 05.2169 -&gt; 18780.84</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Position.distance">
-<span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Position.distance" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Position.distance" title="Link to this definition">¶</a></dt>
 <dd><p>Computes the distance between this object and another position.</p>
 </dd></dl>
 
@@ -912,7 +912,7 @@ example: 05.2169 -&gt; 18780.84</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Position.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Position.update" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Position.update" title="Link to this definition">¶</a></dt>
 <dd><p>Updates the latitude and/or longitude</p>
 </dd></dl>
 
@@ -948,13 +948,13 @@ example: 05.2169 -&gt; 18780.84</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Recorder.new_datum">
-<span class="sig-name descname"><span class="pre">new_datum</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Recorder.new_datum" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">new_datum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Recorder.new_datum" title="Link to this definition">¶</a></dt>
 <dd><p>Returns a new datum instance.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.Recorder.register_backend">
-<span class="sig-name descname"><span class="pre">register_backend</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Recorder.register_backend" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">register_backend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.Recorder.register_backend" title="Link to this definition">¶</a></dt>
 <dd><p>Registers a backend with the recorder.</p>
 </dd></dl>
 
@@ -1024,7 +1024,7 @@ or Branch must be called first.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.SqliteBack.query">
-<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.SqliteBack.query" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.SqliteBack.query" title="Link to this definition">¶</a></dt>
 <dd><p>Queries a database table.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1048,7 +1048,7 @@ or Branch must be called first.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.lib.SqliteBack.schema">
-<span class="sig-name descname"><span class="pre">schema</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.SqliteBack.schema" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.SqliteBack.schema" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1152,13 +1152,13 @@ filename or raw, if given.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.call_listeners">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">call_listeners</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.call_listeners" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">call_listeners</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tsname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.call_listeners" title="Link to this definition">¶</a></dt>
 <dd><p>Calls the time series listener functions of cyclus agents.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.capsule_agent_to_py">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">capsule_agent_to_py</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.capsule_agent_to_py" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">capsule_agent_to_py</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.capsule_agent_to_py" title="Link to this definition">¶</a></dt>
 <dd><p>Returns an agent from its id</p>
 </dd></dl>
 
@@ -1182,7 +1182,7 @@ filename or raw, if given.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.dbopen">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">dbopen</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.dbopen" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">dbopen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.dbopen" title="Link to this definition">¶</a></dt>
 <dd><p>Opens a Cyclus database.</p>
 </dd></dl>
 
@@ -1201,7 +1201,7 @@ object.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.discover_specs">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">discover_specs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.discover_specs" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">discover_specs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">library</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.discover_specs" title="Link to this definition">¶</a></dt>
 <dd><p>Discover archetype specifications for a path and library.
 Returns a set of strings.</p>
 </dd></dl>
@@ -1234,38 +1234,38 @@ as errors.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.json_to_py">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">json_to_py</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.json_to_py" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">json_to_py</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.json_to_py" title="Link to this definition">¶</a></dt>
 <dd><p>Converts a JSON string into an equivalent Python string</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.json_to_xml">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">json_to_xml</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.json_to_xml" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">json_to_xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.json_to_xml" title="Link to this definition">¶</a></dt>
 <dd><p>Converts a JSON string into an equivalent XML string</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.load_string_from_file">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">load_string_from_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.load_string_from_file" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">load_string_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.load_string_from_file" title="Link to this definition">¶</a></dt>
 <dd><p>Loads an XML file from a path or from a string and a format (‘xml’, ‘json’, or ‘py’).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.make_py_agent">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">make_py_agent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.make_py_agent" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">make_py_agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">libname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agentname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctx_capsule</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.make_py_agent" title="Link to this definition">¶</a></dt>
 <dd><p>Makes a new Python agent instance.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.normalize_bid_portfolio">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">normalize_bid_portfolio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.normalize_bid_portfolio" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">normalize_bid_portfolio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.normalize_bid_portfolio" title="Link to this definition">¶</a></dt>
 <dd><p>Normalizes a bid portfolio into a standard Python form, ready to be traded.
 Note that this does not include the bidder object.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.normalize_request_portfolio">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">normalize_request_portfolio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.normalize_request_portfolio" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">normalize_request_portfolio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.normalize_request_portfolio" title="Link to this definition">¶</a></dt>
 <dd><p>Normalizes a request portfolio into a standard Python form, ready to be traded.
 Note that this does not include the requester object.</p>
 </dd></dl>
@@ -1296,19 +1296,19 @@ this function.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.py_to_json">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">py_to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.py_to_json" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">py_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.py_to_json" title="Link to this definition">¶</a></dt>
 <dd><p>Converts a Python string into an equivalent JSON string</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.py_to_xml">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">py_to_xml</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.py_to_xml" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">py_to_xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.py_to_xml" title="Link to this definition">¶</a></dt>
 <dd><p>Converts a Python string into an equivalent XML string</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.record_time_series">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">record_time_series</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.record_time_series" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">record_time_series</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tstype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.record_time_series" title="Link to this definition">¶</a></dt>
 <dd><p>Python hook into RecordTimeSeries for Python archetypes</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1330,13 +1330,13 @@ this function.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.set_warn_as_error">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">set_warn_as_error</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.set_warn_as_error" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">set_warn_as_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wae</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.set_warn_as_error" title="Link to this definition">¶</a></dt>
 <dd><p>Sets whether warnings should be treated as errors.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.set_warn_limit">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">set_warn_limit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.set_warn_limit" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">set_warn_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.set_warn_limit" title="Link to this definition">¶</a></dt>
 <dd><p>Sets the warning limit.</p>
 </dd></dl>
 
@@ -1360,13 +1360,13 @@ this function.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.xml_to_json">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">xml_to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.xml_to_json" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">xml_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.xml_to_json" title="Link to this definition">¶</a></dt>
 <dd><p>Converts an XML string into an equivalent JSON string</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cyclus.lib.xml_to_py">
-<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">xml_to_py</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.xml_to_py" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cyclus.lib.</span></span><span class="sig-name descname"><span class="pre">xml_to_py</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.lib.xml_to_py" title="Link to this definition">¶</a></dt>
 <dd><p>Converts an XML string into an equivalent Python string</p>
 </dd></dl>
 

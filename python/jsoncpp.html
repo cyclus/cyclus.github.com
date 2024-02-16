@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -95,7 +95,7 @@ if(ga_enabled){
 formtting.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.jsoncpp.CustomWriter.write">
-<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.CustomWriter.write" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.CustomWriter.write" title="Link to this definition">¶</a></dt>
 <dd><p>Writes a value out to a custom human-readable JSON string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -121,7 +121,7 @@ formtting.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.jsoncpp.FastWriter.write">
-<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.FastWriter.write" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.FastWriter.write" title="Link to this definition">¶</a></dt>
 <dd><p>Writes a value out to a compact, not human-readable JSON string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -141,7 +141,7 @@ formtting.</p>
 <dd><p>A class to convert strings and files to values in memory.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.jsoncpp.Reader.parse">
-<span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Reader.parse" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collect_comments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Reader.parse" title="Link to this definition">¶</a></dt>
 <dd><p>Read a Value from a JSON document.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -172,7 +172,7 @@ serialization, and False to discard comments.</p>
 <dd><p>A class to convert values in memory to expanded strings.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.jsoncpp.StyledWriter.write">
-<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.StyledWriter.write" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.StyledWriter.write" title="Link to this definition">¶</a></dt>
 <dd><p>Writes a value out to a human-readable JSON string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -204,7 +204,7 @@ serialization, and False to discard comments.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.jsoncpp.Value.append">
-<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.append" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.append" title="Link to this definition">¶</a></dt>
 <dd><p>Adds the value to the end of the array.</p>
 </dd></dl>
 
@@ -216,31 +216,31 @@ serialization, and False to discard comments.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.jsoncpp.Value.count">
-<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.count" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.count" title="Link to this definition">¶</a></dt>
 <dd><p>Counts the number of instances of value.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.jsoncpp.Value.extend">
-<span class="sig-name descname"><span class="pre">extend</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.extend" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">extend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">itr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.extend" title="Link to this definition">¶</a></dt>
 <dd><p>Exetend the array by adding elements from the iterable to the end.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.jsoncpp.Value.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.get" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.get" title="Link to this definition">¶</a></dt>
 <dd><p>Returns key if present, or default otherwise.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.jsoncpp.Value.index">
-<span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.index" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.index" title="Link to this definition">¶</a></dt>
 <dd><p>Finds the first index of value on range from start to stop.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.jsoncpp.Value.insert">
-<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.insert" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.insert" title="Link to this definition">¶</a></dt>
 <dd><p>Inserts the value at position ind.</p>
 </dd></dl>
 
@@ -300,17 +300,17 @@ serialization, and False to discard comments.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.jsoncpp.Value.pop">
-<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.pop" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.pop" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.jsoncpp.Value.popitem">
-<span class="sig-name descname"><span class="pre">popitem</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.popitem" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">popitem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.popitem" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.jsoncpp.Value.remove">
-<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.remove" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.remove" title="Link to this definition">¶</a></dt>
 <dd><p>Removes the first instance of value from the array.</p>
 </dd></dl>
 
@@ -322,7 +322,7 @@ serialization, and False to discard comments.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.jsoncpp.Value.setdefault">
-<span class="sig-name descname"><span class="pre">setdefault</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.setdefault" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">setdefault</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.setdefault" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -339,7 +339,7 @@ serialization, and False to discard comments.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.jsoncpp.Value.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.update" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.jsoncpp.Value.update" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
