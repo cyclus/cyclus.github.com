@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script src="../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -103,19 +103,19 @@ need to call the initilaizer.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Agent.adjust_material_prefs">
-<span class="sig-name descname"><span class="pre">adjust_material_prefs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.adjust_material_prefs" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">adjust_material_prefs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.adjust_material_prefs" title="Link to this definition">¶</a></dt>
 <dd><p>Product preferences adjustment.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Agent.adjust_product_prefs">
-<span class="sig-name descname"><span class="pre">adjust_product_prefs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.adjust_product_prefs" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">adjust_product_prefs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.adjust_product_prefs" title="Link to this definition">¶</a></dt>
 <dd><p>Product preferences adjustment.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Agent.ancestor_of">
-<span class="sig-name descname"><span class="pre">ancestor_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.ancestor_of" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ancestor_of</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.ancestor_of" title="Link to this definition">¶</a></dt>
 <dd><p>Returns true if this agent is an ancestor of an other agent (i.e., resides
 above an other agent in the family tree).</p>
 </dd></dl>
@@ -133,7 +133,7 @@ above an other agent in the family tree).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Agent.build">
-<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.build" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.build" title="Link to this definition">¶</a></dt>
 <dd><p>Called when the agent enters the smiulation as an active participant and
 is only ever called once.  Agents should NOT register for services (such
 as ticks/tocks and resource exchange) in this function. If agents implement
@@ -169,7 +169,7 @@ initially existing agents are being setup.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Agent.decendent_of">
-<span class="sig-name descname"><span class="pre">decendent_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.decendent_of" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">decendent_of</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.decendent_of" title="Link to this definition">¶</a></dt>
 <dd><p>Returns true if this agent is an decendent of an other agent (i.e., resides
 above an other agent in the family tree).</p>
 </dd></dl>
@@ -231,14 +231,14 @@ will be the enter time plus its lifetime less 1.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Agent.in_family_tree">
-<span class="sig-name descname"><span class="pre">in_family_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.in_family_tree" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">in_family_tree</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.in_family_tree" title="Link to this definition">¶</a></dt>
 <dd><p>Returns true if this agent is in the parent-child family tree of an
 other agent.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Agent.infile_to_db">
-<span class="sig-name descname"><span class="pre">infile_to_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">di</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.infile_to_db" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">infile_to_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.infile_to_db" title="Link to this definition">¶</a></dt>
 <dd><p>A dynamic version of InfileToDb(InfileTree*, DbInit) that should
 work for all subclasses. Users should not need to call this ever.
 However, brave users may choose to override it in exceptional cases.</p>
@@ -246,7 +246,7 @@ However, brave users may choose to override it in exceptional cases.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Agent.init_from_agent">
-<span class="sig-name descname"><span class="pre">init_from_agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.init_from_agent" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">init_from_agent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.init_from_agent" title="Link to this definition">¶</a></dt>
 <dd><p>A dynamic version of InitFrom(Agent) that should work for all
 subclasses. Users should not need to call this ever. However, brave
 users may choose to override it in exceptional cases.</p>
@@ -254,7 +254,7 @@ users may choose to override it in exceptional cases.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Agent.init_from_dict">
-<span class="sig-name descname"><span class="pre">init_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.init_from_dict" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">init_from_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.init_from_dict" title="Link to this definition">¶</a></dt>
 <dd><p>An initializer that reads state varaible values from a dictionary.
 This is used when InitFrom(QueryableBackend) is called.
 Users should not need to call this ever. However, brave
@@ -263,7 +263,7 @@ users may choose to override it in exceptional cases.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Agent.init_inv">
-<span class="sig-name descname"><span class="pre">init_inv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.init_inv" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">init_inv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.init_inv" title="Link to this definition">¶</a></dt>
 <dd><p>An initializer that sets up inventories.
 This is used when InitInv(Inventories&amp;) is called.
 Users should not need to call this ever. However, brave
@@ -286,7 +286,7 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Agent.lifetime_force">
-<span class="sig-name descname"><span class="pre">lifetime_force</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_timesteps</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.lifetime_force" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">lifetime_force</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.lifetime_force" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -320,7 +320,7 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Agent.snapshot">
-<span class="sig-name descname"><span class="pre">snapshot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">di</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.snapshot" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">snapshot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.snapshot" title="Link to this definition">¶</a></dt>
 <dd><p>A dynamic version of Snapshot(DbInit) that should
 work for all subclasses.
 Users should not need to call this ever. However, brave
@@ -349,7 +349,7 @@ users may choose to override it in exceptional cases.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Agent.tree_strs">
-<span class="sig-name descname"><span class="pre">tree_strs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.tree_strs" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">tree_strs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Agent.tree_strs" title="Link to this definition">¶</a></dt>
 <dd><p>Returns a list of children strings representing the parent-child tree
 at the node for Agent m.</p>
 </dd></dl>
@@ -395,19 +395,19 @@ need to call the initilaizer.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Facility.adjust_material_prefs">
-<span class="sig-name descname"><span class="pre">adjust_material_prefs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.adjust_material_prefs" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">adjust_material_prefs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.adjust_material_prefs" title="Link to this definition">¶</a></dt>
 <dd><p>Product preferences adjustment.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Facility.adjust_product_prefs">
-<span class="sig-name descname"><span class="pre">adjust_product_prefs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.adjust_product_prefs" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">adjust_product_prefs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.adjust_product_prefs" title="Link to this definition">¶</a></dt>
 <dd><p>Product preferences adjustment.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Facility.ancestor_of">
-<span class="sig-name descname"><span class="pre">ancestor_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.ancestor_of" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ancestor_of</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.ancestor_of" title="Link to this definition">¶</a></dt>
 <dd><p>Returns true if this agent is an ancestor of an other agent (i.e., resides
 above an other agent in the family tree).</p>
 </dd></dl>
@@ -425,7 +425,7 @@ above an other agent in the family tree).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Facility.build">
-<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.build" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.build" title="Link to this definition">¶</a></dt>
 <dd><p>Called when the agent enters the smiulation as an active participant and
 is only ever called once.  Agents should NOT register for services (such
 as ticks/tocks and resource exchange) in this function. If agents implement
@@ -469,7 +469,7 @@ the facility is ready for decommission. False prevents decommission.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Facility.decendent_of">
-<span class="sig-name descname"><span class="pre">decendent_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.decendent_of" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">decendent_of</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.decendent_of" title="Link to this definition">¶</a></dt>
 <dd><p>Returns true if this agent is an decendent of an other agent (i.e., resides
 above an other agent in the family tree).</p>
 </dd></dl>
@@ -578,14 +578,14 @@ This is meant to be overridden is subclasses.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Facility.in_family_tree">
-<span class="sig-name descname"><span class="pre">in_family_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.in_family_tree" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">in_family_tree</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.in_family_tree" title="Link to this definition">¶</a></dt>
 <dd><p>Returns true if this agent is in the parent-child family tree of an
 other agent.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Facility.infile_to_db">
-<span class="sig-name descname"><span class="pre">infile_to_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">di</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.infile_to_db" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">infile_to_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.infile_to_db" title="Link to this definition">¶</a></dt>
 <dd><p>A dynamic version of InfileToDb(InfileTree*, DbInit) that should
 work for all subclasses. Users should not need to call this ever.
 However, brave users may choose to override it in exceptional cases.</p>
@@ -593,7 +593,7 @@ However, brave users may choose to override it in exceptional cases.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Facility.init_from_agent">
-<span class="sig-name descname"><span class="pre">init_from_agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.init_from_agent" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">init_from_agent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.init_from_agent" title="Link to this definition">¶</a></dt>
 <dd><p>A dynamic version of InitFrom(Agent) that should work for all
 subclasses. Users should not need to call this ever. However, brave
 users may choose to override it in exceptional cases.</p>
@@ -601,7 +601,7 @@ users may choose to override it in exceptional cases.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Facility.init_from_dict">
-<span class="sig-name descname"><span class="pre">init_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.init_from_dict" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">init_from_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.init_from_dict" title="Link to this definition">¶</a></dt>
 <dd><p>An initializer that reads state varaible values from a dictionary.
 This is used when InitFrom(QueryableBackend) is called.
 Users should not need to call this ever. However, brave
@@ -610,7 +610,7 @@ users may choose to override it in exceptional cases.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Facility.init_inv">
-<span class="sig-name descname"><span class="pre">init_inv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.init_inv" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">init_inv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.init_inv" title="Link to this definition">¶</a></dt>
 <dd><p>An initializer that sets up inventories.
 This is used when InitInv(Inventories&amp;) is called.
 Users should not need to call this ever. However, brave
@@ -633,7 +633,7 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Facility.lifetime_force">
-<span class="sig-name descname"><span class="pre">lifetime_force</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_timesteps</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.lifetime_force" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">lifetime_force</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.lifetime_force" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -667,7 +667,7 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Facility.snapshot">
-<span class="sig-name descname"><span class="pre">snapshot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">di</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.snapshot" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">snapshot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.snapshot" title="Link to this definition">¶</a></dt>
 <dd><p>A dynamic version of Snapshot(DbInit) that should
 work for all subclasses.
 Users should not need to call this ever. However, brave
@@ -710,7 +710,7 @@ overlaoded in the subclass.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Facility.tree_strs">
-<span class="sig-name descname"><span class="pre">tree_strs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.tree_strs" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">tree_strs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Facility.tree_strs" title="Link to this definition">¶</a></dt>
 <dd><p>Returns a list of children strings representing the parent-child tree
 at the node for Agent m.</p>
 </dd></dl>
@@ -744,19 +744,19 @@ need to call the initilaizer.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Institution.adjust_material_prefs">
-<span class="sig-name descname"><span class="pre">adjust_material_prefs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.adjust_material_prefs" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">adjust_material_prefs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.adjust_material_prefs" title="Link to this definition">¶</a></dt>
 <dd><p>Product preferences adjustment.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Institution.adjust_product_prefs">
-<span class="sig-name descname"><span class="pre">adjust_product_prefs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.adjust_product_prefs" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">adjust_product_prefs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.adjust_product_prefs" title="Link to this definition">¶</a></dt>
 <dd><p>Product preferences adjustment.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Institution.ancestor_of">
-<span class="sig-name descname"><span class="pre">ancestor_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.ancestor_of" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ancestor_of</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.ancestor_of" title="Link to this definition">¶</a></dt>
 <dd><p>Returns true if this agent is an ancestor of an other agent (i.e., resides
 above an other agent in the family tree).</p>
 </dd></dl>
@@ -774,7 +774,7 @@ above an other agent in the family tree).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Institution.build">
-<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.build" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.build" title="Link to this definition">¶</a></dt>
 <dd><p>Called when the agent enters the smiulation as an active participant and
 is only ever called once.  Agents should NOT register for services (such
 as ticks/tocks and resource exchange) in this function. If agents implement
@@ -810,7 +810,7 @@ initially existing agents are being setup.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Institution.decendent_of">
-<span class="sig-name descname"><span class="pre">decendent_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.decendent_of" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">decendent_of</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.decendent_of" title="Link to this definition">¶</a></dt>
 <dd><p>Returns true if this agent is an decendent of an other agent (i.e., resides
 above an other agent in the family tree).</p>
 </dd></dl>
@@ -879,14 +879,14 @@ will be the enter time plus its lifetime less 1.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Institution.in_family_tree">
-<span class="sig-name descname"><span class="pre">in_family_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.in_family_tree" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">in_family_tree</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.in_family_tree" title="Link to this definition">¶</a></dt>
 <dd><p>Returns true if this agent is in the parent-child family tree of an
 other agent.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Institution.infile_to_db">
-<span class="sig-name descname"><span class="pre">infile_to_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">di</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.infile_to_db" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">infile_to_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.infile_to_db" title="Link to this definition">¶</a></dt>
 <dd><p>A dynamic version of InfileToDb(InfileTree*, DbInit) that should
 work for all subclasses. Users should not need to call this ever.
 However, brave users may choose to override it in exceptional cases.</p>
@@ -894,7 +894,7 @@ However, brave users may choose to override it in exceptional cases.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Institution.init_from_agent">
-<span class="sig-name descname"><span class="pre">init_from_agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.init_from_agent" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">init_from_agent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.init_from_agent" title="Link to this definition">¶</a></dt>
 <dd><p>A dynamic version of InitFrom(Agent) that should work for all
 subclasses. Users should not need to call this ever. However, brave
 users may choose to override it in exceptional cases.</p>
@@ -902,7 +902,7 @@ users may choose to override it in exceptional cases.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Institution.init_from_dict">
-<span class="sig-name descname"><span class="pre">init_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.init_from_dict" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">init_from_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.init_from_dict" title="Link to this definition">¶</a></dt>
 <dd><p>An initializer that reads state varaible values from a dictionary.
 This is used when InitFrom(QueryableBackend) is called.
 Users should not need to call this ever. However, brave
@@ -911,7 +911,7 @@ users may choose to override it in exceptional cases.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Institution.init_inv">
-<span class="sig-name descname"><span class="pre">init_inv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.init_inv" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">init_inv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.init_inv" title="Link to this definition">¶</a></dt>
 <dd><p>An initializer that sets up inventories.
 This is used when InitInv(Inventories&amp;) is called.
 Users should not need to call this ever. However, brave
@@ -934,7 +934,7 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Institution.lifetime_force">
-<span class="sig-name descname"><span class="pre">lifetime_force</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_timesteps</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.lifetime_force" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">lifetime_force</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.lifetime_force" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -968,7 +968,7 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Institution.snapshot">
-<span class="sig-name descname"><span class="pre">snapshot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">di</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.snapshot" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">snapshot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.snapshot" title="Link to this definition">¶</a></dt>
 <dd><p>A dynamic version of Snapshot(DbInit) that should
 work for all subclasses.
 Users should not need to call this ever. However, brave
@@ -1011,7 +1011,7 @@ overlaoded in the subclass.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Institution.tree_strs">
-<span class="sig-name descname"><span class="pre">tree_strs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.tree_strs" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">tree_strs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Institution.tree_strs" title="Link to this definition">¶</a></dt>
 <dd><p>Returns a list of children strings representing the parent-child tree
 at the node for Agent m.</p>
 </dd></dl>
@@ -1045,19 +1045,19 @@ need to call the initilaizer.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Region.adjust_material_prefs">
-<span class="sig-name descname"><span class="pre">adjust_material_prefs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.adjust_material_prefs" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">adjust_material_prefs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.adjust_material_prefs" title="Link to this definition">¶</a></dt>
 <dd><p>Product preferences adjustment.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Region.adjust_product_prefs">
-<span class="sig-name descname"><span class="pre">adjust_product_prefs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.adjust_product_prefs" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">adjust_product_prefs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.adjust_product_prefs" title="Link to this definition">¶</a></dt>
 <dd><p>Product preferences adjustment.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Region.ancestor_of">
-<span class="sig-name descname"><span class="pre">ancestor_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.ancestor_of" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ancestor_of</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.ancestor_of" title="Link to this definition">¶</a></dt>
 <dd><p>Returns true if this agent is an ancestor of an other agent (i.e., resides
 above an other agent in the family tree).</p>
 </dd></dl>
@@ -1075,7 +1075,7 @@ above an other agent in the family tree).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Region.build">
-<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.build" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.build" title="Link to this definition">¶</a></dt>
 <dd><p>Called when the agent enters the smiulation as an active participant and
 is only ever called once.  Agents should NOT register for services (such
 as ticks/tocks and resource exchange) in this function. If agents implement
@@ -1111,7 +1111,7 @@ initially existing agents are being setup.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Region.decendent_of">
-<span class="sig-name descname"><span class="pre">decendent_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.decendent_of" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">decendent_of</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.decendent_of" title="Link to this definition">¶</a></dt>
 <dd><p>Returns true if this agent is an decendent of an other agent (i.e., resides
 above an other agent in the family tree).</p>
 </dd></dl>
@@ -1180,14 +1180,14 @@ will be the enter time plus its lifetime less 1.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Region.in_family_tree">
-<span class="sig-name descname"><span class="pre">in_family_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.in_family_tree" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">in_family_tree</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.in_family_tree" title="Link to this definition">¶</a></dt>
 <dd><p>Returns true if this agent is in the parent-child family tree of an
 other agent.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Region.infile_to_db">
-<span class="sig-name descname"><span class="pre">infile_to_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">di</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.infile_to_db" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">infile_to_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.infile_to_db" title="Link to this definition">¶</a></dt>
 <dd><p>A dynamic version of InfileToDb(InfileTree*, DbInit) that should
 work for all subclasses. Users should not need to call this ever.
 However, brave users may choose to override it in exceptional cases.</p>
@@ -1195,7 +1195,7 @@ However, brave users may choose to override it in exceptional cases.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Region.init_from_agent">
-<span class="sig-name descname"><span class="pre">init_from_agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.init_from_agent" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">init_from_agent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.init_from_agent" title="Link to this definition">¶</a></dt>
 <dd><p>A dynamic version of InitFrom(Agent) that should work for all
 subclasses. Users should not need to call this ever. However, brave
 users may choose to override it in exceptional cases.</p>
@@ -1203,7 +1203,7 @@ users may choose to override it in exceptional cases.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Region.init_from_dict">
-<span class="sig-name descname"><span class="pre">init_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.init_from_dict" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">init_from_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.init_from_dict" title="Link to this definition">¶</a></dt>
 <dd><p>An initializer that reads state varaible values from a dictionary.
 This is used when InitFrom(QueryableBackend) is called.
 Users should not need to call this ever. However, brave
@@ -1212,7 +1212,7 @@ users may choose to override it in exceptional cases.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Region.init_inv">
-<span class="sig-name descname"><span class="pre">init_inv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.init_inv" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">init_inv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.init_inv" title="Link to this definition">¶</a></dt>
 <dd><p>An initializer that sets up inventories.
 This is used when InitInv(Inventories&amp;) is called.
 Users should not need to call this ever. However, brave
@@ -1235,7 +1235,7 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Region.lifetime_force">
-<span class="sig-name descname"><span class="pre">lifetime_force</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_timesteps</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.lifetime_force" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">lifetime_force</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.lifetime_force" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1269,7 +1269,7 @@ decommissioning (-1 if the agent has an infinite lifetime)</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Region.snapshot">
-<span class="sig-name descname"><span class="pre">snapshot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">di</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.snapshot" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">snapshot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.snapshot" title="Link to this definition">¶</a></dt>
 <dd><p>A dynamic version of Snapshot(DbInit) that should
 work for all subclasses.
 Users should not need to call this ever. However, brave
@@ -1312,7 +1312,7 @@ overlaoded in the subclass.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cyclus.agents.Region.tree_strs">
-<span class="sig-name descname"><span class="pre">tree_strs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.tree_strs" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">tree_strs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cyclus.agents.Region.tree_strs" title="Link to this definition">¶</a></dt>
 <dd><p>Returns a list of children strings representing the parent-child tree
 at the node for Agent m.</p>
 </dd></dl>

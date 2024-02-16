@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css?v=a1a2a898" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script src="../../_static/documentation_options.js?v=d75fb5c7"></script>
+    <script src="../../_static/documentation_options.js?v=3790a7ec"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -102,13 +102,13 @@ tables, switch to the <strong>Browse Data</strong> tab and select the table of i
 Some tables have data that may need to be manipulated or used alongside
 other data in other tables, which is why using a python script is often
 ideal.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from pyne import nucname
-import write as write
-import analysis as analysis
-import matplotlib.pyplot as plt
-import numpy as np
-from numpy import isclose
-import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyne</span> <span class="kn">import</span> <span class="n">nucname</span>
+<span class="kn">import</span> <span class="nn">write</span> <span class="k">as</span> <span class="nn">write</span>
+<span class="kn">import</span> <span class="nn">analysis</span> <span class="k">as</span> <span class="nn">analysis</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">isclose</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">python</span> <span class="n">write_input</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="n">csv</span><span class="p">][</span><span class="n">init_date</span><span class="p">]</span> <span class="p">[</span><span class="n">duration</span><span class="p">]</span> <span class="p">[</span><span class="n">output_file_name</span><span class="p">]</span>
@@ -118,18 +118,18 @@ import matplotlib.pyplot as plt
 <ol class="arabic simple">
 <li><p>To make a cursor, use the <code class="docutils literal notranslate"><span class="pre">analysis.cursor(output_filename)</span></code> function where output_filename is name of the cyclus output file.</p></li>
 </ol>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cur = analysis.cursor(&#39;cyclus.sqlite&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">cursor</span><span class="p">(</span><span class="s1">&#39;cyclus.sqlite&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="simulation-time-info">
 <h2>Simulation Time Info<a class="headerlink" href="#simulation-time-info" title="Link to this heading">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>init_year, init_month, duration, timestep = analysis.simulation_timesteps(cur)
-print(&#39;Start year:&#39; + str(init_year))
-print(&#39;Start month:&#39; + str(init_month))
-print(&#39;Duration of simulation months:&#39; + str(duration))
-print(&#39;List of timesteps:&#39; + str(timestep[0:3]) +&#39; . . . &#39;  +str(timestep[-4:-1]))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">init_year</span><span class="p">,</span> <span class="n">init_month</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">timestep</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">simulation_timesteps</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Start year:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">init_year</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Start month:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">init_month</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Duration of simulation months:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">duration</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;List of timesteps:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">timestep</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span> <span class="o">+</span><span class="s1">&#39; . . . &#39;</span>  <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">timestep</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Start</span> <span class="n">year</span><span class="p">:</span><span class="mi">2018</span>
@@ -138,27 +138,27 @@ print(&#39;List of timesteps:&#39; + str(timestep[0:3]) +&#39; . . . &#39;  +str
 <span class="n">List</span> <span class="n">of</span> <span class="n">timesteps</span><span class="p">:[</span> <span class="mf">0.</span>  <span class="mf">1.</span>  <span class="mf">2.</span><span class="p">]</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">[</span> <span class="mf">716.</span>  <span class="mf">717.</span>  <span class="mf">718.</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># prints maximum required sfr fuel throughput per timestep
-fuel = cur.execute(&#39;SELECT time, sum(quantity) FROM transactions &#39;
-                       &#39;INNER JOIN resources ON resources.resourceid = &#39;
-                       &#39;transactions.resourceid WHERE commodity = &quot;fresh-uox&quot;&#39;
-                       &#39; GROUP BY time&#39;).fetchall()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prints maximum required sfr fuel throughput per timestep</span>
+<span class="n">fuel</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT time, sum(quantity) FROM transactions &#39;</span>
+                       <span class="s1">&#39;INNER JOIN resources ON resources.resourceid = &#39;</span>
+                       <span class="s1">&#39;transactions.resourceid WHERE commodity = &quot;fresh-uox&quot;&#39;</span>
+                       <span class="s1">&#39; GROUP BY time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 
-fresh_uox = np.array(fuel)
-fuel_transaction = [fuel[1] for fuel in fresh_uox]
-fuel_timestep = [fuel[0] for fuel in fresh_uox]
+<span class="n">fresh_uox</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fuel</span><span class="p">)</span>
+<span class="n">fuel_transaction</span> <span class="o">=</span> <span class="p">[</span><span class="n">fuel</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">fuel</span> <span class="ow">in</span> <span class="n">fresh_uox</span><span class="p">]</span>
+<span class="n">fuel_timestep</span> <span class="o">=</span> <span class="p">[</span><span class="n">fuel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">fuel</span> <span class="ow">in</span> <span class="n">fresh_uox</span><span class="p">]</span>
 
-maximum_fuel_moved = np.amax(np.array(fuel))
-print(&#39;Maximum amount of fresh-uox moved: &#39; + str(maximum_fuel_moved))
+<span class="n">maximum_fuel_moved</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fuel</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum amount of fresh-uox moved: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">maximum_fuel_moved</span><span class="p">))</span>
 
-first_fuel_transaction = np.array(fuel)[0][1]
-print(&#39;Amount of fresh-uox moved at first timestep: &#39; +  str(first_fuel_transaction))
-#print(max(analysis.simulation_timesteps(fuel, duration, True)))
+<span class="n">first_fuel_transaction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fuel</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Amount of fresh-uox moved at first timestep: &#39;</span> <span class="o">+</span>  <span class="nb">str</span><span class="p">(</span><span class="n">first_fuel_transaction</span><span class="p">))</span>
+<span class="c1">#print(max(analysis.simulation_timesteps(fuel, duration, True)))</span>
 
-plt.plot(fuel_timestep,fuel_transaction)
-plt.xlabel(&#39;Time (months)&#39;)
-plt.ylabel(&#39;Mass of Fresh-uox moved (kg)&#39;)
-plt.title(&#39;Fresh-uox transaction timeseries&#39;)
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fuel_timestep</span><span class="p">,</span><span class="n">fuel_transaction</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (months)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Mass of Fresh-uox moved (kg)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Fresh-uox transaction timeseries&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Maximum</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">fresh</span><span class="o">-</span><span class="n">uox</span> <span class="n">moved</span><span class="p">:</span> <span class="mf">99000.0</span>
@@ -209,12 +209,12 @@ variables. Include appropriate comments.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">flux</span></code> that is equal to <code class="docutils literal notranslate"><span class="pre">'out'</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">nucid</span></code>  that is equal to <code class="docutils literal notranslate"><span class="pre">922350000</span></code></p></li>
 </ul>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cur = cur # cursor to CYCLUS output file
-facility = &#39;1178MWe BRAIDWOOD-1&#39; # facility of interest
-flux = &#39;out&#39; # isotope transaction direction
-nucid = 922350000 # nuclide id
-print(&#39;Total amount of U235 that left the &#39;+ str(facility) +&#39; reactor:&#39;)
-analysis.total_isotope_traded(cur,facility,flux,nucid)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span> <span class="c1"># cursor to CYCLUS output file</span>
+<span class="n">facility</span> <span class="o">=</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span> <span class="c1"># facility of interest</span>
+<span class="n">flux</span> <span class="o">=</span> <span class="s1">&#39;out&#39;</span> <span class="c1"># isotope transaction direction</span>
+<span class="n">nucid</span> <span class="o">=</span> <span class="mi">922350000</span> <span class="c1"># nuclide id</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total amount of U235 that left the &#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">facility</span><span class="p">)</span> <span class="o">+</span><span class="s1">&#39; reactor:&#39;</span><span class="p">)</span>
+<span class="n">analysis</span><span class="o">.</span><span class="n">total_isotope_traded</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">facility</span><span class="p">,</span><span class="n">flux</span><span class="p">,</span><span class="n">nucid</span><span class="p">)</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
@@ -256,11 +256,11 @@ variables. Include appropriate comments.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.rcParams[&#39;figure.figsize&#39;] = [10, 8]
-plt.rcParams[&#39;legend.fontsize&#39;] = 12
-facility = &#39;1178MWe BRAIDWOOD-1&#39;
-title = &#39;Cumulative Isotope Outflux of 1178MWe BRAIDWOOD-1&#39;
-analysis.plot_out_flux_cumulative(cur, facility, title)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">facility</span> <span class="o">=</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Cumulative Isotope Outflux of 1178MWe BRAIDWOOD-1&#39;</span>
+<span class="n">analysis</span><span class="o">.</span><span class="n">plot_out_flux_cumulative</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">facility</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
 </pre></div>
 </div>
 <blockquote>
@@ -273,9 +273,9 @@ put into the 1178MWe BRAIDWOOD-1. Again, let’s use
 <li><p>title = <code class="docutils literal notranslate"><span class="pre">'Cumulative</span> <span class="pre">Isotope</span> <span class="pre">Influx</span> <span class="pre">of</span> <span class="pre">1178MWe</span> <span class="pre">BRAIDWOOD-1'</span></code></p></li>
 </ul>
 </div></blockquote>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>facility = &#39;1178MWe BRAIDWOOD-1&#39;
-title = &#39;Cumulative Isotope Influx of 1178MWe BRAIDWOOD-1&#39;
-analysis.plot_in_flux(cur, facility, title)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">facility</span> <span class="o">=</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Cumulative Isotope Influx of 1178MWe BRAIDWOOD-1&#39;</span>
+<span class="n">analysis</span><span class="o">.</span><span class="n">plot_in_flux</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">facility</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">agent_id</span> <span class="k">for</span> <span class="n">Reactor</span> <span class="ow">is</span><span class="p">:</span>
@@ -291,9 +291,9 @@ certain one via its <code class="docutils literal notranslate"><span class="pre"
 of the <code class="docutils literal notranslate"><span class="pre">'1178MWe</span> <span class="pre">BRAIDWOOD-1'</span></code> reactor by making variable called:
 <code class="docutils literal notranslate"><span class="pre">facility</span></code> and making it equal to <code class="docutils literal notranslate"><span class="pre">'1178MWe</span> <span class="pre">BRAIDWOOD-1'</span></code> and then
 run the cell.</p>
-</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>facility = &#39;1178MWe BRAIDWOOD-1&#39;
-print(&#39;The prototype_ids for&#39; + &#39; &#39; + facility + &#39; &#39; +&#39;&#39; + &#39;are:&#39;)
-analysis.prototype_id(cur, facility)
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">facility</span> <span class="o">=</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The prototype_ids for&#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">facility</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span><span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="s1">&#39;are:&#39;</span><span class="p">)</span>
+<span class="n">analysis</span><span class="o">.</span><span class="n">prototype_id</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">facility</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">prototype_ids</span> <span class="k">for</span> <span class="mi">1178</span><span class="n">MWe</span> <span class="n">BRAIDWOOD</span><span class="o">-</span><span class="mi">1</span> <span class="n">are</span><span class="p">:</span>
@@ -304,9 +304,9 @@ analysis.prototype_id(cur, facility)
 </div>
 <p>Let’s find out what the <code class="docutils literal notranslate"><span class="pre">prototype_id</span></code> for the <code class="docutils literal notranslate"><span class="pre">'UraniumMine'</span></code> in
 our simulation is.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>facility = &#39;UraniumMine&#39;
-print(&#39;The prototype_ids for&#39; + &#39; &#39; + facility + &#39; &#39; +&#39;&#39; + &#39;are:&#39;)
-analysis.prototype_id(cur, facility)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">facility</span> <span class="o">=</span> <span class="s1">&#39;UraniumMine&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The prototype_ids for&#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">facility</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span><span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="s1">&#39;are:&#39;</span><span class="p">)</span>
+<span class="n">analysis</span><span class="o">.</span><span class="n">prototype_id</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">facility</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">prototype_ids</span> <span class="k">for</span> <span class="n">UraniumMine</span> <span class="n">are</span><span class="p">:</span>
@@ -352,17 +352,17 @@ variables. Include appropriate comments.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>analysis.facility_commodity_flux(cur,agentids=[21],facility_commodities=[&#39;fresh-uox&#39;],is_cum=True,is_outflux=False)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">facility_commodity_flux</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">agentids</span><span class="o">=</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span><span class="n">facility_commodities</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fresh-uox&#39;</span><span class="p">],</span><span class="n">is_cum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">is_outflux</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>As seen above, the <code class="docutils literal notranslate"><span class="pre">facility_commodity_flux</span></code> function returns a
 dictionary of the cumulative amount of <code class="docutils literal notranslate"><span class="pre">fresh-uox</span></code> fuel that enters
 the reactor over time. We can make this dictionary non-cumulative by
 setting <code class="docutils literal notranslate"><span class="pre">is_cum</span> <span class="pre">=</span> <span class="pre">False</span></code> as seen below.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>analysis.facility_commodity_flux(cur,agentids=[21],facility_commodities=[&#39;fresh-uox&#39;],is_cum=False,is_outflux=False)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">facility_commodity_flux</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">agentids</span><span class="o">=</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span><span class="n">facility_commodities</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fresh-uox&#39;</span><span class="p">],</span><span class="n">is_cum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">is_outflux</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>analysis.facility_commodity_flux(cur,agentids=[21],facility_commodities=[&#39;fresh-uox&#39;],is_cum=True,is_outflux=False)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">facility_commodity_flux</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">agentids</span><span class="o">=</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span><span class="n">facility_commodities</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fresh-uox&#39;</span><span class="p">],</span><span class="n">is_cum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">is_outflux</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>As expected, the only time that <code class="docutils literal notranslate"><span class="pre">fresh-uox</span></code> enters the reactor is at
@@ -392,31 +392,31 @@ variables. Include appropriate comments.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>facility = &#39;NuclearRepository&#39; # facility of interest
-title  = &#39;Cumulative Isotope Inventory of Repository&#39;  # title of plot
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">facility</span> <span class="o">=</span> <span class="s1">&#39;NuclearRepository&#39;</span> <span class="c1"># facility of interest</span>
+<span class="n">title</span>  <span class="o">=</span> <span class="s1">&#39;Cumulative Isotope Inventory of Repository&#39;</span>  <span class="c1"># title of plot</span>
 
-analysis.plot_commodities(cur,archetype=&#39;sink&#39;,facility_commodity=[&#39;tails&#39;,&#39;spent-uox&#39;],title = &#39;Sink storage&#39;,
-                          filename=&#39;sink&#39;,is_cum=True,is_outflux=False)
-from IPython.display import Image
-Image(filename=&#39;sink.png&#39;)
+<span class="n">analysis</span><span class="o">.</span><span class="n">plot_commodities</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">archetype</span><span class="o">=</span><span class="s1">&#39;sink&#39;</span><span class="p">,</span><span class="n">facility_commodity</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tails&#39;</span><span class="p">,</span><span class="s1">&#39;spent-uox&#39;</span><span class="p">],</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Sink storage&#39;</span><span class="p">,</span>
+                          <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;sink&#39;</span><span class="p">,</span><span class="n">is_cum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">is_outflux</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;sink.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="user/tutorial/output_31_0.png" src="user/tutorial/output_31_0.png" />
 <p>Now let’s plot the cumulative mass of the spent nuclear fuel that is
 mined from the Uranium mine. To plot the outflux of a facility, use the
 analysis.plot_out_flux_cumulative(cur,sender,plot title) function.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>analysis.plot_out_flux_cumulative(cur, &#39;UraniumMine&#39;,&#39;Cumulative Isotope Outflux of Uranium Mine&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">plot_out_flux_cumulative</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s1">&#39;UraniumMine&#39;</span><span class="p">,</span><span class="s1">&#39;Cumulative Isotope Outflux of Uranium Mine&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="user/tutorial/output_33_0.png" src="user/tutorial/output_33_0.png" />
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>analysis.plot_out_flux_cumulative(cur, &#39;1178MWe BRAIDWOOD-1&#39;,&#39;Cumulative Isotope Outflux of 1178MWe BRAIDWOOD-1&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">plot_out_flux_cumulative</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span><span class="p">,</span><span class="s1">&#39;Cumulative Isotope Outflux of 1178MWe BRAIDWOOD-1&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="user/tutorial/output_34_0.png" src="user/tutorial/output_34_0.png" />
 <p>Now let’s plot the mass series and cumulative mass of the fresh nuclear
 fuel that is received by the 1178MWe BRAIDWOOD-1.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>analysis.plot_in_flux(cur, &#39;1178MWe BRAIDWOOD-1&#39;,&#39;Isotope Influx of 1178MWe BRAIDWOOD-1&#39;)
-analysis.plot_in_flux_cumulative(cur, &#39;1178MWe BRAIDWOOD-1&#39;,&#39;Cumulative Isotope Influx of 1178MWe BRAIDWOOD-1&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">plot_in_flux</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span><span class="p">,</span><span class="s1">&#39;Isotope Influx of 1178MWe BRAIDWOOD-1&#39;</span><span class="p">)</span>
+<span class="n">analysis</span><span class="o">.</span><span class="n">plot_in_flux_cumulative</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span><span class="p">,</span><span class="s1">&#39;Cumulative Isotope Influx of 1178MWe BRAIDWOOD-1&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="user/tutorial/output_36_0.png" src="user/tutorial/output_36_0.png" />
@@ -425,9 +425,9 @@ analysis.plot_in_flux_cumulative(cur, &#39;1178MWe BRAIDWOOD-1&#39;,&#39;Cumulat
 from a facility using the <code class="docutils literal notranslate"><span class="pre">total_isotope_used</span></code> function. For example,
 if we wanted to find out how much <span class="math notranslate nohighlight">\(^{235}\)</span>U and
 <span class="math notranslate nohighlight">\(^{238}\)</span>U was mined from the Uranium Mine, we can call:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>uranium_mined = analysis.total_isotope_used(cur, &#39;UraniumMine&#39;)
-print(&quot;Total amount of U-235 mined:&quot; + &#39; &#39;  + str(uranium_mined[&#39;U235&#39;]) + &#39; &#39; + &#39;kg&#39;)
-print(&quot;Total amount of U-238 mined:&quot; + &#39; &#39;  + str(uranium_mined[&#39;U238&#39;]) + &#39; &#39; + &#39;kg&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uranium_mined</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">total_isotope_used</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="s1">&#39;UraniumMine&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total amount of U-235 mined:&quot;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>  <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">uranium_mined</span><span class="p">[</span><span class="s1">&#39;U235&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="s1">&#39;kg&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total amount of U-238 mined:&quot;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>  <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">uranium_mined</span><span class="p">[</span><span class="s1">&#39;U238&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="s1">&#39;kg&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Total</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">U</span><span class="o">-</span><span class="mi">235</span> <span class="n">mined</span><span class="p">:</span> <span class="mf">91599.6350365</span> <span class="n">kg</span>
@@ -453,68 +453,68 @@ variable. Include appropriate comments.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>facility = &#39;1178MWe BRAIDWOOD-1&#39; # facility of interest
-snf_comp = analysis.total_isotope_used(cur, facility)
-snf_comp
-isotopes = [item[0] for item in snf_comp.items()]
-masses = [item[1] for item in snf_comp.items()]
-plt.bar(isotopes,masses)
-plt.xlabel(&#39;Isotopes&#39;)
-plt.ylabel(&#39;Total Mass [kg]&#39;)
-plt.title(&#39;SNF mass composition&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">facility</span> <span class="o">=</span> <span class="s1">&#39;1178MWe BRAIDWOOD-1&#39;</span> <span class="c1"># facility of interest</span>
+<span class="n">snf_comp</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">total_isotope_used</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">facility</span><span class="p">)</span>
+<span class="n">snf_comp</span>
+<span class="n">isotopes</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">snf_comp</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+<span class="n">masses</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">snf_comp</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">isotopes</span><span class="p">,</span><span class="n">masses</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Isotopes&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Total Mass [kg]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;SNF mass composition&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;SNF mass composition&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="user/tutorial/output_40_1.png" src="user/tutorial/output_40_1.png" />
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>analysis.plot_uranium_utilization(cur)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">plot_uranium_utilization</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="user/tutorial/output_41_0.png" src="user/tutorial/output_41_0.png" />
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fuel_dict = analysis.fuel_usage_timeseries(cur, [&#39;fresh-uox&#39;])
-fuel_dict
-analysis.stacked_bar_chart(fuel_dict, timestep,
-                  &#39;Years&#39;, &#39;Mass[MTHM]&#39;,
-                  &#39;Total Fresh-Uox Fuel Mass vs Time&#39;,
-                  &#39;total_fuel&#39;,
-                  init_year)
-from IPython.display import Image
-Image(filename=&#39;total_fuel.png&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fuel_dict</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">fuel_usage_timeseries</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;fresh-uox&#39;</span><span class="p">])</span>
+<span class="n">fuel_dict</span>
+<span class="n">analysis</span><span class="o">.</span><span class="n">stacked_bar_chart</span><span class="p">(</span><span class="n">fuel_dict</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span>
+                  <span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="s1">&#39;Mass[MTHM]&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;Total Fresh-Uox Fuel Mass vs Time&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;total_fuel&#39;</span><span class="p">,</span>
+                  <span class="n">init_year</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;total_fuel.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="user/tutorial/output_42_0.png" src="user/tutorial/output_42_0.png" />
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># natural uranium demand
-import collections
-nat_u = collections.OrderedDict()
-nat_u[&#39;nat_u&#39;] = analysis.nat_u_timeseries(cur)
-analysis.stacked_bar_chart(nat_u, timestep,
-                     &#39;Years&#39;, &#39;Natural Uranium Mass&#39;,
-                     &#39;Natural Uranium Demand vs Time&#39;,
-                     &#39;nat_u&#39;, init_year)
-from IPython.display import Image
-Image(filename=&#39;nat_u.png&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># natural uranium demand</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="n">nat_u</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">()</span>
+<span class="n">nat_u</span><span class="p">[</span><span class="s1">&#39;nat_u&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">nat_u_timeseries</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
+<span class="n">analysis</span><span class="o">.</span><span class="n">stacked_bar_chart</span><span class="p">(</span><span class="n">nat_u</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span>
+                     <span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="s1">&#39;Natural Uranium Mass&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;Natural Uranium Demand vs Time&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;nat_u&#39;</span><span class="p">,</span> <span class="n">init_year</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;nat_u.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="user/tutorial/output_43_0.png" src="user/tutorial/output_43_0.png" />
 </section>
 <section id="ask-why-is-the-orange-line-steeper-in-slope-than-the-green-line">
 <h2>Ask: Why is the orange line steeper in slope than the green line?<a class="headerlink" href="#ask-why-is-the-orange-line-steeper-in-slope-than-the-green-line" title="Link to this heading">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tails = cur.execute(&#39;SELECT time, sum(quantity) FROM transactions &#39;
-                       &#39;INNER JOIN resources ON resources.resourceid = &#39;
-                       &#39;transactions.resourceid WHERE commodity = &quot;tails&quot;&#39;
-                       &#39; GROUP BY time&#39;).fetchall()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tails</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT time, sum(quantity) FROM transactions &#39;</span>
+                       <span class="s1">&#39;INNER JOIN resources ON resources.resourceid = &#39;</span>
+                       <span class="s1">&#39;transactions.resourceid WHERE commodity = &quot;tails&quot;&#39;</span>
+                       <span class="s1">&#39; GROUP BY time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 
-tails_array = np.array(fuel)
-tails_transaction = [tail[1] for tail in tails_array]
-tails_timeseries = [fuel[0] for fuel in tails_array]
+<span class="n">tails_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fuel</span><span class="p">)</span>
+<span class="n">tails_transaction</span> <span class="o">=</span> <span class="p">[</span><span class="n">tail</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">tail</span> <span class="ow">in</span> <span class="n">tails_array</span><span class="p">]</span>
+<span class="n">tails_timeseries</span> <span class="o">=</span> <span class="p">[</span><span class="n">fuel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">fuel</span> <span class="ow">in</span> <span class="n">tails_array</span><span class="p">]</span>
 
-maximum_fuel_moved = np.amax(tails_array)
-print(&#39;Maximum amount of tails moved during one time step: &#39; + str(maximum_fuel_moved))
+<span class="n">maximum_fuel_moved</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">tails_array</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum amount of tails moved during one time step: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">maximum_fuel_moved</span><span class="p">))</span>
 
-analysis.plot_commodities(cur,archetype=&#39;sink&#39;,facility_commodity=[&#39;tails&#39;],title=&#39;Tails in Sink&#39;,filename=&#39;tails&#39;,is_cum=True,is_outflux=False)
-from IPython.display import Image
-Image(filename=&#39;tails.png&#39;)
+<span class="n">analysis</span><span class="o">.</span><span class="n">plot_commodities</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">archetype</span><span class="o">=</span><span class="s1">&#39;sink&#39;</span><span class="p">,</span><span class="n">facility_commodity</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tails&#39;</span><span class="p">],</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Tails in Sink&#39;</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;tails&#39;</span><span class="p">,</span><span class="n">is_cum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">is_outflux</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;tails.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Maximum</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">tails</span> <span class="n">moved</span> <span class="n">during</span> <span class="n">one</span> <span class="n">time</span> <span class="n">step</span><span class="p">:</span> <span class="mf">99000.0</span>
@@ -526,13 +526,13 @@ Image(filename=&#39;tails.png&#39;)
 <h2>Decay heat<a class="headerlink" href="#decay-heat" title="Link to this heading">¶</a></h2>
 <p>Using our <code class="docutils literal notranslate"><span class="pre">spent</span></code> fuel composition from above, lets see which isotope
 causes the most decay heat!</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>analysis.plot_reactor_events(cur,reactors = [])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">plot_reactor_events</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">reactors</span> <span class="o">=</span> <span class="p">[])</span>
 </pre></div>
 </div>
 <img alt="user/tutorial/output_47_0.png" src="user/tutorial/output_47_0.png" />
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>analysis.plot_commodity(cur,archetype=&#39;Sink&#39;,facility_commodity=[&#39;spent-uox&#39;],is_outflux=False,is_cum=True)
-from IPython.display import Image
-Image(filename=&#39;cum_mass_spent-uoxdischarge.png&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="o">.</span><span class="n">plot_commodity</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">archetype</span><span class="o">=</span><span class="s1">&#39;Sink&#39;</span><span class="p">,</span><span class="n">facility_commodity</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;spent-uox&#39;</span><span class="p">],</span><span class="n">is_outflux</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">is_cum</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;cum_mass_spent-uoxdischarge.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="user/tutorial/output_48_0.png" src="user/tutorial/output_48_0.png" />
