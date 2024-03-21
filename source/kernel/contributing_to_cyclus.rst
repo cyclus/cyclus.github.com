@@ -38,7 +38,7 @@ only after:
 * Your code has been reviewed by another developer.
 
 Code from the "develop" branch generally must pass even more rigorous checks
-before being integrated into the "master" branch. Hotfixes would be a
+before being integrated into the "main" branch. Hotfixes would be a
 possible exception to this.
 
 Keeping Your Fork Up To Date
@@ -50,11 +50,11 @@ Keeping Your Fork Up To Date
   compilable) progress when we are not yet ready for the code to become
   'production'.
 
-* Keep your own "master" and "develop" branches in sync with the upstream
-  repository's "master" and "develop" branches. The master branch should
+* Keep your own "main" and "develop" branches in sync with the upstream
+  repository's "main" and "develop" branches. The main branch should
   always be the 'stable' or 'production' release of |cyclus|.
 
-   - Pull the most recent history from the upstream repository "master"
+   - Pull the most recent history from the upstream repository "main"
      and/or "develop" branches before you merge changes into your
      corresponding local branch. Consider doing a rebase pull instead of
      a regular pull or 'fetch and merge'.  For example::
@@ -63,7 +63,7 @@ Keeping Your Fork Up To Date
        git pull --rebase upstream develop
 
 * As you do development on topic branches in your own fork, consider
-  rebasing the topic branch onto the "master" and/or "develop"  branches
+  rebasing the topic branch onto the "main" and/or "develop"  branches
   after *pulls* from the upstream repository rather than merging the pulled
   changes into your branch.  This will help maintain a more linear (and clean)
   history.  *Please see caution about rebasing below*.  For example::
@@ -168,7 +168,7 @@ Reviewing a Pull Request
   - Accept the Pull Request
 
     - In general, **every commit** (notice this is not 'every push') to the
-      "develop" and "master" branches should compile and pass tests. This
+      "develop" and "main" branches should compile and pass tests. This
       is guaranteed by using a NON-fast-forward merge during the pull request
       acceptance process.
 

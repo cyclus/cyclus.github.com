@@ -12,7 +12,7 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = ./gh-build
-GIT_BRANCH    = master
+GIT_BRANCH    = main
 GIT_FORK      = cyclus
 
 
@@ -30,10 +30,10 @@ help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  gh-preview        to build HTML in directory $BUILDDIR for testing"
 	@echo "  gh-revert         to cleanup HTML build in directory $BUILDDIR after testing"
-	@echo "  gh-publish        to build final version and push from source branch to master branch"
-	@echo "  gh-publish-only   to push from source branch to master branch, assuming already built"
+	@echo "  gh-publish        to build final version and push from source branch to main branch"
+	@echo "  gh-publish-only   to push from source branch to main branch, assuming already built"
 	@echo "  docker-html       to use docker to build HTML in directory $BUILDDIR for testing"
-	@echo "  docker-gh-publish to use docker to build final version and push from source branch to master branch"
+	@echo "  docker-gh-publish to use docker to build final version and push from source branch to main branch"
 	@echo "  serve             build+serve html files using Python's SimpleHTTPServer"
 	@echo "  serve-only        serve pre-built html files using Python's SimpleHTTPServer"
 	@echo "  dirhtml           to make HTML files named index.html in directories"
