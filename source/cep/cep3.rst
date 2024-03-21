@@ -29,12 +29,6 @@ stable.)  The projects that are under the release manager's purview are:
 * `Cycamore`_
 * `Cymetric`_
 
-The projects which are not yet under the release managers purview are:
-
-* `Rickshaw`_
-* `CyclusJS`_
-
-
 .. note::
 
     The following full release process only applies to MAJOR and MINOR
