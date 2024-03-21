@@ -145,6 +145,12 @@ Peddler is a Cyclus Package used to simulate the transport of material from one 
 A generic nuclear repository model intended to be used within the Cyclus nuclear fuel cycle simulator. It contains a conditioning facility and a nuclear repository model that places spent fuel packages in a repository based on its temperature and the constraints of the repository.
 
 
+**OpenMCyclus**(https://github.com/arfc/openmcyclus/)
+OpenMCyclus introduces an archetype that couples OpenMC depletion with Cyclus a reactor.
+
+- `openmcyclus:DepleteReactor<https://github.com/arfc/openmcyclus/blob/main/openmcyclus/DepleteReactor.py>`_
+
+
 
 
 
