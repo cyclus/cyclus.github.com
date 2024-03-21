@@ -42,7 +42,7 @@ stable.)  The projects that are under the release manager's purview are:
 Release Candidates (Tags & Branches)
 ====================================
 At the beginning of a release, a special branch for *each* project should be
-made off of ``master`` named ``vX.X.X-release``. Note the *v* at the beginning. Each
+made off of ``main`` named ``vX.X.X-release``. Note the *v* at the beginning. Each
 project should have the initial version of of it's release branch *tagged* as
 ``X.X.X-rc1``, the first release candidate.
 
@@ -57,13 +57,13 @@ the project should be encouraged to test them out in order to bugs/other issues.
 
 Any required changes must be pull requested from a topical branch into the
 *release* branch.  After this has been accepted, the topical branch must be
-merged with ``master`` as well. The release branch is there so that development
-can continue on the ``master`` branch while the release candidates (rc) are out
+merged with ``main`` as well. The release branch is there so that development
+can continue on the ``main`` branch while the release candidates (rc) are out
 and under review.  This is because otherwise any new developments would have to
-wait until post-release to be merged into ``master`` to prevent them from
+wait until post-release to be merged into ``main`` to prevent them from
 accidentally getting released early.
 
-Everything that is in the release branch must also be part of ``master``.
+Everything that is in the release branch must also be part of ``main``.
 Graphically,
 
 .. figure:: cep-0003-1.svg
@@ -74,10 +74,10 @@ Graphically,
 .. note::
 
     Any commits merged into the release branch must *also* be merged into
-    ``master``. It is common practice for the release manager to request the
-    reviewer pull requests to merge the topical branch into ``master``
+    ``main``. It is common practice for the release manager to request the
+    reviewer pull requests to merge the topical branch into ``main``
     as well. However, it is the ultimate release manager's responsibility to
-    make sure ``master`` is kept up to date with the ``release`` branch.
+    make sure ``main`` is kept up to date with the ``release`` branch.
 
 If changes are made to the release branch, a new candidate must be issued after
 *2 - 5 days*. Every time a new release candidate comes out the ``vX.X.X-release``
@@ -87,7 +87,7 @@ accompany any new candidate.
 The release branch must be quiet and untouched for *2 - 5 days prior* to the
 full release. When the full and final release happens, the ``vX.X.X-release``
 branch is deleted. All commits in the ``vX.X.X-release`` branch must have also
-been merged into the ``master`` branch as they were accepted.
+been merged into the ``main`` branch as they were accepted.
 
 Project Checklist
 =================
@@ -114,13 +114,13 @@ Release Candidate Process
 
 #. Finish the release candidate process
 
-    - make sure all commits in the ``release`` branch also are in ``master``
+    - make sure all commits in the ``release`` branch also are in ``main``
 
 Release Process
 ---------------
 
 #. Make sure every local |cyclus| project repository is up to date with its
-   ``master``, and ``vX.X.X-release`` branches on ``upstream``.
+   ``main``, and ``vX.X.X-release`` branches on ``upstream``.
 
 #. Bump the version in ``cyclus/src/version.h.in`` and ``cyclus/cyclus/__init__.py``,
    ``cycamore/src/cycamore_version.h.in``, and
@@ -173,21 +173,21 @@ Release Process
       $ git checkout vX.X.X-release
       $ git commit -am "final release commit after maintenence"
 
-#. Update all master branches.
+#. Update all main branches.
 
     .. code-block:: bash
 
       $ cd /path/to/project
-      $ git checkout master
+      $ git checkout main
       $ git merge --no-ff vX.X.X-release
-      $ git push upstream master
+      $ git push upstream main
 
 #. *Locally* tag the repository for *each* of the projects.
 
     .. code-block:: bash
 
       $ cd /path/to/project
-      $ git checkout master
+      $ git checkout main
       $ git merge --no-ff vX.X.X-release
       $ git tag -a -m "Cyclus project release X.X.X, see http://fuelcycle.org/previous/vX.X.X.html for release notes" X.X.X
 
@@ -219,12 +219,12 @@ Release Process
       $ export CYCAMORE_DIR=/path/to/cycamore
       $ ./api_docs.sh X.X.X # X.X.X is *this* version
 
-#. Update the ``master`` branch of all projects and clean up.
+#. Update the ``main`` branch of all projects and clean up.
 
     .. code-block:: bash
 
       $ cd /path/to/project
-      $ git push upstream X.X.X master
+      $ git push upstream X.X.X main
       $ git push upstream --delete vX.X.X-release
       
 #. Manually visit the github.com page for each project and draft/publish a new release.
@@ -272,7 +272,7 @@ Release Process
 
 .. This part has been commented, as it is required for the website, but the
    person in charge of the release might not have the proper access to update the
-   Dory worker.  This should be automated when a merge is done on the master branch
+   Dory worker.  This should be automated when a merge is done on the main branch
    a CI-hook should update the dory cloudlus server and relaunch the worker.
    Moreover the cloudlus server is not directly related to Cyclus and depend on
    the UW-Madison community but the website relies on it to host the
