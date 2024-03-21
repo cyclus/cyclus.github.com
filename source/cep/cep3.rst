@@ -3,7 +3,7 @@ CEP 3 - |Cyclus| Release Procedure
 
 :CEP: 3
 :Title: |Cyclus| Release Procedure
-:Last-Modified: 2017-11-06
+:Last-Modified: 2024-03-21
 :Author: Anthony Scopatz and Matthew Gidden and Baptiste Mouginot
 :Status: Accepted
 :Type: Process
@@ -350,37 +350,6 @@ source tree located in the ``tests/GoogleTest`` directory.  To keep up with
 Gtest's natural evolution cycle, please download the latest release of Google Tests
 and follow `the fused source directions here`_.  If we go too long without doing this,
 it could be very painful to update.
-
-**Verify & Update API Stability:** Since |Cyclus| v1.0 we promise API
-stability.  Luckily, we have a tool for keeping track of this mostly
-automatically.  In order to check this correctly, you must have a **RELEASE**
-build of Cyclus compiled/installed.  Every release please run the following
-command to verify that the release branch is stable:
-
-.. code-block:: bash
-
-    $ cd cyclus/release
-    $ ./smbchk.py --update -t HEAD --no-save --check
-
-If |cyclus| only has API additions, it is considered stable and the command will
-tell you so. If |cyclus| also has API deletions, then |cyclus| is considered
-unstable and a diff of the symbols will be printed.
-**You cannot release |cyclus| if it is unstable!** Please post the diff to
-either the mailing list or the issue tracker and work to resolve the removed
-symbols until it this command declares that |cyclus| is stable. It is
-probably best to do this prior to any release candidates if possible.
-
-Once stable and there are no more code changes to be made, add the symbols
-in this release to the database with the following command (again - make sure
-you are working on a RELEASE build of Cyclus):
-
-.. code-block:: bash
-
-    $ cd cyclus/release
-    $ ./smbchk.py --update -t X.X.X
-
-where ``X.X.X`` is the version tag. This should alter the ``symbols.json``
-file.  Commit this and add it to the repo.
 
 Cycamore
 --------
