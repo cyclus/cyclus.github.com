@@ -141,6 +141,10 @@ Peddler is a Cyclus Package used to simulate the transport of material from one 
 - `peddler:reactor<https://github.com/ergs/peddler/blob/master/peddler/reactor.py>_`
 
 
+**Cyder**(https://github.com/arfc/cyder)
+A generic nuclear repository model intended to be used within the Cyclus nuclear fuel cycle simulator. It contains a conditioning facility and a nuclear repository model that places spent fuel packages in a repository based on its temperature and the constraints of the repository.
+
+
 
 
 
