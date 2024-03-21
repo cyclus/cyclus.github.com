@@ -133,6 +133,14 @@ evaluating their suitability.
 - `:rwc:Storage
   <https://github.com/rwcarlsen/rwc-archetypes/blob/master/storage.h>`_
 
+**Peddler** (https://github.com/ergs/peddler)
+Peddler is a Cyclus Package used to simulate the transport of material from one facility to another.
+
+- `peddler:truck<https://github.com/ergs/peddler/blob/master/peddler/truck.py>`_
+
+- `peddler:reactor<https://github.com/ergs/peddler/blob/master/peddler/reactor.py>_`
+
+
 
 
 
