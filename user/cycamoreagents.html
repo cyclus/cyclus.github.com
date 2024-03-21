@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script src="../_static/documentation_options.js?v=3790a7ec"></script>
+    <script src="../_static/documentation_options.js?v=7558d08f"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -3313,40 +3313,24 @@ specified commodities.</p>
 </pre></div>
 </div>
 </dd>
-<dt class="field-even">active_buying<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">int</span></code>, optional (default=1), shape=[-1]</p>
-<p>During the length of the active buying period, agent exhibits regular behavior. If paired with dormant buying period, alternates between buying and not buying, regardless if space is available</p>
+<dt class="field-even">cumulative_cap<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, optional (default=-1), shape=[-1]</p>
+<p>After receiving this much material cumulatively, the agent will go dormant. Must be paired with dormant_buying_frequency_type and any other dormant parameters. The per-time step demand is unchanged except the cycle cap is almost reached.</p>
 <p><strong>XML:</strong></p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;active_buying&gt;</span>[int]<span class="nt">&lt;/active_buying&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cumulative_cap&gt;</span>[double]<span class="nt">&lt;/cumulative_cap&gt;</span>
 </pre></div>
 </div>
 <p><strong>JSON:</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;active_buying&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># int</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;cumulative_cap&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">-1</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># double</span>
 </pre></div>
 </div>
 <p><strong>Python:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;active_buying&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>  <span class="c1"># int, optional</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;cumulative_cap&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}</span>  <span class="c1"># double, optional</span>
 </pre></div>
 </div>
 </dd>
-<dt class="field-odd">dormant_buying<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">int</span></code>, optional (default=0), shape=[-1]</p>
-<p>During the length of the dormant buying period, agent will not request any new material from the DRE. Paired with active buying period, alternates between buying and not buying, regardless if space is available</p>
-<p><strong>XML:</strong></p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dormant_buying&gt;</span>[int]<span class="nt">&lt;/dormant_buying&gt;</span>
-</pre></div>
-</div>
-<p><strong>JSON:</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span><span class="s">&quot;dormant_buying&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># int</span>
-</pre></div>
-</div>
-<p><strong>Python:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;dormant_buying&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>  <span class="c1"># int, optional</span>
-</pre></div>
-</div>
-</dd>
-<dt class="field-even">latitude<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, optional (default=0.0), shape=[-1]</p>
+<dt class="field-odd">latitude<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, optional (default=0.0), shape=[-1]</p>
 <p>Latitude of the agent’s geographical position. The value should be expressed in degrees as a double.</p>
 <p><strong>XML:</strong></p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;latitude&gt;</span>[double]<span class="nt">&lt;/latitude&gt;</span>
@@ -3361,8 +3345,8 @@ specified commodities.</p>
 </pre></div>
 </div>
 </dd>
-<dt class="field-odd">longitude<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, optional (default=0.0), shape=[-1]</p>
+<dt class="field-even">longitude<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">double</span></code>, optional (default=0.0), shape=[-1]</p>
 <p>Longitude of the agent’s geographical position. The value should be expressed in degrees as a double.</p>
 <p><strong>XML:</strong></p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;longitude&gt;</span>[double]<span class="nt">&lt;/longitude&gt;</span>
@@ -3545,13 +3529,8 @@ specified commodities.</p>
 <span class="w">        </span><span class="nt">&lt;/element&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
 <span class="w">    </span><span class="nt">&lt;optional&gt;</span>
-<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;active_buying&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;int&quot;</span><span class="nt">/&gt;</span>
-<span class="w">        </span><span class="nt">&lt;/element&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
-<span class="w">    </span><span class="nt">&lt;optional&gt;</span>
-<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;dormant_buying&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;int&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;cumulative_cap&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
 <span class="w">        </span><span class="nt">&lt;/element&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/optional&gt;</span>
 <span class="w">    </span><span class="nt">&lt;optional&gt;</span>
@@ -4562,7 +4541,7 @@ specified commodities.</p>
 
     <div class="footer" role="contentinfo">
     &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Feb 21, 2024.
+      Last updated on Mar 21, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
