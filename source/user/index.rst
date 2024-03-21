@@ -161,7 +161,10 @@ A collection of Cyclus manager archetypes for demand driven deployment. The goal
 - `d3ploy:DemandFac<https://github.com/arfc/d3ploy/blob/master/d3ploy/demand_fac.py>`_
 
 
+**ann_pwr**(https://github.com/jbae11/ann_pwr)
+This Cyclus Reactor module is created to perform varying burnup and enrichment calculations for LWRs using a trained neural network model to predict UNF composition.
 
+- `ann_pwr:ann_pwr<https://github.com/jbae11/ann_pwr/blob/ann_lwr/ann_lwr/ann_lwr.py>`_
 
 
 Visualization & Analysis
