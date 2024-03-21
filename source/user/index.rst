@@ -151,6 +151,16 @@ OpenMCyclus introduces an archetype that couples OpenMC depletion with Cyclus a 
 - `openmcyclus:DepleteReactor<https://github.com/arfc/openmcyclus/blob/main/openmcyclus/DepleteReactor.py>`_
 
 
+**D3ploy**(https://github.com/arfc/d3ploy/)
+A collection of Cyclus manager archetypes for demand driven deployment. The goal of this package is to provide three types of mathematical basis for predicting supply and demand of commodities within Cyclus; Non-optimizing (NO) deterministic optimization (DO), and Stochastic optimization (SO).
+
+- `d3ploy:DemandDrivenDeploymentInst<https://github.com/arfc/d3ploy/blob/master/d3ploy/demand_driven_deployment_inst.py>`_
+
+- `d3ploy:SupplyDrivenDeploymentInst<https://github.com/arfc/d3ploy/blob/master/d3ploy/supply_driven_deployment_inst.py>`_
+
+- `d3ploy:DemandFac<https://github.com/arfc/d3ploy/blob/master/d3ploy/demand_fac.py>`_
+
+
 
 
 
