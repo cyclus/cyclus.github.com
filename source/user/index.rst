@@ -104,18 +104,18 @@ evaluating their suitability.
    develop archetypes that will use ORIGEN calculations to improve the
    estimate of nuclear fuel properties.
 
-**Mbmore Archetypes** (https://github.com/mbmcgarry/mbmore)
+**Mbmore Archetypes** (https://github.com/cnerg/mbmore)
     Facility archetypes that utilize a random number generator to create
     non-deterministic behaviors.  General methods controlling the behavior
     (including random number generation and Gaussian distributions) are defined in
     the `behavior functions
-    <https://github.com/mbmcgarry/mbmore/blob/master/src/behavior_functions.h>`_.
+    <https://github.com/cnerg/mbmore/blob/main/src/behavior_functions.h>`_.
 
 - `:mbmore:RandomEnrich
-  <https://github.com/mbmcgarry/mbmore/blob/master/src/RandomEnrich.h#242>`_
+  <https://github.com/cnerg/mbmore/blob/main/src/RandomEnrich.h>`_
 
 - `:mbmore:RandomSink
-  <https://github.com/mbmcgarry/mbmore/blob/master/src/RandomSink.h#L78>`_
+  <https://github.com/cnerg/mbmore/blob/main/src/RandomSink.h>`_
 
 **rwc Archetypes** (https://github.com/rwcarlsen/rwc-archetypes)
     This is a collection of miscellaneous archetypes made by Robert Carlsen to
