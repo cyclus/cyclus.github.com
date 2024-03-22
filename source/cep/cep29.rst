@@ -20,19 +20,17 @@ can be applied to a material object to support such use cases.
 Characteristics of a `Package`
 ==============================
 
-Each package will have the following characteristics: * `name` : a
-human-readable name for the package type * `fill_min` : the minimum quantity of
-material allowed in that package (default: eps()) * `fill_max` : the maximum
-quantity of material allowed in the package (default: 1e299) * `strategy` : the
-strategy for filling multiple packages, e.g. 
+Each package will have the following characteristics defined by the user in the input file: 
+* `name` : a human-readable name for the package type 
+* `fill_min` : the minimum quantity of material allowed in that package (default: eps()) 
+* `fill_max` : the maximum quantity of material allowed in the package (default: 1e299) 
+* `strategy` : the strategy for filling multiple packages, e.g. 
     * "first" : fill each package to the maximum before adding another package
     * "equal" : fill all packages with an equal quantity
 
 Each package will also be assigned a unique integer `id` when it is first
-created.
-
-The default package has `id` = 1 and represents an unpackaged material.
-
+created. The default package has `id` = 1 and represents an unpackaged material. Generally,
+the user will not need to be aware of the `id`.
 
 User-Definition of Packages
 ============================
