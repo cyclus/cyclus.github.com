@@ -55,7 +55,7 @@ When your simulation has finished, a file of the name ``tutorial_singlerx.sqlite
 will be in your file folder. Your Jupyter Notebook can then be used with 
 `Cymetric <https://fuelcycle.org/user/cymetric/index.html>`_ to analyze your 
 data. Examples of how to use Cymetric can be found in the `GitHub 
-<https://github.com/cyclus/cymetric/tree/master/examples>`_.
+<https://github.com/cyclus/cymetric/tree/main/examples>`_.
 
 
 Backup: Files for Success

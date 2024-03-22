@@ -31,7 +31,7 @@ rebuilding this site.
 Sphinx configuration used to build the site.  All direct editing of
 files should be made in the `source` branch.
 
-2. The `master` branch contains the processed and published web
+2. The `main` branch contains the processed and published web
 content that is derived by Sphinx from the `source` branch.  These
 files should not be editted directly.
 
@@ -113,8 +113,8 @@ Best practice for managing a pull request
 1. Synchronize your repository with the upstream repo::
 
    git fetch upstream
-   git checkout master
-   git merge upstream/master
+   git checkout main
+   git merge upstream/main
    git checkout source
    git merge upstream/source
 

@@ -26,7 +26,7 @@ documentation by running `make cyclusdoc` instead of `make all` or `make`.
 .. _`Google C++ Style Guide`: http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml
 .. _`Google Python Style Guide`: http://google-styleguide.googlecode.com/svn/trunk/pyguide.html
 .. _`Artistic Style` : http://astyle.sourceforge.net
-.. _`settings` : http://github.com/cyclus/cyclus/blob/master/misc/.astylerc
+.. _`settings` : http://github.com/cyclus/cyclus/blob/main/misc/.astylerc
 .. _`limits and bugs` : https://sourceforge.net/p/astyle/bugs/
 .. _`Cpplint` : http://google-styleguide.googlecode.com/svn/trunk/cpplint/
 .. _`Pylint` : http://www.pylint.org/
