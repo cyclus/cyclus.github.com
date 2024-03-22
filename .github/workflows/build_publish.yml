@@ -21,16 +21,13 @@ jobs:
         run: |
             make docker-html
 
-      - name: debug
-        run: |
-            ls -l
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
             path: gh-build
 
   deploy:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/source' }}
     runs-on: ubuntu-latest
     needs: build-and-upload
 
