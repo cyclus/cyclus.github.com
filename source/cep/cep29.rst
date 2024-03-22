@@ -21,6 +21,7 @@ Characteristics of a `Package`
 ==============================
 
 Each package will have the following characteristics defined by the user in the input file: 
+
 * `name` : a human-readable name for the package type 
 * `fill_min` : the minimum quantity of material allowed in that package (default: eps()) 
 * `fill_max` : the maximum quantity of material allowed in the package (default: 1e299) 
