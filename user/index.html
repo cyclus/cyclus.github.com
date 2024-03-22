@@ -192,23 +192,15 @@ depletion.</p>
 develop archetypes that will use ORIGEN calculations to improve the
 estimate of nuclear fuel properties.</p>
 </dd>
-<dt><strong>Mbmore Archetypes</strong> (<a class="reference external" href="https://github.com/mbmcgarry/mbmore">https://github.com/mbmcgarry/mbmore</a>)</dt><dd><p>Facility archetypes that utilize a random number generator to create
+<dt><strong>Mbmore Archetypes</strong> (<a class="reference external" href="https://github.com/cnerg/mbmore">https://github.com/cnerg/mbmore</a>)</dt><dd><p>Facility archetypes that utilize a random number generator to create
 non-deterministic behaviors.  General methods controlling the behavior
 (including random number generation and Gaussian distributions) are defined in
-the <a class="reference external" href="https://github.com/mbmcgarry/mbmore/blob/master/src/behavior_functions.h">behavior functions</a>.</p>
+the <a class="reference external" href="https://github.com/cnerg/mbmore/blob/main/src/behavior_functions.h">behavior functions</a>.</p>
 </dd>
 </dl>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/mbmcgarry/mbmore/blob/master/src/RandomEnrich.h#242">:mbmore:RandomEnrich</a>
-Based on cycamore enrichment facility, it can have variable tails assay,
-and bidding behavior can be set to occur at Every X timestep or at Random
-timesteps.</p></li>
-<li><p><a class="reference external" href="https://github.com/mbmcgarry/mbmore/blob/master/src/RandomSink.h#L78">:mbmore:RandomSink</a>
-Based on cycamore sink facility, it can accept multiple recipes, has
-modifiable material preference, material request behavior can be set,
-trading can be suppressed before a specified timestep, material requests
-can occur at Every X timestep or at Random timesteps, and quantity
-requested can be varied using a Gaussian distribution function.</p></li>
+<li><p><a class="reference external" href="https://github.com/cnerg/mbmore/blob/main/src/RandomEnrich.h">:mbmore:RandomEnrich</a></p></li>
+<li><p><a class="reference external" href="https://github.com/cnerg/mbmore/blob/main/src/RandomSink.h">:mbmore:RandomSink</a></p></li>
 </ul>
 <dl class="simple">
 <dt><strong>rwc Archetypes</strong> (<a class="reference external" href="https://github.com/rwcarlsen/rwc-archetypes">https://github.com/rwcarlsen/rwc-archetypes</a>)</dt><dd><p>This is a collection of miscellaneous archetypes made by Robert Carlsen to
@@ -216,35 +208,35 @@ support optimization work and other side projects:</p>
 </dd>
 </dl>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/rwcarlsen/rwc-archetypes/blob/master/look_inst.h">:rwc:LookInst</a>
-This archetype allows the user to specify an arbitrary power capacity
-time series that the institution will automatically deploy power
-generating facilities (of multiple types) to match. It uses a look-ahead
-mechanism to see if its chosen deployments were not “good” and adjusts
-its deployment decisions accordingly. This archetype currently requires
-rwcarlsen/cyclus#restart branch of Cyclus to work.</p></li>
-<li><p><a class="reference external" href="https://github.com/rwcarlsen/rwc-archetypes/blob/master/fleet_reactor.h">:rwc:FleetReactor</a>
-This reactor models an entire reactor fleet as a single, homogenous
-unit.  Like the Cycamore reactor, it just uses static, user-specified
-compositions for fresh and spent fuel. Refueling is incremental -
-occuring every time step. It is approximately a continuous flow fleet
-model much like the way system-dynamics simulators represent facilities.
-It “pretends” to be many reactors to the Cyclus kernel - allowing other
-agents to deploy/decommission single-reactor units, but these
-single-reactors just adjust the size/capacity of the homogenous fleet.</p></li>
-<li><p><a class="reference external" href="https://github.com/rwcarlsen/rwc-archetypes/blob/master/pattern_sink.h">:rwc:PatternSink</a>
-Pattern sink is identical to the Cycamore sink facility except it has an
-additional parameter that allows the user to control the frequency with
-which the facility requests material - i.e. the user can tell the
-facility to only request material every Nth time step.</p></li>
-<li><p><a class="reference external" href="https://github.com/rwcarlsen/rwc-archetypes/blob/master/storage.h">:rwc:Storage</a>
-This facility is very similar to the Cycamore storage facility, and was
-originally created before Cycamore’s existed. It has slightly more
-careful handling of discrete material objects (e.g. not ever splitting
-them) and is a bit more sophisticated with respect to resource exchange
-for offering/bidding its inventory. It would be good to use
-implementation details from this archetype to improve the Cycamore
-storage archetype.</p></li>
+<li><p><a class="reference external" href="https://github.com/rwcarlsen/rwc-archetypes/blob/master/look_inst.h">:rwc:LookInst</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rwcarlsen/rwc-archetypes/blob/master/fleet_reactor.h">:rwc:FleetReactor</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rwcarlsen/rwc-archetypes/blob/master/pattern_sink.h">:rwc:PatternSink</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rwcarlsen/rwc-archetypes/blob/master/storage.h">:rwc:Storage</a></p></li>
+</ul>
+<p><strong>Peddler</strong> (<a class="reference external" href="https://github.com/ergs/peddler">https://github.com/ergs/peddler</a>)
+Peddler is a Cyclus Package used to simulate the transport of material from one facility to another.</p>
+<ul class="simple">
+<li><p><a href="#id9"><span class="problematic" id="id10">`peddler:truck&lt;https://github.com/ergs/peddler/blob/master/peddler/truck.py&gt;`_</span></a></p></li>
+<li><p><cite>peddler:reactor&lt;https://github.com/ergs/peddler/blob/master/peddler/reactor.py&gt;_</cite></p></li>
+</ul>
+<p><a href="#id1"><span class="problematic" id="id2">**</span></a>Cyder**(<a class="reference external" href="https://github.com/arfc/cyder">https://github.com/arfc/cyder</a>)
+A generic nuclear repository model intended to be used within the Cyclus nuclear fuel cycle simulator. It contains a conditioning facility and a nuclear repository model that places spent fuel packages in a repository based on its temperature and the constraints of the repository.</p>
+<p><a href="#id3"><span class="problematic" id="id4">**</span></a>OpenMCyclus**(<a class="reference external" href="https://github.com/arfc/openmcyclus/">https://github.com/arfc/openmcyclus/</a>)
+OpenMCyclus introduces an archetype that couples OpenMC depletion with Cyclus a reactor.</p>
+<ul class="simple">
+<li><p><a href="#id11"><span class="problematic" id="id12">`openmcyclus:DepleteReactor&lt;https://github.com/arfc/openmcyclus/blob/main/openmcyclus/DepleteReactor.py&gt;`_</span></a></p></li>
+</ul>
+<p><a href="#id5"><span class="problematic" id="id6">**</span></a>D3ploy**(<a class="reference external" href="https://github.com/arfc/d3ploy/">https://github.com/arfc/d3ploy/</a>)
+A collection of Cyclus manager archetypes for demand driven deployment. The goal of this package is to provide three types of mathematical basis for predicting supply and demand of commodities within Cyclus; Non-optimizing (NO) deterministic optimization (DO), and Stochastic optimization (SO).</p>
+<ul class="simple">
+<li><p><a href="#id13"><span class="problematic" id="id14">`d3ploy:DemandDrivenDeploymentInst&lt;https://github.com/arfc/d3ploy/blob/master/d3ploy/demand_driven_deployment_inst.py&gt;`_</span></a></p></li>
+<li><p><a href="#id15"><span class="problematic" id="id16">`d3ploy:SupplyDrivenDeploymentInst&lt;https://github.com/arfc/d3ploy/blob/master/d3ploy/supply_driven_deployment_inst.py&gt;`_</span></a></p></li>
+<li><p><a href="#id17"><span class="problematic" id="id18">`d3ploy:DemandFac&lt;https://github.com/arfc/d3ploy/blob/master/d3ploy/demand_fac.py&gt;`_</span></a></p></li>
+</ul>
+<p><a href="#id7"><span class="problematic" id="id8">**</span></a>ann_pwr**(<a class="reference external" href="https://github.com/jbae11/ann_pwr">https://github.com/jbae11/ann_pwr</a>)
+This Cyclus Reactor module is created to perform varying burnup and enrichment calculations for LWRs using a trained neural network model to predict UNF composition.</p>
+<ul class="simple">
+<li><p><a href="#id19"><span class="problematic" id="id20">`ann_pwr:ann_pwr&lt;https://github.com/jbae11/ann_pwr/blob/ann_lwr/ann_lwr/ann_lwr.py&gt;`_</span></a></p></li>
 </ul>
 </section>
 </section>
@@ -363,8 +355,8 @@ storage archetype.</p></li>
     </div>
 
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2012-2016, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 21, 2024.
+    &#169; Copyright 2012-2024, University of Wisconsin Computational Nuclear Engineering Research Group.
+      Last updated on Mar 22, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
