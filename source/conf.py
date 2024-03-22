@@ -15,6 +15,7 @@ import os
 import sys
 import warnings
 import subprocess
+import datetime
 
 import cloud_sptheme as csp
 
@@ -69,7 +70,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Cyclus'
-copyright = (u'2012-2016, University of Wisconsin Computational Nuclear '
+copyyear = str(datetime.datetime.now().year)
+copyright = (u'2012-' + copyyear + ', University of Wisconsin Computational Nuclear '
              'Engineering Research Group')
 
 # The version info for the project you're documenting, acts as replacement for
