@@ -119,7 +119,7 @@ only after:</p>
 <li><p>Your code has been reviewed by another developer.</p></li>
 </ul>
 <p>Code from the “develop” branch generally must pass even more rigorous checks
-before being integrated into the “master” branch. Hotfixes would be a
+before being integrated into the “main” branch. Hotfixes would be a
 possible exception to this.</p>
 </section>
 <section id="keeping-your-fork-up-to-date">
@@ -130,12 +130,12 @@ possible exception to this.</p>
 <li><p>The “develop” branch is how <span style="font-variant:small-caps;">Cyclus</span> developers will share (generally
 compilable) progress when we are not yet ready for the code to become
 ‘production’.</p></li>
-<li><p>Keep your own “master” and “develop” branches in sync with the upstream
-repository’s “master” and “develop” branches. The master branch should
+<li><p>Keep your own “main” and “develop” branches in sync with the upstream
+repository’s “main” and “develop” branches. The main branch should
 always be the ‘stable’ or ‘production’ release of <span style="font-variant:small-caps;">Cyclus</span>.</p>
 <blockquote>
 <div><ul>
-<li><p>Pull the most recent history from the upstream repository “master”
+<li><p>Pull the most recent history from the upstream repository “main”
 and/or “develop” branches before you merge changes into your
 corresponding local branch. Consider doing a rebase pull instead of
 a regular pull or ‘fetch and merge’.  For example:</p>
@@ -148,7 +148,7 @@ a regular pull or ‘fetch and merge’.  For example:</p>
 </div></blockquote>
 </li>
 <li><p>As you do development on topic branches in your own fork, consider
-rebasing the topic branch onto the “master” and/or “develop”  branches
+rebasing the topic branch onto the “main” and/or “develop”  branches
 after <em>pulls</em> from the upstream repository rather than merging the pulled
 changes into your branch.  This will help maintain a more linear (and clean)
 history.  <em>Please see caution about rebasing below</em>.  For example:</p>
@@ -257,7 +257,7 @@ branch thusly,</p>
 <li><p>Accept the Pull Request</p>
 <ul>
 <li><p>In general, <strong>every commit</strong> (notice this is not ‘every push’) to the
-“develop” and “master” branches should compile and pass tests. This
+“develop” and “main” branches should compile and pass tests. This
 is guaranteed by using a NON-fast-forward merge during the pull request
 acceptance process.</p></li>
 <li><p>The green “Merge Pull Request” button does a non-fast-forward merge by
