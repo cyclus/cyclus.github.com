@@ -66,6 +66,7 @@ Index
     SA - 25 - Preference Adjustment Process - Gidden <cep25>
     SD - 26 - Generalize the DRE to Optimize Multiple Metrics - Flanagan, Scopatz <cep26>
     SA - 27 - Toolkit Capabilities Injection into an Archetype - Mouginot <cep27>
+    SD - 29 - Packaging of Materials
 
 Key
 ---
