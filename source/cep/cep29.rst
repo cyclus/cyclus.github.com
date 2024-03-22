@@ -17,7 +17,7 @@ For a number of real world applications (e.g. shipping), materials need to be
 packaged in specific ways. This CEP introduces the concept of a `Package` that
 can be applied to a material object to support such use cases.
 
-Chracteristics of a `Package`
+Characteristics of a `Package`
 ==============================
 
 Each package will have the following characteristics: * `name` : a
