@@ -12,7 +12,7 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = ./gh-build
-GIT_BRANCH    = master
+GIT_BRANCH    = main
 GIT_FORK      = cyclus
 
 
@@ -30,10 +30,10 @@ help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  gh-preview        to build HTML in directory $BUILDDIR for testing"
 	@echo "  gh-revert         to cleanup HTML build in directory $BUILDDIR after testing"
-	@echo "  gh-publish        to build final version and push from source branch to master branch"
-	@echo "  gh-publish-only   to push from source branch to master branch, assuming already built"
+	@echo "  gh-publish        to build final version and push from source branch to main branch"
+	@echo "  gh-publish-only   to push from source branch to main branch, assuming already built"
 	@echo "  docker-html       to use docker to build HTML in directory $BUILDDIR for testing"
-	@echo "  docker-gh-publish to use docker to build final version and push from source branch to master branch"
+	@echo "  docker-gh-publish to use docker to build final version and push from source branch to main branch"
 	@echo "  serve             build+serve html files using Python's SimpleHTTPServer"
 	@echo "  serve-only        serve pre-built html files using Python's SimpleHTTPServer"
 	@echo "  dirhtml           to make HTML files named index.html in directories"
@@ -80,11 +80,12 @@ gh-preview html:
 gh-publish-only:
 	git fetch $(GH_UPSTREAM_REPO)
 	git checkout -B $(GH_PUBLISH_BRANCH) $(GH_UPSTREAM_REPO)/$(GH_PUBLISH_BRANCH)
+	git checkout $(GH_SOURCE_BRANCH) -- $(GH_SOURCE_DIR)
 	git reset HEAD
 	rsync -a $(BUILDDIR)/* .
 	rsync -a $(BUILDDIR)/.* .
 	git add -f `(cd $(BUILDDIR); find . -type f; cd ..)`
-	rm -rf  $(BUILDDIR)
+	rm -rf $(GH_SOURCE_DIR) $(BUILDDIR)
 	git commit -m "Generated $(GH_PUBLISH_BRANCH) for `git log $(GH_SOURCE_BRANCH) -1 --pretty=short --abbrev-commit`" && git push --force $(GH_UPSTREAM_REPO) $(GH_PUBLISH_BRANCH)
 	git checkout $(GH_SOURCE_BRANCH)
 
