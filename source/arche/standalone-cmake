@@ -1,3 +1,0 @@
-INSTALL_CYCLUS_STANDALONE("TutorialFacility" "tutorial_facility" "tutorial")
-INSTALL_CYCLUS_STANDALONE("TutorialInst" "tutorial_inst" "tutorial")
-INSTALL_CYCLUS_STANDALONE("TutorialRegion" "tutorial_region" "tutorial")
