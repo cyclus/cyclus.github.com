@@ -1,9 +1,7 @@
 
-FROM cyclus/cymetric
+FROM ghcr.io/cyclus/cymetric_22.04_apt/cymetric:latest
 
 RUN apt-get update
-RUN apt-get install -y --force-yes wget
-RUN apt-get install -y --force-yes python3-pip
-RUN pip3 install sphinx sphinxcontrib-bibtex
-RUN pip3 install cloud-sptheme==1.6
+RUN apt-get install -y --force-yes wget python3-pip
+RUN python -m pip install sphinx sphinxcontrib-bibtex cloud-sptheme==1.6
 
