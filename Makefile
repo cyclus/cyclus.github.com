@@ -95,7 +95,8 @@ gh-publish:
 	make gh-publish-only
 
 docker-gh-preview docker-html:
-	docker run -w /cyclus.github.com -v $(PWD):/cyclus.github.com cyclus/fuelcycle.org-deps bash -c "make gh-preview && chmod -R 777 $(BUILDDIR)"
+	docker build -f docker/fuelcycle.org-deps/Dockerfile -t fuelcycle.org-deps .
+	docker run -w /cyclus.github.com -v $(PWD):/cyclus.github.com fuelcycle.org-deps bash -c "make gh-preview && chmod -R 777 $(BUILDDIR)"
 
 docker-gh-publish:
 	make clean
