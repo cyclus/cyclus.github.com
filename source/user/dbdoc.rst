@@ -14,9 +14,9 @@ the same.  |Cyclus| ships supporting two database formats:
 * `SQLite <http://sqlite.org/index.html>`_ (".sqlite" extension) - |cyclus|'
   default database format. Some useful viewers:
 
-    - `Sqliteman <http://sqliteman.com/>`_ (windows and linux)
+    - `Sqliteman <https://sqliteman.dev>`_ (windows and linux)
     - `SQLite Browser <http://sqlitebrowser.org/>`_ (windows, mac, and linux)
-    - `SQLite Manager <https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/>`_
+    - `SQLite Manager <https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager-webext/>`_
       Firefox Add-on (windows, mac, and linux)
 
 * `HDF5 <http://www.hdfgroup.org/HDF5/>`_ (".h5" extension). Some useful
