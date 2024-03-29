@@ -96,7 +96,7 @@ Contact Us
 Contributors
 ------------
 
-You can find our amazing contributors through their GitHub profiles
+You can find our amazing contributors through their GitHub contributions for each of the projects:
 * `Cyclus Contributors <https://github.com/cyclus/cyclus/graphs/contributors>`_
 
 * `Cycamore Contributors <https://github.com/cyclus/cycamore/graphs/contributors>`_
