@@ -2,7 +2,7 @@
 Installing |Cyclus| with Docker
 #################################
 
-|Cyclus| maintains six container images with cyclus pre-installed:
+|Cyclus| maintains six container images with |Cyclus| (and its dependencies) pre-installed:
 
 .. list-table:: 
    :header-rows: 1
@@ -34,20 +34,24 @@ These images are updated via GitHub actions and have the following supported tag
     * ``<version number>`` - version number corresponds to past release
     * ``latest`` - up to date with the ``main`` branch
 
-
-#. You can download these images using the following command:
-
-   .. code-block:: bash
-
-      $ docker pull ghcr.io/cyclus/cyclus_22.04_apt/cyclus:stable
-
-You can run a container image interactively using:
+You can download and run a container image interactively using:
 
    .. code-block:: bash
 
       $ docker run -it ghcr.io/cyclus/cyclus_22.04_apt/cyclus:stable
 
-#. If you wish to run |Cyclus| with |Cycamore| pre-installed the following images are supported:
+This will provide you with an environment that has |Cyclus| ready for you to use.  To 
+access files on your machine from within the container try using a volume (``-v <your local directory>:<container destination directory>``).
+
+If you are unfamiliar with Docker below are some good resources for getting started:
+  - `Docker 101 Tutorial <https://www.docker.com/101-tutorial/>`_
+  - `Docker CLI reference <https://docs.docker.com/reference/cli/docker/>`_
+
+If you wish to run |Cyclus| with Cycamore pre-installed the following images are supported:
+
+.. list-table:: 
+   :header-rows: 1
+
    * - Base OS
      - Package Manager
      - Image
@@ -69,10 +73,8 @@ These images are also updated via GitHub actions and have the following supporte
     * ``<version number>`` - version number corresponds to past release
     * ``latest`` - up to date with the ``main`` branch
 
-#. You can explore the |Cyclus| container registry `here <https://github.com/orgs/cyclus/packages>`_.
+You can explore all supported images in the |Cyclus| `container registry <https://github.com/orgs/cyclus/packages>`_.
 
 Happy simulating!
 
-.. _Anaconda: https://www.continuum.io/downloads
-.. _miniconda: http://conda.pydata.org/miniconda.html
 .. _`docker run documentation`: https://docs.docker.com/reference/cli/docker/container/run/

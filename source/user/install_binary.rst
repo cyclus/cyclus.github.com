@@ -46,6 +46,6 @@ Installing |Cyclus| with Binaries
 
 Happy simulating!
 
-.. _Anaconda: https://www.continuum.io/downloads
+.. _Anaconda: https://www.anaconda.com/download
 .. _miniconda: http://conda.pydata.org/miniconda.html
 .. _`dependency installation documentation`: DEPENDENCIES.html
