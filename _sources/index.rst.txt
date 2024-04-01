@@ -90,46 +90,18 @@ Contact Us
 
 * `Developers' mailing list and forum <https://groups.google.com/forum/#!forum/cyclus-dev>`_
 
-* `Developer Call times <http://dev-call.fuelcycle.org>`_: Fridays at 3:00PM EST
+
 
 Contributors
 ------------
 
-* Robert Carlsen
+You can find our amazing contributors through their GitHub contributions for each of the projects:
+* `Cyclus Contributors <https://github.com/cyclus/cyclus/graphs/contributors>`_
 
-* Denia Djokic
+* `Cycamore Contributors <https://github.com/cyclus/cycamore/graphs/contributors>`_
 
-* Royal Elmore
+* `Cymetric Contributors <https://github.com/cyclus/cymetric/graphs/contributors>`_.
 
-* Robert Flanagan
-
-* `Matthew Gidden <http://mattgidden.com/>`_
-
-* Ryan Hodge
-
-* `Kathryn (Katy) Huff <http://katyhuff.github.io/>`_
-
-* Jenny Littell
-
-* `Meghan McGarry <http://cnerg.github.io/people/mcgarry.html>`_
-
-* `Baptiste Mouginot <http://cnerg.github.com/people/bam.html>`_
-
-* `Arrielle Opotowsky <http://cnerg.github.io/people/opotowsky.html>`_
-
-* Olzhas Rakhimov
-
-* `Anthony Scopatz <http://scopatz.com/>`_
-
-* Steve Skutnik
-
-* Zach Welch
-
-* `Paul Wilson <http://cnerg.github.io/people/pphw.html>`_
-
-* John Xia
-
-* Teddy Bae
 
 Acknowledgments
 ----------------

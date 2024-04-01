@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css?v=a1a2a898" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script src="../_static/documentation_options.js?v=7558d08f"></script>
+    <script src="../_static/documentation_options.js?v=8cf7d53e"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -107,47 +107,34 @@ dependencies is shown below:</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CMake</span></code></p></td>
-<td><p>2.8</p></td>
+<td><p>3.16.3</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">boost</span></code></p></td>
-<td><p>1.46.1</p></td>
+<td><p>1.71.0</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">libxml2</span></code></p></td>
-<td><p>2</p></td>
+<td><p>2.9.10+</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">libxml++</span></code></p></td>
-<td><p>2.36</p></td>
+<td><p>2.40.1</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">python</span></code></p></td>
-<td><p>2.7 or 3.3+</p></td>
+<td><p>3.8.10</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sqlite3</span></code></p></td>
-<td><p>3.7.10</p></td>
+<td><p>3.31.1</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">HDF5</span></code></p></td>
-<td><p>1.8.4</p></td>
+<td><p>1.10.4+</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Coin-Cbc</span></code></p></td>
-<td><p>2.5</p></td>
+<td><p>2.10.3</p></td>
 </tr>
-</tbody>
-</table>
-<p>On some platforms, such as Ubuntu 16.04, the following are also necessary:</p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Package</p></th>
-<th class="head"><p>Minimum Version</p></th>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Coin-Clp</span></code></p></td>
+<td><p>1.17.5</p></td>
 </tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">g++</span></code></p></td>
-<td><p>4.8.2</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">libblas-dev</span></code></p></td>
-<td><p>1.2</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">liblapack-dev</span></code></p></td>
-<td><p>3.5.0</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">zlib</span></code></p></td>
+<td><p>1.2.11</p></td>
 </tr>
 </tbody>
 </table>
@@ -166,10 +153,10 @@ dependencies is shown below:</p>
 <td><p>any</p></td>
 </tr>
 <tr class="row-even"><td><p>Cython</p></td>
-<td><p>&gt;=0.25 and  &lt;0.27</p></td>
+<td><p>0.29+</p></td>
 </tr>
 <tr class="row-odd"><td><p>Python (dev version)</p></td>
-<td><p>2.7 or 3.3+</p></td>
+<td><p>3.8+</p></td>
 </tr>
 <tr class="row-even"><td><p>Jinja2</p></td>
 <td><p>any</p></td>
@@ -196,7 +183,7 @@ manager.</p>
 <p>This guide assumes that the user has root access (to issue <code class="docutils literal notranslate"><span class="pre">sudo</span></code> commands) and
 access to a package manager or has some other suitable method of automatically
 installing established libraries. This process was tested using a fresh install
-of Ubuntu versions 16.04, using <code class="docutils literal notranslate"><span class="pre">apt-get</span></code> as the package
+of Ubuntu versions 20.04 and 22.04, using <code class="docutils literal notranslate"><span class="pre">apt-get</span></code> as the package
 manager (scroll down further for Mac OSX instructions).</p>
 <p>The command to install a dependency takes the form of:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>package
@@ -226,13 +213,13 @@ required library package names is:</p>
 <li><p>libblas-dev</p></li>
 <li><p>liblapack-dev</p></li>
 <li><p>libgoogle-perftools-dev</p></li>
-<li><p>python-dev    or  python3-dev</p></li>
-<li><p>python-tables or  python3-tables</p></li>
-<li><p>python-pandas or  python3-pandas</p></li>
-<li><p>python-numpy  or  python3-numpy</p></li>
-<li><p>python-nose   or  python3-nose</p></li>
-<li><p>python-jinja2 or  python3-jinja2</p></li>
-<li><p>cython        or  cython3       (see note below)</p></li>
+<li><p>python3-dev</p></li>
+<li><p>python3-tables</p></li>
+<li><p>python3-pandas</p></li>
+<li><p>python3-numpy</p></li>
+<li><p>python3-nose</p></li>
+<li><p>python3-jinja2</p></li>
+<li><p>cython3       (see note below)</p></li>
 </ol>
 <p>For example, in order to install libxml++ (and libxml2) on your system, type:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libxml++2.6-dev
@@ -246,19 +233,6 @@ coinor-libosi-dev<span class="w"> </span>coinor-libclp-dev<span class="w"> </spa
 </pre></div>
 </div>
 <p>And to install all <em>Cyclus</em> dependencies (<strong>required and optional</strong>):</p>
-<ul class="simple">
-<li><p>if using python 2.x:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>cmake<span class="w"> </span>make<span class="w"> </span>libboost-all-dev<span class="w"> </span>libxml2-dev<span class="w"> </span>libxml++2.6-dev<span class="w"> </span><span class="se">\</span>
-libsqlite3-dev<span class="w"> </span>libhdf5-serial-dev<span class="w"> </span>libbz2-dev<span class="w"> </span>coinor-libcbc-dev<span class="w"> </span>coinor-libcoinutils-dev<span class="w"> </span><span class="se">\</span>
-coinor-libosi-dev<span class="w"> </span>coinor-libclp-dev<span class="w"> </span>coinor-libcgl-dev<span class="w"> </span>libblas-dev<span class="w"> </span>liblapack-dev<span class="w"> </span>g++<span class="w"> </span><span class="se">\</span>
-libgoogle-perftools-dev<span class="w"> </span>python-dev<span class="w"> </span>python-tables<span class="w"> </span>python-pandas<span class="w"> </span>python-numpy<span class="w"> </span>python-nose<span class="w"> </span><span class="se">\</span>
-python-jinja2<span class="w"> </span>cython
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>if using python 3.x:</p></li>
-</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>cmake<span class="w"> </span>make<span class="w"> </span>libboost-all-dev<span class="w"> </span>libxml2-dev<span class="w"> </span>libxml++2.6-dev<span class="w"> </span><span class="se">\</span>
 libsqlite3-dev<span class="w"> </span>libhdf5-serial-dev<span class="w"> </span>libbz2-dev<span class="w"> </span>coinor-libcbc-dev<span class="w"> </span>coinor-libcoinutils-dev<span class="w"> </span><span class="se">\</span>
 coinor-libosi-dev<span class="w"> </span>coinor-libclp-dev<span class="w"> </span>coinor-libcgl-dev<span class="w"> </span>libblas-dev<span class="w"> </span>liblapack-dev<span class="w"> </span>g++<span class="w"> </span><span class="se">\</span>
@@ -270,17 +244,16 @@ python3-jinja2<span class="w"> </span>cython3
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-V
 </pre></div>
 </div>
-<p>Despite having installed python3, Ubuntu installations may still point at python2.7 by default. So Python -V can return a version of python that is not preferred. In that case the python version can be changed system-wide with the update-alternatives command.</p>
+<p>Despite having installed python3, Ubuntu installations may still point at python2 by default. So Python -V can return a version of python that is not preferred. In that case the python version can be changed system-wide with the update-alternatives command.</p>
 <p>First, you can list alternatives with the following command:</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>update-alternatives<span class="w"> </span>--list<span class="w"> </span>python
 </pre></div>
 </div>
 </div></blockquote>
-<p>Ubuntu may not list any alternatives. To make Ubuntu aware of python 2.7 and python 3.5, use:</p>
+<p>Ubuntu may not list any alternatives. To make Ubuntu aware of python 3, use:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--install<span class="w"> </span>/usr/bin/python<span class="w"> </span>python<span class="w"> </span>/usr/bin/python2.7<span class="w"> </span><span class="m">1</span>
-sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--install<span class="w"> </span>/usr/bin/python<span class="w"> </span>python<span class="w"> </span>/usr/bin/python3.5<span class="w"> </span><span class="m">2</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--install<span class="w"> </span>/usr/bin/python<span class="w"> </span>python<span class="w"> </span>/usr/bin/python3<span class="w"> </span><span class="m">1</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -307,7 +280,7 @@ sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--install
 <h4>Cython Note<a class="headerlink" href="#cython-note" title="Link to this heading">¶</a></h4>
 <p>If you get an error related to an old Cython version, then this may be
 because the Debian stable version of Cython is 0.23.4. However,
-Cyclus requires 0.25.0+. To install the latest cython version, please
+Cyclus requires 0.29.0+. To install the latest cython version, please
 visit the <a class="reference external" href="http://cython.readthedocs.io/en/latest/src/quickstart/install.html">Cython Documentation</a>.</p>
 </section>
 <section id="boost-note">
@@ -459,7 +432,7 @@ sudo<span class="w"> </span>make<span class="w"> </span>install
 
     <div class="footer" role="contentinfo">
     &#169; Copyright 2012-2024, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Mar 22, 2024.
+      Last updated on Apr 01, 2024.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
