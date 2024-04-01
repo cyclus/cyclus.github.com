@@ -57,7 +57,9 @@ bibtex_bibfiles = ['cite/pubs.bib',
                    'cep/cep-0004-1.bib', 
                    'cep/cep-0018-1.bib', 
                    'cep/cep-0020-1.bib',
-                   'cite/citecyc.bib']
+                   'cite/citecyc.bib',
+                   'newsletters/pubsmay2018.bib',
+                   'newsletters/pubsoct2017.bib']
 
 numpydoc_show_class_members = False
 
