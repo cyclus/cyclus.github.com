@@ -52,7 +52,14 @@ extensions = ['sphinx.ext.mathjax', 'sphinx.ext.autodoc',
               'cyclusagent', 'cloud_sptheme.ext.table_styling',
               'sphinxcontrib.bibtex']
 
-bibtex_bibfiles = ['cite/pubs.bib', 'cep/cep-0002-1.bib', 'cep/cep-0004-1.bib', 'cep/cep-0018-1.bib', 'cep/cep-0020-1.bib']
+bibtex_bibfiles = ['cite/pubs.bib', 
+                   'cep/cep-0002-1.bib', 
+                   'cep/cep-0004-1.bib', 
+                   'cep/cep-0018-1.bib', 
+                   'cep/cep-0020-1.bib',
+                   'cite/citecyc.bib',
+                   'newsletters/pubsmay2018.bib',
+                   'newsletters/pubsoct2017.bib']
 
 numpydoc_show_class_members = False
 
