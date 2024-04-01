@@ -29,18 +29,12 @@ will identify the best approach for you.
   - *Requires familiarity with Linux*
   - **Recommended** for users wanting to **run simulations locally**  (without internet)
 
-* :doc:`Virtualbox <virtualbox>`:
-
-  - *Requires familiarity with Linux*
-  - **Required for Windows users**
-
-
 * :doc:`Install Stable From Source (via Tarball) <install_from_tarball>`:
 
   - *Requires programming skills/familiarity with compiling code*
   - **Recommended** for users wanting to **modify existing archetypes** or **write new archetypes** (aka developers)
 
-* :doc:`Install Develop from Source (via Repository) <install_from_git>`:
+* :doc:`Install Main from Source (via Repository) <install_from_git>`:
 
   - *Requires programming skills/familiarity with compiling code, basic understanding of Git/GitHub*
   - **Recommended** for developers or users who **require the bleeding edge version** of |Cyclus|
@@ -51,10 +45,10 @@ will identify the best approach for you.
     :maxdepth: 1
 
     install_binary
+    install_docker
     install_custom
     install_from_git
     install_from_tarball
-    virtualbox
 
 
 2. Run Cyclus with a Sample XML File

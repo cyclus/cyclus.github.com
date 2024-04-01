@@ -32,7 +32,7 @@ Supported Systems
 
 Currently, two specific systems are supported:
 
-  * Linux 64-bit (Ubuntu 12+ recommended)
+  * Linux 64-bit (Ubuntu 20+ recommended)
   * MacOSX 8 64-bit
 
 Unfamiliar with git and Github?
@@ -60,7 +60,7 @@ Help with git and GitHub
 
 If you are unfamiliar with git, here are some resources:
 
-  * http://progit.org/book/ - this is a fantastic guide, from beginner to expert
+  * https://git-scm.com/book/en/v2 - this is a fantastic guide, from beginner to expert
   * http://book.git-scm.com/
   * http://gitimmersion.com/ - A very hands-on tutorial.
   * http://www-cs-students.stanford.edu/~blynn/gitmagic/
@@ -70,11 +70,11 @@ If you are unfamiliar with GitHub, here are some resources:
   * `Github Help`_
 
   * To have your changes integrated into the cyclus/cyclus project, you must
-    submit a GitHub *Pull Request*.  Visit `Send pull requests`_ to learn more.
+    submit a GitHub *Pull Request*.  Visit `Pull requests documentation`_ to learn more.
 
 .. _`Github Help`: http://help.github.com
 
-.. _`Send pull requests`: http://help.github.com/send-pull-requests/
+.. _`Pull requests documentation`: https://docs.github.com/en/pull-requests
 
 Contact Us
 ----------
