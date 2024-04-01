@@ -93,14 +93,14 @@ not necessarily adhere to the same standards of quality (documentation,
 testint, etc.) as Cyclus and Cycamore code - users are responsible for
 evaluating their suitability.
 
-**Bright-lite**
-   The University of Texas - Austin is developing a set of archetypes for fuel
+**Bright-lite** (https://github.com/bright-dev/Bright-lite)
+   The University of Texas - Austin developed a set of archetypes for fuel
    fabrication and reactors that rely on interpolation tables for more
    accurate prediction of fresh fuel compositions and estimates of fuel
    depletion.
 
-**Cyborg**
-   The University of Tennessee is working with Oak Ridge National Lab to
+**Cyborg** (https://github.com/sskutnik/cyborg)
+   The University of Tennessee worked with Oak Ridge National Lab to
    develop archetypes that will use ORIGEN calculations to improve the
    estimate of nuclear fuel properties.
 
@@ -134,37 +134,47 @@ evaluating their suitability.
   <https://github.com/rwcarlsen/rwc-archetypes/blob/master/storage.h>`_
 
 **Peddler** (https://github.com/ergs/peddler)
-Peddler is a Cyclus Package used to simulate the transport of material from one facility to another.
+    Peddler is a Cyclus Package used to simulate the transport of material from one 
+    facility to another.
 
-- `peddler:truck<https://github.com/ergs/peddler/blob/master/peddler/truck.py>`_
+- `peddler:truck <https://github.com/ergs/peddler/blob/master/peddler/truck.py>`_
 
-- `peddler:reactor<https://github.com/ergs/peddler/blob/master/peddler/reactor.py>_`
-
-
-**Cyder**(https://github.com/arfc/cyder)
-A generic nuclear repository model intended to be used within the Cyclus nuclear fuel cycle simulator. It contains a conditioning facility and a nuclear repository model that places spent fuel packages in a repository based on its temperature and the constraints of the repository.
+- `peddler:reactor <https://github.com/ergs/peddler/blob/master/peddler/reactor.py>`_
 
 
-**OpenMCyclus**(https://github.com/arfc/openmcyclus/)
-OpenMCyclus introduces an archetype that couples OpenMC depletion with Cyclus a reactor.
-
-- `openmcyclus:DepleteReactor<https://github.com/arfc/openmcyclus/blob/main/openmcyclus/DepleteReactor.py>`_
-
-
-**D3ploy**(https://github.com/arfc/d3ploy/)
-A collection of Cyclus manager archetypes for demand driven deployment. The goal of this package is to provide three types of mathematical basis for predicting supply and demand of commodities within Cyclus; Non-optimizing (NO) deterministic optimization (DO), and Stochastic optimization (SO).
-
-- `d3ploy:DemandDrivenDeploymentInst<https://github.com/arfc/d3ploy/blob/master/d3ploy/demand_driven_deployment_inst.py>`_
-
-- `d3ploy:SupplyDrivenDeploymentInst<https://github.com/arfc/d3ploy/blob/master/d3ploy/supply_driven_deployment_inst.py>`_
-
-- `d3ploy:DemandFac<https://github.com/arfc/d3ploy/blob/master/d3ploy/demand_fac.py>`_
+**Cyder** (https://github.com/arfc/cyder)
+    A generic nuclear repository model intended to be used within the Cyclus nuclear 
+    fuel cycle simulator. It contains a conditioning facility and a nuclear repository 
+    model that places spent fuel packages in a repository based on its temperature and 
+    the constraints of the repository.
 
 
-**ann_pwr**(https://github.com/jbae11/ann_pwr)
-This Cyclus Reactor module is created to perform varying burnup and enrichment calculations for LWRs using a trained neural network model to predict UNF composition.
+**OpenMCyclus** (https://github.com/arfc/openmcyclus/)
+    OpenMCyclus introduces an archetype that couples OpenMC depletion with Cyclus a 
+    reactor.
 
-- `ann_pwr:ann_pwr<https://github.com/jbae11/ann_pwr/blob/ann_lwr/ann_lwr/ann_lwr.py>`_
+- `openmcyclus:DepleteReactor <https://github.com/arfc/openmcyclus/blob/main/openmcyclus/DepleteReactor.py>`_
+
+
+**D3ploy** (https://github.com/arfc/d3ploy/)
+    A collection of Cyclus manager archetypes for demand driven deployment. The goal 
+    of this package is to provide three types of mathematical basis for predicting 
+    supply and demand of commodities within Cyclus; Non-optimizing (NO) deterministic 
+    optimization (DO), and Stochastic optimization (SO).
+
+- `d3ploy:DemandDrivenDeploymentInst <https://github.com/arfc/d3ploy/blob/master/d3ploy/demand_driven_deployment_inst.py>`_
+
+- `d3ploy:SupplyDrivenDeploymentInst <https://github.com/arfc/d3ploy/blob/master/d3ploy/supply_driven_deployment_inst.py>`_
+
+- `d3ploy:DemandFac <https://github.com/arfc/d3ploy/blob/master/d3ploy/demand_fac.py>`_
+
+
+**ann_pwr** (https://github.com/jbae11/ann_pwr)
+    This Cyclus Reactor module is created to perform varying burnup and enrichment 
+    calculations for LWRs using a trained neural network model to predict UNF 
+    composition.
+
+- `ann_pwr:ann_pwr <https://github.com/jbae11/ann_pwr/blob/ann_lwr/ann_lwr/ann_lwr.py>`_
 
 
 Visualization & Analysis
