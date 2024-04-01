@@ -32,8 +32,7 @@ Get the Tarball
 
 Download the most recent stable version of Cyclus source (either .zip or .gz):
 
-- `cyclus-1.5.5.zip  <https://github.com/cyclus/cyclus/archive/1.5.5.zip>`_
-- `cyclus-1.5.5.tar.gz  <https://github.com/cyclus/cyclus/archive/1.5.5.tar.gz>`_
+- `Latest Cyclus release  <https://github.com/cyclus/cyclus/releases/latest>`_
 
 (`Previous versions of Cyclus <https://github.com/cyclus/cyclus/releases>`_ )
 
@@ -44,15 +43,6 @@ Compiling Cyclus
    :end-before: .. website_include_end
 
 If you were successful then Cyclus has been installed and you can skip down to Installing Cycamore!
-
-If you received an error message concerning the Cyclus Core Version, please use:
-
-.. code-block:: bash
-
-   python install.py --core-version=x.y.z
-
-Replace x.y.z with the Cyclus version number you are installing.
-
 
 Alternative instructions are also available for doing a :doc:`Custom Installation <install_custom>`.
 
@@ -66,8 +56,7 @@ Get the Tarball
 
 Download the most recent stable version of Cycamore source (either .zip or .gz):
 
-- `cycamore-1.5.5.zip  <https://github.com/cyclus/cycamore/archive/1.5.5.zip>`_
-- `cycamore-1.5.5.tar.gz  <https://github.com/cyclus/cycamore/archive/1.5.5.tar.gz>`_
+- `Latest Cycamore release  <https://github.com/cyclus/cycamore/releases/latest>`_
 
 (`Previous versions of Cycamore <https://github.com/cyclus/cycamore/releases>`_ )
 
