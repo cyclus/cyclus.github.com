@@ -30,6 +30,7 @@ The |Cyclus| project repository is located at http://github.com/cyclus/cyclus
 
 Quick Start
 -----------
+
 :doc:`Get started with Cyclus <user/install>`
 
 News
@@ -50,13 +51,6 @@ News
 **June 10, 2015:** First Cyclus :doc:`user tutorial <user/tutorial/index>` and :doc:`developer tutorial <arche/tutorial/index>` are held at the 2015 ANS Annual Meeting in San Antonio, TX
 
 **June 7, 2015:** :doc:`Cyclus v1.3.1 is released <previous/v1.3>`
-
-.. toctree::
-    :maxdepth: 1
-
-    news/fy16neup
-    newsletters/oct2017
-
 
 Learn More
 ----------
