@@ -3,8 +3,6 @@
 # The included file 'gh-project.mk' should define the following:
 # GH_SOURCE_DIR = top-level directory of all the ReST source files
 # GH_SOURCE_BRANCH = repository branch that contains the source
-# GH_PUBLISH_BRANCH = repository branch that contains the rendered HTML
-# GH_UPSTREAM_REPO = repository that contains the rendered HTML
 include gh-project.mk
 
 # You can set these variables from the command line.
