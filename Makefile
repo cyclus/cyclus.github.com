@@ -10,8 +10,10 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = ./gh-build
-GIT_BRANCH    = main
-GIT_FORK      = cyclus
+CYCLUS_GIT_BRANCH    = main
+CYCLUS_GIT_FORK      = cyclus
+CYCAMORE_GIT_BRANCH	 = main
+CYCAMORE_GIT_FORK	 = cyclus
 
 
 # Internal variables.
@@ -54,14 +56,14 @@ gh-clean gh-revert clean:
 	-rm -rf $(BUILDDIR)
 
 gh-preview html:
-	wget -nv https://raw.githubusercontent.com/${GIT_FORK}/cyclus/${GIT_BRANCH}/INSTALL.rst -O source/user/CYCLUS_INSTALL.rst || \
-		curl https://raw.githubusercontent.com/${GIT_FORK}/cyclus/${GIT_BRANCH}/INSTALL.rst -L -o source/user/CYCLUS_INSTALL.rst
-	wget -nv https://raw.githubusercontent.com/${GIT_FORK}/cyclus/${GIT_BRANCH}/DEPENDENCIES.rst -O source/user/DEPENDENCIES.rst || \
-		curl https://raw.githubusercontent.com/${GIT_FORK}/cyclus/${GIT_BRANCH}/DEPENDENCIES.rst -L -o source/user/DEPENDENCIES.rst
-	wget -nv https://raw.githubusercontent.com/${GIT_FORK}/cycamore/${GIT_BRANCH}/INSTALL.rst -O source/user/CYCAMORE_INSTALL.rst || \
-		curl https://raw.githubusercontent.com/${GIT_FORK}/cycamore/${GIT_BRANCH}/INSTALL.rst -L -o source/user/CYCAMORE_INSTALL.rst
-	wget -nv https://raw.githubusercontent.com/${GIT_FORK}/cycamore/${GIT_BRANCH}/DEPENDENCIES.rst -O source/user/CYCAMORE_DEPS.rst || \
-		curl https://raw.githubusercontent.com/${GIT_FORK}/cycamore/${GIT_BRANCH}/DEPENDENCIES.rst -L -o source/user/CYCAMORE_DEPS.rst
+	wget -nv https://raw.githubusercontent.com/${CYCLUS_GIT_FORK}/cyclus/${CYCLUS_GIT_BRANCH}/INSTALL.rst -O source/user/CYCLUS_INSTALL.rst || \
+		curl https://raw.githubusercontent.com/${CYCLUS_GIT_FORK}/cyclus/${CYCLUS_GIT_BRANCH}/INSTALL.rst -L -o source/user/CYCLUS_INSTALL.rst
+	wget -nv https://raw.githubusercontent.com/${CYCLUS_GIT_FORK}/cyclus/${CYCLUS_GIT_BRANCH}/DEPENDENCIES.rst -O source/user/DEPENDENCIES.rst || \
+		curl https://raw.githubusercontent.com/${CYCLUS_GIT_FORK}/cyclus/${CYCLUS_GIT_BRANCH}/DEPENDENCIES.rst -L -o source/user/DEPENDENCIES.rst
+	wget -nv https://raw.githubusercontent.com/${CYCAMORE_GIT_FORK}/cycamore/${CYCAMORE_GIT_BRANCH}/INSTALL.rst -O source/user/CYCAMORE_INSTALL.rst || \
+		curl https://raw.githubusercontent.com/${CYCAMORE_GIT_FORK}/cycamore/${CYCAMORE_GIT_BRANCH}/INSTALL.rst -L -o source/user/CYCAMORE_INSTALL.rst
+	wget -nv https://raw.githubusercontent.com/${CYCAMORE_GIT_FORK}/cycamore/${CYCAMORE_GIT_BRANCH}/DEPENDENCIES.rst -O source/user/CYCAMORE_DEPS.rst || \
+		curl https://raw.githubusercontent.com/${CYCAMORE_GIT_FORK}/cycamore/${CYCAMORE_GIT_BRANCH}/DEPENDENCIES.rst -L -o source/user/CYCAMORE_DEPS.rst
 
 	PYTHONDONTWRITEBYTECODE="TRUE" $(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)
 	sed -i.bak 's/function top_offset([$$]node){ return [$$]node\[0\].getBoundingClientRect().top; }/function top_offset($$node){ return (typeof $$node[0] === "undefined") ? 0 : $$node[0].getBoundingClientRect().top; }/' ./gh-build/_static/cloud.js
