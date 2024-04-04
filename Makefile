@@ -2,7 +2,6 @@
 #
 # The included file 'gh-project.mk' should define the following:
 # GH_SOURCE_DIR = top-level directory of all the ReST source files
-# GH_SOURCE_BRANCH = repository branch that contains the source
 include gh-project.mk
 
 # You can set these variables from the command line.
