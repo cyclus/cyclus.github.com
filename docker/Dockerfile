@@ -1,4 +1,3 @@
-
 FROM ghcr.io/cyclus/cymetric_22.04_apt/cymetric:latest
 
 RUN apt-get update
