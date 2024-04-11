@@ -70,7 +70,7 @@ Now we can install the tutorial project via,
 .. code-block:: console
 
     ~ $ cd tutorial
-    ~/tutorial $ python setup.py install --user
+    ~/tutorial $ pip install .
 
 
 Let's now make an example input file in a special ``input`` directory:
