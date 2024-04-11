@@ -40,21 +40,16 @@ will identify the best approach for you.
   - **Recommended** for developers or users who **require the bleeding edge version** of |Cyclus|
   - **Required** for developers who wish to **contribute to kernel development** of |Cyclus|
 
+* :doc:`Install from Docker <install_docker>`:
 
-.. toctree::
-    :maxdepth: 1
-
-    install_binary
-    install_docker
-    install_custom
-    install_from_git
-    install_from_tarball
+  - *Requires Docker install on machine and familiarity with Docker*
 
 
-2. Run Cyclus with a Sample XML File
+1. Run Cyclus with a Sample XML File
 -------------------------------------
 
-Try running |Cyclus| for yourself. The result will be a :doc:`database <dbdoc>` named cyclus.sqlite.  Use the drop down menu to load the sqlite file into Cyclist for data visualization, or use your favorite sqlite browser to peruse.
+Try running |Cyclus| for yourself. The result will be a :doc:`database <dbdoc>` named cyclus.sqlite.  Use the drop down menu to 
+load the sqlite file into Cyclist for data visualization, or use your favorite sqlite browser to peruse.
 
 .. code-block:: bash
 
