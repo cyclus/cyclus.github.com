@@ -48,8 +48,9 @@ will identify the best approach for you.
 1. Run Cyclus with a Sample XML File
 -------------------------------------
 
-Try running |Cyclus| for yourself. The result will be a :doc:`database <dbdoc>` named cyclus.sqlite.  Use the drop down menu to 
-load the sqlite file into Cyclist for data visualization, or use your favorite sqlite browser to peruse.
+Try running |Cyclus| for yourself. The result will be a :doc:`database <dbdoc>` named cyclus.sqlite.  
+Use your favorite sqlite browser to peruse, or explore the data using 
+`Cymetric <https://github.com/cyclus/cymetric>`_.
 
 .. code-block:: bash
 
