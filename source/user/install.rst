@@ -45,7 +45,7 @@ will identify the best approach for you.
   - *Requires Docker install on machine and familiarity with Docker*
 
 
-1. Run Cyclus with a Sample XML File
+2. Run Cyclus with a Sample XML File
 -------------------------------------
 
 Try running |Cyclus| for yourself. The result will be a :doc:`database <dbdoc>` named cyclus.sqlite.  
