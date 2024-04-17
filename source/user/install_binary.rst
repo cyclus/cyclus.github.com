@@ -18,6 +18,8 @@ Installing |Cyclus| with Binaries
    :start-after: .. website_include_deb_start
    :end-before: .. website_include_deb_end
 
+At this point |Cyclus| should be successfully installed on your system and you are ready to install Cycamore.
+
 #. Download the latest Cycamore Debian installation package `here
    <https://github.com/cyclus/cycamore/releases/latest>`_. You can
    download previous/different version `here <https://github.com/cyclus/cycamore/releases>`_.
