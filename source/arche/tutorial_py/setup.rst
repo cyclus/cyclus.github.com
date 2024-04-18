@@ -60,7 +60,6 @@ root tutorial directory. Create one that looks like:
         setup(
             name='tut',
             packages=['tut'],
-            scripts=['xo'],
             **setup_kwargs
             )
 
