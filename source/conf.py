@@ -57,7 +57,9 @@ bibtex_bibfiles = ['cite/pubs.bib',
                    'cep/cep-0004-1.bib', 
                    'cep/cep-0018-1.bib', 
                    'cep/cep-0020-1.bib',
-                   'cite/citecyc.bib']
+                   'cite/citecyc.bib',
+                   'newsletters/pubsmay2018.bib',
+                   'newsletters/pubsoct2017.bib']
 
 numpydoc_show_class_members = False
 
@@ -191,7 +193,9 @@ html_last_updated_fmt = '%b %d, %Y'
 #html_use_smartypants = True
 
 # Custom sidebar templates, maps document names to template names.
-#html_sidebars = {}
+html_sidebars = {
+    '**': [ 'searchbox.html', 'sidebar.html']
+}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.

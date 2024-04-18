@@ -3,9 +3,9 @@ Dependencies
 
 Building the Cyclus website requires:
 
-1. `Sphinx`_ v1.1.2 or higher
+1. `Sphinx`_ v7.2.6 or higher
 
-2. `sphinxcontrib-bibtex`_ v0.3.0 or higher
+2. `sphinxcontrib-bibtex`_ v2.6.2 or higher
 
 3. `cyclus`_
 
@@ -13,7 +13,7 @@ Building the Cyclus website requires:
 
 5. `cycamore <https://github.com/cyclus/cycamore>`_
 
-6. `Cloud Sphinx Theme <https://pythonhosted.org/cloud_sptheme/index.html>`_
+6. `Cloud Sphinx Theme <https://cloud-sptheme.readthedocs.io/en/latest/index.html>`_ v1.10.1 or higher
 
 **NOTE:** The cloud package for Debian and Ubuntu is broken, so do not apt-get
 this. Please ``pip install cloud_sptheme``, ``easy_install cloud_sptheme``, or install from source instead.
@@ -24,16 +24,9 @@ to fix a bug in the package.
 Modifying the Cyclus Website
 ============================
 
-A 2 branch system has been implemented to maintain a clean process of
-rebuilding this site.
-
-1. The `source` branch contains the restructured text documents and
-Sphinx configuration used to build the site.  All direct editing of
-files should be made in the `source` branch.
-
-2. The `main` branch contains the processed and published web
-content that is derived by Sphinx from the `source` branch.  These
-files should not be editted directly.
+The site is built and published via GitHub Actions.  The default branch of this repository is `source`
+which contains the restructured text documents and Sphinx configuration used to build the site.  
+All direct editing of files should be made in the `source` branch.
 
 The rest of this readme assumes that you have two remotes associated with
 cyclus.github.com.
@@ -57,7 +50,7 @@ run::
 
 
 There are docker targets in the makefile for doing everything related to the
-site - building, previewing, and publishing.  See the ``Docker`` section below
+site - building, previewing, and testing.  See the ``Docker`` section below
 for more details.
 
 Best practice workflow for contributing to site changes
@@ -86,7 +79,7 @@ Best practice workflow for contributing to site changes
    browser.  Or if you have docker installed, you can optionally use the
    docker preview target:
 
-   ``make gh-preview-docker``
+   ``make docker-gh-preview``
 
    to build the website inside a docker container with all the correct
    dependencies and configuration taken care of automagically.
@@ -107,66 +100,22 @@ Best practice workflow for contributing to site changes
 8. Issue a pull request by going to your branch on your fork of the repo and
    clicking the "Pull Request" button.
 
-Best practice for managing a pull request
-------------------------------------------
+9. Every time you modify your pull request a workflow will be triggered that builds
+   the site with your changes and uploads the built site as an artifact.  The specific workflow run 
+   can be found by viewing the "Details" of the ``build-and-upload`` check within a PR, 
+   and the ``github-pages`` artifact is listed in the "Summary".
 
-1. Synchronize your repository with the upstream repo::
+10. If the PR is merged into the ``source`` branch the website will be published to https://fuelcycle.org 
+    automatically via GitHub Actions.
 
-   git fetch upstream
-   git checkout main
-   git merge upstream/main
-   git checkout source
-   git merge upstream/source
-
-2. Checkout the `pull_request_branch` in the pull request submitter's repo::
-
-     git fetch https://github.com/[username]/cyclus.github.com pull_request_branch
-     git checkout -b pull_request_branch
-
-3. Test the changes by using the `gh-preview` target
-
-   ``make gh-preview``
-
-   This will build a version of the site in the `gh-build` directory in
-   your branch, `pull_request_branch`.  You can load it directly in a
-   local browser.
-
-4. If satisfied, merge the `pull_request_branch` into the `source`
-   branch::
-
-     git checkout source
-     git merge pull_request_branch
-
-6. If there are no conflicts, push this to the repo
-
-   ``git push upstream source``
-
-7. Republish the pages with the `gh-publish` target.  (**NOTE: for this step,
-   the upstream Cyclus repository *must* be called `upstream`**)
-
-   ``make gh-publish``
 
 Docker
 -------
 
-The ``make docker-...`` targets require the cyclus/fuelcycle.org-deps docker image
+The ``make docker-...`` targets require the `ghcr.io/cyclus/cymetric_22.04_apt/cymetric` docker image
 which can be retrieved/updated by running::
 
-    docker pull cyclus/fuelcycle.org-deps
-
-Occasionally (i.e. for a Cyclus release) the image will need to be updated.
-This can be done by::
-
-    cd docker/fuelcycle.org-deps
-
-    # update the image the fuelcycle.org image depends on
-    docker pull cyclus/cymetric
-
-    # rebuild the image
-    docker build -t cyclus/fuelcycle.org-deps .
-
-    # push the new image to docker-hub
-    docker push cyclus/fuelcycle.org-deps
+    docker pull ghcr.io/cyclus/cymetric_22.04_apt/cymetric:latest
 
 .. _Sphinx: http://sphinx-doc.org/
 .. _sphinxcontrib-bibtex: http://sphinxcontrib-bibtex.readthedocs.org/en/latest/index.html

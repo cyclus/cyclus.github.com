@@ -2,9 +2,6 @@
 #
 # The included file 'gh-project.mk' should define the following:
 # GH_SOURCE_DIR = top-level directory of all the ReST source files
-# GH_SOURCE_BRANCH = repository branch that contains the source
-# GH_PUBLISH_BRANCH = repository branch that contains the rendered HTML
-# GH_UPSTREAM_REPO = repository that contains the rendered HTML
 include gh-project.mk
 
 # You can set these variables from the command line.
@@ -12,8 +9,10 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = ./gh-build
-GIT_BRANCH    = main
-GIT_FORK      = cyclus
+CYCLUS_GIT_BRANCH    = main
+CYCLUS_GIT_FORK      = cyclus
+CYCAMORE_GIT_BRANCH	 = main
+CYCAMORE_GIT_FORK	 = cyclus
 
 
 # Internal variables.
@@ -30,10 +29,7 @@ help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  gh-preview        to build HTML in directory $BUILDDIR for testing"
 	@echo "  gh-revert         to cleanup HTML build in directory $BUILDDIR after testing"
-	@echo "  gh-publish        to build final version and push from source branch to main branch"
-	@echo "  gh-publish-only   to push from source branch to main branch, assuming already built"
 	@echo "  docker-html       to use docker to build HTML in directory $BUILDDIR for testing"
-	@echo "  docker-gh-publish to use docker to build final version and push from source branch to main branch"
 	@echo "  serve             build+serve html files using Python's SimpleHTTPServer"
 	@echo "  serve-only        serve pre-built html files using Python's SimpleHTTPServer"
 	@echo "  dirhtml           to make HTML files named index.html in directories"
@@ -59,14 +55,14 @@ gh-clean gh-revert clean:
 	-rm -rf $(BUILDDIR)
 
 gh-preview html:
-	wget -nv https://raw.githubusercontent.com/${GIT_FORK}/cyclus/${GIT_BRANCH}/INSTALL.rst -O source/user/CYCLUS_INSTALL.rst || \
-		curl https://raw.githubusercontent.com/${GIT_FORK}/cyclus/${GIT_BRANCH}/INSTALL.rst -L -o source/user/CYCLUS_INSTALL.rst
-	wget -nv https://raw.githubusercontent.com/${GIT_FORK}/cyclus/${GIT_BRANCH}/DEPENDENCIES.rst -O source/user/DEPENDENCIES.rst || \
-		curl https://raw.githubusercontent.com/${GIT_FORK}/cyclus/${GIT_BRANCH}/DEPENDENCIES.rst -L -o source/user/DEPENDENCIES.rst
-	wget -nv https://raw.githubusercontent.com/${GIT_FORK}/cycamore/${GIT_BRANCH}/INSTALL.rst -O source/user/CYCAMORE_INSTALL.rst || \
-		curl https://raw.githubusercontent.com/${GIT_FORK}/cycamore/${GIT_BRANCH}/INSTALL.rst -L -o source/user/CYCAMORE_INSTALL.rst
-	wget -nv https://raw.githubusercontent.com/${GIT_FORK}/cycamore/${GIT_BRANCH}/DEPENDENCIES.rst -O source/user/CYCAMORE_DEPS.rst || \
-		curl https://raw.githubusercontent.com/${GIT_FORK}/cycamore/${GIT_BRANCH}/DEPENDENCIES.rst -L -o source/user/CYCAMORE_DEPS.rst
+	wget -nv https://raw.githubusercontent.com/${CYCLUS_GIT_FORK}/cyclus/${CYCLUS_GIT_BRANCH}/INSTALL.rst -O source/user/CYCLUS_INSTALL.rst || \
+		curl https://raw.githubusercontent.com/${CYCLUS_GIT_FORK}/cyclus/${CYCLUS_GIT_BRANCH}/INSTALL.rst -L -o source/user/CYCLUS_INSTALL.rst
+	wget -nv https://raw.githubusercontent.com/${CYCLUS_GIT_FORK}/cyclus/${CYCLUS_GIT_BRANCH}/DEPENDENCIES.rst -O source/user/DEPENDENCIES.rst || \
+		curl https://raw.githubusercontent.com/${CYCLUS_GIT_FORK}/cyclus/${CYCLUS_GIT_BRANCH}/DEPENDENCIES.rst -L -o source/user/DEPENDENCIES.rst
+	wget -nv https://raw.githubusercontent.com/${CYCAMORE_GIT_FORK}/cycamore/${CYCAMORE_GIT_BRANCH}/INSTALL.rst -O source/user/CYCAMORE_INSTALL.rst || \
+		curl https://raw.githubusercontent.com/${CYCAMORE_GIT_FORK}/cycamore/${CYCAMORE_GIT_BRANCH}/INSTALL.rst -L -o source/user/CYCAMORE_INSTALL.rst
+	wget -nv https://raw.githubusercontent.com/${CYCAMORE_GIT_FORK}/cycamore/${CYCAMORE_GIT_BRANCH}/DEPENDENCIES.rst -O source/user/CYCAMORE_DEPS.rst || \
+		curl https://raw.githubusercontent.com/${CYCAMORE_GIT_FORK}/cycamore/${CYCAMORE_GIT_BRANCH}/DEPENDENCIES.rst -L -o source/user/CYCAMORE_DEPS.rst
 
 	PYTHONDONTWRITEBYTECODE="TRUE" $(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)
 	sed -i.bak 's/function top_offset([$$]node){ return [$$]node\[0\].getBoundingClientRect().top; }/function top_offset($$node){ return (typeof $$node[0] === "undefined") ? 0 : $$node[0].getBoundingClientRect().top; }/' ./gh-build/_static/cloud.js
@@ -77,31 +73,9 @@ gh-preview html:
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)."
 
-gh-publish-only:
-	git fetch $(GH_UPSTREAM_REPO)
-	git checkout -B $(GH_PUBLISH_BRANCH) $(GH_UPSTREAM_REPO)/$(GH_PUBLISH_BRANCH)
-	git checkout $(GH_SOURCE_BRANCH) -- $(GH_SOURCE_DIR)
-	git reset HEAD
-	rsync -a $(BUILDDIR)/* .
-	rsync -a $(BUILDDIR)/.* .
-	git add -f `(cd $(BUILDDIR); find . -type f; cd ..)`
-	rm -rf $(GH_SOURCE_DIR) $(BUILDDIR)
-	git commit -m "Generated $(GH_PUBLISH_BRANCH) for `git log $(GH_SOURCE_BRANCH) -1 --pretty=short --abbrev-commit`" && git push --force $(GH_UPSTREAM_REPO) $(GH_PUBLISH_BRANCH)
-	git checkout $(GH_SOURCE_BRANCH)
-
-gh-publish:
-	make clean
-	make html
-	make gh-publish-only
-
 docker-gh-preview docker-html:
-	docker build -f docker/fuelcycle.org-deps/Dockerfile -t fuelcycle.org-deps .
-	docker run -w /cyclus.github.com -v $(PWD):/cyclus.github.com fuelcycle.org-deps bash -c "make gh-preview && chmod -R 777 $(BUILDDIR)"
-
-docker-gh-publish:
-	make clean
-	make docker-html
-	make gh-publish-only
+	docker build -f docker/Dockerfile -t site-deps .
+	docker run -w /cyclus.github.com -v $(PWD):/cyclus.github.com site-deps bash -c "make gh-preview && chmod -R 777 $(BUILDDIR)"
 
 serve: html
 	cd $(BUILDDIR) && python -m http.server
