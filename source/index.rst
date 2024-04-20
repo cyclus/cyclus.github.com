@@ -30,32 +30,11 @@ The |Cyclus| project repository is located at http://github.com/cyclus/cyclus
 
 Quick Start
 -----------
-:doc:`Get started with Cyclus <user/install>`
-
-News
-----
-
-**June 1st, 2018:** :doc:`Cyclus Newsletter Spring 2018! <newsletters/may2018>`
-
-**October 6th, 2017:** :doc:`Cyclus Newsletter Fall 2017! <newsletters/oct2017>`
-
-**December 13, 2016:** :doc:`Cyclus v1.5.0 is released <previous/v1.5>`
-
-**July 6-8, 2016:** Technical workshop on Dynamic Fuel Cycle in Paris, France
-
-**August 13, 2015:** :doc:`Cyclus included in FY2016 workscopes for the NEUP program <news/fy16neup>`
-
-**July 21-24, 2015:** Joint workshop with CLASS_ project held in Madison, WI
-
-**June 10, 2015:** First Cyclus :doc:`user tutorial <user/tutorial/index>` and :doc:`developer tutorial <arche/tutorial/index>` are held at the 2015 ANS Annual Meeting in San Antonio, TX
-
-**June 7, 2015:** :doc:`Cyclus v1.3.1 is released <previous/v1.3>`
 
 .. toctree::
     :maxdepth: 1
-
-    news/fy16neup
-    newsletters/oct2017
+  
+    user/install
 
 
 Learn More
@@ -72,6 +51,26 @@ Learn More
     cep/cep0
     previous/index
     cite/index
+
+
+News
+----
+
+**June 1st, 2018:** :doc:`Cyclus Newsletter Spring 2018 <newsletters/may2018>`
+
+**October 6th, 2017:** :doc:`Cyclus Newsletter Fall 2017! <newsletters/oct2017>`
+
+**December 13, 2016:** :doc:`Cyclus v1.5.0 is released <previous/v1.5>`
+
+**July 6-8, 2016:** Technical workshop on Dynamic Fuel Cycle in Paris, France
+
+**August 13, 2015:** :doc:`Cyclus included in FY2016 workscopes for the NEUP program <news/fy16neup>`
+
+**July 21-24, 2015:** Joint workshop with CLASS_ project held in Madison, WI
+
+**June 10, 2015:** First Cyclus :doc:`user tutorial <user/tutorial/index>` and :doc:`developer tutorial <arche/tutorial_cpp/index>` are held at the 2015 ANS Annual Meeting in San Antonio, TX
+
+**June 7, 2015:** :doc:`Cyclus v1.3.1 is released <previous/v1.3>`
 
 .. _try-it:
 
@@ -96,6 +95,7 @@ Contributors
 ------------
 
 You can find our amazing contributors through their GitHub contributions for each of the projects:
+
 * `Cyclus Contributors <https://github.com/cyclus/cyclus/graphs/contributors>`_
 
 * `Cycamore Contributors <https://github.com/cyclus/cycamore/graphs/contributors>`_
