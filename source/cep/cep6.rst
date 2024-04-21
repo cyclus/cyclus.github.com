@@ -3,7 +3,7 @@ CEP 6 - |Cyclus| Pull Request Style Guide
 
 :CEP: 6
 :Title: |Cyclus| Pull Request Style Guide 
-:Last-Modified: 2015-05-08
+:Last-Modified: 2024-04-11
 :Author: Matthew Gidden
 :Status: Draft
 :Type: Process
@@ -84,7 +84,7 @@ Automation
 
 Using the Github `API <https://developer.github.com/v3/>`_ either directly or
 through a module like `github3.py
-<https://github3py.readthedocs.org/en/master/>`_ in conjunction with a standard
+<https://github3.readthedocs.io/en/latest/>`_ in conjunction with a standard
 style can allow for the automation of otherwise repetitive and time consuming
 tasks. A chief use case is the generation of release notes. Specifically, if
 every PR that enables a major and minor feature can be identified and

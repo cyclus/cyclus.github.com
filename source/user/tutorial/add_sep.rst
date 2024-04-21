@@ -32,7 +32,7 @@ The following is the input template for ``Cycamore::Separations`` archetype:
                  <item>
                    <comp>_______</comp>
                    <eff>_______</eff>
-                 </item              
+                 </item>              
                </efficiencies>
              </info>
            </item>
@@ -47,7 +47,7 @@ The following is the input template for ``Cycamore::Separations`` archetype:
    * Used-MOX-Fuel
 * The maximum feed inventory is the most feed material that we'll have on
   hand: 1000 tonnes.
-* The maxium separations throughout is the size of our plant: 80 tonnes/timestep
+* The maximum separations throughout is the size of our plant: 80 tonnes/timestep
 * This simple scenario will have a single output stream: Separated-Fissile
     * we will hold no more than 5 tonnes of separated material on hand at any time
     * 99% of all Pu (94000) will go into that stream
@@ -82,7 +82,7 @@ Filling in the template, the input block looks like:
                  <item>
                    <comp>94000</comp>
                    <eff>0.99</eff>
-                 </item              
+                 </item>              
                </efficiencies>
              </info>
            </item>

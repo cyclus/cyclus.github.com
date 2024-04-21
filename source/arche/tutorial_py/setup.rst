@@ -60,7 +60,6 @@ root tutorial directory. Create one that looks like:
         setup(
             name='tut',
             packages=['tut'],
-            scripts=['xo'],
             **setup_kwargs
             )
 
@@ -70,7 +69,7 @@ Now we can install the tutorial project via,
 .. code-block:: console
 
     ~ $ cd tutorial
-    ~/tutorial $ python setup.py install --user
+    ~/tutorial $ python -m pip install .
 
 
 Let's now make an example input file in a special ``input`` directory:
@@ -81,7 +80,7 @@ Let's now make an example input file in a special ``input`` directory:
     ~/tutorial $ mkdir -p input
     ~/tutorial $ touch input/storage.py
 
-Now open up the ``input/storage.`` input file and edit it to look like:
+Now open up the ``input/storage.py`` input file and edit it to look like:
 
 .. code-block:: python
 
