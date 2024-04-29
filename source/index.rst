@@ -56,6 +56,8 @@ Learn More
 News
 ----
 
+**April 29,2024:** :doc:`FY 24 Funding for Cyclus <news/fy24neup>`
+
 **June 1st, 2018:** :doc:`Cyclus Newsletter Spring 2018 <newsletters/may2018>`
 
 **October 6th, 2017:** :doc:`Cyclus Newsletter Fall 2017! <newsletters/oct2017>`
