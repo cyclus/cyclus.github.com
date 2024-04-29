@@ -2,12 +2,12 @@ Adding State Variables
 =======================
 In this lesson, we will:
 
-1. Add the necessary state variables to define the storage facility
-3. Modify the sample input file to include these variables
+#. Add the necessary state variables to define the storage facility
+#. Modify the sample input file to include these variables
 
 Add State Variables
 ----------------------------------------------
-The Cyclus Python interface preprocessor provides a ``typesystem`` module that help define
+The Cyclus Python interface preprocessor provides a ``typesystem`` module that helps define
 variables that are state variables for an archetype. These state vars also allow convenient
 annotations.
 

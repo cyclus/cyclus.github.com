@@ -30,7 +30,6 @@ Exercise #1
     add_commod_recipe
     add_proto
     add_reg_inst
-    launch_cyclus
     run_cyclus_native
     add_second_reactor
 

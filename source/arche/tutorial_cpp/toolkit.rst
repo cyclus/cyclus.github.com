@@ -73,7 +73,7 @@ thus do not need a pragma
 
 There needs to be a mechansim for keeping track of when materials enter the
 inventory. In order to utilize Cyclus' sophisticated restart capability, we must
-choose a data structure that is compatible with the at least one of the Cyclus
+choose a data structure that is compatible with at least one of the Cyclus
 output databases (see :ref:`dbtypes`). Given that requirement, an appropriate
 data structure is a `list
 <http://www.cplusplus.com/reference/list/list/>`_. Accordingly, add the
