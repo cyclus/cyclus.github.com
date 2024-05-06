@@ -5,21 +5,10 @@
     :align: center
     :scale: 50
 
-The following are release notes for and links to previously released versions of
-|cyclus|:
-
-.. toctree::
-    :maxdepth: 1
-    
-    v1.5.5
-    v1.5
-    v1.3
-    v1.2
-    v1.1
-    v1.0
-    v0.4
-    v0.3
-    v0.2
+Release notes and changelogs for previous versions of |Cyclus| are 
+available through the `project GitHub <https://github.com/cyclus/cyclus/releases>`_.
+These pages also contain zips for the source code of each version. These zip 
+packages are also available below. 
 
 Note: As official 1.4.0 release has been skipped, all the release notes of 1.4.0
 have been included in the 1.5.0.
