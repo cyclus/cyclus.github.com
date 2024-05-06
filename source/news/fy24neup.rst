@@ -9,7 +9,7 @@ chain and waste management challenges. The research team
 is lead by:
 
 * Dr. Madicken Munk (UIUC, PI)
-* Prof. Paul P.H. Wilson (UW-Madison)
+* Prof. Paul P.H. Wilson, Ken Petersen (UW-Madison)
 * Dr. Eva Davidon, Jin Whan Bae (ORNL)
 
 
