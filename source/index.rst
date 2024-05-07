@@ -58,13 +58,13 @@ News
 
 **May 4, 2024:** `Cyclus v1.6.0 is released <https://github.com/cyclus/cyclus/releases/tag/1.6.0>`_
 
-**April 29,2024:** :doc:`FY 24 Funding for Cyclus <news/fy24neup>`
+**April 29, 2024:** :doc:`FY 24 Funding for Cyclus <news/fy24neup>`
 
 **January 14, 2020:** `Cyclus v1.5.5 is released <https://github.com/cyclus/cyclus/releases/tag/1.5.5>`_
 
-**June 1st, 2018:** :doc:`Cyclus Newsletter Spring 2018 <newsletters/may2018>`
+**June 1, 2018:** :doc:`Cyclus Newsletter Spring 2018 <newsletters/may2018>`
 
-**October 6th, 2017:** :doc:`Cyclus Newsletter Fall 2017! <newsletters/oct2017>`
+**October 6, 2017:** :doc:`Cyclus Newsletter Fall 2017! <newsletters/oct2017>`
 
 **December 13, 2016:** `Cyclus v1.5.0 is released <https://github.com/cyclus/cyclus/releases/tag/1.5.0>`_
 
