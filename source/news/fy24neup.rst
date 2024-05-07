@@ -14,8 +14,3 @@ is lead by:
 
 
 .. _NEUP: http://www.neup.gov
-
-.. _MARKAL: http://www.iea-etsap.org/web/Markal.asp
-
-.. _GCAM: http://www.globalchange.umd.edu/models/gcam/
-
