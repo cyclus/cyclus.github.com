@@ -56,11 +56,17 @@ Learn More
 News
 ----
 
-**June 1st, 2018:** :doc:`Cyclus Newsletter Spring 2018 <newsletters/may2018>`
+**May 4, 2024:** `Cyclus v1.6.0 is released <https://github.com/cyclus/cyclus/releases/tag/1.6.0>`_
 
-**October 6th, 2017:** :doc:`Cyclus Newsletter Fall 2017! <newsletters/oct2017>`
+**April 29, 2024:** :doc:`FY 24 Funding for Cyclus <news/fy24neup>`
 
-**December 13, 2016:** :doc:`Cyclus v1.5.0 is released <previous/v1.5>`
+**January 14, 2020:** `Cyclus v1.5.5 is released <https://github.com/cyclus/cyclus/releases/tag/1.5.5>`_
+
+**June 1, 2018:** :doc:`Cyclus Newsletter Spring 2018 <newsletters/may2018>`
+
+**October 6, 2017:** :doc:`Cyclus Newsletter Fall 2017! <newsletters/oct2017>`
+
+**December 13, 2016:** `Cyclus v1.5.0 is released <https://github.com/cyclus/cyclus/releases/tag/1.5.0>`_
 
 **July 6-8, 2016:** Technical workshop on Dynamic Fuel Cycle in Paris, France
 
@@ -70,7 +76,7 @@ News
 
 **June 10, 2015:** First Cyclus :doc:`user tutorial <user/tutorial/index>` and :doc:`developer tutorial <arche/tutorial_cpp/index>` are held at the 2015 ANS Annual Meeting in San Antonio, TX
 
-**June 7, 2015:** :doc:`Cyclus v1.3.1 is released <previous/v1.3>`
+**June 7, 2015:** `Cyclus v1.3.1 is released <https://github.com/cyclus/cyclus/releases/tag/1.3.0>`_
 
 .. _try-it:
 

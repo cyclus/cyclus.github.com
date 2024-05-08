@@ -28,6 +28,7 @@ Toolkit Implementation
 ======================
 
 Each |Cyclus| toolkit component will contain 3 different files:
+
 - 2 for the definition of the feature C++ class (``cpp`` and header) that allows
   the use of the capabilities, and optionally to register its values in the
   output database,
@@ -103,7 +104,9 @@ Example:
 Without Inheritance:
 --------------------
 ``toolkit/my_feature_snippet.cycpp.h``:
-.. highlight:: c
+
+.. code-block:: c
+
     cyclus::toolkit::Position coordinates(0,0);
 
     #pragma cyclus var { \
@@ -125,7 +128,9 @@ Without Inheritance:
     std::vector<int> cycpp_shape_longitude;
 
 ``my_archetype_example.h``:
-.. highlight:: c
+
+.. code-block:: c
+
     #include 'toolkit/Position.h'
     
      class fun_archetype : public cyclus::facility{
@@ -137,7 +142,9 @@ Without Inheritance:
     }
 
 ``my_archetype_example.cpp``:
-.. highlight:: c
+
+.. code-block:: c
+
     void fun_archetype::EnterNotify() {
         coordinates.set_position(latitude, longitude);
         coordinates.RecordPosition(this);
@@ -147,7 +154,9 @@ Without Inheritance:
 With Inheritance:
 -----------------
 ``toolkit/my_feature_snippet.cycpp.h``:
-.. highlight:: c
+
+.. code-block:: c
+
     #pragma cyclus var { \
         "default": 0.0, \
         "uilabel": "Geographical latitude in degrees as a double", \
@@ -167,7 +176,9 @@ With Inheritance:
     std::vector<int> cycpp_shape_longitude;
 
 ``my_archetype_example.h``:
-.. highlight:: c
+
+.. code-block:: c
+
     #include 'toolkit/Position.h'
     
     class fun_archetype : public cyclus::facility, public Position {
@@ -179,7 +190,9 @@ With Inheritance:
     }
 
 ``my_archetype_example.cpp``:
-.. highlight:: c
+
+.. code-block:: c
+
     void fun_archetype::EnterNotify() {
         this.set_position(latitude, longitude);
         this.RecordPosition(this);

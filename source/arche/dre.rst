@@ -15,7 +15,7 @@ instance for each concrete ``Resource`` (i.e. ``Materials`` and ``Products``) of
 the kernel is aware. For example, there is an exchange for ``Material``
 resources and another for ``Product`` resources.
 
-The DRE is comprised of five phases which execure in series:
+The DRE is comprised of five phases which execute in series:
 
 * :ref:`rfb`
 * :ref:`rrfb`
@@ -110,10 +110,10 @@ be:
     def get_material_requests(self):
         request_qty = 10.0  # kg
         # Material Target A
-        recipe_a = self.context().get_recipe("recipeA")
+        recipe_a = self.context.get_recipe("recipeA")
         target_a = ts.Material.create_untracked(request_qty, recipe_a)
         # Material Target B
-        recipe_b = self.context().get_recipe("recipeB")
+        recipe_b = self.context.get_recipe("recipeB")
         target_b = ts.Material.create_untracked(request_qty, recipe_b)
         # commodity mapping to request target
         commods = {"FuelA": target_a, "FuelB": target_b}
