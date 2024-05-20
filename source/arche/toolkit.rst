@@ -6,10 +6,6 @@ Currently in an experimental state, the |cyclus| toolkit aims to provide
 functionality relevant to a variety of :term:`archetypes <archetype>` that do
 not belong strictly in the :term:`cyclus kernel`.
 
-.. note::
-
-    ResourceBuff has been deprecated in favor of ``ResBuf``.
-
 ResBuf
 ++++++++++++
 The ``cyclus::toolkit::ResBuf`` (C++) or ``cyclus.typesystem.ResBuf`` (Python) class
@@ -21,6 +17,10 @@ for proper persistence and intiialization of the buffer.  For this to work,
 you must annotate the buffer member variable with a Cyclus pre-processor
 :ref:`pragma <pragma-cyclus-var>` (C++) or set a class attribute (Python)
 in one of the following ways:
+
+.. note::
+
+    ``ResourceBuff`` has been deprecated in favor of ``ResBuf``.
 
 **C++:**
 
