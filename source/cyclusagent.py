@@ -46,7 +46,6 @@ elif sys.version_info[0] >= 3:
 def contains_resbuf(type_str):
     bufs = ('cyclus::toolkit::ResBuf',
             'cyclus::toolkit::ResMap',
-            'cyclus::toolkit::ResourceBuff',
             'cyclus::toolkit::TotalInvTracker')
     for buf in bufs:
         if buf in type_str:
