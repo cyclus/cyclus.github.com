@@ -11,9 +11,10 @@
 The following are notable publications regarding |cyclus|:
 
 .. bibliography:: pubs.bib
-   :all:
-   :list: enumerated
-   :enumtype: upperroman
+    :all:
+    :list: enumerated
+    :enumtype: upperroman
+    :style: unsrt
 
 |Cyclus| Presentations
 -----------------------
