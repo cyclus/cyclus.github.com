@@ -136,6 +136,9 @@ default_types = {
     'recipe': 'string',
     'inrecipe': 'string',
     'outrecipe': 'string',
+    'package': None,
+    'inpackage': None,
+    'outpackage': None,
     'none': None,
     None: None,
     '': None,
@@ -150,6 +153,9 @@ special_uitypes = {
     'commodity': 'string',
     'incommodity': 'string',
     'outcommodity': 'string',
+    'package': None,
+    'inpackage': None,
+    'outpackage': None,
     }
 
 def _type(cpp, given=None):
