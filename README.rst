@@ -85,8 +85,12 @@ Best practice workflow for contributing to site changes
    dependencies and configuration taken care of automagically. Once this
    is done, navigate into the gh-build directory and serve the website.
 
-   ``cd gh-build``
-   ``python3 -m http:server <port number>``
+
+   ::
+      
+      cd gh-build
+      python3 -m http:server <port number>
+   
 
    the most common port number for things like this is 8000, or 8080,
    and as such choosing one of these is recommended:
