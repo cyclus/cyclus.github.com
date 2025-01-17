@@ -109,6 +109,15 @@ Best practice workflow for contributing to site changes
 
    ``ssh -L 8000:localhost:8000 username@remote-machine``
 
+   Finally, connect to the website on your computer by opening a browser
+   and going to:
+
+   ``http://localhost:<port number>``
+
+   which in the example above would look like:
+
+   ``http://loaclhost:8000``
+
 6. Repeat steps 4-5 until satisfied.
 
 7. Once satisfied with the source RST files, push your branch to your fork of
