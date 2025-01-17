@@ -82,7 +82,28 @@ Best practice workflow for contributing to site changes
    ``make docker-gh-preview``
 
    to build the website inside a docker container with all the correct
-   dependencies and configuration taken care of automagically.
+   dependencies and configuration taken care of automagically. Once this
+   is done, navigate into the gh-build directory and serve the website.
+
+   ``cd gh-build``
+   ``python3 -m http:server <port number>``
+
+   the most common port number for things like this is 8000, or 8080,
+   and as such choosing one of these is recommended:
+
+   ``python3 -m http:server 8000``
+
+   If you are building the website on a computer which you are 
+   connected to remotely, it will then be necessary to create a tunnel
+   between your local and remote machines. This can be done with:
+
+   ``ssh -L <port number>:localhost:<port number> username@remote``
+
+   So if using port 8000 as in the example above, and connecting to a
+   remote machine which you had listed in your config file as "remote-machine"
+   the command would look something like this:
+
+   ``ssh -L 8000:localhost:8000 username@remote-machine``
 
 6. Repeat steps 4-5 until satisfied.
 
