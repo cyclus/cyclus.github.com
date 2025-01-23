@@ -89,13 +89,13 @@ Best practice workflow for contributing to site changes
    ::
       
       cd gh-build
-      python3 -m http:server <port number>
+      python3 -m http.server <port number>
    
 
    the most common port number for things like this is 8000, or 8080,
    and as such choosing one of these is recommended:
 
-   ``python3 -m http:server 8000``
+   ``python3 -m http.server 8000``
 
    If you are building the website on a computer which you are 
    connected to remotely, it will then be necessary to create a tunnel
