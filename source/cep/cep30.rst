@@ -62,7 +62,7 @@ Rationale:
 ===========================
 
 Implementing the overall feature as a subclass keeps it in line with the class-subclass 
-structure of other CYCLUS functionality, such as the Facility Institution Region - Agent structure. 
+structure of other CYCLUS functionality, such as the `TimeAgent` or `Trader` features that are inherited this way.
 The reasons for choosing a hash table over another data structure are that they allow quick and 
 easy expansion both by developers and within the simulation itself, as well as search, insert, and 
 delete operations being ostensibly O(1). 
