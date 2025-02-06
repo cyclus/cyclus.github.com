@@ -61,7 +61,7 @@ crucial.
 Rationale:
 ===========================
 
-It was decided to make the overall feature a subclass is to keep it in line with the class-subclass 
+Implementing the overall feature as a subclass keeps it in line with the class-subclass 
 structure of other CYCLUS functionality, such as the Facility Institution Region - Agent structure. 
 The reasons for choosing a hash table over another data structure are that they allow quick and 
 easy expansion both by developers and within the simulation itself, as well as search, insert, and 
