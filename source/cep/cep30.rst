@@ -47,7 +47,11 @@ Motivation:
 The major motivation for this new feature is that currently when a Facility tries to access 
 information about its Institution, it can only reliably use the public API of the Institution 
 base class. That is, it is dangerous to try to access something that is only in the public 
-API of a derived Institution archetype because it may not always be there. Because of the 
+API of a derived Institution archetype because it may not always be there. 
+This eliminates the use of the optional Toolkit to introduce economic/financial parameters 
+into agents that are required to interact for those parameters since C++ doesn't provide
+a way to interrogate the API of an agent.
+Because of the 
 interdependence of imagined economic functionality on the Facility-Institution-Region 
 relationship (a facility’s cost may be impacted by its own capital cost, as well as its 
 parent institution’s minimum acceptable rate of return and the regional tax rate, for 
