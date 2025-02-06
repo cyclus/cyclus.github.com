@@ -69,7 +69,7 @@ delete operations being ostensibly O(1).
 
 During the public vetting stage of CEP 30’s lifecycle two alternative ideas for implementing this 
 behavior were proposed. The first was to use the code injection functionality of cycpp files to 
-add economic information to archetypes themselves at the beginning of simulations. This was tested, 
+add economic information as an optional Toolkit feature to archetypes themselves at the beginning of simulations. This was tested, 
 but it was discovered that there were problems accessing the information of parent agents, and it 
 was determined that this approach would be some combination of too cumbersome and less certain to 
 work. The second idea was to implement some sort of registry, similar to how Microsoft Windows 
