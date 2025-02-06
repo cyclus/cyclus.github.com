@@ -52,7 +52,7 @@ This eliminates the use of the optional Toolkit to introduce economic/financial 
 into agents that are required to interact for those parameters since C++ doesn't provide
 a way to interrogate the API of an agent.
 Because of the 
-interdependence of imagined economic functionality on the Facility-Institution-Region 
+interdependence of imagined economic functionality on the Region-Institution-Facility
 relationship (a facility’s cost may be impacted by its own capital cost, as well as its 
 parent institution’s minimum acceptable rate of return and the regional tax rate, for 
 instance), the ability of a facility to access information about its parent Agents is 
