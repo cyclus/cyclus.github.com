@@ -17,11 +17,13 @@ Abstract
 
 The DRE of the current version of CYCLUS handles the cost of materials being traded in a 
 way which was always intended to be expanded upon as discussed in the Supply-Demand 
-Framework section of CEP 18. This CEP references moving the Supply-Demand from being 
-requester based to being supplier based, with more considerations for economics. As a part 
-of moving the DRE in that direction, it is necessary to add economic-based elements to  
+Framework section of [CEP 18](https://fuelcycle.org/cep/cep18.html). In particular, that CEP 
+suggests that the introduction of economic concepts could allow the supplier to have more
+influence over the preferences of particular trading paths. As a part 
+of moving the DRE in that direction, it is necessary to add economic parameters to  
 the definitions of the Region, Institution, and Facility in such a way as to allow them 
-to interact with each other economically. The proposal for doing so is to add sub-classes 
+to interact with each other to combine these parameters in meaningful ways. The proposal 
+for doing so is to add sub-classes 
 to each which will act as a method of communicating economic information between layers 
 of the simulation.
 
