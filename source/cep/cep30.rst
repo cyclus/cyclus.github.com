@@ -36,8 +36,8 @@ Specification:
 ============================
 
 The new feature being proposed is a subclass for each of the Region, Institution, and 
-Facility classes which will allow the communication of economic data between each layer 
-of the CYCLUS simulation. The main feature of the subclass will be a hash table 
+Facility classes which will allow the communication of economic/financial data between each layer 
+of the CYCLUS Region-Institution-Facility hierarchy. The main feature of the subclass will be a hash table 
 (enabled by std::unordered_map) which contains pairs of keys (std::string) and values 
 (doubles), as well as functions to set and get elements in the table. 
 
