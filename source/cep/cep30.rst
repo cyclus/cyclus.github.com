@@ -1,8 +1,8 @@
-CEP 30 - Improvements to Cyclus Supply-Demand Framework
+CEP 30 - Framework for Financial Parameter Exchange in the CYCLUS R-I-F Hierarchy
 *********************************************************
 
 :CEP: 30
-:Title: Improvements to Cyclus Supply-Demand Framework
+:Title: Framework for Financial Parameter Exchange in the CYCLUS R-I-F Hierarchy
 :Last-Modified: 2024-12-27
 :Author: Dean Krueger <dean.krueger@wisc.edu>
 :BDFP: Paul Wilson
