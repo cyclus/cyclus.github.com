@@ -3,13 +3,11 @@
 Building Modules with CMake
 ===========================
 
-If you haven't follow the initial example in :ref:`hello_world_cpp`, you should get
-the `Cycstub repo <https://github.com/cyclus/cycstub>`_ by either `cloning the
-repository <https://github.com/cyclus/cycstub.git>`_ or by `downloading the zip
-file <https://github.com/cyclus/cycstub/archive/develop.zip>`_ (see
-:ref:`hello_world_cpp` for further instructions).
+If you haven't follow the initial example in :ref:`hello_world_cpp`, you should use
+``cycstub`` to generate a directory with the "stubs" to build a new archetype.
+(see :ref:`hello_world_cpp` for further instructions).
 
-The Cycstub repo provides a number of critical tools for building your own
+The ``cycstub`` utility provides a number of critical tools for building your own
 module:
 
 * ``install.py``: a basic installation script
