@@ -12,7 +12,7 @@ that you can use to quick-start new |cyclus| module development projects.
 available whereever ``cyclus`` is available.
 
 To use ``cycstub`` to generate the skeleton for a new Facility archetype named ``TutorialFacility`` in
-a module named ``TutorialFacility`` you can issue the following command:
+a module named ``tutorialfacility`` you can issue the following command:
 
 .. code-block:: bash
 
