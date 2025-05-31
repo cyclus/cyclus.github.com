@@ -62,7 +62,7 @@ The install script puts the project into your cyclus userspace,
 ------------
 
 Let's run |cyclus| with the TutorialFacility! In the input directory there is
-an :file:`example.xml`. Running |cyclus| on this file with the command
+an :file:`example_tutorial_facility.xml`. Running |cyclus| on this file with the command
 ``cyclus example_tutorial_facility.xml`` should produce the following output.
 
 .. code-block:: bash
