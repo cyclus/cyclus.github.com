@@ -3,7 +3,7 @@
 Building Modules with CMake
 ===========================
 
-If you haven't follow the initial example in :ref:`hello_world_cpp`, you should use
+If you haven't followed the initial example in :ref:`hello_world_cpp`, you should use
 ``cycstub`` to generate a directory with the "stubs" to build a new archetype.
 (see :ref:`hello_world_cpp` for further instructions).
 

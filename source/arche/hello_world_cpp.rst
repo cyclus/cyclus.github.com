@@ -9,7 +9,7 @@ namely |Cyclus|, CMake, and a recent version of Python (3.3+).
 First, you need to use ``cycstub`` to generate a skeleton code base
 that you can use to quick-start new |cyclus| module development projects.
 ``cycstub`` is installed with the main ``cyclus`` kernel and should be
-available whereever ``cyclus`` is available.
+available wherever ``cyclus`` is available.
 
 To use ``cycstub`` to generate the skeleton for a new Facility archetype named ``TutorialFacility`` in
 a module named ``tutorialfacility`` you can issue the following command:
@@ -29,7 +29,7 @@ will not do anything.
 Let's now change the behavior of the TutorialFacility's ``Tick()`` &
 ``Tock()`` member functions to print "Hello" and "World" respectively.  To do
 this, please open up the :file:`src/tutorial_facility.cc` file in your
-favorite text editor (vim, emacs, gedit, `VS Code <https://code.visualstudio.com/>`_).
+favorite text editor (e.g., vim, emacs, gedit, `VS Code <https://code.visualstudio.com/>`_).
 Change the original functions to look like:
 
 **Original Tick() and Tock() in src/tutorial_facility.cc:**
