@@ -16,7 +16,7 @@ a module named ``TutorialLibrary`` you can issue the following command:
 
 .. code-block:: bash
 
-    tutorial $ cycstub --type facility :TutorialLibrary:TutorialFacility
+    tutorial $ cycstub --type facility tutorial:TutorialLibrary:TutorialFacility
 
 This will populate the ``tutorial`` directory with a number of files and subdirectories
 that should already be complete for building a new archetype.  Without any changes, this archetype
@@ -26,8 +26,8 @@ You can add additional agents to this module by calling `cycstub` multiple times
 
 .. code-block:: bash
 
-    tutorial $ cycstub --type inst :TutorialLibrary:TutorialInstitution
-    tutorial $ cycstub --type region :TutorialLibrary:TutorialRegion
+    tutorial $ cycstub --type inst tutorial:TutorialLibrary:TutorialInstitution
+    tutorial $ cycstub --type region tutorial:TutorialLibrary:TutorialRegion
 
 ------------
 
