@@ -12,17 +12,22 @@ that you can use to quick-start new |cyclus| module development projects.
 available wherever ``cyclus`` is available.
 
 To use ``cycstub`` to generate the skeleton for a new Facility archetype named ``TutorialFacility`` in
-a module named ``tutorialfacility`` you can issue the following command:
+a module named ``TutorialLibrary`` you can issue the following command:
 
 .. code-block:: bash
 
-    tutorial $ mkdir TutorialFacility
-    tutorial $ cd TutorialFacility
-    TutorialFacility $ cycstub --type facility :tutorialfacility:TutorialFacility
+    tutorial $ cycstub --type facility :TutorialLibrary:TutorialFacility
 
-This will populate the ``TutorialFacility`` directory with a number of files and subdirectories
+This will populate the ``tutorial`` directory with a number of files and subdirectories
 that should already be complete for building a new archetype.  Without any changes, this archetype
-will not do anything.
+will not do anything, but will be a valid archetype for use in a simulation.
+
+You can add additional agents to this module by calling `cycstub` multiple times:
+
+.. code-block:: bash
+
+    tutorial $ cycstub --type inst :TutorialLibrary:TutorialInstitution
+    tutorial $ cycstub --type region :TutorialLibrary:TutorialRegion
 
 ------------
 
