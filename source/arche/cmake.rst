@@ -95,12 +95,44 @@ listing:
 
 Examples
 --------
-    
+
+Module Installation
++++++++++++++++++++
+
+The "Hello World" example only allows you to add multiple archetypes to the same
+module/library, using the `USE_CYCLUS` and `INSTALL_CYCLUS_MODULE` macros.  If
+you call `cycstub` multiple times in the same folder, it requires you to specify
+the same path and library name for each new archetype.  This approach reduces
+the number of libraries and executables that are added to a system, perhaps
+unnecessarily.
+
+The resulting `src/CMakeLists.txt` file will includes lines like this:
+
+.. literalinclude:: module-cmake
+
+This will generate:
+
+* a single shared object library in ``$CYCLUS_INSTALL_PREFIX/lib/cyclus/tutorial``
+  named ``libTutorialLibrary.so`` (\*nix) or ``libTutorialLibrary.dylib`` (mac)
+
+* a single unit test executable in ``$CYCLUS_INSTALL_PREFIX/bin`` named
+  ``TutorialLibrary_unit_tests``
+
+where both incorporate the ``TutorialFacility``, ``TutorialInstitution``, and
+``TutorialRegion`` :term:`archetypes <archetype>`.
+
+
 Standalone Installation
 +++++++++++++++++++++++
 
-Through the :ref:`hello_world` example, three standalone modules are installed
-using a ``src/CMakeLists.txt`` file that looks something like
+There may be cases where one prefers to have separate libraries and executables
+for each archetype.  This is not currently supported by `cycstub` in a direct
+way. However, you can modify the above module approach by editing
+``src/CMakeLists.txt`` and replacing:
+
+.. literalinclude:: module-cmake
+
+with 
 
 .. literalinclude:: standalone-cmake
 
@@ -121,29 +153,5 @@ and three unit test executables in ``$CYCLUS_INSTALL_PREFIX/bin``:
 
 * ``TutorialRegion_unit_tests``
 
-Module Installation
-+++++++++++++++++++
-
-A valid criticism of the hello world standalone approach is that a lot of
-libraries and executables are generated for three modules that are grouped
-together. We can do better!
-
-What if we wanted to install one module named ``helloworld``? Specifically, we
-would want:
-
-* a single shared object library in ``$CYCLUS_INSTALL_PREFIX/lib/cyclus/tutorial``
-  named ``libhelloworld.so`` (\*nix) or ``libhelloworld.dylib`` (mac)
-
-* a single unit test executable in ``$CYCLUS_INSTALL_PREFIX/bin`` named
-  ``helloworld_unit_tests``
-
-where both incorporate the ``TutorialFacility``, ``TutorialInstitution``, and
-``TutorialRegion`` :term:`archetypes <archetype>`.
-
-Such behavior is pretty simple to achieve. We first must call ``UseCyclus`` on
-each of our source file roots to inform the build system of their presence and
-follow up with a call to ``INSTALL_CYCLUS_MODULE``:
-
-.. literalinclude:: module-cmake
     
 
