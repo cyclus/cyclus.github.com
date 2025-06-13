@@ -40,7 +40,7 @@ Then make the new archetype, updating all the files as needed
 Finally, open -``src/CMakeLists.txt`` with your favorite text editor and add the
 following line to the end of it
 
-.. code-block:: bash
+.. code-block:: console
 
     install_cyclus_standalone("Storage" "storage" "tutorial")
 
