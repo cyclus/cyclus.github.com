@@ -16,7 +16,7 @@ a module named ``TutorialLibrary`` you can issue the following command:
 
 .. code-block:: console
 
-    tutorial $ cycstub --type facility tutorial:TutorialLibrary:TutorialFacility
+    $ cycstub --type facility tutorial:TutorialLibrary:TutorialFacility
 
 This will populate the ``tutorial`` directory with a number of files and subdirectories
 that should already be complete for building a new archetype.  Without any changes, this archetype
@@ -26,8 +26,8 @@ You can add additional agents to this module by calling `cycstub` multiple times
 
 .. code-block:: console
 
-    tutorial $ cycstub --type inst tutorial:TutorialLibrary:TutorialInstitution
-    tutorial $ cycstub --type region tutorial:TutorialLibrary:TutorialRegion
+    $ cycstub --type inst tutorial:TutorialLibrary:TutorialInstitution
+    $ cycstub --type region tutorial:TutorialLibrary:TutorialRegion
 
 ------------
 
@@ -62,7 +62,7 @@ The install script puts the project into your cyclus userspace,
 
 .. code-block:: console
 
-    tutorial $ python3 install.py
+    $ python3 install.py
 
 ------------
 
@@ -72,7 +72,7 @@ an :file:`example_tutorial_facility.xml`. Running |cyclus| on this file with the
 
 .. code-block:: console
 
-    tutorial $ cyclus example_tutorial_facility.xml
+    $ cyclus example_tutorial_facility.xml
                   :
               .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q
             CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)

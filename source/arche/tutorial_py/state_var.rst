@@ -77,7 +77,7 @@ To reinstall this module, just issue the same ``setup.py`` command as before:
 
 .. code-block:: console
 
-    ~/tutorial $ python setup.py install --user
+    $ python setup.py install --user
 
 
 Modify the Input File
@@ -88,7 +88,7 @@ to define your module.  It is missing the new variables.  Try it:
 
 .. code-block:: console
 
-    ~/tutorial $ cyclus -v 2 input/storage.py
+    $ cyclus -v 2 input/storage.py
                   :
               .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q
             CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)
@@ -125,7 +125,7 @@ The simulation now fails because it does not match the schema. You can view the 
 
 .. code-block:: console
 
-    ~/tutorial $ cyclus --agent-schema :tut.agents:Storage
+    $ cyclus --agent-schema :tut.agents:Storage
 
 Notice that you were able to take advantage of the input file validation simply by using
 the special ``typesystem`` class attributes.
@@ -134,7 +134,7 @@ Our failed cyclus simulation produced an output file that will need to be delete
 
 .. code-block:: console
 
-    ~/tutorial $ rm cyclus.sqlite
+    $ rm cyclus.sqlite
 
 Now, we'll change that input file.  Open the file ``input/storage.py`` in
 your text editor, and find the prototype configuration for the single facility
@@ -172,7 +172,7 @@ Now we can try it again:
 
 .. code-block:: console
 
-    ~/tutorial $ cyclus -v 2 input/storage.py
+    $ cyclus -v 2 input/storage.py
                   :
               .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q
             CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)

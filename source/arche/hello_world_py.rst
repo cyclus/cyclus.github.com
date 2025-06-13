@@ -73,7 +73,7 @@ Running |cyclus| on this file with the command
 
 .. code-block:: console
 
-    tutorial $ cyclus input/example.xml
+    $ cyclus input/example.xml
                   :
               .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q
             CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)

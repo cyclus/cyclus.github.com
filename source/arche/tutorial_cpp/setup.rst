@@ -42,7 +42,7 @@ following line to the end of it
 
 .. code-block:: console
 
-    install_cyclus_standalone("Storage" "storage" "tutorial")
+    $ install_cyclus_standalone("Storage" "storage" "tutorial")
 
 
 Install and Test
