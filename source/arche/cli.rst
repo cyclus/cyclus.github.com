@@ -13,7 +13,7 @@ single-string form ``spec`` (e.g. ``:cycamore:Source``) which is discussed
 To view the auto-generated XML schema used for validating archetype
 configuration parameters in input files:
 
-  .. code-block:: bash
+  .. code-block:: console
 
       $ cyclus --agent-schema :agents:Source
       <interleave>
@@ -33,7 +33,7 @@ configuration parameters in input files:
 To view a JSON structured output of all the data generated and collected from
 ``#pragma cyclus`` annotations for a particular archetype:
 
-  .. code-block:: bash
+  .. code-block:: console
 
       $ cyclus --agent-annotations :cycamore:Source
       {
@@ -52,7 +52,7 @@ To view a JSON structured output of all the data generated and collected from
 
 And to list all archetypes inside a particular library:
 
-  .. code-block:: bash
+  .. code-block:: console
 
       $ cyclus --agent-listing :cycamore
       :cycamore:DeployInst
@@ -71,7 +71,7 @@ Archetype Versioning
 The ``cyclus::Agent`` class exposes a ``version()`` member function which can be
 queried with the |Cyclus| CLI. For example,
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cyclus --agent-version :agents:Source
     1.3.1-7-g9a2c9c9
@@ -94,7 +94,7 @@ your own version tag information for some archetype like
 
 and then access the version with
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cyclus --agent-version my/path:my_library:MyArchetype
     My Version

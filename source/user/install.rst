@@ -52,7 +52,7 @@ Try running |Cyclus| for yourself. The result will be a :doc:`database <dbdoc>` 
 Use your favorite sqlite browser to peruse, or explore the data using 
 `Cymetric <https://github.com/cyclus/cymetric>`_.
 
-.. code-block:: bash
+.. code-block:: console
 
    $ cyclus ~/path/to/cycamore/input/recycle.xml
 

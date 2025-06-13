@@ -71,7 +71,7 @@ an :file:`example.xml`. First modify it to point to the archetype we just wrote.
 Running |cyclus| on this file with the command
 ``cyclus input/example.xml`` should produce the following output.
 
-.. code-block:: bash
+.. code-block:: console
 
     tutorial $ cyclus input/example.xml
                   :

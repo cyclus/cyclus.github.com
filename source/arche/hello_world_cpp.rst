@@ -14,7 +14,7 @@ available wherever ``cyclus`` is available.
 To use ``cycstub`` to generate the skeleton for a new Facility archetype named ``TutorialFacility`` in
 a module named ``TutorialLibrary`` you can issue the following command:
 
-.. code-block:: bash
+.. code-block:: console
 
     tutorial $ cycstub --type facility tutorial:TutorialLibrary:TutorialFacility
 
@@ -24,7 +24,7 @@ will not do anything, but will be a valid archetype for use in a simulation.
 
 You can add additional agents to this module by calling `cycstub` multiple times:
 
-.. code-block:: bash
+.. code-block:: console
 
     tutorial $ cycstub --type inst tutorial:TutorialLibrary:TutorialInstitution
     tutorial $ cycstub --type region tutorial:TutorialLibrary:TutorialRegion
@@ -60,7 +60,7 @@ install the ``tutorial`` project.  This done with the install.py script.
 The install script puts the project into your cyclus userspace,
 ``${HOME}/.local/lib/cyclus``.
 
-.. code-block:: bash
+.. code-block:: console
 
     tutorial $ python3 install.py
 
@@ -70,7 +70,7 @@ Let's run |cyclus| with the TutorialFacility! In the input directory there is
 an :file:`example_tutorial_facility.xml`. Running |cyclus| on this file with the command
 ``cyclus example_tutorial_facility.xml`` should produce the following output.
 
-.. code-block:: bash
+.. code-block:: console
 
     tutorial $ cyclus example_tutorial_facility.xml
                   :

@@ -67,7 +67,7 @@ The ``UseCyclus.cmake`` macro suite uses the following terms:
   ``$CYCLUS_INSTALL_PREFIX/lib/cyclus/my_module_dir/``. The value of
   ``$CYCLUS_INSTALL_PREFIX`` can be queried by
 
-  .. code-block:: bash
+  .. code-block:: console
 
       $ cyclus --install-path
 

@@ -3,7 +3,7 @@
 Logging
 =======================
 
-.. code-block:: bash
+.. code-block:: console
 
   LOG(LogLevel level, std::string prefix)
 

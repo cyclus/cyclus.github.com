@@ -174,7 +174,7 @@ haven't already, now is a good time to add the ``$CYCLUS_INSTALL_PATH`` to your
 ``~/.local``). Next, from your top level directory (where your ``install.py``
 file is), run: 
 
-.. code-block:: bash
+.. code-block:: console
 
   $ ./install.py
   $ TickTracker_unit_tests
@@ -322,7 +322,7 @@ This will prevent exceptions from being caught resulting in a core-dump.  You
 can then use a debugger (e.g. gdb or lldb) to run the failing simulation and
 investigate the source of the crash in more detail.  Something like this:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ CYCLUS_NO_CATCH=1 gdb --args cyclus my-failing-sim.xml
     
@@ -339,7 +339,7 @@ with respect to resource exchange.  To turn on this debugging, simply run
 cyclus with the environment variable ``CYCLUS_DEBUG_DRE`` set to any non-empty
 value:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ CYCLUS_DEBUG_DRE=1 cyclus my-sim.xml
 

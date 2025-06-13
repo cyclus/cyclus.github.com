@@ -72,7 +72,7 @@ and on the command line. For example, to print out the schema for an agent
 archetype on the command line (note the starting colon indicating an empty
 path):
 
-.. code-block:: bash
+.. code-block:: console
 
     cyclus --agent-schema :agents:KFacility
 
@@ -86,7 +86,7 @@ directories, it is possible to manually specify other directories for |Cyclus|
 to search by adding them as colon-separated entries to the CYCLUS_PATH
 environment variable.  For example:
 
-.. code-block:: bash
+.. code-block:: console
 
     export CYCLUS_PATH=my/agent/lib/dir:/my/other/agent/dir
 

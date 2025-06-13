@@ -8,7 +8,7 @@ This section will walk through the source files of the stub :term:`archetypes
 can generate stubs for each of the agent types.  The standard usage to generate the 
 stubs for a Facility, Institution or Region, respectively, is:
 
-.. code-block:: bash
+.. code-block:: console
 
   cycstub --type facility :stublibrary:StubFacility
   cycstub --type institution :stublibrary:StubInstitution
