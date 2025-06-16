@@ -27,6 +27,10 @@ This tutorial has the following steps:
     toolkit
     testing
     input_files
+    advanced
+    dre
+    matquery
+    custominst
 
 .. Given enough time, the following extra topics may be covered:
 
