@@ -1,6 +1,4 @@
-.. \_marquetry\_query:
 
-\===============================
 Material Inspection with Marquetry
 ==================================
 

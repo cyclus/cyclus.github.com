@@ -1,6 +1,4 @@
-.. \_custom\_institution:
 
-\===============================
 Creating a Custom Institution
 =============================
 

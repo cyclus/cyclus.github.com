@@ -12,27 +12,22 @@ This guide covers:
 * Interaction with multiple commodities
 * Resource validation and transformation
 
----
-
 1. The DRE Lifecycle
-
----
+--------------------
 
 Each simulation timestep, the DRE coordinates a market:
 
-1. Agents issue **requests** for resources (`GetMatlRequests()` or `GetGenRequests()`)
-2. Agents issue **bids** in response to requests (`GetMatlBids()` or `GetGenBids()`)
+1. Agents issue **requests** for resources (`GetMatlRequests()` or `GetProductRequests()`)
+2. Agents issue **bids** in response to requests (`GetMatlBids()` or `GetProductBids()`)
 3. The DRE matches trades
 4. Agents execute trades using:
 
-   * `AcceptMatlTrades()` / `AcceptGenTrades()` to receive material
+   * `AcceptMatlTrades()` / `AcceptProductTrades()` to receive material
    * `OfferMatl()` / `OfferGen()` to provide material
 
----
 
 2. Requesting Material
-
----
+----------------------
 
 Requests are issued when the agent has capacity for a resource. Each request:
 
