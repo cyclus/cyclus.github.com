@@ -31,7 +31,7 @@ Install Cyclus
 Get the Source Code from the Git Repo
 =====================================
 
-.. code-block:: bash
+.. code-block:: console
 
   git clone https://github.com/cyclus/cyclus .
   git fetch
@@ -56,7 +56,7 @@ Install Cycamore
 Get the Source Code from the Git Repo
 =====================================
 
-.. code-block:: bash
+.. code-block:: console
 
   git clone https://github.com/cyclus/cycamore .
   git fetch

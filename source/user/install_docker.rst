@@ -36,7 +36,7 @@ These images are updated via GitHub actions and have the following supported tag
 
 You can download and run a container image interactively using:
 
-   .. code-block:: bash
+   .. code-block:: console
 
       $ docker run -it ghcr.io/cyclus/cyclus_22.04_apt/cyclus:stable
 

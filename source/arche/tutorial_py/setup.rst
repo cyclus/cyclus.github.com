@@ -12,9 +12,9 @@ First let's start by making a tutorial example project with an ``agents.py`` fil
 
 .. code-block:: console
 
-    ~ $ mkdir -p tutorial/tut
-    ~ $ cd tutorial/tut
-    ~/tuorial/tut $ touch __init__.py agents.py
+    $ mkdir -p tutorial/tut
+    $ cd tutorial/tut
+    $ touch __init__.py agents.py
 
 
 Make a Storage Facility
@@ -68,17 +68,17 @@ Now we can install the tutorial project via,
 
 .. code-block:: console
 
-    ~ $ cd tutorial
-    ~/tutorial $ python -m pip install .
+    $ cd tutorial
+    $ python -m pip install .
 
 
 Let's now make an example input file in a special ``input`` directory:
 
 .. code-block:: console
 
-    ~ $ cd tutorial
-    ~/tutorial $ mkdir -p input
-    ~/tutorial $ touch input/storage.py
+    $ cd tutorial
+    $ mkdir -p input
+    $ touch input/storage.py
 
 Now open up the ``input/storage.py`` input file and edit it to look like:
 

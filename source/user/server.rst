@@ -12,13 +12,13 @@ the server itself.
 
 To start up the Cyclus server, use the following command line utility, spawned via Python.
 
-.. code-block:: bash
+.. code-block:: console
 
     $ python -m cyclus.server
 
 For more information, please refer to the help:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ python -m cyclus.server -h
     usage: cyclus [-h] [-o OUTPUT_PATH] [--debug] [--host HOST] [-p PORT]
@@ -49,7 +49,7 @@ For more information, please refer to the help:
 Examples
 ---------
 
-.. code-block:: bash
+.. code-block:: console
 
     # Run an input file in server mode, returning all of the output
       # table data over the websocket each time step.
@@ -66,7 +66,7 @@ Cyclus also ships with a simple web application that is an example client for Cy
 You may start this web app (after starting Cyclus Server) with the following command in a new
 terminal:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ python -m cyclus.webapp
 
