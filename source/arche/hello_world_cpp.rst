@@ -4,7 +4,7 @@ Hello, Cyclus! [C++]
 ====================
 This pages walks you through a very simple hello world example using
 |cyclus| agents.  First make sure that you have the dependencies installed,
-namely |Cyclus|, CMake, and a recent version of Python (3.3+).
+namely |Cyclus|, CMake, and a recent version of Python (3.11+).
 
 First, you need to use ``cycstub`` to generate a skeleton code base
 that you can use to quick-start new |cyclus| module development projects.
