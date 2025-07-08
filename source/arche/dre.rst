@@ -169,7 +169,7 @@ resource type, e.g. ``GetMatlBids()`` (C++) or ``get_material_bids()`` (Python).
 
 Bids are modeled as collections of ``BidPortfolio``, where each
 portfolio includes a collection of ``Bid`` objects and a collection of
-``CapacityConstraint`` objectss. A portfolio is not violated if any of its
+``CapacityConstraint`` objects. A portfolio is not violated if any of its
 constituent bids are connected to their requests and all of its constraints are
 satisfied.
 

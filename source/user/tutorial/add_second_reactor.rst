@@ -2,7 +2,7 @@ Adding a second reactor
 =======================
 
 Simple simulations can easily be expanded into more complex problems. To demonstrate this, 
-we will now add a second reactor, ``1000We Lightwater-1``, to our
+we will now add a second reactor, ``1000We Lightwater_1``, to our
 simulation. This reactor will have a lifetime of 360 months (30 years),
 cycle time of 12 months, assembly size of 30160 kg, and power capacity 1000
 MWe. Using this information, let's construct the facility input section
@@ -17,19 +17,19 @@ prototype.
 +-----------------------+---------------------------+
 | Variable              | Value                     |
 +=======================+===========================+
-| ``name``              | ``1000We Lightwater-1``   |
+| ``name``              | ``1000We Lightwater_1``   |
 +-----------------------+---------------------------+
 | ``lifetime``          | ``360``                   |
 +-----------------------+---------------------------+
 | ``Archetype``         | ``Reactor``               |
 +-----------------------+---------------------------+
-| ``fuel_incommods``    | ``fresh-uox``             |
+| ``fuel_incommods``    | ``fresh_uox``             |
 +-----------------------+---------------------------+
-| ``fuel_inrecipes``    | ``fresh-uox``             |
+| ``fuel_inrecipes``    | ``fresh_uox``             |
 +-----------------------+---------------------------+
-| ``fuel_outcommods``   | ``spent-uox``             |
+| ``fuel_outcommods``   | ``spent_uox``             |
 +-----------------------+---------------------------+
-| ``fuel_outrecipes``   | ``spent-uox``             |
+| ``fuel_outrecipes``   | ``spent_uox``             |
 +-----------------------+---------------------------+
 | ``cycle_time``        | ``12``                    |
 +-----------------------+---------------------------+
@@ -49,14 +49,14 @@ Once complete, your reactor prototype should look like:
 .. code-block:: xml
 
   <facility>
-    <name>1000We Lightwater-1</name>
+    <name>1000We Lightwater_1</name>
     <lifetime>360</lifetime>
     <config>
       <Reactor>
-        <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
-        <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
-        <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
-        <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+        <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
+        <fuel_inrecipes> <val>fresh_uox</val> </fuel_inrecipes>
+        <fuel_outcommods> <val>spent_uox</val> </fuel_outcommods>
+        <fuel_outrecipes> <val>spent_uox</val> </fuel_outrecipes>
         <cycle_time>12</cycle_time>
         <refuel_time>1</refuel_time>
         <assem_size>30160</assem_size>
@@ -67,7 +67,7 @@ Once complete, your reactor prototype should look like:
     </config>
   </facility>
 
-Append this prototype right after the ``1178MWe BRAIDWOOD-1`` prototype.
+Append this prototype right after the ``1178MWe BRAIDWOOD_1`` prototype.
 
 Activity: Second reactor Institution
 ++++++++++++++++++++++++++++++++++++
@@ -80,11 +80,11 @@ and add
 .. code-block:: xml
 
   <entry>
-    <prototype>1000We Lightwater-1</prototype>
+    <prototype>1000We Lightwater_1</prototype>
     <number>1</number>
   </entry>
 
-below the ``1178MWe BRAIDWOOD-1`` entry block. The Reactor section
+below the ``1178MWe BRAIDWOOD_1`` entry block. The Reactor section
 of the region block should now look like,
 
 .. code-block:: xml
@@ -97,11 +97,11 @@ of the region block should now look like,
         <institution>
           <initialfacilitylist>
             <entry>
-              <prototype>1178MWe BRAIDWOOD-1</prototype>
+              <prototype>1178MWe BRAIDWOOD_1</prototype>
               <number>1</number>
             </entry>
             <entry>
-              <prototype>1000We Lightwater-1</prototype>
+              <prototype>1000We Lightwater_1</prototype>
               <number>1</number>
             </entry>
           </initialfacilitylist>

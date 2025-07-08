@@ -93,7 +93,7 @@ Archetype and the table below, create the UraniumMine prototype.
 +-----------------------+---------------------------+
 | ``Archetype``         | ``Source``                |
 +-----------------------+---------------------------+
-| ``out_commod``        | ``u-ore``                 |
+| ``out_commod``        | ``u_ore``                 |
 +-----------------------+---------------------------+
 
 1. The template for the Source archetype is of the form:
@@ -110,7 +110,7 @@ Archetype and the table below, create the UraniumMine prototype.
   </facility>
 
 2. Filling in the variables ``name``, ``Archetype``, and ``out_commod`` as 
-``UraniumMine``, ``Source``, and ``fresh-uox`` leads to:
+``UraniumMine``, ``Source``, and ``fresh_uox`` leads to:
 
 .. code-block:: XML
 
@@ -118,7 +118,7 @@ Archetype and the table below, create the UraniumMine prototype.
     <name>UraniumMine</name>
     <config>
       <Source>
-        <outcommod>u-ore</outcommod>
+        <outcommod>u_ore</outcommod>
       </Source>
     </config>
   </facility>
@@ -154,7 +154,7 @@ max_feed_inventory: default = 1e+299, range: [0.0, 1e+299]
 
 .. code-block:: XML
 
-          <max_feed_inventory>1000000</max_feed_inventory 
+          <max_feed_inventory>1000000</max_feed_inventory> 
 
 tails_assay: default=0.003, range: [0.0, 0.003]
   Tails assay from the enrichment process
@@ -193,8 +193,8 @@ swu_capacity: default = 1e+299, range: [0.0, 1e+299]
 
 Activity: Creating the Enrichment Prototype
 +++++++++++++++++++++++++++++++++++++++++++
-The enrichment facility, ``EnrichmentPlant`` will intake the natural ``u-ore`` 
-from ``UraniumMine`` and create ``fresh-uox`` and ``tails`` as its products.
+The enrichment facility, ``EnrichmentPlant`` will intake the natural ``u_ore`` 
+from ``UraniumMine`` and create ``fresh_uox`` and ``tails`` as its products.
 The template for the Enrichment archetype is of the form:
 
 .. code-block:: XML
@@ -221,11 +221,11 @@ Using the template above and the table below, generate the input enrichment faci
 +-------------------------+---------------------------+
 | ``Archetype``           | ``Enrichment``            |
 +-------------------------+---------------------------+
-| ``feed_commod``         | ``u-ore``                 |
+| ``feed_commod``         | ``u_ore``                 |
 +-------------------------+---------------------------+
-| ``feed_recipe``         | ``nat-u``                 |
+| ``feed_recipe``         | ``nat_u``                 |
 +-------------------------+---------------------------+
-| ``product_commod``      | ``fresh-uox``             |
+| ``product_commod``      | ``fresh_uox``             |
 +-------------------------+---------------------------+
 | ``tails_commod``        | ``tails``                 |
 +-------------------------+---------------------------+
@@ -241,9 +241,9 @@ After filling in these variables, your enrichment facility prototype will look l
     <name>EnrichmentPlant</name>
     <config>
       <Enrichment>
-        <feed_commod>u-ore</feed_commod>
-        <feed_recipe>nat-u</feed_recipe>
-        <product_commod>fresh-uox</product_commod>
+        <feed_commod>u_ore</feed_commod>
+        <feed_recipe>nat_u</feed_recipe>
+        <product_commod>fresh_uox</product_commod>
         <tails_commod>tails</tails_commod>
         <max_feed_inventory>1000000</max_feed_inventory>
       </Enrichment>
@@ -354,17 +354,17 @@ Using the template above and the table below, create the Reactor prototype.
 +-----------------------+---------------------------+
 | Variable              | Value                     |
 +=======================+===========================+
-| ``name``              | ``1178MWe BRAIDWOOD-1``   |
+| ``name``              | ``1178MWe BRAIDWOOD_1``   |
 +-----------------------+---------------------------+
 | ``Archetype``         | ``Reactor``               |
 +-----------------------+---------------------------+
-| ``fuel_incommods``    | ``fresh-uox``             |
+| ``fuel_incommods``    | ``fresh_uox``             |
 +-----------------------+---------------------------+
-| ``fuel_inrecipes``    | ``fresh-uox``             |
+| ``fuel_inrecipes``    | ``fresh_uox``             |
 +-----------------------+---------------------------+
-| ``fuel_outcommods``   | ``spent-uox``             |
+| ``fuel_outcommods``   | ``spent_uox``             |
 +-----------------------+---------------------------+
-| ``fuel_outrecipes``   | ``spent-uox``             |
+| ``fuel_outrecipes``   | ``spent_uox``             |
 +-----------------------+---------------------------+
 | ``cycle_time``        | ``18``                    |
 +-----------------------+---------------------------+
@@ -384,13 +384,13 @@ Once completed, your prototype should look like:
 .. code-block:: XML
 
     <facility>
-        <name>1178MWe BRAIDWOOD-1</name>
+        <name>1178MWe BRAIDWOOD_1</name>
         <config>
           <Reactor>
-            <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
-            <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
-            <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
-            <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+            <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
+            <fuel_inrecipes> <val>fresh_uox</val> </fuel_inrecipes>
+            <fuel_outcommods> <val>spent_uox</val> </fuel_outcommods>
+            <fuel_outrecipes> <val>spent_uox</val> </fuel_outrecipes>
             <cycle_time>18</cycle_time>
             <refuel_time>1</refuel_time>
             <assem_size>33000</assem_size>
@@ -444,7 +444,7 @@ recipe_name: default=””
 
 .. code-block:: XML
 
-      <recipe_name>[inrecipe]</recipe_name
+      <recipe_name>[inrecipe]</recipe_name>
 
 
 max_inv_size: default=1e+299, range: [0.0, 1e+299]
@@ -463,7 +463,7 @@ capacity: default = 1e+299, range: [0.0, 1e+299]
 
 Activity: Creating the Sink Prototype
 +++++++++++++++++++++++++++++++++++++
-Our sink, ``NuclearRepository``, will store the ``spent-uox`` and ``tails`` after
+Our sink, ``NuclearRepository``, will store the ``spent_uox`` and ``tails`` after
 their use in the fuel cycle. Using the Sink Archetype template and the table below,
 create the UraniumMine prototype.
 
@@ -474,7 +474,7 @@ create the UraniumMine prototype.
 +-------------------------+---------------------------+
 | ``Archetype``           | ``Sink``                  |
 +-------------------------+---------------------------+
-| ``val``                 | ``spent-uox``             |
+| ``val``                 | ``spent_uox``             |
 +-------------------------+---------------------------+
 | ``val``                 | ``tails``                 |
 +-------------------------+---------------------------+
@@ -504,7 +504,7 @@ After filling in these variables, your sink facility prototype will look like:
     <config>
       <Sink>
         <in_commods>
-          <val>spent-uox</val>
+          <val>spent_uox</val>
           <val>tails</val>
         </in_commods>
       </Sink>
@@ -524,7 +524,7 @@ The facility section of your input file should be of the form:
     <name>UraniumMine</name>
     <config>
       <Source>
-        <outcommod>u-ore</outcommod>
+        <outcommod>u_ore</outcommod>
       </Source>
     </config>
   </facility>
@@ -533,9 +533,9 @@ The facility section of your input file should be of the form:
     <name>EnrichmentPlant</name>
     <config>
       <Enrichment>
-        <feed_commod>u-ore</feed_commod>
-        <feed_recipe>nat-u</feed_recipe>
-        <product_commod>fresh-uox</product_commod>
+        <feed_commod>u_ore</feed_commod>
+        <feed_recipe>nat_u</feed_recipe>
+        <product_commod>fresh_uox</product_commod>
         <tails_commod>tails</tails_commod>
         <max_feed_inventory>1000000</max_feed_inventory>
       </Enrichment>
@@ -543,13 +543,13 @@ The facility section of your input file should be of the form:
   </facility>
 
   <facility>
-    <name>1178MWe BRAIDWOOD-1</name>
+    <name>1178MWe BRAIDWOOD_1</name>
     <config>
       <Reactor>
-        <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
-        <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
-        <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
-        <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+        <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
+        <fuel_inrecipes> <val>fresh_uox</val> </fuel_inrecipes>
+        <fuel_outcommods> <val>spent_uox</val> </fuel_outcommods>
+        <fuel_outrecipes> <val>spent_uox</val> </fuel_outrecipes>
         <cycle_time>18</cycle_time>
         <refuel_time>1</refuel_time>
         <assem_size>33000</assem_size>
@@ -565,7 +565,7 @@ The facility section of your input file should be of the form:
     <config>
       <Sink>
         <in_commods>
-          <val>spent-uox</val>
+          <val>spent_uox</val>
           <val>tails</val>
         </in_commods>
       </Sink>

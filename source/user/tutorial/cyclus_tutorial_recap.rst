@@ -43,11 +43,11 @@ Basic Tutorial Input
         </spec>
       </archetypes>
       <commodity>
-          <name>u-ore</name>
+          <name>u_ore</name>
           <solution_priority>1.0</solution_priority>
         </commodity>
         <commodity>
-          <name>fresh-uox</name>
+          <name>fresh_uox</name>
           <solution_priority>1.0</solution_priority>
         </commodity>
         <commodity>
@@ -55,7 +55,7 @@ Basic Tutorial Input
           <solution_priority>1.0</solution_priority>
         </commodity>
         <commodity>
-          <name>spent-uox</name>
+          <name>spent_uox</name>
           <solution_priority>1.0</solution_priority>
         </commodity>
 
@@ -63,7 +63,7 @@ Basic Tutorial Input
           <name>UraniumMine</name>
           <config>
             <Source>
-              <outcommod>u-ore</outcommod>
+              <outcommod>u_ore</outcommod>
             </Source>
           </config>
         </facility>
@@ -72,9 +72,9 @@ Basic Tutorial Input
           <name>EnrichmentPlant</name>
           <config>
             <Enrichment>
-              <feed_commod>u-ore</feed_commod>
-              <feed_recipe>nat-u</feed_recipe>
-              <product_commod>fresh-uox</product_commod>
+              <feed_commod>u_ore</feed_commod>
+              <feed_recipe>nat_u</feed_recipe>
+              <product_commod>fresh_uox</product_commod>
               <tails_commod>tails</tails_commod>
               <max_feed_inventory>1000000</max_feed_inventory>
             </Enrichment>
@@ -82,13 +82,13 @@ Basic Tutorial Input
         </facility>
 
         <facility>
-          <name>1178MWe BRAIDWOOD-1</name>
+          <name>1178MWe BRAIDWOOD_1</name>
           <config>
             <Reactor>
-              <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
-              <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
-              <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
-              <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+              <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
+              <fuel_inrecipes> <val>fresh_uox</val> </fuel_inrecipes>
+              <fuel_outcommods> <val>spent_uox</val> </fuel_outcommods>
+              <fuel_outrecipes> <val>spent_uox</val> </fuel_outrecipes>
               <cycle_time>18</cycle_time>
               <refuel_time>1</refuel_time>
               <assem_size>33000</assem_size>
@@ -104,7 +104,7 @@ Basic Tutorial Input
           <config>
             <Sink>
               <in_commods>
-                <val>spent-uox</val>
+                <val>spent_uox</val>
                 <val>tails</val>
               </in_commods>
             </Sink>
@@ -119,7 +119,7 @@ Basic Tutorial Input
           <institution>
             <initialfacilitylist>
               <entry>
-                <prototype>1178MWe BRAIDWOOD-1</prototype>
+                <prototype>1178MWe BRAIDWOOD_1</prototype>
                 <number>1</number>
               </entry>
               </initialfacilitylist>
@@ -153,7 +153,7 @@ Basic Tutorial Input
 
 
     <recipe>
-      <name>nat-u</name>
+      <name>nat_u</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -166,7 +166,7 @@ Basic Tutorial Input
     </recipe>
 
     <recipe>
-      <name>fresh-uox</name>
+      <name>fresh_uox</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -179,7 +179,7 @@ Basic Tutorial Input
     </recipe>
 
     <recipe>
-      <name>spent-uox</name>
+      <name>spent_uox</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -242,11 +242,11 @@ Add a Second Reactor Input
         </spec>
       </archetypes>
       <commodity>
-          <name>u-ore</name>
+          <name>u_ore</name>
           <solution_priority>1.0</solution_priority>
         </commodity>
         <commodity>
-          <name>fresh-uox</name>
+          <name>fresh_uox</name>
           <solution_priority>1.0</solution_priority>
         </commodity>
         <commodity>
@@ -254,7 +254,7 @@ Add a Second Reactor Input
           <solution_priority>1.0</solution_priority>
         </commodity>
         <commodity>
-          <name>spent-uox</name>
+          <name>spent_uox</name>
           <solution_priority>1.0</solution_priority>
         </commodity>
 
@@ -262,7 +262,7 @@ Add a Second Reactor Input
           <name>UraniumMine</name>
           <config>
             <Source>
-              <outcommod>u-ore</outcommod>
+              <outcommod>u_ore</outcommod>
             </Source>
           </config>
         </facility>
@@ -271,9 +271,9 @@ Add a Second Reactor Input
           <name>EnrichmentPlant</name>
           <config>
             <Enrichment>
-              <feed_commod>u-ore</feed_commod>
-              <feed_recipe>nat-u</feed_recipe>
-              <product_commod>fresh-uox</product_commod>
+              <feed_commod>u_ore</feed_commod>
+              <feed_recipe>nat_u</feed_recipe>
+              <product_commod>fresh_uox</product_commod>
               <tails_commod>tails</tails_commod>
               <max_feed_inventory>1000000</max_feed_inventory>
             </Enrichment>
@@ -281,13 +281,13 @@ Add a Second Reactor Input
         </facility>
 
         <facility>
-          <name>1178MWe BRAIDWOOD-1</name>
+          <name>1178MWe BRAIDWOOD_1</name>
           <config>
             <Reactor>
-              <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
-              <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
-              <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
-              <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+              <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
+              <fuel_inrecipes> <val>fresh_uox</val> </fuel_inrecipes>
+              <fuel_outcommods> <val>spent_uox</val> </fuel_outcommods>
+              <fuel_outrecipes> <val>spent_uox</val> </fuel_outrecipes>
               <cycle_time>18</cycle_time>
               <refuel_time>1</refuel_time>
               <assem_size>33000</assem_size>
@@ -299,14 +299,14 @@ Add a Second Reactor Input
         </facility>
 
         <facility>
-          <name>1000We Lightwater-1</name>
+          <name>1000We LIGHTWATER_1</name>
           <lifetime>360</lifetime>
           <config>
             <Reactor>
-              <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
-              <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
-              <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
-              <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+              <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
+              <fuel_inrecipes> <val>fresh_uox</val> </fuel_inrecipes>
+              <fuel_outcommods> <val>spent_uox</val> </fuel_outcommods>
+              <fuel_outrecipes> <val>spent_uox</val> </fuel_outrecipes>
               <cycle_time>12</cycle_time>
               <refuel_time>1</refuel_time>
               <assem_size>30160</assem_size>
@@ -322,7 +322,7 @@ Add a Second Reactor Input
           <config>
             <Sink>
               <in_commods>
-                <val>spent-uox</val>
+                <val>spent_uox</val>
                 <val>tails</val>
               </in_commods>
             </Sink>
@@ -337,11 +337,11 @@ Add a Second Reactor Input
           <institution>
             <initialfacilitylist>
               <entry>
-                <prototype>1178MWe BRAIDWOOD-1</prototype>
+                <prototype>1178MWe BRAIDWOOD_1</prototype>
                 <number>1</number>
               </entry>
               <entry>
-                <prototype>1000We Lightwater-1</prototype>
+                <prototype>1000We LIGHTWATER_1</prototype>
                 <number>1</number>
               </entry>
             </initialfacilitylist>
@@ -375,7 +375,7 @@ Add a Second Reactor Input
 
 
     <recipe>
-      <name>nat-u</name>
+      <name>nat_u</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -388,7 +388,7 @@ Add a Second Reactor Input
     </recipe>
 
     <recipe>
-      <name>fresh-uox</name>
+      <name>fresh_uox</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -401,7 +401,7 @@ Add a Second Reactor Input
     </recipe>
 
     <recipe>
-      <name>spent-uox</name>
+      <name>spent_uox</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -471,11 +471,11 @@ Recycle Input
       </archetypes>
 
       <commodity>
-          <name>u-ore</name>
+          <name>u_ore</name>
           <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
-          <name>fresh-uox</name>
+          <name>fresh_uox</name>
           <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
@@ -483,23 +483,23 @@ Recycle Input
           <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
-          <name>spent-uox</name>
+          <name>spent_uox</name>
           <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
-          <name>used-mox-fuel</name>
+          <name>used_mox_fuel</name>
           <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
-          <name>fresh-mox</name>
+          <name>fresh_mox</name>
           <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
-          <name>separated-fissile</name>
+          <name>separated_fissile</name>
           <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
-          <name>separated-waste</name>
+          <name>separated_waste</name>
           <solution_priority>1.0</solution_priority>
       </commodity>
 
@@ -507,7 +507,7 @@ Recycle Input
           <name>UraniumMine</name>
           <config>
             <Source>
-              <outcommod>u-ore</outcommod>
+              <outcommod>u_ore</outcommod>
             </Source>
           </config>
         </facility>
@@ -516,9 +516,9 @@ Recycle Input
           <name>EnrichmentPlant</name>
           <config>
             <Enrichment>
-              <feed_commod>u-ore</feed_commod>
-              <feed_recipe>nat-u</feed_recipe>
-              <product_commod>fresh-uox</product_commod>
+              <feed_commod>u_ore</feed_commod>
+              <feed_recipe>nat_u</feed_recipe>
+              <product_commod>fresh_uox</product_commod>
               <tails_commod>tails</tails_commod>
               <max_feed_inventory>1000000</max_feed_inventory>
             </Enrichment>
@@ -526,13 +526,13 @@ Recycle Input
         </facility>
 
         <facility>
-          <name>1178MWe BRAIDWOOD-1</name>
+          <name>1178MWe BRAIDWOOD_1</name>
           <config>
             <Reactor>
-              <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
-              <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
-              <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
-              <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+              <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
+              <fuel_inrecipes> <val>fresh_uox</val> </fuel_inrecipes>
+              <fuel_outcommods> <val>spent_uox</val> </fuel_outcommods>
+              <fuel_outrecipes> <val>spent_uox</val> </fuel_outrecipes>
               <cycle_time>18</cycle_time>
               <refuel_time>1</refuel_time>
               <assem_size>33000</assem_size>
@@ -544,14 +544,14 @@ Recycle Input
         </facility>
 
         <facility>
-          <name>1000MWe Lightwater-1</name>
+          <name>1000MWe LIGHTWATER_1</name>
           <lifetime>360</lifetime>
           <config>
             <Reactor>
-              <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
-              <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
-              <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
-              <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+              <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
+              <fuel_inrecipes> <val>fresh_uox</val> </fuel_inrecipes>
+              <fuel_outcommods> <val>spent_uox</val> </fuel_outcommods>
+              <fuel_outrecipes> <val>spent_uox</val> </fuel_outrecipes>
               <cycle_time>12</cycle_time>
               <refuel_time>1</refuel_time>
               <assem_size>33000</assem_size>
@@ -563,12 +563,12 @@ Recycle Input
         </facility>
 
         <facility>
-          <name>uox-mox-reprocessing</name>
+          <name>uox_mox_reprocessing</name>
           <config>
             <Separations>
                <feed_commods>
-                 <val>used-mox-fuel</val>
-                 <val>spent-uox</val>
+                 <val>used_mox_fuel</val>
+                 <val>spent_uox</val>
                </feed_commods>
                <feed_commod_prefs>
                  <val>1.0</val>
@@ -576,10 +576,10 @@ Recycle Input
                </feed_commod_prefs>
                <feedbuf_size>1000e+3</feedbuf_size>
                <throughput>80e+3</throughput>
-               <leftover_commod>separated-waste</leftover_commod>
+               <leftover_commod>separated_waste</leftover_commod>
                <streams>
                 <item>
-                  <commod>separated-fissile</commod>
+                  <commod>separated_fissile</commod>
                   <info>
                     <buf_size>5e+4</buf_size>
                     <efficiencies>
@@ -598,49 +598,49 @@ Recycle Input
           <config>
             <FuelFab>
               <fill_commods>
-                <val>u-ore</val>
+                <val>u_ore</val>
               </fill_commods>
-              <fill_recipe>nat-u</fill_recipe>
+              <fill_recipe>nat_u</fill_recipe>
               <fill_size>1000e+3</fill_size>
               <fiss_commod_prefs>
                 <val>1</val>
               </fiss_commod_prefs>
               <fiss_commods>
-                <val>separated-fissile</val>
+                <val>separated_fissile</val>
               </fiss_commods>
               <fiss_size>5e+4</fiss_size>
-              <outcommod>fresh-mox</outcommod>
+              <outcommod>fresh_mox</outcommod>
               <spectrum>thermal</spectrum>
               <throughput>2e+3</throughput>
             </FuelFab>
           </config>
-          <name>uox-mox-fuel-fab</name>
+          <name>uox_mox_fuel_fab</name>
         </facility>
 
         <facility>
-          <name>1000MWe ALWR-1</name>
+          <name>1000MWe ALWR_1</name>
           <lifetime>360</lifetime>
           <config>
             <Reactor>
               <fuel_incommods>
-                <val>fresh-uox</val>
-                <val>fresh-mox</val>
+                <val>fresh_uox</val>
+                <val>fresh_mox</val>
               </fuel_incommods>
               <fuel_inrecipes>
-                <val>fresh-uox</val>
-                <val>fresh-uox</val>
+                <val>fresh_uox</val>
+                <val>fresh_uox</val>
               </fuel_inrecipes>
               <fuel_prefs>
                 <val>1.0</val>
                 <val>2.0</val>
               </fuel_prefs>
               <fuel_outcommods>
-                <val>spent-uox</val>
-                <val>used-mox-fuel</val>
+                <val>spent_uox</val>
+                <val>used_mox_fuel</val>
               </fuel_outcommods>
               <fuel_outrecipes>
-                <val>spent-uox</val>
-                <val>used-mox</val>
+                <val>spent_uox</val>
+                <val>used_mox</val>
               </fuel_outrecipes>
               <cycle_time>18</cycle_time>
               <refuel_time>1</refuel_time>
@@ -658,9 +658,9 @@ Recycle Input
           <config>
             <Sink>
               <in_commods>
-                <val>spent-uox</val>
+                <val>spent_uox</val>
                 <val>tails</val>
-                <val>separated-waste</val>
+                <val>separated_waste</val>
               </in_commods>
             </Sink>
           </config>
@@ -675,15 +675,15 @@ Recycle Input
           <institution>
             <initialfacilitylist>
               <entry>
-                <prototype>1178MWe BRAIDWOOD-1</prototype>
+                <prototype>1178MWe BRAIDWOOD_1</prototype>
                 <number>1</number>
               </entry>
               <entry>
-                <prototype>1000MWe Lightwater-1</prototype>
+                <prototype>1000MWe LIGHTWATER_1</prototype>
                 <number>1</number>
               </entry>
               <entry>
-                <prototype>1000MWe ALWR-1</prototype>
+                <prototype>1000MWe ALWR_1</prototype>
                 <number>1</number>
               </entry>
             </initialfacilitylist>
@@ -708,11 +708,11 @@ Recycle Input
                 <number>1</number>
               </entry>
               <entry>
-                <prototype>uox-mox-reprocessing</prototype>
+                <prototype>uox_mox_reprocessing</prototype>
                 <number>1</number>
               </entry>
               <entry>
-                <prototype>uox-mox-fuel-fab</prototype>
+                <prototype>uox_mox_fuel_fab</prototype>
                 <number>1</number>
               </entry>
             </initialfacilitylist>
@@ -725,7 +725,7 @@ Recycle Input
 
 
     <recipe>
-      <name>nat-u</name>
+      <name>nat_u</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -738,7 +738,7 @@ Recycle Input
     </recipe>
 
     <recipe>
-      <name>fresh-uox</name>
+      <name>fresh_uox</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -750,7 +750,7 @@ Recycle Input
       </nuclide>
     </recipe>
     <recipe>
-      <name>used-mox</name>
+      <name>used_mox</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -774,7 +774,7 @@ Recycle Input
       </nuclide>
     </recipe>
     <recipe>
-      <name>spent-uox</name>
+      <name>spent_uox</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -850,11 +850,11 @@ DeployInst Input
       </archetypes>
 
       <commodity>
-          <name>u-ore</name>
+          <name>u_ore</name>
           <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
-          <name>fresh-uox</name>
+          <name>fresh_uox</name>
           <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
@@ -862,23 +862,23 @@ DeployInst Input
           <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
-          <name>spent-uox</name>
+          <name>spent_uox</name>
           <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
-          <name>used-mox-fuel</name>
+          <name>used_mox_fuel</name>
           <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
-          <name>fresh-mox</name>
+          <name>fresh_mox</name>
           <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
-          <name>separated-fissile</name>
+          <name>separated_fissile</name>
           <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
-          <name>separated-waste</name>
+          <name>separated_waste</name>
           <solution_priority>1.0</solution_priority>
       </commodity>
 
@@ -886,7 +886,7 @@ DeployInst Input
           <name>UraniumMine</name>
           <config>
             <Source>
-              <outcommod>u-ore</outcommod>
+              <outcommod>u_ore</outcommod>
             </Source>
           </config>
         </facility>
@@ -895,9 +895,9 @@ DeployInst Input
           <name>EnrichmentPlant</name>
           <config>
             <Enrichment>
-              <feed_commod>u-ore</feed_commod>
-              <feed_recipe>nat-u</feed_recipe>
-              <product_commod>fresh-uox</product_commod>
+              <feed_commod>u_ore</feed_commod>
+              <feed_recipe>nat_u</feed_recipe>
+              <product_commod>fresh_uox</product_commod>
               <tails_commod>tails</tails_commod>
               <max_feed_inventory>1000000</max_feed_inventory>
             </Enrichment>
@@ -905,13 +905,13 @@ DeployInst Input
         </facility>
 
         <facility>
-          <name>1178MWe BRAIDWOOD-1</name>
+          <name>1178MWe BRAIDWOOD_1</name>
           <config>
             <Reactor>
-              <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
-              <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
-              <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
-              <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+              <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
+              <fuel_inrecipes> <val>fresh_uox</val> </fuel_inrecipes>
+              <fuel_outcommods> <val>spent_uox</val> </fuel_outcommods>
+              <fuel_outrecipes> <val>spent_uox</val> </fuel_outrecipes>
               <cycle_time>18</cycle_time>
               <refuel_time>1</refuel_time>
               <assem_size>33000</assem_size>
@@ -923,14 +923,14 @@ DeployInst Input
         </facility>
 
         <facility>
-          <name>1000MWe Lightwater-1</name>
+          <name>1000MWe LIGHTWATER_1</name>
           <lifetime>360</lifetime>
           <config>
             <Reactor>
-              <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
-              <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
-              <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
-              <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+              <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
+              <fuel_inrecipes> <val>fresh_uox</val> </fuel_inrecipes>
+              <fuel_outcommods> <val>spent_uox</val> </fuel_outcommods>
+              <fuel_outrecipes> <val>spent_uox</val> </fuel_outrecipes>
               <cycle_time>12</cycle_time>
               <refuel_time>1</refuel_time>
               <assem_size>33000</assem_size>
@@ -942,12 +942,12 @@ DeployInst Input
         </facility>
 
         <facility>
-          <name>uox-mox-reprocessing</name>
+          <name>uox_mox_reprocessing</name>
           <config>
             <Separations>
                <feed_commods>
-                 <val>used-mox-fuel</val>
-                 <val>spent-uox</val>
+                 <val>used_mox_fuel</val>
+                 <val>spent_uox</val>
                </feed_commods>
                <feed_commod_prefs>
                  <val>1.0</val>
@@ -955,10 +955,10 @@ DeployInst Input
                </feed_commod_prefs>
                <feedbuf_size>1000e+3</feedbuf_size>
                <throughput>80e+3</throughput>
-               <leftover_commod>separated-waste</leftover_commod>
+               <leftover_commod>separated_waste</leftover_commod>
                <streams>
                 <item>
-                  <commod>separated-fissile</commod>
+                  <commod>separated_fissile</commod>
                   <info>
                     <buf_size>5e+4</buf_size>
                     <efficiencies>
@@ -977,49 +977,49 @@ DeployInst Input
           <config>
             <FuelFab>
               <fill_commods>
-                <val>u-ore</val>
+                <val>u_ore</val>
               </fill_commods>
-              <fill_recipe>nat-u</fill_recipe>
+              <fill_recipe>nat_u</fill_recipe>
               <fill_size>1000e+3</fill_size>
               <fiss_commod_prefs>
                 <val>1</val>
               </fiss_commod_prefs>
               <fiss_commods>
-                <val>separated-fissile</val>
+                <val>separated_fissile</val>
               </fiss_commods>
               <fiss_size>5e+4</fiss_size>
-              <outcommod>fresh-mox</outcommod>
+              <outcommod>fresh_mox</outcommod>
               <spectrum>thermal</spectrum>
               <throughput>2e+3</throughput>
             </FuelFab>
           </config>
-          <name>uox-mox-fuel-fab</name>
+          <name>uox_mox_fuel_fab</name>
         </facility>
 
         <facility>
-          <name>1000MWe ALWR-1</name>
+          <name>1000MWe ALWR_1</name>
           <lifetime>360</lifetime>
           <config>
             <Reactor>
               <fuel_incommods>
-                <val>fresh-uox</val>
-                <val>fresh-mox</val>
+                <val>fresh_uox</val>
+                <val>fresh_mox</val>
               </fuel_incommods>
               <fuel_inrecipes>
-                <val>fresh-uox</val>
-                <val>fresh-uox</val>
+                <val>fresh_uox</val>
+                <val>fresh_uox</val>
               </fuel_inrecipes>
               <fuel_prefs>
                 <val>1.0</val>
                 <val>2.0</val>
               </fuel_prefs>
               <fuel_outcommods>
-                <val>spent-uox</val>
-                <val>used-mox-fuel</val>
+                <val>spent_uox</val>
+                <val>used_mox_fuel</val>
               </fuel_outcommods>
               <fuel_outrecipes>
-                <val>spent-uox</val>
-                <val>used-mox</val>
+                <val>spent_uox</val>
+                <val>used_mox</val>
               </fuel_outrecipes>
               <cycle_time>18</cycle_time>
               <refuel_time>1</refuel_time>
@@ -1037,9 +1037,9 @@ DeployInst Input
           <config>
             <Sink>
               <in_commods>
-                <val>spent-uox</val>
+                <val>spent_uox</val>
                 <val>tails</val>
-                <val>separated-waste</val>
+                <val>separated_waste</val>
               </in_commods>
             </Sink>
           </config>
@@ -1054,15 +1054,15 @@ DeployInst Input
           <institution>
             <initialfacilitylist>
               <entry>
-                <prototype>1178MWe BRAIDWOOD-1</prototype>
+                <prototype>1178MWe BRAIDWOOD_1</prototype>
                 <number>1</number>
               </entry>
               <entry>
-                <prototype>1000MWe Lightwater-1</prototype>
+                <prototype>1000MWe LIGHTWATER_1</prototype>
                 <number>1</number>
               </entry>
               <entry>
-                <prototype>1000MWe ALWR-1</prototype>
+                <prototype>1000MWe ALWR_1</prototype>
                 <number>1</number>
               </entry>
             </initialfacilitylist>
@@ -1087,11 +1087,11 @@ DeployInst Input
                 <number>1</number>
               </entry>
               <entry>
-                <prototype>uox-mox-reprocessing</prototype>
+                <prototype>uox_mox_reprocessing</prototype>
                 <number>1</number>
               </entry>
               <entry>
-                <prototype>uox-mox-fuel-fab</prototype>
+                <prototype>uox_mox_fuel_fab</prototype>
                 <number>1</number>
               </entry>
             </initialfacilitylist>
@@ -1107,8 +1107,8 @@ DeployInst Input
 	              <prototypes>
 	                <val>UraniumMine</val>
             	    <val>FuelFab</val>
-	                <val>1178MWe BRAIDWOOD-1</val>
-	                <val>1000MWe Lightwater-1</val>
+	                <val>1178MWe BRAIDWOOD_1</val>
+	                <val>1000MWe LIGHTWATER_1</val>
 	              </prototypes>
 	              <build_times>
 	                <val>1</val>
@@ -1129,7 +1129,7 @@ DeployInst Input
 
 
     <recipe>
-      <name>nat-u</name>
+      <name>nat_u</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -1142,7 +1142,7 @@ DeployInst Input
     </recipe>
 
     <recipe>
-      <name>fresh-uox</name>
+      <name>fresh_uox</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -1154,7 +1154,7 @@ DeployInst Input
       </nuclide>
     </recipe>
     <recipe>
-      <name>used-mox</name>
+      <name>used_mox</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -1178,7 +1178,7 @@ DeployInst Input
       </nuclide>
     </recipe>
     <recipe>
-      <name>spent-uox</name>
+      <name>spent_uox</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>

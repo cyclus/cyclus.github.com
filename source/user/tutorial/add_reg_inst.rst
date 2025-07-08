@@ -326,14 +326,14 @@ Activity: Add an extra insitution into the Region
 -------------------------------------------------
 Having multiple insitutions help organize facilities and their affiliation.
 Let's create region, ``USA``, that contains two institutions, ``Exelon`` and ``United States Nuclear``.
-``Exelon`` is the institution that holds the ``1178MWe BRAIDWOOD-1`` reactor and ``United States Nuclear`` holds the ``UraniumMine``, ``EnrichmentPlant``, and ``NuclearRepository``.
+``Exelon`` is the institution that holds the ``1178MWe BRAIDWOOD_1`` reactor and ``United States Nuclear`` holds the ``UraniumMine``, ``EnrichmentPlant``, and ``NuclearRepository``.
 
 .. image:: RIF_tutorial.png
 
 Using the template above and the table below, let's build the region.
 
 1. Since there are two institutions, ``Exelon`` and ``United States Nuclear``, we will split the region into two parts.
-Let's first build the ``Exelon`` institution. This institution has one ``1178MWe BRAIDWOOD-1`` prototype. Using this information we can write this institution as:
+Let's first build the ``Exelon`` institution. This institution has one ``1178MWe BRAIDWOOD_1`` prototype. Using this information we can write this institution as:
 
 .. code-block:: XML
 
@@ -345,7 +345,7 @@ Let's first build the ``Exelon`` institution. This institution has one ``1178MWe
     <institution>
       <initialfacilitylist>
         <entry>
-          <prototype>1178MWe BRAIDWOOD-1</prototype>
+          <prototype>1178MWe BRAIDWOOD_1</prototype>
           <number>1</number>
         </entry>
       </initialfacilitylist>
@@ -392,7 +392,7 @@ Let's first build the ``Exelon`` institution. This institution has one ``1178MWe
     <institution>
       <initialfacilitylist>
         <entry>
-          <prototype>1178MWe BRAIDWOOD-1</prototype>
+          <prototype>1178MWe BRAIDWOOD_1</prototype>
           <number>1</number>
         </entry>
       </initialfacilitylist>

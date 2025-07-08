@@ -4,7 +4,7 @@ CEP 1 - CEP Purpose and Guidelines
 :CEP: 1
 :Title: CEP Purpose and Guidelines
 :Last-Modified: 2013-07-03
-:Author: Anthony Scopatz
+:Author: Anthony Scopatz, Paul Wilson
 :Status: Active
 :Type: Process
 :Created: 2013-07-03
@@ -66,7 +66,7 @@ CEP Workflow
 
 There are several reference in this CEP to the "BDFP". This acronym stands
 for "Benevolent Dictator for the Proposal." In most cases, it is fairly clear
-who this person is (Paul Wilson or Anthony Scopatz).  It is this persons
+who this person is (Paul Wilson or Katy Huff).  It is this persons
 responsibility to consider the entire |cyclus| ecosystem when deciding whether
 or not to accept a proposal.  Weighted with this burden, their decision
 must be adhered to (dictator status), though they will try to do the right
@@ -82,8 +82,8 @@ changing their status).  See `CEP Editor Responsibilities & Workflow`_ for
 details.  The current editors are:
 
 * Paul Wilson
-* Anthony Scopatz
 * Katy Huff
+* Madicken Munk
 
 CEP editorship is by invitation of the current editors.
 

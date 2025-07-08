@@ -39,11 +39,11 @@
 
 
     <commodity>
-        <name>u-ore</name>
+        <name>u_ore</name>
         <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
-        <name>fresh-uox</name>
+        <name>fresh_uox</name>
         <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
@@ -51,12 +51,12 @@
         <solution_priority>1.0</solution_priority>
       </commodity>
       <commodity>
-        <name>spent-uox</name>
+        <name>spent_uox</name>
         <solution_priority>1.0</solution_priority>
     </commodity>
 
     <recipe>
-      <name>nat-u</name>
+      <name>nat_u</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -69,7 +69,7 @@
     </recipe>
 
     <recipe>
-      <name>fresh-uox</name>
+      <name>fresh_uox</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -82,7 +82,7 @@
     </recipe>
 
     <recipe>
-      <name>spent-uox</name>
+      <name>spent_uox</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -107,7 +107,7 @@
     <name>UraniumMine</name>
     <config>
       <Source>
-        <outcommod>u-ore</outcommod>
+        <outcommod>u_ore</outcommod>
       </Source>
     </config>
   </facility>
@@ -116,9 +116,9 @@
     <name>EnrichmentPlant</name>
     <config>
       <Enrichment>
-        <feed_commod>u-ore</feed_commod>
-        <feed_recipe>nat-u</feed_recipe>
-        <product_commod>fresh-uox</product_commod>
+        <feed_commod>u_ore</feed_commod>
+        <feed_recipe>nat_u</feed_recipe>
+        <product_commod>fresh_uox</product_commod>
         <tails_commod>tails</tails_commod>
         <max_feed_inventory>1000000</max_feed_inventory>
       </Enrichment>
@@ -126,13 +126,13 @@
   </facility>
   
   <facility>
-    <name>1178MWe BRAIDWOOD-1</name>
+    <name>1178MWe BRAIDWOOD_1</name>
     <config>
       <Reactor>
-        <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
-        <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
-        <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
-        <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+        <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
+        <fuel_inrecipes> <val>fresh_uox</val> </fuel_inrecipes>
+        <fuel_outcommods> <val>spent_uox</val> </fuel_outcommods>
+        <fuel_outrecipes> <val>spent_uox</val> </fuel_outrecipes>
         <cycle_time>18</cycle_time>
         <refuel_time>1</refuel_time>
         <assem_size>33000</assem_size>
@@ -148,7 +148,7 @@
     <config>
       <Sink>
         <in_commods>
-          <val>spent-uox</val>
+          <val>spent_uox</val>
           <val>tails</val>
         </in_commods>
       </Sink>
@@ -164,7 +164,7 @@
     <institution>
       <initialfacilitylist>
         <entry>
-          <prototype>1178MWe BRAIDWOOD-1</prototype>
+          <prototype>1178MWe BRAIDWOOD_1</prototype>
           <number>1</number>
         </entry>
         </initialfacilitylist>

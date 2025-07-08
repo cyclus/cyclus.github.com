@@ -118,4 +118,13 @@ div.sphinxlocaltoc ul a, div.sphinxglobaltoc ul a{
     display: inline;
     white-space: normal;
     word-wrap: normal;
+    margin: 0 0 0 0;
+    padding: 1px 0 3px 0;
+}
+
+div.sphinxsidebar ul li a:hover {
+    display: inline !important; 
+    min-width: auto !important; 
+    background: none !important; 
+    border-color: transparent !important; 
 }

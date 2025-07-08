@@ -48,10 +48,10 @@ The following is the input template for ``Cycamore::Separations`` archetype:
 * The maximum feed inventory is the most feed material that we'll have on
   hand: 1000 tonnes.
 * The maximum separations throughout is the size of our plant: 80 tonnes/timestep
-* This simple scenario will have a single output stream: Separated-Fissile
+* This simple scenario will have a single output stream: Separated_Fissile
     * we will hold no more than 5 tonnes of separated material on hand at any time
     * 99% of all Pu (94000) will go into that stream
-* all other material will go to Separated-Waste
+* all other material will go to Separated_Waste
 
 Filling in the template, the input block looks like:
 
@@ -62,8 +62,8 @@ Filling in the template, the input block looks like:
      <config>
        <Separations>
          <feed_commods>
-           <val>spent-uox</val>
-           <val>used-mox</val>
+           <val>spent_uox</val>
+           <val>used_mox</val>
          </feed_commods>
          <feed_commod_prefs>
            <val>1.0</val>
@@ -71,11 +71,11 @@ Filling in the template, the input block looks like:
          </feed_commod_prefs>
          <feedbuf_size>1000E+3_</feedbuf_size>
          <throughput>80e+3</throughput>
-         <leftover_commod>Separated-Waste</leftover_commod>
+         <leftover_commod>Separated_Waste</leftover_commod>
          <leftoverbuf_size>1000e+3</leftoverbuf_size>
          <streams>
            <item>
-             <commod>Separated-Fissile</commod>
+             <commod>Separated_Fissile</commod>
              <info> 
                <buf_size>5e+3</buf_size>
                <efficiencies>

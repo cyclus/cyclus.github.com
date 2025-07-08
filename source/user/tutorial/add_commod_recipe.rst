@@ -48,15 +48,15 @@ and provides two bids accordingly.
 Activity: Create fuel commodities (optional)
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Let's build ``u-ore``, ``fresh-uox``, ``spent-uox``, and ``tails``,
+Let's build ``u_ore``, ``fresh_uox``, ``spent_uox``, and ``tails``,
 the four commodities available for trade in our simulation. Note that
 this part is **optional**, and is only needed if the user wants
 to specify the solution priority of each commodity.
 
-* ``u-ore`` : natural uranium that is mined
+* ``u_ore`` : natural uranium that is mined
 * ``tails`` : waste from the enrichment process
-* ``fresh-uox``: fresh 4.0% enriched Uranium Oxide fuel that enters the reactor
-* ``spent-uox``: spent uranium oxide fuel that leaves the reactor after depletion
+* ``fresh_uox``: fresh 4.0% enriched Uranium Oxide fuel that enters the reactor
+* ``spent_uox``: spent uranium oxide fuel that leaves the reactor after depletion
 
 When |Cyclus| needs
 to know the isotopic composition of a material, it looks at the recipe for that
@@ -93,7 +93,7 @@ where:
 * solution priority: number defining the relative priority for resolution in the dynamic
   resource exchange.
 
- We will model four commodities: u-ore, fresh-uox, spent-uox, and tails.
+ We will model four commodities: u_ore, fresh_uox, spent_uox, and tails.
 
 
 Activity: Building commodities
@@ -105,22 +105,22 @@ template.
 +-------------+-------------+---------------------+
 | Commodity   | Name        | Solution Priority   |
 +=============+=============+=====================+
-| com1        | u-ore       | 1.0                 |
+| com1        | u_ore       | 1.0                 |
 +-------------+-------------+---------------------+
-| com2        | fresh-uox   | 1.0                 |
+| com2        | fresh_uox   | 1.0                 |
 +-------------+-------------+---------------------+
-| com3        | spent-uox   | 1.0                 |
+| com3        | spent_uox   | 1.0                 |
 +-------------+-------------+---------------------+
 | com4        | tails       | 1.0                 |
 +-------------+-------------+---------------------+
 
-1. Let's start with ``u-ore``. In the ``<name>`` line replace ``com1`` with ``u-ore``
+1. Let's start with ``u_ore``. In the ``<name>`` line replace ``com1`` with ``u_ore``
 inside a ``commodity`` block.
 
 .. code-block:: XML
 
       <commodity>
-        <name>u-ore</name>
+        <name>u_ore</name>
       </commodity>
 
 2. In the ``<solution_priority>`` section replace ``val1`` with ``1.0``.
@@ -129,7 +129,7 @@ inside a ``commodity`` block.
 
 
       <commodity>
-        <name>u-ore</name>
+        <name>u_ore</name>
         <solution_priority>1.0</solution_priority>
       </commodity>
 
@@ -140,11 +140,11 @@ inside a ``commodity`` block.
 .. code-block:: XML
 
     <commodity>
-      <name>u-ore</name>
+      <name>u_ore</name>
       <solution_priority>1.0</solution_priority>
     </commodity>
     <commodity>
-      <name>fresh-uox</name>
+      <name>fresh_uox</name>
       <solution_priority>1.0</solution_priority>
     </commodity>
     <commodity>
@@ -152,7 +152,7 @@ inside a ``commodity`` block.
       <solution_priority>1.0</solution_priority>
     </commodity>
     <commodity>
-      <name>spent-uox</name>
+      <name>spent_uox</name>
       <solution_priority>1.0</solution_priority>
     </commodity>
 
@@ -167,14 +167,14 @@ Concept: Recipes
 Most commodities are materials, which have a quantity and an
 isotopic composition.
 Recipes are the isotopic composition of a certain material. For
-example, u-ore has an isotropic composition of 0.711% :math:`^{235}`\ U and
+example, u_ore has an isotropic composition of 0.711% :math:`^{235}`\ U and
 99.284% :math:`^{238}`\ U. The recipe section of a |Cyclus| input file is
 typically located at the end of the input and is of the form:
 
 .. code-block:: XML
 
      <recipe>
-      <name>nat-u</name>
+      <name>nat_u</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -252,7 +252,7 @@ block to signify that this is a recipe and tab in and place the fill
 .. code-block:: XML
 
   <recipe>
-    <name>nat-u</name>
+    <name>nat_u</name>
   </recipe>
 
 2. To signify that the composition of this recipe is in terms of Mass, fill the 
@@ -261,7 +261,7 @@ block to signify that this is a recipe and tab in and place the fill
 .. code-block:: XML
 
   <recipe>
-    <name>nat-u</name>
+    <name>nat_u</name>
     <basis>mass</basis>
   </recipe>
 
@@ -271,7 +271,7 @@ block to signify that this is a recipe and tab in and place the fill
 .. code-block:: XML
 
   <recipe>
-    <name>nat-u</name>
+    <name>nat_u</name>
     <basis>mass</basis>
     <nuclide>
       <id>id1</id>
@@ -285,7 +285,7 @@ fill the composition tag with its mass composition, ``0.00711``.
 .. code-block:: XML
 
   <recipe>
-    <name>nat-u</name>
+    <name>nat_u</name>
     <basis>mass</basis>
     <nuclide>
       <id>92235</id>
@@ -298,7 +298,7 @@ fill the composition tag with its mass composition, ``0.00711``.
 .. code-block:: XML
 
   <recipe>
-    <name>nat-u</name>
+    <name>nat_u</name>
     <basis>mass</basis>
     <nuclide>
       <id>92235</id>
@@ -316,7 +316,7 @@ The recipe section of this tutorial is placed below.
 .. code-block:: XML
 
     <recipe>
-      <name>nat-u</name>
+      <name>nat_u</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -329,7 +329,7 @@ The recipe section of this tutorial is placed below.
     </recipe>
 
     <recipe>
-      <name>fresh-uox</name>
+      <name>fresh_uox</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -342,7 +342,7 @@ The recipe section of this tutorial is placed below.
     </recipe>
 
     <recipe>
-      <name>spent-uox</name>
+      <name>spent_uox</name>
       <basis>mass</basis>
       <nuclide>
         <id>92235</id>
@@ -365,13 +365,14 @@ The recipe section of this tutorial is placed below.
 Once complete, append this facility under the commodity section of your input file [#f1]_.
 
 
-Let's take a look at the ``fresh-uox`` fuel recipe:
+Let's take a look at the ``fresh_uox`` fuel recipe (note that ``-`` is an illegal character for
+names in cyclus and ``_`` should be used instead):
 
 .. image:: fuel_com.png
     :align: center
-    :alt: Fuel recipe for fresh-uox
-The recipe name ``fresh-uox`` is specified, as are the isotope nuclide IDs and the 
-corresponding mass fraction of each nuclide. The ``fresh-uox`` is composed of 4% U-235 and 96% U-238.
+    :alt: Fuel recipe for fresh_uox
+The recipe name ``fresh_uox`` is specified, as are the isotope nuclide IDs and the 
+corresponding mass fraction of each nuclide. The ``fresh_uox`` is composed of 4% U-235 and 96% U-238.
 
 .. rubric:: Footnotes
 .. [#f1] The exact order of the sections in a |Cyclus| input file are of minor consequence. The ``control`` sequence must go first, but the other sequences can go in any order that makes sense to the user. The traditional organization  of an input file is: control, archetypes, commodities, facilities,   regions/institutions, and recipes. 
