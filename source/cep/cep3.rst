@@ -142,7 +142,7 @@ Release Process
 
     - make sure to have your ``rs.cred`` file (see ``maintenance.sh``'s help)
 
-    .. code-block:: bash
+    .. code-block:: console
 
       $ cd /path/to/release/utils
       $ export CYCLUS_DIR=/path/to/cyclus
@@ -163,7 +163,7 @@ Release Process
           #. if the dev-list agrees to those changes, update the symbols and
              commit the new one:
 
-          .. code-block:: bash
+          .. code-block:: console
 
                 $ cd $CYCLUS_DIR/release
                 $ ./smbchk.py --update -t X.X.X # X.X.X is *this* version
@@ -173,7 +173,7 @@ Release Process
 
 #. Commit all changes for all projects.
 
-    .. code-block:: bash
+    .. code-block:: console
 
       $ cd /path/to/project
       $ git checkout vX.X.X-release
@@ -181,7 +181,7 @@ Release Process
 
 #. Update all master branches.
 
-    .. code-block:: bash
+    .. code-block:: console
 
       $ cd /path/to/project
       $ git checkout master
@@ -190,7 +190,7 @@ Release Process
 
 #. *Locally* tag the repository for *each* of the projects.
 
-    .. code-block:: bash
+    .. code-block:: console
 
       $ cd /path/to/project
       $ git checkout master
@@ -202,7 +202,7 @@ Release Process
     - the ``make_release_notes.sh`` utility in ``release/utils`` will help
       provide a template
 
-    .. code-block:: bash
+    .. code-block:: console
 
       $ cd /path/to/release/utils
       $ export CYCLUS_DIR=/path/to/cyclus
@@ -218,7 +218,7 @@ Release Process
     - the ``api_docs.sh`` utility in ``release/utils`` will do this
       automatically for you
 
-    .. code-block:: bash
+    .. code-block:: console
 
       $ cd /path/to/release/utils
       $ export CYCLUS_DIR=/path/to/cyclus
@@ -227,7 +227,7 @@ Release Process
 
 #. Update the ``master`` branch of all projects and clean up.
 
-    .. code-block:: bash
+    .. code-block:: console
 
       $ cd /path/to/project
       $ git push upstream X.X.X master
@@ -293,7 +293,7 @@ Release Process
    have to be compiled on you system and both executable and lib have to be on
    the default paths. Please refer to the :doc:`source installation
    <../user/install_from_git>` if you need.
-.. .. code-block:: bash
+.. .. code-block:: console
       $ git clone https://github.com/rwcarlsen/cloudlus.git
       $ cd cloudlus
       $ go install ./cmd/cloudlus
@@ -327,7 +327,7 @@ evolves, we'll want to have our version evolve as well. Here are the steps to do
 These assume that in your HOME dir there are both the pyne and |cyclus| repos.  Remember
 to check in the changes afterwards.
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd ~/pyne
     $ ./amalgamate.py -s pyne.cc -i pyne.h
@@ -337,7 +337,7 @@ to check in the changes afterwards.
 our source data.  Occassionally, this needs to be updated as updates to pyne itself come out.
 The command for generating |cyclus| specific nuclear data is as follows:
 
-.. code-block:: bash
+.. code-block:: console
 
    $ cd ~/pyne
    $ nuc_data_make -o cyclus_nuc_data.h5 \
@@ -357,7 +357,7 @@ automatically.  In order to check this correctly, you must have a **RELEASE**
 build of Cyclus compiled/installed.  Every release please run the following
 command to verify that the release branch is stable:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd cyclus/release
     $ ./smbchk.py --update -t HEAD --no-save --check
@@ -374,7 +374,7 @@ Once stable and there are no more code changes to be made, add the symbols
 in this release to the database with the following command (again - make sure
 you are working on a RELEASE build of Cyclus):
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd cyclus/release
     $ ./smbchk.py --update -t X.X.X

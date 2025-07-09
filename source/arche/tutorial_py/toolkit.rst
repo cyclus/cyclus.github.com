@@ -75,7 +75,7 @@ You can also confirm that everything still works with running the simulation:
 
 .. code-block:: console
 
-    ~/tutorial $ cyclus -v 3 input/storage.py
+    $ cyclus -v 3 input/storage.py
                   :
               .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q
             CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)

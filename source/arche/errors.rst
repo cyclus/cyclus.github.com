@@ -132,7 +132,7 @@ suppress all warnings and a very large number will print them all.  For
 example, if the user wished to print the first 42 warnings of each kind they
 would call |cyclus| as follows:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cyclus --warn-limit 42 ...
 
@@ -142,7 +142,7 @@ and throws the error.  This is useful for ensuring that only stable code is
 executed or to help uncover what is causing a warning to be thrown.  It takes
 no arguments:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cyclus --warn-as-error ...
 

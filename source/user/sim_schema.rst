@@ -12,7 +12,7 @@ Region, Institution, and Facility hierarchy that is natural for modeling
 the relationship between different actors in the nuclear fuel cycle.  You 
 can print this schema from the command line with the ``--schema`` option:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cyclus --schema
 
@@ -189,7 +189,7 @@ collections of facilities in cases where regional and institutional effects
 are not of primary interest.  You can print this from the command line 
 with the combination of the ``--schema`` and ``--flat-schema`` options:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cyclus --flat-schema --schema
 

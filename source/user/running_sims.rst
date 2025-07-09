@@ -3,19 +3,19 @@ Running Simulations
 
 To run a simulation you must use the |cyclus| command line utility:
 
-.. code-block:: bash
+.. code-block:: console
 
   $ ./path/to/cyclus [options] [input-file]
 
 Or you may run directly through Python:
 
-.. code-block:: bash
+.. code-block:: console
 
   $ python -m cyclus [options] [input-file]
 
 For more information, please refer to the help:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cyclus -h
     Usage:   cyclus [opts] [input-file]
@@ -57,7 +57,7 @@ For more information, please refer to the help:
 Examples
 ++++++++
 
-.. code-block:: bash
+.. code-block:: console
 
   $ cyclus ./path/to/myinput.xml
 
