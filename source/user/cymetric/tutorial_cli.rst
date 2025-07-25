@@ -28,7 +28,7 @@ Since cymetric is wholly dependent on |cyclus| databases, you must supply a
 database as an argument on the command line. This will look something like the
 following:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cymetric database -flags
 
@@ -46,7 +46,7 @@ database.  Note that this may list more tables in the database than are
 strictly part of the |cyclus| interface, because of the need for |cyclus| to
 store metadata. Don't be alarmed. Listing the current tables is easy:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cymetric test.h5 -l
     AgentEntry
@@ -90,7 +90,7 @@ can use. Indexing the table variables will return the metric as a `pandas
 ``AgentEntry`` table, we would write ``AgentEntry[:]`` to get the table and
 ``print(AgentEntry[:])`` to display it after the ``-e`` flag:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cymetric test.h5 -e "print(AgentEntry[:])"
                                       SimId  AgentId      Kind                    Spec          Prototype  ParentId  Lifetime  EnterTime
@@ -109,7 +109,7 @@ Indexing a metric with an empty slice (``[:]``), none (``[None]``), or an ellips
 filters on the column names. The column names of the metric are thus also available for
 use.  For example, let's just grab all of the facilities out of the entry table:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cymetric test.h5 -e "print(AgentEntry[Kind == 'Facility'])"
                                       SimId  AgentId      Kind                    Spec   Prototype  ParentId  Lifetime  EnterTime
@@ -124,7 +124,7 @@ use.  For example, let's just grab all of the facilities out of the entry table:
 Separate the conditions by commas (``,``) to apply multiple filters at the same
 time:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cymetric test.h5 -e "print(AgentEntry[Kind == 'Facility', AgentId > 14])"
                                       SimId  AgentId      Kind                    Spec Prototype  ParentId  Lifetime  EnterTime
@@ -139,7 +139,7 @@ able to do in Python. Suppose that we have a ``Materials`` metric with a ``Mass`
 column. We can compute this metric, pull the column out, multiply it by 42,
 save the result to a variable, and then print this variable all via the following.
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cymetric test.h5 -e "mass = Materials[:]['Mass'] * 42; print(mass)"
     0      0.000000
@@ -192,7 +192,7 @@ Module                Alias
 This let's you do neat things such as plot the metrics right from the command line.
 For example,
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cymetric test.h5 -e "Materials[ResourceId == 15].plot(x='NucId', y='Mass', kind='bar'); plt.show()"
 
@@ -210,7 +210,7 @@ default functionality when you use the ``-e`` flag, the lack of writing
 can be accomplished with the ``--no-write`` flag. In the example below, the
 table will not be written to the database:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cymetric test.h5 --no-write -e "Materials[:]"
 
@@ -218,7 +218,7 @@ Since cymetric looks up an already evaluated metric in the database,
 overwriting an existing table with a new one might be desired. This is where
 the ``--write`` flag is useful:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cymetric test.h5 --write -e "Materials[:]"
 

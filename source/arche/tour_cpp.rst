@@ -2,15 +2,17 @@ A Tour of Cycstub
 =================
 
 Since |Cyclus| version 1.3.1 the Cycstub CLI is included in a standard |Cyclus| installation.
-If you have an older version of |Cyclus| please refer to the `Cycstub repository <https://github.com/cyclus/cycstub>`_
-for installation instructions.
-This section will walk through the source files of the stub :term:`archetypes
-<archetype>` in Cycstub. Cycstub provides
-three stub archetypes:
 
-* ``StubFacility``
-* ``StubInstitution``
-* ``StubRegion``
+This section will walk through the source files of the stub :term:`archetypes
+<archetype>` generated when a user invokes the ``cycstub`` utility.  ``Cycstub``
+can generate stubs for each of the agent types.  The standard usage to generate the 
+stubs for a Facility, Institution or Region, respectively, is:
+
+.. code-block:: console
+
+  cycstub --type facility :stublibrary:StubFacility
+  cycstub --type institution :stublibrary:StubInstitution
+  cycstub --type region :stublibrary:StubRegion
 
 We will walk through ``StubFacility``\ 's source specifically because its the
 most complicated of the three. 
@@ -34,26 +36,32 @@ which includes most :term:`cyclus kernel` headers as a convenience for new
 include the specific kernel headers you need if you require a smaller
 executable.
 
-Moving on in the header file we come to the class declaration
+Moving on in the header file we come to the class declaration inside the namespace
+of this specific module library, `stublibrary`, with standard Doxygen documentation
+strings.
 
 .. code-block:: cpp
+
+  namespace stublibrary {
+
+  /// @class StubFacility
+  /// ...
 
   class StubFacility : public cyclus::Facility  {
 
 which simply states that the ``StubFacility`` inherits from ``cyclus::Facility``.
 
-We then come to the constructor declaration
+We then come to the constructor declaration in the header file
 
 .. code-block:: cpp
 
   explicit StubFacility(cyclus::Context* ctx);
 
-and implementation
+and definition in the implementation file
 
 .. code-block:: cpp
 
-  StubFacility::StubFacility(cyclus::Context* ctx)
-      : cyclus::Facility(ctx) {};
+  StubFacility::StubFacility(cyclus::Context* ctx) : cyclus::Facility(ctx) {};
 
 The constructor takes a single ``cyclus::Context`` argument. The :term:`context`
 is the mechanism by which :term:`agents <agent>` can query and otherwise

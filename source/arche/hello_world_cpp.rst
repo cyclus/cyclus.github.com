@@ -4,48 +4,37 @@ Hello, Cyclus! [C++]
 ====================
 This pages walks you through a very simple hello world example using
 |cyclus| agents.  First make sure that you have the dependencies installed,
-namely |Cyclus|, CMake, and a recent version of Python (2.7 or 3.3+).
+namely |Cyclus|, CMake, and a recent version of Python (3.11+).
 
-First, you need to get the ``cycstub`` code.  Cycstub is a skeleton code base
+First, you need to use ``cycstub`` to generate a skeleton code base
 that you can use to quick-start new |cyclus| module development projects.
-You can grab cycstub either by using git to
-`clone the repository <https://github.com/cyclus/cycstub.git>`_ or by
-`downloading the zip file <https://github.com/cyclus/cycstub/archive/develop.zip>`_.
-Let's put this code in a ``tutorial`` directory and go into it.
+``cycstub`` is installed with the main ``cyclus`` kernel and should be
+available wherever ``cyclus`` is available.
 
-**Getting cycstub via git:**
+To use ``cycstub`` to generate the skeleton for a new Facility archetype named ``TutorialFacility`` in
+a module named ``TutorialLibrary`` you can issue the following command:
 
-.. code-block:: bash
+.. code-block:: console
 
-    $ git clone https://github.com/cyclus/cycstub.git tutorial
-    $ cd tutorial
+    $ cycstub --type facility tutorial:TutorialLibrary:TutorialFacility
 
-**Getting cycstub via zip:**
+This will populate the ``tutorial`` directory with a number of files and subdirectories
+that should already be complete for building a new archetype.  Without any changes, this archetype
+will not do anything, but will be a valid archetype for use in a simulation.
 
-.. code-block:: bash
+You can add additional agents to this module by calling `cycstub` multiple times:
 
-    $ curl -L https://api.github.com/repos/cyclus/cycstub/zipball > tutorial.zip
-    $ unzip tutorial.zip
-    $ mv cyclus-cycstub-* tutorial
-    $ cd tutorial
+.. code-block:: console
 
-------------
-
-Since cycstub is a template project everything is named ``stub``. We need to
-change this to reflect the name we want our new project to be called -
-``tutorial`` here.  Cycstub comes with a renaming tool to do just this! From
-the command line, run Python in the following way:
-
-.. code-block:: bash
-
-    tutorial $ python rename.py tutorial
+    $ cycstub --type inst tutorial:TutorialLibrary:TutorialInstitution
+    $ cycstub --type region tutorial:TutorialLibrary:TutorialRegion
 
 ------------
 
 Let's now change the behavior of the TutorialFacility's ``Tick()`` &
 ``Tock()`` member functions to print "Hello" and "World" respectively.  To do
 this, please open up the :file:`src/tutorial_facility.cc` file in your
-favorite text editor (vim, emacs, gedit, `notepad++ <http://exofrills.org>`_).
+favorite text editor (e.g., vim, emacs, gedit, `VS Code <https://code.visualstudio.com/>`_).
 Change the original functions to look like:
 
 **Original Tick() and Tock() in src/tutorial_facility.cc:**
@@ -71,19 +60,19 @@ install the ``tutorial`` project.  This done with the install.py script.
 The install script puts the project into your cyclus userspace,
 ``${HOME}/.local/lib/cyclus``.
 
-.. code-block:: bash
+.. code-block:: console
 
-    tutorial $ python install.py
+    $ python3 install.py
 
 ------------
 
 Let's run |cyclus| with the TutorialFacility! In the input directory there is
-an :file:`example.xml`. Running |cyclus| on this file with the command
-``cyclus input/example.xml`` should produce the following output.
+an :file:`example_tutorial_facility.xml`. Running |cyclus| on this file with the command
+``cyclus example_tutorial_facility.xml`` should produce the following output.
 
-.. code-block:: bash
+.. code-block:: console
 
-    tutorial $ cyclus input/example.xml
+    $ cyclus example_tutorial_facility.xml
                   :
               .CL:CC CC             _Q     _Q  _Q_Q    _Q    _Q              _Q
             CC;CCCCCCCC:C;         /_\)   /_\)/_/\\)  /_\)  /_\)            /_\)

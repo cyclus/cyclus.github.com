@@ -26,7 +26,7 @@ At this point |Cyclus| should be successfully installed on your system and you a
 
 #. Install the package by running:
 
-   .. code-block:: bash
+   .. code-block:: console
 
       $ sudo dpkg -i cycamore-x.x.x-Linux.deb
 
