@@ -152,7 +152,7 @@ Implementing ``GetMatlBids()`` allows you to respond to requests with custom log
         double offer_qty = std::min(available, requested);
         
         if (offer_qty > 0) {
-          Material::Ptr offer = inventory.Pop(offer_qty);
+          Material::Ptr offer = Material::CreateUntracked(offer_qty, output.Peek()->comp());
           port->AddBid(**it, offer, this);
         }
       }
@@ -220,8 +220,6 @@ processed:
           fuel_inventory.Push(mat);
         }
         
-        // Record trade details
-        RecordTrade(mat, commod);
       }
     }
     

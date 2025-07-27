@@ -29,6 +29,9 @@ This tutorial has the following steps:
     input_files
     dre_overview
     advanced_agent
+    creating_conversion
+    creating_random_event_inst
+    creating_tariff_region
 
 .. Given enough time, the following extra topics may be covered:
 
