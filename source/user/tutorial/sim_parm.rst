@@ -58,19 +58,20 @@ decay function on them as desired to decay them to the current simulation
 time. |Cyclus| can operate in 3 decay modes, with 1 additional mode 
 likely to be added in a future release:
 
-- 'never', all decay is turned off
-- 'manual', meaning it is only on if the individual archetype decays their own inventory
-- 'lazy', which will compute decay only when archetypes fetch a particular composition.
-- 'periodic' (future), automatically decays all materials in a simulation with some fixed frequency. 
+   - 'never', all decay is turned off
+   - 'manual', meaning it is only on if the individual archetype decays their own inventory
+   - 'lazy', which will compute decay only when archetypes fetch a particular composition.
+   - 'periodic' (future), automatically decays all materials in a simulation with some fixed frequency. 
 
 There are other `optional parameters <http://fuelcycle.org/user/input_specs/control.html>`_ 
 that could be given but are not in the scope of this tutorial. For simplicity, 
 we will not model decay in this tutorial.
 
 The lifetime of a |Cyclus| simulation is determined by its `duration`, the 
-number of timesteps |Cyclus| will model the fuel cycle. |Cyclus| uses a 
+number of time steps |Cyclus| will model the fuel cycle. |Cyclus| uses a 
 time-step approach to march through time and determine what actions are 
-taken by each agent at each point in time.  Each time step includes the following phases:
+taken by each agent at each point in time.  Each time step includes 
+`the following phases <https://fuelcycle.org/arche/timestep.html>`_:
 
 * new agents may enter the system (deployment)
 * each agent prepares for exchange of material
@@ -78,12 +79,17 @@ taken by each agent at each point in time.  Each time step includes the followin
 * each agent acts after the exchange of material
 * agents may leave the system (decommissioning)
 
-This tutorial assumes a time step of 1 month
+The length of a time step is not inherently defined in |Cyclus|, the kernel works 
+on just the notion of a time step. There is the optional `dt` setting in 
+the `control block <https://fuelcycle.org/user/input_specs/control.html>`_, in
+which a user can set the number of seconds in a time step, which affects the 
+decay of materials. This tutorial assumes a time step of 1 month, which is the 
+default value for the `dt` input. 
 
 
 Activity: Set Simulation Parameters
 -----------------------------------
-Using the simulation control template above and the table below, properly fill the template 
+Using the simulation control template above and the table below, let's fill in the template 
 with the variables listed in the table below in your favorite text editor.
 
 +-------------------+---------------+---------------------------------+
