@@ -304,8 +304,7 @@ Activity: Creating the Reactor Prototype
 
 Now let's model the reactor this fuel will go through! In this simple example, 
 let's model a single PWR in the United States. It has a power capacity of 1178 
-MWe, and there is only one of them in the region.
-The template for the reactor is given below:
+MWe. The template for the reactor is given below:
 
 .. code-block:: XML
 
