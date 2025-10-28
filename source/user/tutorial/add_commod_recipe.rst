@@ -5,7 +5,8 @@ Concept: Commodities
 ++++++++++++++++++++
 
 |Cyclus| exchanges resources between facilities using a market-like mechanism
-called the **dynamic resource exchange (DRE)**.  The concept of a **commodity** is
+called the `**dynamic resource exchange (DRE)** <https://fuelcycle.org/arche/dre.html>`_.  
+The concept of a **commodity** is
 used to simply indicate which facilities may be interested in trading with
 each other through the DRE. A commodity is therefore nothing more than a
 unique name that is used to define a set of producers and consumers of a
@@ -22,7 +23,8 @@ Any potential resource transfer (i.e., a bid or a request) may be
 denoted as **exclusive**. An exclusive transfer excludes partial fulfillment;
 it must either be met fully or not at all. This mode supports concepts
 such as the trading of individual reactor assemblies. In combination
-with the notion of mutual requests, complex instances of supply and
+with the notion of mutual requests (one request that can be met through multiple 
+commodities), complex instances of supply and
 demand are enabled. 
 
 Finally, requesting facilities, institutions and
@@ -30,10 +32,7 @@ regions may apply **preferences** to each potential request-bid pairing
 based on the proposed resource transfer. Facilities can apply arbitrary
 complex logic to **rank the bids** that they have received, whether based on
 the quantity available in each bid or on the quality of each bid, and
-the consequent implications of the physics behavior of that facility. In
-addition, an institution can apply a higher preference to a partner to
-which it is congenial; similarly, a region may negate any transfers of
-material which have a higher uranium enrichment than is allowable.
+the consequent implications of the physics behavior of that facility. 
 
 For example, the flow graph below shows three suppliers (left) and two
 consumers (right), and the potential flows of various commodities among
@@ -167,7 +166,7 @@ Concept: Recipes
 Most commodities are materials, which have a quantity and an
 isotopic composition.
 Recipes are the isotopic composition of a certain material. For
-example, u_ore has an isotropic composition of 0.711% :math:`^{235}`\ U and
+example, u_ore has an isotopic composition of 0.711% :math:`^{235}`\ U and
 99.284% :math:`^{238}`\ U. The recipe section of a |Cyclus| input file is
 typically located at the end of the input and is of the form:
 
@@ -199,9 +198,10 @@ For example, :math:`^{235}`\ U can be expressed as:
 For more details, reference the `Recipe definition
 <../input_specs/recipe.html>`_ page.
 
-First, we can declare the isotopic compositions of the fresh and spent
-fuel. We'll be using simple recipes: fresh fuel is 4.0% :math:`^{235}`\ U by mass,
-remainder U-238. Spent fuel is 1.1% :math:`^{235}`\ U, 94.0% :math:`^{238}`\ U, 0.9% :math:`^{239}`\ Pu, and
+For this input file, we need to define three recipes: natural uranium, fresh fuel, 
+and spent fuel. We'll be using simple recipes: natural uranium is 0.711% 
+:math:`^{235}`\ U by mass, remainder :math:`^{238}`\ U, fresh fuel is 4.0% :math:`^{235}`\ U by mass,
+remainder U-238, and spent fuel is 1.1% :math:`^{235}`\ U, 94.0% :math:`^{238}`\ U, 0.9% :math:`^{239}`\ Pu, and
 4.0% :math:`^{137}`\ Cs.
 
 Activity: Creating a Recipe
