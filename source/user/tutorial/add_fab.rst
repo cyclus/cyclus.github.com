@@ -46,7 +46,7 @@ plutonium and natural uranium into MOX fuel:
 * Fissile stream inventory capacity: 5 tonnes
 * Output Commodity: ``fresh_mox``
 * Maximum Throughput: 2 tonnes/timestep
-* Specturm type: ``thermal``
+* Spectrum type: ``thermal``
 
 Filling in the template, the input block looks like:
 
