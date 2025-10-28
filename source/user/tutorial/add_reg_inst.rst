@@ -139,8 +139,8 @@ is where the institution and facility information goes.
 
 Concept: Institutions
 -----------------------------------------------------------------------
-In |Cyclus| input files, each institution block defines an agent that
-acts as an institution in the simulation. An institution block can only
+In |Cyclus| input files, each institution controls the deployment of 
+the prototypes in the simulation, among other things. An institution block can only
 appear within a region block. Each institution block has the following
 sections in any order:
 
@@ -444,6 +444,11 @@ Using the template above and the table below, let's build the region.
       </config>
     </institution>
   </region>
+
+
+We now have a complete region block. It is possible to have prototypes 
+defined in your input file that are not listed in an institution. When 
+that occurs, the prototypes are not deployed in the simulation. 
 
 Activity: Save your Input File
 ------------------------------
