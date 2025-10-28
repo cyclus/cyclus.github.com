@@ -1,22 +1,31 @@
 Working with |Cyclus| in on your machine
 ======================================
 
-Choosing Where to Run
----------------------
-
-|Cyclus| can be used to run simulations on your local
-machine, if you have |Cyclus| installed, or in an appropriately configured
-cloud resource.  The advantage of using a local machine is that you can
-control which archetypes are available.  The advantage of using a remote
-machine is that you don't have to install the entire |Cyclus| toolset on your
-local machine.
-
-For this tutorial, |Cyclus| has been installed natively so it can be
+For this tutorial, |Cyclus| has been installed on your local machine so it can be
 run from either the IPython notebook or in the command prompt:
 
 .. image:: cyclus_in_IP.png
     :align: center
     :alt: Running |Cyclus| in an IPython Notebook
+
+Command Line Execution
+----------------------
+Running Cyclus from the command line requires running the command 
+
+.. code-block:: bash 
+    $ cyclus 
+
+
+You can view all of the input flags for this command by running
+
+.. code-block:: bash 
+    $ cyclus -h 
+
+
+Some of the common input flags include:
+* ``-i arg`` to identify the input file name 
+* ``-o arg`` to specify the name of the output file to write to (default is ``cyclus.sqlite``)
+* ``-v arg`` to specify log verbosity fromm 0 (quiet, default) to 11 (verbose)
 
 
 Brief Introduction to Jupyter Notebook
