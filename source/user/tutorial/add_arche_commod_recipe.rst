@@ -9,8 +9,8 @@ Activity: Adding Archetypes
 
 We will need two additional archetypes:
 
-1. Add the ``cycamore FuelFab`` archetype
-2. Add the ``cycamore Separations`` archetype
+1. Add the ``Cycamore::FuelFab`` archetype
+2. Add the ``Cycamore::Separations`` archetype
 
 Activity: Adding Commodities
 -----------------------------
