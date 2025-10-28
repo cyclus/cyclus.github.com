@@ -17,10 +17,10 @@ Activity: Adding Commodities
 
 We will need 4 additional commodities:
 
-1. Fresh-MOX-Fuel
-2. Used-MOX-Fuel
-3. Separated-Fissile
-4. Separated-Waste
+1. fresh_mox
+2. used_mox
+3. Separated_Fissile
+4. Separated_Waste
 
 Activity: Adding Recipes
 --------------------------

@@ -14,28 +14,29 @@ The following is the input template for ``Cycamore::Separations`` archetype:
      <config>
        <Separations>
          <feed_commods>
-           <val>_______</val>
+           <val>[string]</val>
          </feed_commods>
          <feed_commod_prefs>
-           <val>_______</val>
+           <val>[double]</val>
          </feed_commod_prefs>
-         <feedbuf_size>_______</feedbuf_size>
-         <throughput>_______</throughput>
-         <leftover_commod>_______</leftover_commod>
-         <leftoverbuf_size>_______</leftoverbuf_size>
+         <feedbuf_size>[double (kg)]</feedbuf_size>
+         <throughput>[double]</throughput>
+         <leftover_commod>[string]</leftover_commod>
+         <leftoverbuf_size>[double (kg)]</leftoverbuf_size>
          <streams>
            <item>
-             <commod>_______</commod>
+             <commod>[string]</commod>
              <info> 
-               <buf_size>_______</buf_size>
+               <buf_size>[double (kg)]</buf_size>
                <efficiencies>
                  <item>
-                   <comp>_______</comp>
-                   <eff>_______</eff>
+                   <comp>[nuclide]</comp>
+                   <eff>[double]</eff>
                  </item>              
                </efficiencies>
              </info>
            </item>
+           ...
          </streams>
        </Separations>
      </config>
@@ -69,7 +70,7 @@ Filling in the template, the input block looks like:
            <val>1.0</val>
            <val>1.0</val>
          </feed_commod_prefs>
-         <feedbuf_size>1000E+3_</feedbuf_size>
+         <feedbuf_size>1000E+3</feedbuf_size>
          <throughput>80e+3</throughput>
          <leftover_commod>Separated_Waste</leftover_commod>
          <leftoverbuf_size>1000e+3</leftoverbuf_size>
