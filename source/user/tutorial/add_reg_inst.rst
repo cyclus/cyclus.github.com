@@ -9,7 +9,7 @@ Institution agents that exist within a Region agent.  This series of ownership
 allow for control of the interaction behavior
 between agents.  For example, two facilities 
 may not be allowed to trade if they are in two different regions. For commodities, 
-an institution can apply a higher preference for transactions within the 
+an institution may apply a higher preference for transactions within the 
 same institution; similarly, a region may negate any transfers of
 material which have a higher uranium enrichment than is allowable.
 

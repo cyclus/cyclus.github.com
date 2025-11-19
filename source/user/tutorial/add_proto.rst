@@ -22,7 +22,7 @@ It offers its material as a single commodity. If a composition recipe is
 specified, it provides that single material composition to requesters. If 
 unspecified, the source provides materials with the exact requested compositions. 
 The inventory size and throughput both default to infinite. Supplying material 
-from the Source prototype 
+from an instance of a Source prototype that is deployed in a simulation
 results in a corresponding decrease in inventory, and when the inventory size 
 reaches zero, the source can provide no more material.
 
