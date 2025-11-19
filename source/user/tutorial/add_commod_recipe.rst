@@ -27,8 +27,7 @@ with the notion of mutual requests (one request that can be met through multiple
 commodities), complex instances of supply and
 demand are enabled. 
 
-Finally, requesting facilities, institutions and
-regions may apply **preferences** to each potential request-bid pairing
+Finally, requesting facilities may apply **preferences** to each potential request-bid pairing
 based on the proposed resource transfer. Facilities can apply arbitrary
 complex logic to **rank the bids** that they have received, whether based on
 the quantity available in each bid or on the quality of each bid, and
