@@ -43,7 +43,9 @@ Optional parameters:
 
 ``outrecipe``: 
     Name of the isotopic composition of the material that this source provides 
-    regardless of the requested composition. If empty, the Source creates and 
+    regardless of the requested composition. If provided, 
+    the name must match the name of a defined recipe in the 
+    simulation. If empty, the Source creates and 
     provides whatever composition is requested.
 
 .. code-block:: XML
@@ -79,8 +81,6 @@ Archetype and the table below, create the UraniumMine prototype.
 +=======================+===========================+
 | ``name``              | ``UraniumMine``           |
 +-----------------------+---------------------------+
-| ``Archetype``         | ``Source``                |
-+-----------------------+---------------------------+
 | ``out_commodity       | ``u_ore``                 |
 +-----------------------+---------------------------+
 
@@ -91,9 +91,9 @@ Archetype and the table below, create the UraniumMine prototype.
   <facility>
     <name>name</name>
     <config>
-      <Archetype>
+      <Source>
         <outcommod>out_commodity</outcommod>
-      </Archetype>
+      </Source>
     </config>
   </facility>
 
