@@ -61,7 +61,6 @@ likely to be added in a future release:
    - 'never', all decay is turned off
    - 'manual', meaning it is only on if the individual archetype decays their own inventory
    - 'lazy', which will compute decay only when archetypes fetch a particular composition.
-   - 'periodic' (future), automatically decays all materials in a simulation with some fixed frequency. 
 
 There are other `optional parameters <http://fuelcycle.org/user/input_specs/control.html>`_ 
 that could be given but are not in the scope of this tutorial. For simplicity, 
@@ -79,12 +78,11 @@ taken by each agent at each point in time.  Each time step includes
 * each agent acts after the exchange of material
 * agents may leave the system (decommissioning)
 
-The length of a time step is not inherently defined in |Cyclus|, the kernel works 
+The default time step in |Cyclus| and in this tutorial is 1 month (1/12th of a year). However, the kernel works 
 on just the notion of a time step. There is the optional `dt` setting in 
 the `control block <https://fuelcycle.org/user/input_specs/control.html>`_, in
 which a user can set the number of seconds in a time step, which affects the 
-decay of materials. This tutorial assumes a time step of 1 month, which is the 
-default value for the `dt` input. 
+decay of materials. 
 
 
 Activity: Set Simulation Parameters
