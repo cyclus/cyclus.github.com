@@ -210,7 +210,7 @@ Once complete, your ``archetypes`` block should look like:
       </spec>
     </archetypes>
 
-The order of the archetypes in this block is of minor consequence. Once complete, append the archetypes section under the control section of input file [#f1]_.
+The order of the archetypes in this block is of no consequence. Once complete, append the archetypes section under the control section of input file [#f1]_.
 
 .. rubric:: Footnotes
 
