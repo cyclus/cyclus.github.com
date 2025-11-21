@@ -62,8 +62,25 @@
                 const shouldCollapse = checkAutoCollapse();
                 const isCollapsed = sidebar.style.display === 'none';
                 
-                // If sidebar is collapsed, update button position
+                // If sidebar is collapsed, update button position and bodywrapper width
                 if (isCollapsed && toggleButton.classList.contains('sidebar-toggle-collapsed')) {
+                    // Recalculate bodywrapper width to match navbar
+                    const bodyWrapper = document.querySelector('.bodywrapper');
+                    if (bodyWrapper) {
+                        const relatedNav = document.querySelector('.related');
+                        if (relatedNav) {
+                            const navRect = relatedNav.getBoundingClientRect();
+                            const docWrapper = document.querySelector('.documentwrapper');
+                            const docLeft = docWrapper ? docWrapper.getBoundingClientRect().left : 0;
+                            
+                            const relativeNavLeft = navRect.left - docLeft;
+                            const navWidth = navRect.right - navRect.left;
+                            
+                            bodyWrapper.style.marginLeft = relativeNavLeft + 'px';
+                            bodyWrapper.style.width = navWidth + 'px';
+                            bodyWrapper.offsetHeight; // Force reflow
+                        }
+                    }
                     updateCollapsedButtonPosition();
                 }
                 
@@ -150,8 +167,7 @@
                 bodyWrapper.style.marginLeft = relativeNavLeft + 'px';
                 bodyWrapper.style.width = navWidth + 'px';
                 bodyWrapper.style.backgroundColor = 'white';
-                // Add left padding to create space for the button column (button is 18px + 10px padding on each side = 38px)
-                bodyWrapper.style.paddingLeft = '38px';
+                // No padding needed - button is fixed and won't scroll with content
                 bodyWrapper.classList.add('sidebar-collapsed-body');
                 
                 // Force layout recalculation
@@ -221,7 +237,6 @@
             bodyWrapper.style.marginLeft = '';
             bodyWrapper.style.width = '';
             bodyWrapper.style.backgroundColor = '';
-            bodyWrapper.style.paddingLeft = ''; // Remove the padding we added
             bodyWrapper.classList.remove('sidebar-collapsed-body');
         }
         

@@ -135,15 +135,15 @@ div.sphinxsidebar ul li a:hover {
     top: 10px;
     right: 10px;
     z-index: 1000;
-    width: 18px;
-    height: 18px;
+    width: 25px;
+    height: 25px;
     padding: 0;
     margin: 0;
     border: 2px solid #4b1a07;
-    border-radius: 3px;
+    border-radius: 4px;
     background-color: #fcf1df;
     color: #4b1a07;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: bold;
     cursor: pointer;
     display: flex;
@@ -183,19 +183,29 @@ div.sphinxsidebar ul li a:hover {
     content: attr(title);
     position: absolute;
     bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
     margin-bottom: 5px;
-    padding: 4px 8px;
+    padding: 3px 6px;
     background-color: #34312e;
     color: #fcf1df;
-    font-size: 12px;
+    font-size: 11px;
     white-space: nowrap;
     border-radius: 3px;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.1s ease;
     z-index: 1001;
+}
+
+/* Tooltip when sidebar is expanded (center-aligned) */
+.sidebar-toggle-button::after {
+    left: 50%;
+    transform: translateX(-50%); /* Center align */
+}
+
+/* Tooltip when sidebar is collapsed (left-aligned) */
+.sidebar-toggle-button.sidebar-toggle-collapsed::after {
+    left: 0;
+    transform: none; /* Remove centering, align to left */
 }
 
 .sidebar-toggle-button:hover::after {
