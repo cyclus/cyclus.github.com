@@ -170,7 +170,7 @@ div.sphinxsidebar ul li a:hover {
 
 /* Button when collapsed */
 .sidebar-toggle-button.sidebar-toggle-collapsed {
-    position: fixed !important;
+    position: absolute !important;
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
