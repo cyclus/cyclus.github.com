@@ -108,6 +108,8 @@
                 bodyWrapper.style.marginLeft = relativeNavLeft + 'px';
                 bodyWrapper.style.width = navWidth + 'px';
                 bodyWrapper.style.backgroundColor = 'white';
+                // Add left padding to create space for the button column (button is 36px + 10px padding on each side = 56px)
+                bodyWrapper.style.paddingLeft = '56px';
                 bodyWrapper.classList.add('sidebar-collapsed-body');
                 
                 // Force layout recalculation
@@ -129,12 +131,12 @@
             }
         }
         
-        // Position button at bodywrapper's left edge (all the way to the left)
-        let targetLeft = '0px';
+        // Position button at bodywrapper's left edge with a bit of breathing room
+        let targetLeft = '10px';
         if (bodyWrapper) {
             // Get bodywrapper's NEW position after it's been repositioned
             const bodyRect = bodyWrapper.getBoundingClientRect();
-            targetLeft = bodyRect.left + 'px';
+            targetLeft = (bodyRect.left + 10) + 'px'; // 10px padding from left edge
         }
         
         // Disable transition for instant positioning
@@ -190,6 +192,7 @@
             bodyWrapper.style.marginLeft = '';
             bodyWrapper.style.width = '';
             bodyWrapper.style.backgroundColor = '';
+            bodyWrapper.style.paddingLeft = ''; // Remove the padding we added
             bodyWrapper.classList.remove('sidebar-collapsed-body');
         }
         
