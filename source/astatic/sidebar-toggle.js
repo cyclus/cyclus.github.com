@@ -54,13 +54,18 @@
             }
         });
         
-        // Window resize handler for auto-collapse
+        // Window resize handler for auto-collapse and button repositioning
         let resizeTimeout;
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(function() {
                 const shouldCollapse = checkAutoCollapse();
                 const isCollapsed = sidebar.style.display === 'none';
+                
+                // If sidebar is collapsed, update button position
+                if (isCollapsed && toggleButton.classList.contains('sidebar-toggle-collapsed')) {
+                    updateCollapsedButtonPosition();
+                }
                 
                 if (shouldCollapse && !isCollapsed) {
                     collapseSidebar(true);
@@ -75,6 +80,43 @@
         const windowWidth = window.innerWidth || document.documentElement.clientWidth;
         const screenWidth = screen.width;
         return windowWidth <= (screenWidth * COLLAPSE_THRESHOLD);
+    }
+    
+    function updateCollapsedButtonPosition(targetTop) {
+        // If targetTop not provided, maintain current vertical position
+        if (targetTop === undefined) {
+            const rect = toggleButton.getBoundingClientRect();
+            targetTop = rect.top;
+            
+            // Ensure button is below navbar
+            const relatedNav = document.querySelector('.related');
+            if (relatedNav) {
+                const navBottom = relatedNav.getBoundingClientRect().bottom;
+                if (targetTop < navBottom + 10) {
+                    targetTop = navBottom + 10;
+                }
+            }
+        }
+        
+        // Get bodywrapper's current position
+        const bodyWrapper = document.querySelector('.bodywrapper');
+        let targetLeft = '10px';
+        if (bodyWrapper) {
+            // Force layout recalculation to get updated position
+            bodyWrapper.offsetHeight;
+            const bodyRect = bodyWrapper.getBoundingClientRect();
+            targetLeft = (bodyRect.left + 10) + 'px'; // 10px padding from left edge
+        }
+        
+        // Disable transition for instant positioning
+        toggleButton.style.transition = 'none';
+        toggleButton.style.top = targetTop + 'px';
+        toggleButton.style.left = targetLeft;
+        
+        // Re-enable transition after a brief moment (for hover effects)
+        setTimeout(function() {
+            toggleButton.style.transition = '';
+        }, 10);
     }
     
     function collapseSidebar(isAutoCollapse) {
@@ -108,8 +150,8 @@
                 bodyWrapper.style.marginLeft = relativeNavLeft + 'px';
                 bodyWrapper.style.width = navWidth + 'px';
                 bodyWrapper.style.backgroundColor = 'white';
-                // Add left padding to create space for the button column (button is 36px + 10px padding on each side = 56px)
-                bodyWrapper.style.paddingLeft = '56px';
+                // Add left padding to create space for the button column (button is 18px + 10px padding on each side = 38px)
+                bodyWrapper.style.paddingLeft = '38px';
                 bodyWrapper.classList.add('sidebar-collapsed-body');
                 
                 // Force layout recalculation
@@ -132,24 +174,11 @@
         }
         
         // Position button at bodywrapper's left edge with a bit of breathing room
-        let targetLeft = '10px';
-        if (bodyWrapper) {
-            // Get bodywrapper's NEW position after it's been repositioned
-            const bodyRect = bodyWrapper.getBoundingClientRect();
-            targetLeft = (bodyRect.left + 10) + 'px'; // 10px padding from left edge
-        }
+        // (Called after bodywrapper is repositioned)
+        updateCollapsedButtonPosition(targetTop);
         
-        // Disable transition for instant positioning
-        toggleButton.style.transition = 'none';
-        toggleButton.style.top = targetTop + 'px';
-        toggleButton.style.left = targetLeft;
         toggleButton.innerHTML = '▶';
         toggleButton.setAttribute('title', 'Expand sidebar');
-        
-        // Re-enable transition after a brief moment (for hover effects)
-        setTimeout(function() {
-            toggleButton.style.transition = '';
-        }, 10);
         
         // Store state
         if (!isAutoCollapse) {
