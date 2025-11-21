@@ -1,0 +1,8 @@
+{# Extend the cloud theme's layout and add sidebar toggle script #}
+{% extends "!layout.html" %}
+
+{% block extrahead %}
+{{ super() }}
+<script type="text/javascript" src="{{ pathto('_static/sidebar-toggle.js', 1) }}"></script>
+{% endblock %}
+

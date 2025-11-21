@@ -128,3 +128,82 @@ div.sphinxsidebar ul li a:hover {
     background: none !important; 
     border-color: transparent !important; 
 }
+
+/* Sidebar toggle button */
+.sidebar-toggle-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    margin: 0;
+    border: 2px solid #4b1a07;
+    border-radius: 4px;
+    background-color: #fcf1df;
+    color: #4b1a07;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.sidebar-toggle-button:hover {
+    background-color: #4b1a07;
+    color: #fcf1df;
+    box-shadow: 0 2px 6px rgba(75, 26, 7, 0.4);
+}
+
+.sidebar-toggle-button:active {
+    transform: scale(0.95);
+}
+
+.sidebar-toggle-button:focus {
+    outline: 2px solid #bb3f3f;
+    outline-offset: 2px;
+}
+
+/* Button when collapsed */
+.sidebar-toggle-button.sidebar-toggle-collapsed {
+    position: fixed !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 1000 !important;
+    transition: none !important; /* No animation when moving */
+}
+
+/* Custom tooltip */
+.sidebar-toggle-button::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5px;
+    padding: 4px 8px;
+    background-color: #34312e;
+    color: #fcf1df;
+    font-size: 12px;
+    white-space: nowrap;
+    border-radius: 3px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s ease;
+    z-index: 1001;
+}
+
+.sidebar-toggle-button:hover::after {
+    opacity: 1;
+}
+
+/* Bodywrapper when sidebar is collapsed */
+body.sidebar-collapsed-body .bodywrapper {
+    background-color: white !important;
+    position: relative;
+}
