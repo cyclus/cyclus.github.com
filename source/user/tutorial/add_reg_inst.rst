@@ -135,7 +135,7 @@ Where:
 
 * ``name``: name of the region
 * ``config``: Region archetype to use
-* ``RegionArchetype``: name of the Region archetype you wish to use in your simulation, and the dotted line in this section represents any inputs that the archetype might have.
+* ``RegionArchetype``: name of the Region archetype you wish to use in your simulation, and the dotted line in this section represents any inputs that the archetype might have. ``RegionArchetype`` is not a valid region archetype name, so that will need to change to the name of whatever region archetype you want to use. 
 
 
 In between the two dotted lines
