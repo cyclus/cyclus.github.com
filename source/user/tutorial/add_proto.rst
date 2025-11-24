@@ -10,9 +10,19 @@ reactor parameters are fuel loading parameters such as cycle length and batch
 size.
 
 In |Cyclus|, when an archetype has been configured with a
-specific set of parameters, it is called a `**prototype** <https://fuelcycle.org/basics/glossary.html#term-prototype>`_. You can have multiple prototypes that use the same 
+specific set of parameters, it is called a `prototype <https://fuelcycle.org/basics/glossary.html#term-prototype>`_. You can have multiple prototypes that use the same 
 archetype, and you can have multiple deployments of the same prototype in 
 a simulation. 
+
+Each archetype will have different input parameters that need to be defined 
+for a given prototype, with some of the parameters being optional (i.e., they 
+have a default value). Some common input parameters for defining prototypes 
+include:
+
+* input/output commodity name: Name of the `commodity <https://fuelcycle.org/basics/glossary.html#term-commodity>`_ that the prototype will request (input) or trade away (output).
+* input/output recipe name: Name of the **recipe** or isotopic composition for the input or output commodity. Recipe names used in defining a prototype must be defined in a `recipe block <https://fuelcycle.org/user/tutorial/add_commod_recipe.html#understanding-recipes>`_ of the input file. 
+* throughput: The rate at which the process of a facility occurs. Common units are kg/time step, although you should check the archetypes documentation
+* buffer size: The size (typically in kg) of an inventory within a prototype. A prototype may have multiple buffers, such as a reactor having an inventory for fresh fuel and one for fuel in the core. 
 
 Example: Source Prototype
 +++++++++++++++++++++++++
