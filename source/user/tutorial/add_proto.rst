@@ -200,13 +200,13 @@ The template for the Enrichment archetype is of the form:
   <facility>
     <name>name</name>
     <config>
-      <Archetype>
+      <Enrichment>
         <feed_commod>feed_commodity</feed_commod>
         <feed_recipe>feed_recipe</feed_recipe>
         <product_commod>product_commodity</product_commod>
         <tails_commod>tails_commodity</tails_commod>
         <max_feed_inventory>max_feed_inventory</max_feed_inventory>
-      </Archetype>
+      </Enrichment>
     </config>
   </facility>
 
@@ -216,8 +216,6 @@ Using the template above and the table below, generate the input enrichment faci
 | Variable                | Value                     |
 +=========================+===========================+
 | ``name``                | ``EnrichmentPlant``       |
-+-------------------------+---------------------------+
-| ``Archetype``           | ``Enrichment``            |
 +-------------------------+---------------------------+
 | ``feed_commodity``      | ``u_ore``                 |
 +-------------------------+---------------------------+
@@ -321,7 +319,7 @@ MWe. The template for the reactor is given below:
     <facility>
       <name>name</name>
       <config>
-        <Archetype>
+        <Reactor>
           <fuel_incommods> <val>in_commod1</val> </fuel_incommods>
           <fuel_inrecipes> <val>in_recipe1</val> </fuel_inrecipes>
           <fuel_outcommods> <val>out_commod1</val> </fuel_outcommods>
@@ -332,7 +330,7 @@ MWe. The template for the reactor is given below:
           <n_assem_core>n_core</n_assem_core>
           <n_assem_batch>n_batch</n_assem_batch>
           <power_cap>power</power_cap>
-        </Archetype>
+        </Reactor>
       </config>
     </facility>
 
@@ -355,8 +353,6 @@ Using the template above and the table below, create the Reactor prototype.
 | Variable              | Value                     |
 +=======================+===========================+
 | ``name``              | ``1178MWe BRAIDWOOD_1``   |
-+-----------------------+---------------------------+
-| ``Archetype``         | ``Reactor``               |
 +-----------------------+---------------------------+
 | ``in_commod1``        | ``fresh_uox``             |
 +-----------------------+---------------------------+
@@ -474,8 +470,6 @@ create the UraniumMine prototype.
 +=========================+===========================+
 | ``name``                | ``NuclearRepository``     |
 +-------------------------+---------------------------+
-| ``Archetype``           | ``Sink``                  |
-+-------------------------+---------------------------+
 | ``input_commodity1``    | ``spent_uox``             |
 +-------------------------+---------------------------+
 | ``input_commodity2``    | ``tails``                 |
@@ -488,7 +482,7 @@ The sink facility archetype is:
   <facility>
     <name>Sink_name</name>
     <config>
-      <Archetype>
+      <Sink>
         <in_commods>
           <val>input_commodity1</val>
           <val>input_commodity2</val>
