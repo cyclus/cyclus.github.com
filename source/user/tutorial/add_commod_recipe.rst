@@ -5,7 +5,7 @@ Concept: Commodities
 ++++++++++++++++++++
 
 |Cyclus| exchanges resources between facilities using a market-like mechanism
-called the `**dynamic resource exchange (DRE)** <https://fuelcycle.org/arche/dre.html>`_.  
+called the `dynamic resource exchange (DRE) <https://fuelcycle.org/arche/dre.html>`_.  
 The concept of a **commodity** is
 used to simply indicate which facilities may be interested in trading with
 each other through the DRE. A commodity is therefore nothing more than a
