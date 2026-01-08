@@ -84,7 +84,7 @@ template.
 +-----------------------+-------------+-----------+
 | FuelFab               | 1           | 1         |
 +-----------------------+-------------+-----------+
-| 1178MWe BRAIDWOOD_1   | 2           | 1         |
+| 1178MWe ReactorPlant Unit 1   | 2           | 1         |
 +-----------------------+-------------+-----------+
 | 1000MWe LIGHTWATER_1  | 3           | 1         |
 +-----------------------+-------------+-----------+
@@ -101,7 +101,7 @@ look like the following:
           <prototypes>
             <val>UraniumMine</val>
             <val>FuelFab</val>
-            <val>1178MWe BRAIDWOOD_1</val>
+            <val>1178MWe ReactorPlant Unit 1</val>
             <val>1000We LIGHTWATER_1</val>
           </prototypes>
 
@@ -123,7 +123,7 @@ look like the following:
     </institution>
 
 The above institution will deploy 1 ``UraniumMine`` and 1 ``FuelFab`` facility on
-time step 1. The next time step will deploy the ``1178MWe BRAIDWOOD_1`` reactor
+time step 1. The next time step will deploy the ``1178MWe ReactorPlant Unit 1`` reactor
 prototype. And finally, at time step 3, the ``1000We LIGHTWATER_1`` will be deployed.
 This institution block goes inside the Region block, with the previously created 
 institution blocks. 

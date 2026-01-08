@@ -82,7 +82,7 @@ Basic Tutorial Input
         </facility>
 
         <facility>
-          <name>1178MWe BRAIDWOOD_1</name>
+          <name>1178MWe ReactorPlant Unit 1</name>
           <config>
             <Reactor>
               <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
@@ -119,11 +119,11 @@ Basic Tutorial Input
           <institution>
             <initialfacilitylist>
               <entry>
-                <prototype>1178MWe BRAIDWOOD_1</prototype>
+                <prototype>1178MWe ReactorPlant Unit 1</prototype>
                 <number>1</number>
               </entry>
               </initialfacilitylist>
-            <name>Exelon</name>
+            <name>Reactor Utility</name>
             <config>
               <NullInst/>
             </config>
@@ -281,7 +281,7 @@ Add a Second Reactor Input
         </facility>
 
         <facility>
-          <name>1178MWe BRAIDWOOD_1</name>
+          <name>1178MWe ReactorPlant Unit 1</name>
           <config>
             <Reactor>
               <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
@@ -337,7 +337,7 @@ Add a Second Reactor Input
           <institution>
             <initialfacilitylist>
               <entry>
-                <prototype>1178MWe BRAIDWOOD_1</prototype>
+                <prototype>1178MWe ReactorPlant Unit 1</prototype>
                 <number>1</number>
               </entry>
               <entry>
@@ -345,7 +345,7 @@ Add a Second Reactor Input
                 <number>1</number>
               </entry>
             </initialfacilitylist>
-            <name>Exelon</name>
+            <name>Reactor Utility</name>
             <config>
               <NullInst/>
             </config>
@@ -526,7 +526,7 @@ Recycle Input
         </facility>
 
         <facility>
-          <name>1178MWe BRAIDWOOD_1</name>
+          <name>1178MWe ReactorPlant Unit 1</name>
           <config>
             <Reactor>
               <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
@@ -675,7 +675,7 @@ Recycle Input
           <institution>
             <initialfacilitylist>
               <entry>
-                <prototype>1178MWe BRAIDWOOD_1</prototype>
+                <prototype>1178MWe ReactorPlant Unit 1</prototype>
                 <number>1</number>
               </entry>
               <entry>
@@ -687,7 +687,7 @@ Recycle Input
                 <number>1</number>
               </entry>
             </initialfacilitylist>
-            <name>Exelon</name>
+            <name>Reactor Utility</name>
             <config>
               <NullInst/>
             </config>
@@ -905,7 +905,7 @@ DeployInst Input
         </facility>
 
         <facility>
-          <name>1178MWe BRAIDWOOD_1</name>
+          <name>1178MWe ReactorPlant Unit 1</name>
           <config>
             <Reactor>
               <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
@@ -1054,7 +1054,7 @@ DeployInst Input
           <institution>
             <initialfacilitylist>
               <entry>
-                <prototype>1178MWe BRAIDWOOD_1</prototype>
+                <prototype>1178MWe ReactorPlant Unit 1</prototype>
                 <number>1</number>
               </entry>
               <entry>
@@ -1066,7 +1066,7 @@ DeployInst Input
                 <number>1</number>
               </entry>
             </initialfacilitylist>
-            <name>Exelon</name>
+            <name>Reactor Utility</name>
             <config>
               <NullInst/>
             </config>
@@ -1107,7 +1107,7 @@ DeployInst Input
 	              <prototypes>
 	                <val>UraniumMine</val>
             	    <val>FuelFab</val>
-	                <val>1178MWe BRAIDWOOD_1</val>
+	                <val>1178MWe ReactorPlant Unit 1</val>
 	                <val>1000MWe LIGHTWATER_1</val>
 	              </prototypes>
 	              <build_times>

@@ -67,7 +67,7 @@ Once complete, your reactor prototype should look like:
     </config>
   </facility>
 
-Append this prototype right after the ``1178MWe BRAIDWOOD_1`` prototype in your input file.
+Append this prototype right after the ``1178MWe ReactorPlant Unit 1`` prototype in your input file.
 
 Activity: Second reactor Institution
 ++++++++++++++++++++++++++++++++++++
@@ -84,7 +84,7 @@ and add
     <number>1</number>
   </entry>
 
-below the ``1178MWe BRAIDWOOD_1`` entry block. The second institution section
+below the ``1178MWe ReactorPlant Unit 1`` entry block. The second institution section
 of the region block should now look like,
 
 .. code-block:: xml
@@ -99,7 +99,7 @@ of the region block should now look like,
         <institution>
           <initialfacilitylist>
             <entry>
-              <prototype>1178MWe BRAIDWOOD_1</prototype>
+              <prototype>1178MWe ReactorPlant Unit 1</prototype>
               <number>1</number>
             </entry>
             <entry>
@@ -107,7 +107,7 @@ of the region block should now look like,
               <number>1</number>
             </entry>
           </initialfacilitylist>
-          <name>Exelon Reactors</name>
+          <name>Reactor Utility</name>
           <config>
             <NullInst/>
           </config>

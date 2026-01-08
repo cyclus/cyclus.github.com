@@ -24,7 +24,7 @@ preference for MOX should be 2 times higher than that or UOX.  Perhaps:
 * MOX = 2
 * UOX = 1
 
-The new reactor must be added to the ``Exelon Reactors`` institution in the region.
+The new reactor must be added to the ``Reactor Utility`` institution in the region.
 
 
 Repository Modifications

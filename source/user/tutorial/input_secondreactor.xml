@@ -93,7 +93,7 @@
   </facility>
 
   <facility>
-    <name>1178MWe BRAIDWOOD-1</name>
+    <name>1178MWe ReactorPlant Unit 1</name>
     <config>
       <Reactor>
         <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
@@ -173,10 +173,10 @@
     </institution>
 
     <institution>
-      <name>Exelon Reactors</name>
+      <name>Reactor Utility</name>
       <initialfacilitylist>
 	<entry>
-	  <prototype>1178MWe BRAIDWOOD-1</prototype>
+	  <prototype>1178MWe ReactorPlant Unit 1</prototype>
 	  <number>1</number>
 	</entry>
 	<entry>

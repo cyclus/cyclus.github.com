@@ -362,11 +362,8 @@ Having multiple institutions help organize facilities and their affiliation.
 In our ``USA`` region, let's add a second institution called ``ReactorUtility``.
 ``ReactorUtility`` is the institution that holds the ``1178MWe ReactorPlant Unit 1`` prototype and ``United 
 States Nuclear`` holds the ``UraniumMine``, ``EnrichmentPlant``, and ``NuclearRepository``
-prototypes.
-
-.. image:: RIF_tutorial.png
-
-Using the template above and the table below, let's build the region.
+prototypes. Using the region and institution templates, let's 
+add the second institution to the region. 
 
 1. Let's build the ``ReactorUtility`` institution. This institution has one ``1178MWe ReactorPlant Unit 1`` prototype. Using this information we can write this institution as:
 
