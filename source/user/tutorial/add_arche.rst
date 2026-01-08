@@ -70,9 +70,8 @@ facility archetypes are:
   that permanently holds used nuclear material.  Depending on how much of the
   fuel cycle a user wants to model explicitly, this could fill the role of a
   geologic repository, an interim storage facility, export of a commodity to outside simulated facilities, etc.
-* **Mixer:** `Mixer <https://fuelcycle.org/user/cycamoreagents.html#cycamore-mixer>`_ is 
-* **Storage:** `Storage <https://fuelcycle.org/user/cycamoreagents.html#cycamore-storage>`_
-* 
+* **Mixer:** `Mixer <https://fuelcycle.org/user/cycamoreagents.html#cycamore-mixer>`_ is a facility archetype to mix different material streams into a single output stream. The user defines the mixing ratio for each input material stream. 
+* **Storage:** `Storage <https://fuelcycle.org/user/cycamoreagents.html#cycamore-storage>`_ is a facility archetype to accept commodities and hold them for a specified amount of time, handling commodities as discrete or continuous batches. All input commodities are lumped into a single output commodity. 
 
 
 Activity: Discover the Available Archetypes
