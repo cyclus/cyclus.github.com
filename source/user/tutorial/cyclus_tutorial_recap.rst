@@ -299,7 +299,7 @@ Add a Second Reactor Input
         </facility>
 
         <facility>
-          <name>1000We Lightwater_1</name>
+          <name>1000MWe Lightwater_1</name>
           <lifetime>360</lifetime>
           <config>
             <Reactor>
@@ -341,7 +341,7 @@ Add a Second Reactor Input
                 <number>1</number>
               </entry>
               <entry>
-                <prototype>1000We Lightwater_1</prototype>
+                <prototype>1000MWe Lightwater_1</prototype>
                 <number>1</number>
               </entry>
             </initialfacilitylist>

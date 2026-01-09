@@ -2,7 +2,7 @@ Adding a second reactor
 =======================
 
 Simple simulations can easily be expanded into more complex problems. To demonstrate this, 
-we will now add a second reactor, ``1000We Lightwater_1``, to our
+we will now add a second reactor, ``1000MWe Lightwater_1``, to our
 simulation. This reactor will have a lifetime of 360 months (30 years),
 cycle time of 12 months, assembly size of 30160 kg, and power capacity 1000
 MWe. Using this information, let's construct the facility input section
@@ -17,7 +17,7 @@ prototype.
 +-----------------------+---------------------------+
 | Variable              | Value                     |
 +=======================+===========================+
-| ``name``              | ``1000We Lightwater_1``   |
+| ``name``              | ``1000MWe Lightwater_1``   |
 +-----------------------+---------------------------+
 | ``lifetime``          | ``360``                   |
 +-----------------------+---------------------------+
@@ -49,7 +49,7 @@ Once complete, your reactor prototype should look like:
 .. code-block:: xml
 
   <facility>
-    <name>1000We Lightwater_1</name>
+    <name>1000MWe Lightwater_1</name>
     <lifetime>360</lifetime>
     <config>
       <Reactor>
@@ -80,7 +80,7 @@ and add
 .. code-block:: xml
 
   <entry>
-    <prototype>1000We Lightwater_1</prototype>
+    <prototype>1000MWe Lightwater_1</prototype>
     <number>1</number>
   </entry>
 
@@ -103,7 +103,7 @@ of the region block should now look like,
               <number>1</number>
             </entry>
             <entry>
-              <prototype>1000We Lightwater_1</prototype>
+              <prototype>1000MWe Lightwater_1</prototype>
               <number>1</number>
             </entry>
           </initialfacilitylist>

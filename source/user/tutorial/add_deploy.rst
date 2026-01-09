@@ -102,7 +102,7 @@ look like the following:
             <val>UraniumMine</val>
             <val>FuelFab</val>
             <val>1178MWe ReactorPlant Unit 1</val>
-            <val>1000We Lightwater_1</val>
+            <val>1000MWe Lightwater_1</val>
           </prototypes>
 
           <build_times>
@@ -124,7 +124,7 @@ look like the following:
 
 The above institution will deploy 1 ``UraniumMine`` and 1 ``FuelFab`` facility on
 time step 1. The next time step will deploy the ``1178MWe ReactorPlant Unit 1`` reactor
-prototype. And finally, at time step 3, the ``1000We Lightwater_1`` will be deployed.
+prototype. And finally, at time step 3, the ``1000MWe Lightwater_1`` will be deployed.
 This institution block goes inside the Region block, with the previously created 
 institution blocks. 
 
