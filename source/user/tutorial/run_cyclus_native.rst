@@ -23,6 +23,7 @@ You can view all of the input flags for this command by running
 
 
 Some of the common input flags include:
+
 * ``-i arg`` to identify the input file name 
 * ``-o arg`` to specify the name of the output file to write to (default is ``cyclus.sqlite``)
 * ``-v arg`` to specify log verbosity fromm 0 (quiet, default) to 11 (verbose)

@@ -299,7 +299,7 @@ Add a Second Reactor Input
         </facility>
 
         <facility>
-          <name>1000We LIGHTWATER_1</name>
+          <name>1000We Lightwater_1</name>
           <lifetime>360</lifetime>
           <config>
             <Reactor>
@@ -341,7 +341,7 @@ Add a Second Reactor Input
                 <number>1</number>
               </entry>
               <entry>
-                <prototype>1000We LIGHTWATER_1</prototype>
+                <prototype>1000We Lightwater_1</prototype>
                 <number>1</number>
               </entry>
             </initialfacilitylist>
@@ -544,7 +544,7 @@ Recycle Input
         </facility>
 
         <facility>
-          <name>1000MWe LIGHTWATER_1</name>
+          <name>1000MWe Lightwater_1</name>
           <lifetime>360</lifetime>
           <config>
             <Reactor>
@@ -679,7 +679,7 @@ Recycle Input
                 <number>1</number>
               </entry>
               <entry>
-                <prototype>1000MWe LIGHTWATER_1</prototype>
+                <prototype>1000MWe Lightwater_1</prototype>
                 <number>1</number>
               </entry>
               <entry>
@@ -923,7 +923,7 @@ DeployInst Input
         </facility>
 
         <facility>
-          <name>1000MWe LIGHTWATER_1</name>
+          <name>1000MWe Lightwater_1</name>
           <lifetime>360</lifetime>
           <config>
             <Reactor>
@@ -1058,7 +1058,7 @@ DeployInst Input
                 <number>1</number>
               </entry>
               <entry>
-                <prototype>1000MWe LIGHTWATER_1</prototype>
+                <prototype>1000MWe Lightwater_1</prototype>
                 <number>1</number>
               </entry>
               <entry>
@@ -1108,7 +1108,7 @@ DeployInst Input
 	                <val>UraniumMine</val>
             	    <val>FuelFab</val>
 	                <val>1178MWe ReactorPlant Unit 1</val>
-	                <val>1000MWe LIGHTWATER_1</val>
+	                <val>1000MWe Lightwater_1</val>
 	              </prototypes>
 	              <build_times>
 	                <val>1</val>
