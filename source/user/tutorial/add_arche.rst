@@ -46,7 +46,7 @@ to model facilities that may be at the peripheral of a problem.  The Cycamore
 facility archetypes are:
 
 * **Source:** `Source <http://fuelcycle.org/user/cycamoreagents.html#cycamore-source>`_ 
-  is a generic source of material may fill the role of any
+  is a generic source of material that may fill the role of any
   facility that produces fresh material.  Depending on how much of the fuel
   cycle a user wants to model explicitly, this could fill the role of a uranium
   mine, an enrichment facility, a fuel fabrication facility, import of a commodity from 
@@ -70,16 +70,22 @@ facility archetypes are:
   that permanently holds used nuclear material.  Depending on how much of the
   fuel cycle a user wants to model explicitly, this could fill the role of a
   geologic repository, an interim storage facility, export of a commodity to outside simulated facilities, etc.
+* **Mixer:** `Mixer <https://fuelcycle.org/user/cycamoreagents.html#cycamore-mixer>`_ is a facility archetype to mix different material streams into a single output stream. The user defines the mixing ratio for each input material stream. 
+* **Storage:** `Storage <https://fuelcycle.org/user/cycamoreagents.html#cycamore-storage>`_ is a facility archetype to accept commodities and hold them for a specified amount of time, handling commodities as discrete or continuous batches. All input commodities are lumped into a single output commodity. 
 
 
 Activity: Discover the Available Archetypes
 ===========================================
 If using |Cyclus| on your machine, the archetypes available to you are only those that you have downloaded. 
-To check which archetypes are downloaded on your machine run the command ``cyclus -a`` from your terminal.
+To check which archetypes are downloaded on your machine run the command ``cyclus -a`` from your terminal. You will notice that there are more archetypes listed than the ones we 
+have discussed. This is because we have only discussed the facility archetypes so far, 
+and Cycamore also has `region and institution archetypes <https://fuelcycle.org/user/tutorial/add_reg_inst.html#concept-regions-institutions>`_, which we will discuss later. 
 
-If you are not running |Cyclus| on your machine, the archetypes available to you include those in Cycamore, which 
-can be found on the `archetypes
-<http://fuelcycle.org/user/cycamoreagents.html>`_ webpage.
+Note: using this command will only show the 
+`C++-based archetypes <https://fuelcycle.org/arche/tutorial_cpp/index.html>`_ that 
+are available. It will not show any `python-based archetypes <https://fuelcycle.org/arche/tutorial_py/index.html>`_. 
+
+
 
 
 What archetypes can you see yourself using in your research?
@@ -125,10 +131,13 @@ The ``archetype`` block is located after the simulation control block and takes 
           <lib>lib2</lib>
           <name>arch_2</name>
         </spec>
+        ...
     </archetypes>
 
 where ``lib`` is the library in which the archetype came from and ``name`` is
-the archetype name. Let's build our archetypes!
+the archetype name. You need one `spec` block in the archetypes section 
+for each archetype you use in your simulation. 
+Let's build the archetypes block in our input file. 
 Using the template below and the table below,
 fill in the template with the variables listed in the table below.
 
@@ -200,7 +209,7 @@ Once complete, your ``archetypes`` block should look like:
       </spec>
     </archetypes>
 
-Once complete, append the archetypes section under the control section of input file [#f1]_.
+The order of the archetypes in this block is of no consequence. Once complete, append the archetypes section under the control section of input file [#f1]_.
 
 .. rubric:: Footnotes
 

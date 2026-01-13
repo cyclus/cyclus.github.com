@@ -1,7 +1,7 @@
 Adding a Stream Mixing Fuel Fabrication Facility
 ==================================================
 
-The cycamore FuelFab archetype uses the _equivalence method_ to mix streams of
+The cycamore FuelFab archetype uses the *equivalence method* to mix streams of
 fissile material with so-called "filler" material in an attempt to match 
 neutronics of the
 requested material. More details about the archetype and the state
@@ -19,17 +19,17 @@ archetype:
     <config>
       <FuelFab>
         <fill_commods> 
-            <val>_______</val> 
+            <val>[string]</val> 
         </fill_commods>
-        <fill_recipe>_______</fill_recipe>
-        <fill_size>_______</fill_size>
+        <fill_recipe>[string]</fill_recipe>
+        <fill_size>[double]</fill_size>
         <fiss_commods>
-            <val>_______</val>
+            <val>[string]</val>
         </fiss_commods>
-        <fiss_size>_______</fiss_size>
-        <spectrum>_______</spectrum>
-        <outcommod>_______</outcommod>
-        <throughput>_______</throughput>
+        <fiss_size>[double]</fiss_size>
+        <spectrum>[string (`fission_spectrum_ave` or `thermal`)]</spectrum>
+        <outcommod>[string]</outcommod>
+        <throughput>[double]</throughput>
       </FuelFab>
     </config>
   </facility>
@@ -42,11 +42,11 @@ plutonium and natural uranium into MOX fuel:
 * Filler stream commodity: ``u_ore``
 * Filler stream recipe: ``nat_u``
 * Filler stream inventory capacity: 1000 tonnes
-* Fissile stream commodity: Separated_Fissile
+* Fissile stream commodity: ``Separated_Fissile``
 * Fissile stream inventory capacity: 5 tonnes
-* Output Commodity: Fresh_MOX_Fuel
+* Output Commodity: ``fresh_mox``
 * Maximum Throughput: 2 tonnes/timestep
-* Specturm type: "thermal"
+* Spectrum type: ``thermal``
 
 Filling in the template, the input block looks like:
 
@@ -62,7 +62,7 @@ Filling in the template, the input block looks like:
         <fiss_commods><val>Separated_Fissile</val></fiss_commods>
         <fiss_size>5000</fiss_size>
         <spectrum>thermal</spectrum>
-        <outcommod>Fresh_MOX_Fuel</outcommod>
+        <outcommod>fresh_mox</outcommod>
         <throughput>2000</throughput>
       </FuelFab>
     </config>

@@ -3,8 +3,7 @@
 
 In this tutorial, we will build, run and analyze a fuel cycle scenario using
 |Cyclus|, a nuclear fuel cycle simulator.  This tutorial assumes that the learner is already
-familiar with the purpose of a nuclear fuel cycle simulator. This tutorial will
-require an internet connection so that |Cyclus| can be run remotely.
+familiar with the purpose of a nuclear fuel cycle simulator. 
 
 Overview
 ---------
@@ -36,7 +35,7 @@ Exercise #1
 Exercise #2
 -------------
 
-The description of this exercise will be described with less detail and more
+The steps of this exercise will be described with less detail and more
 flexibility than the previous exercise.  This should allow you to test your
 new-found knowledge, learn to explore your own analysis, and try some things
 on your own, all with the support of the Cyclus development team.

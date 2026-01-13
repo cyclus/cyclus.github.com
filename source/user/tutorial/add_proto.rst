@@ -1,31 +1,28 @@
 Understanding Prototypes
 ------------------------
 
-One key feature of |Cyclus| is its ability to switch between
-different models of the facilities within the fuel cycle. These models,
-called **archetypes**, may change how the facility interacts with other
-facilities or how the physics of the facility are represented. For
-example, reactor archetypes determine the reactor's fresh and spent fuel
-compositions and how the reactor experiences fuel burn-up. A reactor
-model can have three varying fidelity levels:
-
-* A very simple model that uses recipe to deplete fuel
-* A more complex model may tabulate reactor performance and
-  physics parameters, and interpolate its input and output recipes.
-* The most complex model could perform a full depletion calculation each time
-  new fuel enters the reactor.
-
-A simple set of archetypes have been created in `Cycamore <http://fuelcycle.org/user/cycamoreagents.html>`__. 
 While the archetype describes the form of the model used to represent a
 facility, a variety of parameters are generally available to configure the
-specific behavior.   For the example of a reactor, the developer will probably
+specific behavior. For the example of a reactor, the developer will probably
 allow the user to define the power level of the reactor, independent of the
 specific model chosen to represent the behavior of the model.  Other common
 reactor parameters are fuel loading parameters such as cycle length and batch
 size.
 
 In |Cyclus|, when an archetype has been configured with a
-specific set of parameters, it is called a **prototype**.
+specific set of parameters, it is called a `prototype <https://fuelcycle.org/basics/glossary.html#term-prototype>`_. You can have multiple prototypes that use the same 
+archetype, and you can have multiple deployments of the same prototype in 
+a simulation. 
+
+Each archetype will have different input parameters that need to be defined 
+for a given prototype, with some of the parameters being optional (i.e., they 
+have a default value). Some common input parameters for defining prototypes 
+include:
+
+* input/output commodity name: Name of the `commodity <https://fuelcycle.org/basics/glossary.html#term-commodity>`_ that the prototype will request (input) or trade away (output).
+* input/output recipe name: Name of the **recipe** or isotopic composition for the input or output commodity. Recipe names used in defining a prototype must be defined in a `recipe block <https://fuelcycle.org/user/tutorial/add_commod_recipe.html#understanding-recipes>`_ of the input file. 
+* throughput: The rate at which the process of a facility occurs. Common units are kg/time step, although you should check the archetypes documentation
+* buffer size: The size (typically in kg) of an inventory within a prototype. A prototype may have multiple buffers, such as a reactor having an inventory for fresh fuel and one for fuel in the core. 
 
 Example: Source Prototype
 +++++++++++++++++++++++++
@@ -34,8 +31,9 @@ time step) capacity and a lifetime capacity defined by a total inventory size.
 It offers its material as a single commodity. If a composition recipe is 
 specified, it provides that single material composition to requesters. If 
 unspecified, the source provides materials with the exact requested compositions. 
-The inventory size and throughput both default to infinite. Supplies material 
-results in corresponding decrease in inventory, and when the inventory size 
+The inventory size and throughput both default to infinite. Supplying material 
+from an instance of a Source prototype that is deployed in a simulation
+results in a corresponding decrease in inventory, and when the inventory size 
 reaches zero, the source can provide no more material.
 
 The Source archetype is of the form:
@@ -46,25 +44,27 @@ The Source archetype is of the form:
     <name>Source</name>
     <config>
       <Source>
-        <outcommod>out_commodity</outcommod>
+        <outcommod>[string]</outcommod>
       </Source>
     </config>
   </facility>
 
 Optional parameters:
 
-outrecipe: 
+``outrecipe``: 
     Name of the isotopic composition of the material that this source provides 
-    regardless of the requested composition. If empty, the Source creates and 
+    regardless of the requested composition. If provided, 
+    the name must match the name of a defined recipe in the 
+    simulation. If empty, the Source creates and 
     provides whatever composition is requested.
 
 .. code-block:: XML
 
-        <outrecipe>[outrecipe]</outrecipe>
+        <outrecipe>[string]</outrecipe>
 
 
 
-inventory_size: default = 1e+299, range: [0.0, 1e+299]
+``inventory_size``: default = 1e+299, range: [0.0, 1e+299]
     Total amount of material this source has remaining. Every trade decreases 
     this value by the supplied material quantity. When it reaches zero, the 
     source cannot provide any more material.
@@ -73,7 +73,7 @@ inventory_size: default = 1e+299, range: [0.0, 1e+299]
 
         <inventory_size>[double ( kg )]</inventory_size>
 
-throughput: default=1e+299,range: [0.0, 1e+299]
+``throughput``: default=1e+299,range: [0.0, 1e+299]
     Amount (kg) of the commodity that the Source can supply at each time step
 
 .. code-block:: xml
@@ -83,7 +83,7 @@ throughput: default=1e+299,range: [0.0, 1e+299]
 Activity: Configure the Source prototype
 ++++++++++++++++++++++++++++++++++++++++
 Our source, ``UraniumMine``, will provide the natural uranium ore for our enrichment facility.
-This facility takes two inputs, ``name`` and ``outcommd``. Using the Source 
+This facility takes two inputs, ``name`` and ``outcommod``. Using the Source 
 Archetype and the table below, create the UraniumMine prototype.
 
 +-----------------------+---------------------------+
@@ -91,9 +91,7 @@ Archetype and the table below, create the UraniumMine prototype.
 +=======================+===========================+
 | ``name``              | ``UraniumMine``           |
 +-----------------------+---------------------------+
-| ``Archetype``         | ``Source``                |
-+-----------------------+---------------------------+
-| ``out_commod``        | ``u_ore``                 |
+| ``out_commodity       | ``u_ore``                 |
 +-----------------------+---------------------------+
 
 1. The template for the Source archetype is of the form:
@@ -103,14 +101,14 @@ Archetype and the table below, create the UraniumMine prototype.
   <facility>
     <name>name</name>
     <config>
-      <Archetype>
-        <outcommod>outcommod</outcommod>
+      <Source>
+        <outcommod>out_commodity</outcommod>
       </Source>
     </config>
   </facility>
 
 2. Filling in the variables ``name``, ``Archetype``, and ``out_commod`` as 
-``UraniumMine``, ``Source``, and ``fresh_uox`` leads to:
+``UraniumMine``, ``Source``, and ``u_ore`` leads to:
 
 .. code-block:: XML
 
@@ -139,52 +137,52 @@ The Enrichment archetype is of the form:
         <name>EnrichmentPlant</name>
         <config>
           <Enrichment>
-            <feed_commod>feed_commodity</feed_commod>
-            <feed_recipe>feed_recipe</feed_recipe>
-            <product_commod>product_commodity</product_commod>
-            <tails_commod>tails_commodity</tails_commod>
+            <feed_commod>[string]</feed_commod>
+            <feed_recipe>[string]</feed_recipe>
+            <product_commod>[string]</product_commod>
+            <tails_commod>[string]</tails_commod>
           </Enrichment>
         </config>
       </facility>
 
 Optional parameters:
 
-max_feed_inventory: default = 1e+299, range: [0.0, 1e+299]
+``max_feed_inventory``: default = 1e+299, range: [0.0, 1e+299]
   Maximum total inventory of natural uranium in the enrichment facility (kg)
 
 .. code-block:: XML
 
-          <max_feed_inventory>1000000</max_feed_inventory> 
+          <max_feed_inventory>[double (kg)]</max_feed_inventory> 
 
-tails_assay: default=0.003, range: [0.0, 0.003]
+``tails_assay``: default=0.003, range: [0.0, 0.003]
   Tails assay from the enrichment process
 
 .. code-block:: XML
 
           <tails_assay>[double]</tails_assay> 
 
-initial_feed: default = 0
+``initial_feed``: default = 0
   Amount of natural uranium stored at the enrichment facility at the beginning of the simulation (kg)
 
 .. code-block:: XML
 
           <initial_feed>[double]</initial_feed> 
 
-max_enrich: default = 1.0, range: [0.0,1.0]
+``max_enrich``: default = 1.0, range: [0.0,1.0]
   maximum allowed weight fraction of U235 in product
 
 .. code-block:: XML
      
           <max_enrich>[double]</max_enrich> 
 
-order_prefs: default = 1, userlevel: 10
-  Turn on preference ordering for input material so that EF chooses higher U235 content first
+``order_prefs``: default = 1, userlevel: 10
+  Turn on preference ordering for input material so that enrichment facility chooses higher U235 content first
 
 .. code-block:: XML
 
           <order_prefs>[boolean]</order_prefs> 
 
-swu_capacity: default = 1e+299, range: [0.0, 1e+299]
+``swu_capacity``: default = 1e+299, range: [0.0, 1e+299]
   Separative work unit (SWU) capacity of enrichment facility (kgSWU/timestep)
 
 .. code-block:: XML
@@ -200,15 +198,15 @@ The template for the Enrichment archetype is of the form:
 .. code-block:: XML
 
   <facility>
-    <name>enrichment_plant_name</name>
+    <name>name</name>
     <config>
-      <Archetype>
+      <Enrichment>
         <feed_commod>feed_commodity</feed_commod>
         <feed_recipe>feed_recipe</feed_recipe>
         <product_commod>product_commodity</product_commod>
         <tails_commod>tails_commodity</tails_commod>
-        <max_feed_inventory>1000000</max_feed_inventory>
-      </Archetype>
+        <max_feed_inventory>max_feed_inventory</max_feed_inventory>
+      </Enrichment>
     </config>
   </facility>
 
@@ -219,15 +217,13 @@ Using the template above and the table below, generate the input enrichment faci
 +=========================+===========================+
 | ``name``                | ``EnrichmentPlant``       |
 +-------------------------+---------------------------+
-| ``Archetype``           | ``Enrichment``            |
-+-------------------------+---------------------------+
-| ``feed_commod``         | ``u_ore``                 |
+| ``feed_commodity``      | ``u_ore``                 |
 +-------------------------+---------------------------+
 | ``feed_recipe``         | ``nat_u``                 |
 +-------------------------+---------------------------+
-| ``product_commod``      | ``fresh_uox``             |
+| ``product_commodity``   | ``fresh_uox``             |
 +-------------------------+---------------------------+
-| ``tails_commod``        | ``tails``                 |
+| ``tails_commodity``     | ``tails``                 |
 +-------------------------+---------------------------+
 | ``max_feed_inventory``  | 1000000                   |
 +-------------------------+---------------------------+
@@ -263,9 +259,9 @@ from its original fresh fuel composition into its spent fuel form.
 
 Each fuel is identified by a specific input commodity and has an associated input recipe (nuclide composition), 
 output recipe, output commodity, and preference. The preference identifies which input fuels are preferred 
-when requesting. Changes in these preferences can be specified as a function of time using the pref_change
+when requesting. Changes in these preferences can be specified as a function of time using the ``pref_change``
 variables. Changes in the input-output recipe compositions can also be specified as a function of time using 
-the recipe_change variables.
+the ``recipe_change`` variables.
 
 The reactor treats fuel as individual assemblies. Fuel is requested in assembly-sized quanta. If real-world
 assembly modeling is unnecessary, parameters can be adjusted (e.g. ``n_assem_core``, ``assem_size``, 
@@ -286,62 +282,64 @@ The Reactor archetype is of the form:
     <config>
       <Reactor>
         <fuel_incommods> 
-            <val>input_fuel_commodity</val> 
+            <val>[string]</val> 
         </fuel_incommods>
         <fuel_inrecipes> 
-            <val>input_fuel_recipe</val> 
+            <val>[string]</val> 
         </fuel_inrecipes>
         <fuel_outcommods> 
-            <val>output_fuel_commodity</val> 
+            <val>[string]</val> 
         </fuel_outcommods>
         <fuel_outrecipes> 
-            <val>output_fuel_recipe</val> 
+            <val>[string]</val> 
         </fuel_outrecipes>
-        <cycle_time>18</cycle_time>
-        <refuel_time>1</refuel_time>
-        <assem_size>33000</assem_size>
-        <n_assem_core>3</n_assem_core>
-        <n_assem_batch>1</n_assem_batch>
-        <power_cap>power_out</power_cap>
+        <cycle_time>[int]</cycle_time>
+        <refuel_time>[int]</refuel_time>
+        <assem_size>[double]</assem_size>
+        <n_assem_core>[int]</n_assem_core>
+        <n_assem_batch>[int]</n_assem_batch>
+        <power_cap>[double]</power_cap>
       </Reactor>
     </config>
   </facility>
 
+
+There are many optional input parameters to the Cycamore Reactor archetype. 
+We advise exploring the `Reactor archetype documentation <https://fuelcycle.org/user/cycamoreagents.html#cycamore-reactor>`_ to find them all. 
 
 Activity: Creating the Reactor Prototype
 ++++++++++++++++++++++++++++++++++++++++
 
 Now let's model the reactor this fuel will go through! In this simple example, 
 let's model a single PWR in the United States. It has a power capacity of 1178 
-MWe, and there is only one of them in the region.
-The template for the reactor is given below:
+MWe. The template for the reactor is given below:
 
 .. code-block:: XML
 
     <facility>
-      <name>Reactor</name>
+      <name>name</name>
       <config>
-        <Archetype>
-          <fuel_incommods> <val>[VALUE]</val> </fuel_incommods>
-          <fuel_inrecipes> <val>[VALUE]</val> </fuel_inrecipes>
-          <fuel_outcommods> <val>[VALUE]</val> </fuel_outcommods>
-          <fuel_outrecipes> <val>[VALUE]</val> </fuel_outrecipes>
-          <cycle_time>[VALUE]</cycle_time>
-          <refuel_time>[VALUE]</refuel_time>
-          <assem_size>[VALUE]</assem_size>
-          <n_assem_core>[VALUE]</n_assem_core>
-          <n_assem_batch>[VALUE]</n_assem_batch>
-          <power_cap>[VALUE]</power_cap>
+        <Reactor>
+          <fuel_incommods> <val>in_commod1</val> </fuel_incommods>
+          <fuel_inrecipes> <val>in_recipe1</val> </fuel_inrecipes>
+          <fuel_outcommods> <val>out_commod1</val> </fuel_outcommods>
+          <fuel_outrecipes> <val>out_recipe1</val> </fuel_outrecipes>
+          <cycle_time>cycle_length</cycle_time>
+          <refuel_time>refuel_length</refuel_time>
+          <assem_size>assem_mass</assem_size>
+          <n_assem_core>n_core</n_assem_core>
+          <n_assem_batch>n_batch</n_assem_batch>
+          <power_cap>power</power_cap>
         </Reactor>
       </config>
     </facility>
 
 Where:
 
-* ``fuel_incommods``: input fuel commodity
-* ``fuel_inrecipes``" input fuel recipe
-* ``fuel_outcommods``: output fuel commodity
-* ``fuel_outrecipes``: output fuel recipe.
+* ``fuel_incommods``: input fuel commodity -- you can list more than one by adding more ``val`` blocks
+* ``fuel_inrecipes``" input fuel recipe -- you can list more than one
+* ``fuel_outcommods``: output fuel commodity -- you can list more than one
+* ``fuel_outrecipes``: output fuel recipe -- you can list more than one
 * ``cycle_time``: amount of time the reactor operates between refueling outages
 * ``refuel_time``: duration of refueling outage
 * ``assem_size``" size of a single assembly
@@ -351,40 +349,38 @@ Where:
 
 Using the template above and the table below, create the Reactor prototype.
 
-+-----------------------+---------------------------+
-| Variable              | Value                     |
-+=======================+===========================+
-| ``name``              | ``1178MWe BRAIDWOOD_1``   |
-+-----------------------+---------------------------+
-| ``Archetype``         | ``Reactor``               |
-+-----------------------+---------------------------+
-| ``fuel_incommods``    | ``fresh_uox``             |
-+-----------------------+---------------------------+
-| ``fuel_inrecipes``    | ``fresh_uox``             |
-+-----------------------+---------------------------+
-| ``fuel_outcommods``   | ``spent_uox``             |
-+-----------------------+---------------------------+
-| ``fuel_outrecipes``   | ``spent_uox``             |
-+-----------------------+---------------------------+
-| ``cycle_time``        | ``18``                    |
-+-----------------------+---------------------------+
-| ``refuel_time``       | ``1``                     |
-+-----------------------+---------------------------+
-| ``assem_size``        | ``33000``                 |
-+-----------------------+---------------------------+
-| ``n_assem_core``      | ``3``                     |
-+-----------------------+---------------------------+
-| ``n_assem_batch``     | ``1``                     |
-+-----------------------+---------------------------+
-| ``power_cap``         | ``1178``                  |
-+-----------------------+---------------------------+
++-----------------------+-----------------------------------+
+| Variable              | Value                             |
++=======================+===================================+
+| ``name``              | ``1178MWe ReactorPlant Unit 1``   |
++-----------------------+-----------------------------------+
+| ``in_commod1``        | ``fresh_uox``                     |
++-----------------------+-----------------------------------+
+| ``in_recipe1``        | ``fresh_uox``                     | 
++-----------------------+-----------------------------------+
+| ``out_commod1``       | ``spent_uox``                     |
++-----------------------+-----------------------------------+
+| ``out_recipe1``       | ``spent_uox``                     |
++-----------------------+-----------------------------------+
+| ``cycle_length``      | ``18``                            |
++-----------------------+-----------------------------------+
+| ``refuel_length``     | ``1``                             |
++-----------------------+-----------------------------------+
+| ``assem_mass``        | ``33000``                         |
++-----------------------+-----------------------------------+
+| ``n_core``            | ``3``                             |
++-----------------------+-----------------------------------+
+| ``n_batch``           | ``1``                             |
++-----------------------+-----------------------------------+
+| ``power``             | ``1178``                          |
++-----------------------+-----------------------------------+
 
 Once completed, your prototype should look like:
 
 .. code-block:: XML
 
     <facility>
-        <name>1178MWe BRAIDWOOD_1</name>
+        <name>1178MWe ReactorPlant Unit 1</name>
         <config>
           <Reactor>
             <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
@@ -420,8 +416,9 @@ The Sink archetype section is of the form:
     <config>
       <Sink>
         <in_commods>
-          <val>input_commodity</val>
-          <val>input_commodity</val>
+          <val>[string]</val>
+          <val>[string]</val>
+          ...
         </in_commods>
       </Sink>
     </config>
@@ -429,7 +426,7 @@ The Sink archetype section is of the form:
 
 Optional parameters:
 
-in_commod_prefs: default=[], range: [None, [1e-299, 1e+299]]
+``in_commod_prefs``: default=[], range: [None, [1e-299, 1e+299]]
   Commodities that the sink facility accepts
 
 .. code-block:: XML
@@ -437,24 +434,25 @@ in_commod_prefs: default=[], range: [None, [1e-299, 1e+299]]
       <in_commod_prefs>
           <val>[double]</val>
           <val>[double]</val>
+          ...
       </in_commod_prefs>
 
-recipe_name: default=””
+``recipe_name``: default=””
   Name of recipe to use for material requests, where the default (empty string) is to accept everything
 
 .. code-block:: XML
 
-      <recipe_name>[inrecipe]</recipe_name>
+      <recipe_name>[string]</recipe_name>
 
 
-max_inv_size: default=1e+299, range: [0.0, 1e+299]
+``max_inv_size``: default=1e+299, range: [0.0, 1e+299]
   Total maximum inventory size of sink facility
 
 .. code-block:: XML
 
       <max_inv_size>[double]</max_inv_size>
 
-capacity: default = 1e+299, range: [0.0, 1e+299]
+``capacity``: default = 1e+299, range: [0.0, 1e+299]
   capacity the sink facility can accept at each time step
   
 .. code-block:: XML
@@ -472,11 +470,9 @@ create the UraniumMine prototype.
 +=========================+===========================+
 | ``name``                | ``NuclearRepository``     |
 +-------------------------+---------------------------+
-| ``Archetype``           | ``Sink``                  |
+| ``input_commodity1``    | ``spent_uox``             |
 +-------------------------+---------------------------+
-| ``val``                 | ``spent_uox``             |
-+-------------------------+---------------------------+
-| ``val``                 | ``tails``                 |
+| ``input_commodity2``    | ``tails``                 |
 +-------------------------+---------------------------+
 
 The sink facility archetype is:
@@ -486,10 +482,10 @@ The sink facility archetype is:
   <facility>
     <name>Sink_name</name>
     <config>
-      <Archetype>
+      <Sink>
         <in_commods>
-          <val>input_commodity</val>
-          <val>input_commodity</val>
+          <val>input_commodity1</val>
+          <val>input_commodity2</val>
         </in_commods>
       </Sink>
     </config>
@@ -543,7 +539,7 @@ The facility section of your input file should be of the form:
   </facility>
 
   <facility>
-    <name>1178MWe BRAIDWOOD_1</name>
+    <name>1178MWe ReactorPlant Unit 1</name>
     <config>
       <Reactor>
         <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>

@@ -8,19 +8,23 @@ Concept: Regions & Institutions
 Institution agents that exist within a Region agent.  This series of ownership
 allow for control of the interaction behavior
 between agents.  For example, two facilities 
-may not be allowed to trade if they are in two different regions.
+may not be allowed to trade if they are in two different regions. For commodities, 
+an institution may apply a higher preference for transactions within the 
+same institution; similarly, a region may negate any transfers of
+material which have a higher uranium enrichment than is allowable.
 
 Every |Cyclus| simulation needs at least one Region and one Institution, and
 in this case, we'll use the simplest options:
 
-* a Null Institution (*NullInst*) that holds a set of facilities that are
+* a Null Institution (``NullInst``) that holds a set of facilities that are
   deployed at the start of a simulation.
-* a Null Region (*NullRegion*) that holds a set of Institutions.
+* a Null Region (``NullRegion``) that holds a set of Institutions.
 
 Defining these is done in the archetypes section of the code. This is done 
 in a similar manner as the other archetypes previously defined, except regions
-and insitutions used in this tutorial come from the ``agents`` library, rather 
-than the ``cycamore`` library.
+and institutions used in this tutorial come from the ``agents`` library, rather 
+than the ``cycamore`` library. The ``agents`` library comes with Cyclus, and 
+you can run ``cyclus --a`` to check that the archetypes are installed. 
 
 Using the template and table below,
 properly fill the template with the variables listed in the table below.
@@ -53,7 +57,7 @@ simulation.
         </spec>
       </archetypes>
 
-Once complete, your `agent` Archetypes block should be:
+Once complete, your ``agent`` section of the Archetypes block should be:
 
 .. code-block:: XML
       <archetypes>
@@ -70,7 +74,7 @@ Once complete, your `agent` Archetypes block should be:
       </archetypes>
 
 Since these are all archetypes, no matter what library they're from, we must append 
-these two``spec`` blocks into the the arechtype block that we already have. This 
+these two``spec`` blocks into the the archetype block that we already have. This 
 results in the full archetype block:
 
 .. code-block:: XML
@@ -106,10 +110,38 @@ results in the full archetype block:
 Concept: Regions 
 ----------------
 
-Regions tie together a fuel cycle as they designate what facilities are
+Regions tie together a fuel cycle as they designate what institutions and facilities are
 in the region's fuel cycle. Regions may apply preferences to each
 potential request-bid pairing based on the proposed resource transfer.
-The basic structure of a region is:
+The basic structure of a region block is:
+
+.. code-block:: XML
+
+    <region>
+      <name>Region_name</name>
+      <config>
+        <RegionArchetype>
+        ...
+        <RegionArchetype>
+      </config>
+      <institution>
+      ...
+      ...
+      </institution>
+
+    </region>
+
+Where:
+
+* ``name``: name of the region
+* ``config``: Region archetype to use
+* ``RegionArchetype``: name of the Region archetype you wish to use in your simulation, and the dotted line in this section represents any inputs that the archetype might have. ``RegionArchetype`` is not a valid region archetype name, so that will need to change to the name of whatever region archetype you want to use. 
+
+
+In between the two dotted lines
+is where the institution and facility information goes.
+
+In this example, we will use the ``NullRegion`` archetype, which does not have any inputs. Filling this into our region block template, we get: 
 
 .. code-block:: XML
 
@@ -125,18 +157,10 @@ The basic structure of a region is:
 
     </region>
 
-Where:
-
-* ``name``: name of the region
-* ``config``: Region archetype to use
-
-In between the two dotted lines
-is where the institution and facility information goes.
-
-Concept: Institution
+Concept: Institutions
 -----------------------------------------------------------------------
-In |Cyclus| input files, each institution block defines an agent that
-acts as an institution in the simulation. An institution block can only
+In |Cyclus| input files, each institution controls the deployment of 
+the prototypes in the simulation, among other things. An institution block can only
 appear within a region block. Each institution block has the following
 sections in any order:
 
@@ -166,6 +190,7 @@ Put together, the institution block is the form:
             <prototype>Prototype_name</prototype>
             <number>number_of_prototype_names</number>
           </entry>
+          ...
         </initialfacilitylist>
         <name>Inst_name</name>
         <config>
@@ -173,19 +198,19 @@ Put together, the institution block is the form:
         </config>
       </institution>
 
-There can be multiple ``entry`` blocks within the same institution.
+There can be multiple ``entry`` blocks within the same institution, hence the 
+``...`` in the block. Multiple entry blocks means that multiple prototypes 
+are deployed at the start of the simulation. 
 
 
-The example below
-introduces two institution agents (the region section that encloses them
-is not shown). The first institution has the name *SingleInstitution*,
-and is configured from the archetype with the name
-``NullInst``. 
+It is possible to have two institutions in the same region, as shown in the 
+example input block below. The first institution has the name ``SingleInstitution``,
+and is configured from the archetype with the name ``NullInst``. 
 The ``NullInst`` has no defined archetype-specific data.
 This institution begins the simulation with two
 facility agents, one based on the ``FacilityA`` prototype and another
 based on the ``FacilityB`` prototype. The second institution has the
-name *AnotherInstitution*, is also configured from the archetype with
+name ``AnotherInstitution``, is also configured from the archetype with
 the name (or alias) ``NullInst``. This institution has no initial
 facilities.
 
@@ -215,7 +240,7 @@ facilities.
         </config>
       </institution>
 
-Putting it all together, a complete region template is of the form:
+Putting a region and institution blocks together, a complete region template is of the form:
 
 .. code-block:: XML
 
@@ -246,18 +271,26 @@ Using the template below, let's create the region section of our input file.
 .. code-block:: XML
 
     <region>
-      <name>[VALUE]</name>
+      <name>region_name</name>
       <config>
         <NullRegion/>
       </config>
       <institution>
         <initialfacilitylist>
           <entry>
-            <prototype>[VALUE]</prototype>
-            <number>[VALUE]</number>
+            <prototype>prototype1</prototype>
+            <number>amount1</number>
+          </entry>
+          <entry>
+            <prototype>prototype2</prototype>
+            <number>amount2</number>
+          </entry>
+          <entry>
+            <prototype>prototype3</prototype>
+            <number>amount3</number>
           </entry>
           </initialfacilitylist>
-        <name>[VALUE]</name>
+        <name>institution_name</name>
         <config>
           <NullInst/>
         </config>
@@ -270,18 +303,19 @@ region's fuel cycle. In our example, these facilities are
 the above exercise and the table below, fill out the rest of the region
 template.
 
-+-----------------+-----------------------------+----------+
-| Variable        | Name                        | Amount   |
-+=================+=============================+==========+
-| ``prototype``   | ``UraniumMine``             | ``1``    |
-+-----------------+-----------------------------+----------+
-| ``prototype``   | ``EnrichmentPlant``         | ``1``    |
-+-----------------+-----------------------------+----------+
-| ``prototype``   | ``NuclearRepository``       | ``1``    |
-+-----------------+-----------------------------+----------+
-| ``name``        | ``United States Nuclear``   | ``1``    |
-+-----------------+-----------------------------+----------+
-
++-----------------------+-----------------------------+----------+
+| Variable              | Name                        | Amount   |
++=======================+=============================+==========+
+| ``prototype``         | ``UraniumMine``             | ``1``    |
++-----------------------+-----------------------------+----------+
+| ``prototype``         | ``EnrichmentPlant``         | ``1``    |
++-----------------------+-----------------------------+----------+
+| ``prototype``         | ``NuclearRepository``       | ``1``    |
++-----------------------+-----------------------------+----------+
+| ``institution_name``  | ``United States Nuclear``   | N/A      |
++-----------------------+-----------------------------+----------+
+| ``region_name``       | ``USA``                     | N/A      |
++-----------------------+-----------------------------+----------+
 
 Check: Complete Region block
 +++++++++++++++++++++++++++++++++++
@@ -289,7 +323,7 @@ Check: Complete Region block
 .. code-block:: XML
 
   <region>
-    <name>region1</name>
+    <name>USA</name>
     <config>
       <NullRegion/>
     </config>
@@ -322,18 +356,33 @@ Activity: Save your input file
 Save your input file as ``cyclus_intro_file.xml``
 
 
-Activity: Add an extra insitution into the Region
+Activity: Add an extra institution into the Region
 -------------------------------------------------
-Having multiple insitutions help organize facilities and their affiliation.
-Let's create region, ``USA``, that contains two institutions, ``Exelon`` and ``United States Nuclear``.
-``Exelon`` is the institution that holds the ``1178MWe BRAIDWOOD_1`` reactor and ``United States Nuclear`` holds the ``UraniumMine``, ``EnrichmentPlant``, and ``NuclearRepository``.
+Having multiple institutions help organize facilities and their affiliation.
+In our ``USA`` region, let's add a second institution called ``ReactorUtility``.
+``ReactorUtility`` is the institution that holds the ``1178MWe ReactorPlant Unit 1`` prototype and ``United 
+States Nuclear`` holds the ``UraniumMine``, ``EnrichmentPlant``, and ``NuclearRepository``
+prototypes. Using the region and institution templates, let's 
+add the second institution to the region. 
 
-.. image:: RIF_tutorial.png
+1. Let's build the ``ReactorUtility`` institution. This institution has one ``1178MWe ReactorPlant Unit 1`` prototype. Using this information we can write this institution as:
 
-Using the template above and the table below, let's build the region.
+.. code-block:: XML
 
-1. Since there are two institutions, ``Exelon`` and ``United States Nuclear``, we will split the region into two parts.
-Let's first build the ``Exelon`` institution. This institution has one ``1178MWe BRAIDWOOD_1`` prototype. Using this information we can write this institution as:
+    <institution>
+      <initialfacilitylist>
+        <entry>
+          <prototype>1178MWe ReactorPlant Unit 1</prototype>
+          <number>1</number>
+        </entry>
+      </initialfacilitylist>
+      <name>ReactorUtility</name>
+      <config>
+        <NullInst/>
+      </config>
+    </institution>
+
+1. We have our ``USA`` region block with the ``United States Nuclear`` institution. This institution has one ``UraniumMine`` prototype, ``EnrichmentPlant`` prototype, and one ``NuclearRepository`` prototype:
 
 .. code-block:: XML
 
@@ -342,66 +391,6 @@ Let's first build the ``Exelon`` institution. This institution has one ``1178MWe
     <config>
       <NullRegion/>
     </config>
-    <institution>
-      <initialfacilitylist>
-        <entry>
-          <prototype>1178MWe BRAIDWOOD_1</prototype>
-          <number>1</number>
-        </entry>
-      </initialfacilitylist>
-      <name>Exelon</name>
-      <config>
-        <NullInst/>
-      </config>
-    </institution>
-
-2. Now let's build the second institution, ``United States Nuclear``. This institution has one ``UraniumMine`` prototype, ``EnrichmentPlant`` prototype, and one ``NuclearRepository`` prototype. Using this information we can write this institution as:
-
-.. code-block:: XML
-
-      <institution>
-        <initialfacilitylist>
-          <entry>
-            <prototype>UraniumMine</prototype>
-            <number>1</number>
-          </entry>
-          <entry>
-            <prototype>EnrichmentPlant</prototype>
-            <number>1</number>
-          </entry>
-          <entry>
-            <prototype>NuclearRepository</prototype>
-            <number>1</number>
-          </entry>
-        </initialfacilitylist>
-        <name>United States Nuclear</name>
-        <config>
-          <NullInst/>
-        </config>
-      </institution>
-
-3. We will close the region section by appending the two sections together and appending a ``</region>`` tag to the end of the section. Once complete, your region prototype should look like:
-
-.. code-block:: XML
-
-  <region>
-    <name>USA</name>
-    <config>
-      <NullRegion/>
-    </config>
-    <institution>
-      <initialfacilitylist>
-        <entry>
-          <prototype>1178MWe BRAIDWOOD_1</prototype>
-          <number>1</number>
-        </entry>
-      </initialfacilitylist>
-      <name>Exelon</name>
-      <config>
-        <NullInst/>
-      </config>
-    </institution>
-
     <institution>
       <initialfacilitylist>
         <entry>
@@ -422,7 +411,61 @@ Let's first build the ``Exelon`` institution. This institution has one ``1178MWe
         <NullInst/>
       </config>
     </institution>
+
+
+
+
   </region>
+
+3. We will add the ``ReactorUtility`` institution into the blank lines of our ``USA`` region 
+   block. Once complete, your region prototype should look like:
+
+.. code-block:: XML
+
+  <region>
+    <name>USA</name>
+    <config>
+      <NullRegion/>
+    </config>
+    <institution>
+      <initialfacilitylist>
+        <entry>
+          <prototype>UraniumMine</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>EnrichmentPlant</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>NuclearRepository</prototype>
+          <number>1</number>
+        </entry>
+      </initialfacilitylist>
+      <name>United States Nuclear</name>
+      <config>
+        <NullInst/>
+      </config>
+    </institution>
+
+    <institution>
+      <initialfacilitylist>
+        <entry>
+          <prototype>1178MWe ReactorPlant Unit 1</prototype>
+          <number>1</number>
+        </entry>
+      </initialfacilitylist>
+      <name>ReactorUtility</name>
+      <config>
+        <NullInst/>
+      </config>
+    </institution>
+  </region>
+
+
+We now have a complete region block. It is possible to have prototypes 
+defined in your input file that are not listed in an institution. When 
+that occurs, the prototypes are not deployed in the simulation. 
 
 Activity: Save your Input File
 ------------------------------
