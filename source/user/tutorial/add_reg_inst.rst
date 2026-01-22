@@ -353,7 +353,7 @@ Check: Complete Region block
 Activity: Save your input file
 ------------------------------
 
-Save your input file as ``cyclus_intro_file.xml``
+Save your input file as ``tutorial_oncethrough.xml``
 
 
 Activity: Add an extra institution into the Region
