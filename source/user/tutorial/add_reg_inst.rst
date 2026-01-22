@@ -472,7 +472,7 @@ Activity: Save your Input File
 
 You are now ready to generate a full |Cyclus| input file.
 
-1. Save your input file as 'cyclus_intro_file.xml'
+1. Save your input file as 'tutorial_oncethrough.xml'
 
 
 Check: Full Input File
