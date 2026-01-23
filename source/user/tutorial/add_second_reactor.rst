@@ -119,7 +119,7 @@ of the region block should now look like,
 Note: the blank space between ``</institution>`` and ``</region>`` is
 for additional institutions in the future.
 
-Save your input file as 'tutorial_secondreactor.xml' and run the |Cyclus| simulation.
+Save your input file as ``tutorial_secondreactor.xml`` and run the |Cyclus| simulation.
 If your simulation runs into errors, sample files can be found `here 
 <https://doi.org/10.5281/zenodo.4557613>`_ under ``input_secondreactor.xml`` 
 or ``ouput_secondreactor.sqlite``.
