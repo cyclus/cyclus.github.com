@@ -55,13 +55,13 @@ Jupyter Notebook Scenario Execution
 --------------------------------------------
 1. Go to the Jupyter notebook, making sure you are in the same folder as the input file
 2. Remove any old |Cyclus| output files by: ``!rm tutorial.sqlite``
-3. Run |Cyclus| by: ``!cyclus input.xml -o tutorial_singlerx.sqlite``
+3. Run |Cyclus| by: ``!cyclus tutorial_oncethrough.xml -o tutorial_output_oncethrough.sqlite``
 
 .. image:: cyclus_in_IP.png
     :align: center
     :alt: Running |Cyclus| in an IPython Notebook
 
-When your simulation has finished, a file of the name ``tutorial_singlerx.sqlite`` 
+When your simulation has finished, a file of the name ``tutorial_output_oncethrough.sqlite`` 
 will be in your file folder. Your Jupyter Notebook can then be used with 
 `Cymetric <https://fuelcycle.org/user/cymetric/index.html>`_ to analyze your 
 data. Examples of how to use Cymetric can be found in the `GitHub 
