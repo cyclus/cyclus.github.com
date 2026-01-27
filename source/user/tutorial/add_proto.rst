@@ -83,8 +83,7 @@ Optional parameters:
 Activity: Configure the Source prototype
 ++++++++++++++++++++++++++++++++++++++++
 Our source, ``UraniumMine``, will provide the natural uranium ore for our enrichment facility.
-This facility takes two inputs, ``name`` and ``outcommod``. Using the Source 
-Archetype and the table below, create the UraniumMine prototype.
+This facility takes two inputs, ``name`` and ``outcommod``. Using the Source archetype template above and the table below, create the UraniumMine prototype.
 
 +-----------------------+---------------------------+
 | Variable              | Value                     |
@@ -93,33 +92,6 @@ Archetype and the table below, create the UraniumMine prototype.
 +-----------------------+---------------------------+
 | ``out_commodity       | ``u_ore``                 |
 +-----------------------+---------------------------+
-
-1. The template for the Source archetype is of the form:
-
-.. code-block:: XML
-
-  <facility>
-    <name>name</name>
-    <config>
-      <Source>
-        <outcommod>out_commodity</outcommod>
-      </Source>
-    </config>
-  </facility>
-
-2. Filling in the variables ``name``, ``Archetype``, and ``out_commod`` as 
-``UraniumMine``, ``Source``, and ``u_ore`` leads to:
-
-.. code-block:: XML
-
-  <facility>
-    <name>UraniumMine</name>
-    <config>
-      <Source>
-        <outcommod>u_ore</outcommod>
-      </Source>
-    </config>
-  </facility>
 
 Once complete, append this facility under the commodity section and before the recipe section of your input file [#f1]_.
 
@@ -192,25 +164,8 @@ Optional parameters:
 Activity: Creating the Enrichment Prototype
 +++++++++++++++++++++++++++++++++++++++++++
 The enrichment facility, ``EnrichmentPlant`` will intake the natural ``u_ore`` 
-from ``UraniumMine`` and create ``fresh_uox`` and ``tails`` as its products.
-The template for the Enrichment archetype is of the form:
-
-.. code-block:: XML
-
-  <facility>
-    <name>name</name>
-    <config>
-      <Enrichment>
-        <feed_commod>feed_commodity</feed_commod>
-        <feed_recipe>feed_recipe</feed_recipe>
-        <product_commod>product_commodity</product_commod>
-        <tails_commod>tails_commodity</tails_commod>
-        <max_feed_inventory>max_feed_inventory</max_feed_inventory>
-      </Enrichment>
-    </config>
-  </facility>
-
-Using the template above and the table below, generate the input enrichment facility prototype.
+from ``UraniumMine`` and create ``fresh_uox`` and ``tails`` as its products. 
+Using the Enrichment archetype template above and the table below, generate the input enrichment facility prototype.
 
 +-------------------------+---------------------------+
 | Variable                | Value                     |
@@ -227,24 +182,6 @@ Using the template above and the table below, generate the input enrichment faci
 +-------------------------+---------------------------+
 | ``max_feed_inventory``  | 1000000                   |
 +-------------------------+---------------------------+
-
-
-After filling in these variables, your enrichment facility prototype will look like:
-
-.. code-block:: XML
-
-  <facility>
-    <name>EnrichmentPlant</name>
-    <config>
-      <Enrichment>
-        <feed_commod>u_ore</feed_commod>
-        <feed_recipe>nat_u</feed_recipe>
-        <product_commod>fresh_uox</product_commod>
-        <tails_commod>tails</tails_commod>
-        <max_feed_inventory>1000000</max_feed_inventory>
-      </Enrichment>
-    </config>
-  </facility>
 
 Once complete, append this facility under the Source prototype of your input file [#f1]_.
 
@@ -303,37 +240,6 @@ The Reactor archetype is of the form:
     </config>
   </facility>
 
-
-There are many optional input parameters to the Cycamore Reactor archetype. 
-We advise exploring the `Reactor archetype documentation <https://fuelcycle.org/user/cycamoreagents.html#cycamore-reactor>`_ to find them all. 
-
-Activity: Creating the Reactor Prototype
-++++++++++++++++++++++++++++++++++++++++
-
-Now let's model the reactor this fuel will go through! In this simple example, 
-let's model a single PWR in the United States. It has a power capacity of 1178 
-MWe. The template for the reactor is given below:
-
-.. code-block:: XML
-
-    <facility>
-      <name>name</name>
-      <config>
-        <Reactor>
-          <fuel_incommods> <val>in_commod1</val> </fuel_incommods>
-          <fuel_inrecipes> <val>in_recipe1</val> </fuel_inrecipes>
-          <fuel_outcommods> <val>out_commod1</val> </fuel_outcommods>
-          <fuel_outrecipes> <val>out_recipe1</val> </fuel_outrecipes>
-          <cycle_time>cycle_length</cycle_time>
-          <refuel_time>refuel_length</refuel_time>
-          <assem_size>assem_mass</assem_size>
-          <n_assem_core>n_core</n_assem_core>
-          <n_assem_batch>n_batch</n_assem_batch>
-          <power_cap>power</power_cap>
-        </Reactor>
-      </config>
-    </facility>
-
 Where:
 
 * ``fuel_incommods``: input fuel commodity -- you can list more than one by adding more ``val`` blocks
@@ -347,7 +253,15 @@ Where:
 * ``n_assem_batch``: number of batches replaced per refueling.
 * ``power_cap``: amount of electricity the reactor generates.
 
-Using the template above and the table below, create the Reactor prototype.
+There are many optional input parameters to the Cycamore Reactor archetype. 
+We advise exploring the `Reactor archetype documentation <https://fuelcycle.org/user/cycamoreagents.html#cycamore-reactor>`_ to find them all. 
+
+Activity: Creating the Reactor Prototype
+++++++++++++++++++++++++++++++++++++++++
+
+Now let's model the reactor this fuel will go through! In this simple example, 
+let's model a single PWR in the United States. It has a power capacity of 1178 
+MWe. Using the Reactor archetype template above and the table below, create the Reactor prototype.
 
 +-----------------------+-----------------------------------+
 | Variable              | Value                             |
@@ -374,28 +288,6 @@ Using the template above and the table below, create the Reactor prototype.
 +-----------------------+-----------------------------------+
 | ``power``             | ``1178``                          |
 +-----------------------+-----------------------------------+
-
-Once completed, your prototype should look like:
-
-.. code-block:: XML
-
-    <facility>
-        <name>1178MWe ReactorPlant Unit 1</name>
-        <config>
-          <Reactor>
-            <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
-            <fuel_inrecipes> <val>fresh_uox</val> </fuel_inrecipes>
-            <fuel_outcommods> <val>spent_uox</val> </fuel_outcommods>
-            <fuel_outrecipes> <val>spent_uox</val> </fuel_outrecipes>
-            <cycle_time>18</cycle_time>
-            <refuel_time>1</refuel_time>
-            <assem_size>33000</assem_size>
-            <n_assem_core>3</n_assem_core>
-            <n_assem_batch>1</n_assem_batch>
-            <power_cap>1178</power_cap>
-          </Reactor>
-        </config>
-      </facility>
 
 Once complete, append this facility under the Enrichment facility of your input file [#f1]_.
 
@@ -462,7 +354,7 @@ Optional parameters:
 Activity: Creating the Sink Prototype
 +++++++++++++++++++++++++++++++++++++
 Our sink, ``NuclearRepository``, will store the ``spent_uox`` and ``tails`` after
-their use in the fuel cycle. Using the Sink Archetype template and the table below,
+their use in the fuel cycle. Using the Sink archetype template above and the table below,
 create the UraniumMine prototype.
 
 +-------------------------+---------------------------+
@@ -474,38 +366,6 @@ create the UraniumMine prototype.
 +-------------------------+---------------------------+
 | ``input_commodity2``    | ``tails``                 |
 +-------------------------+---------------------------+
-
-The sink facility archetype is:
-
-.. code-block:: XML
-
-  <facility>
-    <name>Sink_name</name>
-    <config>
-      <Sink>
-        <in_commods>
-          <val>input_commodity1</val>
-          <val>input_commodity2</val>
-        </in_commods>
-      </Sink>
-    </config>
-  </facility>
-
-After filling in these variables, your sink facility prototype will look like:
-
-.. code-block:: XML
-
-  <facility>
-    <name>NuclearRepository</name>
-    <config>
-      <Sink>
-        <in_commods>
-          <val>spent_uox</val>
-          <val>tails</val>
-        </in_commods>
-      </Sink>
-    </config>
-  </facility>
 
 Once complete, append this facility under the Reactor prototype of your input file [#f1]_.
 
