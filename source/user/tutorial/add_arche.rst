@@ -161,54 +161,6 @@ fill in the template with the variables listed in the table below.
 | ``arch4``   | ``Sink``         | Name of archetype          |
 +-------------+------------------+----------------------------+
 
-
-Archetype Block Template
-------------------------
-.. code-block:: XML
-
-      <archetypes>
-        <spec>
-          <lib>lib1</lib>
-          <name>arch1</name>
-        </spec>
-        <spec>
-          <lib>lib2</lib>
-          <name>arch2</name>
-        </spec>
-        <spec>
-          <lib>lib3</lib>
-          <name>arch3</name>
-        </spec>
-        <spec>
-          <lib>lib4</lib>
-          <name>arch4</name>
-        </spec>
-      </archetypes>
-
-
-Once complete, your ``archetypes`` block should look like:
-
-.. code-block:: XML
-
-    <archetypes>
-      <spec>
-        <lib>cycamore</lib>
-        <name>Enrichment</name>
-      </spec>
-      <spec>
-        <lib>cycamore</lib>
-        <name>Reactor</name>
-      </spec>
-      <spec>
-        <lib>cycamore</lib>
-        <name>Source</name>
-      </spec>
-      <spec>
-        <lib>cycamore</lib>
-        <name>Sink</name>
-      </spec>
-    </archetypes>
-
 The order of the archetypes in this block is of no consequence. Once complete, append the archetypes section under the control section of input file [#f1]_.
 
 .. rubric:: Footnotes
