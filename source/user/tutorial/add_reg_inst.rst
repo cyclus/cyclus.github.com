@@ -266,41 +266,10 @@ Putting a region and institution blocks together, a complete region template is 
 Activity: Write the Region template
 -----------------------------------
 
-Using the template below, let's create the region section of our input file.
-
-.. code-block:: XML
-
-    <region>
-      <name>region_name</name>
-      <config>
-        <NullRegion/>
-      </config>
-      <institution>
-        <initialfacilitylist>
-          <entry>
-            <prototype>prototype1</prototype>
-            <number>amount1</number>
-          </entry>
-          <entry>
-            <prototype>prototype2</prototype>
-            <number>amount2</number>
-          </entry>
-          <entry>
-            <prototype>prototype3</prototype>
-            <number>amount3</number>
-          </entry>
-          </initialfacilitylist>
-        <name>institution_name</name>
-        <config>
-          <NullInst/>
-        </config>
-      </institution>
-    </region>
-
-Now the next part of the region template is the other facilities in the
+The next part of the region template is the other facilities in the
 region's fuel cycle. In our example, these facilities are
 ``UraniumMine``, ``EnrichmentPlant``, and ``NuclearRepository``. Using
-the above exercise and the table below, fill out the rest of the region
+the template above and the table below, fill out the rest of the region
 template.
 
 +-----------------------+-----------------------------+----------+
@@ -316,6 +285,8 @@ template.
 +-----------------------+-----------------------------+----------+
 | ``region_name``       | ``USA``                     | N/A      |
 +-----------------------+-----------------------------+----------+
+
+Once complete, append this facility under the Sink prototype of your input file.
 
 Check: Complete Region block
 +++++++++++++++++++++++++++++++++++
@@ -365,60 +336,11 @@ States Nuclear`` holds the ``UraniumMine``, ``EnrichmentPlant``, and ``NuclearRe
 prototypes. Using the region and institution templates, let's 
 add the second institution to the region. 
 
-1. Let's build the ``ReactorUtility`` institution. This institution has one ``1178MWe ReactorPlant Unit 1`` prototype. Using this information we can write this institution as:
+Let's build the ``ReactorUtility`` institution. This institution has one ``1178MWe ReactorPlant Unit 1`` prototype. 
+Using this information we can add a second institution block into our ``USA`` 
+region block after the ``United States Nuclear`` institution. 
 
-.. code-block:: XML
-
-    <institution>
-      <initialfacilitylist>
-        <entry>
-          <prototype>1178MWe ReactorPlant Unit 1</prototype>
-          <number>1</number>
-        </entry>
-      </initialfacilitylist>
-      <name>ReactorUtility</name>
-      <config>
-        <NullInst/>
-      </config>
-    </institution>
-
-1. We have our ``USA`` region block with the ``United States Nuclear`` institution. This institution has one ``UraniumMine`` prototype, ``EnrichmentPlant`` prototype, and one ``NuclearRepository`` prototype:
-
-.. code-block:: XML
-
-  <region>
-    <name>USA</name>
-    <config>
-      <NullRegion/>
-    </config>
-    <institution>
-      <initialfacilitylist>
-        <entry>
-          <prototype>UraniumMine</prototype>
-          <number>1</number>
-        </entry>
-        <entry>
-          <prototype>EnrichmentPlant</prototype>
-          <number>1</number>
-        </entry>
-        <entry>
-          <prototype>NuclearRepository</prototype>
-          <number>1</number>
-        </entry>
-      </initialfacilitylist>
-      <name>United States Nuclear</name>
-      <config>
-        <NullInst/>
-      </config>
-    </institution>
-
-
-
-
-  </region>
-
-3. We will add the ``ReactorUtility`` institution into the blank lines of our ``USA`` region 
-   block. Once complete, your region prototype should look like:
+Once complete, your region prototype should look like:
 
 .. code-block:: XML
 
