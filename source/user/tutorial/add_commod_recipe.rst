@@ -165,8 +165,8 @@ Activity: Creating a Recipe
 ++++++++++++++++++++++++++++
 
 
-Using the tables below, fill out the recipe
-template for natural uranium, fresh fuel, and spent fuel.
+Using the tables below, fill out three recipe
+templates for natural uranium, fresh fuel, and spent fuel.
 
 +---------------------+--------------------+--------------------+
 | Natural Uranium Composition                                   |
@@ -202,7 +202,7 @@ template for natural uranium, fresh fuel, and spent fuel.
 | :math:`^{137}`\ Cs  | 55137              | 0.04               |
 +---------------------+--------------------+--------------------+
 
-Once complete, append this facility under the commodity section of your input file [#f1]_.
+Once complete, append these recipes under the commodity section of your input file [#f1]_.
 
 
 Let's take a look at the ``fresh_uox`` fuel recipe (note that ``-`` is an illegal character for

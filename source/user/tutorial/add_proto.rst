@@ -355,7 +355,7 @@ Activity: Creating the Sink Prototype
 +++++++++++++++++++++++++++++++++++++
 Our sink, ``NuclearRepository``, will store the ``spent_uox`` and ``tails`` after
 their use in the fuel cycle. Using the Sink archetype template above and the table below,
-create the UraniumMine prototype.
+create the NuclearRepository prototype.
 
 +-------------------------+---------------------------+
 | Variable                | Value                     |

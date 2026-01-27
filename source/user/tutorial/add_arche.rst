@@ -138,7 +138,7 @@ where ``lib`` is the library in which the archetype came from and ``name`` is
 the archetype name. You need one `spec` block in the archetypes section 
 for each archetype you use in your simulation. 
 Let's build the archetypes block in our input file. 
-Using the template below and the table below,
+Using the template above and the table below,
 fill in the template with the variables listed in the table below.
 
 +-------------+------------------+----------------------------+
