@@ -372,7 +372,7 @@ Once complete, append this facility under the Reactor prototype of your input fi
 Check: Complete Facility block
 ++++++++++++++++++++++++++++++++++++++++
 
-The facility section of your input file should be of the form:
+The facility section of your input file should now look like:
 
 .. code-block:: XML
 

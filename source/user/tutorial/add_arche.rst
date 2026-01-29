@@ -163,6 +163,32 @@ fill in the template with the variables listed in the table below.
 
 The order of the archetypes in this block is of no consequence. Once complete, append the archetypes section under the control section of input file [#f1]_.
 
+Check: Complete Archetypes block
++++++++++++++++++++++++++++++++++++++++
+
+The archetypes section of your input file should now look like:
+
+.. code-block:: XML
+
+    <archetypes>
+        <spec>
+          <lib>cycamore</lib>
+          <name>Enrichment</name>
+        </spec>
+        <spec>
+          <lib>cycamore</lib>
+          <name>Reactor</name>
+        </spec>
+        <spec>
+          <lib>cycamore</lib>
+          <name>Source</name>
+        </spec>
+        <spec>
+          <lib>cycamore</lib>
+          <name>Sink</name>
+        </spec>
+    </archetypes>
+
 .. rubric:: Footnotes
 
 .. [#f1] The exact order of the sections in a |Cyclus| input file are of minor consequence. The ``control`` sequence must go first, but the other sequences can go in any order that makes sense to the user. The traditional organization  of an input file is: control, archetypes, commodities, facilities,   regions/institutions, and recipes. 

@@ -106,3 +106,21 @@ with the variables listed in the table below in your favorite text editor.
 end of the simulation section. This section of the simulation block will hold 
 the rest of the simulation parameter blocks (commodities, facilities, regions, 
 institutions, and recipe blocks).
+
+Check: Complete Control block
++++++++++++++++++++++++++++++++
+
+The control section of your input file should now look like:
+
+.. code-block:: XML
+
+    <simulation>
+      <control>
+        <duration>720</duration>
+        <startmonth>1</startmonth>
+        <startyear>2018</startyear>
+        <decay>never</decay>
+      </control>
+
+
+    </simulation>

@@ -214,5 +214,74 @@ names in cyclus and ``_`` should be used instead):
 The recipe name ``fresh_uox`` is specified, as are the isotope nuclide IDs and the 
 corresponding mass fraction of each nuclide. The ``fresh_uox`` is composed of 4% U-235 and 96% U-238.
 
+Check: Complete Commodity and Recipe blocks
++++++++++++++++++++++++++++++++++++++++++++++++
+
+The commodity and recipe sections of you input file should now look like:
+
+.. code-block:: XML
+
+      <commodity>
+        <name>u_ore</name>
+        <solution_priority>1.0</solution_priority>
+      </commodity>
+      <commodity>
+        <name>fresh_uox</name>
+        <solution_priority>1.0</solution_priority>
+      </commodity>
+      <commodity>
+        <name>spent_uox</name>
+        <solution_priority>1.0</solution_priority>
+      </commodity>
+      <commodity>
+        <name>tails</name>
+        <solution_priority>1.0</solution_priority>
+      </commodity>
+
+      <recipe>
+        <name>nat_u</name>
+        <basis>mass</basis>
+        <nuclide>
+          <id>92235</id>
+          <comp>0.00711</comp>
+        </nuclide>
+        <nuclide>
+          <id>92238</id>
+          <comp>0.99289</comp>
+        </nuclide>
+      </recipe>
+      <recipe>
+        <name>fresh_uox</name>
+        <basis>mass</basis>
+        <nuclide>
+          <id>92235</id>
+          <comp>0.04</comp>
+        </nuclide>
+        <nuclide>
+          <id>92238</id>
+          <comp>0.96</comp>
+        </nuclide>
+      </recipe>
+      <recipe>
+        <name>spent_uox<name>
+        <basis>mass</basis>
+        <nuclide>
+          <id>92235</id>
+          <comp>0.011</comp>
+        </nuclide>
+        <nuclide>
+          <id>92238</id>
+          <comp>0.94</comp>
+        </nuclide>
+        <nuclide>
+          <id>94239</id>
+          <comp>0.009</comp>
+        </nuclide>
+        <nuclide>
+          <id>55137</id>
+          <comp>0.04</comp>
+        </nuclide>
+      </recipe>
+
 .. rubric:: Footnotes
 .. [#f1] The exact order of the sections in a |Cyclus| input file are of minor consequence. The ``control`` sequence must go first, but the other sequences can go in any order that makes sense to the user. The traditional organization  of an input file is: control, archetypes, commodities, facilities,   regions/institutions, and recipes. 

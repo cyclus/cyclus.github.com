@@ -291,6 +291,8 @@ Once complete, append this facility under the Sink prototype of your input file.
 Check: Complete Region block
 +++++++++++++++++++++++++++++++++++
 
+The region section og your input file should now look like:
+
 .. code-block:: XML
 
   <region>
