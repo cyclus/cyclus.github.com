@@ -34,13 +34,13 @@ simulation.
 +-------------+------------------+----------------------------+
 | Variable    | Value            | Purpose                    |
 +=============+==================+============================+
+| ``lib5``    | ``agents``       | Library of the archetype   |
++-------------+------------------+----------------------------+
+| ``arch5``   | ``NullRegion``   | Name of archetype          |
++-------------+------------------+----------------------------+
 | ``lib6``    | ``agents``       | Library of the archetype   |
 +-------------+------------------+----------------------------+
-| ``arch6``   | ``NullRegion``   | Name of archetype          |
-+-------------+------------------+----------------------------+
-| ``lib7``    | ``agents``       | Library of the archetype   |
-+-------------+------------------+----------------------------+
-| ``arch7``   | ``NullInst``     | Name of archetype          |
+| ``arch6``   | ``NullInst``     | Name of archetype          |
 +-------------+------------------+----------------------------+
 
 .. code-block:: XML
@@ -48,12 +48,12 @@ simulation.
         ...
         ...
         <spec>
-          <lib>lib6</lib>
-          <name>arch6</name>
+          <lib>lib5</lib>
+          <name>arch5</name>
         </spec>
         <spec>
-          <lib>lib7</lib>
-          <name>arch7</name>
+          <lib>lib6</lib>
+          <name>arch6</name>
         </spec>
       </archetypes>
 
@@ -331,14 +331,12 @@ Save your input file as ``tutorial_oncethrough.xml``
 
 Activity: Add an extra institution into the Region
 -------------------------------------------------
-Having multiple institutions help organize facilities and their affiliation.
-In our ``USA`` region, let's add a second institution called ``ReactorUtility``.
-``ReactorUtility`` is the institution that holds the ``1178MWe ReactorPlant Unit 1`` prototype and ``United 
-States Nuclear`` holds the ``UraniumMine``, ``EnrichmentPlant``, and ``NuclearRepository``
-prototypes. Using the region and institution templates, let's 
-add the second institution to the region. 
+Having multiple institutions can help organize facilities and their affiliation.
+In our ``USA`` region, we have the ``United States Nuclear`` institution that 
+holds the ``UraniumMine``, ``EnrichmentPlant``, and ``NuclearRepository``
+prototypes. Now let's add another institution. 
 
-Let's build the ``ReactorUtility`` institution. This institution has one ``1178MWe ReactorPlant Unit 1`` prototype. 
+Our second institution will be called ``ReactorUtility``. This institution has one ``1178MWe ReactorPlant Unit 1`` prototype. 
 Using this information we can add a second institution block into our ``USA`` 
 region block after the ``United States Nuclear`` institution. 
 
