@@ -26,10 +26,8 @@ and institutions used in this tutorial come from the ``agents`` library, rather
 than the ``cycamore`` library. The ``agents`` library comes with Cyclus, and 
 you can run ``cyclus --a`` to check that the archetypes are installed. 
 
-Using the template and table below,
-properly fill the template with the variables listed in the table below.
-In the template, the dots represent the archetypes already defined in the 
-simulation.
+Using the template on the `Understanding Archetypes <https://fuelcycle.org/user/tutorial/add_arche.html>`_,
+add entries to the Archetypes block for the variables listed in the table below.
 
 +-------------+------------------+----------------------------+
 | Variable    | Value            | Purpose                    |
@@ -42,20 +40,6 @@ simulation.
 +-------------+------------------+----------------------------+
 | ``arch6``   | ``NullInst``     | Name of archetype          |
 +-------------+------------------+----------------------------+
-
-.. code-block:: XML
-      <archetypes>
-        ...
-        ...
-        <spec>
-          <lib>lib5</lib>
-          <name>arch5</name>
-        </spec>
-        <spec>
-          <lib>lib6</lib>
-          <name>arch6</name>
-        </spec>
-      </archetypes>
 
 Once complete, your ``agent`` section of the Archetypes block should be:
 
