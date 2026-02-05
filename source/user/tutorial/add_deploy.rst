@@ -36,6 +36,7 @@ We will now use this to add the institution for ``DeployInst``.
 ``DeployInst`` takes the form:
 
 .. code-block:: XML
+
     <institution>
       <name>ExampleInstitution</name>
       <config>
@@ -77,17 +78,17 @@ Activity: Add a New Institution
 Using the table below and the DeployInst template above, fill out the commodities
 template.
 
-+-----------------------+-------------+-----------+
-| Prototype             | build_times | n_build   |
-+=======================+=============+===========+
-| UraniumMine           | 1           | 1         |
-+-----------------------+-------------+-----------+
-| FuelFab               | 1           | 1         |
-+-----------------------+-------------+-----------+
-| 1178MWe ReactorPlant Unit 1   | 2           | 1         |
-+-----------------------+-------------+-----------+
-| 1000MWe Lightwater_1  | 3           | 1         |
-+-----------------------+-------------+-----------+
++-----------------------------+-------------+-----------+
+| Prototype                   | build_times | n_build   |
++=============================+=============+===========+
+| UraniumMine                 | 1           | 1         |
++-----------------------------+-------------+-----------+
+| FuelFab                     | 1           | 1         |
++-----------------------------+-------------+-----------+
+| 1178MWe ReactorPlant Unit 1 | 2           | 1         |
++-----------------------------+-------------+-----------+
+| 1000MWe Lightwater_1        | 3           | 1         |
++-----------------------------+-------------+-----------+
 
 Using the prototype facilities already created, the new institution should
 look like the following:
