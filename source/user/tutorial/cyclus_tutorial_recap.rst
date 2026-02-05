@@ -42,22 +42,6 @@ Basic Tutorial Input
           <name>NullInst</name>
         </spec>
       </archetypes>
-      <commodity>
-          <name>u_ore</name>
-          <solution_priority>1.0</solution_priority>
-        </commodity>
-        <commodity>
-          <name>fresh_uox</name>
-          <solution_priority>1.0</solution_priority>
-        </commodity>
-        <commodity>
-          <name>tails</name>
-          <solution_priority>1.0</solution_priority>
-        </commodity>
-        <commodity>
-          <name>spent_uox</name>
-          <solution_priority>1.0</solution_priority>
-        </commodity>
 
         <facility>
           <name>UraniumMine</name>
@@ -241,23 +225,7 @@ Add a Second Reactor Input
           <name>NullInst</name>
         </spec>
       </archetypes>
-      <commodity>
-          <name>u_ore</name>
-          <solution_priority>1.0</solution_priority>
-        </commodity>
-        <commodity>
-          <name>fresh_uox</name>
-          <solution_priority>1.0</solution_priority>
-        </commodity>
-        <commodity>
-          <name>tails</name>
-          <solution_priority>1.0</solution_priority>
-        </commodity>
-        <commodity>
-          <name>spent_uox</name>
-          <solution_priority>1.0</solution_priority>
-        </commodity>
-
+      
         <facility>
           <name>UraniumMine</name>
           <config>
@@ -469,39 +437,6 @@ Recycle Input
           <name>NullInst</name>
         </spec>
       </archetypes>
-
-      <commodity>
-          <name>u_ore</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-          <name>fresh_uox</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-          <name>tails</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-          <name>spent_uox</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-          <name>used_mox_fuel</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-          <name>fresh_mox</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-          <name>separated_fissile</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-          <name>separated_waste</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
 
         <facility>
           <name>UraniumMine</name>
@@ -848,39 +783,6 @@ DeployInst Input
           <name>NullInst</name>
         </spec>
       </archetypes>
-
-      <commodity>
-          <name>u_ore</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-          <name>fresh_uox</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-          <name>tails</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-          <name>spent_uox</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-          <name>used_mox_fuel</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-          <name>fresh_mox</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-          <name>separated_fissile</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-          <name>separated_waste</name>
-          <solution_priority>1.0</solution_priority>
-      </commodity>
 
         <facility>
           <name>UraniumMine</name>
