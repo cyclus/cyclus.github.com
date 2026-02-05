@@ -75,8 +75,7 @@ where:
 Activity: Add a New Institution 
 --------------------------------
 
-Using the table below and the DeployInst template above, fill out the commodities
-template.
+Using the table below and the template above, add the ``DeployInst`` block.
 
 +-----------------------------+-------------+-----------+
 | Prototype                   | build_times | n_build   |
