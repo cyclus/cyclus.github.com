@@ -16,39 +16,6 @@
     <spec> <lib>agents</lib><name>NullRegion</name> </spec>
     <spec> <lib>agents</lib><name>NullInst</name> </spec>
   </archetypes>
-
-  <commodity>
-    <name>u_ore</name>
-    <solution_priority>1.0</solution_priority>
-  </commodity>
-  <commodity>
-    <name>fresh_uox</name>
-    <solution_priority>1.0</solution_priority>
-  </commodity>
-  <commodity>
-    <name>tails</name>
-    <solution_priority>1.0</solution_priority>
-  </commodity>
-  <commodity>
-    <name>spent_uox</name>
-    <solution_priority>1.0</solution_priority>
-  </commodity>
-  <commodity>
-    <name>fresh_mox</name>
-    <solution_priority>1.0</solution_priority>
-  </commodity>
-  <commodity>
-    <name>used_mox</name>
-    <solution_priority>1.0</solution_priority>
-  </commodity>
-  <commodity>
-    <name>separated_fissile</name>
-    <solution_priority>1.0</solution_priority>
-  </commodity>
-  <commodity>
-    <name>separated_waste</name>
-    <solution_priority>1.0</solution_priority>
-  </commodity>
   
   <recipe>
     <name>nat_u</name>
