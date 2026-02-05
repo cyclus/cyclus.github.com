@@ -43,76 +43,8 @@ and provides two bids accordingly.
     :align: center
     :alt: Commodity trade flowchart
 
-Activity: Create fuel commodities (optional)
-+++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Let's build ``u_ore``, ``fresh_uox``, ``spent_uox``, and ``tails``,
-the four commodities available for trade in our simulation. Note that
-this part is **optional**, and is only needed if the user wants
-to specify the solution priority of each commodity.
-
-* ``u_ore`` : natural uranium that is mined
-* ``tails`` : waste from the enrichment process
-* ``fresh_uox``: fresh 4.0% enriched Uranium Oxide fuel that enters the reactor
-* ``spent_uox``: spent uranium oxide fuel that leaves the reactor after depletion
-
-When |Cyclus| needs
-to know the isotopic composition of a material, it looks at the recipe for that
-material given in the input file. Until now, ``recipe`` has been used to
-refer to fuel recipes, but the ``recipe`` section of the input file can
-describe any isotopic vector (e.g. natural uranium, spent fuel, fresh fuel, or any
-other material whose isotopic composition needs to be tracked.)
-
-The commodities section follows the ``archetype`` section
-and takes the form:
-
-.. code-block:: XML
-
-      <commodity>
-        <name>com1</name>
-        <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-        <name>com2</name>
-        <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-        <name>com3</name>
-        <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-        <name>com4</name>
-        <solution_priority>1.0</solution_priority>
-      </commodity>
-
-where:
-
-* name: name of the commodity
-* solution priority: number defining the relative priority for resolution in the dynamic
-  resource exchange.
-
- We will model four commodities: u_ore, fresh_uox, spent_uox, and tails.
-
-
-Activity: Building commodities
-++++++++++++++++++++++++++++++++++++++++++
-
-Using the table below and the commodities template above, fill out the commodities
-template.
-
-+-------------+-------------+---------------------+
-| Commodity   | Name        | Solution Priority   |
-+=============+=============+=====================+
-| com1        | u_ore       | 1.0                 |
-+-------------+-------------+---------------------+
-| com2        | fresh_uox   | 1.0                 |
-+-------------+-------------+---------------------+
-| com3        | spent_uox   | 1.0                 |
-+-------------+-------------+---------------------+
-| com4        | tails       | 1.0                 |
-+-------------+-------------+---------------------+
-
-Once complete, append the commodities section under the archetypes section [#f1]_.
+|Cyclus| does not require commodities to be defined explicitly in the input file. 
+Commodities are instead defined implicitly by facilities when they choose to trade.
 
 Understanding Recipes
 ---------------------
@@ -217,26 +149,9 @@ corresponding mass fraction of each nuclide. The ``fresh_uox`` is composed of 4%
 Check: Complete Commodity and Recipe blocks
 +++++++++++++++++++++++++++++++++++++++++++++++
 
-The commodity and recipe sections of you input file should now look like:
+The recipe section of you input file should now look like:
 
 .. code-block:: XML
-
-      <commodity>
-        <name>u_ore</name>
-        <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-        <name>fresh_uox</name>
-        <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-        <name>spent_uox</name>
-        <solution_priority>1.0</solution_priority>
-      </commodity>
-      <commodity>
-        <name>tails</name>
-        <solution_priority>1.0</solution_priority>
-      </commodity>
 
       <recipe>
         <name>nat_u</name>
