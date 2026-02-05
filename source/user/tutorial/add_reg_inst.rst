@@ -26,40 +26,24 @@ and institutions used in this tutorial come from the ``agents`` library, rather
 than the ``cycamore`` library. The ``agents`` library comes with Cyclus, and 
 you can run ``cyclus --a`` to check that the archetypes are installed. 
 
-Using the template on the `Understanding Archetypes <https://fuelcycle.org/user/tutorial/add_arche.html>`_,
-add entries to the Archetypes block for the variables listed in the table below.
+Since these are all archetypes, no matter what library they're from, we must include 
+them into the the Archetypes block that we already have.
+Using the template on the `Understanding Archetypes <https://fuelcycle.org/user/tutorial/add_arche.html>`_page,
+append two ``spec`` blocks into the Archetypes block for the variables listed in the table below.
 
-+-------------+------------------+----------------------------+
-| Variable    | Value            | Purpose                    |
-+=============+==================+============================+
-| ``lib5``    | ``agents``       | Library of the archetype   |
-+-------------+------------------+----------------------------+
-| ``arch5``   | ``NullRegion``   | Name of archetype          |
-+-------------+------------------+----------------------------+
-| ``lib6``    | ``agents``       | Library of the archetype   |
-+-------------+------------------+----------------------------+
-| ``arch6``   | ``NullInst``     | Name of archetype          |
-+-------------+------------------+----------------------------+
++-------------+-------------+------------------+
+| Archetype # | Variable    | Value            |
++=============+=============+==================+
+| 5           | ``lib``     | ``agents``       |
++             +-------------+------------------+
+|             | ``arch``    | ``NullRegion``   |
++-------------+-------------+------------------+
+| 6           | ``lib``     | ``agents``       |
++             +-------------+------------------+
+|             | ``arch``    | ``NullInst``     |
++-------------+-------------+------------------+
 
-Once complete, your ``agent`` section of the Archetypes block should be:
-
-.. code-block:: XML
-      <archetypes>
-        ...
-        ...
-        <spec>
-          <lib>agents</lib>
-          <name>NullRegion</name>
-        </spec>
-        <spec>
-          <lib>agents</lib>
-          <name>NullInst</name>
-        </spec>
-      </archetypes>
-
-Since these are all archetypes, no matter what library they're from, we must append 
-these two``spec`` blocks into the the archetype block that we already have. This 
-results in the full archetype block:
+This results in the full Archetypes block:
 
 .. code-block:: XML
 
