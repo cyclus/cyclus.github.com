@@ -146,7 +146,7 @@ names in cyclus and ``_`` should be used instead):
 The recipe name ``fresh_uox`` is specified, as are the isotope nuclide IDs and the 
 corresponding mass fraction of each nuclide. The ``fresh_uox`` is composed of 4% U-235 and 96% U-238.
 
-Check: Complete Commodity and Recipe blocks
+Check: Complete Recipe block
 +++++++++++++++++++++++++++++++++++++++++++++++
 
 The recipe section of you input file should now look like:
