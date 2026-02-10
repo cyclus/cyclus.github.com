@@ -54,27 +54,27 @@ Concept: Recipes
 
 Most commodities are materials, which have a quantity and an
 isotopic composition.
-Recipes are the isotopic composition of a certain material. For
-example, u_ore has an isotopic composition of 0.711% :math:`^{235}`\ U and
-99.284% :math:`^{238}`\ U. The recipe section of a |Cyclus| input file is
+Recipes are the isotopic composition of a certain material. 
+The recipe section of a |Cyclus| input file is
 typically located at the end of the input and is of the form:
 
 .. code-block:: XML
 
      <recipe>
-      <name>nat_u</name>
-      <basis>mass</basis>
+      <name>[string]</name>
+      <basis>[string]</basis>
       <nuclide>
-        <id>92235</id>
-        <comp>0.00711</comp>
+        <id>[int]</id>
+        <comp>[double]</comp>
       </nuclide>
       <nuclide>
-        <id>92238</id>
-        <comp>0.99289</comp>
+        <id>[int]</id>
+        <comp>[double]</comp>
       </nuclide>
+      ...
      </recipe>
 
-where ``id`` is the Nuc Id of the isotope in form ZZAAA and ``comp`` is the
+where basis can be ``mass`` or ``atom``, ``id`` is the Nuc Id of the isotope in form ZZAAA, and ``comp`` is the
 composition of that isotope in the recipe. Other isotope formats are
 also acceptable, such as those used by `pyne <http://pyne.io/theorymanual/nucname.html>`_. 
 For example, :math:`^{235}`\ U can be expressed as:
@@ -87,23 +87,19 @@ For example, :math:`^{235}`\ U can be expressed as:
 For more details, reference the `Recipe definition
 <../input_specs/recipe.html>`_ page.
 
-For this input file, we need to define three recipes: natural uranium, fresh fuel, 
-and spent fuel. We'll be using simple recipes: natural uranium is 0.711% 
-:math:`^{235}`\ U by mass, remainder :math:`^{238}`\ U, fresh fuel is 4.0% :math:`^{235}`\ U by mass,
-remainder U-238, and spent fuel is 1.1% :math:`^{235}`\ U, 94.0% :math:`^{238}`\ U, 0.9% :math:`^{239}`\ Pu, and
-4.0% :math:`^{137}`\ Cs.
-
 Activity: Creating a Recipe
 ++++++++++++++++++++++++++++
 
-
+For this input file, we need to define three recipes: natural uranium, fresh fuel, 
+and spent fuel. We'll be using simple mass basis recipes to define the isotopic 
+composition of these materials.
 Using the tables below, fill out three recipe
 templates for natural uranium, fresh fuel, and spent fuel.
 
 +---------------------+--------------------+--------------------+
 | Natural Uranium Composition                                   |
 +---------------------+--------------------+--------------------+
-| Nuclide             | Spent ids          |  Mass composition  |
+| Nuclide             | ``id``             |  ``comp``          |
 +=====================+====================+====================+
 | :math:`^{235}`\ U   | 92235              | 0.00711            |
 +---------------------+--------------------+--------------------+
@@ -113,7 +109,7 @@ templates for natural uranium, fresh fuel, and spent fuel.
 +---------------------+--------------------+--------------------+
 | Fresh Fuel Composition                                        |
 +---------------------+--------------------+--------------------+
-| Nuclide             | Spent ids          |  Mass composition  |
+| Nuclide             | ``id``             |  ``comp``          |
 +=====================+====================+====================+
 | :math:`^{235}`\ U   | 92235              | 0.04               |
 +---------------------+--------------------+--------------------+
@@ -123,7 +119,7 @@ templates for natural uranium, fresh fuel, and spent fuel.
 +---------------------+--------------------+--------------------+
 | Spent Fuel Composition                                        |
 +---------------------+--------------------+--------------------+
-| Nuclide             | Spent ids          |  Mass composition  |
+| Nuclide             | ``id``             |  ``comp``          |
 +=====================+====================+====================+
 | :math:`^{235}`\ U   | 92235              | 0.011              |
 +---------------------+--------------------+--------------------+
