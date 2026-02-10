@@ -146,19 +146,19 @@ fill in the template with the variables listed in the table below.
 +=============+=============+==================+
 | 1           | ``lib``     | ``cycamore``     |
 +             +-------------+------------------+
-|             | ``arch``    | ``Source``       |
+|             | ``name``    | ``Source``       |
 +-------------+-------------+------------------+
 | 2           | ``lib``     | ``cycamore``     |
 +             +-------------+------------------+
-|             | ``arch``    | ``Enrichment``   |
+|             | ``name``    | ``Enrichment``   |
 +-------------+-------------+------------------+
 | 3           | ``lib``     | ``cycamore``     |
 +             +-------------+------------------+
-|             | ``arch``    | ``Reactor``      |
+|             | ``name``    | ``Reactor``      |
 +-------------+-------------+------------------+
 | 4           | ``lib``     | ``cycamore``     |
 +             +-------------+------------------+
-|             | ``arch``    | ``Sink``         |
+|             | ``name``    | ``Sink``         |
 +-------------+-------------+------------------+
 
 The order of the archetypes in this block is of no consequence. Once complete, append the archetypes section under the control section of input file [#f1]_.

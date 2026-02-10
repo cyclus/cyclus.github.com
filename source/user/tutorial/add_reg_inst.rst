@@ -28,7 +28,7 @@ you can run ``cyclus --a`` to check that the archetypes are installed.
 
 Since these are all archetypes, no matter what library they're from, we must include 
 them into the the Archetypes block that we already have.
-Using the template on the `Understanding Archetypes <https://fuelcycle.org/user/tutorial/add_arche.html>`_ page,
+Using the template on the `Understanding Archetypes <https://fuelcycle.org/user/tutorial/add_arche.html>`_ codepage,
 append two ``spec`` blocks into the Archetypes block for the variables listed in the table below.
 
 +-------------+-------------+------------------+
@@ -36,11 +36,11 @@ append two ``spec`` blocks into the Archetypes block for the variables listed in
 +=============+=============+==================+
 | 5           | ``lib``     | ``agents``       |
 +             +-------------+------------------+
-|             | ``arch``    | ``NullRegion``   |
+|             | ``name``    | ``NullRegion``   |
 +-------------+-------------+------------------+
 | 6           | ``lib``     | ``agents``       |
 +             +-------------+------------------+
-|             | ``arch``    | ``NullInst``     |
+|             | ``name``    | ``NullInst``     |
 +-------------+-------------+------------------+
 
 This results in the full Archetypes block:
