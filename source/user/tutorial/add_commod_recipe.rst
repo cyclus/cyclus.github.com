@@ -44,7 +44,8 @@ and provides two bids accordingly.
     :alt: Commodity trade flowchart
 
 |Cyclus| does not require commodities to be defined explicitly in the input file. 
-Commodities are instead defined implicitly by facilities when they choose to trade.
+Commodities are instead defined implicitly by facilities when they choose to trade. 
+For more details, reference the `Commodity Priority </input_specs/commodity.html>`_ page.
 
 Understanding Recipes
 ---------------------
