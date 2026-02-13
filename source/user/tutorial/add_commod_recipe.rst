@@ -60,22 +60,22 @@ typically located at the end of the input and is of the form:
 
 .. code-block:: XML
 
-     <recipe>
+    <recipe>
       <name>[string]</name>
       <basis>[string]</basis>
       <nuclide>
-        <id>[int]</id>
+        <id>[int] OR [string]</id>
         <comp>[double]</comp>
       </nuclide>
       <nuclide>
-        <id>[int]</id>
+        <id>[int] OR [string]</id>
         <comp>[double]</comp>
       </nuclide>
       ...
-     </recipe>
+    </recipe>
 
 where basis can be ``mass`` or ``atom``, ``id`` is the Nuc Id of the isotope in form ZZAAA, and ``comp`` is the
-composition of that isotope in the recipe. Other isotope formats are
+composition of that isotope in the recipe. Other isotope formats for ``id`` are
 also acceptable, such as those used by `pyne <http://pyne.io/theorymanual/nucname.html>`_. 
 For example, :math:`^{235}`\ U can be expressed as:
 
