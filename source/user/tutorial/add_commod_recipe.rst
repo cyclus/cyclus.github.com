@@ -133,16 +133,6 @@ templates for natural uranium, fresh fuel, and spent fuel.
 
 Once complete, append these recipes under the archetypes section of your input file [#f1]_.
 
-
-Let's take a look at the ``fresh_uox`` fuel recipe (note that ``-`` is an illegal character for
-names in cyclus and ``_`` should be used instead):
-
-.. image:: fuel_com.png
-    :align: center
-    :alt: Fuel recipe for fresh_uox
-The recipe name ``fresh_uox`` is specified, as are the isotope nuclide IDs and the 
-corresponding mass fraction of each nuclide. The ``fresh_uox`` is composed of 4% U-235 and 96% U-238.
-
 Check: Complete Recipe block
 +++++++++++++++++++++++++++++++++++++++++++++++
 
