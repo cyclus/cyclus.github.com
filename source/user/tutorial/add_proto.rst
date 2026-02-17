@@ -90,7 +90,7 @@ This facility takes two inputs, ``name`` and ``outcommod``. Using the Source arc
 +=======================+===========================+
 | ``name``              | ``UraniumMine``           |
 +-----------------------+---------------------------+
-| ``out_commodity       | ``u_ore``                 |
+| ``out_commodity``       | ``u_ore``                 |
 +-----------------------+---------------------------+
 
 Once complete, append this facility under the archetypes section and before the recipe section of your input file [#f1]_.
