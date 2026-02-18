@@ -12,16 +12,6 @@ We will need two additional archetypes:
 1. Add the ``Cycamore::FuelFab`` archetype
 2. Add the ``Cycamore::Separations`` archetype
 
-Activity: Adding Commodities
------------------------------
-
-We will need 4 additional commodities:
-
-1. fresh_mox
-2. used_mox
-3. Separated_Fissile
-4. Separated_Waste
-
 Activity: Adding Recipes
 --------------------------
 

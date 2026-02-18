@@ -26,56 +26,24 @@ and institutions used in this tutorial come from the ``agents`` library, rather
 than the ``cycamore`` library. The ``agents`` library comes with Cyclus, and 
 you can run ``cyclus --a`` to check that the archetypes are installed. 
 
-Using the template and table below,
-properly fill the template with the variables listed in the table below.
-In the template, the dots represent the archetypes already defined in the 
-simulation.
+Since these are all archetypes, no matter what library they're from, we must include 
+them into the the Archetypes block that we already have.
+Using the template on the `Understanding Archetypes <https://fuelcycle.org/user/tutorial/add_arche.html>`_ codepage,
+append two ``spec`` blocks into the Archetypes block for the variables listed in the table below.
 
-+-------------+------------------+----------------------------+
-| Variable    | Value            | Purpose                    |
-+=============+==================+============================+
-| ``lib6``    | ``agents``       | Library of the archetype   |
-+-------------+------------------+----------------------------+
-| ``arch6``   | ``NullRegion``   | Name of archetype          |
-+-------------+------------------+----------------------------+
-| ``lib7``    | ``agents``       | Library of the archetype   |
-+-------------+------------------+----------------------------+
-| ``arch7``   | ``NullInst``     | Name of archetype          |
-+-------------+------------------+----------------------------+
++-------------+-------------+------------------+
+| Archetype # | Variable    | Value            |
++=============+=============+==================+
+| 5           | ``lib``     | ``agents``       |
++             +-------------+------------------+
+|             | ``name``    | ``NullRegion``   |
++-------------+-------------+------------------+
+| 6           | ``lib``     | ``agents``       |
++             +-------------+------------------+
+|             | ``name``    | ``NullInst``     |
++-------------+-------------+------------------+
 
-.. code-block:: XML
-      <archetypes>
-        ...
-        ...
-        <spec>
-          <lib>lib6</lib>
-          <name>arch6</name>
-        </spec>
-        <spec>
-          <lib>lib7</lib>
-          <name>arch7</name>
-        </spec>
-      </archetypes>
-
-Once complete, your ``agent`` section of the Archetypes block should be:
-
-.. code-block:: XML
-      <archetypes>
-        ...
-        ...
-        <spec>
-          <lib>agents</lib>
-          <name>NullRegion</name>
-        </spec>
-        <spec>
-          <lib>agents</lib>
-          <name>NullInst</name>
-        </spec>
-      </archetypes>
-
-Since these are all archetypes, no matter what library they're from, we must append 
-these two``spec`` blocks into the the archetype block that we already have. This 
-results in the full archetype block:
+This results in the full Archetypes block:
 
 .. code-block:: XML
 
@@ -266,41 +234,10 @@ Putting a region and institution blocks together, a complete region template is 
 Activity: Write the Region template
 -----------------------------------
 
-Using the template below, let's create the region section of our input file.
-
-.. code-block:: XML
-
-    <region>
-      <name>region_name</name>
-      <config>
-        <NullRegion/>
-      </config>
-      <institution>
-        <initialfacilitylist>
-          <entry>
-            <prototype>prototype1</prototype>
-            <number>amount1</number>
-          </entry>
-          <entry>
-            <prototype>prototype2</prototype>
-            <number>amount2</number>
-          </entry>
-          <entry>
-            <prototype>prototype3</prototype>
-            <number>amount3</number>
-          </entry>
-          </initialfacilitylist>
-        <name>institution_name</name>
-        <config>
-          <NullInst/>
-        </config>
-      </institution>
-    </region>
-
-Now the next part of the region template is the other facilities in the
+The next part of the region template is the other facilities in the
 region's fuel cycle. In our example, these facilities are
 ``UraniumMine``, ``EnrichmentPlant``, and ``NuclearRepository``. Using
-the above exercise and the table below, fill out the rest of the region
+the template above and the table below, fill out the rest of the region
 template.
 
 +-----------------------+-----------------------------+----------+
@@ -317,8 +254,12 @@ template.
 | ``region_name``       | ``USA``                     | N/A      |
 +-----------------------+-----------------------------+----------+
 
+Once complete, append this facility under the Sink prototype of your input file.
+
 Check: Complete Region block
 +++++++++++++++++++++++++++++++++++
+
+The region section of your input file should now look like:
 
 .. code-block:: XML
 
@@ -358,67 +299,16 @@ Save your input file as ``tutorial_oncethrough.xml``
 
 Activity: Add an extra institution into the Region
 -------------------------------------------------
-Having multiple institutions help organize facilities and their affiliation.
-In our ``USA`` region, let's add a second institution called ``ReactorUtility``.
-``ReactorUtility`` is the institution that holds the ``1178MWe ReactorPlant Unit 1`` prototype and ``United 
-States Nuclear`` holds the ``UraniumMine``, ``EnrichmentPlant``, and ``NuclearRepository``
-prototypes. Using the region and institution templates, let's 
-add the second institution to the region. 
+Having multiple institutions can help organize facilities and their affiliation.
+In our ``USA`` region, we have the ``United States Nuclear`` institution that 
+holds the ``UraniumMine``, ``EnrichmentPlant``, and ``NuclearRepository``
+prototypes. Now let's add another institution. 
 
-1. Let's build the ``ReactorUtility`` institution. This institution has one ``1178MWe ReactorPlant Unit 1`` prototype. Using this information we can write this institution as:
+Our second institution will be called ``ReactorUtility``. This institution has one ``1178MWe ReactorPlant Unit 1`` prototype. 
+Using this information we can add a second institution block into our ``USA`` 
+region block after the ``United States Nuclear`` institution. 
 
-.. code-block:: XML
-
-    <institution>
-      <initialfacilitylist>
-        <entry>
-          <prototype>1178MWe ReactorPlant Unit 1</prototype>
-          <number>1</number>
-        </entry>
-      </initialfacilitylist>
-      <name>ReactorUtility</name>
-      <config>
-        <NullInst/>
-      </config>
-    </institution>
-
-1. We have our ``USA`` region block with the ``United States Nuclear`` institution. This institution has one ``UraniumMine`` prototype, ``EnrichmentPlant`` prototype, and one ``NuclearRepository`` prototype:
-
-.. code-block:: XML
-
-  <region>
-    <name>USA</name>
-    <config>
-      <NullRegion/>
-    </config>
-    <institution>
-      <initialfacilitylist>
-        <entry>
-          <prototype>UraniumMine</prototype>
-          <number>1</number>
-        </entry>
-        <entry>
-          <prototype>EnrichmentPlant</prototype>
-          <number>1</number>
-        </entry>
-        <entry>
-          <prototype>NuclearRepository</prototype>
-          <number>1</number>
-        </entry>
-      </initialfacilitylist>
-      <name>United States Nuclear</name>
-      <config>
-        <NullInst/>
-      </config>
-    </institution>
-
-
-
-
-  </region>
-
-3. We will add the ``ReactorUtility`` institution into the blank lines of our ``USA`` region 
-   block. Once complete, your region prototype should look like:
+Once complete, your region prototype should look like:
 
 .. code-block:: XML
 

@@ -36,29 +36,27 @@ We will now use this to add the institution for ``DeployInst``.
 ``DeployInst`` takes the form:
 
 .. code-block:: XML
+
     <institution>
       <name>ExampleInstitution</name>
       <config>
         <DeployInst>
           <prototypes>
-            <val>prototype_name1</val>
-            <val>prototype_name2</val>
-            <val>prototype_name3</val>
-            <val>prototype_name4</val>
+            <val>[string]</val>
+            <val>[string]</val>
+            ...
           </prototypes>
 
           <build_times>
-            <val>time1</val>
-            <val>time2</val>
-            <val>time3</val>
-            <val>time4</val>
+            <val>[int]</val>
+            <val>[int]</val>
+            ...
           </build_times>
 
           <n_build>
-            <val>n_build1</val>
-            <val>n_build2</val>
-            <val>n_build3</val>
-            <val>n_build4</val>
+            <val>[int]</val>
+            <val>[int]</val>
+            ...
           </n_build>
         </DeployInst>
       </config>
@@ -74,20 +72,19 @@ where:
 Activity: Add a New Institution 
 --------------------------------
 
-Using the table below and the DeployInst template above, fill out the commodities
-template.
+Using the table below and the template above, add the ``DeployInst`` block.
 
-+-----------------------+-------------+-----------+
-| Prototype             | build_times | n_build   |
-+=======================+=============+===========+
-| UraniumMine           | 1           | 1         |
-+-----------------------+-------------+-----------+
-| FuelFab               | 1           | 1         |
-+-----------------------+-------------+-----------+
-| 1178MWe ReactorPlant Unit 1   | 2           | 1         |
-+-----------------------+-------------+-----------+
-| 1000MWe Lightwater_1  | 3           | 1         |
-+-----------------------+-------------+-----------+
++-----------------------------+-------------+-----------+
+| Prototype                   | build_times | n_build   |
++=============================+=============+===========+
+| UraniumMine                 | 1           | 1         |
++-----------------------------+-------------+-----------+
+| FuelFab                     | 1           | 1         |
++-----------------------------+-------------+-----------+
+| 1178MWe ReactorPlant Unit 1 | 2           | 1         |
++-----------------------------+-------------+-----------+
+| 1000MWe Lightwater_1        | 3           | 1         |
++-----------------------------+-------------+-----------+
 
 Using the prototype facilities already created, the new institution should
 look like the following:

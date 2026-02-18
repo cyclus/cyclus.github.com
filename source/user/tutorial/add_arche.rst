@@ -124,12 +124,12 @@ The ``archetype`` block is located after the simulation control block and takes 
 
     <archetypes>
         <spec>
-          <lib>lib1</lib>
-          <name>arch_1</name>
+          <lib>[string]</lib>
+          <name>[string]</name>
         </spec>
         <spec>
-          <lib>lib2</lib>
-          <name>arch_2</name>
+          <lib>[string]</lib>
+          <name>[string]</name>
         </spec>
         ...
     </archetypes>
@@ -138,78 +138,56 @@ where ``lib`` is the library in which the archetype came from and ``name`` is
 the archetype name. You need one `spec` block in the archetypes section 
 for each archetype you use in your simulation. 
 Let's build the archetypes block in our input file. 
-Using the template below and the table below,
+Using the template above and the table below,
 fill in the template with the variables listed in the table below.
 
-+-------------+------------------+----------------------------+
-| Variable    | Value            | Purpose                    |
-+=============+==================+============================+
-| ``lib1``    | ``cycamore``     | Library of the archetype   |
-+-------------+------------------+----------------------------+
-| ``arch1``   | ``Enrichment``   | Name of archetype          |
-+-------------+------------------+----------------------------+
-| ``lib2``    | ``cycamore``     | Library of the archetype   |
-+-------------+------------------+----------------------------+
-| ``arch2``   | ``Reactor``      | Name of archetype          |
-+-------------+------------------+----------------------------+
-| ``lib3``    | ``cycamore``     | Library of the archetype   |
-+-------------+------------------+----------------------------+
-| ``arch3``   | ``Source``       | Name of archetype          |
-+-------------+------------------+----------------------------+
-| ``lib4``    | ``cycamore``     | Library of the archetype   |
-+-------------+------------------+----------------------------+
-| ``arch4``   | ``Sink``         | Name of archetype          |
-+-------------+------------------+----------------------------+
++-------------+-------------+------------------+
+| Archetype # | Variable    | Value            |
++=============+=============+==================+
+| 1           | ``lib``     | ``cycamore``     |
++             +-------------+------------------+
+|             | ``name``    | ``Source``       |
++-------------+-------------+------------------+
+| 2           | ``lib``     | ``cycamore``     |
++             +-------------+------------------+
+|             | ``name``    | ``Enrichment``   |
++-------------+-------------+------------------+
+| 3           | ``lib``     | ``cycamore``     |
++             +-------------+------------------+
+|             | ``name``    | ``Reactor``      |
++-------------+-------------+------------------+
+| 4           | ``lib``     | ``cycamore``     |
++             +-------------+------------------+
+|             | ``name``    | ``Sink``         |
++-------------+-------------+------------------+
 
+The order of the archetypes in this block is of no consequence. Once complete, append the archetypes section under the control section of input file [#f1]_.
 
-Archetype Block Template
-------------------------
-.. code-block:: XML
+Check: Complete Archetypes block
++++++++++++++++++++++++++++++++++++++++
 
-      <archetypes>
-        <spec>
-          <lib>lib1</lib>
-          <name>arch1</name>
-        </spec>
-        <spec>
-          <lib>lib2</lib>
-          <name>arch2</name>
-        </spec>
-        <spec>
-          <lib>lib3</lib>
-          <name>arch3</name>
-        </spec>
-        <spec>
-          <lib>lib4</lib>
-          <name>arch4</name>
-        </spec>
-      </archetypes>
-
-
-Once complete, your ``archetypes`` block should look like:
+The archetypes section of your input file should now look like:
 
 .. code-block:: XML
 
     <archetypes>
-      <spec>
-        <lib>cycamore</lib>
-        <name>Enrichment</name>
-      </spec>
-      <spec>
-        <lib>cycamore</lib>
-        <name>Reactor</name>
-      </spec>
-      <spec>
-        <lib>cycamore</lib>
-        <name>Source</name>
-      </spec>
-      <spec>
-        <lib>cycamore</lib>
-        <name>Sink</name>
-      </spec>
+        <spec>
+          <lib>cycamore</lib>
+          <name>Enrichment</name>
+        </spec>
+        <spec>
+          <lib>cycamore</lib>
+          <name>Reactor</name>
+        </spec>
+        <spec>
+          <lib>cycamore</lib>
+          <name>Source</name>
+        </spec>
+        <spec>
+          <lib>cycamore</lib>
+          <name>Sink</name>
+        </spec>
     </archetypes>
-
-The order of the archetypes in this block is of no consequence. Once complete, append the archetypes section under the control section of input file [#f1]_.
 
 .. rubric:: Footnotes
 

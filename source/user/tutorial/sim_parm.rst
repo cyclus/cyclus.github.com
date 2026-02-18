@@ -102,28 +102,15 @@ with the variables listed in the table below in your favorite text editor.
 | ``decay``         | ``never``     | radioactive decay               |
 +-------------------+---------------+---------------------------------+
 
-Using this table, let's set the simulation parameters.
+**Note**: There are two blank lines between the end of the control section and 
+end of the simulation section. This section of the simulation block will hold 
+the rest of the simulation parameter blocks (commodities, facilities, regions, 
+institutions, and recipe blocks).
 
-1. To tell |Cyclus| that this is the simulation section of the input file, 
-first add a ``simulation`` block:
+Check: Complete Control block
++++++++++++++++++++++++++++++++
 
-.. code-block:: XML
-
-    <simulation>
-    </simulation>
-
-2. Place the ``control`` header in as such
-
-.. code-block:: XML
-
-  <simulation>
-    <control>
-    </control>
-  </simulation>
-
-Adding spaces to indent the ``control`` header improves ease of reading. 
-
-3. After filling in the parameters listed in the table above, close the control and simulation sections as:
+The control section of your input file should now look like:
 
 .. code-block:: XML
 
@@ -137,8 +124,3 @@ Adding spaces to indent the ``control`` header improves ease of reading.
 
 
     </simulation>
-
-**Note**: There are two blank lines between the end of the control section and 
-end of the simulation section. This section of the simulation block will hold 
-the rest of the simulation parameter blocks (commodities, facilities, regions, 
-institutions, and recipe blocks).
