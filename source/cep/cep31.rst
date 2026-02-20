@@ -3,12 +3,12 @@ CEP 31 - Agent Registered Discrete Event Timing
 
 :CEP: 31
 :Title: Agent Registered Discrete Event Timing 
-:Last-Modified: 2026-02-19
+:Last-Modified: 2026-02-20
 :Author: Meghan Krieg <kriegm@oregonstate.edu>
 :BDFP: Madicken Munk/Paul Wilson
 :Status: Draft
 :Type: Standards Track
-:Created: 2026-02-20
+:Created: 2026-02-19
 :Cyclus-Version: 1.6.0
 
 Background
@@ -46,12 +46,13 @@ where no actions are registered. For example, an agent may schedule a build-even
 Then, the timeline for a 10 month simulation will proceed as follows 
 
 .. class:: center
-START 3 (build) -- 5 (trade) -- 7 (decom) END
+
+   **START 3 (build) -- 5 (trade) -- 7 (decom) END**
 
 as opposed to the current implementation 
 
 .. class:: center
-START 0 -- 1 -- 2 -- 3 (build) -- 4 -- 5 (trade) -- 6 -- 7 (decom) -- 8 -- 9 -- 10 END
+  **START 0 -- 1 -- 2 -- 3 (build) -- 4 -- 5 (trade) -- 6 -- 7 (decom) -- 8 -- 9 -- 10 END**
 
 In cyclus, discrete even timing can be implemented by allowing agents to internally check their inventory
 and status to register themselves for DRE participation, Build, or Decomission events. In instances
@@ -114,7 +115,7 @@ facility agents' ``EventRequest()`` functions are checked regularly, A look-ahea
     DoDecom();
     DoLookAhead();
 
-The cardinal phase suite will maintain its current ordering for the reasons described in ---. Each of the 6 phases will be checked during each event (as opposed to each time step) but the phase will 
+The cardinal phase suite will maintain its current ordering for the reasons described in CEP 20. Each of the 6 phases will be checked during each event (as opposed to each time step) but the phase will 
 only be triggered and completed if it has participants registered. Only the newly introduced ``DoLookAhead()`` that checks each agents ``EventRequest()`` will be executed for all agents each event. 
 
 The simulation will be terminated fully when ``DoLookAhead()`` registers no new events and the simulation has completed the last event registered.
