@@ -43,12 +43,13 @@ within the simulation duration. The simulation progresses from scheduled event t
 where no actions are registered. For example, an agent may schedule a build-event at timestamp 5, a trade event at timestamp 7, and a decomission event at timestamp 10.
 Then, the timeline for a 10 month simulation will proceed as follows 
 
-
-START 3 (build) -- 5 (trade) -- 7 (decom) END
+centered:: 
+  START 3 (build) -- 5 (trade) -- 7 (decom) END
 
 as opposed to the current implementation 
 
-START 0 -- 1 -- 2 -- 3 (build) -- 4 -- 5 (trade) -- 6 -- 7 (decom) -- 8 -- 9 -- 10 END
+centered:: 
+  START 0 -- 1 -- 2 -- 3 (build) -- 4 -- 5 (trade) -- 6 -- 7 (decom) -- 8 -- 9 -- 10 END
 
 In |cyclus|, discrete even timing can be implemented by allowing agents to internally check their inventory
 and status to register themselves for DRE participation, Build, or Decomission events. In instances
@@ -63,7 +64,7 @@ Conceptualization
 Based on the current structure set up by the kernal and agent steps in the phase suit, the following
 discrete event implementation is suggested...
 
-Events in the simulation's internal clock can be requested by agents using their own `EventRequest()` function. 
+Events in the simulation's internal clock can be requested by agents using their own ``EventRequest()`` function. 
 Events may only be registered when agents wish to complete the follwing actions: 
 
 - Build
@@ -91,16 +92,16 @@ for all available agents as well. These internal Tick/Tock/Decision updates are 
 filtering options that consider deregistering an agent's Tocks/Decisions when they make no material bids. 
 
 Implementation
-+++++++++++++++++++++++
+===============================
 
 Material requests, Build, and Decomissioin event registration will be handled by individual agents. |Cyclus| already creates a preconditioned timeline 
-for discrete-build and decomission events. An additional `EventRequest()` member funcition for all |cycamore| archetypes will check a facility's inventory.  
+for discrete-build and decomission events. An additional ``EventRequest()`` member funcition for all |cycamore| archetypes will check a facility's inventory.  
 
 1. If inventory not at capacity, agent will register for the (+1) next immediate time step to attempt another request.
-2. If inventory at capacity, agent will register its next request event for a fixed `+ cycle_length` time in from the current event. 
+2. If inventory at capacity, agent will register its next request event for a fixed ``+ cycle_length`` time from the current event. 
 
 These material request events will be registered within Context in a dynamic dictionary that contains the event's timestamp and a list of ``Trader`` objects. To ensure that all
-facility agents' `EventRequest()` functions are checked regularly, A look-ahead function will be added to |cyclus's| cardinal phase suite after the decomissioning phase. 
+facility agents' ``EventRequest()`` functions are checked regularly, A look-ahead function will be added to |cyclus's| cardinal phase suite after the decomissioning phase. 
 
 .. code-block:: c++
     DoBuild();
@@ -112,9 +113,9 @@ facility agents' `EventRequest()` functions are checked regularly, A look-ahead 
     DoLookAhead();
 
 The cardinal phase suite will maintain its current ordering for the reasons described in ---. Each of the 6 phases will be checked during each event (as opposed to each time step) but the phase will 
-only be triggered and completed if it has participants registered. Only the newly introduced `DoLookAhead()` that checks each agents `EventRequest()` will be executed for all agents each event. 
+only be triggered and completed if it has participants registered. Only the newly introduced ``DoLookAhead()`` that checks each agents ``EventRequest()`` will be executed for all agents each event. 
 
-The simulation will be terminated fully when `DoLookAhead()` registers no new events and the simulation has completed the last event registered.
+The simulation will be terminated fully when ``DoLookAhead()`` registers no new events and the simulation has completed the last event registered.
 
 Backwards Compatibility
 ========================
