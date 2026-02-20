@@ -43,12 +43,12 @@ within the simulation duration. The simulation progresses from scheduled event t
 where no actions are registered. For example, an agent may schedule a build-event at timestamp 5, a trade event at timestamp 7, and a decomission event at timestamp 10.
 Then, the timeline for a 10 month simulation will proceed as follows 
 
-centered:: 
+.. centered:: 
   START 3 (build) -- 5 (trade) -- 7 (decom) END
 
 as opposed to the current implementation 
 
-centered:: 
+.. centered:: 
   START 0 -- 1 -- 2 -- 3 (build) -- 4 -- 5 (trade) -- 6 -- 7 (decom) -- 8 -- 9 -- 10 END
 
 In |cyclus|, discrete even timing can be implemented by allowing agents to internally check their inventory
