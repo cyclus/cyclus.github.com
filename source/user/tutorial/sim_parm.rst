@@ -12,7 +12,7 @@ cycle.  For the purpose of this tutorial, the scenario will include:
 * LWR reactor consuming fresh fuel and producing used fuel
 * repository to house all spent fuel and waste
 
-More details about each of these facilities will discussed when we are
+More details about each of these facilities will be discussed when we are
 required to provide that input.
 
 Concept: Simulation Time Steps
@@ -25,16 +25,16 @@ how to build an XML input.
 
 The XML |Cyclus| input file begins with the ``<simulation>`` tag and ends with the 
 ``</simulation>`` tag. Within this space, the ``<control>`` block is the first
-section of the CYCLUS input file and is of the form:
+section of the |Cyclus| input file and is of the form:
 
 .. code-block:: XML
 
     <simulation>
       <control>
-        <duration>duration_val</duration>
-        <startmonth>start_month_val</startmonth>
-        <startyear>start_year_val</startyear>
-        <decay>decay_val</decay>
+        <duration>[int]</duration>
+        <startmonth>[int]</startmonth>
+        <startyear>[int]</startyear>
+        <decay>[string]</decay>
       </control>
 
 
@@ -51,16 +51,16 @@ Each of the elements shown are user-defined and required for each
 
 4. Start year: the first year of the simulation
 
-5. Decay mode:The |Cyclus| kernel has built-in experimental support for 
+5. Decay mode: The |Cyclus| kernel has built-in experimental support for 
 `Decay <http://fuelcycle.org/devdoc/decay.html>`_ calculations. Materials 
-store the time since their last decay and agents are free to invoke the 
+store the time since their last decay, and agents are free to invoke the 
 decay function on them as desired to decay them to the current simulation 
 time. |Cyclus| can operate in 3 decay modes, with 1 additional mode 
 likely to be added in a future release:
 
-   - 'never', all decay is turned off
-   - 'manual', meaning it is only on if the individual archetype decays their own inventory
-   - 'lazy', which will compute decay only when archetypes fetch a particular composition.
+   - ``never``, all decay is turned off
+   - ``manual``, meaning it is only on if the individual archetype decays their own inventory
+   - ``lazy``, which will compute decay only when archetypes fetch a particular composition.
 
 There are other `optional parameters <http://fuelcycle.org/user/input_specs/control.html>`_ 
 that could be given but are not in the scope of this tutorial. For simplicity, 
@@ -87,7 +87,7 @@ decay of materials.
 
 Activity: Set Simulation Parameters
 -----------------------------------
-Using the simulation control template above and the table below, let's fill in the template 
+Using the simulation control template above, let's fill in the template 
 with the variables listed in the table below in your favorite text editor.
 
 +-------------------+---------------+---------------------------------+
@@ -108,7 +108,7 @@ the rest of the simulation parameter blocks (commodities, facilities, regions,
 institutions, and recipe blocks).
 
 Check: Complete Control block
-+++++++++++++++++++++++++++++++
+------------------------------
 
 The control section of your input file should now look like:
 

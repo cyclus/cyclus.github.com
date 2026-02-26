@@ -118,7 +118,7 @@ The archetypes we will use in our simulation include:
 -  ``cycamore Sink``: to act as the geological repository. 
 
 A user identifies the simulation ``archetypes`` in the archetype block of the |Cyclus| input file. 
-The ``archetype`` block is located after the simulation control block and takes the form:
+The ``archetype`` block is located after the simulation ``control`` block and takes the form:
 
 .. code-block:: XML
 
@@ -164,7 +164,7 @@ fill in the template with the variables listed in the table below.
 The order of the archetypes in this block is of no consequence. Once complete, append the archetypes section under the control section of input file [#f1]_.
 
 Check: Complete Archetypes block
-+++++++++++++++++++++++++++++++++++++++
+=================================
 
 The archetypes section of your input file should now look like:
 

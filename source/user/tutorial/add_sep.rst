@@ -44,15 +44,15 @@ The following is the input template for ``Cycamore::Separations`` archetype:
 
 
 * Our feed commodity list should include both:
-   * Used-UOX-Fuel
-   * Used-MOX-Fuel
+   * Used UOX Fuel: ``used_uox``
+   * Used MOX Fuel: ``used_mox``
 * The maximum feed inventory is the most feed material that we'll have on
   hand: 1000 tonnes.
 * The maximum separations throughout is the size of our plant: 80 tonnes/timestep
-* This simple scenario will have a single output stream: Separated_Fissile
-    * we will hold no more than 5 tonnes of separated material on hand at any time
+* This simple scenario will have a single output stream: ``Separated_Fissile``
+    * We will hold no more than 5 tonnes of separated material on hand at any time
     * 99% of all Pu (94000) will go into that stream
-* all other material will go to Separated_Waste
+* all other material will go to ``Separated_Waste``
 
 Filling in the template, the input block looks like:
 
