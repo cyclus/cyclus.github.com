@@ -365,7 +365,7 @@ create the NuclearRepository prototype.
 +-------------------------+---------------------------+
 | ``in_commods``          | ``spent_uox``             |
 +-------------------------+---------------------------+
-| ``inp_commods``         | ``tails``                 |
+| ``in_commods``         | ``tails``                 |
 +-------------------------+---------------------------+
 
 Once complete, append this facility under the Reactor prototype of your input file [#f1]_.
