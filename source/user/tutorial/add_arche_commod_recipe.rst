@@ -15,7 +15,7 @@ We will need two additional archetypes:
 Activity: Adding Recipes
 --------------------------
 
-We'll continue with very approximate recipes by adding a single recipe for Used-MOX-Fuel:
+We'll continue with very approximate recipes by adding a single recipe for ``used_mox`` with a mass ``basis``:
 
 +------------+-----------------+
 |  U-235     |   0.002         |

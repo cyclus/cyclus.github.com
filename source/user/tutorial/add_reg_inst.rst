@@ -27,9 +27,9 @@ than the ``cycamore`` library. The ``agents`` library comes with Cyclus, and
 you can run ``cyclus --a`` to check that the archetypes are installed. 
 
 Since these are all archetypes, no matter what library they're from, we must include 
-them into the the Archetypes block that we already have.
+them into the the ``archetypes`` block that we already have.
 Using the template on the `Understanding Archetypes <https://fuelcycle.org/user/tutorial/add_arche.html>`_ codepage,
-append two ``spec`` blocks into the Archetypes block for the variables listed in the table below.
+append two ``spec`` blocks into the ``archetypes`` block for the variables listed in the table below.
 
 +-------------+-------------+------------------+
 | Archetype # | Variable    | Value            |
@@ -79,9 +79,9 @@ Concept: Regions
 ----------------
 
 Regions tie together a fuel cycle as they designate what institutions and facilities are
-in the region's fuel cycle. Regions may apply preferences to each
+under a region's management. Regions may apply preferences to each
 potential request-bid pairing based on the proposed resource transfer.
-The basic structure of a region block is:
+The basic structure of a ``region`` block is:
 
 .. code-block:: XML
 
@@ -129,7 +129,7 @@ Concept: Institutions
 -----------------------------------------------------------------------
 In |Cyclus| input files, each institution controls the deployment of 
 the prototypes in the simulation, among other things. An institution block can only
-appear within a region block. Each institution block has the following
+appear within a ``region`` block. Each institution block has the following
 sections in any order:
 
 -  ``name`` (required, once) - a name for the prototype

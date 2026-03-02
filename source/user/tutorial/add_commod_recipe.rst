@@ -9,7 +9,7 @@ called the `dynamic resource exchange (DRE) <https://fuelcycle.org/arche/dre.htm
 The concept of a **commodity** is
 used to simply indicate which facilities may be interested in trading with
 each other through the DRE. A commodity is therefore nothing more than a
-unique name that is used to define a set of producers and consumers of a
+unique name that is used to define a set of suppliers and consumers of a
 common resource.  A commodity does not necessarily have a specific
 composition; this will be determined by the agents during the simulation.
 Suppliers then respond to the series of requests with a **bid**. A bid
@@ -94,8 +94,9 @@ Activity: Creating a Recipe
 For this input file, we need to define three recipes: natural uranium, fresh fuel, 
 and spent fuel. We'll be using simple mass basis recipes to define the isotopic 
 composition of these materials.
-Using the tables below, fill out three recipe
-templates for natural uranium, fresh fuel, and spent fuel.
+Using the template above and the tables below, fill out three recipe
+templates for natural uranium , fresh fuel, and spent fuel with ``name`` for each being 
+``nat_u``, ``fresh_uox``, and ``spent_uox``. 
 
 +---------------------+--------------------+--------------------+
 | Natural Uranium Composition                                   |

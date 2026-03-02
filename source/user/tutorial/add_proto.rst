@@ -21,7 +21,7 @@ include:
 
 * input/output commodity name: Name of the `commodity <https://fuelcycle.org/basics/glossary.html#term-commodity>`_ that the prototype will request (input) or trade away (output).
 * input/output recipe name: Name of the **recipe** or isotopic composition for the input or output commodity. Recipe names used in defining a prototype must be defined in a `recipe block <https://fuelcycle.org/user/tutorial/add_commod_recipe.html#understanding-recipes>`_ of the input file. 
-* throughput: The rate at which the process of a facility occurs. Common units are kg/time step, although you should check the archetypes documentation
+* throughput: The rate at which the process of a facility occurs. Common units are kg/time step, although you should check the archetypes documentation for archetype-specific units. 
 * buffer size: The size (typically in kg) of an inventory within a prototype. A prototype may have multiple buffers, such as a reactor having an inventory for fresh fuel and one for fuel in the core. 
 
 Example: Source Prototype
@@ -29,7 +29,7 @@ Example: Source Prototype
 The Source facility acts as a source of material with a fixed throughput (per 
 time step) capacity and a lifetime capacity defined by a total inventory size. 
 It offers its material as a single commodity. If a composition recipe is 
-specified, it provides that single material composition to requesters. If 
+specified, it provides that exact recipe composition to requesters. If 
 unspecified, the source provides materials with the exact requested compositions. 
 The inventory size and throughput both default to infinite. Supplying material 
 from an instance of a Source prototype that is deployed in a simulation
@@ -83,14 +83,14 @@ Optional parameters:
 Activity: Configure the Source prototype
 ++++++++++++++++++++++++++++++++++++++++
 Our source, ``UraniumMine``, will provide the natural uranium ore for our enrichment facility.
-This facility takes two inputs, ``name`` and ``outcommod``. Using the Source archetype template above and the table below, create the UraniumMine prototype.
+This facility takes two inputs, ``name`` and ``outcommod``. Using the Source archetype template above and the table below, create the Source facility prototype.
 
 +-----------------------+---------------------------+
 | Variable              | Value                     |
 +=======================+===========================+
 | ``name``              | ``UraniumMine``           |
 +-----------------------+---------------------------+
-| ``out_commodity``       | ``u_ore``                 |
+| ``outcommod``         | ``u_ore``                 |
 +-----------------------+---------------------------+
 
 Once complete, append this facility under the archetypes section and before the recipe section of your input file [#f1]_.
@@ -113,6 +113,7 @@ The Enrichment archetype is of the form:
             <feed_recipe>[string]</feed_recipe>
             <product_commod>[string]</product_commod>
             <tails_commod>[string]</tails_commod>
+            <max_feed_inventory>[double]</max_feed_inventory>
           </Enrichment>
         </config>
       </facility>
@@ -163,9 +164,9 @@ Optional parameters:
 
 Activity: Creating the Enrichment Prototype
 +++++++++++++++++++++++++++++++++++++++++++
-The enrichment facility, ``EnrichmentPlant`` will intake the natural ``u_ore`` 
+The Enrichment facility, ``EnrichmentPlant`` will intake the natural ``u_ore`` 
 from ``UraniumMine`` and create ``fresh_uox`` and ``tails`` as its products. 
-Using the Enrichment archetype template above and the table below, generate the input enrichment facility prototype.
+Using the Enrichment archetype template above and the table below, generate the Enrichment facility prototype.
 
 +-------------------------+---------------------------+
 | Variable                | Value                     |
@@ -189,8 +190,8 @@ Once complete, append this facility under the Source prototype of your input fil
 Example: Reactor Prototype
 ++++++++++++++++++++++++++
 The Reactor is a simple, general reactor based on static compositional transformations to model fuel burnup. 
-The user specifies a set of fresh fuel compositions the Reactor accepts and corresponding spent fuel 
-compositions the reactor discharges from the core. No incremental transmutation takes place. Rather, 
+The user specifies a set of fresh fuel compositions the Reactor accepts and a set of corresponding spent fuel 
+compositions the Reactor discharges from the core. No incremental transmutation takes place at each time step. Rather, 
 at the end of an operational cycle, the batch being discharged from the core is instantaneously transmuted 
 from its original fresh fuel composition into its spent fuel form.
 
@@ -200,16 +201,16 @@ when requesting. Changes in these preferences can be specified as a function of 
 variables. Changes in the input-output recipe compositions can also be specified as a function of time using 
 the ``recipe_change`` variables.
 
-The reactor treats fuel as individual assemblies. Fuel is requested in assembly-sized quanta. If real-world
+The Reactor treats fuel as individual assemblies. Fuel is requested in assembly-sized quanta. If real-world
 assembly modeling is unnecessary, parameters can be adjusted (e.g. ``n_assem_core``, ``assem_size``, 
 ``n_assem_batch``). At the end of every cycle, a full batch is discharged from the core consisting of
-``n_assem_batch`` assemblies of ``assem_size`` kg. The reactor also has a specifiable refueling time 
+``n_assem_batch`` assemblies of ``assem_size`` kg. The Reactor also has a specifiable refueling time 
 period following the end of each cycle at the end of which it will resume operation on the next cycle if it 
 has enough fuel for a full core; otherwise it waits until it has enough fresh fuel assemblies.
 When the reactor reaches the end of its lifetime, it will discharge all material from its core and trade away all its 
-spent fuel as quickly as possible. Full decommissioning will be delayed until all spent fuel is gone. If the reactor 
-has a full core when it is decommissioned (i.e. is mid-cycle) when the reactor is decommissioned, half (rounded 
-up to nearest int) of its assemblies are transmuted to their respective burnt compositions.
+spent fuel as quickly as possible. Full decommissioning will be delayed until all spent fuel is gone. If the Reactor 
+has a full core when it is decommissioned (i.e. is mid-cycle), half (rounded 
+up to nearest int) of its assemblies are transmuted to their respective spent compositions.
 The Reactor archetype is of the form:
 
 .. code-block:: XML
@@ -243,12 +244,12 @@ The Reactor archetype is of the form:
 Where:
 
 * ``fuel_incommods``: input fuel commodity -- you can list more than one by adding more ``val`` blocks
-* ``fuel_inrecipes``" input fuel recipe -- you can list more than one
+* ``fuel_inrecipes``: input fuel recipe -- you can list more than one
 * ``fuel_outcommods``: output fuel commodity -- you can list more than one
 * ``fuel_outrecipes``: output fuel recipe -- you can list more than one
 * ``cycle_time``: amount of time the reactor operates between refueling outages
 * ``refuel_time``: duration of refueling outage
-* ``assem_size``" size of a single assembly
+* ``assem_size``: size of a single assembly
 * ``n_assem_core`` : number of assemblies in the core
 * ``n_assem_batch``: number of batches replaced per refueling.
 * ``power_cap``: amount of electricity the reactor generates.
@@ -261,45 +262,45 @@ Activity: Creating the Reactor Prototype
 
 Now let's model the reactor this fuel will go through! In this simple example, 
 let's model a single PWR in the United States. It has a power capacity of 1178 
-MWe. Using the Reactor archetype template above and the table below, create the Reactor prototype.
+MWe. Using the Reactor archetype template above and the table below, create the Reactor facility prototype.
 
 +-----------------------+-----------------------------------+
 | Variable              | Value                             |
 +=======================+===================================+
 | ``name``              | ``1178MWe ReactorPlant Unit 1``   |
 +-----------------------+-----------------------------------+
-| ``in_commod1``        | ``fresh_uox``                     |
+| ``fuel_incommods``    | ``fresh_uox``                     |
 +-----------------------+-----------------------------------+
-| ``in_recipe1``        | ``fresh_uox``                     | 
+| ``fuel_inrecipes``    | ``fresh_uox``                     | 
 +-----------------------+-----------------------------------+
-| ``out_commod1``       | ``spent_uox``                     |
+| ``fuel_outcommods``   | ``spent_uox``                     |
 +-----------------------+-----------------------------------+
-| ``out_recipe1``       | ``spent_uox``                     |
+| ``fuel_outrecipes``   | ``spent_uox``                     |
 +-----------------------+-----------------------------------+
-| ``cycle_length``      | ``18``                            |
+| ``cycle_time``        | ``18``                            |
 +-----------------------+-----------------------------------+
-| ``refuel_length``     | ``1``                             |
+| ``refuel_time``       | ``1``                             |
 +-----------------------+-----------------------------------+
-| ``assem_mass``        | ``33000``                         |
+| ``assem_size``        | ``33000``                         |
 +-----------------------+-----------------------------------+
-| ``n_core``            | ``3``                             |
+| ``n_assem_core``      | ``3``                             |
 +-----------------------+-----------------------------------+
-| ``n_batch``           | ``1``                             |
+| ``n_assem_batch``     | ``1``                             |
 +-----------------------+-----------------------------------+
-| ``power``             | ``1178``                          |
+| ``power_cap``         | ``1178``                          |
 +-----------------------+-----------------------------------+
 
-Once complete, append this facility under the Enrichment facility of your input file [#f1]_.
+Once complete, append this facility under the Enrichment prototype of your input file [#f1]_.
 
 
 Example: Sink Prototype
 +++++++++++++++++++++++
 
-A sink facility that accepts materials and products with a fixed throughput (per time step) capacity and a lifetime 
+The Sink facility accepts materials and products with a fixed throughput (per time step) capacity and a lifetime 
 capacity defined by a total inventory size. The inventory size and throughput capacity both default to infinite. If a 
 recipe is provided, it will request material with that recipe. Requests are made for any number of specified 
 commodities.
-The Sink archetype section is of the form:
+The Sink archetype is of the form:
 
 .. code-block:: xml
 
@@ -362,9 +363,9 @@ create the NuclearRepository prototype.
 +=========================+===========================+
 | ``name``                | ``NuclearRepository``     |
 +-------------------------+---------------------------+
-| ``input_commodity1``    | ``spent_uox``             |
+| ``in_commods``          | ``spent_uox``             |
 +-------------------------+---------------------------+
-| ``input_commodity2``    | ``tails``                 |
+| ``in_commods``          | ``tails``                 |
 +-------------------------+---------------------------+
 
 Once complete, append this facility under the Reactor prototype of your input file [#f1]_.

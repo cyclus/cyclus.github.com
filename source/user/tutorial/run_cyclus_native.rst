@@ -13,12 +13,14 @@ Command Line Execution
 Running Cyclus from the command line requires running the command 
 
 .. code-block:: bash 
+
     $ cyclus 
 
 
 You can view all of the input flags for this command by running
 
 .. code-block:: bash 
+    
     $ cyclus -h 
 
 
