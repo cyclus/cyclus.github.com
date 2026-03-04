@@ -1,4 +1,4 @@
-``Recipe`` - Recipe Definition (optional, may appear multiple times)
+``Recipe`` - Recipe Definition (required, may appear multiple times)
 ==========================================================================
 
 The most common resources being exchanged by |Cyclus| agents is a
@@ -7,7 +7,9 @@ composition of a material object may be manipulated over time by the agents
 that transact it, it is often necessary for the user to define a specific
 recipe for a material.  Each ``recipe`` section can be used to define a named
 composition that can then be referenced elsewhere, such as in the data for an
-archetype.
+archetype. Though at least one ``recipe`` block is required in every |Cyclus| 
+input file, it should be noted that it is possible to define a dummy ``recipe`` 
+and not use it should that be desired. 
 
 A ``recipe`` block has the following sections in the following order:
 
