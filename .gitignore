@@ -9,7 +9,7 @@ source/user/CYCLUS_INSTALL.rst
 source/user/CYCAMORE_INSTALL.rst
 source/user/DEPENDENCIES.rst
 source/user/CYCAMORE_DEPS.rst
-source/kernel/core
+**/core
 docs.zip
 source/previous/release_table.rst
 
