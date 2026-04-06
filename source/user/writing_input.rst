@@ -139,6 +139,7 @@ any order in the input file:
    input_specs/region
    input_specs/inst
    input_specs/recipe
+   input_specs/package
 
 Including XML Files
 --------------------
