@@ -55,6 +55,8 @@ Learn More
 News
 ----
 
+**August 16, 2026:** `Cyclus Workshop held at GLOBAL 2026 in Chicago <https://fuelcycle.org/Workshop-Codespace/2026/08/16/global.html>`_
+
 **May 4, 2024:** `Cyclus v1.6.0 is released <https://github.com/cyclus/cyclus/releases/tag/1.6.0>`_
 
 **April 29, 2024:** :doc:`FY 24 Funding for Cyclus <news/fy24neup>`
