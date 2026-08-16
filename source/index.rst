@@ -1,6 +1,11 @@
 |Cyclus|
 ==========
 
+GLOBAL 2026 Workshop
+---------------------
+
+https://fuelcycle.org/Workshop-Codespace
+
 .. raw:: html
 
     <div style="text-align:center;"><br /><br />
@@ -12,7 +17,6 @@
 .. raw:: html
 
     </div>
-
 
 |cyclus| is the next-generation agent-based nuclear :doc:`fuel cycle simulator
 <basics/fcs_background>`, providing flexibility to users and developers
