@@ -166,7 +166,7 @@ The recipe section of you input file should now look like:
         </nuclide>
       </recipe>
       <recipe>
-        <name>spent_uox<name>
+        <name>spent_uox</name>
         <basis>mass</basis>
         <nuclide>
           <id>92235</id>
