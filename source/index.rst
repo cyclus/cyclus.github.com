@@ -1,11 +1,6 @@
 |Cyclus|
 ==========
 
-GLOBAL 2026 Workshop
----------------------
-
-https://fuelcycle.org/Workshop-Codespace
-
 .. raw:: html
 
     <div style="text-align:center;"><br /><br />
